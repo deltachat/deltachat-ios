@@ -364,7 +364,6 @@
 		3059620D234614E700C80F33 /* DcContact+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DcContact+Extension.swift"; sourceTree = "<group>"; };
 		3059620F2346154D00C80F33 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		305DDD8625DD97BF00974489 /* DynamicFontButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFontButton.swift; sourceTree = "<group>"; };
-		305FE03523A81B4C0053BE90 /* EmptyStateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateLabel.swift; sourceTree = "<group>"; };
 		3060119D22DDE24000C1CE6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3060119F22DDE24500C1CE6F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		306011A022DDE24700C1CE6F /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1024,7 +1023,6 @@
 			isa = PBXGroup;
 			children = (
 				AE0AA951247800E700D42A7F /* GalleryCell.swift */,
-				30238CFC28A5028300EF14AC /* WebxdcGridCell.swift */,
 				AE8DD450249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift */,
 			);
 			path = Cell;
@@ -1140,7 +1138,6 @@
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
-				305FE03523A81B4C0053BE90 /* EmptyStateLabel.swift */,
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
 				30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */,
@@ -1213,6 +1210,7 @@
 		D83226FC2D3AC91100C239C5 /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				30238CFC28A5028300EF14AC /* WebxdcGridCell.swift */,
 				D83226FF2D3AC9BF00C239C5 /* AppPickerViewController.swift */,
 				D86DF20B2D30318B00141B3E /* WebxdcStoreViewController.swift */,
 				D83227012D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift */,

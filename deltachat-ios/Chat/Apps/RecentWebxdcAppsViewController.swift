@@ -2,76 +2,75 @@ import UIKit
 import DcCore
 import QuickLook
 
-protocol WebxdcSelectorDelegate: AnyObject {
-    func onWebxdcFromFilesSelected(url: URL)
+protocol RecentWebxdcAppsViewControllerDelegate: AnyObject {
+    func webxdcFileSelected(_ viewController: RecentWebxdcAppsViewController, url: URL)
 }
 
-// TODO: Rewrite
 class RecentWebxdcAppsViewController: UIViewController {
-
     private let dcContext: DcContext
-    // MARK: - data
     private var deduplicatedMessageIds: [Int] = []
     private var items: [Int: GalleryItem] = [:]
 
-    // MARK: - subview specs
-    private let gridDefaultSpacing: CGFloat = 5
-    weak var delegate: WebxdcSelectorDelegate?
+    weak var delegate: RecentWebxdcAppsViewControllerDelegate?
 
-    private lazy var gridLayout: GridCollectionViewFlowLayout = {
-        let layout = GridCollectionViewFlowLayout()
-        layout.minimumLineSpacing = gridDefaultSpacing
-        layout.minimumInteritemSpacing = gridDefaultSpacing
-        layout.format = .rect(ratio: 1.3)
-        return layout
-    }()
+    private let collectionView: UICollectionView
+    private let emptyStateLabel: EmptyStateLabel
 
-    private lazy var grid: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: gridLayout)
+    init(context: DcContext) {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: Self.layout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(WebxdcGridCell.self, forCellWithReuseIdentifier: WebxdcGridCell.reuseIdentifier)
-        collectionView.contentInset = UIEdgeInsets(top: gridDefaultSpacing, left: gridDefaultSpacing, bottom: gridDefaultSpacing, right: gridDefaultSpacing)
+        collectionView.register(RecentWebxdcAppsCell.self, forCellWithReuseIdentifier: RecentWebxdcAppsCell.reuseIdentifier)
         collectionView.backgroundColor = DcColors.defaultBackgroundColor
         collectionView.delaysContentTouches = false
         collectionView.alwaysBounceVertical = true
-        collectionView.isPrefetchingEnabled = true
-        collectionView.prefetchDataSource = self
-        return collectionView
-    }()
+        emptyStateLabel = EmptyStateLabel(text: String.localized("one_moment"))
 
-    private lazy var emptyStateView: EmptyStateLabel = {
-        let label = EmptyStateLabel()
-        label.text = String.localized("one_moment")
-        return label
-    }()
-
-    init(context: DcContext) {
         self.dcContext = context
         super.init(nibName: nil, bundle: nil)
+
+        collectionView.dataSource = self
+        collectionView.delegate = self
         view.backgroundColor = .systemBackground
-        setupSubviews()
+        view.addSubview(collectionView)
+
+        setupConstraints()
         deduplicateWebxdcs()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     // MARK: - setup
-    private func setupSubviews() {
-        view.addSubview(grid)
+    private func setupConstraints() {
         let constraints = [
-            grid.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            grid.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: grid.safeAreaLayoutGuide.trailingAnchor),
-            view.bottomAnchor.constraint(equalTo: grid.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.trailingAnchor),
+            view.bottomAnchor.constraint(equalTo: collectionView.safeAreaLayoutGuide.bottomAnchor),
         ]
 
         NSLayoutConstraint.activate(constraints)
 
-        emptyStateView.addCenteredTo(parentView: view)
+        emptyStateLabel.addCenteredTo(parentView: view)
+    }
+
+    private static func layout() -> UICollectionViewCompositionalLayout {
+
+        let layout = UICollectionViewCompositionalLayout { _, environment in
+            let itemsPerRow = environment.traitCollection.horizontalSizeClass == .compact ? 4 : 8
+            let fractionalWidth: CGFloat = 1 / CGFloat(itemsPerRow)
+
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth), heightDimension: .fractionalHeight(1))
+            let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+            layoutItem.contentInsets = .init(top: 4, leading: 4, bottom: 4, trailing: 4)
+
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(fractionalWidth * 1.3))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }
+
+        return layout
     }
 
     func deduplicateWebxdcs() {
@@ -86,26 +85,16 @@ class RecentWebxdcAppsViewController: UIViewController {
                     self.deduplicatedMessageIds.append(id)
                 }
             }
-        }
 
-        DispatchQueue.main.async {
-            if self.deduplicatedMessageIds.isEmpty {
-                self.emptyStateView.text = String.localized("webxdc_selector_empty_hint")
-            } else {
-                self.emptyStateView.isHidden = true
+            DispatchQueue.main.async {
+                if self.deduplicatedMessageIds.isEmpty {
+                    self.emptyStateLabel.text = String.localized("webxdc_selector_empty_hint")
+                } else {
+                    self.emptyStateLabel.isHidden = true
+                }
+                self.collectionView.reloadData()
             }
-            self.grid.reloadData()
         }
-    }
-}
-
-extension RecentWebxdcAppsViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach { if items[$0.row] == nil {
-            let message = dcContext.getMessage(id: deduplicatedMessageIds[$0.row])
-            let item = GalleryItem(msg: message)
-            items[$0.row] = item
-        }}
     }
 }
 
@@ -116,9 +105,9 @@ extension RecentWebxdcAppsViewController: UICollectionViewDataSource, UICollecti
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let webxdcGridCell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: WebxdcGridCell.reuseIdentifier,
-                for: indexPath) as? WebxdcGridCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RecentWebxdcAppsCell.reuseIdentifier,
+                for: indexPath) as? RecentWebxdcAppsCell else {
             return UICollectionViewCell()
         }
 
@@ -132,15 +121,15 @@ extension RecentWebxdcAppsViewController: UICollectionViewDataSource, UICollecti
             items[indexPath.row] = galleryItem
             item = galleryItem
         }
-        webxdcGridCell.update(item: item)
-        return webxdcGridCell
+        cell.update(item: item)
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let msgId = deduplicatedMessageIds[indexPath.row]
         let message = dcContext.getMessage(id: msgId)
         if let fileURL = message.fileURL {
-            delegate?.onWebxdcFromFilesSelected(url: fileURL)
+            delegate?.webxdcFileSelected(self, url: fileURL)
         }
         collectionView.deselectItem(at: indexPath, animated: true)
     }
