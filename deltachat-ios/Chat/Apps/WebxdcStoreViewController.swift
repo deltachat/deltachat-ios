@@ -28,7 +28,7 @@ class WebxdcStoreViewController: UIViewController {
 
     private func setupConstraints() {
         let constraints = [
-            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: webView.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: webView.bottomAnchor),

@@ -70,7 +70,7 @@ class AppPickerViewController: UIViewController {
 
     private func setupConstraints() {
         let constraints = [
-            downloadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            downloadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             downloadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: downloadingView.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: downloadingView.bottomAnchor),
