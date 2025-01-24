@@ -8,7 +8,7 @@
 - Fix: Experimental location sharing now ends at the specified interval even if you don't move (#2537)
 - Fix crash on account deletion (#2554)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
-
+- Add screen to share your apps (#2530)
 
 ## v1.50.5
 2025-01
