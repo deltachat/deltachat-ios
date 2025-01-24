@@ -451,9 +451,6 @@ class WebxdcViewController: WebViewViewController {
                     appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
                 }
             })
-            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
-                self?.shareWebxdc()
-            })
             if sourceCodeUrl != nil {
                 actions.append(UIMenu(options: [.displayInline],
                     children: [
@@ -485,10 +482,6 @@ class WebxdcViewController: WebViewViewController {
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
         }
-    }
-
-    private func shareWebxdc() {
-        Utils.share(message: dcContext.getMessage(id: messageId), parentViewController: self, sourceItem: navigationItem.rightBarButtonItem)
     }
 }
 
