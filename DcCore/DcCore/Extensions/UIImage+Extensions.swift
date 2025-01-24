@@ -65,7 +65,7 @@ public extension UIImage {
             return false
         }
 
-        guard let cgImage = self.cgImage else { return false }
+        guard let cgImage else { return false }
 
         // https://christianselig.com/2021/04/efficient-average-color/
         // First, resize the image. We do this for two reasons, 1) less pixels to deal with means faster calculation and a resized image still has the "gist" of the colors, and 2) the image we're dealing with may come in any of a variety of color formats (CMYK, ARGB, RGBA, etc.) which complicates things, and redrawing it normalizes that into a base color format we can deal with.
