@@ -11,7 +11,11 @@ class QrViewController: UIViewController {
     private let contentScrollView: UIScrollView
     private let qrContentView: UIImageView
     private let shareLinkButton: UIButton
-    private let moreButton: UIBarButtonItem
+
+    private lazy var moreButton: UIBarButtonItem = {
+        let moreButtonImage = UIImage(systemName: "ellipsis.circle")
+        return UIBarButtonItem(image: moreButtonImage, menu: showMoreOptions())
+    }()
 
     var verticalCenterConstraint: NSLayoutConstraint?
     var contentTopAnchor: NSLayoutConstraint?
@@ -49,17 +53,12 @@ class QrViewController: UIViewController {
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.addSubview(contentStackView)
 
-        let moreButtonImage = UIImage(systemName: "ellipsis.circle")
-        moreButton = UIBarButtonItem(image: moreButtonImage, style: .plain, target: nil, action: nil)
-
         super.init(nibName: nil, bundle: nil)
 
         view.backgroundColor = DcColors.defaultBackgroundColor
 
         title = String.localized("qrshow_title")
         navigationItem.rightBarButtonItem = moreButton
-        moreButton.action = #selector(QrViewController.showMoreOptions(_:))
-        moreButton.target = self
         shareLinkButton.addTarget(self, action: #selector(QrViewController.shareInviteLink(_:)), for: .touchUpInside)
         shareLinkButton.setTitleColor(DcColors.primary, for: .normal)
 
@@ -143,26 +142,36 @@ class QrViewController: UIViewController {
     }
 
     // Only relevant for GroupChatDetails, for QR-Code-Tab, this gets handled by QrPageController
-    @objc private func showMoreOptions(_ sender: Any) {
-        let alert = UIAlertController(title: String.localized("qrshow_title"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: share(_:)))
-        alert.addAction(UIAlertAction(title: String.localized("menu_copy_to_clipboard"), style: .default, handler: copyToClipboard(_:)))
-        alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .default, handler: withdrawQrCode(_:)))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    private func showMoreOptions() -> UIMenu {
+        let actions = [
+            UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                self?.share()
+            },
+            UIAction(title: String.localized("menu_copy_to_clipboard"), image: UIImage(systemName: "document.on.document")) { [weak self] _ in
+                self?.copyToClipboard()
+            },
+            UIMenu(options: [.displayInline],
+                children: [
+                    UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
+                        self?.withdrawQrCode()
+                    },
+                ]
+            ),
+        ]
+        return UIMenu(children: actions)
     }
 
-    @objc func share(_ action: UIAlertAction) {
+    func share() {
         if let inviteLink = Utils.getInviteLink(context: dcContext, chatId: chatId) {
             Utils.share(url: inviteLink, parentViewController: self, sourceItem: moreButton)
         }
     }
 
-    @objc func copyToClipboard(_ action: UIAlertAction) {
+    func copyToClipboard() {
         UIPasteboard.general.string = Utils.getInviteLink(context: dcContext, chatId: chatId)
     }
 
-    @objc func withdrawQrCode(_ action: UIAlertAction) {
+    func withdrawQrCode() {
         let groupName = dcContext.getChat(chatId: chatId).name
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("withdraw_verifygroup_explain"), groupName),
                                       message: nil, preferredStyle: .alert)
