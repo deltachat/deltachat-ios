@@ -89,7 +89,7 @@ class ContactCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.widthAnchor.constraint(equalToConstant: 16).isActive = true
         view.tintColor = DcColors.middleGray
-        view.image = UIImage(named: "pinned_chatlist")?.withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(systemName: "pin.fill")?.withRenderingMode(.alwaysTemplate)
         view.isHidden = true
         view.contentMode = .scaleAspectFit
         view.isAccessibilityElement = false
