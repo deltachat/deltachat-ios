@@ -110,8 +110,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private lazy var muteItem: UIBarButtonItem = {
         let imageView = UIImageView()
-        imageView.tintColor = DcColors.defaultTextColor
-        imageView.image =  UIImage(named: "volume_off")?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = DcColors.middleGray
+        imageView.image =  UIImage(systemName: "speaker.slash.fill")?.withRenderingMode(.alwaysTemplate)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
