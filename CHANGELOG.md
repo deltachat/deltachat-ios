@@ -10,6 +10,7 @@
 - Fix: Experimental location sharing now ends at the specified interval even if you don't move (#2537)
 - Fix crash on account deletion (#2554)
 - Fix hiding of the bottom bar when archive is opened (#2560)
+- Fix: Show error message when voice recording permissions are missing
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
 

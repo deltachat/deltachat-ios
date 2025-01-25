@@ -46,16 +46,16 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return view
     }()
 
-    lazy var noRecordingPermissionView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "microphone_access"))
+    lazy var noRecordingPermissionView: UILabel = {
+        let view = UILabel()
+        view.font = .preferredFont(forTextStyle: .body)
+        view.adjustsFontForContentSizeCategory = true
+        view.textColor = DcColors.defaultTextColor
+        view.lineBreakMode = .byWordWrapping
+        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.alpha = 0.0
-        view.contentMode = UIView.ContentMode.scaleAspectFit
-        view.isAccessibilityElement = true
-        view.accessibilityLabel = """
-            \(String.localized("perm_required_title"))
-            \(String.localized("perm_explain_access_to_mic_denied"))
-            """
+        view.text = String.localized("perm_required_title") + "\n\n" + String.localized("perm_explain_access_to_mic_denied")
+        view.textAlignment = .center
         return view
     }()
 
@@ -138,7 +138,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.view.addSubview(noRecordingPermissionView)
 
         waveFormView.fill(view: view)
-        noRecordingPermissionView.fill(view: view, paddingLeading: 100, paddingTrailing: 100, paddingTop: 200, paddingBottom: 200)
+        noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
 
         self.navigationController?.toolbar.tintColor = normalTintColor
         self.navigationController?.navigationBar.tintColor = normalTintColor
