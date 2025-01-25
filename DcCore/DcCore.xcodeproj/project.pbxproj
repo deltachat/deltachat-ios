@@ -34,7 +34,6 @@
 		D8BBF0092B57D92E008C96FD /* DcEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0082B57D92E008C96FD /* DcEvent.swift */; };
 		D8BBF00B2B57D93D008C96FD /* DcChatlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */; };
 		D8BBF00D2B57D949008C96FD /* DcChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00C2B57D949008C96FD /* DcChat.swift */; };
-		D8BBF00F2B57D959008C96FD /* DcArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF00E2B57D959008C96FD /* DcArray.swift */; };
 		D8BBF0112B57D96F008C96FD /* DcMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0102B57D96F008C96FD /* DcMsg.swift */; };
 		D8BBF0132B57D97B008C96FD /* DcContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0122B57D97B008C96FD /* DcContact.swift */; };
 		D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0142B57D991008C96FD /* DcLot.swift */; };
@@ -76,7 +75,6 @@
 		D8BBF0082B57D92E008C96FD /* DcEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcEvent.swift; sourceTree = "<group>"; };
 		D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcChatlist.swift; sourceTree = "<group>"; };
 		D8BBF00C2B57D949008C96FD /* DcChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcChat.swift; sourceTree = "<group>"; };
-		D8BBF00E2B57D959008C96FD /* DcArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcArray.swift; sourceTree = "<group>"; };
 		D8BBF0102B57D96F008C96FD /* DcMsg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcMsg.swift; sourceTree = "<group>"; };
 		D8BBF0122B57D97B008C96FD /* DcContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcContact.swift; sourceTree = "<group>"; };
 		D8BBF0142B57D991008C96FD /* DcLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLot.swift; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				D8BBF0022B57D8E5008C96FD /* DcAccount.swift */,
-				D8BBF00E2B57D959008C96FD /* DcArray.swift */,
 				D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */,
 				D8BBF00C2B57D949008C96FD /* DcChat.swift */,
 				D8BBF00A2B57D93D008C96FD /* DcChatlist.swift */,
@@ -298,7 +295,6 @@
 			files = (
 				30421988243F23E500516852 /* Constants.swift in Sources */,
 				D8BBF0072B57D91B008C96FD /* DcEventEmitter.swift in Sources */,
-				D8BBF00F2B57D959008C96FD /* DcArray.swift in Sources */,
 				30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */,
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,

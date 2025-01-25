@@ -161,7 +161,7 @@ public class DcAccounts {
             if accountId != skipId {
                 let dcContext = get(id: accountId)
                 if !dcContext.isMuted() {
-                    freshCount += dcContext.getFreshMessages().count
+                    freshCount += dcContext.getFreshMessagesCount()
                 }
             }
         }
