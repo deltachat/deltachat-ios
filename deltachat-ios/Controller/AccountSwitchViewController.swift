@@ -341,8 +341,16 @@ class AccountCell: UITableViewCell {
             accountName.accessibilityLabel = title
         }
 
+        let connectivityString = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: "")
         if let label = dcContext.getConfig("private_tag") {
-            tagLabel.text = label
+            tagLabel.text = if !connectivityString.isEmpty {
+                connectivityString + " · " + label
+            } else {
+                label
+            }
+            tagLabel.isHidden = false
+        } else if !connectivityString.isEmpty {
+            tagLabel.text = connectivityString
             tagLabel.isHidden = false
         } else {
             tagLabel.isHidden = true
