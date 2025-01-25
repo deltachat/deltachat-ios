@@ -1008,7 +1008,7 @@ open class InputBarAccessoryView: UIView {
             scrollDownButton.constraintWidthTo(40)
         ])
         scrollDownButton.backgroundColor = DcColors.defaultBackgroundColor
-        scrollDownButton.setImage(UIImage(named: "ic_scrolldown")?.sd_tintedImage(with: .systemBlue), for: .normal)
+        scrollDownButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         scrollDownButton.layer.cornerRadius = 20
         scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
         scrollDownButton.layer.borderWidth = 1
