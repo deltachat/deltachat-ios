@@ -21,8 +21,7 @@ public class DraftPreview: UIView {
 
     private lazy var cancelImageView: UIImageView = {
         let view = UIImageView(image: UIImage())
-        view.tintColor = .systemBlue
-        view.image = UIImage(named: "ic_close_36pt")?.withRenderingMode(.alwaysTemplate)
+        view.image = UIImage(systemName: "xmark")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
