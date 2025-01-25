@@ -26,6 +26,7 @@ class AccountSwitchViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
         setupSubviews()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleConnectivityChanged), name: Event.connectivityChanged, object: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -225,6 +226,12 @@ class AccountSwitchViewController: UITableViewController {
 
     @objc private func cancelAction() {
         dismiss(animated: true)
+    }
+
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 }
 
