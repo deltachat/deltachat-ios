@@ -91,7 +91,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }()
 
     lazy var startRecordingButton: UIBarButtonItem = {
-        let button =  UIBarButtonItem.init(image: UIImage(named: "audio_record"),
+        let button =  UIBarButtonItem.init(image: UIImage(systemName: "mic"),
                                            style: UIBarButtonItem.Style.plain,
                                            target: self,
                                            action: #selector(recordingButtonAction))
@@ -100,7 +100,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }()
 
     lazy var continueRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: UIImage(named: "audio_record"),
+        let button = UIBarButtonItem.init(image: UIImage(systemName: "mic"),
                                           style: UIBarButtonItem.Style.plain,
                                           target: self,
                                           action: #selector(continueRecordingButtonAction))
