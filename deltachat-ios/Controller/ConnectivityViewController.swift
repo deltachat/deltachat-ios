@@ -158,6 +158,8 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+
         loadHtml()
     }
 

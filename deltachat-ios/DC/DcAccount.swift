@@ -77,9 +77,13 @@ public class DcAccounts {
 
     public func startIo() {
         if UserDefaults.nseFetching {
+            // Let UI display "Updating..." (additional events needed that state is not managed by core)
+            getAll().forEach {
+                NotificationCenter.default.post(name: Event.connectivityChanged, object: nil, userInfo: ["account_id": $0])
+            }
+
             // Wait for NSE-fetch to terminate before starting main-IO (both keep state unsynced, running at the same time would mess things up).
             // The other way round, NSE is not started when main-IO is running.
-            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil) // additional events needed as state changed outside mainapp
             startOrReschedule()
             func startOrReschedule() {
                 if UserDefaults.mainIoRunning {

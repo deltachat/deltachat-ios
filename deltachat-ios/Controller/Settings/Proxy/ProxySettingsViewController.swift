@@ -172,6 +172,8 @@ class ProxySettingsViewController: UITableViewController {
     // MARK: - Notifications
 
     @objc private func handleConnectivityChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
         }
