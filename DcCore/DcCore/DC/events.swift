@@ -176,11 +176,8 @@ public class DcEventHandler {
             ])
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] connectivity changed")
-            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil)
+            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil, userInfo: ["account_id": Int(accountId)])
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
             if let sem = dcAccounts.fetchSemaphore {
