@@ -369,8 +369,11 @@ public class DcContext {
         dc_set_draft(contextPointer, UInt32(chatId), message?.messagePointer)
     }
 
-    public func getFreshMessages() -> DcArray {
-        return DcArray(arrayPointer: dc_get_fresh_msgs(contextPointer))
+    public func getFreshMessagesCount() -> Int {
+        let arr = dc_get_fresh_msgs(contextPointer)
+        let cnt = dc_array_get_cnt(arr)
+        dc_array_unref(arr)
+        return cnt
     }
 
     public func markSeenMessages(messageIds: [UInt32]) {

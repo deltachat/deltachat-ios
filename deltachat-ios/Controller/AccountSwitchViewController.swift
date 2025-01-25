@@ -336,7 +336,7 @@ class AccountCell: UITableViewCell {
             accountAvatar.setImage(image)
         }
 
-        let unreadMessages = dcContext.getFreshMessages().count
+        let unreadMessages = dcContext.getFreshMessagesCount()
         accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
 
         mutedIndicator.isHidden = !dcContext.isMuted()
