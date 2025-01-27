@@ -1084,4 +1084,3 @@
 "location_denied_explain_ios" = "In the system settings, enable \"Privacy/Location Services\" and set \"Delta Chat/Location\" to \"Always\" and \"Precise\".";
 "app_picker_store" = "Browse";
 "app_picker_my_apps" = "Recents";
-"app_picker_downloading" = "Downloading...";
