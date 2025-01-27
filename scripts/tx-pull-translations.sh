@@ -4,17 +4,10 @@
 # Credits to Daniel Cohen Gindi.
 
 
-# ----Main-----
 
 cd scripts
 
 TMP_ANDROID_TRANSLATIONS=tmpAndroidTranslations
-
-if [[ -z `which node` ]] 
-then
-    echo "ERROR: You need to have node installed. Exiting."
-    exit 
-fi
 
 if [[ -z `which tx` ]] 
 then
