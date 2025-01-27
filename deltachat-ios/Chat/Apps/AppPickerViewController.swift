@@ -87,7 +87,7 @@ class AppPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc func showLoading() {
-        title = String.localized("app_picker_downloading")
+        title = String.localized("downloading")
         navigationItem.titleView = nil
         downloadingView.isHidden = false
         downloadingView.activityIndicator.startAnimating()
