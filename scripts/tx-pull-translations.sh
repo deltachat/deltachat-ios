@@ -41,3 +41,15 @@ for (( i=0; i<${#IOS_TRANSLATIONS[@]}; i++ )) {
 rm -rf $TMP_ANDROID_TRANSLATIONS
 
 cd ..
+
+
+
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ ! "$branch" == *"update-transl"* ]]; then
+    echo
+    echo " ☝️ It seems you're on a normal feature branch."
+    echo "   For conflict-free merging, do not commit non-english translations here."
+    git status --short "*.strings*"
+    echo "   (non-english translations go to explicit update-translation branches)"
+    echo
+fi
