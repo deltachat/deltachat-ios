@@ -55,8 +55,17 @@ class RecentWebxdcAppsViewController: UIViewController {
 
     private static func layout() -> UICollectionViewCompositionalLayout {
 
-        let layout = UICollectionViewCompositionalLayout { _, environment in
-            let itemsPerRow = environment.traitCollection.horizontalSizeClass == .compact ? 4 : 8
+        let layout = UICollectionViewCompositionalLayout { _, _ in
+            let itemsPerRow: Int
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                if UIApplication.shared.orientation == .portrait {
+                    itemsPerRow = 4
+                } else { // landscape
+                    itemsPerRow = 8
+                }
+            } else {
+                itemsPerRow = 6
+            }
             let fractionalWidth: CGFloat = 1 / CGFloat(itemsPerRow)
 
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fractionalWidth), heightDimension: .fractionalHeight(1))
