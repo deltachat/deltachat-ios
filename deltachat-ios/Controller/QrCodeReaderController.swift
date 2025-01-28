@@ -73,9 +73,7 @@ class QrCodeReaderController: UIViewController {
             })
         }
 
-        if showTroubleshooting {
-            navigationItem.rightBarButtonItem = moreButton
-        }
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -197,11 +195,15 @@ class QrCodeReaderController: UIViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        let actions = [
-            UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+        var actions = [UIMenuElement]()
+        actions.append(UIAction(title: String.localized("paste_from_clipboard"), image: UIImage(systemName: "doc.on.clipboard")) { [weak self] _ in
+            self?.delegate?.handleQrCode(UIPasteboard.general.string ?? "")
+        })
+        if showTroubleshooting {
+            actions.append(UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
                 self?.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: "#multiclient"), animated: true)
-            },
-        ]
+            })
+        }
         return UIMenu(children: actions)
     }
 }
