@@ -90,6 +90,7 @@ class ChatListViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         self.isArchive = isArchive
         super.init(style: .plain)
+        hidesBottomBarWhenPushed = isArchive
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self else { return }
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
