@@ -1212,9 +1212,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
                 }
 
-                actions.append(action("camera", "camera", showCameraViewController))
-                let galleryImage = if #available(iOS 16, *) { "photo.stack" } else { "photo" }
-                actions.append(action("gallery", galleryImage, showPhotoVideoLibrary))
+                actions.append(UIMenu(options: [.displayInline], children: [
+                    action("camera", "camera", showCameraViewController),
+                    action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
+                ]))
+
                 actions.append(action("files", "folder", self.showDocumentLibrary))
                 actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
                 actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
