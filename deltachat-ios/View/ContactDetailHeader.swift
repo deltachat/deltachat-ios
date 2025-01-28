@@ -85,11 +85,7 @@ class ContactDetailHeader: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(searchBtnTapped), for: .touchUpInside)
         button.backgroundColor = DcColors.profileCellBackgroundColor
-        button.setImage(UIImage(named: "ic_search")?.sd_tintedImage(with: .systemBlue), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         button.layer.cornerRadius = 20
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
@@ -104,11 +100,6 @@ class ContactDetailHeader: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
         button.backgroundColor = DcColors.profileCellBackgroundColor
-        button.setImage(UIImage(named: "volume_on")?.sd_tintedImage(with: .systemBlue), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.contentMode = .scaleAspectFit
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         button.layer.cornerRadius = 20
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
@@ -185,10 +176,7 @@ class ContactDetailHeader: UIView {
     }
 
     func setMuted(isMuted: Bool) {
-        muteButton.setImage(isMuted ?
-                            UIImage(named: "volume_off")?.sd_tintedImage(with: .systemBlue) :
-                                UIImage(named: "volume_on")?.sd_tintedImage(with: .systemBlue),
-                            for: .normal)
+        muteButton.setImage(UIImage(systemName: isMuted ? "speaker.slash" : "speaker.wave.2"), for: .normal)
     }
 
     func showMuteButton(show: Bool) {
