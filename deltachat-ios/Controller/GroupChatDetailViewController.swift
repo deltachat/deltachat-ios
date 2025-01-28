@@ -80,7 +80,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var ephemeralMessagesCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
-        cell.imageView?.image = UIImage(named: "ephemeral_timer")?.withTintColor(UIColor.systemBlue)
+        cell.imageView?.image = UIImage(systemName: "stopwatch")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -130,7 +130,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var allMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
-        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle") // added in ios13
+        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -138,7 +138,7 @@ class GroupChatDetailViewController: UIViewController {
     private lazy var locationsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("locations")
-        cell.imageView?.image = UIImage(systemName: "map") // added in ios13
+        cell.imageView?.image = UIImage(systemName: "map")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
