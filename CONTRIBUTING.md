@@ -140,8 +140,7 @@ you may leave a note in the PR about the desired merge strategy.
 ## Translations
 
 Translations are done via [Transifex](https://explore.transifex.com/delta-chat/),
-you can log in there with your E-Mail Address or with a Github or Google handle.
-You find two projects there:
+you find two projects there:
 - "Delta Chat App" contains the strings used in the app's UI
 - "Delta Chat Website" contains the offline help from "Settings / Help"
   as well as the pages used on <https://delta.chat>
@@ -156,6 +155,21 @@ do a PR to [`strings.xml`](https://github.com/deltachat/deltachat-android/blob/m
 or to [`help.md`](https://github.com/deltachat/deltachat-pages/blob/master/en/help.md).
 Again, please do not mix adding things and refactorings, esp. for `help.md`,
 this would require retranslations and should be considered carefully.
+
+
+### Prototyping Translations
+
+Sometimes, strings are not yet available in the translations.
+Or adding them there is too much overhead, eg. it is not clear how the final wording will be.
+
+In these cases, to use use the normal translations functions code-wise,
+in your feature branch,
+add these strings to `./deltachat-ios/en.lproj` and `./scripts/untranslated.xml`.
+
+The latter is need to avoid `en.lproj` being overwritten on next translation update (see [RELEASE.md](./RELEASE.md)).
+
+Translations updates must not be done in feature branches as that makes review harder
+and easily result in merge conflicts.
 
 
 ## Other Ways To Contribute
