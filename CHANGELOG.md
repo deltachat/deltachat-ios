@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Show 'unconnected' and 'updating' states in account switcher (#2553)
+- Add 'Paste from Clipboard' to onboarding QR code scanners (#2559)
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
 - Modernize menus (#2545, #2558)
 - Fix: In 'View Log', hide keyboard when scrolling down (#2541)
