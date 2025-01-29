@@ -11,7 +11,7 @@
 - Fix crash on account deletion (#2554)
 - Fix hiding of the bottom bar when archive is opened (#2560)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
-- Add screen to share your apps (#2530)
+- Access recently used apps from app-picker ("Attach / Apps") (#2530)
 
 ## v1.50.5
 2025-01
