@@ -394,6 +394,7 @@
 "tab_audio_empty_hint" = "Les fichiers audio et messages vocaux partagés dans cette discussion seront affichés ici.";
 "tab_webxdc_empty_hint" = "Les applis partagées dans cette discussion seront affichées ici.";
 "tab_all_media_empty_hint" = "Les fichiers multimédias partagés dans une discussion apparaissent ici.";
+"all_apps_empty_hint" = "Les applications envoyées ou reçues dans une discussion apparaissent ici.";
 "media_preview" = "Prévisualiser le fichier multimédia";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Grille de proportions";
@@ -965,8 +966,6 @@
 "notifications_avg_minutes" = "Toutes les %1$d minutes en moyenne";
 "notifications_avg_hours" = "Toutes les %1$d heures en moyenne";
 "last_check_at" = "Dernièrement vu à %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Les applications envoyées ou reçues dans une discussion apparaissent ici. « Fichiers » affiche les applis que vous venez de télécharger.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Envoi Immédiat";

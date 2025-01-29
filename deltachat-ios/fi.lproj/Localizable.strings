@@ -394,6 +394,7 @@
 "tab_audio_empty_hint" = "Tässä keskustelussa jaetut äänitiedostot ja -viestit näkyvät tässä.";
 "tab_webxdc_empty_hint" = "Keskustelussa jaetut yksityiset sovellukset näkyvät tässä.";
 "tab_all_media_empty_hint" = "Kun keskusteluissa jaetaan mediaa, se tulee näkymään täällä.";
+"all_apps_empty_hint" = "Kaikissa keskusteluissa jaetut yksityiset sovellukset näkyvät tässä.";
 "media_preview" = "Median esikatselu";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Kuvasuhteen mukainen ruudukko";
@@ -985,8 +986,6 @@
 "notifications_avg_minutes" = "Keskimäärin%1$d minuutin välein";
 "notifications_avg_hours" = "Keskimäärin %1$d tunnin välein";
 "last_check_at" = "Tarkistettu %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Kaikissa keskusteluissa jaetut yksityiset sovellukset näkyvät tässä. \"Tiedostot\" näyttää ladatut yksityiset sovellukset.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Välitön toimitus";

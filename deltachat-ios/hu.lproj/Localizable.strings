@@ -423,6 +423,7 @@
 "tab_audio_empty_hint" = "Az ebben a csevegésben megosztott hangfájlok és hangüzenetek itt fognak megjelenni.";
 "tab_webxdc_empty_hint" = "Az ebben a csevegésben megosztott alkalmazások itt fognak megjelenni.";
 "tab_all_media_empty_hint" = "A bármelyik csevegésben megosztott média itt fog megjelenni.";
+"all_apps_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni.";
 "media_preview" = "Média előnézete";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Tengelyarányrács";
@@ -972,8 +973,10 @@
 "global_menu_help_desktop" = "Súgó";
 // deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Tudjon meg többet a Delta Chatről";
+"delta_chat_homepage" = "A Delta Chat weboldala";
 // deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Hozzájárulás a GitHubon";
+"contribute" = "Közreműködés";
 "global_menu_help_report_desktop" = "Jelentsen egy problémát";
 "global_menu_help_about_desktop" = "A Delta Chatről";
 "global_menu_file_open_desktop" = "Delta Chat megnyitása";
@@ -986,6 +989,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Eltávolítás";
 "save_desktop" = "Mentés";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Mentés megszüntetése";
 "name_desktop" = "Név";
 "select_group_image_desktop" = "Csoport képének kiválasztása";
 "export_backup_desktop" = "Biztonsági mentés exportálása";
@@ -1045,8 +1050,6 @@
 "system_settings" = "Rendszer-beállítások";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Típus-, kitűzők-, előnézet- és egyebek szerkesztése";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni. A „Fájlok” az éppen letöltött alkalmazásokat jeleníti meg.";
 // iOS shortcut widget
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "Parancsikonok";

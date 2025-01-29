@@ -153,6 +153,8 @@
 "app_size" = "Größe";
 "app_date_published" = "Veröffentlicht";
 "add_to_chat" = "Zum Chat hinzufügen";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Entdecken";
 "unknown" = "Unbekannt";
 "green" = "Grün";
 "red" = "Rot";
@@ -423,6 +425,7 @@
 "tab_audio_empty_hint" = "In diesem Chat geteilte Audiodateien und Sprachnachrichten werden hier angezeigt.";
 "tab_webxdc_empty_hint" = "In diesem Chat geteilte Apps werden hier angezeigt.";
 "tab_all_media_empty_hint" = "Medien aus allen Chats werden hier angezeigt.";
+"all_apps_empty_hint" = "Empfangene oder gesendete Apps werden hier angezeigt.";
 "media_preview" = "Medien-Vorschau";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Raster im Seitenverhältnis";
@@ -1049,8 +1052,6 @@
 "system_settings" = "Systemeinstellungen";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Töne, Vorschau, Stil und mehr bearbeiten";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Empfangene oder gesendete Apps werden hier angezeigt. Unter \"Dateien\" können Sie auf heruntergeladene Apps zugreifen.";
 // iOS shortcut widget
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "Shortcuts";

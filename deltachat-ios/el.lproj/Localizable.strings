@@ -356,6 +356,7 @@
 "tab_video_empty_hint" = "Τα βίντεο που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_audio_empty_hint" = "Τα αρχεία ήχου και τα φωνητικά μηνύματα που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_webxdc_empty_hint" = "Οι ιδιωτικές εφαρμογές που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+"all_apps_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ.";
 "media_preview" = "Προεπισκόπιση";
 "send_message" = "Αποστολή μηνύματος";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -846,8 +847,6 @@
 "notifications_avg_minutes" = "Κατά μέσο όρο κάθε %1$d λεπτά";
 "notifications_avg_hours" = "Κατά μέσο όρο κάθε %1$d ώρες";
 "last_check_at" = "Έλεγχος στις %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ. Το \"Αρχεία\" εμφανίζει ιδιωτικές εφαρμογές που μόλις κατεβάσατε.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Για να διατηρήσετε τη σύνδεση με τον διακομιστή e-mail σας και να λαμβάνετε μηνύματα στο παρασκήνιο, αγνοήστε τις βελτιστοποιήσεις μπαταρίας στο επόμενο βήμα.\n\nΤο Delta Chat χρησιμοποιεί λίγους πόρους και φροντίζει να μην εξαντλήσει την μπαταρία σας.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

@@ -522,7 +522,14 @@
 "pref_show_emails_no" = "No, només xats";
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
 "pref_show_emails_all" = "Tot";
+"pref_edit_profile" = "Edita el perfil";
 "send_stats_to_devs" = "Envia estadístiques als desenvolupadors del Delta Chat";
+// Reactions
+"reactions" = "Reaccions";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Reacciona";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "Heu reaccionat amb %1$@ a «%2$@»";
 // autocrypt
 "autocrypt_send_asm_title" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";

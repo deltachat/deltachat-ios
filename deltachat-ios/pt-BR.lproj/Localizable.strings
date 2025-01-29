@@ -379,6 +379,7 @@
 "tab_audio_empty_hint" = "Os arquivos de áudio e mensagens de voz compartilhados neste chat serão exibidos aqui.";
 "tab_webxdc_empty_hint" = "Apps compartilhadas neste chat serão exibidas aqui.";
 "tab_all_media_empty_hint" = "Mídias compartilhadas em qualquer bate-papo aparecerão aqui.";
+"all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -893,8 +894,6 @@
 "notifications_avg_minutes" = "Em média, a cada %1$d minutos";
 "notifications_avg_hours" = "Em média, a cada %1$d horas";
 "last_check_at" = "Verificado em %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui. \"Arquivos\" mostra as apps que acabaram de serem baixadas.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Para manter a conexão com seu servidor de e-mail e receber mensagens em segundo plano, ignore as otimizações de bateria na próxima etapa.\n\nO Delta Chat usa poucos recursos e toma cuidado para não descarregar a bateria.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

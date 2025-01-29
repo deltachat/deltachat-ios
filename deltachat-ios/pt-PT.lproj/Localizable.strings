@@ -147,6 +147,7 @@
 "group_add_members" = "Adicionar membros";
 "group_self_not_in_group" = "Você deve ser um membro do grupo para executar essa ação.";
 "profile_encryption" = "Encriptação";
+"all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Visualização de mídia";
 "login_title" = "Login";
 // for classic email, we use the classical term "Account"
