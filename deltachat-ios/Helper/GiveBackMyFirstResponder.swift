@@ -34,8 +34,8 @@ extension UIViewController {
     /// Issues range from freezing the previous first responder to crashing the app.
     public func present(_ previewController: QLPreviewController, animated: Bool, completion: (() -> Void)? = nil) {
         // QLPreviewController can not be used as child because it would not do its custom transitions
-        let vc = GiveBackMyFirstResponder.asChild(of: previewController)
-        present(vc, animated: animated, completion: completion)
+        previewController.returnFirstRespondersOnDismiss()
+        present(previewController as UIViewController, animated: animated, completion: completion)
     }
 
     /// In iOS 16 and below and iOS 18 the UIImagePickerController does not give back the first responder when search was used.
