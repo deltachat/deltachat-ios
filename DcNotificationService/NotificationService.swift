@@ -27,11 +27,12 @@ class NotificationService: UNNotificationServiceExtension {
         var exitedDueToCriticalMemory = false
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
         memoryPressureSource.setEventHandler {
+            memoryPressureSource.cancel()
             // Order of importance because we might crash very soon
-            contentHandler(bestAttemptContent)
             exitedDueToCriticalMemory = true
             UserDefaults.setNseFetching(for: 3)
             UserDefaults.pushToDebugArray("ERR5_LOW_MEM")
+            contentHandler(bestAttemptContent)
         }
         memoryPressureSource.activate()
 
