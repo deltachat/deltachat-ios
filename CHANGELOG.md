@@ -14,6 +14,7 @@
 - Fix: Show error message when voice recording permissions are missing (#2555)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
+- Update translations and local help (#2561)
 
 ## v1.50.5
 2025-01
