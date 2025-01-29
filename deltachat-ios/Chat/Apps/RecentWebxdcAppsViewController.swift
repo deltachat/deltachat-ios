@@ -97,7 +97,7 @@ class RecentWebxdcAppsViewController: UIViewController {
 
             DispatchQueue.main.async {
                 if self.deduplicatedMessageIds.isEmpty {
-                    self.emptyStateLabel.text = String.localized("webxdc_selector_empty_hint")
+                    self.emptyStateLabel.text = String.localized("all_apps_empty_hint")
                 } else {
                     self.emptyStateLabel.isHidden = true
                 }
