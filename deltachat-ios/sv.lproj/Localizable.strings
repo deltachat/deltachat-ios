@@ -400,6 +400,7 @@
 "tab_audio_empty_hint" = "Ljudfiler och röstmeddelanden delade i denna chatt kommer att visas här.";
 "tab_webxdc_empty_hint" = "Appar delade i denna chatt kommer att visas här.";
 "tab_all_media_empty_hint" = "Media delad i någon chatt kommer att visas här.";
+"all_apps_empty_hint" = "Appar som tas emot eller skickas i en chatt visas här.";
 "media_preview" = "Förhandsvisning av media";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Rutnät för bildförhållande";
@@ -995,8 +996,6 @@
 "notifications_avg_minutes" = "I genomsnitt var %1$d minut";
 "notifications_avg_hours" = "I genomsnitt var %1$d:e timma";
 "last_check_at" = "Kontrollerad %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Appar som tas emot eller skickas i en chatt visas här. \"Filer\" visar appar som just har laddats ner.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Omedelbar leverans";

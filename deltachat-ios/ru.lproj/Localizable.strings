@@ -423,6 +423,7 @@
 "tab_audio_empty_hint" = "Здесь можно просмотреть аудиофайлы и голосовые сообщения, отправленные в этом чате.";
 "tab_webxdc_empty_hint" = "Здесь можно просмотреть приложения, отправленные в этом чате.";
 "tab_all_media_empty_hint" = "Здесь можно просмотреть медиафайлы, отправленные в любом чате.";
+"all_apps_empty_hint" = "Здесь можно просмотреть приложения, полученные или отправленные в любом чате.";
 "media_preview" = "Предпросмотр медиафайлов";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Сетка с соотношением сторон";
@@ -972,8 +973,10 @@
 "global_menu_help_desktop" = "Справка";
 // deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Узнать больше о Delta Chat";
+"delta_chat_homepage" = "Домашняя страница Delta Chat";
 // deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Присоединиться к разработке на GitHub";
+"contribute" = "Внести вклад";
 "global_menu_help_report_desktop" = "Сообщить о проблеме";
 "global_menu_help_about_desktop" = "О Delta Chat";
 "global_menu_file_open_desktop" = "Открыть Delta Chat";
@@ -1047,8 +1050,6 @@
 "system_settings" = "Настройки системы";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Редактировать тип, значки, предпросмотр и другое";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Здесь можно просмотреть приложения, полученные или отправленные в любом чате. \"Файлы\" показывает только загруженные приложения.";
 // iOS shortcut widget
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "Ярлыки";

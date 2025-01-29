@@ -367,6 +367,7 @@
 "tab_video_empty_hint" = "Видео записи подељени у овом ћаскању ће се појавити овде.";
 "tab_audio_empty_hint" = "Звучне поруке и записи подељене у овом ћаскању ће се појавити овде.";
 "tab_webxdc_empty_hint" = "Приватне апликације подељене у овом ћаскању ће се појавити овде.";
+"all_apps_empty_hint" = "Приватне апликације примљене или послате у било ком ћаскању ће се појавити овде.";
 "media_preview" = "Преглед медијума";
 "send_message" = "Пошаљи поруку";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -859,8 +860,6 @@
 "notifications_avg_minutes" = "У просеку сваких %1$dминута";
 "notifications_avg_hours" = "У просеку сваких %1$dсати";
 "last_check_at" = "Проверено у %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Приватне апликације примљене или послате у било ком ћаскању ће се појавити овде. „Фајлови“ приказује приватне апликације које су управо преузете.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Да би сте одржавали везу са вашим сервером за е-пошту и да би сте примали поруке у позадини, игноришите оптимизације ефикасности батерије у следећем кораку.\n\nDelta Chat не користи много енергије и води рачуна да вам не испразни батерију.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

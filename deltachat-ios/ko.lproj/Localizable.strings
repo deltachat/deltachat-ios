@@ -351,6 +351,7 @@
 "tab_video_empty_hint" = "채팅에 공유된 비디오가 여기에 나타납니다.";
 "tab_audio_empty_hint" = "이 채팅에서 공유된 오디오 파일과 음성 메시지가 여기에 나타납니다.";
 "tab_webxdc_empty_hint" = "이 채팅에서 공유된 개인 앱이 여기에 나타납니다.";
+"all_apps_empty_hint" = "채팅에서 보내거나 받은 개인 앱들이 여기에 나타납니다.";
 "media_preview" = "미디어 미리보기";
 "send_message" = "메시지 전송";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
@@ -816,8 +817,6 @@
 "notifications_avg_minutes" = "평균적으로 %1$d분마다";
 "notifications_avg_hours" = "평균적으로 %1$d시간마다";
 "last_check_at" = "%1$@에 확인됨";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "채팅에서 보내거나 받은 개인 앱들이 여기에 나타납니다. \"파일\"에서 방금 다운로드 받은 개인 앱들을 보여줍니다.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "이메일 서버에 대한 연결을 유지하고 백그라운드에서 메시지를 수신하려면 다음 단계에서 배터리 최적화를 무시하십시오.\n\nDelta Chat은 리소스를 거의 사용하지 않으며 배터리가 소모되지 않도록 주의합니다.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

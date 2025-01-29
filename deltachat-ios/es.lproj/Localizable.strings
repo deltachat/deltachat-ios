@@ -413,6 +413,7 @@
 "tab_audio_empty_hint" = "Los archivos de audio y los mensajes de voz compartidos en este chat se mostrarán aquí.";
 "tab_webxdc_empty_hint" = "Aplicaciones privadas compartidas en este chat se mostrarán aquí";
 "tab_all_media_empty_hint" = "La multimedia compartida en cualquier chat aparecerá aquí";
+"all_apps_empty_hint" = "Aplicaciones privadas recibidas o enviadas en cualquier chat aparecerán aquí.";
 "media_preview" = "Vista previa de multimedia";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Cuadrícula de relación de aspecto";
@@ -1027,8 +1028,6 @@
 "notifications_avg_minutes" = "Promedio cada %1$d minutos";
 "notifications_avg_hours" = "Promedio cada %1$d horas";
 "last_check_at" = "Comprobado en %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Aplicaciones privadas recibidas o enviadas en cualquier chat aparecerán aquí. \"Archivos\" muestra aplicaciones privadas descargadas. ";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Entrega inmediata";

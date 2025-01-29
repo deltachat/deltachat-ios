@@ -356,6 +356,7 @@
 "tab_audio_empty_hint" = "Zde se zobrazí zvukové soubory a hlasové zprávy sdílené v tomto chatu.";
 "tab_webxdc_empty_hint" = "Zde se zobrazí aplikace sdílené v tomto chatu.";
 "tab_all_media_empty_hint" = "Zde se zobrazí média sdílená v jakémkoli chatu.";
+"all_apps_empty_hint" = "Zde se zobrazí aplikace přijaté nebo odeslané v libovolném chatu.";
 "media_preview" = "Náhled multimedia";
 "send_message" = "Pošli zprávu";
 "multidevice_install_dc_on_other_device" = "Nainstalujte si Delta Chat do druhého zařízení (https://get.delta.chat)";
@@ -728,8 +729,6 @@
 "a11y_background_preview_label" = "Náhled pozadí";
 "a11y_disappearing_messages_activated" = "Samomazací zprávy jsou zapnuty";
 "import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Zde se zobrazí aplikace přijaté nebo odeslané v libovolném chatu. „Soubory“ zobrazuje právě stažené aplikace. ";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "K udržení spojení s e-mailovým serverem a přijímání zpráv na pozadí vyber v následujícím kroce nedbání optimalizací baterie.\n\nDelta Chat používá jen málo zdroje a snaží se šetřit tvou baterii.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

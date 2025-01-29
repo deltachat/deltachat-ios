@@ -394,6 +394,7 @@
 "tab_audio_empty_hint" = "Аудио файловете и гласовите съобщения, споделени в този чат, ще се появяват тук.";
 "tab_webxdc_empty_hint" = "Приложенията, споделени в този чат, ще се появяват тук.";
 "tab_all_media_empty_hint" = "Медийните файлове, споделени в кой да е чат, ще се появяват тук.";
+"all_apps_empty_hint" = "Приложенията, получени или изпратени в кой да е чат, ще се появяват тук.";
 "media_preview" = "Предварителен преглед на медия файл";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Мрежа, запазваща съотношенията";
@@ -985,8 +986,6 @@
 "notifications_avg_minutes" = "Средно всеки %1$d минути";
 "notifications_avg_hours" = "Средно всеки %1$d часа";
 "last_check_at" = "Проверено на %1$@";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "Приложенията, получени или изпратени в кой да е чат, ще се появяват тук. \"Файлове\" показва току-що свалените приложения.";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "За да се поддържа връзката към Вашия сървър за електронна поща и да получавате съобщения във фонов режим, игнорирайте оптимизациите на батерията на следващата стъпка.\n\nDelta Chat използва малко ресурси и се грижи да не изтощава Вашата батерия.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable

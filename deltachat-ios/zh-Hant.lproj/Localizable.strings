@@ -413,6 +413,7 @@
 "tab_audio_empty_hint" = "在此聊天中分享的音訊檔和語音消息將顯示在此處。";
 "tab_webxdc_empty_hint" = "在此聊天中分享的應用程式將在此處顯示。";
 "tab_all_media_empty_hint" = "在任何聊天中分享的媒體都會顯示在此處。";
+"all_apps_empty_hint" = "在任何聊天中接收或發送的應用程式都會顯示在此處。";
 "media_preview" = "媒體預覽";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "縱橫比網格";
@@ -1027,8 +1028,6 @@
 "notifications_avg_minutes" = "平均每%1$d分鐘一次";
 "notifications_avg_hours" = "平均每%1$d小時一次";
 "last_check_at" = "在%1$@檢查";
-// iOS webxdc selector
-"webxdc_selector_empty_hint" = "在任何聊天中接收或發送的應用程式都會顯示在此處。「文件」顯示剛剛下載的應用程式。";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即時傳送";
