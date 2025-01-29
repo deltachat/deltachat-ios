@@ -120,7 +120,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private lazy var ephemeralMessageItem: UIBarButtonItem = {
         let imageView = UIImageView()
-        imageView.tintColor = DcColors.defaultTextColor
+        imageView.tintColor = DcColors.middleGray
         imageView.image = UIImage(systemName: "stopwatch")?.withRenderingMode(.alwaysTemplate)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
