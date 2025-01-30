@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- New group consistency algorithm (#2564)
+- The app now requires less storage deduplicating newly received/sent files (#2564)
 - Show 'unconnected' and 'updating' states in account switcher (#2553)
 - Add 'Paste from Clipboard' to onboarding QR code scanners (#2559)
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
@@ -12,9 +14,12 @@
 - Fix crash on account deletion (#2554)
 - Fix hiding of the bottom bar when archive is opened (#2560)
 - Fix: Show error message when voice recording permissions are missing (#2555)
+- Fix rare issue where some messages are not synced between multiple devices (#2564)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
-- Update translations and local help (#2561)
+- Update translations and local help (#2561, #2564)
+- Update core to 1.155.1 (#2564)
+
 
 ## v1.50.5
 2025-01
@@ -35,6 +40,7 @@
 - Fix scrolling issue when cancelling a screen (#2504)
 - Fix layout of 'No contacts found' message (#2517)
 - Fix position of 'Attach Contact's 'Cancel' button (#2532)
+- Using core 1.153.0
 
 
 ## v1.50.4
