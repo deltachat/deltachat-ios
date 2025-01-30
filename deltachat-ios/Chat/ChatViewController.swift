@@ -2310,6 +2310,29 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
+
+    func onImagesSelected(itemProviders: [NSItemProvider]) {
+        let alert = UIAlertController(title: "Wanna send \(itemProviders.count) Images?", message: nil, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            itemProviders.forEach { [weak self] in
+                $0.loadObject(ofClass: UIImage.self) { image, error in
+                    guard let image = image as? UIImage, error == nil else {
+                        logger.warning(error?.localizedDescription ?? "---")
+                        return
+                    }
+
+                    self?.sendImage(image)
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Nö", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true)
+    }
+
     func onVoiceMessageRecorded(url: NSURL) {
         sendVoiceMessage(url: url)
     }
