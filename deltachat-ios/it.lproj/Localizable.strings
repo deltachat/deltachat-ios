@@ -153,6 +153,8 @@
 "app_size" = "Dimensione";
 "app_date_published" = "Pubblicato";
 "add_to_chat" = "Aggiungi alla Chat";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Sfoglia";
 "unknown" = "Sconosciuto";
 "green" = "Verde";
 "red" = "Rosso";
@@ -973,8 +975,10 @@
 "global_menu_help_desktop" = "Aiuto";
 // deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Scopri di più su Delta Chat";
+"delta_chat_homepage" = "Delta Chat Pagina Iniziale";
 // deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Contribuisci su GitHub";
+"contribute" = "Contribuisci";
 "global_menu_help_report_desktop" = "Segnala Problema";
 "global_menu_help_about_desktop" = "Informazioni Delta Chat";
 "global_menu_file_open_desktop" = "Apri Delta Chat";
