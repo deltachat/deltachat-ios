@@ -24,7 +24,7 @@
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
 - Update translations and local help (#2561, #2564)
 - Update core to 1.155.2 (#2564, #2570)
-
+- Select and send up to four images or videos (#2484)
 
 ## v1.50.5
 2025-01
