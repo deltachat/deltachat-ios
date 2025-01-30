@@ -153,6 +153,8 @@
 "app_size" = "Grootte";
 "app_date_published" = "Publicatiedatum";
 "add_to_chat" = "Toevoegen aan gesprek";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Ontdekken";
 "unknown" = "Onbekend";
 "green" = "Groen";
 "red" = "Rood";

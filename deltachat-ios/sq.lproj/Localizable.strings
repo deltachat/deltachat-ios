@@ -143,10 +143,13 @@
 "webxdc_apps" = "Aplikacione";
 "webxdc_store_url" = "URL Marrësi Aplikacioni";
 "webxdc_store_url_explain" = "Në u ujdistë, URL-ja do të përdoret si Marrës Aplikacioni, në vend të atij parazgjedhje";
+"home" = "Kreu";
 "games" = "Lojëra";
 "tools" = "Mjete";
 "app_size" = "Madhësi";
 "add_to_chat" = "Shtoje te Fjalosje";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Shfletoni";
 "unknown" = "E panjohur";
 "green" = "E gjelbër";
 "red" = "E kuqe";
@@ -366,6 +369,7 @@
 "send_file_to" = "Dërgoni “%1$@” për …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Dërgoni Mesazh për…";
+"enable_realtime_explain" = "Aktivizoni lidhje aty për aty për aplikacione të përbashkët në fjalosje. Në u aktivizoftë, partnerë fjalosjeje mund të jenë në gjendje të zbulojnë adresën tuaj IP, kur nisni një aplikacion.";
 // map
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";

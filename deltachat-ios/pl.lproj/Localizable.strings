@@ -153,6 +153,8 @@
 "app_size" = "Rozmiar";
 "app_date_published" = "Opublikowany";
 "add_to_chat" = "Dodaj do czatu";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Przeglądaj";
 "unknown" = "Nieznany";
 "green" = "Zielony";
 "red" = "Czerwony";
@@ -989,6 +991,8 @@
 "timestamp_format_m_desktop" = "D MMM";
 "remove_desktop" = "Usuń";
 "save_desktop" = "Zapisz";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Przywróć";
 "name_desktop" = "Nazwa";
 "select_group_image_desktop" = "Wybierz obraz grupy";
 "export_backup_desktop" = "Eksport kopii zapasowej";
