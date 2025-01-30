@@ -1,10 +1,11 @@
 import UIKit
-import Photos
+import PhotosUI
 import MobileCoreServices
 import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
     func onImageSelected(image: UIImage)
+    func onImagesSelected(itemProviders: [NSItemProvider])
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
     func onVoiceMessageRecorded(url: NSURL)
@@ -14,6 +15,7 @@ protocol MediaPickerDelegate: AnyObject {
 
 extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) { }
+    func onImagesSelected(itemProviders: [NSItemProvider]) {}
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
     func onVoiceMessageRecorded(url: NSURL) { }
@@ -66,12 +68,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoVideoLibrary() {
-        let mediaTypes = [
-            kUTTypeMovie as String,
-            kUTTypeVideo as String,
-            kUTTypeImage as String
-        ]
-        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
+        showPhotoLibrary(allowsCropping: false, mediaTypes: [.images, .videos])
     }
 
     func showDocumentLibrary(selectFolder: Bool = false) {
@@ -89,19 +86,18 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoGallery() {
-        let mediaType = [kUTTypeImage as String]
-        showPhotoLibrary(allowsCropping: true, mediaTypes: mediaType) // used mainly for avatar-selection, allow cropping therefore
+        showPhotoLibrary(allowsCropping: true, mediaTypes: [.images]) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [String]) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = .photoLibrary
-            imagePickerController.mediaTypes = mediaTypes
-            imagePickerController.allowsEditing = allowsCropping
-            navigationController?.present(imagePickerController, animated: true)
-        }
+    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [PHPickerFilter]) {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        configuration.filter = .any(of: mediaTypes)
+        configuration.selectionLimit = 4
+        let imagePicker = PHPickerViewController(configuration: configuration)
+        imagePicker.delegate = self
+        imagePicker.modalPresentationStyle = .popover
+
+        navigationController?.present(imagePicker, animated: true)
     }
 
     func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
@@ -139,6 +135,38 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 
 }
 
+// MARK: - PHPickerViewControllerDelegate
+extension MediaPicker: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProviders = results.compactMap {
+            $0.itemProvider
+        }
+        .filter {
+            $0.canLoadObject(ofClass: UIImage.self)
+        }
+
+        //TODO: Handle videos
+        if itemProviders.count > 1 {
+            DispatchQueue.main.async { [weak self] in
+                picker.dismiss(animated: true)
+                // as loading images takes resources, we show an alert in ChatViewController first.
+                // If the user really, really wants to send multiple pictures, those are loaded and sent right away
+                self?.delegate?.onImagesSelected(itemProviders: itemProviders)
+            }
+        } else if let itemProvider = itemProviders.first {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
+                guard let image = image as? UIImage else { return }
+
+                DispatchQueue.main.async {
+                    picker.dismiss(animated: true)
+                    self?.delegate?.onImageSelected(image: image)
+                }
+            }
+        }
+
+    }
+}
+
 // MARK: - UIImagePickerControllerDelegate
 extension MediaPicker: UIImagePickerControllerDelegate {
 
@@ -169,9 +197,9 @@ extension MediaPicker: UIImagePickerControllerDelegate {
 
     func handleVideoUrl(url: URL) {
         url.convertToMp4(completionHandler: { url, error in
-            if let url = url {
+            if let url {
                 self.delegate?.onVideoSelected(url: (url as NSURL))
-            } else if let error = error {
+            } else if let error {
                 logger.error(error.localizedDescription)
                 let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
