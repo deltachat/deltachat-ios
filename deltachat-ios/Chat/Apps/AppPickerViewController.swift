@@ -87,6 +87,7 @@ class AppPickerViewController: UIViewController {
     // MARK: - Actions
 
     @objc func showLoading() {
+        navigationController?.isModalInPresentation = true
         title = String.localized("downloading")
         navigationItem.titleView = nil
         downloadingView.isHidden = false
@@ -96,6 +97,7 @@ class AppPickerViewController: UIViewController {
     }
 
     @objc func hideLoading() {
+        navigationController?.isModalInPresentation = false
         navigationItem.titleView = segmentedControl
         downloadingView.isHidden = true
         downloadingView.activityIndicator.stopAnimating()
