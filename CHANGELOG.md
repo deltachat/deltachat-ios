@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Select and send up to four images or videos
 - Support pasted GIFs
 - Group notifications in Notification Center by chat
 - More characters in notification before truncating
