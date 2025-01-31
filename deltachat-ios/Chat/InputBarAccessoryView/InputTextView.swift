@@ -171,6 +171,9 @@ open class InputTextView: UITextView {
                                              right: .leastNonzeroMagnitude)
         setupPlaceholderLabel()
         setupObservers()
+        if #available(iOS 18.0, *) {
+            supportsAdaptiveImageGlyph = false
+        }
     }
     
     /// Adds the placeholderLabel to the view and sets up its initial constraints
