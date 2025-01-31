@@ -829,9 +829,7 @@
 "withdraw_verifycontact_explain" = "Denna QR-kod kan skannas av andra för att kontakta dig.\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_verifygroup_explain" = "Denna QR-kod kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_qr_code" = "Avaktivera QR-kod";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Den här QR-koden kan skannas av andra för att kontakta dig.\n\nQR-koden är inte aktiv på den här enheten.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Den här QR-koden kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nQR-koden är inte aktiv på den här enheten.";
 "revive_qr_code" = "Aktivera QR-kod";
 "qrshow_title" = "QR-kod för inbjudan";

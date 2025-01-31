@@ -819,9 +819,7 @@
 "withdraw_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla uudestaan.";
 "withdraw_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla.";
 "withdraw_qr_code" = "Kytke QR-koodi pois käytöstä";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
 "revive_qr_code" = "Aktivoi QR-koodi";
 "qrshow_title" = "QR-kutsukoodi";

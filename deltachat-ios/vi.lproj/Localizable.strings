@@ -775,9 +775,7 @@
 "withdraw_verifycontact_explain" = "Người khác có thể quét mã QR này để liên hệ với bạn.\n\nBạn có thể tắt mã QR tại đây và kích hoạt lại bằng cách quét lại.";
 "withdraw_verifygroup_explain" = "Những người khác có thể quét mã QR này để tham gia nhóm \"%1$@\".\n\nBạn có thể tắt mã QR tại đây và kích hoạt lại bằng cách quét lại.";
 "withdraw_qr_code" = "Vô hiệu hóa mã QR";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Mã QR này có thể được người khác quét để liên hệ với bạn.\n\nMã QR không hoạt động trên thiết bị này.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Những người khác có thể quét mã QR này để tham gia nhóm \"%1$@\".\n\nMã QR không hoạt động trên thiết bị này.";
 "revive_qr_code" = "Kích hoạt mã QR";
 "qrshow_title" = "Mã mời QR";

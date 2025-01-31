@@ -800,9 +800,7 @@
 "withdraw_verifycontact_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour vous contacter.\n\nVous pouvez désactiver le QR code ici et le réactiver en le scannant ici de nouveau.";
 "withdraw_verifygroup_explain" = "Le code QR peut être scanné par d\'autres personnes pour rejoindre le groupe \"%1$@\".\n\nVous pouvez désactiver le QR code ici et le réactiver en le scannant ici de nouveau.";
 "withdraw_qr_code" = "Désactiver le QR Code";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour vous contacter.\n\nCe code QR n\'est pas actif sur cet appareil.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Ce code QR pourrait être scanné par d\'autre personnes pour rejoindre le groupe \"%1$@\".\n\nLe code QR n\'est pas actif sur cet appareil.";
 "revive_qr_code" = "Activer le QR Code";
 "qrshow_title" = "QR Code d\'Invitation";

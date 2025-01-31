@@ -870,9 +870,7 @@
 "withdraw_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u lidhur me ju.\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
 "withdraw_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nKodin QR mund ta çaktivizoni këtu dhe ta riaktivizoni duke e riskanuar.";
 "withdraw_qr_code" = "Çaktivizoni Kodin QR";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për të ujdisur kontakt me ju.\n\nKodi QR s’është aktiv në këtë pajisje.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nKodi QR s’është aktiv në këtë pajisje.";
 "revive_qr_code" = "Aktivizoni Kod QR";
 "qrshow_title" = "Kod QR Ftese";
