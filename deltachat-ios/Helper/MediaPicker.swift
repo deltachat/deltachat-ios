@@ -1,11 +1,12 @@
 import UIKit
 import PhotosUI
+import Photos
 import MobileCoreServices
 import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
     func onImageSelected(image: UIImage)
-    func onImagesSelected(itemProviders: [NSItemProvider])
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
     func onVoiceMessageRecorded(url: NSURL)
@@ -15,7 +16,7 @@ protocol MediaPickerDelegate: AnyObject {
 
 extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) { }
-    func onImagesSelected(itemProviders: [NSItemProvider]) {}
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
     func onVoiceMessageRecorded(url: NSURL) { }
@@ -93,6 +94,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = .any(of: mediaTypes)
         configuration.selectionLimit = 4
+        configuration.preferredAssetRepresentationMode = .compatible
         let imagePicker = PHPickerViewController(configuration: configuration)
         imagePicker.delegate = self
         imagePicker.modalPresentationStyle = .popover
@@ -138,32 +140,15 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 // MARK: - PHPickerViewControllerDelegate
 extension MediaPicker: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        let itemProviders = results.compactMap {
-            $0.itemProvider
-        }
-        .filter {
-            $0.canLoadObject(ofClass: UIImage.self)
-        }
+        let itemProviders = results.compactMap { $0.itemProvider }
 
-        //TODO: Handle videos
-        if itemProviders.count > 1 {
-            DispatchQueue.main.async { [weak self] in
-                picker.dismiss(animated: true)
-                // as loading images takes resources, we show an alert in ChatViewController first.
-                // If the user really, really wants to send multiple pictures, those are loaded and sent right away
-                self?.delegate?.onImagesSelected(itemProviders: itemProviders)
-            }
-        } else if let itemProvider = itemProviders.first {
-            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
-                guard let image = image as? UIImage else { return }
-
-                DispatchQueue.main.async {
-                    picker.dismiss(animated: true)
-                    self?.delegate?.onImageSelected(image: image)
-                }
-            }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            picker.dismiss(animated: true)
+            // as loading images takes resources, we show an alert in ChatViewController first.
+            // If the user really, really wants to send multiple pictures, those are loaded and sent right away
+            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders)
         }
-
     }
 }
 
