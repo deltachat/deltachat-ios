@@ -146,8 +146,8 @@ class QrPageController: UIPageViewController {
     }
 
     func withdrawQrCode() {
-        let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+        let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             guard let code = dcContext.getSecurejoinQr(chatId: 0) else { return }

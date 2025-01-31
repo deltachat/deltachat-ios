@@ -404,7 +404,7 @@ class AppCoordinator: NSObject {
             }))
             viewController.present(alert, animated: true)
 
-        case DC_QR_REVIVE_VERIFYCONTACT:
+        case DC_QR_REVIVE_VERIFYCONTACT, DC_QR_REVIVE_VERIFYGROUP:
             let alert = UIAlertController(title: String.localized("revive_verifycontact_explain"),
                                           message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
@@ -423,17 +423,9 @@ class AppCoordinator: NSObject {
             }))
             viewController.present(alert, animated: true)
 
-        case DC_QR_REVIVE_VERIFYGROUP:
-            guard let groupName = qrParsed.text1 else { return }
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("revive_verifygroup_explain"), groupName),
-                                          message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
-            alert.addAction(UIAlertAction(title: String.localized("revive_qr_code"), style: .default, handler: { _ in
-                _ = dcContext.setConfigFromQR(qrCode: code)
-            }))
-            viewController.present(alert, animated: true)
         case DC_QR_PROXY:
             handleProxySelection(on: viewController, dcContext: dcContext, proxyURL: code)
+
         default:
             var msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), code)
             if state == DC_QR_ERROR {
