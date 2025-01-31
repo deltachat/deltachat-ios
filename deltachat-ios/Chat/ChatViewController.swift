@@ -1593,6 +1593,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    private func sendVideo(url: URL, message: String? = nil) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            self.sendAttachmentMessage(viewType: DC_MSG_VIDEO, filePath: url.relativePath, message: message)
+            FileHelper.deleteFile(atPath: url.relativePath)
+        }
+    }
+
+
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             // stickers may be huge when drag'n'dropped from photo-recognition, scale down to a reasonable size
@@ -2311,26 +2320,54 @@ extension ChatViewController: MediaPickerDelegate {
     }
 
 
-    func onImagesSelected(itemProviders: [NSItemProvider]) {
-        let alert = UIAlertController(title: "Wanna send \(itemProviders.count) Images?", message: nil, preferredStyle: .alert)
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
 
-        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            itemProviders.forEach { [weak self] in
-                $0.loadObject(ofClass: UIImage.self) { image, error in
-                    guard let image = image as? UIImage, error == nil else {
+        func sendVideo(itemProvider: NSItemProvider) {
+            itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                url?.convertToMp4 { url, error in
+                    guard let self, let url, error == nil else {
+                        // TODO: Show alert
+                        logger.warning(error?.localizedDescription ?? "Couldn't send video")
+                        return
+                    }
+
+                    self.sendVideo(url: url)
+                }
+            }
+        }
+
+        func sendItem(itemProvider: NSItemProvider) {
+            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                sendVideo(itemProvider: itemProvider)
+            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    guard let self, let image = image as? UIImage, error == nil else {
                         logger.warning(error?.localizedDescription ?? "---")
                         return
                     }
 
-                    self?.sendImage(image)
+                    self.sendImage(image)
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: "Nö", style: .cancel)
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
 
-        present(alert, animated: true)
+//        if itemProviders.count > 1 {
+
+            let alert = UIAlertController(title: "Wanna send \(itemProviders.count) items?", message: nil, preferredStyle: .alert)
+
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                itemProviders.forEach { itemProvider in
+                    sendItem(itemProvider: itemProvider)
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Nö", style: .cancel)
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+
+            present(alert, animated: true)
+//        } else {
+//            // stage stuff
+//        }
     }
 
     func onVoiceMessageRecorded(url: NSURL) {
