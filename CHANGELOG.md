@@ -12,6 +12,8 @@
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
 - Modernize menus (#2545, #2558)
 - Clearer icons (#2555)
+- Clearer QR code reset options (#2570)
+- Fix adding sticker from keyboard on iOS 18 (#2569)
 - Fix: In 'View Log', hide keyboard when scrolling down (#2541)
 - Fix: Experimental location sharing now ends at the specified interval even if you don't move (#2537)
 - Fix crash on account deletion (#2554)
@@ -21,7 +23,7 @@
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
 - Update translations and local help (#2561, #2564)
-- Update core to 1.155.1 (#2564)
+- Update core to 1.155.2 (#2564, #2570)
 
 
 ## v1.50.5
