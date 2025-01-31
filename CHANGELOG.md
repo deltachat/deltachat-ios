@@ -1,13 +1,14 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.52.2
+2025-01
 
 - Add option to "Save" a message to the messages' context menu (#2527)
 - Saved messages are marked by a little star (#2527)
 - In the "Saved Messages" chat, messages are shown in context and have an option to go to the original (#2527)
 - New group consistency algorithm (#2564)
 - The app now requires less storage deduplicating newly received/sent files (#2564)
-- Show 'unconnected' and 'updating' states in account switcher (#2553)
+- Show 'unconnected' and 'updating' states in profile switcher (#2553)
 - Add 'Paste from Clipboard' to onboarding QR code scanners (#2559)
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
 - Modernize menus (#2545, #2558)
@@ -16,7 +17,7 @@
 - Fix adding sticker from keyboard on iOS 18 (#2569)
 - Fix: In 'View Log', hide keyboard when scrolling down (#2541)
 - Fix: Experimental location sharing now ends at the specified interval even if you don't move (#2537)
-- Fix crash on account deletion (#2554)
+- Fix crash on profile deletion (#2554)
 - Fix hiding of the bottom bar when archive is opened (#2560)
 - Fix: Show error message when voice recording permissions are missing (#2555)
 - Fix rare issue where some messages are not synced between multiple devices (#2564)
