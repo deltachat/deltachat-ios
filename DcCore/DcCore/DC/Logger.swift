@@ -25,7 +25,7 @@ public class DcLogger {
     }
 
     public func info(_ message: String) {
-        osLog.notice("💙 \(message, privacy: .public)") // info() is not persisted
+        osLog.notice("🖤 \(message, privacy: .public)") // info() is not persisted
     }
 
     // debug() marked as DEBUG as these lines are for, well debugging. and should not being released. otherwise, use info()
