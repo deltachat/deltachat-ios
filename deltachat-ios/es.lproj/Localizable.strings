@@ -861,9 +861,7 @@
 "withdraw_verifycontact_explain" = "Este código QR puede ser escaneado por otras personas para contactarlo.\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_qr_code" = "Desactivar código QR";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Este código QR puede ser escaneado por otros para contactarlo.\n\nEl código QR no está activo en este dispositivo.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nEl código QR no está activo en este dispositivo.";
 "revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código de invitación QR";

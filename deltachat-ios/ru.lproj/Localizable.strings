@@ -878,9 +878,7 @@
 "withdraw_verifycontact_explain" = "Этот QR-код могут сканировать другие люди, чтобы связаться с вами.\n\nВы можете деактивировать QR-код здесь и активировать вновь, отсканировав его снова.";
 "withdraw_verifygroup_explain" = "Этот QR-код могут сканировать другие люди, чтобы присоединиться к группе \"%1$@\".\n\nВы можете деактивировать QR-код здесь и активировать вновь, отсканировав его снова.";
 "withdraw_qr_code" = "Деактивировать QR-код";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Этот QR-код могут сканировать другие люди, чтобы связаться с вами.\n\nНа этом устройстве QR-код не активирован.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Этот QR-код могут сканировать другие люди, чтобы присоединиться к группе \"%1$@\".\n\nНа этом устройстве QR-код не активирован.";
 "revive_qr_code" = "Активировать QR-код";
 "qrshow_title" = "QR-код приглашения";

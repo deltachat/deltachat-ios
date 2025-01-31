@@ -876,9 +876,7 @@
 "withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
 "withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
 "withdraw_qr_code" = "QR Kodunu Etkisizleştir";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
 "revive_qr_code" = "QR Kodunu Etkinleştir";
 "qrshow_title" = "QR Çağrı Kodu";

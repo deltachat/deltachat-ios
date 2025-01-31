@@ -861,9 +861,7 @@
 "withdraw_verifycontact_explain" = "其他人可以掃描此QR碼與您聯絡。您可以在此處停用QR碼，然後再次掃描以重新啟動它。";
 "withdraw_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n您可以在此處停用 QR 碼，然後再次掃描以重新啟動它。";
 "withdraw_qr_code" = "停用QR碼";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "此 QR 碼可以被其他人掃描以與您聯絡。\n\n此裝置上的 QR 碼未啟用。";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n此 QR 碼在此裝置上未啟用。";
 "revive_qr_code" = "啟用QR碼";
 "qrshow_title" = "邀請QR碼";

@@ -153,6 +153,8 @@
 "app_size" = "Méret";
 "app_date_published" = "Közzétéve";
 "add_to_chat" = "Hozzáadás csevegéshez";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Böngészés";
 "unknown" = "Ismeretlen";
 "green" = "Zöld";
 "red" = "Piros";
@@ -876,9 +878,7 @@
 "withdraw_verifycontact_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy felvegyék önnel a kapcsolatot.\n\nA QR-kódot itt kikapcsolhatja, és újból bekapcsolhatja, ha újra beolvassa.";
 "withdraw_verifygroup_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy csatlakozhassanak a(z) „%1$@” nevű csoporthoz.\n\nA QR-kódot itt kikapcsolhatja, és újra bekapcsolhatja, ha újra beolvassa.";
 "withdraw_qr_code" = "QR-kód kikapcsolása";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy kapcsolatba lépjenek Önnel.\n\nA QR-kód nincs bekapcsolva ezen az eszközön.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy csatlakozzanak a(z) „%1$@” nevű csoporthoz.\n\nA QR-kód nincs bekapcsolva ezen az eszközön.";
 "revive_qr_code" = "QR-kód bekapcsolása";
 "qrshow_title" = "QR-kód-meghívó";

@@ -819,9 +819,7 @@
 "withdraw_verifycontact_explain" = "Чрез сканиране на този QR код други хора могат да се свързват с Вас.\n\nМожете да деактивирате QR кода тук и повторно да го активирате, като го сканирате отново.";
 "withdraw_verifygroup_explain" = "Чрез сканиране на този QR код други хора могат да се присъединяват към крупата \"%1$@\".\n\nМожете да деактивирате QR кода тук и повторно да го активирате, като го сканирате отново.";
 "withdraw_qr_code" = "Деактивиране на QR кода";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifycontact_explain" = "Чрез сканиране на този QR код други хора могат да се свързват с Вас.\n\nQR кодът не е активен на това устройство.";
-// "could" in the meaning of "possible at some point in the past, but no longer possible today"
 "revive_verifygroup_explain" = "Този QR код е давал възможност други да се присъединяват към групата \"%1$@\" чрез сканирането му.\n\nQR кодът не е активен на това устройство.";
 "revive_qr_code" = "Активиране на QR кода";
 "qrshow_title" = "QR код за покана";
