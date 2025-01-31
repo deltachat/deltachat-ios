@@ -97,7 +97,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         configuration.preferredAssetRepresentationMode = .compatible
         let imagePicker = PHPickerViewController(configuration: configuration)
         imagePicker.delegate = self
-        imagePicker.modalPresentationStyle = .popover
 
         navigationController?.present(imagePicker, animated: true)
     }
