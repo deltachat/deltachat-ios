@@ -20,6 +20,7 @@
 - Fix hiding of the bottom bar when archive is opened (#2560)
 - Fix: Show error message when voice recording permissions are missing (#2555)
 - Fix rare issue where some messages are not synced between multiple devices (#2564)
+- Fix: do not allow private replies info-messages resulting in invalid chat (#2571)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Access recently used apps from app-picker ("Attach / Apps") (#2530)
 - Update translations and local help (#2561, #2564)
