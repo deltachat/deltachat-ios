@@ -957,12 +957,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.reloadData()
     }
 
+    private func isMarkerOrInfo(_ message: DcMsg) -> Bool {
+        return message.id == DC_MSG_ID_MARKER1 || message.id == DC_MSG_ID_DAYMARKER || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION
+    }
+
     private func canReply(to message: DcMsg) -> Bool {
-        return message.id != DC_MSG_ID_MARKER1 && message.id != DC_MSG_ID_DAYMARKER && !message.isInfo && message.type != DC_MSG_VIDEOCHAT_INVITATION && dcChat.canSend
+        return !isMarkerOrInfo(message) && dcChat.canSend
     }
 
     private func canReplyPrivately(to message: DcMsg) -> Bool {
-        return dcChat.isGroup && !message.isFromCurrentSender
+        return !isMarkerOrInfo(message) && dcChat.isGroup && !message.isFromCurrentSender
     }
 
     /// Verifies if the last message cell is fully visible
