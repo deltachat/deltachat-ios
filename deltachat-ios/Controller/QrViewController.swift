@@ -174,8 +174,8 @@ class QrViewController: UIViewController {
     func withdrawQrCode() {
         let groupName = dcContext.getChat(chatId: chatId).name
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("withdraw_verifygroup_explain"), groupName),
-                                      message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
+                                      message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             guard let code = dcContext.getSecurejoinQr(chatId: self.chatId) else { return }
