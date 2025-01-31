@@ -1934,7 +1934,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
                 )
 
-                if !message.isInfo { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
+                if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
                     if dcChat.isSelfTalk || message.savedMessageId != 0 {
                         children.append(
                             UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: toggleSave)
