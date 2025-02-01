@@ -7,8 +7,9 @@
 - Saved messages are marked by a little star (#2527)
 - In the "Saved Messages" chat, messages are shown in context and have an option to go to the original (#2527)
 - New group consistency algorithm (#2564)
-- The app now requires less storage deduplicating newly received/sent files (#2564)
+- The app now requires less storage by deduplicating newly received/sent files (#2564)
 - Show 'unconnected' and 'updating' states in profile switcher (#2553)
+- Access recently used apps from app-picker ("Attach / Apps") (#2530)
 - Add 'Paste from Clipboard' to onboarding QR code scanners (#2559)
 - Detect Stickers when dropped, pasted or picked from Gallery (#2535)
 - Modernize menus (#2545, #2558)
@@ -23,7 +24,6 @@
 - Fix rare issue where some messages are not synced between multiple devices (#2564)
 - Fix: do not allow private replies info-messages resulting in invalid chat (#2571)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
-- Access recently used apps from app-picker ("Attach / Apps") (#2530)
 - Update translations and local help (#2561, #2564)
 - Update core to 1.155.2 (#2564, #2570)
 
