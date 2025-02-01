@@ -26,7 +26,7 @@
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Update translations and local help (#2561, #2564)
 - Update core to 1.155.2 (#2564, #2570)
-
+- Select and send up to four images or videos (#2484)
 
 ## v1.50.5
 2025-01
