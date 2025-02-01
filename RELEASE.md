@@ -55,7 +55,7 @@ in Xcode:
 
 on https://appstoreconnect.apple.com :
 
-7. for an **Open Testflight** release, open "My Apps / Delta Chat / TestFlight / iOS"
+7. First, always create **Open Testflight**, at "My Apps / Delta Chat / TestFlight / iOS"
    a) status becomes "Ready to Submit" automatically after some minutes
    b) select "open-testing-group" on the left, select "Builds" tab
    c) click "+" and select the version made "Ready to submit" above
@@ -64,7 +64,8 @@ on https://appstoreconnect.apple.com :
 
    OR
 
-8. for a **Regular release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
+8. If the Testflight did not show problems, about a day later,
+   for a **Regular release**, open "My Apps/Delta Chat iOS/iOS App+ (first item)"
    a) enter the version number (without leading "v")
    b) fill out "what's new", use CHANGELOG.md as a template, add the line:
       "These features will roll out over the coming days. Thanks for using Delta Chat!"
@@ -82,5 +83,7 @@ on https://appstoreconnect.apple.com :
 in both cases, make sure, the provided test-email-address is working.
 finally, back on command line:
 
-9. commit changes from 1.-5. add add a tag:
-   $ git tag v1.2.3; git push --tags
+9. a) commit changes from 1.-5. add add a tag:
+      $ git tag v1.2.3; git push --tags
+   b) to give our github followers a nice update,
+      create a release with notes insipred by device message and CHANGELOG.
