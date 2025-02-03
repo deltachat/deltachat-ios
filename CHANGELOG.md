@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Improve "All media empty" and "Block contact" wordings (#2580)
+
+
 ## v1.52.2
 2025-01
 
@@ -25,7 +30,7 @@
 - Fix: do not allow private replies info-messages resulting in invalid chat (#2571)
 - minimum system version is iOS 14 now (all iOS 13 devices can upgrade to iOS 14) (#2459)
 - Update translations and local help (#2561, #2564)
-- Update core to 1.155.2 (#2564, #2570)
+- Update core to 1.155.2
 
 
 ## v1.50.5
