@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Copy scanned QR code text to clipboard (#2582)
 - Improve "All media empty" and "Block contact" wordings (#2580)
 
 
