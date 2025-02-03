@@ -35,6 +35,7 @@
 "close_window" = "Cerrar ventana";
 "forward" = "Reenviar";
 "create" = "Crear";
+"reset" = "Restablecer";
 "later" = "Luego";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Volver a enviar";
@@ -43,6 +44,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Des-archivar";
 "mute" = "Silenciar";
+"muted" = "Silenciar";
 "ephemeral_messages" = "Desaparición de mensajes";
 "ephemeral_messages_hint" = "Estos ajustes se aplican a todos los participantes que usan Delta Chat. Sin embargo, pueden copiar, guardar y reenviar mensajes o usar otros clientes de correo";
 "save" = "Guardar";
@@ -143,6 +145,16 @@
 "webxdc_app" = "Aplicación";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Aplicaciones";
+"webxdc_store_url" = "App Picker URL";
+"webxdc_store_url_explain" = "Si se establece, la URL se utilizará como App Picker en lugar de la predeterminada";
+"home" = "Inicio";
+"games" = "Juegos";
+"tools" = "Herramientas";
+"app_size" = "Tamaño";
+"app_date_published" = "Publicado";
+"add_to_chat" = "Agregar al chat";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Navegar";
 "unknown" = "Desconocido";
 "green" = "Verde";
 "red" = "Rojo";
@@ -555,6 +567,8 @@
 "profile_tag" = "Etiqueta privada";
 "profile_tag_hint" = "ej. Trabajo, Familia";
 "profile_tag_explain" = "Etiqueta que es visible sólo para ti; útil para diferenciar tus perfiles.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Mover arriba";
 "delete_account" = "Eliminar cuenta";
 "delete_account_ask" = "¿Estás seguro de que quieres eliminar los datos de tu cuenta?";
 "delete_account_explain_with_name" = "Todos los datos de la cuenta de \"%1$@\" este dispositivo serán eliminados. Incluyendo la configuración de encriptado punto a punto, contactos, chats, mensajes y multimedia. Esta acción no puede ser deshecha.";
@@ -597,6 +611,8 @@
 "pref_screen_security_explain" = "Solicitar bloqueo de capturas de pantalla en la lista de recientes y dentro de la aplicación";
 "pref_screen_security_please_restart_hint" = "Para aplicar la configuración de seguridad de la pantalla, reinicie la aplicación.";
 "pref_notifications" = "Notificaciones ";
+"pref_mention_notifications" = "Menciones";
+"pref_mention_notifications_explain" = "En los grupos silenciados, notifica los mensajes dirigidos a ti, como respuestas o reacciones";
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridad";
 "pref_notifications_explain" = "Habilitar las notificaciones del sistema para nuevos mensajes";
@@ -614,6 +630,7 @@
 "pref_appearance" = "Apariencia";
 "pref_theme" = "Tema";
 "pref_language" = "Idioma";
+"pref_use_system_ui_font" = "Usar fuentes del sistema";
 "pref_incognito_keyboard" = "Teclado incógnito";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Solicitar al teclado deshabilitar el aprendizaje personalizado";
@@ -956,8 +973,10 @@
 "global_menu_help_desktop" = "Ayuda";
 // deprecated, use delta_chat_homepage instead
 "global_menu_help_learn_desktop" = "Aprender más sobre Delta Chat";
+"delta_chat_homepage" = "Página de inicio de Delta Chat";
 // deprecated, use contribute instead
 "global_menu_help_contribute_desktop" = "Contribuir en GitHub";
+"contribute" = "Contribuir";
 "global_menu_help_report_desktop" = "Reportar un problema";
 "global_menu_help_about_desktop" = "Sobre Delta Chat";
 "global_menu_file_open_desktop" = "Abrir Delta Chat";
@@ -970,6 +989,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Eliminar";
 "save_desktop" = "Guardar";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Deshacer guardado";
 "name_desktop" = "Nombre";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";
 "export_backup_desktop" = "Exportar copia de respaldo";
@@ -1026,6 +1047,18 @@
 "notifications_avg_minutes" = "Promedio cada %1$d minutos";
 "notifications_avg_hours" = "Promedio cada %1$d horas";
 "last_check_at" = "Comprobado en %1$@";
+"system_settings" = "Configuración del sistema";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Editar tipo, insignias, vista previa y más";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Accesos directos";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Utilice «Añadir al widget» de Delta Chat para añadir elementos";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Quitar del widget.";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Agregar al widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Entrega inmediata";

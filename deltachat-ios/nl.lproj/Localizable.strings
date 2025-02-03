@@ -875,11 +875,11 @@
 "qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";
 "qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
 "qrscan_fingerprint_label" = "Vingerafdruk";
-"withdraw_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de QR-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
-"withdraw_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren en opnieuw activeren door deze opnieuw te scannen.";
+"withdraw_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
+"withdraw_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
 "withdraw_qr_code" = "QR-code deactiveren";
-"revive_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nDe QR-code is niet actief op dit apparaat.";
-"revive_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nDe QR-code is niet actief op dit apparaat.";
+"revive_verifycontact_explain" = "Deze QR-code is gedactiveerd en kan niet meer worden gebruikt.";
+"revive_verifygroup_explain" = "Deze QR-code voor de groep ‘%1$@’ is gedeactiveerd en kan niet meer worden gebruikt.";
 "revive_qr_code" = "QR-code activeren";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";
