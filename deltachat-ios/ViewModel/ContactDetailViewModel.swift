@@ -112,6 +112,7 @@ class ContactDetailViewModel {
             chatActions.append(.deleteChat)
         } else {
             chatOptions.append(.startChat)
+            chatOptions.append(.shareContact)
             chatActions = [.showEncrInfo, .blockContact]
         }
 
