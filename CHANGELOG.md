@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Improve "All media empty" and "Block contact" wordings (#2580)
+- Fix: Allow to share contacts that do not have a chat (#2583)
 
 
 ## v1.52.2
