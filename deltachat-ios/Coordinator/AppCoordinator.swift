@@ -348,14 +348,17 @@ class AppCoordinator: NSObject {
         case DC_QR_TEXT:
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_text"), qrParsed.text1 ?? "")
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_copy_desktop"), style: .default, handler: { _ in
+                UIPasteboard.general.string = qrParsed.text1
+            }))
             viewController.present(alert, animated: true, completion: nil)
 
         case DC_QR_URL:
             let url = qrParsed.text1 ?? ""
             let msg = String.localizedStringWithFormat(String.localized("qrscan_contains_url"), url)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("open"), style: .default, handler: { _ in
                 if let url = URL(string: url) {
                     UIApplication.shared.open(url)
