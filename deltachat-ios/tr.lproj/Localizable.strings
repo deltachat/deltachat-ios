@@ -153,6 +153,8 @@
 "app_size" = "Boyut";
 "app_date_published" = "Yayımlanma";
 "add_to_chat" = "Sohbete Ekle";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Gözat";
 "unknown" = "Bilinmeyen";
 "green" = "Yeşil";
 "red" = "Kırmızı";
@@ -873,11 +875,11 @@
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
-"withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
-"withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranabilir.\n\nQR kodunu buradan etkisizleştirebilir ve yeniden tarayarak etkinleştirebilirsiniz.";
-"withdraw_qr_code" = "QR Kodunu Etkisizleştir";
-"revive_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
-"revive_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranmış olabilir.\n\nQR kodu bu aygıtta etkin değil.";
+"withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
+"withdraw_verifygroup_explain" = "Bu QR kodu, \"%1$@\" öbeğine katılmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
+"withdraw_qr_code" = "QR Kodunu Sıfırla";
+"revive_verifycontact_explain" = "Bu QR kodu sıfırlandı ve artık etkin değil.";
+"revive_verifygroup_explain" = "\"%1$@\" öbeğine katılmak için taranan bu QR kodu sıfırlandı ve artık etkin değil.";
 "revive_qr_code" = "QR Kodunu Etkinleştir";
 "qrshow_title" = "QR Çağrı Kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";

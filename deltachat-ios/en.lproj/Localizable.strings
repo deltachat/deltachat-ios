@@ -312,8 +312,8 @@
 "ask_forward" = "Forward messages to %1$@?";
 "ask_forward_multiple" = "Forward messages to %1$d chats?";
 "ask_export_attachment" = "Exporting attachments will allow other apps on your device to access them.\n\nContinue?";
-"ask_block_contact" = "Block this contact? You will no longer receive messages from them.";
-"ask_unblock_contact" = "Unblock this contact? You will then be able to receive messages from them.";
+"ask_block_contact" = "Block this contact?\n\nDirect messages or groups created by blocked contacts will not show up.\n\nOther groups with blocked contacts will still show their messages.";
+"ask_unblock_contact" = "Unblock this contact?";
 "ask_delete_contacts" = "Delete contacts?\n\nContacts with ongoing chats or from the system address book cannot be deleted permanently.";
 "ask_delete_contact" = "Delete contact %1$@?\n\nContacts with ongoing chats or from the system address book cannot be deleted permanently.";
 "cannot_delete_contacts_in_use" = "Cannot delete contacts with ongoing chats.";
@@ -425,7 +425,8 @@
 "tab_audio_empty_hint" = "Audio files and voice messages shared in this chat will appear here.";
 "tab_webxdc_empty_hint" = "Apps shared in this chat will appear here.";
 "tab_all_media_empty_hint" = "Media shared in any chat will appear here.";
-"all_apps_empty_hint" = "Apps received or sent in any chat will appear here.";
+"all_files_empty_hint" = "Documents and other files shared in any chat will appear here.";
+"all_apps_empty_hint" = "Apps shared in any chat will appear here.";
 "media_preview" = "Media Preview";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Aspect Ratio Grid";

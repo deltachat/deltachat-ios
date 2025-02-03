@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "Delta Chat necesita permiso para poder co
 NSMicrophoneUsageDescription = "Al permitir el acceso al micrófono podrás grabar audio.";
 NSPhotoLibraryUsageDescription = "Al permitir el acceso a la galería de fotos podrás subir tus imágenes desde allí.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat quiere guardar imágenes en tu galería";
+NSFaceIDUsageDescription = "Delta Chat puede utilizar Face ID para proteger su perfil local, la creación de copias de seguridad y la configuración de un segundo dispositivo.";

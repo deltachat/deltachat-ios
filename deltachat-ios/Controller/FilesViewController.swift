@@ -25,9 +25,17 @@ class FilesViewController: UIViewController {
     private lazy var emptyStateView: EmptyStateLabel = {
         let label = EmptyStateLabel()
         if chatId == 0 {
-            label.text = String.localized(type1 == DC_MSG_WEBXDC ? "all_apps_empty_hint" : "tab_all_media_empty_hint")
+            if type1 == DC_MSG_WEBXDC {
+                label.text = String.localized("all_apps_empty_hint")
+            } else if type1 == DC_MSG_FILE {
+                label.text = String.localized("all_files_empty_hint")
+            } else {
+                label.text = String.localized("tab_all_media_empty_hint")
+            }
         } else if type1 == DC_MSG_AUDIO {
             label.text = String.localized("tab_audio_empty_hint")
+        } else if type1 == DC_MSG_WEBXDC {
+            label.text = String.localized("tab_webxdc_empty_hint")
         } else {
             label.text = String.localized("tab_docs_empty_hint")
         }
