@@ -15,6 +15,9 @@ class ActionCell: UITableViewCell {
     var actionColor: UIColor? {
         didSet {
             textLabel?.textColor = actionColor ?? UIColor.systemBlue
+            if let imageView {
+                imageView.tintColor = actionColor ?? UIColor.systemBlue
+            }
         }
     }
 
