@@ -40,6 +40,7 @@ class ProxySettingsViewController: UITableViewController {
 
         addProxyCell = ActionCell()
         addProxyCell.actionTitle = String.localized("proxy_add")
+        addProxyCell.imageView?.image = UIImage(systemName: "plus")
         toggleProxyCell = SwitchCell(textLabel: String.localized("proxy_use_proxy"), on: dcContext.isProxyEnabled)
 
         super.init(style: .insetGrouped)
