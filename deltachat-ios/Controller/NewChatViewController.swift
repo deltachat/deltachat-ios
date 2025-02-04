@@ -148,6 +148,7 @@ class NewChatViewController: UITableViewController {
         if section == sectionNew {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
 
+            actionCell.imageView?.image = UIImage(systemName: "plus")
             switch newOptions[row] {
             case .scanQRCode:
                 actionCell.actionTitle = String.localized("menu_new_contact")
@@ -163,6 +164,7 @@ class NewChatViewController: UITableViewController {
         } else if section == sectionInviteFriends {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
 
+            actionCell.imageView?.image = UIImage(systemName: "heart")
             actionCell.actionTitle = String.localized("invite_friends")
             return actionCell
 
