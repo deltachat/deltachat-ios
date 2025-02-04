@@ -8,6 +8,7 @@ class ContactDetailViewModel {
     enum ProfileSections {
         case chatOptions
         case statusArea
+        case startChatButtons
         case sharedChats
         case chatActions
     }
@@ -17,8 +18,11 @@ class ContactDetailViewModel {
         case allMedia
         case locations
         case ephemeralMessages
-        case shareContact
+    }
+
+    enum StartChatButton {
         case startChat
+        case shareContact
     }
 
     enum ChatAction {
@@ -47,6 +51,7 @@ class ContactDetailViewModel {
     private var sections: [ProfileSections] = []
     private var chatActions: [ChatAction] = []
     private var chatOptions: [ChatOption] = []
+    private var startChatButtons: [StartChatButton] = []
 
     init(dcContext: DcContext, contactId: Int) {
         self.context = dcContext
@@ -74,12 +79,17 @@ class ContactDetailViewModel {
             sections.append(.statusArea)
         }
 
+        if !isSavedMessages && !isDeviceTalk {
+            sections.append(.startChatButtons)
+        }
+
         if sharedChats.length > 0 && !isSavedMessages && !isDeviceTalk {
             sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
         chatOptions = []
+        startChatButtons = []
         if dcContact.getVerifierId() != 0 {
             chatOptions.append(.verifiedBy)
         }
@@ -93,11 +103,11 @@ class ContactDetailViewModel {
         if chatExists {
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
-                chatOptions.append(.startChat)
+                startChatButtons.append(.startChat)
             }
 
             if isSavedMessages == false && isDeviceTalk == false {
-                chatOptions.append(.shareContact)
+                startChatButtons.append(.shareContact)
             }
 
             chatActions = [.archiveChat]
@@ -111,8 +121,8 @@ class ContactDetailViewModel {
             chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         } else {
-            chatOptions.append(.startChat)
-            chatOptions.append(.shareContact)
+            startChatButtons.append(.startChat)
+            startChatButtons.append(.shareContact)
             chatActions = [.showEncrInfo, .blockContact]
         }
 
@@ -129,6 +139,10 @@ class ContactDetailViewModel {
 
     func chatOptionFor(row: Int) -> ContactDetailViewModel.ChatOption {
         return chatOptions[row]
+    }
+
+    func startChatButtonFor(row: Int) -> ContactDetailViewModel.StartChatButton {
+        return startChatButtons[row]
     }
 
     var chatIsArchived: Bool {
@@ -155,6 +169,7 @@ class ContactDetailViewModel {
         switch sections[section] {
         case .chatOptions: return chatOptions.count
         case .statusArea: return 1
+        case .startChatButtons: return startChatButtons.count
         case .sharedChats: return sharedChats.length
         case .chatActions: return chatActions.count
         }
@@ -191,7 +206,7 @@ class ContactDetailViewModel {
         switch sections[section] {
         case .statusArea: return (isSavedMessages || isDeviceTalk) ? nil : String.localized("pref_default_status_label")
         case .sharedChats: return String.localized("profile_shared_chats")
-        case .chatOptions, .chatActions: return nil
+        case .chatOptions, .startChatButtons, .chatActions: return nil
         }
     }
 
@@ -205,7 +220,7 @@ class ContactDetailViewModel {
             } else {
                 return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(lastSeen)))
             }
-        case .statusArea, .sharedChats, .chatActions: return nil
+        case .statusArea, .startChatButtons, .sharedChats, .chatActions: return nil
         }
     }
 
