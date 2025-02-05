@@ -103,7 +103,10 @@ class EphemeralMessagesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return String.localized("ephemeral_messages_hint")
+        if !dcContext.getChat(chatId: chatId).isSelfTalk { // the hint refers to "all member of the chat", this is weird for "Saved Messages"
+            return String.localized("ephemeral_messages_hint")
+        }
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
