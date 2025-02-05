@@ -22,11 +22,10 @@ class ContactDetailViewController: UITableViewController {
     }()
 
 
-    private lazy var startChatCell: UITableViewCell = {
-        let cell = UITableViewCell()
+    private lazy var startChatCell: ActionCell = {
+        let cell = ActionCell()
         cell.imageView?.image = UIImage(systemName: "paperplane")
-        cell.textLabel?.text = String.localized("send_message")
-        cell.textLabel?.textColor = UIColor.systemBlue
+        cell.actionTitle = String.localized("send_message")
         return cell
     }()
 
@@ -55,11 +54,10 @@ class ContactDetailViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var shareContactCell: UITableViewCell = {
-        let cell = UITableViewCell()
+    private lazy var shareContactCell: ActionCell = {
+        let cell = ActionCell()
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        cell.textLabel?.text = String.localized("menu_share")
-        cell.textLabel?.textColor = UIColor.systemBlue
+        cell.actionTitle = String.localized("menu_share")
         return cell
     }()
 
