@@ -180,6 +180,13 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == sectionContacts {
+            return String.localized("chat_with")
+        }
+        return nil
+    }
+
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let section = indexPath.section
