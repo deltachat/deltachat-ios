@@ -153,11 +153,10 @@ class NewChatViewController: UITableViewController {
                 actionCell.imageView?.image = UIImage(systemName: "qrcode")
                 actionCell.actionTitle = String.localized("menu_new_contact")
             case .newGroup:
-                actionCell.imageView?.image = UIImage(systemName: "person.2")
+                actionCell.imageView?.image = UIImage(systemName: "plus")
                 actionCell.actionTitle = String.localized("menu_new_group")
             case .newBroadcastList:
-                let image = if #available(iOS 17, *) { "horn" } else { "speaker.wave.3" }
-                actionCell.imageView?.image = UIImage(systemName: image)
+                actionCell.imageView?.image = UIImage(systemName: "plus")
                 actionCell.actionTitle = String.localized("new_broadcast_list")
             case .newContact:
                 actionCell.imageView?.image = UIImage(systemName: "highlighter")

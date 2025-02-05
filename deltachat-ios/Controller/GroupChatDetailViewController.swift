@@ -547,7 +547,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }
                 if row == membersRowAddMembers {
                     actionCell.actionTitle = String.localized(chat.isBroadcast ? "add_recipients" : "group_add_members")
-                    actionCell.imageView?.image = UIImage(systemName: "person.badge.plus")
+                    actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
                 } else if row == membersRowQrInvite {
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
