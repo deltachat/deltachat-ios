@@ -24,7 +24,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     private lazy var newContactCell: ActionCell = {
         let cell = ActionCell()
         cell.actionColor = UIColor.systemBlue
-        cell.imageView?.image = UIImage(systemName: "pencil")
+        cell.imageView?.image = UIImage(systemName: "highlighter")
         cell.actionTitle = String.localized("menu_new_classic_contact")
         return cell
     }()

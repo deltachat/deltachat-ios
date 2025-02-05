@@ -102,7 +102,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var leaveGroupCell: ActionCell = {
         let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "xmark")
+        cell.imageView?.image = UIImage(systemName: "signpost.right")
         cell.actionTitle = String.localized("menu_leave_group")
         cell.actionColor = UIColor.systemRed
         return cell
