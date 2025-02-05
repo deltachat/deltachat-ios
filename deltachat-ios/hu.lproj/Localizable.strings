@@ -541,13 +541,6 @@
 "proxy_use_proxy_confirm" = "Biztosan használni akarja a következő proxyt: „%1$@”?";
 "proxy_share_explain" = "Az ismerősei a QR-kód beolvasásával hozzáadhatják ezt a proxyt.";
 "proxy_share_link" = "Hivatkozás megosztása";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "SOCKS5 használata";
-"login_socks5_host" = "SOCKS5-kiszolgáló";
-"login_socks5_port" = "SOCKS5-port";
-"login_socks5_user" = "SOCKS5-felhasználó";
-"login_socks5_password" = "SOCKS5-jelszó";
 "login_info_oauth2_title" = "Folytatja az egyszerűsített beállítást?";
 "login_info_oauth2_text" = "A megadott e-mail-cím támogatja az egyszerűsített beállítást (OAuth 2.0).\n\nA következő lépésben engedélyezze a Delta Chat számára, hogy az e-mailen keresztüli csevegés alkalmazásaként működjön.\n\nA Delta Chat nem gyűjt felhasználói adatokat, az Ön összes adata az eszközén van tárolva.";
 "login_certificate_checks" = "Tanúsítvány ellenőrzése";
@@ -773,10 +766,6 @@
 "autocrypt_continue_transfer_retry" = "Újra";
 "autocrypt_bad_setup_code" = "Rossz beállítási kód. Próbálja újra.\n\nHa nem emlékszik a beállítási kódra, küldjön új Autocryptbeállító-üzenetet a másik eszközről.";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Üzenet megnyitva";
-// deprecated
-"systemmsg_read_receipt_body" = "Az Ön által küldött „%1$@” tartalmú üzenet megjelent a címzett képernyőjén.\n\nEz nem garancia arra, hogy a tartalmat elolvasták.";
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chatet, akkor a legjobb, ha most újraindítja a Delta Chatet, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
 "systemmsg_unknown_sender_for_chat" = "Az üzenet küldője ismeretlen ebben a csevegésben. További részletekért nézze meg az \'Infót\'.";
 "systemmsg_subject_for_new_contact" = "Üzenet tőle: %1$@";
@@ -851,8 +840,6 @@
 "chat_protection_broken_explanation" = "A végpontok közötti titkosítás már nem garantálható, valószínűleg azért, mert %1$@ újratelepítette a Delta Chatet, vagy egy másik eszközről küldött üzenetet.\n\n Személyesen találkozhat vele, és újra beolvashatja a QR-kódját a garantált végpontok közötti titkosítás visszaállításához.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ A(z) %1$@ végpontok közötti titkosítást igényel, ami még nincs beállítva erre a csevegésre. Koppintson, ha többet szeretne megtudni.";
 "invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat az ismerőseivel, és a QR-kódjukat beolvasva bemutathatja őket.";
-// deprecated
-"encryption_required_for_new_contact" = "A végpontok közötti titkosítás beállítása szükséges, de a(z) %1$@ nevű ismerőse esetében az még nincs beállítva.\n\nMegoszthatja a meghívó-hivatkozását, vagy személyesen is találkozhat vele, és beolvashatja a QR-kódját.";
 "learn_more" = "Tudjon meg többet";
 "devicemsg_self_deleted" = "Ön törölte a „Mentett üzenetek” csevegést.\n\nℹ️ A „Mentett üzenetek” funkció újbóli használatához hozzon létre egy új csevegést önmagával.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -971,11 +958,7 @@
 "global_menu_view_developer_desktop" = "Fejlesztő";
 "global_menu_view_developer_tools_desktop" = "Fejlesztői eszközök";
 "global_menu_help_desktop" = "Súgó";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Tudjon meg többet a Delta Chatről";
 "delta_chat_homepage" = "A Delta Chat weboldala";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Hozzájárulás a GitHubon";
 "contribute" = "Közreműködés";
 "global_menu_help_report_desktop" = "Jelentsen egy problémát";
 "global_menu_help_about_desktop" = "A Delta Chatről";
@@ -1072,6 +1055,5 @@
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
 // device messages for updates
 "update_1_50_android" = "Mik az újdonságok?\n\n❤️‍🔥 Új emodzsi-választó még több emodzsival\n\n🎮 Továbbfejlesztett, a csevegésben használható alkalmazások: Értesítéseket kaphat és megnyithatja az azokat támogató alkalmazásokban, azaz közvetlenül megnyithat egy hozzáadott naptárbejegyzést\n\n👍 Értesítést kaphat az üzeneteire adott reakciókról\n\n… 🛠️ Egyéb javítások, tudjon meg többet itt: %1$@";
-"update_1_46_ios" = "Új szolgáltatások 🐣 és további tudnivalók:\n\n⚡️ Regisztráljon biztonságos, gyors chatmail-kiszolgálókra (https://delta.chat/chatmail) vagy használja a klasszikus e-mail-kiszolgálókat\n\n👉 PUSH értesítések bármely chatmail-kiszolgálóra\n\n👤 Fogadjon „Csatolt névjegyeket\" és csatlakozzon az ismerőseihez\n\n🥰 Gyorsabb üzenetreakció kiválasztás … tudjon meg többet itt: %1$@";
 "update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
 Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";

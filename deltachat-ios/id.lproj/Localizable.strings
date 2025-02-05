@@ -479,11 +479,6 @@
 "autocrypt_continue_transfer_succeeded" = "Pengaturan ujung ke ujung sudah ditransfer. Sekarang perangkat ini sudah siap dengan pengaturan Autocrypt yang sama dengan perangkat lain.";
 "autocrypt_continue_transfer_retry" = "Ulangi";
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Pesan dibuka";
-// deprecated
-"systemmsg_read_receipt_body" = "Pesan \"%1$@\" yang Anda kirimkan tampak di layar penerima.\n\nIni bukan jaminan kalau isinya dibaca.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
@@ -570,10 +565,6 @@
 "global_menu_view_developer_desktop" = "Pengembang";
 "global_menu_view_developer_tools_desktop" = "Alat pengembang";
 "global_menu_help_desktop" = "Bantuan";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Pelajari lebih lanjut Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Kontribusi di GitHub";
 "global_menu_help_report_desktop" = "Laporkan masalah";
 "global_menu_help_about_desktop" = "Tentang Delta Chat";
 "no_chat_selected_suggestion_desktop" = "Pilih obrolan atau buat sebuah obrolan baru";

@@ -178,6 +178,8 @@
 "new_classic_contact_explain" = "Manually added contacts can be used to text to classic e-mail and are not guaranteed end-to-end encrypted.";
 "menu_new_chat" = "New Chat";
 "menu_new_group" = "New Group";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Chat with…";
 "clone_chat" = "Clone Chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Broadcast List";
@@ -542,13 +544,6 @@
 "proxy_use_proxy_confirm" = "Do you want to use proxy \"%1$@\"?";
 "proxy_share_explain" = "Your friends can add this proxy by scanning the QR code.";
 "proxy_share_link" = "Share Link";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Use SOCKS5";
-"login_socks5_host" = "SOCKS5 Host";
-"login_socks5_port" = "SOCKS5 Port";
-"login_socks5_user" = "SOCKS5 User";
-"login_socks5_password" = "SOCKS5 Password";
 "login_info_oauth2_title" = "Continue with simplified setup?";
 "login_info_oauth2_text" = "The entered e-mail address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to act as your Chat over E-mail app.\n\nDelta Chat does not collect user data, everything stays on your device.";
 "login_certificate_checks" = "Certificate Checks";
@@ -774,10 +769,6 @@
 "autocrypt_continue_transfer_retry" = "Retry";
 "autocrypt_bad_setup_code" = "Bad setup code. Please try again.\n\nIf you do not remember the setup code, send a new Autocrypt Setup Message from the other device.";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Message opened";
-// deprecated
-"systemmsg_read_receipt_body" = "The \"%1$@\" message you sent was displayed on the screen of the recipient.\n\nThis is no guarantee the content was read.";
 "systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
@@ -852,8 +843,6 @@
 "chat_protection_broken_explanation" = "End-to-end encryption cannot be guaranteed anymore, likely because %1$@ reinstalled Delta Chat or sent a message from another device.\n\nYou may meet them in person and scan their QR code again to reestablish guaranteed end-to-end encryption.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
 "invalid_unencrypted_explanation" = "To establish end-to-end-encryption, you may meet contacts in person and scan their QR Code to introduce them.";
-// deprecated
-"encryption_required_for_new_contact" = "End-to-end encryption is required but it is not setup for %1$@ yet.\n\nYou may share your invite link with them or meet in person and scan their QR Code.";
 "learn_more" = "Learn More";
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -972,11 +961,7 @@
 "global_menu_view_developer_desktop" = "Developer";
 "global_menu_view_developer_tools_desktop" = "Developer Tools";
 "global_menu_help_desktop" = "Help";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Learn more about Delta Chat";
 "delta_chat_homepage" = "Delta Chat Homepage";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Contribute on GitHub";
 "contribute" = "Contribute";
 "global_menu_help_report_desktop" = "Report an Issue";
 "global_menu_help_about_desktop" = "About Delta Chat";
@@ -1073,7 +1058,6 @@
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
 "update_1_50_android" = "What\'s new?\n\n❤️‍🔥 New emojis picker with more emoji\n\n🎮 Enhanced in-chat apps: Get notifications and open supporting apps in context, i.e. open an added calendar entry directly\n\n👍 Get notified about reactions to your messages\n\n... 🛠️ FIXES and EVEN MORE at %1$@";
-"update_1_46_ios" = "New Onboarding 🐣 and More:\n\n⚡️ Sign up to secure fast chatmail servers (https://delta.chat/chatmail) or use classic e-mail servers\n\n👉 PUSH notifications for any chatmail server\n\n👤 Receive \"Attached contacts\" and connect to your friends\n\n🥰 Faster reaction selection … and MORE at %1$@";
 "update_switch_profile_placement" = "ℹ️ \"Switch Profile\" option moved: Tap your profile image in the upper corner of the main screen to add or switch profiles 💡";
 // iOS specific untranslated strings
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";

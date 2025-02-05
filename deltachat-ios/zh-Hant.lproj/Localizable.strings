@@ -529,13 +529,6 @@
 "proxy_use_proxy_confirm" = "是否要使用代理 「%1$@」？";
 "proxy_share_explain" = "您的朋友可以通過掃描QR碼來添加此代理。";
 "proxy_share_link" = "分享連結";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "使用 SOCKS5";
-"login_socks5_host" = "SOCKS5 主機";
-"login_socks5_port" = "SOCKS5 通訊埠";
-"login_socks5_user" = "SOCKS5 使用者";
-"login_socks5_password" = "SOCKS5 密碼";
 "login_info_oauth2_title" = "繼續使用簡易設定?";
 "login_info_oauth2_text" = "輸入的電子郵件位址支援簡化設定（OAuth 2.0）。\n\n在下一步中，請允許 Delta Chat 充當你的電子郵件對話應用程式。\n\nDelta Chat 不會收集使用者資料，所有內容都保留在你的裝置上。";
 "login_certificate_checks" = "憑證檢查";
@@ -756,10 +749,6 @@
 "autocrypt_continue_transfer_retry" = "重試一次";
 "autocrypt_bad_setup_code" = "錯誤的設定碼，請再試一次。\n\n如果你忘記設定碼的話，只要在另一台裝置重新發送一次AutoCrypt設定訊息即可。";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "收執回條";
-// deprecated
-"systemmsg_read_receipt_body" = "這是訊息 「%1$@」 的收執回條，表示本訊息已經顯示在收件人的裝置上了，但不代表收件人已讀。";
 "systemmsg_cannot_decrypt" = "此消息無法解密。\n\n• 簡要回覆此消息並要求發件者再次發送消息可能已有所幫助。\n\n• 如果您剛剛重新安裝了 Delta Chat，那麼最好立即重新設置 Delta Chat，然後選擇「添加為第二台裝置」或導入備份。";
 "systemmsg_unknown_sender_for_chat" = "此聊天未知發送者。有關詳細資訊，請參閱“訊息” 。";
 "systemmsg_subject_for_new_contact" = "來自 %1$@ 的訊息";
@@ -834,8 +823,6 @@
 "chat_protection_broken_explanation" = "無法再保證端到端加密，可能是因為%1$@重新安裝了 Delta Chat 或從其他裝置傳送了訊息\n\n您可以再次當面掃描他們的QR碼，以重新建立有保證的端到端加密。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@需要端到端加密，但尚未為此聊天設置。輕觸以瞭解更多資訊。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以當面掃描聯絡人的QR碼。";
-// deprecated
-"encryption_required_for_new_contact" = "端到端加密是必需的，但尚未設置%1$@。\n\n您可以與他們分享您的邀請連結，或者當面掃描他們的二維碼。";
 "learn_more" = "瞭解更多";
 "devicemsg_self_deleted" = "您刪除了「已保存的訊息」聊天。\n\nℹ️要再次使用「已保存的訊息」功能，請與自己創建新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -954,10 +941,6 @@
 "global_menu_view_developer_desktop" = "開發者";
 "global_menu_view_developer_tools_desktop" = "開發者工具";
 "global_menu_help_desktop" = "幫助";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "了解有關 Delta Chat 的更多資訊";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "在 GitHub 上作出貢獻";
 "global_menu_help_report_desktop" = "報告問題";
 "global_menu_help_about_desktop" = "關於 Delta Chat";
 "global_menu_file_open_desktop" = "開啟 Delta Chat";
@@ -1037,5 +1020,4 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
-"update_1_46_ios" = "新用戶引導流程 🐣 以及更多資訊：\n\n⚡️ 註冊安全的快速聊天郵件伺服器( https://delta.chat/chatmail )或使用傳統的電子郵件伺服器\n\n👉 為任何聊天郵件伺服器推送通知\n\n👤 接收「附加聯絡人」安全地連接您的朋友\n\n🥰 更快選擇訊息回覆 ... 更多資訊，請訪問 %1$@";
 "update_switch_profile_placement" = "ℹ️「切換賬戶」選項已移動：點擊主螢幕右上角的賬戶大頭貼以添加或切換賬戶 💡";

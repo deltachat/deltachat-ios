@@ -395,13 +395,6 @@
 "proxy_delete" = "Ištrinti įgaliotąjį serverį";
 "proxy_delete_explain" = "Ar tikrai norite ištrinti „%1$@“?";
 "proxy_use_proxy_confirm" = "Ar norite naudoti įgaliotąjį serverį „%1$@“?";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Naudoti SOCKS5";
-"login_socks5_host" = "SOCKS5 serveris";
-"login_socks5_port" = "SOCKS5 prievadas";
-"login_socks5_user" = "SOCKS5 naudotojas";
-"login_socks5_password" = "SOCKS5 slaptažodis";
 "login_info_oauth2_title" = "Tęsti naudojant supaprastintą sąranką?";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
@@ -581,11 +574,6 @@
 "autocrypt_continue_transfer_succeeded" = "Ištisinė sąranka perduota. Dabar, šis įrenginys yra paruoštas naudoti Autocrypt su tokia pačia sąranka kaip ir kitas įrenginys.";
 "autocrypt_continue_transfer_retry" = "Bandyti dar kartą";
 "autocrypt_bad_setup_code" = "Blogas sąrankos kodas. Bandykite dar kartą.\n\nJeigu neprisimenate sąrankos kodo, tiesiog, išsiųskite dar vieną Autocrypt sąrankos žinutę iš kito  įrenginio.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Pranešimas apie skaitymą";
-// deprecated
-"systemmsg_read_receipt_body" = "Tai yra pranešimas apie žinutės \"%1$@\" skaitymą.\n\nTai reiškia, kad žinutė buvo atvaizduota gavėjo įrenginyje, tačiau neužtikrina, kad jos turinys buvo perskaitytas.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
@@ -716,10 +704,6 @@
 "global_menu_view_developer_desktop" = "Plėtotojas";
 "global_menu_view_developer_tools_desktop" = "Plėtotojo įrankiai";
 "global_menu_help_desktop" = "Žinynas";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Sužinokite daugiau apie Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Talkinti „Github“ svetainėje";
 "global_menu_help_report_desktop" = "Pranešti apie klaidą";
 "global_menu_help_about_desktop" = "Apie Delta Chat";
 "global_menu_file_open_desktop" = "Atverti Delta Chat";

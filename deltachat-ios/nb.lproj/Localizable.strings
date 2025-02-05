@@ -303,11 +303,6 @@
 "autocrypt_continue_transfer_succeeded" = "Nøkkel overført. Denne enheten er nå klar til å bruke Autocrypt med samme nøkkel som den andre enheten.";
 "autocrypt_continue_transfer_retry" = "Prøv igjen";
 "autocrypt_bad_setup_code" = "Feil oppsettskode. Prøv igjen.\n\nHvis du ikke husker den, sett igang nøkkeloverføringen på en andre enheten igjen.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Meldingskvittering";
-// deprecated
-"systemmsg_read_receipt_body" = "Dette er en meldingskvittering for meldingen \"%1$@\".\n\nDenne meldingskvitteringen bekrefter bare at meldingen ble vist på mottakerens enhet. Det finnes ingen garanti for at mottakeren har lest meldingsinnholdet.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\" av meg.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.

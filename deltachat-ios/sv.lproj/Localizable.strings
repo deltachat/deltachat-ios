@@ -503,13 +503,6 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP säkerhet";
 "login_auth_method" = "Auktoriseringsmetod";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Använd SOCKS5";
-"login_socks5_host" = "SOCKS5-värd";
-"login_socks5_port" = "SOCKS5-port";
-"login_socks5_user" = "SOCKS5-användare";
-"login_socks5_password" = "SOCKS5-lösenord";
 "login_info_oauth2_title" = "Fortsätta med förenklad installation?";
 "login_info_oauth2_text" = "Den angivna e-postadressen stödjer förenklad inställning (OAuth 2.0).\n\nLåt Delta Chat agera som ditt chatt-över-epost-program, i nästa steg.\n\nDet finns ingen Delta Chat-server, din data stannar på din enhet.";
 "login_certificate_checks" = "Certifikatkontroller";
@@ -724,10 +717,6 @@
 "autocrypt_continue_transfer_retry" = "Försök igen";
 "autocrypt_bad_setup_code" = "Felaktig inställningskod. Försök igen.\n\nOm du inte kommer ihåg inställningskoden, kan du skicka ett nytt Autocrypt inställningsmeddelande från den andra enheten.";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Meddelande öppnat";
-// deprecated
-"systemmsg_read_receipt_body" = "\"%1$@\" meddelandet du skickade visades på mottagarens skärm.\n\nDet är ingen garanti för att innehållet har lästs.";
 "systemmsg_cannot_decrypt" = "Det här meddelandet kan inte dekrypteras.\n\n- Det kan hjälpa att helt enkelt svara på det här meddelandet och be avsändaren att skicka meddelandet igen.\n\n- Om du just har installerat om Delta Chat är det bäst om du konfigurerar om Delta Chat nu och väljer \"Lägg till som en andra enhet\" eller importerar en säkerhetskopia.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
@@ -802,8 +791,6 @@
 "chat_protection_broken_explanation" = "Totalsträckskryptering kan inte garanteras längre, troligen för att %1$@ installerade om Delta Chat eller skickade ett meddelande från en annan enhet.\n\nDu kan träffa dem personligen och skanna deras QR-kod igen för att återupprätta garanterad totalsträckskryptering.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ kräver totalsträckskryptering som inte är kofigurerad för den här chatten ännu. Tryck för att lära dig mer.";
 "invalid_unencrypted_explanation" = "För att skapa totalsträckskryptering kan du träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
-// deprecated
-"encryption_required_for_new_contact" = "Totalsträckskryptering krävs men det är ännu inte konfigurerat för %1$@.\n\nDu kan dela din inbjudningslänk med dem eller träffas personligen och skanna deras QR-kod.";
 "learn_more" = "Lär dig mer";
 "devicemsg_self_deleted" = "Du har tagit bort chatten \"Sparade meddelanden\".\n\nℹ️ Om du vill använda funktionen \"Sparade meddelanden\" igen skapar du en ny chatt med dig själv.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -922,10 +909,6 @@
 "global_menu_view_developer_desktop" = "Utvecklare";
 "global_menu_view_developer_tools_desktop" = "Utvecklingsverktyg";
 "global_menu_help_desktop" = "Hjälp";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Lär dig mer om Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Bidra på GitHub";
 "global_menu_help_report_desktop" = "Rapportera ett ärende";
 "global_menu_help_about_desktop" = "Om Delta Chat";
 "global_menu_file_open_desktop" = "Öppna Delta Chat";
@@ -1005,5 +988,4 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
-"update_1_46_ios" = "Ny Onboarding 🐣 och mer:\n\n⚡️ Registrera dig för säkra snabba chatmailservrar (https://delta.chat/chatmail) eller använd klassiska e-postservrar\n\n👉 PUSH-meddelanden för alla chatmailservrar\n\n👤 Ta emot \"bifogade kontakter\" och anslut till dina vänner\n\n🥰 Snabbare reaktionsval ... och MER på %1$@";
 "update_switch_profile_placement" = "ℹ️ Alternativet \"Byt profil\" har flyttats: Tryck på din profilbild i det övre hörnet av huvudskärmen för att lägga till eller byta profil 💡";
