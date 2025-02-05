@@ -117,7 +117,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var clearChatCell: ActionCell = {
         let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "line.diagonal")
+        let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("clear_chat")
         cell.actionColor = UIColor.systemRed
         return cell
