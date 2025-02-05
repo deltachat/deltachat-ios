@@ -412,13 +412,6 @@
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
 "login_auth_method" = "Método de autorización";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Usar SOCKS5";
-"login_socks5_host" = "Servidor SOCKS5";
-"login_socks5_port" = "Porto SOCKS5";
-"login_socks5_user" = "Usuaria SOCKS5";
-"login_socks5_password" = "Contrasinal SOCKS5";
 "login_info_oauth2_title" = "Continuar co axuste simplificado?";
 "login_info_oauth2_text" = "O enderezo introducido soporta o axuste simplificado (OAuth 2.0).\n\nNo seguinte paso, permite a Delta Chat actuar como app de Conversa sobre Correo-e.\n\nNon hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -609,11 +602,6 @@
 "autocrypt_continue_transfer_succeeded" = "Axustes transferidos. Este dispositivo está preparado para utilizar Autocrypt coa mesma configuración que no outro dispositivo.";
 "autocrypt_continue_transfer_retry" = "Voltar a intentar";
 "autocrypt_bad_setup_code" = "Código incorrecto. Inténtao outra vez.\n\nSe non lembras o código, envía unha nova Mensaxe de Configuración Autocrypt desde o outro dispositivo.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Mensaxe aberta";
-// deprecated
-"systemmsg_read_receipt_body" = "A mensaxe \"%1$@\" que enviaches mostrouse na pantalla do correspondente.\n\nNon hai garantía de que o contido fose lido.";
 "systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
 "systemmsg_failed_sending_to" = "Fallou o envío para %1$@.";
@@ -748,10 +736,6 @@
 "global_menu_view_developer_desktop" = "Desenvolvedora";
 "global_menu_view_developer_tools_desktop" = "Ferramentas de desenvolvedora";
 "global_menu_help_desktop" = "Axuda";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Coñece máis sobre Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Contribúe en GitHub";
 "global_menu_help_report_desktop" = "Informa dun fallo";
 "global_menu_help_about_desktop" = "Acerca de Delta Chat";
 "global_menu_file_open_desktop" = "Abrir Delta Chat";

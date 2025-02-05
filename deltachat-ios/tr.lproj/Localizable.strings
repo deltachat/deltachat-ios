@@ -312,8 +312,8 @@
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
-"ask_block_contact" = "Bu kişi engellensin mi? Artık ondan gelen iletileri almayacaksınız.";
-"ask_unblock_contact" = "Bu kişi engellenmesin mi? Artık ondan gelen iletileri alabileceksiniz.";
+"ask_block_contact" = "Bu kişi engellensin mi?\n\nEngellenen kişiler tarafından oluşturulan doğrudan iletiler ya da öbekler gösterilmeyecek.\n\nEngellenen kişilerle olan diğer öbekler, onların iletilerini gösterecek.";
+"ask_unblock_contact" = "Bu kişi engellenmesin mi?";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
@@ -425,7 +425,8 @@
 "tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
 "tab_webxdc_empty_hint" = "Bu sohbette paylaşılan uygulamalar burada görünecek.";
 "tab_all_media_empty_hint" = "Herhangi bir sohbette paylaşılan ortamlar burada görünecek.";
-"all_apps_empty_hint" = "Herhangi bir sohbette alınan ya da gönderilen uygulamalar burada görünecek.";
+"all_files_empty_hint" = "Herhangi bir sohbette paylaşılan belgeler ve diğer dosyalar burada görünecek.";
+"all_apps_empty_hint" = "Herhangi bir sohbette paylaşılan uygulamalar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "En Boy Oranı Izgarası";
@@ -541,13 +542,6 @@
 "proxy_use_proxy_confirm" = "\"%1$@\" proxy\'sini kullanmak istiyor musunuz?";
 "proxy_share_explain" = "Arkadaşlarınız, QR kodunu tarayarak bu proxy\'yi ekleyebilir.";
 "proxy_share_link" = "Bağlantı Paylaş";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "SOCKS5\'i Kullan";
-"login_socks5_host" = "SOCKS5 Ana Bilgisayarı";
-"login_socks5_port" = "SOCKS5 Bağlantı Noktası";
-"login_socks5_user" = "SOCKS5 Kullanıcısı";
-"login_socks5_password" = "SOCKS5 Parolası";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
@@ -773,10 +767,6 @@
 "autocrypt_continue_transfer_retry" = "Yeniden Dene";
 "autocrypt_bad_setup_code" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.\n\nAyarlama kodunu anımsamıyorsanız, diğer aygıttan yeni bir Autocrypt Ayarlama İletisi gönderin.";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "İleti açıldı";
-// deprecated
-"systemmsg_read_receipt_body" = "Gönderdiğiniz \"%1$@\" iletisi alıcının ekranında görüntülendi.\n\nBu, içeriğin okunduğunun güvencesi değildir.";
 "systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp \"İkinci aygıt olarak ekle\"yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
@@ -851,8 +841,6 @@
 "chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
-// deprecated
-"encryption_required_for_new_contact" = "Uçtan uca şifreleme gereklidir ama %1$@ için henüz ayarlanmadı.\n\nÇağırma bağlantınızı onunla paylaşabilirsiniz ya da kişisel olarak tanışarak onun QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 "devicemsg_self_deleted" = "\"Kaydedilen iletiler\" sohbetini sildiniz.\n\nℹ️ \"Kaydedilen iletiler\" özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -971,11 +959,7 @@
 "global_menu_view_developer_desktop" = "Geliştirici";
 "global_menu_view_developer_tools_desktop" = "Geliştirici Araçları";
 "global_menu_help_desktop" = "Yardım";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Delta Chat hakkında daha fazlasını öğrenin";
 "delta_chat_homepage" = "Delta Chat Ana Sayfası";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "GitHub\'da katkıda bulunun";
 "contribute" = "Katkıda Bulunun";
 "global_menu_help_report_desktop" = "Bir Sorun Raporla";
 "global_menu_help_about_desktop" = "Delta Chat hakkında";
@@ -1072,5 +1056,4 @@
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 // device messages for updates
 "update_1_50_android" = "Ne yeni?\n\n❤️‍🔥 Daha fazla emojiyle yeni emoji seçicisi\n\n🎮 Geliştirilen sohbet içi uygulamalar: Bildirimler alın ve destekleyen uygulamaları bağlamda açın, yani eklenen bir takvim girdisini doğrudan açın\n\n👍 İletilerinize verilen tepkiler hakkında bildirimler alın\n\n... 🛠️ DÜZELTMELER ve HATTA DAHA FAZLASI için %1$@";
-"update_1_46_ios" = "Yeni Katılım 🐣 ve Daha Fazlası:\n\n⚡️ Güvenli hızlı Chatmail sunucularına kaydolun (https://delta.chat/chatmail) ya da klasik e-posta sunucularını kullanın\n\n👉 Herhangi bir Chatmail sunucusu için ANLIK bildirimler\n\n👤 \"İliştirilen kişileri\" alın ve arkadaşlarınıza bağlanın\n\n🥰 Daha hızlı tepki seçimi … ve DAHA FAZLASI için %1$@";
 "update_switch_profile_placement" = "ℹ️ \"Profili Değiştir\" seçeneği taşındı: Yeni profil eklemek ya da profilleri değiştirmek için ana ekranın üst köşesindeki profil görselinize dokunun 💡";

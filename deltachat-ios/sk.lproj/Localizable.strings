@@ -403,13 +403,6 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Zabezpečenie SMTP";
 "login_auth_method" = "Metóda autorizácie";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Použiť SOCKS5";
-"login_socks5_host" = "SOCKS5 Host";
-"login_socks5_port" = "SOCKS5 Port";
-"login_socks5_user" = "SOCKS5 Používateľ";
-"login_socks5_password" = "SOCKS5 Heslo";
 "login_info_oauth2_title" = "Pokračovať v zjednodušenom nastavovaní?";
 "login_info_oauth2_text" = "Zadaná e-mailová adresa podporuje zjednodušené nastavenie (OAuth 2.0).\n\nV ďalšom kroku povoľte aplikácii Delta Chat, aby fungovala ako vaša aplikácia Chat cez e-mail.\n\nNie sú k dispozícii servery Delta Chat, vaše dáta zostanú vo vašom zariadení .";
 "login_certificate_checks" = "Osvedčovacie kontroly";
@@ -600,11 +593,6 @@
 "autocrypt_continue_transfer_succeeded" = "Kompletné nastavenie bolo prenesené. Toto zariadenie je teraz pripravené na použitie autokryptu s rovnakým nastavením ako druhé zariadenie.";
 "autocrypt_continue_transfer_retry" = "Skúsiť znova";
 "autocrypt_bad_setup_code" = "Chybný kód nastavenia. Skúste to znova.\n\nAk si nepamätáte nastavovací kód, odošlite z druhého zariadenia novú správu s nastavením automatického šifrovania.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Správa otvorená";
-// deprecated
-"systemmsg_read_receipt_body" = "%1$@ Správa, ktorú ste poslali, sa zobrazila na obrazovke príjemcu.\n\nZaručujeme, že obsah nebol prečítaný.";
 "systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
@@ -768,10 +756,6 @@
 "global_menu_view_developer_desktop" = "Vývojár";
 "global_menu_view_developer_tools_desktop" = "Nástroje pre vývojárov";
 "global_menu_help_desktop" = "Pomocník";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Získať viac informácií o službe Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Prispieť na GitHub-e";
 "global_menu_help_report_desktop" = "Nahlásiť problém";
 "global_menu_help_about_desktop" = "O spoločnosti Delta Chat";
 "global_menu_file_open_desktop" = "Otvoriť Delta Chat";

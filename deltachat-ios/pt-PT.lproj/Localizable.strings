@@ -261,11 +261,6 @@
 "autocrypt_continue_transfer_succeeded" = "Configuração de ponta a ponta transferida. Este dispositivo está agora pronto para usar Autocrypt com a mesma configuração que o outro dispositivo.";
 "autocrypt_continue_transfer_retry" = "Tentar novamente";
 "autocrypt_bad_setup_code" = "Código de configuração inválido Por favor, tente novamente.\n\nSe não se lembrar do código de configuração, basta re-enviar outra Mensagem de Configuração de Autocrypt do outro dispositivo.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Ler recibos";
-// deprecated
-"systemmsg_read_receipt_body" = "Este é um recibo de confirmação de leitura da mensagem \"%1$@\".\n\nEsta mensagem foi exibida no dispositivo do destinatário, não necessariamente que o conteúdo foi lido.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -338,8 +333,6 @@
 "global_menu_view_developer_desktop" = "Programador";
 "global_menu_view_developer_tools_desktop" = "Ferramentas do programador";
 "global_menu_help_desktop" = "Ajuda";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Contribuir no GitHub";
 "global_menu_help_report_desktop" = "Comunicar um problema";
 "no_chat_selected_suggestion_desktop" = "Selecione um CHAT ou crie um novo";
 "write_message_desktop" = "Escreva uma mensagem";

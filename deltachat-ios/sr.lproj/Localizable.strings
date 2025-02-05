@@ -417,13 +417,6 @@
 "login_smtp_port" = "СМТП порт";
 "login_smtp_security" = "СМТП безбедност";
 "login_auth_method" = "Начин овлашћења";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Користи SOCKS5";
-"login_socks5_host" = "SOCKS5 сервер";
-"login_socks5_port" = "SOCKS5 порт";
-"login_socks5_user" = "SOCKS5 корисник";
-"login_socks5_password" = "SOCKS5 лозинка";
 "login_info_oauth2_title" = "Наставите са поједностављеним поставкама?";
 "login_info_oauth2_text" = "Унета е-адреса подржава поједностављено подешавање (OAuth 2.0).\n\nУ следећем кораку, дозволите Delta Chat-у да  да дејствује као ваша апликација за ћаскање преко е-поште.\n\nDelta Chat нема сервере и ваши подаци остају на вашем уређају.";
 "login_certificate_checks" = "Провери сертификате";
@@ -614,11 +607,6 @@
 "autocrypt_continue_transfer_succeeded" = "Подешавање с-краја-на-крај је пренето. Овај уређај је сада спреман за коришћење аутоматског шифровања са истим подешавањем као и други уређај.";
 "autocrypt_continue_transfer_retry" = "Покушај поново";
 "autocrypt_bad_setup_code" = "Погрешан кôд за подешавање. Покушајте поново.\n\nАко се не сећате кôда за подешавање, пошаљите нову поруку за подешавање аутоматског шифровања са другог уређаја.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Порука је отворена";
-// deprecated
-"systemmsg_read_receipt_body" = "Порука „%1$@“ коју сте послали била је приказана на екрану примаоца.\n\nОво није гаранција да је садржај прочитан.";
 "systemmsg_unknown_sender_for_chat" = "Непознати пошиљалац за ово ћаскање. Погледајте „информације“ за више детаља.";
 "systemmsg_subject_for_new_contact" = "Поруке од %1$@";
 "systemmsg_failed_sending_to" = "Слање поруке %1$@ је било неуспешно.";
@@ -786,10 +774,6 @@
 "global_menu_view_developer_desktop" = "Програмер";
 "global_menu_view_developer_tools_desktop" = "Алати за развој";
 "global_menu_help_desktop" = "Помоћ";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Научите више о Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Допринесите развоју на Гитхабу";
 "global_menu_help_report_desktop" = "Пријавите проблем";
 "global_menu_help_about_desktop" = "О Delta Chat";
 "global_menu_file_open_desktop" = "Отвори Delta Chat";

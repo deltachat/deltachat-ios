@@ -451,13 +451,6 @@
 "login_smtp_port" = "Porta SMTP";
 "login_smtp_security" = "Segurança SMTP";
 "login_auth_method" = "Método de autorização";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Usar SOCKS5";
-"login_socks5_host" = "Servidor SOCKS5 ";
-"login_socks5_port" = "Porta SOCKS5";
-"login_socks5_user" = "Usuário SOCKS5";
-"login_socks5_password" = "Senha SOCKS5";
 "login_info_oauth2_title" = "Prosseguir pela configuração simplificada?";
 "login_info_oauth2_text" = "Seu servidor de e-mail aceita o método de configuração simplificada (OAuth 2.0).\n\n No próximo passo, por favor, permita que o Delta Chat seja seu aplicativo de e-mail.\n\nNão há servidor do Delta Chat. Seus dados ficam no seu aparelho.";
 "login_certificate_checks" = "Verificações de certificado";
@@ -648,11 +641,6 @@
 "autocrypt_continue_transfer_succeeded" = "Chaves transferidas. Agora você está pronto para usar o Autocrypt neste dispositivo com as mesmas chaves do outro.";
 "autocrypt_continue_transfer_retry" = "Tente de novo";
 "autocrypt_bad_setup_code" = "Código errado. Tente novamente.\n\nSe você não se lembra do código recomece a transferência de chaves no dispositivo original.";
-// system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Confirmação de leitura";
-// deprecated
-"systemmsg_read_receipt_body" = "Confirmação de recebimento da mensagem \"%1$@\".\n\nEsta confirmação somente assegura que a mensagem foi exibida no aparelho do destinatário, mas não há garantia de que ele tenha lido o seu conteúdo.";
 "systemmsg_unknown_sender_for_chat" = "Remetente desconhecido para esta conversa. Veja \'informações\' para mais detalhes.";
 "systemmsg_subject_for_new_contact" = "Mensagem de %1$@";
 "systemmsg_failed_sending_to" = "Falha ao enviar mensagem para %1$@.";
@@ -820,10 +808,6 @@
 "global_menu_view_developer_desktop" = "Desenvolvedor";
 "global_menu_view_developer_tools_desktop" = "Ferramentas de desenvolvedor";
 "global_menu_help_desktop" = "Ajuda";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Aprenda mais sobre o Delta Chat";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Contribua no GitHub";
 "global_menu_help_report_desktop" = "Relatar um erro";
 "global_menu_help_about_desktop" = "Sobre o Delta Chat";
 "global_menu_file_open_desktop" = "Abrir o Delta Chat ";

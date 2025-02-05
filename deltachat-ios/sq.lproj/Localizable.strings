@@ -419,6 +419,7 @@
 "tab_audio_empty_hint" = "Kartelat audio dhe mesazhet zanore të dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione private të përbashkët në këtë fjalosje ";
 "tab_all_media_empty_hint" = "Këtu do të duke media e dhënë në çfarëdo fjalosjeje.";
+"all_files_empty_hint" = "Dokumentet, muzika dhe kartela të tjera të dhëna në çfarëdo fjalosje do të shfaqen këtu.";
 "all_apps_empty_hint" = "Këtu do të duken aplikacione private të dërguar apo të marrë në cilëndo fjalosje.";
 "media_preview" = "Paraparje Mediash";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -535,13 +536,6 @@
 "proxy_use_proxy_confirm" = "Doni të përdore ndërmjetësi “%1$@”?";
 "proxy_share_explain" = "Shokët tuaj mund ta shtojnë këtë ndërmjetës përmes skanimit të kodit QR.";
 "proxy_share_link" = "Jepeni Lidhjen";
-// deprecated
-"login_socks5" = "SOCKS5";
-"login_socks5_use_socks5" = "Përdor SOCKS5";
-"login_socks5_host" = "Strehë SOCKS5";
-"login_socks5_port" = "Portë SOCKS5";
-"login_socks5_user" = "Përdorues SOCKS5";
-"login_socks5_password" = "Fjalëkalim SOCKS5";
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth 2.0).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të veprojë si aplikacioni juaj për Fjalosje Përmes Email-i.\n\nS\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
 "login_certificate_checks" = "Kontrolle Dëshmish";
@@ -765,10 +759,6 @@
 "autocrypt_continue_transfer_retry" = "Riprovo";
 "autocrypt_bad_setup_code" = "Kod i gabuar rregullimi. Ju lutemi, riprovoni.\n\nNëse s\’e mbani mend kodin e rregullimit, thjesht dërgoni një tjetër Mesazh Rregullimi Autocrypt-i prej pajisjes tjetër.";
 // system messages
-// deprecated
-"systemmsg_read_receipt_subject" = "Mesazhi u hap";
-// deprecated
-"systemmsg_read_receipt_body" = "Mesazhi “%1$@” që dërguat, u shfaq në ekranin e marrësit.\n\nKjo s’është garanci se lënda u lexua.";
 "systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
@@ -843,8 +833,6 @@
 "chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund ta takoni dhe të skanoni sërish KODIN e tij QR, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
 "invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
-// deprecated
-"encryption_required_for_new_contact" = "Është i domosdoshëm fshehtëzim skaj-më-skaj, por për %1$@ s’është ujdisur ende i tillë.\n\nMund t’i jepni lidhjen e ftesës tuaj, ose të takoheni personalisht dhe të skanoni kodin e tij QR.";
 "learn_more" = "Mësoni Më Tepër";
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -963,11 +951,7 @@
 "global_menu_view_developer_desktop" = "Zhvillues";
 "global_menu_view_developer_tools_desktop" = "Mjete Zhvilluesi";
 "global_menu_help_desktop" = "Ndihmë";
-// deprecated, use delta_chat_homepage instead
-"global_menu_help_learn_desktop" = "Mësoni më tepër rreth Delta Chat-it";
 "delta_chat_homepage" = "Faqe hyrëse e Delta Chat-it";
-// deprecated, use contribute instead
-"global_menu_help_contribute_desktop" = "Jepni ndihmesë në GitHub";
 "contribute" = "Kontribuoni";
 "global_menu_help_report_desktop" = "Njoftoni një Problem";
 "global_menu_help_about_desktop" = "Rreth Delta Chat-it";
@@ -1060,5 +1044,4 @@
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
 // device messages for updates
 "update_1_50_android" = "Ç’ka të re?\n\n❤️‍🔥 Zgjedhës i ri emoji-sh, me më shumë të tillë\n\n🎮 Zgjerim aplikacionesh brenda fjalosjesh: Merrni njoftim dhe hapni aplikacionet përkatës sipas kontekstit, p.sh., hapni drejtpërdrejt një zë të saposhtuar kalendari\n\n👍 Merrni njoftim mbi reagime te mesazhet tuaj\n\n… 🛠️ NDREQJE DHE MË TEPËR te %1$@";
-"update_1_46_ios" = "Hapa të Rinj Mirëseardhjeje 🐣 dhe të Tjera:\n\n⚡️ Regjistrohuni te shërbyes të siguruar, të shpejtë chatmail-i (https://delta.chat/chatmail), ose përdorni shërbyes klasikë email-i\n\n👉 Njoftime PUSH për çfarëdo shërbyesish “chatmail”\n\n👤 Merrni “Kontakte bashkëmgjitur” dhe lidhuni me shokët tuaj\n\n🥰 Përzgjedhje më e shpejtë reagimesh…ETJ, te %1$@";
 "update_switch_profile_placement" = "ℹ️ Mundësia “Ndërroni Profil” u hoq: Që të shtoni, ose ndërroni profile, prekni figurën e profilit tuaj në cepin e sipërm të skenës kryesore 💡";
