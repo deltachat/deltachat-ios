@@ -31,8 +31,9 @@ class RelayHelper {
 
     // forwarding messages
 
-    func setForwardVCard(dialogTitle: String, vcardData: Data) {
-        self.dialogTitle = dialogTitle
+    func setForwardVCard(vcardData: Data) {
+        finishRelaying()
+        self.dialogTitle = String.localized("chat_share_with_title")
         self.forwardVCardData = vcardData
     }
 

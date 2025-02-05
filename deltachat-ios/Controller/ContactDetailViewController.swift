@@ -369,7 +369,7 @@ class ContactDetailViewController: UITableViewController {
     @objc private func shareContact() {
         guard let vcardData = viewModel.context.makeVCard(contactIds: [viewModel.contactId]) else { return }
 
-        RelayHelper.shared.setForwardVCard(dialogTitle: String.localized("forward_to"), vcardData: vcardData)
+        RelayHelper.shared.setForwardVCard(vcardData: vcardData)
         navigationController?.popToRootViewController(animated: true)
     }
 
