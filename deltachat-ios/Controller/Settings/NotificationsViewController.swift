@@ -50,11 +50,10 @@ internal final class NotificationsViewController: UITableViewController {
         })
     }()
 
-    private lazy var systemSettingsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+    private lazy var systemSettingsCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.systemSettings.rawValue
         cell.textLabel?.text = String.localized("system_settings")
-        cell.accessoryType = .disclosureIndicator
         return cell
     }()
 
