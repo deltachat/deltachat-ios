@@ -94,7 +94,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var cloneChatCell: ActionCell = {
         let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "square.on.square")
+        let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("clone_chat")
         cell.actionColor = UIColor.systemBlue
         return cell
@@ -102,7 +103,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var leaveGroupCell: ActionCell = {
         let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "signpost.right")
+        let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("menu_leave_group")
         cell.actionColor = UIColor.systemRed
         return cell
