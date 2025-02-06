@@ -1906,6 +1906,7 @@ extension ChatViewController {
                 guard let self else { return nil }
                 let message = dcContext.getMessage(id: messageId)
                 var children: [UIMenuElement] = []
+                var moreOptions: [UIMenuElement] = []
                 var preferredElementSizeSmall = false
 
                 if canReply(to: message) {
@@ -1967,11 +1968,11 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: deleteSingle)
                 )
 
+                moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore))
+
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [
-                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: [
-                            UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
-                        ])
+                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
                     ])
                 ])
 
