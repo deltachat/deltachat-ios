@@ -1924,7 +1924,7 @@ extension ChatViewController {
                 }
 
                 if canReplyPrivately(to: message) {
-                    children.append(
+                    moreOptions.append(
                         UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) })
                     )
                 }
