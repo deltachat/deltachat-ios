@@ -1928,12 +1928,7 @@ extension ChatViewController {
                     )
                 }
 
-                let image: UIImage?
-                if #available(iOS 16.0, *) {
-                    image = UIImage(systemName: "arrowshape.forward.fill")
-                } else {
-                    image = UIImage(named: "ic_forward_white_36pt")
-                }
+                let image = if #available(iOS 16.0, *) { UIImage(systemName: "arrowshape.forward.fill") } else { UIImage(named: "ic_forward_white_36pt") }
                 children.append(
                     UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
                 )
