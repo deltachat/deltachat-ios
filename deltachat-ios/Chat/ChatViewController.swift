@@ -1708,6 +1708,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    private func deleteSingle(at indexPath: IndexPath) {
+        askToDeleteMessages(ids: [self.messageIds[indexPath.row]])
+    }
+
     private func copyTextToClipboard(at indexPath: IndexPath) {
         copyTextToClipboard(ids: [self.messageIds[indexPath.row]])
     }
@@ -1963,6 +1967,10 @@ extension ChatViewController {
                         UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", indexPath: indexPath, action: copyImageToClipboard)
                     )
                 }
+
+                children.append(
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: deleteSingle)
+                )
 
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [
