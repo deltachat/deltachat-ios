@@ -150,13 +150,9 @@ class QrViewController: UIViewController {
             UIAction(title: String.localized("menu_copy_to_clipboard"), image: UIImage(systemName: "document.on.document")) { [weak self] _ in
                 self?.copyToClipboard()
             },
-            UIMenu(options: [.displayInline],
-                children: [
-                    UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
-                        self?.withdrawQrCode()
-                    },
-                ]
-            ),
+            UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
+                self?.withdrawQrCode()
+            },
         ]
         return UIMenu(children: actions)
     }
