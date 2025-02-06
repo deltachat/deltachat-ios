@@ -87,13 +87,15 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down")
         cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var cloneChatCell: ActionCell = {
         let cell = ActionCell()
+        let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("clone_chat")
         cell.actionColor = UIColor.systemBlue
         return cell
@@ -101,6 +103,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var leaveGroupCell: ActionCell = {
         let cell = ActionCell()
+        let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("menu_leave_group")
         cell.actionColor = UIColor.systemRed
         return cell
@@ -115,6 +119,8 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var clearChatCell: ActionCell = {
         let cell = ActionCell()
+        let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("clear_chat")
         cell.actionColor = UIColor.systemRed
         return cell
@@ -122,6 +128,7 @@ class GroupChatDetailViewController: UIViewController {
 
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "trash")
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.systemRed
         return cell
@@ -163,12 +170,8 @@ class GroupChatDetailViewController: UIViewController {
         }
 
         let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
-        if isOnHomescreen {
-            cell.actionTitle = String.localized("remove_from_widget")
-        } else {
-            cell.actionTitle = String.localized("add_to_widget")
-        }
-        cell.actionColor = UIColor.systemBlue
+        cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
+        cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
         return cell
     }()
 
@@ -369,11 +372,8 @@ class GroupChatDetailViewController: UIViewController {
             onHomescreen = true
         }
 
-        if onHomescreen {
-            homescreenWidgetCell.actionTitle = String.localized("remove_from_widget")
-        } else {
-            homescreenWidgetCell.actionTitle =  String.localized("add_to_widget")
-        }
+        homescreenWidgetCell.imageView?.image = UIImage(systemName: onHomescreen ? "minus.square" : "plus.square")
+        homescreenWidgetCell.actionTitle = String.localized(onHomescreen ? "remove_from_widget" : "add_to_widget")
     }
 
     @objc func editButtonPressed() {
@@ -402,6 +402,7 @@ class GroupChatDetailViewController: UIViewController {
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
+            archiveChatCell.imageView?.image = UIImage(systemName: "tray.and.arrow.down")
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")
         } else {
             self.navigationController?.popToRootViewController(animated: false)
@@ -549,9 +550,11 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
                 }
                 if row == membersRowAddMembers {
                     actionCell.actionTitle = String.localized(chat.isBroadcast ? "add_recipients" : "group_add_members")
+                    actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
                 } else if row == membersRowQrInvite {
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
+                    actionCell.imageView?.image = UIImage(systemName: "qrcode")
                     actionCell.actionColor = UIColor.systemBlue
                 }
                 return actionCell

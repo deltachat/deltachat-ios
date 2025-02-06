@@ -150,12 +150,16 @@ class NewChatViewController: UITableViewController {
 
             switch newOptions[row] {
             case .scanQRCode:
+                actionCell.imageView?.image = UIImage(systemName: "qrcode")
                 actionCell.actionTitle = String.localized("menu_new_contact")
             case .newGroup:
+                actionCell.imageView?.image = UIImage(systemName: "plus")
                 actionCell.actionTitle = String.localized("menu_new_group")
             case .newBroadcastList:
+                actionCell.imageView?.image = UIImage(systemName: "plus")
                 actionCell.actionTitle = String.localized("new_broadcast_list")
             case .newContact:
+                actionCell.imageView?.image = UIImage(systemName: "highlighter")
                 actionCell.actionTitle = String.localized("menu_new_classic_contact")
             }
 
@@ -163,6 +167,7 @@ class NewChatViewController: UITableViewController {
         } else if section == sectionInviteFriends {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
 
+            actionCell.imageView?.image = UIImage(systemName: "heart")
             actionCell.actionTitle = String.localized("invite_friends")
             return actionCell
 
@@ -173,6 +178,13 @@ class NewChatViewController: UITableViewController {
             contactCell.updateCell(cellViewModel: contactCellViewModel)
             return contactCell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == sectionContacts {
+            return String.localized("chat_with")
+        }
+        return nil
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {

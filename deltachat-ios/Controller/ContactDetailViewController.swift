@@ -24,7 +24,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
-        cell.actionColor = UIColor.systemBlue
+        cell.imageView?.image = UIImage(systemName: "paperplane")
         cell.actionTitle = String.localized("send_message")
         return cell
     }()
@@ -49,19 +49,15 @@ class ContactDetailViewController: UITableViewController {
         }
 
         let isOnHomescreen = chatIdsOnHomescreen.contains(viewModel.chatId)
-        if isOnHomescreen {
-            cell.actionTitle = String.localized("remove_from_widget")
-        } else {
-            cell.actionTitle = String.localized("add_to_widget")
-        }
-        cell.actionColor = UIColor.systemBlue
+        cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
+        cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
         return cell
     }()
 
     private lazy var shareContactCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
         cell.actionTitle = String.localized("menu_share")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
@@ -75,27 +71,30 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var showEncrInfoCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "info.circle")
         cell.actionTitle = String.localized("encryption_info_title_desktop")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var blockContactCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "nosign")
         cell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        cell.actionColor = viewModel.contact.isBlocked ? UIColor.systemBlue : UIColor.systemRed
+        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
     private lazy var archiveChatCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: viewModel.chatIsArchived ? "tray.and.arrow.up" : "tray.and.arrow.down")
         cell.actionTitle = viewModel.chatIsArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
     private lazy var clearChatCell: ActionCell = {
         let cell = ActionCell()
+        let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+        cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("clear_chat")
         cell.actionColor = UIColor.systemRed
         return cell
@@ -103,6 +102,7 @@ class ContactDetailViewController: UITableViewController {
 
     private lazy var deleteChatCell: ActionCell = {
         let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "trash")
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.systemRed
         return cell
@@ -367,7 +367,7 @@ class ContactDetailViewController: UITableViewController {
     @objc private func shareContact() {
         guard let vcardData = viewModel.context.makeVCard(contactIds: [viewModel.contactId]) else { return }
 
-        RelayHelper.shared.setForwardVCard(dialogTitle: String.localized("forward_to"), vcardData: vcardData)
+        RelayHelper.shared.setForwardVCard(vcardData: vcardData)
         navigationController?.popToRootViewController(animated: true)
     }
 
@@ -436,6 +436,7 @@ class ContactDetailViewController: UITableViewController {
         if archived {
             self.navigationController?.popToRootViewController(animated: false)
         } else {
+            archiveChatCell.imageView?.image = UIImage(systemName: "tray.and.arrow.down")
             archiveChatCell.actionTitle = String.localized("menu_archive_chat")
         }
     }
@@ -459,16 +460,12 @@ class ContactDetailViewController: UITableViewController {
         guard #available(iOS 17, *) else { return }
 
         let onHomescreen = viewModel.toggleChatInHomescreenWidget()
-        if onHomescreen {
-            homescreenWidgetCell.actionTitle = String.localized("remove_from_widget")
-        } else {
-            homescreenWidgetCell.actionTitle =  String.localized("add_to_widget")
-        }
+        homescreenWidgetCell.imageView?.image = UIImage(systemName: onHomescreen ? "minus.square" : "plus.square")
+        homescreenWidgetCell.actionTitle = String.localized(onHomescreen ? "remove_from_widget" : "add_to_widget")
     }
 
     private func updateBlockContactCell() {
         blockContactCell.actionTitle = viewModel.contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
-        blockContactCell.actionColor = viewModel.contact.isBlocked ? UIColor.systemBlue : UIColor.systemRed
     }
 
 
