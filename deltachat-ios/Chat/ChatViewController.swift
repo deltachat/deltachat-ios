@@ -1969,7 +1969,9 @@ extension ChatViewController {
 
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [
-                        UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
+                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: [
+                            UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
+                        ])
                     ])
                 ])
 
