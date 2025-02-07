@@ -1930,11 +1930,11 @@ extension ChatViewController {
                 if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
                     if dcChat.isSelfTalk || message.savedMessageId != 0 {
                         children.append(
-                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash", indexPath: indexPath, action: toggleSave)
                         )
                     } else {
                         children.append(
-                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "star", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "bookmark", indexPath: indexPath, action: toggleSave)
                         )
                     }
                 }
