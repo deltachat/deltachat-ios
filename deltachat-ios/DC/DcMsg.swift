@@ -48,6 +48,10 @@ public class DcMsg {
         return Int(dc_msg_get_from_id(messagePointer))
     }
 
+    public var isMarkerOrInfo: Bool {
+        return id == DC_MSG_ID_MARKER1 || id == DC_MSG_ID_DAYMARKER || isInfo || type == DC_MSG_VIDEOCHAT_INVITATION
+    }
+
     public var originalMessageId: Int {
         return Int(dc_msg_get_original_msg_id(messagePointer))
     }

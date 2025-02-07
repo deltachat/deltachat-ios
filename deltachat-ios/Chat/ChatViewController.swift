@@ -957,16 +957,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.reloadData()
     }
 
-    private func isMarkerOrInfo(_ message: DcMsg) -> Bool {
-        return message.id == DC_MSG_ID_MARKER1 || message.id == DC_MSG_ID_DAYMARKER || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION
-    }
-
     private func canReply(to message: DcMsg) -> Bool {
-        return !isMarkerOrInfo(message) && dcChat.canSend
+        return !message.isMarkerOrInfo && dcChat.canSend
     }
 
     private func canReplyPrivately(to message: DcMsg) -> Bool {
-        return !isMarkerOrInfo(message) && dcChat.isGroup && !message.isFromCurrentSender
+        return !message.isMarkerOrInfo && dcChat.isGroup && !message.isFromCurrentSender
     }
 
     /// Verifies if the last message cell is fully visible
@@ -1921,7 +1917,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                if !dcChat.isSelfTalk && !isMarkerOrInfo(message) { // info-messages out of context are confusing, see #2567
+                if !dcChat.isSelfTalk && !message.isMarkerOrInfo { // info-messages out of context are confusing, see #2567
                     if message.savedMessageId != 0 {
                         children.append(
                             UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash", indexPath: indexPath, action: toggleSave)
