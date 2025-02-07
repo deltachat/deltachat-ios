@@ -1919,7 +1919,7 @@ extension ChatViewController {
                         children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
                     }
                     children.append(
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.reply(at: $0 ) })
                     )
                 }
 
@@ -1929,9 +1929,8 @@ extension ChatViewController {
                     )
                 }
 
-                let image = if #available(iOS 16.0, *) { UIImage(systemName: "arrowshape.forward.fill") } else { UIImage(named: "ic_forward_white_36pt") }
                 children.append(
-                    UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
+                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
                 if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
