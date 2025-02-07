@@ -1917,7 +1917,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                if !dcChat.isSelfTalk && !message.isMarkerOrInfo { // info-messages out of context are confusing, see #2567
+                if !dcChat.isSelfTalk && message.canSave {
                     if message.savedMessageId != 0 {
                         children.append(
                             UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash", indexPath: indexPath, action: toggleSave)

@@ -52,6 +52,10 @@ public class DcMsg {
         return id == DC_MSG_ID_MARKER1 || id == DC_MSG_ID_DAYMARKER || isInfo || type == DC_MSG_VIDEOCHAT_INVITATION
     }
 
+    public var canSave: Bool {
+        return !isMarkerOrInfo // info-messages out of context are confusing, see #2567
+    }
+
     public var originalMessageId: Int {
         return Int(dc_msg_get_original_msg_id(messagePointer))
     }
