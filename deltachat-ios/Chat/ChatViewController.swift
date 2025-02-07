@@ -1259,22 +1259,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func onShareActionPressed() {
-        if let rows = tableView.indexPathsForSelectedRows {
-            let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
-            if let msgId = selectedMsgIds.first {
-                Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
-                setEditing(isEditing: false)
-            }
-        }
-    }
-
-    private func onInfoActionPressed() {
-        if let rows = tableView.indexPathsForSelectedRows, let firstRow = rows.first {
-            info(at: firstRow)
-        }
-    }
-
     private func askToDeleteChat() {
         let chat = dcContext.getChat(chatId: chatId)
         let title = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name)
@@ -2151,24 +2135,8 @@ extension ChatViewController {
         }
     }
 
-    private func canShare() -> Bool {
-        if tableView.indexPathsForSelectedRows?.count == 1,
-           let rows = tableView.indexPathsForSelectedRows {
-            let msgIds = rows.compactMap { messageIds[$0.row] }
-            if let msgId = msgIds.first {
-                let msg = dcContext.getMessage(id: msgId)
-                return msg.file != nil
-            }
-        }
-        return false
-    }
-
-    private func canInfo() -> Bool {
-        return tableView.indexPathsForSelectedRows?.count == 1
-    }
-
     private func evaluateMoreButton() {
-        editingBar.moreButton.isEnabled = canShare() || canResend() || canInfo()
+        editingBar.moreButton.isEnabled = canResend()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -2489,16 +2457,6 @@ extension ChatViewController: ChatEditingDelegate {
         if canResend() {
             actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
                 self?.onResendActionPressed()
-            })
-        }
-        if canShare() {
-            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
-                self?.onShareActionPressed()
-            })
-        }
-        if canInfo() {
-            actions.append(UIAction(title: String.localized("info"), image: UIImage(systemName: "info.circle")) { [weak self] _ in
-                self?.onInfoActionPressed()
             })
         }
         return UIMenu(children: actions)
