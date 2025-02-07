@@ -1708,6 +1708,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    private func shareSingle(at indexPath: IndexPath) {
+        let msgId = messageIds[indexPath.row]
+        Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: view)
+    }
+
+    private func resendSingle(at indexPath: IndexPath) {
+        let msgId = messageIds[indexPath.row]
+        dcContext.resendMessages(msgIds: [msgId])
+    }
+
     private func deleteSingle(at indexPath: IndexPath) {
         askToDeleteMessages(ids: [self.messageIds[indexPath.row]])
     }
@@ -1963,9 +1973,19 @@ extension ChatViewController {
                     )
                 }
 
+                if message.file != nil {
+                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: shareSingle))
+                }
+
                 children.append(
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: deleteSingle)
                 )
+
+                if dcChat.canSend && message.isFromCurrentSender {
+                    moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", indexPath: indexPath, action: resendSingle))
+                }
+
+                moreOptions.append(UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", indexPath: indexPath, action: info))
 
                 moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore))
 
