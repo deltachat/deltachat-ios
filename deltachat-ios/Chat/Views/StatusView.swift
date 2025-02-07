@@ -8,6 +8,7 @@ public class StatusView: UIView {
     private let padlockView: UIImageView
     private let locationView: UIImageView
     private let stateView: UIImageView
+    private let savedView: UIImageView
 
     override init(frame: CGRect) {
 
@@ -21,8 +22,10 @@ public class StatusView: UIView {
         locationView.translatesAutoresizingMaskIntoConstraints = false
         stateView = UIImageView()
         stateView.translatesAutoresizingMaskIntoConstraints = false
+        savedView = UIImageView()
+        savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [dateLabel, padlockView, locationView, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, dateLabel, locationView, stateView])
         contentStackView.alignment = .center
         contentStackView.spacing = 0
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +57,9 @@ public class StatusView: UIView {
 
             stateView.widthAnchor.constraint(equalToConstant: 20),
             stateView.heightAnchor.constraint(equalToConstant: 20),
+
+            savedView.widthAnchor.constraint(equalToConstant: 6),
+            savedView.heightAnchor.constraint(equalToConstant: 11),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -64,16 +70,13 @@ public class StatusView: UIView {
         dateLabel.text = nil
         padlockView.isHidden = true
         locationView.isHidden = true
+        savedView.isHidden = true
         stateView.isHidden = true
     }
 
     public func update(message: DcMsg, tintColor: UIColor) {
         dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
-
-        if message.savedMessageId != 0 || message.originalMessageId != 0 {
-            dateLabel.text = "★ " + (dateLabel.text ?? "")
-        }
 
         if message.showPadlock() {
             padlockView.image = UIImage(named: "ic_lock")?.maskWithColor(color: tintColor)
@@ -87,6 +90,13 @@ public class StatusView: UIView {
             locationView.isHidden = false
         } else {
             locationView.isHidden = true
+        }
+
+        if message.savedMessageId != 0 || message.originalMessageId != 0 {
+            savedView.image = UIImage(systemName: "bookmark.fill")?.maskWithColor(color: tintColor)
+            savedView.isHidden = false
+        } else {
+            savedView.isHidden = true
         }
 
         let state: Int
