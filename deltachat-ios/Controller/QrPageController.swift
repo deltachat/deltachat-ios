@@ -122,13 +122,9 @@ class QrPageController: UIPageViewController {
             })
         }
         if qrSegmentControl.selectedSegmentIndex == 0 {
-            actions.append(UIMenu(options: [.displayInline],
-                children: [
-                    UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
-                        self?.withdrawQrCode()
-                    },
-                ]
-            ))
+            actions.append(UIAction(title: String.localized("withdraw_qr_code"), image: UIImage(systemName: "trash"), attributes: [.destructive]) { [weak self] _ in
+                self?.withdrawQrCode()
+            })
         }
         return UIMenu(children: actions)
     }

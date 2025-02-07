@@ -202,12 +202,7 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
 
                 children.append(contentsOf: [
                     UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareAttachment(of: $0) }),
-                    UIMenu(
-                        options: [.displayInline],
-                        children: [
-                            UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0) })
-                        ]
-                    )
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0) })
                 ])
                 let menu = UIMenu(children: children)
 

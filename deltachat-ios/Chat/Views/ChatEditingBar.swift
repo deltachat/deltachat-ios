@@ -63,12 +63,7 @@ public class ChatEditingBar: UIView {
     public lazy var forwardButton: UIButton = {
         let view = UIButton()
         view.tintColor = .systemBlue
-        if #available(iOS 16.0, *) {
-            view.setImage(UIImage(systemName: "arrowshape.forward.fill"), for: .normal)
-        } else {
-            view.setImage(UIImage(named: "ic_forward_white_36pt"), for: .normal)
-            view.imageEdgeInsets = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-        }
+        view.setImage(UIImage(systemName: "arrowshape.turn.up.forward"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = true
         view.accessibilityLabel = String.localized("forward")

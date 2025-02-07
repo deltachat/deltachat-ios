@@ -1259,22 +1259,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func onShareActionPressed() {
-        if let rows = tableView.indexPathsForSelectedRows {
-            let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
-            if let msgId = selectedMsgIds.first {
-                Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: self.view)
-                setEditing(isEditing: false)
-            }
-        }
-    }
-
-    private func onInfoActionPressed() {
-        if let rows = tableView.indexPathsForSelectedRows, let firstRow = rows.first {
-            info(at: firstRow)
-        }
-    }
-
     private func askToDeleteChat() {
         let chat = dcContext.getChat(chatId: chatId)
         let title = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name)
@@ -1708,6 +1692,20 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
+    private func shareSingle(at indexPath: IndexPath) {
+        let msgId = messageIds[indexPath.row]
+        Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: view)
+    }
+
+    private func resendSingle(at indexPath: IndexPath) {
+        let msgId = messageIds[indexPath.row]
+        dcContext.resendMessages(msgIds: [msgId])
+    }
+
+    private func deleteSingle(at indexPath: IndexPath) {
+        askToDeleteMessages(ids: [self.messageIds[indexPath.row]])
+    }
+
     private func copyTextToClipboard(at indexPath: IndexPath) {
         copyTextToClipboard(ids: [self.messageIds[indexPath.row]])
     }
@@ -1902,6 +1900,7 @@ extension ChatViewController {
                 guard let self else { return nil }
                 let message = dcContext.getMessage(id: messageId)
                 var children: [UIMenuElement] = []
+                var moreOptions: [UIMenuElement] = []
                 var preferredElementSizeSmall = false
 
                 if canReply(to: message) {
@@ -1914,24 +1913,18 @@ extension ChatViewController {
                         children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
                     }
                     children.append(
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left.fill", indexPath: indexPath, action: { self.reply(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.reply(at: $0 ) })
                     )
                 }
 
                 if canReplyPrivately(to: message) {
-                    children.append(
+                    moreOptions.append(
                         UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) })
                     )
                 }
 
-                let image: UIImage?
-                if #available(iOS 16.0, *) {
-                    image = UIImage(systemName: "arrowshape.forward.fill")
-                } else {
-                    image = UIImage(named: "ic_forward_white_36pt")
-                }
                 children.append(
-                    UIAction.menuAction(localizationKey: "forward", image: image, indexPath: indexPath, action: forward)
+                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
                 if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
@@ -1959,14 +1952,30 @@ extension ChatViewController {
                     )
                 }
                 if message.image != nil {
-                    children.append(
+                    moreOptions.append(
                         UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", indexPath: indexPath, action: copyImageToClipboard)
                     )
                 }
 
+                if message.file != nil {
+                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: shareSingle))
+                }
+
+                children.append(
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: deleteSingle)
+                )
+
+                if dcChat.canSend && message.isFromCurrentSender {
+                    moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", indexPath: indexPath, action: resendSingle))
+                }
+
+                moreOptions.append(UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", indexPath: indexPath, action: info))
+
+                moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore))
+
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [
-                        UIAction.menuAction(localizationKey: "menu_more_options", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore),
+                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
                     ])
                 ])
 
@@ -2126,24 +2135,8 @@ extension ChatViewController {
         }
     }
 
-    private func canShare() -> Bool {
-        if tableView.indexPathsForSelectedRows?.count == 1,
-           let rows = tableView.indexPathsForSelectedRows {
-            let msgIds = rows.compactMap { messageIds[$0.row] }
-            if let msgId = msgIds.first {
-                let msg = dcContext.getMessage(id: msgId)
-                return msg.file != nil
-            }
-        }
-        return false
-    }
-
-    private func canInfo() -> Bool {
-        return tableView.indexPathsForSelectedRows?.count == 1
-    }
-
     private func evaluateMoreButton() {
-        editingBar.moreButton.isEnabled = canShare() || canResend() || canInfo()
+        editingBar.moreButton.isEnabled = canResend()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -2464,16 +2457,6 @@ extension ChatViewController: ChatEditingDelegate {
         if canResend() {
             actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
                 self?.onResendActionPressed()
-            })
-        }
-        if canShare() {
-            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
-                self?.onShareActionPressed()
-            })
-        }
-        if canInfo() {
-            actions.append(UIAction(title: String.localized("info"), image: UIImage(systemName: "info.circle")) { [weak self] _ in
-                self?.onInfoActionPressed()
             })
         }
         return UIMenu(children: actions)
