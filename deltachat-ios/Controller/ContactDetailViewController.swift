@@ -119,10 +119,6 @@ class ContactDetailViewController: UITableViewController {
         cell.textLabel?.text = String.localized("media")
         cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
         cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == 0 {
-            cell.isUserInteractionEnabled = false
-            cell.textLabel?.isEnabled = false
-        }
         return cell
     }()
 
@@ -131,10 +127,6 @@ class ContactDetailViewController: UITableViewController {
         cell.textLabel?.text = String.localized("locations")
         cell.imageView?.image = UIImage(systemName: "map")
         cell.accessoryType = .disclosureIndicator
-        if viewModel.chatId == 0 {
-            cell.isUserInteractionEnabled = false
-            cell.textLabel?.isEnabled = false
-        }
         return cell
     }()
 

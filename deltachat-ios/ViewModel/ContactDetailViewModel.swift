@@ -83,14 +83,15 @@ class ContactDetailViewModel {
         if dcContact.getVerifierId() != 0 {
             chatOptions.append(.verifiedBy)
         }
-        chatOptions.append(.allMedia)
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            chatOptions.append(.locations)
-        }
 
         var chatActions: [ChatAction]
         let chatExists = chatId != 0
         if chatExists {
+            chatOptions.append(.allMedia)
+            if UserDefaults.standard.bool(forKey: "location_streaming") {
+                chatOptions.append(.locations)
+            }
+
             if !isDeviceTalk {
                 chatOptions.append(.ephemeralMessages)
             }
