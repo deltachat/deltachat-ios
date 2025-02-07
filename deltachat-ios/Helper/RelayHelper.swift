@@ -64,8 +64,12 @@ class RelayHelper {
     }
 
     func forwardIdsAndFinishRelaying(to chat: Int) {
-        if let messageIds = self.forwardIds {
-            RelayHelper.dcContext?.forwardMessages(with: messageIds, to: chat)
+        if let messageIds = self.forwardIds, let dcContext = RelayHelper.dcContext {
+            if dcContext.getChat(chatId: chat).isSelfTalk {
+                dcContext.saveMessages(with: messageIds)
+            } else {
+                dcContext.forwardMessages(with: messageIds, to: chat)
+            }
         }
         finishRelaying()
     }
