@@ -957,16 +957,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         self.reloadData()
     }
 
-    private func isMarkerOrInfo(_ message: DcMsg) -> Bool {
-        return message.id == DC_MSG_ID_MARKER1 || message.id == DC_MSG_ID_DAYMARKER || message.isInfo || message.type == DC_MSG_VIDEOCHAT_INVITATION
-    }
-
     private func canReply(to message: DcMsg) -> Bool {
-        return !isMarkerOrInfo(message) && dcChat.canSend
+        return !message.isMarkerOrInfo && dcChat.canSend
     }
 
     private func canReplyPrivately(to message: DcMsg) -> Bool {
-        return !isMarkerOrInfo(message) && dcChat.isGroup && !message.isFromCurrentSender
+        return !message.isMarkerOrInfo && dcChat.isGroup && !message.isFromCurrentSender
     }
 
     /// Verifies if the last message cell is fully visible
@@ -1679,13 +1675,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func toggleSave(at indexPath: IndexPath) {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if dcChat.isSelfTalk {
-            if message.originalMessageId != 0 {
-                dcContext.deleteMessage(msgId: message.id)
-            } else {
-                askToDeleteMessage(id: message.id)
-            }
-        } else if message.savedMessageId != 0 {
+        if message.savedMessageId != 0 {
             dcContext.deleteMessage(msgId: message.savedMessageId)
         } else {
             dcContext.saveMessages(with: [messageIds[indexPath.row]])
@@ -1927,14 +1917,14 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
-                    if dcChat.isSelfTalk || message.savedMessageId != 0 {
+                if !dcChat.isSelfTalk && message.canSave {
+                    if message.savedMessageId != 0 {
                         children.append(
-                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "star.slash", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash", indexPath: indexPath, action: toggleSave)
                         )
                     } else {
                         children.append(
-                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "star", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "bookmark", indexPath: indexPath, action: toggleSave)
                         )
                     }
                 }

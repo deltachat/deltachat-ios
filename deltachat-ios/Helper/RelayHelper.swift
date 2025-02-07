@@ -63,9 +63,20 @@ class RelayHelper {
         return forwardIds != nil || forwardText != nil || forwardFileData != nil || forwardVCardData != nil
     }
 
-    func forwardIdsAndFinishRelaying(to chat: Int) {
-        if let messageIds = self.forwardIds {
-            RelayHelper.dcContext?.forwardMessages(with: messageIds, to: chat)
+    func forwardIdsAndFinishRelaying(to chatId: Int) {
+        if let messageIds = self.forwardIds, let dcContext = RelayHelper.dcContext {
+            if dcContext.getChat(chatId: chatId).isSelfTalk {
+                for id in messageIds {
+                    let curr = dcContext.getMessage(id: id)
+                    if curr.canSave && curr.savedMessageId == 0 && curr.chatId != chatId {
+                        dcContext.saveMessages(with: [curr.id])
+                    } else {
+                        dcContext.forwardMessages(with: [curr.id], to: chatId)
+                    }
+                }
+            } else {
+                dcContext.forwardMessages(with: messageIds, to: chatId)
+            }
         }
         finishRelaying()
     }
