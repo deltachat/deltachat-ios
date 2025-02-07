@@ -1679,13 +1679,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func toggleSave(at indexPath: IndexPath) {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if dcChat.isSelfTalk {
-            if message.originalMessageId != 0 {
-                dcContext.deleteMessage(msgId: message.id)
-            } else {
-                askToDeleteMessage(id: message.id)
-            }
-        } else if message.savedMessageId != 0 {
+        if message.savedMessageId != 0 {
             dcContext.deleteMessage(msgId: message.savedMessageId)
         } else {
             dcContext.saveMessages(with: [messageIds[indexPath.row]])
@@ -1927,8 +1921,8 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                if !isMarkerOrInfo(message) { // info-messages out of context results in confusion, see https://github.com/deltachat/deltachat-ios/issues/2567
-                    if dcChat.isSelfTalk || message.savedMessageId != 0 {
+                if !dcChat.isSelfTalk && !isMarkerOrInfo(message) { // info-messages out of context are confusing, see #2567
+                    if message.savedMessageId != 0 {
                         children.append(
                             UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash", indexPath: indexPath, action: toggleSave)
                         )
