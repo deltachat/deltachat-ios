@@ -330,7 +330,7 @@ class ContactDetailViewController: UITableViewController {
             }
             headerCell.setGreenCheckmark(greenCheckmark: viewModel.greenCheckmark)
             headerCell.setMuted(isMuted: viewModel.chatIsMuted)
-            headerCell.showMuteButton(show: true)
+            headerCell.showMuteButton(show: viewModel.chatId != 0)
         }
         headerCell.showSearchButton(show: viewModel.chatCanSend)
     }
