@@ -7,6 +7,7 @@
 - Copy scanned QR code text to clipboard (#2582)
 - Improve "All media empty" and "Block contact" wordings (#2580)
 - Unify buttons and icons (#2584)
+- Hide unneeded buttons in contact profiles (#2589)
 - Fix: Allow to share contacts that do not have a chat (#2583)
 
 
