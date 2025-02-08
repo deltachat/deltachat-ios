@@ -883,7 +883,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
-                subtitle = String.localized("chat_self_talk_subtitle")
+                subtitle = nil
             } else if chatContactIds.count >= 1 {
                 let dcContact = dcContext.getContact(id: chatContactIds[0])
                 if dcContact.isBot {
@@ -900,17 +900,22 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
             
-            if let image = dcChat.profileImage {
-                initialsBadge.setImage(image)
+            var rightBarButtonItems = [UIBarButtonItem]()
+            if !dcChat.isSelfTalk {
+                if let image = dcChat.profileImage {
+                    initialsBadge.setImage(image)
+                } else {
+                    initialsBadge.setName(dcChat.name)
+                    initialsBadge.setColor(dcChat.color)
+                }
+                let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
+                initialsBadge.setRecentlySeen(recentlySeen)
+                rightBarButtonItems.append(badgeItem)
             } else {
-                initialsBadge.setName(dcChat.name)
-                initialsBadge.setColor(dcChat.color)
+                let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
+                rightBarButtonItems.append(button)
             }
-            
-            let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
-            initialsBadge.setRecentlySeen(recentlySeen)
-            
-            var rightBarButtonItems = [badgeItem]
+
             if dcChat.isSendingLocations {
                 rightBarButtonItems.append(locationStreamingItem)
             }
@@ -1201,6 +1206,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         DispatchQueue.main.async { // opening controller in next loop allows the system to render the immedidate feedback
             self.showChatDetail(chatId: self.chatId)
             self.titleView.setEnabled(true)
+        }
+    }
+
+    @objc private func searchPressed() {
+        navigationItem.searchController = self.searchController
+        DispatchQueue.main.async { [weak self] in
+            self?.searchController.isActive = true
         }
     }
 
