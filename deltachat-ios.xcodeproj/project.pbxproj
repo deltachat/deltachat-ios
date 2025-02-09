@@ -131,8 +131,6 @@
 		5F153E9A2CC38BAA00871ABE /* GiveBackMyFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */; };
 		5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */; };
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
-		5FFAA5442D56673A00B1D54F /* NSItemProvider+loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAA5432D56673A00B1D54F /* NSItemProvider+loadImage.swift */; };
-		5FFAA5452D56679C00B1D54F /* NSItemProvider+loadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAA5432D56673A00B1D54F /* NSItemProvider+loadImage.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -466,7 +464,6 @@
 		5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveBackMyFirstResponder.swift; sourceTree = "<group>"; };
 		5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboard.swift; sourceTree = "<group>"; };
 		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
-		5FFAA5432D56673A00B1D54F /* NSItemProvider+loadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+loadImage.swift"; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -765,7 +762,6 @@
 				AEE56D7F225504DB007DC082 /* Extensions.swift */,
 				D84738D12BBC1C2C00ECD52B /* UIAction+Extension.swift */,
 				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
-				5FFAA5432D56673A00B1D54F /* NSItemProvider+loadImage.swift */,
 				305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */,
 				305961862346125000C80F33 /* NSAttributedString+Extensions.swift */,
 				305961882346125000C80F33 /* CGRect+Extensions.swift */,
@@ -1620,7 +1616,6 @@
 				3057027F24C5B2F800D84EFC /* ChatListViewModel.swift in Sources */,
 				302589FF2452FA280086C1CD /* ShareAttachment.swift in Sources */,
 				3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */,
-				5FFAA5452D56679C00B1D54F /* NSItemProvider+loadImage.swift in Sources */,
 				305702A224C6455400D84EFC /* TypeAlias.swift in Sources */,
 				308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */,
 				30238D0028A557E800EF14AC /* FileHelper.swift in Sources */,
@@ -1674,7 +1669,6 @@
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
-				5FFAA5442D56673A00B1D54F /* NSItemProvider+loadImage.swift in Sources */,
 				D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
 				3080A013277DDABA00E74565 /* KeyboardNotification.swift in Sources */,
