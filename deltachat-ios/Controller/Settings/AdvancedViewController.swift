@@ -119,7 +119,7 @@ internal final class AdvancedViewController: UITableViewController {
                 if cell.isOn {
                     let alert = UIAlertController(title: String.localized("pref_only_fetch_mvbox_title"),
                         message: String.localized("pref_imap_folder_warn_disable_defaults"),
-                        preferredStyle: .safeActionSheet)
+                        preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
                         self.dcContext.setConfigBool("only_fetch_mvbox", true)
                     }))

@@ -436,8 +436,8 @@ class AccountSetupController: UITableViewController {
            let oldAddress = dcContext.getConfig("configured_addr"),
            oldAddress != emailAddress {
             let msg = String.localizedStringWithFormat(String.localized("aeap_explanation"), oldAddress, emailAddress)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
                 loginButtonPressedContinue()
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))

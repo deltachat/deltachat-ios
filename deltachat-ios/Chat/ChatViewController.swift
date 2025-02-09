@@ -2301,7 +2301,7 @@ extension ChatViewController: BaseMessageCellDelegate {
             // prefer previewError over QLPreviewController.canPreview().
             // (the latter returns `true` for .webm - which is not wrong as _something_ is shown, even if the video cannot be played)
             if previewError && message.type == DC_MSG_VIDEO {
-                let alert = UIAlertController(title: "To play this video, share to apps as VLC on the following page.", message: nil, preferredStyle: .safeActionSheet)
+                let alert = UIAlertController(title: "To play this video, share to apps as VLC on the following page.", message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
                     self.showMediaGalleryFor(message: message)
                 }))
@@ -2597,7 +2597,7 @@ extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
         let alert = UIAlertController(title: String.localized("error"),
                                       message: String.localized("cannot_play_audio_file"),
-                                      preferredStyle: .safeActionSheet)
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
