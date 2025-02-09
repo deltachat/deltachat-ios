@@ -437,7 +437,10 @@ class AppCoordinator: NSObject {
                 }
             }
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_copy_desktop"), style: .default, handler: { _ in
+                UIPasteboard.general.string = msg
+            }))
             viewController.present(alert, animated: true, completion: nil)
         }
     }
