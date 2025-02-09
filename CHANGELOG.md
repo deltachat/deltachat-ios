@@ -4,7 +4,7 @@
 
 - Improve "message menu": many options are now faster accessible (#2586)
 - When forwarding to "Saved Messages", if possible, save the message including context (#2587)
-- Copy scanned QR code text to clipboard (#2582)
+- Copy scanned QR code text to clipboard (#2582, #2594)
 - Improve "All media empty" and "Block contact" wordings (#2580)
 - Unify buttons and icons (#2584)
 - Hide unneeded buttons in contact profiles (#2589, #2590)
