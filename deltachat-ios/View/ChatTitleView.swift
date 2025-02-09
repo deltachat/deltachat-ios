@@ -71,5 +71,6 @@ class ChatTitleView: UIStackView {
     func setEnabled(_ enabled: Bool) {
         titleLabel.isEnabled = enabled
         subtitleLabel.isEnabled = enabled
+        verifiedView.alpha = enabled ? 1 : 0.4
     }
 }
