@@ -101,8 +101,23 @@ class ShareAttachment {
     }
 
     private func createImageMsg(_ item: NSItemProvider) {
-        item.loadImage { image, error in
-            if let image, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
+        item.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil) { data, error in
+            var result: UIImage?
+            switch data {
+            case let image as UIImage:
+                result = image
+            case let data as Data:
+                result = ImageFormat.loadImageFrom(data: data)
+            case let url as URL:
+                if let nsurl = NSURL(string: url.absoluteString) {
+                    // scaleDownImage() uses less memory than core and avoids exhausing the 120 mb memory restriction of extensions (see #1330)
+                    result = ImageFormat.scaleDownImage(nsurl, toMax: 1280)
+                }
+            default:
+                self.error = "Unexpected data: \(type(of: data))"
+            }
+            if let result = result,
+               let path = ImageFormat.saveImage(image: result, directory: .cachesDirectory) {
                 _ = self.addDcMsg(path: path, viewType: DC_MSG_IMAGE)
                 self.delegate?.onAttachmentChanged()
                 if self.imageThumbnail == nil {
@@ -110,7 +125,7 @@ class ShareAttachment {
                     self.delegate?.onThumbnailChanged()
                 }
             }
-            if let error {
+            if let error = error {
                 self.error = error.localizedDescription
             }
         }
