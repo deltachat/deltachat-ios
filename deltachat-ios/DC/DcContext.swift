@@ -301,12 +301,21 @@ public class DcContext {
         return nil
     }
 
+    private func fixAddSecondDeviceQR(_ qrCode: String) -> String {
+        if qrCode.hasPrefix("DCBACKUP2:") {
+            return qrCode
+                .replacingOccurrences(of: ",\"info\":{\"relay_url\":", with: ",\"relay_url\":")
+                .replacingOccurrences(of: "]}}", with: "]}")
+        }
+        return qrCode
+    }
+
     public func joinSecurejoin(qrCode: String) -> Int {
         return Int(dc_join_securejoin(contextPointer, qrCode))
     }
 
     public func checkQR(qrCode: String) -> DcLot {
-        return DcLot(dc_check_qr(contextPointer, qrCode))
+        return DcLot(dc_check_qr(contextPointer, fixAddSecondDeviceQR(qrCode)))
     }
 
     public func setConfigFromQR(qrCode: String) -> Bool {
@@ -314,7 +323,7 @@ public class DcContext {
     }
 
     public func receiveBackup(qrCode: String) -> Bool {
-        return dc_receive_backup(contextPointer, qrCode) != 0
+        return dc_receive_backup(contextPointer, fixAddSecondDeviceQR(qrCode)) != 0
     }
 
     public func stopOngoingProcess() {
