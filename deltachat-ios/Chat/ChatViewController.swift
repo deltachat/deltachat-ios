@@ -1205,37 +1205,31 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func clipperButtonMenu() -> UIMenu {
-        return UIMenu(children: [
-            UIDeferredMenuElement({ [weak self] completion in
-                guard let self else { return }
+        var actions = [UIMenuElement]()
+        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        }
 
-                var actions = [UIMenuElement]()
-                func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
-                    UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
-                }
+        actions.append(UIMenu(options: [.displayInline], children: [
+            action("camera", "camera", showCameraViewController),
+            action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
+        ]))
 
-                actions.append(UIMenu(options: [.displayInline], children: [
-                    action("camera", "camera", showCameraViewController),
-                    action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
-                ]))
+        actions.append(action("files", "folder", self.showDocumentLibrary))
+        actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
+        actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
+        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
+            actions.append(action("videochat", videoChatImage, videoChatButtonPressed))
+        }
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
+            actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
+                                  attributes: isLocationStreaming ? .destructive : [], locationStreamingButtonPressed))
+        }
+        actions.append(action("contact", "person.crop.circle", showContactList))
 
-                actions.append(action("files", "folder", self.showDocumentLibrary))
-                actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
-                actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
-                if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-                    let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
-                    actions.append(action("videochat", videoChatImage, videoChatButtonPressed))
-                }
-                if UserDefaults.standard.bool(forKey: "location_streaming") {
-                    let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-                    actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
-                                          attributes: isLocationStreaming ? .destructive : [], locationStreamingButtonPressed))
-                }
-                actions.append(action("contact", "person.crop.circle", showContactList))
-
-                completion(actions)
-            })
-        ])
+        return UIMenu(children: actions)
     }
 
     private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
