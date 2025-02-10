@@ -629,7 +629,9 @@
 "pref_manage_keys" = "Administroni Kyçe";
 "pref_use_system_emoji" = "Përdor Emoji Sistemi";
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
+// deprecated
 "pref_use_inapp_camera" = "Përdor Kamerën e Vetë Aplikacionit";
+// deprecated
 "pref_use_inapp_camera_explain" = "Kamera e vetë aplikacionit, zakonisht, ka më pak veçori se kamera e sistemit";
 "pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
 "pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin ujdisje fshehtëzimi skaj-më-skaj së pari.";

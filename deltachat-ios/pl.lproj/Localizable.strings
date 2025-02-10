@@ -178,6 +178,8 @@
 "new_classic_contact_explain" = "Ręcznie dodane kontakty mogą być używane do wysyłania tekstu w klasycznych e-mailach i nie ma gwarancji, że będą one szyfrowane metodą end-to-end.";
 "menu_new_chat" = "Nowy czat";
 "menu_new_group" = "Nowa grupa";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Czat z…";
 "clone_chat" = "Klonuj czat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista rozgłoszeniowa";
@@ -635,7 +637,9 @@
 "pref_manage_keys" = "Zarządzaj prywatnymi kluczami";
 "pref_use_system_emoji" = "Użyj emoji systemowych";
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
+// deprecated
 "pref_use_inapp_camera" = "Użyj aparatu w aplikacji";
+// deprecated
 "pref_use_inapp_camera_explain" = "Aparat w aplikacji ma zwykle mniej funkcji niż aparat systemowy";
 "pref_show_system_contacts" = "Odczytaj systemową książkę adresową";
 "pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej. Niektórzy dostawcy wymagają najpierw szyfrowania end-to-end.";

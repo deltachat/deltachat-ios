@@ -178,6 +178,8 @@
 "new_classic_contact_explain" = "I contatti aggiunti manualmente possono essere utilizzati per inviare testo all\' e-mail classica e non sono garantiti con crittografia end-to-end.";
 "menu_new_chat" = "Nuova Chat";
 "menu_new_group" = "Nuovo Gruppo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Chatta con…";
 "clone_chat" = "Clona Chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista Trasmissione";
@@ -312,8 +314,8 @@
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
-"ask_block_contact" = "Bloccare questo contatto? Non riceverai più messaggi da esso.";
-"ask_unblock_contact" = "Sbloccare il contatto? Potrai nuovamente ricevere messaggi da esso.";
+"ask_block_contact" = "Vuoi bloccare questo contatto?\n\nI messaggi diretti o i gruppi creati dai contatti bloccati non verranno visualizzati.\n\nGli altri gruppi con contatti bloccati continueranno a visualizzare i loro messaggi.";
+"ask_unblock_contact" = "Sbloccare questo contatto?";
 "ask_delete_contacts" = "Eliminare contatti?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
 "ask_delete_contact" = "Eliminare il contatto %1$@?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
 "cannot_delete_contacts_in_use" = "Impossibile eliminare contatti con chat in corso.";
@@ -412,6 +414,8 @@
 "profile_encryption" = "Crittografia";
 "profile_shared_chats" = "Chats Condivise";
 "related_chats" = "Chats Correlate";
+// Separator between the list of actual members and past members
+"past_members" = "Membri Passati";
 "tab_contact" = "Contatto";
 "tab_group" = "Gruppo";
 "tab_gallery" = "Galleria";
@@ -426,7 +430,7 @@
 "tab_webxdc_empty_hint" = "Le app condivise in questa chat verranno mostrate qui.";
 "tab_all_media_empty_hint" = "I media condivisi in qualsiasi chat verranno mostrate qui.";
 "all_files_empty_hint" = "Qui verranno visualizzati i documenti e gli altri file condivisi in qualsiasi chat.";
-"all_apps_empty_hint" = "Le app ricevute o inviate in qualsiasi chat verranno mostrate qui.";
+"all_apps_empty_hint" = "Le apps condivise in qualsiasi chat appariranno qui.";
 "media_preview" = "Anteprima Media";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Aspetto Griglia Proporzioni";
@@ -635,7 +639,9 @@
 "pref_manage_keys" = "Gestisci Chiavi";
 "pref_use_system_emoji" = "Usa Emoji di Sistema";
 "pref_use_system_emoji_explain" = "Disattiva il supporto delle emoji integrato in Delta Chat";
+// deprecated
 "pref_use_inapp_camera" = "Usa Fotocamera App";
+// deprecated
 "pref_use_inapp_camera_explain" = "La fotocamera dell\'app di solito ha meno funzionalità della fotocamera di sistema";
 "pref_show_system_contacts" = "Leggi Rubrica di Sistema";
 "pref_show_system_contacts_explain" = "Offri la possibilità di creare chats con i contatti della rubrica. Alcuni provider necessitano prima della configurazione della crittografia end-to-end.";
@@ -863,11 +869,11 @@
 "qrscan_contains_text" = "Testo codice QR scansionato:\n\n%1$@";
 "qrscan_contains_url" = "URL del codice QR scansionato:\n\n%1$@";
 "qrscan_fingerprint_label" = "Impronta digitale";
-"withdraw_verifycontact_explain" = "Questo codice QR può essere scansionato da altri utenti per contattarti.\n\nÈ possibile disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
-"withdraw_verifygroup_explain" = "Questo codice QR può essere scansionato da altri per unirsi al gruppo \"%1$@\".\n\nPuoi disattivare il codice QR qui e riattivarlo scansionandolo di nuovo.";
-"withdraw_qr_code" = "Disattiva Codice QR";
-"revive_verifycontact_explain" = "Questo codice QR potrebbe essere scansionato da altri per contattarti.\n\nIl codice QR non è attivo su questo dispositivo.";
-"revive_verifygroup_explain" = "Questo codice QR può essere scansionato da altri per unirsi al gruppo \"%1$@\".\n\nIl codice QR non è attivo su questo dispositivo.";
+"withdraw_verifycontact_explain" = "Questo codice QR può essere scansionato da altri per contattarti.\n\nPuoi reimpostarlo, in modo che il codice QR o il link di invito esistente non funzionino più.";
+"withdraw_verifygroup_explain" = "Questo codice QR può essere scansionato da altri per unirsi al gruppo \"%1$@\".\n\nPuoi reimpostarlo, in modo che il codice QR o il link di invito esistente non funzionino più.";
+"withdraw_qr_code" = "Reimposta Codice QR";
+"revive_verifycontact_explain" = "Questo codice QR è stato reimpostato e non è più attivo.";
+"revive_verifygroup_explain" = "Questo codice QR per unirsi al gruppo \"%1$@\" è stato reimpostato e non è più attivo.";
 "revive_qr_code" = "Attiva Codice QR ";
 "qrshow_title" = "Codice QR Invito";
 "qrshow_x_joining" = "%1$@ si unisce.";
