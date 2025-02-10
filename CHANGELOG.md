@@ -9,6 +9,7 @@
 - Unify buttons and icons (#2584)
 - Hide unneeded buttons in contact profiles (#2589, #2590)
 - Fix: Allow to share contacts that do not have a chat (#2583)
+- Fix: update attach menu when location streaming is enabled/disabled (#2598)
 
 
 ## v1.52.2
