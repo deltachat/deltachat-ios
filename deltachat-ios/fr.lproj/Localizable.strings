@@ -571,7 +571,9 @@
 "pref_manage_keys" = "Gérer les clés";
 "pref_use_system_emoji" = "Utiliser les émojis système";
 "pref_use_system_emoji_explain" = "Désactiver la prise en charge des émojis intégrés de Delta Chat";
+// deprecated
 "pref_use_inapp_camera" = "Utiliser l\'appareil photo de l\'appli";
+// deprecated
 "pref_use_inapp_camera_explain" = "L\'appareil photo de l\'appli possède généralement moins de fonctionnalités que celui du système";
 "pref_app_access" = "Accès à l\'application";
 "pref_chats" = "Discussions";

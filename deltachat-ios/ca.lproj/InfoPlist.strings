@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "Delta Chat usa la càmera per a fer i enviar fotos i vídeos i per a escanejar codis QR.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat vol desar imatges a la biblioteca de fotografies.";

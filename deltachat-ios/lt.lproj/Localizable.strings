@@ -29,6 +29,7 @@
 "close_window" = "Užverti langą";
 "forward" = "Persiųsti";
 "create" = "Sukurti";
+"reset" = "Atstatyti";
 "later" = "Vėliau";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Siųsti iš naujo";
@@ -119,6 +120,10 @@
 "webxdc_app" = "Privati programėlė";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Privačios programėlės";
+"games" = "Žaidimai";
+"app_size" = "Dydis";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Naršyti";
 "unknown" = "Nežinoma";
 "green" = "Žalia";
 "red" = "Raudona";

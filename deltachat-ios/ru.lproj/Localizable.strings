@@ -178,6 +178,8 @@
 "new_classic_contact_explain" = "Контакты, добавленные вручную, можно использовать для отправки текстовых сообщений по обычной электронной почте, без гарантированного сквозного шифрования.";
 "menu_new_chat" = "Новый чат";
 "menu_new_group" = "Новая группа";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Начать чат с…";
 "clone_chat" = "Клонировать чат";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Список рассылки";
@@ -412,6 +414,8 @@
 "profile_encryption" = "Шифрование";
 "profile_shared_chats" = "Общие чаты";
 "related_chats" = "Похожие чаты";
+// Separator between the list of actual members and past members
+"past_members" = "Прошлые участники";
 "tab_contact" = "Контакты";
 "tab_group" = "Группа";
 "tab_gallery" = "Галерея";
@@ -635,7 +639,9 @@
 "pref_manage_keys" = "Управление ключами";
 "pref_use_system_emoji" = "Использовать системные эмодзи";
 "pref_use_system_emoji_explain" = "Отключить поддержку встроенных эмодзи Delta Chat";
+// deprecated
 "pref_use_inapp_camera" = "Использовать камеру приложения";
+// deprecated
 "pref_use_inapp_camera_explain" = "Камера приложения обычно имеет меньше функций, чем системная";
 "pref_show_system_contacts" = "Чтение системной адресной книги";
 "pref_show_system_contacts_explain" = "Предлагать создать чаты с контактами из адресной книги. Некоторые провайдеры требуют предварительной настройки сквозного шифрования.";

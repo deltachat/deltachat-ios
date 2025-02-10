@@ -634,7 +634,9 @@
 "pref_manage_keys" = "Privát kulcsok kezelése";
 "pref_use_system_emoji" = "Rendszeremodzsik használata";
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emodzsi-támogatásának letiltása";
+// deprecated
 "pref_use_inapp_camera" = "Alkalmazás kamerájának használata";
+// deprecated
 "pref_use_inapp_camera_explain" = "Az alkalmazáson belüli kamera általában kevesebb funkcióval rendelkezik, mint a rendszer kamerája.";
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
 "pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó ismerőseivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
