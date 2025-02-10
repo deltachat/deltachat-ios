@@ -1157,24 +1157,27 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
         messageInputBar.shouldManageSendButtonEnabledState = false
 
-        let leftItems = [
-            InputBarButtonItem()
-                .configure {
-                    $0.spacing = .fixed(0)
-                    let clipperIcon = UIImage(named: "ic_attach_file_36pt")?.withRenderingMode(.alwaysTemplate)
-                    $0.image = clipperIcon
-                    $0.tintColor = DcColors.primary
-                    $0.setSize(CGSize(width: 40, height: 40), animated: false)
-                    $0.accessibilityLabel = String.localized("menu_add_attachment")
-                    $0.accessibilityTraits = .button
-                    $0.showsMenuAsPrimaryAction = true
-                    $0.menu = clipperButtonMenu()
-                }.onSelected {
-                    $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
-                }.onDeselected {
-                    $0.tintColor = DcColors.primary
-                }
-        ]
+        let attachButton = InputBarButtonItem()
+            .configure {
+                $0.spacing = .fixed(0)
+                let clipperIcon = UIImage(named: "ic_attach_file_36pt")?.withRenderingMode(.alwaysTemplate)
+                $0.image = clipperIcon
+                $0.tintColor = DcColors.primary
+                $0.setSize(CGSize(width: 40, height: 40), animated: false)
+                $0.accessibilityLabel = String.localized("menu_add_attachment")
+                $0.accessibilityTraits = .button
+            }.onSelected {
+                $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
+            }.onDeselected {
+                $0.tintColor = DcColors.primary
+            }
+        attachButton.showsMenuAsPrimaryAction = true
+        attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
+        attachButton.addAction(UIAction { [weak self] _ in
+            attachButton.menu = self?.clipperButtonMenu()
+        }, for: .menuActionTriggered)
+
+        let leftItems = [attachButton]
 
         messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
 
