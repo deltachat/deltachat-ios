@@ -835,15 +835,15 @@ Autocrypt 使用 OpenPGP 标准的有限且<a href="#openpgp-secure">安全子�
 ，前提是整个消息都已正确加密和签名。
 例如，“分离签名”不被视为安全。</p>
 
-<p>OpenPGP 本身并不不安全。
-大多数公开讨论的 OpenPGP 安全问题
-实际上都源于工具或应用的糟糕可用性或糟糕实现（或两者兼而有之）。
-区分 OpenPGP（IETF 加密标准）
-和 GnuPG (GPG)（实现 OpenPGP 的命令行工具）尤为重要。
-许多对 OpenPGP 的公开批评实际上是在讨论 GnuPG，而 Delta Chat 从未使用过 GnuPG。
-Delta Chat 而是使用 OpenPGP Rust 实现 <a href="https://github.com/rpgp/rpgp">rPGP</a>，
-作为 <a href="https://crates.io/crates/pgp">独立的“pgp”软件包</a> 提供，
-并且 <a href="https://delta.chat/assets/blog/2019-first-security-review.pdf">在 2019 年进行了安全审计</a>。</p>
+<p>OpenPGP is not insecure by itself.
+Most publically discussed OpenPGP security problems
+actually stem from bad usability or bad implementations of tools or apps (or both).
+It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
+and GnuPG (GPG), a command line tool implementing OpenPGP. 
+Many public critiques of OpenPGP actually discuss GnuPG which Delta Chat has never used. 
+Delta Chat rather uses the OpenPGP Rust implementation <a href="https://github.com/rpgp/rpgp">rPGP</a>,
+available as <a href="https://crates.io/crates/pgp">an independent “pgp” package</a>,
+and <a href="#security-audits">security-audited in 2019 and 2024</a>.</p>
 
 <p>我们的目标是与其他 OpenPGP 实现者一起，
 通过实施 <a href="https://datatracker.ietf.org/doc/draft-ietf-openpgp-crypto-refresh/">新的 IETF OpenPGP Crypto-Refresh</a>
@@ -1137,10 +1137,25 @@ Look for something like <strong>Start Autocrypt Setup Transfer</strong> in the s
         
       </h3>
 
-<p>Delta Chat 项目经历了四次独立的安全性审计和一次
-独立的安全性分析，从最近到最旧：</p>
+<p>Yes, multiple times. 
+The Delta Chat project continuously undergoes independent security audits and analysis,
+from most recent to older:</p>
 
 <ul>
+  <li>
+    <p>2024 December, an <a href="https://github.com/rpgp/docs/blob/main/audits/NGI%20Core%20rPGP%20penetration%20test%20report%202024%201.0.pdf">NLNET-commissioned Evaluation of
+rPGP</a> by <a href="https://www.radicallyopensecurity.com/">Radically Open Security</a> took place.
+rPGP serves as the end-to-end encyption <a href="https://openpgp.org">OpenPGP</a> engine of Delta Chat. 
+Two advisories were released related to the findings of this audit:</p>
+
+    <ul>
+      <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-9rmp-2568-59rv">“Panics on Malformed Untrusted Input”</a> CVE-2024-53856</li>
+      <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-4grw-m28r-q285">“Potential Resource Exhaustion when handling Untrusted Messages”</a> CVE-2024-53857</li>
+    </ul>
+
+    <p>The issues outlined in these advisories have been fixed and are part of Delta Chat 
+releases on all appstores since December 2024.</p>
+  </li>
   <li>
     <p>2024 年 3 月，我们收到了苏黎世联邦理工学院应用密码学
 研究小组的深入安全性分析，并解决了所有提出的问题。
