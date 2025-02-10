@@ -8,8 +8,12 @@
 - Improve "All media empty" and "Block contact" wordings (#2580)
 - Unify buttons and icons (#2584)
 - Hide unneeded buttons in contact profiles (#2589, #2590)
+- Fix "Add Second Device" issues when scanning older QR codes (#2599)
+- Fix vcards reading issues (#2599)
 - Fix: Allow to share contacts that do not have a chat (#2583)
 - Fix: update attach menu when location streaming is enabled/disabled (#2598)
+- Update translations and local help
+- Update core to 1.155.4
 
 
 ## v1.52.2
