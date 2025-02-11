@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- No encryption options needed in chatmail profiles (#2603)
+
+
 ## v1.54.0
 2025-02
 
