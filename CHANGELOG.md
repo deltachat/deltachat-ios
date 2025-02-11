@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.54.0
+2025-02
 
 - Improve "message menu": many options are now faster accessible (#2586)
 - When forwarding to "Saved Messages", if possible, save the message including context (#2587)
