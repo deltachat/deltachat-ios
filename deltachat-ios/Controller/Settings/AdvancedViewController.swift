@@ -54,15 +54,15 @@ internal final class AdvancedViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var sendAutocryptMessageCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private lazy var sendAutocryptMessageCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.sendAutocryptMessage.rawValue
         cell.textLabel?.text = String.localized("autocrypt_send_asm_title")
         return cell
     }()
 
-    private lazy var manageKeysCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+    private lazy var manageKeysCell: ActionCell = {
+        let cell = ActionCell()
         cell.tag = CellTags.manageKeys.rawValue
         cell.textLabel?.text = String.localized("pref_manage_keys")
         return cell
@@ -236,15 +236,11 @@ internal final class AdvancedViewController: UITableViewController {
             cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
-            let encryptionSection = SectionConfigs(
-                headerTitle: String.localized("pref_encryption"),
-                footerTitle: nil,
-                cells: [manageKeysCell, sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: nil,
                 cells: [accountSettingsCell, proxySettingsCell])
-            return [viewLogSection, experimentalSection, encryptionSection, serverSection]
+            return [viewLogSection, experimentalSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
                 headerTitle: String.localized("pref_app_access"),
@@ -257,8 +253,8 @@ internal final class AdvancedViewController: UITableViewController {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-                cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell, proxySettingsCell])
-            return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
+                cells: [accountSettingsCell, proxySettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+            return [viewLogSection, experimentalSection, serverSection, appAccessSection, encryptionSection]
         }
     }()
 
