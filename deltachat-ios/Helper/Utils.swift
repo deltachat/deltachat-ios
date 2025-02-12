@@ -94,17 +94,26 @@ struct Utils {
     }
 
     public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
-        guard let fileURL = message.fileURL else { return }
+        guard let scrambledURL = message.fileURL else { return }
+
+        let shareURL: URL
+        if let filename = message.filename {
+            let cleanURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
+            shareURL = FileHelper.copyIfPossible(src: scrambledURL, dest: cleanURL)
+        } else {
+            shareURL = scrambledURL
+        }
+
         let objectsToShare: [Any]
         if message.type == DC_MSG_WEBXDC {
             let dict = message.getWebxdcInfoDict()
             let previewImage = message.getWebxdcPreviewImage()
-            let previewText = dict["name"] as? String ?? fileURL.lastPathComponent
+            let previewText = dict["name"] as? String ?? shareURL.lastPathComponent
             objectsToShare = [WebxdcItemSource(title: previewText,
                                                previewImage: previewImage,
-                                               url: fileURL)]
+                                               url: shareURL)]
         } else {
-            objectsToShare = [fileURL]
+            objectsToShare = [shareURL]
         }
 
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)

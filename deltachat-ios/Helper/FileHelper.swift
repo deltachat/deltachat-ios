@@ -87,4 +87,17 @@ public class FileHelper {
             print("err: \(error.localizedDescription)")
         }
     }
+
+    static func copyIfPossible(src: URL, dest: URL) -> URL {
+        do {
+            if FileManager.default.fileExists(atPath: dest.path) {
+                try FileManager.default.removeItem(at: dest)
+            }
+            try FileManager.default.copyItem(at: src, to: dest)
+            return dest
+        } catch {
+            logger.error("cannot copy \(src) to \(dest)")
+            return src
+        }
+    }
 }
