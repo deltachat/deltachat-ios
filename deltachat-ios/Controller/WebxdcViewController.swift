@@ -528,6 +528,17 @@ extension WebxdcViewController: WKScriptMessageHandler {
                         rootController.popToRootViewController(animated: false)
                     }
                 }))
+
+                if let name = dict["name"] as? String {
+                    alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: { [weak self] _ in
+                        guard let self else { return }
+                        if let base64 = dict["base64"] as? String, let data = Data(base64Encoded: base64), let sourceItem = navigationItem.rightBarButtonItem {
+                            guard let fileName = FileHelper.saveData(data: data, name: name, directory: .cachesDirectory) else { return }
+                            Utils.share(url: fileName, parentViewController: self, sourceItem: sourceItem)
+                        }
+                    }))
+                }
+
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
