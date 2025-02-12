@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+2025-02
+
+- Tweak menu order (#2604)
+
+
 ## v1.54.0
 2025-02
 

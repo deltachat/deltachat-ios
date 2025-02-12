@@ -424,6 +424,14 @@ class WebxdcViewController: WebViewViewController {
     private func moreButtonMenu() -> UIMenu {
         func actions() -> [UIMenuElement] {
             var actions = [UIMenuElement]()
+            actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
+                guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                let message = dcContext.getMessage(id: self.messageId)
+                DispatchQueue.main.async {
+                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+                }
+            })
+
             if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
                     switch entry.type {
@@ -444,13 +452,7 @@ class WebxdcViewController: WebViewViewController {
                     })
                 }
             }
-            actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
-                guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                let message = dcContext.getMessage(id: self.messageId)
-                DispatchQueue.main.async {
-                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-                }
-            })
+
             if sourceCodeUrl != nil {
                 actions.append(UIMenu(options: [.displayInline],
                     children: [
