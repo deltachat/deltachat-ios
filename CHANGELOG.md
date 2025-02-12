@@ -4,6 +4,7 @@
 2025-02
 
 - Tweak menu order (#2604)
+- Fix: Preserve filenames on sharing (#2605)
 
 
 ## v1.54.0
