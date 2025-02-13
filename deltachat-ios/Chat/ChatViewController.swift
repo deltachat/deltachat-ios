@@ -1312,7 +1312,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             refreshMessages()
         } else {
             confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
-                              actionTitle: String.localized("menu_forward"),
+                              actionTitle: String.localized("forward"),
                               actionHandler: { [weak self] _ in
                 guard let self else { return }
                 RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
