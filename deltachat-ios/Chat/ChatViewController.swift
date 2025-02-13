@@ -1307,21 +1307,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
-        if chat.isSelfTalk {
-            RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
-            refreshMessages()
-        } else {
-            confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
-                              actionTitle: String.localized("menu_forward"),
-                              actionHandler: { [weak self] _ in
-                guard let self else { return }
-                RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
-                self.becomeFirstResponder()
-            },
-                              cancelHandler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
-        }
+        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+                        actionTitle: String.localized("forward"),
+                        actionHandler: { [weak self] _ in
+                            guard let self else { return }
+                            RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
+                            becomeFirstResponder()
+                        },
+                        cancelHandler: { [weak self] _ in
+                            self?.navigationController?.popViewController(animated: true)
+                        })
     }
 
     // MARK: - coordinator
@@ -1662,8 +1657,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func forward(at indexPath: IndexPath) {
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        RelayHelper.shared.setForwardMessage(messageId: msg.id)
-        navigationController?.popViewController(animated: true)
+        RelayHelper.shared.setForwardMessages(messageIds: [msg.id])
+        navigationController?.popToRootViewController(animated: true)
     }
 
     private func reply(at indexPath: IndexPath) {
@@ -2452,8 +2447,10 @@ extension ChatViewController: ChatEditingDelegate {
     func onForwardPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
-            RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
-            self.navigationController?.popViewController(animated: true)
+            if !messageIdsToForward.isEmpty {
+                RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
 
