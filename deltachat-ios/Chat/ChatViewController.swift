@@ -1662,7 +1662,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func forward(at indexPath: IndexPath) {
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
-        RelayHelper.shared.setForwardMessage(messageId: msg.id)
+        RelayHelper.shared.setForwardMessages(messageIds: [msg.id])
         navigationController?.popViewController(animated: true)
     }
 

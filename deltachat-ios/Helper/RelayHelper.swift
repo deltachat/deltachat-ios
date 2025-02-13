@@ -45,12 +45,6 @@ class RelayHelper {
         self.forwardFileName = fileName
     }
 
-    func setForwardMessage(messageId: Int) {
-        finishRelaying()
-        self.dialogTitle = String.localized("forward_to")
-        self.forwardIds = [messageId]
-    }
-
     func setForwardMessages(messageIds: [Int]) {
         finishRelaying()
         self.dialogTitle = String.localized("forward_to")
