@@ -1307,21 +1307,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
-        if chat.isSelfTalk {
-            RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
-            refreshMessages()
-        } else {
-            confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
-                              actionTitle: String.localized("forward"),
-                              actionHandler: { [weak self] _ in
-                guard let self else { return }
-                RelayHelper.shared.forwardIdsAndFinishRelaying(to: self.chatId)
-                self.becomeFirstResponder()
-            },
-                              cancelHandler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
-        }
+        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+                        actionTitle: String.localized("forward"),
+                        actionHandler: { [weak self] _ in
+                            guard let self else { return }
+                            RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
+                            becomeFirstResponder()
+                        },
+                        cancelHandler: { [weak self] _ in
+                            self?.navigationController?.popViewController(animated: true)
+                        })
     }
 
     // MARK: - coordinator
