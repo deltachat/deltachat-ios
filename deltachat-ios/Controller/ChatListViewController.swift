@@ -372,9 +372,13 @@ class ChatListViewController: UITableViewController {
         if tableView.isEditing {
             self.setLongTapEditing(false)
         } else {
+            let returnToMsgId = RelayHelper.shared.forwardIds?.first
             RelayHelper.shared.finishRelaying()
             updateTitle()
             refreshInBg()
+            if let returnToMsgId {
+                showChat(chatId: dcContext.getMessage(id: returnToMsgId).chatId, highlightedMsg: returnToMsgId)
+            }
         }
     }
 
