@@ -1663,7 +1663,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func forward(at indexPath: IndexPath) {
         let msg = dcContext.getMessage(id: messageIds[indexPath.row])
         RelayHelper.shared.setForwardMessages(messageIds: [msg.id])
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
     private func reply(at indexPath: IndexPath) {
@@ -2454,7 +2454,7 @@ extension ChatViewController: ChatEditingDelegate {
             let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
             if !messageIdsToForward.isEmpty {
                 RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
