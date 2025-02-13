@@ -183,6 +183,7 @@ class ChatListViewController: UITableViewController {
         updateTitle()
 
         if RelayHelper.shared.isForwarding() {
+            refreshInBg()
             quitSearch(animated: false)
             tableView.scrollToTop()
         }
