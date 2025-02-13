@@ -2452,8 +2452,10 @@ extension ChatViewController: ChatEditingDelegate {
     func onForwardPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
-            RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
-            self.navigationController?.popViewController(animated: true)
+            if !messageIdsToForward.isEmpty {
+                RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 

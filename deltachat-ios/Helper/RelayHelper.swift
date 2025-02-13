@@ -48,9 +48,7 @@ class RelayHelper {
     func setForwardMessages(messageIds: [Int]) {
         finishRelaying()
         self.dialogTitle = String.localized("forward_to")
-        if !messageIds.isEmpty {
-            self.forwardIds = messageIds
-        }
+        self.forwardIds = messageIds
     }
 
     func isForwarding() -> Bool {
