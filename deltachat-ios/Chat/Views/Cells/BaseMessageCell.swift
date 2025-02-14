@@ -196,6 +196,9 @@ public class BaseMessageCell: UITableViewCell {
     private var showSelectionBackground: Bool
     private var timer: Timer?
 
+    private var dcContextId: Int?
+    private var dcMsgId: Int?
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
         reactionsView = ReactionsView()
@@ -519,8 +522,7 @@ public class BaseMessageCell: UITableViewCell {
         messageLabel.attributedText = getFormattedText(messageText: msg.text, searchText: searchText, highlight: highlight)
         messageLabel.delegate = self
 
-        let reactions = dcContext.getMessageReactions(messageId: msg.id)
-        if let reactions {
+        if let reactions = dcContext.getMessageReactions(messageId: msg.id) {
             reactionsView.isHidden = false
             reactionsView.configure(with: reactions)
             bottomConstraint?.constant = -20
@@ -529,7 +531,8 @@ public class BaseMessageCell: UITableViewCell {
             bottomConstraint?.constant = -3
         }
 
-        accessibilityLabel = configureAccessibilityString(message: msg, reactions: reactions)
+        self.dcContextId = dcContext.id
+        self.dcMsgId = msg.id
     }
 
     private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
@@ -569,7 +572,13 @@ public class BaseMessageCell: UITableViewCell {
         return nil
     }
 
-    func configureAccessibilityString(message: DcMsg, reactions: DcReactions?) -> String {
+    public override func accessibilityElementDidBecomeFocused() {
+        logger.info("jit-rendering accessibility string")  // jit-rendering is needed as the reactions summary require quite some database calls
+        guard let dcContextId, let dcMsgId else { return }
+        let dcContext = DcAccounts.shared.get(id: dcContextId)
+        let msg = dcContext.getMessage(id: dcMsgId)
+        let reactions = dcContext.getMessageReactions(messageId: msg.id)
+
         var topLabelAccessibilityString = ""
         var quoteAccessibilityString = ""
         var messageLabelAccessibilityString = ""
@@ -590,7 +599,6 @@ public class BaseMessageCell: UITableViewCell {
 
         var reactionsString = ""
         if let reactions {
-            // make sure not to add database calls here, this is rarely used but would slow things down always
             reactionsString = ", " + String.localized(stringID: "n_reactions", parameter: reactions.reactionsByContact.count) + ": "
             reactions.reactions.forEach {
                 reactionsString += $0.count > 1 ? " \($0.count)" : ""
@@ -598,11 +606,11 @@ public class BaseMessageCell: UITableViewCell {
             }
         }
 
-        return "\(topLabelAccessibilityString) " +
+        accessibilityLabel = "\(topLabelAccessibilityString) " +
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: message))" +
+            "\(StatusView.getAccessibilityString(message: msg))" +
             "\(reactionsString) "
     }
 
@@ -649,6 +657,8 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView.prepareForReuse()
         timer?.invalidate()
         timer = nil
+        dcContextId = nil
+        dcMsgId = nil
     }
 
     @objc func reactionsViewTapped(_ sender: Any?) {
