@@ -68,11 +68,11 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
                                                                    size: CGSize(width: 500, height: 500)))
             contentImageIsPlaceholder = false
             playButtonView.isHidden = true
-            accessibilityLabel = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
+            a11yDcType = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
-            accessibilityLabel = String.localized("video")
+            a11yDcType = String.localized("video")
             let placeholderImage = UIImage(color: UIColor.init(alpha: 0, red: 255, green: 255, blue: 255), size: CGSize(width: 250, height: 250))
             contentImageView.image = placeholderImage
             DispatchQueue.global(qos: .userInteractive).async {

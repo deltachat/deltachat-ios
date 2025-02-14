@@ -42,7 +42,7 @@ public class FileTextCell: BaseMessageCell, ReusableCell {
         }
         
         fileView.configure(message: msg)
-        accessibilityLabel = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
+        a11yDcType = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
         super.update(dcContext: dcContext,
                      msg: msg,
                      messageStyle: messageStyle,
