@@ -600,9 +600,8 @@ public class BaseMessageCell: UITableViewCell {
         var reactionsString = ""
         if let reactions {
             reactionsString = ", " + String.localized(stringID: "n_reactions", parameter: reactions.reactionsByContact.count) + ": "
-            reactions.reactions.forEach {
-                reactionsString += $0.count > 1 ? " \($0.count)" : ""
-                reactionsString += " \($0.emoji)"
+            for (contactId, reactions) in reactions.reactionsByContact {
+                reactionsString += dcContext.getContact(id: contactId).displayName + ": " + reactions.joined(separator: " ") + ", "
             }
         }
 
