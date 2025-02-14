@@ -198,6 +198,7 @@ public class BaseMessageCell: UITableViewCell {
 
     private var dcContextId: Int?
     private var dcMsgId: Int?
+    var a11yDcType: String?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
@@ -593,8 +594,8 @@ public class BaseMessageCell: UITableViewCell {
         if let senderTitle = quoteView.senderTitle.text, let quote = quoteView.quote.text {
             quoteAccessibilityString = "\(senderTitle), \(quote), \(String.localized("reply_noun")), "
         }
-        if let additionalAccessibilityInfo = accessibilityLabel {
-            additionalAccessibilityString = "\(additionalAccessibilityInfo), "
+        if let a11yDcType {
+            additionalAccessibilityString = "\(a11yDcType), "
         }
 
         var reactionsString = ""

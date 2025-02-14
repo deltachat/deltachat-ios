@@ -38,7 +38,7 @@ public class ContactCardCell: BaseMessageCell, ReusableCell {
         }
 
         contactView.configure(message: msg, dcContext: dcContext)
-        accessibilityLabel = "\(String.localized("document")), \(contactView.configureAccessibilityLabel())"
+        a11yDcType = "\(String.localized("document")), \(contactView.configureAccessibilityLabel())"
         super.update(dcContext: dcContext,
                      msg: msg,
                      messageStyle: messageStyle,
