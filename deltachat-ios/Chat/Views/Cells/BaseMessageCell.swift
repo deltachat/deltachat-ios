@@ -517,11 +517,10 @@ public class BaseMessageCell: UITableViewCell {
         }
 
         messageLabel.attributedText = getFormattedText(messageText: msg.text, searchText: searchText, highlight: highlight)
-
         messageLabel.delegate = self
-        accessibilityLabel = configureAccessibilityString(message: msg)
 
-        if let reactions = dcContext.getMessageReactions(messageId: msg.id) {
+        let reactions = dcContext.getMessageReactions(messageId: msg.id)
+        if let reactions {
             reactionsView.isHidden = false
             reactionsView.configure(with: reactions)
             bottomConstraint?.constant = -20
@@ -529,6 +528,8 @@ public class BaseMessageCell: UITableViewCell {
             reactionsView.isHidden = true
             bottomConstraint?.constant = -3
         }
+
+        accessibilityLabel = configureAccessibilityString(message: msg, reactions: reactions)
     }
 
     private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
@@ -568,7 +569,7 @@ public class BaseMessageCell: UITableViewCell {
         return nil
     }
 
-    func configureAccessibilityString(message: DcMsg) -> String {
+    func configureAccessibilityString(message: DcMsg, reactions: DcReactions?) -> String {
         var topLabelAccessibilityString = ""
         var quoteAccessibilityString = ""
         var messageLabelAccessibilityString = ""
@@ -587,11 +588,22 @@ public class BaseMessageCell: UITableViewCell {
             additionalAccessibilityString = "\(additionalAccessibilityInfo), "
         }
 
+        var reactionsString = ""
+        if let reactions {
+            // make sure not to add database calls here, this is rarely used but would slow things down always
+            reactionsString = ", " + String.localized(stringID: "n_reactions", parameter: reactions.reactionsByContact.count) + ": "
+            reactions.reactions.forEach {
+                reactionsString += $0.count > 1 ? " \($0.count)" : ""
+                reactionsString += " \($0.emoji)"
+            }
+        }
+
         return "\(topLabelAccessibilityString) " +
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: message))"
+            "\(StatusView.getAccessibilityString(message: message))" +
+            "\(reactionsString) "
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
