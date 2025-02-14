@@ -196,6 +196,10 @@ public class BaseMessageCell: UITableViewCell {
     private var showSelectionBackground: Bool
     private var timer: Timer?
 
+    private var dcContextId: Int?
+    private var dcMsgId: Int?
+    var a11yDcType: String?
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 
         reactionsView = ReactionsView()
@@ -517,9 +521,7 @@ public class BaseMessageCell: UITableViewCell {
         }
 
         messageLabel.attributedText = getFormattedText(messageText: msg.text, searchText: searchText, highlight: highlight)
-
         messageLabel.delegate = self
-        accessibilityLabel = configureAccessibilityString(message: msg)
 
         if let reactions = dcContext.getMessageReactions(messageId: msg.id) {
             reactionsView.isHidden = false
@@ -529,6 +531,9 @@ public class BaseMessageCell: UITableViewCell {
             reactionsView.isHidden = true
             bottomConstraint?.constant = -3
         }
+
+        self.dcContextId = dcContext.id
+        self.dcMsgId = msg.id
     }
 
     private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
@@ -568,7 +573,13 @@ public class BaseMessageCell: UITableViewCell {
         return nil
     }
 
-    func configureAccessibilityString(message: DcMsg) -> String {
+    public override func accessibilityElementDidBecomeFocused() {
+        logger.info("jit-rendering accessibility string")  // jit-rendering is needed as the reactions summary require quite some database calls
+        guard let dcContextId, let dcMsgId else { return }
+        let dcContext = DcAccounts.shared.get(id: dcContextId)
+        let msg = dcContext.getMessage(id: dcMsgId)
+        let reactions = dcContext.getMessageReactions(messageId: msg.id)
+
         var topLabelAccessibilityString = ""
         var quoteAccessibilityString = ""
         var messageLabelAccessibilityString = ""
@@ -583,15 +594,24 @@ public class BaseMessageCell: UITableViewCell {
         if let senderTitle = quoteView.senderTitle.text, let quote = quoteView.quote.text {
             quoteAccessibilityString = "\(senderTitle), \(quote), \(String.localized("reply_noun")), "
         }
-        if let additionalAccessibilityInfo = accessibilityLabel {
-            additionalAccessibilityString = "\(additionalAccessibilityInfo), "
+        if let a11yDcType {
+            additionalAccessibilityString = "\(a11yDcType), "
         }
 
-        return "\(topLabelAccessibilityString) " +
+        var reactionsString = ""
+        if let reactions {
+            reactionsString = ", " + String.localized(stringID: "n_reactions", parameter: reactions.reactionsByContact.count) + ": "
+            for (contactId, reactions) in reactions.reactionsByContact {
+                reactionsString += dcContext.getContact(id: contactId).displayName + ": " + reactions.joined(separator: " ") + ", "
+            }
+        }
+
+        accessibilityLabel = "\(topLabelAccessibilityString) " +
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: message))"
+            "\(StatusView.getAccessibilityString(message: msg))" +
+            "\(reactionsString) "
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
@@ -637,6 +657,8 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView.prepareForReuse()
         timer?.invalidate()
         timer = nil
+        dcContextId = nil
+        dcMsgId = nil
     }
 
     @objc func reactionsViewTapped(_ sender: Any?) {

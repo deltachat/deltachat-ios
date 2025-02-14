@@ -20,6 +20,6 @@ public class WebxdcCell: FileTextCell {
                      showName: showName,
                      searchText: searchText,
                      highlight: highlight)
-        accessibilityLabel = fileView.configureAccessibilityLabel()
+        a11yDcType = fileView.configureAccessibilityLabel()
     }
 }
