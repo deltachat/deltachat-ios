@@ -31,6 +31,10 @@ public class DcMsg {
         return dc_msg_is_forwarded(messagePointer) != 0
     }
 
+    public var isEdited: Bool {
+        return dc_msg_is_edited(messagePointer) != 0
+    }
+
     public var isValid: Bool {
         return messagePointer != nil
     }
@@ -42,7 +46,6 @@ public class DcMsg {
     public var id: Int {
         return Int(dc_msg_get_id(messagePointer))
     }
-
 
     public var fromContactId: Int {
         return Int(dc_msg_get_from_id(messagePointer))
@@ -101,6 +104,10 @@ public class DcMsg {
                 dc_msg_set_text(messagePointer, nil)
             }
         }
+    }
+
+    public var hasText: Bool {
+        return !(text ?? "").isEmpty
     }
 
     public var subject: String {

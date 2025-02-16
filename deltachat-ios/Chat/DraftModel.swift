@@ -7,7 +7,8 @@ public class DraftModel {
     var dcContext: DcContext
     var text: String?
     let chatId: Int
-    var isEditing: Bool = false
+    var isEditing: Bool = false // multi edit
+    var sendEditRequestFor: Int?
     var quoteMessage: DcMsg? {
         return draftMsg?.quoteMessage
     }
@@ -39,6 +40,7 @@ public class DraftModel {
             draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         }
         draftMsg?.quoteMessage = quotedMsg
+        sendEditRequestFor = nil
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
@@ -62,6 +64,11 @@ public class DraftModel {
     }
 
     public func save(context: DcContext) {
+        if sendEditRequestFor != nil {
+            clear()
+            return
+        }
+
         if (text?.isEmpty ?? true) &&
             (draftMsg == nil || quoteMessage == nil && attachment == nil) {
             self.clear()
@@ -82,6 +89,7 @@ public class DraftModel {
     public func clear() {
         text = nil
         draftMsg = nil
+        sendEditRequestFor = nil
         dcContext.setDraft(chatId: chatId, message: nil)
     }
 }
