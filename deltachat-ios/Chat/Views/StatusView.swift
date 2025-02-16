@@ -5,6 +5,7 @@ import DcCore
 public class StatusView: UIView {
     private let contentStackView: UIStackView
     let dateLabel: UILabel
+    private let editedLabel: UILabel
     private let padlockView: UIImageView
     private let locationView: UIImageView
     private let stateView: UIImageView
@@ -16,6 +17,11 @@ public class StatusView: UIView {
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
 
+        editedLabel = UILabel()
+        editedLabel.text = String.localized("edited")
+        editedLabel.translatesAutoresizingMaskIntoConstraints = false
+        editedLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+
         padlockView = UIImageView()
         padlockView.translatesAutoresizingMaskIntoConstraints = false
         locationView = UIImageView()
@@ -25,9 +31,9 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, dateLabel, locationView, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, dateLabel, editedLabel, locationView, stateView])
         contentStackView.alignment = .center
-        contentStackView.spacing = 0
+        contentStackView.spacing = 2
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
         super.init(frame: frame)
@@ -68,6 +74,7 @@ public class StatusView: UIView {
 
     public func prepareForReuse() {
         dateLabel.text = nil
+        editedLabel.isHidden = true
         padlockView.isHidden = true
         locationView.isHidden = true
         savedView.isHidden = true
@@ -77,6 +84,8 @@ public class StatusView: UIView {
     public func update(message: DcMsg, tintColor: UIColor) {
         dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
+        editedLabel.isHidden = !message.isEdited
+        editedLabel.textColor = tintColor
 
         if message.showPadlock() {
             padlockView.image = UIImage(named: "ic_lock")?.maskWithColor(color: tintColor)
