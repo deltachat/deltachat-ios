@@ -708,7 +708,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             messageInputBar.inputTextView.resignFirstResponder()
         } else {
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
-            messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
+            messageInputBar.setLeftStackViewWidthConstant(to: draft.sendEditRequestFor == nil ? 40 : 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
             inputAccessoryView = messageInputBar
@@ -1662,6 +1662,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         replyToMessage(at: indexPath)
     }
 
+    private func editSentMessage(at indexPath: IndexPath) {
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+
+        draft.clear()
+        draft.sendEditRequestFor = message.id
+        configureDraftArea(draft: draft)
+        messageInputBar.inputTextView.text = message.text
+    }
+
     private func toggleSave(at indexPath: IndexPath) {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
         if message.savedMessageId != 0 {
@@ -1905,6 +1914,12 @@ extension ChatViewController {
                 children.append(
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
+
+                if message.isFromCurrentSender && message.hasText && !message.isMarkerOrInfo && dcChat.canSend {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", indexPath: indexPath, action: editSentMessage)
+                    )
+                }
 
                 if !dcChat.isSelfTalk && message.canSave {
                     if message.savedMessageId != 0 {
@@ -2361,7 +2376,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        if let filePath = draft.attachment, let viewType = draft.viewType {
+
+        if let sendEditRequestFor = draft.sendEditRequestFor {
+            dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
+        } else if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
             case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC, DC_MSG_VCARD:
                 self.sendAttachmentMessage(viewType: viewType, filePath: filePath, message: trimmedText, quoteMessage: draft.quoteMessage)
@@ -2389,9 +2407,15 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 // MARK: - DraftPreviewDelegate
 extension ChatViewController: DraftPreviewDelegate {
     func onCancelQuote() {
-        draft.setQuote(quotedMsg: nil)
-        configureDraftArea(draft: draft)
-        focusInputTextView()
+        if draft.sendEditRequestFor != nil {
+            draft.clear()
+            draftArea.cancel()
+            messageInputBar.inputTextView.text = nil
+        } else {
+            draft.setQuote(quotedMsg: nil)
+            configureDraftArea(draft: draft)
+            focusInputTextView()
+        }
     }
 
     func onCancelAttachment() {
