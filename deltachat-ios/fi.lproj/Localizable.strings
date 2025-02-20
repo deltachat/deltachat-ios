@@ -579,10 +579,6 @@
 "pref_manage_keys" = "Hallinnoi avaimia";
 "pref_use_system_emoji" = "Käytä järjestelmän emojeja";
 "pref_use_system_emoji_explain" = "Poista Delta Chatin sisäänrakennettu emoji -tuki käytöstä";
-// deprecated
-"pref_use_inapp_camera" = "Käytä sovelluksen sisäistä kameraa";
-// deprecated
-"pref_use_inapp_camera_explain" = "Sovelluksen sisäisessä kamerassa on usein vähemmän toiminnallisuutta kuin järjestelmän kamerassa";
 "pref_show_system_contacts" = "Lue laitteen osoitekirja";
 "pref_show_system_contacts_explain" = "Tarjoa keskustelujen avaamista yhteystietojen perusteella. Jotkin palveluntarjoajat vaativat ensin päästä-päähän salauksen käyttöönottoa. ";
 "pref_app_access" = "Sovelluksen pääsy";

@@ -617,10 +617,6 @@
 "pref_manage_keys" = "管理金鑰";
 "pref_use_system_emoji" = "使用系統的表情符號";
 "pref_use_system_emoji_explain" = "停用 Delta Chat 內建的表情符號";
-// deprecated
-"pref_use_inapp_camera" = "使用應用程式內的相機";
-// deprecated
-"pref_use_inapp_camera_explain" = "應用內相機的功能通常比系統相機少";
 "pref_show_system_contacts" = "讀取系統通訊錄";
 "pref_show_system_contacts_explain" = "建議與通訊錄中的聯絡人建立聊天。一些供應商需要先進行端到端加密設置。";
 "pref_app_access" = "App 存取";

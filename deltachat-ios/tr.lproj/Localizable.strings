@@ -639,10 +639,6 @@
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
-// deprecated
-"pref_use_inapp_camera" = "Uygulama İçi Kamerayı Kullan";
-// deprecated
-"pref_use_inapp_camera_explain" = "Uygulama içi kameranın genellikle sistem kamerasından daha az özelliği vardır";
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
 "pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbet oluşturmayı teklif edin. Bazı sağlayıcılara önce uçtan uca şifreleme ayarlaması gerekir.";
 "pref_app_access" = "Uygulama Erişimi";

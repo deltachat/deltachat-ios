@@ -178,6 +178,8 @@
 "new_classic_contact_explain" = "A kézzel hozzáadott névjegyek szöveges üzenetek küldésére használhatók a klasszikus e-mailekhez és nem garantált a végpontok közöttii titkosításuk.";
 "menu_new_chat" = "Új csevegés";
 "menu_new_group" = "Új csoport";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Csevegés vele…";
 "clone_chat" = "Csevegés klónozása";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Adáslista";
@@ -412,6 +414,8 @@
 "profile_encryption" = "Titkosítás";
 "profile_shared_chats" = "Megosztott csevegések";
 "related_chats" = "Kapcsolódó csevegések";
+// Separator between the list of actual members and past members
+"past_members" = "Volt tagok";
 "tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
 "tab_gallery" = "Galéria";
@@ -425,6 +429,7 @@
 "tab_audio_empty_hint" = "Az ebben a csevegésben megosztott hangfájlok és hangüzenetek itt fognak megjelenni.";
 "tab_webxdc_empty_hint" = "Az ebben a csevegésben megosztott alkalmazások itt fognak megjelenni.";
 "tab_all_media_empty_hint" = "A bármelyik csevegésben megosztott média itt fog megjelenni.";
+"all_files_empty_hint" = "A csevegésekben megosztott dokumentumok és egyéb fájlok itt jelennek meg.";
 "all_apps_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni.";
 "media_preview" = "Média előnézete";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -634,10 +639,6 @@
 "pref_manage_keys" = "Privát kulcsok kezelése";
 "pref_use_system_emoji" = "Rendszeremodzsik használata";
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emodzsi-támogatásának letiltása";
-// deprecated
-"pref_use_inapp_camera" = "Alkalmazás kamerájának használata";
-// deprecated
-"pref_use_inapp_camera_explain" = "Az alkalmazáson belüli kamera általában kevesebb funkcióval rendelkezik, mint a rendszer kamerája.";
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
 "pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó ismerőseivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
 "pref_app_access" = "Alkalmazás-hozzáférés";
