@@ -274,7 +274,7 @@ public class DcMsg {
     }
 
     public func setFile(filepath: String?, mimeType: String? = nil) {
-        dc_msg_set_file(messagePointer, filepath, mimeType)
+        dc_msg_set_file_and_deduplicate(messagePointer, filepath, nil, mimeType)
     }
 
     public func setDimension(width: CGFloat, height: CGFloat) {
