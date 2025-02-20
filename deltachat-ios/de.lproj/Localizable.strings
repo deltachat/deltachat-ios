@@ -39,6 +39,8 @@
 "later" = "Später";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Erneut senden";
+"edited" = "Bearbeitet";
+"edit_message" = "Nachricht bearbeiten";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivieren";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -414,6 +416,8 @@
 "profile_encryption" = "Verschlüsselung";
 "profile_shared_chats" = "Gemeinsame Chats";
 "related_chats" = "Ähnliche Chats";
+// Separator between the list of actual members and past members
+"past_members" = "Ehemalige Mitglieder";
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galerie";
@@ -637,10 +641,6 @@
 "pref_manage_keys" = "Schlüssel verwalten";
 "pref_use_system_emoji" = "System-Emoji benutzen";
 "pref_use_system_emoji_explain" = "Eingebaute Emoji-Unterstützung von Delta Chat deaktivieren";
-// deprecated
-"pref_use_inapp_camera" = "In-App Kamera verwenden";
-// deprecated
-"pref_use_inapp_camera_explain" = "Die In-App-Kamera hat in der Regel weniger Funktionen als die Systemkamera";
 "pref_show_system_contacts" = "System-Adressbuch lesen";
 "pref_show_system_contacts_explain" = "Anbieten, Chats mit Kontakten aus dem Adressbuch zu erstellen. Bei einigen E-Mail-Anbieter muss zunächst eine Ende-zu-Ende-Verschlüsselung eingerichtet werden.";
 "pref_app_access" = "App-Zugriff";

@@ -173,6 +173,8 @@
 "new_classic_contact_explain" = "Kontaktet e shtuar dorazi mund të përdoren për të dërguar tekst te email klasik dhe për ta s’garantohet fshehtëzim skaj-më-skaj.";
 "menu_new_chat" = "Fjalosje e Re";
 "menu_new_group" = "Grup i Ri";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Bisedoni me… ";
 "clone_chat" = "Klononi Fjalosjen";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Listë Transmetimi";
@@ -406,6 +408,8 @@
 "profile_encryption" = "Fshehtëzim";
 "profile_shared_chats" = "Fjalosje të Përbashkëta";
 "related_chats" = "Fjalosje të Afërta";
+// Separator between the list of actual members and past members
+"past_members" = "Anëtarë të Dikurshëm";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
@@ -629,10 +633,6 @@
 "pref_manage_keys" = "Administroni Kyçe";
 "pref_use_system_emoji" = "Përdor Emoji Sistemi";
 "pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
-// deprecated
-"pref_use_inapp_camera" = "Përdor Kamerën e Vetë Aplikacionit";
-// deprecated
-"pref_use_inapp_camera_explain" = "Kamera e vetë aplikacionit, zakonisht, ka më pak veçori se kamera e sistemit";
 "pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
 "pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash. Disa shërbime lypin ujdisje fshehtëzimi skaj-më-skaj së pari.";
 "pref_chats" = "Fjalosje";

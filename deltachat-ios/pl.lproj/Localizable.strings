@@ -414,6 +414,8 @@
 "profile_encryption" = "Szyfrowanie";
 "profile_shared_chats" = "Wspólne czaty";
 "related_chats" = "Powiązane czaty";
+// Separator between the list of actual members and past members
+"past_members" = "Byli członkowie";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
 "tab_gallery" = "Galeria";
@@ -637,10 +639,6 @@
 "pref_manage_keys" = "Zarządzaj prywatnymi kluczami";
 "pref_use_system_emoji" = "Użyj emoji systemowych";
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
-// deprecated
-"pref_use_inapp_camera" = "Użyj aparatu w aplikacji";
-// deprecated
-"pref_use_inapp_camera_explain" = "Aparat w aplikacji ma zwykle mniej funkcji niż aparat systemowy";
 "pref_show_system_contacts" = "Odczytaj systemową książkę adresową";
 "pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej. Niektórzy dostawcy wymagają najpierw szyfrowania end-to-end.";
 "pref_app_access" = "Dostęp do aplikacji";
@@ -999,7 +997,7 @@
 // command to put the cursor to the search input field
 "focus_search_input" = "Szukaj";
 // command to put the cursor to the message input field
-"focus_message_input" = "Wpisz wiadomość";
+"focus_message_input" = "Napisz wiadomość";
 "force_refresh_network" = "Wymuś odświeżenie sieci";
 "insert_newline" = "Wstaw nową linię";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible

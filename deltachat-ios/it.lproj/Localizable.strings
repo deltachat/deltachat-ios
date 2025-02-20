@@ -39,6 +39,8 @@
 "later" = "Dopo";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Reinvia";
+"edited" = "Modificato";
+"edit_message" = "Modifica Messaggio";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivia";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -639,10 +641,6 @@
 "pref_manage_keys" = "Gestisci Chiavi";
 "pref_use_system_emoji" = "Usa Emoji di Sistema";
 "pref_use_system_emoji_explain" = "Disattiva il supporto delle emoji integrato in Delta Chat";
-// deprecated
-"pref_use_inapp_camera" = "Usa Fotocamera App";
-// deprecated
-"pref_use_inapp_camera_explain" = "La fotocamera dell\'app di solito ha meno funzionalità della fotocamera di sistema";
 "pref_show_system_contacts" = "Leggi Rubrica di Sistema";
 "pref_show_system_contacts_explain" = "Offri la possibilità di creare chats con i contatti della rubrica. Alcuni provider necessitano prima della configurazione della crittografia end-to-end.";
 "pref_app_access" = "Accesso App";

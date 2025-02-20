@@ -624,10 +624,6 @@ https://meet.jit.si/$ROOM
 "pref_manage_keys" = "مدیریت کلیدها";
 "pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
 "pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
-// deprecated
-"pref_use_inapp_camera" = "استفاده از دوربین درون‌برنامه";
-// deprecated
-"pref_use_inapp_camera_explain" = "دوربین درون‌برنامه معمولا امکانات کمتری نسبت به دوربین سیستم دارد";
 "pref_show_system_contacts" = "خواندن دفترچه آدرس دستگاه";
 "pref_app_access" = "دسترسی نرم‌افزار";
 "pref_chats" = "گپ‌ها";

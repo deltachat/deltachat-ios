@@ -585,10 +585,6 @@
 "pref_manage_keys" = "Hantera nycklar";
 "pref_use_system_emoji" = "Använd systemets emojier";
 "pref_use_system_emoji_explain" = "Inaktivera Delta Chat\'s inbyggda emojier";
-// deprecated
-"pref_use_inapp_camera" = "Använd kameran i appen";
-// deprecated
-"pref_use_inapp_camera_explain" = "Kameran i appen har vanligtvis färre funktioner än systemkameran";
 "pref_show_system_contacts" = "Läs systemets adressbok";
 "pref_show_system_contacts_explain" = "Erbjud att skapa chattar med kontakter från adressboken. Vissa leverantörer behöver först konfigureras för totalsträckskryptering.";
 "pref_app_access" = "Programåtkomst";
