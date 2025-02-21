@@ -62,6 +62,10 @@ public class DcContext {
         dc_send_msg(contextPointer, UInt32(chatId), message.messagePointer)
     }
 
+    public func sendEditRequest(msgId: Int, newText: String) {
+        dc_send_edit_request(contextPointer, UInt32(msgId), newText)
+    }
+
     public func downloadFullMessage(id: Int) {
         dc_download_full_msg(contextPointer, Int32(id))
     }
