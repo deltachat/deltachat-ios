@@ -39,6 +39,8 @@
 "later" = "Later";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Opnieuw versturen";
+"edited" = "Bewerkt";
+"edit_message" = "Bericht bewerken";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archiveren";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -311,6 +313,7 @@
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
 "ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "ask_delete_message" = "Weet je zeker dat je dit bericht wilt verwijderen?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";

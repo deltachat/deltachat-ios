@@ -282,6 +282,7 @@
 "ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
 "ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
 "ask_delete_message" = "Haluatko varmasti poistaa tämän viestin?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
 "ask_export_attachment" = "Liitteiden vieminen antaa muille laitteen sovelluksille mahdollisuuden lukea niitä.\n\nJatka?";

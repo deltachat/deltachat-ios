@@ -301,6 +301,7 @@
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
 "ask_delete_named_chat" = "Voulez-vous vraiment supprimer « %1$@ » ?";
 "ask_delete_message" = "Voulez-vous vraiment supprimer ce message ?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";
 "ask_export_attachment" = "Exporter une pièce jointe ? L\'exportation des pièces jointes permettra à toute autre application sur votre appareil d\'y accéder. Continuer ?";

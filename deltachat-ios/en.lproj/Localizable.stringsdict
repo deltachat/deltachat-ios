@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d chat? It will no longer be shown in the chat list; its messages will remain on the server.</string>
+			<string>Delete %d chat?</string>
 			<key>other</key>
-			<string>Delete %d chats? They will no longer be shown in the chat list; their messages will remain on the server.</string>
+			<string>Delete %d chats?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

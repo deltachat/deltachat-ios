@@ -271,6 +271,7 @@
 "ask_leave_group" = "Quer mesmo sair do grupo?";
 "ask_delete_named_chat" = "Você tem certeza que quer apagar \"%1$@\"?";
 "ask_delete_message" = "Tem certeza que quer apagar esta mensagem?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
 "ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados por outros aplicativos.\n\nContinuar?";

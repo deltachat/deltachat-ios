@@ -39,6 +39,8 @@
 "later" = "Daha Sonra";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Yeniden Gönder";
+"edited" = "Düzenlendi";
+"edit_message" = "İletiyi Düzenle";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arşivle";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -311,6 +313,7 @@
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "\"%1$@\" sohbeti silinsin mi? O artık sohbet listesinde gösterilmeyecek; iletileri sunucuda kalacak.";
 "ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";

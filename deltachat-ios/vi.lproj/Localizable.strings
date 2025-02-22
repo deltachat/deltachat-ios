@@ -279,6 +279,7 @@
 "ask_leave_group" = "Bạn có chắc chắn muốn rời khỏi nhóm này không?";
 "ask_delete_named_chat" = "Bạn có chắc chắn muốn xóa \"%1$@\" không?";
 "ask_delete_message" = "Bạn có chắc chắn muốn xóa tin nhắn này?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";

@@ -175,7 +175,7 @@
 			<key>one</key>
 			<string>%d Chat löschen? Gelöschte Chats werden nicht länger in der Chat-Liste angezeigt, die Nachrichten verbleiben auf dem Server.</string>
 			<key>other</key>
-			<string>%d Chats löschen? Gelöschte Chats werden nicht länger in der Chat-Liste angezeigt, die Nachrichten verbleiben auf dem Server.</string>
+			<string>%d Chats löschen?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

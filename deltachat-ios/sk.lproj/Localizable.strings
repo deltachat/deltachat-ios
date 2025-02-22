@@ -253,6 +253,7 @@
 "ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
 "ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 "ask_delete_message" = "Naozaj chcete odstrániť túto správu?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
 "ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";

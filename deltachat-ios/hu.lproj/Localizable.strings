@@ -39,6 +39,8 @@
 "later" = "Később";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Újraküldés";
+"edited" = "Szerkesztve";
+"edit_message" = "Üzenet szerkesztése";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archiválás";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -101,7 +103,7 @@
 "last_week" = "Múlt héten";
 "last_month" = "Múlt hónapban";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
-"last_seen_at" = "Utoljára látta ekkor: %1$@";
+"last_seen_at" = "Utolsó megtekintés ideje: %1$@";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Utoljára látta: %1$@";
 "last_seen_unknown" = "Utoljára látta: - (ismeretlen)";
@@ -311,6 +313,7 @@
 "ask_leave_group" = "Biztosan ki akar lépni a csoportból?";
 "ask_delete_named_chat" = "Biztosan törli a következőt: „%1$@”? Többé nem fog megjelenni a csevegőlistában; üzenetei a kiszolgálón maradnak.";
 "ask_delete_message" = "Biztosan törölni szeretné ezt az üzenetet?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
@@ -1032,7 +1035,7 @@
 "delayed" = "Késleltetve";
 "notifications_avg_minutes" = "Átlagosan %1$d percenként";
 "notifications_avg_hours" = "Átlagosan %1$d óránként";
-"last_check_at" = "Ellenőrizve ekkor: %1$@";
+"last_check_at" = "Ellenőrizés ideje: %1$@";
 "system_settings" = "Rendszer-beállítások";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Típus-, kitűzők-, előnézet- és egyebek szerkesztése";
