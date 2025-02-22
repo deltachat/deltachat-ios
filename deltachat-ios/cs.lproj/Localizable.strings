@@ -270,6 +270,7 @@
 // get confirmations
 "ask_leave_group" = "Opravdu opustit tuto skupinu?";
 "ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Přepošli zprávy na adresu %1$@?";
 "ask_forward_multiple" = "Přepošli zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložit přílohu? Uložení příloh je zpřístupní ostatním aplikacím na tomto přístroji.\n\nPokračovat?";

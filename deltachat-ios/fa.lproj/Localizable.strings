@@ -303,6 +303,7 @@ https://meet.jit.si/$ROOM
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
 "ask_delete_named_chat" = "اطمینان دارید می‌خواهید «%1$@» را پاک کنید؟";
 "ask_delete_message" = "مطمئن هستید می‌خواهید این پیام را پاک کنید؟";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";

@@ -311,6 +311,7 @@
 "ask_leave_group" = "Czy na pewno chcesz opuścić tę grupę?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@”? Nie będzie on już wyświetlany na liście czatów. Jego wiadomości pozostaną na serwerze.";
 "ask_delete_message" = "Czy na pewno chcesz usunąć tę wiadomość?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";

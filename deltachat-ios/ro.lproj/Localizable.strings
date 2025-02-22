@@ -261,6 +261,7 @@
 "ask_leave_group" = "Ești sigur că vrei să părăsești acest grup?";
 "ask_delete_named_chat" = "Sunteți sigur că vreți să ștergeți \"%1$@\"?";
 "ask_delete_message" = "Sunteți sigur că doriți să ștergeți acest mesaj?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Transmiteți mesajele către %1$@?";
 "ask_forward_multiple" = "Transmiteți mesajele către %1$d chat-uri?";
 "ask_export_attachment" = "Exportul atașamentelor va permite altor aplicații de pe dispozitivul dumneavoastră să le acceseze them.\n\nContinue?";

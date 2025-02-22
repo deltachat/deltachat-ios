@@ -39,6 +39,8 @@
 "later" = "Позже";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Отправить повторно";
+"edited" = "Отредактировано";
+"edit_message" = "Редактировать сообщение";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Отправить в архив";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -311,6 +313,7 @@
 "ask_leave_group" = "Вы уверены, что хотите покинуть эту группу?";
 "ask_delete_named_chat" = "Удалить чат \"%1$@\"?? Он больше не будет виден в списке чатов, его сообщения останутся на сервере.";
 "ask_delete_message" = "Вы уверены, что хотите удалить это сообщение?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Переслать сообщения для %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
 "ask_export_attachment" = "Экспорт вложений позволит любому приложению на вашем устройстве получить к ним доступ.\n\nПродолжить?";

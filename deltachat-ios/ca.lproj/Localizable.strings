@@ -39,6 +39,8 @@
 "later" = "Després";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Torna-ho a enviar";
+"edited" = "Editat";
+"edit_message" = "Edita el missatge";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arxiva";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -311,6 +313,7 @@
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_named_chat" = "Voleu esborrar el xat «%1$@»? Ja no es mostrarà més en el llistat de xats i els missatges romandran al servidor.";
 "ask_delete_message" = "Esteu segur de voler esborrar aquest missatge?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "En exportar els adjunts permetreu que altres aplicacions del dispositiu hi puguin accedir.\n\nVoleu continuar?";
@@ -598,8 +601,8 @@
 "pref_your_name" = "El vostre nom";
 // Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
 "pref_default_status_label" = "Signatura";
-"pref_enter_sends" = "La tecla \"Intro\" envia";
-"pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla \"Intro\"";
+"pref_enter_sends" = "La tecla «Retorn» envia";
+"pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla «Retorn»";
 "pref_outgoing_media_quality" = "Qualitat del contingut multimèdia sortint";
 "pref_outgoing_balanced" = "Balancejat";
 "pref_outgoing_worse" = "Pitjor qualitat, mida petita";
@@ -636,7 +639,7 @@
 "pref_read_receipts_explain" = "Si desactiveu la confirmació de lectura dels vostres missatges, tampoc no rebreu la dels altres usuaris.";
 "pref_server" = "Servidor";
 "pref_encryption" = "Xifratge";
-"pref_manage_keys" = "Gestioneu les claus";
+"pref_manage_keys" = "Gestió de les claus";
 "pref_use_system_emoji" = "Usa els emojis del sistema";
 "pref_use_system_emoji_explain" = "Desactiva el suport de sèrie per emojis a Delta Chat";
 "pref_show_system_contacts" = "Llegeix la llibreta d\'adreces del sistema";

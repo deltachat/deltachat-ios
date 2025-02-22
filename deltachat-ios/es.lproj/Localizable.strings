@@ -309,6 +309,7 @@
 "ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
 "ask_delete_named_chat" = "¿Estás seguro de que deseas eliminar \"%1$@\"?";
 "ask_delete_message" = "¿Seguro que quieres eliminar este mensaje?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";
 "ask_export_attachment" = "Los adjuntos exportados serán accesibles desde cualquier otra aplicación en su dispositivo. ¿Continuar?";

@@ -313,6 +313,7 @@
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
 "ask_delete_named_chat" = "Elimina chat \"%1$@\"? Essa non verrà più mostrata nell\'elenco delle chat; i suoi messaggi rimarranno sul server.";
 "ask_delete_message" = "Sei sicuro di voler eliminare questo messaggio?";
+// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
