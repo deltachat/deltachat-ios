@@ -1298,15 +1298,25 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
 
+        var canDeleteForEveryone = true
+        for msgId in ids {
+            if !dcContext.getMessage(id: msgId).isFromCurrentSender {
+                canDeleteForEveryone = false
+                break
+            }
+        }
+
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: "Delete for Me", style: .destructive, handler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
-        alert.addAction(UIAlertAction(title: "Delete for Everyone", style: .destructive, handler: { _ in
-            self.dcContext.sendDeleteRequest(msgIds: ids)
-            deleteInUi(ids: ids)
-        }))
+        if canDeleteForEveryone {
+            alert.addAction(UIAlertAction(title: "Delete for Everyone", style: .destructive, handler: { _ in
+                self.dcContext.sendDeleteRequest(msgIds: ids)
+                deleteInUi(ids: ids)
+            }))
+        }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
