@@ -1299,11 +1299,15 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         var canDeleteForEveryone = true
-        for msgId in ids {
-            if !dcContext.getMessage(id: msgId).isFromCurrentSender {
-                canDeleteForEveryone = false
-                break
+        if dcChat.canSend && !dcChat.isSelfTalk {
+            for msgId in ids {
+                if !dcContext.getMessage(id: msgId).isFromCurrentSender {
+                    canDeleteForEveryone = false
+                    break
+                }
             }
+        } else {
+            canDeleteForEveryone = false
         }
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
