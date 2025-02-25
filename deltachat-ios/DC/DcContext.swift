@@ -66,6 +66,10 @@ public class DcContext {
         dc_send_edit_request(contextPointer, UInt32(msgId), newText)
     }
 
+    public func sendDeleteRequest(msgIds: [Int]) {
+        dc_send_delete_request(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
+    }
+
     public func downloadFullMessage(id: Int) {
         dc_download_full_msg(contextPointer, Int32(id))
     }
