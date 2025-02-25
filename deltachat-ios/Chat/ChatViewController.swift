@@ -1289,17 +1289,28 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func askToDeleteMessages(ids: [Int]) {
-        let title = String.localized(stringID: "ask_delete_messages", parameter: ids.count)
-        confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
-                          actionHandler: { _ in
-            self.dcContext.deleteMessages(msgIds: ids)
+        func deleteInUi(ids: [Int]) {
             if #available(iOS 17.0, *) {
                 ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }
             if self.tableView.isEditing {
                 self.setEditing(isEditing: false)
             }
-        })
+        }
+
+        let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: "Delete for Me", style: .destructive, handler: { _ in
+            self.dcContext.deleteMessages(msgIds: ids)
+            deleteInUi(ids: ids)
+        }))
+        alert.addAction(UIAlertAction(title: "Delete for Everyone", style: .destructive, handler: { _ in
+            self.dcContext.sendDeleteRequest(msgIds: ids)
+            deleteInUi(ids: ids)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
     private func askToForwardMessage() {
