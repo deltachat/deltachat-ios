@@ -2,6 +2,12 @@ import UserNotifications
 import DcCore
 
 extension UNMutableNotificationContent {
+    /// The limit for expanded notifications on iOS 14+.
+    ///
+    /// Note: The notification will be truncated at ~170 characters automatically by the system
+    /// but the rest of the characters are visible by long-pressing the notification.
+    private static var pushNotificationCharLimit = 250
+
     /// Initialiser that returns a notification for an incoming message. Returns nil if no notification should be sent (eg if chat is muted)
     convenience init?(forMessage msg: DcMsg, chat: DcChat, context: DcContext) {
         guard !context.isMuted() else { return nil }
@@ -9,7 +15,7 @@ extension UNMutableNotificationContent {
         self.init()
         let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
         title = chat.isGroup ? chat.name : sender
-        body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
+        body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: Self.pushNotificationCharLimit) ?? "")
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
@@ -22,7 +28,7 @@ extension UNMutableNotificationContent {
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isGroup && context.isMentionsEnabled) else { return nil }
         let contact = context.getContact(id: contact)
-        let summary = msg.summary(chars: 80) ?? ""
+        let summary = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
         self.init()
         title = chat.name
         body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
@@ -48,7 +54,7 @@ extension UNMutableNotificationContent {
 }
 
 extension UNMutableNotificationContent {
-    func setRelevanceScore(for msg: DcMsg, in chat: DcChat, context: DcContext) {
+    fileprivate func setRelevanceScore(for msg: DcMsg, in chat: DcChat, context: DcContext) {
         guard #available(iOS 15, *) else { return }
         relevanceScore = switch true {
         case _ where chat.visibility == DC_CHAT_VISIBILITY_PINNED: 0.9
