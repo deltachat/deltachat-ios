@@ -1301,7 +1301,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         var canDeleteForEveryone = true
         if dcChat.canSend && !dcChat.isSelfTalk {
             for msgId in ids {
-                if !dcContext.getMessage(id: msgId).isFromCurrentSender {
+                let msg = dcContext.getMessage(id: msgId)
+                if !msg.isFromCurrentSender || !msg.showPadlock() {
                     canDeleteForEveryone = false
                     break
                 }
@@ -1310,13 +1311,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             canDeleteForEveryone = false
         }
 
-        let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages_simple", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: "Delete for Me", style: .destructive, handler: { _ in
+        let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
         if canDeleteForEveryone {
-            alert.addAction(UIAlertAction(title: "Delete for Everyone", style: .destructive, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("delete_for_everyone"), style: .destructive, handler: { _ in
                 self.dcContext.sendDeleteRequest(msgIds: ids)
                 deleteInUi(ids: ids)
             }))
