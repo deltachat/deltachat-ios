@@ -114,20 +114,6 @@
 			<string>%d個のチャットを削除しますか？チャットリストには表示されなくなりますが、メッセージはサーバーに残ります。</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>こことサーバー上の%dつのメッセージを削除しますか？</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

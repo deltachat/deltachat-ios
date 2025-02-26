@@ -178,22 +178,6 @@
 			<string>Voleu esborrar %d xats? Ja no es mostraran al llistat de xats però els missatges es conservaran al servidor.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Esborra %d missatge aquí i al servidor?</string>
-			<key>other</key>
-			<string>Esborra %d missatges aquí i al servidor?</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

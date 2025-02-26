@@ -264,7 +264,7 @@
 "ask_leave_group" = "Да ли заиста желите да напустите ову групу?";
 "ask_delete_named_chat" = "Јесте ли сигурни да желите да избришете „%1$@“?";
 "ask_delete_message" = "Да ли желите да избришете ову поруку?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Да ли желите да проследите поруке %1$@?";
 "ask_forward_multiple" = "Да ли желите да проследим поруке за %1$dћаскања?";
 "ask_export_attachment" = "Извоз прилога ће омогућити другим апликацијама на вашем уређају да им приступе.\n\nДа ли желите ли да наставите?";

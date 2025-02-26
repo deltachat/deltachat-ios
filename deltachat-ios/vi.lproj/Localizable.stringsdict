@@ -142,20 +142,6 @@
 			<string>Xóa cuộc trò chuyện %d? Nó sẽ không còn được hiển thị trong danh sách trò chuyện nữa; tin nhắn của nó sẽ vẫn còn trên máy chủ.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>Xóa %d tin nhắn ở đây và trên máy chủ?</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

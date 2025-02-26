@@ -197,25 +197,7 @@
 			<key>many</key>
 			<string>Eliminare %d chats? Esse non verranno più mostrate nella lista delle chat; i loro messaggi rimarranno sul server.</string>
 			<key>other</key>
-			<string>Eliminare %d chats? Esse non verranno più mostrate nella lista delle chat; i loro messaggi rimarranno sul server.</string>
-		</dict>
-	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Eliminare %d messaggio qui e sul sever?</string>
-			<key>many</key>
-			<string>Eliminare %d messaggi qui e sul sever?</string>
-			<key>other</key>
-			<string>Eliminare %d messaggi qui e sul sever?</string>
+			<string>Eliminare %d chats?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

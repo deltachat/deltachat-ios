@@ -311,9 +311,9 @@
 "videochat_invitation_body" = "Вы приглашены в видеочат, нажмите %1$@, чтобы присоединиться.";
 // get confirmations
 "ask_leave_group" = "Вы уверены, что хотите покинуть эту группу?";
-"ask_delete_named_chat" = "Удалить чат \"%1$@\"?? Он больше не будет виден в списке чатов, его сообщения останутся на сервере.";
+"ask_delete_named_chat" = "Удалить чат \"%1$@\"?";
 "ask_delete_message" = "Вы уверены, что хотите удалить это сообщение?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Переслать сообщения для %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
 "ask_export_attachment" = "Экспорт вложений позволит любому приложению на вашем устройстве получить к ним доступ.\n\nПродолжить?";

@@ -236,7 +236,7 @@
 "ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
 "ask_delete_named_chat" = "តើអ្នកប្រាកដហើយថាចង់លុប \"%1$@\"?";
 "ask_delete_message" = "តើអ្នកប្រាកដថា ចង់លុបសារនេះ?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "បញ្ជូនសារទៅកាន់ %1$@?";
 "ask_forward_multiple" = "បញ្ជូនសារទាំងនេះទៅកាន់សន្ទនា %1$d?";
 "ask_export_attachment" = "នាំចេញឯកសារភ្ជាប់? ការនាំចេញឯកសារភ្ជាប់ នឹងអនុញ្ញាតឲ្យកម្មវិធីផ្សេងទៀត ដំណើរការនៅលើឧបករណ៍របស់អ្នក។\n\nបន្ត?";

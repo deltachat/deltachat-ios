@@ -183,6 +183,11 @@
 "menu_delete_location" = "Smazat tuto polohu?";
 "menu_message_details" = "Podrobnosti zprávy";
 "menu_copy_to_clipboard" = "Kopíruj do mezipaměti";
+"share_invite_link" = "odkaz ke sdílení pozvánky ";
+"share_invite_link_explain" = "Kdokoli s tímto odkazem může zobrazit váš profil a zahájit s vámi chat. Sdílejte je pouze s lidmi, kterým důvěřujete.";
+"invite_friends" = "Pozvěte přátele";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Kontaktujte mě na Delta Chatu:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Kopíruj výběr";
 "menu_copy_link_to_clipboard" = "Kopíruj odkaz";
 "menu_copy_text_to_clipboard" = "Zkopírujte text ";
@@ -217,6 +222,10 @@
 "select_chat" = "Vyber chat";
 "select_more" = "Vyber více";
 "menu_edit_name" = "Uprav jméno";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Nastavte přezdívku, která se vám bude zobrazovat místo \"%1$@\". Chcete-li použít zvolené jméno kontaktu, ponechte prázdné.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Přezdívka pro \"%1$@\"";
 "menu_settings" = "Nastavení";
 "menu_advanced" = "Pokročilá";
 "menu_view_profile" = "Zobraz profil";
@@ -270,7 +279,6 @@
 // get confirmations
 "ask_leave_group" = "Opravdu opustit tuto skupinu?";
 "ask_delete_named_chat" = "Skutečně úplně vymazat \"%1$@\"?";
-// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Přepošli zprávy na adresu %1$@?";
 "ask_forward_multiple" = "Přepošli zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložit přílohu? Uložení příloh je zpřístupní ostatním aplikacím na tomto přístroji.\n\nPokračovat?";

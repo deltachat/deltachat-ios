@@ -182,24 +182,6 @@
 			<string>Избриши %d ћаскањa? Они више неће бити приказани на листи ћаскања; али поруке ће остати на серверу.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Обриши %d поруку овде и са сервера.</string>
-			<key>few</key>
-			<string>Обриши %d поруке овде и са сервера.</string>
-			<key>other</key>
-			<string>Обриши %d порука овде и са сервера.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

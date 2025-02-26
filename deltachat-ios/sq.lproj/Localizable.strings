@@ -309,7 +309,7 @@
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
 "ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet “%1$@”?";
 "ask_delete_message" = "Jeni i sigurt se doni të fshihet ky mesazh?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
 "ask_export_attachment" = "Të eksportohet bashkëngjitja? Eksportimi i bashkëngjitjeve do t\’i lejojë çfarëdo aplikacioni tjetër në pajisjen tuaj t\’i përdorë ato.\n\nTë vazhdohet?";

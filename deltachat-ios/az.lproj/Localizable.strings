@@ -139,7 +139,6 @@
 "share_location_for_six_hours" = "6 saat üçün";
 // get confirmations
 "ask_leave_group" = "Bu qrupu tərk etmək istədiyinizə əminsiniz?";
-// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Mesajları yönləndirin %1$@ə-?";
 "ask_export_attachment" = "Faylı ixrac etmək? Faylların ixracı cihazınızdakı hər hansı digər tətbiqlərə daxil olmağa imkan verəcəkdir. \n\n Razısan?";
 "ask_block_contact" = "Bu kontaktı bloklamaq? Bu kontaktdan artıq mesaj qəbul etməyəcəksiniz.";

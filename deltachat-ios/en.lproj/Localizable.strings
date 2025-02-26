@@ -26,6 +26,8 @@
 "join" = "Join";
 "rejoin" = "Rejoin";
 "delete" = "Delete";
+"delete_for_me" = "Delete for Me";
+"delete_for_everyone" = "Delete for Everyone";
 "info" = "Info";
 "update" = "Update";
 "emoji" = "Emoji";
@@ -313,7 +315,7 @@
 "ask_leave_group" = "Are you sure you want to leave this group?";
 "ask_delete_named_chat" = "Delete chat \"%1$@\"?";
 "ask_delete_message" = "Are you sure you want to delete this message?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Forward messages to %1$@?";
 "ask_forward_multiple" = "Forward messages to %1$d chats?";
 "ask_export_attachment" = "Exporting attachments will allow other apps on your device to access them.\n\nContinue?";

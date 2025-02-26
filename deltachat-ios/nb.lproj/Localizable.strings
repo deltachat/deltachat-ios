@@ -176,7 +176,6 @@
 "videochat_invitation_body" = "Du er invitert til en videochat, klikk %1$@ for å bli med.";
 // get confirmations
 "ask_leave_group" = "Er du sikker på at du vil forlate denne gruppen?";
-// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Videresend meldinger til %1$@?";
 "ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
 "ask_export_attachment" = "Eksporter vedlegg? Eksport av vedlegg vil gi andre apper på din enhet tilgang til dem\n\nFortsett?";

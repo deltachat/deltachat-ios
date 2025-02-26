@@ -26,6 +26,8 @@
 "join" = "Teilnehmen";
 "rejoin" = "Öffnen";
 "delete" = "Löschen";
+"delete_for_me" = "Für mich löschen";
+"delete_for_everyone" = "Für alle löschen";
 "info" = "Info";
 "update" = "Aktualisieren";
 "emoji" = "Emoji";
@@ -313,7 +315,7 @@
 "ask_leave_group" = "Diese Gruppe verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" löschen?";
 "ask_delete_message" = "Möchten Sie diese Nachricht wirklich löschen?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
 "ask_export_attachment" = "Das Exportieren von Anhängen ermöglicht es allen anderen Anwendungen auf Ihrem Gerät, auf diese zuzugreifen.\n\nFortfahren? ";

@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Nachricht lokal und vom Server löschen?</string>
+			<string>%d Nachricht von allen Geräten löschen?</string>
 			<key>other</key>
-			<string>%d Nachrichten lokal und vom Server löschen?</string>
+			<string>%d Nachrichten von allen Geräten löschen?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

@@ -250,7 +250,7 @@
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_delete_named_chat" = "Ar tikrai norite ištrinti „%1$@“?";
 "ask_delete_message" = "Ar tikrai norite ištrinti šią žinutę?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";

@@ -288,7 +288,7 @@
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 "ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
 "ask_delete_message" = "Är du säker på att du vill radera detta meddelande?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";

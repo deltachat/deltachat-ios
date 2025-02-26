@@ -210,7 +210,7 @@
 "menu_copy_to_clipboard" = "Vágólapra másolás";
 "share_invite_link" = "Meghívó-hivatkozás megosztása";
 "share_invite_link_explain" = "Ezen a hivatkozáson keresztül bárki megtekintheti az Ön profilját, és csevegést kezdeményezhet Önnel. Csak olyan emberekkel ossza meg, akikben megbízik.";
-"invite_friends" = "Ismerősök meghívása";
+"invite_friends" = "Partnerek meghívása";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Lépjen kapcsolatba velem a Delta Chaten:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Kiválasztott(ak) másolása";
@@ -248,7 +248,7 @@
 "select_more" = "Továbbiak kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
-"edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű ismerősének. Hagyja üresen az ismerőse által választott név megjelenítéséhez.";
+"edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű partnerének. Hagyja üresen a partnere által választott név megjelenítéséhez.";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
 "edit_name_placeholder" = "Becenév megadása „%1$@“ számára";
 "menu_settings" = "Beállítások";
@@ -267,7 +267,7 @@
 "device_talk" = "Eszközüzenetek";
 "device_talk_subtitle" = "Helyileg előállított üzenetek";
 "device_talk_explain" = "Az üzenetek ebben a csevegésben az Ön készülékén kerülnek előállításra, hogy tájoékoztassák Önt az alkalmazás frissítéseiről és a használat közben felmerülő problémákról.";
-"device_talk_welcome_message2" = "Lépjen kapcsolatba az ismerőseivel!\n\n🙌 Koppintson a „QR-kódra” mind a két eszköz főképernyőjén. Válassza a „QR-kód beolvasása” lehetőséget az egyik eszközön, és irányítsa a másik eszközre\n\n🌍 Ha nem ugyanabban a szobában tartózkodnak az ismerősével, akkor olvassa be a QR-kódját egy videohíváson keresztül, vagy ossza meg a meghívó-hivatkozást a „QR-kód bolvasása”-ból.\n\nMajd: Élvezze az üzenetküldés-élményt a valaha létezett legnagyobb decentralizált hálózaton keresztül, ami az e-mail és - más népszerű alkalmazásokkal ellentétben - központi kiszolgáló vagy nyomon követés nélkül, illetve anélkül, hogy önt, ismerőseit, kollégáit vagy családját nagy szervezeteknek adná el.";
+"device_talk_welcome_message2" = "Lépjen kapcsolatba a partnereivel!\n\n🙌 Koppintson a „QR-kódra” mind a két eszköz főképernyőjén. Válassza a „QR-kód beolvasása” lehetőséget az egyik eszközön, és irányítsa a másik eszközre\n\n🌍 Ha nem ugyanabban a szobában tartózkodnak a partnerével, akkor olvassa be a QR-kódját egy videohíváson keresztül, vagy ossza meg a meghívó-hivatkozást a „QR-kód bolvasása”-ból.\n\nMajd: Élvezze az üzenetküldés-élményt a valaha létezett legnagyobb decentralizált hálózaton keresztül, ami az e-mail és - más népszerű alkalmazásokkal ellentétben - központi kiszolgáló vagy nyomon követés nélkül, illetve anélkül, hogy önt, partnereit, kollégáit vagy családját nagy szervezeteknek adná el.";
 "edit_contact" = "Névjegy szerkesztése";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Csevegés kitűzése";
@@ -313,14 +313,14 @@
 "ask_leave_group" = "Biztosan ki akar lépni a csoportból?";
 "ask_delete_named_chat" = "Biztosan törli a következőt: „%1$@”? Többé nem fog megjelenni a csevegőlistában; üzenetei a kiszolgálón maradnak.";
 "ask_delete_message" = "Biztosan törölni szeretné ezt az üzenetet?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
-"ask_block_contact" = "Letiltja ezt az ismerősét? Többé nem fog üzeneteket kapni tőle.";
-"ask_unblock_contact" = "Feloldja ennek az ismerősének a letiltását? Ezután képes lesz üzeneteket fogadni tőle.";
+"ask_block_contact" = "Letiltja ezt a partnerét? Többé nem fog üzeneteket kapni tőle.";
+"ask_unblock_contact" = "Feloldja ennek a partnerének a letiltását? Ezután képes lesz üzeneteket fogadni tőle.";
 "ask_delete_contacts" = "Névjegy törlése?\n\nA folyamatban lévő csevegésekkel rendelkező vagy a rendszer névjegyzékéből származó névjegyek nem törölhetők véglegesen.";
-"ask_delete_contact" = "%1$@ nevű ismerősének tölése?\n\nA folyamatban lévő csevegésekkel rendelkező vagy a rendszer névjegyzékéből származó ismerősök nem törölhetők véglegesen.";
+"ask_delete_contact" = "Törli a(z) %1$@ nevű partnerét?\n\nA folyamatban lévő csevegésekkel rendelkező vagy a rendszer névjegyzékéből származó partnerek nem törölhetők véglegesen.";
 "cannot_delete_contacts_in_use" = "A folyamatban lévő csevegésekkel rendelkező névjegyek nem törölhetők.";
 "ask_start_chat_with" = "Csevegés vele: %1$@?";
 "ask_delete_value" = "%1$@ törlése?";
@@ -380,7 +380,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Üzenet küldése…";
 "enable_realtime" = "Valós idejű alkalmazások";
-"enable_realtime_explain" = "Valós idejű kapcsolatok engedélyezése a csevegésekben megosztott alkalmazásokhoz. Ha engedélyezve van, az ismerősei képesek lehetnek felfedezni az Ön IP-címét, amikor elindít egy alkalmazást.";
+"enable_realtime_explain" = "Valós idejű kapcsolatok engedélyezése a csevegésekben megosztott alkalmazásokhoz. Ha engedélyezve van, a partnerei képesek lehetnek felfedezni az Ön IP-címét, amikor elindít egy alkalmazást.";
 // map
 "filter_map_on_time" = "Helyszínek megjelenítése időkeretben";
 "show_location_traces" = "Nyomvonalak megjelenítése";
@@ -443,7 +443,7 @@
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét a következőről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani ismerősei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail szolgáltatója továbbítsa-e az összes e-mailt e-mail-címére. Ellenkező esetben lemaradhat azoknak az ismerőseinek az üzeneteiről, akik még nem kapták meg az új címét.";
+"aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani partnerei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail-szolgáltatója továbbítsa-e az összes e-mailt az e-mail-címére. Ellenkező esetben lemaradhat azoknak a partnereinek az üzeneteiről, akik még nem kapták meg az új címét.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Második eszköz hozzáadása";
@@ -522,7 +522,7 @@
 "login_header" = "Jelentkezzen be az e-mail-fiókjába";
 // for classic email, we use the classical term "Account"
 "login_explain" = "Bejelentkezés meglévő e-mail-fiókkal";
-"login_subheader" = "Az ismert e-mail szolgáltatók esetében a rendszer automatikus beállításokat hoz létre. Kivételes esetekben az IMAP-ot engedélyezni kell az e-mail szolgáltatójának webes beállításaiban. Forduljon az e-mail szolgáltatójához vagy ismerőseihez további segítségért.";
+"login_subheader" = "Az ismert e-mail-szolgáltatók esetében a rendszer automatikus beállításokat hoz létre. Kivételes esetekben az IMAP-ot engedélyezni kell az e-mail-szolgáltatójának webes beállításaiban. Forduljon az e-mail-szolgáltatójához vagy partnereihez további segítségért.";
 "login_no_servers_hint" = "A Delta Chat nem gyűjt felhasználói adatokat, az Ön összes adata az eszközén van tárolva.";
 "login_inbox" = "Bejövő";
 "login_imap_login" = "IMAP bejelentkezési név";
@@ -547,7 +547,7 @@
 "proxy_delete" = "Proxy törlése";
 "proxy_delete_explain" = "Biztosan törli a következőt: „%1$@”?";
 "proxy_use_proxy_confirm" = "Biztosan használni akarja a következő proxyt: „%1$@”?";
-"proxy_share_explain" = "Az ismerősei a QR-kód beolvasásával hozzáadhatják ezt a proxyt.";
+"proxy_share_explain" = "A partnerei a QR-kód beolvasásával hozzáadhatják ezt a proxyt.";
 "proxy_share_link" = "Hivatkozás megosztása";
 "login_info_oauth2_title" = "Folytatja az egyszerűsített beállítást?";
 "login_info_oauth2_text" = "A megadott e-mail-cím támogatja az egyszerűsített beállítást (OAuth 2.0).\n\nA következő lépésben engedélyezze a Delta Chat számára, hogy az e-mailen keresztüli csevegés alkalmazásaként működjön.\n\nA Delta Chat nem gyűjt felhasználói adatokat, az Ön összes adata az eszközén van tárolva.";
@@ -643,7 +643,7 @@
 "pref_use_system_emoji" = "Rendszeremodzsik használata";
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emodzsi-támogatásának letiltása";
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
-"pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó ismerőseivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
+"pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó partnereivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
 "pref_app_access" = "Alkalmazás-hozzáférés";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
@@ -684,7 +684,7 @@
 "pref_only_fetch_mvbox_explain" = "Más mappák figyelmen kívül hagyása. A kiszolgálónak a DeltaChat nevű mappába kell áthelyeznie a csevegőüzeneteket.";
 "pref_show_emails" = "Klasszikus e-mailek megjelenítése";
 "pref_show_emails_no" = "Nem, csak csevegések";
-"pref_show_emails_accepted_contacts" = "Elfogadott ismerősök számára";
+"pref_show_emails_accepted_contacts" = "Elfogadott partnerek számára";
 "pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
 "pref_on_demand_location_streaming" = "On-Demand folyamatos helyszín megosztás";
@@ -841,18 +841,18 @@
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ egy másik eszközről küldött üzenetet.";
 "chat_protection_enabled_tap_to_learn_more" = "Az üzenetek mostantól garantáltan titkosítva lesznek a végpontok között. Koppintson, ha többet szeretne tudni.";
-"chat_protection_enabled_explanation" = "Mostantól garantált, hogy ebben a csevegésben az összes üzenet végpontok közötti titkosítással rendelkezik.\n\nA végpontok közötti titkosítással az üzenetek bizalmasak maradnak Ön és az ismerősei között. Még az e-mail szolgáltatója sem tudja elolvasni őket.";
+"chat_protection_enabled_explanation" = "Mostantól garantált, hogy ebben a csevegésben az összes üzenet végpontok közötti titkosítással rendelkezik.\n\nA végpontok közötti titkosítással az üzenetek bizalmasak maradnak Ön és a partnerei között. Még az e-mail-szolgáltatója sem tudja elolvasni őket.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ egy másik eszközről küldött üzenetet. Koppintson, ha többet szeretne tudni.";
 "chat_protection_broken_explanation" = "A végpontok közötti titkosítás már nem garantálható, valószínűleg azért, mert %1$@ újratelepítette a Delta Chatet, vagy egy másik eszközről küldött üzenetet.\n\n Személyesen találkozhat vele, és újra beolvashatja a QR-kódját a garantált végpontok közötti titkosítás visszaállításához.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ A(z) %1$@ végpontok közötti titkosítást igényel, ami még nincs beállítva erre a csevegésre. Koppintson, ha többet szeretne megtudni.";
-"invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat az ismerőseivel, és a QR-kódjukat beolvasva bemutathatja őket.";
+"invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat a partnereivel, és a QR-kódjukat beolvasva bemutathatja őket.";
 "learn_more" = "Tudjon meg többet";
 "devicemsg_self_deleted" = "Ön törölte a „Mentett üzenetek” csevegést.\n\nℹ️ A „Mentett üzenetek” funkció újbóli használatához hozzon létre egy új csevegést önmagával.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Az e-mail szolgáltatójától kapott tárhelye hamarosan megtelik: %1$@%% már felhasználásra került.\n\n\nElképzelhető, hogy nem tud üzeneteket fogadni, ha a tárhelye megtelt.\n\n👉 Ellenőrizze, hogy a szolgáltatója webes felületén tudja-e törölni a DeltaChat-mappából az üzeneteket, és fontolja meg a „Beállítások / Csevegések és média / Üzenetek törlése a kiszolgálóról” engedélyezését. Az aktuális tárhelyhasználatot bármikor ellenőrizheti a „Beállítások / Tárhely” menüpontban.";
+"devicemsg_storage_exceeding" = "⚠️ Az e-mail-szolgáltatójától kapott tárhelye hamarosan megtelik: %1$@%% már felhasználásra került.\n\n\nElképzelhető, hogy nem tud üzeneteket fogadni, ha a tárhelye megtelt.\n\n👉 Ellenőrizze, hogy a szolgáltatója webes felületén tudja-e törölni a DeltaChat-mappából az üzeneteket, és fontolja meg a „Beállítások / Csevegések és média / Üzenetek törlése a kiszolgálóról” engedélyezését. Az aktuális tárhelyhasználatot bármikor ellenőrizheti a „Beállítások / Tárhely” menüpontban.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Az eszközén lévő dátum vagy idő pontatlannak tűnik (%1$@).\n\nJavítsa meg az órát ⏰🔧 az üzenetek helyes fogadásának biztosítása érdekében.";
-"devicemsg_update_reminder" = "⚠️ Lehet, hogy a Delta Chat verziója elavult.\n\nEz problémákat okozhat, mivel az ismerősei újabb verziókat használnak - továbbá hiányoznak a legújabb funkciók 😳\nEllenőrizze a https://get.delta.chat oldalon vagy az alkalmazásboltban a frissítéseket.";
+"devicemsg_update_reminder" = "⚠️ Lehet, hogy a Delta Chat verziója elavult.\n\nEz problémákat okozhat, mivel a partnerei újabb verziókat használnak - továbbá hiányoznak a legújabb funkciók 😳\nEllenőrizze a https://get.delta.chat oldalon vagy az alkalmazásboltban a frissítéseket.";
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Feloldás a folytatáshoz";
 // qr code stuff
@@ -887,7 +887,7 @@
 "qrshow_join_contact_no_connection_toast" = "Nincs internetkapcsolat, nem lehet elvégezni a QR-kód beállítását.";
 "qraccount_ask_create_and_login" = "Új profil létrehozása a(z) „%1$@” oldalon és bejelentkezés ott?";
 "qraccount_ask_create_and_login_another" = "Új profil létrehozása a(z) „%1$@” oldalon, és bejelentkezés ott?\n\nA meglévő profilja nem törlődik. A „Profilváltás” elemmel válthat a profiljai között.";
-"set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet az ismerősei felismernek. Beállíthat egy profilképet is.";
+"set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet a partnerei felismernek. Beállíthat egy profilképet is.";
 "please_enter_name" = "Adjon meg egy nevet.";
 "qraccount_qr_code_cannot_be_used" = "A beolvasott QR-kód nem használható új profil beállítására.";
 // the placeholder will be replaced by the e-mail address of the profile
@@ -907,7 +907,7 @@
 "verified_by_you" = "Ön által bemutatva";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Megváltoztatta a beállításokat %1$@ számára.";
-"verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat az ismerőseivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
+"verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
 "copy_qr_data_success" = "QR-kód-webcím másolása a vágólapra";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat

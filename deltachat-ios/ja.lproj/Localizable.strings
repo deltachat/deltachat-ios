@@ -222,7 +222,6 @@
 "ask_leave_group" = "本当に退室しますか";
 "ask_delete_named_chat" = "%1$@を削除してよろしいですか？";
 "ask_delete_message" = "メッセージを削除してもよろしいですか？";
-// deprecated, use ask_delete_messages_simple
 "ask_forward" = "%1$@にメッセージを転送しますか？";
 "ask_forward_multiple" = "%1$dチャットにメッセージを転送しますか？";
 "ask_export_attachment" = "添付ファイルをエクスポートしますか？添付ファイルをエクスポートすると、他のアプリからもアクセスできるようになります。\n\nよろしいですか？";

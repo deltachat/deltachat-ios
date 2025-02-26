@@ -213,33 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Удалить %d чат? Он больше не будет виден в списке чатов, его сообщения останутся на сервере.</string>
+			<string>Удалить %d чат?</string>
 			<key>few</key>
-			<string>Удалить %d чата? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
+			<string>Удалить %d чата?</string>
 			<key>many</key>
-			<string>Удалить %d чатов? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
+			<string>Удалить %d чатов?</string>
 			<key>other</key>
-			<string>Удалить %d чатов? Они больше не будут видны в списке чатов, их сообщения останутся на сервере.</string>
-		</dict>
-	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Удалить %d сообщение локально и на сервере?</string>
-			<key>few</key>
-			<string>Удалить %d сообщения локально и на сервере?</string>
-			<key>many</key>
-			<string>Удалить %d сообщений локально и на сервере?</string>
-			<key>other</key>
-			<string>Удалить %d сообщений локально и на сервере?</string>
+			<string>Удалить %d чатов?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

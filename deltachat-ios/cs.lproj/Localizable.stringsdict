@@ -162,26 +162,6 @@
 			<string>Vymazat %d hovorů? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Vymaž %d zprávu zde i ze serveru?</string>
-			<key>few</key>
-			<string>Vymaž %d zprávy zde i ze serveru?</string>
-			<key>many</key>
-			<string>Vymaž %d zpráv zde i ze serveru?</string>
-			<key>other</key>
-			<string>Vymaž %d zpráv zde i ze serveru?</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
