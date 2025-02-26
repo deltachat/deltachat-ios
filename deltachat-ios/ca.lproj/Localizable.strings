@@ -313,7 +313,7 @@
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_named_chat" = "Voleu esborrar el xat «%1$@»? Ja no es mostrarà més en el llistat de xats i els missatges romandran al servidor.";
 "ask_delete_message" = "Esteu segur de voler esborrar aquest missatge?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "En exportar els adjunts permetreu que altres aplicacions del dispositiu hi puguin accedir.\n\nVoleu continuar?";

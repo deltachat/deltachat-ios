@@ -204,6 +204,7 @@
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
 "videochat" = "گوفت ۉ لوفت ویدیویی";
 "videochat_invitation" = "موکش و گوفت ۉ لوفت ویدیویی";
+// deprecated, use ask_delete_messages
 "ask_start_chat_with" = "گوفت ۉ لوفت وا %1$@؟";
 "ask_delete_value" = "پاک کردن %1$@؟";
 // %1$s is replaced by a comma-separated list of names

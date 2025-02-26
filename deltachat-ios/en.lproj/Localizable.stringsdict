@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d message here and on the server?</string>
+			<string>Delete %d message on all your devices?</string>
 			<key>other</key>
-			<string>Delete %d messages here and on the server?</string>
+			<string>Delete %d messages on all your devices?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

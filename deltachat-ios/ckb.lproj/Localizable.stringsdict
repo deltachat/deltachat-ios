@@ -130,22 +130,6 @@
 			<string>%d وتووێژ دەسڕیتەوە؟ ئیدی لە نێو لیستەی وتووێژەکاندا دیار نامێنن، بەڵام پەیامەکانیان لەسەر سێرڤەر دەمێنێتەوە.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>دەتەوێت ئەم %d پەیامە لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
-			<key>other</key>
-			<string>دەتەوێت ئەم %d پەیامە لێرە و لەسەر سێرڤەر بسڕیتەوە؟</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

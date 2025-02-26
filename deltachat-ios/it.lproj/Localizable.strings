@@ -311,9 +311,9 @@
 "videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
-"ask_delete_named_chat" = "Elimina chat \"%1$@\"? Essa non verrà più mostrata nell\'elenco delle chat; i suoi messaggi rimarranno sul server.";
+"ask_delete_named_chat" = "Elimina chat \"%1$@\"?";
 "ask_delete_message" = "Sei sicuro di voler eliminare questo messaggio?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
@@ -675,7 +675,7 @@
 "pref_imap_folder_handling" = "Gestione Cartella IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Se modifichi questa opzione, assicurati che il tuo server e gli altri client siano configurati di conseguenza.\n\nAltrimenti le cose potrebbero non funzionare affatto.";
 "pref_watch_sent_folder" = "Controlla Cartella Inviata";
-"pref_send_copy_to_self" = "Invia Copia a Me";
+"pref_send_copy_to_self" = "Invia Copia a Te Stesso";
 // for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo profilo su più dispositivi.";
 "pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";

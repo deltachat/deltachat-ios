@@ -313,7 +313,7 @@
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
 "ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
 "ask_delete_message" = "Weet je zeker dat je dit bericht wilt verwijderen?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";

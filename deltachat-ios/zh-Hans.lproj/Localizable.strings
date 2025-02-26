@@ -313,7 +313,7 @@
 "ask_leave_group" = "您确定要离开此群组吗？";
 "ask_delete_named_chat" = "删除聊天“%1$@”？它将不再显示在聊天列表中，其消息将保留在服务器上。";
 "ask_delete_message" = "您确定要删除这条消息吗？";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件将允许您设备上的其他应用程序访问这些附件。\n\n是否继续？";

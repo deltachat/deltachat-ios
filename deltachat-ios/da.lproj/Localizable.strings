@@ -219,7 +219,7 @@
 "ask_leave_group" = "Forlad denne gruppe?";
 "ask_delete_named_chat" = "Er du sikker på at du vil slette \"%1$@\"?";
 "ask_delete_message" = "Er du sikker på at du vil slette denne besked?";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";
 "ask_export_attachment" = "Eksportér vedhæftninger? Eksport af vedhæftninger vil tillade alle programmer på din enhed adgang til dem.\n\nFortsæt?";

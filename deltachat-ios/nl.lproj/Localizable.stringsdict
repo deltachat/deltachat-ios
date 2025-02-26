@@ -173,25 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Wil je %d gesprek verwijderen? Het gesprek wordt niet langer getoond in de gesprekslijst, maar de berichten blijven bewaard op de server.</string>
+			<string>Wil je %d gesprek verwijderen?</string>
 			<key>other</key>
-			<string>Wil je %d gesprekken verwijderen? Ze worden niet langer getoond in de gesprekslijst, maar de berichten blijven bewaard op de server.</string>
-		</dict>
-	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Wil je %d bericht verwijderen, zowel hier als op de server?</string>
-			<key>other</key>
-			<string>Wil je %d berichten verwijderen, zowel hier als op de server?</string>
+			<string>Wil je %d gesprekken verwijderen?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

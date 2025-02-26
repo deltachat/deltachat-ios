@@ -114,22 +114,6 @@
 			<string>Ezabatu %d txat? Ez dira gehiago agertuko txaten zerrendan, mezuak zerbitzarian mantenduko dira.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Ezabatu mezu  %d hemen eta zerbitzarian?</string>
-			<key>other</key>
-			<string>Ezabatu  %dmezu hemen eta zerbitzarian?</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

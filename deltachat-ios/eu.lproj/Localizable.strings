@@ -158,7 +158,6 @@
 "file_saved_to" = "Fitxategia \"%1$@\" helbidean gordeta";
 // get confirmations
 "ask_leave_group" = "Ziur talde honetatik atera nahi duzula?";
-// deprecated, use ask_delete_messages_simple
 "ask_forward" = "Birbidali mezuak %1$@ erabiltzaileari?";
 "ask_export_attachment" = "Esportatu eranskina? Eranskinak esportatzeak zure beste gailuko beste aplikazioek atzitzea ahalbidetuko du.\n\nJarraitu?";
 "ask_block_contact" = "Blokeatu kontaktu hau? Ez dituzu kontaktu honen mezu gehiago jasoko.";

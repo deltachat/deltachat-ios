@@ -297,7 +297,7 @@
 "ask_leave_group" = "確定要離開本群組？";
 "ask_delete_named_chat" = "你確定你要刪除「%1$@」？";
 "ask_delete_message" = "你確定要刪除這則訊息？";
-// deprecated, use ask_delete_messages_simple
+// deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";

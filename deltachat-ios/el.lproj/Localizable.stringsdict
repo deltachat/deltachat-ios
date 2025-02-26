@@ -162,22 +162,6 @@
 			<string>Διαγραφή %d συνομιλιών; Δεν θα εμφανίζονται πλέον στη λίστα συνομιλιών, αλλά τα μηνύματά τους θα παραμείνουν στον διακομιστή.</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Διαγραφή %d μηνύματος εδώ και στον διακομιστη;</string>
-			<key>other</key>
-			<string>Διαγραφή %d μηνυμάτων εδώ και στον διακομιστη;</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
