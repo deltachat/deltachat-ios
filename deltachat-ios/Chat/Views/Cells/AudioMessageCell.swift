@@ -50,9 +50,9 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
             mainContentView.spacing = 0
         }
         if msg.type == DC_MSG_VOICE {
-            accessibilityLabel = String.localized("voice_message")
+            a11yDcType = String.localized("voice_message")
         } else {
-            accessibilityLabel = String.localized("audio")
+            a11yDcType = String.localized("audio")
         }
         
         delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] messageId, duration in
