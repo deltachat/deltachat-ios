@@ -26,7 +26,14 @@ public class QuotePreview: DraftPreview {
     }
 
     override public func configure(draft: DraftModel) {
-        if !draft.isEditing,
+        if !draft.isEditing, let sendEditRequestFor = draft.sendEditRequestFor {
+            quoteView.senderTitle.text = String.localized("edit_message")
+            quoteView.senderTitle.textColor = DcColors.unknownSender
+            quoteView.quote.text = draft.dcContext.getMessage(id: sendEditRequestFor).text
+            quoteView.setImagePreview(nil)
+            quoteView.citeBar.backgroundColor = DcColors.unknownSender
+            isHidden = false
+        } else if !draft.isEditing,
            let quoteText = draft.quoteText {
             quoteView.quote.text = quoteText
             compactView = draft.attachment != nil
