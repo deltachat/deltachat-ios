@@ -93,30 +93,18 @@ public class NotificationManager {
         }
 
         DispatchQueue.global().async { [weak self] in
-            guard let self, let ui = notification.userInfo, let accountId = ui["account_id"] as? Int else { return }
+            guard let self,
+                  let accountId = notification.userInfo?["account_id"] as? Int,
+                  let chatId = notification.userInfo?["chat_id"] as? Int,
+                  let messageId = notification.userInfo?["message_id"] as? Int
+            else { return }
             let eventContext = dcAccounts.get(id: accountId)
-            if let chatId = ui["chat_id"] as? Int,
-               let messageId = ui["message_id"] as? Int,
-               !eventContext.isMuted() {
-
-                let chat = eventContext.getChat(chatId: chatId)
-                let msg = eventContext.getMessage(id: messageId)
-
-                if !chat.isMuted || (chat.isGroup && msg.isReplyToSelf && eventContext.isMentionsEnabled) {
-                    let fromContact = eventContext.getContact(id: msg.fromContactId)
-                    let sender = msg.getSenderName(fromContact)
-                    let content = UNMutableNotificationContent()
-                    content.title = chat.isGroup ? chat.name : sender
-                    content.body = (chat.isGroup ? "\(sender): " : "") + (msg.summary(chars: 80) ?? "")
-                    content.userInfo["account_id"] = eventContext.id
-                    content.userInfo["chat_id"] = chat.id
-                    content.userInfo["message_id"] = msg.id
-                    content.sound = .default
-
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                    logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
-                }
+            let chat = eventContext.getChat(chatId: chatId)
+            let msg = eventContext.getMessage(id: messageId)
+            if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
             }
 
             // this line should always be reached
@@ -131,26 +119,18 @@ public class NotificationManager {
         }
 
         DispatchQueue.global().async { [weak self] in
-            guard let self, let ui = notification.userInfo else { return }
-            let eventContext = dcAccounts.get(id: ui["account_id"] as? Int ?? 0)
-            if !eventContext.isMuted() {
-                let msg = eventContext.getMessage(id: ui["msg_id"] as? Int ?? 0)
-                let chat = eventContext.getChat(chatId: msg.chatId)
-                if !chat.isMuted || (chat.isGroup && eventContext.isMentionsEnabled) {
-                    let contact = eventContext.getContact(id: ui["contact_id"] as? Int ?? 0)
-                    let summary = (msg.summary(chars: 80) ?? "")
-                    let reaction = ui["reaction"] as? String ?? ""
-
-                    let content = UNMutableNotificationContent()
-                    content.title = chat.name
-                    content.body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
-                    content.userInfo["account_id"] = eventContext.id
-                    content.userInfo["chat_id"] = chat.id
-                    content.userInfo["message_id"] = msg.id
-
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                }
+            guard let self,
+                  let accountId = notification.userInfo?["account_id"] as? Int,
+                  let msgId = notification.userInfo?["msg_id"] as? Int,
+                  let reaction = notification.userInfo?["reaction"] as? String,
+                  let contact = notification.userInfo?["contact_id"] as? Int
+            else { return }
+            let eventContext = dcAccounts.get(id: accountId)
+            let msg = eventContext.getMessage(id: msgId)
+            let chat = eventContext.getChat(chatId: msg.chatId)
+            if let content = UNMutableNotificationContent(forReaction: reaction, from: contact, msg: msg, chat: chat, context: eventContext) {
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
 
             UIApplication.shared.endBackgroundTask(backgroundTask) // this line must be reached to balance call to `beginBackgroundTask` above
@@ -163,22 +143,17 @@ public class NotificationManager {
         }
 
         DispatchQueue.global().async { [weak self] in
-            guard let self, let ui = notification.userInfo else { return }
-            let eventContext = dcAccounts.get(id: ui["account_id"] as? Int ?? 0)
-            if !eventContext.isMuted() {
-                let msg = eventContext.getMessage(id: ui["msg_id"] as? Int ?? 0)
-                let chat = eventContext.getChat(chatId: msg.chatId)
-                if !chat.isMuted || (chat.isGroup && eventContext.isMentionsEnabled) {
-                    let content = UNMutableNotificationContent()
-                    content.title = chat.name
-                    content.body = msg.getWebxdcAppName() + ": " + (ui["text"] as? String ?? "")
-                    content.userInfo["account_id"] = eventContext.id
-                    content.userInfo["chat_id"] = chat.id
-                    content.userInfo["message_id"] = msg.id
-
-                    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                }
+            guard let self,
+                  let accountId = notification.userInfo?["account_id"] as? Int,
+                  let msgId = notification.userInfo?["msg_id"] as? Int,
+                  let text = notification.userInfo?["text"] as? String
+            else { return }
+            let eventContext = dcAccounts.get(id: accountId)
+            let msg = eventContext.getMessage(id: msgId)
+            let chat = eventContext.getChat(chatId: msg.chatId)
+            if let content = UNMutableNotificationContent(forWebxdcNotification: text, msg: msg, chat: chat, context: eventContext) {
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
 
             UIApplication.shared.endBackgroundTask(backgroundTask) // this line must be reached to balance call to `beginBackgroundTask` above
