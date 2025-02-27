@@ -7,6 +7,7 @@
 - Tweak menu order (#2604)
 - Save space by Deduplicating files on sending (#2612)
 - Accessibility: voice over reads a reaction summary for messages (#2608)
+- detect incompatible profiles from newer app version when importing them
 - Prepare the app for receiving edited messages (#6550)
 - Prepare the app for receiving message deletion requests (#6550)
 - Fix: Hide read-only chats on forwarding and sort list accordingly (#2436)

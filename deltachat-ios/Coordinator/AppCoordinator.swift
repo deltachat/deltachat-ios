@@ -377,11 +377,16 @@ class AppCoordinator: NSObject {
             }))
             viewController.present(alert, animated: true, completion: nil)
 
-        case DC_QR_BACKUP, DC_QR_BACKUP2:
+        case DC_QR_BACKUP2:
             // alert is shown in WelcomeViewController
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             _ = dcAccounts.add()
             appDelegate.reloadDcContext(accountCode: code)
+
+        case DC_QR_BACKUP_TOO_NEW:
+            let alert = UIAlertController(title: String.localized("multidevice_receiver_needs_update"), message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+            viewController.present(alert, animated: true)
 
         case DC_QR_WEBRTC_INSTANCE:
             guard let domain = qrParsed.text1 else { return }
@@ -498,7 +503,7 @@ class AppCoordinator: NSObject {
 
         if let accountCode {
             let qr = dcAccounts.getSelected().checkQR(qrCode: accountCode)
-            if qr.state == DC_QR_BACKUP || qr.state == DC_QR_BACKUP2 {
+            if qr.state == DC_QR_BACKUP2 || qr.state == DC_QR_BACKUP_TOO_NEW {
                 viewControllers = [WelcomeViewController(dcAccounts: dcAccounts, accountCode: accountCode)]
             } else {
                 viewControllers = [

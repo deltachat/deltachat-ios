@@ -230,10 +230,12 @@ class WelcomeViewController: UIViewController {
 extension WelcomeViewController: QrCodeReaderDelegate {
     func handleQrCode(_ qrCode: String) {
         let lot = dcContext.checkQR(qrCode: qrCode)
-        if lot.state == DC_QR_BACKUP || lot.state == DC_QR_BACKUP2 {
+        if lot.state == DC_QR_BACKUP2 {
             confirmSetupNewDevice(qrCode: qrCode)
+        } else if lot.state == DC_QR_BACKUP_TOO_NEW {
+            qrErrorAlert(title: String.localized("multidevice_receiver_needs_update"))
         } else {
-            qrErrorAlert()
+            qrErrorAlert(title: String.localized("qraccount_qr_code_cannot_be_used"), message: dcContext.lastErrorString)
         }
     }
 
@@ -282,9 +284,8 @@ extension WelcomeViewController: QrCodeReaderDelegate {
         }
     }
 
-    private func qrErrorAlert() {
-        let title = String.localized("qraccount_qr_code_cannot_be_used")
-        let alert = UIAlertController(title: title, message: dcContext.lastErrorString, preferredStyle: .alert)
+    private func qrErrorAlert(title: String, message: String? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(
             title: String.localized("ok"),
             style: .default,
