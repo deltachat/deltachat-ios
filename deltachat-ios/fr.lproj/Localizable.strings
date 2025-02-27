@@ -24,6 +24,8 @@
 "join" = "Rejoindre";
 "rejoin" = "Réintégrer";
 "delete" = "Supprimer";
+"delete_for_me" = "Supprimer pour moi";
+"delete_for_everyone" = "Supprimer pour tout le monde";
 "info" = "Info";
 "update" = "Mise à jour";
 "emoji" = "Émoji";
@@ -36,6 +38,8 @@
 "later" = "Plus tard";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Renvoyer";
+"edited" = "Modifié";
+"edit_message" = "Modifier le message";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archiver";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -145,6 +149,7 @@
 "games" = "Jeux";
 "tools" = "Outils";
 "app_size" = "Taille";
+"app_date_published" = "Publié";
 "add_to_chat" = "Ajouter à la discussion";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Explorer";
@@ -238,6 +243,8 @@
 "select_chat" = "Sélectionnez une discussion";
 "select_more" = "Sélectionner plus";
 "menu_edit_name" = "Modifier le nom";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Choisir un surnom qui s\'affichera à la place de « %1$@ ». Laisser cet espace vide pour utiliser le nom choisi par le contact.";
 // The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
 "edit_name_placeholder" = "Surnom de \"%1$@\"";
 "menu_settings" = "Paramètres";
@@ -531,6 +538,7 @@
 "proxy_invalid" = "Proxy invalide ou non supporté";
 "proxy_list_header" = "Sauver les proxy";
 "proxy_delete" = "Effacer le proxy";
+"proxy_delete_explain" = "Voulez-vous vraiment supprimer « %1$@ » ?";
 "proxy_share_explain" = "Vos amis peuvent ajouter ce proxy en scannant le code QR.";
 "proxy_share_link" = "Partager le lien";
 "login_info_oauth2_title" = "Continuer avec une configuration simplifiée ?";
@@ -564,6 +572,8 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Transférer à …";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Envoyer %1$d fichiers à « %2$@ » ?";
 "ask_send_files_to_selected_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?";
 "share_text_multiple_chats" = "Envoyer ce texte à %1$d discussions ?\n\n« %2$@ »";
 "share_abort" = "Partage annulé en raison de permissions manquantes.";
@@ -592,6 +602,7 @@
 "pref_screen_security_please_restart_hint" = "Pour appliquer les paramètres de sécurité de l\'écran, veuillez redémarrer l\'application.";
 "pref_notifications" = "Notifications";
 "pref_mention_notifications" = "Mentions";
+"pref_mention_notifications_explain" = "Dans les groupes passés en muet, des notifications vous sont envoyées, comme des réponses ou des réactions";
 "pref_notifications_show" = "Afficher";
 "pref_notifications_priority" = "Priorité";
 "pref_notifications_explain" = "Activer les notifications système pour les nouveaux messages";
@@ -609,6 +620,7 @@
 "pref_appearance" = "Apparence";
 "pref_theme" = "Thème";
 "pref_language" = "Langue";
+"pref_use_system_ui_font" = "Utiliser la police système";
 "pref_incognito_keyboard" = "Clavier anonyme";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Demander que le clavier désactive l\'apprentissage personnalisé";
@@ -619,6 +631,8 @@
 "pref_manage_keys" = "Gérer les clés";
 "pref_use_system_emoji" = "Utiliser les émojis système";
 "pref_use_system_emoji_explain" = "Désactiver la prise en charge des émojis intégrés de Delta Chat";
+"pref_show_system_contacts" = "Lire le carnet d\'adresses du système";
+"pref_show_system_contacts_explain" = "Permet de créer des conversations avec des contacts du carnet d\'adresse. Certains fournisseurs doivent d\'abord mettre en place un chiffrement de bout-en-bout.";
 "pref_app_access" = "Accès à l\'application";
 "pref_chats" = "Discussions";
 "pref_in_chat_sounds" = "Sons de messages entrants";
@@ -704,6 +718,8 @@
 "reactions" = "Réactions";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Réagir";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@ a réagi %2$@ à « %3$@ »";
 // automatically delete message
 "delete_old_messages" = "Supprimer les anciens messages";
 "autodel_device_title" = "Supprimer les messages de l\'appareil";

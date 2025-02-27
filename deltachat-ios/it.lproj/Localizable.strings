@@ -26,6 +26,8 @@
 "join" = "Partecipa";
 "rejoin" = "Ripartecipa";
 "delete" = "Elimina";
+"delete_for_me" = "Cancella per Me";
+"delete_for_everyone" = "Cancella per Tutti";
 "info" = "Informazioni";
 "update" = "Aggiorna";
 "emoji" = "Emoji";
@@ -448,7 +450,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Aggiungi Secondo Dispositivo";
 "multidevice_same_network_hint" = "Assicurati che entrambi i dispositivi siano sulla stessa rete o Wi-Fi.";
-"multidevice_this_creates_a_qr_code" = "Questo crea un codice QR che il secondo dispositivo può scansionare per copiare il profilo.";
+"multidevice_this_creates_a_qr_code" = "Questo crea un codice QR che il secondo dispositivo può scansionare per copiare il profilo.\n\nAssicurati che nessun osservatore o telecamera indesiderata possa vedere la schermata seguente.";
 "multidevice_install_dc_on_other_device" = "Installa Delta Chat sull\'altro tuo dispositivo (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Avvia Delta Chat, tocca \"Ho già un Profilo / Aggiungi come Secondo Dispositivo\" e scansiona il codice mostrato qui";

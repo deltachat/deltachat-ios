@@ -222,6 +222,26 @@
 			<string>Usunąć %d czatów? Nie będą już wyświetlane na liście czatów, ich wiadomości pozostaną na serwerze.</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Usunąć %d wiadomość ze wszystkich urządzeń?</string>
+			<key>few</key>
+			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+			<key>many</key>
+			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+			<key>other</key>
+			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

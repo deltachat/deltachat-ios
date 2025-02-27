@@ -26,6 +26,8 @@
 "join" = "Hyni";
 "rejoin" = "Rihyni";
 "delete" = "Fshije";
+"delete_for_me" = "Fshije për Mua";
+"delete_for_everyone" = "Fshije për Gjithkënd";
 "info" = "Hollësi";
 "update" = "Përditësoje";
 "emoji" = "Emoji";
