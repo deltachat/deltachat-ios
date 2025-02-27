@@ -26,6 +26,8 @@
 "join" = "加入";
 "rejoin" = "重新加入";
 "delete" = "删除";
+"delete_for_me" = "为我删除";
+"delete_for_everyone" = "为所有人删除";
 "info" = "信息";
 "update" = "更新";
 "emoji" = "Emoji";

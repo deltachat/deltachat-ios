@@ -222,6 +222,26 @@
 			<string>Удалить %d чатов?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Удалить %d сообщение на всех ваших устройствах?</string>
+			<key>few</key>
+			<string>Удалить %d сообщения на всех ваших устройствах?</string>
+			<key>many</key>
+			<string>Удалить %d сообщений на всех ваших устройствах?</string>
+			<key>other</key>
+			<string>Удалить %d сообщений на всех ваших устройствах?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

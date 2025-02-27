@@ -450,7 +450,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Zweitgerät hinzufügen";
 "multidevice_same_network_hint" = "Beide Geräte müssen im selben Wi-Fi oder Netzwerk sein.";
-"multidevice_this_creates_a_qr_code" = "Erstellt einen QR-Code, den ein Zweitgerät scannen kann, um das Profil zu kopieren.";
+"multidevice_this_creates_a_qr_code" = "Erstellt einen QR-Code, den ein Zweitgerät scannen kann, um das Profil zu kopieren.\n\nStellen Sie sicher, dass keine unerwünschten Beobachter oder Kameras den folgenden Bildschirm sehen können.";
 "multidevice_install_dc_on_other_device" = "Delta Chat auf dem anderen Gerät installieren (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Delta Chat starten, \"Ich habe bereits ein Profil / Als Zweitgerät hinzufügen\" wählen und den QR-Code scannen";

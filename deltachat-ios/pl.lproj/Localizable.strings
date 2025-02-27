@@ -26,6 +26,8 @@
 "join" = "Dołącz";
 "rejoin" = "Dołącz ponownie";
 "delete" = "Usuń";
+"delete_for_me" = "Usuń u mnie";
+"delete_for_everyone" = "Usuń u wszystkich";
 "info" = "Informacje";
 "update" = "Aktualizacja";
 "emoji" = "Emoji";
