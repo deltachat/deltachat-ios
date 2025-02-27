@@ -1269,7 +1269,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
 
-        /* WE'LL enable that soon ;)
         var canDeleteForEveryone = true
         if dcChat.canSend && !dcChat.isSelfTalk {
             for msgId in ids {
@@ -1282,21 +1281,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else {
             canDeleteForEveryone = false
         }
-        */
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
-        /* WE'LL enable that soon ;)
         if canDeleteForEveryone {
             alert.addAction(UIAlertAction(title: String.localized("delete_for_everyone"), style: .destructive, handler: { _ in
                 self.dcContext.sendDeleteRequest(msgIds: ids)
                 deleteInUi(ids: ids)
             }))
         }
-        */
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
@@ -1917,13 +1913,11 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                /* WE'LL enable that soon ;)
                 if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                     children.append(
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", indexPath: indexPath, action: editSentMessage)
                     )
                 }
-                */
 
                 if !dcChat.isSelfTalk && message.canSave {
                     if message.savedMessageId != 0 {
