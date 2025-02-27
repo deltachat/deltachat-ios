@@ -1273,7 +1273,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if dcChat.canSend && !dcChat.isSelfTalk {
             for msgId in ids {
                 let msg = dcContext.getMessage(id: msgId)
-                if !msg.isFromCurrentSender || !msg.showPadlock() {
+                if !msg.isFromCurrentSender {
                     canDeleteForEveryone = false
                     break
                 }
