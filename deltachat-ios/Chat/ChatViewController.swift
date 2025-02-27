@@ -1595,6 +1595,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
+            guard draft.sendEditRequestFor == nil else { return }
             guard !image.hasStickerLikeProperties else {
                 return self.sendSticker(image)
             }
