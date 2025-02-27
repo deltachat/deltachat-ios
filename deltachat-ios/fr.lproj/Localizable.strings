@@ -5,6 +5,8 @@
 "clear_search" = "Effacer la recherche";
 // a noun, used on a button, short for "show link"
 "link" = "Lien";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Scanner";
 "yes" = "Oui";
 "no" = "Non";
 "select" = "Sélectionner";
@@ -35,6 +37,7 @@
 "close_window" = "Fermer la fenêtre";
 "forward" = "Faire suivre";
 "create" = "Créer";
+"reset" = "Réinitialiser";
 "later" = "Plus tard";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Renvoyer";
@@ -263,6 +266,7 @@
 "device_talk" = "Messages de l\'appareil";
 "device_talk_subtitle" = "Messages générés localement";
 "device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Cela vous permet de recevoir des informations concernant les mises à jour et problèmes rencontrés à l\'utilisation.";
+"device_talk_welcome_message2" = "Gardez contact !\n\n🙌 Cliquez sur « code QR » sur la page d\'accueil des deux appareils. Sélectionnez « Scanner le code QR » sur un des appareils et positionnez les deux appareils l\'un vers l\'autre\n\n🌍 Si vous n\'êtes pas dans la même pièce, vous pouvez scanner le code QR pendant un appel vidéo ou partager un lien d\'invitation à partir de « Scanner le code QR »\n\n Profitez ensuite de votre expérience de messagerie sur le plus grand réseau décentralisé du monde : les emails. Contrairement aux autres applications populaires, tout cela se fait sans contrôle centralisé, suivi ou revente de vos données, celles de vos amis, collègues ou famille à de grandes entreprises.";
 "edit_contact" = "Mettre à jour le contact";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Épingler la discussion";
@@ -374,6 +378,8 @@
 "send_file_to" = "Envoyer \"%1$@\" à";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Envoyer un message à";
+"enable_realtime" = "Applications temps réel";
+"enable_realtime_explain" = "Activez les connexions temps réel pour les applications partagées dans les discussions. Les interlocuteurs pourront voir votre adresse IP lorsque vous lancerez l\'app. ";
 // map
 "filter_map_on_time" = "Afficher les positions pour une période";
 "show_location_traces" = "Afficher les traces";
@@ -560,6 +566,8 @@
 "profile_tag" = "Tag privé";
 "profile_tag_hint" = "Travail ou famille par exemple";
 "profile_tag_explain" = "Tag seulement visible par vous pour vous aider à différencier les profils.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Remonter l\'élément";
 "delete_account" = "Supprimer le compte";
 "delete_account_ask" = "Voulez-vous vraiment supprimer les données de votre compte ?";
 "delete_account_explain_with_name" = "Toutes les données de compte de « %1$@ » sur cet appareil seront effacées, y compris votre configuration de chiffrement de bout en bout, vos contacts, discussions, messages et médias. Cette action est irrévocable.";
@@ -730,6 +738,8 @@
 "autodel_server_ask" = "Voulez-vous supprimer %1$d messages maintenant ainsi que tous les futurs nouveaux messages reçus « %2$@ » ?\n\n⚠️ Cela inclut les courriels, les fichiers multimédia et les « Messages sauvegardés » dans tous les répertoires du serveur\n\n⚠️ N\'utilisez pas cette fonction si vous utilisez d\'autres clients de messagerie électronique en plus de Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Cela inclus les courriels, médias et les « Messages sauvegardés » dans tous les répertoires du serveur. N\'utilisez pas cette fonction si vous voulez garder les données sur le serveur ou si vous utilisez d\'autres clients de messagerie électronique en plus de Delta Chat.";
+"autodel_server_warn_multi_device_title" = "Activer la suppression immédiate";
+"autodel_server_warn_multi_device" = "Si vous activez la suppression immédiate, vous ne pourrez pas utiliser plusieurs appareils sur ce profil.";
 "autodel_confirm" = "J\'ai compris, supprimer tous ces messages";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Immédiatement";
@@ -829,6 +839,7 @@
 "chat_protection_enabled_explanation" = "Il n\'est pas garanti que tous les messages de cette discussion sont chiffrés de bout en bout.\n\nLe chiffrement de bout en bout assure la confidentialité des messages échangés par les membres d\'une discussion. Même votre fournisseur de courriel ne peut pas les lire. ";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ a envoyé un message depuis un nouvel appareil. Appuyez pour en savoir plus.";
 "chat_protection_broken_explanation" = "Le chiffrement de bout en bout ne peut plus être garanti, probablement parce que %1$@ a réinstallé Delta Chat ou envoyé un message depuis un nouvel appareil.\n\nVous pouvez convenir d\'une rencontre physique afin de scanner à nouveau son code QR pour ré-instaurer la garantie du chiffrement de bout en bout.";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ nécessite un chiffrement de bout en bout qui n\'est pas encore configuré sur cette discussion. Appuyez pour en savoir plus.";
 "invalid_unencrypted_explanation" = "Pour établir un chiffrement de bout en bout vous pouvez rencontrer vos contacts en personne et scanner leur code QR.";
 "learn_more" = "En savoir plus";
 "devicemsg_self_deleted" = "Vous avez supprimé la discussion \"Messages sauvegardés\".\n\nℹ️ Pour utiliser la fonctionnalité \"Message enregistrés\" à nouveau, commencez une nouvelle discussion avec vous-même.";
@@ -962,6 +973,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Retirer";
 "save_desktop" = "Sauvegardez";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Annuler la sauvegarde";
 "name_desktop" = "Nom";
 "select_group_image_desktop" = "Choisir l\'image de groupe";
 "export_backup_desktop" = "Exporter la sauvegarde";
