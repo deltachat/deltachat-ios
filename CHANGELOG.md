@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v1.54.1
+## v1.54.2
 2025-02
 
 - Sync message deletion to other devices
@@ -19,8 +19,9 @@
 - Fix: Hide read-only chats on forwarding and sort list accordingly (#2436)
 - Fix: Let 'Cancel' work as expecting when forwarding messages (#2436)
 - Fix: Preserve filenames on sharing (#2605)
+- Fix parsing some messages
 - Update translations and local help
-- Update core to 1.156.0
+- Update core to 1.156.1
 
 
 ## v1.54.0
