@@ -136,6 +136,7 @@
 "menu_add_attachment" = "Tilføj vedhæftning";
 "menu_leave_group" = "Forlad gruppe";
 "menu_delete_chat" = "Slet samtale";
+// deprecated
 "menu_delete_messages" = "Slet beskeder";
 "delete_contact" = "Slet kontakt";
 "menu_delete_location" = "Slet denne placering?";
@@ -218,7 +219,6 @@
 // get confirmations
 "ask_leave_group" = "Forlad denne gruppe?";
 "ask_delete_named_chat" = "Er du sikker på at du vil slette \"%1$@\"?";
-"ask_delete_message" = "Er du sikker på at du vil slette denne besked?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";
@@ -227,8 +227,10 @@
 "ask_unblock_contact" = "Fjern blokering af kontakt? Du vil igen kunne modtage beskeder fra denne kontakt.";
 "ask_delete_contacts" = "Slet kontakter? Dette vil slette valgte kontakter permanent.\n\nKontakter med igangværende samtaler og kontakter fra systemets adressebog kan ikke slettes permanent.";
 "ask_delete_contact" = "Slet kontakt %1$@?\n\nKontakter med igangværende samtaler og kontakter fra systemets adressebog kan ikke slettes permanent.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med igangværende samtaler.";
 "ask_start_chat_with" = "Samtale med %1$@?";
+// deprecated
 "ask_delete_value" = "Slet 1%1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppe?";

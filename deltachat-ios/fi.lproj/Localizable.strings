@@ -181,6 +181,7 @@
 "menu_delete_chat" = "Poista keskustelu";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tyhjennä keskustelu";
+// deprecated
 "menu_delete_messages" = "Poista viestit";
 "delete_contact" = "Poista yhteystieto";
 "menu_delete_location" = "Poista tämä sijainti?";
@@ -281,7 +282,6 @@
 // get confirmations
 "ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
 "ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
-"ask_delete_message" = "Haluatko varmasti poistaa tämän viestin?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
@@ -290,8 +290,10 @@
 "ask_unblock_contact" = "Poista yhteystiedon esto? Saat taas viestejä tältä yhteystiedolta.";
 "ask_delete_contacts" = "Poista yhteystiedot?\n\nEt voi poistaa yhteystietoja, joiden kanssa sinulla on aktiivinen keskustelu tai jotka on noudettu laitteen osoitekirjasta.";
 "ask_delete_contact" = "Poista yhteystieto %1$@?\n\nEt voi poistaa yhteystietoja, joiden kanssa sinulla on aktiivinen keskustelu tai jotka on noudettu laitteen osoitekirjasta.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Aktiivisten keskustelujen yhteystietoja ei voi poistaa.";
 "ask_start_chat_with" = "Aloita keskustelu yhteystiedon %1$@ kanssa?";
+// deprecated
 "ask_delete_value" = "Poista %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Poista %1$@ ryhmästä?";

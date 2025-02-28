@@ -202,6 +202,7 @@
 "menu_delete_chat" = "Supprimer la discussion";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vider la discussion";
+// deprecated
 "menu_delete_messages" = "Supprimer les messages";
 "delete_contact" = "Supprimer le contact";
 "menu_delete_location" = "Supprimer cette position ?";
@@ -311,7 +312,6 @@
 // get confirmations
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
 "ask_delete_named_chat" = "Voulez-vous vraiment supprimer « %1$@ » ?";
-"ask_delete_message" = "Voulez-vous vraiment supprimer ce message ?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";
@@ -320,8 +320,10 @@
 "ask_unblock_contact" = "Débloquer ce contact ? Vous recevrez à nouveau ses messages.";
 "ask_delete_contacts" = "Supprimer les contacts ?\n\nLes contacts avec qui vous avez des discussions en cours et ceux issus du carnet d\'adresses du système ne peuvent pas être supprimés définitivement.";
 "ask_delete_contact" = "Supprimer le contact %1$@ ?\n\nLes contacts avec qui vous avez des discussions en cours et ceux issus du carnet d\'adresses du système ne peuvent pas être supprimés définitivement.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Impossible de supprimer les contacts avec qui vous avez une discussion en cours.";
 "ask_start_chat_with" = "Discuter avec %1$@ ?";
+// deprecated
 "ask_delete_value" = "Supprimer %1$@ ?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Retirer %1$@ du groupe ?";

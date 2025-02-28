@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Chat löschen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Chat leeren";
+// deprecated
 "menu_delete_messages" = "Nachrichten löschen";
 "delete_contact" = "Kontakt löschen";
 "menu_delete_location" = "Diesen Standort löschen?";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Schreibweise lernen";
 "menu_chat_audit_log" = "Chat-Ereignisprotokoll";
 "jump_to_message" = "Zur Nachricht springen";
+"jump_to_original_message" = "Zur Originalnachricht springen";
 "copy_json" = "JSON kopieren";
 "replace_draft" = "Entwurf ersetzen";
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Diese Gruppe verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" löschen?";
-"ask_delete_message" = "Möchten Sie diese Nachricht wirklich löschen?";
+"ask_delete_message" = "Diese Nachricht von allen Geräten löschen?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Diesen Kontakt nicht mehr blockieren?";
 "ask_delete_contacts" = "Kontakte dauerhaft löschen?\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
 "ask_delete_contact" = "Kontakt %1$@ dauerhaft löschen?\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Kontakte mit laufenden Chats können nicht gelöscht werden.";
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
+// deprecated
 "ask_delete_value" = "%1$@ löschen?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";

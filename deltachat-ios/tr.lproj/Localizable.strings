@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
+// deprecated
 "menu_delete_messages" = "İletileri Sil";
 "delete_contact" = "Kişiyi Sil";
 "menu_delete_location" = "Bu Konumu Sil";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Yazımı Öğrenin";
 "menu_chat_audit_log" = "Sohbet Denetim Günlüğü";
 "jump_to_message" = "İletiye Atla";
+"jump_to_original_message" = "Özgün İletiye Atla";
 "copy_json" = "JSON kopyala";
 "replace_draft" = "Taslağı Değiştir";
 "title_share_location" = "Tüm öbek üyeleriyle konum paylaş";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "“%1$@” sohbeti silinsin mi?";
-"ask_delete_message" = "Bu iletiyi silmek istediğinizden emin misiniz?";
+"ask_delete_message" = "Tüm aygıtlarınızdaki bu ileti silinsin mi?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Bu kişi engellenmesin mi?";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
+// deprecated
 "ask_delete_value" = "%1$@ silinsin mi?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ öbekten kaldırılsın mı?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "İkinci Aygıt Olarak Ayarla";
 "multidevice_open_settings_on_other_device" = "Birinci aygıtta “Ayarlar / İkinci Aygıt Ekle”ye gidin ve orada gösterilen kodu tarayın";
 "multidevice_receiver_scanning_ask" = "Diğer aygıttan gelen profil bu aygıta kopyalansın mı?";
+"multidevice_receiver_needs_update" = "İçe aktarmak istediğiniz profil daha yeni bir Delta Chat sürümünden geliyor.\n\nİkinci aygıtı ayarlamayı sürdürmek için lütfen bu aygıtı Delta Chat\'in en son sürümüne güncelleştirin.";
 "multidevice_abort" = "İkinci aygıtı ayarlamadan vazgeçilsin mi?";
 "multidevice_abort_will_invalidate_copied_qr" = "Bu, panoya kopyalanan QR kodunu geçersizleştirecek.";
 "multidevice_experimental_hint" = "(deneysel, sürüm 1.36 gerekli)";

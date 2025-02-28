@@ -120,6 +120,7 @@
 "menu_add_attachment" = "Annanghe un\'allegadu";
 "menu_leave_group" = "Lassa su grupu";
 "menu_delete_chat" = "Iscantzella sa tzarrada";
+// deprecated
 "menu_delete_messages" = "Iscantzella sos messàgios";
 "menu_delete_location" = "Iscantzellare custa positzione?";
 "menu_message_details" = "Detàllios de su messàgiu";
@@ -192,6 +193,7 @@
 "ask_unblock_contact" = "Isblocare custu cuntatu? As a torrare a pòdere retzire messàgios dae custu cuntatu.";
 "ask_delete_contacts" = "Iscantzellare sos cuntatos?\n\nSos cuntatos cun tzarradas ativas e cussos de sa rubrica de su dispositivu non podent èssere iscantzellados definitivamente.";
 "ask_delete_contact" = "Cheres iscantzellare a %1$@ pro semper?\n\nSos cuntatos cun tzarradas ativas e cussos de sa rubrica de su dispositivu non podent èssere iscantzellados definitivamente.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Non podes iscantzellare cuntatos cun tzarradas ativas.";
 "ask_start_chat_with" = "Cheres tzarrare cun %1$@?";
 // %1$s is replaced by a comma-separated list of names

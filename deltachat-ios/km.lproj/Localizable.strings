@@ -148,6 +148,7 @@
 "menu_add_attachment" = "បន្ថែមឯកសារភ្ជាប់";
 "menu_leave_group" = "ចាកចេញពីក្រុម";
 "menu_delete_chat" = "លុបសារសន្ទនា";
+// deprecated
 "menu_delete_messages" = "លុបសារ";
 "delete_contact" = "លុបទំនាក់ទំនង";
 "menu_delete_location" = "លុបទីតាំងនេះ?";
@@ -235,7 +236,6 @@
 // get confirmations
 "ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
 "ask_delete_named_chat" = "តើអ្នកប្រាកដហើយថាចង់លុប \"%1$@\"?";
-"ask_delete_message" = "តើអ្នកប្រាកដថា ចង់លុបសារនេះ?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "បញ្ជូនសារទៅកាន់ %1$@?";
 "ask_forward_multiple" = "បញ្ជូនសារទាំងនេះទៅកាន់សន្ទនា %1$d?";
@@ -244,8 +244,10 @@
 "ask_unblock_contact" = "ដកបង្ខាំងទំនាក់ទំនងនេះ? អ្នកនឹងអាចទទួលសារពីទំនាក់ទំនងនេះម្តងទៀត។";
 "ask_delete_contacts" = "លុបការទំនាក់ទំនង?\n\nទំនាក់ទំនងដែលកំពុងបន្ត និងទំនាក់ទំនង ពីសៀវភៅអសយដ្ឋានពីម៉ាសុីន មិនអាចលុបចេញបានដាច់ខាត។";
 "ask_delete_contact" = "លុបទំនាក់ទំនង %1$@?\n\nទំនាក់ទំនងដែលកំពុងបន្ត និងទំនាក់ទំនង ពីសៀវភៅអសយដ្ឋានពីម៉ាសុីន មិនអាចលុបចេញបានដាច់ខាត។";
+// deprecated
 "cannot_delete_contacts_in_use" = "មិនអាចលុបទំនាក់ទំនងដែលកំពុងបន្តសន្ទនា";
 "ask_start_chat_with" = "សន្ទនាជាមួយ %1$@?";
+// deprecated
 "ask_delete_value" = "លុប %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "លុប %1$@ ពីក្រុមសន្ទនានេះ?";

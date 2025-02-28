@@ -181,6 +181,7 @@
 "menu_delete_chat" = "Изтриване на чата";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Изчистване на чата";
+// deprecated
 "menu_delete_messages" = "Изтриване на съобщения";
 "delete_contact" = "Изтриване на контакт";
 "menu_delete_location" = "Да бъде ли изтрито това местоположение?";
@@ -281,7 +282,6 @@
 // get confirmations
 "ask_leave_group" = "Сигурни ли сте, че искате да напуснете тази група?";
 "ask_delete_named_chat" = "Сигурни ли сте, че искате да изтриете %1$@?";
-"ask_delete_message" = "Сигурни ли сте, че искате да изтриете това съобщение?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
@@ -290,8 +290,10 @@
 "ask_unblock_contact" = "Да бъде ли отблокиран този контакт? Ще можете отново да получавате съобщения от него.";
 "ask_delete_contacts" = "Да бъдат ли изтрити контактите?\n\nКонтактите с текущо провеждани чатове и контактите от системната адресна книга не могат да бъдат изтрити за постоянно.";
 "ask_delete_contact" = "Да бъде ли изтрит контактът %1$@? Контактите с текущо провеждани чатове и контактите от системната адресна книга не могат да бъдат изтрити за постоянно.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Контактите с текущо провеждани чатове не могат да бъдат изтривани.";
 "ask_start_chat_with" = "Чат с %1$@?";
+// deprecated
 "ask_delete_value" = "Да бъде ли изтрит %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Премахване на %1$@ от групата?";

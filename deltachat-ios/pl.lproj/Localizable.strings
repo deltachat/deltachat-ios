@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Usuń czat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Wyczyść czat";
+// deprecated
 "menu_delete_messages" = "Usuń wiadomości";
 "delete_contact" = "Usuń kontakt";
 "menu_delete_location" = "Usunąć tę lokalizację?";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Naucz się pisowni";
 "menu_chat_audit_log" = "Dziennik audytu czatu";
 "jump_to_message" = "Przejdź do wiadomości";
+"jump_to_original_message" = "Przejdź do oryginalnej wiadomości";
 "copy_json" = "Kopiuj JSON";
 "replace_draft" = "Zastąp szkic";
 "title_share_location" = "Udostępnij lokalizację dla wszystki czlonków grup";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tę grupę?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@”? Nie będzie on już wyświetlany na liście czatów. Jego wiadomości pozostaną na serwerze.";
-"ask_delete_message" = "Czy na pewno chcesz usunąć tę wiadomość?";
+"ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Odblokować ten kontakt? Ponownie będzie można odbierać wiadomości od tego kontaktu.";
 "ask_delete_contacts" = "Usunąć kontakty? Spowoduje to trwałe usunięcie wybranych kontaktów.\n\nKontaktów z trwającymi rozmowami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
 "ask_delete_contact" = "Usunąć trwale kontakt %1$@?\n\nKontaktów z trwającymi czatami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Nie można usunąć kontaktów z trwającymi czatami.";
 "ask_start_chat_with" = "Rozpocząć czat z %1$@?";
+// deprecated
 "ask_delete_value" = "Usunąć %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "Dodaj jako kolejne urządzenie";
 "multidevice_open_settings_on_other_device" = "Na pierwszym urządzeniu przejdź do „Ustawienia » Dodaj kolejne urządzenie” i zeskanuj wyświetlony tam kod";
 "multidevice_receiver_scanning_ask" = "Skopiować konto z innego urządzenia na to urządzenie?";
+"multidevice_receiver_needs_update" = "Profil, który chcesz zaimportować, pochodzi z nowszej wersji aplikacji Delta Chat.\n\nAby kontynuować konfigurowanie drugiego urządzenia, zaktualizuj to urządzenie do najnowszej wersji aplikacji Delta Chat.";
 "multidevice_abort" = "Przerwać konfigurowanie kolejnego urządzenia?";
 "multidevice_abort_will_invalidate_copied_qr" = "Spowoduje to unieważnienie kodu QR skopiowanego do schowka.";
 "multidevice_experimental_hint" = "(eksperymentalna, wymagana wersja 1.36)";

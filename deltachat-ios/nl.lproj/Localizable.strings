@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Gesprek verwijderen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ale berichten wissen";
+// deprecated
 "menu_delete_messages" = "Berichten verwijderen";
 "delete_contact" = "Contactpersoon verwijderen";
 "menu_delete_location" = "Wil je deze locatie verwijderen?";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Spelling leren";
 "menu_chat_audit_log" = "Gesprekslogboek";
 "jump_to_message" = "Ga naar bericht";
+"jump_to_original_message" = "Ga naar oorspronkelijk bericht";
 "copy_json" = "Json-gegevens kopiëren";
 "replace_draft" = "Concept vervangen";
 "title_share_location" = "Locatie delen met alle groepsleden";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
 "ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
-"ask_delete_message" = "Weet je zeker dat je dit bericht wilt verwijderen?";
+"ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
 "ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "ask_delete_contact" = "Wil je de contactpersoon %1$@ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
+// deprecated
 "ask_delete_value" = "Wil je %1$@ verwijderen?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "Toevoegen als secundair apparaat";
 "multidevice_open_settings_on_other_device" = "Ga op het eerste apparaat naar ‘Instellingen → Secundair apparaat toevoegen’ en scan de hier getoonde code";
 "multidevice_receiver_scanning_ask" = "Wil je je account van het andere apparaat naar dit apparaat kopiëren?";
+"multidevice_receiver_needs_update" = "Het te importeren profiel is afkomstig uit een nieuwere Delta Chat-versie.\n\nAls je het tweede apparaat wilt instellen, installeer dan de nieuwste versie van Delta Chat.";
 "multidevice_abort" = "Wil je het instellen afbreken?";
 "multidevice_abort_will_invalidate_copied_qr" = "Hierdoor wordt de gekopieerde QR-code onbruikbaar gemaakt.";
 "multidevice_experimental_hint" = "(experimenteel - versie 1.36 vereist)";

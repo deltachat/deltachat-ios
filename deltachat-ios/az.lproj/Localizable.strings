@@ -99,6 +99,7 @@
 "menu_add_attachment" = "Fayl əlavə et";
 "menu_leave_group" = "Qrupu tərk et";
 "menu_delete_chat" = "Çatı sil";
+// deprecated
 "menu_delete_messages" = "Mesajları sil";
 "menu_delete_location" = "Bu yerləşməni silmək? ";
 "menu_message_details" = "Mesaj məlumatları";
@@ -144,6 +145,7 @@
 "ask_block_contact" = "Bu kontaktı bloklamaq? Bu kontaktdan artıq mesaj qəbul etməyəcəksiniz.";
 "ask_unblock_contact" = "Bu kontaktı blokdan çıxarmaq istəyirsiniz? Nəticədə kontaktdan mesajlar ala bilərsiniz.";
 "ask_delete_contacts" = "Kontaktları silmək? Bu əməliyyat seçilmiş kontaktları daimi olaraq silməyəcək. \n\n Sistem kontakt kitabından davam edən söhbətlər və kontaktlar ilə əlaqə saxlanıla bilməz.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Davam edən çatlarla kontakt silinmir.";
 "ask_start_chat_with" = "%1$@ ilə çat? ";
 // %1$s is replaced by a comma-separated list of names

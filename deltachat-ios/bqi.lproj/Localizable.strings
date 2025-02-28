@@ -149,6 +149,7 @@
 "menu_delete_chat" = "پاک کردن گوفت ۉ لوفت";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "روفتن ویرگار گوفت ۉ لوفت";
+// deprecated
 "menu_delete_messages" = "پاک کردن پیوما";
 "delete_contact" = "پاک کردن هومدنگ";
 "menu_delete_location" = "ای جاگه پاک بۊ؟";
@@ -206,6 +207,7 @@
 "videochat_invitation" = "موکش و گوفت ۉ لوفت ویدیویی";
 // deprecated, use ask_delete_messages
 "ask_start_chat_with" = "گوفت ۉ لوفت وا %1$@؟";
+// deprecated
 "ask_delete_value" = "پاک کردن %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "پاک کردن %1$@ ز جرگه؟";

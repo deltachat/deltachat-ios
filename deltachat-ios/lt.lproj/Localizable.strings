@@ -159,6 +159,7 @@
 "menu_delete_chat" = "Ištrinti pokalbį";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
+// deprecated
 "menu_delete_messages" = "Ištrinti žinutes";
 "delete_contact" = "Ištrinti adresatą";
 "menu_delete_location" = "Ištrinti šią vietą?";
@@ -249,13 +250,13 @@
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 "ask_delete_named_chat" = "Ar tikrai norite ištrinti „%1$@“?";
-"ask_delete_message" = "Ar tikrai norite ištrinti šią žinutę?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
 "ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
+// deprecated
 "ask_delete_value" = "Ištrinti %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";

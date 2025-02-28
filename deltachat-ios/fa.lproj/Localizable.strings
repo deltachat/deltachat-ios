@@ -188,6 +188,7 @@
 "menu_delete_chat" = "حذف گپ";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
+// deprecated
 "menu_delete_messages" = "حذف پیام‌ها";
 "delete_contact" = "پاک کردن مخاطب";
 "menu_delete_location" = "حذف این موقعیت مکانی؟";
@@ -302,7 +303,6 @@ https://meet.jit.si/$ROOM
 // get confirmations
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
 "ask_delete_named_chat" = "اطمینان دارید می‌خواهید «%1$@» را پاک کنید؟";
-"ask_delete_message" = "مطمئن هستید می‌خواهید این پیام را پاک کنید؟";
 // deprecated, use ask_delete_messages
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
@@ -311,8 +311,10 @@ https://meet.jit.si/$ROOM
 "ask_unblock_contact" = "رفع مسدودیت مخاطب؟ دوباره قادر خواهید بود پیام‌های ارسال شده توسط این مخاطب را دریافت کنید.";
 "ask_delete_contacts" = "مخاطبین حذف شوند؟\n\nمخاطبینی که گپ فعال دارند و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
 "ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطبین با گپ فعال و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
+// deprecated
 "cannot_delete_contacts_in_use" = "نمی‌توان مخاطبین گپ‌های فعال را حذف کرد. ";
 "ask_start_chat_with" = "گپ زدن با %1$@؟";
+// deprecated
 "ask_delete_value" = "پاک کردن %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";

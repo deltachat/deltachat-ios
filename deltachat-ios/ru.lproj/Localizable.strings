@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Удалить чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистить чат";
+// deprecated
 "menu_delete_messages" = "Удалить сообщения";
 "delete_contact" = "Удалить контакт";
 "menu_delete_location" = "Удалить местоположение?";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Запоминать правописание";
 "menu_chat_audit_log" = "Журнал аудита чата";
 "jump_to_message" = "Перейти к сообщению";
+"jump_to_original_message" = "Перейти к исходному сообщению";
 "copy_json" = "Копировать JSON";
 "replace_draft" = "Заменить черновик";
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Вы уверены, что хотите покинуть эту группу?";
 "ask_delete_named_chat" = "Удалить чат \"%1$@\"?";
-"ask_delete_message" = "Вы уверены, что хотите удалить это сообщение?";
+"ask_delete_message" = "Удалить это сообщение на всех ваших устройствах?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Переслать сообщения для %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Разблокировать этот контакт?";
 "ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
 "ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Невозможно удалить контакты, с которыми имеются действующие чаты.";
 "ask_start_chat_with" = "Создать чат с %1$@?";
+// deprecated
 "ask_delete_value" = "Удалить %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Удалить %1$@ из группы?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "Добавить как второе устройство";
 "multidevice_open_settings_on_other_device" = "На первом устройстве, откройте \"Настройки / Добавить второе устройство\" и отсканируйте код, показанный там";
 "multidevice_receiver_scanning_ask" = "Скопировать профиль с другого устройства на это устройство?";
+"multidevice_receiver_needs_update" = "Профиль, который вы хотите импортировать, создан в более новой версии Delta Chat. Чтобы продолжить настройку второго устройства, пожалуйста, обновите это устройство до последней версии Delta Chat.";
 "multidevice_abort" = "Прервать настройку второго устройства?";
 "multidevice_abort_will_invalidate_copied_qr" = "Это сделает недействительным QR-код, скопированный в буфер обмена.";
 "multidevice_experimental_hint" = "(экспериментально, требуется версия 1.36)";

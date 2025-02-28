@@ -78,6 +78,7 @@
 "menu_add_attachment" = "Juntar anexo";
 "menu_leave_group" = "Deixar grupo";
 "menu_delete_chat" = "Apagar convesa";
+// deprecated
 "menu_delete_messages" = "Apagar mensagem";
 "menu_message_details" = "Detalhe da mensagem";
 "menu_copy_to_clipboard" = "Copiar para área de transferência";
@@ -115,6 +116,7 @@
 "ask_block_contact" = "Bloquear este contacto? Não receberá mais mensagens deste contacto.";
 "ask_unblock_contact" = "Desbloquear esse contacto? Poderá mais uma vez receber mensagens deste contacto.";
 "ask_delete_contacts" = "Remover contactos? Assim removerá permanentemente os contactos selecionados.\n\nContactos com chats a decorrer e contactos com  endereços do sistema não podem ser removidos permanentemente.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Não é possível excluir contactos com chats a decorrer.";
 "ask_start_chat_with" = "Conversar com %1$@?";
 // contact list
