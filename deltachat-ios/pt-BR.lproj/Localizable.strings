@@ -175,6 +175,7 @@
 "menu_delete_chat" = "Apagar conversa";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Limpar bate-papo";
+// deprecated
 "menu_delete_messages" = "Apagar mensagens";
 "delete_contact" = "Apagar contato";
 "menu_delete_location" = "Apagar esta localização?";
@@ -270,7 +271,6 @@
 // get confirmations
 "ask_leave_group" = "Quer mesmo sair do grupo?";
 "ask_delete_named_chat" = "Você tem certeza que quer apagar \"%1$@\"?";
-"ask_delete_message" = "Tem certeza que quer apagar esta mensagem?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
@@ -279,8 +279,10 @@
 "ask_unblock_contact" = "Desbloquear este contato? Você voltará a receber mensagens dele.";
 "ask_delete_contacts" = "Apagar contatos? Eles serão permanentemente apagados.\n\nContatos com conversas ativas e contatos do livro de endereços do sistema não podem ser apagados permanentemente.";
 "ask_delete_contact" = "Apagar permanentemente contato %1$@?\n\nContatos com conversas em andamento e contatos da lista de contatos do sistema não podem ser apagados permanentemente.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Impossível apagar contatos com conversas em curso.";
 "ask_start_chat_with" = "Conversar com %1$@?";
+// deprecated
 "ask_delete_value" = "Apagar %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";

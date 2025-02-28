@@ -179,6 +179,7 @@
 "menu_delete_chat" = "Xóa cuộc trò chuyện";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Xóa cuộc trò chuyện";
+// deprecated
 "menu_delete_messages" = "Xóa tin nhắn";
 "delete_contact" = "Xóa liên hệ";
 "menu_delete_location" = "Xóa vị trí này?";
@@ -278,7 +279,6 @@
 // get confirmations
 "ask_leave_group" = "Bạn có chắc chắn muốn rời khỏi nhóm này không?";
 "ask_delete_named_chat" = "Bạn có chắc chắn muốn xóa \"%1$@\" không?";
-"ask_delete_message" = "Bạn có chắc chắn muốn xóa tin nhắn này?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
@@ -287,8 +287,10 @@
 "ask_unblock_contact" = "Bỏ chặn liên hệ này? Sau đó bạn sẽ có thể nhận tin nhắn từ họ.";
 "ask_delete_contacts" = "Xóa liên hệ?\n\nKhông thể xóa vĩnh viễn các liên hệ đang trò chuyện hoặc khỏi sổ địa chỉ hệ thống.";
 "ask_delete_contact" = "Xóa liên hệ %1$@?\n\nKhông thể xóa vĩnh viễn các liên hệ đang trò chuyện hoặc khỏi sổ địa chỉ hệ thống.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Không thể xóa liên hệ với các cuộc trò chuyện đang diễn ra.";
 "ask_start_chat_with" = "Trò chuyện với %1$@?";
+// deprecated
 "ask_delete_value" = "Xóa %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Loại %1$@ khỏi nhóm?";

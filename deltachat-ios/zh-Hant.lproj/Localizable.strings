@@ -187,6 +187,7 @@
 "menu_delete_chat" = "刪除對話";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清除對話";
+// deprecated
 "menu_delete_messages" = "刪除訊息";
 "delete_contact" = "刪除聯絡人";
 "menu_delete_location" = "刪除這個地點？";
@@ -296,7 +297,6 @@
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
 "ask_delete_named_chat" = "你確定你要刪除「%1$@」？";
-"ask_delete_message" = "你確定要刪除這則訊息？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
@@ -305,8 +305,10 @@
 "ask_unblock_contact" = "要解除封鎖嗎？你之後可以繼續收到這個人的訊息。";
 "ask_delete_contacts" = "要刪除聯絡人嗎？選定的聯絡人將被永久刪除。\n\n正在進行對話的聯絡人、以及系統通訊錄中的聯絡人，無法被永久刪除。";
 "ask_delete_contact" = "要刪除%1$@聯絡人嗎？\n\n聊天室中的聯絡人和系統聯絡人將不會被永久刪除。";
+// deprecated
 "cannot_delete_contacts_in_use" = "無法刪除聊天室內的聯絡人。";
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
+// deprecated
 "ask_delete_value" = "刪除%1$@？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";

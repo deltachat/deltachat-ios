@@ -89,6 +89,7 @@
 "menu_add_attachment" = "إضافة مرفقات";
 "menu_leave_group" = "غادر الفريق";
 "menu_delete_chat" = "احدف المحادثة";
+// deprecated
 "menu_delete_messages" = "احذف الرسائل";
 "menu_message_details" = "تفاصيل الرسالة";
 "menu_copy_to_clipboard" = "انسخ إلى الحافظة";

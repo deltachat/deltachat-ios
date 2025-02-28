@@ -86,6 +86,7 @@
 "menu_show_global_map" = "Prikaži sve lokacije";
 "menu_add_attachment" = "Dodaj privitak";
 "menu_leave_group" = "Napusti grupu";
+// deprecated
 "menu_delete_messages" = "Obriši poruke";
 "menu_delete_location" = "Obrisati ovu lokaciju?";
 "menu_message_details" = "Detalji poruke";

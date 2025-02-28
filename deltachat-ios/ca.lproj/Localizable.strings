@@ -203,6 +203,7 @@
 "menu_delete_chat" = "Esborra el xat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Buida el xat";
+// deprecated
 "menu_delete_messages" = "Esborra els missatges";
 "delete_contact" = "Esborra el contacte";
 "menu_delete_location" = "Voleu esborrar aquesta ubicació?";
@@ -312,7 +313,6 @@
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_named_chat" = "Voleu esborrar el xat «%1$@»? Ja no es mostrarà més en el llistat de xats i els missatges romandran al servidor.";
-"ask_delete_message" = "Esteu segur de voler esborrar aquest missatge?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
@@ -321,8 +321,10 @@
 "ask_unblock_contact" = "Voleu desblocar aquest contacte?";
 "ask_delete_contacts" = "Voleu esborrar els contactes?\n\nEls contactes amb xats actius i els que estiguin al vostre directori d\'adreces no es poden eliminar definitivament. ";
 "ask_delete_contact" = "Voleu esborrar el contacte %1$@?\n\nEls contactes dels xats actius o de la llibreta d\'adreces del sistema no es poden esborrar permanentment.";
+// deprecated
 "cannot_delete_contacts_in_use" = "No es poden esborrar els contactes amb xats actius.";
 "ask_start_chat_with" = "Voleu xatejar amb %1$@?";
+// deprecated
 "ask_delete_value" = "Voleu esborrar %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Voleu eliminar %1$@ del grup?";

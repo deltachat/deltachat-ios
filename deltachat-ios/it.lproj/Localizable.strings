@@ -205,6 +205,7 @@
 "menu_delete_chat" = "Elimina Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Cancella Messaggi";
+// deprecated
 "menu_delete_messages" = "Elimina Messaggi";
 "delete_contact" = "Elimina Contatto";
 "menu_delete_location" = "Elimino questa Posizione?";
@@ -263,6 +264,7 @@
 "menu_learn_spelling" = "Impara l\'Ortografia";
 "menu_chat_audit_log" = "Registro Controllo Chat";
 "jump_to_message" = "Vai al Messaggio";
+"jump_to_original_message" = "Vai al Messaggio Originale";
 "copy_json" = "Copia JSON";
 "replace_draft" = "Sostituisci Bozza";
 "title_share_location" = "Condividi posizione con tutti i membri del guppo";
@@ -314,7 +316,7 @@
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
 "ask_delete_named_chat" = "Elimina chat \"%1$@\"?";
-"ask_delete_message" = "Sei sicuro di voler eliminare questo messaggio?";
+"ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
@@ -323,8 +325,10 @@
 "ask_unblock_contact" = "Sbloccare questo contatto?";
 "ask_delete_contacts" = "Eliminare contatti?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
 "ask_delete_contact" = "Eliminare il contatto %1$@?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Impossibile eliminare contatti con chat in corso.";
 "ask_start_chat_with" = "Chattare con %1$@?";
+// deprecated
 "ask_delete_value" = "Elimina %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "Aggiungi come Secondo Dispositivo";
 "multidevice_open_settings_on_other_device" = "Sul primo dispositivo, andare su \"Impostazioni/Aggiungi Secondo Dispositivo\" e scansionare il codice mostrato qui";
 "multidevice_receiver_scanning_ask" = "Copiare il profilo dall\'altro dispositivo su questo dispositivo?";
+"multidevice_receiver_needs_update" = "Il profilo che vuoi importare proviene da una versione più recente di Delta Chat.\n\nPer continuare a configurare il secondo dispositivo, aggiorna questo dispositivo all\'ultima versione di Delta Chat.";
 "multidevice_abort" = "Interrompere l\'impostazione del secondo dispositivo?";
 "multidevice_abort_will_invalidate_copied_qr" = "Questo invaliderà il codice QR copiato negli appunti.";
 "multidevice_experimental_hint" = "(sperimentale, è richiesta la versione 1.36)";

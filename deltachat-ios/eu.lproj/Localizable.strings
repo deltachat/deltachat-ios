@@ -106,6 +106,7 @@
 "menu_add_attachment" = "Gehitu eranskina";
 "menu_leave_group" = "Atera taldetik";
 "menu_delete_chat" = "Ezabatu txata";
+// deprecated
 "menu_delete_messages" = "Ezabatu mezuak";
 "menu_delete_location" = "Ezabatu kokaleku hau?";
 "menu_message_details" = "Mezuaren xehetasunak";
@@ -164,6 +165,7 @@
 "ask_unblock_contact" = "Desblokeatu kontaktu hau? Berriro jaso ahal izango dituzu kontaktu honen mezuak.";
 "ask_delete_contacts" = "Ezabatu kontaktuak? Honek behin betiko ezabatuko ditu hautatutako kontaktuak.\n\nTxaten bat abian duten eta sistemako helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
 "ask_delete_contact" = "Ezabatu %1$@ kontaktua behin betiko?\n\nAbian dauden txatak dituzten kontaktuak eta sistemaren helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
+// deprecated
 "cannot_delete_contacts_in_use" = "Ezin dira txatak abian dituzten kontaktuak ezabatu";
 "ask_start_chat_with" = "Txateatu %1$@ erabiltzailearekin?";
 // %1$s is replaced by a comma-separated list of names

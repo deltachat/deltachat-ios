@@ -205,6 +205,7 @@
 "menu_delete_chat" = "删除聊天";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清空聊天记录";
+// deprecated
 "menu_delete_messages" = "删除消息";
 "delete_contact" = "删除联系人";
 "menu_delete_location" = "删除此位置？";
@@ -314,7 +315,7 @@
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
 "ask_delete_named_chat" = "删除聊天“%1$@”？它将不再显示在聊天列表中，其消息将保留在服务器上。";
-"ask_delete_message" = "您确定要删除这条消息吗？";
+"ask_delete_message" = "在所有设备上删除此消息吗？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
@@ -323,8 +324,10 @@
 "ask_unblock_contact" = "取消屏蔽此联系人？您将再次能收到此联系人的消息。";
 "ask_delete_contacts" = "删除联系人？\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
 "ask_delete_contact" = "删除联系人 %1$@?\n\n仍有在进行中的聊天的联系人和在系统通讯录中的联系人无法被永久删除。";
+// deprecated
 "cannot_delete_contacts_in_use" = "无法删除仍有在进行中的聊天的联系人。";
 "ask_start_chat_with" = "与 %1$@ 聊天？";
+// deprecated
 "ask_delete_value" = "删除 %1$@？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "将 %1$@ 从群组中移除？";
@@ -459,6 +462,7 @@
 "multidevice_receiver_title" = "添加为第二台设备";
 "multidevice_open_settings_on_other_device" = "在第一台设备上，转到“设置/添加第二台设备”并扫描显示的二维码";
 "multidevice_receiver_scanning_ask" = "是否将账号从其他设备复制到此设备？";
+"multidevice_receiver_needs_update" = "你想导入的配置文件来自较新的 Delta Chat 版本。\n\n要继续设置第二台设备，请更新此设备上的 Delta Chat 到最新版。";
 "multidevice_abort" = "中止第二台设备的设置吗？";
 "multidevice_abort_will_invalidate_copied_qr" = "这会让复制到剪贴板的二维码失效。";
 "multidevice_experimental_hint" = "（实验性，需要 1.36 版本）";

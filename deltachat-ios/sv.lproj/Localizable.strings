@@ -183,6 +183,7 @@
 "menu_delete_chat" = "Ta bort chatt";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Rensa chatt";
+// deprecated
 "menu_delete_messages" = "Ta bort meddelanden";
 "delete_contact" = "Ta bort kontakt";
 "menu_delete_location" = "Ta bort denna plats?";
@@ -287,7 +288,6 @@
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 "ask_delete_named_chat" = "Är du säker på att du vill ta bort \"%1$@\"?";
-"ask_delete_message" = "Är du säker på att du vill radera detta meddelande?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
@@ -296,8 +296,10 @@
 "ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
 "ask_delete_contacts" = "Ta bort kontakter? Detta kommer att ta bort de valda kontakterna permanent.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent.";
 "ask_delete_contact" = "Ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
+// deprecated
 "cannot_delete_contacts_in_use" = "Det går inte att ta bort kontakter med pågående chattar.";
 "ask_start_chat_with" = "Chatta med %1$@ ?";
+// deprecated
 "ask_delete_value" = "Ta bort %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
