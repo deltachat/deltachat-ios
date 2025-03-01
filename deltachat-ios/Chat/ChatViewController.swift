@@ -2382,9 +2382,11 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        var doResignFirstResponder = false
 
         if let sendEditRequestFor = draft.sendEditRequestFor {
             dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
+            doResignFirstResponder = true
         } else if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
             case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC, DC_MSG_VCARD:
@@ -2402,6 +2404,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.attributedText = nil
         draft.clear()
         draftArea.cancel()
+
+        if doResignFirstResponder {
+            inputBar.inputTextView.resignFirstResponder()
+        }
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
