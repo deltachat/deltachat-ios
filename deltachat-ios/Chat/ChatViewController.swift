@@ -1696,6 +1696,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draft.sendEditRequestFor = message.id
         configureDraftArea(draft: draft)
         messageInputBar.inputTextView.text = message.text
+        focusInputTextView()
     }
 
     private func toggleSave(at indexPath: IndexPath) {
