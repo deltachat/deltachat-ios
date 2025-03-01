@@ -2369,6 +2369,7 @@ extension ChatViewController: DraftPreviewDelegate {
             draft.clear()
             draftArea.cancel()
             messageInputBar.inputTextView.text = nil
+            messageInputBar.inputTextView.resignFirstResponder()
         } else {
             draft.setQuote(quotedMsg: nil)
             configureDraftArea(draft: draft)
