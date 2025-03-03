@@ -281,7 +281,6 @@
 "videochat_invitation_body" = "Sinut on kutsuttu videokeskusteluun, klikkaa %1$@ liittyäksesi.";
 // get confirmations
 "ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
-"ask_delete_named_chat" = "Haluatko varmasti poistaa \"%1$@\"?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";

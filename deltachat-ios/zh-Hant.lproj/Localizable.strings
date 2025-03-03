@@ -296,7 +296,6 @@
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
-"ask_delete_named_chat" = "你確定你要刪除「%1$@」？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";

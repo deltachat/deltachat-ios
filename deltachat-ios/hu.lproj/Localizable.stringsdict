@@ -162,22 +162,6 @@
 			<string>A következő %d fájl elküldése „%s” számára?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Biztosan töröl %d csevegést? Többé nem jelenik meg a csevegőlistában; az üzenetek viszont a szerveren maradnak.</string>
-			<key>other</key>
-			<string>Biztosan töröl %d csevegést? Többé nem jelennek meg a csevegőlistában; az üzeneteik viszont a kiszolgálón maradnak.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

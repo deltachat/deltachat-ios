@@ -315,7 +315,6 @@
 "videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
-"ask_delete_named_chat" = "Elimina chat \"%1$@\"?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";

@@ -202,26 +202,6 @@
 			<string>Wysłać %d pliku do %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Usunąć %d czat? Nie będzie już wyświetlany na liście czatów, wiadomość pozostanie na serwerze.</string>
-			<key>few</key>
-			<string>Usunąć %d czatów? Nie będą już wyświetlane na liście czatów, ich wiadomości pozostaną na serwerze.</string>
-			<key>many</key>
-			<string>Usunąć %d czaty? Nie będą już wyświetlane na liście czatów, ich wiadomości pozostaną na serwerze.</string>
-			<key>other</key>
-			<string>Usunąć %d czatów? Nie będą już wyświetlane na liście czatów, ich wiadomości pozostaną na serwerze.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

@@ -240,7 +240,6 @@
 "file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
 // get confirmations
 "ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
-"ask_delete_named_chat" = "Ĉu vi certas, ke vi deziras forigi \"%1$@\"?";
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
 // deprecated
 "cannot_delete_contacts_in_use" = "Ne eblas forigi kontaktojn kun aktualaj babiloj.";

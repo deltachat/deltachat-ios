@@ -142,26 +142,6 @@
 			<string>Pošli následujících %d souborů na %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Vymazat %d hovor? Pak už jej neuvidíte v seznamu hovorů, ale jeho zprávy zůstanou na serveru.</string>
-			<key>few</key>
-			<string>Vymazat %d hovory? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
-			<key>many</key>
-			<string>Vymazat %d hovorů? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
-			<key>other</key>
-			<string>Vymazat %d hovorů? Pak už je neuvidíte v seznamu hovorů, ale jejich zprávy zůstanou na serveru.</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

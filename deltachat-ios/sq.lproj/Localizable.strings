@@ -311,7 +311,7 @@
 "videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
 // get confirmations
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
-"ask_delete_named_chat" = "Jeni i sigurt se doni të fshihet “%1$@”?";
+"ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Të përcillen mesazhet te %1$@?";

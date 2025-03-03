@@ -26,6 +26,8 @@
 "join" = "Uneix-te";
 "rejoin" = "Torna a unir-te";
 "delete" = "Esborra";
+"delete_for_me" = "Esborra per a Mi";
+"delete_for_everyone" = "Esborra per a Tothom";
 "info" = "Info";
 "update" = "Actualitza";
 "emoji" = "Emojis";
@@ -262,6 +264,7 @@
 "menu_learn_spelling" = "Aprèn l\'ortografia";
 "menu_chat_audit_log" = "Registre de l\'auditoria de xat";
 "jump_to_message" = "Ves al missatge";
+"jump_to_original_message" = "Vés al Missatge Original";
 "copy_json" = "Copia el JSON";
 "replace_draft" = "Substitueix l\'esborrany";
 "title_share_location" = "Comparteix la ubicació amb tots els membres del grup";
@@ -312,7 +315,8 @@
 "videochat_invitation_body" = "Us han convidat a un xat de vídeo, feu clic a %1$@ per unir-vos-hi.";
 // get confirmations
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
-"ask_delete_named_chat" = "Voleu esborrar el xat «%1$@»? Ja no es mostrarà més en el llistat de xats i els missatges romandran al servidor.";
+"ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
+"ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
@@ -459,6 +463,7 @@
 "multidevice_receiver_title" = "Afegeix com a segon dispositiu";
 "multidevice_open_settings_on_other_device" = "En el primer dispositiu, aneu a «Configuració / Afegeix un segon dispositiu» i escanegeu el codi que es mostra allà.";
 "multidevice_receiver_scanning_ask" = "Voleu copiar el perfil de l\'altre dispositiu en aquest?";
+"multidevice_receiver_needs_update" = "El perfil que vols importar prové d\'una versió més recent de Delta Chat.\n\nPer continuar configurant el segon dispositiu, actualitza aquest dispositiu a l\'última versió de Delta Chat.";
 "multidevice_abort" = "Voleu cancel·lar la configuració d\'un segon dispositiu?";
 "multidevice_abort_will_invalidate_copied_qr" = "Això invalidarà el codi QR copiat al porta-retalls.";
 "multidevice_experimental_hint" = "(experimental, es requereix la versió 1.36)";

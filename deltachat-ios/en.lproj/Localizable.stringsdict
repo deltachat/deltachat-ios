@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d chat?</string>
+			<string>Delete %d chat on all your devices?</string>
 			<key>other</key>
-			<string>Delete %d chats?</string>
+			<string>Delete %d chats on all your devices?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

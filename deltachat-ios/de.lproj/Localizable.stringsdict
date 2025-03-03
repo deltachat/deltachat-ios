@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Chat löschen? Gelöschte Chats werden nicht länger in der Chat-Liste angezeigt, die Nachrichten verbleiben auf dem Server.</string>
+			<string>%d Chat von allen Geräten löschen?</string>
 			<key>other</key>
-			<string>%d Chats löschen?</string>
+			<string>%d Chats von allen Geräten löschen?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

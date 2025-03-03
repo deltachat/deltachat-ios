@@ -146,22 +146,6 @@
 			<string>Skicka de följande filerna %d till %s ?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Radera %d chatt? Det kommer inte längre synas i chattlistan, meddelanden kommer att finnas kvar på servern.</string>
-			<key>other</key>
-			<string>Radera %d chattar? De kommer inte att visas i chattlistan, deras meddelanden kommer finnas kvar på servern.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

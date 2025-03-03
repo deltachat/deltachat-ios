@@ -128,20 +128,6 @@
 			<string>%s에게 %d파일을 보낼까요?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>other</key>
-			<string>채팅 %d을/를 삭제하시겠습니까? 대화 상대의 메시지는 더 이상 대화 목록에 표시되지 않고 서버에 남아 있습니다.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

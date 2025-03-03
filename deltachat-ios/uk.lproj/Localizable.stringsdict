@@ -202,26 +202,6 @@
 			<string>Надіслати наступні %d файлів до %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Видалити %d чат? Він більше не буде відображатися у списку чатів, його повідомлення залишаться на сервері.</string>
-			<key>few</key>
-			<string>Видалити %d чати? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
-			<key>many</key>
-			<string>Видалити %d чатів? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
-			<key>other</key>
-			<string>Видалити %d чатів? Вони більше не будуть відображатися у списку чатів, їх повідомлення залишаться на сервері.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

@@ -260,7 +260,6 @@
 "videochat_invitation_body" = "Sunteți invitat la un chat video, faceți clic %1$@ pentru a vă alătura.";
 // get confirmations
 "ask_leave_group" = "Ești sigur că vrei să părăsești acest grup?";
-"ask_delete_named_chat" = "Sunteți sigur că vreți să ștergeți \"%1$@\"?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Transmiteți mesajele către %1$@?";
 "ask_forward_multiple" = "Transmiteți mesajele către %1$d chat-uri?";

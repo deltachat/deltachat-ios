@@ -213,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Удалить %d чат?</string>
+			<string>Удалить %d чат на всех ваших устройствах?</string>
 			<key>few</key>
-			<string>Удалить %d чата?</string>
+			<string>Удалить %d чата на всех ваших устройствах?</string>
 			<key>many</key>
-			<string>Удалить %d чатов?</string>
+			<string>Удалить %d чатов на всех ваших устройствах?</string>
 			<key>other</key>
-			<string>Удалить %d чатов?</string>
+			<string>Удалить %d чатов на всех ваших устройствах?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

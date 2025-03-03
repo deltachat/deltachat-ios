@@ -164,24 +164,6 @@
 			<string>Trimiteți următoarele %d de fișiere la %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Ștergeți %d chat-ul? Acestea nu vor mai fi afișate în lista de chat; mesajele lor vor rămâne pe server.</string>
-			<key>few</key>
-			<string>Ștergeți %d chat-uri? Acestea nu vor mai fi afișate în lista de chat; mesajele lor vor rămâne pe server.</string>
-			<key>other</key>
-			<string>Ștergeți %d de chat-urilAcestea nu vor mai fi afișate în lista de chat; mesajele lor vor rămâne pe server.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

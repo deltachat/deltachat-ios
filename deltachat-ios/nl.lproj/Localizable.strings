@@ -315,7 +315,7 @@
 "videochat_invitation_body" = "Je bent uitgenodigd voor een videogesprek. Druk op %1$@ om deel te nemen.";
 // get confirmations
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
-"ask_delete_named_chat" = "Weet je zeker dat je ‘%1$@’ wilt verwijderen?";
+"ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen van al je apparaten?";
 "ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";

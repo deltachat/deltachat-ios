@@ -308,7 +308,6 @@
 "videochat_invitation_body" = "Fuiste invitado a una videollamada, click en %1$@ para unirse.";
 // get confirmations
 "ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
-"ask_delete_named_chat" = "¿Estás seguro de que deseas eliminar \"%1$@\"?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";

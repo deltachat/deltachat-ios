@@ -153,7 +153,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>删除 %d 个聊天？被删除的聊天不会再显示在聊天列表中；聊天消息仍将保留于服务器。</string>
+			<string>是否删除所有设备上的 %d 个聊天？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

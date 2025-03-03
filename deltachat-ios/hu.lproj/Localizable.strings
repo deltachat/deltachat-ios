@@ -312,7 +312,6 @@
 "videochat_invitation_body" = "Ön meg lett híva egy videócsevegésbe, kattintson ide: %1$@ a csatlakozáshoz.";
 // get confirmations
 "ask_leave_group" = "Biztosan ki akar lépni a csoportból?";
-"ask_delete_named_chat" = "Biztosan törli a következőt: „%1$@”? Többé nem fog megjelenni a csevegőlistában; üzenetei a kiszolgálón maradnak.";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
