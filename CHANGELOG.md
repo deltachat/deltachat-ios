@@ -1,9 +1,9 @@
 # Delta Chat iOS Changelog
 
-## v1.54.2
-2025-02
+## v1.54.3
+2025-03
 
-- Sync message deletion to other devices
+- Sync message and chat deletion to other devices
 - Do not allow non-members to change ephemeral timer settings of groups
 - Properly display padlock when the message is not sent over the network
 - Allow scanning multiple QR-invitation codes without needing to wait for completion to scan the next one
@@ -16,12 +16,13 @@
 - Detect incompatible profiles from newer app version when importing them
 - Prepare the app for receiving edited messages (#6550)
 - Prepare the app for receiving message deletion requests (#6550)
+- Show sender in "Saved Messages"
 - Fix: Hide read-only chats on forwarding and sort list accordingly (#2436)
 - Fix: Let 'Cancel' work as expecting when forwarding messages (#2436)
 - Fix: Preserve filenames on sharing (#2605)
 - Fix parsing some messages
 - Update translations and local help
-- Update core to 1.156.1
+- Update core to 1.156.2
 
 
 ## v1.54.0
