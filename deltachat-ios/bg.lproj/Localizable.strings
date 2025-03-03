@@ -281,7 +281,6 @@
 "videochat_invitation_body" = "Поканени сте във видеочат, натиснете върху%1$@, за да се присъедините";
 // get confirmations
 "ask_leave_group" = "Сигурни ли сте, че искате да напуснете тази група?";
-"ask_delete_named_chat" = "Сигурни ли сте, че искате да изтриете %1$@?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";

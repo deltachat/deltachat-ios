@@ -164,24 +164,6 @@
 			<string>Enviar os seguintes arquivos %d para %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Delete %d chat? It will no longer be shown in the chat list, its messages will remain on the server.</string>
-			<key>many</key>
-			<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
-			<key>other</key>
-			<string>Apagar %d conversas? Elas não mais serão exibidas na lista, mas ficarão no servidor.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

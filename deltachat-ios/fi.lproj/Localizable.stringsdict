@@ -146,22 +146,6 @@
 			<string>Lähetä seuraavat %dtiedostot yhteystiedolle%s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Poista %d keskustelu? Se ei enää näy keskustelulistauksessa, mutta sen viestit jäävät palvelimelle.</string>
-			<key>other</key>
-			<string>Poista %d keskustelua? Ne eivät enää näy keskustelulistauksessa, mutta niiden viestit jäävät palvelimelle.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

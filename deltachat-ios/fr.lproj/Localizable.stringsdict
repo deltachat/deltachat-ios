@@ -182,24 +182,6 @@
 			<string>Envoyer les %d fichiers suivants à %s ?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Supprimer %d discussion ? Elle n\'apparaîtra plus dans la liste des discussions, mais les messages échangés resteront sur le serveur.</string>
-			<key>many</key>
-			<string>Supprimer %d discussions ? Elles n\'apparaîtront plus dans la liste des discussions, mais les messages qu\'elles contiennent resteront sur le serveur.</string>
-			<key>other</key>
-			<string>Supprimer %d discussions ? Elles n\'apparaîtront plus dans la liste des discussions, mais les messages qu\'elles contiennent resteront sur le serveur.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

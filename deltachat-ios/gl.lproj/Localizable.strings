@@ -258,7 +258,6 @@
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
 // get confirmations
 "ask_leave_group" = "Seguro que desexa abandonar o grupo?";
-"ask_delete_named_chat" = "Tes a certeza de querer eliminar \"%1$@\"?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";

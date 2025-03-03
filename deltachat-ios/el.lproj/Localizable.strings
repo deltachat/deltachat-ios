@@ -252,7 +252,6 @@
 "videochat_invitation_body" = "Έχετε προσκληθεί σε βινετοκλήση, πατήστε %1$@ για να συμμετέχετε";
 // get confirmations
 "ask_leave_group" = "Είστε σίγουρος/-η ότι θέλετε να βγείτε από αυτή την ομάδα;";
-"ask_delete_named_chat" = "Είστε σίγουρος ότι θέλετε να διαγράψετε \"%1$@\";";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Κοινοποίηση μηνύματος στο %1$@;";
 "ask_forward_multiple" = "Κοινοποίηση μηνύματος σε %1$d συνομιλίες;";

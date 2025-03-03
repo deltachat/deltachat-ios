@@ -264,6 +264,7 @@
 "menu_learn_spelling" = "学习拼写";
 "menu_chat_audit_log" = "聊天审计日志";
 "jump_to_message" = "跳转到消息";
+"jump_to_original_message" = "跳转到原始消息";
 "copy_json" = "复制 JSON";
 "replace_draft" = "替换草稿";
 "title_share_location" = "与所有群组成员共享位置";
@@ -314,8 +315,8 @@
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
 // get confirmations
 "ask_leave_group" = "您确定要离开此群组吗？";
-"ask_delete_named_chat" = "删除聊天“%1$@”？它将不再显示在聊天列表中，其消息将保留在服务器上。";
-"ask_delete_message" = "在所有设备上删除此消息吗？";
+"ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
+"ask_delete_message" = "是否在所有设备上删除此消息？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";

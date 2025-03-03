@@ -252,7 +252,6 @@
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
 // get confirmations
 "ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
-"ask_delete_named_chat" = "Naozaj chcete položku odstrániť  \"%1$@\" ?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";

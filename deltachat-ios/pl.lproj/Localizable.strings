@@ -315,7 +315,6 @@
 "videochat_invitation_body" = "Masz zaproszenie do czatu wideo, naciśnij %1$@, aby dołączyć.";
 // get confirmations
 "ask_leave_group" = "Czy na pewno chcesz opuścić tę grupę?";
-"ask_delete_named_chat" = "Usunąć czat „%1$@”? Nie będzie on już wyświetlany na liście czatów. Jego wiadomości pozostaną na serwerze.";
 "ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";

@@ -162,22 +162,6 @@
 			<string>Aşağıdaki %d dosya %s kişisine gönderilsin mi?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d sohbet silinsin mi?</string>
-			<key>other</key>
-			<string>%d sohbet silinsin mi?</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

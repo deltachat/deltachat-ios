@@ -249,7 +249,6 @@
 "videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
-"ask_delete_named_chat" = "Ar tikrai norite ištrinti „%1$@“?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";

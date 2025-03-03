@@ -302,7 +302,6 @@ https://meet.jit.si/$ROOM
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
 // get confirmations
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
-"ask_delete_named_chat" = "اطمینان دارید می‌خواهید «%1$@» را پاک کنید؟";
 // deprecated, use ask_delete_messages
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";

@@ -114,22 +114,6 @@
 			<string>ئەم %d پەڕگەیە دەنێریت بۆ %s؟</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d وتووێژ دەسڕیتەوە؟ ئیدی لە نیو لیستەی وتووێژەکاندا دیار نامێنن، بەڵام پەیامەکانیان لەسەر سێرڤەر دەمێنێتەوە.</string>
-			<key>other</key>
-			<string>%d وتووێژ دەسڕیتەوە؟ ئیدی لە نێو لیستەی وتووێژەکاندا دیار نامێنن، بەڵام پەیامەکانیان لەسەر سێرڤەر دەمێنێتەوە.</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

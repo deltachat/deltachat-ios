@@ -173,9 +173,25 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Esborra %d xat? Ja no es mostrarà al llistat de xats, i els seus missatges no romandran al servidor.</string>
+			<string>¿Esborrar %d xat de tots els teus dispositius?</string>
 			<key>other</key>
-			<string>Voleu esborrar %d xats? Ja no es mostraran al llistat de xats però els missatges es conservaran al servidor.</string>
+			<string>¿Esborrar %d xats de tots els teus dispositius?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>¿Esborra %d missatge de tots els teus dispositius?</string>
+			<key>other</key>
+			<string>¿Esborra %d missatges de tots els teus dispositius?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

@@ -263,7 +263,6 @@
 "videochat_invitation_body" = "Позвани сте у видео ћаскање, кликни %1$@да придружиш.";
 // get confirmations
 "ask_leave_group" = "Да ли заиста желите да напустите ову групу?";
-"ask_delete_named_chat" = "Јесте ли сигурни да желите да избришете „%1$@“?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Да ли желите да проследите поруке %1$@?";
 "ask_forward_multiple" = "Да ли желите да проследим поруке за %1$dћаскања?";

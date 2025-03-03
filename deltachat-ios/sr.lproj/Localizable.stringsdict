@@ -164,24 +164,6 @@
 			<string>Пошаљи %d датотеке %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Избриши %d ћаскање? Више неће бити приказано на листи ћаскања; али поруке ће остати на серверу.</string>
-			<key>few</key>
-			<string>Избриши %d ћаскањa? Они више неће бити приказани на листи ћаскања; али поруке ће остати на серверу.</string>
-			<key>other</key>
-			<string>Избриши %d ћаскањa? Они више неће бити приказани на листи ћаскања; али поруке ће остати на серверу.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

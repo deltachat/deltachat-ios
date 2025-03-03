@@ -146,22 +146,6 @@
 			<string>Да бъдат ли изпратени следните %d файлове на %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_chat</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Да бъде ли изтрит %d чат? Той повече няма да се показва в списъка с чатове, неговите съобщения ще останат на сървъра.</string>
-			<key>other</key>
-			<string>Да бъдат ли изтрити%d чата? Те повече няма да се показват в списъка с чатове; техните съобщения ще останат на сървъра.</string>
-		</dict>
-	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

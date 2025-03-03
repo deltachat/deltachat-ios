@@ -311,7 +311,6 @@
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
 // get confirmations
 "ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
-"ask_delete_named_chat" = "Voulez-vous vraiment supprimer « %1$@ » ?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";

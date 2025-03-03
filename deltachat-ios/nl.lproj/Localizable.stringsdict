@@ -173,9 +173,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Wil je %d gesprek verwijderen?</string>
+			<string>Wil je %d gesprek verwijderen van al je apparaten?</string>
 			<key>other</key>
-			<string>Wil je %d gesprekken verwijderen?</string>
+			<string>Wil je %d gesprekken verwijderen van al je apparaten?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -191,7 +191,7 @@
 			<key>one</key>
 			<string>Wil je %d bericht verwijderen van al je apparaten?</string>
 			<key>other</key>
-			<string>Wil je alle %d berichten verwijderen van al je apparaten?</string>
+			<string>Wil je %d berichten verwijderen van al je apparaten?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
