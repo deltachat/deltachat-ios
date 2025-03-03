@@ -9,7 +9,7 @@ For the core library and other common info, please refer to the
 
 For general contribution hints, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-![Screenshot Chat List](docs/images/screenshot_chat_list.png) ![Screenshot Chat View](docs/images/screenshot_chat_view.png)
+![Screenshot Chat List](docs/images/screenshot_chat_list.png) ![Screenshot Chat View](docs/images/screenshot_chat_view.jpg)
 
 
 ## Testing
