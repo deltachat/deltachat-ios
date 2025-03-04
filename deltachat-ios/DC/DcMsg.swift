@@ -280,8 +280,8 @@ public class DcMsg {
         return nil
     }
 
-    public func setFile(filepath: String?, mimeType: String? = nil) {
-        dc_msg_set_file_and_deduplicate(messagePointer, filepath, nil, mimeType)
+    public func setFile(filepath: String?, fileName: String? = nil, mimeType: String? = nil) {
+        dc_msg_set_file_and_deduplicate(messagePointer, filepath, fileName, mimeType)
     }
 
     public func setDimension(width: CGFloat, height: CGFloat) {
