@@ -6,6 +6,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 import Combine
+import CallKit
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -1177,6 +1178,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func callPressed() {
+        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
