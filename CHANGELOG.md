@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix names of explicitly attached files (#2628)
+
+
 ## v1.54.3
 2025-03
 
