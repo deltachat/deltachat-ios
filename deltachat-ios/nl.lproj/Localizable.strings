@@ -572,9 +572,10 @@
 "accept_invalid_certificates" = "Ongeldige certificaten accepteren";
 "switch_account" = "Ander account kiezen";
 "add_account" = "Account toevoegen";
-"profile_tag" = "Privélabel";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profielbeschrijving";
 "profile_tag_hint" = "bijv. werk, familie";
-"profile_tag_explain" = "Een label dat alleen jij kan zien, om profielen van elkaar te onderscheiden.";
+"profile_tag_explain" = "Een beschrijving die alleen jij kan zien, om profielen van elkaar te onderscheiden.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Bovenaan tonen";
 "delete_account" = "Account verwijderen";

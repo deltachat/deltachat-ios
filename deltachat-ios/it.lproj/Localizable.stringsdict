@@ -182,6 +182,24 @@
 			<string>Invia i seguenti %d files a %s?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Eliminare %d chat su tutti i tuoi dispositivi?</string>
+			<key>many</key>
+			<string>Eliminare %d chats su tutti i tuoi dispositivi?</string>
+			<key>other</key>
+			<string>Eliminare %d chats su tutti i tuoi dispositivi?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

@@ -564,9 +564,7 @@
 "accept_invalid_certificates" = "Accepter les certificats non valides";
 "switch_account" = "Changer de compte";
 "add_account" = "Ajouter un compte";
-"profile_tag" = "Tag privé";
 "profile_tag_hint" = "Travail ou famille par exemple";
-"profile_tag_explain" = "Tag seulement visible par vous pour vous aider à différencier les profils.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Remonter l\'élément";
 "delete_account" = "Supprimer le compte";

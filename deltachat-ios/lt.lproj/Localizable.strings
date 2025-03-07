@@ -416,7 +416,6 @@
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
 "switch_account" = "Perjungti paskyrą";
 "add_account" = "Pridėti paskyrą";
-"profile_tag" = "Privati žymė";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";

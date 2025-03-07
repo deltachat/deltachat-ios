@@ -572,9 +572,7 @@
 "accept_invalid_certificates" = "Accepta certificats no vàlids";
 "switch_account" = "Canvia el perfil";
 "add_account" = "Afegeix un compte";
-"profile_tag" = "Etiqueta privada";
 "profile_tag_hint" = "p.ex. treball, família";
-"profile_tag_explain" = "Etiqueteu allò que és visible només per a vós. Això us ajuda a diferenciar els vostres perfils.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Desplaçat a l\'inici";
 "delete_account" = "Esborra el perfil";

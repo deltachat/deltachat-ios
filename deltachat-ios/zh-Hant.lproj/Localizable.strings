@@ -26,6 +26,8 @@
 "join" = "加入";
 "rejoin" = "重新加入";
 "delete" = "刪除";
+"delete_for_me" = "為我刪除";
+"delete_for_everyone" = "為所有人刪除";
 "info" = "資訊";
 "update" = "更新";
 "emoji" = "表情符號";
@@ -35,14 +37,18 @@
 "close_window" = "關閉視窗";
 "forward" = "轉發";
 "create" = "建立";
+"reset" = "重置";
 "later" = "稍後";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "重新傳送";
+"edited" = "已編輯";
+"edit_message" = "編輯訊息";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "封存";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "取消封存";
 "mute" = "靜音";
+"muted" = "勿擾";
 "ephemeral_messages" = "自動銷毀訊息";
 "ephemeral_messages_hint" = "這些設定將會套用在所有使用 Delta Chat 的聊天成員上。但他們依然可以複製、儲存和轉發訊息，或使用其他的電子郵件客戶端。";
 "save" = "儲存";
@@ -143,6 +149,16 @@
 "webxdc_app" = "小程式";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "小程式";
+"webxdc_store_url" = "應用選取器連結";
+"webxdc_store_url_explain" = "如果設定，該連接將用作應用選擇器而不是預設連結";
+"home" = "主頁";
+"games" = "游戲";
+"tools" = "工具";
+"app_size" = "尺寸大小";
+"app_date_published" = "已發佈";
+"add_to_chat" = "添加到聊天";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "瀏覽";
 "unknown" = "未知";
 "green" = "綠色";
 "red" = "紅色";
@@ -166,6 +182,8 @@
 "new_classic_contact_explain" = "手動添加的聯絡人可用於向傳統電子郵件發送文本，並且不能保證端到端加密。";
 "menu_new_chat" = "新增聊天";
 "menu_new_group" = "新增群組";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "廣播列表";
@@ -246,6 +264,7 @@
 "menu_learn_spelling" = "學習拼寫";
 "menu_chat_audit_log" = "對話審查紀錄";
 "jump_to_message" = "移動至訊息";
+"jump_to_original_message" = "跳轉到原始訊息";
 "copy_json" = "複製 JSON 內容";
 "replace_draft" = "取代草稿";
 "title_share_location" = "分享所在地給所有群組成員";
@@ -296,6 +315,8 @@
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
 // get confirmations
 "ask_leave_group" = "確定要離開本群組？";
+"ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
+"ask_delete_message" = "在您的所有裝置上刪除此訊息？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
@@ -402,6 +423,8 @@
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共享的對話";
 "related_chats" = "相關對話";
+// Separator between the list of actual members and past members
+"past_members" = "以前成員";
 "tab_contact" = "聯絡人";
 "tab_group" = "群組";
 "tab_gallery" = "相簿";
@@ -415,6 +438,7 @@
 "tab_audio_empty_hint" = "在此聊天中分享的音訊檔和語音消息將顯示在此處。";
 "tab_webxdc_empty_hint" = "在此聊天中分享的應用程式將在此處顯示。";
 "tab_all_media_empty_hint" = "在任何聊天中分享的媒體都會顯示在此處。";
+"all_files_empty_hint" = "在任何聊天中共用的檔案和其他檔案都會顯示在此處。";
 "all_apps_empty_hint" = "在任何聊天中接收或發送的應用程式都會顯示在此處。";
 "media_preview" = "媒體預覽";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -439,6 +463,7 @@
 "multidevice_receiver_title" = "新增為第二個裝置";
 "multidevice_open_settings_on_other_device" = "在第一台裝置上，轉到「設定/新增第二台裝置」並掃描那裡顯示的QR碼";
 "multidevice_receiver_scanning_ask" = "將賬戶檔從其他裝置複製到此裝置？";
+"multidevice_receiver_needs_update" = "您要導入的配置檔來自較新的 Delta Chat 版本。\n\n要繼續設定第二台裝置，請將此裝置更新到最新版本的 Delta Chat。";
 "multidevice_abort" = "中止設定第二個裝置？";
 "multidevice_abort_will_invalidate_copied_qr" = "這將使複製到剪貼板的 QR 碼失效。";
 "multidevice_experimental_hint" = "（實驗性，需要版本 1.36）";
@@ -547,9 +572,12 @@
 "accept_invalid_certificates" = "接受無效證書";
 "switch_account" = "切換個人檔案";
 "add_account" = "新增個人檔案";
-"profile_tag" = "私有標籤";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "賬戶標籤";
 "profile_tag_hint" = "例如工作、 家庭";
-"profile_tag_explain" = "僅對您可見的標籤；幫助您區分您的個人資料。";
+"profile_tag_explain" = "設置僅對您可見的標籤；幫助您區分您的賬戶。";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "移至頁首";
 "delete_account" = "刪除個人檔案";
 "delete_account_ask" = "您確定要刪除您的賬戶數據嗎？";
 "delete_account_explain_with_name" = "此裝置上 「%1$@」 的所有賬戶資料都將被刪除，包括您的端到端加密設置、聯絡人、聊天、消息和媒體。此操作無法復原。";
@@ -592,6 +620,8 @@
 "pref_screen_security_explain" = "要求系統在本通訊軟體中及應用程式列表中禁止擷圖";
 "pref_screen_security_please_restart_hint" = "請重新啟動本 app 以啟用螢幕安全設定。";
 "pref_notifications" = "通知設定";
+"pref_mention_notifications" = "提到";
+"pref_mention_notifications_explain" = "在勿擾的群組中，通知傳送給您的訊息，例如回復或回應";
 "pref_notifications_show" = "顯示通知";
 "pref_notifications_priority" = "通知優先權";
 "pref_notifications_explain" = "為新訊息啟用系統通知";
@@ -609,6 +639,7 @@
 "pref_appearance" = "外觀";
 "pref_theme" = "佈景主題";
 "pref_language" = "語言";
+"pref_use_system_ui_font" = "使用系統字體";
 "pref_incognito_keyboard" = "保密鍵盤";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "要求系統關閉鍵盤的個人化學習設定";
@@ -941,6 +972,8 @@
 "global_menu_view_developer_desktop" = "開發者";
 "global_menu_view_developer_tools_desktop" = "開發者工具";
 "global_menu_help_desktop" = "幫助";
+"delta_chat_homepage" = "Delta Chat 主頁";
+"contribute" = "貢獻";
 "global_menu_help_report_desktop" = "報告問題";
 "global_menu_help_about_desktop" = "關於 Delta Chat";
 "global_menu_file_open_desktop" = "開啟 Delta Chat";
@@ -953,6 +986,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "移除";
 "save_desktop" = "儲存";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "取消保存";
 "name_desktop" = "名稱";
 "select_group_image_desktop" = "選擇群組圖片";
 "export_backup_desktop" = "匯出備份";
@@ -1009,6 +1044,18 @@
 "notifications_avg_minutes" = "平均每%1$d分鐘一次";
 "notifications_avg_hours" = "平均每%1$d小時一次";
 "last_check_at" = "在%1$@檢查";
+"system_settings" = "系統設定";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "編輯類型、徽章、預覽等";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "捷徑";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "使用 Delta Chat 的“添加到小工具”添加項目";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "從小工具中移除";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "添加到小工具";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即時傳送";
@@ -1020,4 +1067,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
+// device messages for updates
+"update_1_50_android" = "新功能\n\n❤️ 🔥 新的表情符號選擇器，包含更多表情符號\n\n🎮 增強的聊天應用程式：在上下文中獲取通知並打開支援應用程式，即直接打開添加的日曆條目\n\n👍獲取有關對您的消訊息的回應的通知\n\n...🛠️ 修復以及更多在%1$@";
 "update_switch_profile_placement" = "ℹ️「切換賬戶」選項已移動：點擊主螢幕右上角的賬戶大頭貼以添加或切換賬戶 💡";

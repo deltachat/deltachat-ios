@@ -26,6 +26,8 @@
 "join" = "Unirse";
 "rejoin" = "Volver a unirse";
 "delete" = "Eliminar";
+"delete_for_me" = "Eliminar solo para mí";
+"delete_for_everyone" = "Eliminar para todos";
 "info" = "Información";
 "update" = "Actualización";
 "emoji" = "Emoji";
@@ -39,6 +41,8 @@
 "later" = "Luego";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Volver a enviar";
+"edited" = "Editado";
+"edit_message" = "Editar mensaje";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivar";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -178,6 +182,8 @@
 "new_classic_contact_explain" = "Los contactos añadidos manualmente se pueden utilizar para enviar mensajes  a contactos que usan clientes de correo electrónico clásico y no se garantiza que estén cifrados de extremo a extremo.";
 "menu_new_chat" = "Nuevo chat";
 "menu_new_group" = "Nuevo grupo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Chatear con...";
 "clone_chat" = "Clonar chat";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Difusión";
@@ -258,6 +264,7 @@
 "menu_learn_spelling" = "Aprender ortografía";
 "menu_chat_audit_log" = "Registro de auditoría de chat";
 "jump_to_message" = "Saltar al mensaje";
+"jump_to_original_message" = "Saltar al mensaje original";
 "copy_json" = "Copiar JSON";
 "replace_draft" = "Reemplazar borrador";
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
@@ -308,6 +315,8 @@
 "videochat_invitation_body" = "Fuiste invitado a una videollamada, click en %1$@ para unirse.";
 // get confirmations
 "ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
+"ask_delete_named_chat" = "¿Eliminar chat \"%1$@\" de todos tus dispositivos?";
+"ask_delete_message" = "¿Eliminar este mensaje de todos tus dispositivos?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";
@@ -414,6 +423,8 @@
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Chats compartidos";
 "related_chats" = "Chats similares";
+// Separator between the list of actual members and past members
+"past_members" = "Miembros anteriores";
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galería";
@@ -427,6 +438,7 @@
 "tab_audio_empty_hint" = "Los archivos de audio y los mensajes de voz compartidos en este chat se mostrarán aquí.";
 "tab_webxdc_empty_hint" = "Aplicaciones privadas compartidas en este chat se mostrarán aquí";
 "tab_all_media_empty_hint" = "La multimedia compartida en cualquier chat aparecerá aquí";
+"all_files_empty_hint" = "Documentos y otros archivos compartidos en cualquier chat se mostrarán aquí.";
 "all_apps_empty_hint" = "Aplicaciones privadas recibidas o enviadas en cualquier chat aparecerán aquí.";
 "media_preview" = "Vista previa de multimedia";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -451,6 +463,7 @@
 "multidevice_receiver_title" = "Añadir desde otro dispositivo";
 "multidevice_open_settings_on_other_device" = "En el primer dispositivo, ve a \"Ajustes / Añadir otro dispositivo\" y escanea el código mostrado allí";
 "multidevice_receiver_scanning_ask" = "¿Copiar la cuenta del otro dispositivo a este dispositivo?";
+"multidevice_receiver_needs_update" = "El perfil que quieres importar es de una versión de Delta Chat más reciente.\n\nPara continuar configurando el segundo dispositivo, actualice este dispositivo a la última versión de Delta Chat.";
 "multidevice_abort" = "¿Cancelar la configuración del nuevo dispositivo?";
 "multidevice_abort_will_invalidate_copied_qr" = "Esto invalidará el código QR copiado al portapapeles ";
 "multidevice_experimental_hint" = "(experimental, requiere versión 1.36)";
@@ -559,7 +572,8 @@
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
 "switch_account" = "Cambiar cuenta";
 "add_account" = "Agregar cuenta";
-"profile_tag" = "Etiqueta privada";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Etiqueta de perfil";
 "profile_tag_hint" = "ej. Trabajo, Familia";
 "profile_tag_explain" = "Etiqueta que es visible sólo para ti; útil para diferenciar tus perfiles.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
@@ -734,7 +748,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "¿Desea borrar %1$d mensajes ahora y todos los mensajes recientemente alcanzados \"%2$@\" en el futuro?\n\n• Esto incluye toda la multimedia\n\n• Los mensajes serán eliminados siendo vistos o no\n\n• \"Mensajes guardados\" serán saltados de este proceso local";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\"  al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función sis quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
+"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\"  al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Esto incluye correos, multimedia  y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo además de Delta Chat";
 "autodel_server_warn_multi_device_title" = "Activar la eliminación inmediata";

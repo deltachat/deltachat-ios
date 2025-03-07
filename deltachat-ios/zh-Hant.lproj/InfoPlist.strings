@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "Delta Chat 需要存取權才能在您啟
 NSMicrophoneUsageDescription = "Delta Chat 使用您的麥克風錄製和發送音訊和帶聲音的視頻。";
 NSPhotoLibraryUsageDescription = "Delta Chat 將讓您從圖庫中選擇要傳送的照片。";
 NSPhotoLibraryAddUsageDescription = "Delta Chat 希望將圖像保存到您的照片庫。";
+NSFaceIDUsageDescription = "Delta Chat 可以使用 Face ID 保護您的本地賬戶、備份創建和第二台裝置設定。";

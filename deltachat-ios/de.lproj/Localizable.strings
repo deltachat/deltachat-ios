@@ -572,9 +572,10 @@
 "accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";
 "switch_account" = "Profil wechseln";
 "add_account" = "Profil hinzufügen";
-"profile_tag" = "Private Bezeichnung";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profilbeschreibung";
 "profile_tag_hint" = "z.B. Familie, Arbeit, Freunde";
-"profile_tag_explain" = "Die Bezeichnung ist nur für Sie sichtbar um zwischen Profilen zu unterscheiden.";
+"profile_tag_explain" = "Die Beschreibung ist nur für Sie sichtbar um zwischen Profilen zu unterscheiden.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Nach oben";
 "delete_account" = "Profil löschen";
