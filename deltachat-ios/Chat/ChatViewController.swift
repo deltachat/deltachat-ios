@@ -100,10 +100,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
-    private var locationStreamingItem: UIBarButtonItem = {
-        return UIBarButtonItem(customView: LocationStreamingIndicator())
-    }()
-
     private lazy var initialsBadge: InitialsBadge = {
         let badge: InitialsBadge
         badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("menu_view_profile"))
@@ -874,8 +870,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else {
                 subtitle = nil
             }
-            
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted, isEphemeral: dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0)
+
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted,
+                                      isEphemeral: dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0, isSendingLocations: dcChat.isSendingLocations)
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
@@ -894,10 +891,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
-            }
-
-            if dcChat.isSendingLocations {
-                rightBarButtonItems.append(locationStreamingItem)
             }
             
             navigationItem.rightBarButtonItems = rightBarButtonItems

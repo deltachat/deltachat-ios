@@ -42,8 +42,12 @@ class ChatTitleView: UIStackView {
         return imageView
     }()
 
+    private lazy var locationView: UIImageView = {
+        return LocationStreamingIndicator(height: 16)
+    }()
+
     private lazy var titleContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView, ephemeralView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView, ephemeralView, locationView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 3
@@ -73,12 +77,13 @@ class ChatTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool, isEphemeral: Bool) {
+    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool, isEphemeral: Bool, isSendingLocations: Bool) {
         titleLabel.text = title
         titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
         muteView.isHidden = !isMuted
         ephemeralView.isHidden = !isEphemeral
+        locationView.isHidden = !isSendingLocations
 
         if let subtitle {
             subtitleLabel.text = subtitle
