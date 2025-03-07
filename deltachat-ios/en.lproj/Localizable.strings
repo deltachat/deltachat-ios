@@ -572,9 +572,10 @@
 "accept_invalid_certificates" = "Accept invalid certificates";
 "switch_account" = "Switch Profile";
 "add_account" = "Add Profile";
-"profile_tag" = "Private Tag";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profile Label";
 "profile_tag_hint" = "eg. Work, Family";
-"profile_tag_explain" = "Tag that is visible only for you; helping you to differ between your profiles.";
+"profile_tag_explain" = "Set a label that is visible only for you; helping you to differ between your profiles.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Move to Top";
 "delete_account" = "Delete Profile";

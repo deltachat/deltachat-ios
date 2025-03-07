@@ -195,7 +195,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个聊天已存档</string>
+			<string>已归档 %d 个聊天</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -209,7 +209,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个聊天已取消存档</string>
+			<string>已取消归档 %d 个聊天</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

@@ -315,6 +315,7 @@
 "videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 // get confirmations
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
+"ask_delete_named_chat" = "Eliminare la chat \"%1$@\" su tutti i tuoi dispositivi?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
@@ -571,9 +572,10 @@
 "accept_invalid_certificates" = "Accetta certificati non validi";
 "switch_account" = "Cambia Profilo";
 "add_account" = "Aggiungi Profilo";
-"profile_tag" = "Etichetta Privata";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Etichetta Profilo";
 "profile_tag_hint" = "es. Lavoro, Famiglia";
-"profile_tag_explain" = "Etichetta che è visibile solo a te; ti aiuta a distinguere i tuoi profili.";
+"profile_tag_explain" = "Imposta un\'etichetta visibile solo a te, utile per distinguere i tuoi profili.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Sposta in Alto";
 "delete_account" = "Elimina Profilo";

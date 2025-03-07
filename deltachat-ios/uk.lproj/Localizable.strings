@@ -566,9 +566,7 @@
 "accept_invalid_certificates" = "Приймати недійсні сертифікати";
 "switch_account" = "Перемкнути обліковий запис";
 "add_account" = "Додати обліковий запис";
-"profile_tag" = "Особистий тег";
 "profile_tag_hint" = "наприклад \"Робота\", \"Сім\'я\"";
-"profile_tag_explain" = "Тег, видимий тільки для вас; допомагає розрізняти ваші профілі.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Перемістити на початок";
 "delete_account" = "Видалити обліковий запис";

@@ -315,6 +315,7 @@
 "videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
 // get confirmations
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
+"ask_delete_named_chat" = "Tüm aygıtlarınızdaki “%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Tüm aygıtlarınızdaki bu ileti silinsin mi?";
 // deprecated, use ask_delete_messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
@@ -571,9 +572,10 @@
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 "switch_account" = "Profili Değiştir";
 "add_account" = "Profil Ekle";
-"profile_tag" = "Özel Etiket";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profil Etiketi";
 "profile_tag_hint" = "ör. İş, Aile";
-"profile_tag_explain" = "Yalnızca sizin için görünür etiket; profilleriniz arasında farklılığa yardımcı olur.";
+"profile_tag_explain" = "Yalnızca sizin için görünebilir bir etiket ayarlayın; profilleriniz arasındaki farkı anlamanıza yardımcı olur.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "En Üste Taşı";
 "delete_account" = "Profili Sil";

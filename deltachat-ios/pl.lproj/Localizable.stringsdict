@@ -202,6 +202,26 @@
 			<string>Wysłać %d pliku do %s?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Usunąć %d czat ze wszystkich urządzeń?</string>
+			<key>few</key>
+			<string>Usunąć %d czaty ze wszystkich urządzeń?</string>
+			<key>many</key>
+			<string>Usunąć %d czatów ze wszystkich urządzeń?</string>
+			<key>other</key>
+			<string>Usunąć %d czatu ze wszystkich urządzeń?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
