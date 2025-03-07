@@ -23,8 +23,17 @@ class ChatTitleView: UIStackView {
         return imgView
     }()
 
+    private lazy var muteView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = DcColors.middleGray
+        imageView.image = UIImage(systemName: "speaker.slash.fill")?.withRenderingMode(.alwaysTemplate)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        return imageView
+    }()
+
     private lazy var titleContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 3
@@ -54,10 +63,11 @@ class ChatTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateTitleView(title: String, subtitle: String?, isVerified: Bool) {
+    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool) {
         titleLabel.text = title
         titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
+        muteView.isHidden = !isMuted
 
         if let subtitle {
             subtitleLabel.text = subtitle
