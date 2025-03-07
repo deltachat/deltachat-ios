@@ -104,16 +104,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return UIBarButtonItem(customView: LocationStreamingIndicator())
     }()
 
-    private lazy var muteItem: UIBarButtonItem = {
-        let imageView = UIImageView()
-        imageView.tintColor = DcColors.middleGray
-        imageView.image = UIImage(systemName: "speaker.slash.fill")?.withRenderingMode(.alwaysTemplate)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        return UIBarButtonItem(customView: imageView)
-    }()
-
     private lazy var ephemeralMessageItem: UIBarButtonItem = {
         let imageView = UIImageView()
         imageView.tintColor = DcColors.middleGray
@@ -895,7 +885,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = nil
             }
             
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected)
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted)
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
@@ -918,9 +908,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             if dcChat.isSendingLocations {
                 rightBarButtonItems.append(locationStreamingItem)
-            }
-            if dcChat.isMuted {
-                rightBarButtonItems.append(muteItem)
             }
             
             if dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0 {
