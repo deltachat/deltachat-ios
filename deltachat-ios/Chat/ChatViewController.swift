@@ -104,16 +104,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return UIBarButtonItem(customView: LocationStreamingIndicator())
     }()
 
-    private lazy var ephemeralMessageItem: UIBarButtonItem = {
-        let imageView = UIImageView()
-        imageView.tintColor = DcColors.middleGray
-        imageView.image = UIImage(systemName: "stopwatch")?.withRenderingMode(.alwaysTemplate)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        return UIBarButtonItem(customView: imageView)
-    }()
-
     private lazy var initialsBadge: InitialsBadge = {
         let badge: InitialsBadge
         badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("menu_view_profile"))
@@ -885,7 +875,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = nil
             }
             
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted)
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted, isEphemeral: dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0)
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
@@ -908,10 +898,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             if dcChat.isSendingLocations {
                 rightBarButtonItems.append(locationStreamingItem)
-            }
-            
-            if dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0 {
-                rightBarButtonItems.append(ephemeralMessageItem)
             }
             
             navigationItem.rightBarButtonItems = rightBarButtonItems
