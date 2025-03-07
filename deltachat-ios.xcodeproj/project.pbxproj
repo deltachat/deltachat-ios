@@ -198,6 +198,7 @@
 		B20A907B2D05112800F44463 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A907A2D05112700F44463 /* NotificationsViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
+		B23977F52D7BA351006290CE /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23977F42D7BA336006290CE /* CallManager.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
 		B2636B5C2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
 		B2636B5D2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
@@ -552,6 +553,7 @@
 		B20A907A2D05112700F44463 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailOptionsViewController.swift; sourceTree = "<group>"; };
 		B2172F3B29C125F2002C289E /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
+		B23977F42D7BA336006290CE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		B2537DD625E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2537DD725E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2537DD825E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ckb; path = ckb.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -994,6 +996,7 @@
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
 				30FDB6B224D18E390066C48D /* Chat */,
+				B23977F32D7BA324006290CE /* Calls */,
 				AE851AC1227C694300ED86F0 /* Coordinator */,
 				AE851AC0227C693B00ED86F0 /* Controller */,
 				AE851ACB227C7A5000ED86F0 /* Handler */,
@@ -1192,6 +1195,14 @@
 				0B1D823B040BA95BD9B39A31 /* Pods-deltachat-ios.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B23977F32D7BA324006290CE /* Calls */ = {
+			isa = PBXGroup;
+			children = (
+				B23977F42D7BA336006290CE /* CallManager.swift */,
+			);
+			path = Calls;
 			sourceTree = "<group>";
 		};
 		B28D25882913CE8600B9067F /* Settings */ = {
@@ -1759,6 +1770,7 @@
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
 				B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */,
+				B23977F52D7BA351006290CE /* CallManager.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
