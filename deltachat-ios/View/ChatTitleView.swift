@@ -32,8 +32,18 @@ class ChatTitleView: UIStackView {
         return imageView
     }()
 
+    private lazy var ephemeralView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = DcColors.middleGray
+        imageView.image = UIImage(systemName: "stopwatch")?.withRenderingMode(.alwaysTemplate)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        return imageView
+    }()
+
     private lazy var titleContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView, ephemeralView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 3
@@ -63,11 +73,12 @@ class ChatTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool) {
+    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool, isEphemeral: Bool) {
         titleLabel.text = title
         titleLabel.textColor = DcColors.defaultTextColor
         verifiedView.isHidden = !isVerified
         muteView.isHidden = !isMuted
+        ephemeralView.isHidden = !isEphemeral
 
         if let subtitle {
             subtitleLabel.text = subtitle
