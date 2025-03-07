@@ -870,7 +870,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
             navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
-            self.navigationItem.setRightBarButton(nil, animated: true)
+            navigationItem.rightBarButtonItems = nil
         } else {
             let subtitle: String?
             let chatContactIds = dcChat.getContactIds(dcContext)
