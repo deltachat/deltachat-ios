@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix names of explicitly attached files (#2628)
+- Update translations
 
 
 ## v1.54.3
