@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Edit your messages (#2621, #2611)
+- Delete your messages for everyone (#2621, #2611)
 - Make search in "Saved Messages" available in title bar (it was available in profile before) (#2630, #2633)
 - Fix names of explicitly attached files (#2628)
 - Fix hiding of "disappearing messages" icon in edit mode
@@ -22,8 +24,8 @@
 - Save space by Deduplicating files on sending (#2612)
 - Accessibility: voice over reads a reaction summary for messages (#2608)
 - Detect incompatible profiles from newer app version when importing them
-- Prepare the app for receiving edited messages (#6550)
-- Prepare the app for receiving message deletion requests (#6550)
+- Prepare the app for receiving edited messages (#2611)
+- Prepare the app for receiving message deletion requests (#2611)
 - Show sender in "Saved Messages"
 - Fix: Hide read-only chats on forwarding and sort list accordingly (#2436)
 - Fix: Let 'Cancel' work as expecting when forwarding messages (#2436)
