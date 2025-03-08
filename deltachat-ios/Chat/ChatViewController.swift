@@ -859,7 +859,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
-                subtitle = nil
+                subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
                 let dcContact = dcContext.getContact(id: chatContactIds[0])
                 if dcContact.isBot {
