@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Make search in "Saved Messages" available in title bar (it was available in profile before)
+- Make search in "Saved Messages" available in title bar (it was available in profile before) (#2630, #2633)
 - Fix names of explicitly attached files (#2628)
 - Fix hiding of "disappearing messages" icon in edit mode
 - Update translations
