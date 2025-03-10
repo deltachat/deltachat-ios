@@ -1161,21 +1161,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func callPressed() {
-        let callController = CXCallController()
-        let uuid = UUID()
-        let nameToDisplay = dcChat.name
-        let handle = CXHandle(type: .generic, value: nameToDisplay)
-        let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-        startCallAction.isVideo = true
-
-        let transaction = CXTransaction(action: startCallAction)
-        callController.request(transaction) { error in
-            if let error = error {
-                logger.error("Failed to start call: \(error.localizedDescription)")
-            } else {
-                logger.info("Call started to \(nameToDisplay)")
-            }
-        }
+        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
