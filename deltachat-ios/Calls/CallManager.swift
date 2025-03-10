@@ -14,6 +14,8 @@ class CallManager: NSObject, CXProviderDelegate {
         provider = CXProvider(configuration: configuration)
         super.init()
         provider.setDelegate(self, queue: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCall(_:)), name: Event.incomingCall, object: nil)
     }
 
     func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
@@ -32,6 +34,22 @@ class CallManager: NSObject, CXProviderDelegate {
                 logger.error("Failed to start call: \(error.localizedDescription)")
             } else {
                 logger.info("Call started to \(nameToDisplay)")
+            }
+        }
+    }
+
+    @objc private func handleIncomingCall(_ notification: Notification) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self, let ui = notification.userInfo,
+                  let accountId = ui["account_id"] as? Int,
+                  let msgId = ui["message_id"] as? Int else { return }
+            let dcContext = DcAccounts.shared.get(id: accountId)
+            let dcMsg = dcContext.getMessage(id: msgId)
+            let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
+            let name = dcChat.name
+
+            DispatchQueue.main.async { [weak self] in
+                self?.reportIncomingCall(from: name)
             }
         }
     }
