@@ -28,6 +28,7 @@ public enum Event {
     public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "webxdcRealtimeDataReceived")
 
     public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
+    public static let incomingCall = Notification.Name(rawValue: "incomingCall")
 }
 
 
@@ -201,6 +202,12 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
                 "message_id": Int(data1),
                 "data": event.data2Data,
+            ])
+
+        case DC_EVENT_INCOMING_CALL:
+            NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
             ])
 
         default:
