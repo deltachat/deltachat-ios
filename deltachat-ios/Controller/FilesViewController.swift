@@ -222,7 +222,7 @@ extension FilesViewController {
         guard let index = fileMessageIds.firstIndex(of: msgId) else {
             return
         }
-        let previewController = PreviewController(dcContext: dcContext, type: .multi(fileMessageIds, index))
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: fileMessageIds, index: index))
         navigationController?.pushViewController(previewController, animated: true)
     }
 

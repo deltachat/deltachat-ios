@@ -5,7 +5,7 @@ import DcCore
 class PreviewController: QLPreviewController {
     enum PreviewType {
         case single(URL)
-        case multi([Int], Int) // msgIds, index
+        case multi(msgIds: [Int], index: Int)
     }
 
     let previewType: PreviewType
@@ -49,7 +49,7 @@ extension PreviewController: QLPreviewControllerDataSource {
             return PreviewItem(url: url, title: self.customTitle)
         case .multi(let msgIds, _):
             let msg = dcContext.getMessage(id: msgIds[index])
-            return PreviewItem(url: msg.fileURL, title: self.customTitle)
+            return PreviewItem(url: msg.fileURL, title: self.customTitle, messageId: msg.id)
         }
     }
 }
@@ -58,9 +58,11 @@ extension PreviewController: QLPreviewControllerDataSource {
 class PreviewItem: NSObject, QLPreviewItem {
     var previewItemURL: URL?
     var previewItemTitle: String?
+    var messageId: Int?
 
-    init(url: URL?, title: String?) {
+    init(url: URL?, title: String?, messageId: Int? = nil) {
         self.previewItemURL = url
         self.previewItemTitle = title ?? ""
+        self.messageId = messageId
     }
 }

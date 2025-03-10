@@ -143,13 +143,30 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 extension MediaPicker: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        // This async basically makes sure the "Downloading from iCloud" alert is closed and
+        // the keyboard is opened again if the search bar was active. This edge case causes a crash
+        // in the KeyInput layer and prevents the keyboard from being opened until next launch (tested on iOS 16).
+        // To test this:
+        // - Remove this asyncAfter
+        // - Open Chat
+        // - Select text field so keyboard is open
+        // - Attach
+        // - Gallery
+        // - Tap search bar in image picker
+        // - Select an image that needs to be downloaded from iCloud
+        // - Keyboard should come up but it does not (on iOS 16)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.handleImagePickerController(picker, didFinishPickingMediaWithInfo: info)
+        }
+    }
 
+    private func handleImagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
 
             switch mediaType {
             case .video:
                 if let videoUrl = info[.mediaURL] as? URL {
-                    handleVideoUrl(url: videoUrl)
+                    self.handleVideoUrl(url: videoUrl)
                 }
             case .image:
                 if let image = info[.editedImage] as? UIImage {
