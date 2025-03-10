@@ -1,11 +1,43 @@
 import CallKit
+import PushKit
 import DcCore
+
+class PushManager: NSObject, PKPushRegistryDelegate {
+    var pushRegistry: PKPushRegistry?
+
+    func registerForVoIPPushes() {
+        // registering for VoIP pushes is needed to enable the didReceiveIncomingPushWith callback,
+        // which is called via reportNewIncomingVoIPPushPayload from the regular NSE
+        pushRegistry = PKPushRegistry(queue: DispatchQueue.main)
+        pushRegistry?.delegate = self
+        pushRegistry?.desiredPushTypes = [.voIP]
+    }
+
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        // currently, the token is unused.
+        // In theory, we could upload it to the notified server for dedicated VoIP pushes,
+        // but as far as the current approch works, this seems simpler
+        // and also a little better privacy wise (server does not know if someone calls or texts)
+        let token = pushCredentials.token.map { String(format: "%02x", $0) }.joined()
+        logger.info("VoIP Push Token: \(token)")
+    }
+
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+        let callInfo = payload.dictionaryPayload
+        logger.info("didReceiveIncomingPushWith: \(callInfo)")
+        CallManager.shared.reportIncomingCall(from: "fafa")
+    }
+}
 
 class CallManager: NSObject, CXProviderDelegate {
     static let shared = CallManager()
     private let provider: CXProvider
+    private let pushManager: PushManager
 
     override init() {
+        pushManager = PushManager()
+        pushManager.registerForVoIPPushes()
+
         let configuration = CXProviderConfiguration()
         configuration.supportsVideo = true
         configuration.maximumCallsPerCallGroup = 1
