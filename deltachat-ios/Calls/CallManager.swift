@@ -1,4 +1,5 @@
 import CallKit
+import DcCore
 
 class CallManager: NSObject, CXProviderDelegate {
     static let shared = CallManager()
@@ -13,6 +14,26 @@ class CallManager: NSObject, CXProviderDelegate {
         provider = CXProvider(configuration: configuration)
         super.init()
         provider.setDelegate(self, queue: nil)
+    }
+
+    func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
+        _ = dcContext.placeOutgoingCall(chatId: dcChat.id)
+
+        let callController = CXCallController()
+        let uuid = UUID()
+        let nameToDisplay = dcChat.name
+        let handle = CXHandle(type: .generic, value: nameToDisplay)
+        let startCallAction = CXStartCallAction(call: uuid, handle: handle)
+        startCallAction.isVideo = true
+
+        let transaction = CXTransaction(action: startCallAction)
+        callController.request(transaction) { error in
+            if let error = error {
+                logger.error("Failed to start call: \(error.localizedDescription)")
+            } else {
+                logger.info("Call started to \(nameToDisplay)")
+            }
+        }
     }
 
     func reportIncomingCall(from caller: String) {
