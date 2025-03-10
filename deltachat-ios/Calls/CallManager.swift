@@ -23,9 +23,21 @@ class PushManager: NSObject, PKPushRegistryDelegate {
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
-        let callInfo = payload.dictionaryPayload
-        logger.info("didReceiveIncomingPushWith: \(callInfo)")
-        CallManager.shared.reportIncomingCall(from: "fafa")
+        DispatchQueue.global().async { [weak self] in
+            let callInfo = payload.dictionaryPayload
+            logger.info("didReceiveIncomingPushWith: \(callInfo)")
+            guard let self,
+                  let accountId = callInfo["account_id"] as? Int,
+                  let msgId = callInfo["message_id"] as? Int else { return }
+            let dcContext = DcAccounts.shared.get(id: accountId)
+            let dcMsg = dcContext.getMessage(id: msgId)
+            let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
+            let name = dcChat.name
+
+            DispatchQueue.main.async {
+                CallManager.shared.reportIncomingCall(from: name)
+            }
+        }
     }
 }
 
