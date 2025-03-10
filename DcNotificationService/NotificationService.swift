@@ -1,4 +1,5 @@
 import UserNotifications
+import CallKit
 import DcCore
 
 class NotificationService: UNNotificationServiceExtension {
@@ -83,16 +84,33 @@ class NotificationService: UNNotificationServiceExtension {
                     notifications.append(content)
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
+                UserDefaults.pushToDebugArray("📞")
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let msg = dcContext.getMessage(id: event.data1Int)
-                bestAttemptContent.title = "CALL"
-                bestAttemptContent.body = "CALL!!!"
-                bestAttemptContent.userInfo["account_id"] = dcContext.id
-                bestAttemptContent.userInfo["chat_id"] = msg.chatId
-                bestAttemptContent.userInfo["message_id"] = msg.id
 
-                uniqueChats["\(dcContext.id)-\(msg.chatId)"] = bestAttemptContent.title
-                reactionCount += 1
+                if #available(iOSApplicationExtension 14.5, *) {
+                    let payload = [
+                        "account_id": dcContext.id,
+                        "message_id": msg.id,
+                    ]
+                    // calling reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
+                        if let error = error {
+                            UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK2")
+                        }
+                    }
+                } else {
+                    bestAttemptContent.title = "Background Call"
+                    bestAttemptContent.body = "This needs iOS 14.5 or newer"
+                    bestAttemptContent.userInfo["account_id"] = dcContext.id
+                    bestAttemptContent.userInfo["chat_id"] = msg.chatId
+                    bestAttemptContent.userInfo["message_id"] = msg.id
+
+                    uniqueChats["\(dcContext.id)-\(msg.chatId)"] = bestAttemptContent.title
+                    messageCount += 1
+                }
             }
         }
 
