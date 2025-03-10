@@ -1276,12 +1276,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         }
 
-        /* WE'LL enable that soon ;)
         var canDeleteForEveryone = true
         if dcChat.canSend && !dcChat.isSelfTalk {
             for msgId in ids {
                 let msg = dcContext.getMessage(id: msgId)
-                if !msg.isFromCurrentSender || !msg.showPadlock() {
+                if !msg.isFromCurrentSender {
                     canDeleteForEveryone = false
                     break
                 }
@@ -1289,21 +1288,18 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         } else {
             canDeleteForEveryone = false
         }
-        */
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me"), style: .destructive, handler: { _ in
             self.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
-        /* WE'LL enable that soon ;)
         if canDeleteForEveryone {
             alert.addAction(UIAlertAction(title: String.localized("delete_for_everyone"), style: .destructive, handler: { _ in
                 self.dcContext.sendDeleteRequest(msgIds: ids)
                 deleteInUi(ids: ids)
             }))
         }
-        */
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         }))
@@ -1678,6 +1674,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draft.sendEditRequestFor = message.id
         configureDraftArea(draft: draft)
         messageInputBar.inputTextView.text = message.text
+        focusInputTextView()
     }
 
     private func toggleSave(at indexPath: IndexPath) {
@@ -1924,13 +1921,11 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
                 )
 
-                /* WE'LL enable that soon ;)
                 if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                     children.append(
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", indexPath: indexPath, action: editSentMessage)
                     )
                 }
-                */
 
                 if !dcChat.isSelfTalk && message.canSave {
                     if message.savedMessageId != 0 {
@@ -2387,9 +2382,11 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        var doResignFirstResponder = false
 
         if let sendEditRequestFor = draft.sendEditRequestFor {
             dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
+            doResignFirstResponder = true
         } else if let filePath = draft.attachment, let viewType = draft.viewType {
             switch viewType {
             case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC, DC_MSG_VCARD:
@@ -2407,6 +2404,10 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.attributedText = nil
         draft.clear()
         draftArea.cancel()
+
+        if doResignFirstResponder {
+            inputBar.inputTextView.resignFirstResponder()
+        }
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
@@ -2422,6 +2423,7 @@ extension ChatViewController: DraftPreviewDelegate {
             draft.clear()
             draftArea.cancel()
             messageInputBar.inputTextView.text = nil
+            messageInputBar.inputTextView.resignFirstResponder()
         } else {
             draft.setQuote(quotedMsg: nil)
             configureDraftArea(draft: draft)
