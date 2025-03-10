@@ -791,4 +791,17 @@ public class DcContext {
 
         setConfig("proxy_url", allProxies)
     }
+
+    public func placeOutgoingCall(chatId: Int) -> Int {
+        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId))
+        return Int(msgId)
+    }
+
+    public func acceptIncomingCall(msgId: Int) {
+        dc_accept_incoming_call(contextPointer, UInt32(msgId))
+    }
+
+    public func endCall(msgId: Int) {
+        dc_end_call(contextPointer, UInt32(msgId))
+    }
 }
