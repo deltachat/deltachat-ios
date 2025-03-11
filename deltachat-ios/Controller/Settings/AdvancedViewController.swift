@@ -15,7 +15,6 @@ internal final class AdvancedViewController: UITableViewController {
         case defaultTagValue = 0
         case showEmails
         case sendAutocryptMessage
-        case manageKeys
         case videoChat
         case viewLog
         case accountSettings
@@ -58,13 +57,6 @@ internal final class AdvancedViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.sendAutocryptMessage.rawValue
         cell.textLabel?.text = String.localized("autocrypt_send_asm_title")
-        return cell
-    }()
-
-    private lazy var manageKeysCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.manageKeys.rawValue
-        cell.textLabel?.text = String.localized("pref_manage_keys")
         return cell
     }()
 
@@ -239,7 +231,7 @@ internal final class AdvancedViewController: UITableViewController {
             let encryptionSection = SectionConfigs(
                 headerTitle: String.localized("pref_encryption"),
                 footerTitle: nil,
-                cells: [manageKeysCell, sendAutocryptMessageCell])
+                cells: [sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: nil,
@@ -253,7 +245,7 @@ internal final class AdvancedViewController: UITableViewController {
             let encryptionSection = SectionConfigs(
                 headerTitle: String.localized("pref_encryption"),
                 footerTitle: nil,
-                cells: [autocryptPreferencesCell, manageKeysCell, sendAutocryptMessageCell])
+                cells: [autocryptPreferencesCell, sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
@@ -308,11 +300,6 @@ internal final class AdvancedViewController: UITableViewController {
         switch cellTag {
         case .showEmails: showClassicMailController()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
-
-        case .manageKeys:
-            Utils.authenticateDeviceOwner(reason: String.localized("pref_manage_keys")) { [weak self] in
-                self?.showManageKeysDialog()
-            }
 
         case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
@@ -392,62 +379,10 @@ internal final class AdvancedViewController: UITableViewController {
         navigationController?.pushViewController(proxySettingsController, animated: true)
     }
 
-    private func showManageKeysDialog() {
-        let alert = UIAlertController(title: String.localized("pref_manage_keys"), message: nil, preferredStyle: .safeActionSheet)
-
-        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_export_secret_keys"), style: .default, handler: { _ in
-            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_export_explain"), self.externalPathDescr)
-            let alert = UIAlertController(title: String.localized("pref_managekeys_export_secret_keys"), message: msg, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                self.startImex(what: DC_IMEX_EXPORT_SELF_KEYS)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }))
-
-        alert.addAction(UIAlertAction(title: String.localized("pref_managekeys_import_secret_keys"), style: .default, handler: { _ in
-            let msg = String.localizedStringWithFormat(String.localized("pref_managekeys_import_explain"), self.externalPathDescr)
-            let alert = UIAlertController(title: String.localized("pref_managekeys_import_secret_keys"), message: msg, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                self.startImex(what: DC_IMEX_IMPORT_SELF_KEYS)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }))
-
-        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { [weak self] _ in
-            guard let self else { return }
-            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#importkey"), animated: true)
-        }))
-
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-
     private func presentError(message: String) {
         let error = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
         present(error, animated: true)
-    }
-
-    private func startImex(what: Int32, passphrase: String? = nil) {
-
-        let progressHandler = ProgressAlertHandler(dcAccounts: self.dcAccounts, notification: Event.importExportProgress)
-        progressHandler.dataSource = self
-
-        let documents = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if !documents.isEmpty {
-            let alertTitle = String.localized(what==DC_IMEX_IMPORT_SELF_KEYS ? "pref_managekeys_import_secret_keys" : "pref_managekeys_export_secret_keys")
-            progressHandler.showProgressAlert(title: alertTitle, dcContext: dcContext)
-            DispatchQueue.main.async {
-                self.dcAccounts.stopIo()
-                self.dcContext.imex(what: what, directory: documents[0], passphrase: passphrase)
-            }
-        } else {
-            logger.error("document directory not found")
-        }
-
-        self.progressAlertHandler = progressHandler
     }
 
     // MARK: - updates
