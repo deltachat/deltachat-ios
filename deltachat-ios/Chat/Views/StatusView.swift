@@ -31,7 +31,7 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, dateLabel, editedLabel, locationView, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, editedLabel, dateLabel, locationView, stateView])
         contentStackView.alignment = .center
         contentStackView.spacing = 2
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
