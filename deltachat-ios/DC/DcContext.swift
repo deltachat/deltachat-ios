@@ -750,11 +750,6 @@ public class DcContext {
         return sf
     }
 
-    public var e2eeEnabled: Bool {
-        get { return getConfigBool("e2ee_enabled") }
-        set { setConfigBool("e2ee_enabled", newValue) }
-    }
-
     public var mdnsEnabled: Bool {
         get { return getConfigBool("mdns_enabled") }
         set { setConfigBool("mdns_enabled", newValue) }
