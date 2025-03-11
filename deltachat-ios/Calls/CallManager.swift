@@ -23,21 +23,11 @@ class PushManager: NSObject, PKPushRegistryDelegate {
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
-        DispatchQueue.global().async { [weak self] in
-            let callInfo = payload.dictionaryPayload
-            logger.info("didReceiveIncomingPushWith: \(callInfo)")
-            guard let self,
-                  let accountId = callInfo["account_id"] as? Int,
-                  let msgId = callInfo["message_id"] as? Int else { return }
-            let dcContext = DcAccounts.shared.get(id: accountId)
-            let dcMsg = dcContext.getMessage(id: msgId)
-            let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-            let name = dcChat.name
-
-            DispatchQueue.main.async {
-                CallManager.shared.reportIncomingCall(from: name)
-            }
-        }
+        let callInfo = payload.dictionaryPayload
+        logger.info("didReceiveIncomingPushWith: \(callInfo)")
+        guard let accountId = callInfo["account_id"] as? Int,
+              let msgId = callInfo["message_id"] as? Int else { return }
+        CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId)
     }
 }
 
@@ -83,29 +73,34 @@ class CallManager: NSObject, CXProviderDelegate {
     }
 
     @objc private func handleIncomingCall(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+        logger.info("handleIncomingCall: \(ui)")
+        guard let accountId = ui["account_id"] as? Int,
+              let msgId = ui["message_id"] as? Int else { return }
+        reportIncomingCall(accountId: accountId, msgId: msgId)
+    }
+
+    func reportIncomingCall(accountId: Int, msgId: Int) {
         DispatchQueue.global().async { [weak self] in
-            guard let self, let ui = notification.userInfo,
-                  let accountId = ui["account_id"] as? Int,
-                  let msgId = ui["message_id"] as? Int else { return }
+            guard let self else { return }
+
             let dcContext = DcAccounts.shared.get(id: accountId)
             let dcMsg = dcContext.getMessage(id: msgId)
             let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
             let name = dcChat.name
 
             DispatchQueue.main.async { [weak self] in
-                self?.reportIncomingCall(from: name)
-            }
-        }
-    }
+                guard let self else { return }
 
-    func reportIncomingCall(from caller: String) {
-        let update = CXCallUpdate()
-        update.remoteHandle = CXHandle(type: .generic, value: caller)
-        update.hasVideo = true
+                let update = CXCallUpdate()
+                update.remoteHandle = CXHandle(type: .generic, value: name)
+                update.hasVideo = true
 
-        provider.reportNewIncomingCall(with: UUID(), update: update) { error in
-            if let error = error {
-                logger.info("Failed to report incoming call: \(error.localizedDescription)")
+                provider.reportNewIncomingCall(with: UUID(), update: update) { error in
+                    if let error = error {
+                        logger.info("Failed to report incoming call: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }
