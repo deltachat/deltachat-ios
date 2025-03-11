@@ -314,10 +314,6 @@ public class DcMsg {
         return dc_msg_get_info_type(messagePointer)
     }
 
-    public var isSetupMessage: Bool {
-        return dc_msg_is_setupmessage(messagePointer) == 1
-    }
-
     public var hasHtml: Bool {
         return dc_msg_has_html(messagePointer) == 1
     }

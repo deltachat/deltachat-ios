@@ -489,10 +489,6 @@ public class DcContext {
         return nil
     }
 
-    public func continueKeyTransfer(msgId: Int, setupCode: String) -> Bool {
-        return dc_continue_key_transfer(self.contextPointer, UInt32(msgId), setupCode) != 0
-    }
-
     public func configure() {
         dc_configure(contextPointer)
     }
