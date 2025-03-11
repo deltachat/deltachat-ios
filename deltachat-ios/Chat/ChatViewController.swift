@@ -578,13 +578,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             cell = dequeueCell(ofType: ImageTextCell.self)
 
         case DC_MSG_FILE:
-            if message.isSetupMessage {
-                let textCell = dequeueCell(ofType: TextMessageCell.self)
-                message.text = String.localized("autocrypt_asm_click_body")
-                cell = textCell
-            } else {
-                cell = dequeueCell(ofType: FileTextCell.self)
-            }
+            cell = dequeueCell(ofType: FileTextCell.self)
+
         case DC_MSG_WEBXDC:
             cell = dequeueCell(ofType: WebxdcCell.self)
         case DC_MSG_AUDIO, DC_MSG_VOICE:
@@ -782,8 +777,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
         switch (message.type, message.infoType) {
-        case (_, _) where message.isSetupMessage:
-            didTapAsm(msg: message, orgText: "")
         case (DC_MSG_FILE, _), (DC_MSG_AUDIO, _), (DC_MSG_VOICE, _):
             showMediaGalleryFor(message: message)
         case (DC_MSG_VIDEOCHAT_INVITATION, _):
@@ -2042,45 +2035,6 @@ extension ChatViewController {
         navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
     }
 
-    private func didTapAsm(msg: DcMsg, orgText: String) {
-        let inputDlg = UIAlertController(
-            title: String.localized("autocrypt_continue_transfer_title"),
-            message: String.localized("autocrypt_continue_transfer_please_enter_code"),
-            preferredStyle: .alert)
-        inputDlg.addTextField(configurationHandler: { (textField) in
-            textField.placeholder = msg.setupCodeBegin + ".."
-            textField.text = orgText
-            textField.keyboardType = UIKeyboardType.numbersAndPunctuation // allows entering spaces; decimalPad would require a mask to keep things readable
-        })
-        inputDlg.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-
-        let okAction = UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            let textField = inputDlg.textFields![0]
-            let modText = textField.text ?? ""
-            let success = self.dcContext.continueKeyTransfer(msgId: msg.id, setupCode: modText)
-
-            let alert = UIAlertController(
-                title: String.localized("autocrypt_continue_transfer_title"),
-                message: String.localized(success ? "autocrypt_continue_transfer_succeeded" : "autocrypt_bad_setup_code"),
-                preferredStyle: .alert)
-            if success {
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            } else {
-                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-                let retryAction = UIAlertAction(title: String.localized("autocrypt_continue_transfer_retry"), style: .default, handler: { _ in
-                    self.didTapAsm(msg: msg, orgText: modText)
-                })
-                alert.addAction(retryAction)
-                alert.preferredAction = retryAction
-            }
-            self.navigationController?.present(alert, animated: true, completion: nil)
-        })
-
-        inputDlg.addAction(okAction)
-        inputDlg.preferredAction = okAction // without setting preferredAction, cancel become shown *bold* as the preferred action
-        navigationController?.present(inputDlg, animated: true, completion: nil)
-    }
-
     func didTapVcard(msg: DcMsg) {
         guard let file = msg.file,
               let vcards = dcContext.parseVcard(path: file),
@@ -2261,9 +2215,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleSelection(indexPath: indexPath) { return }
 
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if message.isSetupMessage {
-            didTapAsm(msg: message, orgText: "")
-        } else if message.type == DC_MSG_VCARD {
+        if message.type == DC_MSG_VCARD {
             didTapVcard(msg: message)
         } else if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
