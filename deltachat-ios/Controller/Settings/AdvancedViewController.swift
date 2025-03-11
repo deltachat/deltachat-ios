@@ -38,21 +38,6 @@ internal final class AdvancedViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var autocryptSwitch: UISwitch = {
-        let switchControl = UISwitch()
-        switchControl.isOn = dcContext.e2eeEnabled
-        switchControl.addTarget(self, action: #selector(handleAutocryptPreferencesToggle(_:)), for: .valueChanged)
-        return switchControl
-    }()
-
-    private lazy var autocryptPreferencesCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("autocrypt_prefer_e2ee")
-        cell.accessoryView = autocryptSwitch
-        cell.selectionStyle = .none
-        return cell
-    }()
-
     private lazy var sendAutocryptMessageCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.sendAutocryptMessage.rawValue
@@ -245,7 +230,7 @@ internal final class AdvancedViewController: UITableViewController {
             let encryptionSection = SectionConfigs(
                 headerTitle: String.localized("pref_encryption"),
                 footerTitle: nil,
-                cells: [autocryptPreferencesCell, sendAutocryptMessageCell])
+                cells: [sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
@@ -323,10 +308,6 @@ internal final class AdvancedViewController: UITableViewController {
     }
 
     // MARK: - actions
-    @objc private func handleAutocryptPreferencesToggle(_ sender: UISwitch) {
-        dcContext.e2eeEnabled = sender.isOn
-    }
-
     private func sendAutocryptSetupMessage() {
         let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .safeActionSheet)
         askAlert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
