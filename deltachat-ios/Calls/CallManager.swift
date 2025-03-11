@@ -14,12 +14,8 @@ class PushManager: NSObject, PKPushRegistryDelegate {
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        // currently, the token is unused.
-        // In theory, we could upload it to the notified server for dedicated VoIP pushes,
-        // but as far as the current approch works, this seems simpler
-        // and also a little better privacy wise (server does not know if someone calls or texts)
-        let token = pushCredentials.token.map { String(format: "%02x", $0) }.joined()
-        logger.info("VoIP Push Token: \(token)")
+        // VoIP tokens are not used
+        logger.info("VoIP token received")
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
