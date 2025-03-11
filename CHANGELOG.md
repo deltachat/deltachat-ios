@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Make search in "Saved Messages" available in title bar (it was available in profile before) (#2630, #2633)
+- Remove "Manage Keys" and "Import Autocrypt Setup Message" to avoid undefined security behaviour;
+  use "Add Second Device" and "Send Autocrypt Setup Message" instead (#2636)
 - Fix names of explicitly attached files (#2628)
 - Fix hiding of "disappearing messages" icon in edit mode
 - Update translations
