@@ -472,7 +472,7 @@ class ContactDetailViewController: UITableViewController {
         if !msgIds.isEmpty {
             let alert = UIAlertController(
                 title: nil,
-                message: String.localized(stringID: "ask_delete_messages", parameter: msgIds.count),
+                message: Utils.askDeleteMsgsText(count: msgIds.count, chat: viewModel.context.getChat(chatId: viewModel.chatId)),
                 preferredStyle: .safeActionSheet
             )
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
