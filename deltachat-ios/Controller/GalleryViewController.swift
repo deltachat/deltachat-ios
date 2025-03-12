@@ -222,7 +222,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     // MARK: - Actions
 
     private func askToDeleteItem(at indexPath: IndexPath) {
-        let title = String.localized(stringID: "ask_delete_messages", parameter: 1)
+        let title = Utils.askDeleteMsgsText(count: 1)
         let alertController =  UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
         let okAction = UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             self?.deleteItem(at: indexPath)

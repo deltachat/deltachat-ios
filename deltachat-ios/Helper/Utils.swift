@@ -56,6 +56,15 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
+    public static func askDeleteMsgsText(count: Int, chat: DcChat? = nil) -> String {
+        let isDeviceTalk = if let chat {
+            chat.isDeviceTalk
+        } else {
+            false
+        }
+        return String.localized(stringID: isDeviceTalk ? "ask_delete_messages_simple" : "ask_delete_messages", parameter: count)
+    }
+
     // Puts text below the given image and returns as a new image.
     // The result is ready to be used with `UIContextualAction.image` -
     // which shows the title otherwise only for large heightForRowAt (>= 91 in experiments).
