@@ -224,6 +224,7 @@
 "source_code" = "Pirminis kodas";
 "donate" = "Paaukoti";
 "mute_for_one_hour" = "Išjungti 1 valandai";
+// deprecated
 "mute_for_two_hours" = "Išjungti 2 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
 "mute_for_seven_days" = "Išjungti 7 dienoms";
@@ -249,7 +250,7 @@
 "videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
 // get confirmations
 "ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";

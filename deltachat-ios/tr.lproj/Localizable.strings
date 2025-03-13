@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Ana Ekrana Ekle";
 "donate" = "Bağış";
 "mute_for_one_hour" = "1 saatliğine sessize al";
+// deprecated
 "mute_for_two_hours" = "2 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
 "mute_for_seven_days" = "7 günlüğüne sessize al";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Bu öbekten ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "Tüm aygıtlarınızdaki “%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Tüm aygıtlarınızdaki bu ileti silinsin mi?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";

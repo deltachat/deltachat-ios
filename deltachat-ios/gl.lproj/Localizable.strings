@@ -231,6 +231,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Engadir á pantalla de Inicio";
 "mute_for_one_hour" = "Acalar durante 1 h.";
+// deprecated
 "mute_for_two_hours" = "Acalar durante 2 h.";
 "mute_for_one_day" = "Acalar durante 1 día";
 "mute_for_seven_days" = "Acalar durante 7 días";
@@ -258,7 +259,7 @@
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
 // get confirmations
 "ask_leave_group" = "Seguro que desexa abandonar o grupo?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? Ao exportar anexos outras aplicacións no dispositivo terán acceso a eles.\n\nGardar?";

@@ -226,6 +226,7 @@
 "ConversationFragment_quoted_message_not_found" = "Pesan orisinil tidak ditemukan";
 "reply_privately" = "Balas secara privat";
 "mute_for_one_hour" = "Diamkan untuk 1 jam";
+// deprecated
 "mute_for_two_hours" = "Diamkan untuk 2 jam";
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
@@ -249,7 +250,7 @@
 "videochat_invitation_body" = "Anda diundang ke obrolan video, klik %1$@ untuk bergabung.";
 // get confirmations
 "ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";

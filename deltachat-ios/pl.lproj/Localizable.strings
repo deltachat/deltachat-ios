@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Dodaj do ekranu głównego";
 "donate" = "Wspomóż";
 "mute_for_one_hour" = "Wyłącz na 1 godzinę";
+// deprecated
 "mute_for_two_hours" = "Wyłącz na 2 godziny";
 "mute_for_one_day" = "Wyłącz na 1 dzień";
 "mute_for_seven_days" = "Wyłącz na 7 dni";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Czy na pewno chcesz opuścić tę grupę?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@” ze wszystkich urządzeń?";
 "ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";

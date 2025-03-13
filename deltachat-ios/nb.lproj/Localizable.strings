@@ -153,6 +153,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";
 "mute_for_one_hour" = "Demp i 1 time";
+// deprecated
 "mute_for_two_hours" = "Demp i 2 timer";
 "mute_for_one_day" = "Demp i 1 dag";
 "mute_for_seven_days" = "Demp i 7 dager";

@@ -112,6 +112,7 @@
 "menu_zoom_in" = "تقريب";
 "menu_zoom_out" = "تصغير";
 "mute_for_one_hour" = "أكتم لمدة ساعة";
+// deprecated
 "mute_for_two_hours" = "أكتم لمدة ساعتين";
 "mute_for_one_day" = "أكتم لمدة يوم";
 "mute_for_seven_days" = "أكتم لمدة أسبوع";

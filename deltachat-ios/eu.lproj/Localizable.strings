@@ -147,6 +147,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfinkatu";
 "mute_for_one_hour" = "Mututu ordubete";
+// deprecated
 "mute_for_two_hours" = "Mututu 2 ordu";
 "mute_for_one_day" = "Mututu egun bat";
 "mute_for_seven_days" = "Mututu 7 egun";

@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Toevoegen aan startscherm";
 "donate" = "Doneren";
 "mute_for_one_hour" = "1 uur lang uitschakelen";
+// deprecated
 "mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
 "mute_for_seven_days" = "7 dagen lang uitschakelen";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Weet je zeker dat je deze groep wilt verlaten?";
 "ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen van al je apparaten?";
 "ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";

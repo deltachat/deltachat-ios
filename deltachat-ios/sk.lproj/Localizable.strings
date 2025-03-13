@@ -225,6 +225,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Pridať na domovskú obrazovku";
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
+// deprecated
 "mute_for_two_hours" = "Stíšiť na 2 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
 "mute_for_seven_days" = "Stíšiť na 7 dní";
@@ -252,7 +253,7 @@
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
 // get confirmations
 "ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
 "ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";

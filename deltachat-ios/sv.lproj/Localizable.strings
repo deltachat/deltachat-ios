@@ -260,6 +260,7 @@
 "add_to_home_screen" = "Lägg till på hemskärmen";
 "donate" = "Donera";
 "mute_for_one_hour" = "Tysta 1 timma";
+// deprecated
 "mute_for_two_hours" = "Tysta 2 timmar";
 "mute_for_one_day" = "Tysta 1 dag";
 "mute_for_seven_days" = "Tysta 7 dagar";
@@ -287,7 +288,7 @@
 "videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
 // get confirmations
 "ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";

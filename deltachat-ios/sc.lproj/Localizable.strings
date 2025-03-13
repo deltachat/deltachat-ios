@@ -161,6 +161,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Isbloca";
 "mute_for_one_hour" = "A sa muda pro 1 ora";
+// deprecated
 "mute_for_two_hours" = "A sa muda pro 2 oras";
 "mute_for_one_day" = "A sa muda pro 1 die";
 "mute_for_seven_days" = "A sa muda pro 7 dies";

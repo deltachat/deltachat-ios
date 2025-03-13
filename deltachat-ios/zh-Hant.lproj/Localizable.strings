@@ -288,6 +288,7 @@
 "add_to_home_screen" = "新增至主畫面";
 "donate" = "捐贈";
 "mute_for_one_hour" = "靜音1小時";
+// deprecated
 "mute_for_two_hours" = "靜音2小時";
 "mute_for_one_day" = "靜音1天";
 "mute_for_seven_days" = "靜音7天";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "確定要離開本群組？";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";

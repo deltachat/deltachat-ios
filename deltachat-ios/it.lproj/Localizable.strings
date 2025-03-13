@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Aggiungi alla Schermata Iniziale";
 "donate" = "Dona";
 "mute_for_one_hour" = "Silenzia per 1 ora";
+// deprecated
 "mute_for_two_hours" = "Silenzia per 2 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
 "mute_for_seven_days" = "Silenzia per 7 giorni";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Sei sicuro di voler abbandonare questo gruppo?";
 "ask_delete_named_chat" = "Eliminare la chat \"%1$@\" su tutti i tuoi dispositivi?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";

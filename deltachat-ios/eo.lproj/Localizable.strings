@@ -228,6 +228,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Depingli";
 "mute_for_one_hour" = "Silentigi por 1 horo";
+// deprecated
 "mute_for_two_hours" = "Silentigi por 2 horoj";
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";

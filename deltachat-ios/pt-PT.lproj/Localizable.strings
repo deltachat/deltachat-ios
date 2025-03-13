@@ -101,6 +101,7 @@
 "menu_advanced" = "Avançado";
 "menu_view_profile" = "Ver perfil";
 "mute_for_one_hour" = "Calado por 1 hora";
+// deprecated
 "mute_for_two_hours" = "Calado por 2 horas";
 "mute_for_one_day" = "Calado por 1 dia";
 "mute_for_seven_days" = "Calado por 7 dias";

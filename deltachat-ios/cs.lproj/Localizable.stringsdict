@@ -213,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Smazat %d chat na všech Vašich zařízeních?</string>
+			<string>Smazat %d chat ze všech vašich zařízení?</string>
 			<key>few</key>
-			<string>Smazat %d chaty na všech Vašich zařízeních?</string>
+			<string>Smazat %d chaty ze všech vašich zařízení?</string>
 			<key>many</key>
-			<string>Smazat %d chatů na všech Vašich zařízeních?</string>
+			<string>Smazat %d chatů ze všech vašich zařízení?</string>
 			<key>other</key>
-			<string>Smazat %d chatů ze všech Vašich zařízení?</string>
+			<string>Smazat %d chatů ze všech vašich zařízení?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -239,7 +239,7 @@
 			<key>many</key>
 			<string>Smazat %d zpráv ze všech Vašich zařízení?</string>
 			<key>other</key>
-			<string>Smazat %d zpráv ze všech Vašich zařízení?</string>
+			<string>Smazat %d zpráv ze všech vašich zařízení?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -293,13 +293,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d chat vyjmut z archivu</string>
+			<string>%d chat obnoven z archivu</string>
 			<key>few</key>
-			<string>%d chaty vyjmuty z archivu</string>
+			<string>%d chaty obnoveny z archivu</string>
 			<key>many</key>
-			<string>%d chatů vyjmuto z archivu</string>
+			<string>%d chatů obnoveno z archivu</string>
 			<key>other</key>
-			<string>%d chatů vyjmuto z archivu</string>
+			<string>%d chatů obnoveno z archivu</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

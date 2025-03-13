@@ -284,6 +284,7 @@
 "add_to_home_screen" = "Shtoje te Skena e Kreut";
 "donate" = "Dhuroni";
 "mute_for_one_hour" = "Heshtoji për 1 orë";
+// deprecated
 "mute_for_two_hours" = "Heshtoji për 2 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
 "mute_for_seven_days" = "Heshtoji për 7 ditë";
@@ -313,7 +314,7 @@
 "ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
 "ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
 "ask_export_attachment" = "Të eksportohet bashkëngjitja? Eksportimi i bashkëngjitjeve do t\’i lejojë çfarëdo aplikacioni tjetër në pajisjen tuaj t\’i përdorë ato.\n\nTë vazhdohet?";

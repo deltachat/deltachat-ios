@@ -285,6 +285,7 @@
 "add_to_home_screen" = "Додати на домашній екран";
 "donate" = "Пожертвувати";
 "mute_for_one_hour" = "Відключити сповіщення на 1 годину";
+// deprecated
 "mute_for_two_hours" = "Відключити сповіщення на 2 години";
 "mute_for_one_day" = "Відключити сповіщення на 1 день";
 "mute_for_seven_days" = "Відключити сповіщення на 7 днів";
@@ -312,7 +313,7 @@
 "videochat_invitation_body" = "Вас запрошено у відео-чат, клікніть %1$@ аби приєднатися.";
 // get confirmations
 "ask_leave_group" = "Ви впевнені, що хочете залишити цю групу?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Переслати повідомлення %1$@?";
 "ask_forward_multiple" = "Переслати повідомлення в %1$d?";
 "ask_export_attachment" = "Якщо експортувати вкладені файли, інші програми на вашому пристрої отримають до них доступ.\n\nПродовжити?";

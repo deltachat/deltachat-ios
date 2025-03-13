@@ -251,6 +251,7 @@
 "add_to_home_screen" = "Thêm vào Màn hình chính";
 "donate" = "Quyên tặng";
 "mute_for_one_hour" = "Tắt tiếng trong 1 giờ";
+// deprecated
 "mute_for_two_hours" = "Tắt tiếng trong 2 giờ";
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
@@ -278,7 +279,7 @@
 "videochat_invitation_body" = "Bạn được mời tham gia cuộc trò chuyện video, hãy nhấp vào %1$@ để tham gia.";
 // get confirmations
 "ask_leave_group" = "Bạn có chắc chắn muốn rời khỏi nhóm này không?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";
