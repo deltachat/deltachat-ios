@@ -1,6 +1,8 @@
 import CallKit
 import DcCore
 
+let canVideoCalls = false
+
 class DcCall {
     let contextId: Int
     let messageId: Int
@@ -24,7 +26,7 @@ class CallManager: NSObject {
     override init() {
         voIPPushManager = VoIPPushManager()
         let configuration = CXProviderConfiguration()
-        configuration.supportsVideo = true
+        configuration.supportsVideo = canVideoCalls
         configuration.maximumCallsPerCallGroup = 1
         configuration.supportedHandleTypes = [.generic]
         provider = CXProvider(configuration: configuration)
@@ -51,7 +53,7 @@ class CallManager: NSObject {
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
         let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-        startCallAction.isVideo = true
+        startCallAction.isVideo = canVideoCalls
 
         let transaction = CXTransaction(action: startCallAction)
         callController.request(transaction) { error in
@@ -90,7 +92,11 @@ class CallManager: NSObject {
 
                 let update = CXCallUpdate()
                 update.remoteHandle = CXHandle(type: .generic, value: name)
-                update.hasVideo = true
+                update.supportsHolding = false
+                update.supportsGrouping = false
+                update.supportsUngrouping = false
+                update.supportsDTMF = false
+                update.hasVideo = canVideoCalls
 
                 provider.reportNewIncomingCall(with: UUID(), update: update) { error in
                     if let error = error {
@@ -114,8 +120,12 @@ class CallManager: NSObject {
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("Call accepted")
-        // Notify backend to start the call
         action.fulfill()
+        if let currentCall {
+            // TODO: in the future, this should be "accept call"
+            let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
+            dcContext.endCall(msgId: currentCall.messageId)
+        }
     }
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
