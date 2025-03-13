@@ -205,10 +205,20 @@ public class DcEventHandler {
             ])
 
         case DC_EVENT_INCOMING_CALL:
+            logger.info("📞[\(accountId),\(data1)] incoming call")
             NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: [
                 "account_id": Int(accountId),
                 "message_id": Int(data1),
             ])
+
+        case DC_EVENT_INCOMING_CALL_ACCEPTED:
+            logger.info("📞[\(accountId),\(data1)] incoming call accepted")
+
+        case DC_EVENT_OUTGOING_CALL_ACCEPTED:
+            logger.info("📞[\(accountId),\(data1)] outgoing call accepted")
+
+        case DC_EVENT_CALL_ENDED:
+            logger.info("📞[\(accountId),\(data1)] call ended")
 
         default:
             break

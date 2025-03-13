@@ -70,7 +70,6 @@ class CallManager: NSObject, CXProviderDelegate {
 
     @objc private func handleIncomingCall(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
-        logger.info("handleIncomingCall: \(ui)")
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
         reportIncomingCall(accountId: accountId, msgId: msgId)
