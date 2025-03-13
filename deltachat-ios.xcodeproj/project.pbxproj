@@ -197,6 +197,7 @@
 		B206C2AB2B7B8088003ACBE6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */; };
 		B20A907B2D05112800F44463 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A907A2D05112700F44463 /* NotificationsViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
+		B210FF162D83673A00D3A0B4 /* VoIPPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
 		B23977F52D7BA351006290CE /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23977F42D7BA336006290CE /* CallManager.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
@@ -552,6 +553,7 @@
 		B209B2062B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B20A907A2D05112700F44463 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailOptionsViewController.swift; sourceTree = "<group>"; };
+		B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoIPPushManager.swift; sourceTree = "<group>"; };
 		B2172F3B29C125F2002C289E /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
 		B23977F42D7BA336006290CE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		B2537DD625E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1201,6 +1203,7 @@
 			isa = PBXGroup;
 			children = (
 				B23977F42D7BA336006290CE /* CallManager.swift */,
+				B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */,
 			);
 			path = Calls;
 			sourceTree = "<group>";
@@ -1886,6 +1889,7 @@
 				3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
+				B210FF162D83673A00D3A0B4 /* VoIPPushManager.swift in Sources */,
 				21D54500299415B9008B54D5 /* Character+Extentions.swift in Sources */,
 				30238CFF28A5554C00EF14AC /* FileHelper.swift in Sources */,
 				D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */,
