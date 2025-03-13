@@ -7,11 +7,13 @@ class DcCall {
     let contextId: Int
     let messageId: Int
     let incoming: Bool
+    let uuid: UUID
 
-    init(incoming: Bool, contextId: Int, messageId: Int) {
+    init(incoming: Bool, contextId: Int, messageId: Int, uuid: UUID) {
         self.incoming = incoming
         self.contextId = contextId
         self.messageId = messageId
+        self.uuid = uuid
     }
 }
 
@@ -39,6 +41,7 @@ class CallManager: NSObject {
         provider.setDelegate(self, queue: nil)
         callObserver.setDelegate(self, queue: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleCallEndedEvent(_:)), name: Event.callEnded, object: nil)
     }
 
     func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
@@ -48,9 +51,9 @@ class CallManager: NSObject {
         }
 
         let messageId = dcContext.placeOutgoingCall(chatId: dcChat.id)
-        currentCall = DcCall(incoming: false, contextId: dcContext.id, messageId: messageId)
-
         let uuid = UUID()
+        currentCall = DcCall(incoming: false, contextId: dcContext.id, messageId: messageId, uuid: uuid)
+
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
         let startCallAction = CXStartCallAction(call: uuid, handle: handle)
@@ -73,6 +76,17 @@ class CallManager: NSObject {
         reportIncomingCall(accountId: accountId, msgId: msgId)
     }
 
+    @objc private func handleCallEndedEvent(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+        guard let accountId = ui["account_id"] as? Int,
+              let msgId = ui["message_id"] as? Int else { return }
+        if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            logger.info("call to end is the current call :)")
+            endCall(uuid: currentCall.uuid)
+        }
+
+    }
+
     func reportIncomingCall(accountId: Int, msgId: Int) {
         if isCalling() {
             logger.warning("already calling")
@@ -86,7 +100,8 @@ class CallManager: NSObject {
             let dcMsg = dcContext.getMessage(id: msgId)
             let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
             let name = dcChat.name
-            currentCall = DcCall(incoming: true, contextId: accountId, messageId: msgId)
+            let uuid = UUID()
+            currentCall = DcCall(incoming: true, contextId: accountId, messageId: msgId, uuid: uuid)
 
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
@@ -99,7 +114,7 @@ class CallManager: NSObject {
                 update.supportsDTMF = false
                 update.hasVideo = canVideoCalls
 
-                provider.reportNewIncomingCall(with: UUID(), update: update) { error in
+                provider.reportNewIncomingCall(with: uuid, update: update) { error in
                     if let error = error {
                         logger.info("Failed to report incoming call: \(error.localizedDescription)")
                     }
