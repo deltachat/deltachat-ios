@@ -5,7 +5,7 @@ struct MuteDialog {
         let forever = -1
         let options: [(name: String, duration: Int)] = [
             ("mute_for_one_hour", Time.oneHour),
-            ("mute_for_two_hours", Time.twoHours),
+            ("mute_for_eight_hours", Time.eightHours),
             ("mute_for_one_day", Time.oneDay),
             ("mute_for_seven_days", Time.oneWeek),
             ("mute_forever", forever),
