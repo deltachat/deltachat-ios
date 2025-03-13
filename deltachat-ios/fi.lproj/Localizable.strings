@@ -254,6 +254,7 @@
 "add_to_home_screen" = "Lisää aloitusnäytölle";
 "donate" = "Lahjoita";
 "mute_for_one_hour" = "Mykistä 1 tunniksi";
+// deprecated
 "mute_for_two_hours" = "Mykistä 2 tunniksi";
 "mute_for_one_day" = "Mykistä 1 päiväksi";
 "mute_for_seven_days" = "Mykistä 7 päiväksi";
@@ -281,7 +282,7 @@
 "videochat_invitation_body" = "Sinut on kutsuttu videokeskusteluun, klikkaa %1$@ liittyäksesi.";
 // get confirmations
 "ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
 "ask_export_attachment" = "Liitteiden vieminen antaa muille laitteen sovelluksille mahdollisuuden lukea niitä.\n\nJatka?";

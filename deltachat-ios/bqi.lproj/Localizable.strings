@@ -193,6 +193,7 @@
 "pin" = "دیسنیڌن";
 "source_code" = "کود بونچک";
 "mute_for_one_hour" = "بؽ دونگ کردن سی 1 ساعت";
+// deprecated
 "mute_for_two_hours" = "بؽ دونگ کردن سی 2 ساعت";
 "mute_for_one_day" = "بؽ دونگ کردن سی 1 رۊ";
 "mute_for_seven_days" = "بؽ دونگ کردن سی 7 رۊ";
@@ -205,7 +206,7 @@
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
 "videochat" = "گوفت ۉ لوفت ویدیویی";
 "videochat_invitation" = "موکش و گوفت ۉ لوفت ویدیویی";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_start_chat_with" = "گوفت ۉ لوفت وا %1$@؟";
 // deprecated
 "ask_delete_value" = "پاک کردن %1$@؟";

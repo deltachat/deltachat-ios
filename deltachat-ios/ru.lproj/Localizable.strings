@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Добавить на главный экран";
 "donate" = "Пожертвовать";
 "mute_for_one_hour" = "На 1 час";
+// deprecated
 "mute_for_two_hours" = "На 2 часа";
 "mute_for_one_day" = "На 1 день";
 "mute_for_seven_days" = "На 7 дней";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Вы уверены, что хотите покинуть эту группу?";
 "ask_delete_named_chat" = "Удалить чат \"%1$@\" на всех ваших устройствах?";
 "ask_delete_message" = "Удалить это сообщение на всех ваших устройствах?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Переслать сообщения для %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
 "ask_export_attachment" = "Экспорт вложений позволит любому приложению на вашем устройстве получить к ним доступ.\n\nПродолжить?";

@@ -175,6 +175,7 @@
 "ConversationFragment_quoted_message_not_found" = "پەیامە ڕەسەنەکە نەدۆزرایەوە";
 "reply_privately" = "وەڵامدانەوەی نهێنی";
 "mute_for_one_hour" = "بێدەنگ کردن بۆ ماوەی 1 کاتژمێر";
+// deprecated
 "mute_for_two_hours" = "بێدەنگ کردن بۆ ماوەی 2 کاتژمێر";
 "mute_for_one_day" = "بێدەنگ کردن بۆ ماوەی 1 ڕۆژ";
 "mute_for_seven_days" = "بێدەنگ کردن بۆ ماوەی 7 ڕۆژ";

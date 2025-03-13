@@ -129,6 +129,7 @@
 "title_share_location" = "Qrup üzvlərinə yerləşdiyin yerini göndər";
 "edit_contact" = "Kontakta dəyişiklik";
 "mute_for_one_hour" = "1 saatlıq söndür";
+// deprecated
 "mute_for_two_hours" = "2 saatlıq söndür";
 "mute_for_one_day" = "1 günlük söndür";
 "mute_for_seven_days" = "7 günlük söndür";

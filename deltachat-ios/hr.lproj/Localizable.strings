@@ -102,6 +102,7 @@
 "menu_settings" = "Postavke";
 "menu_advanced" = "Napredno";
 "mute_for_one_hour" = "Utišaj na 1 sat";
+// deprecated
 "mute_for_two_hours" = "Utišaj na 2 sata";
 "mute_for_one_day" = "Utišaj na 1 dan";
 "mute_for_seven_days" = "Utišaj na 7 dana";

@@ -225,6 +225,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Προσθήκη στην κεντρική οθόνη";
 "mute_for_one_hour" = "Σίγαση για 1 ώρα";
+// deprecated
 "mute_for_two_hours" = "Σίγαση για 2 ώρες";
 "mute_for_one_day" = "Σίγαση για 1 ημέρα";
 "mute_for_seven_days" = "Σίγαση για 7 ημέρες";
@@ -252,7 +253,7 @@
 "videochat_invitation_body" = "Έχετε προσκληθεί σε βινετοκλήση, πατήστε %1$@ για να συμμετέχετε";
 // get confirmations
 "ask_leave_group" = "Είστε σίγουρος/-η ότι θέλετε να βγείτε από αυτή την ομάδα;";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Κοινοποίηση μηνύματος στο %1$@;";
 "ask_forward_multiple" = "Κοινοποίηση μηνύματος σε %1$d συνομιλίες;";
 "ask_export_attachment" = "Η εξαγωγή συνημμένων θα επιτρέψει σε άλλες εφαρμογές της συσκευής σας να έχουν πρόσβαση σε αυτά.\n\nΣυνέχεια;";

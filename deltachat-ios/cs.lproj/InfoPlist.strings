@@ -1,8 +1,8 @@
 NSCameraUsageDescription = "Delta Chat využívá fotoaparát k focení, natáčení videí a snímání QR kódů.";
-NSContactsUsageDescription = "Delta Chat používá Vaše kontakty k zobrazení e-mailů na které můžete psát. Delta Chat nemá žádné vlastní servery - Vaše kontakty se nikam neposílají.";
-NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení Vaší polohy po dobu, po jakou je povoleno sdílení polohy.";
-NSLocationWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení Vaší polohy po dobu, po jakou je povoleno sdílení polohy.";
+NSContactsUsageDescription = "Delta Chat používá vaše kontakty k zobrazení e-mailů, na které můžete psát. Delta Chat nemá žádné vlastní servery - vaše kontakty se nikam neodesílají.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení vaší polohy po dobu, po kterou je povoleno sdílení polohy.";
+NSLocationWhenInUseUsageDescription = "Delta Chat potřebuje oprávnění ke sdílení vaší polohy po dobu, po kterou je povoleno sdílení polohy.";
 NSMicrophoneUsageDescription = "Delta Chat používá mikrofon k nahrávání hlasových zpráv a natáčení videí se zvukem.";
-NSPhotoLibraryUsageDescription = "Delta Chat Vás nechá vybrat, které fotky z galerie si přejete poslat.";
-NSPhotoLibraryAddUsageDescription = "Delta Chat ukládá obrázky do Vaší galerie.";
-NSFaceIDUsageDescription = "Delta Chat umí použít Face ID k ochraně Vašeho lokálního profilu, vytváření záloh a přidávání dalších zařízení.";
+NSPhotoLibraryUsageDescription = "Delta Chat vás nechá vybrat, které fotky z galerie si přejete poslat.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat ukládá obrázky do vaší galerie.";
+NSFaceIDUsageDescription = "Delta Chat umí využívat Face ID k ochraně vašeho lokálního profilu, vytváření záloh a přidávání dalších zařízení.";

@@ -288,7 +288,9 @@
 "add_to_home_screen" = "Add to Home Screen";
 "donate" = "Donate";
 "mute_for_one_hour" = "Mute for 1 hour";
+// deprecated
 "mute_for_two_hours" = "Mute for 2 hours";
+"mute_for_eight_hours" = "Mute for 8 hours";
 "mute_for_one_day" = "Mute for 1 day";
 "mute_for_seven_days" = "Mute for 7 days";
 "mute_forever" = "Mute forever";
@@ -317,7 +319,7 @@
 "ask_leave_group" = "Are you sure you want to leave this group?";
 "ask_delete_named_chat" = "Delete chat \"%1$@\" on all your devices?";
 "ask_delete_message" = "Delete this message on all your devices?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Forward messages to %1$@?";
 "ask_forward_multiple" = "Forward messages to %1$d chats?";
 "ask_export_attachment" = "Exporting attachments will allow other apps on your device to access them.\n\nContinue?";

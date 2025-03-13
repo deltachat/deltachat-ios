@@ -233,6 +233,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Adăugați la ecranul principal";
 "mute_for_one_hour" = "Silențios timp de 1 oră";
+// deprecated
 "mute_for_two_hours" = "Silențios timp de 2 ore";
 "mute_for_one_day" = "Silențios pentru 1 zi";
 "mute_for_seven_days" = "Silențios timp de 7 zile";
@@ -260,7 +261,7 @@
 "videochat_invitation_body" = "Sunteți invitat la un chat video, faceți clic %1$@ pentru a vă alătura.";
 // get confirmations
 "ask_leave_group" = "Ești sigur că vrei să părăsești acest grup?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Transmiteți mesajele către %1$@?";
 "ask_forward_multiple" = "Transmiteți mesajele către %1$d chat-uri?";
 "ask_export_attachment" = "Exportul atașamentelor va permite altor aplicații de pe dispozitivul dumneavoastră să le acceseze them.\n\nContinue?";

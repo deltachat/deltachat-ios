@@ -272,6 +272,7 @@
 "add_to_home_screen" = "افزودن به صفحه خانه";
 "donate" = "حمایت مالی";
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
+// deprecated
 "mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
 "mute_for_seven_days" = "ساکت کردن به مدت۷ روز";
@@ -302,7 +303,7 @@ https://meet.jit.si/$ROOM
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
 // get confirmations
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";

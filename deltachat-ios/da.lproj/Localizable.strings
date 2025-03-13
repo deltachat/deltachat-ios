@@ -194,6 +194,7 @@
 "ConversationFragment_quoted_message_not_found" = "Oprindelig besked ikke fundet";
 "reply_privately" = "Svar privat";
 "mute_for_one_hour" = "Dæmp i 1 time";
+// deprecated
 "mute_for_two_hours" = "Dæmp i 2 timer";
 "mute_for_one_day" = "Dæmp i 1 dag";
 "mute_for_seven_days" = "Dæmp i 7 dage";
@@ -218,7 +219,7 @@
 "videochat_invitation_body" = "Du er inviteret til en videochat, klik %1$@ for at tilslutte dig.";
 // get confirmations
 "ask_leave_group" = "Forlad denne gruppe?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";
 "ask_export_attachment" = "Eksportér vedhæftninger? Eksport af vedhæftninger vil tillade alle programmer på din enhed adgang til dem.\n\nFortsæt?";

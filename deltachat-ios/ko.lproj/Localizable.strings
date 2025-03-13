@@ -225,6 +225,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "홈 스크린에 추가";
 "mute_for_one_hour" = "1시간 동안 알림 끄기";
+// deprecated
 "mute_for_two_hours" = "2시간 동안 알림 끄기";
 "mute_for_one_day" = "1일 동안 알림 끄기";
 "mute_for_seven_days" = "7일 동안 알림 끄기";
@@ -251,7 +252,7 @@
 "videochat_invitation_body" = "당신은 비디오 채팅에 초대되었습니다. 참여를 위해 %1$@를 클릭하세요.";
 // get confirmations
 "ask_leave_group" = "이 그룹에서 나가시겠습니까?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "%1$@님에게 메시지를 전달할까요?";
 "ask_forward_multiple" = "%1$d 채팅으로 메시지를 전달하시겠습니까?";
 "ask_export_attachment" = "첨부 파일을 내보내면 단말기의 다른 앱에서 해당 첨부 파일에 액세스할 수 있습니다.\n\n계속하시겠습니까?";

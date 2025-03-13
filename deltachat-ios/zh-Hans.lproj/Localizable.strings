@@ -288,6 +288,7 @@
 "add_to_home_screen" = "添加到主屏幕";
 "donate" = "捐赠";
 "mute_for_one_hour" = "静音 1 小时";
+// deprecated
 "mute_for_two_hours" = "静音 2 小时";
 "mute_for_one_day" = "静音 1 天";
 "mute_for_seven_days" = "静音 7 天";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "您确定要离开此群组吗？";
 "ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
 "ask_delete_message" = "是否在所有设备上删除此消息？";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件将允许您设备上的其他应用程序访问这些附件。\n\n是否继续？";

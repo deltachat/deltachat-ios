@@ -28,7 +28,7 @@
 "delete" = "Törlés";
 "delete_for_me" = "Törlés számomra";
 "delete_for_everyone" = "Törlés mindenki számára";
-"info" = "Infó";
+"info" = "Információk";
 "update" = "Frissítés";
 "emoji" = "Emodzsi";
 "attachment" = "Csatolmány";
@@ -269,8 +269,8 @@
 "replace_draft" = "Piszkozat cseréje";
 "title_share_location" = "Helyszín megosztása a csoport összes tagjával";
 "device_talk" = "Eszközüzenetek";
-"device_talk_subtitle" = "Helyileg előállított üzenetek";
-"device_talk_explain" = "Az üzenetek ebben a csevegésben az Ön készülékén kerülnek előállításra, hogy tájoékoztassák Önt az alkalmazás frissítéseiről és a használat közben felmerülő problémákról.";
+"device_talk_subtitle" = "Helyben előállított üzenetek";
+"device_talk_explain" = "Az üzenetek ebben a csevegésben az Ön készülékén kerülnek előállításra, hogy tájékoztassák Önt az alkalmazás frissítéseiről és a használat közben felmerülő problémákról.";
 "device_talk_welcome_message2" = "Lépjen kapcsolatba a partnereivel!\n\n🙌 Koppintson a „QR-kódra” mind a két eszköz főképernyőjén. Válassza a „QR-kód beolvasása” lehetőséget az egyik eszközön, és irányítsa a másik eszközre\n\n🌍 Ha nem ugyanabban a szobában tartózkodnak a partnerével, akkor olvassa be a QR-kódját egy videohíváson keresztül, vagy ossza meg a meghívó-hivatkozást a „QR-kód bolvasása”-ból.\n\nMajd: Élvezze az üzenetküldés-élményt a valaha létezett legnagyobb decentralizált hálózaton keresztül, ami az e-mail és - más népszerű alkalmazásokkal ellentétben - központi kiszolgáló vagy nyomon követés nélkül, illetve anélkül, hogy önt, partnereit, kollégáit vagy családját nagy szervezeteknek adná el.";
 "edit_contact" = "Névjegy szerkesztése";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Hozzáadás a kezdőképernyőhöz";
 "donate" = "Adományozás";
 "mute_for_one_hour" = "Némítás 1 órára";
+// deprecated
 "mute_for_two_hours" = "Némítás 2 órára";
 "mute_for_one_day" = "Némítás 1 napra";
 "mute_for_seven_days" = "Némítás 7 napra";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Biztosan ki akar lépni a csoportból?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
@@ -781,7 +782,7 @@
 "autocrypt_bad_setup_code" = "Rossz beállítási kód. Próbálja újra.\n\nHa nem emlékszik a beállítási kódra, küldjön új Autocryptbeállító-üzenetet a másik eszközről.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chatet, akkor a legjobb, ha most újraindítja a Delta Chatet, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
-"systemmsg_unknown_sender_for_chat" = "Az üzenet küldője ismeretlen ebben a csevegésben. További részletekért nézze meg az \'Infót\'.";
+"systemmsg_unknown_sender_for_chat" = "Az üzenet feladója ismeretlen ebben a csevegésben. További részletekért tekintse meg az „Információkat”.";
 "systemmsg_subject_for_new_contact" = "Üzenet tőle: %1$@";
 "systemmsg_failed_sending_to" = "Nem sikerült elküldeni az üzenetet „%1$@” számára.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name

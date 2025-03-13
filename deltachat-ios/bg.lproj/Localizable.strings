@@ -254,6 +254,7 @@
 "add_to_home_screen" = "Добавяне към началния екран";
 "donate" = "Дарение";
 "mute_for_one_hour" = "Спиране на звука за 1 час";
+// deprecated
 "mute_for_two_hours" = "Спиране на звука за 2 часа";
 "mute_for_one_day" = "Спиране на звука за 1 ден";
 "mute_for_seven_days" = "Спиране на звука за 7 дни";
@@ -281,7 +282,7 @@
 "videochat_invitation_body" = "Поканени сте във видеочат, натиснете върху%1$@, за да се присъедините";
 // get confirmations
 "ask_leave_group" = "Сигурни ли сте, че искате да напуснете тази група?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
 "ask_export_attachment" = "Експортирането на прикачените файлове ще даде възможност други приложения на Вашето устройство да имат достъп до тях.\n\nИскате ли да продължите?";

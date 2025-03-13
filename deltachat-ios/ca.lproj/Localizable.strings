@@ -288,6 +288,7 @@
 "add_to_home_screen" = "Afegeix a la pantalla d\'inici";
 "donate" = "Feu un donatiu";
 "mute_for_one_hour" = "Silencia 1 hora";
+// deprecated
 "mute_for_two_hours" = "Silencia 2 hores";
 "mute_for_one_day" = "Silencia 1 dia";
 "mute_for_seven_days" = "Silencia 7 dies";
@@ -317,7 +318,7 @@
 "ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
-// deprecated, use ask_delete_messages
+// Used for the deletion of Device messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "En exportar els adjunts permetreu que altres aplicacions del dispositiu hi puguin accedir.\n\nVoleu continuar?";
