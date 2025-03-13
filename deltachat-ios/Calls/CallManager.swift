@@ -120,8 +120,11 @@ extension CallManager: CXProviderDelegate {
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         logger.info("Call ended")
-        // Notify backend to end the call
         action.fulfill()
+        if let currentCall {
+            let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
+            dcContext.endCall(msgId: currentCall.messageId)
+        }
     }
 
     func providerDidReset(_ provider: CXProvider) {
