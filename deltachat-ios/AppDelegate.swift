@@ -429,7 +429,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // `didReceiveRemoteNotification` and`performFetchWithCompletionHandler` might be called if we're fetching instantly in foreground already
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
-            UserDefaults.pushToDebugArray("ABORT1")
+            UserDefaults.pushToDebugArray("ABORT1_APP_IN_FG")
             completionHandler?(.newData)
             return
         }
@@ -437,7 +437,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // abort if NSE is runnig; core cannot start I/O twice
         if UserDefaults.nseFetching {
             logger.info("➡️ NSE already running")
-            UserDefaults.pushToDebugArray("ABORT2")
+            UserDefaults.pushToDebugArray("ABORT2_NSE_RUNNING")
             completionHandler?(.newData)
             return
         }
@@ -453,7 +453,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
-            UserDefaults.pushToDebugArray("ABORT3")
+            UserDefaults.pushToDebugArray("ABORT3_SKIP")
             completionHandler?(.newData)
             return
         }
@@ -464,7 +464,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
-            UserDefaults.pushToDebugArray("ERR1")
+            UserDefaults.pushToDebugArray("ERR1_URGENCY")
             self?.dcAccounts.stopIo()
             UserDefaults.setMainIoRunning(false)
             completionHandler?(.newData)
@@ -487,7 +487,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.error("backgroundFetch failed")
-                UserDefaults.self.pushToDebugArray("ERR2")
+                UserDefaults.self.pushToDebugArray("ERR2_CORE")
             }
 
             if !appIsInForeground() {
