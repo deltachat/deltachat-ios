@@ -10,7 +10,7 @@ class NotificationService: UNNotificationServiceExtension {
         UserDefaults.pushToDebugArray("🤜")
 
         if UserDefaults.mainIoRunning {
-            UserDefaults.pushToDebugArray("ABORT4")
+            UserDefaults.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
             contentHandler(silenceNotification())
             return
         }
@@ -31,12 +31,12 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
             exitedDueToCriticalMemory = true
             UserDefaults.setNseFetching(for: 3)
-            UserDefaults.pushToDebugArray("ERR5")
+            UserDefaults.pushToDebugArray("ERR5_LOW_MEM")
         }
         memoryPressureSource.activate()
 
         guard dcAccounts.backgroundFetch(timeout: 25) && !exitedDueToCriticalMemory else {
-            UserDefaults.pushToDebugArray("ERR3")
+            UserDefaults.pushToDebugArray("ERR3_CORE")
             UserDefaults.setNseFetchingDone()
             if !exitedDueToCriticalMemory {
                 contentHandler(bestAttemptContent)
@@ -149,7 +149,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
-        UserDefaults.pushToDebugArray("ERR4")
+        UserDefaults.pushToDebugArray("ERR4_TIME")
         UserDefaults.setNseFetchingDone()
     }
 
