@@ -29,6 +29,7 @@ public enum Event {
 
     public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
     public static let incomingCall = Notification.Name(rawValue: "incomingCall")
+    public static let callEnded = Notification.Name(rawValue: "callEnded")
 }
 
 
@@ -219,6 +220,10 @@ public class DcEventHandler {
 
         case DC_EVENT_CALL_ENDED:
             logger.info("📞[\(accountId),\(data1)] call ended")
+            NotificationCenter.default.post(name: Event.callEnded, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+            ])
 
         default:
             break
