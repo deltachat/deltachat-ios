@@ -20,6 +20,7 @@ class CallManager: NSObject {
 
     private let voIPPushManager: VoIPPushManager
     private let provider: CXProvider
+    private let callController: CXCallController
     private let callObserver: CXCallObserver
     private var currentCall: DcCall?
 
@@ -30,6 +31,7 @@ class CallManager: NSObject {
         configuration.maximumCallsPerCallGroup = 1
         configuration.supportedHandleTypes = [.generic]
         provider = CXProvider(configuration: configuration)
+        callController = CXCallController()
         callObserver = CXCallObserver()
 
         super.init()
@@ -48,7 +50,6 @@ class CallManager: NSObject {
         let messageId = dcContext.placeOutgoingCall(chatId: dcChat.id)
         currentCall = DcCall(incoming: false, contextId: dcContext.id, messageId: messageId)
 
-        let callController = CXCallController()
         let uuid = UUID()
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
@@ -103,6 +104,19 @@ class CallManager: NSObject {
                         logger.info("Failed to report incoming call: \(error.localizedDescription)")
                     }
                 }
+            }
+        }
+    }
+
+    func endCall(uuid: UUID) {
+        let endCallAction = CXEndCallAction(call: uuid)
+        let transaction = CXTransaction(action: endCallAction)
+
+        callController.request(transaction) { error in
+            if let error = error {
+                print("Error ending call: \(error.localizedDescription)")
+            } else {
+                print("Call ended successfully")
             }
         }
     }
