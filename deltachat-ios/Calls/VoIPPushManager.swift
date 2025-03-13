@@ -3,7 +3,9 @@ import PushKit
 class VoIPPushManager: NSObject, PKPushRegistryDelegate {
     var pushRegistry: PKPushRegistry?
 
-    func registerForVoIPPushes() {
+    override public init() {
+        super.init()
+
         // registering for VoIP pushes is needed to enable the didReceiveIncomingPushWith callback,
         // which is called via reportNewIncomingVoIPPushPayload from the regular NSE
         pushRegistry = PKPushRegistry(queue: DispatchQueue.main)
