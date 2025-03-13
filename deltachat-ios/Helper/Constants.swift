@@ -25,6 +25,7 @@ struct Time {
     static let oneHour = 60 * 60
     static let twoHours = 2 * 60 * 60
     static let sixHours = 6 * 60 * 60
+    static let eightHours = 8 * 60 * 60
     static let oneDay = 24 * 60 * 60
     static let oneWeek = 7 * 24 * 60 * 60
     static let fiveWeeks = 5 * 7 * 24 * 60 * 60
