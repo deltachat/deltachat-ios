@@ -3,12 +3,13 @@ import DcCore
 
 class CallManager: NSObject, CXProviderDelegate {
     static let shared = CallManager()
+
+    private let voIPPushManager: VoIPPushManager
     private let provider: CXProvider
-    private let pushManager: VoIPPushManager
+
 
     override init() {
-        pushManager = VoIPPushManager()
-        pushManager.registerForVoIPPushes()
+        voIPPushManager = VoIPPushManager()
 
         let configuration = CXProviderConfiguration()
         configuration.supportsVideo = true
@@ -19,7 +20,7 @@ class CallManager: NSObject, CXProviderDelegate {
         super.init()
         provider.setDelegate(self, queue: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCall(_:)), name: Event.incomingCall, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
     }
 
     func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
@@ -42,7 +43,7 @@ class CallManager: NSObject, CXProviderDelegate {
         }
     }
 
-    @objc private func handleIncomingCall(_ notification: Notification) {
+    @objc private func handleIncomingCallEvent(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
