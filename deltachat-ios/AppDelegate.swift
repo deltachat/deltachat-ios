@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         logger.info("➡️ didFinishLaunchingWithOptions")
         DarwinNotificationCenter.current.addObserver(self, selector: #selector(Self.appRunningQuestion), for: .appRunningQuestion)
+        callManager = CallManager.shared
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
         UNUserNotificationCenter.current().delegate = self
@@ -131,7 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationManager = NotificationManager(dcAccounts: dcAccounts)
-        callManager = CallManager.shared
         setStockTranslations()
         dcAccounts.startIo()
 
