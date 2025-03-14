@@ -87,38 +87,28 @@ class CallManager: NSObject {
 
     }
 
+    // this function is called from didReceiveIncomingPushWith
+    // and needs to report an incoming call _immediately_ and _unconditionally_.
+    // dispatching and conditions should be done by the caller
     func reportIncomingCall(accountId: Int, msgId: Int) {
-        if isCalling() {
-            logger.warning("☎️ already calling")
-            return
-        }
+        let dcContext = DcAccounts.shared.get(id: accountId)
+        let dcMsg = dcContext.getMessage(id: msgId)
+        let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
+        let name = dcChat.name
+        let uuid = UUID()
+        currentCall = DcCall(incoming: true, contextId: accountId, messageId: msgId, uuid: uuid)
 
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
+        let update = CXCallUpdate()
+        update.remoteHandle = CXHandle(type: .generic, value: name)
+        update.supportsHolding = false
+        update.supportsGrouping = false
+        update.supportsUngrouping = false
+        update.supportsDTMF = false
+        update.hasVideo = canVideoCalls
 
-            let dcContext = DcAccounts.shared.get(id: accountId)
-            let dcMsg = dcContext.getMessage(id: msgId)
-            let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-            let name = dcChat.name
-            let uuid = UUID()
-            currentCall = DcCall(incoming: true, contextId: accountId, messageId: msgId, uuid: uuid)
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-
-                let update = CXCallUpdate()
-                update.remoteHandle = CXHandle(type: .generic, value: name)
-                update.supportsHolding = false
-                update.supportsGrouping = false
-                update.supportsUngrouping = false
-                update.supportsDTMF = false
-                update.hasVideo = canVideoCalls
-
-                provider.reportNewIncomingCall(with: uuid, update: update) { error in
-                    if let error {
-                        logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
-                    }
-                }
+        provider.reportNewIncomingCall(with: uuid, update: update) { error in
+            if let error {
+                logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
             }
         }
     }
