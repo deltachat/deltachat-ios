@@ -81,10 +81,11 @@ class CallManager: NSObject {
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
-            logger.info("☎️ call to end is the current call :)")
+            logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCall(uuid: currentCall.uuid)
+        } else {
+            logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
-
     }
 
     // this function is called from didReceiveIncomingPushWith
@@ -138,22 +139,24 @@ class CallManager: NSObject {
 
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-        logger.info("☎️ call accepted")
-        action.fulfill()
+        logger.info("☎️ call accepted pressed")
         if let currentCall {
             // TODO: in the future, this should be "accept call"
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
             dcContext.endCall(msgId: currentCall.messageId)
         }
+        action.fulfill()
     }
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        logger.info("☎️ call ended")
-        action.fulfill()
+        logger.info("☎️ call ended pressed")
         if let currentCall {
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
-            dcContext.endCall(msgId: currentCall.messageId)
+            let messageId = currentCall.messageId
+            self.currentCall = nil
+            dcContext.endCall(msgId: messageId)
         }
+        action.fulfill()
     }
 
     func providerDidReset(_ provider: CXProvider) {
