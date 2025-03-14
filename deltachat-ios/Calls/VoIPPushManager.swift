@@ -19,8 +19,11 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
     }
 
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+        // we MUST report the incoming call immediately - so without dispatching to tother threads -
+        // to reportNewIncomingCall() - otherwise we get a PushKit penalty that prevents us from handling future calls.
+        // this is not theory, but happens during development :)
+        logger.info("☎️ didReceiveIncomingPushWith")
         let callInfo = payload.dictionaryPayload
-        logger.info("☎️ didReceiveIncomingPushWith: \(callInfo)")
         guard let accountId = callInfo["account_id"] as? Int,
               let msgId = callInfo["message_id"] as? Int else { return }
         CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId)
