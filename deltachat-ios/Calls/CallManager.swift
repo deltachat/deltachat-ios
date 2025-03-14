@@ -61,10 +61,10 @@ class CallManager: NSObject {
 
         let transaction = CXTransaction(action: startCallAction)
         callController.request(transaction) { error in
-            if let error = error {
-                logger.error("Failed to start call: \(error.localizedDescription)")
+            if let error {
+                logger.error("☎️ failed to start call: \(error.localizedDescription)")
             } else {
-                logger.info("Call started to \(nameToDisplay)")
+                logger.info("☎️ call started to \(nameToDisplay)")
             }
         }
     }
@@ -81,7 +81,7 @@ class CallManager: NSObject {
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
-            logger.info("call to end is the current call :)")
+            logger.info("☎️ call to end is the current call :)")
             endCall(uuid: currentCall.uuid)
         }
 
@@ -89,7 +89,7 @@ class CallManager: NSObject {
 
     func reportIncomingCall(accountId: Int, msgId: Int) {
         if isCalling() {
-            logger.warning("already calling")
+            logger.warning("☎️ already calling")
             return
         }
 
@@ -115,8 +115,8 @@ class CallManager: NSObject {
                 update.hasVideo = canVideoCalls
 
                 provider.reportNewIncomingCall(with: uuid, update: update) { error in
-                    if let error = error {
-                        logger.info("Failed to report incoming call: \(error.localizedDescription)")
+                    if let error {
+                        logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
                     }
                 }
             }
@@ -128,10 +128,10 @@ class CallManager: NSObject {
         let transaction = CXTransaction(action: endCallAction)
 
         callController.request(transaction) { error in
-            if let error = error {
-                print("Error ending call: \(error.localizedDescription)")
+            if let error {
+                logger.info("☎️ error ending call: \(error.localizedDescription)")
             } else {
-                print("Call ended successfully")
+                logger.info("☎️ call ended successfully")
             }
         }
     }
@@ -148,7 +148,7 @@ class CallManager: NSObject {
 
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
-        logger.info("Call accepted")
+        logger.info("☎️ call accepted")
         action.fulfill()
         if let currentCall {
             // TODO: in the future, this should be "accept call"
@@ -158,7 +158,7 @@ extension CallManager: CXProviderDelegate {
     }
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        logger.info("Call ended")
+        logger.info("☎️ call ended")
         action.fulfill()
         if let currentCall {
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
@@ -167,12 +167,12 @@ extension CallManager: CXProviderDelegate {
     }
 
     func providerDidReset(_ provider: CXProvider) {
-        logger.info("provider did reset")
+        logger.info("☎️ provider did reset")
     }
 }
 
 extension CallManager: CXCallObserverDelegate {
     func callObserver(_ callObserver: CXCallObserver, callChanged call: CXCall) {
-        print("call changed: \(call)")
+        logger.info("☎️ call changed: \(call)")
     }
 }
