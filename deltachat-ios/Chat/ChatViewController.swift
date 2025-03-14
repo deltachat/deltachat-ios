@@ -6,6 +6,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 import Combine
+import CallKit
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -881,6 +882,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 initialsBadge.setRecentlySeen(recentlySeen)
                 rightBarButtonItems.append(badgeItem)
+
+                if !dcChat.isGroup && dcChat.canSend, let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
+                    rightBarButtonItems.append(button)
+                }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
@@ -1173,6 +1179,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.searchController.isActive = true
         }
+    }
+
+    @objc private func callPressed() {
+        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
