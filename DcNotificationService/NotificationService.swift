@@ -84,7 +84,7 @@ class NotificationService: UNNotificationServiceExtension {
                     notifications.append(content)
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
-                UserDefaults.pushToDebugArray("📞")
+                UserDefaults.pushToDebugArray("☎️")
                 let dcContext = dcAccounts.get(id: event.accountId)
                 let msg = dcContext.getMessage(id: event.data1Int)
 
@@ -95,7 +95,7 @@ class NotificationService: UNNotificationServiceExtension {
                     ]
                     // calling reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
-                        if let error = error {
+                        if let error {
                             UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
                         } else {
                             UserDefaults.pushToDebugArray("OK2")
