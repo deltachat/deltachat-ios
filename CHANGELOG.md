@@ -7,6 +7,9 @@
 - Search "Saved Messages" from title bar (it was available in profile before) (#2630, #2633)
 - Remove "Manage Keys" and "Import Autocrypt Setup Message" to avoid undefined security behaviour;
   use "Add Second Device" and "Send Autocrypt Setup Message" instead (#2636)
+- Allow better avatar (profile picture) quality
+- Remove notifications from chat that was deleted from other device
+- When a chat is deleted, also delete its messages from server
 - Add mute option "8 hours"
 - Improve deletion confirmation for "Device Messages"
 - Fix names of explicitly attached files (#2628)
