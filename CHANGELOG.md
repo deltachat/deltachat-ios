@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.54.5
+2025-03
 
 - Edit your messages (#2621, #2611)
 - Delete your messages for everyone (#2621, #2611)
