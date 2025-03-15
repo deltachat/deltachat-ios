@@ -12,9 +12,14 @@
 - When a chat is deleted, also delete its messages from server
 - Add mute option "8 hours"
 - Improve deletion confirmation for "Device Messages"
+- Fix decompression get stuck, leading to random errors sometimes
+- Fix rare crash when switching server and server reports bad quota
 - Fix names of explicitly attached files (#2628)
 - Fix hiding of "disappearing messages" icon in edit mode
+- Fix rare crash when viewing avatars
+- Fixed more minor bugs
 - Update translations
+- Update core to 1.157.2
 
 
 ## v1.54.3
