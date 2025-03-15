@@ -6,8 +6,7 @@
 - Edit your messages (#2621, #2611)
 - Delete your messages for everyone (#2621, #2611)
 - Search "Saved Messages" from title bar (it was available in profile before) (#2630, #2633)
-- Remove "Manage Keys" and "Import Autocrypt Setup Message" to avoid undefined security behaviour;
-  use "Add Second Device" and "Send Autocrypt Setup Message" instead (#2636)
+- Remove "Manage Keys" and "Import Autocrypt Setup Message"; use "Add Second Device" instead
 - Allow better avatar (profile picture) quality
 - Remove notifications from chat that was deleted from other device
 - When a chat is deleted, also delete its messages from server
