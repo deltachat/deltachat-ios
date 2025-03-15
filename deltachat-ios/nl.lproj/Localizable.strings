@@ -290,6 +290,7 @@
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 // deprecated
 "mute_for_two_hours" = "2 uur lang uitschakelen";
+"mute_for_eight_hours" = "8 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
 "mute_for_seven_days" = "7 dagen lang uitschakelen";
 "mute_forever" = "Permanent uitschakelen";

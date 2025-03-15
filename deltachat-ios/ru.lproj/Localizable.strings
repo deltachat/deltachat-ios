@@ -290,6 +290,7 @@
 "mute_for_one_hour" = "На 1 час";
 // deprecated
 "mute_for_two_hours" = "На 2 часа";
+"mute_for_eight_hours" = "На 8 часов";
 "mute_for_one_day" = "На 1 день";
 "mute_for_seven_days" = "На 7 дней";
 "mute_forever" = "Постоянно";

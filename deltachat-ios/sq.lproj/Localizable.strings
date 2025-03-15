@@ -286,6 +286,7 @@
 "mute_for_one_hour" = "Heshtoji për 1 orë";
 // deprecated
 "mute_for_two_hours" = "Heshtoji për 2 orë";
+"mute_for_eight_hours" = "Heshtoje për 8 orë";
 "mute_for_one_day" = "Heshtoji për 1 ditë";
 "mute_for_seven_days" = "Heshtoji për 7 ditë";
 "mute_forever" = "Heshtoje përgjithmonë";
