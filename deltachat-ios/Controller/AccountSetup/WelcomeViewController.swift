@@ -126,8 +126,7 @@ class WelcomeViewController: UIViewController {
     private func addAsSecondDevice(_ action: UIAlertAction) {
         let qrReader = QrCodeReaderController(title: String.localized("multidevice_receiver_title"),
                     addHints: "➊ " + String.localized("multidevice_same_network_hint") + "\n\n"
-                        +     "➋ " + String.localized("multidevice_open_settings_on_other_device") + "\n\n"
-                        +     String.localized("multidevice_experimental_hint"),
+                        +     "➋ " + String.localized("multidevice_open_settings_on_other_device"),
                     showTroubleshooting: true)
         qrReader.delegate = self
         qrCodeReader = qrReader

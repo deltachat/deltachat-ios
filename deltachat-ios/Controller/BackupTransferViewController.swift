@@ -24,7 +24,6 @@ class BackupTransferViewController: UIViewController {
     }
 
     private let statusLine: UILabel
-    private let experimentalLine: UILabel
     private let qrContentView: UIImageView
     private let contentStackView: UIStackView
     private let contentScrollView: UIScrollView
@@ -54,17 +53,7 @@ class BackupTransferViewController: UIViewController {
         qrContentView.translatesAutoresizingMaskIntoConstraints = false
         qrContentView.accessibilityHint = String.localized("qr_code")
 
-        experimentalLine = UILabel()
-        experimentalLine.translatesAutoresizingMaskIntoConstraints = false
-        experimentalLine.text = String.localized("multidevice_experimental_hint")
-        experimentalLine.textColor = DcColors.defaultTextColor
-        experimentalLine.textAlignment = .center
-
-        experimentalLine.numberOfLines = 0
-        experimentalLine.lineBreakMode = .byWordWrapping
-        experimentalLine.font = .preferredFont(forTextStyle: .body)
-
-        contentStackView = UIStackView(arrangedSubviews: [statusLine, qrContentView, experimentalLine])
+        contentStackView = UIStackView(arrangedSubviews: [statusLine, qrContentView])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.setCustomSpacing(10, after: statusLine)
         contentStackView.setCustomSpacing(10, after: qrContentView)
@@ -184,7 +173,6 @@ class BackupTransferViewController: UIViewController {
 
             if hideQrCode && !self.qrContentView.isHidden {
                 self.statusLine.textAlignment = .center
-                experimentalLine.isHidden = true
                 self.qrContentView.isHidden = true
                 updateMenuItems()
             }
