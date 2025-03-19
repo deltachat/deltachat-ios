@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Chat löschen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Chat leeren";
-// deprecated
-"menu_delete_messages" = "Nachrichten löschen";
 "delete_contact" = "Kontakt löschen";
 "menu_delete_location" = "Diesen Standort löschen?";
 "menu_message_details" = "Nachrichteninfo";
@@ -288,8 +286,6 @@
 "add_to_home_screen" = "Zum Startbildschirm hinzufügen";
 "donate" = "Spenden";
 "mute_for_one_hour" = "Stumm für 1 Stunde";
-// deprecated
-"mute_for_two_hours" = "Stumm für 2 Stunden";
 "mute_for_eight_hours" = "Stumm für 8 Stunden";
 "mute_for_one_day" = "Stumm für 1 Tag";
 "mute_for_seven_days" = "Stumm für 7 Tage";
@@ -327,11 +323,7 @@
 "ask_unblock_contact" = "Diesen Kontakt nicht mehr blockieren?";
 "ask_delete_contacts" = "Kontakte dauerhaft löschen?\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
 "ask_delete_contact" = "Kontakt %1$@ dauerhaft löschen?\n\nKontakte mit laufenden Chats und Kontakte aus dem Adressbuch des Systems können nicht dauerhaft gelöscht werden.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Kontakte mit laufenden Chats können nicht gelöscht werden.";
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
-// deprecated
-"ask_delete_value" = "%1$@ löschen?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
 // %1$s is replaced by a comma-separated list of names
@@ -468,7 +460,6 @@
 "multidevice_receiver_needs_update" = "Das Profil, das Sie importieren möchten, stammt aus einer neueren Delta-Chat-Version.\n\nUm Fortzufahren, aktualisieren Sie dieses Gerät bitte auf die neueste Version von Delta Chat.";
 "multidevice_abort" = "Einrichtung des Zweitgeräts beenden?";
 "multidevice_abort_will_invalidate_copied_qr" = "Dadurch wird der auf die Zwischenablage kopierte QR-Code ungültig.";
-"multidevice_experimental_hint" = "(experimentell, Version 1.36 erforderlich)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil wurde auf Ihr Zweitgerät übertragen.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil vorbereiten…";
@@ -772,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "Eine \"Autocrypt-Setup-Nachricht\" überträgt das Ende-zu-Ende-Setup sicher auf ein anderes Autocrypt-kompatibles Gerät.\n\nDas Setup wird mit einem Setup-Code geschützt; dieser wird hier angezeigt und muss auf dem anderen Gerät eingetippt werden.";
 "autocrypt_send_asm_button" = "Autocrypt-Setup-Nachricht senden";
 "autocrypt_send_asm_explain_after" = "Das Setup wurde an Sie geschickt. Nun zum anderen Gerät wechseln und die Setup-Nachricht öffnen. Den Anweisungen folgen und den folgenden Setup-Code eingeben:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Ende-zu-Ende-Verschlüsselung bevorzugen";
 "autocrypt_asm_subject" = "Autocrypt-Setup-Nachricht";
 "autocrypt_asm_general_body" = "Dies ist die Autocrypt-Setup-Nachricht, um das Ende-zu-Ende-Setup von einem Gerät auf das andere zu übertragen.\n\nUm das Setup zu entschlüsseln und zu verwenden, öffnen Sie diese Nachricht in einer Autocrypt-kompatiblen App und geben Sie den Setup-Code ein, der auf dem anderen Gerät angezeigt wurde.";
+// deprecated
 "autocrypt_asm_click_body" = "Dies ist die Autocrypt-Setup-Nachricht, um das Ende-zu-Ende-Setup von einem Gerät auf das andere zu übertragen.\n\nAuf diese Nachricht klicken, um das Setup zu verwenden.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt-Setup-Nachricht";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Bitte den Setup-Code eingeben, der auf dem anderen Gerät angezeigt wird.";
-"autocrypt_continue_transfer_succeeded" = "Ende-zu-Ende Einstellungen übertragen. Dieses Gerät ist nun bereit, Autocrypt mit denselben Einstellungen wie das Ursprungsgerät zu verwenden.";
-"autocrypt_continue_transfer_retry" = "Wiederholen";
+// deprecated
 "autocrypt_bad_setup_code" = "Ungültiger Setup-Code. Bitte versuchen Sie es erneut.\n\nWenn Sie den Setup-Code nicht mehr haben, können Sie auf dem anderen Gerät jederzeit eine neue Autocrypt-Setup-Nachricht mit einem neuen Setup-Code erzeugen.";
 // system messages
 "systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es kann bereits helfen, auf diese Nachricht zu antworten und den Absender zu bitten, die Nachricht noch einmal zu senden.\n\n• Wenn Sie Delta Chat gerade neu installiert haben, ist es am besten, wenn Sie Delta Chat mit \"Als Zweitgerät hinzufügen\" neu einrichten oder ein Backup importieren.";
@@ -1002,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";
 "no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";
 "show_window" = "Fenster anzeigen";
-"login_socks5_experimental_warning" = "Die Unterstützung von SOCKS5 ist derzeit experimentell. Die Verwendung erfolgt auf eigene Gefahr. Wenn Sie eine Adresse in das E-Mail-Feld eingeben, wird eine DNS-Suche durchgeführt, die nicht durch SOCKS5 getunnelt wird.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tastaturbelegung";
 "switch_between_chats" = "Chats durchschalten";

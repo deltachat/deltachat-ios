@@ -3,6 +3,10 @@
 "ok" = "OK";
 "cancel" = "Cancelar";
 "clear_search" = "Eliminar busca";
+// a noun, used on a button, short for "show link"
+"link" = "Ligazón";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Escanear";
 "yes" = "Si";
 "no" = "Non";
 "select" = "Seleccionar";
@@ -22,20 +26,29 @@
 "join" = "Unirse";
 "rejoin" = "Volta a unirte";
 "delete" = "Eliminar";
+"delete_for_me" = "Eliminar para min";
+"delete_for_everyone" = "Eliminar para todas";
 "info" = "Infor";
 "update" = "Actualizar";
 "emoji" = "Emoji";
 "attachment" = "Anexo";
 "back" = "Atrás";
 "close" = "Pechar";
+"close_window" = "Fechar xanalela";
 "forward" = "Reenviar";
+"create" = "Crear";
+"reset" = "Restablecer";
+"later" = "Máis tarde";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Reenviar";
+"edited" = "Editada";
+"edit_message" = "Editar mensaxe";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arquivar";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Desarquivar";
 "mute" = "Acalar";
+"muted" = "Acalada";
 "ephemeral_messages" = "Desaparición das mensaxes";
 "ephemeral_messages_hint" = "Estos axustes aplícanse a todas as participantes que usan Delta Chat. Porén, elas poderían copiar, gardar e reenviar mensaxes ou usar outros clientes de email.";
 "save" = "Gardar";
@@ -47,6 +60,7 @@
 "show_full_message" = "Mostrar mensaxe completa…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcar Todo como lido";
+"mark_as_read" = "Marcar como lida";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Ler";
 // Placeholder text when something is loading
@@ -57,7 +71,9 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "As imaxes remotas poden ser utilizadas para rastrexarte.\n\nO axuste tamén permite cargar tipografías e outro contido. Incluso estando desactivado, é posible ver as imaxes gardadas na caché.\n\nCargar imaxes remotas?";
 "always" = "Sempre";
+"always_load_remote_images" = "Descargar sempre imaxes remotas";
 "once" = "Unha vez";
+"show_warning" = "Mostrar aviso";
 "show_password" = "Mostrar contrasinal";
 "hide_password" = "Agochar contrasinal";
 "not_now" = "Agora non";
@@ -90,6 +106,8 @@
 "last_month" = "Último mes";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Última conexión: %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Último acceso %1$@";
 "last_seen_unknown" = "Última conexión: Descoñecido";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
@@ -102,6 +120,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Adhesivo";
+"add_to_sticker_collection" = "Engadir á colección de adhesivos";
+"add_stickers_instructions" = "Para engadir adhesivos toca en \"Abrir cartafol de adhesivos\", crea un subcartafol para o paquete de adhesivos e arrastra alí ficheiros de imaxe e adhesivos";
+"open_sticker_folder" = "Abrir cartafol de adhesivos";
 "images" = "Imaxes";
 "audio" = "Audio";
 "voice_message" = "Mensaxe de voz";
@@ -112,12 +133,14 @@
 "video" = "Vídeo";
 "documents" = "Documentos";
 "contact" = "Contacto";
+"bot" = "Robot";
 "camera" = "Cámara";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
 "switch_camera" = "Cambiar de cámara";
 "toggle_fullscreen" = "Activar modo de pantalla completa";
 "location" = "Localización";
+"locations" = "Localizacións";
 "gallery" = "Galería";
 "images_and_videos" = "Imaxes e vídeos";
 "file" = "Ficheiro";
@@ -126,6 +149,16 @@
 "webxdc_app" = "App privada";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps privadas";
+"webxdc_store_url" = "URL do Selector de adhesivos";
+"webxdc_store_url_explain" = "Se está establecido o URL vaise usar como Selector de adhesivos no lugar do predeterminado";
+"home" = "Inicio";
+"games" = "Xogos";
+"tools" = "Ferramentas";
+"app_size" = "Tamaño";
+"app_date_published" = "Publicada";
+"add_to_chat" = "Engadir á Conversa";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Explorar";
 "unknown" = "Descoñecido";
 "green" = "Verde";
 "red" = "Vermello";
@@ -145,8 +178,13 @@
 "slow" = "Lento";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Novo contacto";
+"menu_new_classic_contact" = "Engadir contacto manualmente";
+"new_classic_contact_explain" = "Os contactos engadidos á man poden usarse para enviar os correos electrónicos tradicionais e non teñen garantida a cifraxe de extremo-a-extremo";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Conversar con…";
+"clone_chat" = "Clonar conversa";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "Lista de difusión";
 "broadcast_lists" = "Listas de difusión";
@@ -164,18 +202,22 @@
 "menu_delete_chat" = "Eliminar conversa";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Limpar Chat";
-// deprecated
-"menu_delete_messages" = "Eliminar mensaxes";
 "delete_contact" = "Eliminar contacto";
 "menu_delete_location" = "Eliminar esta localización?";
 "menu_message_details" = "Detalles da mensaxe";
 "menu_copy_to_clipboard" = "Copiar ao portaretallos";
+"share_invite_link" = "Compartir ligazón de convite";
+"share_invite_link_explain" = "Calquera persoa con esta ligazón pode ver o teu perfil e comezar a conversar contigo. Compártea só coas persoas de confianza.";
+"invite_friends" = "Convidar amizades";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Contacta comigo en Delta Chat:\n %1$@";
 "menu_copy_selection_to_clipboard" = "Copiar selección";
 "menu_copy_link_to_clipboard" = "Copiar ligazón";
 "menu_copy_text_to_clipboard" = "Copiar texto";
 "menu_copy_image_to_clipboard" = "Copiar imaxe";
 "menu_copy_email_to_clipboard" = "Copiar email";
 "paste_from_clipboard" = "Pegar desde portapapeis";
+"ask_copy_unopenable_link_to_clipboard" = "A ligazón \"%1$d\" non se pode abrir no navegador. Queres copiala a portapapeis?";
 "menu_forward" = "Reenviar mensaxe";
 "menu_reply" = "Respostar a mensaxe";
 "menu_mute" = "Acalar notificacións";
@@ -185,6 +227,7 @@
 "menu_all_media" = "Todos os medios";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostrar na conversa";
+"show_app_in_chat" = "Mostrar App na conversa";
 "menu_share" = "Compartir";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloquear";
@@ -196,10 +239,16 @@
 "menu_scroll_to_bottom" = "Moverse abaixo";
 "menu_scroll_to_top" = "Moverse arriba";
 "menu_help" = "Axuda";
+"what_is_webxdc" = "Que é Webxdc?";
 "privacy_policy" = "Política de Privacidade";
 "menu_select_all" = "Escoller todo";
+"select_chat" = "Elixir conversa";
 "select_more" = "Elexir máis";
 "menu_edit_name" = "Editar nome";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_explain" = "Establece un alcume que se che mostrará no lugar de \"%1$@\". Deixa baleiro para usar o nome elixido polo contacto.";
+// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+"edit_name_placeholder" = "Alcume para \"%1$@\"";
 "menu_settings" = "Axustes";
 "menu_advanced" = "Avanzado";
 "menu_view_profile" = "Ver perfil";
@@ -210,6 +259,7 @@
 "menu_learn_spelling" = "Aprender palabras";
 "menu_chat_audit_log" = "Rexistro de auditoría do chat";
 "jump_to_message" = "Ir á mensaxe";
+"jump_to_original_message" = "Ir á mensaxe orixinal";
 "copy_json" = "Copiar JSON";
 "replace_draft" = "Substituír borrador";
 "title_share_location" = "Compartir localización cos membros do grupo";
@@ -230,9 +280,9 @@
 "source_code" = "Código Fonte";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Engadir á pantalla de Inicio";
+"donate" = "Doar";
 "mute_for_one_hour" = "Acalar durante 1 h.";
-// deprecated
-"mute_for_two_hours" = "Acalar durante 2 h.";
+"mute_for_eight_hours" = "Acalar durante 8 horas";
 "mute_for_one_day" = "Acalar durante 1 día";
 "mute_for_seven_days" = "Acalar durante 7 días";
 "mute_forever" = "Acalar para sempre";
@@ -259,6 +309,8 @@
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
 // get confirmations
 "ask_leave_group" = "Seguro que desexa abandonar o grupo?";
+"ask_delete_named_chat" = "Eliminar a conversa \"%1$@\" en todos os teus dispositivos?";
+"ask_delete_message" = "Eliminar esta mensaxe en todos os teus dispositivos?";
 // Used for the deletion of Device messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
@@ -267,11 +319,7 @@
 "ask_unblock_contact" = "Desbloquear contacto? Voltarás a poder recibir mensaxes de este contacto.";
 "ask_delete_contacts" = "Eliminar contactos?\n\nOs contactos con conversas activas e os contactos da libreta de enderezos do sistema non se poden eliminar de xeito definitivo.";
 "ask_delete_contact" = "Eliminar contacto %1$@?\n\nOs contactos con conversas activas e os contactos da libreta de enderezos do sistema non se poden eliminar de xeito definitivo.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Non podes eliminar contactos con conversas activas.";
 "ask_start_chat_with" = "Conversa con %1$@?";
-// deprecated
-"ask_delete_value" = "Eliminar %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Eliminar  %1$@ do grupo?";
 // %1$s is replaced by a comma-separated list of names
@@ -322,6 +370,12 @@
 "start_app" = "Comezar...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Primeiro acepta a solicitude de conversa.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Enviar \"%1$@\" a…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Enviar mensaxe a…";
+"enable_realtime" = "Apps en tempo real";
+"enable_realtime_explain" = "Activar conexións en tempo real para apps compartidas nas conversas. Se está activo as persoas da conversa poderían coñecer o teu enderezo IP cando inicias unha app.";
 // map
 "filter_map_on_time" = "Mostrar localizacións no marco temporal";
 "show_location_traces" = "Mostrar trazas";
@@ -340,8 +394,12 @@
 "puny_code_warning_description" = "Seguiches unha ligazón que podería intentar confundirte utilizando caracteres que semellan parecidos en diferentes alfabetos. Premendo na ligazón %1$@ vaite levar a %2$@ que é nonrmal para carateres non-Latinos. Se non esperabas estos caracteres a ligazón podería ser maliciosa";
 // search
 "search" = "Buscar";
+"search_in_chat" = "Buscar na conversa";
+"search_files" = "Buscar ficheiros";
 "search_explain" = "Buscar conversas, contactos e mensaxes";
 "search_no_result_for_x" = "Non hai resultados para \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Sen ler";
 // create/edit groups, contact/group profile
 "group_name" = "Nome do grupo";
 "group_avatar" = "Avatar do grupo";
@@ -353,6 +411,9 @@
 "group_self_not_in_group" = "Debes ser membro do grupo para executar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Conversas compartidas";
+"related_chats" = "Conversas relacionadas";
+// Separator between the list of actual members and past members
+"past_members" = "Membros anteriores";
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galería";
@@ -366,12 +427,40 @@
 "tab_audio_empty_hint" = "Os ficheiros de Audio e de Mensaxes de Voz compartidos neste chat serán mostrados aquí.";
 "tab_webxdc_empty_hint" = "As apps privadas compartidas neste chat aparecerán aquí.";
 "tab_all_media_empty_hint" = "O multimedia compartido en calquera chat aparecerá aquí.";
+"all_files_empty_hint" = "Aquí estarán os documentos e outros ficheiros compartidos.";
+"all_apps_empty_hint" = "Aquí estarán as apps compartidas en calquera conversa.";
 "media_preview" = "Vista previa dos medios";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Grella de relación de aspecto";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Grella cadrada";
 "send_message" = "Enviar mensaxe";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
 "aeap_addr_changed" = "%1$@ cambiou o seu enderezo de %2$@ a %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Cambiaches o teu enderezo de email de %1$@ a %2$@.\n\nSe envías unha mensaxe a un grupo verificado os contactos cambiarán automáticamente o enderezo antigo polo novo.\n\nÉ moi recomendable que configures o email antigo para que che reenvíe todo o correo ao novo enderezo. De non facelo poderías perder mensaxes de contactos que aínda non coñezan o teu novo enderezo.";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Engadir segundo dispositivo";
+"multidevice_same_network_hint" = "Comproba que os dous dispositivos estean na mesma Wi-Fi ou rede";
+"multidevice_this_creates_a_qr_code" = "Isto crea un código QR que hai que escanear co segundo dispositivo para copiar o perfil.\n\nComproba que non hai ninguén mirando ou unha cámara que poid ver a seguinte pantalla.";
+"multidevice_install_dc_on_other_device" = "Instala Delta Chat no teu outro dispositivo (https://get.delta.chat)";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Inicia Delta Chat, toca en \"Xa teño un perfil / Engadir como segundo dispositivo\" e escanea este código";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Escanea para configurar un segundo dispositivo para %1$@";
+"multidevice_receiver_title" = "Engadir como segundo dispositivo";
+"multidevice_open_settings_on_other_device" = "No primeiro dispositivo, vai a \"Axustes / Engadir segundo dispositivo\" e escanea o código que alí se mostra";
+"multidevice_receiver_scanning_ask" = "Copiar neste dispositivo o perfil do outro dispositivo?";
+"multidevice_receiver_needs_update" = "O perfil que queres importar procede dunha versión máis recente de Delta Chat.\n\nPara configurar o segundo dispositivo actualiza este dispositivo á última versión de Delta Chat.";
+"multidevice_abort" = "Desbotar a configuración dun segundo dispositivo?";
+"multidevice_abort_will_invalidate_copied_qr" = "Isto invalidará o código QR copiado ao portapapeis.";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Perfil transferido ao teu segundo dispositivo.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Preparando o perfil…";
+// Shown beside progress bar, stay short
+"transferring" = "Transferindo…";
+"troubleshooting" = "Resolver problemas";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Mensaxes entrantes";
@@ -395,6 +484,33 @@
 "messages" = "Mensaxes";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Utilizado %1$@ de %2$@";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Crear novo perfil";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Xa teño un perfil";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Acceso clásido con correo";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "O teu perfil";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "Política de Privacidade de %1$@";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "Sobre os perfís en %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Aceptar e Crear perfil";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Usar outro servidor";
+"instant_onboarding_other_server" = "Lista de servidores Chatmail";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Crear un perfil para unirse ao grupo \"%1$@\".";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+"instant_onboarding_contact_info" = "Crear un perfil para conversar con %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Queres crear un novo perfil e comezar a conversar con %1$@?";
+// Question shown when group's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Queres crear un novo perfil e unirte ao grupo \"%1$@\"?";
+"welcome_chat_over_email" = "Conversas Seguras e Descentralizadas";
 "scan_invitation_code" = "Escanear código de convite";
 "login_title" = "Acceder";
 // for classic email, we use the classical term "Account"
@@ -415,6 +531,17 @@
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
 "login_auth_method" = "Método de autorización";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Usar Proxy";
+"proxy_add" = "Engadir Proxy";
+"proxy_add_explain" = "Tipos de proxy compatibles: HTTP(S), SOCKS5 e Shadowsocks.";
+"proxy_add_url_hint" = "Escribe aquí a ligazón ao proxy";
+"proxy_invalid" = "Proxy non compatible ou non válido";
+"proxy_list_header" = "Proxis gardados";
+"proxy_delete" = "Eliminar Proxy";
+"proxy_delete_explain" = "Tes certeza de querer eliminar \"%1$@\"?";
+"proxy_use_proxy_confirm" = "Queres usar o proxy \"%1$@\"?";
 "login_info_oauth2_title" = "Continuar co axuste simplificado?";
 "login_info_oauth2_text" = "O enderezo introducido soporta o axuste simplificado (OAuth 2.0).\n\nNo seguinte paso, permite a Delta Chat actuar como app de Conversa sobre Correo-e.\n\nNon hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -596,14 +723,17 @@
 "autocrypt_send_asm_explain_before" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt.\n\nO axuste realízase cifrado e protexido cun código que se debe escribir no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar Mensaxe de Configuración Autocrypt";
 "autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferir cifrado extremo-a-extremo";
 "autocrypt_asm_subject" = "Mensaxe de Configuración Autocrypt";
 "autocrypt_asm_general_body" = "Esta é a Mensaxe de Configuración Autocrypt utilizado para transferir os teus axustes de cifrado de extremo-a-extremo entre clientes.\n\nPara descifrar e utilizar os axustes abre a mensaxe nun cliente compatible con Autocrypt e introduce o código mostrado no dispositivo de orixe.";
+// deprecated
 "autocrypt_asm_click_body" = "Esta é a Mensaxe de Configuración Autocrypt utilizado para transferir os teus axustes de cifrado extremo-a-extremo entre clientes.\n\nPara descifrar e utilizar os axustes, toca ou preme en esta mensaxe.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Mensaxe de Configuración Autocrypt";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Por favor, introduce o código de protección mostrado no outro dispositivo.";
-"autocrypt_continue_transfer_succeeded" = "Axustes transferidos. Este dispositivo está preparado para utilizar Autocrypt coa mesma configuración que no outro dispositivo.";
-"autocrypt_continue_transfer_retry" = "Voltar a intentar";
+// deprecated
 "autocrypt_bad_setup_code" = "Código incorrecto. Inténtao outra vez.\n\nSe non lembras o código, envía unha nova Mensaxe de Configuración Autocrypt desde o outro dispositivo.";
 "systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
@@ -763,7 +893,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "A icona da bandexa do sistema non se pode desactivar porque Delta Chat iniciouse coa opción --minimized.";
 "no_spellcheck_suggestions_found" = "Non se atopan suxestións de escrita.";
 "show_window" = "Mostrar xanela";
-"login_socks5_experimental_warning" = "O soporte para SOCKS5 aínda é experimental. Úsao baixo a túa responsabilidade. Se escribes un enderezo no campo do email realizará unha busca DNS que non pasará a través de SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Atallos";
 "switch_between_chats" = "Cambiar entre Chats";

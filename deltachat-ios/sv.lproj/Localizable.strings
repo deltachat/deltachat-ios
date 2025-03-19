@@ -183,8 +183,6 @@
 "menu_delete_chat" = "Ta bort chatt";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Rensa chatt";
-// deprecated
-"menu_delete_messages" = "Ta bort meddelanden";
 "delete_contact" = "Ta bort kontakt";
 "menu_delete_location" = "Ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
@@ -260,8 +258,7 @@
 "add_to_home_screen" = "Lägg till på hemskärmen";
 "donate" = "Donera";
 "mute_for_one_hour" = "Tysta 1 timma";
-// deprecated
-"mute_for_two_hours" = "Tysta 2 timmar";
+"mute_for_eight_hours" = "Tysta 8 timmar";
 "mute_for_one_day" = "Tysta 1 dag";
 "mute_for_seven_days" = "Tysta 7 dagar";
 "mute_forever" = "Tysta för evigt";
@@ -296,11 +293,7 @@
 "ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
 "ask_delete_contacts" = "Ta bort kontakter? Detta kommer att ta bort de valda kontakterna permanent.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent.";
 "ask_delete_contact" = "Ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
-// deprecated
-"cannot_delete_contacts_in_use" = "Det går inte att ta bort kontakter med pågående chattar.";
 "ask_start_chat_with" = "Chatta med %1$@ ?";
-// deprecated
-"ask_delete_value" = "Ta bort %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
 // %1$s is replaced by a comma-separated list of names
@@ -429,7 +422,6 @@
 "multidevice_receiver_scanning_ask" = "Vill du kopiera profilen från den andra enheten till den här enheten?";
 "multidevice_abort" = "Vill du avbryta konfigurationen av den andra enheten?";
 "multidevice_abort_will_invalidate_copied_qr" = "Detta kommer att ogiltigförklara QR-koden som kopierats till urklipp.";
-"multidevice_experimental_hint" = "(experimentell, version 1.36 krävs)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilen överförd till din andra enhet.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Förbereder profil...";
@@ -708,14 +700,17 @@
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att ställa in Autocrypt, delar den informationen med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
 "autocrypt_send_asm_button" = "Skicka Autocrypt inställningsmeddelande";
 "autocrypt_send_asm_explain_after" = "Dina inställningar har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Föredra slutpunkt-till-slutpunkt-kryptering";
 "autocrypt_asm_subject" = "Inställningsmeddelande för Autocrypt";
 "autocrypt_asm_general_body" = "Detta är inställningsmeddelandet för Autocrypt som används för att skicka nycklar mellan klienter.\n\nFör att kunna avkryptera och använda din nyckel, öppnar du meddelandet i en Autocrypt-kompatibel klient och skriver in inställningskoden som visats på den genererande enheten.";
+// deprecated
 "autocrypt_asm_click_body" = "Detta är inställningsmeddelandet för Autocrypt, som används för att överföra slutpunkt-till-slutpunkt-inställningar mellan klienter. Tryck eller klicka på det här meddelandet för att avkryptera och använda dina inställningar.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt inställningsmeddelande";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Ange inställningskoden som visas på den andra enheten.";
-"autocrypt_continue_transfer_succeeded" = "Slutpunkt-till-slutpunkt-inställningar överförda. Enheten är nu redo att använda Autocrypt med samma inställningar som den andra enheten.";
-"autocrypt_continue_transfer_retry" = "Försök igen";
+// deprecated
 "autocrypt_bad_setup_code" = "Felaktig inställningskod. Försök igen.\n\nOm du inte kommer ihåg inställningskoden, kan du skicka ett nytt Autocrypt inställningsmeddelande från den andra enheten.";
 // system messages
 "systemmsg_cannot_decrypt" = "Det här meddelandet kan inte dekrypteras.\n\n- Det kan hjälpa att helt enkelt svara på det här meddelandet och be avsändaren att skicka meddelandet igen.\n\n- Om du just har installerat om Delta Chat är det bäst om du konfigurerar om Delta Chat nu och väljer \"Lägg till som en andra enhet\" eller importerar en säkerhetskopia.";
@@ -934,7 +929,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Systemfältsikonen kan inte inaktiveras eftersom Delta Chat startades med alternativet --minimized.";
 "no_spellcheck_suggestions_found" = "Inga stavningsförslag hittades.";
 "show_window" = "Visa fönster";
-"login_socks5_experimental_warning" = "SOCKS5-stöd är för närvarande experimentellt. Använd det på egen risk. Om du skriver in en adress i e-postfältet kommer det att ske en DNS-uppslagning som inte tunnlas genom SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tangentbindningar";
 "switch_between_chats" = "Växla mellan chattar";

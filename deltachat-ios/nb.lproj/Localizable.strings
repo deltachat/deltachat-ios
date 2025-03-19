@@ -112,8 +112,6 @@
 "menu_add_attachment" = "Legg ved filer";
 "menu_leave_group" = "Forlat gruppe";
 "menu_delete_chat" = "Slett sludring";
-// deprecated
-"menu_delete_messages" = "Slett meldinger";
 "menu_delete_location" = "Slett på dette stedet?";
 "menu_message_details" = "Meldingsdetaljer";
 "menu_copy_to_clipboard" = "Kopier til utklippstavle";
@@ -153,8 +151,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";
 "mute_for_one_hour" = "Demp i 1 time";
-// deprecated
-"mute_for_two_hours" = "Demp i 2 timer";
+"mute_for_eight_hours" = "Demp i 8 timer";
 "mute_for_one_day" = "Demp i 1 dag";
 "mute_for_seven_days" = "Demp i 7 dager";
 "mute_forever" = "Alltid dempet";
@@ -185,8 +182,6 @@
 "ask_unblock_contact" = "Fjern blokkering av denne kontakten? Du vil igjen kunne motta meldinger fra kontakten.";
 "ask_delete_contacts" = "Slett kontakter?\n\nKontakter med pågående chatter og kontakter fra systemet adressebok kan ikke bli slettet permanent.";
 "ask_delete_contact" = "Slett kontakter %1$@?\n\nKontakter med pågående chatter og kontakter fra systemets adressebok, kan ikke slettes permanent.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med pågående chatter.";
 "ask_start_chat_with" = "Begynn å sludre med %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppen?";
@@ -297,14 +292,17 @@
 "autocrypt_send_asm_explain_before" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";
 "autocrypt_send_asm_button" = "Igangsett Autocrypt-nøkkeloverføring";
 "autocrypt_send_asm_explain_after" = "Nøkkelen din har blitt sendt til deg selv. Bytt til den andre enheten og åpne oppsettsmeldingen. Du bør bli forespurt om å oppgi en oppsettskode. Skriv in følgende siffer.\n\nNår du er ferdig, vil din andre enhet også kunne bruke Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Foretrekk ende-til-ende -kryptering";
 "autocrypt_asm_subject" = "Autocrypt-nøkkeloverføring";
 "autocrypt_asm_general_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, åpne meldingen i en Autocrypt-kompatibel klient og skriv inn oppsettskoden som vises på enheten som genererer den.";
+// deprecated
 "autocrypt_asm_click_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, trykk på denne meldingen.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt-nøkkeloverføring";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Skriv inn oppsettskoden som vises på den andre enheten.";
-"autocrypt_continue_transfer_succeeded" = "Nøkkel overført. Denne enheten er nå klar til å bruke Autocrypt med samme nøkkel som den andre enheten.";
-"autocrypt_continue_transfer_retry" = "Prøv igjen";
+// deprecated
 "autocrypt_bad_setup_code" = "Feil oppsettskode. Prøv igjen.\n\nHvis du ikke husker den, sett igang nøkkeloverføringen på en andre enheten igjen.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\" av meg.";

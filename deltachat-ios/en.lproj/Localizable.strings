@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Delete Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Clear Chat";
-// deprecated
-"menu_delete_messages" = "Delete Messages";
 "delete_contact" = "Delete Contact";
 "menu_delete_location" = "Delete this Location?";
 "menu_message_details" = "Message Info";
@@ -288,8 +286,6 @@
 "add_to_home_screen" = "Add to Home Screen";
 "donate" = "Donate";
 "mute_for_one_hour" = "Mute for 1 hour";
-// deprecated
-"mute_for_two_hours" = "Mute for 2 hours";
 "mute_for_eight_hours" = "Mute for 8 hours";
 "mute_for_one_day" = "Mute for 1 day";
 "mute_for_seven_days" = "Mute for 7 days";
@@ -327,11 +323,7 @@
 "ask_unblock_contact" = "Unblock this contact?";
 "ask_delete_contacts" = "Delete contacts?\n\nContacts with ongoing chats or from the system address book cannot be deleted permanently.";
 "ask_delete_contact" = "Delete contact %1$@?\n\nContacts with ongoing chats or from the system address book cannot be deleted permanently.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Cannot delete contacts with ongoing chats.";
 "ask_start_chat_with" = "Chat with %1$@?";
-// deprecated
-"ask_delete_value" = "Delete %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remove %1$@ from group?";
 // %1$s is replaced by a comma-separated list of names
@@ -468,7 +460,6 @@
 "multidevice_receiver_needs_update" = "The profile you want to import is from a newer Delta Chat version.\n\nTo continue setting up second device, please update this device to the latest version of Delta Chat.";
 "multidevice_abort" = "Abort setting up second device?";
 "multidevice_abort_will_invalidate_copied_qr" = "This will invalidate the QR code copied to clipboard.";
-"multidevice_experimental_hint" = "(experimental, version 1.36 required)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profile transferred to your second device.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparing profile…";
@@ -772,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nThe setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
 "autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 "autocrypt_asm_subject" = "Autocrypt Setup Message";
 "autocrypt_asm_general_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, open the message in an Autocrypt-compliant client and enter the setup code presented on the generating device.";
+// deprecated
 "autocrypt_asm_click_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, tap or click on this message.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt Setup Message";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Please enter the setup code displayed on the other device.";
-"autocrypt_continue_transfer_succeeded" = "End-to-end setup transferred. This device is now ready to use Autocrypt with the same setup as the other device.";
-"autocrypt_continue_transfer_retry" = "Retry";
+// deprecated
 "autocrypt_bad_setup_code" = "Bad setup code. Please try again.\n\nIf you do not remember the setup code, send a new Autocrypt Setup Message from the other device.";
 // system messages
 "systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
@@ -1002,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
 "no_spellcheck_suggestions_found" = "No spelling suggestions found.";
 "show_window" = "Show Window";
-"login_socks5_experimental_warning" = "SOCKS5 support is currently experimental. Please use at your own risk. If you type in an address in the e-mail field, there will be DNS lookup that won\'t get tunneled through SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Keybindings";
 "switch_between_chats" = "Switch between Chats";

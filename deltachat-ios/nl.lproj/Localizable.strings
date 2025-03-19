@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Gesprek verwijderen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ale berichten wissen";
-// deprecated
-"menu_delete_messages" = "Berichten verwijderen";
 "delete_contact" = "Contactpersoon verwijderen";
 "menu_delete_location" = "Wil je deze locatie verwijderen?";
 "menu_message_details" = "Berichtinformatie";
@@ -288,8 +286,6 @@
 "add_to_home_screen" = "Toevoegen aan startscherm";
 "donate" = "Doneren";
 "mute_for_one_hour" = "1 uur lang uitschakelen";
-// deprecated
-"mute_for_two_hours" = "2 uur lang uitschakelen";
 "mute_for_eight_hours" = "8 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
 "mute_for_seven_days" = "7 dagen lang uitschakelen";
@@ -327,11 +323,7 @@
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
 "ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "ask_delete_contact" = "Wil je de contactpersoon %1$@ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Contactpersonen waarmee je nog gesprekken voert kunnen niet worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
-// deprecated
-"ask_delete_value" = "Wil je %1$@ verwijderen?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
 // %1$s is replaced by a comma-separated list of names
@@ -468,7 +460,6 @@
 "multidevice_receiver_needs_update" = "Het te importeren profiel is afkomstig uit een nieuwere Delta Chat-versie.\n\nAls je het tweede apparaat wilt instellen, installeer dan de nieuwste versie van Delta Chat.";
 "multidevice_abort" = "Wil je het instellen afbreken?";
 "multidevice_abort_will_invalidate_copied_qr" = "Hierdoor wordt de gekopieerde QR-code onbruikbaar gemaakt.";
-"multidevice_experimental_hint" = "(experimenteel - versie 1.36 vereist)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Het account is overgezet naar je tweede apparaat.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Bezig met voorbereiden…";
@@ -772,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
 "autocrypt_asm_subject" = "Autocrypt-instelbericht";
 "autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
+// deprecated
 "autocrypt_asm_click_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je eind-tot-eindinstellingen over te zetten.\n\nDruk op dit bericht om je instellingen te ontsleutelen en gebruiken.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt-instelbericht";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Voer de code die wordt getoond op het andere apparaat.";
-"autocrypt_continue_transfer_succeeded" = "Je eind-tot-eindinstellingen zijn overgezet. Dit apparaat kan nu worden gebruikt i.c.m. Autocrypt, met dezelfde instellingen als het andere apparaat.";
-"autocrypt_continue_transfer_retry" = "Opnieuw";
+// deprecated
 "autocrypt_bad_setup_code" = "Onjuist; probeer het opnieuw.\n\nAls je je code niet meer weet, verstuur dan nóg een Autocrypt-instelbericht vanaf het andere apparaat.";
 // system messages
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd, voeg het dan toe als tweede apparaat of importeer een reservekopie.";
@@ -1002,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized";
 "no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
 "show_window" = "Venster tonen";
-"login_socks5_experimental_warning" = "De SOCKS5-ondersteuning is momenteel nog experimenteel - gebruik hiervan is op eigen risico. Als je een e-mailadres invoert, dan vindt er een dns-opzoeking plaats die niet wordt doorgesluisd via SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Sneltoetsen";
 "switch_between_chats" = "Wisselen van gesprek";

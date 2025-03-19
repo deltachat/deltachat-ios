@@ -167,8 +167,6 @@
 "menu_delete_chat" = "Forigi babilon";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Viŝi la babilejon";
-// deprecated
-"menu_delete_messages" = "Forigi mesaĝojn";
 "delete_contact" = "Forviŝi Kontakton";
 "menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
 "menu_message_details" = "Mesaĝ-detaloj";
@@ -228,8 +226,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Depingli";
 "mute_for_one_hour" = "Silentigi por 1 horo";
-// deprecated
-"mute_for_two_hours" = "Silentigi por 2 horoj";
+"mute_for_eight_hours" = "Silentigi por 8 horoj";
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
 "mute_forever" = "Silentigi por ĉiam";
@@ -242,8 +239,6 @@
 // get confirmations
 "ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
-// deprecated
-"cannot_delete_contacts_in_use" = "Ne eblas forigi kontaktojn kun aktualaj babiloj.";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Forigi %1$@el la grupo?";
@@ -378,6 +373,7 @@
 "pref_watch_sent_folder" = "Kontroli senditujon";
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
 // notifications
 "notify_reply_button" = "Respondi";

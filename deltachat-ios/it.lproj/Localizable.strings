@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Elimina Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Cancella Messaggi";
-// deprecated
-"menu_delete_messages" = "Elimina Messaggi";
 "delete_contact" = "Elimina Contatto";
 "menu_delete_location" = "Elimino questa Posizione?";
 "menu_message_details" = "Informazioni Messaggio";
@@ -288,8 +286,7 @@
 "add_to_home_screen" = "Aggiungi alla Schermata Iniziale";
 "donate" = "Dona";
 "mute_for_one_hour" = "Silenzia per 1 ora";
-// deprecated
-"mute_for_two_hours" = "Silenzia per 2 ore";
+"mute_for_eight_hours" = "Silenzia per 8 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
 "mute_for_seven_days" = "Silenzia per 7 giorni";
 "mute_forever" = "Silenzia per sempre";
@@ -326,11 +323,7 @@
 "ask_unblock_contact" = "Sbloccare questo contatto?";
 "ask_delete_contacts" = "Eliminare contatti?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
 "ask_delete_contact" = "Eliminare il contatto %1$@?\n\nI contatti con chat in corso o in rubrica di sistema non possono essere eliminati definitivamente.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Impossibile eliminare contatti con chat in corso.";
 "ask_start_chat_with" = "Chattare con %1$@?";
-// deprecated
-"ask_delete_value" = "Elimina %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
 // %1$s is replaced by a comma-separated list of names
@@ -467,7 +460,6 @@
 "multidevice_receiver_needs_update" = "Il profilo che vuoi importare proviene da una versione più recente di Delta Chat.\n\nPer continuare a configurare il secondo dispositivo, aggiorna questo dispositivo all\'ultima versione di Delta Chat.";
 "multidevice_abort" = "Interrompere l\'impostazione del secondo dispositivo?";
 "multidevice_abort_will_invalidate_copied_qr" = "Questo invaliderà il codice QR copiato negli appunti.";
-"multidevice_experimental_hint" = "(sperimentale, è richiesta la versione 1.36)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilo trasferito sul tuo secondo dispositivo.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Preparazione profilo…";
@@ -771,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "Un Messaggio Configurazione Autocrypt condivide in modo sicuro la configurazione end-to-end con altre app compatibili con Autocrypt.\n\nLa configurazione verrà crittografata tramite un codice di configurazione visualizzato qui e dovrà essere digitato sull\'altro dispositivo.";
 "autocrypt_send_asm_button" = "Invia Messaggio Configurazione Autocrypt";
 "autocrypt_send_asm_explain_after" = "La tua configurazione ti è stata inviata. Passa all\'altro dispositivo e apri il messaggio. Dovrebbe venirti richiesto un codice. Inserisci il seguente codice:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferisci Cifratura End-To-End";
 "autocrypt_asm_subject" = "Messaggio Configurazione Autocrypt";
 "autocrypt_asm_general_body" = "Questo è il Messaggio Configurazione Autocrypt utilizzato per trasferire la configurazione end-to-end tra i client.\n\nPer decifrare e utilizzare la configurazione, aprire il messaggio in un client compatibile con Autocrypt e immettere il codice di configurazione presentato sul dispositivo di generazione.";
+// deprecated
 "autocrypt_asm_click_body" = "Questo è il Messaggio Configurazione Autocrypt utilizzato per trasferire la configurazione end-to-end tra i client.\n\nPer decriptare e utilizzare la configurazione, tocca o fai clic su questo messaggio.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Messaggio Configurazione Autocrypt";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Per piacere inserisci il codice mostrato nell\'altro dispositivo";
-"autocrypt_continue_transfer_succeeded" = "Configurazione end-to-end trasferita. Questo dispositivo può ora usare Autocrypt con la stessa configurazione dell\'altro dispositivo.";
-"autocrypt_continue_transfer_retry" = "Riprova";
+// deprecated
 "autocrypt_bad_setup_code" = "Codice configurazione non valido. Per piacere riprova ancora.\n\nSe non ricordi il codice di configurazione invia un altro Messaggio Configurazione Autocrypt dall\'altro dispositivo.";
 // system messages
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittografato.\n\n• Potrebbe essere già utile rispondere semplicemente a questo messaggio e chiedere al mittente d\'inviare nuovamente il messaggio.\n\n• Se hai appena reinstallato Delta Chat, è meglio se riconfiguri ora Delta Chat e scegli \"Aggiungi come secondo dispositivo\" o importa un backup.";
@@ -1001,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icona nella barra delle applicazioni non può essere disabilitata poiché Delta Chat è stato avviato con l\'opzione --minimizzato.";
 "no_spellcheck_suggestions_found" = "Nessun suggerimento ortografico trovato.";
 "show_window" = "Mostra Finestra";
-"login_socks5_experimental_warning" = "Il supporto SOCKS5 è attualmente sperimentale. Per piacere usatelo a vostro rischio e pericolo. Se si digita un indirizzo nel campo e-mail, ci sarà una ricerca DNS che non verrà trasferita tramite SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Associazioni tasti";
 "switch_between_chats" = "Passa da una Chat all\'altra";

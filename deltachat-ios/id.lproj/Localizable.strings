@@ -163,8 +163,6 @@
 "menu_delete_chat" = "Hapus obrolan";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Hapus Obrolan";
-// deprecated
-"menu_delete_messages" = "Hapus pesan";
 "delete_contact" = "Hapus kontak";
 "menu_delete_location" = "Hapus lokasi ini?";
 "menu_message_details" = "Detail pesan";
@@ -226,8 +224,7 @@
 "ConversationFragment_quoted_message_not_found" = "Pesan orisinil tidak ditemukan";
 "reply_privately" = "Balas secara privat";
 "mute_for_one_hour" = "Diamkan untuk 1 jam";
-// deprecated
-"mute_for_two_hours" = "Diamkan untuk 2 jam";
+"mute_for_eight_hours" = "Diamkan untuk 8 jam";
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
 "mute_forever" = "Diamkan seterusnya";
@@ -257,11 +254,7 @@
 "ask_unblock_contact" = "Buka blokir kontak ini? Anda akan bisa kembali menerima pesan dari kontak ini.";
 "ask_delete_contacts" = "Hapus kontak?\n\nKontak dengan obrolan yang sedang berlangsung dan dari buku alamat pada sistem tak bisa dihapus secara permanen.";
 "ask_delete_contact" = "Hapus kontak %1$@?\n\nKontak dengan obrolan yang sedang berlangsung dan dari buku alamat pada sistem tak bisa dihapus secara permanen.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Tak bisa menghapus kontak yang sedang dalam obrolan.";
 "ask_start_chat_with" = "Ngobrol dengan %1$@?";
-// deprecated
-"ask_delete_value" = "Hapus %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Hapus %1$@ dari grup?";
 "open_url_confirmation" = "Apakah anda ingin membuka pranala ini?";
@@ -474,14 +467,17 @@
 "autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
 "autocrypt_asm_subject" = "Pengaturan Pesan Autocrypt";
 "autocrypt_asm_general_body" = "Inilah Autocrypt Setup Message yang digunakan utuk mentransfer pengaturan ujung ke ujung Anda antar pelanggan.\n\nUntuk membuka enkirpsi dan menggunakan pengaturan Anda, bukan pesan di Autocrypt-compliant pelanggan dan masukkan kode pengaturan yang ditampikan untuk perangkat terkait.";
+// deprecated
 "autocrypt_asm_click_body" = "Inilah Autocrypt Setup Message yang digunakan untuk mentransfer pengaturan ujung ke ujung antar pelanggan.\n\nUntuk membuka enkripsi dan membuka pengaturan Anda, ketuk atau klik pesan ini.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Pengaturan Pesan Autocrypt";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Masukkan kode pengaturan yang ditampilkan di perangkat lain.";
-"autocrypt_continue_transfer_succeeded" = "Pengaturan ujung ke ujung sudah ditransfer. Sekarang perangkat ini sudah siap dengan pengaturan Autocrypt yang sama dengan perangkat lain.";
-"autocrypt_continue_transfer_retry" = "Ulangi";
+// deprecated
 "autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";

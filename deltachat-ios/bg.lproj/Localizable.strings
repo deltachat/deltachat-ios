@@ -181,8 +181,6 @@
 "menu_delete_chat" = "Изтриване на чата";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Изчистване на чата";
-// deprecated
-"menu_delete_messages" = "Изтриване на съобщения";
 "delete_contact" = "Изтриване на контакт";
 "menu_delete_location" = "Да бъде ли изтрито това местоположение?";
 "menu_message_details" = "Детайли на съобщение";
@@ -254,8 +252,7 @@
 "add_to_home_screen" = "Добавяне към началния екран";
 "donate" = "Дарение";
 "mute_for_one_hour" = "Спиране на звука за 1 час";
-// deprecated
-"mute_for_two_hours" = "Спиране на звука за 2 часа";
+"mute_for_eight_hours" = "Спиране на звука за 8 часа";
 "mute_for_one_day" = "Спиране на звука за 1 ден";
 "mute_for_seven_days" = "Спиране на звука за 7 дни";
 "mute_forever" = "Спиране на звука за постоянно";
@@ -290,11 +287,7 @@
 "ask_unblock_contact" = "Да бъде ли отблокиран този контакт? Ще можете отново да получавате съобщения от него.";
 "ask_delete_contacts" = "Да бъдат ли изтрити контактите?\n\nКонтактите с текущо провеждани чатове и контактите от системната адресна книга не могат да бъдат изтрити за постоянно.";
 "ask_delete_contact" = "Да бъде ли изтрит контактът %1$@? Контактите с текущо провеждани чатове и контактите от системната адресна книга не могат да бъдат изтрити за постоянно.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Контактите с текущо провеждани чатове не могат да бъдат изтривани.";
 "ask_start_chat_with" = "Чат с %1$@?";
-// deprecated
-"ask_delete_value" = "Да бъде ли изтрит %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Премахване на %1$@ от групата?";
 // %1$s is replaced by a comma-separated list of names
@@ -423,7 +416,6 @@
 "multidevice_receiver_scanning_ask" = "Да бъде ли копиран акаунтът от другото устройство в настоящото?";
 "multidevice_abort" = "Да бъде ли прекъснато добавянето на второ устройство?";
 "multidevice_abort_will_invalidate_copied_qr" = "QR кодът, копиран в клипборда, ще стане невалиден.";
-"multidevice_experimental_hint" = "(експериментална възможност, изисква се версия 1.36)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Акаунтът е прехвърлен на второто Ви устройство.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Акаунтът се подготвя...";
@@ -700,14 +692,17 @@
 "autocrypt_send_asm_explain_before" = "Съобщението за настройка на Autocrypt споделя по сигурен начин Вашата настройка за криптиране \"от край до край\" с други съвместими с Autorcypt приложения.\n\nНастройката се криптира с код, който се показва тук и трябва да бъде въведен на другото устройство.";
 "autocrypt_send_asm_button" = "Изпращане на съобщението за настройка на Autocrypt";
 "autocrypt_send_asm_explain_after" = "Изпратихте Вашата настройка до себе си. Отворете съобщението за настройка в другото устройство. Би трябвало да Ви бъде поискан код за настройка. Въведете следните цифри:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Да се предпочита криптиране \"от край до край\"";
 "autocrypt_asm_subject" = "Съобщение за настройка на Autocrypt";
 "autocrypt_asm_general_body" = "Това е съобщението за настройка на Autocrypt, чрез което се прехвърля Вашата настройка за криптиране \"от край до край\" между различни клиенти.\n\nЗа да декриптирате и използвате Вашата настройка, отворете съобщението в клиент, съвместим с Autocrypt, и въведете кода за настройка, представен на генериращото устройство.";
+// deprecated
 "autocrypt_asm_click_body" = "Това е съобщението за настройка на Autocrypt, чрез което се прехвърля Вашата настройка за криптиране \"от край до край\" между различни клиенти.\n\nЗа да декриптирате и използвате своята настройка, докоснете или щракнете върху това съобщение.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Съобщение за настройка на Autocrypt";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Моля, въведете кода за настройка, показан на другото устройство.";
-"autocrypt_continue_transfer_succeeded" = "Настройката за криптиране \"от край до край\" е прехвърлена. Устройството е готово да използва Autocrypt със същата настройка като другото.";
-"autocrypt_continue_transfer_retry" = "Да се опита отново";
+// deprecated
 "autocrypt_bad_setup_code" = "Невалиден код за настройка. Моля, опитайте отново.\n\nАко не си спомняте кода за настройка, изпратете ново съобщение за настройка на Autocrypt от другото устройство.";
 // system messages
 "systemmsg_cannot_decrypt" = "Това съобщение не може да бъде декриптирано.\n\n• Бихте могли просто да му отговорите и да помолите подателя да го изпрати отново.\n\n• Ако току-що сте преинсталирали Delta Chat, е най-добре да настроите приложението отново сега и да изберете \"Добавяне като второ устройство\" или да импортирате от архив.";
@@ -926,7 +921,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Показването на икона в системната лента не може да бъде забранено, тъй като Delta Chat е стартиран с опцията --minimized.";
 "no_spellcheck_suggestions_found" = "Няма открити предложения за правопис.";
 "show_window" = "Показване на прозореца";
-"login_socks5_experimental_warning" = "Понастоящем поддръжката за SOCKS5 е експериментална. Използвайте на собствен риск. Ако въведете адрес в полето \"Електронна поща\", ще бъде осъществено DNS търсене извън SOCKS5 тунела.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Обвързвания на клавиши към команди";
 "switch_between_chats" = "Превключване между чатовете";

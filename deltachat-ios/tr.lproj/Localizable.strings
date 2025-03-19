@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
-// deprecated
-"menu_delete_messages" = "İletileri Sil";
 "delete_contact" = "Kişiyi Sil";
 "menu_delete_location" = "Bu Konumu Sil";
 "menu_message_details" = "İleti Bilgisi";
@@ -288,8 +286,7 @@
 "add_to_home_screen" = "Ana Ekrana Ekle";
 "donate" = "Bağış";
 "mute_for_one_hour" = "1 saatliğine sessize al";
-// deprecated
-"mute_for_two_hours" = "2 saatliğine sessize al";
+"mute_for_eight_hours" = "8 saatliğine sessize al";
 "mute_for_one_day" = "1 günlüğüne sessize al";
 "mute_for_seven_days" = "7 günlüğüne sessize al";
 "mute_forever" = "Sonsuza dek sessize al";
@@ -326,11 +323,7 @@
 "ask_unblock_contact" = "Bu kişi engellenmesin mi?";
 "ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
 "ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Sohbetlerin sürdüğü kişiler silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
-// deprecated
-"ask_delete_value" = "%1$@ silinsin mi?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ öbekten kaldırılsın mı?";
 // %1$s is replaced by a comma-separated list of names
@@ -467,7 +460,6 @@
 "multidevice_receiver_needs_update" = "İçe aktarmak istediğiniz profil daha yeni bir Delta Chat sürümünden geliyor.\n\nİkinci aygıtı ayarlamayı sürdürmek için lütfen bu aygıtı Delta Chat\'in en son sürümüne güncelleştirin.";
 "multidevice_abort" = "İkinci aygıtı ayarlamadan vazgeçilsin mi?";
 "multidevice_abort_will_invalidate_copied_qr" = "Bu, panoya kopyalanan QR kodunu geçersizleştirecek.";
-"multidevice_experimental_hint" = "(deneysel, sürüm 1.36 gerekli)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil, ikinci aygıtınıza aktarıldı.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Profil hazırlanıyor…";
@@ -771,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nAyarlama, burada görüntülenen ve diğer aygıtta yazılması gereken bir ayarlama kodu tarafından şifrelenecek.";
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 "autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";
 "autocrypt_asm_general_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi\'dir.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için iletiyi Autocrypt uyumlu bir istemcide açın ve oluşturan aygıtta sunulan ayarlama kodunu girin.";
+// deprecated
 "autocrypt_asm_click_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi\'dir.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için bu iletiye dokunun ya da tıklayın.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt Ayarlama İletisi";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Lütfen diğer aygıtta görüntülenen ayarlama kodunu girin.";
-"autocrypt_continue_transfer_succeeded" = "Uçtan uca ayarlaması aktarıldı. Bu aygıt artık aynı ayarlamayla diğer aygıt gibi Autocrypt kullanmaya hazır.";
-"autocrypt_continue_transfer_retry" = "Yeniden Dene";
+// deprecated
 "autocrypt_bad_setup_code" = "Yanlış ayarlama kodu. Lütfen yeniden deneyin.\n\nAyarlama kodunu anımsamıyorsanız, diğer aygıttan yeni bir Autocrypt Ayarlama İletisi gönderin.";
 // system messages
 "systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp “İkinci Aygıt Olarak Ekle”yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
@@ -1001,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
-"login_socks5_experimental_warning" = "SOCKS5 desteği şu anda deneysel. Lütfen riski size ait olarak kullanın. E-posta alanına bir adres yazarsanız, SOCKS5 üzerinden tünellenmeyen DNS araması olacak.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tuş Bağları";
 "switch_between_chats" = "Sohbetler Arasında Geçiş Yap";

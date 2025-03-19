@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Удалить чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистить чат";
-// deprecated
-"menu_delete_messages" = "Удалить сообщения";
 "delete_contact" = "Удалить контакт";
 "menu_delete_location" = "Удалить местоположение?";
 "menu_message_details" = "Информация о сообщении";
@@ -288,8 +286,6 @@
 "add_to_home_screen" = "Добавить на главный экран";
 "donate" = "Пожертвовать";
 "mute_for_one_hour" = "На 1 час";
-// deprecated
-"mute_for_two_hours" = "На 2 часа";
 "mute_for_eight_hours" = "На 8 часов";
 "mute_for_one_day" = "На 1 день";
 "mute_for_seven_days" = "На 7 дней";
@@ -327,11 +323,7 @@
 "ask_unblock_contact" = "Разблокировать этот контакт?";
 "ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
 "ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Невозможно удалить контакты, с которыми имеются действующие чаты.";
 "ask_start_chat_with" = "Создать чат с %1$@?";
-// deprecated
-"ask_delete_value" = "Удалить %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Удалить %1$@ из группы?";
 // %1$s is replaced by a comma-separated list of names
@@ -449,9 +441,9 @@
 "square_grid" = "Сетка квадратов";
 "send_message" = "Отправить сообщение";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
-"aeap_addr_changed" = "%1$@ изменил свой адрес с %2$@ на %3$@";
+"aeap_addr_changed" = "%1$@ меняет адрес с %2$@ на %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
-"aeap_explanation" = "Вы сменили свой адрес электронной почты с %1$@ на %2$@.\n\nЕсли вы отправите сообщение в подтвержденную группу, контакты в ней автоматически обновят ваш старый адрес на новый.\n\nНастоятельно рекомендуется настроить старого поставщика электронной почты на пересылку всех писем на новый адрес. Иначе вы можете пропустить сообщения от контактов, которые еще не получили ваш новый адрес.";
+"aeap_explanation" = "Вы изменили свой адрес электронной почты с %1$@ на %2$@.\n\nЕсли вы отправите сообщение в подтвержденную группу, контакты в ней автоматически обновят ваш старый адрес на новый.\n\nНастоятельно рекомендуется настроить старого поставщика электронной почты на пересылку всех писем на новый адрес. Иначе вы можете пропустить сообщения от контактов, которые еще не получили ваш новый адрес.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Добавить второе устройство";
@@ -468,7 +460,6 @@
 "multidevice_receiver_needs_update" = "Профиль, который вы хотите импортировать, создан в более новой версии Delta Chat. Чтобы продолжить настройку второго устройства, пожалуйста, обновите это устройство до последней версии Delta Chat.";
 "multidevice_abort" = "Прервать настройку второго устройства?";
 "multidevice_abort_will_invalidate_copied_qr" = "Это сделает недействительным QR-код, скопированный в буфер обмена.";
-"multidevice_experimental_hint" = "(экспериментально, требуется версия 1.36)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Профиль перенесен на ваше второе устройство.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Подготовка профиля...";
@@ -738,11 +729,11 @@
 // Reactions
 "reactions" = "Реакции";
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
-"react" = "Реагировать";
+"react" = "Реакции";
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
-"reaction_by_you" = "Вы отреагировали %1$@ на \"%2$@\"";
+"reaction_by_you" = "Вы реагируете %1$@ на \"%2$@\"";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@ отреагировал %2$@ на \"%3$@\"";
+"reaction_by_other" = "%1$@ реагирует %2$@ на \"%3$@\"";
 // automatically delete message
 "delete_old_messages" = "Удалить старые сообщения";
 "autodel_device_title" = "Удалять сообщения с устройства";
@@ -772,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "\"Сообщение с параметрами Autocrypt\" служит для передачи параметров сквозного шифрования между приложениями, поддерживающими протокол Autocrypt.\n\nЭти параметры шифруются с использованием кода настройки, который показан здесь и должен быть введён в настраиваемом приложении.";
 "autocrypt_send_asm_button" = "Сообщение с параметрами Autocrypt";
 "autocrypt_send_asm_explain_after" = "Ваши настройки были оправлены вам. Переключитесь на другое устройство и откройте сообщение с настройкой. Вам будет предложено ввести код настройки. Введите следующие цифры:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Предпочитать сквозное шифрование";
 "autocrypt_asm_subject" = "Сообщение с параметрами Autocrypt";
 "autocrypt_asm_general_body" = "\"Сообщение с параметрами Autocrypt\" служит для передачи параметров сквозного шифрования между клиентами.\n\nЧтобы расшифровать и использовать параметры откройте это сообщение в приложении, поддерживающем Autocrypt и введите код настройки, показанный на исходном устройстве.";
+// deprecated
 "autocrypt_asm_click_body" = "\"Сообщение с параметрами Autocrypt\" служит для передачи параметров сквозного шифрования между клиентами.\n\nЧтобы расшифровать и использовать параметры, нажмите на это сообщение.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Сообщение с параметрами Autocrypt";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Введите код настройки, который показан на другом устройстве.";
-"autocrypt_continue_transfer_succeeded" = "Параметры сквозного шифрования переданы. Теперь это устройство готово к использованию Autocrypt с теми же настройками, как и на другом устройстве.";
-"autocrypt_continue_transfer_retry" = "Повторить";
+// deprecated
 "autocrypt_bad_setup_code" = "Неверный код настройки. Пожалуйста, попробуйте ещё раз.\n\nЕсли вы не помните код настройки, отправьте новое \"Сообщение с параметрами Autocrypt\" с другого устройства.";
 // system messages
 "systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Попробуйте просто ответить на это сообщение и попросить отправителя отправить его снова.\n\n• Если вы только что переустановили Delta Chat, то лучше сейчас заново настроить Delta Chat и выбрать \"Добавить как второе устройство\" или импортировать резервную копию.";
@@ -789,33 +783,33 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Вы изменили название группы с \"%1$@\" на \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@ изменил(а) название группы с \"%1$@\" на \"%2$@\".";
+"group_name_changed_by_other" = "%3$@ меняет название группы с \"%1$@\" на \"%2$@\".";
 "group_image_changed_by_you" = "Вы изменили изображение группы.";
 // %1$s will be replaced by name and address of the contact who did the action
-"group_image_changed_by_other" = "%1$@ изменил(а) изображение группы.";
+"group_image_changed_by_other" = "%1$@ меняет изображение группы.";
 // %1$s will be replaced by name and address of the contact added to the group
 "member_x_added" = "Добавлен участник %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group
 "add_member_by_you" = "Вы добавили участника %1$@.";
 // %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
-"add_member_by_other" = "%2$@ добавил(а) участника %1$@.";
+"add_member_by_other" = "%2$@ добавляет участника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group
 "remove_member_by_you" = "Вы удалили участника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
-"remove_member_by_other" = "%2$@ удалил(а) участника %1$@.";
+"remove_member_by_other" = "%2$@ удаляет участника %1$@.";
 // "left" in the meaning of "exited"
 "group_left_by_you" = "Вы покинули группу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
-"group_left_by_other" = "%1$@ покинул(а) группу.";
+"group_left_by_other" = "%1$@ покидает группу.";
 "group_image_deleted_by_you" = "Вы удалили изображение группы.";
 // %1$s will be replaced by name and address of the contact
-"group_image_deleted_by_other" = "%1$@ удалил(а) изображение группы.";
+"group_image_deleted_by_other" = "%1$@ удаляет изображение группы.";
 "location_enabled_by_you" = "Вы включили трансляцию местоположения.";
 // %1$s will be replaced by name and address of the contact
-"location_enabled_by_other" = "%1$@ включил(а) трансляцию местоположения.";
+"location_enabled_by_other" = "%1$@ включает трансляцию местоположения.";
 "ephemeral_timer_disabled_by_you" = "Вы отключили удаление сообщений по таймеру.";
 // %1$s will be replaced by name and address of the contact
-"ephemeral_timer_disabled_by_other" = "%1$@ отключил(а) удаление сообщений по таймеру.";
+"ephemeral_timer_disabled_by_other" = "%1$@ отключает удаление сообщений по таймеру.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Вы включили автоудаление сообщений через %1$@ сек";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -887,7 +881,7 @@
 "qrshow_title" = "QR-код приглашения";
 "qrshow_x_joining" = "%1$@ присоединяется.";
 "qrshow_x_verified" = "%1$@ подтверждён.";
-"qrshow_x_has_joined_group" = "%1$@ присоединился к группе.";
+"qrshow_x_has_joined_group" = "%1$@ присоединяется к группе.";
 "qrshow_join_group_title" = "QR-код приглашения";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Сканируйте QR-код, чтобы присоединиться к группе \"%1$@\"";
@@ -905,9 +899,9 @@
 // the placeholder will be replaced by the e-mail address of the profile
 "qrlogin_ask_login_another" = "Авторизоваться в \"%1$@\"?\n\nВаш существующий профиль не будет удалён. Используйте меню \"Сменить профиль\", чтобы переключаться между профилями.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ пригласил вас в группу.\n\nОжидаем ответ от %2$@…";
+"secure_join_started" = "%1$@ приглашает вас в группу.\n\nОжидаем ответ от %2$@…";
 // placeholder will be replaced by the name of the inviter.
-"secure_join_replies" = "%1$@ ответил, ожидаем добавления в группу…";
+"secure_join_replies" = "%1$@ ответил(а), ожидаем добавления в группу…";
 "secure_join_wait" = "Устанавливается гарантированное сквозное шифрование, пожалуйста, подождите...";
 "secure_join_wait_timeout" = "Не удалось установить гарантированное сквозное шифрование, но вы уже можете отправить сообщение.";
 "contact_verified" = "%1$@ подтверждён.";
@@ -1002,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Значок в системном трее нельзя отключить, поскольку Delta Chat был запущен с параметром --minimized.";
 "no_spellcheck_suggestions_found" = "Не найдены варианты исправления орфографии.";
 "show_window" = "Показать окно";
-"login_socks5_experimental_warning" = "Поддержка SOCKS5 в настоящее время экспериментальна. Используйте на свой страх и риск. Если вы введете адрес в поле электронной почты, будет выполнен поиск DNS, который не будет туннелироваться через SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Горячие клавиши";
 "switch_between_chats" = "Переключение между чатами";
