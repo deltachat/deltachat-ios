@@ -205,8 +205,6 @@
 "menu_delete_chat" = "Smazat chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vyprázdnit chat";
-// deprecated
-"menu_delete_messages" = "Smazat zprávy";
 "delete_contact" = "Smazat kontakt";
 "menu_delete_location" = "Přejete si smazat tuto polohu?";
 "menu_message_details" = "Informace o zprávě";
@@ -288,8 +286,7 @@
 "add_to_home_screen" = "Přidat na domovskou obrazovku";
 "donate" = "Darovat";
 "mute_for_one_hour" = "Ztlumit na 1 hodinu";
-// deprecated
-"mute_for_two_hours" = "Ztlumit na 2 hodiny";
+"mute_for_eight_hours" = "Ztlumit na 8 hodin";
 "mute_for_one_day" = "Ztlumit na 1 den";
 "mute_for_seven_days" = "Ztlumit na 7 dní";
 "mute_forever" = "Ztlumit navždy";
@@ -326,11 +323,7 @@
 "ask_unblock_contact" = "Přejete si odblokovat tento kontakt?";
 "ask_delete_contacts" = "Přejete si smazat kontakty?\n\nKontakty s probíhajícími chaty a kontakty ze systémového adresáře nelze smazat permanentně.";
 "ask_delete_contact" = "Přejete si smazat kontakt %1$@?\n\nKontakty s probíhajícími chaty a kontakty ze systémového adresáře nelze smazat permanentně.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Kontakty s probíhajícími chaty není možné smazat.";
 "ask_start_chat_with" = "Přejete si chatovat s uživatelem %1$@?";
-// deprecated
-"ask_delete_value" = "Přejete si smazat %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Přejete si odstranit uživatele %1$@ ze skupiny?";
 // %1$s is replaced by a comma-separated list of names
@@ -467,7 +460,6 @@
 "multidevice_receiver_needs_update" = "Profil, který se chystáte importovat, je z novější verze aplikace Delta Chat.\n\nAby bylo možné pokračovat v nastavování tohoto zařízení, aktualizujte na něm prosím Delta Chat na nejnovější verzi.";
 "multidevice_abort" = "Přerušit nastavování dalšího zařízení?";
 "multidevice_abort_will_invalidate_copied_qr" = "Tímto bude zneplatněn QR kód zkopírovaný ve schránce.";
-"multidevice_experimental_hint" = "(experimentální, vyžaduje verzi 1.36)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profil byl přenesen na další zařízení.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Připravování profilu...";
@@ -771,14 +763,17 @@
 "autocrypt_send_asm_explain_before" = "Pomocí zprávy s nastavením Autocryptu lze sdílet Vaše nastavení koncového šifrování s dalšími aplikacemi využívajícími Autocrypt.\n\nNastavení je zašifrované zobrazeným kódem, který musí být zadán na zařízení, na které si přejete nastavení přenést.";
 "autocrypt_send_asm_button" = "Odeslat nastavení Autocryptu";
 "autocrypt_send_asm_explain_after" = "Vaše nastavení se odeslalo. Vezměte si zařízení, kam si přejete nastavení přenést, a zprávu v něm otevřete. Mělo by se objevit pole pro zadání kódu. Do něj vložte následující číslice:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Upřednostňovat koncové šifrování";
 "autocrypt_asm_subject" = "Zpráva s nastavením Autocryptu";
 "autocrypt_asm_general_body" = "Tato zpráva obsahuje nastavení Autocryptu. S její pomocí lze přenést nastavení koncového šifrování mezi klienty.\n\nK dešifrování a použití nastavení otevřete klient podporující Autocrypt a zadejte do něj kód zobrazený na zařízení, které zprávu vygenerovalo.";
+// deprecated
 "autocrypt_asm_click_body" = "Tato zpráva obsahuje nastavení Autocryptu. S její pomocí lze přenést nastavení koncového šifrování mezi klienty.\n\nK dešifrování a použití tohoto nastavení zprávu stiskněte.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Zpráva s nastavením Autocryptu";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Prosím, zadejte kód zobrazený na hlavním zařízení.";
-"autocrypt_continue_transfer_succeeded" = "Nastavení koncového šifrování bylo přeneseno. Toto zařízení je nyní připraveno k používání Autocryptu se stejným nastavením jako u předchozího zařízení.";
-"autocrypt_continue_transfer_retry" = "Zkusit znovu";
+// deprecated
 "autocrypt_bad_setup_code" = "Neplatný kód. Prosím, zkuste to znovu.\n\nPokud si kód nepamatujete, zkuste z hlavního zařízení poslat zprávu s nastavením Autocryptu znovu.";
 // system messages
 "systemmsg_cannot_decrypt" = "Tuto zprávu nelze dešifrovat.\n\n• Již nyní by mohlo pomoci jednoduše odpovědět na tuto zprávu a požádat odesílatele, aby ji odeslal znovu.\n\n• Pokud jste právě přeinstalovali Delta Chat, bude nejlepší, když jej znovu nastavíte a zvolíte \"Přidat jako další zařízení\" nebo importujete zálohu.";
@@ -983,7 +978,7 @@
 "write_message_desktop" = "Napište zprávu";
 "encryption_info_title_desktop" = "Informace o šifrování";
 "delete_message_desktop" = "Smazat zprávu";
-"more_info_desktop" = "Více podrobností";
+"more_info_desktop" = "Podrobnosti";
 "timestamp_format_m_desktop" = "D MMM";
 "remove_desktop" = "Odstranit";
 "save_desktop" = "Uložit";
@@ -1001,7 +996,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu na panelu nelze deaktivovat, protože Delta Chat byl spuštěn s volbou --minimized.";
 "no_spellcheck_suggestions_found" = "Žádné pravopisné návrhy.";
 "show_window" = "Zobrazit okno";
-"login_socks5_experimental_warning" = "Podpora SOCKS5 je momentálně experimentální. Používejte na vlastní nebezpečí. Pokud zadáte adresu do políčka E-mail, dojde k vyhledání domény v DNS, které proběhne mimo SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Klávesové zkratky";
 "switch_between_chats" = "Přepínání mezi chaty";

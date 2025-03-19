@@ -159,8 +159,6 @@
 "menu_delete_chat" = "Ištrinti pokalbį";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
-// deprecated
-"menu_delete_messages" = "Ištrinti žinutes";
 "delete_contact" = "Ištrinti adresatą";
 "menu_delete_location" = "Ištrinti šią vietą?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
@@ -224,8 +222,7 @@
 "source_code" = "Pirminis kodas";
 "donate" = "Paaukoti";
 "mute_for_one_hour" = "Išjungti 1 valandai";
-// deprecated
-"mute_for_two_hours" = "Išjungti 2 valandoms";
+"mute_for_eight_hours" = "Išjungti 8 valandoms";
 "mute_for_one_day" = "Išjungti 1 dienai";
 "mute_for_seven_days" = "Išjungti 7 dienoms";
 "mute_forever" = "Išjungti visam laikui";
@@ -256,8 +253,6 @@
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
 "ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
-// deprecated
-"ask_delete_value" = "Ištrinti %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";
 "open_url_confirmation" = "Ar norite atverti šią nuorodą?";
@@ -571,14 +566,17 @@
 "autocrypt_send_asm_explain_before" = "\"Autocrypt sąrankos žinutė\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
 "autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
 "autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
+// deprecated
 "autocrypt_asm_click_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, bakstelėkite ar spustelėkite ant šios žinutės.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt sąrankos žinutė";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Įveskite kitame įrenginyje rodomą sąrankos kodą.";
-"autocrypt_continue_transfer_succeeded" = "Ištisinė sąranka perduota. Dabar, šis įrenginys yra paruoštas naudoti Autocrypt su tokia pačia sąranka kaip ir kitas įrenginys.";
-"autocrypt_continue_transfer_retry" = "Bandyti dar kartą";
+// deprecated
 "autocrypt_bad_setup_code" = "Blogas sąrankos kodas. Bandykite dar kartą.\n\nJeigu neprisimenate sąrankos kodo, tiesiog, išsiųskite dar vieną Autocrypt sąrankos žinutę iš kito  įrenginio.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name

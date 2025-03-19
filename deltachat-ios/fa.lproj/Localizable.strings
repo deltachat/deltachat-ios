@@ -188,8 +188,6 @@
 "menu_delete_chat" = "حذف گپ";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
-// deprecated
-"menu_delete_messages" = "حذف پیام‌ها";
 "delete_contact" = "پاک کردن مخاطب";
 "menu_delete_location" = "حذف این موقعیت مکانی؟";
 "menu_message_details" = "جزئیات پیام";
@@ -272,8 +270,6 @@
 "add_to_home_screen" = "افزودن به صفحه خانه";
 "donate" = "حمایت مالی";
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
-// deprecated
-"mute_for_two_hours" = "ساکت کردن به مدت ۲ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
 "mute_for_seven_days" = "ساکت کردن به مدت۷ روز";
 "mute_forever" = "ساکت کردن دائمی";
@@ -311,11 +307,7 @@ https://meet.jit.si/$ROOM
 "ask_unblock_contact" = "رفع مسدودیت مخاطب؟ دوباره قادر خواهید بود پیام‌های ارسال شده توسط این مخاطب را دریافت کنید.";
 "ask_delete_contacts" = "مخاطبین حذف شوند؟\n\nمخاطبینی که گپ فعال دارند و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
 "ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطبین با گپ فعال و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
-// deprecated
-"cannot_delete_contacts_in_use" = "نمی‌توان مخاطبین گپ‌های فعال را حذف کرد. ";
 "ask_start_chat_with" = "گپ زدن با %1$@؟";
-// deprecated
-"ask_delete_value" = "پاک کردن %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
 // %1$s is replaced by a comma-separated list of names
@@ -447,7 +439,6 @@ https://meet.jit.si/$ROOM
 "multidevice_receiver_scanning_ask" = "از حساب دستگاه دیگر رونوشتی برای این دستگاه گرفته شود؟";
 "multidevice_abort" = "راه اندازی دستگاه دوم لغو شود؟";
 "multidevice_abort_will_invalidate_copied_qr" = "این کار رمزینهٔ پاس رونوشت شده در تخته‌گیره را باطل می کند.";
-"multidevice_experimental_hint" = "(آزمایشی، نسخه 1.36 مورد نیاز است)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
 // Shown beside progress bar, stay short
 "preparing_account" = "در حال آماده سازی حساب…";
@@ -741,14 +732,17 @@ https://meet.jit.si/$ROOM
 "autocrypt_send_asm_explain_before" = "پیام برپاسازی اتوکریپت تنظیم‌های رمزگذاری سرتاسر شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیم‌ها با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
 "autocrypt_send_asm_button" = "ارسال پیام برپاسازی اتوکریپت";
 "autocrypt_send_asm_explain_after" = "تنظیم‌های شما برای خودتان ارسال شدند. پیام تنظیم‌ها را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید";
+// deprecated
 "autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
 "autocrypt_asm_subject" = "پیام برپاسازی اتوکریپت";
 "autocrypt_asm_general_body" = "این پیام برپاسازی اتوکریپت است و تنظیم‌های مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده از آن، پیام را در یک سامانه که با اتوکریپت همخوانی دارد باز کنید و کد برپاسازی که در دستگاه تولیدکنندهٔ پیام، به شما داده می‌شود را وارد نمایید. ";
+// deprecated
 "autocrypt_asm_click_body" = "این پیام برپاسازی اتوکریپت است که تنظیم‌های مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده، روی این پیام بزنید یا کلیک کنید. ";
+// deprecated
 "autocrypt_continue_transfer_title" = "پیام برپاسازی اتوکریپت";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "لطفا کد نصب نمایش داده شده در دستگاه دیگر را وارد کنید. ";
-"autocrypt_continue_transfer_succeeded" = "برپاسازی رمزگذاری سرتاسر انتقال یافت. این دستگاه اکنون برای استفاده از اتوکریپت به همان نحوی که در دستگاه دیگر وجود داشت قابل استفاده است.";
-"autocrypt_continue_transfer_retry" = "تلاش مجدد";
+// deprecated
 "autocrypt_bad_setup_code" = "کد برپاسازی نادرست. لطفاً دوباره تلاش کنید. \n\n اگر کد برپاسازی را فراموش کرده‌اید یک پیام برپاسازی اتوکریپت جدید را از دستگاه دیگر ارسال کنید. ";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
@@ -985,7 +979,6 @@ GNU GPL ورژن ۳
 "explain_desktop_minimized_disabled_tray_pref" = "چون دلتاچت با تنظیم‌ها --زیرصفحه شروع به کار کرده است نمی‌توان نمادک زیر صفحه را غیر فعال کرد. ";
 "no_spellcheck_suggestions_found" = "هیچ پیشنهادی برای املا پیدا نشد";
 "show_window" = "نمایش پنجره";
-"login_socks5_experimental_warning" = "پشتیبانی از قابلیت SOCKS5 هنوز آزمایشی است. لطفا در صورت استفاده،‌خطرات را بپذیرید. اگر یک آدرس را در بخش رایانامه وارد کنید همچنان  DNS lookup  رخ می‌دهد که ممکن است از طریق SOCKS5 صورت نگیرد. ";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "کلیدهای میانبر";
 "switch_between_chats" = "جابه‌جا شدن میان گپ‌ها";

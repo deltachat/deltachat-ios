@@ -202,6 +202,46 @@
 			<string>Надіслати наступні %d файлів до %s?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Видалити %d чат на всіх ваших пристроях?</string>
+			<key>few</key>
+			<string>Видалити %d чата на всіх ваших пристроях?</string>
+			<key>many</key>
+			<string>Видалити %d чатів на всіх ваших пристроях?</string>
+			<key>other</key>
+			<string>Видалити %d чатів на всіх ваших пристроях?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+			<key>few</key>
+			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+			<key>many</key>
+			<string>Видалити %d повідомлень на всіх ваших пристроях?</string>
+			<key>other</key>
+			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

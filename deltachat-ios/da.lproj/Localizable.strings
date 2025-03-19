@@ -136,8 +136,6 @@
 "menu_add_attachment" = "Tilføj vedhæftning";
 "menu_leave_group" = "Forlad gruppe";
 "menu_delete_chat" = "Slet samtale";
-// deprecated
-"menu_delete_messages" = "Slet beskeder";
 "delete_contact" = "Slet kontakt";
 "menu_delete_location" = "Slet denne placering?";
 "menu_message_details" = "Beskeddetaljer";
@@ -194,8 +192,7 @@
 "ConversationFragment_quoted_message_not_found" = "Oprindelig besked ikke fundet";
 "reply_privately" = "Svar privat";
 "mute_for_one_hour" = "Dæmp i 1 time";
-// deprecated
-"mute_for_two_hours" = "Dæmp i 2 timer";
+"mute_for_eight_hours" = "Dæmp i 8 timer";
 "mute_for_one_day" = "Dæmp i 1 dag";
 "mute_for_seven_days" = "Dæmp i 7 dage";
 "mute_forever" = "Stille for altid";
@@ -227,11 +224,7 @@
 "ask_unblock_contact" = "Fjern blokering af kontakt? Du vil igen kunne modtage beskeder fra denne kontakt.";
 "ask_delete_contacts" = "Slet kontakter? Dette vil slette valgte kontakter permanent.\n\nKontakter med igangværende samtaler og kontakter fra systemets adressebog kan ikke slettes permanent.";
 "ask_delete_contact" = "Slet kontakt %1$@?\n\nKontakter med igangværende samtaler og kontakter fra systemets adressebog kan ikke slettes permanent.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Kan ikke slette kontakter med igangværende samtaler.";
 "ask_start_chat_with" = "Samtale med %1$@?";
-// deprecated
-"ask_delete_value" = "Slet 1%1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppe?";
 "open_url_confirmation" = "Vil du åbne dette link?";
@@ -491,14 +484,17 @@
 "autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
 "autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
 "autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 "autocrypt_asm_subject" = "Autocrypt opsætningsbesked";
 "autocrypt_asm_general_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at af kryptere og bruge opsætning åben beskeden i en Autocrypt kompatibel klient og indtast opsæt koden vist på den genererende enhed.";
+// deprecated
 "autocrypt_asm_click_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at dekryptere og bruge opsætning, tryk eller klik på denne besked.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt-opsætningsbesked";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Indtast opsætning kode vist på den anden enhed. ";
-"autocrypt_continue_transfer_succeeded" = "Ende-til-ende opsætning overført. Enheden er nu klar til at bruge Autocrypt med samme opsætning som den anden enhed.";
-"autocrypt_continue_transfer_retry" = "Prøv igen";
+// deprecated
 "autocrypt_bad_setup_code" = "Ugyldig opsætningskode. Prøv igen.\n\nKan opsætningskoden ikke huskes, send blot en anden Autocrypt opsætning besked fra den anden enhed.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";

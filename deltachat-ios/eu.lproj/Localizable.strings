@@ -106,8 +106,6 @@
 "menu_add_attachment" = "Gehitu eranskina";
 "menu_leave_group" = "Atera taldetik";
 "menu_delete_chat" = "Ezabatu txata";
-// deprecated
-"menu_delete_messages" = "Ezabatu mezuak";
 "menu_delete_location" = "Ezabatu kokaleku hau?";
 "menu_message_details" = "Mezuaren xehetasunak";
 "menu_copy_to_clipboard" = "Kopiatu arbelera";
@@ -147,8 +145,7 @@
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfinkatu";
 "mute_for_one_hour" = "Mututu ordubete";
-// deprecated
-"mute_for_two_hours" = "Mututu 2 ordu";
+"mute_for_eight_hours" = "Mututu 8 ordu";
 "mute_for_one_day" = "Mututu egun bat";
 "mute_for_seven_days" = "Mututu 7 egun";
 "mute_forever" = "Mututu betirako";
@@ -166,8 +163,6 @@
 "ask_unblock_contact" = "Desblokeatu kontaktu hau? Berriro jaso ahal izango dituzu kontaktu honen mezuak.";
 "ask_delete_contacts" = "Ezabatu kontaktuak? Honek behin betiko ezabatuko ditu hautatutako kontaktuak.\n\nTxaten bat abian duten eta sistemako helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
 "ask_delete_contact" = "Ezabatu %1$@ kontaktua behin betiko?\n\nAbian dauden txatak dituzten kontaktuak eta sistemaren helbide liburuan dauden kontaktuak ezin dira behin betiko ezabatu.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Ezin dira txatak abian dituzten kontaktuak ezabatu";
 "ask_start_chat_with" = "Txateatu %1$@ erabiltzailearekin?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kendu %1$@ taldetik?";
@@ -363,14 +358,17 @@
 "autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han.\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
 "autocrypt_asm_subject" = "Autocrypt ezarpen mezua";
 "autocrypt_asm_general_body" = "Hau Autocrypt ezarpen mezua da, zure muturretik muturrerako ezarpena bezeroen artean pasatzeko erabilia.\n\n Zure ezarpena deszifratu eta erabiltzeko, ireki mezua Autocrypt onartzen duen bezero batean eta sartu gailu sortzailean agertutako ezarpen kodea.";
+// deprecated
 "autocrypt_asm_click_body" = "Hau Autocrypt ezarpen mezua da, zure muturretik muturrerako ezarpena bezeroen artean pasatzeko erabilia.\n\n Zure ezarpena deszifratu eta erabiltzeko, sakatu edo egin klik mezu honetan.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Autocrypt ezarpen mezua";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Sartu hemen beste gailuan erakusten den ezarpen kodea.";
-"autocrypt_continue_transfer_succeeded" = "Muturretik muturrerako ezarpena transferituta. Gailu hau Autocrypt erabiltzeko prest dago orain, beste gailuaren ezarpen berdinarekin.";
-"autocrypt_continue_transfer_retry" = "Saiatu berriro";
+// deprecated
 "autocrypt_bad_setup_code" = "Ezarpen kode okerra. Saiatu berriro mesedez.\n\nEz baduzu ezarpen kodea gogoratzen, bidali beste Autocrypt ezarpen mezu bat beste gailutik.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";

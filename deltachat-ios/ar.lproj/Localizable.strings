@@ -89,8 +89,6 @@
 "menu_add_attachment" = "إضافة مرفقات";
 "menu_leave_group" = "غادر الفريق";
 "menu_delete_chat" = "احدف المحادثة";
-// deprecated
-"menu_delete_messages" = "احذف الرسائل";
 "menu_message_details" = "تفاصيل الرسالة";
 "menu_copy_to_clipboard" = "انسخ إلى الحافظة";
 "menu_forward" = "إعادة توجيه الرسالة";
@@ -112,8 +110,6 @@
 "menu_zoom_in" = "تقريب";
 "menu_zoom_out" = "تصغير";
 "mute_for_one_hour" = "أكتم لمدة ساعة";
-// deprecated
-"mute_for_two_hours" = "أكتم لمدة ساعتين";
 "mute_for_one_day" = "أكتم لمدة يوم";
 "mute_for_seven_days" = "أكتم لمدة أسبوع";
 // contact list
@@ -192,7 +188,6 @@
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "الخلفية";
 "pref_show_emails_all" = "كلها";
-"autocrypt_continue_transfer_retry" = "أعد المحاولة";
 "qrscan_fingerprint_label" = "البصمة";
 // notifications
 "notify_reply_button" = "رد";

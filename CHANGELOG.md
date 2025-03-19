@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Update translations and local help
+
+
 ## v1.54.5
 2025-03
 

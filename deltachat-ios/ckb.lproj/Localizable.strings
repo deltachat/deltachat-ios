@@ -123,8 +123,6 @@
 "menu_add_attachment" = "زیاد کردنی پێوەلکاو";
 "menu_leave_group" = "بەجێهێشتنی کۆڕ";
 "menu_delete_chat" = "سڕینەوەی وتووێژ";
-// deprecated
-"menu_delete_messages" = "سڕینەوەی پەیامەکان";
 "delete_contact" = "سڕینەوەی بەردەنگ";
 "menu_delete_location" = "ئەم شوێنە دەسڕیتەوە؟";
 "menu_message_details" = "وردەکارییەکانی پەیامەکە";
@@ -175,8 +173,7 @@
 "ConversationFragment_quoted_message_not_found" = "پەیامە ڕەسەنەکە نەدۆزرایەوە";
 "reply_privately" = "وەڵامدانەوەی نهێنی";
 "mute_for_one_hour" = "بێدەنگ کردن بۆ ماوەی 1 کاتژمێر";
-// deprecated
-"mute_for_two_hours" = "بێدەنگ کردن بۆ ماوەی 2 کاتژمێر";
+"mute_for_eight_hours" = "بێدەنگ کردن بۆ ماوەی 8 کاتژمێر";
 "mute_for_one_day" = "بێدەنگ کردن بۆ ماوەی 1 ڕۆژ";
 "mute_for_seven_days" = "بێدەنگ کردن بۆ ماوەی 7 ڕۆژ";
 "mute_forever" = "بێدەنگ کردن بۆ هەمیشە";
@@ -207,11 +204,7 @@
 "ask_unblock_contact" = "ئاستەنگ لەسەر ئەم بەردەنگە لادەبەیت؟ دیسان پەیامەکانی ئەم بەردەنگەت پێ دەگات.";
 "ask_delete_contacts" = "بەردەنگەکان دەسڕیتەوە؟\n\n ئەو بەردەنگانەی هێشتا وتووێژی چالاکتان پێکەوە هەیە و ئەو بەردەنگانەی کە لەنێو تێنووسی سیستەمدان، بۆ هەتاهەتایی ناسڕدرێنەوە.";
 "ask_delete_contact" = "%1$@ لە بەردەنگەکانت دەسڕیتەوە؟ \n\n ئەو بەردەنگانەی هێشتا وتووێژی چالاکتان پێکەوە هەیە و ئەو بەردەنگانەی کە لەنێو تێنووسی سیستەمدان، بۆ هەتاهەتایی ناسڕدرێنەوە.";
-// deprecated
-"cannot_delete_contacts_in_use" = "ناتوانیت ئەو بەردەنگانەی وتووێژی چالاکتان هەیە بسڕیتەوە.";
 "ask_start_chat_with" = "وتووێژ لەگەڵ %1$@؟";
-// deprecated
-"ask_delete_value" = "%1$@دەسڕیتەوە؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@لە کۆڕ دەخەیتەدەر؟";
 "open_url_confirmation" = "دەتەوێت ئەم بەستەرە بکەیتەوە؟";
@@ -423,10 +416,11 @@
 "autodel_after_1_year" = "پاش 1 ساڵ";
 // autocrypt
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
+// deprecated
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
 "autocrypt_asm_subject" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
+// deprecated
 "autocrypt_continue_transfer_title" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
-"autocrypt_continue_transfer_retry" = "دیسان هەوڵدانەوە";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";

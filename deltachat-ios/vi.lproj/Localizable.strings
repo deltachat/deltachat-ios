@@ -179,8 +179,6 @@
 "menu_delete_chat" = "Xóa cuộc trò chuyện";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Xóa cuộc trò chuyện";
-// deprecated
-"menu_delete_messages" = "Xóa tin nhắn";
 "delete_contact" = "Xóa liên hệ";
 "menu_delete_location" = "Xóa vị trí này?";
 "menu_message_details" = "Chi tiết tin nhắn";
@@ -251,8 +249,7 @@
 "add_to_home_screen" = "Thêm vào Màn hình chính";
 "donate" = "Quyên tặng";
 "mute_for_one_hour" = "Tắt tiếng trong 1 giờ";
-// deprecated
-"mute_for_two_hours" = "Tắt tiếng trong 2 giờ";
+"mute_for_eight_hours" = "Tắt tiếng trong 8 giờ";
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
 "mute_forever" = "Tắt tiếng vĩnh viễn";
@@ -287,11 +284,7 @@
 "ask_unblock_contact" = "Bỏ chặn liên hệ này? Sau đó bạn sẽ có thể nhận tin nhắn từ họ.";
 "ask_delete_contacts" = "Xóa liên hệ?\n\nKhông thể xóa vĩnh viễn các liên hệ đang trò chuyện hoặc khỏi sổ địa chỉ hệ thống.";
 "ask_delete_contact" = "Xóa liên hệ %1$@?\n\nKhông thể xóa vĩnh viễn các liên hệ đang trò chuyện hoặc khỏi sổ địa chỉ hệ thống.";
-// deprecated
-"cannot_delete_contacts_in_use" = "Không thể xóa liên hệ với các cuộc trò chuyện đang diễn ra.";
 "ask_start_chat_with" = "Trò chuyện với %1$@?";
-// deprecated
-"ask_delete_value" = "Xóa %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Loại %1$@ khỏi nhóm?";
 // %1$s is replaced by a comma-separated list of names
@@ -420,7 +413,6 @@
 "multidevice_receiver_scanning_ask" = "Sao chép tài khoản từ thiết bị kia sang thiết bị này?";
 "multidevice_abort" = "Hủy thiết lập thiết bị thứ hai?";
 "multidevice_abort_will_invalidate_copied_qr" = "Điều này sẽ làm mất hiệu lực mã QR được sao chép vào clipboard.";
-"multidevice_experimental_hint" = "(thử nghiệm, yêu cầu phiên bản 1.36)";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Tài khoản đã được chuyển sang thiết bị thứ hai của bạn.";
 // Shown beside progress bar, stay short
 "preparing_account" = "Đang chuẩn bị tài khoản…";
@@ -659,14 +651,17 @@
 "autocrypt_send_asm_explain_before" = "Thông báo thiết lập Autocrypt chia sẻ an toàn thiết lập end-to-end của bạn với các ứng dụng tương thích Autocrypt khác.\n\nThiết lập sẽ được mã hóa bằng mã thiết lập được hiển thị ở đây và phải được nhập trên thiết bị kia.";
 "autocrypt_send_asm_button" = "Gửi tin nhắn thiết lập Autocrypt";
 "autocrypt_send_asm_explain_after" = "Thiết lập của bạn đã được gửi cho chính bạn. Chuyển sang thiết bị khác và mở thông báo thiết lập. Bạn sẽ được yêu cầu nhập mã thiết lập. Nhập các chữ số sau:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Ưu tiên mã hóa đầu cuối";
 "autocrypt_asm_subject" = "Thông báo thiết lập Autocrypt";
 "autocrypt_asm_general_body" = "Đây là Thông báo Thiết lập Autocrypt được sử dụng để truyền thiết lập hai đầu của bạn giữa các máy khách.\n\nĐể giải mã và sử dụng thiết lập của bạn, hãy mở tin nhắn trong một ứng dụng khách tương thích với Autocrypt và nhập mã thiết lập được trình bày trên thiết bị tạo.";
+// deprecated
 "autocrypt_asm_click_body" = "Đây là Thông báo Thiết lập Autocrypt được sử dụng để chuyển thiết lập hai đầu của bạn giữa các máy khách.\n\nĐể giải mã và sử dụng thiết lập của bạn, hãy nhấn hoặc nhấp vào thông báo này.";
+// deprecated
 "autocrypt_continue_transfer_title" = "Thông báo thiết lập tự động mã hóa";
+// deprecated
 "autocrypt_continue_transfer_please_enter_code" = "Vui lòng nhập mã thiết lập được hiển thị trên thiết bị kia.";
-"autocrypt_continue_transfer_succeeded" = "Đã chuyển thiết lập end-to-end. Thiết bị này hiện đã sẵn sàng sử dụng Autocrypt với cùng thiết lập như thiết bị kia.";
-"autocrypt_continue_transfer_retry" = "Thử lại";
+// deprecated
 "autocrypt_bad_setup_code" = "Mã thiết lập sai. Vui lòng thử lại.\n\nNếu bạn không nhớ mã thiết lập, hãy gửi Tin nhắn thiết lập Autocrypt mới từ thiết bị kia.";
 // system messages
 "systemmsg_cannot_decrypt" = "Không thể giải mã tin nhắn này.\n\n• Bạn chỉ cần trả lời tin nhắn này và yêu cầu người gửi gửi lại tin nhắn là đủ.\n\n• Nếu bạn vừa cài đặt lại Delta Chat thì tốt nhất bạn nên cài đặt lại thiết lập lại Delta Chat ngay bây giờ và chọn \"Thêm làm thiết bị thứ hai\" hoặc nhập bản sao lưu.";
@@ -876,7 +871,6 @@
 "explain_desktop_minimized_disabled_tray_pref" = "Không thể tắt biểu tượng khay vì Delta Chat đã được bắt đầu bằng tùy chọn --giảm-thiểu.";
 "no_spellcheck_suggestions_found" = "Không tìm thấy gợi ý chính tả.";
 "show_window" = "Hiển thị cửa sổ";
-"login_socks5_experimental_warning" = "Hỗ trợ SOCKS5 hiện đang thử nghiệm. Vui lòng sử dụng có nguy cơ của riêng bạn. Nếu bạn nhập một địa chỉ vào trường e-mail, việc tra cứu DNS sẽ không được chuyển qua SOCKS5.";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tổ hợp phím";
 "switch_between_chats" = "Chuyển đổi giữa các cuộc trò chuyện";
