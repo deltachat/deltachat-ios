@@ -314,6 +314,11 @@ public class DcMsg {
         return dc_msg_get_info_type(messagePointer)
     }
 
+    public var infoContactId: Int? {
+        let id = Int(dc_msg_get_info_contact_id(messagePointer))
+        return id == 0 ? nil : id
+    }
+
     public var hasHtml: Bool {
         return dc_msg_has_html(messagePointer) == 1
     }
