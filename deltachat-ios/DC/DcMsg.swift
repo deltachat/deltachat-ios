@@ -322,13 +322,6 @@ public class DcMsg {
         return dc_msg_has_location(messagePointer) == 1
     }
 
-    public var setupCodeBegin: String {
-        guard let cString = dc_msg_get_setupcodebegin(messagePointer) else { return "" }
-        let swiftString = String(cString: cString)
-        dc_str_unref(cString)
-        return swiftString
-    }
-
     public func summary(chars: Int) -> String? {
         guard let cString = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
         let swiftString = String(cString: cString)
