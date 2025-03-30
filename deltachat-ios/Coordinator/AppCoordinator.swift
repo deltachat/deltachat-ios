@@ -303,9 +303,9 @@ class AppCoordinator: NSObject {
         let state = Int32(qrParsed.state)
         switch state {
         case DC_QR_ASK_VERIFYCONTACT:
-            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
+            let name = dcContext.getContact(id: qrParsed.id).displayName
             joinSecureJoin(
-                alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), nameAndAddress),
+                alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), name),
                 code: code,
                 viewController: viewController,
                 dcContext: dcContext
@@ -328,15 +328,15 @@ class AppCoordinator: NSObject {
             viewController.present(alert, animated: true, completion: nil)
 
         case DC_QR_FPR_MISMATCH:
-            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
-            let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), nameAndAddress)
+            let name = dcContext.getContact(id: qrParsed.id).displayName
+            let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), name)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             viewController.present(alert, animated: true, completion: nil)
 
         case DC_QR_ADDR, DC_QR_FPR_OK:
-            let nameAndAddress = dcContext.getContact(id: qrParsed.id).nameNAddr
-            let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), nameAndAddress)
+            let name = dcContext.getContact(id: qrParsed.id).displayName
+            let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), name)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in

@@ -21,13 +21,6 @@ public class DcContact {
         return swiftString
     }
 
-    public var nameNAddr: String {
-        guard let cString = dc_contact_get_name_n_addr(contactPointer) else { return "" }
-        let swiftString = String(cString: cString)
-        dc_str_unref(cString)
-        return swiftString
-    }
-
     public var editedName: String {
         guard let cString = dc_contact_get_name(contactPointer) else { return "" }
         let swiftString = String(cString: cString)
