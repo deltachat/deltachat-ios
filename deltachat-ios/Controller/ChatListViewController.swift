@@ -948,7 +948,7 @@ class ChatListViewController: UITableViewController {
 
     private func askToChatWith(contactId: Int) {
         let dcContact = dcContext.getContact(id: contactId)
-        askToChatWith(address: dcContact.nameNAddr, contactId: contactId)
+        askToChatWith(address: dcContact.displayName, contactId: contactId)
     }
 
     private func deleteChat(chatId: Int, animated: Bool) {

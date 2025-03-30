@@ -11,23 +11,7 @@ class QrPageController: UIPageViewController {
     private var selectedIndex: Int = 0
 
     private var qrCodeHint: String {
-        var qrCodeHint = ""
-        if dcContext.isConfigured() {
-            // we cannot use dc_contact_get_displayname() as this would result in "Me" instead of the real name
-            let name = dcContext.getConfig("displayname") ?? ""
-            let addr = dcContext.getConfig("addr") ?? ""
-            var nameAndAddress = ""
-            if name.isEmpty {
-                nameAndAddress = addr
-            } else {
-                nameAndAddress = "\(name) (\(addr))"
-            }
-            qrCodeHint = String.localizedStringWithFormat(
-                String.localized("qrshow_join_contact_hint"),
-                nameAndAddress
-            )
-        }
-        return qrCodeHint
+        return String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), dcContext.displayname ?? dcContext.addr ?? "")
     }
 
     private lazy var qrSegmentControl: UISegmentedControl = {

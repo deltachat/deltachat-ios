@@ -364,7 +364,7 @@ extension NewChatViewController {
     private func askToDeleteContact(contactId: Int, indexPath: IndexPath, didDelete: (() -> Void)? = nil) {
         let contact = dcContext.getContact(id: contactId)
         let alert = UIAlertController(
-            title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.nameNAddr),
+            title: String.localizedStringWithFormat(String.localized("ask_delete_contact"), contact.displayName),
             message: nil,
             preferredStyle: .safeActionSheet
         )
@@ -382,7 +382,7 @@ extension NewChatViewController {
             self.showNewChat(contactId: contactId)
         } else {
             let dcContact = dcContext.getContact(id: contactId)
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.nameNAddr),
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.displayName),
                                           message: nil,
                                           preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in

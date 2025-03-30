@@ -173,7 +173,7 @@ class AccountSwitchViewController: UITableViewController {
         confirm1.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             let account = self.dcAccounts.get(id: accountId)
-            let confirm2 = UIAlertController(title: account.displaynameAndAddr,
+            let confirm2 = UIAlertController(title: (account.displayname ?? "no name") + " - " + (account.addr ?? "no address") + (account.isConfigured() ? "" : " - not configured"),
                 message: String.localized("forget_login_confirmation_desktop"), preferredStyle: .alert)
             confirm2.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
                 guard let self else { return }
