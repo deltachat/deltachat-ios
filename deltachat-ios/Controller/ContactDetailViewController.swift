@@ -502,7 +502,7 @@ class ContactDetailViewController: UITableViewController {
 
     private func showEncrInfoAlert() {
         let alert = UIAlertController(
-            title: nil,
+            title: String.localized("encryption_info_title_desktop"),
             message: self.viewModel.context.getContactEncrInfo(contactId: self.viewModel.contactId),
             preferredStyle: .alert
         )
