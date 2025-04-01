@@ -34,7 +34,7 @@ class AvatarHelper {
         }
     }
 
-    private static func saveAvatarImageToFile(image: UIImage) throws -> URL {
+    static func saveAvatarImageToFile(image: UIImage) throws -> URL {
         if let data = image.jpegData(compressionQuality: 1.0) {
             let filemanager = FileManager.default
             let docDir = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
