@@ -206,7 +206,7 @@ internal final class AdvancedViewController: UITableViewController {
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("enable_realtime_explain"),
-            cells: [viewLogCell, showEmailsCell, realtimeChannelsCell])
+            cells: [viewLogCell, realtimeChannelsCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
@@ -234,7 +234,7 @@ internal final class AdvancedViewController: UITableViewController {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-                cells: [accountSettingsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell, proxySettingsCell])
+                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
             return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
         }
     }()
