@@ -4,6 +4,7 @@
 
 - Modernise "Close" button in overlay sheets
 - Full-screen display of own avatar from "your profile" settings
+- Tapping info messages with contacts open the contact's profile
 - Hide superfluous "Show Classic E-mails" advanced setting for chatmail
 - Add a message with further information when securejoin times out (instead of allowing to send unencrypted)
 - Forwarding messages do not inherit "Edited" state
