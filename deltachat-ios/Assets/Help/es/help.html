@@ -98,7 +98,7 @@
       <li><a href="#para-qué-sirve-la-configuración-enviar-autocopia">¿Para qué sirve la configuración “Enviar autocopia”?</a></li>
       <li><a href="#por-qué-puedo-elegir-monitorear-la-carpeta-enviados">¿Por qué puedo elegir monitorear la carpeta “Enviados”?</a></li>
       <li><a href="#por-qué-puedo-elegir-no-monitorear-la-carpeta-deltachat">¿Por qué puedo elegir no monitorear la carpeta DeltaChat?</a></li>
-      <li><a href="#delta-chat-es-compatible-con-protonmail--tutanota--criptext">¿Delta Chat es compatible con Protonmail / Tutanota / Criptext?</a></li>
+      <li><a href="#delta-chat-es-compatible-con-proton-mail--tutanota--criptext">¿Delta Chat es compatible con Proton Mail / Tutanota / Criptext?</a></li>
       <li><a href="#remove-account">¿Cómo puedo eliminar mi cuenta?</a></li>
       <li><a href="#estoy-interesado-en-los-detalles-técnicos-pueden-decirme-más">Estoy interesado en los detalles técnicos. ¿Pueden decirme más?</a></li>
       <li><a href="#where-can-my-friends-find-delta-chat">Where can my friends find Delta Chat?</a></li>
@@ -184,10 +184,18 @@ Built on <a href="https://github.com/deltachat/deltachat-core-rust/blob/master/s
         
       </h3>
 
+<p>Si un mensaje proviene de un contacto desconocido, aparece como una <strong>solicitud</strong>.</p>
+
 <ul>
-  <li>Si un mensaje proviene de un contacto desconocido, aparece como una <strong>solicitud</strong>. Necesitas aceptar la solicitud antes de poder responder.</li>
-  <li>También puedes “eliminarlo” si no quieres chatear con ellos por ahora. Esto <em>no</em> elimina el mensaje en el servidor, solo en tu dispositivo. Por lo tanto, aún puedes manejar el mensaje en una aplicación de correo diferente.</li>
-  <li>Si eliminas una solicitud, los mensajes futuros de ese contacto seguirán apareciendo como solicitud de mensaje, por lo que puedes cambiar de opinión. Si realmente no quieres recibir mensajes de esta persona, considera <em>bloquearlos</em>.</li>
+  <li>
+    <p>Necesitas <strong>aceptar</strong> la solicitud antes de poder responder.</p>
+  </li>
+  <li>
+    <p>También puedes <strong>eliminarlo</strong> si no quieres chatear con ellos por ahora.</p>
+  </li>
+  <li>
+    <p>Si eliminas una solicitud, los mensajes futuros de ese contacto seguirán apareciendo como solicitud de mensaje, por lo que puedes cambiar de opinión. Si realmente no quieres recibir mensajes de esta persona, considera <strong>bloquearlos</strong>.</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-soporta-envío-de-imágenes-videos-documentos-y-otros-archivos">
@@ -707,7 +715,7 @@ would not reveal private information that Push services do not already have.</p>
 
 <p>Delta Chat is a free and open source decentralized messenger with free server choice,
 but we want users to reliably experience “instant delivery” of messages,
-like they experience from Whatsapp, Signal or Telegram apps,
+like they experience from WhatsApp, Signal or Telegram apps,
 without asking questions up-front that are more suited to expert users or developers.</p>
 
 <p>Note that Delta Chat has a <a href="#privacy-notifications">small and privacy-preserving Push Notification system</a>
@@ -930,7 +938,7 @@ si todo el mensaje está correctamente cifrado y firmado.
 Por ejemplo, las “firmas desvinculadas” no se consideran seguras.</p>
 
 <p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
+Most publicly discussed OpenPGP security problems
 actually stem from bad usability or bad implementations of tools or apps (or both).
 It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
 and GnuPG (GPG), a command line tool implementing OpenPGP. 
@@ -1169,7 +1177,7 @@ but it provides <a href="#e2eeguarantee">guaranteed end-to-end encrypted chats</
 that are safe against compromised servers or corrupted networks. 
 Signal and most other PFS-supporting messengers do not provide 
 a practical scheme for protecting chat groups from network attacks
-which are arguably more worrysome 
+which are arguably more worrisome 
 than a potential attacker who seizes your phone and private encryption setup
 but somehow not your messages, yet has a full record of all 
 past encrypted messages.</p>
@@ -1192,7 +1200,7 @@ You can export your private key but you can not import additional private keys.<
 
 <p>In general, we do not recommend or offer users to perform manual key management. 
 We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+instead of the full breadth of possible algorithms allowed with OpenPGP.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1532,7 +1540,7 @@ will not get interrupted by a video chat invite.</li>
 link in the settings.</li>
   <li>For example, to use the flagship Jitsi Meet instance, you could enter
 <code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. The <code class="language-plaintext highlighter-rouge">$ROOM</code> variable will be a random value;
-this way, you will have a new random jitsi room every time you call someone.</li>
+this way, you will have a new random Jitsi room every time you call someone.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="qué-son-las-listas-de-difusión-y-cómo-puedo-usarlas">
@@ -1544,7 +1552,7 @@ this way, you will have a new random jitsi room every time you call someone.</li
       </h3>
 
 <ul>
-  <li>With a Broadcast List you can send a message to many recipents at once; when
+  <li>With a Broadcast List you can send a message to many recipients at once; when
 they reply to you, you get the reply in your direct 1:1 chat with them. The
 recipients can’t see each other.</li>
   <li>Technically, it is an E-Mail with many recipients in BCC.</li>
@@ -1841,25 +1849,19 @@ cliente Delta Chat Desktop disponible en todas las plataformas.</p>
 <p>Algunas personas usan Delta Chat como un cliente de correo electrónico normal y desean mantener los correos en la bandeja de entrada, en lugar de la carpeta DeltaChat. Si deshabilita “Monitorear carpeta DeltaChat”, también debe deshabilitar “mover automáticamente a la carpeta DeltaChat”.
 De lo contrario, eliminar mensajes o configuraciones de dispositivos múltiples podría no funcionar correctamente.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-es-compatible-con-protonmail--tutanota--criptext">
+      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-es-compatible-con-proton-mail--tutanota--criptext">
         
         
-          ¿Delta Chat es compatible con Protonmail / Tutanota / Criptext? <a href="#delta-chat-es-compatible-con-protonmail--tutanota--criptext" class="anchor"></a>
+          ¿Delta Chat es compatible con Proton Mail / Tutanota / Criptext? <a href="#delta-chat-es-compatible-con-proton-mail--tutanota--criptext" class="anchor"></a>
         
         
       </h3>
 
 <ul>
-  <li>Yes and No.</li>
-  <li>No, you can not use your Protonmail, Tutanota, or Criptext account with Delta
-Chat; they do not offer receiving mails via IMAP.</li>
-  <li>In any case you can use Delta Chat to send Messages to people who use
-Protonmail, Tutanota, or Criptext. Those messages will not be end-to-end
-encrypted, though. The end-to-end encryption those providers offer is not
-compatible with <a href="https://autocrypt.org/">Autocrypt</a>, the standard Delta Chat
-uses.</li>
-  <li>Delta Chat can end-to-end-encrypt through any e-mail provider with any
-<a href="https://autocrypt.org/dev-status.html">Autocrypt-enabled e-mail app</a>.</li>
+  <li>Si y no.</li>
+  <li>No, no puede usar su cuenta de Proton Mail, Tutanota o Criptext con Delta Chat; esos servicios no permiten recibir correos a través de IMAP.</li>
+  <li>En cualquier caso, puede usar Delta Chat para enviar mensajes a personas que usan Protonmail, Tutanota o Criptext. Sin embargo, esos mensajes no se cifrarán de extremo a extremo. El cifrado de extremo a extremo que ofrecen esos proveedores solo funciona dentro de sus plataformas y no es compatible con nadie externo.</li>
+  <li>Delta Chat puede encriptar e2e a través de cualquier proveedor de correo electrónico con cualquier <a href="https://autocrypt.org/dev-status.html">aplicación de correo electrónico compatible con Autocrypt</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="remove-account">
