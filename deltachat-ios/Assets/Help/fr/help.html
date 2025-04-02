@@ -98,7 +98,7 @@
       <li><a href="#quel-est-lintérêt-du-paramètre-menvoyer-une-copie">Quel est l’intérêt du paramètre “M’envoyer une copie”?</a></li>
       <li><a href="#pourquoi-puis-je-choisir-de-regarder-le-dossier-envoyés">Pourquoi puis-je choisir de regarder le dossier “Envoyés”?</a></li>
       <li><a href="#pourquoi-puis-je-choisir-de-ne-pas-regarder-le-dossier-delta-chat">Pourquoi puis-je choisir de ne pas regarder le dossier Delta Chat?</a></li>
-      <li><a href="#delta-chat-est-il-compatible-avec-protonmail--tutanota--criptext-">Delta Chat est-il compatible avec Protonmail / Tutanota / Criptext ?</a></li>
+      <li><a href="#delta-chat-est-il-compatible-avec-proton-mail--tutanota--criptext-">Delta Chat est-il compatible avec Proton Mail / Tutanota / Criptext ?</a></li>
       <li><a href="#remove-account">Comment supprimer mon compte ?</a></li>
       <li><a href="#les-détails-techniques-mintéressent-pouvez-vous-men-dire-plus-">Les détails techniques m’intéressent. Pouvez-vous m’en dire plus ?</a></li>
       <li><a href="#where-can-my-friends-find-delta-chat">Where can my friends find Delta Chat?</a></li>
@@ -184,15 +184,20 @@ Construit sur des <a href="https://github.com/deltachat/deltachat-core-rust/blob
         
       </h3>
 
+<p>Si vous recevez un message de la part d’un contact inconnu, vous recevez une <strong>invitation</strong>.</p>
+
 <ul>
-  <li>Si vous recevez un message de la part d’un contact inconnu, vous recevez une <strong>invitation</strong> que vous
-devez d’abord accepter pour pouvoir répondre au message.</li>
-  <li>Vous pouvez également choisir de “supprimer” l’invitation si vous ne souhaitez pas discuter avec cet inconnu maintenant. Cela
-ne supprime <em>pas</em> le message sur le serveur, seulement sur votre appareil. Vous pouvez donc
-toujours traiter le message depuis une application de courriel différente.</li>
-  <li>Si vous supprimez une invitation, les futurs messages de ce contact apparaîtront
+  <li>
+    <p>Vous devez d’abord <strong>accepter</strong> pour pouvoir répondre au message.</p>
+  </li>
+  <li>
+    <p>Vous pouvez également choisir de <strong>supprimer</strong> l’invitation si vous ne souhaitez pas discuter avec cet inconnu maintenant.</p>
+  </li>
+  <li>
+    <p>Si vous supprimez une invitation, les futurs messages de ce contact apparaîtront
 de nouveau comme des invitations, de sorte que vous pouvez changer d’avis par la suite. Si vous ne voulez vraiment pas
-recevoir de messages de cette personne, nous vous conseillons de la <em>bloquer</em>.</li>
+recevoir de messages de cette personne, nous vous conseillons de la <strong>bloquer</strong>.</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-prend-il-en-charge-les-images-vidéos-et-autres-pièces-jointes-">
@@ -687,7 +692,7 @@ would not reveal private information that Push services do not already have.</p>
 
 <p>Delta Chat is a free and open source decentralized messenger with free server choice,
 but we want users to reliably experience “instant delivery” of messages,
-like they experience from Whatsapp, Signal or Telegram apps,
+like they experience from WhatsApp, Signal or Telegram apps,
 without asking questions up-front that are more suited to expert users or developers.</p>
 
 <p>Note that Delta Chat has a <a href="#privacy-notifications">small and privacy-preserving Push Notification system</a>
@@ -926,7 +931,7 @@ if the whole message is properly encrypted and signed.
 For example, “Detached signatures” are not treated as secure.</p>
 
 <p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
+Most publicly discussed OpenPGP security problems
 actually stem from bad usability or bad implementations of tools or apps (or both).
 It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
 and GnuPG (GPG), a command line tool implementing OpenPGP. 
@@ -1182,7 +1187,7 @@ but it provides <a href="#e2eeguarantee">guaranteed end-to-end encrypted chats</
 that are safe against compromised servers or corrupted networks. 
 Signal and most other PFS-supporting messengers do not provide 
 a practical scheme for protecting chat groups from network attacks
-which are arguably more worrysome 
+which are arguably more worrisome 
 than a potential attacker who seizes your phone and private encryption setup
 but somehow not your messages, yet has a full record of all 
 past encrypted messages.</p>
@@ -1205,7 +1210,7 @@ You can export your private key but you can not import additional private keys.<
 
 <p>In general, we do not recommend or offer users to perform manual key management. 
 We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+instead of the full breadth of possible algorithms allowed with OpenPGP.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1511,18 +1516,11 @@ another rather stable experiment we run on the side (sic!).</p>
       </h3>
 
 <ul>
-  <li>To turn on audio/video calls, go to the “experimental features” section in
-the advanced settings and choose a “Video Chat Instance”.</li>
-  <li>When you invite others to a video chat, it is opened in your browser/app at
-once. The others receive an e-mail with a link to the video chat. 
-This way, it is also compatible if your chat partners don’t use Delta Chat.</li>
-  <li>Note that there is no ring tone on the other side, and your chat partners
-will not get interrupted by a video chat invite.</li>
-  <li>You can use any video chat service which allows joining by link. Just add the
-link in the settings.</li>
-  <li>For example, to use the flagship Jitsi Meet instance, you could enter
-<code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. The <code class="language-plaintext highlighter-rouge">$ROOM</code> variable will be a random value;
-this way, you will have a new random jitsi room every time you call someone.</li>
+  <li>Pour activer les appels audio/vidéo, accédez à la section “Fonctionnalités expérimentales” des paramètres avancés et choisissez une “instance de discussion vidéo”.</li>
+  <li>Quand vous invitez d’autres personnes dans une discussion vidéo, elle s’ouvre automatiquement dans votre application/navigateur et les destinataires reçoivent un courriel contenant un lien vers votre salon Jitsi/BBB. De cette manière, même les personnes n’utilisant pas Delta Chat peuvent participer.</li>
+  <li>Veuillez noter qu’il n’y a pas de sonnerie pour les destinataires, qui ne sont donc pas dérangé⋅e⋅s par votre invitation à une discussion vidéo.</li>
+  <li>Vous pouvez utiliser n’importe quel service de discussion vidéo permettant de rejoindre un salon par un lien. Il vous suffit de renseigner le lien dans vos paramètres.</li>
+  <li>Par exemple, pour utiliser l’instance Jitsi Meet principale, vous pouvez insérer :<code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. La variable<code class="language-plaintext highlighter-rouge">$ROOM</code>est une valeur aléatoire qui vous permet de rejoindre un nouveau salon Jitsi choisi au hasard à chaque nouvel appel.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="que-sont-les-listes-de-diffusion-et-comment-les-utiliser-">
@@ -1812,25 +1810,19 @@ if you set a <a href="#signature">signature text</a>.</p>
 <p>Certaines personnes utilisent Delta Chat comme un client de messagerie normal, et veulent utiliser la Boîte de réception pour leurs mails au lieu d’utiliser le dossier DeltaChat. Si vous désactivez “Surveiller le dossier DeltaChat”, vous devriez aussi désactiver “déplacer les messages de discussions dans DeltaChat”.
 Sinon, la suppression de messages dans une configuration multi-appareils pourrait ne pas marcher correctement.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-est-il-compatible-avec-protonmail--tutanota--criptext-">
+      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-est-il-compatible-avec-proton-mail--tutanota--criptext-">
         
         
-          Delta Chat est-il compatible avec Protonmail / Tutanota / Criptext ? <a href="#delta-chat-est-il-compatible-avec-protonmail--tutanota--criptext-" class="anchor"></a>
+          Delta Chat est-il compatible avec Proton Mail / Tutanota / Criptext ? <a href="#delta-chat-est-il-compatible-avec-proton-mail--tutanota--criptext-" class="anchor"></a>
         
         
       </h3>
 
 <ul>
-  <li>Yes and No.</li>
-  <li>No, you can not use your Protonmail, Tutanota, or Criptext account with Delta
-Chat; they do not offer receiving mails via IMAP.</li>
-  <li>In any case you can use Delta Chat to send Messages to people who use
-Protonmail, Tutanota, or Criptext. Those messages will not be end-to-end
-encrypted, though. The end-to-end encryption those providers offer is not
-compatible with <a href="https://autocrypt.org/">Autocrypt</a>, the standard Delta Chat
-uses.</li>
-  <li>Delta Chat can end-to-end-encrypt through any e-mail provider with any
-<a href="https://autocrypt.org/dev-status.html">Autocrypt-enabled e-mail app</a>.</li>
+  <li>Oui et non.</li>
+  <li>Non, vous ne pouvez pas utiliser votre compte Proton Mail, Tutanota ou Cryptext avec Delta Chat, car ils ne permettent pas de recevoir les courriels en IMAP.</li>
+  <li>Vous pouvez toujours utiliser Delta Chat pour envoyer des messages à des personnes utilisant Protonmail, Tutanota, or Criptext. Toutefois, ces messages ne seront pas chiffrés de bout en bout, car le chiffrement offert par ces fournisseurs n’est pas compatible avec <a href="https://autocrypt.org/">Autocrypt</a>, le protocole utilisé par Delta Chat.</li>
+  <li>Delta Chat peut chiffrer des courriels de bout en bout avec un fournisseur de courriel utilisant <a href="https://autocrypt.org/dev-status.html">toute application de courriel compatible avec Autocrypt</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="remove-account">

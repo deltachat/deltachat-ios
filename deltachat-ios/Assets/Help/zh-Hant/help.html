@@ -10,9 +10,9 @@
       <li><a href="#谁会看见我的个人资料图片">谁会看见我的个人资料图片？</a></li>
       <li><a href="#signature">我可以为 Delta Chat 设置签名文本/状态/格言吗？</a></li>
       <li><a href="#固定静音归档是什么意思">固定、静音、归档是什么意思？</a></li>
-      <li><a href="#save">How do “Saved Messages” work?</a></li>
+      <li><a href="#save">“保存的消息”如何工作？</a></li>
       <li><a href="#绿色圆点代表什么">绿色圆点代表什么？</a></li>
-      <li><a href="#edit">Correct typos and delete messages after sending</a></li>
+      <li><a href="#edit">发送后更正错别字并删除邮件</a></li>
       <li><a href="#ephemeralmsgs">消息定时销毁是如何工作的？</a></li>
     </ul>
   </li>
@@ -66,7 +66,7 @@
       <li><a href="#我能同时在多个设备上使用-delta-chat-吗">我能同时在多个设备上使用 Delta Chat 吗?</a></li>
       <li><a href="#故障排除">故障排除</a></li>
       <li><a href="#backup">手动传输</a></li>
-      <li><a href="#is-deletion-pinning-archiving-saving-muting-etc-synced-to-all-devices">Is Deletion, Pinning, Archiving, Saving, Muting etc. synced to all devices?</a></li>
+      <li><a href="#删除置顶归档保存静音等操作是否同步到所有设备">删除、置顶、归档、保存、静音等操作是否同步到所有设备？</a></li>
       <li><a href="#有推出-delta-chat-web-客户端的计划吗">有推出 Delta Chat Web 客户端的计划吗？</a></li>
     </ul>
   </li>
@@ -98,7 +98,7 @@
       <li><a href="#给自己发送副本设置有什么用处">“给自己发送副本”设置有什么用处？</a></li>
       <li><a href="#为什么我可以选择监视已发送文件夹">为什么我可以选择监视“已发送”文件夹？</a></li>
       <li><a href="#为什么我可以选择不监视-deltachat-文件夹">为什么我可以选择不监视 DeltaChat 文件夹？</a></li>
-      <li><a href="#delta-chat-与-protonmail--tutanota--criptext-兼容吗">Delta Chat 与 Protonmail / Tutanota / Criptext 兼容吗？</a></li>
+      <li><a href="#delta-chat-与-proton-mail--tutanota--criptext-兼容吗">Delta Chat 与 Proton Mail / Tutanota / Criptext 兼容吗？</a></li>
       <li><a href="#remove-account">如何删除我的账户？</a></li>
       <li><a href="#我对技术细节很感兴趣能告诉我更多吗">我对技术细节很感兴趣。能告诉我更多吗？</a></li>
       <li><a href="#我的朋友在哪里可以找到-delta-chat">我的朋友在哪里可以找到 Delta Chat？</a></li>
@@ -184,10 +184,20 @@
         
       </h3>
 
+<p>当收到陌生联系人的消息时，系统会将其显示为<strong>请求</strong>形式。</p>
+
 <ul>
-  <li>来自未知联系人的消息会作为<strong>请求</strong>出现。您需要在回复之前先接收他的请求。</li>
-  <li>如果现在不想和他聊天，您也可以“删除”请求。这只会在设备上而 <em>不会</em> 在服务器上删除这条消息。所以您仍可以使用其他电子邮件应用来处理它。</li>
-  <li>删除了请求后，来自同一联系人的后续消息仍会作为聊天请求出现，所以您有机会来改变主意。如果您真的不想收到那个人的消息，那么可以考虑 <em>屏蔽</em> 他。</li>
+  <li>
+    <p>需先<strong>通过</strong>该验证请求，用户方可发送回复。</p>
+  </li>
+  <li>
+    <p>若你暂无交流意愿，可直接<strong>删除</strong>该请求以终止对话。</p>
+  </li>
+  <li>
+    <p>若您选择删除某条消息请求，对方后续发来的消息仍会以「消息请求」形式显示，
+以便您保留重新考虑的机会。若需彻底拒收该联系人消息，
+建议直接启用 ​<strong>Block</strong> 功能进行屏蔽。</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-支持图像视频和其他附件吗">
@@ -200,7 +210,7 @@
 
 <ul>
   <li>
-    <p>是的。除纯文本外，所有电子邮件附件均显示为单独的消息。发出消息会根据需要自动获得附件。</p>
+    <p>是的。图片、视频、文件、语音消息等会像往常一样被处理。</p>
   </li>
   <li>
     <p>为了提高性能，默认情况下会对图像进行优化并以较小的尺寸发送，但您也可以将其作为 “文件 “发送，以保留原始图像。</p>
@@ -300,37 +310,36 @@
       <p class="back"><a href="#top">^</a></p><h3 id="save">
         
         
-          How do “Saved Messages” work? <a href="#save" class="anchor"></a>
+          “保存的消息”如何工作？ <a href="#save" class="anchor"></a>
         
         
       </h3>
 
-<p><strong>Saved Messages</strong> is a chat that you can use to easily remember and find messages.</p>
+<p><strong>Saved Messages</strong> 是专用于存储消息的专属对话窗口，可帮助您便捷存储和快速检索重要信息。</p>
 
 <ul>
   <li>
-    <p>In any chat, long tap or right click a message and select <strong>Save</strong></p>
+    <p>在任何聊天中，长按或右键单击消息并选择 ** 保存 **</p>
   </li>
   <li>
-    <p>Saved messages are marked by the symbol
+    <p>已保存的消息会显示专属标识符号。
 <img style="vertical-align:middle; width:1.2em; margin:1px" src="../saved-icon.png" alt="Saved icon" />
-next to the timestamp</p>
+在时间戳右侧</p>
   </li>
   <li>
-    <p>Later, open the “Saved Messages” chat - and you will see the saved messages there.
-By tapping <img style="vertical-align:middle; width:1.2em; margin:1px" src="../go-to-original.png" alt="Arrow-right icon" />,
-you can go back to the original message in the original chat</p>
+    <p>后续操作时，进入「Saved Messages」对话窗口即可查看所有已保存内容。
+轻触 <img style="vertical-align:middle; width:1.2em; margin:1px" src="../go-to-original.png" alt="Arrow-right icon" /> 按钮，
+系统将带您快速跳转回原始聊天中的对应消息。</p>
   </li>
   <li>
-    <p>Finally, you can also use “Save Messages” to take <strong>personal notes</strong> - open the chat, type something, add a photo or a voice message etc.</p>
+    <p>您还可以将「Save Messages」作为<strong>个人记事本</strong>使用：进入该对话窗口后，既可编辑文字内容，也能添加图片、语音录音等多媒体素材。</p>
   </li>
   <li>
-    <p>As “Saved Message” are synced, they can become very handy for transferring data between devices</p>
+    <p>“Saved Message” 的同步特性使其成为设备间数据迁移的实用方案——用户通过该功能可轻松实现手机、电脑等多终端信息流转。</p>
   </li>
 </ul>
 
-<p>Messages stay saved even if they are edited or deleted -
-may it be by <a href="#edit">sender</a>, by <a href="#delold">device cleanup</a> or by <a href="#ephemeralmsgs">disappearing messages of other chats</a>.</p>
+<p>即使消息遭到修改或删除 - 无论是<a href="#edit">发送者编辑</a>、<a href="#delold">设备清理操作</a>，还是<a href="#ephemeralmsgs">其他聊天中的临时消息功能</a>所触发 - 这些信息仍将保留在系统中。</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="绿色圆点代表什么">
         
@@ -358,29 +367,27 @@ may it be by <a href="#edit">sender</a>, by <a href="#delold">device cleanup</a>
       <p class="back"><a href="#top">^</a></p><h3 id="edit">
         
         
-          Correct typos and delete messages after sending <a href="#edit" class="anchor"></a>
+          发送后更正错别字并删除邮件 <a href="#edit" class="anchor"></a>
         
         
       </h3>
 
 <ul>
   <li>
-    <p>You can edit the text of your messages after sending.
-For that, long tap or right click the message and select <strong>Edit</strong>
-or <img style="vertical-align:middle; width:1.2em; margin:1px" src="../edit-icon.png" alt="Edit icon" />.</p>
+    <p>已发送消息支持文本内容修改。操作时，用户只需长按（移动端）或右键单击（电脑端）目标消息，调出功能菜单后点选<strong>Edit</strong>或<img style="vertical-align:middle; width:1.2em; margin:1px" src="../edit-icon.png" alt="Edit icon" />即可进入编辑模式。</p>
   </li>
   <li>
-    <p>If you have sent a message accidentally,
-from the same menu, select <strong>Delete</strong> and then <strong>Delete for Everyone</strong>.</p>
+    <p>若发生消息误发情况，
+可通过以下路径撤回：在当前操作菜单中，依次选择<strong>删除</strong>和<strong>为所有人删除</strong>选项。</p>
   </li>
 </ul>
 
-<p>While edited messages will have the word “Edited” next to the timestamp,
-deleted messages will be removed without a marker in the chat.
-Notifications are not sent and there is no time limit.</p>
+<p>在聊天场景中，经过编辑的消息会在时间戳旁标注“Edited”提示，
+而被删除的信息则会彻底消失且不显示任何痕迹。
+相关操作既不会触发系统通知，也没有规定必须在时限内完成修改。</p>
 
-<p>Note, that the original message may still be received by chat members
-who could have already replied, forwarded, saved, screenshotted or otherwise copied the message.</p>
+<p>需特别提示：若聊天成员已对消息进行过回复、转发、保存本地、截图留存或其他形式的复制操作，
+即使您后续编辑了原始消息，对方设备上仍可能留存原内容。</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="ephemeralmsgs">
         
@@ -899,15 +906,15 @@ Autocrypt 使用 OpenPGP 标准的有限且<a href="#openpgp-secure">安全子�
 ，前提是整个消息都已正确加密和签名。
 例如，“分离签名”不被视为安全。</p>
 
-<p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
-actually stem from bad usability or bad implementations of tools or apps (or both).
-It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
-and GnuPG (GPG), a command line tool implementing OpenPGP. 
-Many public critiques of OpenPGP actually discuss GnuPG which Delta Chat has never used. 
-Delta Chat rather uses the OpenPGP Rust implementation <a href="https://github.com/rpgp/rpgp">rPGP</a>,
-available as <a href="https://crates.io/crates/pgp">an independent “pgp” package</a>,
-and <a href="#security-audits">security-audited in 2019 and 2024</a>.</p>
+<p>OpenPGP 加密标准本身不存在安全隐患。 
+目前公众讨论中涉及的 OpenPGP 安全问题， 
+大多源自相关工具或应用的用户体验缺陷或技术实现漏洞（或二者叠加）。 
+需特别澄清的是：OpenPGP 作为 IETF 制定的加密标准， 
+与基于命令行操作的 GnuPG（GPG）工具不可混为一谈。 
+诸多对 OpenPGP 的质疑实际指向 GnuPG 工具，而 Delta Chat 即时通讯应用从未采用该工具。 
+Delta Chat 实际使用的是 Rust 语言编写的 OpenPGP 实现库 <a href="https://github.com/rpgp/rpgp">rPGP</a>， 
+该库以<a href="https://crates.io/crates/pgp">独立 “pgp” 组件包</a>形式提供， 
+且<a href="#security-audits">已通过 2019 和 2024 年两次安全审计</a>。</p>
 
 <p>我们的目标是与其他 OpenPGP 实现者一起，
 通过实施 <a href="https://datatracker.ietf.org/doc/draft-ietf-openpgp-crypto-refresh/">新的 IETF OpenPGP Crypto-Refresh</a>
@@ -1166,14 +1173,14 @@ Signal 和大多数其他支持 PFS 的即时通讯应用
         
       </h3>
 
-<p>No.</p>
+<p>不。</p>
 
-<p>Delta Chat generates secure OpenPGP keys according to the Autocrypt specification 1.1. 
-You can export your private key but you can not import additional private keys.</p>
+<p>Delta Chat 采用 Autocrypt 1.1 标准规范生成 OpenPGP 加密密钥。
+用户虽可导出自身私钥进行备份，但系统设计上不支持导入其他私钥。</p>
 
-<p>In general, we do not recommend or offer users to perform manual key management. 
-We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+<p>基于安全考量，系统默认不开放手动密钥管理功能。
+此项设计旨在让安全审计工作聚焦于少量成熟加密算法（如 Autocrypt 标准），
+避免因支持 OpenPGP 协议所允许的所有算法而增加潜在安全风险。</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1183,25 +1190,24 @@ instead of the full breath of possible algorithms allowed with OpenPGP.</p>
         
       </h3>
 
-<p>Yes, multiple times. 
-The Delta Chat project continuously undergoes independent security audits and analysis,
-from most recent to older:</p>
+<p>确实如此，且已进行多次。
+Delta Chat 长期接受第三方独立机构的安全审计与漏洞分析，
+以下按时间倒序列出历年检测记录：</p>
 
 <ul>
   <li>
-    <p>2024 December, an <a href="https://github.com/rpgp/docs/blob/main/audits/NGI%20Core%20rPGP%20penetration%20test%20report%202024%201.0.pdf">NLNET-commissioned Evaluation of
-rPGP</a> by <a href="https://www.radicallyopensecurity.com/">Radically Open Security</a> took place.
-rPGP serves as the end-to-end encyption <a href="https://openpgp.org">OpenPGP</a> engine of Delta Chat. 
-Two advisories were released related to the findings of this audit:</p>
-
-    <ul>
-      <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-9rmp-2568-59rv">“Panics on Malformed Untrusted Input”</a> CVE-2024-53856</li>
-      <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-4grw-m28r-q285">“Potential Resource Exhaustion when handling Untrusted Messages”</a> CVE-2024-53857</li>
-    </ul>
-
-    <p>The issues outlined in these advisories have been fixed and are part of Delta Chat 
-releases on all appstores since December 2024.</p>
+    <p>2024年12月，网络安全机构<a href="https://www.radicallyopensecurity.com/">Radically Open Security</a> 受NLNET委托，完成了对加密协议<a href="https://github.com/rpgp/docs/blob/main/audits/NGI%20Core%20rPGP%20penetration%20test%20report%202024%201.0.pdf">rPGP的专项审计</a>。
+作为即时通讯工具Delta Chat的核心加密引擎，rPGP采用<a href="https://openpgp.org">OpenPGP</a> 标准实现端到端加密。
+基于审计发现，研究团队同步公开了两份技术通告：</p>
   </li>
+  <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-9rmp-2568-59rv">畸形数据触发系统崩溃漏洞</a>（编号CVE-2024-53856）</li>
+  <li><a href="https://github.com/rpgp/rpgp/security/advisories/GHSA-4grw-m28r-q285">恶意消息潜在导致资源枯竭漏洞</a>（编号CVE-2024-53857）</li>
+</ul>
+
+<p>自 2024 年 12 月之后，各应用商店发布的 Delta Chat 版本均已修复上述安全公告提及的问题。
+相关更新作为常规版本升级的一部分，现已全面覆盖所有 appstore 平台。</p>
+
+<ul>
   <li>
     <p>2024 年 3 月，我们收到了苏黎世联邦理工学院应用密码学
 研究小组的深入安全性分析，并解决了所有提出的问题。
@@ -1323,8 +1329,8 @@ Chat 的 <a href="https://github.com/rpgp/rpgp">PGP</a> 和
 如果可能，请使用非访客网络。</p>
   </li>
   <li>
-    <p>If you still have troubles using the same network,
-try to open <strong>Mobile Hotspot</strong> on one device and join that Wi-Fi from the other one</p>
+    <p>当设备间网络通信持续异常时，
+建议采取设备直连方案：在一台终端开启 ​<strong>Mobile Hotspot</strong>​（移动热点），另一台设备通过扫描 Wi-Fi 接入该临时网络。</p>
   </li>
   <li>
     <p>确保目标设备上有<strong>足够的存储空间</strong></p>
@@ -1369,22 +1375,22 @@ try to open <strong>Mobile Hotspot</strong> on one device and join that Wi-Fi fr
 端到端加密消息。</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="is-deletion-pinning-archiving-saving-muting-etc-synced-to-all-devices">
+      <p class="back"><a href="#top">^</a></p><h3 id="删除置顶归档保存静音等操作是否同步到所有设备">
         
         
-          Is Deletion, Pinning, Archiving, Saving, Muting etc. synced to all devices? <a href="#is-deletion-pinning-archiving-saving-muting-etc-synced-to-all-devices" class="anchor"></a>
+          删除、置顶、归档、保存、静音等操作是否同步到所有设备？ <a href="#删除置顶归档保存静音等操作是否同步到所有设备" class="anchor"></a>
         
         
       </h3>
 
 <p>是的。</p>
 
-<p>If you e.g. delete a chat or a message from your phone,
-it will be deleted on your desktop as soon as it comes online again.</p>
+<p>例如，如果您从手机中删除某个聊天或信息，
+当您的桌面客户端再次上线时，该内容也会被同步删除。</p>
 
-<p>Notable exceptions are <a href="#delold">Delete old messages from Device</a>,
-as different devices may have different storage capacities,
-and system specific settings as notification sounds.</p>
+<p>值得注意的例外情况包括<a href="#delold">从设备删除旧消息</a>，
+因为不同设备可能具有不同的存储容量，
+以及通知提示音等系统特定设置。</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="有推出-delta-chat-web-客户端的计划吗">
         
@@ -1759,17 +1765,17 @@ mailcow 和 mailadm 的组合，如 <a href="https://delta.chat/en/2023-01-27-up
 
 <p>有些人将 Delta Chat 用作常规电子邮件客户端并希望将收件箱文件夹用于其邮件，而不是使用 DeltaChat 文件夹。如果禁用了“监视 DeltaChat 文件夹”，则还应该禁用“将聊天消息移动到 DeltaChat”。否则，删除消息或多设备设置可能无法正常工作。</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-与-protonmail--tutanota--criptext-兼容吗">
+      <p class="back"><a href="#top">^</a></p><h3 id="delta-chat-与-proton-mail--tutanota--criptext-兼容吗">
         
         
-          Delta Chat 与 Protonmail / Tutanota / Criptext 兼容吗？ <a href="#delta-chat-与-protonmail--tutanota--criptext-兼容吗" class="anchor"></a>
+          Delta Chat 与 Proton Mail / Tutanota / Criptext 兼容吗？ <a href="#delta-chat-与-proton-mail--tutanota--criptext-兼容吗" class="anchor"></a>
         
         
       </h3>
 
 <ul>
   <li>是的，也不是。</li>
-  <li>否，你不能将你的 Protonmail、Tutanota 或 Criptext 帐户与 Delta
+  <li>否，你不能将你的 Proton Mail、Tutanota 或 Criptext 帐户与 Delta
 Chat 一起使用； 它们不提供通过 IMAP 接收邮件的功能。</li>
   <li>在任何情况下，你都可以使用 Delta Chat 向使用 
  

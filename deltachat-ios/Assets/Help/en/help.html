@@ -98,7 +98,7 @@
       <li><a href="#what-is-the-send-copy-to-self-setting-good-for">What is the “Send Copy to Self” setting good for?</a></li>
       <li><a href="#why-can-i-choose-to-watch-the-sent-folder">Why can I choose to watch the “Sent” folder?</a></li>
       <li><a href="#why-can-i-choose-not-to-watch-the-deltachat-folder">Why can I choose not to watch the DeltaChat folder?</a></li>
-      <li><a href="#is-delta-chat-compatible-with-protonmail--tutanota--criptext">Is Delta Chat compatible with Protonmail / Tutanota / Criptext?</a></li>
+      <li><a href="#is-delta-chat-compatible-with-proton-mail--tutanota--criptext">Is Delta Chat compatible with Proton Mail / Tutanota / Criptext?</a></li>
       <li><a href="#remove-account">How can I delete my account?</a></li>
       <li><a href="#im-interested-in-the-technical-details-can-you-tell-me-more">I’m interested in the technical details. Can you tell me more?</a></li>
       <li><a href="#where-can-my-friends-find-delta-chat">Where can my friends find Delta Chat?</a></li>
@@ -184,15 +184,20 @@ Built on <a href="https://github.com/deltachat/deltachat-core-rust/blob/master/s
         
       </h3>
 
+<p>If a message comes from an unknown contact, it appears as a <strong>request</strong>.</p>
+
 <ul>
-  <li>If a message comes from an unknown contact, it appears as a <strong>request</strong>. You
-need to accept the request before you can reply.</li>
-  <li>You can also “delete” it if you don’t want to chat with them for now. This
-does <em>not</em> delete the message on the server, only on your device. So you can
-still deal with the message in a different mail app.</li>
-  <li>If you delete a request, future messages from that contact will still appear
+  <li>
+    <p>You need to <strong>accept</strong> the request before you can reply.</p>
+  </li>
+  <li>
+    <p>You can also <strong>delete</strong> it if you don’t want to chat with them for now.</p>
+  </li>
+  <li>
+    <p>If you delete a request, future messages from that contact will still appear
 as message request, so you can change your mind. If you really don’t want to
-receive messages from this person, consider <em>blocking</em> them.</li>
+receive messages from this person, consider <strong>blocking</strong> them.</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="does-delta-chat-support-images-videos-and-other-attachments">
@@ -205,7 +210,7 @@ receive messages from this person, consider <em>blocking</em> them.</li>
 
 <ul>
   <li>
-    <p>Yes. Beside the plain text, all e-mail attachments are displayed as separate messages. Outgoing messages get attachments as needed automatically.</p>
+    <p>Yes. Images, videos, files, voice messages etc. are handled as usual.</p>
   </li>
   <li>
     <p>For performance, images are optimized and sent at a smaller size by default, but you can send it as a “file” to preserve the original.</p>
@@ -713,7 +718,7 @@ would not reveal private information that Push services do not already have.</p>
 
 <p>Delta Chat is a free and open source decentralized messenger with free server choice,
 but we want users to reliably experience “instant delivery” of messages,
-like they experience from Whatsapp, Signal or Telegram apps,
+like they experience from WhatsApp, Signal or Telegram apps,
 without asking questions up-front that are more suited to expert users or developers.</p>
 
 <p>Note that Delta Chat has a <a href="#privacy-notifications">small and privacy-preserving Push Notification system</a>
@@ -952,7 +957,7 @@ if the whole message is properly encrypted and signed.
 For example, “Detached signatures” are not treated as secure.</p>
 
 <p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
+Most publicly discussed OpenPGP security problems
 actually stem from bad usability or bad implementations of tools or apps (or both).
 It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
 and GnuPG (GPG), a command line tool implementing OpenPGP. 
@@ -1208,7 +1213,7 @@ but it provides <a href="#e2eeguarantee">guaranteed end-to-end encrypted chats</
 that are safe against compromised servers or corrupted networks. 
 Signal and most other PFS-supporting messengers do not provide 
 a practical scheme for protecting chat groups from network attacks
-which are arguably more worrysome 
+which are arguably more worrisome 
 than a potential attacker who seizes your phone and private encryption setup
 but somehow not your messages, yet has a full record of all 
 past encrypted messages.</p>
@@ -1231,7 +1236,7 @@ You can export your private key but you can not import additional private keys.<
 
 <p>In general, we do not recommend or offer users to perform manual key management. 
 We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+instead of the full breadth of possible algorithms allowed with OpenPGP.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1571,7 +1576,7 @@ will not get interrupted by a video chat invite.</li>
 link in the settings.</li>
   <li>For example, to use the flagship Jitsi Meet instance, you could enter
 <code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. The <code class="language-plaintext highlighter-rouge">$ROOM</code> variable will be a random value;
-this way, you will have a new random jitsi room every time you call someone.</li>
+this way, you will have a new random Jitsi room every time you call someone.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="what-are-broadcast-lists-and-how-can-i-use-them">
@@ -1583,7 +1588,7 @@ this way, you will have a new random jitsi room every time you call someone.</li
       </h3>
 
 <ul>
-  <li>With a Broadcast List you can send a message to many recipents at once; when
+  <li>With a Broadcast List you can send a message to many recipients at once; when
 they reply to you, you get the reply in your direct 1:1 chat with them. The
 recipients can’t see each other.</li>
   <li>Technically, it is an E-Mail with many recipients in BCC.</li>
@@ -1898,17 +1903,17 @@ folder for their mail, instead of the DeltaChat folder. If you disable “Watch
 DeltaChat folder”, you should also disable “move chat messages to DeltaChat”.
 Otherwise, deleting messages or multi-device setups might not work properly.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="is-delta-chat-compatible-with-protonmail--tutanota--criptext">
+      <p class="back"><a href="#top">^</a></p><h3 id="is-delta-chat-compatible-with-proton-mail--tutanota--criptext">
         
         
-          Is Delta Chat compatible with Protonmail / Tutanota / Criptext? <a href="#is-delta-chat-compatible-with-protonmail--tutanota--criptext" class="anchor"></a>
+          Is Delta Chat compatible with Proton Mail / Tutanota / Criptext? <a href="#is-delta-chat-compatible-with-proton-mail--tutanota--criptext" class="anchor"></a>
         
         
       </h3>
 
 <ul>
   <li>Yes and No.</li>
-  <li>No, you can not use your Protonmail, Tutanota, or Criptext account with Delta
+  <li>No, you can not use your Proton Mail, Tutanota, or Criptext account with Delta
 Chat; they do not offer receiving mails via IMAP.</li>
   <li>In any case you can use Delta Chat to send Messages to people who use
 Protonmail, Tutanota, or Criptext. Those messages will not be end-to-end
@@ -2083,7 +2088,7 @@ even close.</p>
 Freiburg (Germany), and is distributed to more than a dozen contributors world-wide.</p>
 
 <p>Please see <a href="https://delta.chat/en/contribute">Delta Chat Contribution channels</a>
-for both monetary and and other contribution possibilities.</p>
+for both monetary and other contribution possibilities.</p>
 
 
 

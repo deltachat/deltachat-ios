@@ -98,7 +98,7 @@
       <li><a href="#na-čo-je-dobré-nastavenie-odoslať-kópiu-sebe">Na čo je dobré nastavenie „Odoslať kópiu sebe“?</a></li>
       <li><a href="#prečo-si-môžem-vybrať-sledovanie-priečinka-odoslané">Prečo si môžem vybrať sledovanie priečinka „Odoslané“?</a></li>
       <li><a href="#prečo-sa-môžem-rozhodnúť-nesledovať-priečinok-deltachat">Prečo sa môžem rozhodnúť nesledovať priečinok DeltaChat?</a></li>
-      <li><a href="#je-delta-chat-kompatibilný-s-protonmail--tutanota--criptext">Je Delta Chat kompatibilný s Protonmail / Tutanota / Criptext?</a></li>
+      <li><a href="#je-delta-chat-kompatibilný-s-proton-mail--tutanota--criptext">Je Delta Chat kompatibilný s Proton Mail / Tutanota / Criptext?</a></li>
       <li><a href="#remove-account">How can I delete my account?</a></li>
       <li><a href="#zaujímajú-ma-technické-detaily-môžete-mi-povedať-viac">Zaujímajú ma technické detaily. Môžete mi povedať viac?</a></li>
       <li><a href="#where-can-my-friends-find-delta-chat">Where can my friends find Delta Chat?</a></li>
@@ -184,15 +184,20 @@ Built on <a href="https://github.com/deltachat/deltachat-core-rust/blob/master/s
         
       </h3>
 
+<p>If a message comes from an unknown contact, it appears as a <strong>request</strong>.</p>
+
 <ul>
-  <li>If a message comes from an unknown contact, it appears as a <strong>request</strong>. You
-need to accept the request before you can reply.</li>
-  <li>You can also “delete” it if you don’t want to chat with them for now. This
-does <em>not</em> delete the message on the server, only on your device. So you can
-still deal with the message in a different mail app.</li>
-  <li>If you delete a request, future messages from that contact will still appear
+  <li>
+    <p>You need to <strong>accept</strong> the request before you can reply.</p>
+  </li>
+  <li>
+    <p>You can also <strong>delete</strong> it if you don’t want to chat with them for now.</p>
+  </li>
+  <li>
+    <p>If you delete a request, future messages from that contact will still appear
 as message request, so you can change your mind. If you really don’t want to
-receive messages from this person, consider <em>blocking</em> them.</li>
+receive messages from this person, consider <strong>blocking</strong> them.</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="podporuje-delta-chat-obrázky-videá-a-iné-prílohy">
@@ -203,13 +208,10 @@ receive messages from this person, consider <em>blocking</em> them.</li>
         
       </h3>
 
+<p>Áno. Okrem čistého textu sa všetky prílohy e-mailov zobrazujú ako samostatné správy. Odchádzajúce správy dostávajú prílohy podľa potreby automaticky.</p>
+
 <ul>
-  <li>
-    <p>Áno. Okrem čistého textu sa všetky prílohy e-mailov zobrazujú ako samostatné správy. Odchádzajúce správy dostávajú prílohy podľa potreby automaticky.</p>
-  </li>
-  <li>
-    <p>For performance, images are optimized and sent at a smaller size by default, but you can send it as a “file” to preserve the original.</p>
-  </li>
+  <li>For performance, images are optimized and sent at a smaller size by default, but you can send it as a “file” to preserve the original.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="multiple-accounts">
@@ -713,7 +715,7 @@ would not reveal private information that Push services do not already have.</p>
 
 <p>Delta Chat is a free and open source decentralized messenger with free server choice,
 but we want users to reliably experience “instant delivery” of messages,
-like they experience from Whatsapp, Signal or Telegram apps,
+like they experience from WhatsApp, Signal or Telegram apps,
 without asking questions up-front that are more suited to expert users or developers.</p>
 
 <p>Note that Delta Chat has a <a href="#privacy-notifications">small and privacy-preserving Push Notification system</a>
@@ -952,7 +954,7 @@ if the whole message is properly encrypted and signed.
 For example, “Detached signatures” are not treated as secure.</p>
 
 <p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
+Most publicly discussed OpenPGP security problems
 actually stem from bad usability or bad implementations of tools or apps (or both).
 It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
 and GnuPG (GPG), a command line tool implementing OpenPGP. 
@@ -1208,7 +1210,7 @@ but it provides <a href="#e2eeguarantee">guaranteed end-to-end encrypted chats</
 that are safe against compromised servers or corrupted networks. 
 Signal and most other PFS-supporting messengers do not provide 
 a practical scheme for protecting chat groups from network attacks
-which are arguably more worrysome 
+which are arguably more worrisome 
 than a potential attacker who seizes your phone and private encryption setup
 but somehow not your messages, yet has a full record of all 
 past encrypted messages.</p>
@@ -1231,7 +1233,7 @@ You can export your private key but you can not import additional private keys.<
 
 <p>In general, we do not recommend or offer users to perform manual key management. 
 We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+instead of the full breadth of possible algorithms allowed with OpenPGP.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1571,7 +1573,7 @@ will not get interrupted by a video chat invite.</li>
 link in the settings.</li>
   <li>For example, to use the flagship Jitsi Meet instance, you could enter
 <code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. The <code class="language-plaintext highlighter-rouge">$ROOM</code> variable will be a random value;
-this way, you will have a new random jitsi room every time you call someone.</li>
+this way, you will have a new random Jitsi room every time you call someone.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="what-are-broadcast-lists-and-how-can-i-use-them">
@@ -1583,7 +1585,7 @@ this way, you will have a new random jitsi room every time you call someone.</li
       </h3>
 
 <ul>
-  <li>With a Broadcast List you can send a message to many recipents at once; when
+  <li>With a Broadcast List you can send a message to many recipients at once; when
 they reply to you, you get the reply in your direct 1:1 chat with them. The
 recipients can’t see each other.</li>
   <li>Technically, it is an E-Mail with many recipients in BCC.</li>
@@ -1894,25 +1896,24 @@ pre ich mail, namiesto priečinku DeltaChat. Ak zakážete „Sledovať
 priečinok DeltaChat“, mali by ste tiež zakázať „presunúť chatové správy do DeltaChat“.
 V opačnom prípade nemusí odstraňovanie správ alebo nastavenia viacerých zariadení fungovať správne.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="je-delta-chat-kompatibilný-s-protonmail--tutanota--criptext">
+      <p class="back"><a href="#top">^</a></p><h3 id="je-delta-chat-kompatibilný-s-proton-mail--tutanota--criptext">
         
         
-          Je Delta Chat kompatibilný s Protonmail / Tutanota / Criptext? <a href="#je-delta-chat-kompatibilný-s-protonmail--tutanota--criptext" class="anchor"></a>
+          Je Delta Chat kompatibilný s Proton Mail / Tutanota / Criptext? <a href="#je-delta-chat-kompatibilný-s-proton-mail--tutanota--criptext" class="anchor"></a>
         
         
       </h3>
 
 <ul>
-  <li>Yes and No.</li>
-  <li>No, you can not use your Protonmail, Tutanota, or Criptext account with Delta
-Chat; they do not offer receiving mails via IMAP.</li>
-  <li>In any case you can use Delta Chat to send Messages to people who use
-Protonmail, Tutanota, or Criptext. Those messages will not be end-to-end
-encrypted, though. The end-to-end encryption those providers offer is not
-compatible with <a href="https://autocrypt.org/">Autocrypt</a>, the standard Delta Chat
-uses.</li>
-  <li>Delta Chat can end-to-end-encrypt through any e-mail provider with any
-<a href="https://autocrypt.org/dev-status.html">Autocrypt-enabled e-mail app</a>.</li>
+  <li>Áno a nie.</li>
+  <li>Nie, nemôžete používať svoj účet Proton Mail, Tutanota alebo Criptext s Delta
+Chat; neponúkajú prijímanie pošty cez IMAP.</li>
+  <li>V každom prípade môžete použiť Delta Chat na odosielanie správ ľuďom, ktorí to používajú
+Protonmail, Tutanota alebo Criptext. Avšak tieto správy nebudú End-to-End
+zašifrované. Šifrovanie typu End-to-End, ktoré títo poskytovatelia                                ponúkajú, funguje iba <br />
+na ich platformách a nie sú kompatibilné s nikým mimo.</li>
+  <li>Delta Chat môže e2e šifrovať prostredníctvom akéhokoľvek poskytovateľa e-mailu s ktoroukoľvek
+<a href="https://autocrypt.org/dev-status.html">E-mailovou aplikáciou s povoleným automatickým šifrovaním</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="remove-account">
@@ -2079,7 +2080,7 @@ as a contributor community.</p>
 Freiburg (Germany), and is distributed to more than a dozen contributors world-wide.</p>
 
 <p>Please see <a href="https://delta.chat/sk/contribute">Delta Chat Contribution channels</a>
-for both monetary and and other contribution possibilities.</p>
+for both monetary and other contribution possibilities.</p>
 
 
 

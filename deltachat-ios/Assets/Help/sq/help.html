@@ -184,15 +184,20 @@ Built on <a href="https://github.com/deltachat/deltachat-core-rust/blob/master/s
         
       </h3>
 
+<p>Nëse një mesazh vjen prej një kontakti të panjohur, shfaqet si <strong>kërkesë</strong>.</p>
+
 <ul>
-  <li>Nëse një mesazh vjen prej një kontakti të panjohur, shfaqet si <strong>kërkesë</strong>.
-Duhet të pranoni kërkesën, para se të mund të përgjigjeni.</li>
-  <li>Mundeni edhe ta “fshini”, nëse s’doni të bisedoni me të tani. Kjo <strong>nuk</strong>
-fshin mesazhin te shërbyesi, vetëm te pajisja juaj. Kështu, mundeni
-të merreni me mesazhin që nga një tjetër aplikacion email-esh.</li>
-  <li>Nëse fshini një kërkesë, mesazhet e ardhshëm prej atij kontakti do të shfaqen
+  <li>
+    <p>Duhet të <strong>pranoni</strong> kërkesën, para se të mund të përgjigjeni.</p>
+  </li>
+  <li>
+    <p>Mundeni edhe ta <strong>fshini</strong>, nëse s’doni të bisedoni me të tani.</p>
+  </li>
+  <li>
+    <p>Nëse fshini një kërkesë, mesazhet e ardhshëm prej atij kontakti do të shfaqen
 ende si kërkesë për mesazh, që të mund të ndërroni mendje. Nëse vërtet
-s’doni të merrni mesazhe prej këtij personi, shihni mundësinë e <em>bllokimit</em> të tij.</li>
+s’doni të merrni mesazhe prej këtij personi, shihni mundësinë e <strong>bllokimit</strong> të tij.</p>
+  </li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="a-mbulon-delta-chat-i-figura-video-dhe-bashkëngjitje-të-tjera">
@@ -711,7 +716,7 @@ would not reveal private information that Push services do not already have.</p>
 
 <p>Delta Chat is a free and open source decentralized messenger with free server choice,
 but we want users to reliably experience “instant delivery” of messages,
-like they experience from Whatsapp, Signal or Telegram apps,
+like they experience from WhatsApp, Signal or Telegram apps,
 without asking questions up-front that are more suited to expert users or developers.</p>
 
 <p>Note that Delta Chat has a <a href="#privacy-notifications">small and privacy-preserving Push Notification system</a>
@@ -950,7 +955,7 @@ if the whole message is properly encrypted and signed.
 For example, “Detached signatures” are not treated as secure.</p>
 
 <p>OpenPGP is not insecure by itself.
-Most publically discussed OpenPGP security problems
+Most publicly discussed OpenPGP security problems
 actually stem from bad usability or bad implementations of tools or apps (or both).
 It is particularly important to distinguish between OpenPGP, the IETF encryption standard, 
 and GnuPG (GPG), a command line tool implementing OpenPGP. 
@@ -1206,7 +1211,7 @@ but it provides <a href="#e2eeguarantee">guaranteed end-to-end encrypted chats</
 that are safe against compromised servers or corrupted networks. 
 Signal and most other PFS-supporting messengers do not provide 
 a practical scheme for protecting chat groups from network attacks
-which are arguably more worrysome 
+which are arguably more worrisome 
 than a potential attacker who seizes your phone and private encryption setup
 but somehow not your messages, yet has a full record of all 
 past encrypted messages.</p>
@@ -1229,7 +1234,7 @@ You can export your private key but you can not import additional private keys.<
 
 <p>In general, we do not recommend or offer users to perform manual key management. 
 We want to ensure that security audits can focus on a few proven cryptographic algorithms 
-instead of the full breath of possible algorithms allowed with OpenPGP.</p>
+instead of the full breadth of possible algorithms allowed with OpenPGP.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="security-audits">
         
@@ -1568,7 +1573,7 @@ will not get interrupted by a video chat invite.</li>
 link in the settings.</li>
   <li>For example, to use the flagship Jitsi Meet instance, you could enter
 <code class="language-plaintext highlighter-rouge">https://meet.jit.si/$ROOM</code>. The <code class="language-plaintext highlighter-rouge">$ROOM</code> variable will be a random value;
-this way, you will have a new random jitsi room every time you call someone.</li>
+this way, you will have a new random Jitsi room every time you call someone.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="çjanë-listat-e-transmetimeve-dhe-si-mund-ti-përdor">
@@ -1910,16 +1915,16 @@ shumë pajisje mund të mos punojë si duhet.</p>
       </h3>
 
 <ul>
-  <li>Yes and No.</li>
-  <li>No, you can not use your Protonmail, Tutanota, or Criptext account with Delta
-Chat; they do not offer receiving mails via IMAP.</li>
-  <li>In any case you can use Delta Chat to send Messages to people who use
-Protonmail, Tutanota, or Criptext. Those messages will not be end-to-end
-encrypted, though. The end-to-end encryption those providers offer is not
-compatible with <a href="https://autocrypt.org/">Autocrypt</a>, the standard Delta Chat
-uses.</li>
-  <li>Delta Chat can end-to-end-encrypt through any e-mail provider with any
-<a href="https://autocrypt.org/dev-status.html">Autocrypt-enabled e-mail app</a>.</li>
+  <li>Po dhe Jo.</li>
+  <li>Jo, me Delta Chat-in s’mund të përdorni llogarinë tuaj Protonmail, Tutanota,
+ose Criptext; ato nuk ofrojnë marrje email-esh përmes IMAP-it.</li>
+  <li>Sidoqoftë, mund të përdorni Delta Chat-in të dërgoni Mesazhe për persona që
+përdorin Protonmail, Tutanota, ose Criptext. Këto mesazhe ama s’do të jenë
+të fshehtëzuara Skaj-më-Skaj. Fshehtëzimi Skaj-më-Skaj që japin këto shërbime
+s’është i përputhshëm me <a href="https://autocrypt.org/">Autocrypt-in</a>, standardin që
+përdor Delta Chat-i.</li>
+  <li>Delta Chat-i mund të kryejë fshehtëzim skaj-më-skaj përmes cilitdo shërbim
+email-i me çfarëdo <a href="https://autocrypt.org/dev-status.html">aplikacioni email që punon me Autocrypt</a>.</li>
 </ul>
     
       <p class="back"><a href="#top">^</a></p><h3 id="remove-account">
