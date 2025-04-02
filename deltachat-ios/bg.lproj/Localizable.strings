@@ -117,7 +117,7 @@
 "voice_message" = "Гласово съобщение";
 "forwarded" = "Препратено";
 "forwarded_message" = "Препратено съобщение";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Препратен от %1$@";
 "video" = "Видео";
 "documents" = "Документи";
@@ -397,7 +397,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Мрежа от квадрати";
 "send_message" = "Изпращане на съобщение";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ промени своя адрес от %2$@ на %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Променихте своя email адрес от %1$@ на %2$@.\n\nАко от тук нататък изпратите съобщение до проверена група, контактите в нея автоматично ще заменят стария с новия Ви адрес.\n\nСилно се препоръчва да извършите настройка в предишния си доставчик на електронна поща така, че всички email съобщения да се препращат към новия Ви email адрес. В противен случай е възможно да не получавате съобщения от контакти, които все още не са получили новия Ви адрес.";
@@ -427,7 +427,7 @@
 "incoming_messages" = "Входящи съобщения";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Изходящи съобщения";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Съхранение върху %1$@";
 "connectivity" = "Свързаност";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -474,9 +474,7 @@
 "welcome_chat_over_email" = "Защитен децентрализиран чат";
 "scan_invitation_code" = "Сканиране на код за покана";
 "login_title" = "Влизане";
-// for classic email, we use the classical term "Account"
 "login_header" = "Влизане във Вашия акаунт за електронна поща";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Влизане със съществуващ акаунт за електронна поща";
 "login_subheader" = "За известните доставчици на електронна поща допълнителните настройки се попълват автоматично. Понякога е необходимо да се разреши IMAP в уеб настройките. Потърсете помощ от Вашия доставчик на електронна поща или приятели.";
 "login_no_servers_hint" = "Delta Chat няма сървъри, Вашите данни стоят на Вашето устройство.";
@@ -502,7 +500,7 @@
 "import_backup_title" = "Възстановяване от резервно копие";
 "import_backup_ask" = "Открито е резервно копие в \"%1$@\".\n\n Искате ли да импортирате и използвате всички данни и настройки от него?";
 "import_backup_no_backup_found" = "Не са открити резервни копия.\n\nКопирайте резервното копие в \"%1$@\" и опитайте отново. Като алтернатива натиснете \"Започване на обмен на съобщения\", за да продължите с нормалния процес на настройка.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не можете да влезете като \"%1$@\". Моля, проверете дали адресът за електронна поща и паролата са правилни. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "Да бъдат приемани невалидните сертификати";
@@ -530,11 +528,10 @@
 "pref_profile_photo" = "Изображение на профила";
 "pref_blocked_contacts" = "Блокирани контакти";
 "blocked_empty_hint" = "Блокираните контакти ще се появяват тук.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Парола и акаунт";
 "pref_who_can_see_profile_explain" = "Изображението, името и подписът от Вашия профил ще бъдат изпратени заедно с Вашите съобщения, когато общувате с други потребители.";
 "pref_your_name" = "Вашето име";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Текст на подписа";
 "pref_enter_sends" = "Клавишът Enter изпраща";
 "pref_enter_sends_explain" = "Натискането на клавиша Enter ще изпраща текстовите съобщения";
@@ -588,7 +585,7 @@
 "pref_backup" = "Резервно копие";
 "pref_backup_explain" = "Резервните копия на чатовете да се създават във външно място за съхранение";
 "pref_backup_export_explain" = "Резервното копие помага да установите нова инсталация на това или друго устройство.\n\nТо ще съдържа всички съобщения, контакти и чатове и Вашата настройка \"от край до край\" на Autocrypt. Пазете файла на резервното копие на сигурно място или го изтрийте колкото е възможно по-скоро.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Експортиране на %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Експортиране на всички %1$d профила";
@@ -609,7 +606,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
 "pref_watch_sent_folder" = "Да бъде наблюдавана папката \"Изпратени\"";
 "pref_send_copy_to_self" = "Изпращане на копие до себе си";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Изисква се, когато този акант се използва на повече от едно устройство.";
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
 "pref_auto_folder_moves_explain" = "Разговорите са преместени, за да се избегне претрупване на папката \"Входящи\"";
@@ -815,9 +811,9 @@
 "set_name_and_avatar_explain" = "Задайте име, което Вашите контакти ще разпознават.  Можете също да установите изображение за профил.";
 "please_enter_name" = "Моля, въведете име.";
 "qraccount_qr_code_cannot_be_used" = "Не може да бъде създаден нов акаунт със сканирания QR код.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Желаете ли да влезете в \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Желаете ли да влезете в \"%1$@\"?\n\nСъщестуващият Ви акаунт няма да бъде изтрит. Превключвайте между акаунтите си чрез \"Превключване към друг акаунт\".";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ Ви покани да се присъедините към тази група.\n\nИзчаква се устройството на %2$@ да отговори…";

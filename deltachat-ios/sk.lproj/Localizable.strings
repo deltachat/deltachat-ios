@@ -103,7 +103,7 @@
 "voice_message" = "Hlasová správa";
 "forwarded" = "Preposlané";
 "forwarded_message" = "Preposlaná správa";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Preposlal %1$@";
 "video" = "Video";
 "documents" = "Dokumenty";
@@ -354,14 +354,14 @@
 "tab_webxdc_empty_hint" = "Tu sú zobrazené súkromné aplikácie zdieľané v rámci tejto konverzácie.";
 "media_preview" = "Ukážka pre médiá";
 "send_message" = "Odoslanie správy";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ zmenil(a) svoju adresu z %2$@ na %3$@";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Prichádzajúce Správy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchádzajúce Správy";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Dáta o %1$@";
 "connectivity" = "Pripojenie";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -381,9 +381,7 @@
 "part_of_total_used" = "%1$@ z %2$@využitých ";
 "scan_invitation_code" = "Skenovať kód pozvánky";
 "login_title" = "Prihlásiť sa";
-// for classic email, we use the classical term "Account"
 "login_header" = "Prihláste sa na server";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Prihláste sa pomocou existujúceho e-mailového účtu";
 "login_subheader" = "Pre známych poskytovateľov e-mailov sa automaticky nastavujú ďalšie nastavenia. Niekedy je potrebné v nastaveniach webu povoliť protokol IMAP. Požiadajte o pomoc svojho poskytovateľa e-mailu alebo priateľov";
 "login_no_servers_hint" = "Neexistujú žiadne servery Delta Chat, vaše dáta zostanú vo vašom zariadení.";
@@ -409,7 +407,7 @@
 "import_backup_title" = "Importovať zálohu";
 "import_backup_ask" = "Záloha sa našla na „%1$@“.\n\nChcete z nej importovať a použiť všetky dáta a nastavenia?";
 "import_backup_no_backup_found" = "Neboli nájdené žiadne zálohy.\n\nSkopírujte zálohu na „%1$@“ a skúste to znova. Prípadne stlačte tlačidlo „Spustiť zasielanie správ“ a pokračujte v bežnom procese nastavenia.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nie je možné prihlásiť sa ako „%1$@“. Skontrolujte správnosť e-mailovej adresy a hesla.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prijmite neplatné certifikáty";
@@ -437,11 +435,10 @@
 "pref_profile_photo" = "Profilový obrázok";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Ak zablokujete kontakty, zobrazia sa tu.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Pri komunikácii s ostatnými používateľmi sa vedľa vašich správ zobrazí váš profilový obrázok a meno. Už odoslané informácie nemožno vymazať ani odstrániť.";
 "pref_your_name" = "Vaše meno";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Text v podpise";
 "pref_enter_sends" = "Zadajte odoslanie kľúča";
 "pref_enter_sends_explain" = "Textové správy sa odošlú po stlačení Enteru";
@@ -508,7 +505,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
 "pref_watch_sent_folder" = "Pozrieť priečinok Odoslané";
 "pref_send_copy_to_self" = "Odoslať kópiu sebe";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Vyžaduje sa, ak používate tento účet na viacerých zariadeniach.";
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
 "pref_auto_folder_moves_explain" = "Konverzácie sa presunú, aby sa predišlo preplneniu doručenej pošty";
@@ -687,7 +683,7 @@
 "qraccount_ask_create_and_login" = "Vytvoriť novú e-mailovú adresu na „%1$@“ a prihlásiť sa tam?";
 "qraccount_ask_create_and_login_another" = "Vytvorte novú e-mailovú adresu na „%1$@“ a prihláste sa tam?\n\nVáš existujúci účet nebude odstránený. Medzi položkami môžete prepínať pomocou položky „Prepnúť účet“.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prihlásiť sa na \"%1$@\"?";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pripojili k tejto skupine.\n\nČaká sa na odpoveď zo zariadenia používateľa %2$@...";

@@ -109,7 +109,7 @@
 "voice_message" = "Pesan suara";
 "forwarded" = "Diteruskan";
 "forwarded_message" = "Pesan yang diteruskan";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Diteruskan oleh %1$@";
 "video" = "Video";
 "documents" = "Dokumen";
@@ -315,9 +315,7 @@
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
 "login_title" = "Masuk";
-// for classic email, we use the classical term "Account"
 "login_header" = "Masuk ke server Anda";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Masuk dengan akun surel yang ada";
 "login_subheader" = "Pengaturan surel penyedia tambahan yang sudah diketahui dipasang secara otomatis. Terkadang IMAP perlu daktifkan di pengaturan aplikasi. Hubungi surel penyedia Anda atau minta tolong teman.";
 "login_no_servers_hint" = "Tidak ada server Delta Chat, data Anda tetap di perangkat Anda.";
@@ -343,7 +341,7 @@
 "import_backup_title" = "Impor cadangan";
 "import_backup_ask" = "Cadangan ditemukan di \"%1$@\".\n\n Apakah Anda ingin mengimpor dan menggunakan semua data dan pengaturan darinya?";
 "import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi. Cara lain, tekan \"Mulai obrolan\" untuk melanjutkan proses pengaturan normal.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Terima sertifikat yang tidak sah";
@@ -364,11 +362,10 @@
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Kata sandi dan akun";
 "pref_who_can_see_profile_explain" = "Foto dan nama profil Anda akan tampak bersama dengan pesan-pesan ketika berkomunikasi dengan pengguna lain. Informasi yang telah dikirimkan tidak dapat dihapus atau dipindah.";
 "pref_your_name" = "Nama Anda";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signature text";
 "pref_enter_sends" = "Tombol Enter mengirim";
 "pref_enter_sends_explain" = "Menekan tombol Enter akan mengirimkan teks pesan";

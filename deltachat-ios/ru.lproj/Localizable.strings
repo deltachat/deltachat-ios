@@ -128,7 +128,7 @@
 "voice_message" = "Голосовое сообщение";
 "forwarded" = "Переслано";
 "forwarded_message" = "Пересланное сообщение";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Переслано от %1$@";
 "video" = "Видео";
 "documents" = "Документы";
@@ -248,9 +248,9 @@
 "select_chat" = "Выбрать чат";
 "select_more" = "Выбрать больше";
 "menu_edit_name" = "Редактировать имя";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Задайте имя, которое будет показано вместо \"%1$@\". Оставьте поле пустым, чтобы использовать выбранное контактом имя.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Имя для \"%1$@\"";
 "menu_settings" = "Настройки";
 "menu_advanced" = "Дополнительные параметры";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Сетка квадратов";
 "send_message" = "Отправить сообщение";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ меняет адрес с %2$@ на %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Вы изменили свой адрес электронной почты с %1$@ на %2$@.\n\nЕсли вы отправите сообщение в подтвержденную группу, контакты в ней автоматически обновят ваш старый адрес на новый.\n\nНастоятельно рекомендуется настроить старого поставщика электронной почты на пересылку всех писем на новый адрес. Иначе вы можете пропустить сообщения от контактов, которые еще не получили ваш новый адрес.";
@@ -471,7 +471,7 @@
 "incoming_messages" = "Входящие сообщения";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Исходящие сообщения";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Хранилище на %1$@";
 "connectivity" = "Соединение";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "Безопасный децентрализованный чат";
 "scan_invitation_code" = "Сканировать код приглашения";
 "login_title" = "Войти";
-// for classic email, we use the classical term "Account"
 "login_header" = "Вход в аккаунт";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Вход в аккаунт электронной почты";
 "login_subheader" = "Для известных провайдеров электронной почты дополнительные настройки устанавливаются автоматически. Иногда необходимо включить IMAP в настройках веб-сайта. Проконсультируйтесь с технической поддержкой вашей почтовой службы или друзьями, для получения помощи.";
 "login_no_servers_hint" = "Delta Chat не собирает данные пользователей, все данные хранятся на вашем устройстве!";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "Порт SMTP";
 "login_smtp_security" = "Защита соединения SMTP";
 "login_auth_method" = "Метод авторизации";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Прокси";
 "proxy_use_proxy" = "Использовать прокси";
 "proxy_add" = "Добавить прокси";
@@ -559,7 +557,7 @@
 "import_backup_title" = "Восстановить из резервной копии";
 "import_backup_ask" = "Найдена резервная копия в \"%1$@\".\n\nВы хотите импортировать и использовать все данные и настройки из нее?";
 "import_backup_no_backup_found" = "Резервных копий не найдено.\n\nСкопируйте резервную копию в \"%1$@\" и повторите попытку. Или нажмите \"Начать общение\", чтобы продолжить стандартный процесс установки.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не удалось авторизоваться как \"%1$@\". Убедитесь, что адрес электронной почты и пароль введены правильно.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Принимать недействительные сертификаты";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "Изображение профиля";
 "pref_blocked_contacts" = "Заблокированные контакты";
 "blocked_empty_hint" = "Здесь можно просмотреть заблокированные контакты.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Пароль и аккаунт";
 "pref_who_can_see_profile_explain" = "Изображение вашего профиля, имя и информация о себе будут отправлены вместе с сообщениями при общении с другими пользователями.";
 "pref_your_name" = "Ваше имя";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "О себе";
 "pref_enter_sends" = "Отправка по Enter";
 "pref_enter_sends_explain" = "Нажатие клавиши Enter отправит текстовые сообщения";
@@ -657,7 +654,7 @@
 "pref_backup" = "Резервное копирование";
 "pref_backup_explain" = "Резервное копирование чатов на внешний носитель";
 "pref_backup_export_explain" = "Резервная копия поможет вам восстановить данные на этом или на другом устройстве.\n\nРезервная копия содержит все сообщения, контакты и чаты, а также параметры сквозного шифрования Autocrypt. Храните файл резервной копии в безопасном месте или удалите его как можно скорее.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Экспорт %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспорт всех %1$d профилей";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Если вы измените этот параметр, убедитесь, что ваш сервер и другие клиенты настроены соответствующим образом.\n\nВ противном случае, всё может перестать работать.";
 "pref_watch_sent_folder" = "Следить за папкой \"Исходящие\"";
 "pref_send_copy_to_self" = "Отправлять копию себе";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Требуется при использовании этого аккаунта на нескольких устройствах.";
 "pref_auto_folder_moves" = "Автоперемещение в папку DeltaChat";
 "pref_auto_folder_moves_explain" = "Сообщения чатов переносятся, избежать захламления папки \"Входящие\"";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "Укажите имя, которое будут видеть ваши контакты. Также можно установить изображение профиля.";
 "please_enter_name" = "Введите имя.";
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR-код не может быть использован для создания нового профиля.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Авторизоваться в \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Авторизоваться в \"%1$@\"?\n\nВаш существующий профиль не будет удалён. Используйте меню \"Сменить профиль\", чтобы переключаться между профилями.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ приглашает вас в группу.\n\nОжидаем ответ от %2$@…";

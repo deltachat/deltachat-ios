@@ -195,9 +195,7 @@
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
 "login_title" = "Daxil ol";
-// for classic email, we use the classical term "Account"
 "login_header" = "Serverinə daxil ol";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
 "login_subheader" = "Məlum elektron poçt provayderləri üçün əlavə parametrlər avtomatik olaraq quraşdırılır. Bəzən IMAP-ın web məkanında aktiv olması lazımdır. Yardım üçün e-poçt provayderinizə və ya dostlarınıza müraciət edin.";
 "login_no_servers_hint" = "Delta Chat serverləri yoxdur, məlumatlarınız cihazınızda qalır!";
@@ -222,7 +220,7 @@
 "login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
 "import_backup_ask" = "\"%1$@\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
@@ -236,7 +234,7 @@
 "pref_blocked_contacts" = "Bloklanmış kontaktlar";
 "pref_who_can_see_profile_explain" = "Digər istifadəçilərlə ünsiyyət qurarkən profil şəkliniz və adınız mesajlarınızla birlikdə göstərilir. Zatən göndərilən məlumat silinməyəcək. ";
 "pref_your_name" = "Adın";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Yazını mətni";
 "pref_enter_sends" = "Enter açarı ilə göndərmək";
 "pref_enter_sends_explain" = "Enter düyməsini basaraq mətn mesajları göndərəcək";

@@ -94,7 +94,7 @@
 "voice_message" = "音声メッセージ";
 "forwarded" = "転送された";
 "forwarded_message" = "転送されたメッセージ";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "%1$@が転送しました";
 "video" = "動画";
 "documents" = "文章";
@@ -301,9 +301,7 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
 "login_title" = "ログイン";
-// for classic email, we use the classical term "Account"
 "login_header" = "自分のメールサーバーにログインする";
-// for classic email, we use the classical term "Account"
 "login_explain" = "既存のメールアカウントにログインする";
 "login_subheader" = "主なメールサーバーは自動で設定されます｡一般にIMAPはサーバー側で有効に設定する必要が有ります｡サーバー提供者や詳しい人に確認しましょう｡";
 "login_no_servers_hint" = "Delta Chatには専用サーバーが有りません｡つまりあなたのデータ･個人情報はこの端末内に保存されています｡";
@@ -329,7 +327,7 @@
 "import_backup_title" = "バックアップをインポート";
 "import_backup_ask" = "%1$@でバックアップがあります。\n\nすべての設定やデータを取り込んで使用しましょうか？";
 "import_backup_no_backup_found" = "バックアップが見つかりません。\n\n%1$@にバックアップをコピーして、再試行してください。又は、「メッセージの開始」を押して通常のセットアップを続行します。";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "%1$@としてログインできません。メールアドレスとパスワードを確認してください。";
 // TLS certificate checks
 "accept_invalid_certificates" = "無効な証明書を受け入れます";
@@ -354,11 +352,10 @@
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
 "blocked_empty_hint" = "ブロックされた連絡先がここに表示されます。";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "パスワードとアカウント";
 "pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "署名";
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";

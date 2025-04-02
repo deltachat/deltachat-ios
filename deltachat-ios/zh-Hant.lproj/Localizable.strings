@@ -128,7 +128,7 @@
 "voice_message" = "語音訊息";
 "forwarded" = "已轉發";
 "forwarded_message" = "轉發的訊息";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "由%1$@轉發";
 "video" = "影片";
 "documents" = "文件";
@@ -248,9 +248,9 @@
 "select_chat" = "選取聊天";
 "select_more" = "多選";
 "menu_edit_name" = "編輯名稱";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "設置一個昵稱，而不是 「%1$@ 」留空以使用聯繫人選擇的姓名。";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "「%1$@」的昵稱";
 "menu_settings" = "設定";
 "menu_advanced" = "進階";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "方形網格";
 "send_message" = "傳送訊息";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ 已將他的位址從 %2$@更改 為 %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "您已將電子郵件位址從%1$@更改為%2$@ 。\n\n如果您現在向已驗證的群組發送消息，那裡的聯絡人會自動將舊位址替換為您的新位址。\n\n強烈建議您將舊電子郵件供應商設置為將所有電子郵件轉發到您的新電子郵件位址。否則，您可能會錯過尚未獲得新地址的聯絡人的消息。";
@@ -471,7 +471,7 @@
 "incoming_messages" = "傳入訊息";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "傳出訊息";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "%1$@上的存儲空間";
 "connectivity" = "連接狀態";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "掃描邀請碼";
 "login_title" = "登入";
-// for classic email, we use the classical term "Account"
 "login_header" = "登入你的電子郵件帳戶";
-// for classic email, we use the classical term "Account"
 "login_explain" = "使用現有的電子郵件帳戶登入";
 "login_subheader" = "我們能自動處理大多數常見的郵件伺服器設定。有時候你需要在 web 界面上手動打開 IMAP 服務，請詢問郵件服務商或請朋友幫忙。";
 "login_no_servers_hint" = "Delta Chat 沒有伺服器，你的資料只會存在你自己的裝置上!";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "SMTP 埠";
 "login_smtp_security" = "SMTP 安全";
 "login_auth_method" = "授權方式";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "代理伺服器";
 "proxy_use_proxy" = "使用代理伺服器";
 "proxy_add" = "添加代理伺服器";
@@ -559,7 +557,7 @@
 "import_backup_title" = "匯入備份";
 "import_backup_ask" = "在 「%1$@ 」找到備份\n\n你要匯入備份，並使用原來的資料和設定嗎?";
 "import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到「%1$@」然後再試一次，或是按「開始傳送訊息」進行標準設定。";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
 // TLS certificate checks
 "accept_invalid_certificates" = "接受無效證書";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "大頭照";
 "pref_blocked_contacts" = "已封鎖的聯絡人";
 "blocked_empty_hint" = "被封鎖的聯絡人將在此處顯示。";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "密碼和帳戶";
 "pref_who_can_see_profile_explain" = "你的名字和大頭照在通訊的過程中，會提供給對方看到。已傳送的資訊無法被刪除或移除。";
 "pref_your_name" = "你的名字";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "簽名檔";
 "pref_enter_sends" = "換行鍵送出訊息";
 "pref_enter_sends_explain" = "按下換行鍵就送出訊息";
@@ -657,7 +654,7 @@
 "pref_backup" = "備份";
 "pref_backup_explain" = "將備份另存至外部儲存媒體";
 "pref_backup_export_explain" = "備份可以讓你把設定及對話紀錄轉移到這台或其它裝置上。\n\n備份內容包括所有的訊息、聯絡人、對話、端到端AutoCrypt設定。請務必將備份檔存放在安全的地方，並在轉移後儘快刪除。";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "匯出 %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "匯出全部%1$d個賬戶";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "如果關閉本選項的話，請務必確定你的伺服器和其它客戶端應用程式都使用相同的設定，否則很可能不能運作。";
 "pref_watch_sent_folder" = "監看送件匣";
 "pref_send_copy_to_self" = "將副本發送給自己";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "在多個裝置上使用此帳戶時，這是必需的。";
 "pref_auto_folder_moves" = "自動搬移到 DeltaChat 資料夾";
 "pref_auto_folder_moves_explain" = "搬移對話以避免塞爆收件匣";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "設置聯絡人可以識別的名稱。您還可以設置大頭貼。";
 "please_enter_name" = "請輸入名稱。";
 "qraccount_qr_code_cannot_be_used" = "掃描的 QR 碼不能用於建立新賬戶。";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "登入「%1$@」？";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "登入「%1$@」？\n\n您現有的賬戶不會被刪除。使用「切換賬戶」項在您的賬戶之間切換。";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@邀請您加入此群組。\n\n正在等待%2$@裝置的回覆...";

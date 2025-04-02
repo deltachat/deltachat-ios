@@ -128,7 +128,7 @@
 "voice_message" = "Hlasová zpráva";
 "forwarded" = "Přeposlané";
 "forwarded_message" = "Přeposlaná zpráva";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Přeposláno uživatelem %1$@";
 "video" = "Videa";
 "documents" = "Dokumenty";
@@ -248,9 +248,9 @@
 "select_chat" = "Vybrat chat";
 "select_more" = "Vybrat další";
 "menu_edit_name" = "Upravit jméno";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Nastavte přezdívku, která se vám bude zobrazovat místo \"%1$@\". Chcete-li použít původní jméno kontaktu, ponechte prázdné.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Přezdívka pro \"%1$@\"";
 "menu_settings" = "Nastavení";
 "menu_advanced" = "Pokročilé";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Mřížka čtverců";
 "send_message" = "Odeslat zprávu";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "Uživatel %1$@ změnil svou adresu z %2$@ na %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Změnili jste svou e-mailovou adresu z %1$@ na %2$@.\n\nPokud nyní pošlete zprávu ověřené skupině, všem kontaktům v ní se vaše adresa aktualizuje na novou.\n\nJe důrazně doporučeno, abyste u svého starého poskytovatele nastavili přesměrování všech e-mailů na novou adresu, jinak byste mohli přijít o zprávy od kontaktů, které vaši novou adresu dosud nedostaly. ";
@@ -471,7 +471,7 @@
 "incoming_messages" = "Příchozí zprávy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchozí zprávy";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Úložiště na %1$@";
 "connectivity" = "Připojení";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
 "login_title" = "Přihlaš se";
-// for classic email, we use the classical term "Account"
 "login_header" = "Přihlašte se ke svému e-mailovému účtu";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Přihlásit se se stávajícím účtem pro e-mail.";
 "login_subheader" = "Pro standardní poskytovatele jsou nastavení dopněna automaticky. Někdy je potřeba povolit IMAP ve webovém rozhraní. Potřebujete-li pomoc, obraťte se na svého poskytovatele e-mailu nebo přátele.";
 "login_no_servers_hint" = "Delta Chat nesbírá uživatelská data, vše zůstává na vašem zařízení.";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP zabezpečení";
 "login_auth_method" = "Metoda autorizace";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy server";
 "proxy_use_proxy" = "Použít proxy server";
 "proxy_add" = "Přidat proxy server";
@@ -559,7 +557,7 @@
 "import_backup_title" = "Obnovit ze zálohy";
 "import_backup_ask" = "Záloha nalezena v \"%1$@\"\n\nPřejete si soubor načíst a použít všechna jeho data a nastavení?";
 "import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopírujte zálohu do \"%1$@\" a zkuste to znovu. Můžete také stisknout \"Začít...\"  a pokračovat běžným postupem pro nastavení aplikace.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "Profilový obrázek";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Zablokované kontakty se zobrazí zde.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Váš profilový obrázek, jméno a bio budou odeslány společně s vašimi zprávami ostatním uživatelům.";
 "pref_your_name" = "Vaše jméno";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Bio";
 "pref_enter_sends" = "Enter odesílá";
 "pref_enter_sends_explain" = "Stisk klávesy Enter odešle zprávu";
@@ -657,7 +654,7 @@
 "pref_backup" = "Záloha";
 "pref_backup_explain" = "Zálohovat chaty na externí úložiště";
 "pref_backup_export_explain" = "Záloha vám pomůže s novou instalací na tomto či jiném zařízení.\n\nZáloha bude obsahovat všechny zprávy, kontakty a chaty, a nastavení automatického koncového šifrování. Soubor se zálohou uchovávejte na bezpečném místě, nebo jej co nejdříve smažte.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Exportovat %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportovat všech %1$d profilů";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Při změně této volby se ujistěte, že váš server a ostatní klientské aplikace mají odpovídající nastavení.\n\nJinak může vše přestat fungovat.";
 "pref_watch_sent_folder" = "Sledovat složku Odeslané";
 "pref_send_copy_to_self" = "Posílat si kopie";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Tato volba je potřebná, pokud je tento účet používán na více zařízeních.";
 "pref_auto_folder_moves" = "Automaticky přesouvat do složky DeltaChat ";
 "pref_auto_folder_moves_explain" = "Zprávy chatů jsou přesouvány, aby nezahlcovaly složku Doručené";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "Nastavte si jméno, podle kterého vás ostatní poznají. Můžete si také nastavit profilový obrázek.";
 "please_enter_name" = "Prosím, zadejte jméno.";
 "qraccount_qr_code_cannot_be_used" = "Tento QR kód neumožňuje nastavení nového účtu.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Přejete si přihlásit k \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Přejete si přihlásit k \"%1$@\"?\n\nVáš stávající profil nebude smazán. K přepínání mezi profily můžete využít volbu \"Přepnout profil\".";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Uživatel %1$@ vás pozval do této skupiny.\n\nČekání na odpověď od zařízení uživatele %2$@...";

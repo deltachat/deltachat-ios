@@ -93,7 +93,7 @@
 "voice_message" = "Tale besked";
 "forwarded" = "Videresendt";
 "forwarded_message" = "Videresendt besked";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Videresendt af %1$@";
 "video" = "Video";
 "documents" = "Dokumenter";
@@ -305,9 +305,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ af %2$@ brugt";
 "login_title" = "Login";
-// for classic email, we use the classical term "Account"
 "login_header" = "Login til server";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Login med en eksisterende e-mailkonto";
 "login_subheader" = "For kendte e-mailudbydere opsættes yderligere indstillinger automatisk. Nogle gange skal IMAP aktiveres i brugerfladen. Kontakt din e-mailudbyder eller venner for at få hjælp.";
 "login_no_servers_hint" = "Der er ingen Delta Chat server, data forbliver på enhed!";
@@ -333,7 +331,7 @@
 "import_backup_title" = "Importer sikkerhedskopi";
 "import_backup_ask" = "Sikkerhedskopi fundet hos \"%1$@\".\n\nVil du Importere og bruge al data og opsætning fra den?";
 "import_backup_no_backup_found" = "Ingen sikkerhedskopi fundet.\n\nKopier sikkerhedskopi til \"%1$@\" og prøv igen. Alternativt, klik \"Start samtale\" for at følge normal opsætning proces.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptér ugyldige certifikater";
@@ -359,11 +357,10 @@
 "pref_profile_photo" = "Profilbillede";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "blocked_empty_hint" = "Hvis du blokerer kontakter, bliver de vist her.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Adgangskode og konto";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Dit navn";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Underskrift tekst";
 "pref_enter_sends" = "Enter tast sender";
 "pref_enter_sends_explain" = "Tryk på enter tast vil sende tekst beskeden";

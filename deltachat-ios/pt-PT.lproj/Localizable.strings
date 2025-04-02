@@ -148,7 +148,6 @@
 "all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Visualização de mídia";
 "login_title" = "Login";
-// for classic email, we use the classical term "Account"
 "login_header" = "Login no seu servidor";
 "login_subheader" = "Para os provedores de e-mail conhecidos as configurações adicionais são configuradas automaticamente. Por vezes, o IMAP precisa estar activado no frontend da web. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
 "login_inbox" = "Caixa de entrada";
@@ -172,7 +171,7 @@
 "import_backup_title" = "Importar backup";
 "import_backup_ask" = "Backup encontrado em \"%1$@\".\n\nQuer importar e usar todos os dados e respectivas configurações?";
 "import_backup_no_backup_found" = "Nenhum backup encontrado. \n\nCopie o backup para \"%1$@\" e tente novamente. Em alternativa, pressione \"Iniciar mensagem\" para prosseguir com o processo de configuração normal.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
@@ -186,7 +185,7 @@
 "pref_blocked_contacts" = "Bloquear contactos";
 "pref_who_can_see_profile_explain" = "A sua foto e nome de perfil serão mostrados ao lado das suas mensagens ao comunicar com outros utilizadores. As informações já enviadas não podem ser excluídas ou removidas";
 "pref_your_name" = "O seu nome";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Informação do estado";
 "pref_enter_sends" = "Tecla ENTER para enviar";
 "pref_enter_sends_explain" = "Pressionar a tecla ENTER enviará mensagens de texto";

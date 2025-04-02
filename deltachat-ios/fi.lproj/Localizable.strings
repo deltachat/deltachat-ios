@@ -117,7 +117,7 @@
 "voice_message" = "Ääniviesti";
 "forwarded" = "Välitetty";
 "forwarded_message" = "Välitetty viesti";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Välittäjä: %1$@";
 "video" = "Video";
 "documents" = "Asiakirjat";
@@ -397,7 +397,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Neliöruudukko";
 "send_message" = "Lähetä viesti";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ vaihtui osoitteesta %2$@ osoitteeksi %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Vaihdoit sähköpostiosoitteesi osoitteesta %1$@ osoitteeksi %2$@.\n\nJos lähetät viestin vahvistettuun ryhmään, ryhmän jäsenet saavat automaattisesti uuden osoitteesi.\n\nOn suositeltavaa asettaa vanha tilisi välittämään kaikki viestit uuteen osoitteeseesi. Muuten et välttämättä saa viestejä niiltä yhteystiedoiltasi, joilla ei ole uutta osoitettasi.";
@@ -427,7 +427,7 @@
 "incoming_messages" = "Saapuvat viestit";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Lähtevät viestit";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Tallennustila palvelimella %1$@";
 "connectivity" = "Yhteys";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -474,9 +474,7 @@
 "welcome_chat_over_email" = "Turvallinen hajautettu keskustelu";
 "scan_invitation_code" = "Skannaa kutsukoodi";
 "login_title" = "Kirjaudu sisään";
-// for classic email, we use the classical term "Account"
 "login_header" = "Kirjaudu sähköpostitilillesi";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Kirjaudu olemassa olevalla sähköpostitilillä";
 "login_subheader" = "Sähköpostiasetukset määritetään automaattisesti tunnetuille palvelimille. Joskus verkkoasetuksista täytyy ottaa käyttöön IMAP. Kysy apua palveluntarjoajaltasi tai ystäviltäsi.";
 "login_no_servers_hint" = "Delta Chat ei kerää käyttäjädataa, kaikki tallennetaan vain laitteellesi.";
@@ -502,7 +500,7 @@
 "import_backup_title" = "Palauta varmuuskopiosta";
 "import_backup_ask" = "Varmuuskopio löydetty sijainnista \"%1$@\".\n\nHaluatko tuoda sen ja käyttää sen asetuksia?";
 "import_backup_no_backup_found" = "Varmuuskopioita ei löytynyt.\n\nKopioi varmuuskopio kohteeseen \"%1$@\" ja yritä uudelleen. Voit myös vaihtoehtoisesti jatkaa tavanomaista käyttöönottoa valitsemalla \"Aloita viestittely\".";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Osoitteella \"%1$@\" kirjautuminen epäonnistui. Tarkistathan että sähköpostiosoite ja salasana ovat oikeinkirjoitettuja.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Hyväksy rikkinäiset varmenteet";
@@ -530,11 +528,10 @@
 "pref_profile_photo" = "Profiilikuva";
 "pref_blocked_contacts" = "Estetyt yhteystiedot";
 "blocked_empty_hint" = "Estämäsi yhteystiedot näkyvät tässä";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Salasana ja tili";
 "pref_who_can_see_profile_explain" = "Kun kommunikoit muiden käyttäjien kanssa, profiilikuvasi, nimesi ja biosi lähetetään viestiesi ohessa.";
 "pref_your_name" = "Nimesi";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Bio";
 "pref_enter_sends" = "Lähetä Enter -näppäimellä";
 "pref_enter_sends_explain" = "Enter-näppäimen painaminen lähettää viestin";
@@ -588,7 +585,7 @@
 "pref_backup" = "Varmuuskopiointi";
 "pref_backup_explain" = "Varmuuskopioi keskustelut ulkoiseen tallennustilaan";
 "pref_backup_export_explain" = "Varmuuskopio auttaa siirtämään asennuksen tälle tai toiselle laitteelle.\n\nVarmuuskopio sisältää kaikki viestit, yhteystiedot ja keskustelut sekä päästä-päähän salauksen Autocrypt -tiedot. Pidä varmuuskopiotiedosto turvallisessa paikassa tai poista se heti kun mahdollista.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Vie %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Vie kaikki %1$d profiilia";
@@ -609,7 +606,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Jos muutat tätä asetusta, varmista että palvelimesi ja muut päätelaitteesi ovat määritetty vastaavasti.\n\nMuutoin ne eivät ehkä toimi lainkaan.";
 "pref_watch_sent_folder" = "Tarkkaile Lähetetyt -kansiota";
 "pref_send_copy_to_self" = "Lähetä kopio itselle";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Vaaditaan käytettäessä tiliä usealla laitteella.";
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat -kansioon";
 "pref_auto_folder_moves_explain" = "Saapuneet -kansion täyttämisen välttämiseksi, pikaviestikeskustelut siirretään ";
@@ -815,9 +811,9 @@
 "set_name_and_avatar_explain" = "Aseta nimi jonka yhteystietosi tunnistavat. Voit myös asettaa profiilikuvan.";
 "please_enter_name" = "Syötä nimi.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Haluatko kirjautua osoitteella \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Haluatko kirjautua osoitteella \"%1$@\"?\n\nNykyistä tiliäsi ei poisteta. Käytä \"Vaihda tiliä\" -kohtaa vaihtaaksesi tiliesi välillä.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsui sinut tähän ryhmään.\n\nOdotetaan vastausta yhteystiedon %2$@ laitteelta...";

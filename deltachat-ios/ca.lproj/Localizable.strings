@@ -128,7 +128,7 @@
 "voice_message" = "Missatge de veu";
 "forwarded" = "Reenviat";
 "forwarded_message" = "Missatge reenviat";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Reenviat per %1$@";
 "video" = "Vídeo";
 "documents" = "Documents";
@@ -248,9 +248,9 @@
 "select_chat" = "Selecciona el xat";
 "select_more" = "Selecciona\'n més";
 "menu_edit_name" = "Edita el nom";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Indiqueu un sobrenom que se us mostrarà en comptes de «%1$@». Deixeu-ho buit per a usar el nom triat pel contacte.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Sobrenom per a  «%1$@»";
 "menu_settings" = "Preferències";
 "menu_advanced" = "Avançat";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Graella quadrada";
 "send_message" = "Envia el missatge";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ha canviat la seva adreça de %2$@ a %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Heu canviat la vostra adreça de correu electrònic de %1$@ a %2$@.\n\nSi ara envieu un missatge a un grup verificat, els contactes del grup canviaran de forma automàtica l\'adreça antiga per la nova.\n\nUs recomanem que configureu el compte antic a fi que us reenvïi els missatges a l\'adreça nova. Si no ho feu, podríeu perdre missatges de contactes que encara no hagin actualitzat la vostra adreça.";
@@ -471,7 +471,7 @@
 "incoming_messages" = "Missatges entrants";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Missatges sortints";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Emmagatzematge a %1$@.";
 "connectivity" = "Connectivitat";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
-// for classic email, we use the classical term "Account"
 "login_header" = "Identifiqueu-vos al vostre servidor";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Inicia sessió amb un compte de correu electrònic existent";
 "login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
 "login_no_servers_hint" = "No hi ha servidors de Delta Chat: les vostres dades es queden al vostre dispositiu!";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
 "login_auth_method" = "Mètode d\'autorització";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Servidor intermediari";
 "proxy_use_proxy" = "Usa un servidor intermediari";
 "proxy_add" = "Afegeix un servidor intermediari";
@@ -559,7 +557,7 @@
 "import_backup_title" = "Importa una còpia de seguretat";
 "import_backup_ask" = "S\'ha trobat una còpia de seguretat a \"%1$@\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
 "import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCopieu la còpia de seguretat a \"%1$@\" i torneu-ho a provar. Com a alternativa, premeu \"Comença a escriure\" per encetar el procés de configuració habitual.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accepta certificats no vàlids";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
 "blocked_empty_hint" = "Els contactes blocats apareixeran aquí.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Contrasenya i compte";
 "pref_who_can_see_profile_explain" = "La vostra imatge de perfil, el vostre nom i també la biografia s\'enviaran amb els missatges que envieu als altres usuaris.";
 "pref_your_name" = "El vostre nom";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signatura";
 "pref_enter_sends" = "La tecla «Retorn» envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla «Retorn»";
@@ -657,7 +654,7 @@
 "pref_backup" = "Còpia de seguretat";
 "pref_backup_explain" = "Copia els xats a un magatzem extern";
 "pref_backup_export_explain" = "La còpia de seguretat és útil a l\'hora de reinstal·lar l\'aplicació en aquest dispositiu o en un altre.\n\nLa còpia tindrà tot els missatges, contactes i xats i la configuració d\'extrem a extrem d\'Autocrypt. Conserveu el fitxer de la còpia en un lloc segur o esborreu-lo tan aviat com pugueu.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Exporta %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exporta tots %1$d perfils";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Si desactiveu aquesta opció, assegureu-vos que el vostre servidor i els altres programes estiguin configurats de la mateixa manera.\n\nAltrament podeu tenir problemes de funcionament.";
 "pref_watch_sent_folder" = "Mostra la safata de sortida";
 "pref_send_copy_to_self" = "Envia\'n una còpia a mi mateix";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Imprescindible quan s\'utilitza aquest compte en diversos dispositius.";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
 "pref_auto_folder_moves_explain" = "Les converses de xat s\'han mogut per no atapeir la safata d’entrada";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "Indiqueu un nom que els vostres contactes puguin reconèixer. També podeu establir una imatge de perfil.";
 "please_enter_name" = "Introduïu un nom";
 "qraccount_qr_code_cannot_be_used" = "El codi QR escanejat no es pot usar per a configurar un perfil nou.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Voleu iniciar sessió a «%1$@»?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Voleu iniciar «%1$@»?\n\nNo s\'esborrarà el perfil existent. Useu l\'element «Canvia el perfil» per a canviar entre els vostres perfils.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ us ha convidat a unir-vos a aquest grup.\n\nS\'està esperant el dispositiu de %2$@ per a respondre...";

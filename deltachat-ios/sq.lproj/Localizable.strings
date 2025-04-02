@@ -127,7 +127,7 @@
 "voice_message" = "Mesazh Zanor";
 "forwarded" = "Përcjellë";
 "forwarded_message" = "Mesazhi u Përcoll";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
@@ -244,9 +244,9 @@
 "select_chat" = "Përzgjidhni Fjalosje";
 "select_more" = "Përzgjidhni më tepër";
 "menu_edit_name" = "Përpunoni Emrin";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Caktoni një nofkë që do t’ju shfaqet në vend të “%1$@”. Që të përdoret emri i zgjedhur nga kontakti, lëreni të zbrazët.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Nofkë për “%1$@”";
 "menu_settings" = "Rregullime";
 "menu_advanced" = "Të mëtejshme";
@@ -435,7 +435,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Mozaik Katror";
 "send_message" = "Dërgo Mesazh";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ndryshoi adresën e vet nga %2$@ në %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Ndryshuat adresën tuaj nga %1$@ në %2$@.\n\nNëse dërgoni tani një mesazh te një grup i verifikuar, kontaktet atje do të zëvendësojnë automatikisht adresën tuaj të vjetër me të renë.\n\nËshtë tejet e këshillueshme të ujdisni shërbimin tuaj të vjetër të email-it të përcjellë krejt email-et te adresa juaj e re email. Përndryshe, mund të humbni mesazhe të kontakteve që s’e kanë marrë ende adresën tuaj të re.";
@@ -466,7 +466,7 @@
 "incoming_messages" = "Mesazhe të Marrë";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mesazhe të Dërguar";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Depozitim në %1$@";
 "connectivity" = "Aftësi lidhjeje";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -513,9 +513,7 @@
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
-// for classic email, we use the classical term "Account"
 "login_header" = "Hyni te Llogaria juaj Email";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Hyni me një llogari email ekzistuese.";
 "login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë caktohen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te pjesa e dukshme web. Për ndihmë këshillohuni me shërbimin tuaj email ose shokë tuajt.";
 "login_no_servers_hint" = "S\’ka shërbyes Delta Chat, të dhënat tuaja rrinë në pajisjen tuaj!";
@@ -531,7 +529,7 @@
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
 "login_auth_method" = "Metodë Autorizimi";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Ndërmjetës";
 "proxy_use_proxy" = "Përdor Ndërmjetës";
 "proxy_add" = "Shtoni Ndërmjetës";
@@ -554,7 +552,7 @@
 "import_backup_title" = "Rikthe prej Kopjeruajtje";
 "import_backup_ask" = "U gjet kopjeruajtje te “%1$@”.\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
 "import_backup_no_backup_found" = "S\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te “%1$@” dhe riprovoni. Ndryshe, shtypni “Filloni të shkëmbeni mesazhe”, që të vazhdoni me procesin normal të rregullimit.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "S\’bëhet dot hyrja si “%1$@”. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prano dëshmi të pavlefshme";
@@ -591,11 +589,10 @@
 "pref_profile_photo" = "Foto Profili";
 "pref_blocked_contacts" = "Kontakte të Bllokuar";
 "blocked_empty_hint" = "Nëse bllokoni kontakte, do të shfaqen këtu.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Fjalëkalim dhe Llogari";
 "pref_who_can_see_profile_explain" = "Fotoja juaj e profilit, emri dhe nënshkrimi do të dërgohen tok me mesazhet tuaj, kur komunikoni me përdorues të tjerë.";
 "pref_your_name" = "Emri juaj";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Tekst Nënshkrimi";
 "pref_enter_sends" = "Tasti Enter Dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
@@ -650,7 +647,7 @@
 "pref_backup" = "Kopjeruajtje";
 "pref_backup_explain" = "Kopjeruaji Fjalosjet në Depozitim të Jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezik, përndryshe fshijeni as më shpejt që të jetë e mundur.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Eksporto %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt llogaritë e %1$d";
@@ -671,7 +668,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Nëse e ndryshoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
 "pref_watch_sent_folder" = "Vëzhgo Dosje Të dërguarish";
 "pref_send_copy_to_self" = "Dërgojini Kopje Vetes";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "E domosdoshme kur kjo llogari përdoret në një numër pajisjesh.";
 "pref_auto_folder_moves" = "Kaloji vetvetiu te Dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
@@ -878,9 +874,9 @@
 "set_name_and_avatar_explain" = "Caktoni një emër, që kontaktet tuaj do ta njohin. Mundeni edhe të caktoni një emër profili.";
 "please_enter_name" = "Ju lutemi, jepni një emër.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një llogari të re.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Të hyhet si “%1$@”?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Të hyhet si “%1$@”?\n\nLlogaria juaj ekzistuese s’do të fshihet. Që të kaloni nga një llogari e juaja në një tjetër, përdorni zërin “Ndërroni Llogari”.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
