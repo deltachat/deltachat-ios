@@ -46,8 +46,8 @@ class SendContactViewController: UIViewController {
         view.addSubview(tableView)
         setupConstraints()
 
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SendContactViewController.cancel(_:)))
-        navigationItem.leftBarButtonItem = cancelButton
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(SendContactViewController.cancel(_:)))
+        navigationItem.leftBarButtonItem = closeButton
 
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
