@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Modernise "Close" button in overlay sheets
 - Hide superfluous "Show Classic E-mails" advanced setting for chatmail
 - Update translations and local help
 
