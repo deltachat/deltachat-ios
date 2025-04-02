@@ -60,7 +60,7 @@ class AppPickerViewController: UIViewController {
         navigationItem.titleView = segmentedControl
 
         let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(AppPickerViewController.close(_:)))
-        navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = closeButton
         self.defaultCloseButton = closeButton
 
         setupConstraints()
@@ -93,7 +93,7 @@ class AppPickerViewController: UIViewController {
         downloadingView.isHidden = false
         downloadingView.activityIndicator.startAnimating()
         downloadingView.activityIndicator.hidesWhenStopped = true
-        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
     }
 
     @objc func hideLoading() {
@@ -101,7 +101,7 @@ class AppPickerViewController: UIViewController {
         navigationItem.titleView = segmentedControl
         downloadingView.isHidden = true
         downloadingView.activityIndicator.stopAnimating()
-        navigationItem.leftBarButtonItem = defaultCloseButton
+        navigationItem.rightBarButtonItem = defaultCloseButton
     }
 
     @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
