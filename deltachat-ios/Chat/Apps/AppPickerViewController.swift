@@ -59,7 +59,7 @@ class AppPickerViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(AppPickerViewController.segmentedControlValueChanged(_:)), for: .valueChanged)
         navigationItem.titleView = segmentedControl
 
-        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(AppPickerViewController.close(_:)))
+        let closeButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(AppPickerViewController.close(_:)))
         navigationItem.leftBarButtonItem = closeButton
         self.defaultCloseButton = closeButton
 
