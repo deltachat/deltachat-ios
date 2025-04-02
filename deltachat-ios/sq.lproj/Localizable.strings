@@ -756,18 +756,9 @@
 "autocrypt_send_asm_explain_before" = "Një “Mesazh Rregullimi Autocrypt-i“ ua jep, në mënyrë të parrezik, rregullimin tuaj për fshehtëzimin skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nRregullimi do të fshehtëzohet përmes një kodi rregullimi i cili shfaqet këtu dhe duhet dhënë te pajisja tjetër.";
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese.\n\nPasi të keni mbaruar, pajisja juaj tjetër do të jetë gati të përdorë Autocrypt-in.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
 "autocrypt_asm_subject" = "Mesazh Rregullimi Autocrypt-i";
 "autocrypt_asm_general_body" = "Ky është Mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur rregullimin tuaj skaj-më-skaj në klientë të tjerë.\n\nQë ta shfshehtëzoni rregullimin tuaj, hapeni mesazhin te një klient që mund të përdorë Autocrypt-in dhe jepni kodin e rregullimit të treguar te pajisja që e prodhoi.";
-// deprecated
-"autocrypt_asm_click_body" = "Ky është mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur mes klientësh rregullimin tuaj skaj-më-skaj.\n\nPër ta fshehtëzuar dhe përdorur rregullimin tuaj, prekni ose klikoni mbi këtë mesazh.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Mesazh Rregullimi Autocrypt-i";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Ju lutemi, jepni kodin e rregullimit që është shfaqur te pajisja tjetër.";
-// deprecated
-"autocrypt_bad_setup_code" = "Kod i gabuar rregullimi. Ju lutemi, riprovoni.\n\nNëse s\’e mbani mend kodin e rregullimit, thjesht dërgoni një tjetër Mesazh Rregullimi Autocrypt-i prej pajisjes tjetër.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
@@ -896,6 +887,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj i garantuar, ju lutemi, pritni…";
+// deprecated
 "secure_join_wait_timeout" = "S’u vendos dot fshehtëzim skaj-më-skaj i garantuar, por mundeni tashmë të dërgoni një mesazh.";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S’vendoset dot fshehtëzim i garantuar skaj-më-skaj me %1$@.";
@@ -905,6 +897,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "U ndryshua udjisja për %1$@";
 "verified_contact_required_explain" = "Që të garantohet fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
+// deprecated
 "copy_qr_data_success" = "URL-ja QR u kopjua në të papastër";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat

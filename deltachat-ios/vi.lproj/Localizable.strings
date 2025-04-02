@@ -542,6 +542,7 @@
 "pref_manage_keys" = "Quản lý khóa";
 "pref_use_system_emoji" = "Sử dụng Emoji hệ thống";
 "pref_use_system_emoji_explain" = "Tắt tính năng hỗ trợ emoji tích hợp của Delta Chat";
+// deprecated
 "pref_app_access" = "Quyền truy cập ứng dụng";
 "pref_chats" = "Trò chuyện";
 "pref_in_chat_sounds" = "Âm thanh trong cuộc trò chuyện";
@@ -651,18 +652,9 @@
 "autocrypt_send_asm_explain_before" = "Thông báo thiết lập Autocrypt chia sẻ an toàn thiết lập end-to-end của bạn với các ứng dụng tương thích Autocrypt khác.\n\nThiết lập sẽ được mã hóa bằng mã thiết lập được hiển thị ở đây và phải được nhập trên thiết bị kia.";
 "autocrypt_send_asm_button" = "Gửi tin nhắn thiết lập Autocrypt";
 "autocrypt_send_asm_explain_after" = "Thiết lập của bạn đã được gửi cho chính bạn. Chuyển sang thiết bị khác và mở thông báo thiết lập. Bạn sẽ được yêu cầu nhập mã thiết lập. Nhập các chữ số sau:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Ưu tiên mã hóa đầu cuối";
 "autocrypt_asm_subject" = "Thông báo thiết lập Autocrypt";
 "autocrypt_asm_general_body" = "Đây là Thông báo Thiết lập Autocrypt được sử dụng để truyền thiết lập hai đầu của bạn giữa các máy khách.\n\nĐể giải mã và sử dụng thiết lập của bạn, hãy mở tin nhắn trong một ứng dụng khách tương thích với Autocrypt và nhập mã thiết lập được trình bày trên thiết bị tạo.";
-// deprecated
-"autocrypt_asm_click_body" = "Đây là Thông báo Thiết lập Autocrypt được sử dụng để chuyển thiết lập hai đầu của bạn giữa các máy khách.\n\nĐể giải mã và sử dụng thiết lập của bạn, hãy nhấn hoặc nhấp vào thông báo này.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Thông báo thiết lập tự động mã hóa";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Vui lòng nhập mã thiết lập được hiển thị trên thiết bị kia.";
-// deprecated
-"autocrypt_bad_setup_code" = "Mã thiết lập sai. Vui lòng thử lại.\n\nNếu bạn không nhớ mã thiết lập, hãy gửi Tin nhắn thiết lập Autocrypt mới từ thiết bị kia.";
 // system messages
 "systemmsg_cannot_decrypt" = "Không thể giải mã tin nhắn này.\n\n• Bạn chỉ cần trả lời tin nhắn này và yêu cầu người gửi gửi lại tin nhắn là đủ.\n\n• Nếu bạn vừa cài đặt lại Delta Chat thì tốt nhất bạn nên cài đặt lại thiết lập lại Delta Chat ngay bây giờ và chọn \"Thêm làm thiết bị thứ hai\" hoặc nhập bản sao lưu.";
 "systemmsg_unknown_sender_for_chat" = "Người gửi không xác định cho cuộc trò chuyện này. Xem \'thông tin\' để biết thêm chi tiết.";
@@ -793,6 +785,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Đã thay đổi thiết lập cho %1$@.";
 "verified_contact_required_explain" = "Để đảm bảo mã hóa hai đầu, bạn chỉ có thể thêm những người liên hệ có dấu kiểm màu xanh lục vào nhóm này.\n\nBạn có thể gặp trực tiếp những người liên hệ và quét Mã QR của họ để giới thiệu họ.";
+// deprecated
 "copy_qr_data_success" = "Đã sao chép url QR vào clipboard";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";
 // first placeholder is the name of the chat

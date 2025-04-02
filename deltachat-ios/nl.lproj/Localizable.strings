@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Schakel Delta Chats ingebouwde emojiondersteuning uit";
 "pref_show_system_contacts" = "Adresboek uitlezen";
 "pref_show_system_contacts_explain" = "Bied aan om gesprekken te beginnen met contactpersonen uit het adresboek. Let op: voor sommige providers is eind-tot-eindversleuteling benodigd.";
+// deprecated
 "pref_app_access" = "Apptoegang";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
@@ -696,7 +697,7 @@
 "pref_background_custom_image" = "Eigen afbeelding";
 "pref_background_custom_color" = "Eigen kleur";
 "export_aborted" = "Het exporteren is afgebroken.";
-"auto_download_messages" = "Berichten automatisch downloaden";
+"auto_download_messages" = "Berichten automatisch ophalen";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Tot %1$@";
 "up_to_x_most_worse_quality_images" = "Tot %1$@ - lage afbeeldingskwaliteit";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
 "autocrypt_asm_subject" = "Autocrypt-instelbericht";
 "autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
-// deprecated
-"autocrypt_asm_click_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je eind-tot-eindinstellingen over te zetten.\n\nDruk op dit bericht om je instellingen te ontsleutelen en gebruiken.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt-instelbericht";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Voer de code die wordt getoond op het andere apparaat.";
-// deprecated
-"autocrypt_bad_setup_code" = "Onjuist; probeer het opnieuw.\n\nAls je je code niet meer weet, verstuur dan nóg een Autocrypt-instelbericht vanaf het andere apparaat.";
 // system messages
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd, voeg het dan toe als tweede apparaat of importeer een reservekopie.";
 "systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
@@ -903,6 +895,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ heeft geantwoord en wacht op toelating tot de groep…";
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
+// deprecated
 "secure_join_wait_timeout" = "Er kan nog geen eind-tot-eindversleuteling worden gegarandeerd, maar je kunt wel alvast een bericht sturen.";
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_not_verified" = "Er kan geen eind-tot-eindversleuteling met %1$@ worden gegarandeerd.";
@@ -912,6 +905,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_contact_required_explain" = "Om de eind-tot-eindversleuteling te garanderen, kun je alleen contactpersonen met een groen vinkje toevoegen aan deze groep.\n\nVan niet-goedgekeurde contactpersonen kun je de QR-code scannen om ze goed te keuren.";
+// deprecated
 "copy_qr_data_success" = "De QR-url is gekopieerd naar het klembord";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat

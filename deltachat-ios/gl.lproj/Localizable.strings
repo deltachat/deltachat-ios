@@ -622,6 +622,7 @@
 "pref_manage_keys" = "Xestión das chaves";
 "pref_use_system_emoji" = "Utilizar emoji do sistema";
 "pref_use_system_emoji_explain" = "Desactivar o soporte interno para emoji de Delta Chat";
+// deprecated
 "pref_app_access" = "Acceso a app";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons na conversa";
@@ -723,18 +724,9 @@
 "autocrypt_send_asm_explain_before" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt.\n\nO axuste realízase cifrado e protexido cun código que se debe escribir no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar Mensaxe de Configuración Autocrypt";
 "autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferir cifrado extremo-a-extremo";
 "autocrypt_asm_subject" = "Mensaxe de Configuración Autocrypt";
 "autocrypt_asm_general_body" = "Esta é a Mensaxe de Configuración Autocrypt utilizado para transferir os teus axustes de cifrado de extremo-a-extremo entre clientes.\n\nPara descifrar e utilizar os axustes abre a mensaxe nun cliente compatible con Autocrypt e introduce o código mostrado no dispositivo de orixe.";
-// deprecated
-"autocrypt_asm_click_body" = "Esta é a Mensaxe de Configuración Autocrypt utilizado para transferir os teus axustes de cifrado extremo-a-extremo entre clientes.\n\nPara descifrar e utilizar os axustes, toca ou preme en esta mensaxe.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Mensaxe de Configuración Autocrypt";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Por favor, introduce o código de protección mostrado no outro dispositivo.";
-// deprecated
-"autocrypt_bad_setup_code" = "Código incorrecto. Inténtao outra vez.\n\nSe non lembras o código, envía unha nova Mensaxe de Configuración Autocrypt desde o outro dispositivo.";
 "systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
 "systemmsg_failed_sending_to" = "Fallou o envío para %1$@.";
@@ -819,6 +811,7 @@
 "contact_not_verified" = "Non se puido verificar %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Cambiaron os axustes para %1$@.";
+// deprecated
 "copy_qr_data_success" = "Copiado o url do QR ao portapapeis";
 "mailto_dialog_header_select_chat" = "Elexir chat ao que enviar a mensaxe";
 // first placeholder is the name of the chat

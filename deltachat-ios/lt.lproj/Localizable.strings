@@ -21,6 +21,8 @@
 "join" = "Prisijungti";
 "rejoin" = "Prisijungti iš naujo";
 "delete" = "Ištrinti";
+"delete_for_me" = "Ištrinti man";
+"delete_for_everyone" = "Ištrinti visiems";
 "info" = "Informacija";
 "update" = "Atnaujinti";
 "attachment" = "Priedas";
@@ -412,6 +414,9 @@
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
 "switch_account" = "Perjungti paskyrą";
 "add_account" = "Pridėti paskyrą";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profilio etiketė";
+"profile_tag_hint" = "pvz., Darbas, Šeima";
 "delete_account" = "Ištrinti paskyrą";
 "delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
@@ -471,6 +476,7 @@
 "pref_manage_keys" = "Tvarkyti raktus";
 "pref_use_system_emoji" = "Naudoti sistemos šypsniukus";
 "pref_use_system_emoji_explain" = "Išjungti Delta Chat įtaisytąjį šypsniukų palaikymą";
+// deprecated
 "pref_app_access" = "Prieiga prie programėlės";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
@@ -566,18 +572,9 @@
 "autocrypt_send_asm_explain_before" = "\"Autocrypt sąrankos žinutė\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
 "autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
 "autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
-// deprecated
-"autocrypt_asm_click_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, bakstelėkite ar spustelėkite ant šios žinutės.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt sąrankos žinutė";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Įveskite kitame įrenginyje rodomą sąrankos kodą.";
-// deprecated
-"autocrypt_bad_setup_code" = "Blogas sąrankos kodas. Bandykite dar kartą.\n\nJeigu neprisimenate sąrankos kodo, tiesiog, išsiųskite dar vieną Autocrypt sąrankos žinutę iš kito  įrenginio.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
@@ -664,6 +661,7 @@
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
+// deprecated
 "copy_qr_data_success" = "QR kodo URL adresas nukopijuotas į iškarpinę";
 "mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";

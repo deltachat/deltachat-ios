@@ -576,6 +576,7 @@
 "pref_use_system_emoji_explain" = "Poista Delta Chatin sisäänrakennettu emoji -tuki käytöstä";
 "pref_show_system_contacts" = "Lue laitteen osoitekirja";
 "pref_show_system_contacts_explain" = "Tarjoa keskustelujen avaamista yhteystietojen perusteella. Jotkin palveluntarjoajat vaativat ensin päästä-päähän salauksen käyttöönottoa. ";
+// deprecated
 "pref_app_access" = "Sovelluksen pääsy";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
@@ -692,18 +693,9 @@
 "autocrypt_send_asm_explain_before" = "Autocrypt -käyttöönottoviesti jakaa turvallisesti päästä-päähän -salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nMäärittely salataan tässä näytettävällä käyttöönottokoodilla, joka on syötettävä toisella laittella.";
 "autocrypt_send_asm_button" = "Lähetä Autocrypt -käyttöönottoviesti";
 "autocrypt_send_asm_explain_after" = "Käyttöönottoviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään käyttöönottokoodia. Anna seuraavat numerot:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Suosi päästä-päähän -salausta";
 "autocrypt_asm_subject" = "Autocrypt -käyttöönottoviesti";
 "autocrypt_asm_general_body" = "Tätä Autocrypt -käyttöönottoviestiä käytetään päästä-päähän -salauksen asetusten siirtämiseksi toiselle laitteelle.\n\nSaat purettua salauksia ja käytettyä määrittelyä avaamalla viestin Autocrypt -yhteensopivassa päätesovelluksessa, generoivalla laitteella näytetyn pin koodin syöttämisen jälkeen.";
-// deprecated
-"autocrypt_asm_click_body" = "Tätä Autocrypt -käyttöönottoviestiä käytetään päästä-päähän-salauksen asetusten siirtämiseksi laitteiden välillä.\n\nSalauksen purkamiseksi ja asetusten käyttöön ottamiseksi, napauta tai klikkaa tätä viestiä.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt -käyttöönottoviesti";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Anna toisella laitteella näkyvä käyttöönottokoodi.";
-// deprecated
-"autocrypt_bad_setup_code" = "Virheellinen käyttöönottokoodi. Yritä uudelleen.\n\nJos et muista käyttöönottokoodia, lähetä uusi Autocrypt -käyttöönottoviesti toisella laitteella.";
 // system messages
 "systemmsg_cannot_decrypt" = "Viestin salausta ei voitu purkaa.\n\n• Voi olla että vastaamalla tähän ja pyytämällä lähettäjää lähettämään viesti uudelleen ongelma ratkeaa.\n\n• Jos juuri uudelleenasensit Delta Chatin, lienee parasta että otat sovelluksen uudelleen käyttöön ja valitset \"Lisää toisena laitteena\" tai palauta varmuuskopiosta.";
 "systemmsg_unknown_sender_for_chat" = "Tuntematon lähettäjä. Katso \"lisätietoja\".";
@@ -832,6 +824,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Vastaus saatu käyttäjältä %1$@, odotetaan lisäystä ryhmään...";
 "secure_join_wait" = "Otetaan taattua päästä-päähän salausta käyttöön, odota...";
+// deprecated
 "secure_join_wait_timeout" = "Taattua päästä päähän salausta ei vielä voitu ottaa käyttöön, mutta voit jo lähettää viestin.";
 "contact_verified" = "%1$@ varmistettu.";
 "contact_not_verified" = "Keskustelun päästä-päähän -salausta ei voida taata henkilön %1$@ kanssa.";
@@ -841,6 +834,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Asetukset muutettu kohteessa %1$@.";
 "verified_contact_required_explain" = "Päästä-päähän -salauksen takaamiseksi, voit lisätä ryhmään ainoastaan yhteystietoja joilla on vihreä \"oikein\" -merkki.\n\nVoit tavata yhteystietoja kasvotusten ja skannata heidän QR -koodinsa niin saat lisättyä salauksen käyttöön";
+// deprecated
 "copy_qr_data_success" = "QR -osoite kopioitu leikepöydälle";
 "mailto_dialog_header_select_chat" = "Valitse keskustelu viestien lähettämiseen";
 // first placeholder is the name of the chat

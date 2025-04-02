@@ -351,6 +351,7 @@
 "pref_manage_keys" = "بەڕێوەبردنی کلیلەکان";
 "pref_use_system_emoji" = "بەکارهێنانی وێنۆچکەکانی سیستەم";
 "pref_use_system_emoji_explain" = "ئیمۆجییە ناوخۆییەکانی دێڵتا چات، ناچالاک دەبێتەوە.";
+// deprecated
 "pref_app_access" = "ڕێگەپێدان";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
@@ -416,11 +417,8 @@
 "autodel_after_1_year" = "پاش 1 ساڵ";
 // autocrypt
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
-// deprecated
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
 "autocrypt_asm_subject" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
-// deprecated
-"autocrypt_continue_transfer_title" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
@@ -451,6 +449,7 @@
 "contact_not_verified" = "%1$@ پشتڕاست ناکرێتەوە.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
+// deprecated
 "copy_qr_data_success" = "ناونیشانی وێبی QRەکە ڕوونووس کرا.";
 // notifications
 "notify_reply_button" = "وەڵام دانەوە";

@@ -401,6 +401,7 @@
 "pref_manage_keys" = "Kelola kunci";
 "pref_use_system_emoji" = "Gunakan emoji sistem";
 "pref_use_system_emoji_explain" = "Matikan dukungan emoji Delta Chat yang ada";
+// deprecated
 "pref_app_access" = "Akes Aplikasi";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
@@ -467,18 +468,9 @@
 "autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
 "autocrypt_asm_subject" = "Pengaturan Pesan Autocrypt";
 "autocrypt_asm_general_body" = "Inilah Autocrypt Setup Message yang digunakan utuk mentransfer pengaturan ujung ke ujung Anda antar pelanggan.\n\nUntuk membuka enkirpsi dan menggunakan pengaturan Anda, bukan pesan di Autocrypt-compliant pelanggan dan masukkan kode pengaturan yang ditampikan untuk perangkat terkait.";
-// deprecated
-"autocrypt_asm_click_body" = "Inilah Autocrypt Setup Message yang digunakan untuk mentransfer pengaturan ujung ke ujung antar pelanggan.\n\nUntuk membuka enkripsi dan membuka pengaturan Anda, ketuk atau klik pesan ini.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Pengaturan Pesan Autocrypt";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Masukkan kode pengaturan yang ditampilkan di perangkat lain.";
-// deprecated
-"autocrypt_bad_setup_code" = "Kode pengaturan jelek. Ayo cakepan lagi.\n\nKalau Anda lupa kode pengaturan, kirim lagi Autocrypt Setup Message dari perangkat lainnya.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
@@ -527,6 +519,7 @@
 "contact_not_verified" = "Tidak bisa memverifikasi %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ubah pengaturan untuk %1$@.";
+// deprecated
 "copy_qr_data_success" = "Salin QR url ke papan klip";
 // notifications
 "notify_reply_button" = "Balasan";

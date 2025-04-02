@@ -270,6 +270,7 @@
 "pref_manage_keys" = "Açar edarəetməsi";
 "pref_use_system_emoji" = "Sistem emojisini istifadə edin";
 "pref_use_system_emoji_explain" = "Emoji Delta chat üçün daxili dəstəyi bağlayın. ";
+// deprecated
 "pref_app_access" = "Daxil oldu";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
@@ -312,18 +313,9 @@
 "autocrypt_send_asm_explain_before" = "Autocrypt Setup Message digər Autocrypt-uyğun proqramlarla təhlükəsiz şəkildə bölüşür. \n\nSizin buradakı quraşdırma koduyla şifrələnir və digər qurğuda yazılmalıdır.";
 "autocrypt_send_asm_button" = "Autocrypt Setup Message-ı göndər";
 "autocrypt_send_asm_explain_after" = "Sizin açarınız sizə göndərildi. Başqa bir cihaza keçin və mesajın ayarını açın. Siz quraşdırma kodu daxil etməlisiniz. Orada aşağıdakı rəqəmləri daxil edin. Bitirən zaman, başqa bir cihazda Autocrypt istifadə üçün hazır olacaq.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Ucdan-uca şifrələmə üstünlük təşkil edir";
 "autocrypt_asm_subject" = "Autocrypt mesaj ayarı";
 "autocrypt_asm_general_body" = "Bu, müvəqqəti quraşdırma üçün müştərilər arasında köçürmək üçün istifadə edilən Autocrypt Setup Mesajıdır. \n\nSenfikanızı çözmək və istifadə etmək üçün autocrypt uyğun müştəri içərisində mesajı açın və yaradan cihazda göstərilən quraşdırma kodunu daxil edin.";
-// deprecated
-"autocrypt_asm_click_body" = "Bu, müvəqqəti quraşdırma üçün müştərilər arasında köçürmək üçün istifadə olunan Autocrypt Setup Mesajıdır. \n\nSenfikanızı çözmək və istifadə etmək üçün vurun və ya bu mesajı basın.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt mesaj ayarı";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Digər cihazda göstərilən quraşdırma kodunu daxil edin.";
-// deprecated
-"autocrypt_bad_setup_code" = "Yanlış quraşdırma kodu. Yenidən cəhd edin.\n\nƏgər quraşdırma kodunu xatırlamırsınız, başqa bir cihazdan başqa bir Autocrypt quraşdırma mesajı göndərin.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi məndən. ";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.

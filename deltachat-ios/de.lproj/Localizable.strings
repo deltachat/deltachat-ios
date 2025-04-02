@@ -210,7 +210,7 @@
 "menu_message_details" = "Nachrichteninfo";
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
 "share_invite_link" = "Einladungslink teilen";
-"share_invite_link_explain" = "Teilen Sie den Link nur mit Personen, denen Sie vertrauen. Jeder, der diesen Link hat, kann einen Chat mit Ihnen starten.";
+"share_invite_link_explain" = "Teilen Sie den Link nur mit Personen, denen Sie vertrauen. Alle, die diesen Link haben, können einen Chat mit Ihnen starten.";
 "invite_friends" = "Freunde einladen";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Kontaktiere mich auf Delta Chat:\n%1$@";
@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Eingebaute Emoji-Unterstützung von Delta Chat deaktivieren";
 "pref_show_system_contacts" = "System-Adressbuch lesen";
 "pref_show_system_contacts_explain" = "Anbieten, Chats mit Kontakten aus dem Adressbuch zu erstellen. Bei einigen E-Mail-Anbieter muss zunächst eine Ende-zu-Ende-Verschlüsselung eingerichtet werden.";
+// deprecated
 "pref_app_access" = "App-Zugriff";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat-Klänge";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Eine \"Autocrypt-Setup-Nachricht\" überträgt das Ende-zu-Ende-Setup sicher auf ein anderes Autocrypt-kompatibles Gerät.\n\nDas Setup wird mit einem Setup-Code geschützt; dieser wird hier angezeigt und muss auf dem anderen Gerät eingetippt werden.";
 "autocrypt_send_asm_button" = "Autocrypt-Setup-Nachricht senden";
 "autocrypt_send_asm_explain_after" = "Das Setup wurde an Sie geschickt. Nun zum anderen Gerät wechseln und die Setup-Nachricht öffnen. Den Anweisungen folgen und den folgenden Setup-Code eingeben:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Ende-zu-Ende-Verschlüsselung bevorzugen";
 "autocrypt_asm_subject" = "Autocrypt-Setup-Nachricht";
 "autocrypt_asm_general_body" = "Dies ist die Autocrypt-Setup-Nachricht, um das Ende-zu-Ende-Setup von einem Gerät auf das andere zu übertragen.\n\nUm das Setup zu entschlüsseln und zu verwenden, öffnen Sie diese Nachricht in einer Autocrypt-kompatiblen App und geben Sie den Setup-Code ein, der auf dem anderen Gerät angezeigt wurde.";
-// deprecated
-"autocrypt_asm_click_body" = "Dies ist die Autocrypt-Setup-Nachricht, um das Ende-zu-Ende-Setup von einem Gerät auf das andere zu übertragen.\n\nAuf diese Nachricht klicken, um das Setup zu verwenden.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt-Setup-Nachricht";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Bitte den Setup-Code eingeben, der auf dem anderen Gerät angezeigt wird.";
-// deprecated
-"autocrypt_bad_setup_code" = "Ungültiger Setup-Code. Bitte versuchen Sie es erneut.\n\nWenn Sie den Setup-Code nicht mehr haben, können Sie auf dem anderen Gerät jederzeit eine neue Autocrypt-Setup-Nachricht mit einem neuen Setup-Code erzeugen.";
 // system messages
 "systemmsg_cannot_decrypt" = "Diese Nachricht kann nicht entschlüsselt werden.\n\n• Es kann bereits helfen, auf diese Nachricht zu antworten und den Absender zu bitten, die Nachricht noch einmal zu senden.\n\n• Wenn Sie Delta Chat gerade neu installiert haben, ist es am besten, wenn Sie Delta Chat mit \"Als Zweitgerät hinzufügen\" neu einrichten oder ein Backup importieren.";
 "systemmsg_unknown_sender_for_chat" = "Absender ist für diesen Chat unbekannt. Siehe \"Info\" für weitere Details,";
@@ -903,7 +895,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
 "secure_join_wait" = "Garantierte Ende-zu-Ende-Verschlüsselung wird aufgebaut, bitte warten...";
+// deprecated
 "secure_join_wait_timeout" = "Noch konnte keine garantierte Ende-zu-Ende-Verschlüsselung aufgebaut werden, aber Sie können bereits eine Nachricht senden.";
+"secure_join_takes_longer" = "Das scheint länger zu dauern, vielleicht ist der Kontakt oder Sie offline.\n\nDer Prozess läuft jedoch im Hintergrund weiter, Sie können etwas anderes tun...";
 "contact_verified" = "%1$@ eingeführt.";
 "contact_not_verified" = "Kann keine garantierte Ende-zu-Ende-Verschlüsselung mit %1$@ herstellen.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
@@ -912,6 +906,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_contact_required_explain" = "Um Ende-zu-Ende-Verschlüsselung zu gewährleisten, können nur Kontakte mit grünem Häkchen zu dieser Gruppe hinzugefügt werden.\n\nSie könne Kontakte persönlich treffen und ihren QR-Code scannen, um sie einzuführen.";
+// deprecated
 "copy_qr_data_success" = "QR-Code auf die Zwischenablage kopiert";
 "mailto_dialog_header_select_chat" = "Wählen Sie den Chat, an den die Nachricht gesendet werden soll";
 // first placeholder is the name of the chat

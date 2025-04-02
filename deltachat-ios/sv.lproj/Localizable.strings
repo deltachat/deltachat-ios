@@ -582,6 +582,7 @@
 "pref_use_system_emoji_explain" = "Inaktivera Delta Chat\'s inbyggda emojier";
 "pref_show_system_contacts" = "Läs systemets adressbok";
 "pref_show_system_contacts_explain" = "Erbjud att skapa chattar med kontakter från adressboken. Vissa leverantörer behöver först konfigureras för totalsträckskryptering.";
+// deprecated
 "pref_app_access" = "Programåtkomst";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
@@ -700,18 +701,9 @@
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att ställa in Autocrypt, delar den informationen med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
 "autocrypt_send_asm_button" = "Skicka Autocrypt inställningsmeddelande";
 "autocrypt_send_asm_explain_after" = "Dina inställningar har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Föredra slutpunkt-till-slutpunkt-kryptering";
 "autocrypt_asm_subject" = "Inställningsmeddelande för Autocrypt";
 "autocrypt_asm_general_body" = "Detta är inställningsmeddelandet för Autocrypt som används för att skicka nycklar mellan klienter.\n\nFör att kunna avkryptera och använda din nyckel, öppnar du meddelandet i en Autocrypt-kompatibel klient och skriver in inställningskoden som visats på den genererande enheten.";
-// deprecated
-"autocrypt_asm_click_body" = "Detta är inställningsmeddelandet för Autocrypt, som används för att överföra slutpunkt-till-slutpunkt-inställningar mellan klienter. Tryck eller klicka på det här meddelandet för att avkryptera och använda dina inställningar.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt inställningsmeddelande";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Ange inställningskoden som visas på den andra enheten.";
-// deprecated
-"autocrypt_bad_setup_code" = "Felaktig inställningskod. Försök igen.\n\nOm du inte kommer ihåg inställningskoden, kan du skicka ett nytt Autocrypt inställningsmeddelande från den andra enheten.";
 // system messages
 "systemmsg_cannot_decrypt" = "Det här meddelandet kan inte dekrypteras.\n\n- Det kan hjälpa att helt enkelt svara på det här meddelandet och be avsändaren att skicka meddelandet igen.\n\n- Om du just har installerat om Delta Chat är det bäst om du konfigurerar om Delta Chat nu och väljer \"Lägg till som en andra enhet\" eller importerar en säkerhetskopia.";
 "systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
@@ -840,6 +832,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ svarade och väntar på att bli tillagd i gruppen...";
 "secure_join_wait" = "Upprättar garanterad totalsträckskryptering, vänligen vänta...";
+// deprecated
 "secure_join_wait_timeout" = "Kunde ännu inte upprätta garanterad totalsträckskryptering, men du kan redan skicka ett meddelande.";
 "contact_verified" = "%1$@ verifierad.";
 "contact_not_verified" = "Kan inte verifiera %1$@.";
@@ -849,6 +842,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ändrade inställningarna för %1$@.";
 "verified_contact_required_explain" = "För att garantera totalsträckskryptering  kan du bara lägga till kontakter med en grön bock i den här gruppen.\n\nDu kan träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
+// deprecated
 "copy_qr_data_success" = "Kopierade QR-URL till urklipp.";
 "mailto_dialog_header_select_chat" = "Välj chatt för att skicka meddelandet till";
 // first placeholder is the name of the chat

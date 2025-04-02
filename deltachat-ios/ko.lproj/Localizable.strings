@@ -474,6 +474,7 @@
 "pref_manage_keys" = "키 관리";
 "pref_use_system_emoji" = "시스템 이모티콘 사용";
 "pref_use_system_emoji_explain" = "Delta Chat 이모티콘 사용 중지";
+// deprecated
 "pref_app_access" = "앱 접근";
 "pref_chats" = "채팅";
 "pref_in_chat_sounds" = "앱 내 알림";
@@ -568,14 +569,6 @@
 "autocrypt_send_asm_explain_after" = "설정이 사용자 자신에게 전송되었습니다. 다른 장치로 전환하고 설정 메시지를 엽니다. 설정 코드를 입력하라는 메시지가 표시됩니다. 다음 숫자를 입력합니다.";
 "autocrypt_asm_subject" = "자동 암호화 설정 메시지";
 "autocrypt_asm_general_body" = "클라이언트 간에 종단 간 설정을 전송하는 데 사용되는 자동 암호화 설정 메시지입니다.\n\n설치를 해독하고 사용하려면 자동 암호화 호환 클라이언트에서 메시지를 열고 생성 장치에 표시된 설치 코드를 입력하십시오.";
-// deprecated
-"autocrypt_asm_click_body" = "클라이언트 간에 종단 간 설정을 전송하는 데 사용되는 자동 암호화 설정 메시지입니다.\n\n설치를 해독하고 사용하려면 이 메시지를 누르거나 클릭하십시오.";
-// deprecated
-"autocrypt_continue_transfer_title" = "자동 암호화 설정 메시지";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "다른 장치에 표시된 설정 코드를 입력하십시오.";
-// deprecated
-"autocrypt_bad_setup_code" = "잘못된 설정 코드입니다. 다시 시도하십시오.\n\n설정 코드가 기억나지 않으면 다른 장치에서 새 자동 암호화 설치 메시지를 보냅니다.";
 "systemmsg_unknown_sender_for_chat" = "이 채팅의 발신자를 알 수 없습니다. 자세한 내용은 \'info\'를 확인하세요.";
 "systemmsg_subject_for_new_contact" = "%1$@가 보낸 메시지";
 "systemmsg_failed_sending_to" = "%1$@에게 메시지를 보내지 못했습니다.";
@@ -689,6 +682,7 @@
 "contact_not_verified" = "%1$@ 확인할 수 없음";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@에 대한 설정이 변경되었습니다.";
+// deprecated
 "copy_qr_data_success" = "QR url을 클립보드에 복사했습니다";
 "mailto_dialog_header_select_chat" = "메시지를 보내려면 채팅을 선택하십시오";
 // first placeholder is the name of the chat
