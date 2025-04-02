@@ -224,7 +224,7 @@ internal final class AdvancedViewController: UITableViewController {
             return [viewLogSection, experimentalSection, encryptionSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
-                headerTitle: String.localized("pref_app_access"),
+                headerTitle: nil,
                 footerTitle: String.localized("pref_show_system_contacts_explain"),
                 cells: [showSystemContactsCell])
             let encryptionSection = SectionConfigs(
