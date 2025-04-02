@@ -117,7 +117,7 @@
 "voice_message" = "Mensagem de voz";
 "forwarded" = "Encaminhado";
 "forwarded_message" = "Mensagem encaminhada";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Encaminhado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
@@ -378,7 +378,7 @@
 "all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ mudou seu endereço de %2$@ para %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Você mudou seu endereço de e-mail de %1$@ para %2$@.\n\nSe você agora enviar uma mensagem para um grupo verificado, os contatos lá substituirão automaticamente o antigo por seu novo endereço.\n\nÉ altamente recomendável configurar seu antigo provedor de e-mail para encaminhar todos os e-mails para seu novo endereço de e-mail. Caso contrário, você pode perder mensagens de contatos que ainda não receberam seu novo endereço.";
@@ -408,7 +408,7 @@
 "incoming_messages" = "Mensagens Recebidas";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensagens Enviadas";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Armazenamento em %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -428,9 +428,7 @@
 "part_of_total_used" = "%1$@ de %2$@ usado";
 "scan_invitation_code" = "Escanear Código De Convite";
 "login_title" = "Acessar";
-// for classic email, we use the classical term "Account"
 "login_header" = "Acesse seu servidor";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Acesse com uma conta de email existente";
 "login_subheader" = "Para os provedores de e-mail mais conhecidos as configurações adicionais são detectadas automaticamente. Por vezes, o IMAP precisa estar ativado nas configurações do servidor. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
 "login_no_servers_hint" = "O Delta Chat não tem servidores. Seus dados ficam no seu aparelho!";
@@ -456,7 +454,7 @@
 "import_backup_title" = "Importar da Cópia de Segurança";
 "import_backup_ask" = "Becape localizado em \"%1$@\".\n\nVocê quer importá-lo e usar seus dados e configurações?";
 "import_backup_no_backup_found" = "Becapes não localizados.\n\nCopie o becape para \"%1$@\" e tente de novo. Alternativamente, toque em \"comece a conversar\" para prosseguir normalmente.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossível acessar \"%1$@\". Por favor, verifique o e-mail e senha.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceitar certificados inválidos";
@@ -484,11 +482,10 @@
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Contatos bloqueados";
 "blocked_empty_hint" = "Se você bloquear contatos, eles serão mostrados aqui.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Senha e conta";
 "pref_who_can_see_profile_explain" = "Sua foto de perfil e nome serão exibidos com suas mensagens a outros usuários. Informações já enviadas não podem ser apagas ou removidas.";
 "pref_your_name" = "Seu nome";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Assinatura";
 "pref_enter_sends" = "O botão enter envia";
 "pref_enter_sends_explain" = "As mensagens serão enviadas pressionando-se o enter";
@@ -555,7 +552,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Se você mudar esta opção, certifique-se de que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário, funcionalidades podem não funcionar.";
 "pref_watch_sent_folder" = "Verificar a caixa de saída";
 "pref_send_copy_to_self" = "Enviar cópia para mim";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Necessário ao utilizar esta conta em múltiplos dispositivos.";
 "pref_auto_folder_moves" = "Mover automaticamente para a pasta DeltaChat";
 "pref_auto_folder_moves_explain" = "Conversas serão movidas para evitar desordem na caixa de entrada";
@@ -734,9 +730,9 @@
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
 "qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Conectar-se em \"%1$@\"?\n\nSua conta existente não será excluída. Use a opção \"Mudar conta\" para alternar entre suas contas.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@te convidou para entrar neste grupo.\n\nEsperando o dispositivo de %2$@ responder...";

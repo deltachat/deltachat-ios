@@ -109,7 +109,7 @@
 "voice_message" = "Voĉmesaĝo";
 "forwarded" = "Plusendita";
 "forwarded_message" = "Plusendita mesaĝo";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Plusendita de %1$@";
 "video" = "Filmo";
 "documents" = "Dokumentoj";
@@ -286,7 +286,6 @@
 "media_preview" = "Aŭdvida antaŭrigardo";
 "send_message" = "Sendi mesaĝon";
 "login_title" = "Ensaluti";
-// for classic email, we use the classical term "Account"
 "login_header" = "Ensaluti al via servilo";
 "login_inbox" = "Ricevujo";
 "login_imap_login" = "IMAP salutnomo";
@@ -317,7 +316,6 @@
 "share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";

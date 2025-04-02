@@ -97,7 +97,7 @@
 "voice_message" = "សារជាសម្លេង";
 "forwarded" = "បានបញ្ជូនបន្ត";
 "forwarded_message" = "សារដែលបានបញ្ជូនបន្ត";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "បញ្ជូនបន្តពី %1$@";
 "video" = "វីដេអូ";
 "documents" = "ឯកសារ";
@@ -329,7 +329,7 @@
 "incoming_messages" = "សារចូល";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "សារចេញ";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "ទំហំផ្ទុកនៅលើ %1$@";
 "connectivity" = "ការតភ្ជាប់និងសេវាកម្ម";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -348,9 +348,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "បានប្រើ %1$@ នៃ %2$@";
 "login_title" = "កត់ចូល";
-// for classic email, we use the classical term "Account"
 "login_header" = "កត់ចូលទៅម៉ាសុីនមេរបស់អ្នក";
-// for classic email, we use the classical term "Account"
 "login_explain" = "កត់ចូលជាមួយគណនីយដែលមានស្រាប់";
 "login_subheader" = "សម្រាប់លក្ខខណ្ឌអុីម៉េលដែលស្គាល់ស្រាប់ នឹងត្រួវបានដំឡើងដោយស្វ័យប្រវត្តិខ្លួនឯង។ ពេលខ្លះ IMAP ត្រូវការបើកដំណើរការនៅក្នុងការកំណត់គេហទំព័រ។ ពិគ្រោះជាមួយអ្នកផ្តល់អុីម៉េលរបស់អ្មក ឬ មិត្តរបស់អ្នកសម្រាប់ជួយ។";
 "login_no_servers_hint" = "គ្មានម៉ាសុីនមេពី សាហារីសង្ឃទេ ទិន្ន័យរបស់អ្នកស្ថិតនៅលើឧបករណ៍របស់អ្នក។";
@@ -376,7 +374,7 @@
 "import_backup_title" = "នាំចូលពត៌មានចម្លងទុក";
 "import_backup_ask" = "រកឃើញពត៌មានចម្លងទុកនៅ \"%1s\".\n\nតើអ្នកចង់នាំចូល និងប្រើប្រាស់ទិន្នន័យទាំងអស់ និងការកំណត់ពីវា?";
 "import_backup_no_backup_found" = "រក​មិន​ឃើញពត៌មានចម្លងទុកទេ\n\nចម្លង ពត៌មានចម្លងទុកទៅ \"%1$@\" និងសាកល្បងម្តងទៀត\n\nចុច \"ចាប់ផ្តើមផ្ញើសារ\" ដើម្បីបន្តជាមួយដំណើរការរៀបចំធម្មតា។";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "មិនអាចកត់ចូលជា \"%1$@\" ។ សូមផ្ទៀតផ្ទាត់មើលអស័យដ្ឋានអុីម៉េល និងពាក្យសម្ងាត់ឲ្យបានត្រឹមត្រូវ។";
 // TLS certificate checks
 "accept_invalid_certificates" = "ទទួលយកលិខិតបញ្ជាក់មិនត្រឹមត្រូវ";
@@ -404,11 +402,10 @@
 "pref_profile_photo" = "រូបភាពទិន្ន័យផ្ទាល់ខ្លួន";
 "pref_blocked_contacts" = "ទំនាក់ទំនងដែលបានរារាំង";
 "blocked_empty_hint" = "ប្រសិនបើអ្នករារាំងទំនាក់ទំ នងពួកទំនាក់ទំនងនេះនឹងត្រូវបានដាកបង្ហាញនៅទីនេះ។";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "ពាក្យសម្ងាត់ និងគណនី";
 "pref_who_can_see_profile_explain" = "រូបភាពទិន្ន័យផ្ទាល់ខ្លួនរបស់អ្នក និងឈ្មោះនឹងត្រូវបានបង្ហាញនៅក្បែរសាររបស់អ្នក នៅពេល ទនំាក់ទំនងជាមួយអ្នកប្រើប្រាស់ផ្សេងទៀត។ ដំណឹងដែលបានផ្ញើរួចមិនអាចលុបចោល ឬដកចេញបានទេ។";
 "pref_your_name" = "ឈ្មោះរបស់អ្នក";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "ហត្ថលេខាជាអក្សរ";
 "pref_enter_sends" = "គ្រាប់​ចុច​ បញ្ចូលធ្វើឱ្យផ្ញើសារ";
 "pref_enter_sends_explain" = "ចុច គ្រាប់​ចុច​ បញ្ចូល (Enter key) នឹងផ្ញើអត្ថបទសារ។";

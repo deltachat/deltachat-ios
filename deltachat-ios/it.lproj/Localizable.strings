@@ -128,7 +128,7 @@
 "voice_message" = "Messaggio Vocale";
 "forwarded" = "Inoltrato";
 "forwarded_message" = "Messaggio Inoltrato";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Inoltrato da %1$@";
 "video" = "Video";
 "documents" = "Documenti";
@@ -248,9 +248,9 @@
 "select_chat" = "Seleziona Chat";
 "select_more" = "Seleziona di più";
 "menu_edit_name" = "Modifica Nome";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Imposta un soprannome che verrà mostrato al posto di \"%1$@\". Lascia vuoto per utilizzare il nome scelto dal contatto.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Soprannome per \"%1$@\"";
 "menu_settings" = "Impostazioni";
 "menu_advanced" = "Avanzate";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Griglia Quadrata";
 "send_message" = "Invia Messaggio";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ha cambiato il suo indirizzo da %2$@ a %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Hai cambiato il tuo indirizzo email da %1$@ a %2$@.\n\nSe ora invii un messaggio a un gruppo verificato, i contatti sostituiranno automaticamente il vecchio indirizzo con il tuo nuovo indirizzo.\n\nSi consiglia vivamente di impostare il tuo vecchio fornitore email per inoltrare tutte le email al tuo nuovo indirizzo. Altrimenti potresti perdere i messaggi di contatti che non hanno ancora ricevuto il tuo nuovo indirizzo.";
@@ -471,7 +471,7 @@
 "incoming_messages" = "Messaggi in Arrivo";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Messaggi in Uscita";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Spazio su %1$@";
 "connectivity" = "Connettività";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "Chat Decentralizzata Sicura";
 "scan_invitation_code" = "Scansiona Codice Invito";
 "login_title" = "Accedi";
-// for classic email, we use the classical term "Account"
 "login_header" = "Accedi al tuo Profilo E-Mail";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Accedi con un profilo e-mail esistente";
 "login_subheader" = "Per i provider e-mail noti vengono impostate automaticamente impostazioni aggiuntive. A volte è necessario abilitare IMAP nelle impostazioni Web. Consulta il tuo provider e-mail o i tuoi amici per ricevere assistenza.";
 "login_no_servers_hint" = "Delta Chat non raccoglie dati utente: tutto rimane sul tuo dispositivo.";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "Porta SMTP";
 "login_smtp_security" = "Sicurezza SMTP";
 "login_auth_method" = "Metodo Autorizzazione";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Usa Proxy";
 "proxy_add" = "Aggiungi Proxy";
@@ -559,7 +557,7 @@
 "import_backup_title" = "Ripristina da Backup";
 "import_backup_ask" = "Backup trovato in \"%1$@\".\n\nVuoi importarlo e usare tutti i dati e le impostazioni salvate?";
 "import_backup_no_backup_found" = "Nessun backup trovato\n\nCopia il backup in \"%1$@\" e riprova ancora. Altimenti premi \"Inizia a messaggiare\" per procedere con le impostazioni normali.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Per piacere verifica che l\'indirizzo e-mail e la password siano corretti.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accetta certificati non validi";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "Immagine Profilo";
 "pref_blocked_contacts" = "Contatti Bloccati";
 "blocked_empty_hint" = "I contatti bloccati, verranno mostrati qui.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Password e Profilo";
 "pref_who_can_see_profile_explain" = "La tua immagine del profilo, il tuo nome e la tua biografia verranno inviati insieme ai tuoi messaggi quando comunichi con altri utenti.";
 "pref_your_name" = "Il tuo Nome";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Biografia";
 "pref_enter_sends" = "Spedisci con Invio";
 "pref_enter_sends_explain" = "Premendo il tasto Invio invierà i messaggi";
@@ -657,7 +654,7 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup Chats su Memoria Esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni end-to-end Autocrypt. Tieni il file di backup in un luogo sicuro oppure eliminarlo il prima possibile.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Esporta %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Esporta tutti i %1$d profili";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Se modifichi questa opzione, assicurati che il tuo server e gli altri client siano configurati di conseguenza.\n\nAltrimenti le cose potrebbero non funzionare affatto.";
 "pref_watch_sent_folder" = "Controlla Cartella Inviata";
 "pref_send_copy_to_self" = "Invia Copia a Te Stesso";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Richiesto quando si utilizza questo profilo su più dispositivi.";
 "pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";
 "pref_auto_folder_moves_explain" = "Le conversazioni chat vengono spostate per evitare di ingombrare la Posta in arrivo";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
 "please_enter_name" = "Per piacere inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo profilo.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Accedere a \"%1$@\"?\n\nIl tuo profilo esistente non verrà cancellato. Usa la voce \"Cambia Profilo\" per passare da un profilo all\'altro.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";

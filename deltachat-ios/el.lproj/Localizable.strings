@@ -103,7 +103,7 @@
 "voice_message" = "Μήνυμα φωνής";
 "forwarded" = "Κοινοποίηση";
 "forwarded_message" = "Κοινοποίηση Μηνύματος";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Κοινοποίηση από %1$@";
 "video" = "Βίντεο";
 "documents" = "Αρχεία";
@@ -355,7 +355,7 @@
 "all_apps_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ.";
 "media_preview" = "Προεπισκόπιση";
 "send_message" = "Αποστολή μηνύματος";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ άλλαξαν την διεύθυνσή τους από %2$@ σε %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Αλλάξατε την διεύθυνσή σας από %1$@ σε %2$@.\n\nΤώρα, εάν στείλετε ένα μήνυμα σε μια επαληθευμένη ομάδα, οι επαφές εκεί θα αντικαταστήσουν αυτόματα την παλιά με τη νέα σας διεύθυνση.\n\nΣυνιστάται ιδιαίτερα να ρυθμίσετε τον παλιό σας πάροχο email ώστε να προωθεί όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου στη νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου. Διαφορετικά, ενδέχεται να χάσετε μηνύματα επαφών που δεν έχουν λάβει ακόμη τη νέα σας διεύθυνση.";
@@ -364,7 +364,7 @@
 "incoming_messages" = "Εισερχόμενα Μηνύματα";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Εξερχόμενα Μηνύματα";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Αποθήκευση στο %1$@";
 "connectivity" = "Συνδεσιμότητα";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -384,9 +384,7 @@
 "part_of_total_used" = "%1$@ από %2$@ χρησιμοποιείται";
 "scan_invitation_code" = "Σάρωση Κωδικού Πρόσκλησης";
 "login_title" = "Σύνδεση";
-// for classic email, we use the classical term "Account"
 "login_header" = "Συνδεθείτε στον λογαριασμό σας E-Mail";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Συνδεθείτε με έναν υπάρχοντα λογαριασμό e-mail";
 "login_subheader" = "Για γνωστούς παρόχους email ρυθμίζονται αυτόματα πρόσθετες ρυθμίσεις. Μερικές φορές το IMAP πρέπει να είναι ενεργοποιημένο στις ρυθμίσεις Ιστού. Συμβουλευτείτε τον πάροχο e-mail ή τους φίλους σας για βοήθεια.";
 "login_no_servers_hint" = "Δεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένουν στη συσκευή σας.";
@@ -412,7 +410,7 @@
 "import_backup_title" = "Επαναφορά από το Aντίγραφο Aσφαλείας";
 "import_backup_ask" = "Το αντίγραφο ασφαλείας βρέθηκε στο \"%1$@\".\n\nΘέλετε να εισαγάγετε και να χρησιμοποιήσετε όλα τα δεδομένα και τις ρυθμίσεις από αυτό;";
 "import_backup_no_backup_found" = "Δεν βρέθηκαν αντίγραφα ασφαλείας.\n\nΑντιγράψτε το αντίγραφο ασφαλείας στο \"%1$@\" και δοκιμάστε ξανά. Εναλλακτικά, πατήστε \"Έναρξη μηνυμάτων\" για να συνεχίσετε με την κανονική διαδικασία εγκατάστασης.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Δεν είναι δυνατή η είσοδος ως \"%1$@\". Ελέγξτε εάν η διεύθυνση e-mail και ο κωδικός πρόσβασης είναι σωστά.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Αποδοχή μη έγκυρων πιστοποιητικών";
@@ -440,11 +438,10 @@
 "pref_profile_photo" = "Εικόνα Προφίλ";
 "pref_blocked_contacts" = "Αποκλεισμένες Επαφές";
 "blocked_empty_hint" = "Οι αποκλεισμένες επαφές θα εμφανίζονται εδώ.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Κωδικός και Λογαριασμός";
 "pref_who_can_see_profile_explain" = "Η εικόνα του προφίλ, το όνομα και η υπογραφή σας θα αποστέλλονται μαζί με τα μηνύματά σας κατά την επικοινωνία με άλλους χρήστες.";
 "pref_your_name" = "Το όνομά σου";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Υπογραφή";
 "pref_enter_sends" = "Το Enter στέλνει";
 "pref_enter_sends_explain" = "Τα μηνύματα θα στέλνονται με το πάτημα του Enter";
@@ -511,7 +508,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Εάν αλλάξετε αυτήν την επιλογή, βεβαιωθείτε ότι ο διακομιστής σας και οι άλλοι πελάτες σας έχουν διαμορφωθεί ανάλογα.\n\nΔιαφορετικά, τα πράγματα ενδέχεται να μην λειτουργούν καθόλου.";
 "pref_watch_sent_folder" = "Παρακολουθήστε τον Απεσταλμένο Φάκελο";
 "pref_send_copy_to_self" = "Αποστολή Αντιγράφου στον Εαυτό";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Απαιτείται κατά τη χρήση αυτού του λογαριασμού σε πολλές συσκευές.";
 "pref_auto_folder_moves" = "Μετακίνηση αυτόματα στον φάκελο DeltaChat";
 "pref_auto_folder_moves_explain" = "Οι συνομιλίες συνομιλίας μετακινούνται για να αποφευχθεί η ακαταστασία των Εισερχομένων";
@@ -690,9 +686,9 @@
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
 "qraccount_ask_create_and_login_another" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
 "qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Σύνδεση στο \"%1$@\";\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ σας προσκάλεσε να συμμετάσχετε σε αυτήν την ομάδα.\n\nΑναμονή για απάντηση από τη συσκευή του %2$@…";

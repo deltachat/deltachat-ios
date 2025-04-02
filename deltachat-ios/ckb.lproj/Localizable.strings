@@ -82,7 +82,7 @@
 "audio" = "دەنگ";
 "voice_message" = "پەیامی دەنگی";
 "forwarded_message" = "پەیامی هاوبەشکراو";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "هاوبەشکراو لە لایەن%1$@";
 "video" = "ڤیدیۆ";
 "documents" = "بەڵگەکان";
@@ -268,9 +268,7 @@
 "media_preview" = "پێشدیتنی ڕەنگاڵە";
 "send_message" = "پەیام بنێرە";
 "login_title" = "بچۆ ژوورەوە";
-// for classic email, we use the classical term "Account"
 "login_header" = "بچۆ ژوورەوە بۆ سێرڤێرەکەی خۆت";
-// for classic email, we use the classical term "Account"
 "login_explain" = "بچۆ ژوورەوە بە ناونیشانی ئیمەیلێکەوە";
 "login_subheader" = "بۆ دابینکەرە ناسراوەکانی ئیمەیلەکان، ڕێکخستنە زیادییەکان خۆکارانە ڕێکدەخرێن. هەندێجار دەبێت IMAP لەنێو ڕێکخستنەکانی وێبدا چالاک بکرێنەوە. بۆ ڕێنمایی وەرگرتن، لەگەڵ دابینکەری ئیمەیلەکەتان یان هاوڕێکانتان ڕاوێژ بکەن.";
 "login_no_servers_hint" = "دێڵتاچات هیچ سێرڤەرێکی نییە، داتاکانتان لەسەر ئامرێکەتان دەمێنێتەوە.";
@@ -294,7 +292,7 @@
 "import_backup_title" = "هاوردەکردنی یەدەک";
 "import_backup_ask" = "یەدەکەکە لە \"%1$@\"دا دۆزرایەوە.\n\n دەتەوێت هەموو داتا و ڕێکخستنەکانی هاوردە بکەیت و بەکاریان بێنیت؟";
 "import_backup_no_backup_found" = "هیچ یەدەکێک نەدۆزرایەوە.\n\n یەدەکەکە کۆپی بکە بۆ\"%1$@\" و دیسان هەوڵبدەوە. یان بۆ بەردەوامبوون لەسەر پرۆسەی ئاسایی دامەزراندنەکە، دەستبنە بە \"دەستپێکی نامەنووسین\"دا .";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "\"%1$@\" ناتوانێت بچێتە ژوورەوە. سەرنج بدە بزانە ئیمەیل و تێپەڕوشەکە درووستە.";
 "switch_account" = "گۆڕینی هەژمار";
 "add_account" = "زیادکردنی هەژمار";
@@ -313,10 +311,9 @@
 "pref_profile_photo" = "وێنەی لادیمەن";
 "pref_blocked_contacts" = "هەژمارە ئاستەنگکراوەکان";
 "blocked_empty_hint" = "ئەگەر هەژمارێک ئاستەنگ بکەیت، لێرەدا پیشان دەدرێت.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "هەژمار و تێپەڕوشە";
 "pref_your_name" = "ناو";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "دەقی واژۆ";
 "pref_enter_sends" = "کلیلی \"ئینتەر\" بنێرێت";
 "pref_enter_sends_explain" = "دەستنان بە کلیلی \"ئینتەر\"دا، پەیامەکان دەنێرێت.";

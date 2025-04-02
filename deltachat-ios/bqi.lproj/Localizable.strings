@@ -249,7 +249,7 @@
 "tab_map" = "نقشه";
 "media_preview" = "نشۉ داڌن وارسگر";
 "send_message" = "فشناڌن پیوم";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "زفت کردن من %1$@";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "هونی منپیز ابۊ...";

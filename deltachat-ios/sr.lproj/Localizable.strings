@@ -110,7 +110,7 @@
 "voice_message" = "Гласовна порука";
 "forwarded" = "Прослеђено";
 "forwarded_message" = "Прослеђена порука";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Проследи %1$@";
 "video" = "Видео";
 "documents" = "Документи";
@@ -366,7 +366,7 @@
 "all_apps_empty_hint" = "Приватне апликације примљене или послате у било ком ћаскању ће се појавити овде.";
 "media_preview" = "Преглед медијума";
 "send_message" = "Пошаљи поруку";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@је променио њихову адресу %2$@у %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Ви сте променили вашу имејл адресу %1$@у %2$@.\n\nАко сада пошаљете поруку провереној групи, тамошњи контакти ће аутоматски заменити стару адресу новом.\n\nПрепоручљиво је да подесите свог предходног имејл провајдера да прослеђује све имејл поруке на вашу нову имејл адресу. У супротном бисте могли да пропустите поруке од контаката који још нису добили вашу нову адресу.";
@@ -375,7 +375,7 @@
 "incoming_messages" = "Долазеће поруке";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Одлазеће поруке";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Складиштење на %1$@";
 "connectivity" = "Повезаност";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -395,9 +395,7 @@
 "part_of_total_used" = "%1$@од %2$@искоришћени";
 "scan_invitation_code" = "Скенирај код позива за приступ.";
 "login_title" = "Пријави се";
-// for classic email, we use the classical term "Account"
 "login_header" = "Пријавите се у ваш налог е-поште";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Пријавите се преко постојећег налога е-поште";
 "login_subheader" = "За познате пружаоце услуге е-поште, додатне поставке се одређују аутоматски. Каткад, морате омогућити ИМАП у поставкама на веб сучељу ваше е-поште.\n\nПосаветујте се са пружаоцем услуге е-поште или пријатељима ако наиђете на проблеме.";
 "login_no_servers_hint" = "Не постоји сервер Делта ћаскања. Апликација користи само сервер ваше е-поште.";
@@ -423,7 +421,7 @@
 "import_backup_title" = "Увези резервну копију";
 "import_backup_ask" = "Резервна копија пронађена у „%1$@“.\n\nЖелите ли да увезете и користите све њене податке и поставке?";
 "import_backup_no_backup_found" = "Нема резервних копија.\n\nКопирајте резервну копију у „%1$@“ и покушајте поново. Ако не желите, тапните „Почни ћаскање“ да бисте почели уобичајени процес поставке.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не могу да се пријавим као „%1$@“. Проверите да ли су е-адреса и лозинка тачни.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Прихватите и неважеће сертификате";
@@ -451,11 +449,10 @@
 "pref_profile_photo" = "Слика профила";
 "pref_blocked_contacts" = "Блокирани контакти";
 "blocked_empty_hint" = "Блокирани контакти ће се појавити овде.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Лозинка и налог";
 "pref_who_can_see_profile_explain" = "Слика вашег профила, име и потпис ће бити послан заједно са вашом поруком када комуницирате са другим корисницима.";
 "pref_your_name" = "Ваше име";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Текст потписа";
 "pref_enter_sends" = "Шаљи ЕНТЕР тастером";
 "pref_enter_sends_explain" = "Притиском на ЕНТЕР тастер тексутале поруке ће бити послате";
@@ -522,7 +519,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Ако промените ову опцију, морате проверити да су ваш сервер и ваши други клијенти конфигурисани у складу са тим.\n\nУ супротном апликација можда уопште неће функционисати.";
 "pref_watch_sent_folder" = "Посматрај директоријум са пошиљкама";
 "pref_send_copy_to_self" = "Пошаљи копију поруке себи";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Обавезно када користите овај налог на више уређаја.";
 "pref_auto_folder_moves" = "Аутоматски премести у DeltaChat директоријум";
 "pref_auto_folder_moves_explain" = "Ћаскања се померају да би се избегло затрпавање пријемног сандучета";
@@ -701,9 +697,9 @@
 "qraccount_ask_create_and_login" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?";
 "qraccount_ask_create_and_login_another" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?\n\nВаш постојећи налог неће бити избрисан. Користите „Промени налог“ да пређете са једног налога на други.";
 "qraccount_qr_code_cannot_be_used" = "Очитани бар-кôд не може бити коришћен да подеси нови налог.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Пријави се у „%1$@“?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Пријави се у „%1$@“? Ваш постојећи налог неће бити избрисан. Користите „Промени налог“ опцију да прелазите са једног на други налог.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@вас је позвао да се придружите групи.\n\nЧекамо да уређај од %2$@одговори...";

@@ -138,7 +138,6 @@
 "forward_to" = "Proslijedi do...";
 "pref_profile_photo" = "Profilna slika";
 "pref_blocked_contacts" = "Blokirani kontakti";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Lozinka i račun";
 "pref_your_name" = "Vaše ime";
 "pref_enter_sends" = "Enter šalje poruku";

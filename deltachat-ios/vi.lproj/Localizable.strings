@@ -117,7 +117,7 @@
 "voice_message" = "Tin nhắn thoại";
 "forwarded" = "Đã chuyển tiếp";
 "forwarded_message" = "Tin nhắn đã chuyển tiếp";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Được chuyển tiếp bởi %1$@";
 "video" = "Video";
 "documents" = "Tài liệu";
@@ -394,7 +394,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Lưới vuông";
 "send_message" = "Gửi tin nhắn";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ đã thay đổi địa chỉ của họ từ %2$@ thành %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Bạn đã thay đổi địa chỉ email của mình từ %1$@ thành %2$@.\n\nNếu bây giờ bạn gửi thư đến một nhóm đã được xác minh, những người liên hệ ở đó sẽ tự động thay thế địa chỉ cũ bằng địa chỉ mới của bạn.\n\nĐiều đó thật tuyệt vời khuyên bạn nên thiết lập nhà cung cấp email cũ để chuyển tiếp tất cả email đến địa chỉ email mới của bạn. Nếu không, bạn có thể bỏ lỡ tin nhắn của những người chưa nhận được địa chỉ mới của bạn.";
@@ -424,7 +424,7 @@
 "incoming_messages" = "Tin nhắn đến";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Tin nhắn đi";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Lưu trữ trên %1$@";
 "connectivity" = "Kết nối";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -444,9 +444,7 @@
 "part_of_total_used" = "%1$@ trong tổng số %2$@ đã được sử dụng";
 "scan_invitation_code" = "Quét mã mời";
 "login_title" = "Đăng nhập";
-// for classic email, we use the classical term "Account"
 "login_header" = "Đăng nhập vào tài khoản E-Mail của bạn";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Đăng nhập bằng tài khoản e-mail hiện có";
 "login_subheader" = "Đối với các nhà cung cấp e-mail đã biết, cài đặt bổ sung sẽ được thiết lập tự động. Đôi khi IMAP cần được bật trong cài đặt web. Hãy tham khảo nhà cung cấp e-mail hoặc bạn bè của bạn để được trợ giúp.";
 "login_no_servers_hint" = "Không có máy chủ Delta Chat, dữ liệu của bạn vẫn còn trên thiết bị của bạn.";
@@ -472,7 +470,7 @@
 "import_backup_title" = "Khôi phục từ bản sao lưu";
 "import_backup_ask" = "Đã tìm thấy bản sao lưu tại \"%1$@\".\n\nBạn có muốn nhập và sử dụng tất cả dữ liệu cũng như cài đặt từ nó không?";
 "import_backup_no_backup_found" = "Không tìm thấy bản sao lưu nào.\n\nSao chép bản sao lưu vào \"%1$@\" và thử lại. Ngoài ra, hãy nhấn \"Bắt đầu nhắn tin\" để tiếp tục quá trình thiết lập thông thường.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Không thể đăng nhập với tên \"%1$@\". Vui lòng kiểm tra xem địa chỉ e-mail và mật khẩu có đúng không.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Chấp nhận chứng chỉ không hợp lệ";
@@ -500,11 +498,10 @@
 "pref_profile_photo" = "Ảnh hồ sơ";
 "pref_blocked_contacts" = "Liên hệ bị chặn";
 "blocked_empty_hint" = "Các liên hệ bị chặn sẽ xuất hiện ở đây.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Mật khẩu và tài khoản";
 "pref_who_can_see_profile_explain" = "Ảnh hồ sơ, tên và chữ ký của bạn sẽ được gửi cùng với tin nhắn của bạn khi giao tiếp với người dùng khác.";
 "pref_your_name" = "Tên của bạn";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Văn bản chữ ký";
 "pref_enter_sends" = "Nhập khóa gửi";
 "pref_enter_sends_explain" = "Nhấn phím Enter sẽ gửi tin nhắn văn bản";
@@ -554,7 +551,7 @@
 "pref_backup" = "Sao lưu";
 "pref_backup_explain" = "Sao lưu cuộc trò chuyện vào bộ nhớ ngoài";
 "pref_backup_export_explain" = "Bản sao lưu giúp bạn thiết lập cài đặt mới trên thiết bị này hoặc trên thiết bị khác.\n\nBản sao lưu sẽ chứa tất cả tin nhắn, danh bạ và cuộc trò chuyện cũng như thiết lập Autocrypt hai đầu của bạn. Giữ tập tin sao lưu ở nơi an toàn hoặc xóa nó càng sớm càng tốt.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Xuất %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Xuất tất cả tài khoản %1$d";
@@ -575,7 +572,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
 "pref_watch_sent_folder" = "Xem thư mục đã gửi";
 "pref_send_copy_to_self" = "Gửi bản sao cho chính mình";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Bắt buộc khi sử dụng tài khoản này trên nhiều thiết bị.";
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
 "pref_auto_folder_moves_explain" = "Các cuộc trò chuyện được di chuyển để tránh làm lộn xộn Hộp thư đến";
@@ -769,9 +765,9 @@
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Đăng nhập vào \"%1$@\"?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";

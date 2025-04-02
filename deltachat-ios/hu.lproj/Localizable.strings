@@ -128,7 +128,7 @@
 "voice_message" = "Hangüzenet";
 "forwarded" = "Továbbított";
 "forwarded_message" = "Továbbított üzenet";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Továbbítva %1$@ által";
 "video" = "Videó";
 "documents" = "Dokumentumok";
@@ -248,9 +248,9 @@
 "select_chat" = "Csevegés kiválasztása";
 "select_more" = "Továbbiak kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű partnerének. Hagyja üresen a partnere által választott név megjelenítéséhez.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Becenév megadása „%1$@“ számára";
 "menu_settings" = "Beállítások";
 "menu_advanced" = "Speciális beállítások";
@@ -440,7 +440,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani partnerei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail-szolgáltatója továbbítsa-e az összes e-mailt az e-mail-címére. Ellenkező esetben lemaradhat azoknak a partnereinek az üzeneteiről, akik még nem kapták meg az új címét.";
@@ -471,7 +471,7 @@
 "incoming_messages" = "Beérkező üzenetek";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Kimenő üzenetek";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Tárhely mérete itt: %1$@";
 "connectivity" = "Tárhely";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -518,9 +518,7 @@
 "welcome_chat_over_email" = "Biztonságos decentralizált csevegés";
 "scan_invitation_code" = "QR-kód-meghívó beolvasása";
 "login_title" = "Bejelentkezés";
-// for classic email, we use the classical term "Account"
 "login_header" = "Jelentkezzen be az e-mail-fiókjába";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Bejelentkezés meglévő e-mail-fiókkal";
 "login_subheader" = "Az ismert e-mail-szolgáltatók esetében a rendszer automatikus beállításokat hoz létre. Kivételes esetekben az IMAP-ot engedélyezni kell az e-mail-szolgáltatójának webes beállításaiban. Forduljon az e-mail-szolgáltatójához vagy partnereihez további segítségért.";
 "login_no_servers_hint" = "A Delta Chat nem gyűjt felhasználói adatokat, az Ön összes adata az eszközén van tárolva.";
@@ -536,7 +534,7 @@
 "login_smtp_port" = "SMTP-port";
 "login_smtp_security" = "SMTP-biztonság";
 "login_auth_method" = "Azonosítási eljárás";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Proxy használata";
 "proxy_add" = "Proxy hozzáadása";
@@ -559,7 +557,7 @@
 "import_backup_title" = "Biztonsági mentés visszaállítása";
 "import_backup_ask" = "A biztonsági mentés itt található: „%1$@”.\n\nAz összes adatot és beállítást szeretné importálni és használni belőle?";
 "import_backup_no_backup_found" = "A biztonsági mentés nem található.\n\nMásolja a biztonsági mentést ide: „%1$@” és próbálja újra. Másik lehetőségként nyomja meg az „Üzenetküldés indítása” gombot a normál beállítási folyamat folytatásához.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nem lehetett bejelentkezni ide: „%1$@”. Ellenőrizze, hogy a megadott e-mail-cím és a jelszó helyes-e.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Érvénytelen tanúsítványok elfogadása";
@@ -596,11 +594,10 @@
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott névjegyek";
 "blocked_empty_hint" = "A letiltott névjegyek itt fognak megjelenni";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Fiók és jelszó";
 "pref_who_can_see_profile_explain" = "A profilképe, neve és életrajza az üzenetekkel együtt kerül elküldésre, amikor más felhasználókkal kommunikál.";
 "pref_your_name" = "Név";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Életrajz";
 "pref_enter_sends" = "Küldés „Enterrel”";
 "pref_enter_sends_explain" = "Az „Enter” billentyű megnyomásával szöveges üzeneteket küldhet";
@@ -657,7 +654,7 @@
 "pref_backup" = "Biztonsági mentés";
 "pref_backup_explain" = "Csevegések biztonsági mentése külső tárhelyre";
 "pref_backup_export_explain" = "A biztonsági mentés segít egy új telepítés beállításában ezen vagy egy másik eszközön.\n\nA biztonsági mentés tartalmazza az összes üzenetet, névjegyet és csevegést, valamint a végpontok közötti autocrypt beállításokat. Tartsa a biztonsági mentést biztonságos helyen, vagy törölje, amint lehetséges.";
-// the placeholder will be replaced by the name of the profile's email address
+// the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "%1$@ exportálása";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Mind a(z) %1$d profil exportálása";
@@ -678,7 +675,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Ha megváltoztatja ezt a beállítást, győződjön meg arról, hogy a kiszolgálója és a többi kliense is ennek megfelelően van beállítva.\n\nMáskülönben előfordulhat, hogy a dolgok egyáltalán nem fognak működni.";
 "pref_watch_sent_folder" = "Elküldött üzenetek mappájának figyelése";
 "pref_send_copy_to_self" = "Másolat küldése Önmagának";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Szükséges, ha ezt a fiókot több eszközön is használja.";
 "pref_auto_folder_moves" = "Automatikus áthelyezés a DeltaChat nevű mappába";
 "pref_auto_folder_moves_explain" = "A csevegések áthelyezésre kerülnek, hogy elkerüljék a bejövő üzenetek mappa zűrzavarát.";
@@ -886,9 +882,9 @@
 "set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet a partnerei felismernek. Beállíthat egy profilképet is.";
 "please_enter_name" = "Adjon meg egy nevet.";
 "qraccount_qr_code_cannot_be_used" = "A beolvasott QR-kód nem használható új profil beállítására.";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Bejelentkezés ide: „%1$@”?";
-// the placeholder will be replaced by the e-mail address of the profile
+// the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Bejelentkezés ide: „%1$@”?\n\nA meglévő profilját nem töröljük. A „Profilváltás” elemmel válthat a profiljai között.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ meghívta önt, hogy csatlakozzon ehhez a csoporthoz.\n\n%2$@ eszközére várakozás a válaszhoz…";

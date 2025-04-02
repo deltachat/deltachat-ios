@@ -241,10 +241,9 @@
 "pref_profile_info_headline" = "Din profilinfo";
 "pref_profile_photo" = "Profilbilde";
 "pref_blocked_contacts" = "Blokkerte kontakter";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Kontoinnstillinger";
 "pref_your_name" = "Mitt navn";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signaturtekst";
 "pref_enter_sends" = "Send med \"Enter\"";
 "pref_vibrate" = "Vibrer";

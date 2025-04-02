@@ -128,7 +128,7 @@
 "voice_message" = "Mensaxe de voz";
 "forwarded" = "Reenviada";
 "forwarded_message" = "Mensaxe reenviado";
-// %1$s will be replaced by the name or the e-mail address of the person who forwards the message
+// %1$s will be replaced by the name of the person who forwarded the message
 "forwarded_by" = "Reenviado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
@@ -245,9 +245,9 @@
 "select_chat" = "Elixir conversa";
 "select_more" = "Elexir máis";
 "menu_edit_name" = "Editar nome";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Establece un alcume que se che mostrará no lugar de \"%1$@\". Deixa baleiro para usar o nome elixido polo contacto.";
-// The placeholder will be replaced by the name the contact gave themself (if any) or by an e-mail address.
+// The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Alcume para \"%1$@\"";
 "menu_settings" = "Axustes";
 "menu_advanced" = "Avanzado";
@@ -435,7 +435,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Grella cadrada";
 "send_message" = "Enviar mensaxe";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new email addresses.
+// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ cambiou o seu enderezo de %2$@ a %3$@";
 // the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
 "aeap_explanation" = "Cambiaches o teu enderezo de email de %1$@ a %2$@.\n\nSe envías unha mensaxe a un grupo verificado os contactos cambiarán automáticamente o enderezo antigo polo novo.\n\nÉ moi recomendable que configures o email antigo para que che reenvíe todo o correo ao novo enderezo. De non facelo poderías perder mensaxes de contactos que aínda non coñezan o teu novo enderezo.";
@@ -466,7 +466,7 @@
 "incoming_messages" = "Mensaxes entrantes";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensaxes saíntes";
-// Headline in the "Connectivity" view. Placeholder will be replaced by the domain of the configured email-address.
+// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "Almacenar en %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -513,9 +513,7 @@
 "welcome_chat_over_email" = "Conversas Seguras e Descentralizadas";
 "scan_invitation_code" = "Escanear código de convite";
 "login_title" = "Acceder";
-// for classic email, we use the classical term "Account"
 "login_header" = "Accede ao teu servidor";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Accede cunha conta de correo existente";
 "login_subheader" = "Para os provedores de correo máis frecuentes os axustes establécense automaticamente. Porén poderías ter que activar IMAP nos seus axustes. Consulta o teu provedor de correo ou aos amigos se tes dúbidas.";
 "login_no_servers_hint" = "Non hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
@@ -531,7 +529,7 @@
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
 "login_auth_method" = "Método de autorización";
-// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the chatmail or email server
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Usar Proxy";
 "proxy_add" = "Engadir Proxy";
@@ -552,7 +550,7 @@
 "import_backup_title" = "Importar respaldo";
 "import_backup_ask" = "Atopouse un respaldo en \"%1$@\".\n\nQueres importar e utilizar os seus datos e axustes?";
 "import_backup_no_backup_found" = "Non se atoparon respaldos.\n\nCopia o respaldo a \"%1$@\" e inténtao outra vez. Alternativamente, podes premer \"Comezar conversa\" e continuar co proceso normal de axustes.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Non se puido acceder como \"%1$@\". Comproba o enderezo de correo e o contrasinal.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceptar certificados non válidos";
@@ -580,11 +578,10 @@
 "pref_profile_photo" = "Imaxe de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "blocked_empty_hint" = "Móstranse aquí os contactos que bloqueas.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Contrasinal e conta";
 "pref_who_can_see_profile_explain" = "A túa foto de perfil e nome móstranse xunto coas túas mensaxes ao comunicarte con outras persoas. A información xa enviada non se pode agochar o borrar.";
 "pref_your_name" = "O teu nome";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Texto de firma";
 "pref_enter_sends" = "A tecla Enter envía";
 "pref_enter_sends_explain" = "Ao premer Enter enviarás a mensaxe";
@@ -651,7 +648,6 @@
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
 "pref_watch_sent_folder" = "Vixiar cartafol Enviados";
 "pref_send_copy_to_self" = "Enviar copia a ti mesmo";
-// for classic email, we use the classical term "Account"
 "pref_send_copy_to_self_explain" = "Requerido se utilizas esta conta en varios dispositivos.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
 "pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";

@@ -252,9 +252,7 @@
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
 "login_title" = "Intra";
-// for classic email, we use the classical term "Account"
 "login_header" = "Intra in su servidore tuo";
-// for classic email, we use the classical term "Account"
 "login_explain" = "Intra cun un\'indiritzu de posta eletrònica chi esistat";
 "login_subheader" = "Pro sos frunidores de posta eletrònica connotos sas impostatziones additzionales benint impostadas in automàticu. Cada tantu s\'IMAP cheret abilitadu in sas impostatziones web. Si ti serbit agiudu pedi a su frunidore de posta eletrònica tuo o a sos amigos tuos.";
 "login_no_servers_hint" = "No esistint serbidores de Delta Chat, sos datos tuos abarrant in su dispositivu tuo.";
@@ -280,7 +278,7 @@
 "import_backup_title" = "Importa una còpia de seguresa";
 "import_backup_ask" = "Còpia de seguresa agatada in \"%1$@\".\n\nCheres a l\'importare e a impreare totu sos datos e sas impostatziones dae cue?";
 "import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca. Asinuncas, incarca \"Incumintza a messagiare\" pro sighire cun su protzessu de impostatzione normale.";
-// Translators: %1$s will be replaced by the e-mail address
+// %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";
@@ -304,11 +302,10 @@
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
 "blocked_empty_hint" = "Si as a blocare cuntatos ant a èssere allistados inoghe.";
-// for classic email, we use the classical term "Account"
 "pref_password_and_account_settings" = "Crae de intrada e contu";
 "pref_who_can_see_profile_explain" = "S\'immàgine de profilu tua e su nùmene tuo ant a èssere ammustrados in paris cun sos messàgios tuos cando ses comunichende cun àteros impreadores. Sas informatziones giai imbiadas non podent èssere iscantzelladas o bogadas.";
 "pref_your_name" = "Su nùmene tuo";
-// Translators: Visible only to recipients who DO NOT use Delta Chat, so it's the last line in an E-mail and not a "Status".
+// Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Firma";
 "pref_enter_sends" = "Imbia cun \"Imbiu\"";
 "pref_enter_sends_explain" = "Incarchende sa tecla Imbiu as a imbiare sos messàgios";
