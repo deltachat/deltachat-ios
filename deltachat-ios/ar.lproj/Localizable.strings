@@ -181,6 +181,7 @@
 "pref_language" = "اللغة";
 "pref_use_system_emoji" = "استخدام الرموز التعبيرية بالنظام";
 "pref_use_system_emoji_explain" = " Delta Chat تعطيل الرموز التعبيرية المدمجة في ";
+// deprecated
 "pref_app_access" = "دخول البرنامج";
 "pref_chats" = "المحادثات";
 "pref_in_chat_sounds" = "أصوات خلال الدردش";

@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emodzsi-támogatásának letiltása";
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
 "pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó partnereivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
+// deprecated
 "pref_app_access" = "Alkalmazás-hozzáférés";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Egy autocryptbeállító-üzenet biztonságosan megosztja az ön végpontok közötti beállításait más autocrypt-kompatibilis alkalmazásokkal.\n\nA beállítás titkosítása egy, itt megjelenő beállítási kóddal történik, amelyet a másik eszközön kell begépelni.";
 "autocrypt_send_asm_button" = "Autocryptbeállító-üzenet küldése";
 "autocrypt_send_asm_explain_after" = "A beállításokat elküldtük önnek. Váltson a másik eszközre, és nyissa meg a beállítási üzenetet. Meg kell adnia a beállítási kódot. Írja be a következő számjegyeket:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Végpontok közötti titkosítás előnyben részesítése";
 "autocrypt_asm_subject" = "Autocryptbeállító-üzenet";
 "autocrypt_asm_general_body" = "Ez az autocryptbeállító-üzenet a végpontok közötti beállítások kliensek közötti átvitelére szolgál.\n\nA beállítások visszafejtéséhez és használatához nyissa meg az üzenetet egy autocrypt-kompatibilis kliensben, és írja be az előállító eszközön megjelenő beállítási kódot.";
-// deprecated
-"autocrypt_asm_click_body" = "Ez az Autocryptbeállító-üzenet, amelyet a végpontok közötti titkosítási beállítások átvitelére használnak a kliensek között.\n\n\nA beállítások visszafejtéséhez és használatához koppintson vagy kattintson erre az üzenetre.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocryptbeállító-üzenet";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = " Adja meg a másik eszközön megjelenő beállítási kódot.";
-// deprecated
-"autocrypt_bad_setup_code" = "Rossz beállítási kód. Próbálja újra.\n\nHa nem emlékszik a beállítási kódra, küldjön új Autocryptbeállító-üzenetet a másik eszközről.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chatet, akkor a legjobb, ha most újraindítja a Delta Chatet, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
 "systemmsg_unknown_sender_for_chat" = "Az üzenet feladója ismeretlen ebben a csevegésben. További részletekért tekintse meg az „Információkat”.";
@@ -903,6 +895,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ válaszolt, várakozik, hogy fölvegyék a csoportba…";
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
+// deprecated
 "secure_join_wait_timeout" = "Még nem sikerült a garantált végpontok közötti titkosítást létrehozni, de már küldhet üzenetet.";
 "contact_verified" = "%1$@ bemutatva.";
 "contact_not_verified" = "Nem lehet garantált végpontok közötti titkosítást létrehozni vele: %1$@.";
@@ -912,6 +905,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Megváltoztatta a beállításokat %1$@ számára.";
 "verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
+// deprecated
 "copy_qr_data_success" = "QR-kód-webcím másolása a vágólapra";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat

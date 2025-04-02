@@ -349,6 +349,7 @@
 "pref_manage_keys" = "Administri ŝlosilojn";
 "pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
 "pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
+// deprecated
 "pref_app_access" = "Aliro al aplikaĵo";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
@@ -373,7 +374,6 @@
 "pref_watch_sent_folder" = "Kontroli senditujon";
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
 // notifications
 "notify_reply_button" = "Respondi";

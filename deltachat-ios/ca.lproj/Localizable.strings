@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Desactiva el suport de sèrie per emojis a Delta Chat";
 "pref_show_system_contacts" = "Llegeix la llibreta d\'adreces del sistema";
 "pref_show_system_contacts_explain" = "Ofereix de crear xats amb els contactes de la llibreta d\'adreces. Alguns proveïdors necessiten de configurar abans el xifratge d\'extrem a extrem.";
+// deprecated
 "pref_app_access" = "Accés a l\'aplicació";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
 "autocrypt_asm_subject" = "Missatge de configuració Autocrypt";
 "autocrypt_asm_general_body" = "Aquest és el missatge de configuració Autocrypt que s’usa per a transferir la vostra configuració d\'extrem a extrem entre dispositius.\n\nPer a desxifrar i usar aquesta configuració, obriu el missatge en un dispositiu compatible amb Autocript i introduïu el codi de configuració que apareix al dispositiu primari.";
-// deprecated
-"autocrypt_asm_click_body" = "Aquest és el missatge de configuració Autocrypt que s’usa per a transferir la vostra configuració d\'extrem a extrem entre clients.\n\nPer a desxifrar i usar la vostra configuració, toqueu o feu clic en aquest missatge.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Missatge de configuració Autocrypt";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Si us plau introduïu el codi d\'instal·lació que es mostra a l\'altre dispositiu.";
-// deprecated
-"autocrypt_bad_setup_code" = "Codi de configuració incorrecte. Siusplau torneu-ho a provar.\n\nSi no recordeu el codi de configuració Autocrypt, envieu-ne un de nou des de l’altre dispositiu.";
 // system messages
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Potser pot ajudar de respondre el missatge i demanar a l\'emissor que torni a enviar-lo,\n\n• Si acabeu de reinstal·lar Delta Chat, aleshores és millor de reconfigurar Delta Chat ara i triar «Afegeix un segon dispositiu» o importar una còpia de seguretat.";
 "systemmsg_unknown_sender_for_chat" = "Remitent desconegut per a aquest xat. Vegeu «informació» per a més detalls.";
@@ -903,6 +895,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha respost, espereu per a ser afegit al grup...";
 "secure_join_wait" = "S\'està establint el xifratge d\'extrem a extrem garantit, espereu...";
+// deprecated
 "secure_join_wait_timeout" = "Encara no es pot garantir el xifrat punt-a-punt, però ja podeu enviar un missatge.";
 "contact_verified" = "%1$@ verificat.";
 "contact_not_verified" = "No es pot verificar%1$@";
@@ -912,6 +905,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuració canviada per %1$@";
 "verified_contact_required_explain" = "Per a garantir el xifrat extrem a extrem, només podeu afegir a aquest grup contactes que tinguin la marca verda.\n\nPodeu trobar-vos en persona amb els contactes per a escanejar els seus codis QR i poder-los afegir. ";
+// deprecated
 "copy_qr_data_success" = "S\'ha copiat l\'URL del codi QR al porta-retalls";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
 // first placeholder is the name of the chat

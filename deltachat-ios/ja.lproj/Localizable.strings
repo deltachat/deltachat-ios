@@ -396,6 +396,7 @@
 "pref_manage_keys" = "暗号鍵の管理";
 "pref_use_system_emoji" = "システムの絵文字を使う";
 "pref_use_system_emoji_explain" = "Delta Chat独自の絵文字機能を無効にする";
+// deprecated
 "pref_app_access" = "アプリのアクセス";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
@@ -471,11 +472,8 @@
 "autocrypt_send_asm_title" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
 "autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "autocrypt_send_asm_button" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
-// deprecated
 "autocrypt_prefer_e2ee" = "エンドツーエンド暗号化を好む";
 "autocrypt_asm_subject" = "自動暗号化設定用ﾒｯｾｰｼﾞ";
-// deprecated
-"autocrypt_continue_transfer_title" = "自動暗号化設定用ﾒｯｾｰｼﾞ";
 "systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
 "systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name

@@ -26,6 +26,8 @@
 "join" = "پیوستن";
 "rejoin" = "پیوستن مجدد";
 "delete" = "حذف";
+"delete_for_me" = "حذف برای من";
+"delete_for_everyone" = "حذف برای همه";
 "info" = "درباره";
 "update" = "به‌‌روزرسانی";
 "emoji" = "شکلک";
@@ -38,11 +40,14 @@
 "later" = "بعدا";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "ارسال مجدد";
+"edited" = "ویرایش‌شده";
+"edit_message" = "ویرایش پیام";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "بایگانی";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "خروج از بایگانی";
 "mute" = "سکوت";
+"muted" = "بی‌صدا";
 "ephemeral_messages" = "پیام‌های ناپدید شونده";
 "ephemeral_messages_hint" = "روی تمام اعضای این گپ، اگر از دلتاچت استفاده کنند، اعمال می‌شود؛ ولی همچنان می‌توانند پیام‌ها را رونوشت، ذخیره و هدایت کنند یا از کارخواه‌های رایانامهٔ دیگر استفاده کنند.";
 "save" = "ذخیره";
@@ -143,6 +148,14 @@
 "webxdc_app" = "برنامه";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "برنامه‌ها";
+"home" = "خانه";
+"games" = "بازی‌ها";
+"tools" = "ابزار";
+"app_size" = "اندازه";
+"app_date_published" = "انتشار";
+"add_to_chat" = "افزودن به گفتگو";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "جستجو";
 "unknown" = "ناشناس";
 "green" = "سبز";
 "red" = "قرمز";
@@ -167,6 +180,8 @@
  استفاده شوند و رمزگذاری سراسری برای آن‌ها تضمین نمی‌شود.";
 "menu_new_chat" = "گپ جدید";
 "menu_new_group" = "گروه جدید";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "شروع گفتگو با...";
 "clone_chat" = "درست کردن گپ جدید از این گپ";
 // consider keeping the term "broadcast" as in WhatsApp or Telegram
 "broadcast_list" = "لیست Broadcast";
@@ -270,6 +285,7 @@
 "add_to_home_screen" = "افزودن به صفحه خانه";
 "donate" = "حمایت مالی";
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
+"mute_for_eight_hours" = "بی‌صدا کردن به مدت ۸ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
 "mute_for_seven_days" = "ساکت کردن به مدت۷ روز";
 "mute_forever" = "ساکت کردن دائمی";
@@ -299,6 +315,8 @@ https://meet.jit.si/$ROOM
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
 // get confirmations
 "ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
+"ask_delete_named_chat" = "حذف گفتگو «%1$@» از همه‌ی دستگاه‌های شما؟";
+"ask_delete_message" = "می‌خواهید این پیام را از همه‌ی دستگاه‌هایتان حذف کنید؟";
 // Used for the deletion of Device messages
 "ask_forward" = "پیام‌ها به %1$@هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
@@ -414,6 +432,7 @@ https://meet.jit.si/$ROOM
 "tab_audio_empty_hint" = "پرونده‌های صوتی و پیام‌های صوتی هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_webxdc_empty_hint" = "برنامه‌هایی که در این چت به اشتراک گذاشته شده‌اند، این‌جا نمایش داده خواهند شد.";
 "tab_all_media_empty_hint" = "رسانه‌های به اشتراک گذاشته شده همه چت‌ها در اینجا ظاهر می‌شود.";
+"all_apps_empty_hint" = "برنامه‌هایی که در هر گفتگویی ارسال شده باشند در اینجا ظاهر خواهند شد.";
 "media_preview" = "نمایش رسانه";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "حفظ مقیاس تصویر";
@@ -606,6 +625,7 @@ https://meet.jit.si/$ROOM
 "pref_appearance" = "ظاهر";
 "pref_theme" = "قالب";
 "pref_language" = "زبان";
+"pref_use_system_ui_font" = "استفاده از فونت سیستم";
 "pref_incognito_keyboard" = "صفحه کلید ناشناس";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "درخواست دهید که صفحه کلید رفتارهای شخصی شما را یاد نگیرد";
@@ -617,6 +637,7 @@ https://meet.jit.si/$ROOM
 "pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
 "pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
 "pref_show_system_contacts" = "خواندن دفترچه آدرس دستگاه";
+// deprecated
 "pref_app_access" = "دسترسی نرم‌افزار";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
@@ -732,18 +753,13 @@ https://meet.jit.si/$ROOM
 "autocrypt_send_asm_explain_before" = "پیام برپاسازی اتوکریپت تنظیم‌های رمزگذاری سرتاسر شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیم‌ها با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
 "autocrypt_send_asm_button" = "ارسال پیام برپاسازی اتوکریپت";
 "autocrypt_send_asm_explain_after" = "تنظیم‌های شما برای خودتان ارسال شدند. پیام تنظیم‌ها را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید";
-// deprecated
 "autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
 "autocrypt_asm_subject" = "پیام برپاسازی اتوکریپت";
 "autocrypt_asm_general_body" = "این پیام برپاسازی اتوکریپت است و تنظیم‌های مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده از آن، پیام را در یک سامانه که با اتوکریپت همخوانی دارد باز کنید و کد برپاسازی که در دستگاه تولیدکنندهٔ پیام، به شما داده می‌شود را وارد نمایید. ";
-// deprecated
-"autocrypt_asm_click_body" = "این پیام برپاسازی اتوکریپت است که تنظیم‌های مربوط به رمزگذاری سرتاسر شما را بین دستگاه‌ها جابه‌جا می‌کند.\n\n برای رمزگشایی و استفاده، روی این پیام بزنید یا کلیک کنید. ";
-// deprecated
-"autocrypt_continue_transfer_title" = "پیام برپاسازی اتوکریپت";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "لطفا کد نصب نمایش داده شده در دستگاه دیگر را وارد کنید. ";
-// deprecated
-"autocrypt_bad_setup_code" = "کد برپاسازی نادرست. لطفاً دوباره تلاش کنید. \n\n اگر کد برپاسازی را فراموش کرده‌اید یک پیام برپاسازی اتوکریپت جدید را از دستگاه دیگر ارسال کنید. ";
+// system messages
+"systemmsg_cannot_decrypt" = "این پیام قابل رمزگشایی نیست.
+می‌توانید با پاسخ به این پیام از فرستنده درخواست کنید پیام را مجدد ارسال کند.
+اگر دلتاچت را به تازگی دوباره نصب کرده‌اید بهتر است آن را مجدد راه‌اندازی کرده و از گزینه‌ی «افزودن به عنوان دستگاه دوم» استفاده کنید یا از نسخه‌ی پشتیبان بازیابی کنید.";
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از%1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
@@ -874,6 +890,7 @@ https://meet.jit.si/$ROOM
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
 "secure_join_wait" = "در حال برقراری رمزگذاری سراسری تضمین‌شده، لطفا صبر کنید...";
+// deprecated
 "secure_join_wait_timeout" = "اکنون نمی توانیم رمزگذاری سراسری تضمین‌شده را برقرار کنیم. با این وجود می‌توانید پیام ارسال کنید.";
 "contact_verified" = "%1$@ تأیید شد.";
 "contact_not_verified" = "امکان تایید رمزگذاری در مبدا، برای %1$@وجود ندارد.";
@@ -883,6 +900,7 @@ https://meet.jit.si/$ROOM
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "تنظیم‌ها برای %1$@ تغییر کرد. ";
 "verified_contact_required_explain" = "برای تضمین رمزنگاری سراسری شما تنها می‌توانید مخاطب‌هایی که یک تیک سبز دارند به این گروه اضافه کنید.\n\nمی‌توانید با مخاطب‌هایتان حضوری ملاقات کنید و برای معرفی، کد QR آن‌ها را اسکن کنید.";
+// deprecated
 "copy_qr_data_success" = "آدرس کیوآر در حافظه ذخیر شد";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
@@ -1022,6 +1040,9 @@ GNU GPL ورژن ۳
 "notifications_avg_minutes" = "به صورت متوسط هر%1$d دقیقه";
 "notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
 "last_check_at" = "بررسی شده در %1$@";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "میانبرها";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "تحویل آنی";

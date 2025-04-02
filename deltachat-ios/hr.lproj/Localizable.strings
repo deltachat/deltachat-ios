@@ -169,6 +169,7 @@
 "pref_read_receipts_explain" = "Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.";
 "pref_use_system_emoji" = "Koristi emotikone sustava";
 "pref_use_system_emoji_explain" = "Onemogući ugrađenu Delta Chat podršku za emotikone";
+// deprecated
 "pref_app_access" = "Pristup aplikaciji";
 "pref_chats" = "Razgovori";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";

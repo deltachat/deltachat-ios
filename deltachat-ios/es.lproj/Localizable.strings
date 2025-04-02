@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Deshabilitar el soporte de emoji integrado de Delta Chat";
 "pref_show_system_contacts" = "Leer la libreta de direcciones del sistema";
 "pref_show_system_contacts_explain" = "Ofrecer crear chats con contactos de la libreta de direcciones. Algunos proveedores necesitan primero una configuración de cifrado de extremo a extremo.";
+// deprecated
 "pref_app_access" = "Acceso a la aplicación";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Un \"Mensaje de Configuración de Autocrypt\" comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt.\n\nLa configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar Mensaje de Configuración de Autocrypt";
 "autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:.\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
 "autocrypt_asm_subject" = "Mensaje de Configuración de Autocrypt";
 "autocrypt_asm_general_body" = "Este es el Mensaje de Configuración de Autocrypt utilizado para transferir su configuración de extremo a extremo entre clientes.\n\nPara descifrar y usar su configuración, abra el mensaje en un cliente compatible con Autocrypt e ingrese el código de configuración presentado en el dispositivo que lo generó.";
-// deprecated
-"autocrypt_asm_click_body" = "Este es el Mensaje de Configuración de Autocrypt utilizado para transferir su configuración de extremo a extremo entre clientes.\n\nPara descifrar y usar su configuración, toque o haga clic en este mensaje.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Mensaje de Configuración de Autocrypt";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Por favor, introduzca el código de configuración que se muestra en el otro dispositivo. ";
-// deprecated
-"autocrypt_bad_setup_code" = "Código de configuración incorrecto. Inténtelo de nuevo.\n\nSi no recuerda el código de configuración, solo envíe otro Mensaje de Configuración de Autocrypt desde el otro dispositivo.";
 // system messages
 "systemmsg_cannot_decrypt" = "Este mensaje no se puede descifrar.\n\n• Podría ayudar simplemente responder a este mensaje y pedir al remitente que lo envíe de nuevo.\n\n• Si acabas de reinstalar Delta Chat, es mejor que configures Delta Chat de nuevo y elijas \"Agregar como segundo dispositivo\" o importes una copia de seguridad.";
 "systemmsg_unknown_sender_for_chat" = "Remitente desconocido. Mira \"info\" para más detalles.";
@@ -903,6 +895,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ respondió, esperando ser agregado al grupo…";
 "secure_join_wait" = "Estableciendo cifrado de extremo a extremo garantizado, por favor, espere...";
+// deprecated
 "secure_join_wait_timeout" = "No se pudo aún establecer el cifrado de extremo a extremo garantizado, pero ya puede enviar mensajes.";
 "contact_verified" = "%1$@ verificado.";
 "contact_not_verified" = "No se pudo verificar %1$@.";
@@ -912,6 +905,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuración cambiada para %1$@.";
 "verified_contact_required_explain" = "Para garantizar el cifrado de extremo a extremo, solo puedes añadir contactos con una marca de verificación verde";
+// deprecated
 "copy_qr_data_success" = "URL del código QR copiado al portapapeles";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat

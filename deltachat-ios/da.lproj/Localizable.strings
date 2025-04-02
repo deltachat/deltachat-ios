@@ -401,6 +401,7 @@
 "pref_manage_keys" = "Håndtér nøgler";
 "pref_use_system_emoji" = "Brug system emoji";
 "pref_use_system_emoji_explain" = "Deaktiver Delta Chat\'s indbygget emoji understøttelse";
+// deprecated
 "pref_app_access" = "Programadgang";
 "pref_chats" = "Samtaler";
 "pref_in_chat_sounds" = "In-chat-lyde";
@@ -484,18 +485,9 @@
 "autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
 "autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
 "autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 "autocrypt_asm_subject" = "Autocrypt opsætningsbesked";
 "autocrypt_asm_general_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at af kryptere og bruge opsætning åben beskeden i en Autocrypt kompatibel klient og indtast opsæt koden vist på den genererende enhed.";
-// deprecated
-"autocrypt_asm_click_body" = "Dette er Autocrypt opsætning besked brugt til at overføre ende-til-ende opsætning mellem klienter.\n\nFor at dekryptere og bruge opsætning, tryk eller klik på denne besked.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt-opsætningsbesked";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Indtast opsætning kode vist på den anden enhed. ";
-// deprecated
-"autocrypt_bad_setup_code" = "Ugyldig opsætningskode. Prøv igen.\n\nKan opsætningskoden ikke huskes, send blot en anden Autocrypt opsætning besked fra den anden enhed.";
 "systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
@@ -584,6 +576,7 @@
 "contact_not_verified" = "Kan ikke bekræfte %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Ændret opsætning for %1$@";
+// deprecated
 "copy_qr_data_success" = "Kopieret QR url til udklipsholder";
 // notifications
 "notify_reply_button" = "Svar";

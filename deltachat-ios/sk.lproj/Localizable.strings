@@ -479,6 +479,7 @@
 "pref_manage_keys" = "Správa kľúčov";
 "pref_use_system_emoji" = "Používajte systémové emodži";
 "pref_use_system_emoji_explain" = "Vypnite vstavanú podporu emodži v aplikácii Delta Chat";
+// deprecated
 "pref_app_access" = "Prístup k aplikácii";
 "pref_chats" = "Konverzácie";
 "pref_in_chat_sounds" = "Zvuky v konverzáciách";
@@ -580,18 +581,9 @@
 "autocrypt_send_asm_explain_before" = "Správa o nastavení automatického šifrovania bezpečne zdieľa vaše komplexné nastavenie s ostatnými aplikáciami kompatibilnými s automatickým šifrovaním.\n\nNastavenie bude šifrované tu zobrazeným nastavovacím kódom a musí byť zadané na druhom zariadení.";
 "autocrypt_send_asm_button" = "Pošlite správu s nastavením autokryptovania";
 "autocrypt_send_asm_explain_after" = "Vaše nastavenie bolo odoslané vám. Prepnite na druhé zariadenie a otvorte správu o nastavení. Mali by ste byť požiadaní o nastavovací kód. Zadajte nasledujúce číslice:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferovať šifrovanie typu end-to-end";
 "autocrypt_asm_subject" = "Správa o nastavení automatického šifrovania";
 "autocrypt_asm_general_body" = "Toto je správa o nastavení automatického šifrovania, ktorá sa používa na prenos komplexného nastavenia medzi klientmi.\n\nAk chcete dešifrovať a použiť svoje nastavenie, otvorte správu v klientovi kompatibilnom s automatickým šifrovaním a zadajte inštalačný kód uvedený na generujúcom zariadení.";
-// deprecated
-"autocrypt_asm_click_body" = "Toto je správa o automatickom šifrovaní, ktorá sa používa na prenos komplexného nastavenia medzi klientmi.\n\nAk chcete dešifrovať a použiť svoje nastavenie, klepnite na túto správu alebo na ňu kliknite.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Správa o nastavení automatického šifrovania";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Zadajte nastavovací kód zobrazený na druhom zariadení.";
-// deprecated
-"autocrypt_bad_setup_code" = "Chybný kód nastavenia. Skúste to znova.\n\nAk si nepamätáte nastavovací kód, odošlite z druhého zariadenia novú správu s nastavením automatického šifrovania.";
 "systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
@@ -705,6 +697,7 @@
 "contact_not_verified" = "Cannot verify %1$@.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmena nastavenia pre %1$@.";
+// deprecated
 "copy_qr_data_success" = "Skopírovaná adresa URL QR do schránky";
 "mailto_dialog_header_select_chat" = "Vyberte konverzáciu, kam bude správa odoslaná";
 // first placeholder is the name of the chat

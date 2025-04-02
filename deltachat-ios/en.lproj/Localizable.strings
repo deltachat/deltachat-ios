@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Turn off Delta Chat\'s built-in emoji support";
 "pref_show_system_contacts" = "Read System Address Book";
 "pref_show_system_contacts_explain" = "Offer to create chats with contacts from the address book. Some providers need end-to-end encryption setup first.";
+// deprecated
 "pref_app_access" = "App Access";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat Sounds";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nThe setup will be encrypted by a setup code displayed here and must be typed on the other device.";
 "autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
 "autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
-// deprecated
 "autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 "autocrypt_asm_subject" = "Autocrypt Setup Message";
 "autocrypt_asm_general_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, open the message in an Autocrypt-compliant client and enter the setup code presented on the generating device.";
-// deprecated
-"autocrypt_asm_click_body" = "This is the Autocrypt Setup Message used to transfer your end-to-end setup between clients.\n\nTo decrypt and use your setup, tap or click on this message.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Autocrypt Setup Message";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Please enter the setup code displayed on the other device.";
-// deprecated
-"autocrypt_bad_setup_code" = "Bad setup code. Please try again.\n\nIf you do not remember the setup code, send a new Autocrypt Setup Message from the other device.";
 // system messages
 "systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
@@ -903,7 +895,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
 "secure_join_wait" = "Establishing guaranteed end-to-end encryption, please wait…";
+// deprecated
 "secure_join_wait_timeout" = "Could not yet establish guaranteed end-to-end encryption, but you may already send a message.";
+"secure_join_takes_longer" = "That seems to take longer, maybe the contact or you are offline.\n\nHowever, the process continues in background, you can do something else…";
 "contact_verified" = "%1$@ introduced.";
 "contact_not_verified" = "Cannot establish guaranteed end-to-end encryption with %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
@@ -912,6 +906,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Changed setup for %1$@.";
 "verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green checkmark to this group.\n\nYou may meet contacts in person and scan their QR Code to introduce them.";
+// deprecated
 "copy_qr_data_success" = "Copied QR url to clipboard";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat

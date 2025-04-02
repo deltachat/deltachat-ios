@@ -645,6 +645,7 @@
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
 "pref_show_system_contacts" = "Odczytaj systemową książkę adresową";
 "pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej. Niektórzy dostawcy wymagają najpierw szyfrowania end-to-end.";
+// deprecated
 "pref_app_access" = "Dostęp do aplikacji";
 "pref_chats" = "Czaty";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
@@ -763,18 +764,9 @@
 "autocrypt_send_asm_explain_before" = "Wiadomość konfiguracyjna automatycznego szyfrowania” bezpiecznie udostępnia twoją konfigurację end-to-end innym aplikacjom zgodnym z Autocrypt. Klucz zostanie zaszyfrowany za pomocą wyświetlonego tutaj kodu konfiguracyjnego, który należy wpisać na drugim urządzeniu.";
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi.\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferuj szyfrowanie typu end-to-end";
 "autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
 "autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
-// deprecated
-"autocrypt_asm_click_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, dotknij lub kliknij tą wiadomość.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Wprowadź kod konfiguracyjny wyświetlany na drugim urządzeniu.";
-// deprecated
-"autocrypt_bad_setup_code" = "Zły kod konfiguracyjny. Spróbuj ponownie.\n\nJeśli nie pamiętasz kodu konfiguracji, po prostu uruchom ponownie transfer klucza na drugim urządzeniu.";
 // system messages
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• Jeśli właśnie ponownie zainstalowałeś Delta Chat, najlepiej będzie, jeśli ponownie skonfigurujesz Delta Chat teraz i wybierzesz „Dodaj jako drugie urządzenie” lub zaimportujesz kopię zapasową.";
 "systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
@@ -903,6 +895,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Użytkownik %1$@ odpowiedział, czekając na dodanie do grupy…";
 "secure_join_wait" = "Ustanawiam gwarantowane szyfrowanie typu end-to-end, proszę czekać…";
+// deprecated
 "secure_join_wait_timeout" = "Nie można jeszcze ustanowić gwarantowanego szyfrowania typu end-to-end, ale być może już wysłałeś wiadomość.";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
 "contact_not_verified" = "Nie można zweryfikować szyfrowania typu end-to-end %1$@";
@@ -912,6 +905,7 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
 "verified_contact_required_explain" = "Aby zagwarantować szyfrowanie end-to-end, do tej grupy możesz dodawać wyłącznie kontakty oznaczone zielonym znacznikiem wyboru.\n\nMożesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, aby je przedstawić.";
+// deprecated
 "copy_qr_data_success" = "Skopiowano adres kodu QR do schowka";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
 // first placeholder is the name of the chat

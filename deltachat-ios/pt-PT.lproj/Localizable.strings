@@ -218,6 +218,7 @@
 "pref_manage_keys" = "Gerir teclas";
 "pref_use_system_emoji" = "Utilizar o emoji do sistema";
 "pref_use_system_emoji_explain" = "Desactivar o suporte integrado de emojis no Delta Chat";
+// deprecated
 "pref_app_access" = "Acesso à App";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
@@ -250,18 +251,9 @@
 "autocrypt_send_asm_explain_before" = "A \"Mensagem de Configuração Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis com Autocrypt. \n\nA configuração será encriptada por um código de configuração que é exibido aqui e deve ser digitado no outro dispositivo.";
 "autocrypt_send_asm_button" = "Enviar mensagem com a definição da encriptação automática";
 "autocrypt_send_asm_explain_after" = "A sua configuração foi-lhe enviada. Entre no outro dispositivo e abra a mensagem de configuração. Deve ser solicitado a fornecer um código de configuração. Digite os seguintes dígitos no prompt.\n\n Assim que estiver concluido, o outro dispositivo estará pronto para usar o Autocrypt.";
-// deprecated
 "autocrypt_prefer_e2ee" = "Preferir encriptação ponta a ponta";
 "autocrypt_asm_subject" = "Mensagem de configuração do Autocrypt";
 "autocrypt_asm_general_body" = "Esta é a Mensagem de Configuração de Autocrypt usada para transferir sua configuração de ponta a ponta entre clientes (dispositivos). \n\nPara descriptar e usar, abra a mensagem em um cliente compatível com Autocrypt e insira o código de configuração apresentado no dispositivo de geração.";
-// deprecated
-"autocrypt_asm_click_body" = "Esta é a Mensagem de Configuração de Autocrypt usada para transferir sua configuração de ponta a ponta entre clientes. \n\nPara descriptar e usar sua configuração, toque ou clique nesta mensagem.";
-// deprecated
-"autocrypt_continue_transfer_title" = "Mensagem de configuração do Autocrypt";
-// deprecated
-"autocrypt_continue_transfer_please_enter_code" = "Por favor, insira o código de configuração exibido no outro dispositivo.";
-// deprecated
-"autocrypt_bad_setup_code" = "Código de configuração inválido Por favor, tente novamente.\n\nSe não se lembrar do código de configuração, basta re-enviar outra Mensagem de Configuração de Autocrypt do outro dispositivo.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
