@@ -36,7 +36,7 @@ class AccountSwitchViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.setLeftBarButton(cancelButton, animated: false)
+        navigationItem.setRightBarButton(cancelButton, animated: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
