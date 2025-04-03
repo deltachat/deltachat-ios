@@ -125,6 +125,18 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         navigationController?.popViewController(animated: true)
     }
 
+    private func enlargeAvatarPressed(_ action: UIAlertAction) {
+        // temporarily save to file as PreviewController uses QLPreviewItem which does not accept UIImage
+        guard let image = avatarSelectionCell.badge.getImage() else { return }
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("preview.png")
+        guard let imageData = image.pngData() else { return }
+        guard let file = try? imageData.write(to: url) else { return }
+
+        let previewController = PreviewController(dcContext: dcContext, type: .single(url))
+        previewController.customTitle = String.localized("pref_profile_photo")
+        navigationController?.pushViewController(previewController, animated: true)
+    }
+
     private func galleryButtonPressed(_ action: UIAlertAction) {
         mediaPicker?.showPhotoGallery()
     }
@@ -141,6 +153,9 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
+        if avatarSelectionCell.isAvatarSet() {
+            alert.addAction(UIAlertAction(title: String.localized("global_menu_view_desktop"), style: .default, handler: enlargeAvatarPressed(_:)))
+        }
         alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
         alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
         if avatarSelectionCell.isAvatarSet() {

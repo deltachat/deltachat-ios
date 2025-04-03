@@ -146,7 +146,8 @@ public class InitialsBadge: UIView {
         label.text = nil
         accessibilityLabel = nil
     }
-    
+
+    // render including shape etc.
     public func asImage() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
         if let context = UIGraphicsGetCurrentContext() {
@@ -156,5 +157,10 @@ public class InitialsBadge: UIView {
             return image
         }
         return nil
+    }
+
+    // return the raw, rectange image
+    public func getImage() -> UIImage? {
+        return imageView.image
     }
 }
