@@ -34,7 +34,7 @@ class ReactionsOverviewViewController: UIViewController {
 
         title = String.localized("reactions")
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
 
     }
     
