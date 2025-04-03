@@ -13,7 +13,7 @@ class AccountSwitchViewController: UITableViewController {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(cancelAction))
+        return UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancelAction))
     }()
 
     private lazy var addAccountCell: ActionCell = {
