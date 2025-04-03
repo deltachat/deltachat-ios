@@ -798,7 +798,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         case (_, DC_INFO_INVALID_UNENCRYPTED_MAIL):
             showInvalidUnencryptedDialog()
         default:
-            break
+            if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
+                navigationController?.pushViewController(ContactDetailViewController(dcContext: dcContext, contactId: contactId), animated: true)
+            }
         }
     }
 
