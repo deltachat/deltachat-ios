@@ -54,7 +54,7 @@ class ShareProxyViewController: UIViewController {
         let svg = dcContext.createQRSVG(for: proxyUrlString)
         qrContentView.image = getQrImage(svg: svg)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: self, action: #selector(ShareProxyViewController.done(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(ShareProxyViewController.done(_:)))
 
         view.addSubview(contentScrollView)
 
