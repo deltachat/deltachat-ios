@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Modernise "Close" button in overlay sheets
-- full-screen display of own avatar from "your profile" settings
+- Full-screen display of own avatar from "your profile" settings
 - Hide superfluous "Show Classic E-mails" advanced setting for chatmail
 - Update translations and local help
 
