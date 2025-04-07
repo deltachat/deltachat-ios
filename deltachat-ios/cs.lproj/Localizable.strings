@@ -442,7 +442,7 @@
 "send_message" = "Odeslat zprávu";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "Uživatel %1$@ změnil svou adresu z %2$@ na %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Změnili jste svou e-mailovou adresu z %1$@ na %2$@.\n\nPokud nyní pošlete zprávu ověřené skupině, všem kontaktům v ní se vaše adresa aktualizuje na novou.\n\nJe důrazně doporučeno, abyste u svého starého poskytovatele nastavili přesměrování všech e-mailů na novou adresu, jinak byste mohli přijít o zprávy od kontaktů, které vaši novou adresu dosud nedostaly. ";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Odeslat nastavení Autocryptu";
 "autocrypt_send_asm_explain_after" = "Vaše nastavení bylo odesláno. Vezměte si zařízení, kam si přejete nastavení přenést, a zprávu na něm otevřete. Mělo by se objevit pole pro zadání kódu. Do něj vložte následující číslice:";
 "autocrypt_prefer_e2ee" = "Upřednostňovat koncové šifrování";
+// deprecated
 "autocrypt_asm_subject" = "Zpráva s nastavením Autocryptu";
+// deprecated
 "autocrypt_asm_general_body" = "Tato zpráva obsahuje nastavení Autocryptu. S její pomocí lze přenést nastavení koncového šifrování mezi klienty.\n\nK dešifrování a použití nastavení otevřete klient podporující Autocrypt a zadejte do něj kód zobrazený na zařízení, které zprávu vygenerovalo.";
 // system messages
 "systemmsg_cannot_decrypt" = "Tuto zprávu nelze dešifrovat.\n\n• Již nyní by mohlo pomoci jednoduše odpovědět na tuto zprávu a požádat odesílatele, aby ji odeslal znovu.\n\n• Pokud jste právě přeinstalovali Delta Chat, bude nejlepší, když jej znovu nastavíte a zvolíte \"Přidat jako další zařízení\" nebo importujete zálohu.";

@@ -53,7 +53,7 @@
 			<key>many</key>
 			<string>%d chats</string>
 			<key>other</key>
-			<string>%d chats</string>
+			<string>%d chat</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -251,7 +251,7 @@
 			<key>many</key>
 			<string>%d chats archiviate</string>
 			<key>other</key>
-			<string>%d chats archiviate</string>
+			<string>%d chat archiviate</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -269,7 +269,7 @@
 			<key>many</key>
 			<string>%d chats ripristinate</string>
 			<key>other</key>
-			<string>%d chats ripristinate</string>
+			<string>%d chat ripristinate</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

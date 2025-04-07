@@ -437,7 +437,7 @@
 "send_message" = "Dërgo Mesazh";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ndryshoi adresën e vet nga %2$@ në %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Ndryshuat adresën tuaj nga %1$@ në %2$@.\n\nNëse dërgoni tani një mesazh te një grup i verifikuar, kontaktet atje do të zëvendësojnë automatikisht adresën tuaj të vjetër me të renë.\n\nËshtë tejet e këshillueshme të ujdisni shërbimin tuaj të vjetër të email-it të përcjellë krejt email-et te adresa juaj e re email. Përndryshe, mund të humbni mesazhe të kontakteve që s’e kanë marrë ende adresën tuaj të re.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -753,7 +753,9 @@
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese.\n\nPasi të keni mbaruar, pajisja juaj tjetër do të jetë gati të përdorë Autocrypt-in.";
 "autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
+// deprecated
 "autocrypt_asm_subject" = "Mesazh Rregullimi Autocrypt-i";
+// deprecated
 "autocrypt_asm_general_body" = "Ky është Mesazhi i Rregullimit të Autocrypt-it i përdorur për të shpërngulur rregullimin tuaj skaj-më-skaj në klientë të tjerë.\n\nQë ta shfshehtëzoni rregullimin tuaj, hapeni mesazhin te një klient që mund të përdorë Autocrypt-in dhe jepni kodin e rregullimit të treguar te pajisja që e prodhoi.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
@@ -885,6 +887,7 @@
 "secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj i garantuar, ju lutemi, pritni…";
 // deprecated
 "secure_join_wait_timeout" = "S’u vendos dot fshehtëzim skaj-më-skaj i garantuar, por mundeni tashmë të dërgoni një mesazh.";
+"secure_join_takes_longer" = "Duket se po zgjat ca, mos ndoshta kontakti juaj, ose vetë ju s’jeni lidhur në internet.\n\nSidoqoftë, procesi vazhdon në prapaskenë, mund të merreni me diçka tjetër…";
 "contact_verified" = "%1$@ u verifikua.";
 "contact_not_verified" = "S’vendoset dot fshehtëzim i garantuar skaj-më-skaj me %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

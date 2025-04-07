@@ -442,7 +442,7 @@
 "send_message" = "Bericht versturen";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ heeft zijn/haar adres veranderd van %2$@ naar %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Je hebt je e-mailadres veranderd van %1$@ naar %2$@.\n\nAls je een bericht stuurt aan een goedgekeurde groep, dan zien contactpersonen in de groep je nieuwe adres.\n\nWel raden we aan om bij je oude provider in te stellen dat je e-mails wilt doorsturen naar je nieuwe adres, anders missen sommige contactpersonen mogelijk je berichten.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -491,7 +491,7 @@
 "part_of_total_used" = "%1$@ van %2$@ in gebruik";
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
-"onboarding_create_instant_account" = "Aan de slag!";
+"onboarding_create_instant_account" = "Account aanmaken";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ik heb al een account";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
@@ -757,11 +757,13 @@
 "autodel_after_1_year" = "Na 1 jaar";
 // autocrypt
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
-"autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nDe instellingen zijn versleuteld middels een code die hier wordt getoond en moet worden overgetypt op het andere apparaat.";
+"autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nAls je Delta Chat ook op het andere apparaat gebruikt, voeg het dan als tweede apparaat toe.";
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
+// deprecated
 "autocrypt_asm_subject" = "Autocrypt-instelbericht";
+// deprecated
 "autocrypt_asm_general_body" = "Dit is het Autocrypt-instelbericht dat wordt gebruikt om je instellingen over te zetten.\n\nOm te ontsleutelen en te gebruiken, open je het bericht in een met Autocrypt compatibele app en voer je de code in die wordt getoond op het apparaat dat de code heeft gegenereerd.";
 // system messages
 "systemmsg_cannot_decrypt" = "Dit bericht kan niet worden ontsleuteld.\n\n• Het kan helpen dit bericht te beantwoorden en de afzender te vragen het opnieuw te versturen.\n\n• Als je Delta Chat of een andere e-mailapp opnieuw hebt geïnstalleerd, voeg het dan toe als tweede apparaat of importeer een reservekopie.";
@@ -893,6 +895,7 @@
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
 // deprecated
 "secure_join_wait_timeout" = "Er kan nog geen eind-tot-eindversleuteling worden gegarandeerd, maar je kunt wel alvast een bericht sturen.";
+"secure_join_takes_longer" = "Het lijkt langer te duren dan verwacht - wellicht is een van jullie offline.\n\nHet proces wordt echter op de achtergrond voortgezet, dus je kunt gerust iets anders gaan doen…";
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_not_verified" = "Er kan geen eind-tot-eindversleuteling met %1$@ worden gegarandeerd.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

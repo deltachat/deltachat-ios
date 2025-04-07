@@ -396,7 +396,7 @@
 "send_message" = "Gửi tin nhắn";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ đã thay đổi địa chỉ của họ từ %2$@ thành %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Bạn đã thay đổi địa chỉ email của mình từ %1$@ thành %2$@.\n\nNếu bây giờ bạn gửi thư đến một nhóm đã được xác minh, những người liên hệ ở đó sẽ tự động thay thế địa chỉ cũ bằng địa chỉ mới của bạn.\n\nĐiều đó thật tuyệt vời khuyên bạn nên thiết lập nhà cung cấp email cũ để chuyển tiếp tất cả email đến địa chỉ email mới của bạn. Nếu không, bạn có thể bỏ lỡ tin nhắn của những người chưa nhận được địa chỉ mới của bạn.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -649,7 +649,9 @@
 "autocrypt_send_asm_button" = "Gửi tin nhắn thiết lập Autocrypt";
 "autocrypt_send_asm_explain_after" = "Thiết lập của bạn đã được gửi cho chính bạn. Chuyển sang thiết bị khác và mở thông báo thiết lập. Bạn sẽ được yêu cầu nhập mã thiết lập. Nhập các chữ số sau:";
 "autocrypt_prefer_e2ee" = "Ưu tiên mã hóa đầu cuối";
+// deprecated
 "autocrypt_asm_subject" = "Thông báo thiết lập Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Đây là Thông báo Thiết lập Autocrypt được sử dụng để truyền thiết lập hai đầu của bạn giữa các máy khách.\n\nĐể giải mã và sử dụng thiết lập của bạn, hãy mở tin nhắn trong một ứng dụng khách tương thích với Autocrypt và nhập mã thiết lập được trình bày trên thiết bị tạo.";
 // system messages
 "systemmsg_cannot_decrypt" = "Không thể giải mã tin nhắn này.\n\n• Bạn chỉ cần trả lời tin nhắn này và yêu cầu người gửi gửi lại tin nhắn là đủ.\n\n• Nếu bạn vừa cài đặt lại Delta Chat thì tốt nhất bạn nên cài đặt lại thiết lập lại Delta Chat ngay bây giờ và chọn \"Thêm làm thiết bị thứ hai\" hoặc nhập bản sao lưu.";

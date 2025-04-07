@@ -570,7 +570,9 @@
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
+// deprecated
 "autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
+// deprecated
 "autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name

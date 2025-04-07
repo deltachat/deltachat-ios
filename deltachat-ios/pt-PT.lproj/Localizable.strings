@@ -251,7 +251,9 @@
 "autocrypt_send_asm_button" = "Enviar mensagem com a definição da encriptação automática";
 "autocrypt_send_asm_explain_after" = "A sua configuração foi-lhe enviada. Entre no outro dispositivo e abra a mensagem de configuração. Deve ser solicitado a fornecer um código de configuração. Digite os seguintes dígitos no prompt.\n\n Assim que estiver concluido, o outro dispositivo estará pronto para usar o Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir encriptação ponta a ponta";
+// deprecated
 "autocrypt_asm_subject" = "Mensagem de configuração do Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Esta é a Mensagem de Configuração de Autocrypt usada para transferir sua configuração de ponta a ponta entre clientes (dispositivos). \n\nPara descriptar e usar, abra a mensagem em um cliente compatível com Autocrypt e insira o código de configuração apresentado no dispositivo de geração.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";

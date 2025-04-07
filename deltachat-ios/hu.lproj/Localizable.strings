@@ -442,7 +442,7 @@
 "send_message" = "Üzenet küldése";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani partnerei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail-szolgáltatója továbbítsa-e az összes e-mailt az e-mail-címére. Ellenkező esetben lemaradhat azoknak a partnereinek az üzeneteiről, akik még nem kapták meg az új címét.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Autocryptbeállító-üzenet küldése";
 "autocrypt_send_asm_explain_after" = "A beállításokat elküldtük önnek. Váltson a másik eszközre, és nyissa meg a beállítási üzenetet. Meg kell adnia a beállítási kódot. Írja be a következő számjegyeket:";
 "autocrypt_prefer_e2ee" = "Végpontok közötti titkosítás előnyben részesítése";
+// deprecated
 "autocrypt_asm_subject" = "Autocryptbeállító-üzenet";
+// deprecated
 "autocrypt_asm_general_body" = "Ez az autocryptbeállító-üzenet a végpontok közötti beállítások kliensek közötti átvitelére szolgál.\n\nA beállítások visszafejtéséhez és használatához nyissa meg az üzenetet egy autocrypt-kompatibilis kliensben, és írja be az előállító eszközön megjelenő beállítási kódot.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chatet, akkor a legjobb, ha most újraindítja a Delta Chatet, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
@@ -893,6 +895,7 @@
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
 // deprecated
 "secure_join_wait_timeout" = "Még nem sikerült a garantált végpontok közötti titkosítást létrehozni, de már küldhet üzenetet.";
+"secure_join_takes_longer" = "Úgy tűnik, hogy ez tovább tart, mint gondoltuk, talán a partnere vagy Ön offline állapotban van.\n\nMindenesetre a folyamat a háttérben folytatódik, eközben csinálhat valami mást…";
 "contact_verified" = "%1$@ bemutatva.";
 "contact_not_verified" = "Nem lehet garantált végpontok közötti titkosítást létrehozni vele: %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

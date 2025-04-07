@@ -442,7 +442,7 @@
 "send_message" = "Enviar mensaje";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ cambió su dirección de %2$@ a %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Has cambiado tu dirección de correo electrónico de %1$@ a %2$@.\n\nSi ahora envías un mensaje a un grupo verificado, los contactos de éste sustituirán automáticamente la antigua por tu nueva dirección.\n\nEs muy recomendable que configures tu antiguo proveedor de correo electrónico para que reenvíe todos los mensajes a tu nueva dirección. De lo contrario, podrías perderte los mensajes de los contactos que aún no han recibido tu nueva dirección.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Enviar Mensaje de Configuración de Autocrypt";
 "autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:.\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
+// deprecated
 "autocrypt_asm_subject" = "Mensaje de Configuración de Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Este es el Mensaje de Configuración de Autocrypt utilizado para transferir su configuración de extremo a extremo entre clientes.\n\nPara descifrar y usar su configuración, abra el mensaje en un cliente compatible con Autocrypt e ingrese el código de configuración presentado en el dispositivo que lo generó.";
 // system messages
 "systemmsg_cannot_decrypt" = "Este mensaje no se puede descifrar.\n\n• Podría ayudar simplemente responder a este mensaje y pedir al remitente que lo envíe de nuevo.\n\n• Si acabas de reinstalar Delta Chat, es mejor que configures Delta Chat de nuevo y elijas \"Agregar como segundo dispositivo\" o importes una copia de seguridad.";

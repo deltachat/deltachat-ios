@@ -436,7 +436,7 @@
 "send_message" = "Envoyer message";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ a changé son adresse de %2$@ à %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Vous avez changé votre adresse courriel de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe connu, votre ancienne adresse sera automatiquement remplacée par la nouvelle chez tous vos contacts dans ce groupe.\n\nIl est fortement conseillé de configurer votre ancien fournisseur de courriel de sorte à transférer tous vos courriels à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -747,7 +747,9 @@
 "autocrypt_send_asm_button" = "Envoyer le message de configuration Autocrypt";
 "autocrypt_send_asm_explain_after" = "Votre configuration vous a été envoyée. Passez à l\'autre appareil et ouvrez le message de configuration. Un code de configuration devrait vous être demandé. Tapez les chiffres suivants :";
 "autocrypt_prefer_e2ee" = "Préférez le chiffrement de bout en bout";
+// deprecated
 "autocrypt_asm_subject" = "Message de configuration Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Ceci est le message de configuration Autocrypt utilisé pour transférer votre configuration de bout en bout entre clients. Pour déchiffrer et utiliser votre configuration, ouvrez le message dans un client compatible Autocrypt et entrez le code de configuration présenté sur le périphérique de génération.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ce message ne peut pas être déchiffré.\n\n• Essayez de demander à l\'expéditeur de vous l\'envoyer à nouveaux.\n\n• Si vous venez de réinstaller Delta Chat il serait bien de le reconfigurer en sélectionnant \"Ajouter un deuxième appareil\" ou d\'importer une sauvegarde.";
