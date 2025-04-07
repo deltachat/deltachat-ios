@@ -50,7 +50,7 @@
 "mute" = "Wyłącz powiadomienia";
 "muted" = "Wyciszony";
 "ephemeral_messages" = "Znikające wiadomości";
-"ephemeral_messages_hint" = "Te ustawienia dotyczą wszystkich uczestników korzystających z Delta Chat. Mogą jednak kopiować, zapisywać i przekazywać wiadomości lub korzystać z innych klientów poczty e-mail.";
+"ephemeral_messages_hint" = "Dotyczy wszystkich członków tego czatu. Nadal mogą kopiować, zapisywać i przesyłać wiadomości.";
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";
@@ -442,7 +442,7 @@
 "send_message" = "Wyślij wiadomość";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ zmieniła swój adres z %2$@ na %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Zmieniłeś swój adres e-mail z %1$@ na %2$@.\n\nJeśli teraz wyślesz wiadomość do zweryfikowanej grupy, kontakty tam zawarte automatycznie zastąpią stary adres Twoim nowym.\n\nBardzo zalecane jest, aby ustawić swojego starego dostawcę emaila tak, aby przekazywał wszystkie emaile na Twój nowy adres email. W przeciwnym razie możesz przegapić wiadomości od kontaktów, które jeszcze nie dostały Twojego nowego adresu.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -548,7 +548,7 @@
 "proxy_share_explain" = "Twoi znajomi mogą dodać ten serwer proxy, skanując kod QR.";
 "proxy_share_link" = "Udostępnij link";
 "login_info_oauth2_title" = "Kontynuuj w uproszczonej konfiguracji?";
-"login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2.0).\n\nW następnym kroku pozwól, aby Delta Chat działał jako czat z aplikacją e-mail.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
+"login_info_oauth2_text" = "Wprowadzony adres e-mail obsługuje uproszczoną konfigurację (OAuth2.0).\n\nW następnym kroku zezwól Delta Chat na wysyłanie i odbieranie wiadomości.\n\nNie ma serwerów Delta Chat, Twoje dane pozostają na Twoim urządzeniu!";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
 "login_error_mail" = "Podaj ważny adres e-mail";
 "login_error_server" = "Wprowadź poprawny adres serwera / IP";
@@ -558,7 +558,7 @@
 "import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$@.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
 "import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@ i spróbuj ponownie. Alternatywnie dotknij \"Uruchom komunikator\", aby rozpocząć normalny proces instalacji.";
 // %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres e-mail i hasło są poprawne.";
+"login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres i hasło są poprawne.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Zaakceptuj nieprawidłowe certyfikaty";
 "switch_account" = "Przełącz konto";
@@ -641,7 +641,7 @@
 "pref_use_system_emoji" = "Użyj emoji systemowych";
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
 "pref_show_system_contacts" = "Odczytaj systemową książkę adresową";
-"pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej. Niektórzy dostawcy wymagają najpierw szyfrowania end-to-end.";
+"pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej.";
 // deprecated
 "pref_app_access" = "Dostęp do aplikacji";
 "pref_chats" = "Czaty";
@@ -738,9 +738,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n• Obejmuje to wszystkie multimedia\n\n• Wiadomości zostaną usunięte niezależnie od tego, czy były widoczne, czy nie\n\n• „Zapisane wiadomości” zostaną pominięte podczas lokalnego usuwania";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n⚠️ Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze.\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze\n\n⚠️ Nie używaj tej funkcji, jeśli używasz innych klientów poczty e-mail oprócz Delta Chat";
+"autodel_server_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n⚠️ Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze.\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub korzystasz także z klasycznych klientów poczty e-mail";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze. Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub jeśli używasz innych klientów poczty e-mail oprócz Delta Chat.";
+"autodel_server_enabled_hint" = "Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze. Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub jeśli używasz klasycznych klientów poczty e-mail";
 "autodel_server_warn_multi_device_title" = "Włącz natychmiastowe usuwanie";
 "autodel_server_warn_multi_device" = "Jeśli włączysz natychmiastowe usuwanie, nie będzie można używać wielu urządzeń w tym profilu.";
 "autodel_confirm" = "Rozumiem, usuń te wszystkie wiadomości";
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi.\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
 "autocrypt_prefer_e2ee" = "Preferuj szyfrowanie typu end-to-end";
+// deprecated
 "autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
+// deprecated
 "autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
 // system messages
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• Jeśli właśnie ponownie zainstalowałeś Delta Chat, najlepiej będzie, jeśli ponownie skonfigurujesz Delta Chat teraz i wybierzesz „Dodaj jako drugie urządzenie” lub zaimportujesz kopię zapasową.";
@@ -833,7 +835,7 @@
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "Użytkownik %1$@ wysłał wiadomość z innego urządzenia.";
 "chat_protection_enabled_tap_to_learn_more" = "Od teraz gwarantujemy, że wiadomości będą szyfrowane metodą end-to-end. Dotknij, aby przeczytać więcej.";
-"chat_protection_enabled_explanation" = "Teraz gwarantujemy, że wszystkie wiadomości w tym czacie są szyfrowane metodą end-to-end.\n\nSzyfrowanie end-to-end zapewnia prywatność wiadomości między tobą a twoimi partnerami czatów. Nawet dostawca twojej poczty e-mail nie może ich odczytać.";
+"chat_protection_enabled_explanation" = "Teraz gwarantujemy, że wszystkie wiadomości w tym czacie są szyfrowane metodą end-to-end.\n\nSzyfrowanie end-to-end zapewnia prywatność wiadomości między tobą a twoimi partnerami czatów. Nawet serwery, dostawcy i pośrednicy nie są w stanie ich odczytać.";
 "chat_protection_broken_tap_to_learn_more" = "Użytkownik %1$@ wysłał wiadomość z innego urządzenia. Dotknij, aby przeczytać więcej.";
 "chat_protection_broken_explanation" = "Nie można już zagwarantować szyfrowania end-to-end, prawdopodobnie z powodu ponownej instalacji Delta Chat przez %1$@ lub wysłania wiadomości z innego urządzenia.\n\nMożesz spotkać się z tą osobą osobiście i ponownie zeskanować jej kod QR, aby przywrócić gwarantowane szyfrowanie end-to-end.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ wymaga szyfrowania end-to-end, które nie zostało jeszcze skonfigurowane dla tego czatu. Dotknij, aby dowiedzieć się więcej.";
@@ -856,7 +858,7 @@
 "qrscan_failed" = "Nie udało się zdekodować kodu QR";
 "qrscan_ask_join_group" = "Czy chcesz dołączyć do grupy „%1$@?";
 "qrscan_fingerprint_mismatch" = "Zeskanowany odcisk palca nie pasuje do odcisku palca ostatnio widzianego u %1$@";
-"qrscan_no_addr_found" = "Ten kod QR zawiera odcisk palca, ale nie zawiera adresu e-mail.\n\nW celu weryfikacji poza zasadniczym pasmem należy najpierw nawiązać szyfrowane połączenie z odbiorcą.";
+"qrscan_no_addr_found" = "Ten kod QR zawiera odcisk palca, ale nie zawiera adresu.\n\nW celu weryfikacji poza zasadniczym pasmem należy najpierw nawiązać szyfrowane połączenie z odbiorcą.";
 "qrscan_contains_text" = "Zeskanowany kod QR zawiera następujący tekst:\n\n%1$@";
 "qrscan_contains_url" = "Zeskanowany kod QR zawiera następujący adres:\n\n%1$@";
 "qrscan_fingerprint_label" = "Odciski palca";
@@ -893,6 +895,7 @@
 "secure_join_wait" = "Ustanawiam gwarantowane szyfrowanie typu end-to-end, proszę czekać…";
 // deprecated
 "secure_join_wait_timeout" = "Nie można jeszcze ustanowić gwarantowanego szyfrowania typu end-to-end, ale być może już wysłałeś wiadomość.";
+"secure_join_takes_longer" = "Wydaje się, że to trwa dłużej, może kontakt lub ty jesteś offline.\n\nJednak proces trwa w tle, możesz zrobić coś innego…";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
 "contact_not_verified" = "Nie można zweryfikować szyfrowania typu end-to-end %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
@@ -1048,7 +1051,7 @@
 "pref_background_notifications_explain" = "Wymaga zignorowania optymalizacji baterii. Użyj, jeśli usługa Push jest niedostępna";
 "pref_reliable_service" = "Wymuś połączenie w tle";
 "pref_reliable_service_explain" = "Powoduje trwałe powiadomienie";
-"pref_background_notifications_rationale" = "Aby utrzymać połączenie z serwerem e-mail i odbierać wiadomości w tle, zignoruj optymalizacje baterii w następnym kroku.\n\nDelta Chat zużywa niewiele zasobów i dba o to, aby nie wyczerpać baterii.";
+"pref_background_notifications_rationale" = "Aby utrzymać połączenie z i odbierać wiadomości w tle, zignoruj optymalizacje baterii w następnym kroku.\n\nDelta Chat zużywa niewiele zasobów i dba o to, aby nie wyczerpać baterii.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";

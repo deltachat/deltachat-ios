@@ -442,7 +442,7 @@
 "send_message" = "Envia el missatge";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ha canviat la seva adreça de %2$@ a %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Heu canviat la vostra adreça de correu electrònic de %1$@ a %2$@.\n\nSi ara envieu un missatge a un grup verificat, els contactes del grup canviaran de forma automàtica l\'adreça antiga per la nova.\n\nUs recomanem que configureu el compte antic a fi que us reenvïi els missatges a l\'adreça nova. Si no ho feu, podríeu perdre missatges de contactes que encara no hagin actualitzat la vostra adreça.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
+// deprecated
 "autocrypt_asm_subject" = "Missatge de configuració Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Aquest és el missatge de configuració Autocrypt que s’usa per a transferir la vostra configuració d\'extrem a extrem entre dispositius.\n\nPer a desxifrar i usar aquesta configuració, obriu el missatge en un dispositiu compatible amb Autocript i introduïu el codi de configuració que apareix al dispositiu primari.";
 // system messages
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Potser pot ajudar de respondre el missatge i demanar a l\'emissor que torni a enviar-lo,\n\n• Si acabeu de reinstal·lar Delta Chat, aleshores és millor de reconfigurar Delta Chat ara i triar «Afegeix un segon dispositiu» o importar una còpia de seguretat.";

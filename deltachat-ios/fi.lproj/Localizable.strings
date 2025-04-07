@@ -399,7 +399,7 @@
 "send_message" = "Lähetä viesti";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ vaihtui osoitteesta %2$@ osoitteeksi %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Vaihdoit sähköpostiosoitteesi osoitteesta %1$@ osoitteeksi %2$@.\n\nJos lähetät viestin vahvistettuun ryhmään, ryhmän jäsenet saavat automaattisesti uuden osoitteesi.\n\nOn suositeltavaa asettaa vanha tilisi välittämään kaikki viestit uuteen osoitteeseesi. Muuten et välttämättä saa viestejä niiltä yhteystiedoiltasi, joilla ei ole uutta osoitettasi.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -690,7 +690,9 @@
 "autocrypt_send_asm_button" = "Lähetä Autocrypt -käyttöönottoviesti";
 "autocrypt_send_asm_explain_after" = "Käyttöönottoviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään käyttöönottokoodia. Anna seuraavat numerot:";
 "autocrypt_prefer_e2ee" = "Suosi päästä-päähän -salausta";
+// deprecated
 "autocrypt_asm_subject" = "Autocrypt -käyttöönottoviesti";
+// deprecated
 "autocrypt_asm_general_body" = "Tätä Autocrypt -käyttöönottoviestiä käytetään päästä-päähän -salauksen asetusten siirtämiseksi toiselle laitteelle.\n\nSaat purettua salauksia ja käytettyä määrittelyä avaamalla viestin Autocrypt -yhteensopivassa päätesovelluksessa, generoivalla laitteella näytetyn pin koodin syöttämisen jälkeen.";
 // system messages
 "systemmsg_cannot_decrypt" = "Viestin salausta ei voitu purkaa.\n\n• Voi olla että vastaamalla tähän ja pyytämällä lähettäjää lähettämään viesti uudelleen ongelma ratkeaa.\n\n• Jos juuri uudelleenasensit Delta Chatin, lienee parasta että otat sovelluksen uudelleen käyttöön ja valitset \"Lisää toisena laitteena\" tai palauta varmuuskopiosta.";

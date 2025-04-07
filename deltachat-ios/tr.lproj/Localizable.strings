@@ -50,7 +50,7 @@
 "mute" = "Sessize Al";
 "muted" = "Sessize alındı";
 "ephemeral_messages" = "Kaybolan İletiler";
-"ephemeral_messages_hint" = "Bu sohbetin tüm üyelerine onlar Delta Chat\'i kullanıyorsa uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir ya da diğer e-posta istemcilerini kullanabilir.";
+"ephemeral_messages_hint" = "Bu sohbetin tüm üyelerine uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir.";
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
@@ -442,7 +442,7 @@
 "send_message" = "İleti Gönder";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan öbeğe ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -548,7 +548,7 @@
 "proxy_share_explain" = "Arkadaşlarınız, QR kodunu tarayarak bu proxy\'yi ekleyebilir.";
 "proxy_share_link" = "Bağlantı Paylaş";
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
-"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'in E-posta Üzerinden Sohbet uygulamanız olarak davranmasına izin verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
+"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'e iletiler gönderme ve alma izni verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -558,7 +558,7 @@
 "import_backup_ask" = "“%1$@” üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
 "import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği “%1$@” üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için “İletileşmeye başla”ya basın.";
 // %1$s will be replaced by the failing address
-"login_error_cannot_login" = "“%1$@” olarak giriş yapılamıyor. Lütfen e-posta adresinin ve parolanın doğru olup olmadığını denetleyin.";
+"login_error_cannot_login" = "“%1$@” olarak giriş yapılamıyor. Lütfen adresin ve parolanın doğru olup olmadığını denetleyin.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Geçersiz sertifikaları kabul et";
 "switch_account" = "Profili Değiştir";
@@ -641,7 +641,7 @@
 "pref_use_system_emoji" = "Sistem Emojisini Kullan";
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
-"pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbet oluşturmayı teklif edin. Bazı sağlayıcılara önce uçtan uca şifreleme ayarlaması gerekir.";
+"pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbetler oluşturmayı teklif edin.";
 // deprecated
 "pref_app_access" = "Uygulama Erişimi";
 "pref_chats" = "Sohbetler";
@@ -738,9 +738,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri “%2$@” silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• İletiler görülse de görülmese de silinecek\n\n• “Kaydedilen İletiler” yerel silmeden atlanacak";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri “%2$@” silmek istiyor musunuz?\n\n⚠️ Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar\n\n⚠️ Verileri sunucuda tutmak istiyorsanız bu işlevi kullanmayın\n\n⚠️ Delta Chat\'ten başka diğer e-posta istemcilerini kullanıyorsanız bu işlevi kullanmayın";
+"autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri “%2$@” silmek istiyor musunuz?\n\n⚠️ Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar\n\n⚠️ Verileri sunucuda tutmak istiyorsanız ya da klasik e-posta istemcilerini de kullanıyorsanız bu işlevi kullanmayın";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar. Verileri sunucuda tutmak istiyorsanız ya da Delta Chat\'ten başka diğer e-posta istemcilerini kullanıyorsanız bu işlevi kullanmayın.";
+"autodel_server_enabled_hint" = "Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar. Verileri sunucuda tutmak istiyorsanız ya da klasik e-posta istemcilerini de kullanıyorsanız bu işlevi kullanmayın";
 "autodel_server_warn_multi_device_title" = "Bir kerede silmeyi aç";
 "autodel_server_warn_multi_device" = "Bir kerede silmeyi etkinleştirirseniz, bu profilde çoklu aygıtları kullanamazsınız.";
 "autodel_confirm" = "Anladım, tüm bu iletileri sil";
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
+// deprecated
 "autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";
+// deprecated
 "autocrypt_asm_general_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi\'dir.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için iletiyi Autocrypt uyumlu bir istemcide açın ve oluşturan aygıtta sunulan ayarlama kodunu girin.";
 // system messages
 "systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp “İkinci Aygıt Olarak Ekle”yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
@@ -833,7 +835,7 @@
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ başka bir aygıttan bir ileti gönderdi.";
 "chat_protection_enabled_tap_to_learn_more" = "Bundan böyle iletiler uçtan uca şifreleme güvencelidir. Daha fazlasını öğrenmek için dokunun.";
-"chat_protection_enabled_explanation" = "Artık bu sohbetteki tüm iletiler uçtan uca şifreleme güvencelidir.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. E-posta sağlayıcınız bile onları okuyamaz.";
+"chat_protection_enabled_explanation" = "Artık bu sohbetteki tüm iletiler uçtan uca şifreleme güvencelidir.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. Sunucular, sağlayıcılar ya da aktarıcılar bile onları okuyamaz.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ başka bir aygıttan bir ileti gönderdi. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
@@ -856,7 +858,7 @@
 "qrscan_failed" = "QR kodu çözülemedi";
 "qrscan_ask_join_group" = "“%1$@” öbeğine katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
-"qrscan_no_addr_found" = "Bu QR kodu, bir parmak izi içeriyor; ama e-posta adresi yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
+"qrscan_no_addr_found" = "Bu QR kodu bir parmak izi içeriyor ama adres yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
 "qrscan_fingerprint_label" = "Parmak izi";
@@ -893,6 +895,7 @@
 "secure_join_wait" = "Güvencelenen uçtan uca şifreleme kuruluyor, lütfen bekleyin…";
 // deprecated
 "secure_join_wait_timeout" = "Henüz güvencelenen uçtan uca şifreleme kurulamadı; ama zaten bir ileti gönderebilirsiniz.";
+"secure_join_takes_longer" = "Bu daha uzun sürüyor gibi görünüyor, belki kişi ya da siz çevrimdışısınız.\n\nAncak işlem arka planda sürüyor, başka bir şey yapabilirsiniz…";
 "contact_verified" = "%1$@ tanıtıldı.";
 "contact_not_verified" = "%1$@ ile güvencelenen uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
@@ -1048,7 +1051,7 @@
 "pref_background_notifications_explain" = "Pil iyileştirmelerinin yok sayılmasını gerektirir, bildirimler zamanında gelmezse kullanın";
 "pref_reliable_service" = "Arka Plan Bağlantısını Zorla";
 "pref_reliable_service_explain" = "Kalıcı bir bildirime neden olur";
-"pref_background_notifications_rationale" = "E-posta sunucunuza bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yok sayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";
+"pref_background_notifications_rationale" = "Bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yok sayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";

@@ -272,9 +272,9 @@
 "device_talk_welcome_message2" = "Mettiti in contatto!\n\n🙌 Tocca \"Codice QR\" sulla schermata principale di entrambi i dispositivi. Scegli \"Scansiona codice QR\" su un dispositivo e puntalo verso l\'altro\n\n🌍 Se non siete nella stessa stanza, esegui la scansione tramite videochiamata o condividi un collegamento di invito da \"Scansiona codice QR\"\n\nQuindi: goditi la ​​tua esperienza di messaggistica sulla più grande rete decentralizzata mai esistita: l\'E-mail. E a differenza di altre app popolari, senza controllo centrale né monitoraggio o vendita dei tuoi dati, ne dei tuoi amici, colleghi o familiari a grandi organizzazioni.";
 "edit_contact" = "Modifica Contatto";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
-"pin_chat" = "Blocca Chat";
+"pin_chat" = "Fissa in alto";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Sblocca Chat";
+"unpin_chat" = "Non fissare";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Blocca";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
@@ -317,7 +317,7 @@
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
 // Used for the deletion of Device messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
-"ask_forward_multiple" = "Inoltra messaggi a %1$d chats?";
+"ask_forward_multiple" = "Inoltra messaggi a %1$d chat?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
 "ask_block_contact" = "Vuoi bloccare questo contatto?\n\nI messaggi diretti o i gruppi creati dai contatti bloccati non verranno visualizzati.\n\nGli altri gruppi con contatti bloccati continueranno a visualizzare i loro messaggi.";
 "ask_unblock_contact" = "Sbloccare questo contatto?";
@@ -335,7 +335,7 @@
 "contacts_type_email_above" = "Inserisci sopra l\'indirizzo e-mail";
 "contacts_empty_hint" = "Nessun contatto.";
 // chatlist and chat view
-"chat_archived_chats_title" = "Chats Archiviate";
+"chat_archived_chats_title" = "Chat Archiviate";
 "chat_please_enter_message" = "Per piacere scrivi un messaggio.";
 "chat_camera_unavailable" = "Fotocamera non disponibile.";
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
@@ -345,15 +345,15 @@
 "chat_new_group_hint" = "Gli altri vedranno questo gruppo solo dopo che avrai inviato un primo messaggio.";
 "chat_record_slide_to_cancel" = "Scorri per annullare";
 "chat_record_explain" = "Tocca e mantieni per registrare un messaggio vocale, rilascia per inviare ";
-"chat_no_chats_yet_title" = "Nessuna Chats.\nPremi \"+\" per iniziare una nuova chat.";
-"chat_all_archived" = "Tutte le chats archiviate.\nPremi \"+\" per iniziare una nuova chat.";
+"chat_no_chats_yet_title" = "Nessuna Chat.\nPremi \"+\" per iniziare una nuova chat.";
+"chat_all_archived" = "Tutte le chat archiviate.\nPremi \"+\" per iniziare una nuova chat.";
 "chat_share_with_title" = "Condividi con";
 "chat_input_placeholder" = "Messaggio";
 "chat_archived_label" = "Archiviato";
 "chat_request_label" = "Richiesta";
 "chat_no_messages" = "Nessun messaggio.";
 "chat_self_talk_subtitle" = "Messaggi a Me";
-"archive_empty_hint" = "Le chats archiviate verranno mostrate qui.";
+"archive_empty_hint" = "Le chat archiviate verranno mostrate qui.";
 "saved_messages" = "Messaggi Salvati";
 "saved_messages_explain" = "• Inoltra i messaggi qui per un facile accesso\n\n• Prendi appunti o promemoria vocali\n\n• Allega file multimediali per salvarli";
 // Should match "Saved" from "Saved messages"
@@ -415,8 +415,8 @@
 "group_add_members" = "Aggiungi Membri";
 "group_self_not_in_group" = "Devi essere un membro del gruppo per fare questa azione.";
 "profile_encryption" = "Crittografia";
-"profile_shared_chats" = "Chats Condivise";
-"related_chats" = "Chats Correlate";
+"profile_shared_chats" = "Chat Condivise";
+"related_chats" = "Chat Correlate";
 // Separator between the list of actual members and past members
 "past_members" = "Membri Passati";
 "tab_contact" = "Contatto";
@@ -442,7 +442,7 @@
 "send_message" = "Invia Messaggio";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ ha cambiato il suo indirizzo da %2$@ a %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Hai cambiato il tuo indirizzo email da %1$@ a %2$@.\n\nSe ora invii un messaggio a un gruppo verificato, i contatti sostituiranno automaticamente il vecchio indirizzo con il tuo nuovo indirizzo.\n\nSi consiglia vivamente di impostare il tuo vecchio fornitore email per inoltrare tutte le email al tuo nuovo indirizzo. Altrimenti potresti perdere i messaggi di contatti che non hanno ancora ricevuto il tuo nuovo indirizzo.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -583,9 +583,9 @@
 "forward_to" = "Inoltra a…";
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Inviare %1$d files a \"%2$@\"?";
-"ask_send_files_to_selected_chats" = "Invia %1$d file(s) a %2$d chats?";
+"ask_send_files_to_selected_chats" = "Invia %1$d file(s) a %2$d chat?";
 "videos_sent_without_recoding" = "(I video vengono inviati come file originali, di grandi dimensioni. Per inviare i video come file più piccoli, allegali separatamente)";
-"share_text_multiple_chats" = "Invia questo testo a %1$d chats?\n\n\"%2$@\"";
+"share_text_multiple_chats" = "Invia questo testo a %1$d chat?\n\n\"%2$@\"";
 "share_abort" = "Condivisione annullata per permessi mancanti.";
 // preferences
 "pref_using_custom" = "Personalizzazione in uso: %1$@";
@@ -636,12 +636,12 @@
 "pref_read_receipts" = "Ricevute di Lettura";
 "pref_read_receipts_explain" = "Se le conferme di lettura sono disattivate, non potrai vedere le conferme di lettura degli altri.";
 "pref_server" = "Server";
-"pref_encryption" = "Criptazione";
+"pref_encryption" = "Crittografia";
 "pref_manage_keys" = "Gestisci Chiavi";
 "pref_use_system_emoji" = "Usa Emoji di Sistema";
 "pref_use_system_emoji_explain" = "Disattiva il supporto delle emoji integrato in Delta Chat";
 "pref_show_system_contacts" = "Leggi Rubrica di Sistema";
-"pref_show_system_contacts_explain" = "Offri la possibilità di creare chats con i contatti della rubrica. Alcuni provider necessitano prima della configurazione della crittografia end-to-end.";
+"pref_show_system_contacts_explain" = "Offri la possibilità di creare chat con i contatti della rubrica. Alcuni provider necessitano prima della configurazione della crittografia end-to-end.";
 // deprecated
 "pref_app_access" = "Accesso App";
 "pref_chats" = "Chats";
@@ -652,7 +652,7 @@
 "pref_log_header" = "Registro";
 "pref_other" = "Altro";
 "pref_backup" = "Backup";
-"pref_backup_explain" = "Backup Chats su Memoria Esterna";
+"pref_backup_explain" = "Backup Chat su Memoria Esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni end-to-end Autocrypt. Tieni il file di backup in un luogo sicuro oppure eliminarlo il prima possibile.";
 // the placeholder will be replaced by the profile name
 "pref_backup_export_x" = "Esporta %1$@";
@@ -761,7 +761,9 @@
 "autocrypt_send_asm_button" = "Invia Messaggio Configurazione Autocrypt";
 "autocrypt_send_asm_explain_after" = "La tua configurazione ti è stata inviata. Passa all\'altro dispositivo e apri il messaggio. Dovrebbe venirti richiesto un codice. Inserisci il seguente codice:";
 "autocrypt_prefer_e2ee" = "Preferisci Cifratura End-To-End";
+// deprecated
 "autocrypt_asm_subject" = "Messaggio Configurazione Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Questo è il Messaggio Configurazione Autocrypt utilizzato per trasferire la configurazione end-to-end tra i client.\n\nPer decifrare e utilizzare la configurazione, aprire il messaggio in un client compatibile con Autocrypt e immettere il codice di configurazione presentato sul dispositivo di generazione.";
 // system messages
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittografato.\n\n• Potrebbe essere già utile rispondere semplicemente a questo messaggio e chiedere al mittente d\'inviare nuovamente il messaggio.\n\n• Se hai appena reinstallato Delta Chat, è meglio se riconfiguri ora Delta Chat e scegli \"Aggiungi come secondo dispositivo\" o importa un backup.";
@@ -833,7 +835,7 @@
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ ha inviato un messaggio da un altro dispositivo.";
 "chat_protection_enabled_tap_to_learn_more" = "D\'ora in poi i messaggi saranno garantiti crittografati end-to-end.  Tocca per saperne di più.";
-"chat_protection_enabled_explanation" = "Ora è garantito che tutti i messaggi in questa chat siano crittografati end-to-end.\n\nLa crittografia end-to-end mantiene i messaggi privati ​​tra te e i tuoi partner di chat. Nemmeno il tuo provider email può leggerli.";
+"chat_protection_enabled_explanation" = "Ora è garantito che tutti i messaggi in questa chat siano cifrati end-to-end.\n\nLa crittografia end-to-end mantiene i messaggi privati ​​tra te e i tuoi partner di chat. Nemmeno il tuo provider email può leggerli.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ ha inviato un messaggio da un altro dispositivo. Tocca per saperne di più.";
 "chat_protection_broken_explanation" = "La crittografia end-to-end non può più essere garantita, probabilmente perché %1$@ ha reinstallato Delta Chat o inviato un messaggio da un altro dispositivo.\n\nPuoi incontrarlo di persona e scansionare nuovamente il suo Codice QR per ristabilire la crittografia end-to-end garantita.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
@@ -893,6 +895,7 @@
 "secure_join_wait" = "Creazione della crittografia end-to-end garantita, per piacere attendere...";
 // deprecated
 "secure_join_wait_timeout" = "Non è ancora possibile stabilire la crittografia end-to-end garantita, ma potresti già inviare un messaggio.";
+"secure_join_takes_longer" = "Sembra metterci molto, forse tu o il contatto non siete in linea.\n\nComunque, il processo continua in sottofondo, puoi fare qualcos\'altro...";
 "contact_verified" = "%1$@ verificato.";
 "contact_not_verified" = "Impossibile stabilire una crittografia end-to-end garantita con %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
@@ -939,7 +942,7 @@
 "ImageEditorHud_flip" = "Capovolgi";
 "ImageEditorHud_rotate" = "Ruota";
 // dc_str_* resources
-"encrypted_message" = "Messaggio crittato";
+"encrypted_message" = "Messaggio cifrato";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Questa è l\'app Desktop Delta Chat ufficiale.";
 "about_licensed_under_desktop" = "Questo software è concesso in licenza con GNU GPL versione 3 e il codice sorgente è disponibile su GitHub.";
@@ -998,7 +1001,7 @@
 "insert_newline" = "Inserisci Nuova Riga";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stato consegna: Errore";
-"a11y_encryption_padlock" = "Lucchetto crittazione";
+"a11y_encryption_padlock" = "Lucchetto di cifratura";
 "a11y_delivery_status_sending" = "Stato consegna: In uscita";
 "a11y_delivery_status_draft" = "Stato consegna: Bozza";
 "a11y_delivery_status_delivered" = "Stato consegna: Consegnato";

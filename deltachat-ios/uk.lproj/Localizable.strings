@@ -440,7 +440,7 @@
 "send_message" = "Надіслати повідомлення";
 // Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
 "aeap_addr_changed" = "%1$@ змінили їх адресу з %2$@ на %3$@";
-// the explanation is shown (1) as a modal dialog with the buttons "Cancel" and "Continue" as well as (2) as a device message
+// deprecated
 "aeap_explanation" = "Ви змінили електронну адресу з %1$@ на %2$@.\n\nЯкщо зараз Ви відправите повідомлення в підтверджену групу, контакти в ній автоматично замінять Вашу стару адресу на нову.\n\nРекомендується налаштувати старий обліковий запис електронної пошти на пересилання всіх електронних листів на Вашу нову електронну адресу. Інакше Ви можете пропустити повідомлення контактів, які ще не отримали Вашу нову адресу.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -755,7 +755,9 @@
 "autocrypt_send_asm_button" = "Надіслати повідомлення з налаштуваннями Autocrypt";
 "autocrypt_send_asm_explain_after" = "Налаштування було Вам надіслано. Перейдіть на інший пристрій і відкрийте повідомлення про налаштування. У Вас має з\'явитися запит на введення коду налаштування. Введіть наступні цифри:";
 "autocrypt_prefer_e2ee" = "Віддавати перевагу наскрізному шифруванню";
+// deprecated
 "autocrypt_asm_subject" = "Повідомлення з налаштуваннями Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Це повідомлення з налаштуваннями Autocrypt, що слугує для передачі параметрів наскрізного шифрування між пристроями.\n\nДля розшифрування параметрів відкрийте це повідомлення в додатку, що підтримує Autocrypt і введіть інсталяційний код, показаний на початковому пристрої.";
 // system messages
 "systemmsg_cannot_decrypt" = "Це повідомлення неможливо розшифрувати.\n\n- Можливо, допоможе просто відповісти на це повідомлення і попросити відправника надіслати повідомлення ще раз.\n\n- Якщо ви щойно переінсталювали Delta Chat, то краще за все переналаштувати Delta Chat зараз і вибрати \"Додати як другий пристрій\" або імпортувати резервну копію.";

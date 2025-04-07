@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "Delta Chat, fotoğraflar ve videolar çekmek ve göndermek için ve QR kodlarını taramak için kameranızı kullanır.";
-NSContactsUsageDescription = "Delta Chat, yazabileceğiniz e-posta adreslerinin bir listesini göstermek için kişilerinizi kullanır. Delta Chat sunucusu yoktur; kişileriniz herhangi bir yere gönderilmez.";
+NSContactsUsageDescription = "Delta Chat, yazabileceğiniz adreslerin bir listesini göstermek için kişilerinizi kullanır. Delta Chat\'in sunucusu yoktur; kişileriniz herhangi bir yere gönderilmez.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Konum paylaşımını etkinleştirdiğiniz zaman aralığında konumunuzu paylaşmak için Delta Chat\'e izin gerekir.";
 NSLocationWhenInUseUsageDescription = "Konum paylaşımını etkinleştirdiğiniz zaman aralığında konumunuzu paylaşmak için Delta Chat\'e izin gerekir.";
 NSMicrophoneUsageDescription = "Delta Chat, sesli iletiler ve sesli videolar kaydetmek ve göndermek için mikrofonunuzu kullanır.";

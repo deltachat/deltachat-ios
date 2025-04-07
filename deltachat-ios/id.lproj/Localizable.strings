@@ -466,7 +466,9 @@
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
+// deprecated
 "autocrypt_asm_subject" = "Pengaturan Pesan Autocrypt";
+// deprecated
 "autocrypt_asm_general_body" = "Inilah Autocrypt Setup Message yang digunakan utuk mentransfer pengaturan ujung ke ujung Anda antar pelanggan.\n\nUntuk membuka enkirpsi dan menggunakan pengaturan Anda, bukan pesan di Autocrypt-compliant pelanggan dan masukkan kode pengaturan yang ditampikan untuk perangkat terkait.";
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";

@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "Delta Chat używa aparatu do robienia i wysyłania zdjęć i filmów oraz do skanowania kodów QR.";
-NSContactsUsageDescription = "Zezwolenie na dostęp do książki adresowej pozwala czatować z kontaktami z urządzenia.";
+NSContactsUsageDescription = "Delta Chat używa twoich kontaktów, aby pokazać listę adresów, do których możesz pisać. Delta Chat nie ma serwera, twoje kontakty nie są nigdzie wysyłane.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat potrzebuje pozwolenia na lokalizację, aby udostępniać twoją lokalizację w okresie, w którym włączono udostępnianie lokalizacji.";
 NSLocationWhenInUseUsageDescription = "Delta Chat potrzebuje pozwolenia na lokalizację, aby udostępniać twoją lokalizację w okresie, w którym włączono udostępnianie lokalizacji.";
 NSMicrophoneUsageDescription = "Zezwolenie na dostęp do mikrofonu pozwala nagrywać dźwięk.";
