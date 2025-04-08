@@ -5,7 +5,19 @@
 - Modernise "Close" button in overlay sheets
 - Full-screen display of own avatar from "your profile" settings
 - Hide superfluous "Show Classic E-mails" advanced setting for chatmail
+- Add a message with further information when securejoin times out (instead of allowing to send unencrypted)
+- Forwarding messages do not inherit "Edited" state
+- Contact encryption info show adresses
+- Data saving: do not send messages to the server if user is the only member of the chat in single-device usage
+- Protect metadata: encrypt message's sent date
+- Do not fail to send messages in groups if some encryption keys are missing
+- Synchronize contact name changes across devices
+- Fix: make vcards compatible to Proton Mail again
+- Fix: enncrypt broadcast list and make them work again with chatmail
+- Fix changing group names that was not working in some situations
+- Fix: do not show outdated message text in "Message Info" of an edited message
 - Update translations and local help
+- Update to core 1.159.0
 
 
 ## v1.54.5
