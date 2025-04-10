@@ -322,7 +322,7 @@ class ContactDetailViewController: UITableViewController {
             headerCell.showMuteButton(show: false)
         } else {
             headerCell.updateDetails(title: viewModel.contact.displayName,
-                                     subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : nil)
+                                     subtitle: viewModel.isDeviceTalk ? String.localized("device_talk_subtitle") : viewModel.contact.email)
             if let img = viewModel.contact.profileImage {
                 headerCell.setImage(img)
             } else {
