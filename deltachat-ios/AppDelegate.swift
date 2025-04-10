@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
+    var callManager: CallManager?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
@@ -54,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         signal(SIGPIPE, SIG_IGN)
 
         logger.info("➡️ didFinishLaunchingWithOptions")
+        callManager = CallManager.shared
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
 
