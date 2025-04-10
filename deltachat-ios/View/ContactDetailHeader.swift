@@ -15,7 +15,6 @@ class ContactDetailHeader: UIView {
         let badge = InitialsBadge(size: badgeSize)
         badge.setColor(UIColor.lightGray)
         badge.isAccessibilityElement = false
-        badge.setContentCompressionResistancePriority(.required, for: .horizontal)
         let tap = UITapGestureRecognizer(target: self, action: #selector(avatarTapped(_:)))
         badge.addGestureRecognizer(tap)
         return badge
@@ -26,6 +25,7 @@ class ContactDetailHeader: UIView {
         label.lineBreakMode = .byTruncatingTail
         label.isUserInteractionEnabled = true
         label.textColor = DcColors.defaultTextColor
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: UIFont.TextStyle.headline)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class ContactDetailHeader: UIView {
 
     private lazy var spacerView: UIView = {
         let view = UIView()
-        view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal) // 1 = very willing to be compressed
+        view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isAccessibilityElement = false
         return view
@@ -73,6 +73,7 @@ class ContactDetailHeader: UIView {
         label.lineBreakMode = .byTruncatingTail
         label.isUserInteractionEnabled = true
         label.textColor = UIColor(hexString: "848ba7")
+        label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.adjustsFontForContentSizeCategory = true
         label.font = .preferredFont(forTextStyle: .subheadline)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +90,6 @@ class ContactDetailHeader: UIView {
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
         button.layer.masksToBounds = true
-        button.setContentCompressionResistancePriority(.required, for: .horizontal)
         button.constraintHeightTo(40).isActive = true
         button.constraintWidthTo(40).isActive = true
         return button
@@ -104,7 +104,6 @@ class ContactDetailHeader: UIView {
         button.layer.borderColor = DcColors.colorDisabled.cgColor
         button.layer.borderWidth = 1
         button.layer.masksToBounds = true
-        button.setContentCompressionResistancePriority(.required, for: .horizontal)
         button.constraintHeightTo(40).isActive = true
         button.constraintWidthTo(40).isActive = true
         return button
