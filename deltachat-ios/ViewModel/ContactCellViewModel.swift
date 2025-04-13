@@ -82,7 +82,12 @@ class ProfileViewModel: AvatarCellViewModel {
         self.dcContext = context
         contact = context.getContact(id: Int(DC_CONTACT_ID_SELF))
         title = context.displayname ?? String.localized("pref_your_name")
-        subtitle = ""
+
+        if let bio = context.selfstatus {
+            subtitle = bio.replacingOccurrences(of: "\\r\\n|\\n", with: " ", options: .regularExpression)
+        } else {
+            subtitle = String.localized("pref_default_status_label")
+        }
     }
 }
 

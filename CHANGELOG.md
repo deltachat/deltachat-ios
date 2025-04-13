@@ -13,7 +13,8 @@
 - Protect metadata: encrypt message's sent date
 - Do not fail to send messages in groups if some encryption keys are missing
 - Synchronize contact name changes across devices
-- Improve UX by hiding address in primary settings screen; passing it around without e2ee information won't work
+- Hide address in primary settings screen, so it cannot be passed around without e2ee info
+- Show self bio summary in primary settings screen
 - Fix: make vcards compatible to Proton Mail again
 - Fix: enncrypt broadcast list and make them work again with chatmail
 - Fix changing group names that was not working in some situations
