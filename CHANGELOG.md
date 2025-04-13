@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.58.1
+2025-04
 
 - Modernise "Close" button in overlay sheets
 - Full-screen display of own avatar from "your profile" settings
@@ -16,7 +17,7 @@
 - Hide address in primary settings screen, so it cannot be passed around without e2ee info
 - Show self bio summary in primary settings screen
 - Fix: make vcards compatible to Proton Mail again
-- Fix: enncrypt broadcast list and make them work again with chatmail
+- Fix: encrypt broadcast list and make them work again with chatmail
 - Fix changing group names that was not working in some situations
 - Fix: do not show outdated message text in "Message Info" of an edited message
 - Update translations and local help
