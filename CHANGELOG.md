@@ -20,7 +20,7 @@
 - Fix changing group names that was not working in some situations
 - Fix: do not show outdated message text in "Message Info" of an edited message
 - Update translations and local help
-- Update to core 1.159.0
+- Update to core 1.159.1
 
 
 ## v1.54.5
