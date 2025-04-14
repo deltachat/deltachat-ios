@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Support pasted GIFs
+
 ## v1.58.1
 2025-04
 
