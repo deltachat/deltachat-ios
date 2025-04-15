@@ -6,6 +6,7 @@
 - Group notifications in Notification Center by chat
 - More characters in notification before truncating
 - Fix: separate multiple notifications coming in at the same time
+- Fix: tapping a notification when app was terminated now opens the notifications context
 
 ## v1.58.1
 2025-04
