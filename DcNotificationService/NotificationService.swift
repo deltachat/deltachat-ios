@@ -79,7 +79,7 @@ class NotificationService: UNNotificationServiceExtension {
             let req = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: nil)
             UNUserNotificationCenter.current().add(req) { error in
                 if error != nil {
-                    UserDefaults.pushToDebugArray("ERR6")
+                    UserDefaults.pushToDebugArray("ERR6_UNUNC")
                 }
             }
         }
