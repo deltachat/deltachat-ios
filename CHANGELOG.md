@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Support pasted GIFs
+- Group notifications in Notification Center by chat
+- Fix: separate multiple notifications coming in at the same time
 
 ## v1.58.1
 2025-04
