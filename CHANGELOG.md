@@ -4,6 +4,7 @@
 
 - Support pasted GIFs
 - Group notifications in Notification Center by chat
+- More characters in notification before truncating
 - Fix: separate multiple notifications coming in at the same time
 
 ## v1.58.1
