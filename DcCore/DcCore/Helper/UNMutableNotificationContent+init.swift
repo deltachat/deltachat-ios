@@ -1,7 +1,6 @@
 import UserNotifications
-import DcCore
 
-extension UNMutableNotificationContent {
+public extension UNMutableNotificationContent {
     /// The limit for expanded notifications on iOS 14+.
     ///
     /// Note: The notification will be truncated at ~170 characters automatically by the system
