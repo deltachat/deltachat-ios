@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ didFinishLaunchingWithOptions")
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
+        UNUserNotificationCenter.current().delegate = self
 
         let webPCoder = SDImageWebPCoder.shared
         SDImageCodersManager.shared.addCoder(webPCoder)
@@ -351,7 +352,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guard let self else { return }
 
             self.notifyToken = nil
-            UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                 DispatchQueue.main.async {
                     if !granted || error != nil {
