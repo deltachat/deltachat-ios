@@ -1071,10 +1071,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    @objc private func saveDraft() {
-        draft.save(context: dcContext)
-    }
-
     private func configureMessageInputBar() {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DcColors.primary
