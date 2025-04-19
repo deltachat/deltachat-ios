@@ -44,6 +44,7 @@ public class DraftModel {
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
+        sendEditRequestFor = nil
         let quoteMsg = draftMsg?.quoteMessage
         draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
         draftMsg?.quoteMessage = quoteMsg
@@ -52,6 +53,7 @@ public class DraftModel {
     }
 
     public func clearAttachment() {
+        sendEditRequestFor = nil
         let quoteMsg = draftMsg?.quoteMessage
         if text != nil || quoteMsg != nil {
             draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
