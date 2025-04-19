@@ -65,7 +65,6 @@ public class DraftModel {
 
     public func save(context: DcContext) {
         if sendEditRequestFor != nil {
-            clear()
             return
         }
 
