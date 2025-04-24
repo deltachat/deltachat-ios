@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "Delta Chat utilizza la tua fotocamera per scattare e inviare foto e video e per scansionare i codici QR.";
-NSContactsUsageDescription = "Delta Chat usa i tuoi contatti per mostrare una lista di indirizzi e-mail a cui puoi scrivere. Delta Chat non ha un server, i tuoi contatti non vengono inviati da nessuna parte.";
+NSContactsUsageDescription = "Delta Chat usa i tuoi contatti per mostrare una lista di indirizzi e-mail a cui puoi scrivere. Delta Chat non ha alcun server, i tuoi contatti non vengono inviati da nessuna parte.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat necessita dell\'autorizzazione per condividere la tua posizione per il periodo di tempo in cui hai abilitato la condivisione della posizione.";
 NSLocationWhenInUseUsageDescription = "Delta Chat ha bisogno dell\'autorizzazione di localizzazione per condividere la vostra posizione per il periodo di tempo in cui avete abilitato la condivisione della posizione.";
 NSMicrophoneUsageDescription = "Delta Chat utilizza il tuo microfono per registrare e inviare messaggi vocali e video con audio.";

@@ -895,7 +895,7 @@
 "secure_join_wait" = "Establishing guaranteed end-to-end encryption, please wait…";
 // deprecated
 "secure_join_wait_timeout" = "Could not yet establish guaranteed end-to-end encryption, but you may already send a message.";
-"secure_join_takes_longer" = "That seems to take longer, maybe the contact or you are offline.\n\nHowever, the process continues in background, you can do something else…";
+"secure_join_takes_longer" = "The contact must be online to proceed.\n\nThis process will continue automatically in background.";
 "contact_verified" = "%1$@ introduced.";
 "contact_not_verified" = "Cannot establish guaranteed end-to-end encryption with %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
