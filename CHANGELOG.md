@@ -8,6 +8,10 @@
 - Fix: separate multiple notifications coming in at the same time
 - Fix: tapping a notification when app was terminated now opens the notifications context
 - Fix: keep message in edit on app switches
+- Fix old chats with failed securure join rendered without input bar sometimes
+- Update translations and local help
+- Update to core 1.159.2
+
 
 ## v1.58.1
 2025-04
