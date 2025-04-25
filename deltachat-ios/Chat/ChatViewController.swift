@@ -2327,10 +2327,9 @@ extension ChatViewController: MediaPickerDelegate {
                 url?.convertToMp4 { url, error in
                     guard let self, let url, error == nil else {
                         // TODO: Show alert
-                        logger.warning(error?.localizedDescription ?? "Couldn't send video")
+                        logger.warning("cannot send video: " + (error?.localizedDescription ?? ""))
                         return
                     }
-
                     self.sendVideo(url: url)
                 }
             }
@@ -2342,32 +2341,28 @@ extension ChatViewController: MediaPickerDelegate {
             } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                     guard let self, let image = image as? UIImage, error == nil else {
-                        logger.warning(error?.localizedDescription ?? "---")
+                        logger.warning("cannot send item: " + (error?.localizedDescription ?? ""))
                         return
                     }
-
                     self.sendImage(image)
                 }
             }
         }
 
-//        if itemProviders.count > 1 {
-
-            let alert = UIAlertController(title: "Wanna send \(itemProviders.count) items?", message: nil, preferredStyle: .alert)
-
-            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+        if itemProviders.count > 1 {
+            let text = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
+            let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
                 itemProviders.forEach { itemProvider in
                     sendItem(itemProvider: itemProvider)
                 }
-            }
-            let cancelAction = UIAlertAction(title: "Nö", style: .cancel)
-            alert.addAction(okAction)
-            alert.addAction(cancelAction)
+            })
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
 
             present(alert, animated: true)
-//        } else {
-//            // stage stuff
-//        }
+        } else {
+            // TODO: stage stuff
+        }
     }
 
     func onVoiceMessageRecorded(url: NSURL) {
