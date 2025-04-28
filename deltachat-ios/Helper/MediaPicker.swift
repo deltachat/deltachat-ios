@@ -69,7 +69,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoVideoLibrary() {
-        showPhotoLibrary(allowsCropping: false, mediaTypes: [.images, .videos])
+        showPhotoLibrary(allowsCropping: false, filter: nil)
     }
 
     func showDocumentLibrary(selectFolder: Bool = false) {
@@ -87,12 +87,12 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoGallery() {
-        showPhotoLibrary(allowsCropping: true, mediaTypes: [.images]) // used mainly for avatar-selection, allow cropping therefore
+        showPhotoLibrary(allowsCropping: true, filter: .any(of: [.images])) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [PHPickerFilter]) {
+    private func showPhotoLibrary(allowsCropping: Bool, filter: PHPickerFilter? = nil) {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
-        configuration.filter = .any(of: mediaTypes)
+        configuration.filter = filter
         configuration.selectionLimit = 0
         configuration.preferredAssetRepresentationMode = .compatible
         let imagePicker = PHPickerViewController(configuration: configuration)
