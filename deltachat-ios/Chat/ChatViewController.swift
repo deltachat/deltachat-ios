@@ -2350,6 +2350,7 @@ extension ChatViewController: MediaPickerDelegate {
         }
 
         if itemProviders.count > 1 {
+            // send multiple selected item in one go directly
             let text = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
@@ -2360,8 +2361,19 @@ extension ChatViewController: MediaPickerDelegate {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
 
             present(alert, animated: true)
-        } else {
-            // TODO: stage stuff
+        } else if let itemProvider = itemProviders.first {
+            // stage a single selected item
+            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                // TODO: stage single video
+            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    guard let self, let image = image as? UIImage, error == nil else {
+                        logger.warning("cannot send item: " + (error?.localizedDescription ?? ""))
+                        return
+                    }
+                    self.stageImage(image)
+                }
+            }
         }
     }
 
