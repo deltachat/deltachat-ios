@@ -93,7 +93,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [PHPickerFilter]) {
         var configuration = PHPickerConfiguration(photoLibrary: .shared())
         configuration.filter = .any(of: mediaTypes)
-        configuration.selectionLimit = 4
+        configuration.selectionLimit = 0
         configuration.preferredAssetRepresentationMode = .compatible
         let imagePicker = PHPickerViewController(configuration: configuration)
         imagePicker.delegate = self
