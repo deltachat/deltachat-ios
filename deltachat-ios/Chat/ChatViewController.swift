@@ -2321,47 +2321,34 @@ extension ChatViewController: MediaPickerDelegate {
 
 
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
-
-        func sendVideo(itemProvider: NSItemProvider) {
-            itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
-                url?.convertToMp4 { url, error in
-                    guard let self, let url, error == nil else {
-                        // TODO: Show alert
-                        logger.warning("cannot send video: " + (error?.localizedDescription ?? ""))
-                        return
-                    }
-                    self.sendVideo(url: url)
-                }
-            }
-        }
-
-        func sendItem(itemProvider: NSItemProvider) {
-            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                sendVideo(itemProvider: itemProvider)
-            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    guard let self, let image = image as? UIImage, error == nil else {
-                        logger.warning("cannot send item: " + (error?.localizedDescription ?? ""))
-                        return
-                    }
-                    self.sendImage(image)
-                }
-            }
-        }
-
         if itemProviders.count > 1 {
+
             // send multiple selected item in one go directly
             let text = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
                 itemProviders.forEach { itemProvider in
-                    sendItem(itemProvider: itemProvider)
+                    if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                        itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                            url?.convertToMp4 { url, error in
+                                // TODO: show error in alert
+                                guard let url, error == nil else { logger.error("cannot send video: " + (error?.localizedDescription ?? "")); return }
+                                self?.sendVideo(url: url)
+                            }
+                        }
+                    } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                        itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                            guard let image = image as? UIImage, error == nil else { logger.error("cannot send image: " + (error?.localizedDescription ?? "")); return }
+                            self?.sendImage(image)
+                        }
+                    }
                 }
             })
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-
             present(alert, animated: true)
+
         } else if let itemProvider = itemProviders.first {
+
             // stage a single selected item
             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                 // TODO: stage single video
@@ -2374,6 +2361,7 @@ extension ChatViewController: MediaPickerDelegate {
                     self.stageImage(image)
                 }
             }
+
         }
     }
 
