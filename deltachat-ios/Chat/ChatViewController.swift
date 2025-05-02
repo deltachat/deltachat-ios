@@ -2321,9 +2321,11 @@ extension ChatViewController: MediaPickerDelegate {
 
     func logAndShowError(error: Error) {
         logger.error(error.localizedDescription)
-        let alert = UIAlertController(title: String.localized("error"), message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-        present(alert, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: String.localized("error"), message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+            self?.present(alert, animated: true)
+        }
     }
 
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
@@ -2365,7 +2367,7 @@ extension ChatViewController: MediaPickerDelegate {
                 itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
                     url?.convertToMp4(completionHandler: { url, error in
                         if let url {
-                            self?.onVideoSelected(url: (url as NSURL))
+                            self?.stageVideo(url: (url as NSURL))
                         } else if let error {
                             self?.logAndShowError(error: error)
                         }
