@@ -2319,6 +2319,12 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
+    func logAndShowError(error: Error) {
+        logger.error(error.localizedDescription)
+        let alert = UIAlertController(title: String.localized("error"), message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+        present(alert, animated: true)
+    }
 
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
         if itemProviders.count > 1 {
@@ -2331,15 +2337,20 @@ extension ChatViewController: MediaPickerDelegate {
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                         itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
                             url?.convertToMp4 { url, error in
-                                // TODO: show error in alert
-                                guard let url, error == nil else { logger.error("cannot send video: " + (error?.localizedDescription ?? "")); return }
-                                self?.sendVideo(url: url)
+                                if let url {
+                                    self?.sendVideo(url: url)
+                                } else if let error {
+                                    self?.logAndShowError(error: error)
+                                }
                             }
                         }
                     } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
                         itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                            guard let image = image as? UIImage, error == nil else { logger.error("cannot send image: " + (error?.localizedDescription ?? "")); return }
-                            self?.sendImage(image)
+                            if let image = image as? UIImage {
+                                self?.sendImage(image)
+                            } else if let error {
+                                self?.logAndShowError(error: error)
+                            }
                         }
                     }
                 }
@@ -2351,14 +2362,22 @@ extension ChatViewController: MediaPickerDelegate {
 
             // stage a single selected item
             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                // TODO: stage single video
+                itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                    url?.convertToMp4(completionHandler: { url, error in
+                        if let url {
+                            self?.onVideoSelected(url: (url as NSURL))
+                        } else if let error {
+                            self?.logAndShowError(error: error)
+                        }
+                    })
+                }
             } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    guard let self, let image = image as? UIImage, error == nil else {
-                        logger.warning("cannot send item: " + (error?.localizedDescription ?? ""))
-                        return
+                    if let image = image as? UIImage {
+                        self?.stageImage(image)
+                    } else if let error {
+                        self?.logAndShowError(error: error)
                     }
-                    self.stageImage(image)
                 }
             }
 
