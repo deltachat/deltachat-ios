@@ -26,6 +26,9 @@ extension URL {
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         FileHelper.deleteFile(atPath: outputURL.path)
 
+        let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 0)
+        let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
+        exportSession.timeRange = range
         exportSession.outputURL = outputURL
         exportSession.outputFileType = .mp4
         exportSession.exportAsynchronously(completionHandler: {
