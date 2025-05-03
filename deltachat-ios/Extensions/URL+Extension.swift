@@ -24,20 +24,11 @@ extension URL {
 
         let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-").appending(".mp4")
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-
-        if FileManager.default.fileExists(atPath: outputURL.path) {
-            do {
-                try FileManager.default.removeItem(at: outputURL)
-            } catch {
-                completionHandler?(nil, error)
-                return
-            }
-        }
+        FileHelper.deleteFile(atPath: outputURL.path)
 
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mp4
         exportSession.shouldOptimizeForNetworkUse = true
-
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
