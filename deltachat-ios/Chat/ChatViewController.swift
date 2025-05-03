@@ -1371,7 +1371,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showPhotoVideoLibrary() {
-        mediaPicker?.showPhotoVideoLibrary()
+        mediaPicker?.showPhotoLibrary()
     }
 
     private func showProtectionBrokenDialog() {

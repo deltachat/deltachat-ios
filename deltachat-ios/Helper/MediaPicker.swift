@@ -68,10 +68,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(audioRecorderNavController, animated: true)
     }
 
-    func showPhotoVideoLibrary() {
-        showPhotoLibrary(allowsCropping: false, filter: nil)
-    }
-
     func showDocumentLibrary(selectFolder: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
         if selectFolder {
@@ -90,7 +86,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         showPhotoLibrary(allowsCropping: true, filter: .any(of: [.images])) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func showPhotoLibrary(allowsCropping: Bool, filter: PHPickerFilter? = nil) {
+    func showPhotoLibrary(allowsCropping: Bool = false, filter: PHPickerFilter? = nil) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController -
         // only the older allows cropping and only the newer allows mutiple selection :/
         if allowsCropping {
