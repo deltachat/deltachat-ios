@@ -142,11 +142,9 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 
 }
 
-// MARK: - PHPickerViewControllerDelegate
 extension MediaPicker: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         let itemProviders = results.compactMap { $0.itemProvider }
-
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             picker.dismiss(animated: true)
@@ -155,21 +153,24 @@ extension MediaPicker: PHPickerViewControllerDelegate {
     }
 }
 
-// MARK: - UIImagePickerControllerDelegate
 extension MediaPicker: UIImagePickerControllerDelegate {
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
         if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
-
             switch mediaType {
             case .video:
-                if let videoUrl = info[.mediaURL] as? URL {
-                    handleVideoUrl(url: videoUrl)
+                // selected from gallery or camera
+                if let url = info[.mediaURL] as? URL {
+                    url.convertToMp4(completionHandler: { url, error in
+                        if let url {
+                            self.delegate?.onVideoSelected(url: (url as NSURL))
+                        } else if let error {
+                            self.navigationController?.logAndAlert(error: error.localizedDescription)
+                        }
+                    })
                 }
             case .image:
                 if let image = info[.editedImage] as? UIImage {
-                    //  selected from camera and edtied
+                    // selected from camera and edtied
                     self.delegate?.onImageSelected(image: image)
                 } else if let imageURL = info[.imageURL] as? NSURL {
                     // selected from gallery
@@ -181,21 +182,6 @@ extension MediaPicker: UIImagePickerControllerDelegate {
             }
         }
         picker.dismiss(animated: true, completion: nil)
-    }
-
-    func handleVideoUrl(url: URL) {
-        url.convertToMp4(completionHandler: { url, error in
-            if let url {
-                self.delegate?.onVideoSelected(url: (url as NSURL))
-            } else if let error {
-                logger.error(error.localizedDescription)
-                let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                    self.navigationController?.dismiss(animated: true, completion: nil)
-                }))
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            }
-        })
     }
 }
 
