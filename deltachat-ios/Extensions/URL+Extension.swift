@@ -26,7 +26,7 @@ extension URL {
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         FileHelper.deleteFile(atPath: outputURL.path)
 
-        let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 0)
+        let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 600)
         let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
         exportSession.timeRange = range
         exportSession.outputURL = outputURL
@@ -35,6 +35,7 @@ extension URL {
             switch exportSession.status {
             case .failed:
                 let compatiblePresets = AVAssetExportSession.exportPresets(compatibleWith: avAsset)
+                logger.info("convertToMp4: timerange: \(exportSession.timeRange)")
                 logger.info("convertToMp4: compatible presets: \(compatiblePresets)")
                 logger.info("convertToMp4: supported file types: \(exportSession.supportedFileTypes)")
                 completionHandler?(nil, exportSession.error)
