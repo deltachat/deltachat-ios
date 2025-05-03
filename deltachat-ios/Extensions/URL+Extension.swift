@@ -28,7 +28,6 @@ extension URL {
 
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mp4
-        exportSession.shouldOptimizeForNetworkUse = true
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
