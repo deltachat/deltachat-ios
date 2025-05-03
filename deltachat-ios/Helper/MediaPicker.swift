@@ -82,27 +82,23 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(documentPicker, animated: true)
     }
 
-    func showPhotoGallery() {
-        showPhotoLibrary(allowsCropping: true, filter: .any(of: [.images])) // used mainly for avatar-selection, allow cropping therefore
-    }
-
-    func showPhotoLibrary(allowsCropping: Bool = false, filter: PHPickerFilter? = nil) {
+    func showPhotoLibrary(allowCropping: Bool = false) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController -
         // only the older allows cropping and only the newer allows mutiple selection :/
-        if allowsCropping {
+        if allowCropping {
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
                 imagePickerController.mediaTypes = [kUTTypeImage as String]
-                imagePickerController.allowsEditing = allowsCropping
+                imagePickerController.allowsEditing = true
                 navigationController?.present(imagePickerController, animated: true)
             } else {
                 navigationController?.logAndAlert(error: "Gallery not available.")
             }
         } else {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
-            configuration.filter = filter
+            configuration.filter = nil
             configuration.selectionLimit = 0
             configuration.preferredAssetRepresentationMode = .compatible
             let imagePicker = PHPickerViewController(configuration: configuration)
