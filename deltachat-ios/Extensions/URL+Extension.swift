@@ -17,6 +17,9 @@ extension URL {
 
     public func convertToMp4(completionHandler: ((URL?, Error?) -> Void)?) {
         let avAsset = AVURLAsset(url: self, options: nil)
+        let compatiblePresets = AVAssetExportSession.exportPresets(compatibleWith: avAsset)
+        logger.info("convertToMp4: compatible presets: \(compatiblePresets)")
+
         guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetMediumQuality) else {
            completionHandler?(nil, ConversionError.runtimeError("Could not initiate AVAssertExportSession"))
            return
@@ -31,7 +34,7 @@ extension URL {
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
-                logger.info("Supported file types: \(exportSession.supportedFileTypes)")
+                logger.info("convertToMp4: supported file types: \(exportSession.supportedFileTypes)")
                 completionHandler?(nil, exportSession.error)
             case .cancelled:
                 completionHandler?(nil, nil)
