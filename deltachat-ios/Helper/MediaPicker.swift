@@ -5,16 +5,24 @@ import MobileCoreServices
 import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
+    // onImageSelected() and onVideoSelected() are called in response to showCamera() or showPhotoLibrary(allowCropping: true)
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
+
+    // onMediaSelected() is called in responce to showPhotoLibrary()
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
+
+    // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
     func onVoiceMessageRecorded(url: NSURL)
     func onVoiceMessageRecorderClosed()
+
+    // onDocumentSelected() us called in response to showDocumentLibrary()
     func onDocumentSelected(url: NSURL)
 }
 
 extension MediaPickerDelegate {
+    // stub functions so that callers do not need to implement all delegates
     func onImageSelected(image: UIImage) { }
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
@@ -49,7 +57,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     func showVoiceRecorder() {
         let audioRecorderController = AudioRecorderController(dcContext: dcContext)
         audioRecorderController.delegate = self
-        // audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
 
         if #available(iOS 15.0, *) {
