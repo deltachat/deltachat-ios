@@ -30,7 +30,7 @@ extension URL {
         FileHelper.deleteFile(atPath: outputURL.path)
 
         exportSession.outputURL = outputURL
-        exportSession.outputFileType = AVFileType.mp4
+        exportSession.outputFileType = .mp4
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
