@@ -2319,7 +2319,7 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
-    func logAndShowError(error: Error) {
+    private func logAndShowError(error: Error) {
         logger.error(error.localizedDescription)
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: String.localized("error"), message: error.localizedDescription, preferredStyle: .alert)

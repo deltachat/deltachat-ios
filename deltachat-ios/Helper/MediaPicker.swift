@@ -6,9 +6,9 @@ import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
     func onImageSelected(image: UIImage)
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
     func onVoiceMessageRecorded(url: NSURL)
     func onVoiceMessageRecorderClosed()
     func onDocumentSelected(url: NSURL)
@@ -16,9 +16,9 @@ protocol MediaPickerDelegate: AnyObject {
 
 extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) { }
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
     func onVoiceMessageRecorded(url: NSURL) { }
     func onVoiceMessageRecorderClosed() { }
     func onDocumentSelected(url: NSURL) { }
@@ -159,8 +159,6 @@ extension MediaPicker: PHPickerViewControllerDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             picker.dismiss(animated: true)
-            // as loading images takes resources, we show an alert in ChatViewController first.
-            // If the user really, really wants to send multiple pictures, those are loaded and sent right away
             self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders)
         }
     }
