@@ -2323,8 +2323,8 @@ extension ChatViewController: MediaPickerDelegate {
         if itemProviders.count > 1 {
 
             // send multiple selected item in one go directly
-            let text = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
-            let alert = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+            let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
                 itemProviders.forEach { itemProvider in
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
