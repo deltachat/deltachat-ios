@@ -115,7 +115,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         }
     }
 
-    func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
+    func showCamera(allowCropping: Bool = false, supportedMediaTypes: CameraMediaTypes = .allAvailable) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .camera
@@ -135,11 +135,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             navigationController?.logAndAlert(error: String.localized("chat_camera_unavailable"))
         }
     }
-
-    func showCamera() {
-        showCamera(allowCropping: false, supportedMediaTypes: .allAvailable)
-    }
-
 }
 
 extension MediaPicker: PHPickerViewControllerDelegate {
