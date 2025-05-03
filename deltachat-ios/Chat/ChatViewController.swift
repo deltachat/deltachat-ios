@@ -2319,15 +2319,6 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
-    private func logAndShowError(error: Error) {
-        logger.error(error.localizedDescription)
-        DispatchQueue.main.async { [weak self] in
-            let alert = UIAlertController(title: String.localized("error"), message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-            self?.present(alert, animated: true)
-        }
-    }
-
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
         if itemProviders.count > 1 {
 
@@ -2342,7 +2333,7 @@ extension ChatViewController: MediaPickerDelegate {
                                 if let url {
                                     self?.sendVideo(url: url)
                                 } else if let error {
-                                    self?.logAndShowError(error: error)
+                                    self?.logAndAlert(error: error.localizedDescription)
                                 }
                             }
                         }
@@ -2351,7 +2342,7 @@ extension ChatViewController: MediaPickerDelegate {
                             if let image = image as? UIImage {
                                 self?.sendImage(image)
                             } else if let error {
-                                self?.logAndShowError(error: error)
+                                self?.logAndAlert(error: error.localizedDescription)
                             }
                         }
                     }
@@ -2369,7 +2360,7 @@ extension ChatViewController: MediaPickerDelegate {
                         if let url {
                             self?.stageVideo(url: (url as NSURL))
                         } else if let error {
-                            self?.logAndShowError(error: error)
+                            self?.logAndAlert(error: error.localizedDescription)
                         }
                     })
                 }
@@ -2378,7 +2369,7 @@ extension ChatViewController: MediaPickerDelegate {
                     if let image = image as? UIImage {
                         self?.stageImage(image)
                     } else if let error {
-                        self?.logAndShowError(error: error)
+                        self?.logAndAlert(error: error.localizedDescription)
                     }
                 }
             }

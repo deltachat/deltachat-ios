@@ -90,15 +90,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         showPhotoLibrary(allowsCropping: true, filter: .any(of: [.images])) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func logAndShowError(error: String) {
-        logger.error(error)
-        DispatchQueue.main.async { [weak self] in
-            let alert = UIAlertController(title: String.localized("error"), message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-            self?.navigationController?.present(alert, animated: true)
-        }
-    }
-
     private func showPhotoLibrary(allowsCropping: Bool, filter: PHPickerFilter? = nil) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController -
         // only the older allows cropping and only the newer allows mutiple selection :/
@@ -111,7 +102,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
                 imagePickerController.allowsEditing = allowsCropping
                 navigationController?.present(imagePickerController, animated: true)
             } else {
-                logAndShowError(error: "Gallery not available.")
+                navigationController?.logAndAlert(error: "Gallery not available.")
             }
         } else {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
@@ -141,7 +132,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             imagePickerController.setEditing(true, animated: true)
             navigationController?.present(imagePickerController, animated: true, completion: nil)
         } else {
-            logAndShowError(error: String.localized("chat_camera_unavailable"))
+            navigationController?.logAndAlert(error: String.localized("chat_camera_unavailable"))
         }
     }
 
