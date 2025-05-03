@@ -30,6 +30,7 @@ extension URL {
                 try FileManager.default.removeItem(at: outputURL)
             } catch {
                 completionHandler?(nil, error)
+                return
             }
         }
 
