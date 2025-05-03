@@ -41,6 +41,7 @@ extension URL {
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
+                logger.info("Supported file types: \(exportSession.supportedFileTypes)")
                 completionHandler?(nil, exportSession.error)
             case .cancelled:
                 completionHandler?(nil, nil)
