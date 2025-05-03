@@ -90,15 +90,38 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         showPhotoLibrary(allowsCropping: true, filter: .any(of: [.images])) // used mainly for avatar-selection, allow cropping therefore
     }
 
-    private func showPhotoLibrary(allowsCropping: Bool, filter: PHPickerFilter? = nil) {
-        var configuration = PHPickerConfiguration(photoLibrary: .shared())
-        configuration.filter = filter
-        configuration.selectionLimit = 0
-        configuration.preferredAssetRepresentationMode = .compatible
-        let imagePicker = PHPickerViewController(configuration: configuration)
-        imagePicker.delegate = self
+    private func logAndShowError(error: String) {
+        logger.error(error)
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: String.localized("error"), message: error, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+            self?.navigationController?.present(alert, animated: true)
+        }
+    }
 
-        navigationController?.present(imagePicker, animated: true)
+    private func showPhotoLibrary(allowsCropping: Bool, filter: PHPickerFilter? = nil) {
+        // we have to use older UIImagePickerController as well as newer PHPickerViewController -
+        // only the older allows cropping and only the newer allows mutiple selection :/
+        if allowsCropping {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.mediaTypes = [kUTTypeImage as String]
+                imagePickerController.allowsEditing = allowsCropping
+                navigationController?.present(imagePickerController, animated: true)
+            } else {
+                logAndShowError(error: "Gallery not available.")
+            }
+        } else {
+            var configuration = PHPickerConfiguration(photoLibrary: .shared())
+            configuration.filter = filter
+            configuration.selectionLimit = 0
+            configuration.preferredAssetRepresentationMode = .compatible
+            let imagePicker = PHPickerViewController(configuration: configuration)
+            imagePicker.delegate = self
+            navigationController?.present(imagePicker, animated: true)
+        }
     }
 
     func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
@@ -118,15 +141,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             imagePickerController.setEditing(true, animated: true)
             navigationController?.present(imagePickerController, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(
-                title: String.localized("chat_camera_unavailable"),
-                message: nil,
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }))
-            navigationController?.present(alert, animated: true, completion: nil)
+            logAndShowError(error: String.localized("chat_camera_unavailable"))
         }
     }
 
