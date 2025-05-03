@@ -66,7 +66,7 @@ extension UIViewController {
         logger.error(error)
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
             self?.present(alert, animated: true)
         }
     }
