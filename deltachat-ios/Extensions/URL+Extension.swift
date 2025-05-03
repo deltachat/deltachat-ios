@@ -37,9 +37,6 @@ extension URL {
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mp4
         exportSession.shouldOptimizeForNetworkUse = true
-        let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 0)
-        let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
-        exportSession.timeRange = range
 
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
