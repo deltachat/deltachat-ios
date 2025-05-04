@@ -2328,7 +2328,7 @@ extension ChatViewController: MediaPickerDelegate {
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
                 itemProviders.forEach { itemProvider in
                     if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                        itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                        itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
                             url?.convertToMp4 { url, error in
                                 if let url {
                                     self?.sendVideo(url: url)
@@ -2355,7 +2355,7 @@ extension ChatViewController: MediaPickerDelegate {
 
             // stage a single selected item
             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+                itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
                     url?.convertToMp4(completionHandler: { url, error in
                         if let url {
                             self?.stageVideo(url: (url as NSURL))

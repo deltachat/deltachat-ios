@@ -93,7 +93,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController:
         // - only the older allows cropping and only the newer allows mutiple selection
         // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678
-        if !allowCropping, #available(iOS 18, *) {
+        if !allowCropping {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
             configuration.selectionLimit = 0
@@ -106,8 +106,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
-                imagePickerController.mediaTypes = allowCropping ? [kUTTypeImage as String] : [kUTTypeMovie as String, kUTTypeVideo as String, kUTTypeImage as String]
-                imagePickerController.allowsEditing = allowCropping
+                imagePickerController.mediaTypes = [kUTTypeImage as String]
+                imagePickerController.allowsEditing = true
                 navigationController?.present(imagePickerController, animated: true)
             } else {
                 navigationController?.logAndAlert(error: "Gallery not available.")
