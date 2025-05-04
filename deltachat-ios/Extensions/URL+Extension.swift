@@ -17,7 +17,7 @@ extension URL {
 
     public func convertToMp4(completionHandler: ((URL?, Error?) -> Void)?) {
         let avAsset = AVURLAsset(url: self, options: nil)
-        guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetMediumQuality) else {
+        guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetPassthrough) else {
            completionHandler?(nil, ConversionError.runtimeError("Could not initiate AVAssertExportSession"))
            return
         }
@@ -26,11 +26,9 @@ extension URL {
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
         FileHelper.deleteFile(atPath: outputURL.path)
 
-        let start = CMTimeMakeWithSeconds(0.0, preferredTimescale: 600)
-        let range = CMTimeRangeMake(start: start, duration: avAsset.duration)
-        exportSession.timeRange = range
+        exportSession.timeRange = CMTimeRange(start: .zero, duration: avAsset.duration)
         exportSession.outputURL = outputURL
-        exportSession.outputFileType = .mp4
+        exportSession.outputFileType = AVFileType.mp4
         exportSession.exportAsynchronously(completionHandler: {
             switch exportSession.status {
             case .failed:
@@ -38,6 +36,7 @@ extension URL {
                 logger.info("convertToMp4: timerange: \(exportSession.timeRange)")
                 logger.info("convertToMp4: compatible presets: \(compatiblePresets)")
                 logger.info("convertToMp4: supported file types: \(exportSession.supportedFileTypes)")
+                logger.info("convertToMp4: error: \(String(describing: exportSession.error)))")
                 completionHandler?(nil, exportSession.error)
             case .cancelled:
                 completionHandler?(nil, nil)
