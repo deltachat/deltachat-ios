@@ -24,7 +24,7 @@ extension URL {
 
         let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-").appending(".mp4")
         let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-        FileHelper.deleteFile(atPath: outputURL.path)
+        FileHelper.deleteFile(outputURL.path)
 
         exportSession.timeRange = CMTimeRange(start: .zero, duration: avAsset.duration)
         exportSession.outputURL = outputURL

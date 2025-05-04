@@ -71,7 +71,7 @@ public class FileHelper {
         }
     }
 
-    private static func deleteFile(_ atPath: String?) {
+    public static func deleteFile(_ atPath: String?) {
         guard let atPath = atPath else {
             return
         }
