@@ -1530,7 +1530,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
-        FileHelper.deleteFile(atPath: url.relativePath)
+        FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
 
     private func stageDocument(url: NSURL) {
@@ -1539,7 +1539,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
-            FileHelper.deleteFile(atPath: url.relativePath)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
         }
     }
 
@@ -1549,7 +1549,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
-            FileHelper.deleteFile(atPath: url.relativePath)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
         }
     }
 
@@ -1577,7 +1577,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.focusInputTextView()
-                    FileHelper.deleteFile(atPath: pathInCachesDir)
+                    FileHelper.deleteFileAsync(atPath: pathInCachesDir)
                 }
             }
         }
@@ -1588,7 +1588,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
-                FileHelper.deleteFile(atPath: path)
+                FileHelper.deleteFileAsync(atPath: path)
             }
         }
     }
@@ -1597,7 +1597,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             self.sendAttachmentMessage(viewType: DC_MSG_VIDEO, filePath: url.relativePath, message: message)
-            FileHelper.deleteFile(atPath: url.relativePath)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
         }
     }
 
@@ -1614,7 +1614,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
             self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
 
-            FileHelper.deleteFile(atPath: path)
+            FileHelper.deleteFileAsync(atPath: path)
             self.draft.clear()
             DispatchQueue.main.async {
                 self.draftArea.quotePreview.cancel()
@@ -2729,6 +2729,6 @@ extension ChatViewController: AppPickerViewControllerDelegate {
         draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
-        FileHelper.deleteFile(atPath: url.relativePath)
+        FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
 }
