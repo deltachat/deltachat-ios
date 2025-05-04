@@ -90,8 +90,9 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showPhotoLibrary(allowCropping: Bool = false) {
-        // we have to use older UIImagePickerController as well as newer PHPickerViewController -
-        // only the older allows cropping and only the newer allows mutiple selection :/
+        // we have to use older UIImagePickerController as well as newer PHPickerViewController:
+        // - only the older allows cropping and only the newer allows mutiple selection
+        // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678
         if !allowCropping, #available(iOS 18, *) {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
