@@ -92,18 +92,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     func showPhotoLibrary(allowCropping: Bool = false) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController -
         // only the older allows cropping and only the newer allows mutiple selection :/
-        if allowCropping {
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                let imagePickerController = UIImagePickerController()
-                imagePickerController.delegate = self
-                imagePickerController.sourceType = .photoLibrary
-                imagePickerController.mediaTypes = [kUTTypeImage as String]
-                imagePickerController.allowsEditing = true
-                navigationController?.present(imagePickerController, animated: true)
-            } else {
-                navigationController?.logAndAlert(error: "Gallery not available.")
-            }
-        } else {
+        if !allowCropping, #available(iOS 18, *) {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
             configuration.selectionLimit = 0
@@ -111,6 +100,17 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             let imagePicker = PHPickerViewController(configuration: configuration)
             imagePicker.delegate = self
             navigationController?.present(imagePicker, animated: true)
+        } else {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.mediaTypes = allowCropping ? [kUTTypeImage as String] : [kUTTypeMovie as String, kUTTypeVideo as String, kUTTypeImage as String]
+                imagePickerController.allowsEditing = allowCropping
+                navigationController?.present(imagePickerController, animated: true)
+            } else {
+                navigationController?.logAndAlert(error: "Gallery not available.")
+            }
         }
     }
 
