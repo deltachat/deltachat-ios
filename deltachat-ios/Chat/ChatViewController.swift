@@ -2308,14 +2308,25 @@ extension ChatViewController: BaseMessageCellDelegate {
 // MARK: - MediaPickerDelegate
 extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
-        let url = url as URL
-        url.convertToMp4(completionHandler: { [weak self] url, error in
-            if let url {
-                self?.stageVideo(url: (url as NSURL))
-            } else if let error {
-                self?.logAndAlert(error: error.localizedDescription)
+        DispatchQueue.main.async {
+            let url = url as URL
+            let progressAlertHandler = ProgressAlertHandler()
+            progressAlertHandler.dataSource = self
+            progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
+            DispatchQueue.global().async {
+                url.convertToMp4(completionHandler: { [weak self] url, error in
+                    if let url, !progressAlertHandler.cancelled {
+                        self?.stageVideo(url: (url as NSURL))
+                    } else if let error {
+                        self?.logAndAlert(error: error.localizedDescription)
+                    }
+
+                    DispatchQueue.main.async {
+                        progressAlertHandler.updateProgressAlertSuccess()
+                    }
+                })
             }
-        })
+        }
     }
 
     func onImageSelected(url: NSURL) {
