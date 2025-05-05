@@ -75,13 +75,12 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(audioRecorderNavController, animated: true)
     }
 
-    func showDocumentLibrary(selectFolder: Bool = false) {
+    func showDocumentLibrary(selectBackupArchives: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
-        if selectFolder {
+        if selectBackupArchives {
             documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
         } else {
-            let types = [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data]
-            documentPicker = .init(forOpeningContentTypes: types, asCopy: true)
+            documentPicker = .init(forOpeningContentTypes: [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data], asCopy: true)
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
