@@ -11,7 +11,7 @@ protocol MediaPickerDelegate: AnyObject {
     func onVideoSelected(url: NSURL)
 
     // onMediaSelected() is called in responce to showGallery()
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool)
 
     // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
     func onVoiceMessageRecorded(url: NSURL)
@@ -26,7 +26,7 @@ extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) { }
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool) {}
     func onVoiceMessageRecorded(url: NSURL) { }
     func onVoiceMessageRecorderClosed() { }
     func onDocumentSelected(url: NSURL) { }
@@ -47,6 +47,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     private let dcContext: DcContext
     private weak var navigationController: UINavigationController?
     private var accountRecorderTransitionDelegate: PartialScreenModalTransitioningDelegate?
+    private var sendAsFile: Bool = false
     weak var delegate: MediaPickerDelegate?
 
     init(dcContext: DcContext, navigationController: UINavigationController?) {
@@ -82,7 +83,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             self?.showDocumentLibrary()
         })
         alert.addAction(UIAlertAction(title: "Choose from Gallery", style: .default) { [weak self] _ in
-            self?.showGallery()
+            self?.showGallery(sendAsFile: true)
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         navigationController?.present(alert, animated: true)
@@ -101,10 +102,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(documentPicker, animated: true)
     }
 
-    func showGallery(allowCropping: Bool = false) {
+    func showGallery(allowCropping: Bool = false, sendAsFile: Bool = false) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController:
         // - only the older allows cropping and only the newer allows mutiple selection
         // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678
+        self.sendAsFile = sendAsFile
         if !allowCropping {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
@@ -155,7 +157,7 @@ extension MediaPicker: PHPickerViewControllerDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             picker.dismiss(animated: true)
-            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders)
+            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders, sendAsFile: sendAsFile)
         }
     }
 }

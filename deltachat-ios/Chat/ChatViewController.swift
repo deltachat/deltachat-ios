@@ -2337,7 +2337,7 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool) {
         if itemProviders.count > 1 {
 
             // send multiple selected item in one go directly
