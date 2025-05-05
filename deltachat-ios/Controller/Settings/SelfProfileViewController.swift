@@ -130,7 +130,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
         guard let image = avatarSelectionCell.badge.getImage() else { return }
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("preview.png")
         guard let imageData = image.pngData() else { return }
-        guard let file = try? imageData.write(to: url) else { return }
+        guard (try? imageData.write(to: url)) != nil else { return }
 
         let previewController = PreviewController(dcContext: dcContext, type: .single(url))
         previewController.customTitle = String.localized("pref_profile_photo")
@@ -138,7 +138,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showPhotoGallery()
+        mediaPicker?.showGallery(allowCropping: true)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

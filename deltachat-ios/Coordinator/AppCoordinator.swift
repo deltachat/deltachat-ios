@@ -460,18 +460,10 @@ class AppCoordinator: NSObject {
             if chatId != 0 {
                 self?.showChat(chatId: chatId)
             } else {
-                self?.showErrorAlert(error: dcContext.lastErrorString, viewController: viewController)
+                viewController.logAndAlert(error: dcContext.lastErrorString)
             }
         }))
         viewController.present(alert, animated: true, completion: nil)
-    }
-
-    private func showErrorAlert(error: String, viewController: UIViewController) {
-        let alert = UIAlertController(title: String.localized("error"), message: error, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-            alert.dismiss(animated: true)
-        }))
-        viewController.present(alert, animated: true)
     }
 
     // MARK: - coordinator

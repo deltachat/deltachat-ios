@@ -61,6 +61,15 @@ extension UIViewController {
     func isOnScreen() -> Bool {
         return viewIfLoaded?.window != nil
     }
+
+    func logAndAlert(error: String) {
+        logger.error(error)
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: nil, message: error, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
+            self?.present(alert, animated: true)
+        }
+    }
 }
 
 extension UIAlertController.Style {

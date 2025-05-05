@@ -1371,7 +1371,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func showPhotoVideoLibrary() {
-        mediaPicker?.showPhotoVideoLibrary()
+        mediaPicker?.showGallery()
     }
 
     private func showProtectionBrokenDialog() {
@@ -1530,7 +1530,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         draft.setAttachment(viewType: DC_MSG_VCARD, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
-        FileHelper.deleteFile(atPath: url.relativePath)
+        FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
 
     private func stageDocument(url: NSURL) {
@@ -1539,7 +1539,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.draft.setAttachment(viewType: url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
-            FileHelper.deleteFile(atPath: url.relativePath)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
         }
     }
 
@@ -1549,7 +1549,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
             self.configureDraftArea(draft: self.draft)
             self.focusInputTextView()
-            FileHelper.deleteFile(atPath: url.relativePath)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
         }
     }
 
@@ -1577,7 +1577,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     }
                     self.configureDraftArea(draft: self.draft)
                     self.focusInputTextView()
-                    FileHelper.deleteFile(atPath: pathInCachesDir)
+                    FileHelper.deleteFileAsync(atPath: pathInCachesDir)
                 }
             }
         }
@@ -1588,10 +1588,19 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             guard let self else { return }
             if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
                 self.sendAttachmentMessage(viewType: DC_MSG_IMAGE, filePath: path, message: message)
-                FileHelper.deleteFile(atPath: path)
+                FileHelper.deleteFileAsync(atPath: path)
             }
         }
     }
+
+    private func sendVideo(url: URL, message: String? = nil) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            self.sendAttachmentMessage(viewType: DC_MSG_VIDEO, filePath: url.relativePath, message: message)
+            FileHelper.deleteFileAsync(atPath: url.relativePath)
+        }
+    }
+
 
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
@@ -1605,7 +1614,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
             self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
 
-            FileHelper.deleteFile(atPath: path)
+            FileHelper.deleteFileAsync(atPath: path)
             self.draft.clear()
             DispatchQueue.main.async {
                 self.draftArea.quotePreview.cancel()
@@ -2310,6 +2319,64 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
+        if itemProviders.count > 1 {
+
+            // send multiple selected item in one go directly
+            let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
+                itemProviders.forEach { itemProvider in
+                    if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                        itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
+                            url?.convertToMp4 { url, error in
+                                if let url {
+                                    self?.sendVideo(url: url)
+                                } else if let error {
+                                    self?.logAndAlert(error: error.localizedDescription)
+                                }
+                            }
+                        }
+                    } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                        itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                            if let image = image as? UIImage {
+                                self?.sendImage(image)
+                            } else if let error {
+                                self?.logAndAlert(error: error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+            })
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true)
+
+        } else if let itemProvider = itemProviders.first {
+
+            // stage a single selected item
+            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
+                    url?.convertToMp4(completionHandler: { url, error in
+                        if let url {
+                            self?.stageVideo(url: (url as NSURL))
+                        } else if let error {
+                            self?.logAndAlert(error: error.localizedDescription)
+                        }
+                    })
+                }
+            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    if let image = image as? UIImage {
+                        self?.stageImage(image)
+                    } else if let error {
+                        self?.logAndAlert(error: error.localizedDescription)
+                    }
+                }
+            }
+
+        }
+    }
+
     func onVoiceMessageRecorded(url: NSURL) {
         sendVoiceMessage(url: url)
     }
@@ -2573,11 +2640,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
 // MARK: - AudioControllerDelegate
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
-        let alert = UIAlertController(title: String.localized("error"),
-                                      message: String.localized("cannot_play_audio_file"),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        self.logAndAlert(error: String.localized("cannot_play_audio_file"))
     }
 }
 
@@ -2666,6 +2729,6 @@ extension ChatViewController: AppPickerViewControllerDelegate {
         draft.setAttachment(viewType: DC_MSG_WEBXDC, path: url.relativePath)
         configureDraftArea(draft: draft)
         focusInputTextView()
-        FileHelper.deleteFile(atPath: url.relativePath)
+        FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
 }

@@ -111,7 +111,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        mediaPicker?.showPhotoGallery()
+        mediaPicker?.showGallery(allowCropping: true)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

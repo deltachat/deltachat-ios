@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Select and send multiple images at the same time
 - Support pasted GIFs
 - Group notifications in Notification Center by chat
 - More characters in notification before truncating

@@ -1,21 +1,32 @@
 import UIKit
+import PhotosUI
 import Photos
 import MobileCoreServices
 import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
+    // onImageSelected() and onVideoSelected() are called in response to showCamera() or showGallery(allowCropping: true)
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
+
+    // onMediaSelected() is called in responce to showGallery()
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
+
+    // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
     func onVoiceMessageRecorded(url: NSURL)
     func onVoiceMessageRecorderClosed()
+
+    // onDocumentSelected() us called in response to showDocumentLibrary()
     func onDocumentSelected(url: NSURL)
 }
 
 extension MediaPickerDelegate {
+    // stub functions so that callers do not need to implement all delegates
     func onImageSelected(image: UIImage) { }
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
     func onVoiceMessageRecorded(url: NSURL) { }
     func onVoiceMessageRecorderClosed() { }
     func onDocumentSelected(url: NSURL) { }
@@ -46,7 +57,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     func showVoiceRecorder() {
         let audioRecorderController = AudioRecorderController(dcContext: dcContext)
         audioRecorderController.delegate = self
-        // audioRecorderController.maximumRecordDuration = 1200
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
 
         if #available(iOS 15.0, *) {
@@ -65,15 +75,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(audioRecorderNavController, animated: true)
     }
 
-    func showPhotoVideoLibrary() {
-        let mediaTypes = [
-            kUTTypeMovie as String,
-            kUTTypeVideo as String,
-            kUTTypeImage as String
-        ]
-        showPhotoLibrary(allowsCropping: false, mediaTypes: mediaTypes)
-    }
-
     func showDocumentLibrary(selectFolder: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
         if selectFolder {
@@ -88,23 +89,33 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(documentPicker, animated: true)
     }
 
-    func showPhotoGallery() {
-        let mediaType = [kUTTypeImage as String]
-        showPhotoLibrary(allowsCropping: true, mediaTypes: mediaType) // used mainly for avatar-selection, allow cropping therefore
-    }
-
-    private func showPhotoLibrary(allowsCropping: Bool, mediaTypes: [String]) {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = .photoLibrary
-            imagePickerController.mediaTypes = mediaTypes
-            imagePickerController.allowsEditing = allowsCropping
-            navigationController?.present(imagePickerController, animated: true)
+    func showGallery(allowCropping: Bool = false) {
+        // we have to use older UIImagePickerController as well as newer PHPickerViewController:
+        // - only the older allows cropping and only the newer allows mutiple selection
+        // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678
+        if !allowCropping {
+            var configuration = PHPickerConfiguration(photoLibrary: .shared())
+            configuration.filter = nil
+            configuration.selectionLimit = 0
+            configuration.preferredAssetRepresentationMode = .compatible
+            let imagePicker = PHPickerViewController(configuration: configuration)
+            imagePicker.delegate = self
+            navigationController?.present(imagePicker, animated: true)
+        } else {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePickerController = UIImagePickerController()
+                imagePickerController.delegate = self
+                imagePickerController.sourceType = .photoLibrary
+                imagePickerController.mediaTypes = [kUTTypeImage as String]
+                imagePickerController.allowsEditing = true
+                navigationController?.present(imagePickerController, animated: true)
+            } else {
+                navigationController?.logAndAlert(error: "Gallery not available.")
+            }
         }
     }
 
-    func showCamera(allowCropping: Bool, supportedMediaTypes: CameraMediaTypes) {
+    func showCamera(allowCropping: Bool = false, supportedMediaTypes: CameraMediaTypes = .allAvailable) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .camera
@@ -121,39 +132,40 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
             imagePickerController.setEditing(true, animated: true)
             navigationController?.present(imagePickerController, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(
-                title: String.localized("chat_camera_unavailable"),
-                message: nil,
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                self.navigationController?.dismiss(animated: true, completion: nil)
-            }))
-            navigationController?.present(alert, animated: true, completion: nil)
+            navigationController?.logAndAlert(error: String.localized("chat_camera_unavailable"))
         }
     }
-
-    func showCamera() {
-        showCamera(allowCropping: false, supportedMediaTypes: .allAvailable)
-    }
-
 }
 
-// MARK: - UIImagePickerControllerDelegate
+extension MediaPicker: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        let itemProviders = results.compactMap { $0.itemProvider }
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            picker.dismiss(animated: true)
+            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders)
+        }
+    }
+}
+
 extension MediaPicker: UIImagePickerControllerDelegate {
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-
         if let type = info[.mediaType] as? String, let mediaType = PickerMediaType(rawValue: type) {
-
             switch mediaType {
             case .video:
-                if let videoUrl = info[.mediaURL] as? URL {
-                    handleVideoUrl(url: videoUrl)
+                // selected from gallery or camera
+                if let url = info[.mediaURL] as? URL {
+                    url.convertToMp4(completionHandler: { url, error in
+                        if let url {
+                            self.delegate?.onVideoSelected(url: (url as NSURL))
+                        } else if let error {
+                            self.navigationController?.logAndAlert(error: error.localizedDescription)
+                        }
+                    })
                 }
             case .image:
                 if let image = info[.editedImage] as? UIImage {
-                    //  selected from camera and edtied
+                    // selected from camera and edtied
                     self.delegate?.onImageSelected(image: image)
                 } else if let imageURL = info[.imageURL] as? NSURL {
                     // selected from gallery
@@ -165,21 +177,6 @@ extension MediaPicker: UIImagePickerControllerDelegate {
             }
         }
         picker.dismiss(animated: true, completion: nil)
-    }
-
-    func handleVideoUrl(url: URL) {
-        url.convertToMp4(completionHandler: { url, error in
-            if let url = url {
-                self.delegate?.onVideoSelected(url: (url as NSURL))
-            } else if let error = error {
-                logger.error(error.localizedDescription)
-                let alert = UIAlertController(title: String.localized("error"), message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel, handler: { _ in
-                    self.navigationController?.dismiss(animated: true, completion: nil)
-                }))
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            }
-        })
     }
 }
 
