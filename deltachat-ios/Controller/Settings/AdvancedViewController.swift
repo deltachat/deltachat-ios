@@ -26,8 +26,6 @@ internal final class AdvancedViewController: UITableViewController {
 
     private let externalPathDescr = "File Sharing/Delta Chat"
 
-    var progressAlertHandler: ProgressAlertHandler?
-
     // MARK: - cells
     private lazy var showEmailsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)

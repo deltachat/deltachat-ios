@@ -479,7 +479,7 @@ class AccountSetupController: UITableViewController {
 
     private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
 
-        let progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts, notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
+        let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
         }
         progressAlertHandler.dataSource = self

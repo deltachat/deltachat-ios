@@ -272,7 +272,7 @@ class InstantOnboardingViewController: UIViewController {
 
     // MARK: - action: configuration
     @objc private func acceptAndCreateButtonPressed() {
-        let progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts, notification: Event.configurationProgress, onSuccess: { [weak self] in
+        let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, onSuccess: { [weak self] in
             self?.handleCreateSuccess()
         })
         progressAlertHandler.dataSource = self

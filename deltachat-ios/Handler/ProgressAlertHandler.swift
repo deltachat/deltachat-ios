@@ -1,33 +1,20 @@
 import UIKit
 import DcCore
 
-protocol ProgressAlertHandlerDataSource: AnyObject {
-    func viewController() -> UIViewController
-}
-
-extension UIViewController: ProgressAlertHandlerDataSource {
-    func viewController() -> UIViewController {
-        self
-    }
-}
-
 class ProgressAlertHandler {
-
-    private let dcAccounts: DcAccounts
-    weak var dataSource: ProgressAlertHandlerDataSource?
+    weak var dataSource: UIViewController?
+    var cancelled: Bool = false
     private var onSuccess: (() -> Void)?
     private let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
 
     /// Use this is you want to handle notifications yourself.
     /// This way you can just use the alert-handler for the alert-part and it's not updating itself.
-    init(dcAccounts: DcAccounts, onSuccess: (() -> Void)? = nil) {
-        self.dcAccounts = dcAccounts
+    init() {
         self.checkForInternetConnectivity = false
     }
 
-    init(dcAccounts: DcAccounts, notification: Notification.Name, checkForInternetConnectivity: Bool = false, onSuccess: (() -> Void)? = nil) {
-        self.dcAccounts = dcAccounts
+    init(notification: Notification.Name, checkForInternetConnectivity: Bool = false, onSuccess: (() -> Void)? = nil) {
         self.onSuccess = onSuccess
         self.checkForInternetConnectivity = checkForInternetConnectivity
 
@@ -42,8 +29,8 @@ class ProgressAlertHandler {
             guard let self else { return }
 
             if ui["error"] as? Bool ?? false {
-                dcAccounts.startIo()
-                
+                DcAccounts.shared.startIo()
+
                 var errorMessage: String? = ui["errorMessage"] as? String
                 // override if we need to check for connectiviy issues
                 if checkForInternetConnectivity,
@@ -55,7 +42,7 @@ class ProgressAlertHandler {
                 
                 self.updateProgressAlert(error: errorMessage)
             } else if ui["done"] as? Bool ?? false {
-                dcAccounts.startIo()
+                DcAccounts.shared.startIo()
                 self.updateProgressAlertSuccess(completion: onSuccess)
             } else {
                 self.updateProgressAlertValue(value: ui["progress"] as? Int)
@@ -91,11 +78,11 @@ class ProgressAlertHandler {
             }))
             // sometimes error messages are not shown and we get the same error as above
             // as a workaround we disable animated here as well
-            dataSource.viewController().present(errorAlert, animated: false, completion: nil)
+            dataSource.present(errorAlert, animated: false, completion: nil)
         }
     }
 
-    public func updateProgressAlertSuccess(completion onComplete: VoidFunction?) {        
+    public func updateProgressAlertSuccess(completion onComplete: VoidFunction? = nil) {
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
         updateProgressAlertValue(value: 1000)
@@ -107,18 +94,17 @@ class ProgressAlertHandler {
         })
     }
 
-    public func showProgressAlert(title: String, dcContext: DcContext) {
+    public func showProgressAlert(title: String?, dcContext: DcContext) {
         guard let dataSource else { return assertionFailure("No DataSource") }
 
         let progressAlertController = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: String.localized("cancel"),
-                                         style: .cancel,
-                                         handler: { _ in
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.cancelled = true
             dcContext.stopOngoingProcess()
         })
         progressAlertController.addAction(cancelAction)
 
-        dataSource.viewController().present(progressAlertController, animated: true, completion: nil)
+        dataSource.present(progressAlertController, animated: true, completion: nil)
         self.progressAlertController = progressAlertController
     }
 }

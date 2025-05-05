@@ -57,7 +57,7 @@ class WelcomeViewController: UIViewController {
         self.dcContext = dcAccounts.getSelected()
         self.accountCode = accountCode
 
-        progressAlertHandler = ProgressAlertHandler(dcAccounts: dcAccounts)
+        progressAlertHandler = ProgressAlertHandler()
 
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
