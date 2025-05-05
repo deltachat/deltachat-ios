@@ -154,14 +154,8 @@ extension MediaPicker: UIImagePickerControllerDelegate {
             switch mediaType {
             case .video:
                 // selected from gallery or camera
-                if let url = info[.mediaURL] as? URL {
-                    url.convertToMp4(completionHandler: { url, error in
-                        if let url {
-                            self.delegate?.onVideoSelected(url: (url as NSURL))
-                        } else if let error {
-                            self.navigationController?.logAndAlert(error: error.localizedDescription)
-                        }
-                    })
+                if let url = info[.mediaURL] as? NSURL {
+                    self.delegate?.onVideoSelected(url: url)
                 }
             case .image:
                 if let image = info[.editedImage] as? UIImage {

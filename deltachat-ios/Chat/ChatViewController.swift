@@ -2308,7 +2308,14 @@ extension ChatViewController: BaseMessageCellDelegate {
 // MARK: - MediaPickerDelegate
 extension ChatViewController: MediaPickerDelegate {
     func onVideoSelected(url: NSURL) {
-        stageVideo(url: url)
+        let url = url as URL
+        url.convertToMp4(completionHandler: { [weak self] url, error in
+            if let url {
+                self?.stageVideo(url: (url as NSURL))
+            } else if let error {
+                self?.logAndAlert(error: error.localizedDescription)
+            }
+        })
     }
 
     func onImageSelected(url: NSURL) {
