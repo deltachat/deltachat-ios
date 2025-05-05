@@ -137,7 +137,7 @@ class InstantOnboardingViewController: UIViewController {
 
     // MARK: - actions
     private func galleryButtonPressed(_ action: UIAlertAction) {
-        mediaPicker.showPhotoLibrary(allowCropping: true)
+        mediaPicker.showGallery(allowCropping: true)
     }
 
     private func cameraButtonPressed(_ action: UIAlertAction) {

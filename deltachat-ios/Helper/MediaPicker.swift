@@ -5,12 +5,12 @@ import MobileCoreServices
 import DcCore
 
 protocol MediaPickerDelegate: AnyObject {
-    // onImageSelected() and onVideoSelected() are called in response to showCamera() or showPhotoLibrary(allowCropping: true)
+    // onImageSelected() and onVideoSelected() are called in response to showCamera() or showGallery(allowCropping: true)
     func onImageSelected(image: UIImage)
     func onImageSelected(url: NSURL)
     func onVideoSelected(url: NSURL)
 
-    // onMediaSelected() is called in responce to showPhotoLibrary()
+    // onMediaSelected() is called in responce to showGallery()
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
 
     // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
@@ -89,7 +89,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(documentPicker, animated: true)
     }
 
-    func showPhotoLibrary(allowCropping: Bool = false) {
+    func showGallery(allowCropping: Bool = false) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController:
         // - only the older allows cropping and only the newer allows mutiple selection
         // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678

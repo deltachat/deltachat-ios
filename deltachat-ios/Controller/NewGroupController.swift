@@ -315,7 +315,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showPhotoPicker(delegate: MediaPickerDelegate) {
-        mediaPicker?.showPhotoLibrary(allowCropping: true)
+        mediaPicker?.showGallery(allowCropping: true)
     }
 
     private func showCamera(delegate: MediaPickerDelegate) {

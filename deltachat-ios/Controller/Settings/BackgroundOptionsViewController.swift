@@ -130,7 +130,7 @@ class BackgroundOptionsViewController: UIViewController, MediaPickerDelegate {
     }
 
     @objc private func onSelectBackgroundImage() {
-        mediaPicker.showPhotoLibrary(allowCropping: true)
+        mediaPicker.showGallery(allowCropping: true)
     }
 
     @objc private func onDefaultSelected() {
