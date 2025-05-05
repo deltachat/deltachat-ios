@@ -2326,23 +2326,47 @@ extension ChatViewController: MediaPickerDelegate {
             let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
-                itemProviders.forEach { itemProvider in
-                    if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                        itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                            url?.convertToMp4 { url, error in
-                                if let url {
-                                    self?.sendVideo(url: url)
-                                } else if let error {
-                                    self?.logAndAlert(error: error.localizedDescription)
-                                }
-                            }
+                let progressAlertHandler = ProgressAlertHandler()
+                progressAlertHandler.dataSource = self
+                progressAlertHandler.showProgressAlert(title: String.localized("one_moment"), dcContext: self.dcContext)
+                var processed = 0
+                func increaseProcessed() {
+                    processed += 1
+                    DispatchQueue.main.async {
+                        progressAlertHandler.updateProgressAlertValue(value: (processed*1000) / itemProviders.count)
+                    }
+                    if processed >= itemProviders.count {
+                        DispatchQueue.main.async {
+                            progressAlertHandler.updateProgressAlertSuccess()
                         }
-                    } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                        itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                            if let image = image as? UIImage {
-                                self?.sendImage(image)
-                            } else if let error {
-                                self?.logAndAlert(error: error.localizedDescription)
+                    }
+                }
+
+                DispatchQueue.global().async {
+                    for itemProvider in itemProviders {
+                        if !progressAlertHandler.cancelled {
+                            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                                itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
+                                    if !progressAlertHandler.cancelled {
+                                        url?.convertToMp4 { url, error in
+                                            if let url, !progressAlertHandler.cancelled {
+                                                self?.sendVideo(url: url)
+                                            } else if let error {
+                                                self?.logAndAlert(error: error.localizedDescription)
+                                            }
+                                            increaseProcessed()
+                                        }
+                                    }
+                                }
+                            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                                    if let image = image as? UIImage, !progressAlertHandler.cancelled {
+                                        self?.sendImage(image)
+                                    } else if let error {
+                                        self?.logAndAlert(error: error.localizedDescription)
+                                    }
+                                    increaseProcessed()
+                                }
                             }
                         }
                     }
