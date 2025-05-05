@@ -167,7 +167,8 @@ class NewChatViewController: UITableViewController {
         } else if section == sectionInviteFriends {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No Action Cell") }
 
-            actionCell.imageView?.image = UIImage(systemName: "heart")
+            let imageName = if #available(iOS 16, *) { "figure.2.arms.open" } else { "figure.wave" }
+            actionCell.imageView?.image = UIImage(systemName: imageName)
             actionCell.actionTitle = String.localized("invite_friends")
             return actionCell
 
