@@ -94,7 +94,7 @@ class ProgressAlertHandler {
         })
     }
 
-    public func showProgressAlert(title: String, dcContext: DcContext) {
+    public func showProgressAlert(title: String?, dcContext: DcContext) {
         guard let dataSource else { return assertionFailure("No DataSource") }
 
         let progressAlertController = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)

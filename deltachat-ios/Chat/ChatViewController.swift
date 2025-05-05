@@ -2328,7 +2328,7 @@ extension ChatViewController: MediaPickerDelegate {
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
                 let progressAlertHandler = ProgressAlertHandler()
                 progressAlertHandler.dataSource = self
-                progressAlertHandler.showProgressAlert(title: String.localized("one_moment"), dcContext: self.dcContext)
+                progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
                 var processed = 0
                 func increaseProcessed() {
                     processed += 1
@@ -2379,14 +2379,22 @@ extension ChatViewController: MediaPickerDelegate {
 
             // stage a single selected item
             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                let progressAlertHandler = ProgressAlertHandler()
+                progressAlertHandler.dataSource = self
+                progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                    url?.convertToMp4(completionHandler: { url, error in
-                        if let url {
-                            self?.stageVideo(url: (url as NSURL))
-                        } else if let error {
-                            self?.logAndAlert(error: error.localizedDescription)
-                        }
-                    })
+                    if !progressAlertHandler.cancelled {
+                        url?.convertToMp4(completionHandler: { url, error in
+                            if let url, !progressAlertHandler.cancelled {
+                                self?.stageVideo(url: (url as NSURL))
+                            } else if let error {
+                                self?.logAndAlert(error: error.localizedDescription)
+                            }
+                            DispatchQueue.main.async {
+                                progressAlertHandler.updateProgressAlertSuccess()
+                            }
+                        })
+                    }
                 }
             } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
                 itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
