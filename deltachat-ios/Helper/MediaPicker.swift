@@ -75,6 +75,19 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(audioRecorderNavController, animated: true)
     }
 
+    func showFilesLibrary() {
+        let alert = UIAlertController(title: "Send original documents and uncompressed images",
+                                      message: "This may need lots of storage and traffic.", preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: "Choose from Documents", style: .default) { [weak self] _ in
+            self?.showDocumentLibrary()
+        })
+        alert.addAction(UIAlertAction(title: "Choose from Gallery", style: .default) { [weak self] _ in
+            self?.showGallery()
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        navigationController?.present(alert, animated: true)
+    }
+
     func showDocumentLibrary(selectBackupArchives: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
         if selectBackupArchives {

@@ -1184,7 +1184,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
         ]))
 
-        actions.append(action("files", "folder", self.showDocumentLibrary))
+        actions.append(action("files", "folder", showFilesLibrary))
         actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
         actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
@@ -1331,8 +1331,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func showDocumentLibrary() {
-        mediaPicker?.showDocumentLibrary()
+    private func showFilesLibrary() {
+        mediaPicker?.showFilesLibrary()
     }
 
     private func showVoiceMessageRecorder() {
