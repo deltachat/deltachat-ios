@@ -3,6 +3,7 @@ import DcCore
 
 class ProgressAlertHandler {
     weak var dataSource: UIViewController?
+    var cancelled: Bool = false
     private var onSuccess: (() -> Void)?
     private let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
@@ -98,6 +99,7 @@ class ProgressAlertHandler {
 
         let progressAlertController = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            self.cancelled = true
             dcContext.stopOngoingProcess()
         })
         progressAlertController.addAction(cancelAction)
