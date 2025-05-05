@@ -2366,7 +2366,7 @@ extension ChatViewController: MediaPickerDelegate {
                             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
                                     if !progressAlertHandler.cancelled {
-                                        url?.convertToMp4 { url, error in
+                                        url?.convertToMp4 { [weak self] url, error in
                                             if let url, !progressAlertHandler.cancelled {
                                                 self?.sendVideo(url: url)
                                             } else if let error {
@@ -2402,7 +2402,7 @@ extension ChatViewController: MediaPickerDelegate {
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
                     if !progressAlertHandler.cancelled {
-                        url?.convertToMp4(completionHandler: { url, error in
+                        url?.convertToMp4 { [weak self] url, error in
                             if let url, !progressAlertHandler.cancelled {
                                 self?.stageVideo(url: (url as NSURL))
                             } else if let error {
@@ -2411,7 +2411,7 @@ extension ChatViewController: MediaPickerDelegate {
                             DispatchQueue.main.async {
                                 progressAlertHandler.updateProgressAlertSuccess()
                             }
-                        })
+                        }
                     }
                 }
             } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
