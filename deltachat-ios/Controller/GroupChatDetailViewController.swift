@@ -694,18 +694,6 @@ class GroupChatDetailViewController: UITableViewController {
         return nil
     }
 
-    override func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard let chat, chat.canSend else { return false }
-        let row = indexPath.row
-        let sectionType = sections[indexPath.section]
-        if sectionType == .members &&
-            !isMemberManagementRow(row: row) &&
-            getGroupMemberIdFor(row) != DC_CONTACT_ID_SELF {
-            return true
-        }
-        return false
-    }
-
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
         if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getGroupMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
