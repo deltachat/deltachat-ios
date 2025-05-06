@@ -80,10 +80,11 @@ internal final class SettingsViewController: UITableViewController {
     }()
 
     private lazy var inviteFriendsCell: UITableViewCell = {
+        let imageName = if #available(iOS 16, *) { "figure.2.arms.open" } else { "figure.wave" }
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.inviteFriends.rawValue
         cell.textLabel?.text = String.localized("invite_friends")
-        cell.imageView?.image = UIImage(systemName: "heart")
+        cell.imageView?.image = UIImage(systemName: imageName)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
