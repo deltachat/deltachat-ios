@@ -642,8 +642,6 @@
 "pref_use_system_emoji_explain" = "Wyłącza wbudowaną obsługę emoji Delta Chat";
 "pref_show_system_contacts" = "Odczytaj systemową książkę adresową";
 "pref_show_system_contacts_explain" = "Zaproponuj tworzenie czatów z kontaktami z książki adresowej.";
-// deprecated
-"pref_app_access" = "Dostęp do aplikacji";
 "pref_chats" = "Czaty";
 "pref_in_chat_sounds" = "Dźwięki w czacie";
 "pref_view_log" = "Wyświetl dziennik";
@@ -761,10 +759,6 @@
 "autocrypt_send_asm_button" = "Wyślij wiadomość konfiguracyjną Autocrypt";
 "autocrypt_send_asm_explain_after" = "Klucz został wysłany do ciebie. Przejdź do innego urządzenia i otwórz wiadomość konfiguracyjną. Zostanie wyświetlona prośba o podanie kodu konfiguracyjnego. Wpisz następujące cyfry w podpowiedzi.\n\nGdy skończysz, drugie urządzenie będzie gotowe do użycia funkcji automatycznego szyfrowania.";
 "autocrypt_prefer_e2ee" = "Preferuj szyfrowanie typu end-to-end";
-// deprecated
-"autocrypt_asm_subject" = "Wiadomość konfiguracyjna automatycznego szyfrowania";
-// deprecated
-"autocrypt_asm_general_body" = "Jest to wiadomość konfiguracyjna automatycznego szyfrowania typu end-to-end służąca do przesyłania klucza między klientami.\n\nAby odszyfrować i użyć klucza, otwórz wiadomość w kliencie zgodnym z automatycznym szyfrowaniem i wprowadź kod konfiguracyjny przedstawiony na urządzeniu generującym.";
 // system messages
 "systemmsg_cannot_decrypt" = "Tej wiadomości nie można odszyfrować.\n\n• Możesz teraz pomóc odpowiadając po prostu na tą wiadomość i poprosić nadawcę o ponowne wysłanie wiadomości.\n\n• Jeśli właśnie ponownie zainstalowałeś Delta Chat, najlepiej będzie, jeśli ponownie skonfigurujesz Delta Chat teraz i wybierzesz „Dodaj jako drugie urządzenie” lub zaimportujesz kopię zapasową.";
 "systemmsg_unknown_sender_for_chat" = "Nieznany nadawca tego czatu. Więcej szczegółów znajdziesz w sekcji „Informacje”.";
@@ -904,8 +898,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Zmieniono konfigurację dla %1$@";
 "verified_contact_required_explain" = "Aby zagwarantować szyfrowanie end-to-end, do tej grupy możesz dodawać wyłącznie kontakty oznaczone zielonym znacznikiem wyboru.\n\nMożesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, aby je przedstawić.";
-// deprecated
-"copy_qr_data_success" = "Skopiowano adres kodu QR do schowka";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";
@@ -928,7 +920,8 @@
 "perm_required_title" = "Wymagane zezwolenie";
 "perm_continue" = "Kontynuuj";
 "perm_explain_access_to_camera_denied" = "Delta Chat wymaga pozwolenia na używanie aparatu, aby robić zdjęcia lub nagrywać filmy, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Aparat”.";
-"perm_explain_access_to_mic_denied" = "Delta Chat wymaga zezwolenia użycia mikrofonu, aby wysyłać wiadomości audio, ale zostało ono trwale odrzucone. Przejdź do ustawień aplikacji, wybierz „Uprawnienia” i włącz „Mikrofon”.";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
+"perm_explain_access_to_mic_denied" = "Aby wysyłać wiadomości audio, przejdź do ustawień aplikacji, wybierz „Uprawnienia” lub „Prywatność i bezpieczeństwo” i włącz „Mikrofon”.";
 "perm_explain_access_to_storage_denied" = "Delta Chat wymaga uprawnienia do przechowywania, aby dołączyć lub wyeksportować zdjęcia, filmy lub dźwięk, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Pamięć”.";
 "perm_explain_access_to_location_denied" = "Delta Chat wymaga zezwolenia na lokalizację, aby dołączyć lokalizację, ale zostało ono trwale odrzucone. Przejdź do menu ustawień aplikacji, wybierz „Uprawnienia” i włącz „Lokalizacja”.";
 "perm_explain_access_to_notifications_denied" = "Aby odbierać powiadomienia, przejdź do „Ustawienia » Aplikacje » Delta Chat” i włącz „Powiadomienia”.";

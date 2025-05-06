@@ -217,8 +217,6 @@
 "pref_manage_keys" = "Gerir teclas";
 "pref_use_system_emoji" = "Utilizar o emoji do sistema";
 "pref_use_system_emoji_explain" = "Desactivar o suporte integrado de emojis no Delta Chat";
-// deprecated
-"pref_app_access" = "Acesso à App";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
 "pref_view_log" = "Ver o log";
@@ -251,10 +249,6 @@
 "autocrypt_send_asm_button" = "Enviar mensagem com a definição da encriptação automática";
 "autocrypt_send_asm_explain_after" = "A sua configuração foi-lhe enviada. Entre no outro dispositivo e abra a mensagem de configuração. Deve ser solicitado a fornecer um código de configuração. Digite os seguintes dígitos no prompt.\n\n Assim que estiver concluido, o outro dispositivo estará pronto para usar o Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir encriptação ponta a ponta";
-// deprecated
-"autocrypt_asm_subject" = "Mensagem de configuração do Autocrypt";
-// deprecated
-"autocrypt_asm_general_body" = "Esta é a Mensagem de Configuração de Autocrypt usada para transferir sua configuração de ponta a ponta entre clientes (dispositivos). \n\nPara descriptar e usar, abra a mensagem em um cliente compatível com Autocrypt e insira o código de configuração apresentado no dispositivo de geração.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -308,6 +302,7 @@
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
 "perm_explain_access_to_camera_denied" = "O Delta Chat necessita de permissão de acesso à Câmera para tirar fotos ou vídeos, mas o acesso foi negado permanentemente. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões\" e active \"Câmera\".";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "O Delta Chat necessita de permissão de  acesso ao microfone para enviar mensagens de áudio, mas foi negado. Por favor, continue com as configurações do aplicativo, selecione \"Permissões\" e active \"Microfone\".";
 "perm_explain_access_to_storage_denied" = "O Delta Chat necessita da permissão de armazenamento para anexar ou exportar fotos, vídeos ou áudio, mas foi negado. Por favor, continue no menu de configurações do aplicativo, seleccione \"Permissões\" e active \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";

@@ -642,8 +642,6 @@
 "pref_use_system_emoji_explain" = "Disattiva il supporto delle emoji integrato in Delta Chat";
 "pref_show_system_contacts" = "Leggi Rubrica di Sistema";
 "pref_show_system_contacts_explain" = "Offri la possibilità di creare chat con i contatti della rubrica.";
-// deprecated
-"pref_app_access" = "Accesso App";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Suoni In-Chat";
 "pref_view_log" = "Vedi Registro";
@@ -761,10 +759,6 @@
 "autocrypt_send_asm_button" = "Invia Messaggio Configurazione Autocrypt";
 "autocrypt_send_asm_explain_after" = "La tua configurazione ti è stata inviata. Passa all\'altro dispositivo e apri il messaggio. Dovrebbe venirti richiesto un codice. Inserisci il seguente codice:";
 "autocrypt_prefer_e2ee" = "Preferisci Cifratura End-To-End";
-// deprecated
-"autocrypt_asm_subject" = "Messaggio Configurazione Autocrypt";
-// deprecated
-"autocrypt_asm_general_body" = "Questo è il Messaggio Configurazione Autocrypt utilizzato per trasferire la configurazione end-to-end tra i client.\n\nPer decifrare e utilizzare la configurazione, aprire il messaggio in un client compatibile con Autocrypt e immettere il codice di configurazione presentato sul dispositivo di generazione.";
 // system messages
 "systemmsg_cannot_decrypt" = "Questo messaggio non può essere decrittografato.\n\n• Potrebbe essere già utile rispondere semplicemente a questo messaggio e chiedere al mittente d\'inviare nuovamente il messaggio.\n\n• Se hai appena reinstallato Delta Chat, è meglio se riconfiguri ora Delta Chat e scegli \"Aggiungi come secondo dispositivo\" o importa un backup.";
 "systemmsg_unknown_sender_for_chat" = "Mittente sconosciuto per questa chat. Vedi \'info\' per maggiori dettagli.";
@@ -904,8 +898,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
 "verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo i contatti con un segno di spunta verde.\n\nPuoi incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
-// deprecated
-"copy_qr_data_success" = "Url QR copiato negli appunti";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
@@ -928,6 +920,7 @@
 "perm_required_title" = "Autorizzazione richiesta";
 "perm_continue" = "Continua";
 "perm_explain_access_to_camera_denied" = "Per scattare foto o registrare video, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Fotocamera\".";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare files, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Per allegare una posizione, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";

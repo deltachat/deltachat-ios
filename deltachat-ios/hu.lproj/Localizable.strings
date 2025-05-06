@@ -22,7 +22,7 @@
 "open" = "Megnyitás";
 "download" = "Letöltés";
 "downloading" = "Letöltés…";
-"open_attachment" = "Csatolmány megnyitása";
+"open_attachment" = "Melléklet megnyitása";
 "join" = "Csatlakozás";
 "rejoin" = "Újracsatlakozás";
 "delete" = "Törlés";
@@ -31,7 +31,7 @@
 "info" = "Információk";
 "update" = "Frissítés";
 "emoji" = "Emodzsi";
-"attachment" = "Csatolmány";
+"attachment" = "Melléklet";
 "back" = "Vissza";
 "close" = "Bezárás";
 "close_window" = "Ablak bezárása";
@@ -200,7 +200,7 @@
 "menu_show_global_map" = "Az összes helyszín megjelenítése";
 "menu_archive_chat" = "Csevegés archiválása";
 "menu_unarchive_chat" = "Archiválás visszavonása";
-"menu_add_attachment" = "Fájl csatolása";
+"menu_add_attachment" = "Fájl mellékelése";
 "menu_leave_group" = "Csoport elhagyása";
 "menu_delete_chat" = "Csevegés törlése";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
@@ -225,8 +225,8 @@
 "menu_reply" = "Válasz az üzenetre";
 "menu_mute" = "Értesítések némítása";
 "menu_unmute" = "Némítás megszüntetése";
-"menu_export_attachment" = "Csatolmány exportálása";
-"menu_export_attachments" = "Csatolmányok exportálása";
+"menu_export_attachment" = "Melléklet exportálása";
+"menu_export_attachments" = "Mellékletek exportálása";
 "menu_all_media" = "Összes média";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Megjelenítés a csevegésben";
@@ -355,7 +355,7 @@
 "chat_self_talk_subtitle" = "Magamnak küldött üzenetek";
 "archive_empty_hint" = "Az archivált csevegések itt fognak megjelenni.";
 "saved_messages" = "Mentett üzenetek";
-"saved_messages_explain" = "• Üzenetek továbbítása az egyszerű hozzáférés érdekében\n\n• Jegyzetek vagy hangjegyzetek készítése\n\n• Médiaanyagok csatolása a mentéshez";
+"saved_messages_explain" = "• Üzenetek továbbítása az egyszerű hozzáférés érdekében\n\n• Jegyzetek vagy hangjegyzetek készítése\n\n• Médiaanyagok mellékelése a mentéshez";
 // Should match "Saved" from "Saved messages"
 "saved" = "Mentett";
 "save_as" = "Mentés  mint";
@@ -364,7 +364,7 @@
 "messaging_disabled_not_in_group" = "A csoport tagjának kell lennie ahhoz, hogy üzenetet hagyhasson ebben a csoportban. A csatlakozáshoz kérje meg a csoport egyik tagját.";
 "messaging_disabled_mailing_list" = "A levelezési listákon történő üzenetküldés még nem támogatott";
 "cannot_display_unsuported_file_type" = "Ezt a fájltípust nem lehet megjeleníteni: %1$@";
-"attachment_failed_to_load" = "Nem sikerült betölteni a csatolmányt";
+"attachment_failed_to_load" = "Nem sikerült betölteni a mellékletet";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Felvétel zárolása";
 // mailing lists
@@ -584,7 +584,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d fájl elküldése „%2$@” számára?";
 "ask_send_files_to_selected_chats" = "%1$d fájl megosztása a vele való csevegésben: %2$d?";
-"videos_sent_without_recoding" = "(A videók eredeti, nagyméretű fájlként kerülnek elküldésre. Amennyiben azt szeretné, hogy a videók kisebb fájlként kerüljenek elküldésre, csatolja őket külön-külön)";
+"videos_sent_without_recoding" = "(A videók eredeti, nagyméretű fájlként kerülnek elküldésre. Amennyiben azt szeretné, hogy a videók kisebb fájlként kerüljenek elküldésre, mellékelje őket külön-külön)";
 "share_text_multiple_chats" = "Megosztja ezt a szöveget a vele való csevegésben: %1$d?\n\n„%2$@”";
 "share_abort" = "A megosztás megszakadt a hiányzó engedélyek miatt.";
 // preferences
@@ -642,8 +642,6 @@
 "pref_use_system_emoji_explain" = "A Delta Chat beépített emodzsi-támogatásának letiltása";
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
 "pref_show_system_contacts_explain" = "Csevegések létrehozása a névjegyzékéből származó partnereivel. Egyes szolgáltatóknál először a végpontok közötti titkosítás beállítására van szükség.";
-// deprecated
-"pref_app_access" = "Alkalmazás-hozzáférés";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
 "pref_view_log" = "Naplófájl megtekintése";
@@ -761,10 +759,6 @@
 "autocrypt_send_asm_button" = "Autocryptbeállító-üzenet küldése";
 "autocrypt_send_asm_explain_after" = "A beállításokat elküldtük önnek. Váltson a másik eszközre, és nyissa meg a beállítási üzenetet. Meg kell adnia a beállítási kódot. Írja be a következő számjegyeket:";
 "autocrypt_prefer_e2ee" = "Végpontok közötti titkosítás előnyben részesítése";
-// deprecated
-"autocrypt_asm_subject" = "Autocryptbeállító-üzenet";
-// deprecated
-"autocrypt_asm_general_body" = "Ez az autocryptbeállító-üzenet a végpontok közötti beállítások kliensek közötti átvitelére szolgál.\n\nA beállítások visszafejtéséhez és használatához nyissa meg az üzenetet egy autocrypt-kompatibilis kliensben, és írja be az előállító eszközön megjelenő beállítási kódot.";
 // system messages
 "systemmsg_cannot_decrypt" = "Ez az üzenet nem dekódolható.\n\n• Már az is segíthet, ha egyszerűen válaszol erre az üzenetre, és megkéri a feladóját, hogy küldje el újra az üzenetet.\n\n• Ha most telepítette újra a Delta Chatet, akkor a legjobb, ha most újraindítja a Delta Chatet, és kiválasztja a „Második eszközként való hozzáadás” lehetőséget, vagy importál egy biztonsági mentést.";
 "systemmsg_unknown_sender_for_chat" = "Az üzenet feladója ismeretlen ebben a csevegésben. További részletekért tekintse meg az „Információkat”.";
@@ -904,8 +898,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Megváltoztatta a beállításokat %1$@ számára.";
 "verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
-// deprecated
-"copy_qr_data_success" = "QR-kód-webcím másolása a vágólapra";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Már létezik egy piszkozat a következő szöveggel: %1$@, biztosan le akarja cserélni?";
@@ -928,9 +920,10 @@
 "perm_required_title" = "Engedély szükséges";
 "perm_continue" = "Folytatás";
 "perm_explain_access_to_camera_denied" = "A fényképek-, videók- vagy QR-kódok rögzítéséhez lépjen a rendszer beállításaiba, válassza ki a „Alkalmazások és értesítések” menüpontot, válassza ki az DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Kamerához”.";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "A hangüzenetek küldéséhez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Mikrofonhoz”.";
 "perm_explain_access_to_storage_denied" = "A fájlok fogadásához vagy küldéséhez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Tárhelyhez”.";
-"perm_explain_access_to_location_denied" = "A helyszín csatolásához lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Helyadatokhoz”.";
+"perm_explain_access_to_location_denied" = "A helyszín mellékeléséhez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Helyadatokhoz”.";
 "perm_explain_access_to_notifications_denied" = "Az értesítések fogadásához lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Értesítésekhez”.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rajzoljon bárhová az elmosódáshoz";
