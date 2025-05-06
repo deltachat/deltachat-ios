@@ -77,9 +77,8 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showFilesLibrary() {
-        let alert = UIAlertController(title: "Send original documents and uncompressed images",
-                                      message: "This may need lots of storage and traffic.", preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: "Choose from Documents", style: .default) { [weak self] _ in
+        let alert = UIAlertController(title: nil, message: "Send original files and uncompressed images", preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: "Choose from Files", style: .default) { [weak self] _ in
             self?.showDocumentLibrary()
         })
         alert.addAction(UIAlertAction(title: "Choose from Gallery", style: .default) { [weak self] _ in
@@ -110,7 +109,9 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         if !allowCropping {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
-            configuration.selectionLimit = 0
+            // as raw files are 10~100 times larger and full inboxes are bad,
+            // sending raw files should be explicitly selected - also that shows size in staging area and makes difference clear
+            configuration.selectionLimit = sendAsFile ? 1 : 0
             configuration.preferredAssetRepresentationMode = .compatible
             let imagePicker = PHPickerViewController(configuration: configuration)
             imagePicker.delegate = self
