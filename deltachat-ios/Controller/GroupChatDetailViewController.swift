@@ -300,8 +300,10 @@ class GroupChatDetailViewController: UITableViewController {
             } else if chat.canSend {
                 chatOptions.append(.ephemeralMessages)
                 memberManagementRows = 2
-                chatActions.append(.cloneChat)
-                chatActions.append(.leaveGroup)
+                if chat.isGroup {
+                    chatActions.append(.cloneChat)
+                    chatActions.append(.leaveGroup)
+                }
                 groupHeader.showMuteButton(show: true)
             } else {
                 memberManagementRows = 0
