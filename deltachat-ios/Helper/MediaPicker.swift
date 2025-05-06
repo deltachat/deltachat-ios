@@ -131,6 +131,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showCamera(allowCropping: Bool = false, supportedMediaTypes: CameraMediaTypes = .allAvailable) {
+        self.sendAsFile = false
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .camera
