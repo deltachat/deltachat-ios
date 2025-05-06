@@ -439,7 +439,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     private func showContactDetail(of contactId: Int) {
-        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
+        let contactDetailController = GroupChatDetailViewController(contactId: contactId, dcContext: dcContext)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
