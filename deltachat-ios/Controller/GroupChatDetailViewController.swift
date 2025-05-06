@@ -38,9 +38,7 @@ class GroupChatDetailViewController: UITableViewController {
     private let dcContext: DcContext
 
     private var chatId: Int
-    private var chat: DcChat {
-        return dcContext.getChat(chatId: chatId)
-    }
+    private var chat: DcChat
 
     private var groupMemberIds: [Int] = []
 
@@ -161,8 +159,8 @@ class GroupChatDetailViewController: UITableViewController {
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
+        self.chat = dcContext.getChat(chatId: chatId)
 
-        let chat = dcContext.getChat(chatId: chatId)
         self.chatActions = []
         self.chatOptions = []
         self.memberManagementRows = 0
@@ -238,9 +236,9 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
-
         guard let ui = notification.userInfo,
               chatId == ui["chat_id"] as? Int else { return }
+        chat = dcContext.getChat(chatId: chatId)
 
         DispatchQueue.main.async { [weak self] in
             self?.updateHeader()
@@ -423,9 +421,8 @@ class GroupChatDetailViewController: UITableViewController {
 
     private func showQrCodeInvite(chatId: Int) {
         var hint = ""
-        let dcChat = dcContext.getChat(chatId: chatId)
-        if !dcChat.name.isEmpty {
-            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), dcChat.name)
+        if !chat.name.isEmpty {
+            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), chat.name)
         }
         let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
         navigationController?.pushViewController(qrInviteCodeController, animated: true)
@@ -703,7 +700,7 @@ class GroupChatDetailViewController: UITableViewController {
     private func showDeleteChatConfirmationAlert() {
         let alert = UIAlertController(
             title: nil,
-            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
+            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name),
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
