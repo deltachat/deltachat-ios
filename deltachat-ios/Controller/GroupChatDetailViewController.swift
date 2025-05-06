@@ -15,6 +15,8 @@ class GroupChatDetailViewController: UITableViewController {
         case allMedia
         case locations
         case ephemeralMessages
+        case startChat
+        case shareContact
     }
 
     enum ChatAction {
@@ -132,11 +134,23 @@ class GroupChatDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var startChatCell: ActionCell = {
+        let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "paperplane")
+        cell.actionTitle = String.localized("send_message")
+        return cell
+    }()
+
+    private lazy var shareContactCell: ActionCell = {
+        let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
+        cell.actionTitle = String.localized("menu_share")
+        return cell
+    }()
+
     private lazy var homescreenWidgetCell: ActionCell = {
         let cell = ActionCell()
-
         let chatIdsOnHomescreen: [Int]
-
         if #available(iOS 17, *) {
             chatIdsOnHomescreen = UserDefaults.shared!
                 .getChatWidgetEntries()
@@ -150,7 +164,6 @@ class GroupChatDetailViewController: UITableViewController {
         } else {
             chatIdsOnHomescreen = []
         }
-
         let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
         cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
         cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
@@ -313,6 +326,11 @@ class GroupChatDetailViewController: UITableViewController {
             chatActions.append(.clearChat)
             chatActions.append(.deleteChat)
         }
+
+        if contact != nil {
+            chatOptions.append(.startChat)
+            chatOptions.append(.shareContact)
+        }
     }
 
     private func updateHeader() {
@@ -467,15 +485,25 @@ class GroupChatDetailViewController: UITableViewController {
         navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
 
+    private func showChat(otherChatId: Int) {
+        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
+            let chatViewController = ChatViewController(dcContext: dcContext, chatId: otherChatId)
+            chatlistViewController.backButtonUpdateableDataSource = chatViewController
+            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
+        }
+    }
+
+    private func shareContact() {
+        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]) else { return }
+        RelayHelper.shared.setForwardVCard(vcardData: vcardData)
+        navigationController?.popToRootViewController(animated: true)
+    }
+
     private func showClearChatConfirmationAlert() {
         guard chat != nil else { return }
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
         if !msgIds.isEmpty {
-            let alert = UIAlertController(
-                title: nil,
-                message: Utils.askDeleteMsgsText(count: msgIds.count),
-                preferredStyle: .safeActionSheet
-            )
+            let alert = UIAlertController(title: nil, message: Utils.askDeleteMsgsText(count: msgIds.count), preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { [weak self] _ in
                 guard let self else { return }
                 dcContext.deleteMessages(msgIds: msgIds)
@@ -491,11 +519,7 @@ class GroupChatDetailViewController: UITableViewController {
 
     private func showDeleteChatConfirmationAlert() {
         guard let chat else { return }
-        let alert = UIAlertController(
-            title: nil,
-            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name),
-            preferredStyle: .safeActionSheet
-        )
+        let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             dcContext.deleteChat(chatId: chatId)
@@ -583,6 +607,10 @@ class GroupChatDetailViewController: UITableViewController {
                 return locationsCell
             case .ephemeralMessages:
                 return ephemeralMessagesCell
+            case .startChat:
+                return startChatCell
+            case .shareContact:
+                return shareContactCell
             }
         case .members:
             if isMemberManagementRow(row: row) {
@@ -645,6 +673,10 @@ class GroupChatDetailViewController: UITableViewController {
                 showLocations()
             case .ephemeralMessages:
                 showEphemeralMessagesController()
+            case .startChat:
+                showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
+            case .shareContact:
+                shareContact()
             }
         case .members:
             if isMemberManagementRow(row: row) {
