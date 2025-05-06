@@ -2401,7 +2401,16 @@ extension ChatViewController: MediaPickerDelegate {
                 if let typeIdentifier = itemProvider.registeredTypeIdentifiers.first {
                     itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier, completionHandler: { [weak self] url, error in
                         if let url {
-                            self?.stageDocument(url: url as NSURL)
+                            do {
+                                let copyURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
+                                if FileManager.default.fileExists(atPath: copyURL.path) {
+                                    try FileManager.default.removeItem(at: copyURL)
+                                }
+                                try FileManager.default.copyItem(at: url, to: copyURL) // create a copy as the file is too short-living otherwise
+                                self?.stageDocument(url: copyURL as NSURL)
+                            } catch {
+                                self?.logAndAlert(error: error.localizedDescription)
+                            }
                         } else if let error {
                             self?.logAndAlert(error: error.localizedDescription)
                         }
