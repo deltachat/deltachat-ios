@@ -36,10 +36,8 @@ class GroupChatDetailViewController: UITableViewController {
     private var memberManagementRows: Int
 
     private let dcContext: DcContext
-
-    private var chatId: Int
+    private let chatId: Int
     private var chat: DcChat
-
     private var groupMemberIds: [Int] = []
 
     // MARK: - subviews
@@ -156,6 +154,7 @@ class GroupChatDetailViewController: UITableViewController {
     }()
 
     // MARK: - constructor
+
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -184,6 +183,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     // MARK: - lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
@@ -226,9 +226,7 @@ class GroupChatDetailViewController: UITableViewController {
     // MARK: - Notifications
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
-        guard let ui = notification.userInfo,
-              let chatId = ui["chat_id"] as? Int,
-              self.chatId == chatId else { return }
+        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
             self?.updateEphemeralTimerCellValue()
@@ -236,8 +234,8 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
-        guard let ui = notification.userInfo,
-              chatId == ui["chat_id"] as? Int else { return }
+        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+
         chat = dcContext.getChat(chatId: chatId)
 
         DispatchQueue.main.async { [weak self] in
@@ -257,6 +255,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     // MARK: - update
+
     private func updateGroupMembers() {
         groupMemberIds = chat.getContactIds(dcContext)
     }
@@ -324,7 +323,8 @@ class GroupChatDetailViewController: UITableViewController {
         allMediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
     }
 
-    // MARK: - actions
+    // MARK: - actions, coordinators
+
     private func toggleChatInHomescreenWidget() {
         guard #available(iOS 17, *),
                 let userDefaults = UserDefaults.shared else { return }
@@ -392,11 +392,6 @@ class GroupChatDetailViewController: UITableViewController {
         }
     }
 
-    private func isMemberManagementRow(row: Int) -> Bool {
-        return row < memberManagementRows
-    }
-
-    // MARK: - coordinator
     private func showSingleChatEdit(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         navigationController?.pushViewController(editContactController, animated: true)
@@ -455,14 +450,58 @@ class GroupChatDetailViewController: UITableViewController {
         }
     }
 
-    private func deleteChat() {
-        dcContext.deleteChat(chatId: chatId)
-        NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
-        if #available(iOS 17.0, *) {
-            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+    private func showEphemeralMessagesController() {
+        let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId)
+        navigationController?.pushViewController(ephemeralMessagesController, animated: true)
+    }
+
+    private func showClearChatConfirmationAlert() {
+        let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
+        if !msgIds.isEmpty {
+            let alert = UIAlertController(
+                title: nil,
+                message: Utils.askDeleteMsgsText(count: msgIds.count),
+                preferredStyle: .safeActionSheet
+            )
+            alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
+                self.dcContext.deleteMessages(msgIds: msgIds)
+                if #available(iOS 17.0, *) {
+                    msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
+                }
+                self.navigationController?.popViewController(animated: true)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
-        INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
-        navigationController?.popViewControllers(viewsToPop: 2, animated: true)
+    }
+
+    private func showDeleteChatConfirmationAlert() {
+        let alert = UIAlertController(
+            title: nil,
+            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name),
+            preferredStyle: .safeActionSheet
+        )
+        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
+            guard let self else { return }
+            dcContext.deleteChat(chatId: chatId)
+            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+            if #available(iOS 17.0, *) {
+                UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+            }
+            INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
+            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func showLeaveGroupConfirmationAlert() {
+        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
+            _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: Int(DC_CONTACT_ID_SELF))
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     private func showGroupAvatarIfNeeded() {
@@ -474,6 +513,11 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDatasource, UITableViewDelegate
+
+    private func isMemberManagementRow(row: Int) -> Bool {
+        return row < memberManagementRows
+    }
+
     override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
@@ -670,52 +714,5 @@ class GroupChatDetailViewController: UITableViewController {
         self.groupMemberIds.remove(at: indexPath.row - memberManagementRows)
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
-    }
-
-    private func showEphemeralMessagesController() {
-        let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.pushViewController(ephemeralMessagesController, animated: true)
-    }
-
-    private func showClearChatConfirmationAlert() {
-        let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
-        if !msgIds.isEmpty {
-            let alert = UIAlertController(
-                title: nil,
-                message: Utils.askDeleteMsgsText(count: msgIds.count),
-                preferredStyle: .safeActionSheet
-            )
-            alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { _ in
-                self.dcContext.deleteMessages(msgIds: msgIds)
-                if #available(iOS 17.0, *) {
-                    msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
-                }
-                self.navigationController?.popViewController(animated: true)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func showDeleteChatConfirmationAlert() {
-        let alert = UIAlertController(
-            title: nil,
-            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name),
-            preferredStyle: .safeActionSheet
-        )
-        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { _ in
-            self.deleteChat()
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    private func showLeaveGroupConfirmationAlert() {
-        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { _ in
-            _ = self.dcContext.removeContactFromChat(chatId: self.chat.id, contactId: Int(DC_CONTACT_ID_SELF))
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 }
