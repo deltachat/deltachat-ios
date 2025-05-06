@@ -93,7 +93,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         if selectBackupArchives {
             documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
         } else {
-            documentPicker = .init(forOpeningContentTypes: [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data], asCopy: true)
+            documentPicker = .init(forOpeningContentTypes: [.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data], asCopy: true)
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
