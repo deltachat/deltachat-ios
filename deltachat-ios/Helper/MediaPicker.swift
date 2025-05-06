@@ -77,11 +77,11 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showFilesLibrary() {
-        let alert = UIAlertController(title: nil, message: "Send original files and uncompressed images", preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: "Choose from Files", style: .default) { [weak self] _ in
+        let alert = UIAlertController(title: nil, message: String.localized("files_attach_hint"), preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("choose_from_files"), style: .default) { [weak self] _ in
             self?.showDocumentLibrary()
         })
-        alert.addAction(UIAlertAction(title: "Choose from Gallery", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String.localized("choose_from_gallery"), style: .default) { [weak self] _ in
             self?.showGallery(sendAsFile: true)
         })
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
