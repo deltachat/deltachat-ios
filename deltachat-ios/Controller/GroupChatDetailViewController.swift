@@ -42,10 +42,6 @@ class GroupChatDetailViewController: UITableViewController {
         return dcContext.getChat(chatId: chatId)
     }
 
-    var chatIsEphemeral: Bool {
-        return chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
-    }
-
     private var groupMemberIds: [Int] = []
 
     // MARK: - subviews
@@ -322,6 +318,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     private func updateEphemeralTimerCellValue() {
+        let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
         ephemeralMessagesCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
     }
     
