@@ -406,15 +406,6 @@ class GroupChatDetailViewController: UITableViewController {
         }
      }
 
-    private func getGroupMemberIdFor(_ row: Int) -> Int {
-        let index = row - memberManagementRows
-        if index >= 0 && index < groupMemberIds.count {
-            return groupMemberIds[index]
-        } else {
-            return 0
-        }
-    }
-
     private func showSingleChatEdit(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
         navigationController?.pushViewController(editContactController, animated: true)
@@ -541,6 +532,15 @@ class GroupChatDetailViewController: UITableViewController {
 
     private func isMemberManagementRow(row: Int) -> Bool {
         return row < memberManagementRows
+    }
+
+    private func getGroupMemberIdFor(_ row: Int) -> Int {
+        let index = row - memberManagementRows
+        if index >= 0 && index < groupMemberIds.count {
+            return groupMemberIds[index]
+        } else {
+            return 0
+        }
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
