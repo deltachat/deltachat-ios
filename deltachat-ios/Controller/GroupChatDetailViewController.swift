@@ -38,6 +38,8 @@ class GroupChatDetailViewController: UITableViewController {
     private let dcContext: DcContext
     private let chatId: Int
     private var chat: DcChat?
+    private let contactId: Int
+    private var contact: DcContact?
     private var groupMemberIds: [Int] = []
 
     // MARK: - subviews
@@ -157,10 +159,12 @@ class GroupChatDetailViewController: UITableViewController {
 
     // MARK: - constructor
 
-    init(chatId: Int, dcContext: DcContext) {
+    init(chatId: Int = 0, contactId: Int = 0, dcContext: DcContext) {
         self.dcContext = dcContext
-        self.chatId = chatId
-        chat = chatId != 0 ? dcContext.getChat(chatId: chatId) : nil
+        self.contactId = contactId
+        self.chatId = contactId != 0 ? dcContext.getChatIdByContactId(contactId: contactId) : chatId
+        self.chat = self.chatId != 0 ? dcContext.getChat(chatId: self.chatId) : nil
+        self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
         chatActions = []
         chatOptions = []
