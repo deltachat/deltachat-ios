@@ -3,7 +3,7 @@ import DcCore
 import QuickLook
 import Intents
 
-class GroupChatDetailViewController: UIViewController {
+class GroupChatDetailViewController: UITableViewController {
 
     enum ProfileSections {
         case chatOptions
@@ -27,6 +27,7 @@ class GroupChatDetailViewController: UIViewController {
         case addToHomescreen
     }
 
+    private let sections: [ProfileSections]
     private var chatOptions: [ChatOption]
     private var chatActions: [ChatAction]
 
@@ -35,8 +36,6 @@ class GroupChatDetailViewController: UIViewController {
     private var memberManagementRows: Int
 
     private let dcContext: DcContext
-
-    private let sections: [ProfileSections]
 
     private var chatId: Int
     private var chat: DcChat {
@@ -47,23 +46,12 @@ class GroupChatDetailViewController: UIViewController {
         return chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
     }
 
-    // stores contactIds
     private var groupMemberIds: [Int] = []
 
     // MARK: - subviews
 
     private lazy var editBarButtonItem: UIBarButtonItem = {
         UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
-    }()
-
-    lazy var tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .insetGrouped)
-        table.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
-        table.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
-        table.delegate = self
-        table.dataSource = self
-        table.tableHeaderView = groupHeader
-        return table
     }()
 
     private lazy var groupHeader: ContactDetailHeader = {
@@ -175,6 +163,7 @@ class GroupChatDetailViewController: UIViewController {
         return cell
     }()
 
+    // MARK: - constructor
     init(chatId: Int, dcContext: DcContext) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -191,8 +180,7 @@ class GroupChatDetailViewController: UIViewController {
             self.sections = [.chatOptions, .members, .chatActions]
         }
 
-        super.init(nibName: nil, bundle: nil)
-        setupSubviews()
+        super.init(style: .insetGrouped)
 
         NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
@@ -203,19 +191,11 @@ class GroupChatDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupSubviews() {
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
+        tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         if chat.isMailinglist {
             title = String.localized("mailing_list")
         } else if chat.isBroadcast {
@@ -225,6 +205,7 @@ class GroupChatDetailViewController: UIViewController {
         }
         navigationItem.rightBarButtonItem = editBarButtonItem
         groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        tableView.tableHeaderView = groupHeader
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -499,16 +480,13 @@ class GroupChatDetailViewController: UIViewController {
             navigationController?.pushViewController(previewController, animated: true)
         }
     }
-}
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func numberOfSections(in _: UITableView) -> Int {
+    // MARK: - UITableViewDatasource, UITableViewDelegate
+    override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
 
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
         case .chatOptions:
@@ -520,7 +498,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
         if sectionType == .members && !isMemberManagementRow(row: row) {
@@ -530,7 +508,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         switch sectionType {
@@ -591,7 +569,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
 
@@ -647,7 +625,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         }
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
             return String.localizedStringWithFormat(String.localized(chat.isBroadcast ? "n_recipients" : "n_members"),
                                                     chat.getContactIds(dcContext).count)
@@ -655,7 +633,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return nil
     }
 
-    func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    override func tableView(_: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if !chat.canSend {
             return false
         }
@@ -669,7 +647,7 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         return false
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getGroupMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
@@ -706,10 +684,6 @@ extension GroupChatDetailViewController: UITableViewDelegate, UITableViewDataSou
         let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId)
         navigationController?.pushViewController(ephemeralMessagesController, animated: true)
     }
-}
-
-// MARK: - alerts
-extension GroupChatDetailViewController {
 
     private func showClearChatConfirmationAlert() {
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
