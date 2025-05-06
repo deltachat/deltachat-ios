@@ -57,8 +57,6 @@ class GroupChatDetailViewController: UITableViewController {
     private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
         header.onAvatarTap = showGroupAvatarIfNeeded
-        header.showMuteButton(show: chat.isMuted)
-        header.showSearchButton(show: true)
         header.onSearchButtonTapped = showSearch
         header.onMuteButtonTapped = toggleMuteChat
         header.setRecentlySeen(false)
