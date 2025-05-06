@@ -642,8 +642,6 @@
 "pref_use_system_emoji_explain" = "Desactiva el suport de sèrie per emojis a Delta Chat";
 "pref_show_system_contacts" = "Llegeix la llibreta d\'adreces del sistema";
 "pref_show_system_contacts_explain" = "Ofereix de crear xats amb els contactes de la llibreta d\'adreces. Alguns proveïdors necessiten de configurar abans el xifratge d\'extrem a extrem.";
-// deprecated
-"pref_app_access" = "Accés a l\'aplicació";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
 "pref_view_log" = "Mostra el registre";
@@ -730,7 +728,7 @@
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
 "reaction_by_you" = "Heu reaccionat amb %1$@ a «%2$@»";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@ha reaccionat %2$@ a «%3$@»";
+"reaction_by_other" = "%1$@ ha reaccionat %2$@ a «%3$@»";
 // automatically delete message
 "delete_old_messages" = "Esborra els missatges antics";
 "autodel_device_title" = "Esborra els missatges del dispositiu";
@@ -761,10 +759,6 @@
 "autocrypt_send_asm_button" = "Envia el missatge de configuració Autocrypt";
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
-// deprecated
-"autocrypt_asm_subject" = "Missatge de configuració Autocrypt";
-// deprecated
-"autocrypt_asm_general_body" = "Aquest és el missatge de configuració Autocrypt que s’usa per a transferir la vostra configuració d\'extrem a extrem entre dispositius.\n\nPer a desxifrar i usar aquesta configuració, obriu el missatge en un dispositiu compatible amb Autocript i introduïu el codi de configuració que apareix al dispositiu primari.";
 // system messages
 "systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Potser pot ajudar de respondre el missatge i demanar a l\'emissor que torni a enviar-lo,\n\n• Si acabeu de reinstal·lar Delta Chat, aleshores és millor de reconfigurar Delta Chat ara i triar «Afegeix un segon dispositiu» o importar una còpia de seguretat.";
 "systemmsg_unknown_sender_for_chat" = "Remitent desconegut per a aquest xat. Vegeu «informació» per a més detalls.";
@@ -903,8 +897,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Configuració canviada per %1$@";
 "verified_contact_required_explain" = "Per a garantir el xifrat extrem a extrem, només podeu afegir a aquest grup contactes que tinguin la marca verda.\n\nPodeu trobar-vos en persona amb els contactes per a escanejar els seus codis QR i poder-los afegir. ";
-// deprecated
-"copy_qr_data_success" = "S\'ha copiat l\'URL del codi QR al porta-retalls";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ja té un missatge d\'esborrany, voleu substituir-lo?";
@@ -927,6 +919,7 @@
 "perm_required_title" = "Es requereix permís";
 "perm_continue" = "Continua";
 "perm_explain_access_to_camera_denied" = "Delta Chat demana accés a la càmera per poder fer fotos o vídeos, però li ha estat denegat. Sisplau, vés al menú de configuració de l\'app, busca-hi els \"Permisos\" i habilita\'n la \"Càmera\".";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "Delta Chat demana accés al micròfon per poder enviar missatges d\'àudio, però li ha estat denegat. Sisplau, vés al menú de configuració de l\'app, busca-hi els \"Permisos\" i habilita\'n el \"Micròfon\".";
 "perm_explain_access_to_storage_denied" = "Per a rebre o enviar fitxers, aneu a la configuració de l\'aplicació, seleccioneu «Permisos» i activeu «Emmagatzematge».";
 "perm_explain_access_to_location_denied" = "Per a adjuntar la ubicació, aneu a la configuració de l\'aplicació, trieu «Permisos» i activeu la «Ubicació».";

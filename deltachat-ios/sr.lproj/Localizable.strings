@@ -490,8 +490,6 @@
 "pref_manage_keys" = "Управљај кључевима";
 "pref_use_system_emoji" = "Користи системски емоџи";
 "pref_use_system_emoji_explain" = "Искључи уграђене Delta Chat-ове емоџије";
-// deprecated
-"pref_app_access" = "Приступ апликацији";
 "pref_chats" = "Ћаскања";
 "pref_in_chat_sounds" = "Звуци ћаскања";
 "pref_view_log" = "Погледај дневник";
@@ -592,10 +590,6 @@
 "autocrypt_send_asm_button" = "Пошаљите поруку поставки за аутошифровање";
 "autocrypt_send_asm_explain_after" = "Ваше подешавање вам је послато. Пређите на други уређај и отворите поруку за подешавање. На другом уређају од се вас очекује да унесете код за подешавање. Унесите следеће цифре:";
 "autocrypt_prefer_e2ee" = "Преферирај с-краја-на-крај шифровање";
-// deprecated
-"autocrypt_asm_subject" = "Порука поставки за аутошфровање";
-// deprecated
-"autocrypt_asm_general_body" = "Ово је порука подешавања аутоматског шифровања која се користи за пренос вашег с-краја-на-крај подешавања између клијената.\n\nДа бисте дешифровали и користили своје подешавање, отворите поруку на клијенту који је компатибилан са аутоматским шифровањем и унесите кôд за подешавање приказан на уређају који га је генерисао.";
 "systemmsg_unknown_sender_for_chat" = "Непознати пошиљалац за ово ћаскање. Погледајте „информације“ за више детаља.";
 "systemmsg_subject_for_new_contact" = "Поруке од %1$@";
 "systemmsg_failed_sending_to" = "Слање поруке %1$@ је било неуспешно.";
@@ -713,8 +707,6 @@
 "verified_by" = "Проверено од %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Подешавања су се променила за %1$@.";
-// deprecated
-"copy_qr_data_success" = "Бар-кôд везе је копиран у клипборд";
 "mailto_dialog_header_select_chat" = "Изабери ћаскање у које желите да пошаљете поруку";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ већ има нацрт поруке, да ли желите да је замените?";
@@ -732,6 +724,7 @@
 "perm_required_title" = "Дозвола је потребна";
 "perm_continue" = "Настави";
 "perm_explain_access_to_camera_denied" = "Да бисте снимили фотографије или видео снимке, идите на подешавања апликације, изаберите „Дозволе“ и омогућите „Камеру“.";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "Да бисте послали звучне записе, идите на подешавања апликације, изаберите „Дозволе“ и омогућите „Микрофон“.";
 "perm_explain_access_to_storage_denied" = "Да бисте примали или слали датотеке, идите на подешавања апликације, изаберите „Дозволе“ и омогућите „Складиштење“.";
 "perm_explain_access_to_location_denied" = "Да приложите положај, идите у подешавања апликације и изаберите „Дозволе“ и омогућите „Положај/Локацију“.";

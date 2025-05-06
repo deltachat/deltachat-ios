@@ -348,8 +348,6 @@
 "pref_manage_keys" = "بەڕێوەبردنی کلیلەکان";
 "pref_use_system_emoji" = "بەکارهێنانی وێنۆچکەکانی سیستەم";
 "pref_use_system_emoji_explain" = "ئیمۆجییە ناوخۆییەکانی دێڵتا چات، ناچالاک دەبێتەوە.";
-// deprecated
-"pref_app_access" = "ڕێگەپێدان";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
 "pref_other" = "کەسانی دی";
@@ -415,8 +413,6 @@
 // autocrypt
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
-// deprecated
-"autocrypt_asm_subject" = "پەیامی ڕێکخستنی ئۆتۆکریپت";
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
@@ -447,8 +443,6 @@
 "contact_not_verified" = "%1$@ پشتڕاست ناکرێتەوە.";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
-// deprecated
-"copy_qr_data_success" = "ناونیشانی وێبی QRەکە ڕوونووس کرا.";
 // notifications
 "notify_reply_button" = "وەڵام دانەوە";
 "notify_new_message" = "پەیامی نوێ";
@@ -462,6 +456,7 @@
 "perm_required_title" = "ڕێدان پێویستە";
 "perm_continue" = "بەردەوامبوون";
 "perm_explain_access_to_camera_denied" = "بۆ فلیم و وێنە گرتن، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"کامێرا\" چالاک بکەوە.";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "بۆ هەناردنی پەیامی دەنگی، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"مایک\" چالاک بکەوە.";
 "perm_explain_access_to_storage_denied" = "بۆ هەناردن و وەرگرتنی پەڕگەکان، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"بیرگە\" چالاک بکەوە.";
 "perm_explain_access_to_location_denied" = "بۆ لکاندنی شوێنێک، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"شوێن\" چالاک بکەوە.";

@@ -342,8 +342,6 @@
 "pref_manage_keys" = "Amministra sas craes";
 "pref_use_system_emoji" = "Imprea sas emoji de sistema";
 "pref_use_system_emoji_explain" = "Istuda su suportu de sas emoji incorporadu in Delta Chat";
-// deprecated
-"pref_app_access" = "Atzessu a s\'aplicatzione";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
 "pref_view_log" = "Pòmpia su registru";
@@ -411,8 +409,6 @@
 "autocrypt_send_asm_button" = "Imbia unu messàgiu de impostatzione de Autocrypt";
 "autocrypt_send_asm_explain_after" = "Ti ses imbiadu sa configuratzione tua. Cola a s\'àteru dispositivu e aberi su messàgiu de configuratzione. Ti diat dèpere èssere pedidu unu còdighe de configuratzione. Inserta custas tzifras:";
 "autocrypt_prefer_e2ee" = "Preferi sa tzifradura a nodu terminale (end-to-end)";
-// deprecated
-"autocrypt_asm_subject" = "Messàgiu de configuratzione de Autocrypt";
 "write_message_desktop" = "Iscrie unu messàgiu";
 "encryption_info_title_desktop" = "Informatziones de tzifradura";
 "more_info_desktop" = "Àteras informatziones";

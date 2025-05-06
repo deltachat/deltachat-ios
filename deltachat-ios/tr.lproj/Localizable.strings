@@ -642,8 +642,6 @@
 "pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
 "pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbetler oluşturmayı teklif edin.";
-// deprecated
-"pref_app_access" = "Uygulama Erişimi";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
 "pref_view_log" = "Günlüğü Görüntüle";
@@ -679,7 +677,7 @@
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
-"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yok sayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
+"pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
 "pref_show_emails" = "Klasik E-Postaları Göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
@@ -761,10 +759,6 @@
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
-// deprecated
-"autocrypt_asm_subject" = "Autocrypt Ayarlama İletisi";
-// deprecated
-"autocrypt_asm_general_body" = "Bu, uçtan uca ayarlamanızı istemciler arasında aktarmak için kullanılan Autocrypt Ayarlama İletisi\'dir.\n\nŞifreyi çözmek ve ayarlamanızı kullanmak için iletiyi Autocrypt uyumlu bir istemcide açın ve oluşturan aygıtta sunulan ayarlama kodunu girin.";
 // system messages
 "systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp “İkinci Aygıt Olarak Ekle”yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
@@ -904,8 +898,6 @@
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir onay imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
-// deprecated
-"copy_qr_data_success" = "QR URL\'si panoya kopyalandı";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
@@ -928,7 +920,8 @@
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";
 "perm_explain_access_to_camera_denied" = "Fotoğraflar çekmek ya da videolar yakalamak için uygulama ayarlarına gidin, “İzinler”i seçin ve “Kamera”yı etkinleştirin.";
-"perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için uygulama ayarlarına gidin, “İzinler”i seçin ve “Mikrofon”u etkinleştirin.";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
+"perm_explain_access_to_mic_denied" = "Sesli iletiler göndermek için sistem ya da uygulama ayarlarına gidin, “İzinler”i ya da “Gizlilik ve Güvenlik”i seçin ve “Mikrofon”u etkinleştirin.";
 "perm_explain_access_to_storage_denied" = "Dosyalar almak ya da göndermek için uygulama ayarlarına gidin, “İzinler”i seçin ve “Depolama”yı etkinleştirin.";
 "perm_explain_access_to_location_denied" = "Bir konum iliştirmek için uygulama ayarlarına gidin, “İzinler”i seçin ve “Konum”u etkinleştirin.";
 "perm_explain_access_to_notifications_denied" = "Bildirimler almak için “Sistem Ayarları / Uygulamalar / Delta Chat”e gidin ve “Bildirimler”i etkinleştirin.";
@@ -1048,10 +1041,10 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Anında Teslimat";
 "pref_background_notifications" = "Arka Plan Bağlantısı Kullan";
-"pref_background_notifications_explain" = "Pil iyileştirmelerinin yok sayılmasını gerektirir, bildirimler zamanında gelmezse kullanın";
+"pref_background_notifications_explain" = "Pil iyileştirmelerinin yoksayılmasını gerektirir, bildirimler zamanında gelmezse kullanın";
 "pref_reliable_service" = "Arka Plan Bağlantısını Zorla";
 "pref_reliable_service_explain" = "Kalıcı bir bildirime neden olur";
-"pref_background_notifications_rationale" = "Bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yok sayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";
+"pref_background_notifications_rationale" = "Bağlantıyı sürdürmek ve arka planda iletileri almak için sonraki adımda pil iyileştirmelerini yoksayın.\n\nDelta Chat, az kaynak kullanır ve pilinizi boşaltmamaya özen gösterir.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";

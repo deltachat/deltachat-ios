@@ -347,8 +347,6 @@
 "pref_manage_keys" = "Administri ŝlosilojn";
 "pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
 "pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
-// deprecated
-"pref_app_access" = "Aliro al aplikaĵo";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
 "pref_view_log" = "Vidi protokolon";

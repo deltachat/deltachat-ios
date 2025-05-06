@@ -273,8 +273,6 @@
 "pref_manage_keys" = "Behandle nøkler";
 "pref_use_system_emoji" = "Bruk systemets emoji";
 "pref_use_system_emoji_explain" = "Slå av innebygd emoji-støtte i Delta Chat";
-// deprecated
-"pref_app_access" = "Programtilgang";
 "pref_chats" = "Sludringer";
 "pref_in_chat_sounds" = "Merknader i programmet";
 "pref_view_log" = "Vis logg";
@@ -293,10 +291,6 @@
 "autocrypt_send_asm_button" = "Igangsett Autocrypt-nøkkeloverføring";
 "autocrypt_send_asm_explain_after" = "Nøkkelen din har blitt sendt til deg selv. Bytt til den andre enheten og åpne oppsettsmeldingen. Du bør bli forespurt om å oppgi en oppsettskode. Skriv in følgende siffer.\n\nNår du er ferdig, vil din andre enhet også kunne bruke Autocrypt.";
 "autocrypt_prefer_e2ee" = "Foretrekk ende-til-ende -kryptering";
-// deprecated
-"autocrypt_asm_subject" = "Autocrypt-nøkkeloverføring";
-// deprecated
-"autocrypt_asm_general_body" = "Dette er Autocrypt-oppsettsmeldingen brukt til å overføre nøkkelen din mellom klienter.\n\nFor å dekryptere å bruke din nøkkel, åpne meldingen i en Autocrypt-kompatibel klient og skriv inn oppsettskoden som vises på enheten som genererer den.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\" av meg.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.

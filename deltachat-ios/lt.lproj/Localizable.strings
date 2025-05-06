@@ -473,8 +473,6 @@
 "pref_manage_keys" = "Tvarkyti raktus";
 "pref_use_system_emoji" = "Naudoti sistemos šypsniukus";
 "pref_use_system_emoji_explain" = "Išjungti Delta Chat įtaisytąjį šypsniukų palaikymą";
-// deprecated
-"pref_app_access" = "Prieiga prie programėlės";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_view_log" = "Rodyti žurnalą";
@@ -570,10 +568,6 @@
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
-// deprecated
-"autocrypt_asm_subject" = "Autocrypt sąrankos žinutė";
-// deprecated
-"autocrypt_asm_general_body" = "Tai yra Autocrypt sąrankos žinutė, kuri yra naudojama perduoti jūsų ištisinę sąranką tarp klientų.\n\nNorėdami iššifruoti ir naudoti savo sąranką, atverkite žinutę su Autocrypt suderinamame kliente ir įveskite generuojančiame įrenginyje rodomą sąrankos kodą.";
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
@@ -660,8 +654,6 @@
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
 // translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
-// deprecated
-"copy_qr_data_success" = "QR kodo URL adresas nukopijuotas į iškarpinę";
 "mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
 // notifications

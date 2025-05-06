@@ -170,8 +170,6 @@
 "pref_read_receipts_explain" = "చదివే రసీదులను నిలిపివేస్తే, మీరు ఇతరుల నుండి చదివే రసీదులను చూడలేరు.";
 "pref_use_system_emoji" = "యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు";
 "pref_use_system_emoji_explain" = "Delta Chat యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి";
-// deprecated
-"pref_app_access" = "అనువర్తన ప్రాప్యత";
 "pref_chats" = "చాట్లు";
 "pref_in_chat_sounds" = "యాప్-లోపల నోటిఫికేషన్లు";
 "pref_other" = "ఇతర";

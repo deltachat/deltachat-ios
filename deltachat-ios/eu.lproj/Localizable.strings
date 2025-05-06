@@ -299,8 +299,6 @@
 "pref_manage_keys" = "Kudeatu gakoak";
 "pref_use_system_emoji" = "Erabili sistemako emojiak";
 "pref_use_system_emoji_explain" = "Desgaitu Delta Chat-en barne emoji euskarria";
-// deprecated
-"pref_app_access" = "Aplikazio sarbidea";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
 "pref_view_log" = "Ikusi egunkaria";
@@ -357,10 +355,6 @@
 "autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
 "autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han.\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
 "autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
-// deprecated
-"autocrypt_asm_subject" = "Autocrypt ezarpen mezua";
-// deprecated
-"autocrypt_asm_general_body" = "Hau Autocrypt ezarpen mezua da, zure muturretik muturrerako ezarpena bezeroen artean pasatzeko erabilia.\n\n Zure ezarpena deszifratu eta erabiltzeko, ireki mezua Autocrypt onartzen duen bezero batean eta sartu gailu sortzailean agertutako ezarpen kodea.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -419,6 +413,7 @@
 "perm_required_title" = "Baimena behar da";
 "perm_continue" = "Jarraitu";
 "perm_explain_access_to_camera_denied" = "Delta Chat-ek kamerara sarbidea behar du argazkiak edo bideoak ateratzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"Baimenak\" eta gaitu \"Kamera\".";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
 "perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \"Baimenak\" eta gaitu \"Mikrofonoa\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Biltegiratzea\"";
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
