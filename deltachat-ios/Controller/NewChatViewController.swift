@@ -246,10 +246,6 @@ class NewChatViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
     private func contactIdByRow(_ row: Int) -> Int {
         return isFiltering ? filteredContactIds[row] : contactIds[row]
     }
