@@ -145,6 +145,10 @@
 "images_and_videos" = "Görseller ve Videolar";
 "file" = "Dosya";
 "files" = "Dosyalar";
+"files_attach_hint" = "Özgün dosyalar ve sıkıştırılmayan görseller gönder";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Dosyalardan Seç";
+"choose_from_gallery" = "Galeriden Seç";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Uygulama";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
