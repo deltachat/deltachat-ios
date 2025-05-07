@@ -55,10 +55,10 @@ class GroupChatDetailViewController: UITableViewController {
 
     private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
-        header.onAvatarTap = showGroupAvatarIfNeeded
+        header.onAvatarTap = showEnlargedAvatar
         header.onSearchButtonTapped = showSearch
         header.onMuteButtonTapped = toggleMuteChat
-        header.setRecentlySeen(false)
+        header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
     }()
 
@@ -436,6 +436,16 @@ class GroupChatDetailViewController: UITableViewController {
             groupHeader.setGreenCheckmark(greenCheckmark: chat.isProtected)
             groupHeader.setMuted(isMuted: chat.isMuted)
             groupHeader.showSearchButton(show: chat.canSend)
+        } else if let contact {
+            groupHeader.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
+            if let img = contact.profileImage {
+                groupHeader.setImage(img)
+            } else {
+                groupHeader.setBackupImage(name: contact.displayName, color: contact.color)
+            }
+            groupHeader.setGreenCheckmark(greenCheckmark: contact.isVerified)
+            groupHeader.showMuteButton(show: false)
+            groupHeader.showSearchButton(show: false)
         }
     }
 
@@ -683,11 +693,14 @@ class GroupChatDetailViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    private func showGroupAvatarIfNeeded() {
-        guard let chat else { return }
-        if let url = chat.profileImageURL {
+    private func showEnlargedAvatar() {
+        if let chat, let url = chat.profileImageURL {
             let previewController = PreviewController(dcContext: dcContext, type: .single(url))
-            previewController.customTitle = title
+            previewController.customTitle = chat.name
+            navigationController?.pushViewController(previewController, animated: true)
+        } else if let contact, let url = contact.profileImageURL {
+            let previewController = PreviewController(dcContext: dcContext, type: .single(url))
+            previewController.customTitle = contact.displayName
             navigationController?.pushViewController(previewController, animated: true)
         }
     }
