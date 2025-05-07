@@ -11,7 +11,7 @@ protocol MediaPickerDelegate: AnyObject {
     func onVideoSelected(url: NSURL)
 
     // onMediaSelected() is called in responce to showGallery()
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider])
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool)
 
     // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
     func onVoiceMessageRecorded(url: NSURL)
@@ -26,7 +26,7 @@ extension MediaPickerDelegate {
     func onImageSelected(image: UIImage) { }
     func onImageSelected(url: NSURL) { }
     func onVideoSelected(url: NSURL) { }
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {}
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool) {}
     func onVoiceMessageRecorded(url: NSURL) { }
     func onVoiceMessageRecorderClosed() { }
     func onDocumentSelected(url: NSURL) { }
@@ -47,6 +47,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     private let dcContext: DcContext
     private weak var navigationController: UINavigationController?
     private var accountRecorderTransitionDelegate: PartialScreenModalTransitioningDelegate?
+    private var sendAsFile: Bool = false
     weak var delegate: MediaPickerDelegate?
 
     init(dcContext: DcContext, navigationController: UINavigationController?) {
@@ -75,13 +76,24 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(audioRecorderNavController, animated: true)
     }
 
-    func showDocumentLibrary(selectFolder: Bool = false) {
+    func showFilesLibrary() {
+        let alert = UIAlertController(title: nil, message: String.localized("files_attach_hint"), preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("choose_from_files"), style: .default) { [weak self] _ in
+            self?.showDocumentLibrary()
+        })
+        alert.addAction(UIAlertAction(title: String.localized("choose_from_gallery"), style: .default) { [weak self] _ in
+            self?.showGallery(sendAsFile: true)
+        })
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        navigationController?.present(alert, animated: true)
+    }
+
+    func showDocumentLibrary(selectBackupArchives: Bool = false) {
         let documentPicker: UIDocumentPickerViewController
-        if selectFolder {
+        if selectBackupArchives {
             documentPicker = .init(forOpeningContentTypes: [UTType.archive], asCopy: false)
         } else {
-            let types = [UTType.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data]
-            documentPicker = .init(forOpeningContentTypes: types, asCopy: true)
+            documentPicker = .init(forOpeningContentTypes: [.pdf, .text, .rtf, .spreadsheet, .vCard, .zip, .image, .data], asCopy: true)
         }
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
@@ -89,14 +101,17 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         navigationController?.present(documentPicker, animated: true)
     }
 
-    func showGallery(allowCropping: Bool = false) {
+    func showGallery(allowCropping: Bool = false, sendAsFile: Bool = false) {
         // we have to use older UIImagePickerController as well as newer PHPickerViewController:
         // - only the older allows cropping and only the newer allows mutiple selection
         // - the newer results in weird errors on older OS, see discussion at https://github.com/deltachat/deltachat-ios/pull/2678
+        self.sendAsFile = sendAsFile
         if !allowCropping {
             var configuration = PHPickerConfiguration(photoLibrary: .shared())
             configuration.filter = nil
-            configuration.selectionLimit = 0
+            // as raw files are 10~100 times larger and full inboxes are bad,
+            // sending raw files should be explicitly selected - also that shows size in staging area and makes difference clear
+            configuration.selectionLimit = sendAsFile ? 1 : 0
             configuration.preferredAssetRepresentationMode = .compatible
             let imagePicker = PHPickerViewController(configuration: configuration)
             imagePicker.delegate = self
@@ -116,6 +131,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
     }
 
     func showCamera(allowCropping: Bool = false, supportedMediaTypes: CameraMediaTypes = .allAvailable) {
+        self.sendAsFile = false
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let imagePickerController = UIImagePickerController()
             imagePickerController.sourceType = .camera
@@ -143,7 +159,7 @@ extension MediaPicker: PHPickerViewControllerDelegate {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             picker.dismiss(animated: true)
-            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders)
+            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders, sendAsFile: sendAsFile)
         }
     }
 }

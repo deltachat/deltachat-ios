@@ -1184,7 +1184,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
         ]))
 
-        actions.append(action("files", "folder", self.showDocumentLibrary))
+        actions.append(action("files", "folder", showFilesLibrary))
         actions.append(action("webxdc_apps", "square.grid.2x2", showAppPicker))
         actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
         if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
@@ -1331,8 +1331,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    private func showDocumentLibrary() {
-        mediaPicker?.showDocumentLibrary()
+    private func showFilesLibrary() {
+        mediaPicker?.showFilesLibrary()
     }
 
     private func showVoiceMessageRecorder() {
@@ -2337,10 +2337,11 @@ extension ChatViewController: MediaPickerDelegate {
         stageImage(image)
     }
 
-    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider]) {
+    func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool) {
         if itemProviders.count > 1 {
 
             // send multiple selected item in one go directly
+            // (sendAsFile can be ignored as forced to be only a single file at showFilesLibrary()
             let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
@@ -2396,7 +2397,28 @@ extension ChatViewController: MediaPickerDelegate {
         } else if let itemProvider = itemProviders.first {
 
             // stage a single selected item
-            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+            if sendAsFile {
+                if let typeIdentifier = itemProvider.registeredTypeIdentifiers.first {
+                    itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier, completionHandler: { [weak self] url, error in
+                        if let url {
+                            do {
+                                let copyURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
+                                if FileManager.default.fileExists(atPath: copyURL.path) {
+                                    try FileManager.default.removeItem(at: copyURL)
+                                }
+                                try FileManager.default.copyItem(at: url, to: copyURL) // create a copy as the file is too short-living otherwise
+                                self?.stageDocument(url: copyURL as NSURL)
+                            } catch {
+                                self?.logAndAlert(error: error.localizedDescription)
+                            }
+                        } else if let error {
+                            self?.logAndAlert(error: error.localizedDescription)
+                        }
+                    })
+                } else {
+                    logAndAlert(error: "No types registered")
+                }
+            } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                 let progressAlertHandler = ProgressAlertHandler()
                 progressAlertHandler.dataSource = self
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)

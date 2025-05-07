@@ -167,7 +167,7 @@ class WelcomeViewController: UIViewController {
         if dcContext.isConfigured() {
             return
         }
-        mediaPicker?.showDocumentLibrary(selectFolder: true)
+        mediaPicker?.showDocumentLibrary(selectBackupArchives: true)
     }
 
     private func importBackup(at filepath: String) {
