@@ -12,6 +12,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     enum ChatOption {
+        case verifiedBy
         case allMedia
         case locations
         case ephemeralMessages
@@ -115,6 +116,24 @@ class GroupChatDetailViewController: UITableViewController {
         cell.imageView?.image = UIImage(systemName: "trash")
         cell.actionTitle = String.localized("menu_delete_chat")
         cell.actionColor = UIColor.systemRed
+        return cell
+    }()
+
+    private lazy var verifiedByCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 24)
+        if let contact {
+            let verifierId = contact.getVerifierId()
+            let verifiedInfo: String
+            if verifierId == DC_CONTACT_ID_SELF {
+                cell.accessoryType = .none
+                verifiedInfo = String.localized("verified_by_you")
+            } else {
+                cell.accessoryType = .disclosureIndicator
+                verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"), dcContext.getContact(id: verifierId).displayName)
+            }
+            cell.textLabel?.text = verifiedInfo
+        }
         return cell
     }()
 
@@ -283,21 +302,23 @@ class GroupChatDetailViewController: UITableViewController {
 
     // MARK: - update
 
-    private func updateGroupMembers() {
-        guard let chat else { return }
-        groupMemberIds = chat.getContactIds(dcContext)
-    }
-
     private func updateOptions() {
+        chatOptions = []
+        chatActions = []
+
+        if let contact, contact.getVerifierId() != 0 {
+            chatOptions.append(.verifiedBy)
+        }
+
         if let chat {
             editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
 
-            chatOptions = [.allMedia]
+            chatOptions.append(.allMedia)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
                 chatOptions.append(.locations)
             }
 
-            chatActions = [.archiveChat]
+            chatActions.append(.archiveChat)
             if #available(iOS 17.0, *) {
                 chatActions.append(.addToHomescreen)
             }
@@ -351,6 +372,11 @@ class GroupChatDetailViewController: UITableViewController {
             groupHeader.setMuted(isMuted: chat.isMuted)
             groupHeader.showSearchButton(show: chat.canSend)
         }
+    }
+
+    private func updateGroupMembers() {
+        guard let chat else { return }
+        groupMemberIds = chat.getContactIds(dcContext)
     }
 
     private func updateEphemeralTimerCellValue() {
@@ -601,6 +627,8 @@ class GroupChatDetailViewController: UITableViewController {
         switch sectionType {
         case .chatOptions:
             switch chatOptions[row] {
+            case .verifiedBy:
+                return verifiedByCell
             case .allMedia:
                 return allMediaCell
             case .locations:
@@ -667,6 +695,13 @@ class GroupChatDetailViewController: UITableViewController {
         switch sectionType {
         case .chatOptions:
             switch chatOptions[row] {
+            case .verifiedBy:
+                guard let contact else { return }
+                tableView.deselectRow(at: indexPath, animated: true)
+                let verifierId = contact.getVerifierId()
+                if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
+                    showContactDetail(of: verifierId)
+                }
             case .allMedia:
                 showAllMedia()
             case .locations:
