@@ -139,10 +139,11 @@ class ProfileViewController: UITableViewController {
 
     private lazy var addToWidgetCell: ActionCell = {
         let cell = ActionCell()
-        let chatIdsOnHomescreen: [Int] = if #available(iOS 17, *) { UserDefaults.shared!.getChatWidgetEntriesFor(contextId: dcContext.id) } else { [] }
-        let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
-        cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
-        cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
+        if #available(iOS 17, *), let userDefaults = UserDefaults.shared {
+            let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
+            cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
+            cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
+        }
         return cell
     }()
 
@@ -590,9 +591,8 @@ class ProfileViewController: UITableViewController {
 
     private func toggleChatInHomescreenWidget() {
         guard #available(iOS 17, *), let userDefaults = UserDefaults.shared else { return }
-        let chatIdsOnHomescreen: [Int] = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id)
         let onHomescreen: Bool
-        if chatIdsOnHomescreen.contains(chatId) {
+        if userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
             userDefaults.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
             onHomescreen = false
         } else {
