@@ -32,6 +32,16 @@ extension UserDefaults {
         return chatEntries
     }
 
+    func getChatWidgetEntriesFor(contextId: Int) -> [Int] {
+        return getChatWidgetEntries().filter { $0.accountId == contextId }
+            .compactMap { entry in
+                switch entry.type {
+                case .app: return nil
+                case .chat(let chatId): return chatId
+                }
+            }
+    }
+
     func getAppWidgetEntries() -> [WidgetEntry] {
         let allEntries = getAllWidgetEntries()
 
