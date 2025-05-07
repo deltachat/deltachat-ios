@@ -875,6 +875,17 @@ class GroupChatDetailViewController: UITableViewController {
         return nil
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if let contact, sections[section] == .chatOptions, !isSavedMessages, !isDeviceChat {
+            if contact.lastSeen == 0 {
+                return String.localized("last_seen_unknown")
+            } else {
+                return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
+            }
+        }
+        return nil
+    }
+
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
         if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getGroupMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
