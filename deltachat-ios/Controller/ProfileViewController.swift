@@ -5,37 +5,37 @@ import Intents
 
 class ProfileViewController: UITableViewController {
 
-    enum ProfileSections {
-        case statusArea
-        case chatOptions
+    enum Sections {
+        case bio
+        case options
         case members
         case sharedChats
-        case chatActions
+        case actions
     }
 
-    enum ChatOption {
+    enum Options {
         case verifiedBy
-        case allMedia
+        case media
         case locations
-        case ephemeralMessages
+        case ephemeral
         case startChat
         case shareContact
     }
 
-    enum ChatAction {
-        case archiveChat
-        case addToHomescreen
+    enum Actions {
+        case archive
+        case addToWidget
         case encrInfo
-        case cloneChat
+        case clone
         case leaveGroup
-        case clearChat
-        case deleteChat
-        case blockContact
+        case clear
+        case delete
+        case block
     }
 
-    private var sections: [ProfileSections]
-    private var chatOptions: [ChatOption]
-    private var chatActions: [ChatAction]
+    private var sections: [Sections]
+    private var options: [Options]
+    private var actions: [Actions]
 
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
@@ -90,7 +90,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var allMediaCell: UITableViewCell = {
+    private lazy var mediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("media")
         cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
@@ -106,7 +106,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var ephemeralMessagesCell: UITableViewCell = {
+    private lazy var ephemeralCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("ephemeral_messages")
         cell.imageView?.image = UIImage(systemName: "stopwatch")
@@ -128,7 +128,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var archiveChatCell: ActionCell = {
+    private lazy var archiveCell: ActionCell = {
         let cell = ActionCell()
         if let chat {
             cell.imageView?.image = UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down")
@@ -137,7 +137,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var homescreenWidgetCell: ActionCell = {
+    private lazy var addToWidgetCell: ActionCell = {
         let cell = ActionCell()
         let chatIdsOnHomescreen: [Int] = if #available(iOS 17, *) { UserDefaults.shared!.getChatWidgetEntriesFor(contextId: dcContext.id) } else { [] }
         let isOnHomescreen = chatIdsOnHomescreen.contains(chatId)
@@ -153,7 +153,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var cloneChatCell: ActionCell = {
+    private lazy var cloneCell: ActionCell = {
         let cell = ActionCell()
         let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
         cell.imageView?.image = UIImage(systemName: image)
@@ -171,7 +171,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var clearChatCell: ActionCell = {
+    private lazy var clearCell: ActionCell = {
         let cell = ActionCell()
         let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
         cell.imageView?.image = UIImage(systemName: image)
@@ -180,7 +180,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var deleteChatCell: ActionCell = {
+    private lazy var deleteCell: ActionCell = {
         let cell = ActionCell()
         cell.imageView?.image = UIImage(systemName: "trash")
         cell.actionTitle = String.localized("menu_delete_chat")
@@ -188,7 +188,7 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var blockContactCell: ActionCell = {
+    private lazy var blockCell: ActionCell = {
         let cell = ActionCell()
         cell.imageView?.image = UIImage(systemName: "nosign")
         cell.actionColor = UIColor.systemRed
@@ -212,22 +212,22 @@ class ProfileViewController: UITableViewController {
         isBot = contact?.isBot ?? false
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
-        chatActions = []
-        chatOptions = []
+        actions = []
+        options = []
         sections = []
         memberManagementRows = 0
 
         if isSavedMessages || !(contact?.status.isEmpty ?? true) {
-            sections.append(.statusArea)
+            sections.append(.bio)
         }
-        sections.append(.chatOptions)
+        sections.append(.options)
         if isBroadcast || isGroup {
             sections.append(.members)
         }
         if let sharedChats, sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
-        sections.append(.chatActions)
+        sections.append(.actions)
 
         super.init(style: .insetGrouped)
 
@@ -262,7 +262,7 @@ class ProfileViewController: UITableViewController {
         }
 
         if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(showEditController))
         }
 
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
@@ -277,8 +277,8 @@ class ProfileViewController: UITableViewController {
         tableView.reloadData()
         updateHeader()
         updateMediaCellValues()
-        updateEphemeralTimerCellValue()
-        updateBlockContactCell()
+        updateEphemeralCellValue()
+        updateBlockCell()
 
         // when sharing to ourself in DocumentGalleryController,
         // end of sharing is not easily catchable nor results in applicationWillEnterForeground();
@@ -312,7 +312,7 @@ class ProfileViewController: UITableViewController {
         contact = dcContext.getContact(id: contactId)
 
         DispatchQueue.main.async { [weak self] in
-            self?.updateBlockContactCell()
+            self?.updateBlockCell()
             self?.updateHeader()
         }
     }
@@ -321,7 +321,7 @@ class ProfileViewController: UITableViewController {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.updateEphemeralTimerCellValue()
+            self?.updateEphemeralCellValue()
         }
     }
 
@@ -346,27 +346,26 @@ class ProfileViewController: UITableViewController {
     // MARK: - update
 
     private func updateOptions() {
-        chatOptions = []
-        chatActions = []
+        options = []
+        actions = []
 
         if let contact, contact.getVerifierId() != 0 {
-            chatOptions.append(.verifiedBy)
+            options.append(.verifiedBy)
         }
 
         if chat != nil {
-            chatOptions.append(.allMedia)
+            options.append(.media)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
-                chatOptions.append(.locations)
+                options.append(.locations)
             }
-
-            chatActions.append(.archiveChat)
+            actions.append(.archive)
             if #available(iOS 17.0, *) {
-                chatActions.append(.addToHomescreen)
+                actions.append(.addToWidget)
             }
         }
 
         if contact != nil {
-            chatActions.append(.encrInfo)
+            actions.append(.encrInfo)
         }
 
         if let chat {
@@ -375,29 +374,28 @@ class ProfileViewController: UITableViewController {
                 headerCell.showMuteButton(show: true)
             } else if isBroadcast {
                 memberManagementRows = 1
-                chatActions.append(.cloneChat)
+                actions.append(.clone)
                 headerCell.showMuteButton(show: false)
             } else if chat.canSend {
-                chatOptions.append(.ephemeralMessages)
+                options.append(.ephemeral)
                 memberManagementRows = 2
                 if isGroup {
-                    chatActions.append(.cloneChat)
-                    chatActions.append(.leaveGroup)
+                    actions.append(.clone)
+                    actions.append(.leaveGroup)
                 }
                 headerCell.showMuteButton(show: true)
             } else {
                 memberManagementRows = 0
                 headerCell.showMuteButton(show: true)
             }
-
-            chatActions.append(.clearChat)
-            chatActions.append(.deleteChat)
+            actions.append(.clear)
+            actions.append(.delete)
         }
 
         if contact != nil {
-            chatOptions.append(.startChat)
-            chatOptions.append(.shareContact)
-            chatActions.append(.blockContact)
+            options.append(.startChat)
+            options.append(.shareContact)
+            actions.append(.block)
         }
     }
 
@@ -409,7 +407,6 @@ class ProfileViewController: UITableViewController {
                 subtitle = addr.isEmpty ? nil : addr
             }
             headerCell.updateDetails(title: chat.name, subtitle: subtitle)
-
             if let img = chat.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -432,12 +429,12 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateMediaCellValues() {
-        allMediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
+        mediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
     }
 
-    private func updateEphemeralTimerCellValue() {
+    private func updateEphemeralCellValue() {
         let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
-        ephemeralMessagesCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
+        ephemeralCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
     }
 
     private func updateMembers() {
@@ -456,14 +453,14 @@ class ProfileViewController: UITableViewController {
         cell.backgroundColor = DcColors.profileCellBackgroundColor
     }
 
-    private func updateBlockContactCell() {
+    private func updateBlockCell() {
         guard let contact else { return }
-        blockContactCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
+        blockCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
     }
 
     // MARK: - actions, coordinators
 
-    @objc func editButtonPressed() {
+    @objc func showEditController() {
         if contact != nil {
             navigationController?.pushViewController(EditContactController(dcContext: dcContext, contactIdForUpdate: contactId), animated: true)
         } else if let chat, isGroup {
@@ -523,7 +520,7 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showAllMedia() {
+    private func showMedia() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
@@ -531,7 +528,7 @@ class ProfileViewController: UITableViewController {
         navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
-    private func showEphemeralMessagesController() {
+    private func showEphemeralController() {
         navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
@@ -584,8 +581,8 @@ class ProfileViewController: UITableViewController {
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         if archivedBefore {
-            archiveChatCell.imageView?.image = UIImage(systemName: "tray.and.arrow.down")
-            archiveChatCell.actionTitle = String.localized("menu_archive_chat")
+            archiveCell.imageView?.image = UIImage(systemName: "tray.and.arrow.down")
+            archiveCell.actionTitle = String.localized("menu_archive_chat")
         } else {
             navigationController?.popToRootViewController(animated: false)
         }
@@ -602,8 +599,8 @@ class ProfileViewController: UITableViewController {
             userDefaults.addChatToHomescreenWidget(accountId: dcContext.id, chatId: chatId)
             onHomescreen = true
         }
-        homescreenWidgetCell.imageView?.image = UIImage(systemName: onHomescreen ? "minus.square" : "plus.square")
-        homescreenWidgetCell.actionTitle = String.localized(onHomescreen ? "remove_from_widget" : "add_to_widget")
+        addToWidgetCell.imageView?.image = UIImage(systemName: onHomescreen ? "minus.square" : "plus.square")
+        addToWidgetCell.actionTitle = String.localized(onHomescreen ? "remove_from_widget" : "add_to_widget")
     }
 
     private func showEncrInfoAlert() {
@@ -623,7 +620,7 @@ class ProfileViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    private func showClearChatConfirmationAlert() {
+    private func showClearConfirmationAlert() {
         guard chat != nil else { return }
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
         if !msgIds.isEmpty {
@@ -641,7 +638,7 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showDeleteChatConfirmationAlert() {
+    private func showDeleteConfirmationAlert() {
         guard let chat else { return }
         let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
@@ -710,16 +707,16 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .statusArea:
+        case .bio:
             return 1
-        case .chatOptions:
-            return chatOptions.count
+        case .options:
+            return options.count
         case .members:
             return memberIds.count + memberManagementRows
         case .sharedChats:
             return sharedChats?.length ?? 0
-        case .chatActions:
-            return chatActions.count
+        case .actions:
+            return actions.count
         }
     }
 
@@ -734,18 +731,18 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
-        case .statusArea:
+        case .bio:
             return statusCell
-        case .chatOptions:
-            switch chatOptions[indexPath.row] {
+        case .options:
+            switch options[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .allMedia:
-                return allMediaCell
+            case .media:
+                return mediaCell
             case .locations:
                 return locationsCell
-            case .ephemeralMessages:
-                return ephemeralMessagesCell
+            case .ephemeral:
+                return ephemeralCell
             case .startChat:
                 return startChatCell
             case .shareContact:
@@ -779,34 +776,34 @@ class ProfileViewController: UITableViewController {
             guard let sharedChatCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
             updateSharedChat(cell: sharedChatCell, row: indexPath.row)
             return sharedChatCell
-        case .chatActions:
-            switch chatActions[indexPath.row] {
-            case .archiveChat:
-                return archiveChatCell
-            case .addToHomescreen:
-                return homescreenWidgetCell
+        case .actions:
+            switch actions[indexPath.row] {
+            case .archive:
+                return archiveCell
+            case .addToWidget:
+                return addToWidgetCell
             case .encrInfo:
                 return encrInfoCell
-            case .cloneChat:
-                return cloneChatCell
+            case .clone:
+                return cloneCell
             case .leaveGroup:
                 return leaveGroupCell
-            case .clearChat:
-                return clearChatCell
-            case .deleteChat:
-                return deleteChatCell
-            case .blockContact:
-                return blockContactCell
+            case .clear:
+                return clearCell
+            case .delete:
+                return deleteCell
+            case .block:
+                return blockCell
             }
         }
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] {
-        case .statusArea:
+        case .bio:
             break
-        case .chatOptions:
-            switch chatOptions[indexPath.row] {
+        case .options:
+            switch options[indexPath.row] {
             case .verifiedBy:
                 guard let contact else { return }
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -814,12 +811,12 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .allMedia:
-                showAllMedia()
+            case .media:
+                showMedia()
             case .locations:
                 showLocations()
-            case .ephemeralMessages:
-                showEphemeralMessagesController()
+            case .ephemeral:
+                showEphemeralController()
             case .startChat:
                 showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
             case .shareContact:
@@ -843,30 +840,30 @@ class ProfileViewController: UITableViewController {
             }
         case .sharedChats:
             showChat(otherChatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
-        case .chatActions:
-            switch chatActions[indexPath.row] {
-            case .archiveChat:
+        case .actions:
+            switch actions[indexPath.row] {
+            case .archive:
                 tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 toggleArchiveChat()
-            case .addToHomescreen:
+            case .addToWidget:
                 tableView.deselectRow(at: indexPath, animated: true)
                 toggleChatInHomescreenWidget()
             case .encrInfo:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showEncrInfoAlert()
-            case .cloneChat:
+            case .clone:
                 tableView.deselectRow(at: indexPath, animated: false)
                 navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
-            case .clearChat:
+            case .clear:
                 tableView.deselectRow(at: indexPath, animated: false)
-                showClearChatConfirmationAlert()
-            case .deleteChat:
+                showClearConfirmationAlert()
+            case .delete:
                 tableView.deselectRow(at: indexPath, animated: false)
-                showDeleteChatConfirmationAlert()
-            case .blockContact:
+                showDeleteConfirmationAlert()
+            case .block:
                 tableView.deselectRow(at: indexPath, animated: false)
                 toggleBlockContact()
             }
@@ -884,7 +881,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if let contact, sections[section] == .chatOptions, !isSavedMessages, !isDeviceChat {
+        if let contact, sections[section] == .options, !isSavedMessages, !isDeviceChat {
             if contact.lastSeen == 0 {
                 return String.localized("last_seen_unknown")
             } else {
