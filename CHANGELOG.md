@@ -1,19 +1,20 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.58.3
+2025-05
 
 - Select and send multiple images at the same time
 - Recode videos to reasonable quality and size
 - Attach images and videos as original files
 - Support pasted GIFs
-- Group notifications in Notification Center by chat
+- Notifications in Notification Center are grouped by chat
 - More characters in notification before truncating
 - Fix: separate multiple notifications coming in at the same time
 - Fix: tapping a notification when app was terminated now opens the notifications context
 - Fix: keep message in edit on app switches
 - Fix old chats with failed securure join rendered without input bar sometimes
 - Update translations and local help
-- Update to core 1.159.2
+- Update to core 1.159.3
 
 
 ## v1.58.1
