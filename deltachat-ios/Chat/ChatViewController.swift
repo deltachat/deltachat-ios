@@ -799,7 +799,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             showInvalidUnencryptedDialog()
         default:
             if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
-                navigationController?.pushViewController(ContactDetailViewController(dcContext: dcContext, contactId: contactId), animated: true)
+                navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
             }
         }
     }
@@ -1316,8 +1316,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let chat = dcContext.getChat(chatId: chatId)
         if !chat.isGroup {
             if let contactId = chat.getContactIds(dcContext).first {
-                let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
-                navigationController?.pushViewController(contactDetailController, animated: true)
+                let profileViewController = ProfileViewController(dcContext, contactId: contactId)
+                navigationController?.pushViewController(profileViewController, animated: true)
             }
         } else {
             let profileViewController = ProfileViewController(dcContext, chatId: chatId)
@@ -2284,8 +2284,8 @@ extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func avatarTapped(indexPath: IndexPath) {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: message.fromContactId)
-        navigationController?.pushViewController(contactDetailController, animated: true)
+        let profileViewController = ProfileViewController(dcContext, contactId: message.fromContactId)
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
 
     @objc func reactionsTapped(indexPath: IndexPath) {
@@ -2777,8 +2777,8 @@ extension ChatViewController: ReactionsOverviewViewControllerDelegate {
     func showContact(_ viewController: UIViewController, with contactId: Int) {
         viewController.dismiss(animated: true)
 
-        let contactDetailController = ContactDetailViewController(dcContext: dcContext, contactId: contactId)
-        navigationController?.pushViewController(contactDetailController, animated: true)
+        let profileViewController = ProfileViewController(dcContext, contactId: contactId)
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
 }
 
