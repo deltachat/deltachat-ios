@@ -3,7 +3,7 @@ import DcCore
 import QuickLook
 import Intents
 
-class GroupChatDetailViewController: UITableViewController {
+class ProfileViewController: UITableViewController {
 
     enum ProfileSections {
         case statusArea
@@ -214,7 +214,7 @@ class GroupChatDetailViewController: UITableViewController {
 
     // MARK: - constructor
 
-    init(chatId: Int = 0, contactId: Int = 0, dcContext: DcContext) {
+    init(_ dcContext: DcContext, chatId: Int = 0, contactId: Int = 0) {
         self.dcContext = dcContext
         self.contactId = contactId
         self.chatId = contactId != 0 ? dcContext.getChatIdByContactId(contactId: contactId) : chatId
@@ -248,10 +248,10 @@ class GroupChatDetailViewController: UITableViewController {
 
         super.init(style: .insetGrouped)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -601,7 +601,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     private func showContactDetail(of contactId: Int) {
-        let contactDetailController = GroupChatDetailViewController(contactId: contactId, dcContext: dcContext)
+        let contactDetailController = ProfileViewController(dcContext, contactId: contactId)
         navigationController?.pushViewController(contactDetailController, animated: true)
     }
 
@@ -973,7 +973,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 }
 
-extension GroupChatDetailViewController: MultilineLabelCellDelegate {
+extension ProfileViewController: MultilineLabelCellDelegate {
     func phoneNumberTapped(number: String) {
         let sanitizedNumber = number.filter("0123456789".contains)
         if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {

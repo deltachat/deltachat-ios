@@ -141,7 +141,7 @@ class QrViewController: UIViewController {
         Utils.share(url: inviteLinkURL, parentViewController: self, sourceView: sender)
     }
 
-    // Only relevant for GroupChatDetails, for QR-Code-Tab, this gets handled by QrPageController
+    // Only relevant for group profiles. For QR-Code-Tab, this gets handled by QrPageController
     private func showMoreOptions() -> UIMenu {
         let actions = [
             UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
