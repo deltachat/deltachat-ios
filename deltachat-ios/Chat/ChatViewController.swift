@@ -1320,8 +1320,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 navigationController?.pushViewController(contactDetailController, animated: true)
             }
         } else {
-            let groupChatDetailViewController = GroupChatDetailViewController(chatId: chatId, dcContext: dcContext)
-            navigationController?.pushViewController(groupChatDetailViewController, animated: true)
+            let profileViewController = ProfileViewController(dcContext, chatId: chatId)
+            navigationController?.pushViewController(profileViewController, animated: true)
         }
     }
 
