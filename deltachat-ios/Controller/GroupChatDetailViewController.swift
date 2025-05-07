@@ -9,6 +9,7 @@ class GroupChatDetailViewController: UITableViewController {
         case statusArea
         case chatOptions
         case members
+        case sharedChats
         case chatActions
     }
 
@@ -47,6 +48,7 @@ class GroupChatDetailViewController: UITableViewController {
     private let contactId: Int
     private var contact: DcContact?
     private var groupMemberIds: [Int] = []
+    private let sharedChats: DcChatlist?
     private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
@@ -223,25 +225,13 @@ class GroupChatDetailViewController: UITableViewController {
         self.chat = self.chatId != 0 ? dcContext.getChat(chatId: self.chatId) : nil
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
-        if let chat {
-            isGroup = chat.isGroup
-            isBroadcast = chat.isBroadcast
-            isMailinglist = chat.isMailinglist
-            isSavedMessages = chat.isSelfTalk
-            isDeviceChat = chat.isDeviceTalk
-        } else {
-            isGroup = false
-            isBroadcast = false
-            isMailinglist = false
-            isSavedMessages = false
-            isDeviceChat = false
-        }
-
-        if let contact {
-            isBot = contact.isBot
-        } else {
-            isBot = false
-        }
+        isGroup = chat?.isGroup ?? false
+        isBroadcast = chat?.isBroadcast ?? false
+        isMailinglist = chat?.isMailinglist ?? false
+        isSavedMessages = chat?.isSelfTalk ?? false
+        isDeviceChat = chat?.isDeviceTalk ?? false
+        isBot = contact?.isBot ?? false
+        sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
         chatActions = []
         chatOptions = []
@@ -254,6 +244,9 @@ class GroupChatDetailViewController: UITableViewController {
         sections.append(.chatOptions)
         if isBroadcast || isGroup {
             sections.append(.members)
+        }
+        if let sharedChats, sharedChats.length > 0 {
+            sections.append(.sharedChats)
         }
         sections.append(.chatActions)
 
@@ -442,6 +435,17 @@ class GroupChatDetailViewController: UITableViewController {
     private func updateGroupMembers() {
         guard let chat else { return }
         groupMemberIds = chat.getContactIds(dcContext)
+    }
+
+    private func updateSharedChat(cell: ContactCell, row index: Int) {
+        guard let sharedChats else { return }
+        let chatId = sharedChats.getChatId(index: index)
+        let summary = sharedChats.getSummary(index: index)
+        let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
+        let cellData = ChatCellData(chatId: chatId, highlightMsgId: nil, summary: summary, unreadMessages: unreadMessages)
+        let cellViewModel = ChatCellViewModel(dcContext: dcContext, chatData: cellData)
+        cell.updateCell(cellViewModel: cellViewModel)
+        cell.backgroundColor = DcColors.profileCellBackgroundColor
     }
 
     private func updateEphemeralTimerCellValue() {
@@ -692,6 +696,10 @@ class GroupChatDetailViewController: UITableViewController {
         }
     }
 
+    func getSharedChatIdAt(indexPath: IndexPath) -> Int {
+        return sharedChats?.getChatId(index: indexPath.row) ?? 0
+    }
+
     override func numberOfSections(in _: UITableView) -> Int {
         return sections.count
     }
@@ -705,6 +713,8 @@ class GroupChatDetailViewController: UITableViewController {
             return chatOptions.count
         case .members:
             return groupMemberIds.count + memberManagementRows
+        case .sharedChats:
+            return sharedChats?.length ?? 0
         case .chatActions:
             return chatActions.count
         }
@@ -713,7 +723,7 @@ class GroupChatDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let sectionType = sections[indexPath.section]
         let row = indexPath.row
-        if sectionType == .members && !isMemberManagementRow(row: row) {
+        if (sectionType == .members && !isMemberManagementRow(row: row)) || sectionType == .sharedChats {
             return ContactCell.cellHeight
         } else {
             return UITableView.automaticDimension
@@ -765,6 +775,10 @@ class GroupChatDetailViewController: UITableViewController {
             let cellViewModel = ContactCellViewModel(dcContext: dcContext, contactData: cellData)
             contactCell.updateCell(cellViewModel: cellViewModel)
             return contactCell
+        case .sharedChats:
+            guard let sharedChatCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
+            updateSharedChat(cell: sharedChatCell, row: row)
+            return sharedChatCell
         case .chatActions:
             switch chatActions[row] {
             case .archiveChat:
@@ -832,6 +846,8 @@ class GroupChatDetailViewController: UITableViewController {
                     showContactDetail(of: memberId)
                 }
             }
+        case .sharedChats:
+            showChat(otherChatId: getSharedChatIdAt(indexPath: indexPath))
         case .chatActions:
             switch chatActions[row] {
             case .archiveChat:
@@ -869,8 +885,9 @@ class GroupChatDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
             guard let chat else { return nil }
-            return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"),
-                                                    chat.getContactIds(dcContext).count)
+            return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
+        } else if sections[section] == .sharedChats {
+            return String.localized("profile_shared_chats")
         }
         return nil
     }
