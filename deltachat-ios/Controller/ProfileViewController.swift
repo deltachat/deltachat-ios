@@ -28,7 +28,6 @@ class ProfileViewController: UITableViewController {
         case leaveGroup
         case clearChat
         case deleteChat
-        case copyToClipboard
         case addToHomescreen
         case encrInfo
         case blockContact
@@ -59,6 +58,12 @@ class ProfileViewController: UITableViewController {
         header.onSearchButtonTapped = showSearch
         header.onMuteButtonTapped = toggleMuteChat
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
+
+        if (contact != nil && !isSavedMessages && !isDeviceChat) || isMailinglist {
+            let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
+            headerCell.labelsContainer.addGestureRecognizer(copyContactGestureRecognizer)
+        }
+
         return header
     }()
 
@@ -94,13 +99,6 @@ class ProfileViewController: UITableViewController {
         cell.imageView?.image = UIImage(systemName: image)
         cell.actionTitle = String.localized("menu_leave_group")
         cell.actionColor = UIColor.systemRed
-        return cell
-    }()
-
-    private lazy var copyToClipboardCell: ActionCell = {
-        let cell = ActionCell()
-        cell.actionTitle = String.localized("menu_copy_to_clipboard")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
@@ -389,7 +387,6 @@ class ProfileViewController: UITableViewController {
         if let chat {
             if isMailinglist {
                 memberManagementRows = 0
-                chatActions.append(.copyToClipboard)
                 headerCell.showMuteButton(show: true)
             } else if isBroadcast {
                 memberManagementRows = 1
@@ -705,6 +702,21 @@ class ProfileViewController: UITableViewController {
         }
     }
 
+    @objc private func showCopyToClipboard() {
+        UIMenuController.shared.menuItems = [
+            UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ProfileViewController.copyToClipboard))
+        ]
+        UIMenuController.shared.showMenu(from: headerCell.titleLabelContainer, rect: headerCell.titleLabelContainer.frame)
+    }
+
+    @objc private func copyToClipboard() {
+        if let chat, isMailinglist {
+            UIPasteboard.general.string = chat.getMailinglistAddr()
+        } else if let contact {
+            UIPasteboard.general.string = contact.email
+        }
+    }
+
     // MARK: - UITableViewDatasource, UITableViewDelegate
 
     private func isMemberManagementRow(row: Int) -> Bool {
@@ -825,8 +837,6 @@ class ProfileViewController: UITableViewController {
                 return clearChatCell
             case .deleteChat:
                 return deleteChatCell
-            case .copyToClipboard:
-                return copyToClipboardCell
             case .addToHomescreen:
                 return homescreenWidgetCell
             case .encrInfo:
@@ -899,10 +909,6 @@ class ProfileViewController: UITableViewController {
             case .deleteChat:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showDeleteChatConfirmationAlert()
-            case .copyToClipboard:
-                guard let chat else { return }
-                tableView.deselectRow(at: indexPath, animated: false)
-                UIPasteboard.general.string = chat.getMailinglistAddr()
             case .addToHomescreen:
                 tableView.deselectRow(at: indexPath, animated: true)
                 toggleChatInHomescreenWidget()
