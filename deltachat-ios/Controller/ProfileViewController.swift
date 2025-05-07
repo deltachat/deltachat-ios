@@ -58,12 +58,10 @@ class ProfileViewController: UITableViewController {
         header.onSearchButtonTapped = showSearch
         header.onMuteButtonTapped = toggleMuteChat
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
-
         if (contact != nil && !isSavedMessages && !isDeviceChat) || isMailinglist {
             let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
-            headerCell.labelsContainer.addGestureRecognizer(copyContactGestureRecognizer)
+            header.labelsContainer.addGestureRecognizer(copyContactGestureRecognizer)
         }
-
         return header
     }()
 
