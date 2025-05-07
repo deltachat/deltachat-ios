@@ -717,10 +717,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    func getSharedChatIdAt(indexPath: IndexPath) -> Int {
-        return sharedChats?.getChatId(index: indexPath.row) ?? 0
-    }
-
     func sharedChatIdsContain(chatId: Int) -> Bool {
         guard let sharedChats else { return false }
         for n in 0..<sharedChats.length {
@@ -876,7 +872,7 @@ class ProfileViewController: UITableViewController {
                 }
             }
         case .sharedChats:
-            showChat(otherChatId: getSharedChatIdAt(indexPath: indexPath))
+            showChat(otherChatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
         case .chatActions:
             switch chatActions[row] {
             case .archiveChat:
@@ -933,12 +929,12 @@ class ProfileViewController: UITableViewController {
         if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
-                let contact = getMember(at: indexPath.row)
-                let title = String.localizedStringWithFormat(String.localized(isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.displayName)
+                let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
+                let title = String.localizedStringWithFormat(String.localized(isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), otherContact.displayName)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { [weak self] _ in
                     guard let self else { return }
-                    if dcContext.removeContactFromChat(chatId: chat.id, contactId: contact.id) {
+                    if dcContext.removeContactFromChat(chatId: chat.id, contactId: otherContact.id) {
                         removeMemberFromTableAt(indexPath)
                     }
                     completionHandler(true)
@@ -951,10 +947,6 @@ class ProfileViewController: UITableViewController {
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         return nil
-    }
-
-    private func getMember(at row: Int) -> DcContact {
-        return dcContext.getContact(id: getMemberIdFor(row))
     }
 
     private func removeMemberFromTableAt(_ indexPath: IndexPath) {

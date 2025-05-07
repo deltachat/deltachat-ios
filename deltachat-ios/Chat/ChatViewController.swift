@@ -1316,12 +1316,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         let chat = dcContext.getChat(chatId: chatId)
         if !chat.isGroup {
             if let contactId = chat.getContactIds(dcContext).first {
-                let profileViewController = ProfileViewController(dcContext, contactId: contactId)
-                navigationController?.pushViewController(profileViewController, animated: true)
+                navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
             }
         } else {
-            let profileViewController = ProfileViewController(dcContext, chatId: chatId)
-            navigationController?.pushViewController(profileViewController, animated: true)
+            navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
         }
     }
 
@@ -2284,8 +2282,7 @@ extension ChatViewController: BaseMessageCellDelegate {
 
     @objc func avatarTapped(indexPath: IndexPath) {
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        let profileViewController = ProfileViewController(dcContext, contactId: message.fromContactId)
-        navigationController?.pushViewController(profileViewController, animated: true)
+        navigationController?.pushViewController(ProfileViewController(dcContext, contactId: message.fromContactId), animated: true)
     }
 
     @objc func reactionsTapped(indexPath: IndexPath) {
@@ -2776,9 +2773,7 @@ extension ChatViewController: SendContactViewControllerDelegate {
 extension ChatViewController: ReactionsOverviewViewControllerDelegate {
     func showContact(_ viewController: UIViewController, with contactId: Int) {
         viewController.dismiss(animated: true)
-
-        let profileViewController = ProfileViewController(dcContext, contactId: contactId)
-        navigationController?.pushViewController(profileViewController, animated: true)
+        navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
     }
 }
 
