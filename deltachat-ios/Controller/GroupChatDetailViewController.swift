@@ -53,10 +53,6 @@ class GroupChatDetailViewController: UITableViewController {
 
     // MARK: - subviews
 
-    private lazy var editBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
-    }()
-
     private lazy var groupHeader: ContactDetailHeader = {
         let header = ContactDetailHeader()
         header.onAvatarTap = showGroupAvatarIfNeeded
@@ -282,7 +278,10 @@ class GroupChatDetailViewController: UITableViewController {
             title = String.localized("profile")
         }
 
-        navigationItem.rightBarButtonItem = editBarButtonItem
+        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
+        }
+
         groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = groupHeader
     }
@@ -372,8 +371,6 @@ class GroupChatDetailViewController: UITableViewController {
         }
 
         if let chat {
-            editBarButtonItem.isEnabled = isMailinglist || chat.canSend
-
             chatOptions.append(.allMedia)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
                 chatOptions.append(.locations)
@@ -500,9 +497,13 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     @objc func editButtonPressed() {
-        guard let chat else { return }
-        let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
-        navigationController?.pushViewController(editGroupViewController, animated: true)
+        if let contact {
+            let editContactViewController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
+            navigationController?.pushViewController(editContactViewController, animated: true)
+        } else if let chat, isGroup {
+            let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
+            navigationController?.pushViewController(editGroupViewController, animated: true)
+        }
     }
 
     private func toggleMuteChat() {
