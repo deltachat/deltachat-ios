@@ -48,7 +48,7 @@ class GroupChatDetailViewController: UITableViewController {
     private let contactId: Int
     private var contact: DcContact?
     private var groupMemberIds: [Int] = []
-    private let sharedChats: DcChatlist?
+    private var sharedChats: DcChatlist?
     private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
@@ -344,10 +344,20 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
-        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+        guard let ui = notification.userInfo, let changedChatId = ui["chat_id"] as? Int else { return }
 
-        DispatchQueue.main.async { [weak self] in
-            self?.updateMediaCellValues()
+        if changedChatId == chatId {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateMediaCellValues()
+            }
+        }
+
+        if getSharedChatIds().contains(changedChatId) {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                sharedChats = dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId)
+                tableView.reloadData()
+            }
         }
     }
 
@@ -698,6 +708,15 @@ class GroupChatDetailViewController: UITableViewController {
 
     func getSharedChatIdAt(indexPath: IndexPath) -> Int {
         return sharedChats?.getChatId(index: indexPath.row) ?? 0
+    }
+
+    func getSharedChatIds() -> [Int] {
+        guard let sharedChats else { return [] }
+        var chatIds: [Int] = []
+        for n in 0..<sharedChats.length {
+            chatIds.append(sharedChats.getChatId(index: n))
+        }
+        return chatIds
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
