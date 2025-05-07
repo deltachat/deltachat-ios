@@ -343,8 +343,7 @@ class NewChatViewController: UITableViewController {
     }
 
     private func showContactDetail(contactId: Int) {
-        let profileViewController = ProfileViewController(dcContext, contactId: contactId)
-        navigationController?.pushViewController(profileViewController, animated: true)
+        navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
     }
 }
 
