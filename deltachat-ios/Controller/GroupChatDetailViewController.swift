@@ -44,6 +44,7 @@ class GroupChatDetailViewController: UITableViewController {
     private let contactId: Int
     private var contact: DcContact?
     private var groupMemberIds: [Int] = []
+    private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot, isContact: Bool
 
     // MARK: - subviews
 
@@ -198,19 +199,36 @@ class GroupChatDetailViewController: UITableViewController {
         self.chat = self.chatId != 0 ? dcContext.getChat(chatId: self.chatId) : nil
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
+        if let chat {
+            isGroup = chat.isGroup
+            isBroadcast = chat.isBroadcast
+            isMailinglist = chat.isMailinglist
+            isSavedMessages = chat.isSelfTalk
+            isDeviceChat = chat.isDeviceTalk
+        } else {
+            isGroup = false
+            isBroadcast = false
+            isMailinglist = false
+            isSavedMessages = false
+            isDeviceChat = false
+        }
+
+        if let contact {
+            isBot = contact.isBot
+        } else {
+            isBot = false
+        }
+        isContact = !isGroup && !isBroadcast && !isMailinglist && !isSavedMessages && !isDeviceChat && !isBot
+
         chatActions = []
         chatOptions = []
         memberManagementRows = 0
-        if let chat {
-            if chat.isMailinglist {
-                sections = [.chatOptions, .chatActions]
-            } else if chat.isBroadcast {
-                sections = [.chatOptions, .members, .chatActions]
-            } else if chat.isGroup {
-                sections = [.chatOptions, .members, .chatActions]
-            } else {
-                sections = [.chatOptions, .chatActions]
-            }
+        if isMailinglist {
+            sections = [.chatOptions, .chatActions]
+        } else if isBroadcast {
+            sections = [.chatOptions, .members, .chatActions]
+        } else if isGroup {
+            sections = [.chatOptions, .members, .chatActions]
         } else {
             sections = [.chatOptions, .chatActions]
         }
@@ -232,15 +250,20 @@ class GroupChatDetailViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
-        if let chat {
-            if chat.isMailinglist {
-                title = String.localized("mailing_list")
-            } else if chat.isBroadcast {
-                title = String.localized("broadcast_list")
-            } else {
-                title = String.localized("tab_group")
-            }
+        if isMailinglist {
+            title = String.localized("mailing_list")
+        } else if isBroadcast {
+            title = String.localized("broadcast_list")
+        } else if isGroup {
+            title = String.localized("tab_group")
+        } else if isBot {
+            title = String.localized("bot")
+        } else if isContact {
+            title = String.localized("tab_contact")
+        } else {
+            title = String.localized("profile")
         }
+
         navigationItem.rightBarButtonItem = editBarButtonItem
         groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = groupHeader
@@ -311,7 +334,7 @@ class GroupChatDetailViewController: UITableViewController {
         }
 
         if let chat {
-            editBarButtonItem.isEnabled = chat.isMailinglist || chat.canSend
+            editBarButtonItem.isEnabled = isMailinglist || chat.canSend
 
             chatOptions.append(.allMedia)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
@@ -323,18 +346,18 @@ class GroupChatDetailViewController: UITableViewController {
                 chatActions.append(.addToHomescreen)
             }
 
-            if chat.isMailinglist {
+            if isMailinglist {
                 memberManagementRows = 0
                 chatActions.append(.copyToClipboard)
                 groupHeader.showMuteButton(show: true)
-            } else if chat.isBroadcast {
+            } else if isBroadcast {
                 memberManagementRows = 1
                 chatActions.append(.cloneChat)
                 groupHeader.showMuteButton(show: false)
             } else if chat.canSend {
                 chatOptions.append(.ephemeralMessages)
                 memberManagementRows = 2
-                if chat.isGroup {
+                if isGroup {
                     chatActions.append(.cloneChat)
                     chatActions.append(.leaveGroup)
                 }
@@ -357,7 +380,7 @@ class GroupChatDetailViewController: UITableViewController {
     private func updateHeader() {
         if let chat {
             var subtitle: String?
-            if chat.isMailinglist {
+            if isMailinglist {
                 let addr = chat.getMailinglistAddr()
                 subtitle = addr.isEmpty ? nil : addr
             }
@@ -561,7 +584,7 @@ class GroupChatDetailViewController: UITableViewController {
     }
 
     private func showLeaveGroupConfirmationAlert() {
-        guard let chat, chat.isGroup else { return }
+        guard let chat, isGroup else { return }
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
@@ -642,11 +665,9 @@ class GroupChatDetailViewController: UITableViewController {
             }
         case .members:
             if isMemberManagementRow(row: row) {
-                guard let chat, let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else {
-                    fatalError("could not dequeue action cell")
-                }
+                guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { return UITableViewCell() }
                 if row == membersRowAddMembers {
-                    actionCell.actionTitle = String.localized(chat.isBroadcast ? "add_recipients" : "group_add_members")
+                    actionCell.actionTitle = String.localized(isBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
                 } else if row == membersRowQrInvite {
@@ -657,9 +678,7 @@ class GroupChatDetailViewController: UITableViewController {
                 return actionCell
             }
 
-            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else {
-                fatalError("could not dequeue contactCell cell")
-            }
+            guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
             let contactId: Int = getGroupMemberIdFor(row)
             let cellData = ContactCellData(
                 contactId: contactId,
@@ -737,7 +756,7 @@ class GroupChatDetailViewController: UITableViewController {
             case .cloneChat:
                 guard let chat else { return }
                 tableView.deselectRow(at: indexPath, animated: false)
-                navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: chat.isBroadcast, templateChatId: chatId), animated: true)
+                navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
@@ -761,7 +780,7 @@ class GroupChatDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members {
             guard let chat else { return nil }
-            return String.localizedStringWithFormat(String.localized(chat.isBroadcast ? "n_recipients" : "n_members"),
+            return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"),
                                                     chat.getContactIds(dcContext).count)
         }
         return nil
@@ -773,7 +792,7 @@ class GroupChatDetailViewController: UITableViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let contact = getGroupMember(at: indexPath.row)
-                let title = String.localizedStringWithFormat(String.localized(chat.isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.displayName)
+                let title = String.localizedStringWithFormat(String.localized(isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.displayName)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { [weak self] _ in
                     guard let self else { return }
