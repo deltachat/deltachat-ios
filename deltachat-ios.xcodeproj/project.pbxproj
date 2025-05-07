@@ -132,7 +132,6 @@
 		5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */; };
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
-		7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7092474020B3869500AF8799 /* ContactDetailViewController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		767CFF56D7ABED1C190A3A8B /* Pods_DcShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8DFC4D179F4CF1E83D78C9 /* Pods_DcShare.framework */; };
 		7837B64021E54DC600CDE126 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7837B63F21E54DC600CDE126 /* .swiftlint.yml */; };
@@ -169,7 +168,6 @@
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
 		AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */; };
 		AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */; };
-		AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */; };
 		AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		AE8519EA2272FDCA00ED86F0 /* DeviceContactsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
@@ -466,7 +464,6 @@
 		5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboard.swift; sourceTree = "<group>"; };
 		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
-		7092474020B3869500AF8799 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		785BE16721E247F1003BE98C /* MessageInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInfoViewController.swift; sourceTree = "<group>"; };
@@ -505,7 +502,6 @@
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerAlertAction.swift; sourceTree = "<group>"; };
 		AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 		AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
 		AE8519E92272FDCA00ED86F0 /* DeviceContactsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceContactsHandler.swift; sourceTree = "<group>"; };
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -1044,7 +1040,6 @@
 		AE77838B23E32EAA0093EABD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				AE77838C23E32ED20093EABD /* ContactDetailViewModel.swift */,
 				AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */,
 				AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */,
 			);
@@ -1062,7 +1057,6 @@
 				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
 				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */,
-				7092474020B3869500AF8799 /* ContactDetailViewController.swift */,
 				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
 				AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */,
 				AE851ACF227DF50900ED86F0 /* ProfileViewController.swift */,
@@ -1703,7 +1697,6 @@
 				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
-				AE77838D23E32ED20093EABD /* ContactDetailViewModel.swift in Sources */,
 				3080A02D277DE26000E74565 /* HorizontalEdgePadding.swift in Sources */,
 				30DAF71C275901610073C154 /* BackgroundOptionsViewController.swift in Sources */,
 				3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */,
@@ -1803,7 +1796,6 @@
 				3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */,
 				3080A01B277DDB8A00E74565 /* InputPlugin.swift in Sources */,
 				304F769525DD237B0094B5E2 /* WebViewViewController.swift in Sources */,
-				7092474120B3869500AF8799 /* ContactDetailViewController.swift in Sources */,
 				304F769925DD23D70094B5E2 /* FullMessageViewController.swift in Sources */,
 				AE0AA952247800E700D42A7F /* GalleryCell.swift in Sources */,
 				D83227002D3AC9BF00C239C5 /* AppPickerViewController.swift in Sources */,
