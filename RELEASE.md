@@ -76,14 +76,18 @@ on https://appstoreconnect.apple.com :
    g) on the "Confirm Submission" page, another time "Submit to App Review"
    the overview must read for the new version "Waiting for Review" afterwards
 
-   wrt ads: we do not use ads, answer "No".
    final state should be "Waiting for Review" - if it is only "Ready for Review",
    watch out for some additional alerts.
 
-in both cases, make sure, the provided test-email-address is working.
-finally, back on command line:
+back on command line:
 
 9. a) commit changes from 1.-5. add add a tag:
       $ git tag v1.2.3; git push --tags
    b) to give our github followers a nice update,
       create a release with notes insipred by device message and CHANGELOG.
+
+finally, drop a not to the testing channels:
+
+and now: here is iOS VERSION - mind your backups:
+- 🍏 https://testflight.apple.com/join/uEMc1NxS (Testflight, should keep your data, App Store release will take some days)
+what to test: PLEASE_FILL_OUT
