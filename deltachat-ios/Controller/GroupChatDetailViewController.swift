@@ -6,6 +6,7 @@ import Intents
 class GroupChatDetailViewController: UITableViewController {
 
     enum ProfileSections {
+        case statusArea
         case chatOptions
         case members
         case chatActions
@@ -32,7 +33,7 @@ class GroupChatDetailViewController: UITableViewController {
         case blockContact
     }
 
-    private let sections: [ProfileSections]
+    private var sections: [ProfileSections]
     private var chatOptions: [ChatOption]
     private var chatActions: [ChatAction]
 
@@ -156,6 +157,13 @@ class GroupChatDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var statusCell: MultilineLabelCell = {
+        let cell = MultilineLabelCell()
+        cell.multilineDelegate = self
+        cell.setText(text: isSavedMessages ? String.localized("saved_messages_explain") : (contact?.status ?? ""))
+        return cell
+    }()
+
     private lazy var startChatCell: ActionCell = {
         let cell = ActionCell()
         cell.imageView?.image = UIImage(systemName: "paperplane")
@@ -237,16 +245,17 @@ class GroupChatDetailViewController: UITableViewController {
 
         chatActions = []
         chatOptions = []
+        sections = []
         memberManagementRows = 0
-        if isMailinglist {
-            sections = [.chatOptions, .chatActions]
-        } else if isBroadcast {
-            sections = [.chatOptions, .members, .chatActions]
-        } else if isGroup {
-            sections = [.chatOptions, .members, .chatActions]
-        } else {
-            sections = [.chatOptions, .chatActions]
+
+        if isSavedMessages || !(contact?.status.isEmpty ?? true) {
+            sections.append(.statusArea)
         }
+        sections.append(.chatOptions)
+        if isBroadcast || isGroup {
+            sections.append(.members)
+        }
+        sections.append(.chatActions)
 
         super.init(style: .insetGrouped)
 
@@ -690,6 +699,8 @@ class GroupChatDetailViewController: UITableViewController {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
+        case .statusArea:
+            return 1
         case .chatOptions:
             return chatOptions.count
         case .members:
@@ -713,6 +724,8 @@ class GroupChatDetailViewController: UITableViewController {
         let row = indexPath.row
         let sectionType = sections[indexPath.section]
         switch sectionType {
+        case .statusArea:
+            return statusCell
         case .chatOptions:
             switch chatOptions[row] {
             case .verifiedBy:
@@ -781,6 +794,8 @@ class GroupChatDetailViewController: UITableViewController {
         let row = indexPath.row
 
         switch sectionType {
+        case .statusArea:
+            break
         case .chatOptions:
             switch chatOptions[row] {
             case .verifiedBy:
@@ -893,5 +908,37 @@ class GroupChatDetailViewController: UITableViewController {
         groupMemberIds.remove(at: indexPath.row - memberManagementRows)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
+    }
+}
+
+extension GroupChatDetailViewController: MultilineLabelCellDelegate {
+    func phoneNumberTapped(number: String) {
+        let sanitizedNumber = number.filter("0123456789".contains)
+        if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
+            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+        }
+    }
+
+    func urlTapped(url: URL) {
+        if Utils.isEmail(url: url) {
+            let email = Utils.getEmailFrom(url)
+            let contactId = dcContext.createContact(name: "", email: email)
+            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+                guard let self else { return }
+                let chatId = dcContext.createChatByContactId(contactId: contactId)
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
+                }
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else if Utils.isProxy(url: url, dcContext: dcContext), let appDelegate = UIApplication.shared.delegate as? AppDelegate, let appCoordinator = appDelegate.appCoordinator {
+            appCoordinator.handleProxySelection(on: self, dcContext: dcContext, proxyURL: url.absoluteString)
+        } else if url.isDeltaChatInvitation, let appDelegate = UIApplication.shared.delegate as? AppDelegate, let appCoordinator = appDelegate.appCoordinator {
+            appCoordinator.handleDeltaChatInvitation(url: url, from: self)
+        } else {
+            UIApplication.shared.open(url)
+        }
     }
 }
