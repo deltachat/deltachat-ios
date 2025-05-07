@@ -352,7 +352,7 @@ class GroupChatDetailViewController: UITableViewController {
             }
         }
 
-        if getSharedChatIds().contains(changedChatId) {
+        if sharedChatIdsContain(chatId: changedChatId) {
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
                 sharedChats = dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId)
@@ -710,13 +710,14 @@ class GroupChatDetailViewController: UITableViewController {
         return sharedChats?.getChatId(index: indexPath.row) ?? 0
     }
 
-    func getSharedChatIds() -> [Int] {
-        guard let sharedChats else { return [] }
-        var chatIds: [Int] = []
+    func sharedChatIdsContain(chatId: Int) -> Bool {
+        guard let sharedChats else { return false }
         for n in 0..<sharedChats.length {
-            chatIds.append(sharedChats.getChatId(index: n))
+            if sharedChats.getChatId(index: n) == chatId {
+                return true
+            }
         }
-        return chatIds
+        return false
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
