@@ -47,13 +47,13 @@ class GroupChatDetailViewController: UITableViewController {
     private var chat: DcChat?
     private let contactId: Int
     private var contact: DcContact?
-    private var groupMemberIds: [Int] = []
+    private var memberIds: [Int] = []
     private var sharedChats: DcChatlist?
     private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
-    private lazy var groupHeader: ContactDetailHeader = {
+    private lazy var headerCell: ContactDetailHeader = {
         let header = ContactDetailHeader()
         header.onAvatarTap = showEnlargedAvatar
         header.onSearchButtonTapped = showSearch
@@ -282,14 +282,14 @@ class GroupChatDetailViewController: UITableViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(editButtonPressed))
         }
 
-        groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
-        tableView.tableHeaderView = groupHeader
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        tableView.tableHeaderView = headerCell
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        updateGroupMembers()
+        updateMembers()
         updateOptions()
         tableView.reloadData()
         updateHeader()
@@ -306,7 +306,7 @@ class GroupChatDetailViewController: UITableViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
-            groupHeader.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         }
     }
     
@@ -326,7 +326,7 @@ class GroupChatDetailViewController: UITableViewController {
 
         DispatchQueue.main.async { [weak self] in
             self?.updateHeader()
-            self?.updateGroupMembers()
+            self?.updateMembers()
             self?.updateOptions()
             self?.tableView.reloadData()
         }
@@ -390,11 +390,11 @@ class GroupChatDetailViewController: UITableViewController {
             if isMailinglist {
                 memberManagementRows = 0
                 chatActions.append(.copyToClipboard)
-                groupHeader.showMuteButton(show: true)
+                headerCell.showMuteButton(show: true)
             } else if isBroadcast {
                 memberManagementRows = 1
                 chatActions.append(.cloneChat)
-                groupHeader.showMuteButton(show: false)
+                headerCell.showMuteButton(show: false)
             } else if chat.canSend {
                 chatOptions.append(.ephemeralMessages)
                 memberManagementRows = 2
@@ -402,10 +402,10 @@ class GroupChatDetailViewController: UITableViewController {
                     chatActions.append(.cloneChat)
                     chatActions.append(.leaveGroup)
                 }
-                groupHeader.showMuteButton(show: true)
+                headerCell.showMuteButton(show: true)
             } else {
                 memberManagementRows = 0
-                groupHeader.showMuteButton(show: true)
+                headerCell.showMuteButton(show: true)
             }
 
             chatActions.append(.clearChat)
@@ -426,32 +426,32 @@ class GroupChatDetailViewController: UITableViewController {
                 let addr = chat.getMailinglistAddr()
                 subtitle = addr.isEmpty ? nil : addr
             }
-            groupHeader.updateDetails(title: chat.name, subtitle: subtitle)
+            headerCell.updateDetails(title: chat.name, subtitle: subtitle)
 
             if let img = chat.profileImage {
-                groupHeader.setImage(img)
+                headerCell.setImage(img)
             } else {
-                groupHeader.setBackupImage(name: chat.name, color: chat.color)
+                headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
-            groupHeader.setGreenCheckmark(greenCheckmark: chat.isProtected)
-            groupHeader.setMuted(isMuted: chat.isMuted)
-            groupHeader.showSearchButton(show: chat.canSend)
+            headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
+            headerCell.setMuted(isMuted: chat.isMuted)
+            headerCell.showSearchButton(show: chat.canSend)
         } else if let contact {
-            groupHeader.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
+            headerCell.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
             if let img = contact.profileImage {
-                groupHeader.setImage(img)
+                headerCell.setImage(img)
             } else {
-                groupHeader.setBackupImage(name: contact.displayName, color: contact.color)
+                headerCell.setBackupImage(name: contact.displayName, color: contact.color)
             }
-            groupHeader.setGreenCheckmark(greenCheckmark: contact.isVerified)
-            groupHeader.showMuteButton(show: false)
-            groupHeader.showSearchButton(show: false)
+            headerCell.setGreenCheckmark(greenCheckmark: contact.isVerified)
+            headerCell.showMuteButton(show: false)
+            headerCell.showSearchButton(show: false)
         }
     }
 
-    private func updateGroupMembers() {
+    private func updateMembers() {
         guard let chat else { return }
-        groupMemberIds = chat.getContactIds(dcContext)
+        memberIds = chat.getContactIds(dcContext)
     }
 
     private func updateSharedChat(cell: ContactCell, row index: Int) {
@@ -520,13 +520,13 @@ class GroupChatDetailViewController: UITableViewController {
         guard let chat else { return }
         if chat.isMuted {
             dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-            groupHeader.setMuted(isMuted: false)
+            headerCell.setMuted(isMuted: false)
             navigationController?.popViewController(animated: true)
         } else {
             MuteDialog.show(viewController: self) { [weak self] duration in
                 guard let self else { return }
                 dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-                groupHeader.setMuted(isMuted: true)
+                headerCell.setMuted(isMuted: true)
                 navigationController?.popViewController(animated: true)
             }
         }
@@ -711,10 +711,10 @@ class GroupChatDetailViewController: UITableViewController {
         return row < memberManagementRows
     }
 
-    private func getGroupMemberIdFor(_ row: Int) -> Int {
+    private func getMemberIdFor(_ row: Int) -> Int {
         let index = row - memberManagementRows
-        if index >= 0 && index < groupMemberIds.count {
-            return groupMemberIds[index]
+        if index >= 0 && index < memberIds.count {
+            return memberIds[index]
         } else {
             return 0
         }
@@ -746,7 +746,7 @@ class GroupChatDetailViewController: UITableViewController {
         case .chatOptions:
             return chatOptions.count
         case .members:
-            return groupMemberIds.count + memberManagementRows
+            return memberIds.count + memberManagementRows
         case .sharedChats:
             return sharedChats?.length ?? 0
         case .chatActions:
@@ -801,7 +801,7 @@ class GroupChatDetailViewController: UITableViewController {
             }
 
             guard let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
-            let contactId: Int = getGroupMemberIdFor(row)
+            let contactId: Int = getMemberIdFor(row)
             let cellData = ContactCellData(
                 contactId: contactId,
                 chatId: dcContext.getChatIdByContactIdOld(contactId)
@@ -873,7 +873,7 @@ class GroupChatDetailViewController: UITableViewController {
                     showQrCodeInvite(chatId: chat.id)
                 }
             } else {
-                let memberId = getGroupMemberIdFor(row)
+                let memberId = getMemberIdFor(row)
                 if memberId == DC_CONTACT_ID_SELF {
                     tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 } else {
@@ -939,16 +939,16 @@ class GroupChatDetailViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
-        if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getGroupMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
+        if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
-                let contact = getGroupMember(at: indexPath.row)
+                let contact = getMember(at: indexPath.row)
                 let title = String.localizedStringWithFormat(String.localized(isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), contact.displayName)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { [weak self] _ in
                     guard let self else { return }
                     if dcContext.removeContactFromChat(chatId: chat.id, contactId: contact.id) {
-                        removeGroupMemberFromTableAt(indexPath)
+                        removeMemberFromTableAt(indexPath)
                     }
                     completionHandler(true)
                 }))
@@ -962,12 +962,12 @@ class GroupChatDetailViewController: UITableViewController {
         return nil
     }
 
-    private func getGroupMember(at row: Int) -> DcContact {
-        return dcContext.getContact(id: getGroupMemberIdFor(row))
+    private func getMember(at row: Int) -> DcContact {
+        return dcContext.getContact(id: getMemberIdFor(row))
     }
 
-    private func removeGroupMemberFromTableAt(_ indexPath: IndexPath) {
-        groupMemberIds.remove(at: indexPath.row - memberManagementRows)
+    private func removeMemberFromTableAt(_ indexPath: IndexPath) {
+        memberIds.remove(at: indexPath.row - memberManagementRows)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()  // to display correct group size
     }
