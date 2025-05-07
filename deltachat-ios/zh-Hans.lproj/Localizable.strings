@@ -114,7 +114,7 @@
 // Short form for "N Items Selected"
 "self" = "我";
 "draft" = "草稿";
-"image" = "图像";
+"image" = "图片";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "回复";
 "gif" = "Gif";
@@ -123,7 +123,7 @@
 "add_to_sticker_collection" = "添加到贴纸收藏集";
 "add_stickers_instructions" = "要添加贴纸，请点击“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
 "open_sticker_folder" = "打开贴纸文件夹";
-"images" = "图像";
+"images" = "图片";
 "audio" = "音频";
 "voice_message" = "语音消息";
 "forwarded" = "转发了";
@@ -142,14 +142,18 @@
 "location" = "位置";
 "locations" = "位置";
 "gallery" = "图库";
-"images_and_videos" = "图像和视频";
+"images_and_videos" = "图片和视频";
 "file" = "文件";
 "files" = "文件";
+"files_attach_hint" = "发送原始文件和未压缩的图片";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "从文件中选择";
+"choose_from_gallery" = "从图库中选择";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "私人应用";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "私人应用";
-"webxdc_store_url" = "\"应用选择器“ URL";
+"webxdc_store_url" = "应用选择器 URL";
 "webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
 "home" = "首页";
 "games" = "游戏";
@@ -163,10 +167,10 @@
 "green" = "绿色";
 "red" = "红色";
 "blue" = "蓝色";
-"orange" = "橘黄色";
-"cyan" = "蓝绿色";
+"orange" = "橙色";
+"cyan" = "青色";
 "purple" = "紫色";
-"magenta" = "洋红色";
+"magenta" = "紫红色";
 "white" = "白色";
 "zoom" = "缩放";
 "extra_small" = "特小";

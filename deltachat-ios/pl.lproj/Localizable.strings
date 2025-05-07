@@ -145,6 +145,10 @@
 "images_and_videos" = "Obrazy i wideo";
 "file" = "Plik";
 "files" = "Pliki";
+"files_attach_hint" = "Wyślij oryginalne pliki i nieskompresowane obrazy";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Wybierz z plików";
+"choose_from_gallery" = "Wybierz z galerii";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Prywatna aplikacja";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
