@@ -368,7 +368,7 @@ class ProfileViewController: UITableViewController {
             chatOptions.append(.verifiedBy)
         }
 
-        if let chat {
+        if chat != nil {
             chatOptions.append(.allMedia)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
                 chatOptions.append(.locations)
@@ -504,12 +504,10 @@ class ProfileViewController: UITableViewController {
     }
 
     @objc func editButtonPressed() {
-        if let contact {
-            let editContactViewController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-            navigationController?.pushViewController(editContactViewController, animated: true)
+        if contact != nil {
+            navigationController?.pushViewController(EditContactController(dcContext: dcContext, contactIdForUpdate: contactId), animated: true)
         } else if let chat, isGroup {
-            let editGroupViewController = EditGroupViewController(dcContext: dcContext, chat: chat)
-            navigationController?.pushViewController(editGroupViewController, animated: true)
+            navigationController?.pushViewController(EditGroupViewController(dcContext: dcContext, chat: chat), animated: true)
         }
     }
 
@@ -565,11 +563,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showSingleChatEdit(contactId: Int) {
-        let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
-        navigationController?.pushViewController(editContactController, animated: true)
-    }
-
     private func showAddGroupMember(chatId: Int) {
         let groupMemberViewController = AddGroupMembersViewController(dcContext: dcContext, chatId: chatId)
         groupMemberViewController.onMembersSelected = { [weak self] memberIds in
@@ -589,17 +582,12 @@ class ProfileViewController: UITableViewController {
 
     private func showQrCodeInvite(chatId: Int) {
         guard let chat else { return }
-        var hint = ""
-        if !chat.name.isEmpty {
-            hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), chat.name)
-        }
-        let qrInviteCodeController = QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint)
-        navigationController?.pushViewController(qrInviteCodeController, animated: true)
+        let hint = String.localizedStringWithFormat(String.localized("qrshow_join_group_hint"), chat.name)
+        navigationController?.pushViewController(QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: hint), animated: true)
     }
 
     private func showContactDetail(of contactId: Int) {
-        let contactDetailController = ProfileViewController(dcContext, contactId: contactId)
-        navigationController?.pushViewController(contactDetailController, animated: true)
+        navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
     }
 
     private func showAllMedia() {
@@ -620,8 +608,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showEphemeralMessagesController() {
-        let ephemeralMessagesController = EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId)
-        navigationController?.pushViewController(ephemeralMessagesController, animated: true)
+        navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     private func showChat(otherChatId: Int) {
