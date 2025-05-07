@@ -28,6 +28,8 @@ class GroupChatDetailViewController: UITableViewController {
         case deleteChat
         case copyToClipboard
         case addToHomescreen
+        case encrInfo
+        case blockContact
     }
 
     private let sections: [ProfileSections]
@@ -44,7 +46,7 @@ class GroupChatDetailViewController: UITableViewController {
     private let contactId: Int
     private var contact: DcContact?
     private var groupMemberIds: [Int] = []
-    private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot, isContact: Bool
+    private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
@@ -190,6 +192,20 @@ class GroupChatDetailViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var encrInfoCell: ActionCell = {
+        let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "info.circle")
+        cell.actionTitle = String.localized("encryption_info_title_desktop")
+        return cell
+    }()
+
+    private lazy var blockContactCell: ActionCell = {
+        let cell = ActionCell()
+        cell.imageView?.image = UIImage(systemName: "nosign")
+        cell.actionColor = UIColor.systemRed
+        return cell
+    }()
+
     // MARK: - constructor
 
     init(chatId: Int = 0, contactId: Int = 0, dcContext: DcContext) {
@@ -218,7 +234,6 @@ class GroupChatDetailViewController: UITableViewController {
         } else {
             isBot = false
         }
-        isContact = !isGroup && !isBroadcast && !isMailinglist && !isSavedMessages && !isDeviceChat && !isBot
 
         chatActions = []
         chatOptions = []
@@ -238,6 +253,7 @@ class GroupChatDetailViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupChatDetailViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -258,7 +274,7 @@ class GroupChatDetailViewController: UITableViewController {
             title = String.localized("tab_group")
         } else if isBot {
             title = String.localized("bot")
-        } else if isContact {
+        } else if !isDeviceChat && !isSavedMessages {
             title = String.localized("tab_contact")
         } else {
             title = String.localized("profile")
@@ -278,6 +294,7 @@ class GroupChatDetailViewController: UITableViewController {
         updateHeader()
         updateMediaCellValues()
         updateEphemeralTimerCellValue()
+        updateBlockContactCell()
 
         // when sharing to ourself in DocumentGalleryController,
         // end of sharing is not easily catchable nor results in applicationWillEnterForeground();
@@ -304,7 +321,6 @@ class GroupChatDetailViewController: UITableViewController {
 
     @objc private func handleChatModified(_ notification: Notification) {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
-
         chat = dcContext.getChat(chatId: chatId)
 
         DispatchQueue.main.async { [weak self] in
@@ -312,6 +328,16 @@ class GroupChatDetailViewController: UITableViewController {
             self?.updateGroupMembers()
             self?.updateOptions()
             self?.tableView.reloadData()
+        }
+    }
+
+    @objc private func handleContactsChanged(_ notification: Notification) {
+        guard let ui = notification.userInfo, contactId == ui["contact_id"] as? Int else { return }
+        contact = dcContext.getContact(id: contactId)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.updateBlockContactCell()
+            self?.updateHeader()
         }
     }
 
@@ -345,7 +371,13 @@ class GroupChatDetailViewController: UITableViewController {
             if #available(iOS 17.0, *) {
                 chatActions.append(.addToHomescreen)
             }
+        }
 
+        if contact != nil {
+            chatActions.append(.encrInfo)
+        }
+
+        if let chat {
             if isMailinglist {
                 memberManagementRows = 0
                 chatActions.append(.copyToClipboard)
@@ -374,6 +406,7 @@ class GroupChatDetailViewController: UITableViewController {
         if contact != nil {
             chatOptions.append(.startChat)
             chatOptions.append(.shareContact)
+            chatActions.append(.blockContact)
         }
     }
 
@@ -409,6 +442,11 @@ class GroupChatDetailViewController: UITableViewController {
     
     private func updateMediaCellValues() {
         allMediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
+    }
+
+    private func updateBlockContactCell() {
+        guard let contact else { return }
+        blockContactCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
     }
 
     // MARK: - actions, coordinators
@@ -473,7 +511,28 @@ class GroupChatDetailViewController: UITableViewController {
         } else {
             navigationController?.popToRootViewController(animated: false)
         }
-     }
+    }
+
+    private func toggleBlockContact() {
+        guard let contact else { return }
+        if contact.isBlocked {
+            let alert = UIAlertController(title: String.localized("ask_unblock_contact"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { [weak self] _ in
+                guard let self else { return }
+                dcContext.unblockContact(id: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: String.localized("ask_block_contact"), message: nil, preferredStyle: .safeActionSheet)
+            alert.addAction(UIAlertAction(title: String.localized("menu_block_contact"), style: .destructive, handler: { [weak self] _ in
+                guard let self else { return }
+                dcContext.blockContact(id: contactId)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true, completion: nil)
+        }
+    }
 
     private func showSingleChatEdit(contactId: Int) {
         let editContactController = EditContactController(dcContext: dcContext, contactIdForUpdate: contactId)
@@ -590,8 +649,14 @@ class GroupChatDetailViewController: UITableViewController {
             guard let self else { return }
             _ = dcContext.removeContactFromChat(chatId: chat.id, contactId: Int(DC_CONTACT_ID_SELF))
         }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
+    }
+
+    private func showEncrInfoAlert() {
+        let alert = UIAlertController(title: String.localized("encryption_info_title_desktop"), message: dcContext.getContactEncrInfo(contactId: contactId), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 
     private func showGroupAvatarIfNeeded() {
@@ -703,6 +768,10 @@ class GroupChatDetailViewController: UITableViewController {
                 return copyToClipboardCell
             case .addToHomescreen:
                 return homescreenWidgetCell
+            case .encrInfo:
+                return encrInfoCell
+            case .blockContact:
+                return blockContactCell
             }
         }
     }
@@ -754,7 +823,6 @@ class GroupChatDetailViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 toggleArchiveChat()
             case .cloneChat:
-                guard let chat else { return }
                 tableView.deselectRow(at: indexPath, animated: false)
                 navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
             case .leaveGroup:
@@ -773,6 +841,12 @@ class GroupChatDetailViewController: UITableViewController {
             case .addToHomescreen:
                 tableView.deselectRow(at: indexPath, animated: true)
                 toggleChatInHomescreenWidget()
+            case .encrInfo:
+                tableView.deselectRow(at: indexPath, animated: false)
+                showEncrInfoAlert()
+            case .blockContact:
+                tableView.deselectRow(at: indexPath, animated: false)
+                toggleBlockContact()
             }
         }
     }
