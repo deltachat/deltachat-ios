@@ -414,12 +414,15 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateHeader() {
+        var subtitle: String?
+        if let chat, isMailinglist {
+            let addr = chat.getMailinglistAddr()
+            subtitle = addr.isEmpty ? nil : addr
+        } else if let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat {
+            subtitle = String.localizedStringWithFormat(String.localized("last_seen_relative"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
+        }
+
         if let chat {
-            var subtitle: String?
-            if isMailinglist {
-                let addr = chat.getMailinglistAddr()
-                subtitle = addr.isEmpty ? nil : addr
-            }
             headerCell.updateDetails(title: chat.name, subtitle: subtitle)
             if let img = chat.profileImage {
                 headerCell.setImage(img)
@@ -428,7 +431,7 @@ class ProfileViewController: UITableViewController {
             }
             headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
         } else if let contact {
-            headerCell.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
+            headerCell.updateDetails(title: contact.displayName, subtitle: subtitle)
             if let img = contact.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -874,17 +877,6 @@ class ProfileViewController: UITableViewController {
             return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
         } else if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
-        }
-        return nil
-    }
-
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if let contact, sections[section] == .options, !isSavedMessages, !isDeviceChat {
-            if contact.lastSeen == 0 {
-                return String.localized("last_seen_unknown")
-            } else {
-                return String.localizedStringWithFormat(String.localized("last_seen_at"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
-            }
         }
         return nil
     }
