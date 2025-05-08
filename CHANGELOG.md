@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Nicer profile, focusing on recognizing contacts
+
+
 ## v1.58.3
 2025-05
 
