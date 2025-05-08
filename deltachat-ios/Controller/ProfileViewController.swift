@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case leaveGroup
         case clear
         case delete
         case block
@@ -110,15 +109,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var leaveGroupCell: ActionCell = {
-        let cell = ActionCell()
-        let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
-        cell.imageView?.image = UIImage(systemName: image)
-        cell.actionTitle = String.localized("menu_leave_group")
-        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
@@ -309,7 +299,6 @@ class ProfileViewController: UITableViewController {
             } else if chat.canSend {
                 if isGroup {
                     memberManagementRows = 2
-                    actions.append(.leaveGroup)
                 }
             }
             actions.append(.clear)
@@ -370,6 +359,11 @@ class ProfileViewController: UITableViewController {
             if let chat, isBroadcast || (isGroup && chat.canSend) {
                 let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                 actions.append(action("clone_chat", image, showCloneChatController))
+            }
+
+            if let chat, isGroup && chat.canSend {
+                let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+                actions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
             }
 
             return actions
@@ -750,8 +744,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .leaveGroup:
-                return leaveGroupCell
             case .clear:
                 return clearCell
             case .delete:
@@ -804,9 +796,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .leaveGroup:
-                tableView.deselectRow(at: indexPath, animated: false)
-                showLeaveGroupConfirmationAlert()
             case .clear:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showClearConfirmationAlert()
