@@ -4,8 +4,6 @@ import DcCore
 class ContactDetailHeader: UIView {
 
     var onAvatarTap: VoidFunction?
-    var onSearchButtonTapped: VoidFunction?
-    var onMuteButtonTapped: VoidFunction?
 
     public static let headerHeight: CGFloat = 74.5
     let badgeSize: CGFloat = 54
@@ -80,35 +78,6 @@ class ContactDetailHeader: UIView {
         return label
     }()
 
-    private lazy var searchButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(searchBtnTapped), for: .touchUpInside)
-        button.backgroundColor = DcColors.profileCellBackgroundColor
-        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.layer.cornerRadius = 20
-        button.layer.borderColor = DcColors.colorDisabled.cgColor
-        button.layer.borderWidth = 1
-        button.layer.masksToBounds = true
-        button.constraintHeightTo(40).isActive = true
-        button.constraintWidthTo(40).isActive = true
-        return button
-    }()
-
-    private lazy var muteButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(muteBtnTapped), for: .touchUpInside)
-        button.backgroundColor = DcColors.profileCellBackgroundColor
-        button.layer.cornerRadius = 20
-        button.layer.borderColor = DcColors.colorDisabled.cgColor
-        button.layer.borderWidth = 1
-        button.layer.masksToBounds = true
-        button.constraintHeightTo(40).isActive = true
-        button.constraintWidthTo(40).isActive = true
-        return button
-    }()
-
     init() {
         super.init(frame: .zero)
         backgroundColor =  .clear
@@ -122,14 +91,11 @@ class ContactDetailHeader: UIView {
     private func setupSubviews() {
         let lrMargin: CGFloat = 16
         let spacing: CGFloat = 10
-        let horizontalStackView = UIStackView(arrangedSubviews: [searchButton, muteButton])
 
         addSubview(avatar)
         addSubview(labelsContainer)
-        addSubview(horizontalStackView)
 
         avatar.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
 
         addConstraints([
             avatar.constraintWidthTo(badgeSize),
@@ -142,14 +108,7 @@ class ContactDetailHeader: UIView {
 
         labelsContainer.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: spacing).isActive = true
         labelsContainer.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
-        labelsContainer.trailingAnchor.constraint(equalTo: horizontalStackView.leadingAnchor, constant: -spacing).isActive = true
-
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.distribution = .fillEqually
-        horizontalStackView.alignment = .center
-        horizontalStackView.constraintAlignTrailingToAnchor(trailingAnchor, paddingTrailing: lrMargin).isActive = true
-        horizontalStackView.constraintCenterYTo(self).isActive = true
-        horizontalStackView.spacing = spacing
+        labelsContainer.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -spacing).isActive = true
     }
 
     func updateDetails(title: String?, subtitle: String?) {
@@ -175,18 +134,6 @@ class ContactDetailHeader: UIView {
         avatar.setName(name)
     }
 
-    func setMuted(isMuted: Bool) {
-        muteButton.setImage(UIImage(systemName: isMuted ? "speaker.slash" : "speaker.wave.2"), for: .normal)
-    }
-
-    func showMuteButton(show: Bool) {
-        muteButton.isHidden = !show
-    }
-
-    func showSearchButton(show: Bool) {
-        searchButton.isHidden = !show
-    }
-
     func setGreenCheckmark(greenCheckmark: Bool) {
         self.greenCheckmark.isHidden = !greenCheckmark
     }
@@ -195,18 +142,7 @@ class ContactDetailHeader: UIView {
         onAvatarTap?()
     }
 
-    @objc private func searchBtnTapped() {
-        onSearchButtonTapped?()
-    }
-
-    @objc private func muteBtnTapped() {
-        onMuteButtonTapped?()
-    }
-
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        searchButton.layer.borderColor = DcColors.colorDisabled.cgColor
-        muteButton.layer.borderColor = DcColors.colorDisabled.cgColor
     }
-
 }

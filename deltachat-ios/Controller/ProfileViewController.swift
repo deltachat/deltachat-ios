@@ -55,8 +55,6 @@ class ProfileViewController: UITableViewController {
     private lazy var headerCell: ContactDetailHeader = {
         let header = ContactDetailHeader()
         header.onAvatarTap = showEnlargedAvatar
-        header.onSearchButtonTapped = showSearch
-        header.onMuteButtonTapped = toggleMuteChat
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         if (contact != nil && !isSavedMessages && !isDeviceChat) || isMailinglist {
             let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
@@ -259,7 +257,6 @@ class ProfileViewController: UITableViewController {
 
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
-        updateMenuItems()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -272,6 +269,7 @@ class ProfileViewController: UITableViewController {
         updateMediaCellValues()
         updateEphemeralCellValue()
         updateBlockCell()
+        updateMenuItems()
 
         // when sharing to ourself in DocumentGalleryController,
         // end of sharing is not easily catchable nor results in applicationWillEnterForeground();
@@ -295,6 +293,7 @@ class ProfileViewController: UITableViewController {
             self?.updateHeader()
             self?.updateMembers()
             self?.updateOptions()
+            self?.updateMenuItems()
             self?.tableView.reloadData()
         }
     }
@@ -340,8 +339,6 @@ class ProfileViewController: UITableViewController {
     private func updateOptions() {
         options = []
         actions = []
-
-        headerCell.showMuteButton(show: chat != nil && !isBroadcast && !isSavedMessages)
 
         if let contact, contact.getVerifierId() != 0 {
             options.append(.verifiedBy)
@@ -391,16 +388,31 @@ class ProfileViewController: UITableViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        var actions = [UIMenuElement]()
         func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
             UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
         }
 
-        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
-            actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
+        func actions() -> [UIMenuElement] {
+            var actions = [UIMenuElement]()
+            if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
+                actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
+            }
+
+            if let chat, !isBroadcast && !isSavedMessages {
+                actions.append(action(chat.isMuted ? "menu_unmute" : "menu_mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
+            }
+
+            if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
+                actions.append(action("search_in_chat", "magnifyingglass", showSearch))
+            }
+            return actions
         }
 
-        return UIMenu(children: actions)
+        return UIMenu(children: [
+            UIDeferredMenuElement({ completion in
+                completion(actions())
+            })
+        ])
     }
 
     private func updateHeader() {
@@ -417,8 +429,6 @@ class ProfileViewController: UITableViewController {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
             headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
-            headerCell.setMuted(isMuted: chat.isMuted)
-            headerCell.showSearchButton(show: chat.canSend) // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
         } else if let contact {
             headerCell.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
             if let img = contact.profileImage {
@@ -427,8 +437,6 @@ class ProfileViewController: UITableViewController {
                 headerCell.setBackupImage(name: contact.displayName, color: contact.color)
             }
             headerCell.setGreenCheckmark(greenCheckmark: contact.isVerified)
-            headerCell.showMuteButton(show: false)
-            headerCell.showSearchButton(show: false)
         }
     }
 
@@ -485,13 +493,11 @@ class ProfileViewController: UITableViewController {
         guard let chat else { return }
         if chat.isMuted {
             dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-            headerCell.setMuted(isMuted: false)
             navigationController?.popViewController(animated: true)
         } else {
             MuteDialog.show(viewController: self) { [weak self] duration in
                 guard let self else { return }
                 dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-                headerCell.setMuted(isMuted: true)
                 navigationController?.popViewController(animated: true)
             }
         }
