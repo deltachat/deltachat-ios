@@ -292,6 +292,7 @@ class ProfileViewController: UITableViewController {
 
         func actions() -> [UIMenuElement] {
             var actions = [UIMenuElement]()
+            var moreOptions = [UIMenuElement]()
 
             if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
                 actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
@@ -322,23 +323,29 @@ class ProfileViewController: UITableViewController {
             }
 
             if let contact, !isSavedMessages && !isDeviceChat {
-                actions.append(action("encryption_info_title_desktop", "info.circle", showEncrInfoAlert))
-                actions.append(action(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact", "nosign", attributes: [.destructive], toggleBlockContact))
+                moreOptions.append(action("encryption_info_title_desktop", "info.circle", showEncrInfoAlert))
+                moreOptions.append(action(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact", "nosign", attributes: [.destructive], toggleBlockContact))
             }
 
             if let chat {
                 if isBroadcast || (isGroup && chat.canSend) {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
-                    actions.append(action("clone_chat", image, showCloneChatController))
+                    moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
                 if isGroup && chat.canSend {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
-                    actions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
+                    moreOptions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
                 }
                 let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-                actions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
-                actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
+                moreOptions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
+                moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
+
+            actions.append(contentsOf: [
+                UIMenu(options: [.displayInline], children: [
+                    UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
+                ])
+            ])
 
             return actions
         }
