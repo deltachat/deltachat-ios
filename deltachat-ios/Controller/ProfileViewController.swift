@@ -103,17 +103,17 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var startChatCell: ActionCell = {
-        let cell = ActionCell()
+    private lazy var startChatCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = String.localized("send_message")
         cell.imageView?.image = UIImage(systemName: "paperplane")
-        cell.actionTitle = String.localized("send_message")
         return cell
     }()
 
-    private lazy var shareContactCell: ActionCell = {
-        let cell = ActionCell()
+    private lazy var shareContactCell: UITableViewCell = {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        cell.actionTitle = String.localized("menu_share")
         return cell
     }()
 
