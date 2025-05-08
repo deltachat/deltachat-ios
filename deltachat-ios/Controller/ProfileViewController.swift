@@ -14,7 +14,6 @@ class ProfileViewController: UITableViewController {
     }
 
     enum Options {
-        case verifiedBy
         case media
         case locations
         case startChat
@@ -22,6 +21,7 @@ class ProfileViewController: UITableViewController {
     }
 
     enum Actions {
+        case verifiedBy
         case archive
         case addToWidget
         case encrInfo
@@ -71,7 +71,7 @@ class ProfileViewController: UITableViewController {
 
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 24)
+        cell.imageView?.image = UIImage(systemName: "hand.wave")
         if let contact {
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
@@ -331,7 +331,7 @@ class ProfileViewController: UITableViewController {
         actions = []
 
         if let contact, contact.getVerifierId() != 0 {
-            options.append(.verifiedBy)
+            actions.append(.verifiedBy)
         }
 
         if chat != nil {
@@ -737,8 +737,6 @@ class ProfileViewController: UITableViewController {
             return statusCell
         case .options:
             switch options[indexPath.row] {
-            case .verifiedBy:
-                return verifiedByCell
             case .media:
                 return mediaCell
             case .locations:
@@ -778,6 +776,8 @@ class ProfileViewController: UITableViewController {
             return sharedChatCell
         case .actions:
             switch actions[indexPath.row] {
+            case .verifiedBy:
+                return verifiedByCell
             case .archive:
                 return archiveCell
             case .addToWidget:
@@ -804,13 +804,6 @@ class ProfileViewController: UITableViewController {
             break
         case .options:
             switch options[indexPath.row] {
-            case .verifiedBy:
-                guard let contact else { return }
-                tableView.deselectRow(at: indexPath, animated: true)
-                let verifierId = contact.getVerifierId()
-                if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
-                    showContactDetail(of: verifierId)
-                }
             case .media:
                 showMedia()
             case .locations:
@@ -840,6 +833,13 @@ class ProfileViewController: UITableViewController {
             showChat(otherChatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
         case .actions:
             switch actions[indexPath.row] {
+            case .verifiedBy:
+                guard let contact else { return }
+                tableView.deselectRow(at: indexPath, animated: true)
+                let verifierId = contact.getVerifierId()
+                if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
+                    showContactDetail(of: verifierId)
+                }
             case .archive:
                 tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
                 toggleArchiveChat()
