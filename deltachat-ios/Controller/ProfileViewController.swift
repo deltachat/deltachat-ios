@@ -294,16 +294,22 @@ class ProfileViewController: UITableViewController {
             var actions = [UIMenuElement]()
             var moreOptions = [UIMenuElement]()
 
-            if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
-                actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
-            }
-
-            if let chat, !isBroadcast && !isSavedMessages {
-                actions.append(action(chat.isMuted ? "menu_unmute" : "menu_mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
-            }
-
-            if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
-                actions.append(action("search_in_chat", "magnifyingglass", showSearch))
+            if !isSavedMessages && !isDeviceChat {
+                var primaryOptions = [UIMenuElement]()
+                if contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false) {
+                    primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
+                }
+                if let chat, !isBroadcast {
+                    primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
+                }
+                if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
+                    primaryOptions.append(action("search", "magnifyingglass", showSearch))
+                }
+                let primaryMenu = UIMenu(options: [.displayInline], children: primaryOptions)
+                if #available(iOS 16.0, *) {
+                    primaryMenu.preferredElementSize = .medium
+                }
+                actions.append(contentsOf: [primaryMenu])
             }
 
             if let chat, chat.canSend {
