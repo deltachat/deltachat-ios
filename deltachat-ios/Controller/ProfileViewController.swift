@@ -17,7 +17,6 @@ class ProfileViewController: UITableViewController {
         case verifiedBy
         case media
         case locations
-        case ephemeral
         case startChat
         case shareContact
     }
@@ -100,14 +99,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("locations")
         cell.imageView?.image = UIImage(systemName: "map")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var ephemeralCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("ephemeral_messages")
-        cell.imageView?.image = UIImage(systemName: "stopwatch")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -267,7 +258,6 @@ class ProfileViewController: UITableViewController {
         tableView.reloadData()
         updateHeader()
         updateMediaCellValues()
-        updateEphemeralCellValue()
         updateBlockCell()
         updateMenuItems()
 
@@ -312,7 +302,7 @@ class ProfileViewController: UITableViewController {
         guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.updateEphemeralCellValue()
+            self?.updateMenuItems()
         }
     }
 
@@ -365,7 +355,6 @@ class ProfileViewController: UITableViewController {
                 memberManagementRows = 1
                 actions.append(.clone)
             } else if chat.canSend {
-                options.append(.ephemeral)
                 if isGroup {
                     memberManagementRows = 2
                     actions.append(.clone)
@@ -394,6 +383,7 @@ class ProfileViewController: UITableViewController {
 
         func actions() -> [UIMenuElement] {
             var actions = [UIMenuElement]()
+
             if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
                 actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
@@ -405,6 +395,14 @@ class ProfileViewController: UITableViewController {
             if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
                 actions.append(action("search_in_chat", "magnifyingglass", showSearch))
             }
+
+            if let chat, chat.canSend {
+                let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
+                let action = action("ephemeral_messages", "stopwatch", showEphemeralController)
+                action.state = chatIsEphemeral ? .on : .off
+                actions.append(action)
+            }
+
             return actions
         }
 
@@ -442,11 +440,6 @@ class ProfileViewController: UITableViewController {
 
     private func updateMediaCellValues() {
         mediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
-    }
-
-    private func updateEphemeralCellValue() {
-        let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
-        ephemeralCell.detailTextLabel?.text = String.localized(chatIsEphemeral ? "on" : "off")
     }
 
     private func updateMembers() {
@@ -750,8 +743,6 @@ class ProfileViewController: UITableViewController {
                 return mediaCell
             case .locations:
                 return locationsCell
-            case .ephemeral:
-                return ephemeralCell
             case .startChat:
                 return startChatCell
             case .shareContact:
@@ -824,8 +815,6 @@ class ProfileViewController: UITableViewController {
                 showMedia()
             case .locations:
                 showLocations()
-            case .ephemeral:
-                showEphemeralController()
             case .startChat:
                 showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
             case .shareContact:
