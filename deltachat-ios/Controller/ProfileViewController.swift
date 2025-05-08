@@ -33,13 +33,13 @@ class ProfileViewController: UITableViewController {
         case block
     }
 
-    private var sections: [Sections]
-    private var options: [Options]
-    private var actions: [Actions]
+    private var sections: [Sections] = []
+    private var options: [Options] = []
+    private var actions: [Actions] = []
 
     private let membersRowAddMembers = 0
     private let membersRowQrInvite = 1
-    private var memberManagementRows: Int
+    private var memberManagementRows: Int = 0
 
     private let dcContext: DcContext
     private let chatId: Int
@@ -213,11 +213,6 @@ class ProfileViewController: UITableViewController {
         isBot = contact?.isBot ?? false
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
-        actions = []
-        options = []
-        sections = []
-        memberManagementRows = 0
-
         if isSavedMessages || !(contact?.status.isEmpty ?? true) {
             sections.append(.bio)
         }
@@ -288,8 +283,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        if previousTraitCollection?.preferredContentSizeCategory !=
-            traitCollection.preferredContentSizeCategory {
+        if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
             headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         }
     }
@@ -921,22 +915,18 @@ class ProfileViewController: UITableViewController {
 extension ProfileViewController: MultilineLabelCellDelegate {
     func phoneNumberTapped(number: String) {
         let sanitizedNumber = number.filter("0123456789".contains)
-        if let phoneURL = URL(string: "tel://\(sanitizedNumber)") {
-            UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-        }
+        guard let phoneURL = URL(string: "tel://\(sanitizedNumber)") else { return }
+        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
     }
 
     func urlTapped(url: URL) {
         if Utils.isEmail(url: url) {
             let email = Utils.getEmailFrom(url)
-            let contactId = dcContext.createContact(name: "", email: email)
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
-                guard let self else { return }
-                let chatId = dcContext.createChatByContactId(contactId: contactId)
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
-                }
+                guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                let contactId = dcContext.createContact(name: "", email: email)
+                appDelegate.appCoordinator.showChat(chatId: dcContext.createChatByContactId(contactId: contactId), clearViewControllerStack: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
