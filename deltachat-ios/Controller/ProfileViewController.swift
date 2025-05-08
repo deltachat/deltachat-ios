@@ -350,6 +350,8 @@ class ProfileViewController: UITableViewController {
         options = []
         actions = []
 
+        headerCell.showMuteButton(show: chat != nil && !isBroadcast && !isSavedMessages)
+
         if let contact, contact.getVerifierId() != 0 {
             options.append(.verifiedBy)
         }
@@ -365,35 +367,28 @@ class ProfileViewController: UITableViewController {
             }
         }
 
-        if contact != nil {
+        if contact != nil && !isSavedMessages && !isDeviceChat {
             actions.append(.encrInfo)
         }
 
+        memberManagementRows = 0
         if let chat {
-            if isMailinglist {
-                memberManagementRows = 0
-                headerCell.showMuteButton(show: true)
-            } else if isBroadcast {
+            if isBroadcast {
                 memberManagementRows = 1
                 actions.append(.clone)
-                headerCell.showMuteButton(show: false)
             } else if chat.canSend {
                 options.append(.ephemeral)
-                memberManagementRows = 2
                 if isGroup {
+                    memberManagementRows = 2
                     actions.append(.clone)
                     actions.append(.leaveGroup)
                 }
-                headerCell.showMuteButton(show: true)
-            } else {
-                memberManagementRows = 0
-                headerCell.showMuteButton(show: true)
             }
             actions.append(.clear)
             actions.append(.delete)
         }
 
-        if contact != nil {
+        if contact != nil && !isSavedMessages && !isDeviceChat {
             options.append(.startChat)
             options.append(.shareContact)
             actions.append(.block)
