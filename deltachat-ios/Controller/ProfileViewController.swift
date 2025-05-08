@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case block
     }
 
     private var sections: [Sections] = []
@@ -110,13 +109,6 @@ class ProfileViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var blockCell: ActionCell = {
-        let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "nosign")
-        cell.actionColor = UIColor.systemRed
-        return cell
-    }()
-
     // MARK: - constructor
 
     init(_ dcContext: DcContext, chatId: Int = 0, contactId: Int = 0) {
@@ -190,7 +182,6 @@ class ProfileViewController: UITableViewController {
         tableView.reloadData()
         updateHeader()
         updateMediaCellValues()
-        updateBlockCell()
         updateMenuItems()
 
         // when sharing to ourself in DocumentGalleryController,
@@ -225,7 +216,7 @@ class ProfileViewController: UITableViewController {
         contact = dcContext.getContact(id: contactId)
 
         DispatchQueue.main.async { [weak self] in
-            self?.updateBlockCell()
+            self?.updateMenuItems()
             self?.updateHeader()
         }
     }
@@ -287,7 +278,6 @@ class ProfileViewController: UITableViewController {
         if contact != nil && !isSavedMessages && !isDeviceChat {
             options.append(.startChat)
             options.append(.shareContact)
-            actions.append(.block)
         }
     }
 
@@ -345,7 +335,11 @@ class ProfileViewController: UITableViewController {
                 actions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
             }
 
-            if let chat {
+            if let contact, !isSavedMessages && !isDeviceChat {
+                actions.append(action(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact", "nosign", attributes: [.destructive], toggleBlockContact))
+            }
+
+            if chat != nil {
                 let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 actions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
                 actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
@@ -407,11 +401,6 @@ class ProfileViewController: UITableViewController {
         let cellViewModel = ChatCellViewModel(dcContext: dcContext, chatData: cellData)
         cell.updateCell(cellViewModel: cellViewModel)
         cell.backgroundColor = DcColors.profileCellBackgroundColor
-    }
-
-    private func updateBlockCell() {
-        guard let contact else { return }
-        blockCell.actionTitle = contact.isBlocked ? String.localized("menu_unblock_contact") : String.localized("menu_block_contact")
     }
 
     // MARK: - actions, coordinators
@@ -729,8 +718,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .block:
-                return blockCell
             }
         }
     }
@@ -777,9 +764,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .block:
-                tableView.deselectRow(at: indexPath, animated: false)
-                toggleBlockContact()
             }
         }
     }
