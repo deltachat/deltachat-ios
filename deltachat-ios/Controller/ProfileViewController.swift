@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case clone
         case leaveGroup
         case clear
         case delete
@@ -111,15 +110,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var cloneCell: ActionCell = {
-        let cell = ActionCell()
-        let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
-        cell.imageView?.image = UIImage(systemName: image)
-        cell.actionTitle = String.localized("clone_chat")
-        cell.actionColor = UIColor.systemBlue
         return cell
     }()
 
@@ -316,11 +306,9 @@ class ProfileViewController: UITableViewController {
         if let chat {
             if isBroadcast {
                 memberManagementRows = 1
-                actions.append(.clone)
             } else if chat.canSend {
                 if isGroup {
                     memberManagementRows = 2
-                    actions.append(.clone)
                     actions.append(.leaveGroup)
                 }
             }
@@ -377,6 +365,11 @@ class ProfileViewController: UITableViewController {
 
             if contact != nil && !isSavedMessages && !isDeviceChat {
                 actions.append(action("encryption_info_title_desktop", "info.circle", showEncrInfoAlert))
+            }
+
+            if let chat, isBroadcast || (isGroup && chat.canSend) {
+                let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
+                actions.append(action("clone_chat", image, showCloneChatController))
             }
 
             return actions
@@ -586,6 +579,10 @@ class ProfileViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    private func showCloneChatController() {
+        navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
+    }
+
     private func showLeaveGroupConfirmationAlert() {
         guard let chat, isGroup else { return }
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
@@ -753,8 +750,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .clone:
-                return cloneCell
             case .leaveGroup:
                 return leaveGroupCell
             case .clear:
@@ -809,9 +804,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .clone:
-                tableView.deselectRow(at: indexPath, animated: false)
-                navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
             case .leaveGroup:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showLeaveGroupConfirmationAlert()
