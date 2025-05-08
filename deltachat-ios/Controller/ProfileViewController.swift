@@ -22,8 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case clear
-        case delete
         case block
     }
 
@@ -109,23 +107,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var clearCell: ActionCell = {
-        let cell = ActionCell()
-        let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-        cell.imageView?.image = UIImage(systemName: image)
-        cell.actionTitle = String.localized("clear_chat")
-        cell.actionColor = UIColor.systemRed
-        return cell
-    }()
-
-    private lazy var deleteCell: ActionCell = {
-        let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "trash")
-        cell.actionTitle = String.localized("menu_delete_chat")
-        cell.actionColor = UIColor.systemRed
         return cell
     }()
 
@@ -301,8 +282,6 @@ class ProfileViewController: UITableViewController {
                     memberManagementRows = 2
                 }
             }
-            actions.append(.clear)
-            actions.append(.delete)
         }
 
         if contact != nil && !isSavedMessages && !isDeviceChat {
@@ -364,6 +343,12 @@ class ProfileViewController: UITableViewController {
             if let chat, isGroup && chat.canSend {
                 let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                 actions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
+            }
+
+            if let chat {
+                let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+                actions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
+                actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
 
             return actions
@@ -744,10 +729,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .clear:
-                return clearCell
-            case .delete:
-                return deleteCell
             case .block:
                 return blockCell
             }
@@ -796,12 +777,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .clear:
-                tableView.deselectRow(at: indexPath, animated: false)
-                showClearConfirmationAlert()
-            case .delete:
-                tableView.deselectRow(at: indexPath, animated: false)
-                showDeleteConfirmationAlert()
             case .block:
                 tableView.deselectRow(at: indexPath, animated: false)
                 toggleBlockContact()
