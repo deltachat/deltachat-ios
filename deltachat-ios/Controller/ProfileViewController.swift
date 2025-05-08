@@ -257,12 +257,9 @@ class ProfileViewController: UITableViewController {
             title = String.localized("profile")
         }
 
-        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: String.localized("global_menu_edit_desktop"), style: .plain, target: self, action: #selector(showEditController))
-        }
-
         headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
         tableView.tableHeaderView = headerCell
+        updateMenuItems()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -387,6 +384,23 @@ class ProfileViewController: UITableViewController {
             options.append(.shareContact)
             actions.append(.block)
         }
+    }
+
+    private func updateMenuItems() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreButtonMenu())
+    }
+
+    private func moreButtonMenu() -> UIMenu {
+        var actions = [UIMenuElement]()
+        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        }
+
+        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
+            actions.append(action("global_menu_edit_desktop", "pencil", showEditController))
+        }
+
+        return UIMenu(children: actions)
     }
 
     private func updateHeader() {
