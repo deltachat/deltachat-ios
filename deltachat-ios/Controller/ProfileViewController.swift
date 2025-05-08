@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case addToWidget
         case encrInfo
         case clone
         case leaveGroup
@@ -113,16 +112,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var addToWidgetCell: ActionCell = {
-        let cell = ActionCell()
-        if #available(iOS 17, *), let userDefaults = UserDefaults.shared {
-            let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
-            cell.imageView?.image = UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square")
-            cell.actionTitle = String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget")
-        }
         return cell
     }()
 
@@ -329,9 +318,6 @@ class ProfileViewController: UITableViewController {
             if UserDefaults.standard.bool(forKey: "location_streaming") {
                 options.append(.locations)
             }
-            if #available(iOS 17.0, *) {
-                actions.append(.addToWidget)
-            }
         }
 
         if contact != nil && !isSavedMessages && !isDeviceChat {
@@ -394,6 +380,11 @@ class ProfileViewController: UITableViewController {
 
             if let chat {
                 actions.append(action(chat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat", chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down", toggleArchiveChat))
+            }
+
+            if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+                let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
+                actions.append(action(isOnHomescreen ? "remove_from_widget" : "add_to_widget", isOnHomescreen ? "minus.square" : "plus.square", toggleChatInWidget))
             }
 
             return actions
@@ -587,18 +578,14 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func toggleChatInHomescreenWidget() {
+    private func toggleChatInWidget() {
         guard #available(iOS 17, *), let userDefaults = UserDefaults.shared else { return }
-        let onHomescreen: Bool
         if userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
             userDefaults.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
-            onHomescreen = false
         } else {
             userDefaults.addChatToHomescreenWidget(accountId: dcContext.id, chatId: chatId)
-            onHomescreen = true
         }
-        addToWidgetCell.imageView?.image = UIImage(systemName: onHomescreen ? "minus.square" : "plus.square")
-        addToWidgetCell.actionTitle = String.localized(onHomescreen ? "remove_from_widget" : "add_to_widget")
+        updateMenuItems()
     }
 
     private func showEncrInfoAlert() {
@@ -774,8 +761,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .addToWidget:
-                return addToWidgetCell
             case .encrInfo:
                 return encrInfoCell
             case .clone:
@@ -834,9 +819,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .addToWidget:
-                tableView.deselectRow(at: indexPath, animated: true)
-                toggleChatInHomescreenWidget()
             case .encrInfo:
                 tableView.deselectRow(at: indexPath, animated: false)
                 showEncrInfoAlert()
