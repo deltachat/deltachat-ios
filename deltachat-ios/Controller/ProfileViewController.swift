@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case archive
         case addToWidget
         case encrInfo
         case clone
@@ -114,15 +113,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var archiveCell: ActionCell = {
-        let cell = ActionCell()
-        if let chat {
-            cell.imageView?.image = UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down")
-            cell.actionTitle = chat.isArchived ? String.localized("menu_unarchive_chat") :  String.localized("menu_archive_chat")
-        }
         return cell
     }()
 
@@ -339,7 +329,6 @@ class ProfileViewController: UITableViewController {
             if UserDefaults.standard.bool(forKey: "location_streaming") {
                 options.append(.locations)
             }
-            actions.append(.archive)
             if #available(iOS 17.0, *) {
                 actions.append(.addToWidget)
             }
@@ -401,6 +390,10 @@ class ProfileViewController: UITableViewController {
                 let action = action("ephemeral_messages", "stopwatch", showEphemeralController)
                 action.state = chatIsEphemeral ? .on : .off
                 actions.append(action)
+            }
+
+            if let chat {
+                actions.append(action(chat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat", chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down", toggleArchiveChat))
             }
 
             return actions
@@ -586,9 +579,9 @@ class ProfileViewController: UITableViewController {
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
+        self.chat = dcContext.getChat(chatId: chatId)
         if archivedBefore {
-            archiveCell.imageView?.image = UIImage(systemName: "tray.and.arrow.down")
-            archiveCell.actionTitle = String.localized("menu_archive_chat")
+            updateMenuItems()
         } else {
             navigationController?.popToRootViewController(animated: false)
         }
@@ -781,8 +774,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .archive:
-                return archiveCell
             case .addToWidget:
                 return addToWidgetCell
             case .encrInfo:
@@ -843,9 +834,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .archive:
-                tableView.deselectRow(at: indexPath, animated: true) // animated as no other elements pop up
-                toggleArchiveChat()
             case .addToWidget:
                 tableView.deselectRow(at: indexPath, animated: true)
                 toggleChatInHomescreenWidget()
