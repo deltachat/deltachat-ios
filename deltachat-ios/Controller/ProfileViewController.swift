@@ -22,7 +22,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case encrInfo
         case clone
         case leaveGroup
         case clear
@@ -112,13 +111,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("menu_share")
         cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
-        return cell
-    }()
-
-    private lazy var encrInfoCell: ActionCell = {
-        let cell = ActionCell()
-        cell.imageView?.image = UIImage(systemName: "info.circle")
-        cell.actionTitle = String.localized("encryption_info_title_desktop")
         return cell
     }()
 
@@ -320,10 +312,6 @@ class ProfileViewController: UITableViewController {
             }
         }
 
-        if contact != nil && !isSavedMessages && !isDeviceChat {
-            actions.append(.encrInfo)
-        }
-
         memberManagementRows = 0
         if let chat {
             if isBroadcast {
@@ -385,6 +373,10 @@ class ProfileViewController: UITableViewController {
             if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
                 actions.append(action(isOnHomescreen ? "remove_from_widget" : "add_to_widget", isOnHomescreen ? "minus.square" : "plus.square", toggleChatInWidget))
+            }
+
+            if contact != nil && !isSavedMessages && !isDeviceChat {
+                actions.append(action("encryption_info_title_desktop", "info.circle", showEncrInfoAlert))
             }
 
             return actions
@@ -761,8 +753,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .encrInfo:
-                return encrInfoCell
             case .clone:
                 return cloneCell
             case .leaveGroup:
@@ -819,9 +809,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .encrInfo:
-                tableView.deselectRow(at: indexPath, animated: false)
-                showEncrInfoAlert()
             case .clone:
                 tableView.deselectRow(at: indexPath, animated: false)
                 navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
