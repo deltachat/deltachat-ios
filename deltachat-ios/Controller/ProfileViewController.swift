@@ -415,7 +415,7 @@ class ProfileViewController: UITableViewController {
             }
             headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
             headerCell.setMuted(isMuted: chat.isMuted)
-            headerCell.showSearchButton(show: chat.canSend)
+            headerCell.showSearchButton(show: chat.canSend) // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
         } else if let contact {
             headerCell.updateDetails(title: contact.displayName, subtitle: isDeviceChat ? String.localized("device_talk_subtitle") : contact.email)
             if let img = contact.profileImage {
