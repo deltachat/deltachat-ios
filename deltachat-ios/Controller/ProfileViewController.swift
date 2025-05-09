@@ -22,6 +22,7 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
+        case addr
     }
 
     private var sections: [Sections] = []
@@ -47,10 +48,6 @@ class ProfileViewController: UITableViewController {
         let header = ContactDetailHeader()
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
-        if (contact != nil && !isSavedMessages && !isDeviceChat) || isMailinglist {
-            let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
-            header.labelsContainer.addGestureRecognizer(copyContactGestureRecognizer)
-        }
         return header
     }()
 
@@ -76,6 +73,19 @@ class ProfileViewController: UITableViewController {
             }
             cell.textLabel?.text = verifiedInfo
         }
+        return cell
+    }()
+
+    private lazy var addrCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.imageView?.image = UIImage(systemName: "server.rack")
+        if let contact {
+            cell.textLabel?.text = contact.email
+        } else if isMailinglist, let chat {
+            cell.textLabel?.text = chat.getMailinglistAddr()
+        }
+        let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
+        cell.addGestureRecognizer(copyContactGestureRecognizer)
         return cell
     }()
 
@@ -257,6 +267,12 @@ class ProfileViewController: UITableViewController {
             actions.append(.verifiedBy)
         }
 
+        if contact != nil {
+            actions.append(.addr)
+        } else if isMailinglist, let chat, !chat.getMailinglistAddr().isEmpty {
+            actions.append(.addr)
+        }
+
         if chat != nil {
             options.append(.media)
             if UserDefaults.standard.bool(forKey: "location_streaming") {
@@ -365,10 +381,7 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         var subtitle: String?
-        if let chat, isMailinglist {
-            let addr = chat.getMailinglistAddr()
-            subtitle = addr.isEmpty ? nil : addr
-        } else if let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat {
+        if let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat {
             subtitle = String.localizedStringWithFormat(String.localized("last_seen_relative"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
         }
 
@@ -460,7 +473,7 @@ class ProfileViewController: UITableViewController {
         UIMenuController.shared.menuItems = [
             UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ProfileViewController.copyToClipboard))
         ]
-        UIMenuController.shared.showMenu(from: headerCell.titleLabelContainer, rect: headerCell.titleLabelContainer.frame)
+        UIMenuController.shared.showMenu(from: addrCell.textLabel ?? addrCell, rect: addrCell.textLabel?.frame ?? addrCell.frame)
     }
 
     @objc private func copyToClipboard() {
@@ -726,6 +739,8 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
+            case .addr:
+                return addrCell
             }
         }
     }
@@ -772,6 +787,8 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
+            case .addr:
+                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
