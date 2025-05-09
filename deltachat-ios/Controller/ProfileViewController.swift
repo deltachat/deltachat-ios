@@ -260,9 +260,9 @@ class ProfileViewController: UITableViewController {
             actions.append(.verifiedBy)
         }
 
-        if contact != nil {
+        if contact != nil && !isSavedMessages && !isDeviceChat {
             actions.append(.addr)
-        } else if isMailinglist, let chat, !chat.getMailinglistAddr().isEmpty {
+        } else if let chat, isMailinglist, !chat.getMailinglistAddr().isEmpty {
             actions.append(.addr)
         }
 
