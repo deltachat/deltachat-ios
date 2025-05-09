@@ -169,7 +169,7 @@ class ProfileViewController: UITableViewController {
             title = String.localized("profile")
         }
 
-        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactDetailHeader.headerHeight)
         tableView.tableHeaderView = headerCell
     }
 
@@ -191,7 +191,7 @@ class ProfileViewController: UITableViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
-            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactCell.cellHeight)
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactDetailHeader.headerHeight)
         }
     }
     
@@ -380,7 +380,7 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            headerCell.updateDetails(title: chat.name, subtitle: nil)
+            headerCell.updateDetails(title: chat.name)
             if let img = chat.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -388,7 +388,7 @@ class ProfileViewController: UITableViewController {
             }
             headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
         } else if let contact {
-            headerCell.updateDetails(title: contact.displayName, subtitle: nil)
+            headerCell.updateDetails(title: contact.displayName)
             if let img = contact.profileImage {
                 headerCell.setImage(img)
             } else {
