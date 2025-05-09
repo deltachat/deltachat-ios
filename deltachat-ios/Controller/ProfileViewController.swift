@@ -6,7 +6,6 @@ import Intents
 class ProfileViewController: UITableViewController {
 
     enum Sections {
-        case bio
         case options
         case members
         case sharedChats
@@ -14,6 +13,7 @@ class ProfileViewController: UITableViewController {
     }
 
     enum Options {
+        case bio
         case media
         case locations
         case startChat
@@ -128,9 +128,6 @@ class ProfileViewController: UITableViewController {
         isBot = contact?.isBot ?? false
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
-        if isSavedMessages || !(contact?.status.isEmpty ?? true) {
-            sections.append(.bio)
-        }
         sections.append(.options)
         if isBroadcast || isGroup {
             sections.append(.members)
@@ -254,6 +251,10 @@ class ProfileViewController: UITableViewController {
     private func updateOptions() {
         options = []
         actions = []
+
+        if isSavedMessages || !(contact?.status.isEmpty ?? true) {
+            options.append(.bio)
+        }
 
         if let contact, contact.getVerifierId() != 0 {
             actions.append(.verifiedBy)
@@ -668,8 +669,6 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .bio:
-            return 1
         case .options:
             return options.count
         case .members:
@@ -692,10 +691,10 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch sections[indexPath.section] {
-        case .bio:
-            return statusCell
         case .options:
             switch options[indexPath.row] {
+            case .bio:
+                return statusCell
             case .media:
                 return mediaCell
             case .locations:
@@ -743,10 +742,10 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sections[indexPath.section] {
-        case .bio:
-            break
         case .options:
             switch options[indexPath.row] {
+            case .bio:
+                break
             case .media:
                 showMedia()
             case .locations:
