@@ -790,10 +790,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sections[section] == .members {
-            guard let chat else { return nil }
-            return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
-        } else if sections[section] == .sharedChats {
+        if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
         }
         return nil
