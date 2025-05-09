@@ -379,13 +379,8 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateHeader() {
-        var subtitle: String?
-        if let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat {
-            subtitle = String.localizedStringWithFormat(String.localized("last_seen_relative"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
-        }
-
         if let chat {
-            headerCell.updateDetails(title: chat.name, subtitle: subtitle)
+            headerCell.updateDetails(title: chat.name, subtitle: nil)
             if let img = chat.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -393,7 +388,7 @@ class ProfileViewController: UITableViewController {
             }
             headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
         } else if let contact {
-            headerCell.updateDetails(title: contact.displayName, subtitle: subtitle)
+            headerCell.updateDetails(title: contact.displayName, subtitle: nil)
             if let img = contact.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -792,6 +787,14 @@ class ProfileViewController: UITableViewController {
             return String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
         } else if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
+        }
+        return nil
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if sections[section] == .options {
+            guard let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat else { return nil }
+            return String.localizedStringWithFormat(String.localized("last_seen_relative"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
         }
         return nil
     }
