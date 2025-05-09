@@ -44,7 +44,7 @@ class ProfileViewController: UITableViewController {
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader()
+        let header = ProfileHeader(hasSubtitle: isGroup || isBroadcast)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -169,7 +169,7 @@ class ProfileViewController: UITableViewController {
             title = String.localized("profile")
         }
 
-        headerCell.frame = CGRect(0, 0, tableView.frame.width, ProfileHeader.headerHeight)
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, headerCell.headerHeight)
         tableView.tableHeaderView = headerCell
     }
 
@@ -191,7 +191,7 @@ class ProfileViewController: UITableViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
-            headerCell.frame = CGRect(0, 0, tableView.frame.width, ProfileHeader.headerHeight)
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, headerCell.headerHeight)
         }
     }
     
@@ -376,7 +376,13 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            headerCell.updateDetails(title: chat.name)
+            let subtitle: String? = if isGroup || isBroadcast {
+                String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
+            } else {
+                nil
+            }
+
+            headerCell.updateDetails(title: chat.name, subtitle: subtitle)
             if let img = chat.profileImage {
                 headerCell.setImage(img)
             } else {

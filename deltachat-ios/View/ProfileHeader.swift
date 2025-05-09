@@ -5,7 +5,7 @@ class ProfileHeader: UIStackView {
 
     var onAvatarTap: VoidFunction?
 
-    public static let headerHeight: CGFloat = 240
+    public var headerHeight: CGFloat = 240
 
     private lazy var avatar: InitialsBadge = {
         let badge = InitialsBadge(size: 160)
@@ -51,7 +51,16 @@ class ProfileHeader: UIStackView {
         return stackView
     }()
 
-    init() {
+    private lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = DcColors.defaultTextColor
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    init(hasSubtitle: Bool) {
         super.init(frame: .zero)
         backgroundColor = .clear
         axis = .vertical
@@ -61,6 +70,12 @@ class ProfileHeader: UIStackView {
         addArrangedSubview(UIView()) // spacer
         addArrangedSubview(avatar)
         addArrangedSubview(titleLabelContainer)
+        if hasSubtitle {
+            addArrangedSubview(subtitleLabel)
+            headerHeight = 240 + 32
+        } else {
+            headerHeight = 240
+        }
         addArrangedSubview(UIView()) // spacer
 
         addConstraints([
@@ -73,8 +88,9 @@ class ProfileHeader: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateDetails(title: String?) {
+    func updateDetails(title: String, subtitle: String? = nil) {
         titleLabel.text = title
+        subtitleLabel.text = subtitle
     }
 
     func setImage(_ image: UIImage) {
