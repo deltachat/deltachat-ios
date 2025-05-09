@@ -266,11 +266,9 @@ class ProfileViewController: UITableViewController {
             actions.append(.addr)
         }
 
-        if chat != nil {
-            options.append(.media)
-            if UserDefaults.standard.bool(forKey: "location_streaming") {
-                options.append(.locations)
-            }
+        options.append(.media) // to unconditionally, to have a visual anchor
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            options.append(.locations)
         }
 
         memberManagementRows = 0
@@ -399,7 +397,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateMediaCellValues() {
-        mediaCell.detailTextLabel?.text = dcContext.getAllMediaCount(chatId: chatId)
+        mediaCell.detailTextLabel?.text = chatId == 0 ? String.localized("none") : dcContext.getAllMediaCountString(chatId: chatId)
     }
 
     private func updateMembers() {
@@ -479,11 +477,15 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showMedia() {
-        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
+        if chatId != 0 && dcContext.getAllMediaCount(chatId: chatId) > 0 {
+            navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
+        }
     }
 
     private func showLocations() {
-        navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+        if chatId != 0 {
+            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+        }
     }
 
     private func showEphemeralController() {
@@ -742,8 +744,10 @@ class ProfileViewController: UITableViewController {
             case .bio:
                 break
             case .media:
+                tableView.deselectRow(at: indexPath, animated: true)
                 showMedia()
             case .locations:
+                tableView.deselectRow(at: indexPath, animated: true)
                 showLocations()
             case .startChat:
                 showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
