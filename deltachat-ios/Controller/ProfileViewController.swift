@@ -298,7 +298,14 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateMenuItems() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreButtonMenu())
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreButtonMenu())
+        var buttonItems: [UIBarButtonItem] = [menuButton]
+        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
+            let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(showEditController))
+            editButton.accessibilityLabel = String.localized("global_menu_edit_desktop")
+            buttonItems.append(editButton)
+        }
+        navigationItem.setRightBarButtonItems(buttonItems, animated: false)
     }
 
     private func moreButtonMenu() -> UIMenu {
@@ -311,10 +318,7 @@ class ProfileViewController: UITableViewController {
             var moreOptions = [UIMenuElement]()
 
             if !isSavedMessages && !isDeviceChat {
-                var primaryOptions = [UIMenuElement]()
-                if contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false) {
-                    primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
-                }
+                var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
                 if let chat, !isBroadcast {
                     primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
                 }
