@@ -89,16 +89,18 @@ public class InitialsBadge: UIView {
         label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
+        let recentlySeenViewWh = min(35, radius * 0.6)
+
         addSubview(recentlySeenView)
         addSubview(unreadMessageCounter)
         let imgViewConstraints = [recentlySeenView.constraintAlignBottomTo(self),
                                   recentlySeenView.constraintAlignTrailingTo(self),
-                                  recentlySeenView.constraintHeightTo(radius * 0.6),
-                                  recentlySeenView.constraintWidthTo(radius * 0.6),
+                                  recentlySeenView.constraintHeightTo(recentlySeenViewWh),
+                                  recentlySeenView.constraintWidthTo(recentlySeenViewWh),
                                   unreadMessageCounter.constraintAlignTopTo(self),
                                   unreadMessageCounter.constraintAlignTrailingTo(self, paddingTrailing: -8)
         ]
-        recentlySeenView.layer.cornerRadius = radius * 0.3
+        recentlySeenView.layer.cornerRadius = recentlySeenViewWh / 2
         addConstraints(imgViewConstraints)
     }
 
