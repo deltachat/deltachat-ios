@@ -17,7 +17,6 @@ class ProfileViewController: UITableViewController {
         case media
         case locations
         case startChat
-        case shareContact
     }
 
     enum Actions {
@@ -109,13 +108,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.textLabel?.text = String.localized("send_message")
         cell.imageView?.image = UIImage(systemName: "paperplane")
-        return cell
-    }()
-
-    private lazy var shareContactCell: UITableViewCell = {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = String.localized("menu_share")
-        cell.imageView?.image = UIImage(systemName: "square.and.arrow.up")
         return cell
     }()
 
@@ -293,7 +285,6 @@ class ProfileViewController: UITableViewController {
 
         if contact != nil && !isSavedMessages && !isDeviceChat {
             options.append(.startChat)
-            options.append(.shareContact)
         }
     }
 
@@ -319,6 +310,9 @@ class ProfileViewController: UITableViewController {
 
             if !isSavedMessages && !isDeviceChat {
                 var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
+                if contact != nil {
+                    primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
+                }
                 if let chat, !isBroadcast {
                     primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
                 }
@@ -708,8 +702,6 @@ class ProfileViewController: UITableViewController {
                 return locationsCell
             case .startChat:
                 return startChatCell
-            case .shareContact:
-                return shareContactCell
             }
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
@@ -761,8 +753,6 @@ class ProfileViewController: UITableViewController {
                 showLocations()
             case .startChat:
                 showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
-            case .shareContact:
-                shareContact()
             }
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
