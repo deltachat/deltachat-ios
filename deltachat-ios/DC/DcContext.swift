@@ -220,19 +220,24 @@ public class DcContext {
         return messageIds
     }
 
-    public func getAllMediaCount(chatId: Int) -> String {
-        let max = 500
+    private let getAllMediaCountMax = 500
+    public func getAllMediaCount(chatId: Int) -> Int {
         var c = getChatMedia(chatId: chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO).count
-        if c < max {
+        if c < getAllMediaCountMax {
             c += getChatMedia(chatId: chatId, messageType: DC_MSG_AUDIO, messageType2: DC_MSG_VOICE, messageType3: 0).count
         }
-        if c < max {
+        if c < getAllMediaCountMax {
             c += getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: DC_MSG_WEBXDC, messageType3: 0).count
         }
+        return c
+    }
+
+    public func getAllMediaCountString(chatId: Int) -> String {
+        let c = getAllMediaCount(chatId: chatId)
         if c == 0 {
             return String.localized("none")
-        } else if c >= max {
-            return "\(max)+"
+        } else if c >= getAllMediaCountMax {
+            return "\(getAllMediaCountMax)+"
         } else {
             return "\(c)"
         }

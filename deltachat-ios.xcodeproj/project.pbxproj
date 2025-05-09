@@ -161,7 +161,7 @@
 		AE38B31822672DFC00EC37A1 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE38B31722672DFC00EC37A1 /* ActionCell.swift */; };
 		AE39D323249CFC1A007346A1 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE39D322249CFC1A007346A1 /* FilesViewController.swift */; };
 		AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4AEE3422B1030D000AA495 /* PreviewController.swift */; };
-		AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */; };
+		AE52EA19229EB53C00C586C9 /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA18229EB53C00C586C9 /* ProfileHeader.swift */; };
 		AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */; };
 		AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */; };
 		AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C083255310BB003CFE70 /* ContextMenuController.swift */; };
@@ -495,7 +495,7 @@
 		AE38B31722672DFC00EC37A1 /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		AE39D322249CFC1A007346A1 /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		AE4AEE3422B1030D000AA495 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
-		AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeader.swift; sourceTree = "<group>"; };
+		AE52EA18229EB53C00C586C9 /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		AE52EA1F229EB9F000C586C9 /* EditGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewController.swift; sourceTree = "<group>"; };
 		AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		AE57C083255310BB003CFE70 /* ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuController.swift; sourceTree = "<group>"; };
@@ -1134,7 +1134,7 @@
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */,
 				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
-				AE52EA18229EB53C00C586C9 /* ContactDetailHeader.swift */,
+				AE52EA18229EB53C00C586C9 /* ProfileHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
 				AEFBE22E23FEF23D0045327A /* ProviderInfoCell.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
@@ -1665,7 +1665,7 @@
 				D8C19DD02C1C9FFE00B32F6D /* ContactCardPreview.swift in Sources */,
 				AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */,
 				304219D92440734A00516852 /* DcMsg+Extension.swift in Sources */,
-				AE52EA19229EB53C00C586C9 /* ContactDetailHeader.swift in Sources */,
+				AE52EA19229EB53C00C586C9 /* ProfileHeader.swift in Sources */,
 				78E45E4421D3F14A00D4B15E /* UIImage+Extension.swift in Sources */,
 				5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */,
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
