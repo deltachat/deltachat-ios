@@ -43,8 +43,8 @@ class ProfileViewController: UITableViewController {
 
     // MARK: - subviews
 
-    private lazy var headerCell: ContactDetailHeader = {
-        let header = ContactDetailHeader()
+    private lazy var headerCell: ProfileHeader = {
+        let header = ProfileHeader()
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -169,7 +169,7 @@ class ProfileViewController: UITableViewController {
             title = String.localized("profile")
         }
 
-        headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactDetailHeader.headerHeight)
+        headerCell.frame = CGRect(0, 0, tableView.frame.width, ProfileHeader.headerHeight)
         tableView.tableHeaderView = headerCell
     }
 
@@ -191,7 +191,7 @@ class ProfileViewController: UITableViewController {
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
-            headerCell.frame = CGRect(0, 0, tableView.frame.width, ContactDetailHeader.headerHeight)
+            headerCell.frame = CGRect(0, 0, tableView.frame.width, ProfileHeader.headerHeight)
         }
     }
     

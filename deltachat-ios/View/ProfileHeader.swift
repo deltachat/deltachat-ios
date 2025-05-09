@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-class ContactDetailHeader: UIStackView {
+class ProfileHeader: UIStackView {
 
     var onAvatarTap: VoidFunction?
 
