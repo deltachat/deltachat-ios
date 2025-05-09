@@ -50,8 +50,8 @@ class AllMediaViewController: UIPageViewController {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
 
         // avoid accidental flashing, let it be two taps to get to the image gallery, also for global media
-        if chatId == 0, let first = pages.first {
-            pages.removeFirst()
+        if chatId == 0 {
+            let first = pages.removeFirst()
             pages.append(first)
         }
     }
