@@ -26,7 +26,8 @@ class NotificationService: UNNotificationServiceExtension {
         // by the system soon and any notification is better than nothing.
         var exitedDueToCriticalMemory = false
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
-        memoryPressureSource.setEventHandler {
+        memoryPressureSource.setEventHandler { [weak memoryPressureSource] in
+            guard let memoryPressureSource, !memoryPressureSource.isCancelled else { return }
             memoryPressureSource.cancel()
             // Order of importance because we might crash very soon
             exitedDueToCriticalMemory = true
@@ -45,6 +46,7 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
         UserDefaults.setNseFetchingDone()
+        memoryPressureSource.cancel()
 
         var notifications: [UNMutableNotificationContent] = []
         while true {
