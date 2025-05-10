@@ -48,6 +48,7 @@ class ProxySettingsViewController: UITableViewController {
         tableView.register(SwitchCell.self, forCellReuseIdentifier: SwitchCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ProxyTableViewCell.self, forCellReuseIdentifier: ProxyTableViewCell.reuseIdentifier)
+        hidesBottomBarWhenPushed = true
 
         toggleProxyCell.uiSwitch.isEnabled = (proxies.isEmpty == false)
         toggleProxyCell.action = { [weak self] cell in
