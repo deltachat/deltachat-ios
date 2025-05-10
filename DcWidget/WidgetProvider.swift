@@ -115,7 +115,7 @@ enum Shortcut: Identifiable {
 }
 
 struct ChatShortcut: Identifiable, Hashable {
-    var id: String { "chat-\(chatId)" }
+    var id: String { "chat-\(accountId)-\(chatId)" }
 
     let accountId: Int
     let chatId: Int
@@ -137,7 +137,7 @@ struct ChatShortcut: Identifiable, Hashable {
 }
 
 struct AppShortcut: Identifiable, Hashable {
-    var id: String { "app-\(messageId)" }
+    var id: String { "app-\(accountId)-\(messageId)" }
 
     let accountId: Int
     let chatId: Int
