@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Nicer profile, focusing on recognizing contacts
+- Fix adding chats from different profiles to widget
 
 
 ## v1.58.3
