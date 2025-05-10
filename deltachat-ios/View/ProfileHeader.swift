@@ -65,9 +65,14 @@ class ProfileHeader: UIStackView {
         backgroundColor = .clear
         axis = .vertical
         alignment = .center
-        spacing = 12
 
-        addArrangedSubview(UIView()) // spacer
+
+        let spacerTop = UIView()
+        let spacerBottom = UIView()
+        spacerTop.translatesAutoresizingMaskIntoConstraints = false
+        spacerBottom.translatesAutoresizingMaskIntoConstraints = false
+
+        addArrangedSubview(spacerTop)
         addArrangedSubview(avatar)
         addArrangedSubview(titleLabelContainer)
         if hasSubtitle {
@@ -76,9 +81,10 @@ class ProfileHeader: UIStackView {
         } else {
             headerHeight = 240
         }
-        addArrangedSubview(UIView()) // spacer
+        addArrangedSubview(spacerBottom)
 
         addConstraints([
+            spacerTop.heightAnchor.constraint(equalTo: spacerBottom.heightAnchor),
             greenCheckmark.constraintHeightTo(titleLabel.font.pointSize * 0.8),
             greenCheckmark.widthAnchor.constraint(equalTo: greenCheckmark.heightAnchor),
         ])
