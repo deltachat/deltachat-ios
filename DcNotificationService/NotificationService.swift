@@ -46,6 +46,7 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
         UserDefaults.setNseFetchingDone()
+        memoryPressureSource.cancel()
 
         var notifications: [UNMutableNotificationContent] = []
         while true {
