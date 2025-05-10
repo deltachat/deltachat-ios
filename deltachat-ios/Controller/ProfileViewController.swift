@@ -306,24 +306,22 @@ class ProfileViewController: UITableViewController {
         func actions() -> [UIMenuElement] {
             var actions = [UIMenuElement]()
             var moreOptions = [UIMenuElement]()
+            var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
 
-            if !isSavedMessages && !isDeviceChat {
-                var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
-                if contact != nil {
-                    primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
-                }
-                if let chat, !isBroadcast {
-                    primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
-                }
-                if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
-                    primaryOptions.append(action("search", "magnifyingglass", showSearch))
-                }
-                let primaryMenu = UIMenu(options: [.displayInline], children: primaryOptions)
-                if #available(iOS 16.0, *) {
-                    primaryMenu.preferredElementSize = .medium
-                }
-                actions.append(contentsOf: [primaryMenu])
+            if contact != nil, !isSavedMessages && !isDeviceChat {
+                primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
             }
+            if let chat, !isBroadcast && !isSavedMessages {
+                primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
+            }
+            if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
+                primaryOptions.append(action("search", "magnifyingglass", showSearch))
+            }
+            let primaryMenu = UIMenu(options: [.displayInline], children: primaryOptions)
+            if #available(iOS 16.0, *), primaryOptions.count > 1 {
+                primaryMenu.preferredElementSize = .medium
+            }
+            actions.append(contentsOf: [primaryMenu])
 
             if let chat, chat.canSend {
                 let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
