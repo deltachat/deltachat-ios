@@ -653,35 +653,20 @@ class ChatListViewController: UITableViewController {
     }
 
     private func addEditingView() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
-        else { return }
-
-        if !tabBarController.view.subviews.contains(editingBar) {
-            tabBarController.tabBar.subviews.forEach { view in
-                view.isHidden = true
-            }
-
-            tabBarController.view.addSubview(editingBar)
-            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
-                                                      bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
-                                                      left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
-                                                      right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
+        if !tableView.subviews.contains(editingBar) {
+            tableView.addSubview(editingBar)
+            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tableView),
+                                                      bottom: editingBar.constraintAlignBottomTo(tableView),
+                                                      left: editingBar.constraintAlignLeadingTo(tableView),
+                                                      right: editingBar.constraintAlignTrailingTo(tableView))
             editingConstraints?.activate()
         }
     }
 
     private func removeEditingView() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
-        else { return }
-
         editingBar.removeFromSuperview()
         editingConstraints?.deactivate()
         editingConstraints = nil
-        tabBarController.tabBar.subviews.forEach { view in
-            view.isHidden = false
-        }
     }
 
     /// Check if the view is in row-selection mode.
