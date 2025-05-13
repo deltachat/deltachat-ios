@@ -656,10 +656,10 @@ class ChatListViewController: UITableViewController {
         if !tableView.subviews.contains(editingBar) {
             tableView.addSubview(editingBar)
             editingConstraints = [
-                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tableView, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tableView, attribute: .trailing, multiplier: 1, constant: 0)
+                editingBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                editingBar.heightAnchor.constraint(equalToConstant: 52 + view.safeAreaInsets.bottom)
             ]
             NSLayoutConstraint.activate(editingConstraints ?? [])
         }
