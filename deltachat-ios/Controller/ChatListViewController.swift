@@ -653,16 +653,23 @@ class ChatListViewController: UITableViewController {
     }
 
     private func addEditingView() {
-        if !tableView.subviews.contains(editingBar) {
-            tableView.addSubview(editingBar)
-            editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                editingBar.heightAnchor.constraint(equalToConstant: 52 + view.safeAreaInsets.bottom)
-            ]
-            NSLayoutConstraint.activate(editingConstraints ?? [])
+        guard let window = view.window ?? UIApplication.shared.windows.first, !window.subviews.contains(editingBar) else { return }
+        window.addSubview(editingBar)
+
+        // if UITabBarController is abottom of the screen, let the editing bar cover it.
+        // if not, eg. on newer iPad, use a reasonable height ("49" comes from iPhoneSE1 safe area)
+        var height = view.safeAreaInsets.bottom
+        if height < 49 {
+            height = 72
         }
+
+        editingConstraints = [
+            editingBar.leadingAnchor.constraint(equalTo: window.leadingAnchor),
+            editingBar.trailingAnchor.constraint(equalTo: window.trailingAnchor),
+            editingBar.bottomAnchor.constraint(equalTo: window.bottomAnchor),
+            editingBar.heightAnchor.constraint(equalToConstant: height)
+        ]
+        NSLayoutConstraint.activate(editingConstraints ?? [])
     }
 
     private func removeEditingView() {
