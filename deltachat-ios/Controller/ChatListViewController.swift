@@ -83,7 +83,7 @@ class ChatListViewController: UITableViewController {
         return UIBarButtonItem(customView: accountButtonAvatar)
     }()
 
-    private var editingConstraints: NSLayoutConstraintSet?
+    private var editingConstraints: [NSLayoutConstraint]?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts, isArchive: Bool) {
         self.dcContext = dcContext
@@ -655,17 +655,19 @@ class ChatListViewController: UITableViewController {
     private func addEditingView() {
         if !tableView.subviews.contains(editingBar) {
             tableView.addSubview(editingBar)
-            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tableView),
-                                                      bottom: editingBar.constraintAlignBottomTo(tableView),
-                                                      left: editingBar.constraintAlignLeadingTo(tableView),
-                                                      right: editingBar.constraintAlignTrailingTo(tableView))
-            editingConstraints?.activate()
+            editingConstraints = [
+                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tableView, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tableView, attribute: .trailing, multiplier: 1, constant: 0)
+            ]
+            NSLayoutConstraint.activate(editingConstraints ?? [])
         }
     }
 
     private func removeEditingView() {
         editingBar.removeFromSuperview()
-        editingConstraints?.deactivate()
+        NSLayoutConstraint.deactivate(editingConstraints ?? [])
         editingConstraints = nil
     }
 
