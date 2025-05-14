@@ -658,20 +658,22 @@ class ChatListViewController: UITableViewController {
               editingConstraints == nil else { return }
 
         if tabBarController.view.subviews.contains(tabBarController.tabBar) {
+            // UITabBar is child of UITabBarController, let edit bar cover UITabBar
             tabBarController.view.addSubview(editingBar)
             editingConstraints = [
-                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .bottom, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .trailing, multiplier: 1, constant: 0)
+                editingBar.leadingAnchor.constraint(equalTo: tabBarController.tabBar.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: tabBarController.tabBar.trailingAnchor),
+                editingBar.topAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: tabBarController.tabBar.bottomAnchor),
             ]
         } else {
-            tableView.addSubview(editingBar)
+            // UITabBar is somewhere else (eg. atop on newer iPad), move edit bar to the bottom
+            view.addSubview(editingBar)
             editingConstraints = [
-                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tableView, attribute: .leading, multiplier: 1, constant: 0),
-                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tableView, attribute: .trailing, multiplier: 1, constant: 0)
+                editingBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                editingBar.heightAnchor.constraint(equalToConstant: 52 + view.safeAreaInsets.bottom)
             ]
         }
         NSLayoutConstraint.activate(editingConstraints ?? [])
