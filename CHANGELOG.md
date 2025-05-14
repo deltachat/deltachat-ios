@@ -4,6 +4,10 @@
 
 - Nicer profile, focusing on recognizing contacts
 - Fix adding chats from different profiles to widget
+- Fix: Show errors if changing address fails
+- Fix staging webxdc apps
+- Update translations and local help
+- Update to core 1.159.4
 
 
 ## v1.58.3
