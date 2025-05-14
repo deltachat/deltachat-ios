@@ -6,6 +6,7 @@
 - Fix adding chats from different profiles to widget
 - Fix: Show errors if changing address fails
 - Fix staging webxdc apps
+- Fix long tapping chats on iPad
 - Update translations and local help
 - Update to core 1.159.4
 
