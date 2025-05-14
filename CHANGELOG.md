@@ -7,7 +7,7 @@
 - Fix: Show errors if changing address fails
 - Fix staging webxdc apps
 - Update translations and local help
-- Update to core 1.159.4
+- Update to core 1.159.5
 
 
 ## v1.58.3
