@@ -668,12 +668,13 @@ class ChatListViewController: UITableViewController {
             ]
         } else {
             // UITabBar is somewhere else (eg. atop on newer iPad), move edit bar to the bottom
-            view.addSubview(editingBar)
+            guard let parentView = self.navigationController?.view else { return }
+            parentView.addSubview(editingBar)
             editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                editingBar.heightAnchor.constraint(equalToConstant: 52 + view.safeAreaInsets.bottom)
+                editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                editingBar.heightAnchor.constraint(equalToConstant: 72)
             ]
         }
         NSLayoutConstraint.activate(editingConstraints ?? [])
