@@ -654,21 +654,20 @@ class ChatListViewController: UITableViewController {
 
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController,
+              editingConstraints == nil
         else { return }
 
-        if !tabBarController.view.subviews.contains(editingBar) {
-            tabBarController.tabBar.subviews.forEach { view in
-                view.isHidden = true
-            }
-
-            tabBarController.view.addSubview(editingBar)
-            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
-                                                      bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
-                                                      left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
-                                                      right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
-            editingConstraints?.activate()
+        tabBarController.tabBar.subviews.forEach { view in
+            view.isHidden = true
         }
+
+        tabBarController.view.addSubview(editingBar)
+        editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
+                                                  bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
+                                                  left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
+                                                  right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
+        editingConstraints?.activate()
     }
 
     private func removeEditingView() {
