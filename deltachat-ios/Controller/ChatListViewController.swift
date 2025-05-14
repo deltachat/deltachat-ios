@@ -83,7 +83,7 @@ class ChatListViewController: UITableViewController {
         return UIBarButtonItem(customView: accountButtonAvatar)
     }()
 
-    private var editingConstraints: NSLayoutConstraintSet?
+    private var editingConstraints: [NSLayoutConstraint]?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts, isArchive: Bool) {
         self.dcContext = dcContext
@@ -655,32 +655,32 @@ class ChatListViewController: UITableViewController {
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let tabBarController = appDelegate.window?.rootViewController as? UITabBarController,
-              editingConstraints == nil
-        else { return }
+              editingConstraints == nil else { return }
 
-        tabBarController.tabBar.subviews.forEach { view in
-            view.isHidden = true
+        if tabBarController.view.subviews.contains(tabBarController.tabBar) {
+            tabBarController.view.addSubview(editingBar)
+            editingConstraints = [
+                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .bottom, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tabBarController.tabBar, attribute: .trailing, multiplier: 1, constant: 0)
+            ]
+        } else {
+            tableView.addSubview(editingBar)
+            editingConstraints = [
+                NSLayoutConstraint(item: editingBar, attribute: .top, relatedBy: .equal, toItem: tableView, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .bottom, relatedBy: .equal, toItem: tableView, attribute: .bottom, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .leading, relatedBy: .equal, toItem: tableView, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: editingBar, attribute: .trailing, relatedBy: .equal, toItem: tableView, attribute: .trailing, multiplier: 1, constant: 0)
+            ]
         }
-
-        tabBarController.view.addSubview(editingBar)
-        editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
-                                                  bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
-                                                  left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
-                                                  right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
-        editingConstraints?.activate()
+        NSLayoutConstraint.activate(editingConstraints ?? [])
     }
 
     private func removeEditingView() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
-        else { return }
-
         editingBar.removeFromSuperview()
-        editingConstraints?.deactivate()
+        NSLayoutConstraint.deactivate(editingConstraints ?? [])
         editingConstraints = nil
-        tabBarController.tabBar.subviews.forEach { view in
-            view.isHidden = false
-        }
     }
 
     /// Check if the view is in row-selection mode.
