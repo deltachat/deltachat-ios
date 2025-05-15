@@ -658,7 +658,7 @@ class ChatListViewController: UITableViewController {
               editingConstraints == nil else { return }
 
         if tabBarController.view.subviews.contains(tabBarController.tabBar) {
-            // UITabBar is child of UITabBarController, let edit bar cover UITabBar
+            // UITabBar is child of UITabBarController, let edit bar cover UITabBar (moving to the bottom would place it below UITabBar)
             tabBarController.view.addSubview(editingBar)
             editingConstraints = [
                 editingBar.leadingAnchor.constraint(equalTo: tabBarController.tabBar.leadingAnchor),
