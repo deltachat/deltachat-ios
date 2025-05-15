@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.58.4
+2025-05
 
 - Nicer profile, focusing on recognizing contacts
 - Fix adding chats from different profiles to widget
