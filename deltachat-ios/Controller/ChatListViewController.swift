@@ -83,7 +83,7 @@ class ChatListViewController: UITableViewController {
         return UIBarButtonItem(customView: accountButtonAvatar)
     }()
 
-    private var editingConstraints: NSLayoutConstraintSet?
+    private var editingConstraints: [NSLayoutConstraint]?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts, isArchive: Bool) {
         self.dcContext = dcContext
@@ -654,34 +654,36 @@ class ChatListViewController: UITableViewController {
 
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
-        else { return }
+              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController,
+              editingConstraints == nil else { return }
 
-        if !tabBarController.view.subviews.contains(editingBar) {
-            tabBarController.tabBar.subviews.forEach { view in
-                view.isHidden = true
-            }
-
+        if tabBarController.view.subviews.contains(tabBarController.tabBar) {
+            // UITabBar is child of UITabBarController, let edit bar cover UITabBar (moving to the bottom would place it below UITabBar)
             tabBarController.view.addSubview(editingBar)
-            editingConstraints = NSLayoutConstraintSet(top: editingBar.constraintAlignTopTo(tabBarController.tabBar),
-                                                      bottom: editingBar.constraintAlignBottomTo(tabBarController.tabBar),
-                                                      left: editingBar.constraintAlignLeadingTo(tabBarController.tabBar),
-                                                      right: editingBar.constraintAlignTrailingTo(tabBarController.tabBar))
-            editingConstraints?.activate()
+            editingConstraints = [
+                editingBar.leadingAnchor.constraint(equalTo: tabBarController.tabBar.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: tabBarController.tabBar.trailingAnchor),
+                editingBar.topAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: tabBarController.tabBar.bottomAnchor),
+            ]
+        } else {
+            // UITabBar is somewhere else (eg. atop on newer iPad), move edit bar to the bottom
+            guard let parentView = self.navigationController?.view else { return }
+            parentView.addSubview(editingBar)
+            editingConstraints = [
+                editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                editingBar.heightAnchor.constraint(equalToConstant: 72)
+            ]
         }
+        NSLayoutConstraint.activate(editingConstraints ?? [])
     }
 
     private func removeEditingView() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController
-        else { return }
-
         editingBar.removeFromSuperview()
-        editingConstraints?.deactivate()
+        NSLayoutConstraint.deactivate(editingConstraints ?? [])
         editingConstraints = nil
-        tabBarController.tabBar.subviews.forEach { view in
-            view.isHidden = false
-        }
     }
 
     /// Check if the view is in row-selection mode.
