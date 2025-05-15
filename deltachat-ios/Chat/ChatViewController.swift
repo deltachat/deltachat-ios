@@ -1213,6 +1213,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         present(alert, animated: true, completion: nil)
     }
 
+    private func onMultipleSave() {
+        guard let rows = tableView.indexPathsForSelectedRows else { return }
+        let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
+        dcContext.saveMessages(with: selectedMsgIds)
+        setEditing(isEditing: false)
+    }
+
     private func onResendActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
@@ -2077,6 +2084,18 @@ extension ChatViewController {
 
     }
 
+    private func canSaveMultiple() -> Bool {
+        guard let rows = tableView.indexPathsForSelectedRows else { return false }
+        let msgIds = rows.compactMap { messageIds[$0.row] }
+        for msgId in msgIds {
+            let msg = dcContext.getMessage(id: msgId)
+            if !msg.canSave || msg.savedMessageId != 0 {
+                return false // cannot save or message already saved - we do not offer multiple unsave, as that adds complexity and opens quite some UX questions
+            }
+        }
+        return true
+    }
+
     private func canResend() -> Bool {
         if dcChat.canSend, let rows = tableView.indexPathsForSelectedRows {
             let msgIds = rows.compactMap { messageIds[$0.row] }
@@ -2092,7 +2111,7 @@ extension ChatViewController {
     }
 
     private func evaluateMoreButton() {
-        editingBar.moreButton.isEnabled = canResend()
+        editingBar.moreButton.isEnabled = canSaveMultiple() || canResend()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -2555,6 +2574,11 @@ extension ChatViewController: ChatEditingDelegate {
         if canResend() {
             actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
                 self?.onResendActionPressed()
+            })
+        }
+        if canSaveMultiple() {
+            actions.append(UIAction(title: String.localized("save_desktop"), image: UIImage(systemName: "bookmark")) { [weak self] _ in
+                self?.onMultipleSave()
             })
         }
         return UIMenu(children: actions)
