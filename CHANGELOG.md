@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Improve voice message UI
+- Fix bitrate for "worse" outgoing media quality
 
 
 ## v1.58.4

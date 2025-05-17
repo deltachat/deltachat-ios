@@ -103,7 +103,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
                               AVSampleRateKey: 44100.0,
-                              AVEncoderBitRateKey: 32000,
+                              AVEncoderBitRateKey: bitrate,
                               AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
