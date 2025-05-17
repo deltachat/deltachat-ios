@@ -57,44 +57,23 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }()
 
     lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                          target: self,
-                                          action: #selector(cancelAction))
-        return button
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
     }()
 
     lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(title: String.localized("menu_send"),
-                                          style: UIBarButtonItem.Style.done,
-                                          target: self,
-                                          action: #selector(doneAction))
-        return button
+        return UIBarButtonItem(title: String.localized("menu_send"), style: .done, target: self, action: #selector(doneAction))
     }()
 
     lazy var pauseButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.pause,
-                                          target: self,
-                                          action: #selector(pauseRecordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "pause"), style: .plain, target: self, action: #selector(pauseRecordingButtonAction))
     }()
 
     lazy var startRecordingButton: UIBarButtonItem = {
-        let button =  UIBarButtonItem.init(image: UIImage(systemName: "mic"),
-                                           style: UIBarButtonItem.Style.plain,
-                                           target: self,
-                                           action: #selector(recordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(recordingButtonAction))
     }()
 
     lazy var continueRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: UIImage(systemName: "mic"),
-                                          style: UIBarButtonItem.Style.plain,
-                                          target: self,
-                                          action: #selector(continueRecordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecordingButtonAction))
     }()
 
     lazy var flexItem = {
