@@ -169,11 +169,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     @objc func updateMeters() {
         guard let audioRecorder else { return }
         if isRecordingPaused {
+            waveFormView.idleAmplitude = 0
             waveFormView.waveColor = UIColor.systemGray2
             waveFormView.update(withLevel: 0)
         } else {
             audioRecorder.updateMeters()
             let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
+            waveFormView.idleAmplitude = 0.01
             waveFormView.waveColor = UIColor.systemRed
             waveFormView.update(withLevel: CGFloat(normalizedValue))
             self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
