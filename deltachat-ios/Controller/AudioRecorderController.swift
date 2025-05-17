@@ -76,8 +76,18 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecording))
     }()
 
+    lazy var playButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(systemName: "play"), style: .plain, target: self, action: #selector(playRecording))
+    }()
+
+    lazy var spaceItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        item.width = 24
+        return item
+    }()
+
     lazy var flexItem = {
-        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     }()
     
     init(dcContext: DcContext) {
@@ -208,10 +218,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder?.record()
     }
 
+    @objc func playRecording() {
+        // TODO
+    }
+
     @objc func pauseRecording() {
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([continueRecordingButton, flexItem], animated: true)
+        self.setToolbarItems([continueRecordingButton, spaceItem, playButton, flexItem], animated: true)
     }
 
     @objc func cancelAction() {
