@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Improve voice message UI
+
+
 ## v1.58.4
 2025-05
 
