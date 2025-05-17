@@ -62,7 +62,14 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 
         if #available(iOS 15.0, *) {
             if let sheet = audioRecorderNavController.sheetPresentationController {
-                sheet.detents = [.medium()]
+                if #available(iOS 16.0, *) {
+                    let customDetent = UISheetPresentationController.Detent.custom(identifier: .init("thirtyPercent")) { context in
+                        return context.maximumDetentValue * 0.3
+                    }
+                    sheet.detents = [customDetent]
+                } else {
+                    sheet.detents = [.medium()]
+                }
                 sheet.preferredCornerRadius = 20
             }
         } else {
