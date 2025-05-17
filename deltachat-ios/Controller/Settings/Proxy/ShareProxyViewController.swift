@@ -24,6 +24,8 @@ class ShareProxyViewController: UIViewController {
         qrContentView = UIImageView()
         qrContentView.contentMode = .scaleAspectFit
         qrContentView.translatesAutoresizingMaskIntoConstraints = false
+        qrContentView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        qrContentView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 
         shareLinkButton = UIButton(type: .system)
         shareLinkButton.setTitle(String.localized("proxy_share_link"), for: .normal)
@@ -36,7 +38,7 @@ class ShareProxyViewController: UIViewController {
         explanationLabel.numberOfLines = 0
         explanationLabel.textAlignment = .center
 
-        contentStackView = UIStackView(arrangedSubviews: [qrContentView, explanationLabel, shareLinkButton, UIView()])
+        contentStackView = UIStackView(arrangedSubviews: [qrContentView, explanationLabel, shareLinkButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
         contentStackView.axis = .vertical
         contentStackView.alignment = .center
@@ -65,22 +67,14 @@ class ShareProxyViewController: UIViewController {
     required init?(coder: NSCoder) { fatalError() }
 
     private func setupConstraints() {
-
-        let qrImageRatio: CGFloat
-        if let image = qrContentView.image {
-            qrImageRatio = image.size.height / image.size.width
-        } else {
-            qrImageRatio = 1
-        }
-
         verticalCenterConstraint = contentStackView.centerYAnchor.constraint(equalTo: contentScrollView.centerYAnchor)
         contentTopAnchor = contentStackView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: 16)
         contentBottomAnchor = contentScrollView.bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor, constant: 16)
 
         let constraints = [
-            qrContentView.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.75),
+            qrContentView.widthAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.65),
             qrContentView.widthAnchor.constraint(lessThanOrEqualToConstant: 260),
-            qrContentView.heightAnchor.constraint(equalTo: qrContentView.widthAnchor, multiplier: qrImageRatio),
+            qrContentView.heightAnchor.constraint(equalTo: qrContentView.widthAnchor),
 
             contentScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             contentScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
