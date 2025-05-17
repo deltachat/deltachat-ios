@@ -90,6 +90,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.isToolbarHidden = false
         self.navigationController?.toolbar.isTranslucent = true
         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.isModalInPresentation = true
 
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
