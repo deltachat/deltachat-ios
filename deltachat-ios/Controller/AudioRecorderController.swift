@@ -20,9 +20,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     private let bitrateWorse    = 24000
     private let bitrate: Int
 
-    // maximumRecordDuration > 0 -> restrict max time period for one take
-    var maximumRecordDuration = 0.0
-
     // Private variables
     var oldSessionCategory: AVAudioSession.Category?
     var wasIdleTimerDisabled: Bool = false
@@ -30,14 +27,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     var recordingFilePath: String = ""
     var audioRecorder: AVAudioRecorder?
 
-    var normalTintColor: UIColor = UIColor.systemBlue
-    var highlightedTintColor = UIColor.systemRed
-
     var isFirstUsage: Bool = true
 
     lazy var waveFormView: SCSiriWaveformView = {
         let view = SCSiriWaveformView()
-        view.alpha = 0.0
+        view.isHidden = true
         view.waveColor = .clear
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -48,70 +42,38 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     lazy var noRecordingPermissionView: UILabel = {
         let view = UILabel()
+        view.isHidden = true
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.textColor = DcColors.defaultTextColor
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = String.localized("perm_required_title") + "\n\n" + String.localized("perm_explain_access_to_mic_denied")
+        view.text = String.localized("perm_required_title") + " - " + String.localized("perm_explain_access_to_mic_denied")
         view.textAlignment = .center
         return view
     }()
 
     lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                          target: self,
-                                          action: #selector(cancelAction))
-        return button
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
     }()
 
     lazy var doneButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(title: String.localized("menu_send"),
-                                          style: UIBarButtonItem.Style.done,
-                                          target: self,
-                                          action: #selector(doneAction))
-        return button
-    }()
-
-    lazy var cancelRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.trash,
-                                                 target: self,
-                                                 action: #selector(cancelRecordingAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(title: String.localized("menu_send"), style: .done, target: self, action: #selector(doneAction))
     }()
 
     lazy var pauseButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.pause,
-                                          target: self,
-                                          action: #selector(pauseRecordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "pause"), style: .plain, target: self, action: #selector(pauseRecording))
     }()
 
     lazy var startRecordingButton: UIBarButtonItem = {
-        let button =  UIBarButtonItem.init(image: UIImage(systemName: "mic"),
-                                           style: UIBarButtonItem.Style.plain,
-                                           target: self,
-                                           action: #selector(recordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(startRecording))
     }()
 
     lazy var continueRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(image: UIImage(systemName: "mic"),
-                                          style: UIBarButtonItem.Style.plain,
-                                          target: self,
-                                          action: #selector(continueRecordingButtonAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecording))
     }()
 
-    lazy var flexItem = {
-        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-    }()
-    
     init(dcContext: DcContext) {
         bitrate = dcContext.getConfigInt("media_quality") == 1 ? bitrateWorse : bitrateBalanced
         super.init(nibName: nil, bundle: nil)
@@ -129,7 +91,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.toolbar.isTranslucent = true
         self.navigationController?.navigationBar.isTranslucent = true
 
-        self.navigationItem.title = String.localized("voice_message")
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
 
@@ -139,11 +100,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
         waveFormView.fill(view: view)
         noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
-
-        self.navigationController?.toolbar.tintColor = normalTintColor
-        self.navigationController?.navigationBar.tintColor = normalTintColor
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.toolbar.isTranslucent = true
 
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
                               AVSampleRateKey: 44100.0,
@@ -205,23 +161,23 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func updateMeters() {
-        if let audioRecorder = audioRecorder {
-            if audioRecorder.isRecording || isRecordingPaused {
-                audioRecorder.updateMeters()
-                let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
-                waveFormView.waveColor = highlightedTintColor
-                waveFormView.update(withLevel: CGFloat(normalizedValue))
-                self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
-            } else {
-                waveFormView.waveColor = normalTintColor
-                waveFormView.update(withLevel: 0)
-            }
+        guard let audioRecorder else { return }
+        if isRecordingPaused {
+            waveFormView.idleAmplitude = 0
+            waveFormView.waveColor = UIColor.systemGray2
+            waveFormView.update(withLevel: 0)
+        } else {
+            audioRecorder.updateMeters()
+            let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
+            waveFormView.idleAmplitude = 0.01
+            waveFormView.waveColor = UIColor.systemRed
+            waveFormView.update(withLevel: CGFloat(normalizedValue))
+            self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
         }
     }
 
-    @objc func recordingButtonAction() {
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
-        cancelRecordingButton.isEnabled = true
+    @objc func startRecording() {
+        self.setToolbarItems([pauseButton], animated: true)
         doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
             _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
@@ -232,37 +188,24 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         UIApplication.shared.isIdleTimerDisabled = true
         audioRecorder?.prepareToRecord()
         isRecordingPaused = false
-
-        if maximumRecordDuration <= 0 {
-            audioRecorder?.record()
-        } else {
-            audioRecorder?.record(forDuration: maximumRecordDuration)
-        }
+        audioRecorder?.record()
     }
 
-    @objc func continueRecordingButtonAction() {
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
+    @objc func continueRecording() {
+        self.setToolbarItems([pauseButton], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
 
-    @objc func pauseRecordingButtonAction() {
+    @objc func pauseRecording() {
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, continueRecordingButton, flexItem], animated: true)
-    }
-
-    @objc func cancelRecordingAction() {
-        isRecordingPaused = false
-        cancelRecordingButton.isEnabled = false
-        doneButton.isEnabled = false
-        audioRecorder?.stop()
-        _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
-        self.navigationItem.title = String.localized("voice_message")
+        self.setToolbarItems([continueRecordingButton], animated: true)
     }
 
     @objc func cancelAction() {
-        cancelRecordingAction()
+        audioRecorder?.stop()
+        _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
         dismiss(animated: true, completion: nil)
     }
 
@@ -281,7 +224,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, startRecordingButton, flexItem], animated: true)
+            self.setToolbarItems([startRecordingButton], animated: true)
             if let oldSessionCategory = oldSessionCategory {
                _ = try? AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
                UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
@@ -300,17 +243,17 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         audioSession.requestRecordPermission({ granted in
             DispatchQueue.main.async { [weak self] in
                 if let self {
-                    self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0
-                    self.waveFormView.alpha = granted ? 1.0 : 0.0
+                    self.noRecordingPermissionView.isHidden = granted
+                    self.waveFormView.isHidden = !granted
                     self.doneButton.isEnabled = granted
 
                     if self.isFirstUsage {
                         if !granted {
-                            self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
+                            self.setToolbarItems([self.startRecordingButton], animated: true)
                             self.startRecordingButton.isEnabled = false
                         } else {
                             self.pauseButton.isEnabled = granted
-                            self.recordingButtonAction()
+                            self.startRecording()
                         }
 
                         self.isFirstUsage = false

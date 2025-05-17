@@ -163,7 +163,6 @@ class ProxySettingsViewController: UITableViewController {
         let navigationController = UINavigationController(rootViewController: shareProxyViewController)
         if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
             sheet.detents = [.medium()]
-            sheet.preferredCornerRadius = 20
 
             present(navigationController, animated: true)
         } else {
