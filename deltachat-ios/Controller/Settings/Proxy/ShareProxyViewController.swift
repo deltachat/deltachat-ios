@@ -33,6 +33,7 @@ class ShareProxyViewController: UIViewController {
         explanationLabel.translatesAutoresizingMaskIntoConstraints = false
         explanationLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         explanationLabel.text = String.localized("proxy_share_explain")
+        explanationLabel.numberOfLines = 0
 
         contentStackView = UIStackView(arrangedSubviews: [qrContentView, explanationLabel, shareLinkButton, UIView()])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +50,6 @@ class ShareProxyViewController: UIViewController {
         view.backgroundColor = .secondarySystemBackground
 
         shareLinkButton.addTarget(self, action: #selector(ShareProxyViewController.shareInviteLink(_:)), for: .touchUpInside)
-        shareLinkButton.setTitleColor(DcColors.primary, for: .normal)
 
         let svg = dcContext.createQRSVG(for: proxyUrlString)
         qrContentView.image = getQrImage(svg: svg)
