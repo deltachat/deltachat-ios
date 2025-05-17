@@ -65,15 +65,15 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }()
 
     lazy var pauseButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "pause"), style: .plain, target: self, action: #selector(pauseRecordingButtonAction))
+        return UIBarButtonItem(image: UIImage(systemName: "pause"), style: .plain, target: self, action: #selector(pauseRecording))
     }()
 
     lazy var startRecordingButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(recordingButtonAction))
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(startRecording))
     }()
 
     lazy var continueRecordingButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecordingButtonAction))
+        return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecording))
     }()
 
     lazy var flexItem = {
@@ -182,7 +182,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         }
     }
 
-    @objc func recordingButtonAction() {
+    @objc func startRecording() {
         self.setToolbarItems([pauseButton, flexItem], animated: true)
         doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
@@ -202,13 +202,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         }
     }
 
-    @objc func continueRecordingButtonAction() {
+    @objc func continueRecording() {
         self.setToolbarItems([pauseButton, flexItem], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
 
-    @objc func pauseRecordingButtonAction() {
+    @objc func pauseRecording() {
         isRecordingPaused = true
         audioRecorder?.pause()
         self.setToolbarItems([continueRecordingButton, flexItem], animated: true)
@@ -264,7 +264,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                             self.startRecordingButton.isEnabled = false
                         } else {
                             self.pauseButton.isEnabled = granted
-                            self.recordingButtonAction()
+                            self.startRecording()
                         }
 
                         self.isFirstUsage = false
