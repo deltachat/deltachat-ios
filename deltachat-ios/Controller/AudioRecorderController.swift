@@ -74,14 +74,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return button
     }()
 
-    lazy var cancelRecordingButton: UIBarButtonItem = {
-        let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.trash,
-                                                 target: self,
-                                                 action: #selector(cancelRecordingAction))
-        button.tintColor = UIColor.themeColor(light: .darkGray, dark: .lightGray)
-        return button
-    }()
-
     lazy var pauseButton: UIBarButtonItem = {
         let button = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.pause,
                                           target: self,
@@ -129,7 +121,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.navigationController?.toolbar.isTranslucent = true
         self.navigationController?.navigationBar.isTranslucent = true
 
-        self.navigationItem.title = String.localized("voice_message")
         self.navigationItem.leftBarButtonItem = cancelButton
         self.navigationItem.rightBarButtonItem = doneButton
 
@@ -220,8 +211,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func recordingButtonAction() {
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
-        cancelRecordingButton.isEnabled = true
+        self.setToolbarItems([pauseButton, flexItem], animated: true)
         doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
             _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
@@ -241,7 +231,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func continueRecordingButtonAction() {
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, pauseButton, flexItem], animated: true)
+        self.setToolbarItems([pauseButton, flexItem], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
@@ -249,20 +239,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     @objc func pauseRecordingButtonAction() {
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, continueRecordingButton, flexItem], animated: true)
-    }
-
-    @objc func cancelRecordingAction() {
-        isRecordingPaused = false
-        cancelRecordingButton.isEnabled = false
-        doneButton.isEnabled = false
-        audioRecorder?.stop()
-        _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
-        self.navigationItem.title = String.localized("voice_message")
+        self.setToolbarItems([continueRecordingButton, flexItem], animated: true)
     }
 
     @objc func cancelAction() {
-        cancelRecordingAction()
+        audioRecorder?.stop()
+        _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
         dismiss(animated: true, completion: nil)
     }
 
@@ -281,7 +263,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            self.setToolbarItems([flexItem, cancelRecordingButton, flexItem, startRecordingButton, flexItem], animated: true)
+            self.setToolbarItems([startRecordingButton, flexItem], animated: true)
             if let oldSessionCategory = oldSessionCategory {
                _ = try? AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
                UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
@@ -306,7 +288,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
                     if self.isFirstUsage {
                         if !granted {
-                            self.setToolbarItems([self.flexItem, self.startRecordingButton, self.flexItem], animated: true)
+                            self.setToolbarItems([self.startRecordingButton, self.flexItem], animated: true)
                             self.startRecordingButton.isEnabled = false
                         } else {
                             self.pauseButton.isEnabled = granted
