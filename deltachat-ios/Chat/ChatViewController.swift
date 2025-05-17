@@ -1213,6 +1213,26 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         present(alert, animated: true, completion: nil)
     }
 
+    private func onMultipleSaveOrUnsave(doSave: Bool) {
+        guard let rows = tableView.indexPathsForSelectedRows else { return }
+        let msgIds = rows.compactMap { messageIds[$0.row] }
+        setEditing(isEditing: false)
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self else { return }
+            // unsave unconditionally, this forces re-saving and moves new saved messages to the bottom as expected
+            for msgId in msgIds {
+                let msg = dcContext.getMessage(id: msgId)
+                if msg.savedMessageId != 0 {
+                    dcContext.deleteMessage(msgId: msg.savedMessageId)
+                }
+            }
+            // save as needed
+            if doSave {
+                dcContext.saveMessages(with: msgIds)
+            }
+        }
+    }
+
     private func onResendActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
             let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
@@ -2077,6 +2097,21 @@ extension ChatViewController {
 
     }
 
+    private func canSaveOrUnsaveMultiple() -> (Bool, Bool) { // returns tuple (canSaveOrUnsave, doSave)
+        guard let rows = tableView.indexPathsForSelectedRows else { return (false, false) }
+        let msgIds = rows.compactMap { messageIds[$0.row] }
+        var doSave = false
+        for msgId in msgIds {
+            let msg = dcContext.getMessage(id: msgId)
+            if !msg.canSave {
+                return (false, false)
+            } else if msg.savedMessageId == 0 {
+                doSave = true // if in doubt, save
+            }
+        }
+        return (true, doSave)
+    }
+
     private func canResend() -> Bool {
         if dcChat.canSend, let rows = tableView.indexPathsForSelectedRows {
             let msgIds = rows.compactMap { messageIds[$0.row] }
@@ -2092,7 +2127,7 @@ extension ChatViewController {
     }
 
     private func evaluateMoreButton() {
-        editingBar.moreButton.isEnabled = canResend()
+        editingBar.moreButton.isEnabled = canSaveOrUnsaveMultiple().0 || canResend()
     }
 
     func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
@@ -2555,6 +2590,12 @@ extension ChatViewController: ChatEditingDelegate {
         if canResend() {
             actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
                 self?.onResendActionPressed()
+            })
+        }
+        let (canSaveOrUnsave, doSave) = canSaveOrUnsaveMultiple()
+        if canSaveOrUnsave {
+            actions.append(UIAction(title: String.localized(doSave ? "save_desktop" : "unsave"), image: UIImage(systemName: doSave ? "bookmark" : "bookmark.slash.fill")) { [weak self] _ in
+                self?.onMultipleSaveOrUnsave(doSave: doSave)
             })
         }
         return UIMenu(children: actions)
