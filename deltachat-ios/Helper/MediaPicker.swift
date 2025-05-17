@@ -70,7 +70,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
                 } else {
                     sheet.detents = [.medium()]
                 }
-                sheet.preferredCornerRadius = 20
             }
         } else {
             if let shownViewController = navigationController?.visibleViewController {

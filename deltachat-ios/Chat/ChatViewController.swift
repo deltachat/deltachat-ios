@@ -1416,7 +1416,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
             sheet.detents = [.large()]
-            sheet.preferredCornerRadius = 20
         }
 
         present(navigationController, animated: true)
@@ -1430,7 +1429,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if #available(iOS 15.0, *) {
             if let sheet = navigationController.sheetPresentationController {
                 sheet.detents = [.large(), .medium()]
-                sheet.preferredCornerRadius = 20
             }
         }
 
@@ -1858,7 +1856,6 @@ extension ChatViewController {
                 if #available(iOS 15.0, *) {
                     if let sheet = navigationController.sheetPresentationController {
                         sheet.detents = [.medium(), .large()]
-                        sheet.preferredCornerRadius = 20
                     }
                 }
                 present(navigationController, animated: true)
@@ -2294,7 +2291,6 @@ extension ChatViewController: BaseMessageCellDelegate {
         if #available(iOS 15.0, *) {
             if let sheet = navigationController.sheetPresentationController {
                 sheet.detents = [.medium()]
-                sheet.preferredCornerRadius = 20
             }
         }
 

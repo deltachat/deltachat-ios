@@ -724,7 +724,6 @@ class ChatListViewController: UITableViewController {
         if #available(iOS 15.0, *) {
             if let sheet = accountSwitchNavigationController.sheetPresentationController {
                 sheet.detents = [.medium(), .large()]
-                sheet.preferredCornerRadius = 20
             }
         } else {
             accountSwitchTransitioningDelegate = PartialScreenModalTransitioningDelegate(from: self, to: accountSwitchNavigationController)
