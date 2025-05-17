@@ -85,10 +85,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         item.width = 24
         return item
     }()
-
-    lazy var flexItem = {
-        return UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    }()
     
     init(dcContext: DcContext) {
         bitrate = dcContext.getConfigInt("media_quality") == 1 ? bitrateWorse : bitrateBalanced
@@ -193,7 +189,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func startRecording() {
-        self.setToolbarItems([pauseButton, flexItem], animated: true)
+        self.setToolbarItems([pauseButton], animated: true)
         doneButton.isEnabled = true
         if FileManager.default.fileExists(atPath: recordingFilePath) {
             _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
@@ -213,7 +209,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func continueRecording() {
-        self.setToolbarItems([pauseButton, flexItem], animated: true)
+        self.setToolbarItems([pauseButton], animated: true)
         isRecordingPaused = false
         audioRecorder?.record()
     }
@@ -225,7 +221,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     @objc func pauseRecording() {
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([continueRecordingButton, spaceItem, playButton, flexItem], animated: true)
+        self.setToolbarItems([continueRecordingButton, spaceItem, playButton], animated: true)
     }
 
     @objc func cancelAction() {
@@ -249,7 +245,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
-            self.setToolbarItems([startRecordingButton, flexItem], animated: true)
+            self.setToolbarItems([startRecordingButton], animated: true)
             if let oldSessionCategory = oldSessionCategory {
                _ = try? AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
                UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
@@ -274,7 +270,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
                     if self.isFirstUsage {
                         if !granted {
-                            self.setToolbarItems([self.startRecordingButton, self.flexItem], animated: true)
+                            self.setToolbarItems([self.startRecordingButton], animated: true)
                             self.startRecordingButton.isEnabled = false
                         } else {
                             self.pauseButton.isEnabled = granted
