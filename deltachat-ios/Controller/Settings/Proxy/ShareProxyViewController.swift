@@ -34,6 +34,7 @@ class ShareProxyViewController: UIViewController {
         explanationLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         explanationLabel.text = String.localized("proxy_share_explain")
         explanationLabel.numberOfLines = 0
+        explanationLabel.textAlignment = .center
 
         contentStackView = UIStackView(arrangedSubviews: [qrContentView, explanationLabel, shareLinkButton, UIView()])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
