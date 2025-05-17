@@ -86,7 +86,17 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         item.width = 24
         return item
     }()
-    
+
+    private func createAudioRecorder() -> AVAudioRecorder? {
+        let recordSettings = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 44100.0,
+            AVEncoderBitRateKey: 32000,
+            AVNumberOfChannelsKey: 1
+        ] as [String: Any]
+        return try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+    }
+
     init(dcContext: DcContext) {
         bitrate = dcContext.getConfigInt("media_quality") == 1 ? bitrateWorse : bitrateBalanced
         super.init(nibName: nil, bundle: nil)
@@ -114,13 +124,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         waveFormView.fill(view: view)
         noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
 
-        let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
-                              AVSampleRateKey: 44100.0,
-                              AVEncoderBitRateKey: 32000,
-                              AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
-        audioRecorder = try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+        audioRecorder = createAudioRecorder()
         audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
     }
