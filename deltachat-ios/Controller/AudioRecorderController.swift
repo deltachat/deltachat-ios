@@ -30,9 +30,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     var recordingFilePath: String = ""
     var audioRecorder: AVAudioRecorder?
 
-    var normalTintColor: UIColor = UIColor.systemBlue
-    var highlightedTintColor = UIColor.systemRed
-
     var isFirstUsage: Bool = true
 
     lazy var waveFormView: SCSiriWaveformView = {
@@ -131,11 +128,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         waveFormView.fill(view: view)
         noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
 
-        self.navigationController?.toolbar.tintColor = normalTintColor
-        self.navigationController?.navigationBar.tintColor = normalTintColor
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.toolbar.isTranslucent = true
-
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
                               AVSampleRateKey: 44100.0,
                               AVEncoderBitRateKey: 32000,
@@ -196,17 +188,16 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func updateMeters() {
-        if let audioRecorder = audioRecorder {
-            if audioRecorder.isRecording || isRecordingPaused {
-                audioRecorder.updateMeters()
-                let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
-                waveFormView.waveColor = highlightedTintColor
-                waveFormView.update(withLevel: CGFloat(normalizedValue))
-                self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
-            } else {
-                waveFormView.waveColor = normalTintColor
-                waveFormView.update(withLevel: 0)
-            }
+        guard let audioRecorder else { return }
+        if isRecordingPaused {
+            waveFormView.waveColor = UIColor.systemGray2
+            waveFormView.update(withLevel: 0)
+        } else {
+            audioRecorder.updateMeters()
+            let normalizedValue: Float = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
+            waveFormView.waveColor = UIColor.systemRed
+            waveFormView.update(withLevel: CGFloat(normalizedValue))
+            self.navigationItem.title = String.timeStringForInterval(audioRecorder.currentTime)
         }
     }
 
