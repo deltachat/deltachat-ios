@@ -29,6 +29,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     var recordingFilePath: String = ""
     var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer?
 
     var isFirstUsage: Bool = true
 
@@ -94,7 +95,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
             AVEncoderBitRateKey: 32000,
             AVNumberOfChannelsKey: 1
         ] as [String: Any]
-        return try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+        return try? AVAudioRecorder(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
     }
 
     init(dcContext: DcContext) {
@@ -222,7 +223,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func playRecording() {
-        // TODO
+        audioRecorder = nil // release file
+        audioPlayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: recordingFilePath))
+        audioPlayer?.prepareToPlay()
+        audioPlayer?.play()
     }
 
     @objc func pauseRecording() {
