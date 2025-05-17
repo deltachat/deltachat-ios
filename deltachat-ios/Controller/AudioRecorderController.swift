@@ -34,7 +34,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     lazy var waveFormView: SCSiriWaveformView = {
         let view = SCSiriWaveformView()
-        view.alpha = 0.0
+        view.isHidden = true
         view.waveColor = .clear
         view.backgroundColor = .clear
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,13 +45,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     lazy var noRecordingPermissionView: UILabel = {
         let view = UILabel()
+        view.isHidden = true
         view.font = .preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.textColor = DcColors.defaultTextColor
         view.lineBreakMode = .byWordWrapping
         view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = String.localized("perm_required_title") + "\n\n" + String.localized("perm_explain_access_to_mic_denied")
+        view.text = String.localized("perm_required_title") + " - " + String.localized("perm_explain_access_to_mic_denied")
         view.textAlignment = .center
         return view
     }()
@@ -264,8 +265,8 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         audioSession.requestRecordPermission({ granted in
             DispatchQueue.main.async { [weak self] in
                 if let self {
-                    self.noRecordingPermissionView.alpha = granted ? 0.0 : 1.0
-                    self.waveFormView.alpha = granted ? 1.0 : 0.0
+                    self.noRecordingPermissionView.isHidden = granted
+                    self.waveFormView.isHidden = !granted
                     self.doneButton.isEnabled = granted
 
                     if self.isFirstUsage {
