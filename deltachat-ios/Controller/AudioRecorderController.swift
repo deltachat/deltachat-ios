@@ -20,16 +20,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     private let bitrateWorse    = 24000
     private let bitrate: Int
 
-    // maximumRecordDuration > 0 -> restrict max time period for one take
-    var maximumRecordDuration = 0.0
-
     // Private variables
     var oldSessionCategory: AVAudioSession.Category?
     var wasIdleTimerDisabled: Bool = false
 
     var recordingFilePath: String = ""
     var audioRecorder: AVAudioRecorder?
-    var audioPlayer: AVAudioPlayer?
 
     var isFirstUsage: Bool = true
 
@@ -78,26 +74,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         return UIBarButtonItem(image: UIImage(systemName: "mic"), style: .plain, target: self, action: #selector(continueRecording))
     }()
 
-    lazy var playButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "play"), style: .plain, target: self, action: #selector(playRecording))
-    }()
-
-    lazy var spaceItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        item.width = 24
-        return item
-    }()
-
-    private func createAudioRecorder() -> AVAudioRecorder? {
-        let recordSettings = [
-            AVFormatIDKey: kAudioFormatMPEG4AAC,
-            AVSampleRateKey: 44100.0,
-            AVEncoderBitRateKey: 32000,
-            AVNumberOfChannelsKey: 1
-        ] as [String: Any]
-        return try? AVAudioRecorder(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
-    }
-
     init(dcContext: DcContext) {
         bitrate = dcContext.getConfigInt("media_quality") == 1 ? bitrateWorse : bitrateBalanced
         super.init(nibName: nil, bundle: nil)
@@ -125,9 +101,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         waveFormView.fill(view: view)
         noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
 
+        let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
+                              AVSampleRateKey: 44100.0,
+                              AVEncoderBitRateKey: 32000,
+                              AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
-        audioRecorder = createAudioRecorder()
+        audioRecorder = try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
         audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
     }
@@ -208,12 +188,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         UIApplication.shared.isIdleTimerDisabled = true
         audioRecorder?.prepareToRecord()
         isRecordingPaused = false
-
-        if maximumRecordDuration <= 0 {
-            audioRecorder?.record()
-        } else {
-            audioRecorder?.record(forDuration: maximumRecordDuration)
-        }
+        audioRecorder?.record()
     }
 
     @objc func continueRecording() {
@@ -222,17 +197,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         audioRecorder?.record()
     }
 
-    @objc func playRecording() {
-        audioRecorder = nil // release file
-        audioPlayer = try? AVAudioPlayer(contentsOf: URL(fileURLWithPath: recordingFilePath))
-        audioPlayer?.prepareToPlay()
-        audioPlayer?.play()
-    }
-
     @objc func pauseRecording() {
         isRecordingPaused = true
         audioRecorder?.pause()
-        self.setToolbarItems([continueRecordingButton, spaceItem, playButton], animated: true)
+        self.setToolbarItems([continueRecordingButton], animated: true)
     }
 
     @objc func cancelAction() {
