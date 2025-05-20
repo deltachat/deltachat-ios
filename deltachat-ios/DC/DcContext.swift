@@ -123,6 +123,10 @@ public class DcContext {
         return Int(dc_create_contact(contextPointer, name, email))
     }
 
+    public func changeContactName(contactId: Int, name: String) {
+        DcAccounts.shared.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
+    }
+
     public func deleteContact(contactId: Int) -> Bool {
         return dc_delete_contact(self.contextPointer, UInt32(contactId)) == 1
     }

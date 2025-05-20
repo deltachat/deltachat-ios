@@ -36,7 +36,7 @@ class EditContactController: UITableViewController {
     }
 
     @objc func saveButtonPressed() {
-        _ = dcContext.createContact(name: nameCell.textField.text ?? "", email: dcContact.email)
+        dcContext.changeContactName(contactId: dcContact.id, name: nameCell.textField.text ?? "")
         navigationController?.popViewController(animated: true)
     }
 
