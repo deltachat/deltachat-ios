@@ -714,7 +714,6 @@ public class DcContext {
             }
         }
         set {
-            setConfig("smtp_certificate_checks", "\(newValue)")
             setConfig("imap_certificate_checks", "\(newValue)")
         }
     }
