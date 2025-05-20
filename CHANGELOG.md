@@ -1,11 +1,13 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.58.5
+2025-05
 
 - Save multiple selected messages in one go
 - Improve voice message UI
 - Fix bitrate for "worse" outgoing media quality
 - Fix notification sound
+- Using core 1.159.5
 
 
 ## v1.58.4
