@@ -90,8 +90,8 @@ class ProfileViewController: UITableViewController {
 
     private lazy var mediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("media")
-        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
+        cell.textLabel?.text = String.localized("webxdc_apps") + " & " + String.localized("media")
+        cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
