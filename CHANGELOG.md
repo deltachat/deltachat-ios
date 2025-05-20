@@ -5,6 +5,7 @@
 - Save multiple selected messages in one go
 - Improve voice message UI
 - Fix bitrate for "worse" outgoing media quality
+- Fix notification sound
 
 
 ## v1.58.4

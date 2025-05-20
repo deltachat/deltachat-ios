@@ -19,6 +19,7 @@ public extension UNMutableNotificationContent {
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
         threadIdentifier = "\(context.id)-\(chat.id)"
+        sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 
@@ -34,6 +35,7 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
+        sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 
@@ -48,6 +50,7 @@ public extension UNMutableNotificationContent {
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
         threadIdentifier = "\(context.id)-\(chat.id)"
+        sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 }
