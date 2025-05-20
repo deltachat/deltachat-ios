@@ -145,6 +145,10 @@
 "images_and_videos" = "Зображення та відео";
 "file" = "Файл";
 "files" = "Файли";
+"files_attach_hint" = "Надсилати оригінальні файли та нестиснуті зображення";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Вибрати з Файлів";
+"choose_from_gallery" = "Вибрати з Галереї";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Застосунок";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
