@@ -16,16 +16,16 @@ class AllMediaViewController: UIPageViewController {
 
     private var pages: [Page] = [
         Page(
+            headerTitle: String.localized("webxdc_apps"),
+            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
+        ),
+        Page(
             headerTitle: String.localized("gallery"),
             type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
         ),
         Page(
             headerTitle: String.localized("files"),
             type1: DC_MSG_FILE, type2: 0, type3: 0
-        ),
-        Page(
-            headerTitle: String.localized("webxdc_apps"),
-            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
         ),
         Page(
             headerTitle: String.localized("audio"),
@@ -48,12 +48,6 @@ class AllMediaViewController: UIPageViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
-
-        // avoid accidental flashing, let it be two taps to get to the image gallery, also for global media
-        if chatId == 0 {
-            let first = pages.removeFirst()
-            pages.append(first)
-        }
     }
 
     required init?(coder: NSCoder) {
