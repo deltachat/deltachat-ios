@@ -384,7 +384,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Nachricht senden an…";
 "enable_realtime" = "Echtzeit-Apps";
-"enable_realtime_explain" = "Aktiviert Echtzeitverbindungen für in Chats verwendeten Apps. Wenn aktiviert, können Chat-Partner möglicherweise Ihre IP-Adresse ermitteln, wenn Sie eine App starten.";
+"enable_realtime_explain" = "Aktiviert Echtzeitverbindungen für an Chats angehängte Apps. Wenn aktiviert, können Chat-Partner möglicherweise Ihre IP-Adresse ermitteln, wenn Sie eine App starten.";
 // map
 "filter_map_on_time" = "Standorte im Zeitrahmen anzeigen";
 "show_location_traces" = "Spuren anzeigen";
@@ -429,12 +429,12 @@
 "tab_docs" = "Dokumente";
 "tab_links" = "Links";
 "tab_map" = "Karte";
-"tab_gallery_empty_hint" = "In diesem Chat geteilte Bilder und Videos werden hier angezeigt.";
-"tab_docs_empty_hint" = "In diesem Chat geteilte Dokumente und Dateien werden hier angezeigt.";
-"tab_image_empty_hint" = "In diesem Chat geteilte Bilder werden hier angezeigt.";
-"tab_video_empty_hint" = "In diesem Chat geteilte Videos werden hier angezeigt.";
-"tab_audio_empty_hint" = "In diesem Chat geteilte Audiodateien und Sprachnachrichten werden hier angezeigt.";
-"tab_webxdc_empty_hint" = "In diesem Chat geteilte Apps werden hier angezeigt.";
+"tab_gallery_empty_hint" = "Diesem Chat angehängte Bilder und Videos werden hier angezeigt.";
+"tab_docs_empty_hint" = "Diesem Chat angehängte Dokumente und Dateien werden hier angezeigt.";
+"tab_image_empty_hint" = "Diesem Chat angehängte Bilder werden hier angezeigt.";
+"tab_video_empty_hint" = "Diesem Chat angehängte Videos werden hier angezeigt.";
+"tab_audio_empty_hint" = "Diesem Chat angehängte Audiodateien und Sprachnachrichten werden hier angezeigt.";
+"tab_webxdc_empty_hint" = "Diesem Chat angehängte Apps werden hier angezeigt.";
 "tab_all_media_empty_hint" = "Medien aus allen Chats werden hier angezeigt.";
 "all_files_empty_hint" = "Dokumente und Dateien aus allen Chats werden hier angezeigt.";
 "all_apps_empty_hint" = "Apps aus allen Chats werden hier angezeigt.";
@@ -925,7 +925,7 @@
 "perm_continue" = "Weiter";
 "perm_explain_access_to_camera_denied" = "Um Fotos oder Videos aufzunehmen, bitte in den System-Einstellungen DeltaChat den Zugriff auf die Kamera erlauben. ";
 // give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
-"perm_explain_access_to_mic_denied" = "Um Audio-Nachrichten zu senden, bitte in den System-Einstellungen DeltaChat den Zugriff auf das Mikrophon erlauben.";
+"perm_explain_access_to_mic_denied" = "Um Audio-Nachrichten zu senden, bitte in den System- oder App-Einstellungen den Zugriff auf das Mikrophon erlauben.";
 "perm_explain_access_to_storage_denied" = "Um Dateien zu empfangen oder zu versenden, bitte in den System-Einstellungen Delta Chat den Zugriff auf den Speicher erlauben.";
 "perm_explain_access_to_location_denied" = "Um einen Standort anzuhängen, bitte in den Systemeinstellungen DeltaChat den Zugriff auf \"Standort\" erlauben.";
 "perm_explain_access_to_notifications_denied" = "Um Benachrichtigungen zu erhalten, öffnen Sie \"Systemeinstellungen / Apps / Delta Chat\" und aktivieren Sie \"Benachrichtigungen\".";
