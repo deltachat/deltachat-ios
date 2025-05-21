@@ -54,6 +54,7 @@
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";
+"apps_and_media" = "Apps & Media";
 "profile" = "Profile";
 "main_menu" = "Main Menu";
 "start_chat" = "Start Chat";
@@ -232,6 +233,7 @@
 "menu_export_attachment" = "Export Attachment";
 "menu_export_attachments" = "Export Attachments";
 "menu_all_media" = "All Media";
+"all_apps_and_media" = "All Apps & Media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Show in Chat";
 "show_app_in_chat" = "Show App in Chat";
