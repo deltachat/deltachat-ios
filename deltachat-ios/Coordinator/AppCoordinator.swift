@@ -10,10 +10,9 @@ class AppCoordinator: NSObject {
     private let dcAccounts: DcAccounts
     // the order below is important as well - and there are two enums, here and at
     // AppStateRestorer (this is error prone and could probably be merged)
-    public  let allMediaTab = 0
-    private let qrTab = 1
-    public  let chatsTab = 2
-    private let settingsTab = 3
+    private let qrTab = 0
+    public  let chatsTab = 1
+    private let settingsTab = 2
 
     private let appStateRestorer = AppStateRestorer.shared
 
@@ -26,12 +25,11 @@ class AppCoordinator: NSObject {
     // MARK: - tabbar view handling
     lazy var tabBarController: UITabBarController = {
         let qrNavController = createQrNavigationController()
-        let allMediaNavController = createAllMediaNavigationController()
         let chatsNavController = createChatsNavigationController()
         let settingsNavController = createSettingsNavigationController()
         let tabBarController = UITabBarController()
         tabBarController.delegate = self
-        tabBarController.viewControllers = [allMediaNavController, qrNavController, chatsNavController, settingsNavController]
+        tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
         tabBarController.tabBar.tintColor = DcColors.primary
         return tabBarController
     }()
@@ -42,14 +40,6 @@ class AppCoordinator: NSObject {
         let qrCodeTabImage: UIImage?
         qrCodeTabImage = UIImage(systemName: "qrcode")
         nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: qrCodeTabImage, tag: qrTab)
-        return nav
-    }
-
-    private func createAllMediaNavigationController() -> UINavigationController {
-        let root = AllMediaViewController(dcContext: dcAccounts.getSelected())
-        let nav = UINavigationController(rootViewController: root)
-        let allMediaTabImage = UIImage(systemName: "photo.on.rectangle")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_all_media"), image: allMediaTabImage, tag: allMediaTab)
         return nav
     }
 
@@ -550,8 +540,7 @@ class AppCoordinator: NSObject {
             }
         }
 
-        self.tabBarController.setViewControllers([createAllMediaNavigationController(),
-                                                  createQrNavigationController(),
+        self.tabBarController.setViewControllers([createQrNavigationController(),
                                                   createChatsNavigationController(),
                                                   createSettingsNavigationController()], animated: false)
         presentTabBarController()

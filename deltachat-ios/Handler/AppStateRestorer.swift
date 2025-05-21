@@ -2,15 +2,14 @@ import UIKit
 
 class AppStateRestorer {
 
-    private let lastActiveTabKey = "last_active_tab2"
+    private let lastActiveTabKey = "last_active_tab3"
     private let lastActiveChatId = "last_active_chat_id"
-    private let offsetKey = 10
+    private let offsetKey = 11
 
     // UserDefaults returns 0 by default which conflicts with tab 0 -> therefore we map our tab indexes by adding an offsetKey
 
     private enum Tab: Int {
-        case allMediaTab = 10 // there are two enums, here and at AppCoordinator (this is error prone and could probably be merged)
-        case qrTab = 11
+        case qrTab = 11 // there are two enums, here and at AppCoordinator (this is error prone and could probably be merged)
         case chatTab = 12
         case settingsTab = 13
         case firstLaunch = 0
@@ -19,16 +18,10 @@ class AppStateRestorer {
     static let shared: AppStateRestorer = AppStateRestorer()
 
     func restoreLastActiveTab() -> Int {
-
-        let restoredTab = UserDefaults.standard.integer(forKey: lastActiveTabKey)
-
-        guard let lastTab = Tab(rawValue: restoredTab) else {
-            safe_fatalError("invalid restored tab")
-            return -1
-        }
+        let lastTab = Tab(rawValue: UserDefaults.standard.integer(forKey: lastActiveTabKey)) ?? .firstLaunch
 
         switch lastTab {
-        case .allMediaTab, .qrTab, .chatTab, .settingsTab:
+        case .qrTab, .chatTab, .settingsTab:
             return lastTab.rawValue - offsetKey
         case .firstLaunch:
             return -1
