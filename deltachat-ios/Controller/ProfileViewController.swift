@@ -15,7 +15,6 @@ class ProfileViewController: UITableViewController {
     enum Options {
         case bio
         case media
-        case locations
         case startChat
     }
 
@@ -92,14 +91,6 @@ class ProfileViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("webxdc_apps") + " & " + String.localized("media")
         cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
-    private lazy var locationsCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("locations")
-        cell.imageView?.image = UIImage(systemName: "map")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -264,10 +255,7 @@ class ProfileViewController: UITableViewController {
             actions.append(.addr)
         }
 
-        options.append(.media) // to unconditionally, to have a visual anchor
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            options.append(.locations)
-        }
+        options.append(.media) // add unconditionally, to have a visual anchor
 
         memberManagementRows = 0
         if let chat {
@@ -490,12 +478,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showLocations() {
-        if chatId != 0 {
-            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
-        }
-    }
-
     private func showEphemeralController() {
         navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
@@ -702,8 +684,6 @@ class ProfileViewController: UITableViewController {
                 return statusCell
             case .media:
                 return mediaCell
-            case .locations:
-                return locationsCell
             case .startChat:
                 return startChatCell
             }
@@ -754,9 +734,6 @@ class ProfileViewController: UITableViewController {
             case .media:
                 tableView.deselectRow(at: indexPath, animated: true)
                 showMedia()
-            case .locations:
-                tableView.deselectRow(at: indexPath, animated: true)
-                showLocations()
             case .startChat:
                 showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
             }

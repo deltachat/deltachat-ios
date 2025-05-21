@@ -74,7 +74,7 @@ class AllMediaViewController: UIPageViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.rightBarButtonItem = chatId == 0 && UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
+        navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
     }
 
     // MARK: - actions
