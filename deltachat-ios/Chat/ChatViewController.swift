@@ -854,7 +854,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
-                subtitle = String.localized("chat_self_talk_subtitle")
+                subtitle = nil
             } else if chatContactIds.count >= 1 {
                 let dcContact = dcContext.getContact(id: chatContactIds[0])
                 if dcContact.isBot {
@@ -873,6 +873,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             self.navigationItem.setLeftBarButton(nil, animated: true)
             
             var rightBarButtonItems = [UIBarButtonItem]()
+
+            let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
+            rightBarButtonItems.append(button)
+
             if !dcChat.isSelfTalk {
                 if let image = dcChat.profileImage {
                     initialsBadge.setImage(image)
@@ -884,9 +888,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 initialsBadge.setRecentlySeen(recentlySeen)
 
                 rightBarButtonItems.append(badgeItem)
-
-                let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
-                rightBarButtonItems.append(button)
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
