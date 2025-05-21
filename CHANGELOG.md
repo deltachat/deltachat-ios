@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- Access "Apps & Media" by an dedicated icon in chat's upper left corner
-- "Recent Apps & Media" are available from the settings
+- Access "Apps & Media" by an dedicated icon in chat's upper right corner
+- "All Apps & Media" are available from the settings
 - Speed up opening profiles
 
 
