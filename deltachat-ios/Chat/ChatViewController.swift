@@ -862,6 +862,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             var rightBarButtonItems = [UIBarButtonItem]()
 
             let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
+            button.accessibilityLabel = String.localized("apps_and_media")
             rightBarButtonItems.append(button)
 
             if !dcChat.isSelfTalk {

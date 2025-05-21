@@ -122,7 +122,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("pref_chats_and_media")
+        title = String.localized("pref_chats")
         tableView.rowHeight = UITableView.automaticDimension
     }
 

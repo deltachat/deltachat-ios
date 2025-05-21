@@ -89,7 +89,7 @@ class ProfileViewController: UITableViewController {
 
     private lazy var mediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("webxdc_apps") + " & " + String.localized("media")
+        cell.textLabel?.text = String.localized("apps_and_media")
         cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
         cell.accessoryType = .disclosureIndicator
         return cell

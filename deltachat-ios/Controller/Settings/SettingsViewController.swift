@@ -45,7 +45,7 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var chatsAndMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.chatsAndMedia.rawValue
-        cell.textLabel?.text = String.localized("pref_chats_and_media")
+        cell.textLabel?.text = String.localized("pref_chats")
         cell.imageView?.image = UIImage(systemName: "message")
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -83,7 +83,7 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var allAppsAndMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.allAppsAndMedia.rawValue
-        cell.textLabel?.text =  "Recent Apps & Media"
+        cell.textLabel?.text =  String.localized("all_apps_and_media")
         cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
         cell.accessoryType = .disclosureIndicator
         return cell
