@@ -232,9 +232,7 @@ class ProfileViewController: UITableViewController {
         guard let ui = notification.userInfo, let changedChatId = ui["chat_id"] as? Int else { return }
 
         if changedChatId == chatId {
-            DispatchQueue.main.async { [weak self] in
-                self?.updateMediaCellValues()
-            }
+            updateMediaCellValues()
         }
 
         if sharedChatIdsContain(chatId: changedChatId) {
@@ -401,7 +399,13 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateMediaCellValues() {
-        mediaCell.detailTextLabel?.text = chatId == 0 ? String.localized("none") : dcContext.getAllMediaCountString(chatId: chatId)
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            let label = chatId == 0 ? String.localized("none") : dcContext.getAllMediaCountString(chatId: chatId)
+            DispatchQueue.main.async { [weak self] in
+                self?.mediaCell.detailTextLabel?.text = label
+            }
+        }
     }
 
     private func updateMembers() {
