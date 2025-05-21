@@ -100,18 +100,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
-    private lazy var initialsBadge: InitialsBadge = {
-        let badge: InitialsBadge
-        badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("menu_view_profile"))
-        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
-        badge.accessibilityTraits = .button
-        return badge
-    }()
-
-    private lazy var badgeItem: UIBarButtonItem = {
-        return UIBarButtonItem(customView: initialsBadge)
-    }()
-
     private lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
@@ -484,8 +472,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(
-            alongsideTransition: { [weak self] _ in
-                self?.navigationItem.setRightBarButton(self?.badgeItem, animated: true)
+            alongsideTransition: { _ in
             },
             completion: { [weak self] _ in
                 guard let self else { return }
@@ -879,15 +866,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
             if !dcChat.isSelfTalk {
                 if let image = dcChat.profileImage {
-                    initialsBadge.setImage(image)
+                    titleView.initialsBadge.setImage(image)
                 } else {
-                    initialsBadge.setName(dcChat.name)
-                    initialsBadge.setColor(dcChat.color)
+                    titleView.initialsBadge.setName(dcChat.name)
+                    titleView.initialsBadge.setColor(dcChat.color)
                 }
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
-                initialsBadge.setRecentlySeen(recentlySeen)
-
-                rightBarButtonItems.append(badgeItem)
+                titleView.initialsBadge.setRecentlySeen(recentlySeen)
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)

@@ -3,6 +3,14 @@ import DcCore
 
 class ChatTitleView: UIStackView {
 
+    lazy var initialsBadge: InitialsBadge = {
+        let badge: InitialsBadge
+        badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("menu_view_profile"))
+        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
+        badge.accessibilityTraits = .button
+        return badge
+    }()
+
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -63,14 +71,23 @@ class ChatTitleView: UIStackView {
         return subtitleLabel
     }()
 
+    private lazy var textsContainer: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleContainer, subtitleLabel])
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
     init() {
         super.init(frame: .zero)
         
         isAccessibilityElement = true
-        axis = .vertical
+        axis = .horizontal
         alignment = .center
-        addArrangedSubview(titleContainer)
-        addArrangedSubview(subtitleLabel)
+        spacing = 5
+        addArrangedSubview(initialsBadge)
+        addArrangedSubview(textsContainer)
     }
 
     required init(coder: NSCoder) {
