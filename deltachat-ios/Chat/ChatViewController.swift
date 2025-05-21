@@ -882,7 +882,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 initialsBadge.setRecentlySeen(recentlySeen)
+
                 rightBarButtonItems.append(badgeItem)
+
+                let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
+                rightBarButtonItems.append(button)
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
@@ -1174,6 +1178,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.searchController.isActive = true
         }
+    }
+
+    @objc private func appsAndMediaPressed() {
+        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     private func clipperButtonMenu() -> UIMenu {
