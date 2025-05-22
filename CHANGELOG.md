@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Speed up opening profiles
+
+
 ## v1.58.5
 2025-05
 
