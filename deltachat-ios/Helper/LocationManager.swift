@@ -120,7 +120,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func disableLocationStreamingInAllChats() {
         if dcContext.isSendingLocationsToChat(chatId: 0) {
             let dcChatlist = dcContext.getChatlist(flags: 0, queryString: nil, queryId: 0)
-            for i in 0...dcChatlist.length {
+            for i in 0..<dcChatlist.length {
                 let chatId = dcChatlist.getChatId(index: i)
                 if dcContext.isSendingLocationsToChat(chatId: chatId) {
                     dcContext.sendLocationsToChat(chatId: chatId, seconds: 0)
