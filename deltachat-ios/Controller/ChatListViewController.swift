@@ -294,8 +294,11 @@ class ChatListViewController: UITableViewController {
     @objc
     public func onNavigationTitleTapped() {
         titleView.isEnabled = false // immedidate feedback
-        DispatchQueue.main.async { // opening controller in next loop allows the system to render the immedidate feedback
-            self.navigationController?.pushViewController(ConnectivityViewController(dcContext: self.dcContext), animated: true)
+        CATransaction.flush()
+
+        self.navigationController?.pushViewController(ConnectivityViewController(dcContext: self.dcContext), animated: true)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // /immedidate feedback
             self.titleView.isEnabled = true
         }
     }
