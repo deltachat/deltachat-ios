@@ -12,7 +12,7 @@ class AllMediaViewController: UIPageViewController {
 
     private let dcContext: DcContext
     private let chatId: Int
-    private var prevIndex: Int = 0
+    private var prevIndex: Int = -1
 
     private var pages: [Page] = [
         Page(
@@ -60,21 +60,31 @@ class AllMediaViewController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = segmentControl
-
-
-        setViewControllers(
-            [makeViewController(pages[0])],
-            direction: .forward,
-            animated: true,
-            completion: nil
-        )
-
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+
+        // select the first page that actually contains some media
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self else { return }
+            var selectIndex = 0
+            for i in 0..<pages.count {
+                let page = pages[i]
+                if !dcContext.getChatMedia(chatId: chatId, messageType: page.type1, messageType2: page.type2, messageType3: page.type3).isEmpty {
+                    selectIndex = i
+                    break
+                }
+            }
+
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                if prevIndex == -1 {
+                    let page = pages[selectIndex]
+                    setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
+                    segmentControl.selectedSegmentIndex = selectIndex
+                    prevIndex = selectIndex
+                }
+            }
+        }
     }
 
     // MARK: - actions
