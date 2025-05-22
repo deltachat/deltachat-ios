@@ -1160,9 +1160,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             return
         }
         titleView.setEnabled(false) // immedidate feedback
-        DispatchQueue.main.async { // opening controller in next loop allows the system to render the immedidate feedback
-            self.showChatDetail(chatId: self.chatId)
-            self.titleView.setEnabled(true)
+        CATransaction.flush()
+
+        self.showChatDetail(chatId: self.chatId)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.titleView.setEnabled(true) // /immedidate feedback
         }
     }
 
