@@ -115,5 +115,9 @@ class ChatTitleView: UIStackView {
         titleLabel.isEnabled = enabled
         subtitleLabel.isEnabled = enabled
         verifiedView.alpha = enabled ? 1 : 0.4
+        muteView.alpha = enabled ? 1 : 0.4
+        ephemeralView.alpha = enabled ? 1 : 0.4
+        locationView.alpha = enabled ? 1 : 0.4
+        initialsBadge.alpha = enabled ? 1 : 0.4
     }
 }
