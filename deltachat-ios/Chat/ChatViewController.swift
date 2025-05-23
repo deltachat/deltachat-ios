@@ -470,22 +470,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(
-            alongsideTransition: { _ in
-            },
-            completion: { [weak self] _ in
-                guard let self else { return }
-                self.updateTitle()
-                DispatchQueue.main.async {
-                    self.reloadData()
-                }
-            }
-        )
-        super.viewWillTransition(to: size, with: coordinator)
-    }
-
-
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             handleUserVisibility(isVisible: true)
