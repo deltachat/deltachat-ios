@@ -113,8 +113,9 @@ public class BaseMessageCell: UITableViewCell {
         return view
     }()
 
+    let avatarSize = 34.0
     lazy var avatarView: InitialsBadge = {
-        let view = InitialsBadge(size: 28)
+        let view = InitialsBadge(size: avatarSize)
         view.setColor(UIColor.gray)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -234,9 +235,9 @@ public class BaseMessageCell: UITableViewCell {
 
         contentView.addConstraints([
             avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 2),
-            avatarView.constraintAlignBottomTo(contentView),
-            avatarView.constraintWidthTo(28, priority: .defaultHigh),
-            avatarView.constraintHeightTo(28, priority: .defaultHigh),
+            avatarView.constraintAlignBottomTo(messageBackgroundContainer),
+            avatarView.constraintWidthTo(avatarSize, priority: .defaultHigh),
+            avatarView.constraintHeightTo(avatarSize, priority: .defaultHigh),
             topLabel.constraintAlignTopTo(messageBackgroundContainer, paddingTop: 6),
             topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
