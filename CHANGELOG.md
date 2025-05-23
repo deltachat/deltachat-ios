@@ -4,6 +4,7 @@
 
 - Access "Apps & Media" by an dedicated icon in chat's upper right corner
 - "All Apps & Media" are available from the settings
+- Clearer app lists by removing redundant "App" subtitle
 - Speed up opening profiles
 
 
