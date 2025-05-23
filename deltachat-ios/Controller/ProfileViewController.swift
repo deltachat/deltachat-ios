@@ -473,7 +473,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showMedia() {
-        if chatId != 0 && dcContext.getAllMediaCount(chatId: chatId) > 0 {
+        if chatId != 0 {
             navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
         }
     }
