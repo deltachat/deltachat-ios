@@ -8,6 +8,7 @@
 - Speed up opening profiles
 - Improve hint for app drafts
 - Fix: align avatar in groups to message
+- Fix: return correct results when searching for a space
 
 
 ## v1.58.5
