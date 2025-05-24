@@ -341,7 +341,7 @@ class ProfileViewController: UITableViewController {
                 }
                 let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 moreOptions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
-                moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
+                actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
 
             actions.append(contentsOf: [
