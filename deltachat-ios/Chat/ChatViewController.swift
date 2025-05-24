@@ -176,7 +176,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
-
     }
 
     required init?(coder _: NSCoder) {

@@ -18,7 +18,7 @@ class ChatListViewModel: NSObject {
 
     // if searchfield is empty we show default chat list
     private var showSearchResults: Bool {
-        return searchActive && searchText.containsCharacters()
+        return searchActive && !searchText.isEmpty
     }
 
     private var chatList: DcChatlist!
@@ -80,7 +80,7 @@ class ChatListViewModel: NSObject {
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
 
         var chatTitleIndexes: [Int] = []
-        if searchText.containsCharacters() {
+        if !searchText.isEmpty {
             let chatName = chat.name
             chatTitleIndexes = chatName.containsExact(subSequence: searchText)
         }

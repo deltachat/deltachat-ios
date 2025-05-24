@@ -22,10 +22,6 @@ public extension String {
         return resultString
     }
 
-    func containsCharacters() -> Bool {
-        return !trimmingCharacters(in: [" "]).isEmpty
-    }
-
     func containsExact(subSequence: String?) -> [Int] {
         guard let searchText = subSequence else {
             return []
