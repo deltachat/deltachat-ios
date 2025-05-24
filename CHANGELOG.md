@@ -6,6 +6,7 @@
 - "All Apps & Media" are available from the settings
 - Clearer app lists by removing redundant "App" subtitle
 - Speed up opening profiles
+- Improve hint for app drafts
 - Fix: align avatar in groups to message
 
 

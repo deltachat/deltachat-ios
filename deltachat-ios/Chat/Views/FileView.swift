@@ -95,9 +95,9 @@ public class FileView: UIView {
         horizontalLayout = true
     }
 
-    public func configure(message: DcMsg) {
+    public func configure(message: DcMsg, forceWebxdcSummary: String? = nil) {
         if message.type == DC_MSG_WEBXDC {
-           configureWebxdc(message: message)
+            configureWebxdc(message: message, forceWebxdcSummary: forceWebxdcSummary)
         } else if message.type == DC_MSG_FILE || message.isUnsupportedMediaFile {
             configureFile(message: message)
         } else {
@@ -105,7 +105,7 @@ public class FileView: UIView {
         }
     }
 
-    private func configureWebxdc(message: DcMsg) {
+    private func configureWebxdc(message: DcMsg, forceWebxdcSummary: String?) {
         fileImageView.layer.cornerRadius = 8
         let dict = message.getWebxdcInfoDict()
         if let iconfilePath = dict["icon"] as? String {
@@ -124,7 +124,7 @@ public class FileView: UIView {
         fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .body)
         fileTitle.text = document.isEmpty ? name : "\(document) – \(name)"
-        fileSubtitle.text = summary.isEmpty ? String.localized("webxdc_app") : summary
+        fileSubtitle.text = forceWebxdcSummary ?? (summary.isEmpty ? String.localized("webxdc_app") : summary)
     }
 
     private func configureFile(message: DcMsg) {
