@@ -54,6 +54,7 @@
 "save" = "Сохранить";
 "chat" = "Чат";
 "media" = "Медиафайлы";
+"apps_and_media" = "Приложения и медиафайлы";
 "profile" = "Профиль";
 "main_menu" = "Главное меню";
 "start_chat" = "Начать чат";
@@ -232,6 +233,7 @@
 "menu_export_attachment" = "Экспорт вложения";
 "menu_export_attachments" = "Экспорт вложений";
 "menu_all_media" = "Все медиафайлы";
+"all_apps_and_media" = "Все приложения и медиафайлы";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Показать в чате";
 "show_app_in_chat" = "Показать приложение в чате";

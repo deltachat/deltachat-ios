@@ -156,6 +156,7 @@
 "webxdc_apps" = "Apps";
 "webxdc_store_url" = "App Picker URL";
 "webxdc_store_url_explain" = "If set, the URL will be used as the App Picker instead of the default one";
+"webxdc_draft_hint" = "Tap \"Send\" to share";
 "home" = "Home";
 "games" = "Games";
 "tools" = "Tools";

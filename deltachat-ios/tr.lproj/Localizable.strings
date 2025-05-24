@@ -54,6 +54,7 @@
 "save" = "Kaydet";
 "chat" = "Sohbet";
 "media" = "Ortam";
+"apps_and_media" = "Uygulamalar ve Ortamlar";
 "profile" = "Profil";
 "main_menu" = "Ana Menü";
 "start_chat" = "Sohbet Başlat";
@@ -155,6 +156,7 @@
 "webxdc_apps" = "Uygulamalar";
 "webxdc_store_url" = "Uygulama Seçici URL\'si";
 "webxdc_store_url_explain" = "Ayarlanırsa URL, varsayılan birinin yerine Uygulama Seçici olarak kullanılacak";
+"webxdc_draft_hint" = "Paylaşmak için “Gönder”e dokunun";
 "home" = "Ana Sayfa";
 "games" = "Oyunlar";
 "tools" = "Araçlar";
@@ -232,6 +234,7 @@
 "menu_export_attachment" = "İlişiği Dışa Aktar";
 "menu_export_attachments" = "İlişikleri Dışa Aktar";
 "menu_all_media" = "Tüm Ortamlar";
+"all_apps_and_media" = "Tüm Uygulamalar ve Ortamlar";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Sohbette Göster";
 "show_app_in_chat" = "Uygulamayı Sohbette Göster";
@@ -384,7 +387,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
 "enable_realtime" = "Gerçek Zamanlı Uygulamalar";
-"enable_realtime_explain" = "Sohbetlerde paylaşılan uygulamalar için gerçek zamanlı bağlantıları etkinleştirin. Etkinleştirilirse, bir uygulama başlattığınızda sohbet ortakları IP adresinizi bulabilir.";
+"enable_realtime_explain" = "Sohbetlere iliştirilen uygulamalar için gerçek zamanlı bağlantıları etkinleştirin. Etkinleştirilirse, bir uygulamayı başlattığınızda sohbet ortakları IP adresinizi keşfedebilir.";
 // map
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
@@ -429,15 +432,15 @@
 "tab_docs" = "Belgeler";
 "tab_links" = "Bağlantılar";
 "tab_map" = "Harita";
-"tab_gallery_empty_hint" = "Bu sohbette paylaşılan görseller ve videolar burada görünecek.";
-"tab_docs_empty_hint" = "Bu sohbette paylaşılan belgeler ve diğer dosyalar burada görünecek.";
-"tab_image_empty_hint" = "Bu sohbette paylaşılan görseller burada görünecek.";
-"tab_video_empty_hint" = "Bu sohbette paylaşılan videolar burada görünecek.";
-"tab_audio_empty_hint" = "Bu sohbette paylaşılan ses dosyaları ve sesli iletiler burada görünecek.";
-"tab_webxdc_empty_hint" = "Bu sohbette paylaşılan uygulamalar burada görünecek.";
-"tab_all_media_empty_hint" = "Herhangi bir sohbette paylaşılan ortamlar burada görünecek.";
-"all_files_empty_hint" = "Herhangi bir sohbette paylaşılan belgeler ve diğer dosyalar burada görünecek.";
-"all_apps_empty_hint" = "Herhangi bir sohbette paylaşılan uygulamalar burada görünecek.";
+"tab_gallery_empty_hint" = "Bu sohbete iliştirilen görseller ve videolar burada görünecek.";
+"tab_docs_empty_hint" = "Bu sohbete iliştirilen belgeler ve diğer dosyalar burada görünecek.";
+"tab_image_empty_hint" = "Bu sohbete iliştirilen görseller burada görünecek.";
+"tab_video_empty_hint" = "Bu sohbete iliştirilen videolar burada görünecek.";
+"tab_audio_empty_hint" = "Bu sohbete iliştirilen ses dosyaları ve sesli iletiler burada görünecek.";
+"tab_webxdc_empty_hint" = "Bu sohbete iliştirilen uygulamalar burada görünecek.";
+"tab_all_media_empty_hint" = "Herhangi bir sohbete iliştirilen ortamlar burada görünecek.";
+"all_files_empty_hint" = "Herhangi bir sohbete iliştirilen belgeler ve diğer dosyalar burada görünecek.";
+"all_apps_empty_hint" = "Herhangi bir sohbete iliştirilen uygulamalar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "En Boy Oranı Izgarası";
