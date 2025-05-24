@@ -50,7 +50,7 @@ public class DocumentPreview: DraftPreview {
                 tmpMsg.text = draft.text
             }
 
-            fileView.configure(message: tmpMsg)
+            fileView.configure(message: tmpMsg, forceWebxdcSummary: String.localized("webxdc_draft_hint"))
             fileView.fileTitle.numberOfLines = 2
 
             delegate?.onAttachmentAdded()
