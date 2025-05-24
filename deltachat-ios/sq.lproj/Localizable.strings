@@ -53,6 +53,7 @@
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
+"apps_and_media" = "Aplikacione & Media";
 "profile" = "Profil";
 "main_menu" = "Menuja Kryesore";
 "start_chat" = "Nisni Fjalosje";
@@ -228,6 +229,7 @@
 "menu_export_attachment" = "Eksporto Bashkëngjitje";
 "menu_export_attachments" = "Eksporto Bashkëngjitje";
 "menu_all_media" = "Krejt Mediat";
+"all_apps_and_media" = "Krejt Aplikacionet & Mediat";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Shfaqe në Fjalosje";
 "show_app_in_chat" = "Shfaqe Aplikacionin në Fjalosje";

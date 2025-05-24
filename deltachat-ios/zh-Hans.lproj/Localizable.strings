@@ -54,6 +54,7 @@
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
+"apps_and_media" = "应用和媒体";
 "profile" = "账号";
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
@@ -155,6 +156,7 @@
 "webxdc_apps" = "私人应用";
 "webxdc_store_url" = "应用选择器 URL";
 "webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
+"webxdc_draft_hint" = "轻按“发送”分享";
 "home" = "首页";
 "games" = "游戏";
 "tools" = "工具";
@@ -232,6 +234,7 @@
 "menu_export_attachment" = "导出附件";
 "menu_export_attachments" = "导出附件";
 "menu_all_media" = "所有媒体";
+"all_apps_and_media" = "所有应用和媒体";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "在聊天中显示";
 "show_app_in_chat" = "在聊天中显示应用";

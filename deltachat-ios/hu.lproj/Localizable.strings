@@ -54,6 +54,7 @@
 "save" = "Mentés";
 "chat" = "Csevegés";
 "media" = "Média";
+"apps_and_media" = "Alkalmazások & média";
 "profile" = "Profil";
 "main_menu" = "Főmenü";
 "start_chat" = "Csevegés indítása";
@@ -232,6 +233,7 @@
 "menu_export_attachment" = "Melléklet exportálása";
 "menu_export_attachments" = "Mellékletek exportálása";
 "menu_all_media" = "Összes média";
+"all_apps_and_media" = "Összes alkalmazás & média";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Megjelenítés a csevegésben";
 "show_app_in_chat" = "Alkalmazás megjelenítése a csevegésben";

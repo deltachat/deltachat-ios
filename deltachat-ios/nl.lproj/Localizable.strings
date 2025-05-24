@@ -54,6 +54,7 @@
 "save" = "Opslaan";
 "chat" = "Gesprek";
 "media" = "Media";
+"apps_and_media" = "Apps en media";
 "profile" = "Profiel";
 "main_menu" = "Hoofdmenu";
 "start_chat" = "Gesprek beginnen";
@@ -232,6 +233,7 @@
 "menu_export_attachment" = "Bijlage exporteren";
 "menu_export_attachments" = "Bijlagen exporteren";
 "menu_all_media" = "Alle media";
+"all_apps_and_media" = "Alle apps en media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Tonen in bijbehorend gesprek";
 "show_app_in_chat" = "App tonen in gesprek";
