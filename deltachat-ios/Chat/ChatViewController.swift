@@ -848,15 +848,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             button.setImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
             button.accessibilityLabel = String.localized("apps_and_media")
             button.addTarget(self, action: #selector(appsAndMediaPressed), for: .touchUpInside)
-            button.menu = UIMenu(title: "", children: [
-                UIAction(title: "Option 1", image: UIImage(systemName: "star"), handler: { _ in
-                    // Handle Option 1
-                }),
-                UIAction(title: "Option 2", image: UIImage(systemName: "gear"), handler: { _ in
-                    // Handle Option 2
-                }),
-            ])
-
+            button.menu = appsLongTabMenu()
             let barButtonItem = UIBarButtonItem(customView: button)
             rightBarButtonItems.append(barButtonItem)
 
@@ -1164,6 +1156,35 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @objc private func appsAndMediaPressed() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
+    }
+
+    private func appsLongTabMenu() -> UIMenu {
+        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        }
+
+        func actions() -> [UIMenuElement] {
+            var actions = [UIMenuElement]()
+
+            let action = UIAction(title: String.localized("webxdc_apps"), image: nil, handler: { _ in
+            })
+            if #available(iOS 15.0, *) {
+                action.subtitle = String.localized("tab_webxdc_empty_hint")
+            }
+            actions.append(action)
+
+            return actions
+        }
+
+        if #available(iOS 15.0, *) {
+            return UIMenu(children: [UIDeferredMenuElement.uncached({ completion in
+                completion(actions())
+            })])
+        } else {
+            return UIMenu(children: [UIDeferredMenuElement({ completion in
+                completion(actions())
+            })])
+        }
     }
 
     private func clipperButtonMenu() -> UIMenu {
