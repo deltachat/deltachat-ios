@@ -844,9 +844,21 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             
             var rightBarButtonItems = [UIBarButtonItem]()
 
-            let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
+            let button = UIButton(type: .system)
+            button.setImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
             button.accessibilityLabel = String.localized("apps_and_media")
-            rightBarButtonItems.append(button)
+            button.addTarget(self, action: #selector(appsAndMediaPressed), for: .touchUpInside)
+            button.menu = UIMenu(title: "", children: [
+                UIAction(title: "Option 1", image: UIImage(systemName: "star"), handler: { _ in
+                    // Handle Option 1
+                }),
+                UIAction(title: "Option 2", image: UIImage(systemName: "gear"), handler: { _ in
+                    // Handle Option 2
+                }),
+            ])
+
+            let barButtonItem = UIBarButtonItem(customView: button)
+            rightBarButtonItems.append(barButtonItem)
 
             if !dcChat.isSelfTalk {
                 if let image = dcChat.profileImage {
