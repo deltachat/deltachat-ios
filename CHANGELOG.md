@@ -6,6 +6,7 @@
 - "All Apps & Media" are available from the settings
 - Clearer app lists by removing redundant "App" subtitle
 - Speed up opening profiles
+- Long-tap chat title as a shortcut to start in-chat search
 - Improve hint for app drafts
 - Fix: align avatar in groups to message
 - Fix: return correct results when searching for a space

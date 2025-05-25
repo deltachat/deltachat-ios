@@ -100,6 +100,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
 
+    private lazy var navBarLongTap: UILongPressGestureRecognizer = {
+        UILongPressGestureRecognizer(target: self, action: #selector(chatProfileLongPressed))
+    }()
+
     private lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
@@ -276,6 +280,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         super.viewWillAppear(animated)
         // this will be removed in viewWillDisappear
         navigationController?.navigationBar.addGestureRecognizer(navBarTap)
+        navigationController?.navigationBar.addGestureRecognizer(navBarLongTap)
         updateTitle()
 
         if activateSearch {
@@ -345,6 +350,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
         navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
+        navigationController?.navigationBar.removeGestureRecognizer(navBarLongTap)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -857,9 +863,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 }
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
-            } else {
-                let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
-                rightBarButtonItems.append(button)
             }
             
             navigationItem.rightBarButtonItems = rightBarButtonItems
@@ -1130,9 +1133,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     @objc private func chatProfilePressed() {
-        if tableView.isEditing {
-            return
-        }
+        guard !tableView.isEditing else { return }
+
         titleView.setEnabled(false) // immedidate feedback
         CATransaction.flush()
 
@@ -1143,7 +1145,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    @objc private func searchPressed() {
+    @objc private func chatProfileLongPressed() {
+        guard !tableView.isEditing, !searchController.isActive else { return }
+
         navigationItem.searchController = self.searchController
         DispatchQueue.main.async { [weak self] in
             self?.searchController.isActive = true
