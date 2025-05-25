@@ -310,9 +310,12 @@ class ProfileViewController: UITableViewController {
             actions.append(contentsOf: [primaryMenu])
 
             if let chat, chat.canSend {
-                let chatIsEphemeral = chatId != 0 && dcContext.getChatEphemeralTimer(chatId: chatId) > 0
+                let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
                 let action = action("ephemeral_messages", "stopwatch", showEphemeralController)
-                action.state = chatIsEphemeral ? .on : .off
+                action.state = ephemeralTimer > 0 ? .on : .off
+                if ephemeralTimer > 0, #available(iOS 15.0, *) {
+                    action.subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
+                }
                 actions.append(action)
             }
 

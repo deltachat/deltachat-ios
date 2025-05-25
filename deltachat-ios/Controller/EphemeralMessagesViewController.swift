@@ -61,7 +61,7 @@ class EphemeralMessagesViewController: UITableViewController {
         navigationItem.rightBarButtonItem = okButton
     }
 
-    public static func getValString(val: Int) -> String {
+    public static func getValString(val: Int) -> String? {
         switch val {
         case 0:
             return String.localized("off")
@@ -80,7 +80,7 @@ class EphemeralMessagesViewController: UITableViewController {
         case Time.fiveWeeks:
             return String.localized("after_5_weeks")
         default:
-            return "Err"
+            return nil
         }
     }
 
