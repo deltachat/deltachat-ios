@@ -844,6 +844,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             
             var rightBarButtonItems = [UIBarButtonItem]()
 
+            //  TODO: ERROR: adding a button this way leads to open the profile on normal button tap
+            //  maybe the handler of the title has precedence somehow
             let button = UIButton(type: .system)
             button.setImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
             button.accessibilityLabel = String.localized("apps_and_media")
