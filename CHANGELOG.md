@@ -7,6 +7,7 @@
 - Clearer app lists by removing redundant "App" subtitle
 - Speed up opening profiles
 - Improve hint for app drafts
+- Show 'Disappearing Messages' state alrady in menu
 - Fix: align avatar in groups to message
 - Fix: return correct results when searching for a space
 
