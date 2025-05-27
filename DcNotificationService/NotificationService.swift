@@ -102,14 +102,13 @@ class NotificationService: UNNotificationServiceExtension {
                         }
                     }
                 } else {
-                    bestAttemptContent.title = "Background Call"
-                    bestAttemptContent.body = "This needs iOS 14.5 or newer"
-                    bestAttemptContent.userInfo["account_id"] = dcContext.id
-                    bestAttemptContent.userInfo["chat_id"] = msg.chatId
-                    bestAttemptContent.userInfo["message_id"] = msg.id
-
-                    uniqueChats["\(dcContext.id)-\(msg.chatId)"] = bestAttemptContent.title
-                    messageCount += 1
+                    let content = UNMutableNotificationContent()
+                    content.title = "Incoming Call"
+                    content.body = "This requires iOS 14.5 or newer"
+                    content.userInfo["account_id"] = dcContext.id
+                    content.userInfo["chat_id"] = msg.chatId
+                    content.userInfo["message_id"] = msg.id
+                    notifications.append(content)
                 }
             }
         }
