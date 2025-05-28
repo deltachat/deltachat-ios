@@ -498,10 +498,6 @@ public class DcContext {
         return nil
     }
 
-    public func configure() {
-        dc_configure(contextPointer)
-    }
-
     public func setChatMuteDuration(chatId: Int, duration: Int) {
         dc_set_chat_mute_duration(self.contextPointer, UInt32(chatId), Int64(duration))
     }
