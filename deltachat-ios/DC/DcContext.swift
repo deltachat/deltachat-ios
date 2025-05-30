@@ -498,7 +498,7 @@ public class DcContext {
         return nil
     }
 
-    public func addOrUpdateTransport() {
+    public func addOrUpdateTransport(param: DcEnteredLoginParam) {
         // TODO
     }
 
