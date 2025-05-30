@@ -864,23 +864,12 @@ class ChatListViewController: UITableViewController {
 
     public func handleMailto(askToChat: Bool = true) {
         if let mailtoAddress = RelayHelper.shared.mailtoAddress {
-            // FIXME: the line below should work
-            // var contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
-
-            // workaround:
-            let contacts: [Int] = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: mailtoAddress)
-            let index = contacts.firstIndex(where: { dcContext.getContact(id: $0).email == mailtoAddress }) ?? -1
-            var contactId = 0
-            if index >= 0 {
-                contactId = contacts[index]
-            }
-
+            let contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
             if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
                 showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
             } else if askToChat {
                 askToChatWith(address: mailtoAddress)
             } else {
-                // Attention: we should have already asked in a different view controller!
                 createAndShowNewChat(contactId: 0, email: mailtoAddress)
             }
         }

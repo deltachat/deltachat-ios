@@ -162,7 +162,7 @@ public class DcContext {
     }
 
     public func lookupContactIdByAddress(_ address: String) -> Int {
-        return Int(dc_lookup_contact_id_by_addr(contextPointer, addr))
+        return Int(dc_lookup_contact_id_by_addr(contextPointer, address))
     }
 
     public func acceptChat(chatId: Int) {
