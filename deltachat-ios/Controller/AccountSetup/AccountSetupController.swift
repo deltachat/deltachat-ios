@@ -473,7 +473,8 @@ class AccountSetupController: UITableViewController {
             evaluateAdvancedSetup()
         }
 
-        dcContext.addOrUpdateTransport()
+        let loginParam = DcEnteredLoginParam(addr: "user@example.com")
+        dcContext.addOrUpdateTransport(param: loginParam)
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
         self.progressAlertHandler = progressAlertHandler
