@@ -5,7 +5,6 @@ import DcCore
 class AccountSetupController: UITableViewController {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
-    private var skipOauth = false
     var onLoginSuccess: (() -> Void)?
     var progressAlertHandler: ProgressAlertHandler?
 
@@ -69,7 +68,7 @@ class AccountSetupController: UITableViewController {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
         cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
-        cell.textField.tag = tagTextFieldEmail // will be used to eventually show oAuth-Dialogue when pressing return key
+        cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = .next
         return cell
@@ -78,7 +77,7 @@ class AccountSetupController: UITableViewController {
     private lazy var passwordCell: TextFieldCell = {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
         cell.tag = tagPasswordCell
-        cell.textField.tag = tagTextFieldPassword  // will be used to eventually show oAuth-Dialogue when selecting
+        cell.textField.tag = tagTextFieldPassword
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
         return cell
@@ -361,14 +360,7 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let tappedCell = tableView.cellForRow(at: indexPath) else { return }
-        // handle tap on password -> show oAuthDialogue
         switch tappedCell.tag {
-        case tagPasswordCell:
-            if let textFieldCell = tappedCell as? TextFieldCell {
-                if let emailAdress = textFieldCell.getText() {
-                    _ = showOAuthAlertIfNeeded(emailAddress: emailAdress, handleCancel: nil)
-                }
-            }
         case tagAdvancedCell:
             toggleAdvancedSection()
         case tagImapSecurityCell:
@@ -419,15 +411,7 @@ class AccountSetupController: UITableViewController {
         }
 
         func loginButtonPressedContinue() {
-            let oAuthStarted = showOAuthAlertIfNeeded(emailAddress: emailAddress, handleCancel: loginButtonPressed)
-            // if canceled we will run this method again but this time oAuthStarted will be false
-
-            if oAuthStarted {
-                // the loginFlow will be handled by oAuth2
-                return
-            }
-
-            let password = passwordCell.getText() ?? "" // empty passwords are ok -> for oauth there is no password needed
+            let password = passwordCell.getText() ?? ""
 
             login(emailAddress: emailAddress, password: password)
         }
@@ -498,24 +482,6 @@ class AccountSetupController: UITableViewController {
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
         self.progressAlertHandler = progressAlertHandler
-    }
-
-    // returns true if needed
-    private func showOAuthAlertIfNeeded(emailAddress: String, handleCancel: (() -> Void)?) -> Bool {
-        return false
-    }
-
-    @objc func oauthLoginApproved(notification: Notification) {
-        guard let userInfo = notification.userInfo, let token = userInfo["token"] as? String, let emailAddress = emailCell.getText() else {
-            return
-        }
-        passwordCell.setText(text: token)
-        dcContext.setAuthFlags(flags: Int(DC_LP_AUTH_OAUTH2))
-        login(emailAddress: emailAddress, password: token, skipAdvanceSetup: true)
-    }
-
-    private func launchOAuthBrowserWindow(url: URL) {
-        UIApplication.shared.open(url) // this opens safari as seperate app
     }
 
     private func evaluateAdvancedSetup() {
@@ -655,17 +621,10 @@ extension AccountSetupController: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == tagTextFieldEmail {
-            // this will re-enable possible oAuth2-login
-            skipOauth = false
-        }
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == tagTextFieldEmail {
-            _ = showOAuthAlertIfNeeded(emailAddress: textField.text ?? "", handleCancel: {
-                self.passwordCell.textField.becomeFirstResponder()
-            })
             updateProviderInfo()
         }
     }

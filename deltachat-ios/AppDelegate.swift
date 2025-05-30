@@ -190,16 +190,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // `open` is called when an url should be opened by Delta Chat.
-    // we currently use that for handling oauth2 and for handing openpgp4fpr.
+    // we currently use that for handing openpgp4fpr.
     //
     // before `open` gets called, `didFinishLaunchingWithOptions` is called.
     func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         logger.info("➡️ open url")
-
-        // gets here when app returns from oAuth2-Setup process - the url contains the provided token
-        // if let params = url.queryParameters, let token = params["code"] {
-        //    NotificationCenter.default.post(name: NSNotification.Name("oauthLoginApproved"), object: nil, userInfo: ["token": token])
-        // }
 
         switch url.scheme?.lowercased() {
         case "dcaccount", "dclogin":
