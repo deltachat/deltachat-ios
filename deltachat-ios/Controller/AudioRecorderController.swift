@@ -102,7 +102,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         waveFormView.fill(view: view)
         noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
 
-        let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC,
+        let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC_HE,
                               AVSampleRateKey: 44100.0,
                               AVEncoderBitRateKey: bitrate,
                               AVNumberOfChannelsKey: 1] as [String: Any]
