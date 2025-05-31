@@ -498,8 +498,12 @@ public class DcContext {
         return nil
     }
 
-    public func configure() {
-        dc_configure(contextPointer)
+    public func addOrUpdateTransport(param: DcEnteredLoginParam) {
+        // TODO
+    }
+
+    public func addTransportFromQr(qrCode: String) {
+        DcAccounts.shared.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
     }
 
     public func setChatMuteDuration(chatId: Int, duration: Int) {
