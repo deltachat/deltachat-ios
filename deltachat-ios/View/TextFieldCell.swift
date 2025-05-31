@@ -214,12 +214,6 @@ class TextFieldCell: UITableViewCell {
 
 extension TextFieldCell: UITextFieldDelegate {
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let delegate = textFieldDelegate {
-            delegate.textFieldDidBeginEditing?(textField)
-        }
-    }
-
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let delegate = textFieldDelegate {
             delegate.textFieldDidEndEditing?(textField)
