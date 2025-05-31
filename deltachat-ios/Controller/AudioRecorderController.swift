@@ -192,9 +192,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
             oldSessionCategory = session.category
             try session.setCategory(AVAudioSession.Category.record)
             UIApplication.shared.isIdleTimerDisabled = true
-            audioRecorder?.prepareToRecord()
+            guard let audioRecorder, audioRecorder.prepareToRecord() else { logger.error("prepareToRecord() failed"); return }
             isRecordingPaused = false
-            audioRecorder?.record()
+            guard audioRecorder.record() else { logger.error("record() failed"); return }
         } catch {
             logger.error("Cannot start recording: \(error)")
         }
@@ -203,7 +203,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     @objc func continueRecording() {
         self.setToolbarItems([pauseButton], animated: true)
         isRecordingPaused = false
-        audioRecorder?.record()
+        guard let audioRecorder, audioRecorder.record() else { logger.error("continue recording failed"); return  }
     }
 
     @objc func pauseRecording() {
