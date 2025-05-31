@@ -615,9 +615,6 @@ extension AccountSetupController: UITextFieldDelegate {
         }
     }
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-    }
-
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == tagTextFieldEmail {
             updateProviderInfo()
