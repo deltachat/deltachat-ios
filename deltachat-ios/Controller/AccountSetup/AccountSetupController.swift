@@ -398,7 +398,7 @@ class AccountSetupController: UITableViewController {
         } else {
             tableView.deleteRows(at: advancedIndexPaths, with: .fade)
         }
-        tableView.reloadData() // needed to force a redraw
+        tableView.reloadData()
     }
 
     @objc private func cancelButtonPressed() {
@@ -406,13 +406,10 @@ class AccountSetupController: UITableViewController {
     }
 
     @objc private func loginButtonPressed() {
-        guard let emailAddress = emailCell.getText() else {
-            return // handle case when either email or pw fields are empty
-        }
+        guard let emailAddress = emailCell.getText() else { return }
 
         func loginButtonPressedContinue() {
             let password = passwordCell.getText() ?? ""
-
             login(emailAddress: emailAddress, password: password)
         }
 
@@ -468,15 +465,14 @@ class AccountSetupController: UITableViewController {
         }
         progressAlertHandler.dataSource = self
 
-        resignFirstResponderOnAllCells()	// this will resign focus from all textFieldCells so the keyboard wont pop up anymore
+        resignFirstResponderOnAllCells()
         dcContext.addr = emailAddress
         dcContext.mailPw = password
 
         if !skipAdvanceSetup {
-            evaluateAdvancedSetup() // this will set MRConfig related to advanced fields
+            evaluateAdvancedSetup()
         }
 
-        print("oAuth-Flag when loggin in: \(dcContext.getAuthFlags())")
         dcAccounts.stopIo()
         dcContext.configure()
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
@@ -513,7 +509,6 @@ class AccountSetupController: UITableViewController {
     }
 
     private func handleLoginSuccess() {
-        // used when login hud successfully went through
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.registerForNotifications()
         appDelegate.prepopulateWidget()
