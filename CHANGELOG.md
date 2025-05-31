@@ -8,6 +8,7 @@
 - Speed up opening profiles
 - Improve hint for app drafts
 - Show 'Disappearing Messages' state alrady in menu
+- Fix sending voice messages if "Settings / Chats / Media Quality" is set to "Worse Quality"
 - Fix: align avatar in groups to message
 - Fix: return correct results when searching for a space
 
