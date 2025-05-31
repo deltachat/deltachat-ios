@@ -108,7 +108,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
                               AVNumberOfChannelsKey: 1] as [String: Any]
         let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
         recordingFilePath = NSTemporaryDirectory().appending(globallyUniqueString).appending(".m4a")
-        audioRecorder = try? AVAudioRecorder.init(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+        do {
+            audioRecorder = try AVAudioRecorder(url: URL(fileURLWithPath: recordingFilePath), settings: recordSettings)
+        } catch {
+            logger.error("Cannot init AVAudioRecorder: \(error)")
+        }
         audioRecorder?.delegate = self
         audioRecorder?.isMeteringEnabled = true
     }
@@ -178,18 +182,22 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func startRecording() {
-        self.setToolbarItems([pauseButton], animated: true)
-        doneButton.isEnabled = true
-        if FileManager.default.fileExists(atPath: recordingFilePath) {
-            _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
+        do {
+            self.setToolbarItems([pauseButton], animated: true)
+            doneButton.isEnabled = true
+            if FileManager.default.fileExists(atPath: recordingFilePath) {
+                try FileManager.default.removeItem(atPath: recordingFilePath)
+            }
+            let session = AVAudioSession.sharedInstance()
+            oldSessionCategory = session.category
+            try session.setCategory(AVAudioSession.Category.record)
+            UIApplication.shared.isIdleTimerDisabled = true
+            audioRecorder?.prepareToRecord()
+            isRecordingPaused = false
+            audioRecorder?.record()
+        } catch {
+            logger.error("Cannot start recording: \(error)")
         }
-        let session = AVAudioSession.sharedInstance()
-        oldSessionCategory = session.category
-        _ = try? session.setCategory(AVAudioSession.Category.record)
-        UIApplication.shared.isIdleTimerDisabled = true
-        audioRecorder?.prepareToRecord()
-        isRecordingPaused = false
-        audioRecorder?.record()
     }
 
     @objc func continueRecording() {
@@ -206,7 +214,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func cancelAction() {
         audioRecorder?.stop()
-        _ = try? FileManager.default.removeItem(atPath: recordingFilePath)
+        do {
+            try FileManager.default.removeItem(atPath: recordingFilePath)
+        } catch {
+            logger.error("Cannot cancel action: \(error)")
+        }
         dismiss(animated: true, completion: nil)
     }
 
@@ -224,14 +236,18 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if flag {
-            self.setToolbarItems([startRecordingButton], animated: true)
-            if let oldSessionCategory = oldSessionCategory {
-               _ = try? AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
-               UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
+        do {
+            if flag {
+                self.setToolbarItems([startRecordingButton], animated: true)
+                if let oldSessionCategory = oldSessionCategory {
+                    try AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
+                    UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
+                }
+            } else {
+                try FileManager.default.removeItem(at: URL(fileURLWithPath: recordingFilePath))
             }
-        } else {
-            try? FileManager.default.removeItem(at: URL(fileURLWithPath: recordingFilePath))
+        } catch {
+            logger.error("Error in audioRecorderDidFinishRecording: \(error)")
         }
     }
 
