@@ -1,33 +1,38 @@
 import Foundation
 
 public struct DcEnteredLoginParam: Codable {
-    public let addr: String
-    public let certificateChecks: String?
-    public let imapPort: Int?
-    public let imapSecurity: String?
-    public let imapServer: String?
-    public let imapUser: String?
-    public let oauth2: Bool?
-    public let password: String?
-    public let smtpPassword: String?
-    public let smtpPort: Int?
-    public let smtpSecurity: String?
-    public let smtpServer: String?
-    public let smtpUser: String?
+    public var addr: String
+    public var certificateChecks: String?
+    public var imapPort: Int?
+    public var imapSecurity: String?
+    public var imapServer: String?
+    public var imapUser: String?
+    public var oauth2: Bool?
+    public var password: String?
+    public var smtpPassword: String?
+    public var smtpPort: Int?
+    public var smtpSecurity: String?
+    public var smtpServer: String?
+    public var smtpUser: String?
 
     public init(addr: String) {
         self.addr = addr
-        self.certificateChecks = nil
-        self.imapPort = nil
-        self.imapSecurity = nil
-        self.imapServer = nil
-        self.imapUser = nil
-        self.oauth2 = nil
-        self.password = nil
-        self.smtpPassword = nil
-        self.smtpPort = nil
-        self.smtpSecurity = nil
-        self.smtpServer = nil
-        self.smtpUser = nil
+    }
+
+    public static func socketSecurity(fromInt: Int) -> String {
+        switch fromInt {
+        case 1: return "ssl"
+        case 2: return "starttls"
+        case 3: return "plain"
+        default: return "automatic"
+        }
+    }
+
+    public static func certificateChecks(fromInt: Int) -> String {
+        switch fromInt {
+        case 1: return "strict"
+        case 2: return "acceptInvalidCertificates"
+        default: return "automatic"
+        }
     }
 }
