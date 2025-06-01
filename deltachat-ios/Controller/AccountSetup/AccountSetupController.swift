@@ -290,15 +290,15 @@ class AccountSetupController: UITableViewController {
         navigationItem.rightBarButtonItem = loginButton
 
         // init text cells (selections are initialized at viewWillAppear)
-        emailCell.setText(text: dcContext.addr ?? nil)
-        passwordCell.setText(text: dcContext.mailPw ?? nil)
-        imapUserCell.setText(text: dcContext.mailUser ?? nil)
-        imapServerCell.setText(text: dcContext.mailServer ?? nil)
-        imapPortCell.setText(text: editablePort(port: dcContext.mailPort))
-        smtpUserCell.setText(text: dcContext.sendUser ?? nil)
-        smtpPasswordCell.setText(text: dcContext.sendPw ?? nil)
-        smtpServerCell.setText(text: dcContext.sendServer ?? nil)
-        smtpPortCell.setText(text: editablePort(port: dcContext.sendPort))
+        emailCell.setText(text: dcContext.addr)
+        passwordCell.setText(text: dcContext.getConfig("mail_pw"))
+        imapUserCell.setText(text: dcContext.getConfig("mail_user"))
+        imapServerCell.setText(text: dcContext.getConfig("mail_server"))
+        imapPortCell.setText(text: editablePort(port: dcContext.getConfig("mail_port")))
+        smtpUserCell.setText(text: dcContext.getConfig("send_user"))
+        smtpPasswordCell.setText(text: dcContext.getConfig("send_pw"))
+        smtpServerCell.setText(text: dcContext.getConfig("send_server"))
+        smtpPortCell.setText(text: editablePort(port: dcContext.getConfig("send_port")))
         handleLoginButton()
     }
 
@@ -466,15 +466,15 @@ class AccountSetupController: UITableViewController {
         progressAlertHandler.dataSource = self
 
         resignFirstResponderOnAllCells()
-        dcContext.addr = emailAddress
-        dcContext.mailPw = password
-        dcContext.mailServer = imapServerCell.getText() ?? nil
-        dcContext.mailPort = imapPortCell.getText() ?? nil
-        dcContext.mailUser = imapUserCell.getText() ?? nil
-        dcContext.sendServer = smtpServerCell.getText() ?? nil
-        dcContext.sendPort = smtpPortCell.getText() ?? nil
-        dcContext.sendUser = smtpUserCell.getText() ?? nil
-        dcContext.sendPw = smtpPasswordCell.getText() ?? nil
+        dcContext.setConfig("addr", emailAddress)
+        dcContext.setConfig("mail_pw", password)
+        dcContext.setConfig("mail_server", imapServerCell.getText())
+        dcContext.setConfig("mail_port", imapPortCell.getText())
+        dcContext.setConfig("mail_user", imapUserCell.getText())
+        dcContext.setConfig("send_server", smtpServerCell.getText())
+        dcContext.setConfig("send_port", smtpPortCell.getText())
+        dcContext.setConfig("send_user", smtpUserCell.getText())
+        dcContext.setConfig("send_pw", smtpPasswordCell.getText())
         dcContext.setConfigInt("mail_security", imapSecurityValue.value)
         dcContext.setConfigInt("send_security", smtpSecurityValue.value)
         dcContext.certificateChecks = certValue

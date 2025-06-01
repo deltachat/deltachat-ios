@@ -666,48 +666,7 @@ public class DcContext {
     }
 
     public var addr: String? {
-        get { return getConfig("addr") }
-        set { setConfig("addr", newValue) }
-    }
-
-    public var mailServer: String? {
-        get { return getConfig("mail_server") }
-        set { setConfig("mail_server", newValue) }
-    }
-
-    public var mailUser: String? {
-        get { return getConfig("mail_user") }
-        set { setConfig("mail_user", newValue) }
-    }
-
-    public var mailPw: String? {
-        get { return getConfig("mail_pw") }
-        set { setConfig("mail_pw", newValue) }
-    }
-
-    public var mailPort: String? {
-        get { return getConfig("mail_port") }
-        set { setConfig("mail_port", newValue) }
-    }
-
-    public var sendServer: String? {
-        get { return getConfig("send_server") }
-        set { setConfig("send_server", newValue) }
-    }
-
-    public var sendUser: String? {
-        get { return getConfig("send_user") }
-        set { setConfig("send_user", newValue) }
-    }
-
-    public var sendPw: String? {
-        get { return getConfig("send_pw") }
-        set { setConfig("send_pw", newValue) }
-    }
-
-    public var sendPort: String? {
-        get { return getConfig("send_port") }
-        set { setConfig("send_port", newValue) }
+        return getConfig("addr")
     }
 
     public var certificateChecks: Int {
