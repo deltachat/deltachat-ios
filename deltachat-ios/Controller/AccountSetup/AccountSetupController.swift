@@ -440,22 +440,21 @@ class AccountSetupController: UITableViewController {
             self?.handleLoginSuccess()
         }
         progressAlertHandler.dataSource = self
-
         resignFirstResponderOnAllCells()
-        dcContext.setConfig("addr", emailAddress)
-        dcContext.setConfig("mail_pw", passwordCell.getText() ?? "")
-        dcContext.setConfig("mail_server", imapServerCell.getText())
-        dcContext.setConfig("mail_port", imapPortCell.getText())
-        dcContext.setConfig("mail_user", imapUserCell.getText())
-        dcContext.setConfig("send_server", smtpServerCell.getText())
-        dcContext.setConfig("send_port", smtpPortCell.getText())
-        dcContext.setConfig("send_user", smtpUserCell.getText())
-        dcContext.setConfig("send_pw", smtpPasswordCell.getText())
-        dcContext.setConfigInt("mail_security", imapSecurityValue.value)
-        dcContext.setConfigInt("send_security", smtpSecurityValue.value)
-        dcContext.certificateChecks = certValue
 
-        let loginParam = DcEnteredLoginParam(addr: "user@example.com")
+        var loginParam = DcEnteredLoginParam(addr: emailAddress)
+        loginParam.password = passwordCell.getText() ?? ""
+        loginParam.imapServer = imapServerCell.getText()
+        loginParam.imapPort = imapPortCell.getText().flatMap { Int($0) }
+        loginParam.imapUser = imapUserCell.getText()
+        loginParam.imapSecurity = DcEnteredLoginParam.socketSecurity(fromInt: imapSecurityValue.value)
+        loginParam.smtpServer = smtpServerCell.getText()
+        loginParam.smtpPort = smtpPortCell.getText().flatMap { Int($0) }
+        loginParam.smtpUser = smtpUserCell.getText()
+        loginParam.smtpPassword = smtpPasswordCell.getText()
+        loginParam.smtpSecurity = DcEnteredLoginParam.socketSecurity(fromInt: smtpSecurityValue.value)
+        loginParam.certificateChecks = DcEnteredLoginParam.certificateChecks(fromInt: certValue)
+
         dcContext.addOrUpdateTransport(param: loginParam)
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
