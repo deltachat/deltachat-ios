@@ -105,7 +105,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagImapServerCell
-        cell.setText(text: dcContext.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -119,7 +118,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_login",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.setText(text: dcContext.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
         cell.tag = tagImapUserCell
         cell.textField.autocorrectionType = .no
@@ -146,7 +144,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagImapPortCell
-        cell.setText(text: editablePort(port: dcContext.mailPort))
         cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -168,7 +165,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
-        cell.setText(text: dcContext.sendServer ?? nil)
         cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -183,7 +179,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpLogin
-        cell.setText(text: dcContext.sendUser ?? nil)
         cell.tag = tagSmtpUserCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -198,7 +193,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.tag = tagSmtpPortCell
-        cell.setText(text: editablePort(port: dcContext.sendPort))
         cell.textField.tag = tagTextFieldSmtpPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -210,7 +204,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.textContentType = UITextContentType.password
-        cell.setText(text: dcContext.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
         cell.tag = tagSmtpPasswordCell
@@ -229,10 +222,8 @@ class AccountSetupController: UITableViewController {
     let smtpSecurityValue: AccountSetupSecurityValue
 
     lazy var certCheckCell: UITableViewCell = {
-        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_certificate_checks")
-        cell.detailTextLabel?.text = certCheckType
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -297,18 +288,27 @@ class AccountSetupController: UITableViewController {
         }
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = loginButton
+
+        // init text cells (selections are initialized at viewWillAppear)
         emailCell.setText(text: dcContext.addr ?? nil)
         passwordCell.setText(text: dcContext.mailPw ?? nil)
+        imapUserCell.setText(text: dcContext.mailUser ?? nil)
+        imapServerCell.setText(text: dcContext.mailServer ?? nil)
+        imapPortCell.setText(text: editablePort(port: dcContext.mailPort))
+        smtpUserCell.setText(text: dcContext.sendUser ?? nil)
+        smtpPasswordCell.setText(text: dcContext.sendPw ?? nil)
+        smtpServerCell.setText(text: dcContext.sendServer ?? nil)
+        smtpPortCell.setText(text: editablePort(port: dcContext.sendPort))
+        handleLoginButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initSelectionCells()
-        handleLoginButton()
-        updateCells()
-    }
 
-    private func updateCells() {
+        // init selection cells (updated them when coming back from a child view controller)
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
         proxyCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
@@ -513,18 +513,11 @@ class AccountSetupController: UITableViewController {
         appDelegate.registerForNotifications()
         appDelegate.prepopulateWidget()
 
-        initSelectionCells()
         if let onLoginSuccess {
             onLoginSuccess()
         } else {
             navigationController?.popViewController(animated: true)
         }
-    }
-
-    private func initSelectionCells() {
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
     }
 
     private func resignFirstResponderOnAllCells() {
@@ -627,7 +620,6 @@ extension AccountSetupController: CertificateCheckDelegate {
         certValue = newValue
     }
 }
-
 
 class AccountSetupSecurityValue: SecuritySettingsDelegate {
     var value: Int
