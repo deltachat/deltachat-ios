@@ -468,42 +468,22 @@ class AccountSetupController: UITableViewController {
         resignFirstResponderOnAllCells()
         dcContext.addr = emailAddress
         dcContext.mailPw = password
-
-        evaluateAdvancedSetup()
+        dcContext.mailServer = imapServerCell.getText() ?? nil
+        dcContext.mailPort = imapPortCell.getText() ?? nil
+        dcContext.mailUser = imapUserCell.getText() ?? nil
+        dcContext.sendServer = smtpServerCell.getText() ?? nil
+        dcContext.sendPort = smtpPortCell.getText() ?? nil
+        dcContext.sendUser = smtpUserCell.getText() ?? nil
+        dcContext.sendPw = smtpPasswordCell.getText() ?? nil
+        dcContext.setConfigInt("mail_security", imapSecurityValue.value)
+        dcContext.setConfigInt("send_security", smtpSecurityValue.value)
+        dcContext.certificateChecks = certValue
 
         let loginParam = DcEnteredLoginParam(addr: "user@example.com")
         dcContext.addOrUpdateTransport(param: loginParam)
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
         self.progressAlertHandler = progressAlertHandler
-    }
-
-    private func evaluateAdvancedSetup() {
-        for cell in advancedSectionCells {
-            if let textFieldCell = cell as? TextFieldCell {
-                switch  textFieldCell.tag {
-                case tagImapServerCell:
-                    dcContext.mailServer = textFieldCell.getText() ?? nil
-                case tagImapPortCell:
-                    dcContext.mailPort = textFieldCell.getText() ?? nil
-                case tagImapUserCell:
-                    dcContext.mailUser = textFieldCell.getText() ?? nil
-                case tagSmtpServerCell:
-                    dcContext.sendServer = textFieldCell.getText() ?? nil
-                case tagSmtpPortCell:
-                    dcContext.sendPort = textFieldCell.getText() ?? nil
-                case tagSmtpUserCell:
-                    dcContext.sendUser = textFieldCell.getText() ?? nil
-                case tagSmtpPasswordCell:
-                    dcContext.sendPw = textFieldCell.getText() ?? nil
-                default:
-                    logger.info("unknown identifier \(cell.tag)")
-                }
-            }
-        }
-        dcContext.setConfigInt("mail_security", imapSecurityValue.value)
-        dcContext.setConfigInt("send_security", smtpSecurityValue.value)
-        dcContext.certificateChecks = certValue
     }
 
     private func handleLoginSuccess() {
