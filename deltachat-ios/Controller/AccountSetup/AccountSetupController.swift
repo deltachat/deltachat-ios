@@ -390,23 +390,18 @@ class AccountSetupController: UITableViewController {
     @objc private func loginButtonPressed() {
         guard let emailAddress = emailCell.getText() else { return }
 
-        func loginButtonPressedContinue() {
-            let password = passwordCell.getText() ?? ""
-            login(emailAddress: emailAddress, password: password)
-        }
-
         if dcContext.isConfigured(),
            let oldAddress = dcContext.getConfig("configured_addr"),
            oldAddress != emailAddress {
             let msg = String.localizedStringWithFormat(String.localized("aeap_explanation"), oldAddress, emailAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
-                loginButtonPressedContinue()
+            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { [weak self] _ in
+                self?.login(emailAddress: emailAddress)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            loginButtonPressedContinue()
+            login(emailAddress: emailAddress)
         }
     }
 
@@ -440,8 +435,7 @@ class AccountSetupController: UITableViewController {
         providerInfoShowing = false
     }
 
-    private func login(emailAddress: String, password: String) {
-
+    private func login(emailAddress: String) {
         let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
         }
@@ -449,7 +443,7 @@ class AccountSetupController: UITableViewController {
 
         resignFirstResponderOnAllCells()
         dcContext.setConfig("addr", emailAddress)
-        dcContext.setConfig("mail_pw", password)
+        dcContext.setConfig("mail_pw", passwordCell.getText() ?? "")
         dcContext.setConfig("mail_server", imapServerCell.getText())
         dcContext.setConfig("mail_port", imapPortCell.getText())
         dcContext.setConfig("mail_user", imapUserCell.getText())
