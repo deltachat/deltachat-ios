@@ -458,7 +458,7 @@ class AccountSetupController: UITableViewController {
         providerInfoShowing = false
     }
 
-    private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
+    private func login(emailAddress: String, password: String) {
 
         let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
@@ -469,9 +469,7 @@ class AccountSetupController: UITableViewController {
         dcContext.addr = emailAddress
         dcContext.mailPw = password
 
-        if !skipAdvanceSetup {
-            evaluateAdvancedSetup()
-        }
+        evaluateAdvancedSetup()
 
         let loginParam = DcEnteredLoginParam(addr: "user@example.com")
         dcContext.addOrUpdateTransport(param: loginParam)
