@@ -8,17 +8,8 @@ class AccountSetupController: UITableViewController {
     var onLoginSuccess: (() -> Void)?
     var progressAlertHandler: ProgressAlertHandler?
 
-    private let tagEmailCell = 0
-    private let tagPasswordCell = 1
     private let tagAdvancedCell = 2
-    private let tagImapServerCell = 3
-    private let tagImapUserCell = 4
-    private let tagImapPortCell = 5
     private let tagImapSecurityCell = 6
-    private let tagSmtpServerCell = 7
-    private let tagSmtpUserCell = 8
-    private let tagSmtpPortCell = 9
-    private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
     private let tagViewLogCell = 15
@@ -66,7 +57,6 @@ class AccountSetupController: UITableViewController {
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
-        cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -76,7 +66,6 @@ class AccountSetupController: UITableViewController {
 
     private lazy var passwordCell: TextFieldCell = {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
-        cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
@@ -104,7 +93,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_server",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagImapServerCell
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -119,7 +107,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldImapLogin
-        cell.tag = tagImapUserCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -143,7 +130,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_port",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagImapPortCell
         cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -165,7 +151,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
-        cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -179,7 +164,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpLogin
-        cell.tag = tagSmtpUserCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -192,7 +176,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_smtp_port",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagSmtpPortCell
         cell.textField.tag = tagTextFieldSmtpPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -206,7 +189,6 @@ class AccountSetupController: UITableViewController {
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
-        cell.tag = tagSmtpPasswordCell
         cell.textField.returnKeyType = .next
         return cell
     }()
