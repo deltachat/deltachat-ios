@@ -670,18 +670,13 @@ public class DcContext {
     }
 
     public var certificateChecks: Int {
-        get {
-            switch Int32(getConfigInt("imap_certificate_checks")) {
-            case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
-                return Int(DC_CERTCK_ACCEPT_INVALID)
-            case DC_CERTCK_STRICT:
-                return Int(DC_CERTCK_STRICT)
-            default:
-                return Int(DC_CERTCK_AUTO)
-            }
-        }
-        set {
-            setConfig("imap_certificate_checks", "\(newValue)")
+        switch Int32(getConfigInt("imap_certificate_checks")) {
+        case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
+            return Int(DC_CERTCK_ACCEPT_INVALID)
+        case DC_CERTCK_STRICT:
+            return Int(DC_CERTCK_STRICT)
+        default:
+            return Int(DC_CERTCK_AUTO)
         }
     }
 

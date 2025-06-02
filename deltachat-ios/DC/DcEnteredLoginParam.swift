@@ -20,18 +20,18 @@ public struct DcEnteredLoginParam: Codable {
     }
 
     public static func socketSecurity(fromInt: Int) -> String {
-        switch fromInt {
-        case 1: return "ssl"
-        case 2: return "starttls"
-        case 3: return "plain"
+        switch Int32(fromInt) {
+        case DC_SOCKET_SSL: return "ssl"
+        case DC_SOCKET_STARTTLS: return "starttls"
+        case DC_SOCKET_PLAIN: return "plain"
         default: return "automatic"
         }
     }
 
     public static func certificateChecks(fromInt: Int) -> String {
-        switch fromInt {
-        case 1: return "strict"
-        case 2: return "acceptInvalidCertificates"
+        switch Int32(fromInt) {
+        case DC_CERTCK_STRICT: return "strict"
+        case DC_CERTCK_ACCEPT_INVALID: return "acceptInvalidCertificates"
         default: return "automatic"
         }
     }
