@@ -499,7 +499,7 @@ public class DcContext {
     }
 
     public func addOrUpdateTransport(param: DcEnteredLoginParam) {
-        // TODO
+        DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
     }
 
     public func addTransportFromQr(qrCode: String) {
