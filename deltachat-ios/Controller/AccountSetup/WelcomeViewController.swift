@@ -202,7 +202,7 @@ class WelcomeViewController: UIViewController {
                 dcContext = dcAccounts.getSelected()
                 navigationItem.title = String.localized(canCancel ? "add_account" : "welcome_desktop")
             }
-            progressAlertHandler.updateProgressAlert(error: ui["errorMessage"] as? String)
+            progressAlertHandler.updateProgressAlert(error: ui["errorMessage"] as? String ?? "ErrString")
             stopAccessingSecurityScopedResource()
             removeBackupProgressObserver()
         } else if let done = ui["done"] as? Bool, done {

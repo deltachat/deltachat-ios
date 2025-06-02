@@ -1541,13 +1541,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func stageVideo(url: NSURL) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
-            self.configureDraftArea(draft: self.draft)
-            self.focusInputTextView()
-            FileHelper.deleteFileAsync(atPath: url.relativePath)
-        }
+        self.draft.setAttachment(viewType: DC_MSG_VIDEO, path: url.relativePath)
+        self.configureDraftArea(draft: self.draft)
+        self.focusInputTextView()
+        FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
 
     private func stageImage(url: NSURL) {
@@ -2324,14 +2321,13 @@ extension ChatViewController: MediaPickerDelegate {
             progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
             DispatchQueue.global().async {
                 url.convertToMp4(completionHandler: { [weak self] url, error in
-                    if let url, !progressAlertHandler.cancelled {
-                        self?.stageVideo(url: (url as NSURL))
-                    } else if let error {
-                        self?.logAndAlert(error: error.localizedDescription)
-                    }
-
-                    DispatchQueue.main.async {
-                        progressAlertHandler.updateProgressAlertSuccess()
+                    DispatchQueue.main.async { [weak self] in
+                        if let url, !progressAlertHandler.cancelled {
+                            self?.stageVideo(url: (url as NSURL))
+                            progressAlertHandler.updateProgressAlertSuccess()
+                        } else if let error {
+                            progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                        }
                     }
                 })
             }
@@ -2380,7 +2376,7 @@ extension ChatViewController: MediaPickerDelegate {
                                             if let url, !progressAlertHandler.cancelled {
                                                 self?.sendVideo(url: url)
                                             } else if let error {
-                                                self?.logAndAlert(error: error.localizedDescription)
+                                                progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                                             }
                                             increaseProcessed()
                                         }
@@ -2391,7 +2387,7 @@ extension ChatViewController: MediaPickerDelegate {
                                     if let image = image as? UIImage, !progressAlertHandler.cancelled {
                                         self?.sendImage(image)
                                     } else if let error {
-                                        self?.logAndAlert(error: error.localizedDescription)
+                                        progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                                     }
                                     increaseProcessed()
                                 }
@@ -2434,13 +2430,13 @@ extension ChatViewController: MediaPickerDelegate {
                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
                     if !progressAlertHandler.cancelled {
                         url?.convertToMp4 { [weak self] url, error in
-                            if let url, !progressAlertHandler.cancelled {
-                                self?.stageVideo(url: (url as NSURL))
-                            } else if let error {
-                                self?.logAndAlert(error: error.localizedDescription)
-                            }
                             DispatchQueue.main.async {
-                                progressAlertHandler.updateProgressAlertSuccess()
+                                if let url, !progressAlertHandler.cancelled {
+                                    self?.stageVideo(url: (url as NSURL))
+                                    progressAlertHandler.updateProgressAlertSuccess()
+                                } else if let error {
+                                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                                }
                             }
                         }
                     }
@@ -2745,7 +2741,9 @@ extension ChatViewController: ChatDropInteractionDelegate {
     }
 
     func onVideoDragAndDropped(url: NSURL) {
-        stageVideo(url: url)
+        DispatchQueue.main.async { [weak self] in
+            self?.stageVideo(url: url)
+        }
     }
 
     func onFileDragAndDropped(url: NSURL) {
