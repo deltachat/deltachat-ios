@@ -63,7 +63,7 @@ class ProgressAlertHandler {
         progressAlertController.message = message
     }
 
-    public func updateProgressAlert(error: String, completion onComplete: (() -> Void)? = nil) {
+    public func updateProgressAlert(error: String) {
         logger.error(error)
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
         progressAlertController.message = error
