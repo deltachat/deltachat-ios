@@ -2371,14 +2371,16 @@ extension ChatViewController: MediaPickerDelegate {
                         if !progressAlertHandler.cancelled {
                             if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
                                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                                    if !progressAlertHandler.cancelled {
-                                        url?.convertToMp4 { [weak self] url, error in
-                                            if let url, !progressAlertHandler.cancelled {
-                                                self?.sendVideo(url: url)
-                                            } else if let error {
-                                                progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                                    if !progressAlertHandler.cancelled, let url {
+                                        NSFileCoordinator().coordinate(readingItemAt: url, error: nil) { url in
+                                            url.convertToMp4 { [weak self] url, error in
+                                                if let url, !progressAlertHandler.cancelled {
+                                                    self?.sendVideo(url: url)
+                                                } else if let error {
+                                                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                                                }
+                                                increaseProcessed()
                                             }
-                                            increaseProcessed()
                                         }
                                     }
                                 }
@@ -2428,14 +2430,16 @@ extension ChatViewController: MediaPickerDelegate {
                 progressAlertHandler.dataSource = self
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
                 itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                    if !progressAlertHandler.cancelled {
-                        url?.convertToMp4 { [weak self] url, error in
-                            DispatchQueue.main.async {
-                                if let url, !progressAlertHandler.cancelled {
-                                    self?.stageVideo(url: (url as NSURL))
-                                    progressAlertHandler.updateProgressAlertSuccess()
-                                } else if let error {
-                                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                    if !progressAlertHandler.cancelled, let url {
+                        NSFileCoordinator().coordinate(readingItemAt: url, error: nil) { url in
+                            url.convertToMp4 { [weak self] url, error in
+                                DispatchQueue.main.async {
+                                    if let url, !progressAlertHandler.cancelled {
+                                        self?.stageVideo(url: (url as NSURL))
+                                        progressAlertHandler.updateProgressAlertSuccess()
+                                    } else if let error {
+                                        progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                                    }
                                 }
                             }
                         }
