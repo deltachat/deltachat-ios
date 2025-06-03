@@ -441,6 +441,7 @@ class AccountSetupController: UITableViewController {
         }
         progressAlertHandler.dataSource = self
         resignFirstResponderOnAllCells()
+        progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
         var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
         loginParam.imapServer = imapServerCell.getText()
@@ -454,8 +455,9 @@ class AccountSetupController: UITableViewController {
         loginParam.smtpSecurity = DcEnteredLoginParam.socketSecurity(fromInt: smtpSecurityValue.value)
         loginParam.certificateChecks = DcEnteredLoginParam.certificateChecks(fromInt: certValue)
 
-        dcContext.addOrUpdateTransport(param: loginParam)
-        progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+        if !dcContext.addOrUpdateTransport(param: loginParam) {
+            progressAlertHandler.updateProgressAlert(error: dcContext.lastErrorString)
+        }
 
         self.progressAlertHandler = progressAlertHandler
     }
