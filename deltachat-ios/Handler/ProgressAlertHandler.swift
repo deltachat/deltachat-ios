@@ -7,6 +7,7 @@ class ProgressAlertHandler {
     private var onSuccess: (() -> Void)?
     private let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
+    private var lastErrorPara: String = ""
 
     /// Use this is you want to handle notifications yourself.
     /// This way you can just use the alert-handler for the alert-part and it's not updating itself.
@@ -54,19 +55,20 @@ class ProgressAlertHandler {
         guard let value else { return }
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
-        progressAlertController.message = String.localized("one_moment") + " " + String(value/10) + "%"
+        progressAlertController.message = String.localized("one_moment") + " " + String(value/10) + "%" + lastErrorPara
     }
 
     public func updateProgressAlert(message: String) {
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
-        progressAlertController.message = message
+        progressAlertController.message = message + lastErrorPara
     }
 
     public func updateProgressAlert(error: String) {
         logger.error(error)
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
         progressAlertController.message = error
+        lastErrorPara = "\n\n" + error
     }
 
     public func updateProgressAlertSuccess(completion onComplete: VoidFunction? = nil) {
