@@ -288,7 +288,7 @@ class InstantOnboardingViewController: UIViewController {
                     self.dcAccounts.stopIo()
                     self.dcContext.configure()
                 } else {
-                    progressAlertHandler.updateProgressAlert(error: self.dcContext.lastErrorString, completion: nil)
+                    progressAlertHandler.updateProgressAlert(error: self.dcContext.lastErrorString)
                 }
             }
         }

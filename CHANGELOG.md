@@ -11,6 +11,7 @@
 - Fix sending voice messages if "Settings / Chats / Media Quality" is set to "Worse Quality"
 - Fix: align avatar in groups to message
 - Fix: return correct results when searching for a space
+- Fix: show video recoding and similar errors in an alert
 
 
 ## v1.58.5

@@ -7,6 +7,7 @@ class ProgressAlertHandler {
     private var onSuccess: (() -> Void)?
     private let checkForInternetConnectivity: Bool
     private var progressAlertController: UIAlertController?
+    private var lastErrorPara: String = ""
 
     /// Use this is you want to handle notifications yourself.
     /// This way you can just use the alert-handler for the alert-part and it's not updating itself.
@@ -31,7 +32,7 @@ class ProgressAlertHandler {
             if ui["error"] as? Bool ?? false {
                 DcAccounts.shared.startIo()
 
-                var errorMessage: String? = ui["errorMessage"] as? String
+                var errorMessage: String = ui["errorMessage"] as? String ?? "ErrString"
                 // override if we need to check for connectiviy issues
                 if checkForInternetConnectivity,
                    let appDelegate = UIApplication.shared.delegate as? AppDelegate,
@@ -54,32 +55,20 @@ class ProgressAlertHandler {
         guard let value else { return }
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
-        progressAlertController.message = String.localized("one_moment") + " " + String(value/10) + "%"
+        progressAlertController.message = String.localized("one_moment") + " " + String(value/10) + "%" + lastErrorPara
     }
 
     public func updateProgressAlert(message: String) {
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
-        progressAlertController.message = message
+        progressAlertController.message = message + lastErrorPara
     }
 
-    public func updateProgressAlert(error message: String?, completion onComplete: (() -> Void)? = nil) {
+    public func updateProgressAlert(error: String) {
+        logger.error(error)
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
-        guard let dataSource else { return assertionFailure("No DataSource") }
-
-        // CAVE: show the new alert in the dismiss-done-handler of the previous one -
-        // otherwise we get the error "Attempt to present <UIAlertController: ...> while a presentation is in progress."
-        // and the error won't be shown.
-        // (when animated is true, that works also sequentially, however better not rely on that, also we do not want an animation here)
-        progressAlertController.dismiss(animated: false) {
-            let errorAlert = UIAlertController(title: String.localized("error"), message: message, preferredStyle: .alert)
-            errorAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                onComplete?()
-            }))
-            // sometimes error messages are not shown and we get the same error as above
-            // as a workaround we disable animated here as well
-            dataSource.present(errorAlert, animated: false, completion: nil)
-        }
+        progressAlertController.message = error
+        lastErrorPara = "\n\n" + error
     }
 
     public func updateProgressAlertSuccess(completion onComplete: VoidFunction? = nil) {
