@@ -8,15 +8,16 @@ public struct DcEnteredLoginParam: Codable {
     public var imapServer: String?
     public var imapUser: String?
     public var oauth2: Bool?
-    public var password: String?
+    public var password: String
     public var smtpPassword: String?
     public var smtpPort: Int?
     public var smtpSecurity: String?
     public var smtpServer: String?
     public var smtpUser: String?
 
-    public init(addr: String) {
+    public init(addr: String, password: String) {
         self.addr = addr
+        self.password = password
     }
 
     public static func socketSecurity(fromInt: Int) -> String {

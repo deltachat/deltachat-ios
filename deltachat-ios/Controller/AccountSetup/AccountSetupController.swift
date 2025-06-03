@@ -442,8 +442,7 @@ class AccountSetupController: UITableViewController {
         progressAlertHandler.dataSource = self
         resignFirstResponderOnAllCells()
 
-        var loginParam = DcEnteredLoginParam(addr: emailAddress)
-        loginParam.password = passwordCell.getText() ?? ""
+        var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
         loginParam.imapServer = imapServerCell.getText()
         loginParam.imapPort = imapPortCell.getText().flatMap { Int($0) }
         loginParam.imapUser = imapUserCell.getText()
