@@ -498,8 +498,9 @@ public class DcContext {
         return nil
     }
 
-    public func addOrUpdateTransport(param: DcEnteredLoginParam) {
-        DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
+    public func addOrUpdateTransport(param: DcEnteredLoginParam) -> Bool {
+        let res = DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
+        return res != nil
     }
 
     public func addTransportFromQr(qrCode: String) -> Bool {
