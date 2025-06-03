@@ -103,8 +103,7 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        // logger.info(UIScreen.main.bounds.height
-        // contentView?.nameTextField.becomeFirstResponder()
+        contentView?.nameTextField.becomeFirstResponder()
     }
 
     override func viewWillAppear(_ animated: Bool) {
