@@ -2356,37 +2356,27 @@ extension ChatViewController: MediaPickerDelegate {
                 var processed = 0
                 func increaseProcessed() {
                     processed += 1
-                    DispatchQueue.main.async {
-                        progressAlertHandler.updateProgressAlertValue(value: (processed*1000) / itemProviders.count)
-                    }
+                    progressAlertHandler.updateProgressAlertValue(value: (processed*1000) / itemProviders.count)
                     if processed >= itemProviders.count {
-                        DispatchQueue.main.async {
-                            progressAlertHandler.updateProgressAlertSuccess()
-                        }
+                        progressAlertHandler.updateProgressAlertSuccess()
                     }
                 }
 
                 DispatchQueue.global().async {
                     for itemProvider in itemProviders {
                         if !progressAlertHandler.cancelled {
-                            if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
-                                itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                                    if !progressAlertHandler.cancelled, let url {
-                                        NSFileCoordinator().coordinate(readingItemAt: url, error: nil) { url in
-                                            url.convertToMp4 { [weak self] url, error in
-                                                if let url, !progressAlertHandler.cancelled {
-                                                    self?.sendVideo(url: url)
-                                                } else if let error {
-                                                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
-                                                }
-                                                increaseProcessed()
-                                            }
-                                        }
+                            if itemProvider.canLoadVideo() {
+                                itemProvider.loadCompressedVideo { [weak self] url, error in
+                                    if let url, !progressAlertHandler.cancelled {
+                                        self?.sendVideo(url: url)
+                                    } else if let error {
+                                        progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                                     }
+                                    increaseProcessed()
                                 }
-                            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                                    if let image = image as? UIImage, !progressAlertHandler.cancelled {
+                            } else if itemProvider.canLoadImage() {
+                                itemProvider.loadImage { [weak self] image, error in
+                                    if let image, !progressAlertHandler.cancelled {
                                         self?.sendImage(image)
                                     } else if let error {
                                         progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
@@ -2406,7 +2396,7 @@ extension ChatViewController: MediaPickerDelegate {
             // stage a single selected item
             if sendAsFile {
                 if let typeIdentifier = itemProvider.registeredTypeIdentifiers.first {
-                    itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier, completionHandler: { [weak self] url, error in
+                    itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [weak self] url, error in
                         if let url {
                             do {
                                 let copyURL = FileManager.default.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
@@ -2421,40 +2411,31 @@ extension ChatViewController: MediaPickerDelegate {
                         } else if let error {
                             self?.logAndAlert(error: error.localizedDescription)
                         }
-                    })
+                    }
                 } else {
                     logAndAlert(error: "No types registered")
                 }
-            } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+            } else if itemProvider.canLoadVideo() {
                 let progressAlertHandler = ProgressAlertHandler()
                 progressAlertHandler.dataSource = self
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
-                itemProvider.loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, _, error in
-                    if !progressAlertHandler.cancelled, let url {
-                        NSFileCoordinator().coordinate(readingItemAt: url, error: nil) { url in
-                            url.convertToMp4 { [weak self] url, error in
-                                DispatchQueue.main.async {
-                                    if let url, !progressAlertHandler.cancelled {
-                                        self?.stageVideo(url: (url as NSURL))
-                                        progressAlertHandler.updateProgressAlertSuccess()
-                                    } else if let error {
-                                        progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
-                                    }
-                                }
-                            }
-                        }
+                itemProvider.loadCompressedVideo { [weak self] url, error in
+                    if let url, !progressAlertHandler.cancelled {
+                        self?.stageVideo(url: (url as NSURL))
+                        progressAlertHandler.updateProgressAlertSuccess()
+                    } else if let error {
+                        progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                     }
                 }
-            } else if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    if let image = image as? UIImage {
+            } else if itemProvider.canLoadImage() {
+                itemProvider.loadImage { [weak self] image, error in
+                    if let image {
                         self?.stageImage(image)
                     } else if let error {
                         self?.logAndAlert(error: error.localizedDescription)
                     }
                 }
             }
-
         }
     }
 
