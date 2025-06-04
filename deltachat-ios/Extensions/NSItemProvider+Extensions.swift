@@ -64,6 +64,7 @@ extension NSItemProvider {
         // Note: UTType.movie's doc implies that an mp4 file should have
         // both .mpeg4Movie and .movie but it does not on iOS 15
         hasItemConformingToTypeIdentifier(UTType.mpeg4Movie.identifier) ||
+        hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier) ||
         hasItemConformingToTypeIdentifier(UTType.movie.identifier) ||
         hasItemConformingToTypeIdentifier(UTType.video.identifier)
     }
@@ -89,6 +90,8 @@ extension NSItemProvider {
         }
         let progress = if hasItemConformingToTypeIdentifier(UTType.mpeg4Movie.identifier) {
             loadInPlaceFileRepresentation(forTypeIdentifier: UTType.mpeg4Movie.identifier, completionHandler: compress)
+        } else if hasItemConformingToTypeIdentifier(UTType.quickTimeMovie.identifier) {
+            loadInPlaceFileRepresentation(forTypeIdentifier: UTType.quickTimeMovie.identifier, completionHandler: compress)
         } else if hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
             loadInPlaceFileRepresentation(forTypeIdentifier: UTType.movie.identifier, completionHandler: compress)
         } else {
