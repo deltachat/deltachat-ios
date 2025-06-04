@@ -10,6 +10,8 @@ public class ChatDropInteraction {
     public func dropInteraction(canHandle session: UIDropSession) -> Bool {
         session.items.count == 1 && session.hasItemsConforming(toTypeIdentifiers: [
             UTType.image.identifier,
+            UTType.mpeg4Movie.identifier,
+            UTType.quickTimeMovie.identifier,
             UTType.video.identifier,
             UTType.movie.identifier,
             UTType.text.identifier,
