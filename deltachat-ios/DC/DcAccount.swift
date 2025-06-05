@@ -1,5 +1,13 @@
 import Foundation
 
+struct JsonrpcError: Decodable {
+    let message: String
+}
+
+struct JsonrpcReturnError: Decodable {
+    let error: JsonrpcError
+}
+
 /// Represents [dc_accounts_t](https://c.delta.chat/classdc__accounts__t.html)
 public class DcAccounts {
     public static let shared = DcAccounts()
@@ -173,15 +181,40 @@ public class DcAccounts {
     }
 
     @discardableResult
+    public func blockingCall(method: String, accountId: Int, codable: Codable) -> Data? {
+        do {
+            let jsonData = try JSONEncoder().encode(codable)
+            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+            return blockingCall(method: method, paramsStr: "[\(accountId),\(jsonString)]")
+        } catch {
+            logger.error("blockingCall(codable:) error: \(error)")
+        }
+        return nil
+    }
+
+    @discardableResult
     public func blockingCall(method: String, params: [AnyObject]) -> Data? {
         if let paramsData = try? JSONSerialization.data(withJSONObject: params),
            let paramsStr = String(data: paramsData, encoding: .utf8) {
-            let inStr = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":\(paramsStr), \"id\":1}"
-            if let outCStr = dc_jsonrpc_blocking_call(rpcPointer, inStr) {
-                let outStr = String(cString: outCStr)
-                dc_str_unref(outCStr)
-                return outStr.data(using: .utf8)
+            return blockingCall(method: method, paramsStr: paramsStr)
+        }
+        return nil
+    }
+
+    @discardableResult
+    public func blockingCall(method: String, paramsStr: String) -> Data? {
+        let inStr = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":\(paramsStr), \"id\":1}"
+        if let outCStr = dc_jsonrpc_blocking_call(rpcPointer, inStr) {
+            let outStr = String(cString: outCStr)
+            dc_str_unref(outCStr)
+            guard let outData = outStr.data(using: .utf8) else { return nil }
+
+            if let response = try? JSONDecoder().decode(JsonrpcReturnError.self, from: outData) {
+                logger.error(response.error.message)
+                return nil
             }
+
+            return outData
         }
         return nil
     }

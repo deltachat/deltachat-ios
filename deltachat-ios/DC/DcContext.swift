@@ -498,8 +498,14 @@ public class DcContext {
         return nil
     }
 
-    public func configure() {
-        dc_configure(contextPointer)
+    public func addOrUpdateTransport(param: DcEnteredLoginParam) -> Bool {
+        let res = DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
+        return res != nil
+    }
+
+    public func addTransportFromQr(qrCode: String) -> Bool {
+        let res = DcAccounts.shared.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
+        return res != nil
     }
 
     public func setChatMuteDuration(chatId: Int, duration: Int) {
@@ -662,63 +668,17 @@ public class DcContext {
     }
 
     public var addr: String? {
-        get { return getConfig("addr") }
-        set { setConfig("addr", newValue) }
-    }
-
-    public var mailServer: String? {
-        get { return getConfig("mail_server") }
-        set { setConfig("mail_server", newValue) }
-    }
-
-    public var mailUser: String? {
-        get { return getConfig("mail_user") }
-        set { setConfig("mail_user", newValue) }
-    }
-
-    public var mailPw: String? {
-        get { return getConfig("mail_pw") }
-        set { setConfig("mail_pw", newValue) }
-    }
-
-    public var mailPort: String? {
-        get { return getConfig("mail_port") }
-        set { setConfig("mail_port", newValue) }
-    }
-
-    public var sendServer: String? {
-        get { return getConfig("send_server") }
-        set { setConfig("send_server", newValue) }
-    }
-
-    public var sendUser: String? {
-        get { return getConfig("send_user") }
-        set { setConfig("send_user", newValue) }
-    }
-
-    public var sendPw: String? {
-        get { return getConfig("send_pw") }
-        set { setConfig("send_pw", newValue) }
-    }
-
-    public var sendPort: String? {
-        get { return getConfig("send_port") }
-        set { setConfig("send_port", newValue) }
+        return getConfig("addr")
     }
 
     public var certificateChecks: Int {
-        get {
-            switch Int32(getConfigInt("imap_certificate_checks")) {
-            case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
-                return Int(DC_CERTCK_ACCEPT_INVALID)
-            case DC_CERTCK_STRICT:
-                return Int(DC_CERTCK_STRICT)
-            default:
-                return Int(DC_CERTCK_AUTO)
-            }
-        }
-        set {
-            setConfig("imap_certificate_checks", "\(newValue)")
+        switch Int32(getConfigInt("imap_certificate_checks")) {
+        case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
+            return Int(DC_CERTCK_ACCEPT_INVALID)
+        case DC_CERTCK_STRICT:
+            return Int(DC_CERTCK_STRICT)
+        default:
+            return Int(DC_CERTCK_AUTO)
         }
     }
 
