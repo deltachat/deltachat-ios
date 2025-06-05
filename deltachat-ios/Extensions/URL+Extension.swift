@@ -15,17 +15,20 @@ extension URL {
         }
     }
 
+    /// Note: This copies the file at URL to a temporary file in case the original is deleted (or access is lost) during conversion.
     public func convertToMp4(completionHandler: ((URL?, Error?) -> Void)?) {
-        let avAsset = AVURLAsset(url: self, options: nil)
+        let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-")
+        let original = filename.appending("." + pathExtension)
+        let inputURL = FileHelper.copyIfPossible(src: self, dest: .temporaryDirectory.appendingPathComponent(original))
+        let compressed = filename.appending("_compressed.mp4")
+        let outputURL = URL.temporaryDirectory.appendingPathComponent(compressed)
+        FileHelper.deleteFile(outputURL.path)
+        
+        let avAsset = AVURLAsset(url: inputURL, options: nil)
         guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetMediumQuality) else {
            completionHandler?(nil, ConversionError.runtimeError("Could not initiate AVAssertExportSession"))
            return
         }
-
-        let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-").appending(".mp4")
-        let outputURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-        FileHelper.deleteFile(outputURL.path)
-
         exportSession.timeRange = CMTimeRange(start: .zero, duration: avAsset.duration)
         exportSession.outputURL = outputURL
         exportSession.outputFileType = AVFileType.mp4
@@ -44,6 +47,15 @@ extension URL {
                 completionHandler?(exportSession.outputURL, nil)
             default: break
             }
+            if inputURL != self {
+                // if FileHelper.copyIfPossible successfuly copied then we delete the temp file
+                FileHelper.deleteFile(inputURL.path)
+            }
         })
+    }
+
+    /// This makes URL.temporaryDirectory available pre iOS 16
+    @_disfavoredOverload public static var temporaryDirectory: URL {
+        FileManager.default.temporaryDirectory
     }
 }

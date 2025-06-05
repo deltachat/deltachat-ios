@@ -12,6 +12,9 @@
 - Fix: align avatar in groups to message
 - Fix: return correct results when searching for a space
 - Fix: show video recoding and similar errors in an alert
+- Fix: video compression on iOS 16
+- Fix: attaching GIFs and webP from gallery
+- Fix: drag and drop videos on iOS 15
 
 
 ## v1.58.5

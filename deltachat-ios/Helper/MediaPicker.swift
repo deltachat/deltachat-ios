@@ -168,12 +168,10 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 
 extension MediaPicker: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        assert(Thread.isMainThread)
         let itemProviders = results.compactMap { $0.itemProvider }
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            picker.dismiss(animated: true)
-            self.delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders, sendAsFile: sendAsFile)
-        }
+        picker.dismiss(animated: true)
+        delegate?.onMediaSelected(mediaPicker: self, itemProviders: itemProviders, sendAsFile: sendAsFile)
     }
 }
 
