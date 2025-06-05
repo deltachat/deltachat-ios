@@ -1,5 +1,13 @@
 import Foundation
 
+struct JsonrpcError: Decodable {
+    let message: String
+}
+
+struct JsonrpcReturnError: Decodable {
+    let error: JsonrpcError
+}
+
 /// Represents [dc_accounts_t](https://c.delta.chat/classdc__accounts__t.html)
 public class DcAccounts {
     public static let shared = DcAccounts()
@@ -199,7 +207,14 @@ public class DcAccounts {
         if let outCStr = dc_jsonrpc_blocking_call(rpcPointer, inStr) {
             let outStr = String(cString: outCStr)
             dc_str_unref(outCStr)
-            return outStr.data(using: .utf8)
+            guard let outData = outStr.data(using: .utf8) else { return nil }
+
+            if let response = try? JSONDecoder().decode(JsonrpcReturnError.self, from: outData) {
+                logger.error(response.error.message)
+                return nil
+            }
+
+            return outData
         }
         return nil
     }
