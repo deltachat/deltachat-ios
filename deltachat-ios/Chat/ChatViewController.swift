@@ -593,6 +593,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         return cell
     }
+
     override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastContextMenuPreviewSnapshot?.removeFromSuperview()
     }
