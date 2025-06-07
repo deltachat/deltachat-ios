@@ -103,6 +103,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private lazy var cancelButton: UIBarButtonItem = {
         return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
+    
+    /// When a context menu preview is created through `tableView(_:previewForHighlightingContextMenuWithConfiguration:)`
+    /// it is stored here so we can hide it when a user scrolls as the system does not hide
+    /// snapshots right away probably assuming it is part of the view hierarchy.
+    private weak var lastContextMenuPreviewSnapshot: UIView?
 
     private let titleView = ChatTitleView()
 
@@ -587,6 +592,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     highlight: !searchMessageIds.isEmpty && message.id == searchMessageIds[searchResultIndex])
 
         return cell
+    }
+
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        lastContextMenuPreviewSnapshot?.removeFromSuperview()
     }
 
     public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -1801,7 +1810,9 @@ extension ChatViewController {
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
         let preview = UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
-
+        
+        self.lastContextMenuPreviewSnapshot = messageSnapshotView
+        
         return preview
     }
 
