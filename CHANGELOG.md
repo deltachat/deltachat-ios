@@ -15,6 +15,7 @@
 - Fix: video compression on iOS 16
 - Fix: attaching GIFs and webP from gallery
 - Fix: drag and drop videos on iOS 15
+- Fix: attaching files on iOS 15
 
 
 ## v1.58.5
