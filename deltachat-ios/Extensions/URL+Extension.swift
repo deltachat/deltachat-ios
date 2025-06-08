@@ -47,10 +47,6 @@ extension URL {
                 completionHandler?(exportSession.outputURL, nil)
             default: break
             }
-            if inputURL != self {
-                // if FileHelper.copyIfPossible successfuly copied then we delete the temp file
-                FileHelper.deleteFile(inputURL.path)
-            }
         })
     }
 
