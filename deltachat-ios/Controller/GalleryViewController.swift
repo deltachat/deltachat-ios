@@ -260,10 +260,10 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
 
                 let menu = UIMenu(
                     children: [
-                        UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: {
+                        UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", with: indexPath, action: {
                            self.redirectToMessage(of: $0 )
                         }),
-                        UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: {
+                        UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: {
                            self.askToDeleteItem(at: $0 )
                         }),
                     ]

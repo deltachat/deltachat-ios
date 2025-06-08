@@ -194,12 +194,12 @@ extension FilesViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let self else { return nil }
 
                 var children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", indexPath: indexPath, action: { self.redirectToMessage(of: $0) }),
+                    UIAction.menuAction(localizationKey: "show_in_chat", systemImageName: "doc.text.magnifyingglass", with: indexPath, action: redirectToMessage),
                 ]
 
                 children.append(contentsOf: [
-                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareAttachment(of: $0) }),
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.askToDeleteItem(at: $0) })
+                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: indexPath, action: shareAttachment),
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: askToDeleteItem)
                 ])
                 let menu = UIMenu(children: children)
 

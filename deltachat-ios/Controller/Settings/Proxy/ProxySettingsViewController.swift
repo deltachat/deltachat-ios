@@ -342,8 +342,8 @@ extension ProxySettingsViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
                 let children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: { self.shareProxy(at: $0) }),
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteProxy(at: $0) })
+                    UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: indexPath, action: { self.shareProxy(at: $0) }),
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: { self.deleteProxy(at: $0) })
                 ]
                 return UIMenu(children: children)
             }
