@@ -680,7 +680,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
 
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completionHandler) in
-            self?.replyToMessage(at: indexPath)
+            self?.replyToMessage(messageId)
             completionHandler(true)
         }
 
@@ -695,15 +695,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return configuration
     }
 
-    func replyToMessage(at indexPath: IndexPath) {
-        let message = dcContext.getMessage(id: self.messageIds[indexPath.row])
+    func replyToMessage(_ msgId: Int) {
+        let message = dcContext.getMessage(id: msgId)
         self.draft.setQuote(quotedMsg: message)
         self.configureDraftArea(draft: self.draft)
         focusInputTextView()
     }
 
-    func replyPrivatelyToMessage(at indexPath: IndexPath) {
-        let msgId = self.messageIds[indexPath.row]
+    func replyPrivatelyToMessage(_ msgId: Int) {
         let message = dcContext.getMessage(id: msgId)
         let privateChatId = dcContext.createChatByContactId(contactId: message.fromContactId)
         let replyMsg: DcMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
@@ -1652,26 +1651,26 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     // MARK: - Actions
 
-    private func info(at indexPath: IndexPath) {
-        let msg = self.dcContext.getMessage(id: self.messageIds[indexPath.row])
+    private func info(for msgId: Int) {
+        let msg = self.dcContext.getMessage(id: msgId)
         let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
         if let ctrl = self.navigationController {
             ctrl.pushViewController(msgViewController, animated: true)
         }
     }
 
-    private func forward(at indexPath: IndexPath) {
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+    private func forward(_ msgId: Int) {
+        let msg = dcContext.getMessage(id: msgId)
         RelayHelper.shared.setForwardMessages(messageIds: [msg.id])
         navigationController?.popToRootViewController(animated: true)
     }
 
-    private func reply(at indexPath: IndexPath) {
-        replyToMessage(at: indexPath)
+    private func reply(_ msgId: Int) {
+        replyToMessage(msgId)
     }
 
-    private func editSentMessage(at indexPath: IndexPath) {
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+    private func editSentMessage(_ msgId: Int) {
+        let message = dcContext.getMessage(id: msgId)
 
         draft.clear()
         draft.sendEditRequestFor = message.id
@@ -1680,34 +1679,32 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         focusInputTextView()
     }
 
-    private func toggleSave(at indexPath: IndexPath) {
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+    private func toggleSave(_ msgId: Int) {
+        let message = dcContext.getMessage(id: msgId)
         if message.savedMessageId != 0 {
             dcContext.deleteMessage(msgId: message.savedMessageId)
         } else {
-            dcContext.saveMessages(with: [messageIds[indexPath.row]])
+            dcContext.saveMessages(with: [msgId])
         }
     }
 
-    private func shareSingle(at indexPath: IndexPath) {
-        let msgId = messageIds[indexPath.row]
+    private func shareSingle(_ msgId: Int) {
         Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: view)
     }
 
-    private func resendSingle(at indexPath: IndexPath) {
-        let msgId = messageIds[indexPath.row]
+    private func resendSingle(_ msgId: Int) {
         dcContext.resendMessages(msgIds: [msgId])
     }
 
-    private func deleteSingle(at indexPath: IndexPath) {
-        askToDeleteMessages(ids: [self.messageIds[indexPath.row]])
+    private func deleteSingle(_ msgId: Int) {
+        askToDeleteMessages(ids: [msgId])
     }
 
-    private func copyTextToClipboard(at indexPath: IndexPath) {
-        copyTextToClipboard(ids: [self.messageIds[indexPath.row]])
+    private func copyTextToClipboard(_ msgId: Int) {
+        copyTextToClipboard(ids: [msgId])
     }
-    private func copyImageToClipboard(at indexPath: IndexPath) {
-        copyImagesToClipboard(ids: [self.messageIds[indexPath.row]])
+    private func copyImageToClipboard(_ msgId: Int) {
+        copyImagesToClipboard(ids: [msgId])
     }
 
     private func cancelSearch() {
@@ -1833,7 +1830,6 @@ extension ChatViewController {
             menuElements.append(UIAction(title: title) { [weak self] _ in
                 guard let self else { return }
 
-                let messageId = self.messageIds[indexPath.row]
                 if sentThisReaction {
                     dcContext.sendReaction(messageId: messageId, reaction: nil)
                 } else {
@@ -1854,7 +1850,6 @@ extension ChatViewController {
         }
         let action = UIAction(title: title) { [weak self] _ in
             guard let self else { return }
-            let messageId = self.messageIds[indexPath.row]
             if showPicker {
                 reactionMessageId = messageId
                 let pickerViewController = MCEmojiPickerViewController()
@@ -1911,71 +1906,71 @@ extension ChatViewController {
                         children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
                     }
                     children.append(
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.reply(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     )
                 }
 
                 if canReplyPrivately(to: message) {
                     moreOptions.append(
-                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", indexPath: indexPath, action: { self.replyPrivatelyToMessage(at: $0 ) })
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", with: messageId, action: replyPrivatelyToMessage)
                     )
                 }
 
                 children.append(
-                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", indexPath: indexPath, action: forward)
+                    UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                 )
 
                 if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                     children.append(
-                        UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", indexPath: indexPath, action: editSentMessage)
+                        UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
                     )
                 }
 
                 if !dcChat.isSelfTalk && message.canSave {
                     if message.savedMessageId != 0 {
                         children.append(
-                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash.fill", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash.fill", with: messageId, action: toggleSave)
                         )
                     } else {
                         children.append(
-                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "bookmark", indexPath: indexPath, action: toggleSave)
+                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "bookmark", with: messageId, action: toggleSave)
                         )
                     }
                 }
 
                 if let link = isLinkTapped(indexPath: indexPath, point: point) {
                     children.append(
-                        UIAction.menuAction(localizationKey: "menu_copy_link_to_clipboard", systemImageName: "link", indexPath: indexPath, action: { _ in
+                        UIAction.menuAction(localizationKey: "menu_copy_link_to_clipboard", systemImageName: "link", with: messageId, action: { _ in
                             UIPasteboard.general.string = link
                         })
                     )
                 } else if let text = message.text, !text.isEmpty {
                     let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                     children.append(
-                        UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", indexPath: indexPath, action: copyTextToClipboard)
+                        UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     )
                 }
                 if message.image != nil {
                     moreOptions.append(
-                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", indexPath: indexPath, action: copyImageToClipboard)
+                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", with: messageId, action: copyImageToClipboard)
                     )
                 }
 
                 if message.file != nil {
-                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", indexPath: indexPath, action: shareSingle))
+                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: messageId, action: shareSingle))
                 }
 
                 children.append(
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: deleteSingle)
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                 )
 
                 if dcChat.canSend && message.isFromCurrentSender {
-                    moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", indexPath: indexPath, action: resendSingle))
+                    moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle))
                 }
 
-                moreOptions.append(UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", indexPath: indexPath, action: info))
+                moreOptions.append(UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info))
 
-                moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", indexPath: indexPath, action: selectMore))
+                moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", with: indexPath, action: selectMore))
 
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [

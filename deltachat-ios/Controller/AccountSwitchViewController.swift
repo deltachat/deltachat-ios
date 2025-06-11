@@ -99,10 +99,10 @@ class AccountSwitchViewController: UITableViewController {
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
                 let children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, indexPath: indexPath, action: { self.toggleMute(at: $0) }),
-                    UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", indexPath: indexPath, action: { self.setProfileTag(at: $0) }),
-                    UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", indexPath: indexPath, action: { self.moveToTop(at: $0) }),
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", indexPath: indexPath, action: { self.deleteAccount(at: $0) })
+                    UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, with: indexPath, action: toggleMute),
+                    UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", with: indexPath, action: setProfileTag),
+                    UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", with: indexPath, action: moveToTop),
+                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteAccount),
                 ]
                 return UIMenu(children: children)
             }
