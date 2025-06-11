@@ -282,12 +282,14 @@ class InstantOnboardingViewController: UIViewController {
             guard let self else { return }
 
             let qrCodeData = self.qrCodeData ?? "dcaccount:https://nine.testrun.org/new"
-            let res = self.dcContext.addTransportFromQr(qrCode: qrCodeData)
-            DispatchQueue.main.async {
-                if !res {
-                    progressAlertHandler.updateProgressAlert(error: self.dcContext.lastErrorString)
+            do {
+                _ = try self.dcContext.addTransportFromQr(qrCode: qrCodeData)
+            } catch {
+                DispatchQueue.main.async {
+                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                 }
             }
+
         }
 
         self.progressAlertHandler = progressAlertHandler

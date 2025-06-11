@@ -455,9 +455,12 @@ class AccountSetupController: UITableViewController {
         loginParam.smtpSecurity = DcEnteredLoginParam.socketSecurity(fromInt: smtpSecurityValue.value)
         loginParam.certificateChecks = DcEnteredLoginParam.certificateChecks(fromInt: certValue)
 
-        if !dcContext.addOrUpdateTransport(param: loginParam) {
-            progressAlertHandler.updateProgressAlert(error: dcContext.lastErrorString)
+        do {
+            _ = try dcContext.addOrUpdateTransport(param: loginParam)
+        } catch {
+            progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
         }
+
 
         self.progressAlertHandler = progressAlertHandler
     }

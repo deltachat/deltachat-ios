@@ -181,11 +181,11 @@ public class DcAccounts {
     }
 
     @discardableResult
-    public func blockingCall(method: String, accountId: Int, codable: Codable) -> Data? {
+    public func blockingCall(method: String, accountId: Int, codable: Codable) throws -> Data? {
         do {
             let jsonData = try JSONEncoder().encode(codable)
             let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
-            return blockingCall(method: method, paramsStr: "[\(accountId),\(jsonString)]")
+            return try blockingCall(method: method, paramsStr: "[\(accountId),\(jsonString)]")
         } catch {
             logger.error("blockingCall(codable:) error: \(error)")
         }
@@ -193,16 +193,16 @@ public class DcAccounts {
     }
 
     @discardableResult
-    public func blockingCall(method: String, params: [AnyObject]) -> Data? {
+    public func blockingCall(method: String, params: [AnyObject]) throws -> Data? {
         if let paramsData = try? JSONSerialization.data(withJSONObject: params),
            let paramsStr = String(data: paramsData, encoding: .utf8) {
-            return blockingCall(method: method, paramsStr: paramsStr)
+            return try blockingCall(method: method, paramsStr: paramsStr)
         }
         return nil
     }
 
     @discardableResult
-    public func blockingCall(method: String, paramsStr: String) -> Data? {
+    public func blockingCall(method: String, paramsStr: String) throws -> Data? {
         let inStr = "{\"jsonrpc\":\"2.0\", \"method\":\"\(method)\", \"params\":\(paramsStr), \"id\":1}"
         if let outCStr = dc_jsonrpc_blocking_call(rpcPointer, inStr) {
             let outStr = String(cString: outCStr)
@@ -210,8 +210,7 @@ public class DcAccounts {
             guard let outData = outStr.data(using: .utf8) else { return nil }
 
             if let response = try? JSONDecoder().decode(JsonrpcReturnError.self, from: outData) {
-                logger.error(response.error.message)
-                return nil
+                throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.error.message])
             }
 
             return outData
