@@ -8,17 +8,8 @@ class AccountSetupController: UITableViewController {
     var onLoginSuccess: (() -> Void)?
     var progressAlertHandler: ProgressAlertHandler?
 
-    private let tagEmailCell = 0
-    private let tagPasswordCell = 1
     private let tagAdvancedCell = 2
-    private let tagImapServerCell = 3
-    private let tagImapUserCell = 4
-    private let tagImapPortCell = 5
     private let tagImapSecurityCell = 6
-    private let tagSmtpServerCell = 7
-    private let tagSmtpUserCell = 8
-    private let tagSmtpPortCell = 9
-    private let tagSmtpPasswordCell = 10
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
     private let tagViewLogCell = 15
@@ -66,7 +57,6 @@ class AccountSetupController: UITableViewController {
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
-        cell.tag = tagEmailCell
         cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -76,7 +66,6 @@ class AccountSetupController: UITableViewController {
 
     private lazy var passwordCell: TextFieldCell = {
         let cell = TextFieldCell.makePasswordCell(delegate: self)
-        cell.tag = tagPasswordCell
         cell.textField.tag = tagTextFieldPassword
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
@@ -104,8 +93,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_server",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagImapServerCell
-        cell.setText(text: dcContext.mailServer ?? nil)
         cell.textField.tag = tagTextFieldImapServer
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
@@ -119,9 +106,7 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_login",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.setText(text: dcContext.mailUser ?? nil)
         cell.textField.tag = tagTextFieldImapLogin
-        cell.tag = tagImapUserCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -145,8 +130,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_imap_port",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagImapPortCell
-        cell.setText(text: editablePort(port: dcContext.mailPort))
         cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -168,8 +151,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpServer
-        cell.setText(text: dcContext.sendServer ?? nil)
-        cell.tag = tagSmtpServerCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -183,8 +164,6 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.tag = tagTextFieldSmtpLogin
-        cell.setText(text: dcContext.sendUser ?? nil)
-        cell.tag = tagSmtpUserCell
         cell.textField.autocorrectionType = .no
         cell.textField.spellCheckingType = .no
         cell.textField.autocapitalizationType = .none
@@ -197,8 +176,6 @@ class AccountSetupController: UITableViewController {
             descriptionID: "login_smtp_port",
             placeholder: String.localized("automatic"),
             delegate: self)
-        cell.tag = tagSmtpPortCell
-        cell.setText(text: editablePort(port: dcContext.sendPort))
         cell.textField.tag = tagTextFieldSmtpPort
         cell.textField.keyboardType = .numberPad
         return cell
@@ -210,10 +187,8 @@ class AccountSetupController: UITableViewController {
             placeholder: String.localized("automatic"),
             delegate: self)
         cell.textField.textContentType = UITextContentType.password
-        cell.setText(text: dcContext.sendPw ?? nil)
         cell.textField.isSecureTextEntry = true
         cell.textField.tag = tagTextFieldSmtpPassword
-        cell.tag = tagSmtpPasswordCell
         cell.textField.returnKeyType = .next
         return cell
     }()
@@ -229,10 +204,8 @@ class AccountSetupController: UITableViewController {
     let smtpSecurityValue: AccountSetupSecurityValue
 
     lazy var certCheckCell: UITableViewCell = {
-        let certCheckType = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_certificate_checks")
-        cell.detailTextLabel?.text = certCheckType
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -297,18 +270,27 @@ class AccountSetupController: UITableViewController {
         }
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = loginButton
-        emailCell.setText(text: dcContext.addr ?? nil)
-        passwordCell.setText(text: dcContext.mailPw ?? nil)
+
+        // init text cells (selections are initialized at viewWillAppear)
+        emailCell.setText(text: dcContext.addr)
+        passwordCell.setText(text: dcContext.getConfig("mail_pw"))
+        imapUserCell.setText(text: dcContext.getConfig("mail_user"))
+        imapServerCell.setText(text: dcContext.getConfig("mail_server"))
+        imapPortCell.setText(text: editablePort(port: dcContext.getConfig("mail_port")))
+        smtpUserCell.setText(text: dcContext.getConfig("send_user"))
+        smtpPasswordCell.setText(text: dcContext.getConfig("send_pw"))
+        smtpServerCell.setText(text: dcContext.getConfig("send_server"))
+        smtpPortCell.setText(text: editablePort(port: dcContext.getConfig("send_port")))
+        handleLoginButton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        initSelectionCells()
-        handleLoginButton()
-        updateCells()
-    }
 
-    private func updateCells() {
+        // init selection cells (updated them when coming back from a child view controller)
+        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
+        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
+        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
         proxyCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
@@ -408,23 +390,18 @@ class AccountSetupController: UITableViewController {
     @objc private func loginButtonPressed() {
         guard let emailAddress = emailCell.getText() else { return }
 
-        func loginButtonPressedContinue() {
-            let password = passwordCell.getText() ?? ""
-            login(emailAddress: emailAddress, password: password)
-        }
-
         if dcContext.isConfigured(),
            let oldAddress = dcContext.getConfig("configured_addr"),
            oldAddress != emailAddress {
             let msg = String.localizedStringWithFormat(String.localized("aeap_explanation"), oldAddress, emailAddress)
             let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
-                loginButtonPressedContinue()
+            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { [weak self] _ in
+                self?.login(emailAddress: emailAddress)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            loginButtonPressedContinue()
+            login(emailAddress: emailAddress)
         }
     }
 
@@ -458,54 +435,34 @@ class AccountSetupController: UITableViewController {
         providerInfoShowing = false
     }
 
-    private func login(emailAddress: String, password: String, skipAdvanceSetup: Bool = false) {
-
+    private func login(emailAddress: String) {
         let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
         }
         progressAlertHandler.dataSource = self
-
         resignFirstResponderOnAllCells()
-        dcContext.addr = emailAddress
-        dcContext.mailPw = password
-
-        if !skipAdvanceSetup {
-            evaluateAdvancedSetup()
-        }
-
-        dcAccounts.stopIo()
-        dcContext.configure()
         progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
 
-        self.progressAlertHandler = progressAlertHandler
-    }
+        var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
+        loginParam.imapServer = imapServerCell.getText()
+        loginParam.imapPort = imapPortCell.getText().flatMap { Int($0) }
+        loginParam.imapUser = imapUserCell.getText()
+        loginParam.imapSecurity = DcEnteredLoginParam.socketSecurity(fromInt: imapSecurityValue.value)
+        loginParam.smtpServer = smtpServerCell.getText()
+        loginParam.smtpPort = smtpPortCell.getText().flatMap { Int($0) }
+        loginParam.smtpUser = smtpUserCell.getText()
+        loginParam.smtpPassword = smtpPasswordCell.getText()
+        loginParam.smtpSecurity = DcEnteredLoginParam.socketSecurity(fromInt: smtpSecurityValue.value)
+        loginParam.certificateChecks = DcEnteredLoginParam.certificateChecks(fromInt: certValue)
 
-    private func evaluateAdvancedSetup() {
-        for cell in advancedSectionCells {
-            if let textFieldCell = cell as? TextFieldCell {
-                switch  textFieldCell.tag {
-                case tagImapServerCell:
-                    dcContext.mailServer = textFieldCell.getText() ?? nil
-                case tagImapPortCell:
-                    dcContext.mailPort = textFieldCell.getText() ?? nil
-                case tagImapUserCell:
-                    dcContext.mailUser = textFieldCell.getText() ?? nil
-                case tagSmtpServerCell:
-                    dcContext.sendServer = textFieldCell.getText() ?? nil
-                case tagSmtpPortCell:
-                    dcContext.sendPort = textFieldCell.getText() ?? nil
-                case tagSmtpUserCell:
-                    dcContext.sendUser = textFieldCell.getText() ?? nil
-                case tagSmtpPasswordCell:
-                    dcContext.sendPw = textFieldCell.getText() ?? nil
-                default:
-                    logger.info("unknown identifier \(cell.tag)")
-                }
-            }
+        do {
+            _ = try dcContext.addOrUpdateTransport(param: loginParam)
+        } catch {
+            progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
         }
-        dcContext.setConfigInt("mail_security", imapSecurityValue.value)
-        dcContext.setConfigInt("send_security", smtpSecurityValue.value)
-        dcContext.certificateChecks = certValue
+
+
+        self.progressAlertHandler = progressAlertHandler
     }
 
     private func handleLoginSuccess() {
@@ -513,18 +470,11 @@ class AccountSetupController: UITableViewController {
         appDelegate.registerForNotifications()
         appDelegate.prepopulateWidget()
 
-        initSelectionCells()
         if let onLoginSuccess {
             onLoginSuccess()
         } else {
             navigationController?.popViewController(animated: true)
         }
-    }
-
-    private func initSelectionCells() {
-        imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
-        smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
     }
 
     private func resignFirstResponderOnAllCells() {
@@ -627,7 +577,6 @@ extension AccountSetupController: CertificateCheckDelegate {
         certValue = newValue
     }
 }
-
 
 class AccountSetupSecurityValue: SecuritySettingsDelegate {
     var value: Int

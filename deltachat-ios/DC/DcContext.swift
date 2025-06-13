@@ -94,15 +94,30 @@ public class DcContext {
     }
 
     public func sendWebxdcRealtimeAdvertisement(messageId: Int) {
-        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
+        do {
+            try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
+        }
+        catch {
+            logger.error(error.localizedDescription)
+        }
     }
 
     public func sendWebxdcRealtimeData(messageId: Int, uint8Array: [UInt8]) {
-        DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
+        do {
+            try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
+        }
+        catch {
+            logger.error(error.localizedDescription)
+        }
     }
 
     public func leaveWebxdcRealtime(messageId: Int) {
-        DcAccounts.shared.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
+        do {
+            try DcAccounts.shared.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
+        }
+        catch {
+            logger.error(error.localizedDescription)
+        }
     }
 
     public func sendVideoChatInvitation(chatId: Int) -> Int {
@@ -124,7 +139,12 @@ public class DcContext {
     }
 
     public func changeContactName(contactId: Int, name: String) {
-        DcAccounts.shared.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
+        do {
+            try DcAccounts.shared.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
+        }
+        catch {
+            logger.error(error.localizedDescription)
+        }
     }
 
     public func deleteContact(contactId: Int) -> Bool {
@@ -416,24 +436,32 @@ public class DcContext {
     }
 
     public func getMessageReactions(messageId: Int) -> DcReactions? {
-        if let data = DcAccounts.shared.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {
-            return try? JSONDecoder().decode(DcReactionResult.self, from: data).result
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {
+                return try JSONDecoder().decode(DcReactionResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
         }
         return nil
     }
 
     public func sendReaction(messageId: Int, reaction: String?) {
-        if let reaction {
-            DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
-        } else {
-            DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
+        do {
+            if let reaction {
+                try DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
+            } else {
+                try DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
+            }
+        } catch {
+            logger.error(error.localizedDescription)
         }
     }
 
     public func makeVCard(contactIds: [Int]) -> Data? {
-        guard let vcardRPCResult = DcAccounts.shared.blockingCall(method: "make_vcard", params: [id as AnyObject, contactIds as AnyObject]) else { return nil }
-
         do {
+            guard let vcardRPCResult = try DcAccounts.shared.blockingCall(method: "make_vcard", params: [id as AnyObject, contactIds as AnyObject]) else { return nil }
+
             let vcard = try JSONDecoder().decode(DcVCardMakeResult.self, from: vcardRPCResult).result
             return vcard.data(using: .utf8)
         } catch {
@@ -443,23 +471,33 @@ public class DcContext {
     }
 
     public func parseVcard(path: String) -> [DcVcardContact]? {
-        if let data = DcAccounts.shared.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
-            do {
-                return try JSONDecoder().decode(DcVcardContactResult.self, from: data).result
-            } catch {
-                logger.error("cannot parse vcard: \(error)")
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
+                do {
+                    return try JSONDecoder().decode(DcVcardContactResult.self, from: data).result
+                } catch {
+                    logger.error("cannot parse vcard: \(error)")
+                }
             }
+        }
+        catch {
+            logger.error(error.localizedDescription)
         }
         return nil
     }
 
     public func importVcard(path: String) -> [Int]? {
-        if let data = DcAccounts.shared.blockingCall(method: "import_vcard", params: [id as AnyObject, path as AnyObject]) {
-            do {
-                return try JSONDecoder().decode(DcVcardImportResult.self, from: data).result
-            } catch {
-                logger.error("cannot import vcard: \(error)")
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "import_vcard", params: [id as AnyObject, path as AnyObject]) {
+                do {
+                    return try JSONDecoder().decode(DcVcardImportResult.self, from: data).result
+                } catch {
+                    logger.error("cannot import vcard: \(error)")
+                }
             }
+        }
+        catch {
+            logger.error(error.localizedDescription)
         }
         return nil
     }
@@ -498,8 +536,14 @@ public class DcContext {
         return nil
     }
 
-    public func configure() {
-        dc_configure(contextPointer)
+    public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
+        let res = try DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
+        return res != nil
+    }
+
+    public func addTransportFromQr(qrCode: String) throws -> Bool {
+        let res = try DcAccounts.shared.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
+        return res != nil
     }
 
     public func setChatMuteDuration(chatId: Int, duration: Int) {
@@ -662,63 +706,17 @@ public class DcContext {
     }
 
     public var addr: String? {
-        get { return getConfig("addr") }
-        set { setConfig("addr", newValue) }
-    }
-
-    public var mailServer: String? {
-        get { return getConfig("mail_server") }
-        set { setConfig("mail_server", newValue) }
-    }
-
-    public var mailUser: String? {
-        get { return getConfig("mail_user") }
-        set { setConfig("mail_user", newValue) }
-    }
-
-    public var mailPw: String? {
-        get { return getConfig("mail_pw") }
-        set { setConfig("mail_pw", newValue) }
-    }
-
-    public var mailPort: String? {
-        get { return getConfig("mail_port") }
-        set { setConfig("mail_port", newValue) }
-    }
-
-    public var sendServer: String? {
-        get { return getConfig("send_server") }
-        set { setConfig("send_server", newValue) }
-    }
-
-    public var sendUser: String? {
-        get { return getConfig("send_user") }
-        set { setConfig("send_user", newValue) }
-    }
-
-    public var sendPw: String? {
-        get { return getConfig("send_pw") }
-        set { setConfig("send_pw", newValue) }
-    }
-
-    public var sendPort: String? {
-        get { return getConfig("send_port") }
-        set { setConfig("send_port", newValue) }
+        return getConfig("addr")
     }
 
     public var certificateChecks: Int {
-        get {
-            switch Int32(getConfigInt("imap_certificate_checks")) {
-            case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
-                return Int(DC_CERTCK_ACCEPT_INVALID)
-            case DC_CERTCK_STRICT:
-                return Int(DC_CERTCK_STRICT)
-            default:
-                return Int(DC_CERTCK_AUTO)
-            }
-        }
-        set {
-            setConfig("imap_certificate_checks", "\(newValue)")
+        switch Int32(getConfigInt("imap_certificate_checks")) {
+        case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
+            return Int(DC_CERTCK_ACCEPT_INVALID)
+        case DC_CERTCK_STRICT:
+            return Int(DC_CERTCK_STRICT)
+        default:
+            return Int(DC_CERTCK_AUTO)
         }
     }
 
