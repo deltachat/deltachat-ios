@@ -1,4 +1,5 @@
 import UserNotifications
+import CallKit
 import DcCore
 
 class NotificationService: UNNotificationServiceExtension {
@@ -69,6 +70,33 @@ class NotificationService: UNNotificationServiceExtension {
                 let msg = dcContext.getMessage(id: event.data2Int)
                 let chat = dcContext.getChat(chatId: msg.chatId)
                 if let content = UNMutableNotificationContent(forWebxdcNotification: event.data2String, msg: msg, chat: chat, context: dcContext) {
+                    notifications.append(content)
+                }
+            } else if event.id == DC_EVENT_INCOMING_CALL {
+                UserDefaults.pushToDebugArray("☎️")
+                let dcContext = dcAccounts.get(id: event.accountId)
+                let msg = dcContext.getMessage(id: event.data1Int)
+
+                if #available(iOSApplicationExtension 14.5, *) {
+                    let payload = [
+                        "account_id": dcContext.id,
+                        "message_id": msg.id,
+                    ]
+                    // calling reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
+                        if let error {
+                            UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK2")
+                        }
+                    }
+                } else {
+                    let content = UNMutableNotificationContent()
+                    content.title = "Incoming Call"
+                    content.body = "This requires iOS 14.5 or newer"
+                    content.userInfo["account_id"] = dcContext.id
+                    content.userInfo["chat_id"] = msg.chatId
+                    content.userInfo["message_id"] = msg.id
                     notifications.append(content)
                 }
             }
