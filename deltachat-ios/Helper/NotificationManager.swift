@@ -104,7 +104,7 @@ public class NotificationManager {
             if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                logger.info("notifications: added \(content.title) \(content.body) \(content.userInfo)")
+                logger.info("notification added for \(messageId)")
             }
 
             // this line should always be reached
