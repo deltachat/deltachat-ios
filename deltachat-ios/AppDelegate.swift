@@ -194,6 +194,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else {
                 return false
             }
+        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
+            logger.info("➡️ INStartAudioCallIntent")
+            return false
         } else {
             return false
         }
