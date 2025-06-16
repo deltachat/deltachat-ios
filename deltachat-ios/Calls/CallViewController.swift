@@ -1,0 +1,87 @@
+import DcCore
+import UIKit
+import WebKit
+
+class CallWindow: UIWindow {
+    static var shared: CallWindow? {
+        (UIApplication.shared.delegate as? AppDelegate)?.callWindow
+    }
+    
+    private weak var callViewController: CallViewController?
+
+    override var isHidden: Bool {
+        didSet {
+            isUserInteractionEnabled = !isHidden
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        rootViewController = UIViewController()
+        windowLevel = .alert
+        makeKeyAndVisible()
+        isHidden = true
+    }
+    
+    @available(*, unavailable) required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func showCallUI(for call: DcCall) {
+        if callViewController?.call.uuid != call.uuid {
+            let new = CallViewController(call: call)
+            rootViewController = new
+            callViewController = new
+        }
+        isHidden = false
+    }
+    
+    func hideCallUI() {
+        isHidden = true
+    }
+    
+    func endCall() {
+        hideCallUI()
+        rootViewController = UIViewController()
+    }
+}
+
+class CallViewController: UIViewController {
+    var call: DcCall
+    
+    // TODO: What do we need for a call? - URL?
+    init(call: DcCall) {
+        self.call = call
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var webView: WKWebView = {
+        let webView = WKWebView(frame: view.frame)
+        return webView
+    }()
+    
+    lazy var hideButton: UIButton = {
+        let button = UIButton(type: .close)
+        button.addTarget(self, action: #selector(hideButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(webView)
+        webView.fillSuperview()
+        webView.load(URLRequest(url: URL(string: "https://meet.systemli.org/32784921974298")!))
+        view.addSubview(hideButton)
+        hideButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
+        hideButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
+    }
+    
+    @objc private func hideButtonPressed() {
+        CallWindow.shared?.hideCallUI()
+    }
+}
