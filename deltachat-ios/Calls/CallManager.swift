@@ -1,20 +1,13 @@
 import CallKit
 import DcCore
 
-let canVideoCalls = false
+let canVideoCalls = true
 
-class DcCall {
+struct DcCall {
     let contextId: Int
     let messageId: Int
     let incoming: Bool
     let uuid: UUID
-
-    init(incoming: Bool, contextId: Int, messageId: Int, uuid: UUID) {
-        self.incoming = incoming
-        self.contextId = contextId
-        self.messageId = messageId
-        self.uuid = uuid
-    }
 }
 
 class CallManager: NSObject {
@@ -52,7 +45,7 @@ class CallManager: NSObject {
 
         let messageId = dcContext.placeOutgoingCall(chatId: dcChat.id)
         let uuid = UUID()
-        currentCall = DcCall(incoming: false, contextId: dcContext.id, messageId: messageId, uuid: uuid)
+        currentCall = DcCall(contextId: dcContext.id, messageId: messageId, incoming: false, uuid: uuid)
 
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
@@ -60,11 +53,14 @@ class CallManager: NSObject {
         startCallAction.isVideo = canVideoCalls
 
         let transaction = CXTransaction(action: startCallAction)
-        callController.request(transaction) { error in
+        callController.request(transaction) { [currentCall] error in
             if let error {
                 logger.error("☎️ failed to start call: \(error.localizedDescription)")
-            } else {
+            } else if let currentCall {
                 logger.info("☎️ call started to \(nameToDisplay)")
+                DispatchQueue.main.async {
+                    CallWindow.shared?.showCallUI(for: currentCall)
+                }
             }
         }
     }
@@ -86,6 +82,10 @@ class CallManager: NSObject {
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
+        
+        DispatchQueue.main.async {
+            CallWindow.shared?.endCall()
+        }
     }
 
     // this function is called from didReceiveIncomingPushWith
@@ -97,7 +97,7 @@ class CallManager: NSObject {
         let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
         let name = dcChat.name
         let uuid = UUID()
-        currentCall = DcCall(incoming: true, contextId: accountId, messageId: msgId, uuid: uuid)
+        currentCall = DcCall(contextId: accountId, messageId: msgId, incoming: true, uuid: uuid)
 
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: name)
