@@ -133,6 +133,7 @@
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		64F9EBA02E117CD8007EE3D9 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */; };
+		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
 		767CFF56D7ABED1C190A3A8B /* Pods_DcShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF8DFC4D179F4CF1E83D78C9 /* Pods_DcShare.framework */; };
@@ -477,6 +478,7 @@
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
+		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -1204,6 +1206,7 @@
 			children = (
 				B23977F42D7BA336006290CE /* CallManager.swift */,
 				B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */,
+				646896652E00415900E965B3 /* CallViewController.swift */,
 			);
 			path = Calls;
 			sourceTree = "<group>";
@@ -1754,6 +1757,7 @@
 				5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */,
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */,
+				646896662E00416100E965B3 /* CallViewController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
 				D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
