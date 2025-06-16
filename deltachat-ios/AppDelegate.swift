@@ -182,17 +182,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let incomingURL = userActivity.webpageURL,
-            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-            let host = components.host else {
-            return false
-        }
-        logger.info("➡️ open univeral link url")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let incomingURL = userActivity.webpageURL,
+           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+           let host = components.host {
+            logger.info("➡️ open univeral link url")
 
-        if host == "i.delta.chat" {
-            appCoordinator.handleQRCode(incomingURL.absoluteString)
-            return true
+            if host == "i.delta.chat" {
+                appCoordinator.handleQRCode(incomingURL.absoluteString)
+                return true
+            } else {
+                return false
+            }
         } else {
             return false
         }
