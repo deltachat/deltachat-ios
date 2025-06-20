@@ -6,7 +6,7 @@ public class StatusView: UIView {
     private let contentStackView: UIStackView
     let dateLabel: UILabel
     private let editedLabel: UILabel
-    private let padlockView: UIImageView
+    private let envelopeView: UIImageView
     private let locationView: UIImageView
     private let stateView: UIImageView
     private let savedView: UIImageView
@@ -22,8 +22,8 @@ public class StatusView: UIView {
         editedLabel.translatesAutoresizingMaskIntoConstraints = false
         editedLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
 
-        padlockView = UIImageView()
-        padlockView.translatesAutoresizingMaskIntoConstraints = false
+        envelopeView = UIImageView()
+        envelopeView.translatesAutoresizingMaskIntoConstraints = false
         locationView = UIImageView()
         locationView.translatesAutoresizingMaskIntoConstraints = false
         stateView = UIImageView()
@@ -31,9 +31,9 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, padlockView, editedLabel, dateLabel, locationView, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, stateView])
         contentStackView.alignment = .center
-        contentStackView.spacing = 2
+        contentStackView.spacing = 4
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
         super.init(frame: frame)
@@ -55,11 +55,11 @@ public class StatusView: UIView {
             trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 5),
             bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
 
-            padlockView.widthAnchor.constraint(equalToConstant: 15),
-            padlockView.heightAnchor.constraint(equalToConstant: 20),
+            envelopeView.widthAnchor.constraint(equalToConstant: 14),
+            envelopeView.heightAnchor.constraint(equalToConstant: 10),
 
-            locationView.widthAnchor.constraint(equalToConstant: 8),
-            locationView.heightAnchor.constraint(equalToConstant: 11),
+            locationView.widthAnchor.constraint(equalToConstant: 10),
+            locationView.heightAnchor.constraint(equalToConstant: 14),
 
             stateView.widthAnchor.constraint(equalToConstant: 20),
             stateView.heightAnchor.constraint(equalToConstant: 20),
@@ -75,7 +75,7 @@ public class StatusView: UIView {
     public func prepareForReuse() {
         dateLabel.text = nil
         editedLabel.isHidden = true
-        padlockView.isHidden = true
+        envelopeView.isHidden = true
         locationView.isHidden = true
         savedView.isHidden = true
         stateView.isHidden = true
@@ -88,10 +88,10 @@ public class StatusView: UIView {
         editedLabel.textColor = tintColor
 
         if message.showPadlock() {
-            padlockView.image = UIImage(named: "ic_lock")?.maskWithColor(color: tintColor)
-            padlockView.isHidden = false
+            envelopeView.isHidden = true
         } else {
-            padlockView.isHidden = true
+            envelopeView.image = UIImage(systemName: "envelope")?.maskWithColor(color: tintColor)
+            envelopeView.isHidden = false
         }
 
         if message.hasLocation {
