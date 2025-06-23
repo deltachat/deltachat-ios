@@ -61,7 +61,6 @@ class ConnectivityViewController: WebViewViewController {
     private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> (String, String) {
         let connectiviy = self.dcContext.getConnectivity()
         let pushState = dcContext.getPushState()
-        let notificationsEnabledInDC = !dcContext.isMuted()
         var notificationsEnabledInSystem = false
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global(qos: .userInitiated).async {
@@ -71,14 +70,14 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
         if semaphore.wait(timeout: .now() + 1) == .timedOut {
-            return ("yellow", "Timeout Error")
+            return ("yellow", "Timeout Error. Notifications might be disabled in system settings")
         }
 
         if dcContext.isAnyDatabaseEncrypted() {
             return ("yellow", "Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
         }
 
-        if !notificationsEnabledInDC {
+        if dcContext.isMuted() {
             return ("disabled", String.localized("disabled_in_dc"))
         }
 
