@@ -5,7 +5,6 @@ import Network
 class ConnectivityViewController: WebViewViewController {
 
     private var connectivityMonitor: NWPathMonitor?
-    private var isLowDataMode: Bool = false
 
     override init(dcContext: DcContext) {
         super.init(dcContext: dcContext)
@@ -34,10 +33,8 @@ class ConnectivityViewController: WebViewViewController {
         let connectivityMonitor = NWPathMonitor()
         connectivityMonitor.pathUpdateHandler = { [weak self] path in
             guard let self else { return }
-            self.isLowDataMode = path.isConstrained
             self.loadHtml()
         }
-        isLowDataMode = connectivityMonitor.currentPath.isConstrained
         connectivityMonitor.start(queue: DispatchQueue.global())
         self.connectivityMonitor = connectivityMonitor
     }
@@ -54,12 +51,12 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     // this method needs to be run from a background thread. returns (color, informationalText) with:
-    // red:      network disconnected, ignored in settings as a this is a normal thing the user usually is aware of anyways
-    // yellow:   things that worse notifications, should be shown as a warning, user-actionable
+    // red:      network disconnected
+    // yellow:   other things that worse notifications
     // green:    everything on purpose
-    // disabled: notifications disabled in Delta - if they're disabled in system, this is a warning
-    private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> (String, String) {
-        let connectiviy = self.dcContext.getConnectivity()
+    // disabled: notifications disabled in Delta - if they're disabled in system, this is "yellow"
+    static func getNotificationStatus(dcContext: DcContext, backgroundRefreshStatus: UIBackgroundRefreshStatus) -> (String, String) {
+        let connectiviy = dcContext.getConnectivity()
         let pushState = dcContext.getPushState()
         var notificationsEnabledInSystem = false
         let semaphore = DispatchSemaphore(value: 0)
@@ -89,10 +86,15 @@ class ConnectivityViewController: WebViewViewController {
             return ("yellow", String.localized("bg_app_refresh_disabled"))
         }
 
-        if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
+        if connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
             return ("red", String.localized("connectivity_not_connected"))
         }
 
+        if pushState == DC_PUSH_NOT_CONNECTED {
+            return ("red", "Push not connected")
+        }
+
+        let isLowDataMode = NWPathMonitor().currentPath.isConstrained
         if isLowDataMode {
             return ("yellow", String.localized("connectivity_low_data_mode"))
         }
@@ -177,7 +179,7 @@ class ConnectivityViewController: WebViewViewController {
                         </style>
                         """)
 
-                let (color, notificationStatus) = self.getNotificationStatus(backgroundRefreshStatus: backgroundRefreshStatus)
+                let (color, notificationStatus) = ConnectivityViewController.getNotificationStatus(dcContext: dcContext, backgroundRefreshStatus: backgroundRefreshStatus)
                 if let range = html.range(of: "</ul>") {
                     let title = String.localized("pref_notifications")
                     html = html.replacingCharacters(in: range, with: "<li><span class=\"\(color) dot\"></span> <b>\(title)</b>: \(notificationStatus)</li></ul>")
