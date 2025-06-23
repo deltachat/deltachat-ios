@@ -53,7 +53,11 @@ class ConnectivityViewController: WebViewViewController {
         connectivityMonitor?.cancel()
     }
 
-    // this method needs to be run from a background thread
+    // this method needs to be run from a background thread. returns (color, informationalText) with:
+    // red:      network disconnected, ignored in settings as a this is a normal thing the user usually is aware of anyways
+    // yellow:   things that worse notifications, should be shown as a warning, user-actionable
+    // green:    everything on purpose
+    // disabled: notifications disabled in Delta - if they're disabled in system, this is a warning
     private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> (String, String) {
         let connectiviy = self.dcContext.getConnectivity()
         let pushState = dcContext.getPushState()
@@ -67,11 +71,11 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
         if semaphore.wait(timeout: .now() + 1) == .timedOut {
-            return ("red", "Timeout Error")
+            return ("yellow", "Timeout Error")
         }
 
         if dcContext.isAnyDatabaseEncrypted() {
-            return ("red", "Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
+            return ("yellow", "Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
         }
 
         if !notificationsEnabledInDC {
@@ -79,11 +83,11 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         if !notificationsEnabledInSystem {
-            return ("disabled", String.localized("disabled_in_system_settings"))
+            return ("yellow", String.localized("disabled_in_system_settings"))
         }
 
         if backgroundRefreshStatus != .available {
-            return ("disabled", String.localized("bg_app_refresh_disabled"))
+            return ("yellow", String.localized("bg_app_refresh_disabled"))
         }
 
         if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
@@ -91,11 +95,11 @@ class ConnectivityViewController: WebViewViewController {
         }
 
         if isLowDataMode {
-            return ("disabled", String.localized("connectivity_low_data_mode"))
+            return ("yellow", String.localized("connectivity_low_data_mode"))
         }
 
         if ProcessInfo.processInfo.isLowPowerModeEnabled {
-            return ("disabled", String.localized("connectivity_low_power_mode"))
+            return ("yellow", String.localized("connectivity_low_power_mode"))
         }
 
         if pushState == DC_PUSH_CONNECTED {
