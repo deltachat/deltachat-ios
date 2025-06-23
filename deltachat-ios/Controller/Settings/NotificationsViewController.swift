@@ -6,7 +6,7 @@ internal final class NotificationsViewController: UITableViewController {
 
     private struct SectionConfigs {
         let headerTitle: String?
-        let footerTitle: String?
+        var footerTitle: String?
         let cells: [UITableViewCell]
     }
 
@@ -17,6 +17,7 @@ internal final class NotificationsViewController: UITableViewController {
 
     private var dcContext: DcContext
     internal let dcAccounts: DcAccounts
+    private var lastNotifyState: String = ""
 
     // MARK: - cells
     private lazy var notificationsCell: SwitchCell = {
@@ -140,5 +141,26 @@ internal final class NotificationsViewController: UITableViewController {
     private func updateCells() {
         mentionsCell.uiSwitch.isEnabled = !dcContext.isMuted()
         mentionsCell.uiSwitch.isOn = !dcContext.isMuted() && dcContext.isMentionsEnabled
+
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            let (color, text) = ConnectivityViewController.getNotificationStatus(dcContext: dcContext, backgroundRefreshStatus: backgroundRefreshStatus)
+            let notifyState: String
+            switch color {
+            case "green", "disabled": notifyState = String.localized("system_settings_notify_explain_ios")
+            default: notifyState = "⚠️ " + text
+            }
+            if lastNotifyState != notifyState {
+                lastNotifyState = notifyState
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    sections[1].footerTitle = notifyState
+                    tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+                }
+            }
+        }
     }
 }

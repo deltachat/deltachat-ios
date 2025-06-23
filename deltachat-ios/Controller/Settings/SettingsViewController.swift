@@ -246,7 +246,22 @@ internal final class SettingsViewController: UITableViewController {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
                                                                                connectedString: String.localized("connectivity_connected"))
-        notificationCell.detailTextLabel?.text = String.localized(dcContext.isMuted() ? "off" : "on")
+
+        let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            let (color, _) = ConnectivityViewController.getNotificationStatus(dcContext: dcContext, backgroundRefreshStatus: backgroundRefreshStatus)
+            let notifyState: String
+            switch color {
+            case "green": notifyState = String.localized("on")
+            case "disabled": notifyState = String.localized("off")
+            default: notifyState = "⚠️"
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.notificationCell.detailTextLabel?.text = notifyState
+            }
+        }
+
     }
 
     // MARK: - coordinator
