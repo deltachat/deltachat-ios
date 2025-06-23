@@ -54,10 +54,9 @@ class ConnectivityViewController: WebViewViewController {
     }
 
     // this method needs to be run from a background thread
-    private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> String {
+    private func getNotificationStatus(backgroundRefreshStatus: UIBackgroundRefreshStatus) -> (String, String) {
         let connectiviy = self.dcContext.getConnectivity()
         let pushState = dcContext.getPushState()
-        let title = " <b>" + String.localized("pref_notifications") + ":</b> "
         let notificationsEnabledInDC = !dcContext.isMuted()
         var notificationsEnabledInSystem = false
         let semaphore = DispatchSemaphore(value: 0)
@@ -68,57 +67,39 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
         if semaphore.wait(timeout: .now() + 1) == .timedOut {
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending("Timeout Error")
+            return ("red", "Timeout Error")
         }
 
         if dcContext.isAnyDatabaseEncrypted() {
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending("Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
+            return ("red", "Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
         }
 
         if !notificationsEnabledInDC {
-            return "<span class=\"disabled dot\"></span>"
-                .appending(title)
-                .appending(String.localized("disabled_in_dc"))
+            return ("disabled", String.localized("disabled_in_dc"))
         }
 
         if !notificationsEnabledInSystem {
-            return "<span class=\"disabled dot\"></span>"
-                .appending(title)
-                .appending(String.localized("disabled_in_system_settings"))
+            return ("disabled", String.localized("disabled_in_system_settings"))
         }
 
         if backgroundRefreshStatus != .available {
-            return "<span class=\"disabled dot\"></span>"
-                .appending(title)
-                .appending(String.localized("bg_app_refresh_disabled"))
+            return ("disabled", String.localized("bg_app_refresh_disabled"))
         }
 
         if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
-            return "<span class=\"red dot\"></span>"
-                .appending(title)
-                .appending(String.localized("connectivity_not_connected"))
+            return ("red", String.localized("connectivity_not_connected"))
         }
 
         if isLowDataMode {
-            return "<span class=\"disabled dot\"></span>"
-                .appending(title)
-                .appending(String.localized("connectivity_low_data_mode"))
+            return ("disabled", String.localized("connectivity_low_data_mode"))
         }
 
         if ProcessInfo.processInfo.isLowPowerModeEnabled {
-            return "<span class=\"disabled dot\"></span>"
-                .appending(title)
-                .appending(String.localized("connectivity_low_power_mode"))
+            return ("disabled", String.localized("connectivity_low_power_mode"))
         }
 
         if pushState == DC_PUSH_CONNECTED {
-            return "<span class=\"green dot\"></span>"
-                .appending(title)
-                .appending(String.localized("connectivity_connected"))
+            return ("green", String.localized("connectivity_connected"))
         }
 
         let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
@@ -126,9 +107,7 @@ class ConnectivityViewController: WebViewViewController {
             // in most cases, here the app was just installed and we do not have any data.
             // so, do not show something error-like here.
             // (in case of errors, it usually converts to an error sooner or later)
-            return "<span class=\"yellow dot\"></span>"
-                .appending(title)
-                .appending(String.localized("connectivity_connected"))
+            return ("yellow", String.localized("connectivity_connected"))
         }
 
         let averageDelta = (Double(Date().timeIntervalSince1970) - timestamps.first!) / Double(timestamps.count)
@@ -143,13 +122,13 @@ class ConnectivityViewController: WebViewViewController {
             }
         }
 
-        return  "<span class=\"yellow dot\"></span>"
-            .appending(title)
-            .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
-            .appending(", ")
-            .appending(averageDelta / 3600 > 2 ?
-                       String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
-                       String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
+        return ("yellow",
+            String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups)
+                .appending(", ")
+                .appending(averageDelta / 3600 > 2 ?
+                    String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
+                    String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
+            )
     }
 
 
@@ -195,9 +174,10 @@ class ConnectivityViewController: WebViewViewController {
                         </style>
                         """)
 
-                let notificationStatus = self.getNotificationStatus(backgroundRefreshStatus: backgroundRefreshStatus)
+                let (color, notificationStatus) = self.getNotificationStatus(backgroundRefreshStatus: backgroundRefreshStatus)
                 if let range = html.range(of: "</ul>") {
-                    html = html.replacingCharacters(in: range, with: "<li>" + notificationStatus + "</li></ul>")
+                    let title = String.localized("pref_notifications")
+                    html = html.replacingCharacters(in: range, with: "<li><span class=\"\(color) dot\"></span> <b>\(title)</b>: \(notificationStatus)</li></ul>")
                 }
 
                 DispatchQueue.main.async {
