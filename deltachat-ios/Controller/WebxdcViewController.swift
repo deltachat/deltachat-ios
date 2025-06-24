@@ -422,7 +422,8 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        func actions() -> [UIMenuElement] {
+        let actions: () -> [UIMenuElement] = { [weak self] in
+            guard let self else { return [] }
             var actions = [UIMenuElement]()
             actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
                 guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -454,13 +455,11 @@ class WebxdcViewController: WebViewViewController {
             }
 
             if sourceCodeUrl != nil {
-                actions.append(UIMenu(options: [.displayInline],
-                    children: [
-                        UIAction(title: String.localized("source_code"), image: UIImage(systemName: "globe")) { [weak self] _ in
-                            self?.openUrl()
-                        },
-                    ]
-                ))
+                actions.append(UIMenu(options: [.displayInline], children: [
+                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "globe")) { [weak self] _ in
+                        self?.openUrl()
+                    },
+                ]))
             }
             return actions
         }
