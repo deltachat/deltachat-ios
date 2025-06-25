@@ -32,6 +32,8 @@
 "update" = "Përditësoje";
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Të bashkëngjitet “%1$@”?";
 "back" = "Mbrapsht";
 "close" = "Mbylle";
 "close_window" = "Mbylle Dritaren";
@@ -55,6 +57,8 @@
 "media" = "Media";
 "apps_and_media" = "Aplikacione & Media";
 "profile" = "Profil";
+"all_profiles" = "Krejt Profilet";
+"current_profile" = "Profili i Tanishëm";
 "main_menu" = "Menuja Kryesore";
 "start_chat" = "Nisni Fjalosje";
 "show_full_message" = "Shfaq Mesazhin e Plotë…";
@@ -89,6 +93,8 @@
 "no_app_to_handle_data" = "S\’gjendet dot një aplikacion për trajtimin e këtij lloji të dhënash.";
 "no_browser_installed" = "S\’ka shfletues të instaluar.";
 "file_not_found" = "S\’u gjet dot %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "S’ruhet dot %1$@.";
 "copied_to_clipboard" = "U kopjua në të papastër.";
 "contacts_headline" = "Kontakte";
 "email_address" = "Adresë Email";
@@ -112,6 +118,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Të përzgjedhur:";
 "self" = "Unë";
 "draft" = "Skicë";
 "image" = "Figurë";
@@ -153,6 +160,7 @@
 "webxdc_apps" = "Aplikacione";
 "webxdc_store_url" = "URL Marrësi Aplikacioni";
 "webxdc_store_url_explain" = "Në u ujdistë, URL-ja do të përdoret si Marrës Aplikacioni, në vend të atij parazgjedhje";
+"webxdc_draft_hint" = "Për ta ndarë me të tjerë, prekni “Dërgoje”";
 "home" = "Kreu";
 "games" = "Lojëra";
 "tools" = "Mjete";
@@ -353,6 +361,7 @@
 "chat_input_placeholder" = "Mesazh";
 "chat_archived_label" = "Arkivuar";
 "chat_request_label" = "Kërkesë";
+"chat_request_label_explain" = "Përfshi kërkesa në numëratorë dhe njoftime";
 "chat_no_messages" = "S\’ka mesazhe.";
 "chat_self_talk_subtitle" = "Mesazhe Vetes";
 "archive_empty_hint" = "Nëse arkivoni fjalosje, ato do të shfaqen këtu.";
@@ -701,6 +710,7 @@
 "n_bytes_message" = "Mesazh %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Shkarko maksimumin e mundshëm deri më %1$@";
+"select_profile" = "Përzgjidhni Profil";
 "profile_image_select" = "Përzgjidhni Figurë Profili";
 "select_your_new_profile_image" = "Përzgjidhni figurën tuaj të re të profilit";
 "profile_image_delete" = "Fshini Figurën e Profilit";

@@ -32,6 +32,8 @@
 "update" = "Actualización";
 "emoji" = "Emoji";
 "attachment" = "Adjunto";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "¿Adjunta \"%1$@\"?";
 "back" = "Atrás";
 "close" = "Cerrar";
 "close_window" = "Cerrar ventana";
@@ -54,7 +56,10 @@
 "save" = "Guardar";
 "chat" = "Chat";
 "media" = "Multimedia";
+"apps_and_media" = "Apps y medias";
 "profile" = "Perfil";
+"all_profiles" = "Todos perfiles";
+"current_profile" = "Perfil actual";
 "main_menu" = "Menú principal";
 "start_chat" = "Comenzar chat";
 "show_full_message" = "Mostrar mensaje completo…";
@@ -89,6 +94,8 @@
 "no_app_to_handle_data" = "No se puede encontrar una aplicación compatible con este tipo de contenido";
 "no_browser_installed" = "No hay ningún navegador instalado.";
 "file_not_found" = "No se pudo encontrar %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "No se puede guardar %1$@.";
 "copied_to_clipboard" = "Copiado al portapapeles.";
 "contacts_headline" = "Contactos";
 "email_address" = "Dirección de correo";
@@ -112,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Seleccionado:";
 "self" = "Yo";
 "draft" = "Borrador";
 "image" = "Imagen";
@@ -155,6 +163,7 @@
 "webxdc_apps" = "Aplicaciones";
 "webxdc_store_url" = "App Picker URL";
 "webxdc_store_url_explain" = "Si se establece, la URL se utilizará como App Picker en lugar de la predeterminada";
+"webxdc_draft_hint" = "Pulsa \"Enviar\" para compartir";
 "home" = "Inicio";
 "games" = "Juegos";
 "tools" = "Herramientas";
@@ -232,6 +241,7 @@
 "menu_export_attachment" = "Exportar adjunto";
 "menu_export_attachments" = "Exportar adjuntos";
 "menu_all_media" = "Toda la multimedia";
+"all_apps_and_media" = "Todas apps y medias";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostrar en el chat";
 "show_app_in_chat" = "Mostrar en el chat";
@@ -355,6 +365,7 @@
 "chat_input_placeholder" = "Mensaje";
 "chat_archived_label" = "Archivado";
 "chat_request_label" = "Solicitud";
+"chat_request_label_explain" = "Incluir solicitudes en contadores y notificaciones";
 "chat_no_messages" = "No hay mensajes.";
 "chat_self_talk_subtitle" = "Mensajes que envié a mí mismo";
 "archive_empty_hint" = "Chats arquivados se mostrarán aquí.";
@@ -705,6 +716,7 @@
 "n_bytes_message" = "Mensaje de %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Descarga disponible hasta %1$@";
+"select_profile" = "Seleccionar perfil";
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
 "profile_image_delete" = "Borrar imagen de perfil";

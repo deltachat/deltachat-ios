@@ -32,6 +32,8 @@
 "update" = "Aktualizacja";
 "emoji" = "Emoji";
 "attachment" = "Załącznik";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Załączyć „%1$@”?";
 "back" = "Wróć";
 "close" = "Zamknij";
 "close_window" = "Zamknij okno";
@@ -54,7 +56,10 @@
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";
+"apps_and_media" = "Aplikacje i multimedia";
 "profile" = "Profil";
+"all_profiles" = "Wszystkie profile";
+"current_profile" = "Aktualny profil";
 "main_menu" = "Menu główne";
 "start_chat" = "Rozpocznij czat";
 "show_full_message" = "Pokaż całą wiadomość…";
@@ -89,6 +94,8 @@
 "no_app_to_handle_data" = "Nie można znaleźć aplikacji do obsługi tego typu danych.";
 "no_browser_installed" = "Nie zainstalowano przeglądarki.";
 "file_not_found" = "Nie znaleziono pliku %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Nie można zapisać %1$@.";
 "copied_to_clipboard" = "Skopiowano do schowka";
 "contacts_headline" = "Kontakty";
 "email_address" = "Adres e-mail";
@@ -112,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Wybrane:";
 "self" = "Ja";
 "draft" = "Szkic";
 "image" = "Obraz";
@@ -155,6 +163,7 @@
 "webxdc_apps" = "Prywatne aplikacje";
 "webxdc_store_url" = "Adres URL selektora aplikacji";
 "webxdc_store_url_explain" = "Jeśli ustawiony, adres URL będzie używany jako selektor aplikacji zamiast domyślnego";
+"webxdc_draft_hint" = "Dotknij „Wyślij”, aby udostępnić";
 "home" = "Główna";
 "games" = "Gry";
 "tools" = "Narzędzia";
@@ -232,6 +241,7 @@
 "menu_export_attachment" = "Eksportuj załącznik";
 "menu_export_attachments" = "Eksportuj załączniki";
 "menu_all_media" = "Wszystkie multimedia";
+"all_apps_and_media" = "Wszystkie aplikacje i multimedia";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Pokaż w czacie";
 "show_app_in_chat" = "Pokaż aplikację w czacie";
@@ -355,6 +365,7 @@
 "chat_input_placeholder" = "Wiadomość";
 "chat_archived_label" = "Zarchiwizowane";
 "chat_request_label" = "Prośba";
+"chat_request_label_explain" = "Uwzględnij żądania w licznikach i powiadomieniach";
 "chat_no_messages" = "Brak wiadomości.";
 "chat_self_talk_subtitle" = "Wiadomości wysłane do siebie";
 "archive_empty_hint" = "Jeśli zarchiwizujesz czaty, zostaną one pokazane tutaj.";
@@ -384,7 +395,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Wyślij wiadomość do…";
 "enable_realtime" = "Aplikacje w czasie rzeczywistym";
-"enable_realtime_explain" = "Włącz połączenia w czasie rzeczywistym dla aplikacji udostępnianych na czatach. Jeśli ta opcja jest włączona, partnerzy czatu mogą być w stanie wykryć twój adres IP, gdy uruchamiasz aplikację.";
+"enable_realtime_explain" = "Włącz połączenia w czasie rzeczywistym dla aplikacji dołączonych do tego czatu. Jeśli ta opcja jest włączona, partnerzy czatu mogą być w stanie wykryć twój adres IP, gdy uruchamiasz aplikację.";
 // map
 "filter_map_on_time" = "Pokaż lokalizacje w ramach czasowych";
 "show_location_traces" = "Pokaż ślady";
@@ -429,15 +440,15 @@
 "tab_docs" = "Dokumenty";
 "tab_links" = "Linki";
 "tab_map" = "Mapa";
-"tab_gallery_empty_hint" = "Tutaj pojawią się zdjęcia i filmy udostępnione na tym czacie.";
-"tab_docs_empty_hint" = "Tutaj pojawią się dokumenty, muzyka i inne pliki udostępnione na tym czacie.";
-"tab_image_empty_hint" = "Tutaj pojawią się zdjęcia udostępnione w tym czacie.";
-"tab_video_empty_hint" = "Tutaj pojawią się filmy udostępnione w tym czacie.";
-"tab_audio_empty_hint" = "Tutaj pojawią się pliki dźwiękowe i wiadomości głosowe udostępnione w tym czacie.";
-"tab_webxdc_empty_hint" = "Tutaj pojawią się prywatne aplikacje udostępnione na tym czacie.";
-"tab_all_media_empty_hint" = "Tutaj pojawią się multimedia udostępnione w dowolnym czacie.";
-"all_files_empty_hint" = "Tutaj pojawią się dokumenty, muzyka i inne pliki udostępnione w dowolnym czacie.";
-"all_apps_empty_hint" = "Tutaj pojawią się prywatne aplikacje otrzymane lub wysłane w dowolnym czacie.";
+"tab_gallery_empty_hint" = "Tutaj pojawią się zdjęcia i filmy dołączone do tego czatu.";
+"tab_docs_empty_hint" = "Tutaj pojawią się dokumenty, muzyka i inne pliki dołączone do tego czatu.";
+"tab_image_empty_hint" = "Tutaj pojawią się zdjęcia dołączone do tego czatu.";
+"tab_video_empty_hint" = "Tutaj pojawią się filmy dołączone do tego czatu.";
+"tab_audio_empty_hint" = "Tutaj pojawią się pliki dźwiękowe i wiadomości głosowe dołączone do tego czatu.";
+"tab_webxdc_empty_hint" = "Tutaj pojawią się aplikacje dołączone do tego czatu.";
+"tab_all_media_empty_hint" = "Tutaj pojawią się multimedia dołączone do tego czatu.";
+"all_files_empty_hint" = "Tutaj pojawią się dokumenty, muzyka i inne pliki dołączone do tego czatu.";
+"all_apps_empty_hint" = "Tutaj pojawią się aplikacje dołączone w dowolnym czacie.";
 "media_preview" = "Podgląd multimediów";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Siatka proporcjonalna";
@@ -566,7 +577,7 @@
 // TLS certificate checks
 "accept_invalid_certificates" = "Zaakceptuj nieprawidłowe certyfikaty";
 "switch_account" = "Przełącz konto";
-"add_account" = "Dodaj konto";
+"add_account" = "Dodaj profil";
 // for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
 "profile_tag" = "Etykieta profilu";
 "profile_tag_hint" = "np. Praca, Rodzina";
@@ -705,6 +716,7 @@
 "n_bytes_message" = "Wiadomość %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maksymalna ilość do pobrania dostępna do %1$@";
+"select_profile" = "Wybierz profil";
 "profile_image_select" = "Wybierz zdjęcie profilowe";
 "select_your_new_profile_image" = "Wybierz nowe zdjęcie profilowe";
 "profile_image_delete" = "Usuń zdjęcie profilowe";

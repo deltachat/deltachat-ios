@@ -32,6 +32,8 @@
 "update" = "Обновить";
 "emoji" = "Эмодзи";
 "attachment" = "Вложение";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Прикрепить \"%1$@\"?";
 "back" = "Назад";
 "close" = "Закрыть";
 "close_window" = "Закрыть окно";
@@ -56,6 +58,8 @@
 "media" = "Медиафайлы";
 "apps_and_media" = "Приложения и медиафайлы";
 "profile" = "Профиль";
+"all_profiles" = "Все профили";
+"current_profile" = "Текущий профиль";
 "main_menu" = "Главное меню";
 "start_chat" = "Начать чат";
 "show_full_message" = "Показать сообщение полностью…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Не удалось найти приложение для обработки этого типа данных.";
 "no_browser_installed" = "Браузер не установлен.";
 "file_not_found" = "Не удалось найти %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Невозможно сохранить %1$@.";
 "copied_to_clipboard" = "Скопировано в буфер обмена.";
 "contacts_headline" = "Контакты";
 "email_address" = "Адрес электронной почты";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Выбрано:";
 "self" = "Я";
 "draft" = "Черновик";
 "image" = "Изображение";
@@ -156,6 +163,7 @@
 "webxdc_apps" = "Приложения";
 "webxdc_store_url" = "URL селектора приложений";
 "webxdc_store_url_explain" = "Если установлено, URL будет использоваться в качестве селектора приложений вместо стандартного";
+"webxdc_draft_hint" = "Нажмите \"Отправить\", чтобы поделиться";
 "home" = "Домой";
 "games" = "Игры";
 "tools" = "Инструменты";
@@ -357,6 +365,7 @@
 "chat_input_placeholder" = "Сообщение";
 "chat_archived_label" = "Архивировано";
 "chat_request_label" = "Запрос";
+"chat_request_label_explain" = "Включать запросы в счётчики и уведомления";
 "chat_no_messages" = "Нет сообщений.";
 "chat_self_talk_subtitle" = "Сообщения, отправленные себе";
 "archive_empty_hint" = "Здесь можно просмотреть архивные чаты.";
@@ -707,6 +716,7 @@
 "n_bytes_message" = "%1$@ сообщение";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Максимальная загрузка доступна до %1$@";
+"select_profile" = "Выбрать профиль";
 "profile_image_select" = "Выбрать изображение профиля";
 "select_your_new_profile_image" = "Выбрать новое изображение профиля";
 "profile_image_delete" = "Удалить изображение профиля";

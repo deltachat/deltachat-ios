@@ -32,6 +32,8 @@
 "update" = "Güncelleştir";
 "emoji" = "Emoji";
 "attachment" = "İlişik";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "“%1$@” iliştirilsin mi?";
 "back" = "Geri";
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
@@ -56,6 +58,8 @@
 "media" = "Ortam";
 "apps_and_media" = "Uygulamalar ve Ortamlar";
 "profile" = "Profil";
+"all_profiles" = "Tüm Profiller";
+"current_profile" = "Şu Anki Profil";
 "main_menu" = "Ana Menü";
 "start_chat" = "Sohbet Başlat";
 "show_full_message" = "Tam İletiyi Göster…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Bu veri türünü işleyen bir uygulama bulunamıyor.";
 "no_browser_installed" = "Kurulu tarayıcı yok.";
 "file_not_found" = "%1$@ bulunamadı.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "%1$@ kaydedilemiyor.";
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kişiler";
 "email_address" = "E-Posta Adresi";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Seçilen:";
 "self" = "Ben";
 "draft" = "Taslak";
 "image" = "Görsel";
@@ -358,6 +365,7 @@
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlenen";
 "chat_request_label" = "İstek";
+"chat_request_label_explain" = "Sayaçlarda ve bildirimlerde istekleri kapsa";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime İletiler";
 "archive_empty_hint" = "Arşivlenen sohbetler burada görünecek.";
@@ -422,7 +430,7 @@
 "group_add_members" = "Üyeler Ekle";
 "group_self_not_in_group" = "Bu eylemi gerçekleştirmek için öbeğin bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
-"profile_shared_chats" = "Paylaşılan Sohbetler";
+"profile_shared_chats" = "Ortak\'taki Sohbetler";
 "related_chats" = "İlgili Sohbetler";
 // Separator between the list of actual members and past members
 "past_members" = "Geçmişteki Üyeler";
@@ -708,6 +716,7 @@
 "n_bytes_message" = "%1$@ ileti";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "İndirme en fazla %1$@ zamanına kadar kullanılabilir";
+"select_profile" = "Profil Seç";
 "profile_image_select" = "Profil Görseli Seç";
 "select_your_new_profile_image" = "Yeni profil görselinizi seçin";
 "profile_image_delete" = "Profil Görselini Sil";

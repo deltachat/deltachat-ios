@@ -54,6 +54,7 @@
 "save" = "Uložit";
 "chat" = "Chat";
 "media" = "Multimédia";
+"apps_and_media" = "Aplikace a multimédia";
 "profile" = "Profil";
 "main_menu" = "Hlavní nabídka";
 "start_chat" = "Chatovat";
@@ -155,6 +156,7 @@
 "webxdc_apps" = "Aplikace";
 "webxdc_store_url" = "Adresa URL výběru aplikací";
 "webxdc_store_url_explain" = "Pokud je nastavena, tato URL adresa bude použita pro výběr aplikací namísto té výchozí";
+"webxdc_draft_hint" = "Pro sdílení stiskněte „Odeslat”";
 "home" = "Domů";
 "games" = "Hry";
 "tools" = "Nástroje";
@@ -232,6 +234,7 @@
 "menu_export_attachment" = "Exportovat přílohu";
 "menu_export_attachments" = "Exportovat přílohy";
 "menu_all_media" = "Všechna multimédia";
+"all_apps_and_media" = "Všechny aplikace a multimédia";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Ukázat v chatu";
 "show_app_in_chat" = "Zobrazit aplikaci v chatu";

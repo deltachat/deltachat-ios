@@ -32,6 +32,8 @@
 "update" = "Bijwerken";
 "emoji" = "Emoji";
 "attachment" = "Bijlage";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Wil je ‘%1$@’ bijvoegen?";
 "back" = "Terug";
 "close" = "Sluiten";
 "close_window" = "Venster sluiten";
@@ -56,6 +58,8 @@
 "media" = "Media";
 "apps_and_media" = "Apps en media";
 "profile" = "Profiel";
+"all_profiles" = "Alle profielen";
+"current_profile" = "Huidig profiel";
 "main_menu" = "Hoofdmenu";
 "start_chat" = "Gesprek beginnen";
 "show_full_message" = "Volledig bericht tonen…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Er is geen app die deze inhoud kan openen.";
 "no_browser_installed" = "Er is geen webbrowser geïnstalleerd.";
 "file_not_found" = "‘%1$@’ kan niet worden gevonden.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "“%1$@” kan niet worden opgeslagen.";
 "copied_to_clipboard" = "Gekopieerd naar het klembord.";
 "contacts_headline" = "Contactpersonen";
 "email_address" = "E-mailadres";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Gekozen:";
 "self" = "Ik";
 "draft" = "Concept";
 "image" = "Afbeelding";
@@ -156,6 +163,7 @@
 "webxdc_apps" = "Privé-apps";
 "webxdc_store_url" = "Appkiezer-url";
 "webxdc_store_url_explain" = "Stel in om apps te kiezen vanaf een url in plaats van de standaard appkiezer";
+"webxdc_draft_hint" = "Druk op ‘versturen’ om te delen";
 "home" = "Overzicht";
 "games" = "Games";
 "tools" = "Hulpmiddelen";
@@ -357,6 +365,7 @@
 "chat_input_placeholder" = "Bericht";
 "chat_archived_label" = "Gearchiveerd";
 "chat_request_label" = "Verzoek";
+"chat_request_label_explain" = "Gespreksverzoeken tonen op meldingen en emblemen";
 "chat_no_messages" = "Er zijn geen berichten.";
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
 "archive_empty_hint" = "Gearchiveerde gesprekken worden hier getoond.";
@@ -421,7 +430,7 @@
 "group_add_members" = "Deelnemers toevoegen";
 "group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
 "profile_encryption" = "Versleuteling";
-"profile_shared_chats" = "Gedeelde gesprekken";
+"profile_shared_chats" = "Gemeenschappelijke gesprekken";
 "related_chats" = "Verwante gesprekken";
 // Separator between the list of actual members and past members
 "past_members" = "Voormalige deelnemers";
@@ -707,6 +716,7 @@
 "n_bytes_message" = "%1$@ bericht";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maximaal downloaden tot en met een aantal van %1$@";
+"select_profile" = "Kies een profiel";
 "profile_image_select" = "Profielfoto kiezen";
 "select_your_new_profile_image" = "Kies een nieuwe profielfoto";
 "profile_image_delete" = "Profielfoto verwijderen";
