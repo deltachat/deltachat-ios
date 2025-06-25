@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
+    var callManager: CallManager?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
+    var callWindow: CallWindow!
     var notifyToken: String?
     var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -54,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         signal(SIGPIPE, SIG_IGN)
 
         logger.info("➡️ didFinishLaunchingWithOptions")
+        callManager = CallManager.shared
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
         UNUserNotificationCenter.current().delegate = self
@@ -116,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             fatalError("window was nil in app delegate")
         }
         window.backgroundColor = UIColor.systemBackground
-
+        callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
         relayHelper = RelayHelper.setup(dcAccounts.getSelected())
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
@@ -173,17 +176,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let incomingURL = userActivity.webpageURL,
-            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-            let host = components.host else {
-            return false
-        }
-        logger.info("➡️ open univeral link url")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let incomingURL = userActivity.webpageURL,
+           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+           let host = components.host {
+            logger.info("➡️ open univeral link url")
 
-        if host == "i.delta.chat" {
-            appCoordinator.handleQRCode(incomingURL.absoluteString)
-            return true
+            if host == "i.delta.chat" {
+                appCoordinator.handleQRCode(incomingURL.absoluteString)
+                return true
+            } else {
+                return false
+            }
+        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
+            logger.info("➡️ INStartAudioCallIntent")
+            return false
         } else {
             return false
         }
