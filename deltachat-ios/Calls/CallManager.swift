@@ -141,9 +141,11 @@ extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("☎️ call accepted pressed")
         if let currentCall {
-            // TODO: in the future, this should be "accept call"
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
-            dcContext.endCall(msgId: currentCall.messageId)
+            dcContext.acceptIncomingCall(msgId: currentCall.messageId)
+            DispatchQueue.main.async {
+                CallWindow.shared?.showCallUI(for: currentCall)
+            }
         }
         action.fulfill()
     }

@@ -61,6 +61,7 @@ class CallViewController: UIViewController {
     
     lazy var webView: WKWebView = {
         let webView = WKWebView(frame: view.frame)
+        webView.uiDelegate = self
         return webView
     }()
     
@@ -75,7 +76,7 @@ class CallViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(webView)
         webView.fillSuperview()
-        webView.load(URLRequest(url: URL(string: "https://meet.systemli.org/32784921974298")!))
+        webView.load(URLRequest(url: URL(string: "https://meet.systemli.org/32784921974298#config.prejoinConfig.enabled=false&config.notifications=[]&config.toolbarButtons=[%22microphone%22,%22camera%22,%22hangup%22]")!))
         view.addSubview(hideButton)
         hideButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         hideButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
@@ -83,5 +84,11 @@ class CallViewController: UIViewController {
     
     @objc private func hideButtonPressed() {
         CallWindow.shared?.hideCallUI()
+    }
+}
+
+extension CallViewController: WKUIDelegate {
+    @available(iOS 15.0, *) func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping @MainActor (WKPermissionDecision) -> Void) {
+        decisionHandler(.grant)
     }
 }
