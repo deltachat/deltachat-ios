@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v1.58.6
+2025-06
 
 - Access "Apps & Media" by an dedicated icon in chat's upper right corner
 - "All Apps & Media" are available from the settings
@@ -17,6 +18,8 @@
 - Fix: drag and drop videos on iOS 15
 - Fix: attaching files on iOS 15
 - Fix: properly close webxdc
+- Update translations and local help
+- Using core 1.159.5
 
 
 ## v1.58.5
