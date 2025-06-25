@@ -32,6 +32,8 @@
 "update" = "Aktualisieren";
 "emoji" = "Emoji";
 "attachment" = "Anhang";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "\"%1$@\" anhängen?";
 "back" = "Zurück";
 "close" = "Schließen";
 "close_window" = "Fenster schließen";
@@ -56,6 +58,8 @@
 "media" = "Medien";
 "apps_and_media" = "Apps & Medien";
 "profile" = "Profil";
+"all_profiles" = "Alle Profile";
+"current_profile" = "Aktuelles Profil";
 "main_menu" = "Hauptmenü";
 "start_chat" = "Chat starten";
 "show_full_message" = "Ganze Nachricht anzeigen…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Keine passende App zum Öffnen dieses Dateityps gefunden";
 "no_browser_installed" = "Kein Internetbrowser installiert.";
 "file_not_found" = "Kann %1$@ nicht finden";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Kann \"%1$@\" nicht speichern.";
 "copied_to_clipboard" = "In Zwischenablage kopiert.";
 "contacts_headline" = "Kontakte";
 "email_address" = "E-Mail-Adresse";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Ausgewählt:";
 "self" = "Ich";
 "draft" = "Entwurf";
 "image" = "Bild";
@@ -358,6 +365,7 @@
 "chat_input_placeholder" = "Nachricht";
 "chat_archived_label" = "Archiviert";
 "chat_request_label" = "Anfrage";
+"chat_request_label_explain" = "Anfragen in Zählern und Notifications anzeigen";
 "chat_no_messages" = "Keine Nachrichten.";
 "chat_self_talk_subtitle" = "Nachrichten an mich selbst";
 "archive_empty_hint" = "Archivierte Chats werden hier angezeigt.";
@@ -708,6 +716,7 @@
 "n_bytes_message" = "%1$@ Nachricht";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Download max. verfügbar bis %1$@";
+"select_profile" = "Profil auswählen";
 "profile_image_select" = "Profilbild auswählen";
 "select_your_new_profile_image" = "Wählen Sie Ihr Profilbild aus";
 "profile_image_delete" = "Profilbild löschen";

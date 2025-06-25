@@ -162,6 +162,38 @@
 			<string>ارسال این %d پرونده به %s؟</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>آیا می‌خواهید از روی همهٔ دستگاه‌هایتان %d گپ را حذف کنید؟</string>
+			<key>other</key>
+			<string>آیا می‌خواهید از روی همهٔ دستگاه‌هایتان %d گپ را حذف کنید؟</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>آیا می‌خواهید از روی تمام دستگاه‌هایتان %d پیام را حذف کنید؟</string>
+			<key>other</key>
+			<string>آیا می‌خواهید از روی تمام دستگاه‌هایتان %d پیام را حذف کنید؟</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

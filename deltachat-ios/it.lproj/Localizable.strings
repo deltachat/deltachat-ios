@@ -32,6 +32,8 @@
 "update" = "Aggiorna";
 "emoji" = "Emoji";
 "attachment" = "Allegato";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Allega \"%1$@\"?";
 "back" = "Indietro";
 "close" = "Chiudi";
 "close_window" = "Chiudi Finestra";
@@ -56,6 +58,8 @@
 "media" = "Media";
 "apps_and_media" = "App & Media";
 "profile" = "Profilo";
+"all_profiles" = "Tutti i Profili";
+"current_profile" = "Profilo Corrente";
 "main_menu" = "Menu Principale";
 "start_chat" = "Inizia Chat";
 "show_full_message" = "Mostra Messaggio Completo…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Non ho trovato un\'app per gestire questo tipo di dati.";
 "no_browser_installed" = "Nessun browser installato.";
 "file_not_found" = "Non ho trovato %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Impossibile salvare%1$@.";
 "copied_to_clipboard" = "Copiato negli appunti.";
 "contacts_headline" = "Contatti";
 "email_address" = "Indirizzo E-Mail";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Selezionato:";
 "self" = "Io";
 "draft" = "Bozza";
 "image" = "Immagine";
@@ -156,6 +163,7 @@
 "webxdc_apps" = "App";
 "webxdc_store_url" = "URL Selettore App";
 "webxdc_store_url_explain" = "Se impostato, l\'URL verrà utilizzato come Selettore App anziché quello predefinito";
+"webxdc_draft_hint" = "Premi \"Invia\" per condividere";
 "home" = "Inizio";
 "games" = "Giochi";
 "tools" = "Strumenti";
@@ -357,6 +365,7 @@
 "chat_input_placeholder" = "Messaggio";
 "chat_archived_label" = "Archiviato";
 "chat_request_label" = "Richiesta";
+"chat_request_label_explain" = "Includi le richieste nel contatore e nelle notifiche";
 "chat_no_messages" = "Nessun messaggio.";
 "chat_self_talk_subtitle" = "Messaggi a Me";
 "archive_empty_hint" = "Le chat archiviate verranno mostrate qui.";
@@ -707,6 +716,7 @@
 "n_bytes_message" = "%1$@ messaggio";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Scaricamento disponibile massimo fino a %1$@";
+"select_profile" = "Seleziona il Profilo";
 "profile_image_select" = "Seleziona Immagine Profilo";
 "select_your_new_profile_image" = "Seleziona la tua nuova immagine profilo";
 "profile_image_delete" = "Elimina Immagine Profilo";

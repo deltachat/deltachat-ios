@@ -73,13 +73,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d контакт</string>
+			<string>%d контактна особа</string>
 			<key>few</key>
-			<string>%d контакти</string>
+			<string>%d контактні особи</string>
 			<key>many</key>
-			<string>%d контактів</string>
+			<string>%d контактних осіб</string>
 			<key>other</key>
-			<string>%d контактів</string>
+			<string>%d контактних осіб</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -113,13 +113,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d реакція</string>
+			<string>%d реакція</string>
 			<key>few</key>
-			<string>%d реакції</string>
+			<string>%d реакції</string>
 			<key>many</key>
-			<string>%d реакцій</string>
+			<string>%d реакцій</string>
 			<key>other</key>
-			<string>%d реакції</string>
+			<string>%d реакцій</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -133,13 +133,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d учасник</string>
+			<string>%d участвує</string>
 			<key>few</key>
-			<string>%d учасники</string>
+			<string>%d участвують</string>
 			<key>many</key>
-			<string>%d учасників</string>
+			<string>%d участвують</string>
 			<key>other</key>
-			<string>%d учасників</string>
+			<string>%d участвують</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -153,13 +153,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d одержувач</string>
+			<string>%d одержувач(ка)</string>
 			<key>few</key>
-			<string>%d одержувачі</string>
+			<string>%d одержувачі й одержувачки</string>
 			<key>many</key>
-			<string>%d одержувачів</string>
+			<string>%d одержувачок і одержувачів</string>
 			<key>other</key>
-			<string>%d одержувачів</string>
+			<string>%d одержувачок і одержувачів</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -173,13 +173,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d обраний</string>
+			<string>%d вибрано</string>
 			<key>few</key>
-			<string>%d обрано</string>
+			<string>%d вибрано</string>
 			<key>many</key>
-			<string>%d обрано</string>
+			<string>%d вибрано</string>
 			<key>other</key>
-			<string>%d обрано</string>
+			<string>%d вибрано</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -193,13 +193,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Надіслати наступний файл %s?</string>
+			<string>Надіслати цей файл → %s?</string>
 			<key>few</key>
-			<string>Надіслати наступні %d файли до %s?</string>
+			<string>Надіслати ці %d файли → %s?</string>
 			<key>many</key>
-			<string>Надіслати наступні %d файлів до %s?</string>
+			<string>Надіслати ці %d файлів → %s?</string>
 			<key>other</key>
-			<string>Надіслати наступні %d файлів до %s?</string>
+			<string>Надіслати ці %d файлів → %s?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -213,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Видалити %d чат на всіх ваших пристроях?</string>
+			<string>¿Видалити %d чат на всіх Ваших пристроях?</string>
 			<key>few</key>
-			<string>Видалити %d чати на всіх ваших пристроях?</string>
+			<string>¿Видалити %d чати на всіх Ваших пристроях?</string>
 			<key>many</key>
-			<string>Видалити %d чатів на всіх ваших пристроях?</string>
+			<string>¿Видалити %d чатів на всіх Ваших пристроях?</string>
 			<key>other</key>
-			<string>Видалити %d чатів на всіх ваших пристроях?</string>
+			<string>¿Видалити %d чатів на всіх Ваших пристроях?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -233,13 +233,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+			<string>¿Видалити %d повідомлення на всіх Ваших пристроях?</string>
 			<key>few</key>
-			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+			<string>¿Видалити %d повідомлення на всіх Ваших пристроях?</string>
 			<key>many</key>
-			<string>Видалити %d повідомлень на всіх ваших пристроях?</string>
+			<string>¿Видалити %d повідомлень на всіх Ваших пристроях?</string>
 			<key>other</key>
-			<string>Видалити %d повідомлення на всіх ваших пристроях?</string>
+			<string>¿Видалити %d повідомлень на всіх Ваших пристроях?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
@@ -253,13 +253,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Видалити %d повідомлення?</string>
+			<string>Видалити %d повідомлення?</string>
 			<key>few</key>
-			<string>Видалити %d повідомлення?</string>
+			<string>Видалити %d повідомлення?</string>
 			<key>many</key>
-			<string>Видалити %d повідомлень?</string>
+			<string>Видалити %d повідомлень?</string>
 			<key>other</key>
-			<string>Видалити %d повідомлення?</string>
+			<string>Видалити %d повідомлень?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -273,13 +273,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d чат заархівовано</string>
+			<string>%d чат заархівовано</string>
 			<key>few</key>
-			<string>%d чати заархівовано</string>
+			<string>%d чати заархівовано</string>
 			<key>many</key>
-			<string>%d чатів заархівовано</string>
+			<string>%d чатів заархівовано</string>
 			<key>other</key>
-			<string>%d чатів заархівовано</string>
+			<string>%d чатів заархівовано</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -293,13 +293,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d чат розпаковано</string>
+			<string>%d чат розархівовано</string>
 			<key>few</key>
-			<string>%d чати розпаковано</string>
+			<string>%d чати розархівовано</string>
 			<key>many</key>
-			<string>%d чатів розпаковано</string>
+			<string>%d чатів розархівовано</string>
 			<key>other</key>
-			<string>%d чатів розпаковано</string>
+			<string>%d чатів розархівовано</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

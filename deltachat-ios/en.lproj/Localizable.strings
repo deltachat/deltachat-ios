@@ -32,6 +32,8 @@
 "update" = "Update";
 "emoji" = "Emoji";
 "attachment" = "Attachment";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Attach \"%1$@\"?";
 "back" = "Back";
 "close" = "Close";
 "close_window" = "Close Window";
@@ -56,6 +58,8 @@
 "media" = "Media";
 "apps_and_media" = "Apps & Media";
 "profile" = "Profile";
+"all_profiles" = "All Profiles";
+"current_profile" = "Current Profile";
 "main_menu" = "Main Menu";
 "start_chat" = "Start Chat";
 "show_full_message" = "Show Full Message…";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Can\'t find an app to handle this type of data.";
 "no_browser_installed" = "No browser installed.";
 "file_not_found" = "Could not find %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Cannot save %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
 "email_address" = "E-Mail Address";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Selected:";
 "self" = "Me";
 "draft" = "Draft";
 "image" = "Image";
@@ -358,6 +365,7 @@
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archived";
 "chat_request_label" = "Request";
+"chat_request_label_explain" = "Include requests in counters and notifications";
 "chat_no_messages" = "No messages.";
 "chat_self_talk_subtitle" = "Messages to Self";
 "archive_empty_hint" = "Archived chats will appear here.";
@@ -422,7 +430,7 @@
 "group_add_members" = "Add Members";
 "group_self_not_in_group" = "You must be a member of the group to perform this action.";
 "profile_encryption" = "Encryption";
-"profile_shared_chats" = "Shared Chats";
+"profile_shared_chats" = "Chats in Common";
 "related_chats" = "Related Chats";
 // Separator between the list of actual members and past members
 "past_members" = "Past Members";
@@ -708,6 +716,7 @@
 "n_bytes_message" = "%1$@ message";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Download maximum available until %1$@";
+"select_profile" = "Select Profile";
 "profile_image_select" = "Select Profile Image";
 "select_your_new_profile_image" = "Select your new profile image";
 "profile_image_delete" = "Delete Profile Image";
