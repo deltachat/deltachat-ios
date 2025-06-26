@@ -1,6 +1,0 @@
-framework module MCEmojiPicker {
-  umbrella header "MCEmojiPicker-umbrella.h"
-
-  export *
-  module * { export * }
-}

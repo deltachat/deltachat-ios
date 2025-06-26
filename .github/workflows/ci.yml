@@ -12,4 +12,5 @@ jobs:
           show-progress: false
       - run: sudo xcode-select --switch /Applications/Xcode_16.1.app/Contents/Developer
       - run: cargo install cargo-lipo
+      - run: pod install
       - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone SE (3rd generation)" | xcbeautify --renderer github-actions

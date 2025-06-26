@@ -41,6 +41,13 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-lipo
 ```
 
+### Install [CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+
+```bash
+brew install cocoapods
+```
+*Note: This is not the recommended way to install CocoaPods but the easiest.*
+
 ### Setup workspace
 
 ```bash
@@ -49,6 +56,7 @@ cd deltachat-ios
 git submodule update --init --recursive
 # Make sure the correct rust version is installed
 rustup toolchain install `cat rust-toolchain`
+pod install
 ```
 
 To run the project, open `deltachat-ios.xcworkspace` (**not** the 'xcodeproj' file).
