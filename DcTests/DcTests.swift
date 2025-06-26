@@ -41,7 +41,7 @@ struct DcTestContext {
         cleanup()
         let newAccountId = DcAccounts.shared.add()
         let newAccount = DcAccounts.shared.get(id: newAccountId)
-        newAccount.setConfig("displayname", "Me")
+        newAccount.setConfig("displayname", "Unit Test Account")
         newAccount.setConfig("addr", "ios.test@delta.chat")
         newAccount.setConfig("configured_addr", "ios.test@delta.chat")
         newAccount.setConfig("configured_mail_pw", "abcd")
