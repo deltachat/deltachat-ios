@@ -4,10 +4,12 @@ import DcCore
 @testable import deltachat_ios
 import UIKit
 
-struct DcTests {
+class DcTests {
+    lazy var context = DcTestContext.newOfflineAccount()
+    deinit { DcTestContext.cleanup() }
+    
     @Test @MainActor func webxdcShouldNotLeak() async throws {
-        // create account and send a webxdc message
-        let context = DcTestContext.newOfflineAccount()
+        // send a webxdc message
         let selfChat = context.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
         let chess = Bundle.module.url(forResource: "chess", withExtension: "xdc")!
         let xdcMessage = context.newMessage(viewType: DC_MSG_WEBXDC)
