@@ -51,7 +51,6 @@ struct DcTestContext {
         assert(DcAccounts.shared.select(id: newAccountId))
         return newAccount
     }
-    
 }
 
 extension UIViewController {
