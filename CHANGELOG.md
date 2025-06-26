@@ -18,6 +18,7 @@
 - Fix: drag and drop videos on iOS 15
 - Fix: attaching files on iOS 15
 - Fix: properly close webxdc
+- Fix message bubble ghosting
 - Update translations and local help
 - Using core 1.159.5
 
