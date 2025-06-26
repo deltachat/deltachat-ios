@@ -1,6 +1,0 @@
-framework module SDWebImageSVGKitPlugin {
-  umbrella header "SDWebImageSVGKitPlugin.h"
-
-  export *
-  module * { export * }
-}
