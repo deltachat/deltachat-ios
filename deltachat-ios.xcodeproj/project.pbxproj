@@ -256,6 +256,13 @@
 			remoteGlobalIDString = 30E8F20F2447285600CE2C90;
 			remoteInfo = DcShare;
 		};
+		643B447B2E0C2BD900AEE026 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A9FB13F1FB061E2001FEA36;
+			remoteInfo = "deltachat-ios";
+		};
 		B2D0E4972B93A4B200791949 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -465,6 +472,7 @@
 		5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPasteboard.swift; sourceTree = "<group>"; };
 		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
+		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		7837B63F21E54DC600CDE126 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -665,6 +673,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		643B44782E0C2BD900AEE026 /* DcTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DcTests;
+			sourceTree = "<group>";
+		};
 		D878C5002CF72AA0009AF551 /* DcWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -682,6 +695,13 @@
 			files = (
 				30E8F2252447622300CE2C90 /* DcCore.framework in Frameworks */,
 				767CFF56D7ABED1C190A3A8B /* Pods_DcShare.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643B44742E0C2BD800AEE026 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,6 +956,7 @@
 				30E8F2112447285600CE2C90 /* DcShare */,
 				B2D0E4932B93A4B200791949 /* DcNotificationService */,
 				D878C5002CF72AA0009AF551 /* DcWidget */,
+				643B44782E0C2BD900AEE026 /* DcTests */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				AFE4D4B4B038293E63BC1537 /* Pods */,
@@ -952,6 +973,7 @@
 				30E8F2102447285600CE2C90 /* Delta Chat.appex */,
 				B2D0E4922B93A4B200791949 /* DcNotificationService.appex */,
 				D878C4FB2CF72AA0009AF551 /* DcWidget.appex */,
+				643B44772E0C2BD800AEE026 /* DcTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1286,6 +1308,29 @@
 			productReference = 30E8F2102447285600CE2C90 /* Delta Chat.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		643B44762E0C2BD800AEE026 /* DcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643B447F2E0C2BD900AEE026 /* Build configuration list for PBXNativeTarget "DcTests" */;
+			buildPhases = (
+				643B44732E0C2BD800AEE026 /* Sources */,
+				643B44742E0C2BD800AEE026 /* Frameworks */,
+				643B44752E0C2BD800AEE026 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				643B447C2E0C2BD900AEE026 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				643B44782E0C2BD900AEE026 /* DcTests */,
+			);
+			name = DcTests;
+			packageProductDependencies = (
+			);
+			productName = DcTests;
+			productReference = 643B44772E0C2BD800AEE026 /* DcTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7A9FB13F1FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
@@ -1356,7 +1401,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
@@ -1364,6 +1409,10 @@
 						CreatedOnToolsVersion = 11.4;
 						LastSwiftMigration = 1510;
 						ProvisioningStyle = Automatic;
+					};
+					643B44762E0C2BD800AEE026 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 7A9FB13F1FB061E2001FEA36;
 					};
 					7A9FB13F1FB061E2001FEA36 = {
 						CreatedOnToolsVersion = 9.1;
@@ -1453,6 +1502,7 @@
 				30E8F20F2447285600CE2C90 /* DcShare */,
 				B2D0E4912B93A4B200791949 /* DcNotificationService */,
 				D878C4FA2CF72AA0009AF551 /* DcWidget */,
+				643B44762E0C2BD800AEE026 /* DcTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1467,6 +1517,13 @@
 				304F5E44244F571C00462538 /* Assets.xcassets in Resources */,
 				B2636B5D2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				30E8F2512449EA0E00CE2C90 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643B44752E0C2BD800AEE026 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1634,6 +1691,13 @@
 				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
 				30152C9725A5D91900377714 /* MessageLabel.swift in Sources */,
 				30E8F2422448B77600CE2C90 /* ChatListController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643B44732E0C2BD800AEE026 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1852,6 +1916,11 @@
 			isa = PBXTargetDependency;
 			target = 30E8F20F2447285600CE2C90 /* DcShare */;
 			targetProxy = 30E8F2182447285600CE2C90 /* PBXContainerItemProxy */;
+		};
+		643B447C2E0C2BD900AEE026 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
+			targetProxy = 643B447B2E0C2BD900AEE026 /* PBXContainerItemProxy */;
 		};
 		B2D0E4982B93A4B200791949 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2128,6 +2197,60 @@
 				SWIFT_VERSION = 5.5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		643B447D2E0C2BD900AEE026 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/deltachat-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/deltachat-ios";
+			};
+			name = Debug;
+		};
+		643B447E2E0C2BD900AEE026 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/deltachat-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/deltachat-ios";
 			};
 			name = Release;
 		};
@@ -2540,6 +2663,15 @@
 			buildConfigurations = (
 				30E8F21C2447285600CE2C90 /* Debug */,
 				30E8F21D2447285600CE2C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643B447F2E0C2BD900AEE026 /* Build configuration list for PBXNativeTarget "DcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643B447D2E0C2BD900AEE026 /* Debug */,
+				643B447E2E0C2BD900AEE026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

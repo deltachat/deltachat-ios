@@ -17,6 +17,9 @@
       location = "group:RELEASE.md">
    </FileRef>
    <FileRef
+      location = "group:TESTING.md">
+   </FileRef>
+   <FileRef
       location = "group:DcCore/DcCore.xcodeproj">
    </FileRef>
    <FileRef
