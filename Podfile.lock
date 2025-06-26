@@ -15,7 +15,7 @@ PODS:
   - libwebp/webp (1.3.2):
     - libwebp/sharpyuv
   - MCEmojiPicker (1.2.3)
-  - MobileVLCKit (3.6.0)
+  - MobileVLCKit (3.6.1b1)
   - ReachabilitySwift (5.2.4)
   - SCSiriWaveformView (1.1.2)
   - SDWebImage (5.20.0):
@@ -34,7 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `main`)
-  - MobileVLCKit
+  - MobileVLCKit (= 3.6.1b1)
   - ReachabilitySwift
   - SCSiriWaveformView
   - SDWebImage
@@ -72,7 +72,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   MCEmojiPicker: d24f72731881c05143870eefff52f586d493b982
-  MobileVLCKit: 8fe98ae53b7464f32e4bdf527cc7d53053e4d3a5
+  MobileVLCKit: 2d9c7c373393ae43086aeeff890bf0b1afc15c5c
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
@@ -82,6 +82,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 2f3558ca02842dcd3fd970360d2d4054bd21624a
   SwiftLint: 92196976e597b9afec5dbe374810103e6c1d9d7c
 
-PODFILE CHECKSUM: 05d43f7932c662811d438156b4f3e913cf399b0c
+PODFILE CHECKSUM: d0ac6273ff3c35eb5fd2eb67684a89ee908c3002
 
 COCOAPODS: 1.16.2
