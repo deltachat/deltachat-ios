@@ -13,6 +13,8 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
     var imageWidthConstraint: NSLayoutConstraint?
 
     private var message: DcMsg?
+    private let videoPlayerMaxLoops = 5
+    private var videoPlayerRemainingLoops = 0
     private var videoPlayer: VLCMediaPlayer? = VLCMediaPlayer()
 
     lazy var contentImageView: SDAnimatedImageView = {
@@ -92,6 +94,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
             }
             videoPlayer?.media = VLCMedia(url: url)
             videoPlayer?.play()
+            videoPlayerRemainingLoops = videoPlayerMaxLoops
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
             a11yDcType = String.localized("video")
@@ -262,7 +265,8 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
 
 extension ImageTextCell: VLCMediaPlayerDelegate {
     func mediaPlayerStateChanged(_ notification: Notification) {
-        if videoPlayer?.state == .ended {
+        if videoPlayer?.state == .ended, videoPlayerRemainingLoops > 0 {
+            videoPlayerRemainingLoops -= 1
             videoPlayer?.stop()
             videoPlayer?.play()
         } else if videoPlayer?.state == .playing, let size = videoPlayer?.videoSize {
