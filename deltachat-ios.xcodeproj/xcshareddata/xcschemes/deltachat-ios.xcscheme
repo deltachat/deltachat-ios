@@ -47,6 +47,17 @@
                ReferencedContainer = "container:deltachat-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "643B44762E0C2BD800AEE026"
+               BuildableName = "DcTests.xctest"
+               BlueprintName = "DcTests"
+               ReferencedContainer = "container:deltachat-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
