@@ -5,14 +5,17 @@ class NotificationService: UNNotificationServiceExtension {
     let dcAccounts = DcAccounts.shared
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        let bestAttemptContent = request.content
-        func newNotificationContent() -> UNMutableNotificationContent {
-            bestAttemptContent.mutableCopy() as? UNMutableNotificationContent ?? .init()
+        Task {
+            didReceive(request, withContentHandler: contentHandler)
         }
+    }
+
+    func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) async {
+        let bestAttemptContent = request.content
         let nowTimestamp = Date().timeIntervalSince1970
         UserDefaults.pushToDebugArray("🤜")
 
-        if UserDefaults.mainIoRunning {
+        if await DarwinNotificationCenter.current.didReply(.appRunningConfirmation, to: .appRunningQuestion, timeout: .now() + .seconds(2)) {
             UserDefaults.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
             contentHandler(silentNotification())
             return
