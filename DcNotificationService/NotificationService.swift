@@ -6,7 +6,7 @@ class NotificationService: UNNotificationServiceExtension {
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         Task {
-            didReceive(request, withContentHandler: contentHandler)
+            await didReceive(request, withContentHandler: contentHandler)
         }
     }
 
@@ -15,7 +15,8 @@ class NotificationService: UNNotificationServiceExtension {
         let nowTimestamp = Date().timeIntervalSince1970
         UserDefaults.pushToDebugArray("🤜")
 
-        if await DarwinNotificationCenter.current.didReply(.appRunningConfirmation, to: .appRunningQuestion, timeout: .now() + .seconds(2)) {
+        let dnc = DarwinNotificationCenter.current
+        if await dnc.didReply(.appRunningConfirmation, to: .appRunningQuestion, timeout: .now() + .seconds(2)) {
             UserDefaults.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
             contentHandler(silentNotification())
             return
@@ -82,10 +83,10 @@ class NotificationService: UNNotificationServiceExtension {
         // Queue all notifications
         for notification in notifications {
             let req = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: nil)
-            UNUserNotificationCenter.current().add(req) { error in
-                if error != nil {
-                    UserDefaults.pushToDebugArray("ERR6_UNUNC")
-                }
+            do {
+                try await UNUserNotificationCenter.current().add(req)
+            } catch {
+                UserDefaults.pushToDebugArray("ERR6_UNUNC")
             }
         }
 

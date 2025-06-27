@@ -109,12 +109,17 @@ extension DarwinNotificationCenter {
 
     public func didReply(_ reply: DarwinNotification, to: DarwinNotification, timeout: DispatchTime) async -> Bool {
         await withCheckedContinuation { continuation in
+            var didContinue = false
             let observer = addObserver(for: reply) { _ in
+                guard !didContinue else { return }
+                didContinue = true
                 continuation.resume(returning: true)
             }
             post(to)
             DispatchQueue.main.asyncAfter(deadline: timeout) {
                 DarwinNotificationCenter.current.removeObserver(observer)
+                guard !didContinue else { return }
+                didContinue = true
                 continuation.resume(returning: false)
             }
         }
