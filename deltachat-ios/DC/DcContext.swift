@@ -96,8 +96,7 @@ public class DcContext {
     public func sendWebxdcRealtimeAdvertisement(messageId: Int) {
         do {
             try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
     }
@@ -105,8 +104,7 @@ public class DcContext {
     public func sendWebxdcRealtimeData(messageId: Int, uint8Array: [UInt8]) {
         do {
             try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
     }
@@ -114,8 +112,7 @@ public class DcContext {
     public func leaveWebxdcRealtime(messageId: Int) {
         do {
             try DcAccounts.shared.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
     }
@@ -141,8 +138,7 @@ public class DcContext {
     public func changeContactName(contactId: Int, name: String) {
         do {
             try DcAccounts.shared.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
     }
@@ -479,8 +475,7 @@ public class DcContext {
                     logger.error("cannot parse vcard: \(error)")
                 }
             }
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
         return nil
@@ -495,8 +490,7 @@ public class DcContext {
                     logger.error("cannot import vcard: \(error)")
                 }
             }
-        }
-        catch {
+        } catch {
             logger.error(error.localizedDescription)
         }
         return nil

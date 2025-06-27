@@ -124,8 +124,4 @@ class ProfileHeader: UIStackView {
     @objc private func avatarTapped(_ sender: InitialsBadge) {
         onAvatarTap?()
     }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-    }
 }
