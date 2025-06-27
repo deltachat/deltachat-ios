@@ -123,7 +123,7 @@ extension DarwinNotificationCenter {
 
 /// An Acting Observer for subscribing to darwin notifications using a closure
 private class DarwinNotificationCenterActingObserver {
-    var _callback: ((DarwinNotification) -> Void)?
+    fileprivate var _callback: ((DarwinNotification) -> Void)?
     init(callback: @escaping (DarwinNotification) -> Void) {
         self._callback = callback
     }
