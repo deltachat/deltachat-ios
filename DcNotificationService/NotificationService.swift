@@ -21,6 +21,11 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(silentNotification())
             return
         }
+        if UserDefaults.nseFetching {
+            UserDefaults.pushToDebugArray("ABORT5_AS_NSE_RUNS")
+            contentHandler(silentNotification())
+            return
+        }
         UserDefaults.setNseFetching(for: 26)
 
         dcAccounts.openDatabase(writeable: false)
