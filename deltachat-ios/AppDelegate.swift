@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // and to avoid issues with calling concurrent series of startIo/maybeNetwork/stopIo.
     private var bgIoTimestamp: Double = 0.0
 
+    /// Other processes like the Notification Service Extension can post
+    /// DarwinNotification.appRunningQuestion in which case we reply with .appRunningConfirmation
+    @objc func appRunningQuestion(notification: DarwinNotification) {
+        DarwinNotificationCenter.current.post(.appRunningConfirmation)
+    }
 
     // MARK: - app main entry point
 
@@ -54,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         signal(SIGPIPE, SIG_IGN)
 
         logger.info("➡️ didFinishLaunchingWithOptions")
+        DarwinNotificationCenter.current.addObserver(self, selector: #selector(Self.appRunningQuestion), for: .appRunningQuestion)
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
         UNUserNotificationCenter.current().delegate = self
@@ -80,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 logger.warning("Failed to delete DB secrets")
             }
         }
-        
+
         do {
             self.reachability = try Reachability()
         } catch {
@@ -140,21 +146,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                 }
             }
-            
+
             reachability.whenUnreachable = { _ in
                 logger.info("network: not reachable")
                 DispatchQueue.global().async { [weak self] in
                     self?.dcAccounts.maybeNetworkLost()
                 }
             }
-            
+
             do {
                 try reachability.startNotifier()
             } catch {
                 logger.error("Unable to start notifier")
             }
         }
-        
+
         if let notificationOption = launchOptions?[.remoteNotification] {
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
             UserDefaults.pushToDebugArray("📡'")
@@ -169,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         launchOptions = nil
         appFullyInitialized = true
     }
-    
+
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
