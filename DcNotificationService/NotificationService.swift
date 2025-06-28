@@ -36,7 +36,7 @@ class NotificationService: UNNotificationServiceExtension {
         var exitedDueToCriticalMemory = false
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
         memoryPressureSource.setEventHandler { [weak memoryPressureSource] in
-            guard let memoryPressureSource, !memoryPressureSource.isCancelled else { return }
+            guard let memoryPressureSource, !memoryPressureSource.isCancelled, !exitedDueToCriticalMemory else { return }
             memoryPressureSource.cancel()
             // Order of importance because we might crash very soon
             exitedDueToCriticalMemory = true
