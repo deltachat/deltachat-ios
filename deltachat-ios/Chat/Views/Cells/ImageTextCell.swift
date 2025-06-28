@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import DcCore
 import SDWebImage
+import MobileVLCKit
 
 class ImageTextCell: BaseMessageCell, ReusableCell {
 
@@ -10,6 +11,11 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
     let minImageWidth: CGFloat = 125
     var imageHeightConstraint: NSLayoutConstraint?
     var imageWidthConstraint: NSLayoutConstraint?
+
+    private var message: DcMsg?
+    private let videoPlayerMaxLoops = 5
+    private var videoPlayerRemainingLoops = 0
+    private var videoPlayer: VLCMediaPlayer? = VLCMediaPlayer()
 
     lazy var contentImageView: SDAnimatedImageView = {
         let imageView = SDAnimatedImageView()
@@ -44,9 +50,16 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         contentImageView.addGestureRecognizer(gestureRecognizer)
+        videoPlayer?.delegate = self
+        videoPlayer?.drawable = contentImageView
     }
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
+        if msg.fileURL != message?.fileURL {
+            videoPlayer?.stop()
+            message = msg
+        }
+        
         messageLabel.text = msg.text
         let hasEmptyText = msg.text?.isEmpty ?? true
         bottomCompactView = msg.type != DC_MSG_STICKER && !msg.hasHtml && hasEmptyText
@@ -70,6 +83,18 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
             playButtonView.isHidden = true
             a11yDcType = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
+        } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL, url.pathExtension == "webm" {
+            playButtonView.isHidden = true
+            a11yDcType = String.localized("video")
+            
+            if msg.messageWidth != 0 && msg.messageHeight != 0 {
+                let bg = UIImage(color: UIColor(alpha: 0, red: 255, green: 255, blue: 255), size: CGSize(width: msg.messageWidth, height: msg.messageWidth))
+                contentImageView.image = bg
+                setAspectRatio(width: msg.messageWidth, height: msg.messageHeight)
+            }
+            videoPlayer?.media = VLCMedia(url: url)
+            videoPlayer?.play()
+            videoPlayerRemainingLoops = videoPlayerMaxLoops
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
             a11yDcType = String.localized("video")
@@ -162,7 +187,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
         var squareSize  = UIScreen.main.bounds.width * factor
         
-        if  height > width {
+        if height > width {
             // show square image for portrait images
             // reduce the image square size if there's no message text so that it fits best in the viewable area
             if squareSize > UIScreen.main.bounds.height * 5 / 8 && (messageLabel.text?.isEmpty ?? true) {
@@ -235,5 +260,27 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         contentImageView.sd_cancelCurrentImageLoad()
         contentImageIsPlaceholder = true
         tag = -1
+    }
+}
+
+extension ImageTextCell: VLCMediaPlayerDelegate {
+    func mediaPlayerStateChanged(_ notification: Notification) {
+        if videoPlayer?.state == .ended, videoPlayerRemainingLoops > 0 {
+            videoPlayerRemainingLoops -= 1
+            videoPlayer?.stop()
+            videoPlayer?.play()
+        } else if videoPlayer?.state == .playing, let size = videoPlayer?.videoSize {
+            guard
+                message?.id == tag,
+                size != .zero,
+                message?.messageWidth == 0,
+                message?.messageHeight == 0
+            else { return }
+            message?.setLateFilingMediaSize(width: size.width, height: size.height, duration: 0)
+            NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
+                "message_id": message?.id ?? 0,
+                "chat_id": message?.chatId ?? 0,
+            ])
+        }
     }
 }
