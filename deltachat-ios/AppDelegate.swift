@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     /// Other processes like the Notification Service Extension can post
     /// DarwinNotification.appRunningQuestion in which case we reply with .appRunningConfirmation
     @objc func appRunningQuestion(notification: DarwinNotification) {
+        guard UserDefaults.mainIoRunning else { return }
         DarwinNotificationCenter.current.post(.appRunningConfirmation)
     }
 
