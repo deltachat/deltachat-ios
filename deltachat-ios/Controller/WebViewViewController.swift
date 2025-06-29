@@ -106,9 +106,9 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         view.addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        webView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        webView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         webView.scrollView.keyboardDismissMode = .interactive
         webView.scrollView.contentInset.bottom = 0
 
