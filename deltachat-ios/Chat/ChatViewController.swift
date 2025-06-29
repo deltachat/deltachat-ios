@@ -985,6 +985,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                         let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
                             .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
                         self.tableView.scrollRectToVisible(textFrame, animated: animated)
+                        messageCell.messageBackgroundContainer.blink()
                     }
                 }
             } else {
@@ -1007,10 +1008,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } completion: { [weak self] _ in
                 guard let self else { return }
                 // If the cell does not fit on the screen, scroll to the top of it.
-                let cellHeight = self.tableView.cellForRow(at: indexPath)?.bounds.height
+                let cell = self.tableView.cellForRow(at: indexPath)
+                let cellHeight = cell?.bounds.height
                 let viewHeight = self.tableView.bounds.height - self.tableView.contentInset.vertical
                 if let cellHeight, cellHeight > viewHeight {
                     self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+                }
+                if let cell = cell as? BaseMessageCell {
+                    cell.messageBackgroundContainer.blink()
                 }
             }
         }
