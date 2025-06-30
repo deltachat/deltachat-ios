@@ -1,5 +1,8 @@
 # Delta Chat iOS Changelog
 
+## Unrealeased
+- Extend webxdc view into safe area
+
 ## v1.58.6
 2025-06
 
