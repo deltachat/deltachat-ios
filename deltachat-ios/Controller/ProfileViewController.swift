@@ -276,7 +276,7 @@ class ProfileViewController: UITableViewController {
     private func updateMenuItems() {
         let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreButtonMenu())
         var buttonItems: [UIBarButtonItem] = [menuButton]
-        if !isSavedMessages && !isDeviceChat && (contact != nil || isMailinglist || (isGroup && chat?.canSend ?? false)) {
+        if !isSavedMessages && !isDeviceChat && contact != nil {
             let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(showEditController))
             editButton.accessibilityLabel = String.localized("global_menu_edit_desktop")
             buttonItems.append(editButton)
@@ -296,6 +296,8 @@ class ProfileViewController: UITableViewController {
 
             if contact != nil, !isSavedMessages && !isDeviceChat {
                 primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
+            } else if isGroup && (chat?.canSend ?? false) {
+                primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
             if let chat, !isBroadcast && !isSavedMessages {
                 primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
