@@ -2,6 +2,9 @@
 
 ## Unrealeased
 - Extend webxdc view into safe area
+- Open media tabs deterministically at 'Apps'
+- Move 'Edit Group Name' to three-dot-menu
+
 
 ## v1.58.6
 2025-06
