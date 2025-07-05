@@ -64,26 +64,14 @@ class AllMediaViewController: UIPageViewController {
         navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
-        // select the first page that actually contains some media
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            var selectIndex = 0
-            for i in 0..<pages.count {
-                let page = pages[i]
-                if !dcContext.getChatMedia(chatId: chatId, messageType: page.type1, messageType2: page.type2, messageType3: page.type3).isEmpty {
-                    selectIndex = i
-                    break
-                }
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                if prevIndex == -1 {
-                    let page = pages[selectIndex]
-                    setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
-                    segmentControl.selectedSegmentIndex = selectIndex
-                    prevIndex = selectIndex
-                }
+            let selectIndex = 0
+            if prevIndex == -1 {
+                let page = pages[selectIndex]
+                setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
+                segmentControl.selectedSegmentIndex = selectIndex
+                prevIndex = selectIndex
             }
         }
     }
