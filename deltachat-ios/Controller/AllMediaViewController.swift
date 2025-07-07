@@ -12,7 +12,7 @@ class AllMediaViewController: UIPageViewController {
 
     private let dcContext: DcContext
     private let chatId: Int
-    private var prevIndex: Int = -1
+    private var prevIndex: Int = 0
 
     private var pages: [Page] = [
         Page(
@@ -64,16 +64,9 @@ class AllMediaViewController: UIPageViewController {
         navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            let selectIndex = 0
-            if prevIndex == -1 {
-                let page = pages[selectIndex]
-                setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
-                segmentControl.selectedSegmentIndex = selectIndex
-                prevIndex = selectIndex
-            }
-        }
+        let page = pages[prevIndex]
+        setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
+        segmentControl.selectedSegmentIndex = prevIndex
     }
 
     // MARK: - actions
