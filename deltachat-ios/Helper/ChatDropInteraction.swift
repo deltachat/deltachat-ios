@@ -24,16 +24,16 @@ public class ChatDropInteraction {
     }
 
     public func dropInteraction(performDrop session: UIDropSession) {
-        if session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier]) {
+        if session.items.first?.itemProvider.canLoadImage(allowAnimated: true) == true {
             loadImageObjects(session: session)
         } else if session.items.first?.itemProvider.canLoadVideo() == true {
             loadVideoObjects(session: session)
         } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.url.identifier]) {
             loadTextObjects(session: session)
-        } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.item.identifier]) {
-            loadFileObjects(session: session)
         } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.text.identifier]) {
             loadTextObjects(session: session)
+        } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.item.identifier]) {
+            loadFileObjects(session: session)
         }
     }
 
