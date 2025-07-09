@@ -10,6 +10,9 @@
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
 - Fix: do not show letter icon for partially downloaded messages
+- Share flow rework
+- Fix: Share to Delta Chat when already in Delta Chat now works
+- Fix: Drag and Dropping text into the chat
 
 
 ## v2.11.0
