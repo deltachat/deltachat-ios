@@ -4,6 +4,9 @@
 - Extend webxdc view into safe area
 - Open media tabs deterministically at 'Apps'
 - Move 'Edit Group Name' to three-dot-menu
+- Share flow rework
+- Fix: Share to Delta Chat when already in Delta Chat now works
+- Fix: Drag and Dropping text into the chat
 
 
 ## v1.58.6
