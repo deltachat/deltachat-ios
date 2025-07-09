@@ -123,6 +123,8 @@ class AppCoordinator: NSObject {
             return handleWebxdcDeeplink(url: url)
         } else if url.absoluteString.starts(with: "chat.delta.deeplink://chat?") {
             return handleOpenChatDeeplink(url: url)
+        } else if url.absoluteString.starts(with: "chat.delta.deeplink://share?") {
+            return handleShareDeeplink(url: url)
         } else {
             return false
         }
@@ -209,14 +211,63 @@ class AppCoordinator: NSObject {
         }
         return true
     }
+    
+    private func handleShareDeeplink(url: URL) -> Bool {
+        guard let parameters = url.queryParameters,
+              let data = parameters["data"]?.data(using: .utf8),
+              let providers = try? JSONDecoder().decode([CodableNSItemProvider].self, from: data)
+        else {
+            logger.error("Missing data parameter or incorrect format in URL \(url)")
+            return false
+        }
+        
+        // Switch account if needed
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+           let accountId = parameters["accountId"].flatMap(Int.init) {
+            // TODO: use accountId and chatId to share into chat right away
+            if dcAccounts.getSelected().id != accountId {
+                if !dcAccounts.select(id: accountId) { return false }
+                appDelegate.reloadDcContext()
+            }
+        }
+        
+        // Create messages
+        let dcContext = dcAccounts.getSelected()
+        let messages = providers.map {
+            switch $0 {
+            case let .contentsAt(url, viewType):
+                let msg = dcContext.newMessage(viewType: viewType)
+                msg.setFile(filepath: url.relativePath)
+                return msg
+            case .text(let text):
+                let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+                msg.text = text
+                return msg
+            }
+        }
+        
+        // Stage or send messages
+        if let chatId = parameters["chatId"].flatMap(Int.init) {
+            showChat(chatId: chatId)
+            RelayHelper.shared.setShareMessages(messages: messages)
+            RelayHelper.shared.shareAndFinishRelaying(to: chatId)
+        } else {
+            showChats()
+            let nvc = tabBarController.selectedViewController as? UINavigationController
+            nvc?.popToRootViewController(animated: false)
+            RelayHelper.shared.setShareMessages(messages: messages)
+        }
+        
+        return true
+    }
 
-    func handleMailtoURL(_ url: URL) -> Bool {
+    func handleMailtoURL(_ url: URL, askToChat: Bool = true) -> Bool {
         if RelayHelper.shared.parseMailtoUrl(url) {
             showTab(index: chatsTab)
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
                 if let controller = rootController.viewControllers.first as? ChatListViewController {
-                    controller.handleMailto(askToChat: RelayHelper.shared.askToChatWithMailto)
+                    controller.handleMailto(askToChat: askToChat)
                     return true
                 }
             }

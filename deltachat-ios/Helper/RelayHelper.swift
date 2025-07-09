@@ -1,21 +1,25 @@
 import Foundation
 import DcCore
 
+enum RelayData {
+    case forwardMessages(ids: [Int])
+    case forwardMessage(text: String?, fileData: Data?, fileName: String?)
+    case forwardVCard(Data)
+    case mailto(address: String, draft: String?)
+    case share([DcMsg])
+}
+
 class RelayHelper {
     static var shared: RelayHelper = RelayHelper()
     private static var dcContext: DcContext?
 
     var dialogTitle: String = ""
 
-    var forwardIds: [Int]?
-    var forwardText: String?
-    var forwardFileData: Data?
-    var forwardFileName: String?
-    var forwardVCardData: Data?
-
-    var mailtoDraft: String = ""
-    var mailtoAddress: String?
-    var askToChatWithMailto: Bool = true
+    var data: RelayData? {
+        didSet {
+            NotificationCenter.default.post(name: Event.relayHelperDidChange, object: nil)
+        }
+    }
 
     private init() {
         guard RelayHelper.dcContext != nil else {
@@ -34,29 +38,56 @@ class RelayHelper {
     func setForwardVCard(vcardData: Data) {
         finishRelaying()
         self.dialogTitle = String.localized("chat_share_with_title")
-        self.forwardVCardData = vcardData
+        self.data = .forwardVCard(vcardData)
     }
 
     func setForwardMessage(dialogTitle: String, text: String?, fileData: Data?, fileName: String?) {
         finishRelaying()
         self.dialogTitle = dialogTitle
-        self.forwardText = text
-        self.forwardFileData = fileData
-        self.forwardFileName = fileName
+        self.data = .forwardMessage(text: text, fileData: fileData, fileName: fileName)
     }
 
     func setForwardMessages(messageIds: [Int]) {
         finishRelaying()
         self.dialogTitle = String.localized("forward_to")
-        self.forwardIds = messageIds
+        self.data = .forwardMessages(ids: messageIds)
+    }
+    
+    func setShareMessages(messages: [DcMsg]) {
+        finishRelaying()
+        self.dialogTitle = "Share to..." // TODO: Localisation
+        self.data = .share(messages)
     }
 
     func isForwarding() -> Bool {
-        return forwardIds != nil || forwardText != nil || forwardFileData != nil || forwardVCardData != nil
+        switch data {
+        case .forwardMessage, .forwardVCard, .forwardMessages: true
+        default: false
+        }
+    }
+    
+    func isSharing() -> Bool {
+        if case .share = data { true } else { false }
+    }
+    
+    func shareAndFinishRelaying(to chatId: Int) {
+        if case .share(let messages) = data, let dcContext = RelayHelper.dcContext {
+            for msg in messages {
+                dcContext.sendMessage(chatId: chatId, message: msg)
+            }
+            DcUtils.donateSendMessageIntent(
+                context: dcContext,
+                chatId: chatId,
+                chatAvatar: dcContext.getChat(chatId: chatId).profileImage
+            )
+        }
+        // Remove temp files in share extension dir
+        try? FileManager.default.removeItem(at: shareExtensionDirectory)
+        finishRelaying()
     }
 
     func forwardIdsAndFinishRelaying(to chatId: Int) {
-        if let messageIds = self.forwardIds, let dcContext = RelayHelper.dcContext {
+        if case .forwardMessages(let messageIds) = data, let dcContext = RelayHelper.dcContext {
             if dcContext.getChat(chatId: chatId).isSelfTalk {
                 for id in messageIds {
                     let curr = dcContext.getMessage(id: id)
@@ -75,21 +106,13 @@ class RelayHelper {
 
     func finishRelaying() {
         dialogTitle = ""
-        forwardIds = nil
-        forwardText = nil
-        forwardFileData = nil
-        forwardFileName = nil
-        forwardVCardData = nil
-        mailtoDraft = ""
-        mailtoAddress = nil
-        askToChatWithMailto = true
+        data = nil
     }
-
 
     // mailto: handling
 
     func isMailtoHandling() -> Bool {
-        return !mailtoDraft.isEmpty || mailtoAddress != nil
+        if case .mailto = data { true } else { false }
     }
 
     func splitString(_ value: String) -> [String] {
@@ -114,20 +137,20 @@ class RelayHelper {
                     break
                 }
             }
-
+            var draft: String?
             if !subject.isEmpty {
-                mailtoDraft = subject
+                draft = subject
                 if !body.isEmpty {
-                    mailtoDraft += "\n\n\(body)"
+                    draft?.append("\n\n\(body)")
                 }
             } else if !body.isEmpty {
-                mailtoDraft = body
+                draft = body
             }
-
-            if !urlComponents.path.isEmpty {
-                mailtoAddress = splitString(urlComponents.path)[0] // we currently only allow 1 receipient
+            // we currently only allow 1 recipient
+            if !urlComponents.path.isEmpty, let address = splitString(urlComponents.path).first {
+                data = .mailto(address: address, draft: draft)
+                return true
             }
-            return mailtoAddress != nil || !mailtoDraft.isEmpty
         }
         return false
     }

@@ -210,21 +210,19 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
                                           message: nil,
                                           preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                RelayHelper.shared.askToChatWithMailto = false
-                _ = appDelegate.application(UIApplication.shared, open: url)
+                _ = appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
-            RelayHelper.shared.askToChatWithMailto = false
-            _ = appDelegate.application(UIApplication.shared, open: url)
+            _ = appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
         }
     }
 
     private func parseEmailAddress(from url: URL) -> String? {
         if let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
            !urlComponents.path.isEmpty {
-             return RelayHelper.shared.splitString(urlComponents.path)[0]
+            return RelayHelper.shared.splitString(urlComponents.path).first
         }
         return nil
     }
