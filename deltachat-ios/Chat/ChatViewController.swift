@@ -289,28 +289,42 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 self?.searchController.isActive = true
             }
         }
-
-        if RelayHelper.shared.isForwarding() {
-            if RelayHelper.shared.forwardIds != nil {
-                resignFirstResponder()
-                askToForwardMessage()
-            } else if let vcardData = RelayHelper.shared.forwardVCardData,
-                      let vcardURL = prepareVCardData(vcardData) {
+        
+        switch RelayHelper.shared.data {
+        case .forwardMessages:
+            resignFirstResponder()
+            askToForwardMessage()
+        case .forwardVCard(let vcardData):
+            if let vcardURL = prepareVCardData(vcardData) {
                 stageVCard(url: vcardURL)
                 RelayHelper.shared.finishRelaying()
-            } else if RelayHelper.shared.forwardFileData != nil || RelayHelper.shared.forwardText != nil {
-                if let text = RelayHelper.shared.forwardText {
-                    messageInputBar.inputTextView.text = text
-                }
-                if let data = RelayHelper.shared.forwardFileData {
-                    guard let file = FileHelper.saveData(data: data, name: RelayHelper.shared.forwardFileName, directory: .cachesDirectory) else { return }
-                    stageDocument(url: NSURL(fileURLWithPath: file))
-                }
-                RelayHelper.shared.finishRelaying()
             }
-        } else if RelayHelper.shared.isMailtoHandling() {
-            messageInputBar.inputTextView.text = RelayHelper.shared.mailtoDraft
+        case let .forwardMessage(text, fileData, fileName):
+            if let text {
+                messageInputBar.inputTextView.text = text
+            }
+            if let fileData, let file = FileHelper.saveData(data: fileData, name: fileName, directory: .cachesDirectory) {
+                stageDocument(url: NSURL(fileURLWithPath: file))
+            }
             RelayHelper.shared.finishRelaying()
+        case .mailto(_, draft: let draft):
+            messageInputBar.inputTextView.text = draft
+            RelayHelper.shared.finishRelaying()
+        case .share(let items):
+            let description = Dictionary(items.map { ($0.type, 1) }, uniquingKeysWith: +)
+                .compactMap { viewType, count in
+                    switch viewType { // TODO: Localize
+                    case DC_MSG_GIF: "\(count) GIF(s)"
+                    case DC_MSG_IMAGE: "\(count) image(s)"
+                    case DC_MSG_VIDEO: "\(count) video(s)"
+                    case DC_MSG_FILE: "\(count) file(s)"
+                    case DC_MSG_TEXT: "\(count) text message(s)"
+                    default: nil
+                    }
+                }
+                .joined(separator: ", ")
+            askToShareMessage(description: description)
+        case .none: break
         }
 
         messageInputBar.scrollDownButton.isHidden = true
@@ -1190,9 +1204,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return UIMenu(children: actions)
     }
 
-    private func confirmationAlert(title: String, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
+    private func confirmationAlert(title: String, message: String? = nil, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title,
-                                      message: nil,
+                                      message: message,
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: actionHandler))
 
@@ -1248,7 +1262,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func askToChatWith(email: String) {
         let contactId = self.dcContext.createContact(name: "", email: email)
-        if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+        if dcContext.getChatIdByContactId(contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
             let chatId = self.dcContext.createChatByContactId(contactId: contactId)
             self.showChat(chatId: chatId)
@@ -1308,16 +1322,34 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
-        confirmationAlert(title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
-                        actionTitle: String.localized("forward"),
-                        actionHandler: { [weak self] _ in
-                            guard let self else { return }
-                            RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
-                            becomeFirstResponder()
-                        },
-                        cancelHandler: { [weak self] _ in
-                            self?.navigationController?.popViewController(animated: true)
-                        })
+        confirmationAlert(
+            title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+            actionTitle: String.localized("forward"),
+            actionHandler: { [weak self] _ in
+                guard let self else { return }
+                RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
+                becomeFirstResponder()
+            },
+            cancelHandler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+        )
+    }
+    
+    private func askToShareMessage(description: String) {
+        let chat = dcContext.getChat(chatId: chatId)
+        confirmationAlert(
+            title: String.localizedStringWithFormat("Share to %1$@?", chat.name), // TODO: Localise
+            message: description,
+            actionTitle: String.localized("menu_share"), // TODO: Confirm I should use this localized string
+            actionHandler: { [weak self] _ in
+                guard let self else { return }
+                RelayHelper.shared.shareAndFinishRelaying(to: chatId)
+            },
+            cancelHandler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+        )
     }
 
     // MARK: - coordinator

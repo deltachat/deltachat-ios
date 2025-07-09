@@ -372,7 +372,7 @@ extension NewChatViewController {
     }
 
     private func askToChatWith(contactId: Int) {
-        if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
+        if dcContext.getChatIdByContactId(contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
             self.showNewChat(contactId: contactId)
         } else {
