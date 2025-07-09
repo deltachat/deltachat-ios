@@ -24,13 +24,13 @@ class ShareViewController: UIViewController {
                     .flatMap { $0.attachments ?? [] }
                     .asyncMap { try await CodableNSItemProvider.init(from: $0) }
             
-                // Create URL referencing shared items that opens the app
+                // Create deeplink referencing shared items
                 if let jsonData = try? JSONEncoder().encode(attachments),
                    let json = String(data: jsonData, encoding: .utf8),
                    let jsonUrlEncoded = json.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                    var url = URL(string: "chat.delta.deeplink://share?data=\(jsonUrlEncoded)") {
                     
-                    // Add direct share url query items
+                    // Add direct share parameters to deeplink
                     if let intent = extensionContext?.intent as? INSendMessageIntent,
                        let identifiers = intent.conversationIdentifier?.split(separator: "."),
                        identifiers.count == 2 {
