@@ -3,6 +3,9 @@
 ## Unreleased
 
 - Fix: Don't show removed chats in widget
+- Share flow rework
+- Fix: Share to Delta Chat when already in Delta Chat now works
+- Fix: Drag and Dropping text into the chat
 
 
 ## v2.22.2 Testflight
