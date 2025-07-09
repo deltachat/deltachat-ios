@@ -3,50 +3,7 @@ import UIKit
 import SDWebImage
 import DcCore
 
-enum ImageFormat: String {
-    case png, jpg, gif, tiff, webp, heic, bmp, unknown
-}
-
 extension ImageFormat {
-
-    // magic bytes can be found here: https://en.wikipedia.org/wiki/List_of_file_signatures
-    static func get(from data: Data) -> ImageFormat {
-        switch data[0] {
-        case 0x89:
-            return .png
-        case 0xFF:
-            return .jpg
-        case 0x47:
-            return .gif
-        case 0x49, 0x4D:
-            return .tiff
-        case 0x52 where data.count >= 12:
-            let subdata = data[0...11]
-
-            if let dataString = String(data: subdata, encoding: .ascii),
-                dataString.hasPrefix("RIFF"),
-                dataString.hasSuffix("WEBP") {
-                return .webp
-            }
-
-        case 0x00 where data.count >= 12:
-            let subdata = data[8...11]
-
-            if let dataString = String(data: subdata, encoding: .ascii),
-                Set(["heic", "heix", "hevc", "hevx"]).contains(dataString) {
-                return .heic
-            }
-
-        case 0x42 where data.count >= 2:
-            if data[1] == 0x4D {
-                return .bmp
-            }
-
-        default:
-            break
-        }
-        return .unknown
-    }
 
     static func loadImageFrom(data: Data) -> UIImage? {
         if let image = SDAnimatedImage(data: data) {
@@ -65,11 +22,9 @@ extension ImageFormat {
 
     public static func saveImage(image: UIImage, name: String? = nil, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
         if image.sd_isAnimated,
-           let data = image.sd_imageData() {
-            let format = ImageFormat.get(from: data)
-            if format != .unknown {
-                return FileHelper.saveData(data: data, name: name, suffix: format.rawValue, directory: directory)
-            }
+           let data = image.sd_imageData(),
+           let format = ImageFormat.get(from: data) {
+            return FileHelper.saveData(data: data, name: name, suffix: format.rawValue, directory: directory)
         }
         let suffix = image.isTransparent() ? "png" : "jpg"
         guard let data = image.isTransparent() ? image.pngData() : image.jpegData(compressionQuality: 1.0) else {

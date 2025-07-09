@@ -26,6 +26,8 @@
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
 		5F0FCC772DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */; };
+		640ACB472E1E3BA9000FBBCC /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */; };
+		64E2FCC12E1AD9D200CA9662 /* CodableNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */; };
 		78072F172A040ED800EB7C98 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78072F162A040ED800EB7C98 /* libdeltachat.a */; };
 		7871729629BA495200F110DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871729529BA495200F110DC /* SystemConfiguration.framework */; };
 		B2526A222DEA12A000EB90CC /* DcEnteredLoginParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2526A212DEA12A000EB90CC /* DcEnteredLoginParam.swift */; };
@@ -67,6 +69,8 @@
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
 		5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNMutableNotificationContent+init.swift"; sourceTree = "<group>"; };
+		640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFormat.swift; sourceTree = "<group>"; };
+		64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableNSItemProvider.swift; sourceTree = "<group>"; };
 		78072F162A040ED800EB7C98 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/libdeltachat.a"; sourceTree = "<group>"; };
 		7827C8882A04089900B8470D /* libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libraries; path = "../deltachat-ios/libraries"; sourceTree = "<group>"; };
 		7827C88A2A0408A700B8470D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/libdeltachat.a"; sourceTree = "<group>"; };
@@ -185,12 +189,14 @@
 			isa = PBXGroup;
 			children = (
 				30B2BD03278F207000889AA4 /* KeychainManager.swift */,
+				640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */,
 				30E8F2202447357500CE2C90 /* DatabaseHelper.swift */,
 				30421987243F23E500516852 /* Constants.swift */,
 				3042195C243E23F100516852 /* DcUtils.swift */,
 				306C324724460CDE001D89F3 /* DateUtils.swift */,
 				30E8F24C2449D30200CE2C90 /* DcColors.swift */,
 				5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */,
+				64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -305,6 +311,7 @@
 				30421962243E26C800516852 /* Logger.swift in Sources */,
 				30421986243F209E00516852 /* events.swift in Sources */,
 				306C324824460CDE001D89F3 /* DateUtils.swift in Sources */,
+				64E2FCC12E1AD9D200CA9662 /* CodableNSItemProvider.swift in Sources */,
 				D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */,
 				30B2BD04278F207000889AA4 /* KeychainManager.swift in Sources */,
 				30421952243DE15D00516852 /* wrapper.c in Sources */,
@@ -322,6 +329,7 @@
 				B2526A222DEA12A000EB90CC /* DcEnteredLoginParam.swift in Sources */,
 				D8BBF00D2B57D949008C96FD /* DcChat.swift in Sources */,
 				D8BBF0132B57D97B008C96FD /* DcContact.swift in Sources */,
+				640ACB472E1E3BA9000FBBCC /* ImageFormat.swift in Sources */,
 				D8BBF0112B57D96F008C96FD /* DcMsg.swift in Sources */,
 				D8BBF00B2B57D93D008C96FD /* DcChatlist.swift in Sources */,
 				5F0FCC772DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift in Sources */,

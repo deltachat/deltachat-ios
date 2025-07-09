@@ -55,7 +55,7 @@ class ChatListViewModel: NSObject {
         var gclFlags: Int32 = 0
         if isArchive {
             gclFlags |= DC_GCL_ARCHIVED_ONLY
-        } else if RelayHelper.shared.isForwarding() {
+        } else if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
             gclFlags |= DC_GCL_FOR_FORWARDING
         }
         self.chatList = dcContext.getChatlist(flags: gclFlags, queryString: nil, queryId: 0)

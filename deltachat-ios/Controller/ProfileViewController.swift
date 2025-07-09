@@ -107,7 +107,7 @@ class ProfileViewController: UITableViewController {
     init(_ dcContext: DcContext, chatId: Int = 0, contactId: Int = 0) {
         self.dcContext = dcContext
         self.contactId = contactId
-        self.chatId = contactId != 0 ? dcContext.getChatIdByContactId(contactId: contactId) : chatId
+        self.chatId = contactId != 0 ? dcContext.getChatIdByContactId(contactId) : chatId
         self.chat = self.chatId != 0 ? dcContext.getChat(chatId: self.chatId) : nil
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 

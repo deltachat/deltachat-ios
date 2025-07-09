@@ -194,17 +194,17 @@ public class DcContext {
         return DcChat(chatPointer: chatPointer)
     }
 
-    public func getChatIdByContactId(contactId: Int) -> Int {
+    public func getChatIdByContactId(_ contactId: Int) -> Int {
         return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
     public func getDeviceTalkChat() -> DcChat {
-        let deviceTalkChatId = getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+        let deviceTalkChatId = getChatIdByContactId(Int(DC_CONTACT_ID_DEVICE))
         return getChat(chatId: deviceTalkChatId)
     }
 
     public func getSelfTalkChat() -> DcChat {
-        let selfTalkChatId = getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        let selfTalkChatId = getChatIdByContactId(Int(DC_CONTACT_ID_SELF))
         return getChat(chatId: selfTalkChatId)
     }
 

@@ -116,16 +116,17 @@ class ChatListViewController: UITableViewController {
         // this needs more love :)
         self.view.backgroundColor = UIColor.systemBackground
 
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMsgReadDeliveredReactionFailed(_:)), name: Event.messageReadDeliveredFailedReaction, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatListViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessage), name: Event.incomingMessage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMessagesChanged), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleConnectivityChanged), name: Event.connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleContactsChanged), name: Event.contactsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMsgReadDeliveredReactionFailed), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMessagesNoticed), name: Event.messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleChatModified), name: Event.chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRelayHelperDidChange), name: Event.relayHelperDidChange, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -156,7 +157,7 @@ class ChatListViewController: UITableViewController {
         // if the device message was added already for another profile,
         // mark the chat as being read, including any welcome messages
         if UserDefaults.standard.string(forKey: Constants.Keys.lastDeviceMessageLabel) == deviceMsgLabel {
-            let deviceChatId = dcContext.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+            let deviceChatId = dcContext.getChatIdByContactId(Int(DC_CONTACT_ID_DEVICE))
             if deviceChatId != 0 {
                 dcContext.marknoticedChat(chatId: deviceChatId)
             }
@@ -181,12 +182,6 @@ class ChatListViewController: UITableViewController {
         // create view
         navigationItem.titleView = titleView
         updateTitle()
-
-        if RelayHelper.shared.isForwarding() {
-            refreshInBg()
-            quitSearch(animated: false)
-            tableView.scrollToTop()
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -259,6 +254,14 @@ class ChatListViewController: UITableViewController {
         }
     }
 
+    @objc private func handleRelayHelperDidChange(_ notification: Notification) {
+        updateTitle()
+        if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
+            refreshInBg()
+            quitSearch(animated: false)
+            tableView.scrollToTop()
+        }
+    }
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
         updateNextScreensBackButton()
@@ -375,11 +378,11 @@ class ChatListViewController: UITableViewController {
         if tableView.isEditing {
             self.setLongTapEditing(false)
         } else {
-            let returnToMsgId = RelayHelper.shared.forwardIds?.first
+            let data = RelayHelper.shared.data
             RelayHelper.shared.finishRelaying()
             updateTitle()
             refreshInBg()
-            if let returnToMsgId {
+            if case .forwardMessages(ids: let forwardIds) = data, let returnToMsgId = forwardIds.first {
                 showChat(chatId: dcContext.getMessage(id: returnToMsgId).chatId, highlightedMsg: returnToMsgId)
             }
         }
@@ -625,7 +628,7 @@ class ChatListViewController: UITableViewController {
 
     private func canMultiSelect() -> Bool {
         guard let viewModel else { return false }
-        return !viewModel.searchActive && !RelayHelper.shared.isForwarding()
+        return !viewModel.searchActive && !(RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing())
     }
 
     private var isDuringMultipleSelectionInteraction = false
@@ -744,7 +747,7 @@ class ChatListViewController: UITableViewController {
 
     private func updateTitle() {
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
-        if RelayHelper.shared.isForwarding() {
+        if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
             // multi-select is not allowed during forwarding
             titleView.text = RelayHelper.shared.dialogTitle
             if isArchive {
@@ -863,10 +866,10 @@ class ChatListViewController: UITableViewController {
     }
 
     public func handleMailto(askToChat: Bool = true) {
-        if let mailtoAddress = RelayHelper.shared.mailtoAddress {
+        if case .mailto(address: let mailtoAddress, _) = RelayHelper.shared.data {
             let contactId = dcContext.lookupContactIdByAddress(mailtoAddress)
-            if contactId != 0 && dcContext.getChatIdByContactId(contactId: contactId) != 0 {
-                showChat(chatId: dcContext.getChatIdByContactId(contactId: contactId), animated: false)
+            if contactId != 0 && dcContext.getChatIdByContactId(contactId) != 0 {
+                showChat(chatId: dcContext.getChatIdByContactId(contactId), animated: false)
             } else if askToChat {
                 askToChatWith(address: mailtoAddress)
             } else {
