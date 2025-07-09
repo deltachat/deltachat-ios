@@ -5,15 +5,24 @@ class NotificationService: UNNotificationServiceExtension {
     let dcAccounts = DcAccounts.shared
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        let bestAttemptContent = request.content
-        func newNotificationContent() -> UNMutableNotificationContent {
-            bestAttemptContent.mutableCopy() as? UNMutableNotificationContent ?? .init()
+        Task {
+            await didReceive(request, withContentHandler: contentHandler)
         }
+    }
+
+    func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) async {
+        let bestAttemptContent = request.content
         let nowTimestamp = Date().timeIntervalSince1970
         UserDefaults.pushToDebugArray("🤜")
 
-        if UserDefaults.mainIoRunning {
+        let dnc = DarwinNotificationCenter.current
+        if await dnc.didReply(.appRunningConfirmation, to: .appRunningQuestion, timeout: .now() + .seconds(2)) {
             UserDefaults.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
+            contentHandler(silentNotification())
+            return
+        }
+        if UserDefaults.nseFetching {
+            UserDefaults.pushToDebugArray("ABORT5_AS_NSE_RUNS")
             contentHandler(silentNotification())
             return
         }
@@ -26,7 +35,8 @@ class NotificationService: UNNotificationServiceExtension {
         // by the system soon and any notification is better than nothing.
         var exitedDueToCriticalMemory = false
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
-        memoryPressureSource.setEventHandler {
+        memoryPressureSource.setEventHandler { [weak memoryPressureSource] in
+            guard let memoryPressureSource, !memoryPressureSource.isCancelled, !exitedDueToCriticalMemory else { return }
             memoryPressureSource.cancel()
             // Order of importance because we might crash very soon
             exitedDueToCriticalMemory = true
@@ -45,6 +55,7 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
         UserDefaults.setNseFetchingDone()
+        memoryPressureSource.cancel()
 
         var notifications: [UNMutableNotificationContent] = []
         while true {
@@ -77,10 +88,10 @@ class NotificationService: UNNotificationServiceExtension {
         // Queue all notifications
         for notification in notifications {
             let req = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: nil)
-            UNUserNotificationCenter.current().add(req) { error in
-                if error != nil {
-                    UserDefaults.pushToDebugArray("ERR6_UNUNC")
-                }
+            do {
+                try await UNUserNotificationCenter.current().add(req)
+            } catch {
+                UserDefaults.pushToDebugArray("ERR6_UNUNC")
             }
         }
 
