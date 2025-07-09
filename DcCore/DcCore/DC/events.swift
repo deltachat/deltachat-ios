@@ -27,7 +27,9 @@ public enum Event {
     public static let webxdcStatusUpdate = Notification.Name(rawValue: "webxdcStatusUpdate")
     public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "webxdcRealtimeDataReceived")
 
-    public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
+    public static let ephemeralTimerModified = Notification.Name(rawValue: "ephemeralTimerModified")
+    
+    public static let relayHelperDidChange = Notification.Name(rawValue: "relayHelperDidChange")
 }
 
 
