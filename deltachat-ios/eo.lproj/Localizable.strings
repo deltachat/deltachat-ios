@@ -150,9 +150,11 @@
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
 "menu_new_group" = "Nova grupo";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Elsenda Listo";
+// deprecated
 "broadcast_lists" = "Elsendaj Listoj";
+// deprecated
 "new_broadcast_list" = "Nova Elsenda Listo";
 "add_recipients" = "Aldoni Ricevantojn";
 "menu_send" = "Sendi";
@@ -236,8 +238,6 @@
 "share_location_for_two_hours" = "por 2 horoj";
 "share_location_for_six_hours" = "por 6 horoj";
 "file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
-// get confirmations
-"ask_leave_group" = "Ĉu vi estas certa, ke vi volas forlasi tiun ĉi grupon?";
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // %1$s is replaced by a comma-separated list of names

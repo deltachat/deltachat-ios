@@ -214,8 +214,6 @@
 "videochat_instance_from_qr" = "Brug \"%1$@\" til at invitere andre til videochats?\n\nNår det er sat kan du starte en videochat fra hver en-til-en chat. Dette vil erstatte den tidligere indstilling for videochats hvis den findes.";
 "videochat_invitation" = "Videochat-invitation";
 "videochat_invitation_body" = "Du er inviteret til en videochat, klik %1$@ for at tilslutte dig.";
-// get confirmations
-"ask_leave_group" = "Forlad denne gruppe?";
 // Used for the deletion of Device messages
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";

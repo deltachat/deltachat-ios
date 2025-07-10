@@ -161,13 +161,18 @@
 "menu_new_chat" = "Uusi keskustelu";
 "menu_new_group" = "Uusi ryhmä";
 "clone_chat" = "Kloonaa keskustelu";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Kuulutuslista";
+// deprecated
 "broadcast_lists" = "Kuulutuslistat";
+// deprecated
 "new_broadcast_list" = "Uusi kuulutuslista";
 "add_recipients" = "Lisää vastaanottajia";
+// deprecated
 "edit_broadcast_list" = "Muokkaa kuulutuslistaa";
+// deprecated
 "broadcast_list_name" = "Kuulutuslistan nimi";
+// deprecated
 "please_enter_broadcast_list_name" = "Anna kuulutuslistalle nimi.";
 "menu_send" = "Lähetä";
 "menu_toggle_keyboard" = "Näytä emoji-näppäimistö";
@@ -277,8 +282,6 @@
 "videochat_instance_from_qr" = "Käytä \"%1$@\" videokeskustelupyyntöihin?\n\nTämän jälkeen voit aloittaa videokeskustelun mistä tahansa keskustelusta. Tämä korvaa edellisen videokeskusteluasetuksen, jos sellainen on.";
 "videochat_invitation" = "Videokeskustelukutsu";
 "videochat_invitation_body" = "Sinut on kutsuttu videokeskusteluun, klikkaa %1$@ liittyäksesi.";
-// get confirmations
-"ask_leave_group" = "Haluatko varmasti poistua tästä ryhmästä?";
 // Used for the deletion of Device messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
@@ -290,7 +293,7 @@
 "ask_start_chat_with" = "Aloita keskustelu yhteystiedon %1$@ kanssa?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Poista %1$@ ryhmästä?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Poista %1$@ kuulutuslistalta?";
 "open_url_confirmation" = "Haluatko avata tämän linkin?";
 // contact list
@@ -305,6 +308,7 @@
 "chat_unable_to_record_audio" = "Äänen tallentaminen ei onnistunut.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Lähetä viesti. Ei haittaa, vaikka %1$@ ei käyttäisi Delta Chatia.";
+// deprecated
 "chat_new_broadcast_hint" = "Kuulutuslistalla vastaanottajat saavat viestit keskusteluna kanssasi, jossa heillä on vain lukuoikeus.";
 "chat_new_group_hint" = "Muut näkevät ryhmän vasta, kun lähetät ensimmäisen viestin.";
 "chat_record_slide_to_cancel" = "Pyyhkäise peruuttaaksesi";
@@ -710,8 +714,6 @@
 "remove_member_by_you" = "Jäsen %1$@ poistettu minun toimestani.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Jäsen %1$@ poistettu käyttäjän %2$@ toimesta.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Poistuit ryhmästä.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ poistui ryhmästä.";
 "group_image_deleted_by_you" = "Ryhmän kuva poistettu minun toimestani.";

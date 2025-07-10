@@ -182,13 +182,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Discuter avec...";
 "clone_chat" = "Cloner la discussion";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Liste de diffusion";
+// deprecated
 "broadcast_lists" = "Listes de diffusion";
+// deprecated
 "new_broadcast_list" = "Nouvelle liste de diffusion";
 "add_recipients" = "Ajouter des destinataires";
+// deprecated
 "edit_broadcast_list" = "Modifier la liste de diffusion";
+// deprecated
 "broadcast_list_name" = "Nom de la liste de diffusion";
+// deprecated
 "please_enter_broadcast_list_name" = "Entrez un nom pour la liste de diffusion.";
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
@@ -307,8 +312,6 @@
 "videochat_instance_from_qr" = "Utiliser « %1$@ » pour inviter d\'autres personnes à des discussions vidéo ?\n\nUne fois configuré, vous pouvez discuter en vidéo dans chaque discussion privée. Remplace vos préférences de configurations précédentes pour les discussions vidéos.";
 "videochat_invitation" = "Invitation à une discussion vidéo";
 "videochat_invitation_body" = "Vous êtes invité à une discussion vidéo, cliquez sur %1$@ pour la rejoindre.";
-// get confirmations
-"ask_leave_group" = "Voulez-vous vraiment quitter ce groupe ?";
 // Used for the deletion of Device messages
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";
@@ -320,7 +323,7 @@
 "ask_start_chat_with" = "Discuter avec %1$@ ?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Retirer %1$@ du groupe ?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Retirer %1$@ de la liste de diffusion ?";
 "open_url_confirmation" = "Voulez-vous ouvrir ce lien ?";
 // contact list
@@ -335,6 +338,7 @@
 "chat_unable_to_record_audio" = "Impossible d\'enregistrer le son.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envoyez un message. Il n\'y a pas de problème si %1$@ n\'utilise pas Delta Chat.";
+// deprecated
 "chat_new_broadcast_hint" = "Dans une liste de diffusion, les destinataires reçoivent les messages dans une discussion avec vous en lecture seule.";
 "chat_new_group_hint" = "Les autres participants ne verront ce groupe qu\'après que vous avez envoyé un premier message.";
 "chat_record_slide_to_cancel" = "Glisser pour annuler";
@@ -767,8 +771,6 @@
 "remove_member_by_you" = "Membre %1$@ retiré par vous.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ retiré par %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Vous avez quitté le groupe.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ a quitté le groupe.";
 "group_image_deleted_by_you" = "Vous avez supprimé l\'image du groupe.";

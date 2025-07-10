@@ -247,8 +247,6 @@
 "videochat_instance_example" = "Pavyzdys: https://jūsų-serveris.org/$KAMBARYS";
 "videochat_invitation" = "Pakvietimas į vaizdo pokalbį";
 "videochat_invitation_body" = "Jūs esate kviečiami į vaizdo pokalbį. Spustelėkite %1$@ jei norite prisijungti.";
-// get confirmations
-"ask_leave_group" = "Ar tikrai norite išeiti iš šios grupės?";
 // Used for the deletion of Device messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
@@ -573,8 +571,6 @@
 "group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ pakeitė grupės pavadinimą iš „%1$@“ į „%2$@“.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Jūs išėjote iš grupės.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ išėjo iš grupės.";
 "group_image_deleted_by_you" = "Jūs ištrynėte grupės paveikslą.";

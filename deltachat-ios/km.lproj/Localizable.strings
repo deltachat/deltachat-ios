@@ -133,9 +133,11 @@
 "menu_new_contact" = "ទំនាក់ទំនងថ្មី";
 "menu_new_chat" = "សន្ទនាថ្មី";
 "menu_new_group" = "ក្រុមថ្មី";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "បញ្ជីចាក់ផ្សាយ";
+// deprecated
 "broadcast_lists" = "បញ្ជីចាក់ផ្សាយ";
+// deprecated
 "new_broadcast_list" = "បញ្ជីចាក់ផ្សាយថ្មី";
 "add_recipients" = "បន្ថែមអ្នកទទួល";
 "menu_send" = "ផ្ញើ";
@@ -230,8 +232,6 @@
 "videochat_instance_from_qr" = "ប្រើ \"%1$@\" ដើម្បីអញ្ជើញអ្នកផ្សេងទៀតទៅកាន់សន្ទនាវីដេអូ?\n\nកំណត់ម្តង អ្នកអាចចាប់ផ្តើមសន្ទនាវីដេអូ ពីការសន្ទនាមួយទៅមួយទៀត។ បើធ្វើសន្ទនាវីដេអូនេះនឹងជំនួសការកំណត់មុនៗ។";
 "videochat_invitation" = "ការអញ្ជើញសន្ទនាវីដេអូ";
 "videochat_invitation_body" = "អ្នកត្រូវបានអញ្ជើញដើម្បីសន្ទនាជាវីដេអូ។ ចុច %1$@ ដើម្បីចូលរួម។";
-// get confirmations
-"ask_leave_group" = "តើអ្នកប្រាកដហើយថាចង់ចាកចេញពីក្រុមនេះ?";
 // Used for the deletion of Device messages
 "ask_forward" = "បញ្ជូនសារទៅកាន់ %1$@?";
 "ask_forward_multiple" = "បញ្ជូនសារទាំងនេះទៅកាន់សន្ទនា %1$d?";
@@ -243,7 +243,7 @@
 "ask_start_chat_with" = "សន្ទនាជាមួយ %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "លុប %1$@ ពីក្រុមសន្ទនានេះ?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "លុប %1$@ ពីបញ្ជីចាក់ផ្សាយ?";
 "open_url_confirmation" = "តើអ្នកចង់បើកតំណនេះ?";
 // contact list

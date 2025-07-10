@@ -161,13 +161,18 @@
 "menu_new_chat" = "Нов чат";
 "menu_new_group" = "Нова група";
 "clone_chat" = "Клониране на чат";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Списък за разпространение";
+// deprecated
 "broadcast_lists" = "Списъци за разпространение";
+// deprecated
 "new_broadcast_list" = "Нов списък за разпространение";
 "add_recipients" = "Добавяне на получатели";
+// deprecated
 "edit_broadcast_list" = "Редактиране на списък за разпространение";
+// deprecated
 "broadcast_list_name" = "Име на списък за разпространение";
+// deprecated
 "please_enter_broadcast_list_name" = "Моля, въведете име за списъка за разпространение";
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";
@@ -277,8 +282,6 @@
 "videochat_instance_from_qr" = "Да се използва ли \"%1$@\" за поканване на други към видеочатове?\n\nСлед като тази настройка бъде зададена, ще можете да започвате видеочат от всеки чат. Тя ще замени предишната настройка за видеочатове, ако има такава.";
 "videochat_invitation" = "Покана за видеочат";
 "videochat_invitation_body" = "Поканени сте във видеочат, натиснете върху%1$@, за да се присъедините";
-// get confirmations
-"ask_leave_group" = "Сигурни ли сте, че искате да напуснете тази група?";
 // Used for the deletion of Device messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
@@ -290,7 +293,7 @@
 "ask_start_chat_with" = "Чат с %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Премахване на %1$@ от групата?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Да бъдат ли премахнати %1$@ от списъка за разпространение?";
 "open_url_confirmation" = "Искате ли да отворите тази връзка?";
 // contact list
@@ -305,6 +308,7 @@
 "chat_unable_to_record_audio" = "Не е възможно да се записва аудио.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Изпращане на съобщение до %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "Получателите в един списък за разпространение получават съобщения в чат \"само за четене\" с Вас.";
 "chat_new_group_hint" = "Другите ще виждат тази група едва след като изпратите първо съобщение.";
 "chat_record_slide_to_cancel" = "Приплъзнете, за да откажете";
@@ -710,8 +714,6 @@
 "remove_member_by_you" = "Премахнахте члена %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Членът %1$@ е премахнат от %2$@";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Напуснахте групата.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Групата е напусната от %1$@.";
 "group_image_deleted_by_you" = "Изтрихте изображението на групата.";

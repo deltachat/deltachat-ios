@@ -32,6 +32,8 @@
 "update" = "更新";
 "emoji" = "表情符號";
 "attachment" = "附件";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "附加“%1$@”？";
 "back" = "返回";
 "close" = "關閉";
 "close_window" = "關閉視窗";
@@ -54,7 +56,10 @@
 "save" = "儲存";
 "chat" = "聊天";
 "media" = "多媒體";
+"apps_and_media" = "應用程式和媒體";
 "profile" = "賬戶";
+"all_profiles" = "所有賬戶";
+"current_profile" = "當前賬戶";
 "main_menu" = "主選單";
 "start_chat" = "開始聊天";
 "show_full_message" = "顯示完整訊息⋯";
@@ -89,6 +94,8 @@
 "no_app_to_handle_data" = "沒有可以處理這種資料的應用程式.";
 "no_browser_installed" = "沒有安裝瀏覽器。";
 "file_not_found" = "找不到 %1$@";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "無法儲存 %1$@。";
 "copied_to_clipboard" = "已複製至剪貼簿";
 "contacts_headline" = "聯絡人";
 "email_address" = "電子郵件位址";
@@ -112,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "已選擇：";
 "self" = "我";
 "draft" = "草稿";
 "image" = "圖片";
@@ -145,12 +153,17 @@
 "images_and_videos" = "圖片和影片";
 "file" = "檔案";
 "files" = "檔案";
+"files_attach_hint" = "傳送原始檔和未壓縮的圖像";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "從檔案中選擇";
+"choose_from_gallery" = "從圖庫中選擇";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "小程式";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "小程式";
 "webxdc_store_url" = "應用選取器連結";
 "webxdc_store_url_explain" = "如果設定，該連接將用作應用選擇器而不是預設連結";
+"webxdc_draft_hint" = "點擊「傳送」進行共享";
 "home" = "主頁";
 "games" = "游戲";
 "tools" = "工具";
@@ -185,13 +198,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "廣播列表";
+// deprecated
 "broadcast_lists" = "廣播列表";
+// deprecated
 "new_broadcast_list" = "新增廣播列表";
 "add_recipients" = "新增對象";
+// deprecated
 "edit_broadcast_list" = "編輯廣播列表";
+// deprecated
 "broadcast_list_name" = "廣播列表名稱";
+// deprecated
 "please_enter_broadcast_list_name" = "請為廣播列表輸入名稱。";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";
@@ -228,6 +246,7 @@
 "menu_export_attachment" = "另存附件";
 "menu_export_attachments" = "另存附件";
 "menu_all_media" = "所有媒體";
+"all_apps_and_media" = "所有應用程式和媒體";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "在對話中顯示";
 "show_app_in_chat" = "在對話中顯示應用程式";
@@ -311,8 +330,6 @@
 "videochat_instance_from_qr" = "要使用「%1$@」來邀請其他人加入視訊通話嗎？\n\n一旦設定完成，你可以在每個聊天室內開啟視訊通話。這將會取代先前的視訊通話設定。";
 "videochat_invitation" = "視訊通話邀請";
 "videochat_invitation_body" = "你被邀請至視訊電話，點擊%1$@以加入。";
-// get confirmations
-"ask_leave_group" = "確定要離開本群組？";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
 // Used for the deletion of Device messages
@@ -326,7 +343,7 @@
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "將%1$@自廣播列表中移除？";
 "open_url_confirmation" = "你想開啟此連結嗎？";
 // contact list
@@ -341,6 +358,7 @@
 "chat_unable_to_record_audio" = "無法錄音";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "向 %1$@ 傳送訊息。";
+// deprecated
 "chat_new_broadcast_hint" = "在廣播清單中，收件者將在與您的只讀聊天中收到消息。";
 "chat_new_group_hint" = "只有在你傳送第一條訊息後，其他人才會看到此群組。";
 "chat_record_slide_to_cancel" = "滑動以取消";
@@ -351,6 +369,7 @@
 "chat_input_placeholder" = "訊息";
 "chat_archived_label" = "封存";
 "chat_request_label" = "請求";
+"chat_request_label_explain" = "在計數器和通知中包含請求";
 "chat_no_messages" = "沒有訊息。";
 "chat_self_talk_subtitle" = "傳送給自己的訊息";
 "archive_empty_hint" = "存檔的聊天記錄將在此處顯示。";
@@ -701,6 +720,7 @@
 "n_bytes_message" = "%1$@ 訊息";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "下載有效期至%1$@";
+"select_profile" = "選擇賬戶";
 "profile_image_select" = "選擇大頭貼";
 "select_your_new_profile_image" = "選擇新的大頭貼";
 "profile_image_delete" = "刪除大頭貼";
@@ -781,8 +801,6 @@
 "remove_member_by_you" = "我已移除成員 %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@已移除成員 %1$@";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "你離開了群組。";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ 退出了群組。";
 "group_image_deleted_by_you" = "我已刪除群組圖片。";
@@ -889,6 +907,7 @@
 "secure_join_wait" = "正在建立有保證的端到端加密，請稍候...";
 // deprecated
 "secure_join_wait_timeout" = "尚無法建立有保證的端到端加密，但您可能已經送出了一條訊息。";
+"secure_join_takes_longer" = "聯繫人必須處於連線狀態才能繼續。\n\n此過程將在後台自動繼續。";
 "contact_verified" = "%1$@已介紹。";
 "contact_not_verified" = "無法與%1$@建立有保證的端到端加密。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

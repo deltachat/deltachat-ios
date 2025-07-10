@@ -149,9 +149,11 @@
 "menu_new_contact" = "Contact Nou";
 "menu_new_chat" = "Chat Nou";
 "menu_new_group" = "Grup Nou";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Listă de difuzare";
+// deprecated
 "broadcast_lists" = "Liste de difuzare";
+// deprecated
 "new_broadcast_list" = "Noua Listă de Difuzare";
 "add_recipients" = "Adăugați Destinatari";
 "menu_send" = "Trimiteți";
@@ -256,8 +258,6 @@
 "videochat_instance_from_qr" = "Folosiți \"%1$@\" pentru a invita alte persoane la chat-uri video?\n\nOnce setat, puteți începe un chat video din fiecare chat. Acest lucru înlocuiește orice setare anterioară pentru chat-urile video.";
 "videochat_invitation" = "Invitație la chat video";
 "videochat_invitation_body" = "Sunteți invitat la un chat video, faceți clic %1$@ pentru a vă alătura.";
-// get confirmations
-"ask_leave_group" = "Ești sigur că vrei să părăsești acest grup?";
 // Used for the deletion of Device messages
 "ask_forward" = "Transmiteți mesajele către %1$@?";
 "ask_forward_multiple" = "Transmiteți mesajele către %1$d chat-uri?";
@@ -269,7 +269,7 @@
 "ask_start_chat_with" = "Chat cu %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Scoateți  %1$@ din grup?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Eliminați %1$@ din lista de difuzare?";
 "open_url_confirmation" = "Doriți să deschideți acest link?";
 // contact list

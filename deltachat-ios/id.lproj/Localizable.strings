@@ -245,8 +245,6 @@
 "videochat_instance_from_qr" = "Gunakan \"%1$@\" untuk mengundang orang lain ke obrolan video? Setelah diatur, Anda dapat memulai obrolan video dari setiap obrolan. Ini menggantikan pengaturan sebelumnya untuk obrolan video.";
 "videochat_invitation" = "Undangan obrolan video";
 "videochat_invitation_body" = "Anda diundang ke obrolan video, klik %1$@ untuk bergabung.";
-// get confirmations
-"ask_leave_group" = "Apakah anda yakin untuk keluar dari grup ini?";
 // Used for the deletion of Device messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
