@@ -50,7 +50,7 @@ public class DcChat {
         // isMultiUser() might fit better,
         // however, would result in lots of code changes, so we leave this as is for now.
         let type = Int(dc_chat_get_type(chatPointer))
-        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST || type == DC_CHAT_TYPE_BROADCAST
+        return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST || type == DC_CHAT_TYPE_OUT_BROADCAST
     }
 
     public var isMailinglist: Bool {
@@ -58,7 +58,7 @@ public class DcChat {
     }
 
     public var isBroadcast: Bool {
-        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_BROADCAST
+        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_OUT_BROADCAST
     }
 
     public var isSelfTalk: Bool {
