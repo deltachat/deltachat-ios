@@ -296,7 +296,7 @@ class ProfileViewController: UITableViewController {
 
             if contact != nil, !isSavedMessages && !isDeviceChat {
                 primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
-            } else if isGroup && (chat?.canSend ?? false) {
+            } else if isGroup && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
                 primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
             if let chat, !isBroadcast && !isSavedMessages {
