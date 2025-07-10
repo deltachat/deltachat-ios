@@ -81,6 +81,10 @@ public class DcChat {
         return isContactRequest || isProtectionBroken
     }
 
+    public var isEncrypted: Bool {
+        return Int(dc_chat_is_encrypted(chatPointer)) != 0
+    }
+
     public var canSend: Bool {
         return Int(dc_chat_can_send(chatPointer)) != 0
     }

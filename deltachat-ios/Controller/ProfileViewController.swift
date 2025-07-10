@@ -336,11 +336,11 @@ class ProfileViewController: UITableViewController {
             }
 
             if let chat {
-                if isBroadcast || (isGroup && chat.canSend) {
+                if (isBroadcast || (isGroup && chat.canSend)) && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
-                if isGroup && chat.canSend {
+                if isGroup && chat.canSend && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                     moreOptions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
                 }
