@@ -191,13 +191,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatovat s...";
 "clone_chat" = "Klonovat chat";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Seznam vysílání";
+// deprecated
 "broadcast_lists" = "Seznamy vysílání";
+// deprecated
 "new_broadcast_list" = "Nový seznam vysílání";
 "add_recipients" = "Přidat příjemce";
+// deprecated
 "edit_broadcast_list" = "Upravit seznam vysílání";
+// deprecated
 "broadcast_list_name" = "Název seznamu vysílání";
+// deprecated
 "please_enter_broadcast_list_name" = "Prosím, zadejte název seznamu vysílání.";
 "menu_send" = "Odeslat";
 "menu_toggle_keyboard" = "Přepnout emoji klávesnici";
@@ -318,8 +323,6 @@
 "videochat_instance_from_qr" = "Použít \"%1$@\" ke zvaní na videohovory?\n\nJakmile je volba nastavena, můžete ve všech chatech spouštět videohovory. Předchozí hodnota bude tímto přepsána.";
 "videochat_invitation" = "Pozvánka k videohovoru";
 "videochat_invitation_body" = "Byli jste pozváni k videohovoru, připojte se stisknutím %1$@";
-// get confirmations
-"ask_leave_group" = "Opravdu si přejete opustit tuto skupinu?";
 "ask_delete_named_chat" = "Smazat chat \"%1$@\" ze všech vašich zařízení?";
 "ask_delete_message" = "Smazat tuto zprávu ze všech vašich zařízení?";
 // Used for the deletion of Device messages
@@ -333,7 +336,7 @@
 "ask_start_chat_with" = "Přejete si chatovat s uživatelem %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Přejete si odstranit uživatele %1$@ ze skupiny?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Přejete si odstranit uživatele %1$@ ze seznamu vysílání?";
 "open_url_confirmation" = "Přejete si otevřít tento odkaz?";
 // contact list
@@ -348,6 +351,7 @@
 "chat_unable_to_record_audio" = "Nelze nahrávat zvuk.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Poslat zprávu uživateli %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "Seznam vysílání slouží k posílání zpráv příjemcům v chatu, který je pro ně pouze pro čtení.";
 "chat_new_group_hint" = "Ostatní tuto skupinu uvidí až poté, co odešlete první zprávu.";
 "chat_record_slide_to_cancel" = "Zrušit tahem";
@@ -788,8 +792,6 @@
 "remove_member_by_you" = "Odebrali jste člena %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ byl odebrán uživatelem %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Opustili jste skupinu.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Uživatel %1$@ opustil skupinu.";
 "group_image_deleted_by_you" = "Smazali jste obrázek skupiny.";

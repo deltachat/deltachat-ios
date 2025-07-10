@@ -185,9 +185,11 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Conversar con…";
 "clone_chat" = "Clonar conversa";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Lista de difusión";
+// deprecated
 "broadcast_lists" = "Listas de difusión";
+// deprecated
 "new_broadcast_list" = "Nova lista de difusión";
 "add_recipients" = "Engadir correspondentes";
 "menu_send" = "Enviar";
@@ -307,8 +309,6 @@
 "videochat_instance_from_qr" = "¿Usar \"%1$@\" para convidar a outras a chats de vídeo?\n\nUnha vez establecido podes iniciar o chat desde a conversa un-a-un. Esto restablece o axuste anterior para video chats se existise.";
 "videochat_invitation" = "Convite a chat de vídeo";
 "videochat_invitation_body" = "Convidáronte a un chat de vídeo, preme %1$@ para unirte.";
-// get confirmations
-"ask_leave_group" = "Seguro que desexa abandonar o grupo?";
 "ask_delete_named_chat" = "Eliminar a conversa \"%1$@\" en todos os teus dispositivos?";
 "ask_delete_message" = "Eliminar esta mensaxe en todos os teus dispositivos?";
 // Used for the deletion of Device messages
@@ -322,7 +322,7 @@
 "ask_start_chat_with" = "Conversa con %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Eliminar  %1$@ do grupo?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Eliminar %1$@ da lista de difusión?";
 "open_url_confirmation" = "Queres abrir esta ligazón?";
 // contact list
@@ -737,8 +737,6 @@
 "remove_member_by_you" = "Eliminaches a %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%1$@ eliminado por %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Saíches do grupo";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ deixou o grupo.";
 "group_image_deleted_by_you" = "Eliminaches a imaxe do grupo";

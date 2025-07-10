@@ -198,13 +198,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatear con...";
 "clone_chat" = "Clonar chat";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Difusión";
+// deprecated
 "broadcast_lists" = "Difusiones";
+// deprecated
 "new_broadcast_list" = "Nueva difusión";
 "add_recipients" = "Agregar destinatarios";
+// deprecated
 "edit_broadcast_list" = "Editar difusión";
+// deprecated
 "broadcast_list_name" = "Nombre de difusión";
+// deprecated
 "please_enter_broadcast_list_name" = "Por favor, introduce un nombre para la difusión.";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
@@ -325,8 +330,6 @@
 "videochat_instance_from_qr" = "¿Usa \"%1$@\" para invitar a otros a la videollamada?\n\nUna vez configurado, puedes iniciar una videollamada desde el chat individual. Esto reemplaza la configuración previa de videollamadas. Si la hubiera.";
 "videochat_invitation" = "Invitación a videollamada";
 "videochat_invitation_body" = "Fuiste invitado a una videollamada, click en %1$@ para unirse.";
-// get confirmations
-"ask_leave_group" = "¿Seguro que deseas abandonar este grupo? ";
 "ask_delete_named_chat" = "¿Eliminar chat \"%1$@\" de todos tus dispositivos?";
 "ask_delete_message" = "¿Eliminar este mensaje de todos tus dispositivos?";
 // Used for the deletion of Device messages
@@ -340,7 +343,7 @@
 "ask_start_chat_with" = "¿Chatear con %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "¿Eliminar a %1$@ del grupo?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "¿Eliminar %1$@ de la lista de difusión?";
 "open_url_confirmation" = "¿Quieres abrir este enlace?";
 // contact list
@@ -355,6 +358,7 @@
 "chat_unable_to_record_audio" = "No es posible grabar audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envíe un mensaje a %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "En una difusión, los destinatarios recibirán mensajes en un chat de solo lectura contigo.";
 "chat_new_group_hint" = "Los demás sólo verán este grupo después de que hayas enviado un primer mensaje.";
 "chat_record_slide_to_cancel" = "Deslice para cancelar";
@@ -797,8 +801,6 @@
 "remove_member_by_you" = "Eliminaste al miembro %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Miembro %1$@ eliminado por %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Abandonaste el grupo.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupo abandonado por %1$@.";
 "group_image_deleted_by_you" = "Eliminaste la imagen del grupo.";

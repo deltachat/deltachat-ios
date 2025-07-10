@@ -217,8 +217,6 @@
 "videochat_instance_from_qr" = "%1$@で他人をビデオ通話に招待しますか？設定次第に各チャットからビデオ通話を開始することができます。以前の設定も置き換えます。";
 "videochat_invitation" = "ビデオ通話に招待";
 "videochat_invitation_body" = "ビデオ通話に招待されて、%1$@で参加";
-// get confirmations
-"ask_leave_group" = "本当に退室しますか";
 "ask_forward" = "%1$@にメッセージを転送しますか？";
 "ask_forward_multiple" = "%1$dチャットにメッセージを転送しますか？";
 "ask_export_attachment" = "添付ファイルをエクスポートしますか？添付ファイルをエクスポートすると、他のアプリからもアクセスできるようになります。\n\nよろしいですか？";

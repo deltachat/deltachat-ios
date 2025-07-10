@@ -143,9 +143,11 @@
 "menu_new_contact" = "Nový kontakt";
 "menu_new_chat" = "Nová konverzácia";
 "menu_new_group" = "Nová skupina";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Zoznam Rozosielania";
+// deprecated
 "broadcast_lists" = "Zoznamy Rozosielania";
+// deprecated
 "new_broadcast_list" = "Nový Zoznam Rozosielania";
 "add_recipients" = "Pridať Príjemcov";
 "menu_send" = "Poslať";
@@ -248,8 +250,6 @@
 "videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videohovor";
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
-// get confirmations
-"ask_leave_group" = "Naozaj chcete opustiť túto skupinu?";
 // Used for the deletion of Device messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
@@ -261,7 +261,7 @@
 "ask_start_chat_with" = "Písať si s %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Odstrániť %1$@ zo skupiny?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Odstrániť %1$@ zo zoznamu rozosielania?";
 "open_url_confirmation" = "Chcete otvoriť tento odkaz?";
 // contact list
@@ -594,8 +594,6 @@
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Opustili ste skupinu";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Skupinu opustil(a) %1$@.";
 "group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";

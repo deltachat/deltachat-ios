@@ -198,14 +198,27 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatte mit…";
 "clone_chat" = "Chat klonen";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Broadcast-Liste";
+// deprecated
 "broadcast_lists" = "Broadcast-Listen";
+// deprecated
 "new_broadcast_list" = "Neue Broadcast-Liste";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanäle";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Neuer Kanal";
 "add_recipients" = "Empfänger hinzufügen";
+// deprecated
 "edit_broadcast_list" = "Broadcast-Liste bearbeiten";
+// deprecated
 "broadcast_list_name" = "Broadcast-Listen-Name";
+// deprecated
 "please_enter_broadcast_list_name" = "Bitten einen Namen für die Broadcast-Liste eingeben.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Name des Kanals";
 "menu_send" = "Senden";
 "menu_toggle_keyboard" = "Emojis einblenden";
 "menu_edit_group" = "Gruppe bearbeiten";
@@ -215,6 +228,7 @@
 "menu_unarchive_chat" = "Archivieren rückgängig";
 "menu_add_attachment" = "Dateien anhängen";
 "menu_leave_group" = "Gruppe verlassen";
+"menu_leave_channel" = "Kanal verlassen";
 "menu_delete_chat" = "Chat löschen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Chat leeren";
@@ -326,7 +340,8 @@
 "videochat_invitation" = "Videochat-Einladung";
 "videochat_invitation_body" = "Sie sind zu einem Videochat eingeladen, klicken Sie auf %1$@ , um teilzunehmen.";
 // get confirmations
-"ask_leave_group" = "Diese Gruppe verlassen?";
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Diesen Chat verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" von allen Geräten löschen?";
 "ask_delete_message" = "Diese Nachricht von allen Geräten löschen?";
 // Used for the deletion of Device messages
@@ -340,8 +355,10 @@
 "ask_start_chat_with" = "Chat mit %1$@ starten?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ aus der Gruppe löschen?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "%1$@ von der Broadcast-Liste entfernen?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "%1$@ vom Kanal entfernen?";
 "open_url_confirmation" = "Diesen Link öffnen?";
 // contact list
 "contacts_title" = "Kontakte";
@@ -355,7 +372,10 @@
 "chat_unable_to_record_audio" = "Audio kann nicht aufgenommen werden.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Senden Sie eine Nachricht an %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "In Broadcast-Listen erhalten die Empfänger die Nachrichten in einem Nur-Lesen-Chat.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanäle dienen der Verbreitung von Nachrichten an viele Empfänger.";
 "chat_new_group_hint" = "Andere sehen diese Gruppe erst, nachdem Sie eine erste Nachricht gesendet haben.";
 "chat_record_slide_to_cancel" = "Schieben, um abzubrechen";
 "chat_record_explain" = "Tippen und halten, um eine Sprachnachricht aufzunehmen, loslassen um zu senden. ";
@@ -797,8 +817,8 @@
 "remove_member_by_you" = "Sie haben %1$@ entfernt.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%1$@ entfernt von %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Sie haben die Gruppe verlassen.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Sie haben den Chat verlassen.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Gruppe verlassen von %1$@.";
 "group_image_deleted_by_you" = "Sie haben das Gruppenbild gelöscht.";

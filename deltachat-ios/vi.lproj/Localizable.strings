@@ -159,13 +159,18 @@
 "menu_new_chat" = "Trò chuyện mới";
 "menu_new_group" = "Nhóm mới";
 "clone_chat" = "Sao chép cuộc trò chuyện";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Danh sách phát sóng";
+// deprecated
 "broadcast_lists" = "Danh sách phát sóng";
+// deprecated
 "new_broadcast_list" = "Danh sách phát sóng mới";
 "add_recipients" = "Thêm người nhận";
+// deprecated
 "edit_broadcast_list" = "Chỉnh sửa danh sách phát sóng";
+// deprecated
 "broadcast_list_name" = "Tên danh sách phát sóng";
+// deprecated
 "please_enter_broadcast_list_name" = "Vui lòng nhập tên cho danh sách phát sóng.";
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";
@@ -274,8 +279,6 @@
 "videochat_instance_from_qr" = "Sử dụng \"%1$@\" để mời người khác trò chuyện video?\n\nSau khi thiết lập, bạn có thể bắt đầu trò chuyện video từ mỗi cuộc trò chuyện. Điều này sẽ thay thế mọi cài đặt trước đó cho trò chuyện video.";
 "videochat_invitation" = "Lời mời trò chuyện video";
 "videochat_invitation_body" = "Bạn được mời tham gia cuộc trò chuyện video, hãy nhấp vào %1$@ để tham gia.";
-// get confirmations
-"ask_leave_group" = "Bạn có chắc chắn muốn rời khỏi nhóm này không?";
 // Used for the deletion of Device messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
@@ -287,7 +290,7 @@
 "ask_start_chat_with" = "Trò chuyện với %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Loại %1$@ khỏi nhóm?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Loại %1$@ khỏi danh sách phát sóng?";
 "open_url_confirmation" = "Bạn có muốn mở liên kết này không?";
 // contact list
@@ -302,6 +305,7 @@
 "chat_unable_to_record_audio" = "Không thể ghi âm.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Gửi tin nhắn tới %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "Trong danh sách phát sóng, người nhận sẽ nhận được tin nhắn trong cuộc trò chuyện chỉ đọc với bạn.";
 "chat_new_group_hint" = "Những người khác sẽ chỉ nhìn thấy nhóm này sau khi bạn gửi tin nhắn đầu tiên.";
 "chat_record_slide_to_cancel" = "Trượt để hủy";
@@ -669,8 +673,6 @@
 "remove_member_by_you" = "Bạn đã loại bỏ thành viên %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Thành viên %1$@ đã bị xóa bởi %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Bạn đã rời nhóm.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Nhóm bỏ lại bởi %1$@.";
 "group_image_deleted_by_you" = "Bạn đã xóa hình ảnh nhóm.";

@@ -163,13 +163,18 @@
 "menu_new_chat" = "Ny chatt";
 "menu_new_group" = "Ny grupp";
 "clone_chat" = "Klona chatt";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Sändlista";
+// deprecated
 "broadcast_lists" = "Sändlistor";
+// deprecated
 "new_broadcast_list" = "Ny sändlista";
 "add_recipients" = "Lägg till mottagare";
+// deprecated
 "edit_broadcast_list" = "Redigera sändlista";
+// deprecated
 "broadcast_list_name" = "Sändlistans namn";
+// deprecated
 "please_enter_broadcast_list_name" = "Ange ett namn på sändlistan";
 "menu_send" = "Skicka";
 "menu_toggle_keyboard" = "Byt emoji-tangentbord";
@@ -283,8 +288,6 @@
 "videochat_instance_from_qr" = "Vill du använda \"%1$@\" för att bjuda in andra till videochattar?\n\nNär det väl är inställt kan du starta en videochatt från vilken en-till-en-chatt som helst. Detta ersätter den tidigare inställningen för eventuella videochattar.";
 "videochat_invitation" = "Videochattinbjudan";
 "videochat_invitation_body" = "Du är inbjuden till en videochatt, klicka på %1$@ för att ansluta.";
-// get confirmations
-"ask_leave_group" = "Är du säker på att du vill lämna den här gruppen?";
 // Used for the deletion of Device messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
@@ -296,7 +299,7 @@
 "ask_start_chat_with" = "Chatta med %1$@ ?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Vill du ta bort %1$@ från sändlistan?";
 "open_url_confirmation" = "Vill du öppna denna länk?";
 // contact list
@@ -311,6 +314,7 @@
 "chat_unable_to_record_audio" = "Det går inte att spela in ljud.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Skicka ett meddelande till %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "I en sändlista kommer mottagarna att få meddelanden i en skrivskyddad chatt med dig.";
 "chat_new_group_hint" = "Komponera det första meddelandet, så att andra kan svara inom denna grupp.\n\n• Det är okej om inte alla medlemmar använder Delta Chat.\n\n• Det kan ta en stund innan det första meddelandet levereras.";
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
@@ -718,8 +722,6 @@
 "remove_member_by_you" = "Medlemmen %1$@ togs bort av mig.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Medlemmen %1$@ togs bort av %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Du lämnade gruppen.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Gruppen lämnades av %1$@.";
 "group_image_deleted_by_you" = "Gruppbilden togs bort av mig.";

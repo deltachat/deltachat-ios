@@ -158,9 +158,11 @@
 "menu_new_contact" = "Novo contato";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Lista de Transmissão";
+// deprecated
 "broadcast_lists" = "Listas de Transmissão";
+// deprecated
 "new_broadcast_list" = "Nova Lista de Transmissão";
 "add_recipients" = "Adicionar Destinatários";
 "menu_send" = "Enviar";
@@ -266,8 +268,6 @@
 "videochat_instance_from_qr" = "Use \"%1$@\" para convidar outros para a conversas de vídeo?\n\nUma vez configurado, você pode iniciar uma conversa de vídeo para cada conversa um-para-um. Isto irá substituir os ajustes prévios para conversas de vídeo, caso existam.";
 "videochat_invitation" = "Convite para conversa de vídeo";
 "videochat_invitation_body" = "Você foi convidado para uma conversa de vídeo, clique %1$@ para ingressar.";
-// get confirmations
-"ask_leave_group" = "Quer mesmo sair do grupo?";
 // Used for the deletion of Device messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
@@ -279,7 +279,7 @@
 "ask_start_chat_with" = "Conversar com %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Remover %1$@ da lista de transmissão?";
 "open_url_confirmation" = "Você quer abrir este link?";
 // contact list
@@ -641,8 +641,6 @@
 "remove_member_by_you" = "Você removeu o membro %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membro %1$@ removido por %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Você saiu do grupo.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupo deixado por %1$@.";
 "group_image_deleted_by_you" = "Você removeu a imagem do grupo.";

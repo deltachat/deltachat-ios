@@ -158,11 +158,25 @@
 "webxdc_app" = "برنومه";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "برنومه یل";
+"webxdc_store_url" = "نشۊوی پسند کوݩ برنومه";
+"webxdc_store_url_explain" = "ٱر سامووݩ بۊ، URL و جا URL پؽش فرز، و عونوان پسند کوݩ برنومه و کار اروه.";
+"webxdc_draft_hint" = "سی یک رسۊوی ری «فشناڌن» بزنین";
+"home" = "هووه";
+"games" = "بازی یل";
+"tools" = "ٱوزار";
+"app_size" = "هندا";
+"app_date_published" = "تیجنیڌن";
+"add_to_chat" = "ٱووردن و گوفت ۉ لوفت";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "پیتینیڌن";
 "unknown" = "ناشناس";
 "green" = "سوز";
 "red" = "سوئر";
 "blue" = "کوۊ";
+"orange" = "نارنجی";
+"cyan" = "یشمی";
 "purple" = "بنوش";
+"magenta" = "سوئرکوۊ";
 "white" = "اسبؽڌ";
 "zoom" = "گپ کردن";
 "extra_small" = "قلوه کۊچیر";
@@ -174,12 +188,20 @@
 "slow" = "هووار";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "هومدنگ نۊ";
+"menu_new_classic_contact" = "ٱووردن هومدنگ و هالت دستی";
 "menu_new_chat" = "گوفت ۉ لوفت نۊ";
 "menu_new_group" = "جرگه نۊ";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "ناڌن پا گوفت ۉ لوفت وا...";
+"clone_chat" = "وورکل گوفت ۉ لوفت نۊ ز ای گوفت ۉ لوفت";
+// deprecated
 "broadcast_list" = "نومگه Broadcast";
+// deprecated
 "broadcast_lists" = "نومگه یل Broadcast";
+// deprecated
 "new_broadcast_list" = "نومگه Broadcast نۊ";
+// deprecated
+"edit_broadcast_list" = "آلشت نومگه Broadcast";
 "menu_send" = "فشناڌن";
 "menu_edit_group" = "آلشت جرگه";
 "menu_group_name_and_image" = "نوم وو شؽوات جرگه";
@@ -248,7 +270,7 @@
 "ask_start_chat_with" = "گوفت ۉ لوفت وا %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "پاک کردن %1$@ ز جرگه؟";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "%1$@ ز نومگه Broadcast پاک بۊ؟";
 "open_url_confirmation" = "اخۊی ای لینگن بۊگۊشی؟";
 // contact list

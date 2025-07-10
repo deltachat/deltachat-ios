@@ -143,9 +143,11 @@
 "menu_new_contact" = "Νέα Επαφή";
 "menu_new_chat" = "Νέα Συνομιλία";
 "menu_new_group" = "Νέα ομάδα";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Λίστα Μέσων";
+// deprecated
 "broadcast_lists" = "Λίστες Μέσων";
+// deprecated
 "new_broadcast_list" = "Νέα Λίστα Μέσων";
 "add_recipients" = "Προσθήκη Παραλήπτη";
 "menu_send" = "Αποστολή";
@@ -248,8 +250,6 @@
 "videochat_instance_from_qr" = "Χρήση \"%1$@\" για να προσκαλέσετε άλλους στη βιντεοκλήση;\n\nΑφού ρυθμιστεί, μπορείτε να ξεκινήσετε μια συνομιλία μέσω βίντεο από κάθε συνομιλία. Αυτό αντικαθιστά οποιαδήποτε προηγούμενη ρύθμιση για συνομιλίες μέσω βίντεο.";
 "videochat_invitation" = "Πρόσκληση Βιντεοκλήσης";
 "videochat_invitation_body" = "Έχετε προσκληθεί σε βινετοκλήση, πατήστε %1$@ για να συμμετέχετε";
-// get confirmations
-"ask_leave_group" = "Είστε σίγουρος/-η ότι θέλετε να βγείτε από αυτή την ομάδα;";
 // Used for the deletion of Device messages
 "ask_forward" = "Κοινοποίηση μηνύματος στο %1$@;";
 "ask_forward_multiple" = "Κοινοποίηση μηνύματος σε %1$d συνομιλίες;";
@@ -261,7 +261,7 @@
 "ask_start_chat_with" = "Συνομιλία με %1$@;";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Αφαίρεση του/της %1$@ από την ομάδα;";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Αφαίρεση %1$@ από την λίστα εκπομπών;";
 "open_url_confirmation" = "Θέλετε να ανοίξετε αυτό τον σύνδεσμό;";
 // contact list
@@ -597,8 +597,6 @@
 "remove_member_by_you" = "Αφαίρεσες τον/την %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Ο/Η %2$@ αφαίρεσε τον/την %1$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Έφυγες απ\' την ομάδα.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Ο/Η %1$@ έφυγε απ\' την ομαδα.";
 "group_image_deleted_by_you" = "Διαγράψατε την εικόνα της ομάδας.";

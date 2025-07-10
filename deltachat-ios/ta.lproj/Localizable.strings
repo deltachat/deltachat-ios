@@ -116,8 +116,6 @@
 "share_location_for_one_hour" = "1 மணி";
 "share_location_for_two_hours" = "2 மணிகள்";
 "share_location_for_six_hours" = "6 மணிகள்";
-// get confirmations
-"ask_leave_group" = "இந்த குழுவில் இருந்து வெளியேறவா ?";
 "ask_forward" = "தேர்வு செய்யப்பட்ட செய்திகளை இவற்றுக்கு %1$@ முன்னோக்கி அனுப்பவா ?";
 "ask_block_contact" = "இந்த தொடர்பை முடக்கவா ?";
 // contact list

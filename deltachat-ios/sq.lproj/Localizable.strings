@@ -194,13 +194,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Bisedoni me… ";
 "clone_chat" = "Klononi Fjalosjen";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Listë Transmetimi";
+// deprecated
 "broadcast_lists" = "Lista Transmetimi";
+// deprecated
 "new_broadcast_list" = "Listë e Re Transmetimi";
 "add_recipients" = "Shtoni Marrës";
+// deprecated
 "edit_broadcast_list" = "Përpunoni Listë Transmetimesh";
+// deprecated
 "broadcast_list_name" = "Emër Liste Transmetimesh";
+// deprecated
 "please_enter_broadcast_list_name" = "Ju lutemi, jepni një emër për listën e transmetimeve";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih Tastierë Emoji-sh";
@@ -321,8 +326,6 @@
 "videochat_instance_from_qr" = "Të përdoret “%1$@” për të ftuar të tjerë në fjalosje me video?\n\nPasi të ujdiset kjo, mund të filloni një fjalosje me video që prej një fjalosjeje tek-për-tek. Kështu do të zëvendësohet rregullimi i mëparshëm për fjalosje video, në pastë.";
 "videochat_invitation" = "Ftesë për fjalosje me video";
 "videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
-// get confirmations
-"ask_leave_group" = "Jeni i sigurt se doni ta braktisni këtë grup?";
 "ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
 // Used for the deletion of Device messages
@@ -336,7 +339,7 @@
 "ask_start_chat_with" = "Të bisedohet me %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Të hiqet %1$@ nga grupi?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Të hiqen %1$@ prej liste transmetimi?";
 "open_url_confirmation" = "Doni të hapet kjo lidhje?";
 // contact list
@@ -351,6 +354,7 @@
 "chat_unable_to_record_audio" = "S\’arrihet të incizohet audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Dërgoni një mesazh për %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "Në një listë transmetimesh, marrësit do të marrin mesazhe në një fjalosje të llojit “vetëm lexim” me ju.";
 "chat_new_group_hint" = "Të tjerët do ta shohin këtë grup pasi të keni dërguar një mesazh të parë.";
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
@@ -791,8 +795,6 @@
 "remove_member_by_you" = "Hoqët anëtarin %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Anëtari %1$@ u hoq nga %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "E braktisët grupin.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupi u braktis nga %1$@.";
 "group_image_deleted_by_you" = "Fshitë figurën e grupit.";

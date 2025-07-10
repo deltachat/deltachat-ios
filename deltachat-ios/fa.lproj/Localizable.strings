@@ -190,13 +190,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "شروع گفتگو با...";
 "clone_chat" = "درست کردن گپ جدید از این گپ";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "لیست Broadcast";
+// deprecated
 "broadcast_lists" = "لیست‌های Broadcast";
+// deprecated
 "new_broadcast_list" = "لیست Broadcast جدید";
 "add_recipients" = "افزودن گیرنده";
+// deprecated
 "edit_broadcast_list" = "ویرایش فهرست Broadcast";
+// deprecated
 "broadcast_list_name" = "نام فهرست BroadCast";
+// deprecated
 "please_enter_broadcast_list_name" = "وارد کردن نام برای فهرست Broadcast.";
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
@@ -322,8 +327,6 @@ https://meet.jit.si/$ROOM
 "videochat_instance_from_qr" = "می‌خواهید از «%1$@» برای دعوت دیگران به گپ تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گپ فرد به فرد یک مکالمهٔ تصویری شروع کنید. این کار، تنظیم‌ها قبلی تماس تصویری را تغییر می‌دهد.";
 "videochat_invitation" = "دعوت به مکالمه تصویری.";
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
-// get confirmations
-"ask_leave_group" = "مطمئن هستید می‌خواهید این گروه را ترک کنید؟";
 "ask_delete_named_chat" = "حذف گفتگوی «%1$@» از همه‌ی دستگاه‌های شما؟";
 "ask_delete_message" = "می‌خواهید این پیام را از همهٔ دستگاه‌هایتان حذف کنید؟";
 // Used for the deletion of Device messages
@@ -339,7 +342,7 @@ https://meet.jit.si/$ROOM
 "ask_start_chat_with" = "گپ زدن با %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "آيا%1$@ از لیست Broadcast پاک شود؟ ";
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
 // contact list
@@ -354,6 +357,7 @@ https://meet.jit.si/$ROOM
 "chat_unable_to_record_audio" = "ضبط صدا ممکن نیست. ";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
+// deprecated
 "chat_new_broadcast_hint" = "در یک فهرست Broadcast گیرنده‌ها در یک گپ فقط خواندنی با شما، پیام‌ها را دریافت می‌کنند.";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
@@ -789,8 +793,6 @@ https://meet.jit.si/$ROOM
 "remove_member_by_you" = "شما عضو گروه، %1$@، را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "شما گروه را ترک کردید.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";

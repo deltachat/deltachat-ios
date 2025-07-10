@@ -185,13 +185,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Xateja amb…";
 "clone_chat" = "Clona el xat";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Llista de difusió";
+// deprecated
 "broadcast_lists" = "Llistes de difusió";
+// deprecated
 "new_broadcast_list" = "Llista de difusió nova";
 "add_recipients" = "Afegeix destinataris";
+// deprecated
 "edit_broadcast_list" = "Edita la llista de difusió";
+// deprecated
 "broadcast_list_name" = "Nom de la llista de difusió";
+// deprecated
 "please_enter_broadcast_list_name" = "Poseu el nom de la llista de difusió.";
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emojis";
@@ -311,8 +316,6 @@
 "videochat_instance_from_qr" = "Voleu usar «%1$@» per a convidar altres participants a xats de video?\n\nUna vegada definit, podeu iniciar un xat de vídeo des de cada xat. Això substitueix la configuració anterior per a xats de video.";
 "videochat_invitation" = "Invitació a un xat de vídeo";
 "videochat_invitation_body" = "Us han convidat a un xat de vídeo, feu clic a %1$@ per unir-vos-hi.";
-// get confirmations
-"ask_leave_group" = "Segur que voleu deixar aquest grup?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
 // Used for the deletion of Device messages
@@ -326,7 +329,7 @@
 "ask_start_chat_with" = "Voleu xatejar amb %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Voleu eliminar %1$@ del grup?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Voleu eliminar %1$@ de la llista de difusió?";
 "open_url_confirmation" = "Voleu obrir aquest enllaç?";
 // contact list
@@ -341,6 +344,7 @@
 "chat_unable_to_record_audio" = "No es pot gravar so.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envia un missatge a %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "En una llista de difusió, els destinataris rebran missatges en mode de només lectura en un xat amb tu.";
 "chat_new_group_hint" = "Els altres membres només veuran aquest grup després que hi envieu el primer missatge.";
 "chat_record_slide_to_cancel" = "Llisca per cancel·lar";
@@ -781,8 +785,6 @@
 "remove_member_by_you" = "Heu eliminat el membre %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Heu abandonat el grup.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ha abandonat el grup";
 "group_image_deleted_by_you" = "Heu esborrat la imatge de grup.";

@@ -151,9 +151,11 @@
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
 "menu_new_group" = "Нова група";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Листа за емитовање";
+// deprecated
 "broadcast_lists" = "Листе за емитовање";
+// deprecated
 "new_broadcast_list" = "Нова листа за емитовање";
 "add_recipients" = "Додај примаоце";
 "menu_send" = "Пошаљи";
@@ -259,8 +261,6 @@
 "videochat_instance_from_qr" = "Да ли желите да користите „%1$@“ да позовете друге у видео ћаскање?\n\nКада ово поставите, можете да започнете видео ћаскање из сваког ћаскања. Ово замењује све претходне поставке за видео ћаскање.";
 "videochat_invitation" = "Позив за видео ћаскање";
 "videochat_invitation_body" = "Позвани сте у видео ћаскање, кликни %1$@да придружиш.";
-// get confirmations
-"ask_leave_group" = "Да ли заиста желите да напустите ову групу?";
 // Used for the deletion of Device messages
 "ask_forward" = "Да ли желите да проследите поруке %1$@?";
 "ask_forward_multiple" = "Да ли желите да проследим поруке за %1$dћаскања?";
@@ -272,7 +272,7 @@
 "ask_start_chat_with" = "Да ли желите да ћаскате са %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Да ли желите да уклонитите %1$@ из групе?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Да ли желите да уклоните %1$@ са листе за емитовање?";
 "open_url_confirmation" = "Да ли желите да отворите ову везу?";
 // contact list
@@ -608,8 +608,6 @@
 "remove_member_by_you" = "Члан %1$@ је уклоњен од мене.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Члан %1$@ је уклоњен од стране %2$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Напустили сте групу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ је напустио групу.";
 "group_image_deleted_by_you" = "Ви сте обрисали слику групе.";

@@ -198,13 +198,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Csevegés vele…";
 "clone_chat" = "Csevegés klónozása";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Adáslista";
+// deprecated
 "broadcast_lists" = "Adásliták";
+// deprecated
 "new_broadcast_list" = "Új adáslista";
 "add_recipients" = "Címzettek hozzáadása";
+// deprecated
 "edit_broadcast_list" = "Adáslista szerkesztése";
+// deprecated
 "broadcast_list_name" = "Adáslista neve";
+// deprecated
 "please_enter_broadcast_list_name" = "Adjon meg egy nevet az adáslistának";
 "menu_send" = "Küldés";
 "menu_toggle_keyboard" = "Váltás emodzsibillentyűzetre";
@@ -325,8 +330,6 @@
 "videochat_instance_from_qr" = "„%1$@” használata mások meghívásához a videócsevegésekbe?\n\nAmint beállította, az összes csevegésből indíthat videócsevegést. Ez az összes korábbi beállítás helyébe lép a videócsevegéseknél.";
 "videochat_invitation" = "Videócsevegési meghívó";
 "videochat_invitation_body" = "Ön meg lett híva egy videócsevegésbe, kattintson ide: %1$@ a csatlakozáshoz.";
-// get confirmations
-"ask_leave_group" = "Biztosan ki akar lépni a csoportból?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
 // Used for the deletion of Device messages
@@ -340,7 +343,7 @@
 "ask_start_chat_with" = "Csevegés vele: %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Eltávolítja a csoportból őt: %1$@?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Eltávolítja az adáslistából őt: %1$@?";
 "open_url_confirmation" = "Biztosan megnyitja ezt a hivatkozást?";
 // contact list
@@ -355,6 +358,7 @@
 "chat_unable_to_record_audio" = "Nem lehet hangfelvételt készíteni.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Üzenet küldése „%1$@” számára.";
+// deprecated
 "chat_new_broadcast_hint" = "Az adáslistán a címzettek csak olvasható módban kapják meg az üzeneteket öntől.";
 "chat_new_group_hint" = "Mások csak az első üzenet elküldése után fogják látni ezt a csoportot.";
 "chat_record_slide_to_cancel" = "Visszavonás csúsztatással";
@@ -797,8 +801,6 @@
 "remove_member_by_you" = "Ön eltávolította őt: %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ eltávolította őt: %1$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Ön elhagyta a csoportot.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ elhagyta a csoportot.";
 "group_image_deleted_by_you" = "Ön törölte a csoport profilképét.";

@@ -32,6 +32,8 @@
 "update" = "Оновити";
 "emoji" = "Емодзі";
 "attachment" = "Вкладення";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Прикріпити \"%1$@\"?";
 "back" = "Назад";
 "close" = "Закрити";
 "close_window" = "Закрити вікно";
@@ -56,6 +58,8 @@
 "media" = "Медіа";
 "apps_and_media" = "Додатки й медіа";
 "profile" = "Профіль";
+"all_profiles" = "Усі профілі";
+"current_profile" = "Поточний Профіль";
 "main_menu" = "Головне меню";
 "start_chat" = "Почати розмову";
 "show_full_message" = "Показати повне повідомлення...";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "Додаток, що дозволяє обробляти цей тип даних, не знайдено.";
 "no_browser_installed" = "Не встановлено браузер.";
 "file_not_found" = "Не вдалося знайти %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Не можливо зберегти файл %1$@.";
 "copied_to_clipboard" = "Скопійовано до буферу обміну.";
 "contacts_headline" = "Контактні особи";
 "email_address" = "Адреса електронної пошти";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Вибрано:";
 "self" = "Я";
 "draft" = "Чернетка";
 "image" = "Зображення";
@@ -191,13 +198,18 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Повідомлення до...";
 "clone_chat" = "Клонувати чат";
-// consider keeping the term "broadcast" as in WhatsApp or Telegram
+// deprecated
 "broadcast_list" = "Список трансляцій";
+// deprecated
 "broadcast_lists" = "Списки трансляцій";
+// deprecated
 "new_broadcast_list" = "Новий Список трансляцій";
 "add_recipients" = "Додати одержувачів";
+// deprecated
 "edit_broadcast_list" = "Редагувати список трансляцій";
+// deprecated
 "broadcast_list_name" = "Назва списку трансляцій";
+// deprecated
 "please_enter_broadcast_list_name" = "Будь ласка, введіть назву для списку трансляцій.";
 "menu_send" = "Послати";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
@@ -318,8 +330,6 @@
 "videochat_instance_from_qr" = "Використовувати \"%1$@\" аби запросити інших у відеочат?\n\nПісля встановлення Ви можете розпочати відеочат із кожного індивідуального чату. Це замінить попереднє налаштування для відеочату, якщо воно є.";
 "videochat_invitation" = "Запрошення до відео чату";
 "videochat_invitation_body" = "Вас запрошено у відео-чат, клікніть %1$@ аби приєднатися.";
-// get confirmations
-"ask_leave_group" = "Ви впевнені, що хочете залишити цю групу?";
 "ask_delete_named_chat" = "Видалити чат \"%1$@\" на всіх ваших пристроях?";
 "ask_delete_message" = "Видалити повідомлення на всіх ваших пристроях?";
 // Used for the deletion of Device messages
@@ -333,7 +343,7 @@
 "ask_start_chat_with" = "Створити чат з %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Видалити %1$@ із групи?";
-// %1$s is replaced by a comma-separated list of names
+// deprecated
 "ask_remove_from_broadcast" = "Видалити %1$@ зі списку трансляцій?";
 "open_url_confirmation" = "Ви впевнені, що хочете відкрити це посилання?";
 // contact list
@@ -348,6 +358,7 @@
 "chat_unable_to_record_audio" = "Неможливо записати аудіо.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Відправити повідомлення → %1$@.";
+// deprecated
 "chat_new_broadcast_hint" = "У списку трансляцій одержувачі будуть отримувати повідомлення в чаті з Вами в режимі тільки-для-читання.";
 "chat_new_group_hint" = "Інші побачать цю групу лише після того, як ви надішлете перше повідомлення.";
 "chat_record_slide_to_cancel" = "Рухайте для скасування";
@@ -708,6 +719,7 @@
 "n_bytes_message" = "Повідомлення розміром %1$@\'";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Доступний для завантаження максимум до %1$@";
+"select_profile" = "Вибрати Профіль";
 "profile_image_select" = "Вибрати зображення профілю";
 "select_your_new_profile_image" = "Вибрати ваше нове зображення профілю";
 "profile_image_delete" = "Видалити зображення профілю";
@@ -788,8 +800,6 @@
 "remove_member_by_you" = "Ви видалили учасника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ видалив (-ла) учасника %1$@.";
-// "left" in the meaning of "exited"
-"group_left_by_you" = "Ви залишили групу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ залишив (-ла) групу.";
 "group_image_deleted_by_you" = "Ви видалили емблему групи.";
