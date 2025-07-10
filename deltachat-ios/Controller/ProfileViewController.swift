@@ -261,10 +261,8 @@ class ProfileViewController: UITableViewController {
         if let chat {
             if isBroadcast {
                 memberManagementRows = 1
-            } else if chat.canSend {
-                if isGroup {
-                    memberManagementRows = 2
-                }
+            } else if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
+                memberManagementRows = 2
             }
         }
 
@@ -792,7 +790,7 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
-        if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
+        if chat.canSend && chat.isEncrypted && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
