@@ -46,19 +46,22 @@ public class DcChat {
         return Int(dc_chat_is_unpromoted(chatPointer)) != 0
     }
 
+    public var type: Int {
+        return Int(dc_chat_get_type(chatPointer))
+    }
+
     public var isGroup: Bool {
         // isMultiUser() might fit better,
         // however, would result in lots of code changes, so we leave this as is for now.
-        let type = Int(dc_chat_get_type(chatPointer))
         return type == DC_CHAT_TYPE_GROUP || type == DC_CHAT_TYPE_MAILINGLIST || type == DC_CHAT_TYPE_OUT_BROADCAST
     }
 
     public var isMailinglist: Bool {
-        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_MAILINGLIST
+        return type == DC_CHAT_TYPE_MAILINGLIST
     }
 
     public var isBroadcast: Bool {
-        return Int(dc_chat_get_type(chatPointer)) == DC_CHAT_TYPE_OUT_BROADCAST
+        return type == DC_CHAT_TYPE_OUT_BROADCAST
     }
 
     public var isSelfTalk: Bool {
@@ -79,6 +82,10 @@ public class DcChat {
 
     public var isHalfBlocked: Bool {
         return isContactRequest || isProtectionBroken
+    }
+
+    public var isEncrypted: Bool {
+        return Int(dc_chat_is_encrypted(chatPointer)) != 0
     }
 
     public var canSend: Bool {

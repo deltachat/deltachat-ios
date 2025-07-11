@@ -261,10 +261,8 @@ class ProfileViewController: UITableViewController {
         if let chat {
             if isBroadcast {
                 memberManagementRows = 1
-            } else if chat.canSend {
-                if isGroup {
-                    memberManagementRows = 2
-                }
+            } else if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
+                memberManagementRows = 2
             }
         }
 
@@ -296,7 +294,7 @@ class ProfileViewController: UITableViewController {
 
             if contact != nil, !isSavedMessages && !isDeviceChat {
                 primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
-            } else if isGroup && (chat?.canSend ?? false) {
+            } else if isGroup && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
                 primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
             if let chat, !isBroadcast && !isSavedMessages {
@@ -336,11 +334,11 @@ class ProfileViewController: UITableViewController {
             }
 
             if let chat {
-                if isBroadcast || (isGroup && chat.canSend) {
+                if (isBroadcast || (isGroup && chat.canSend)) && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
-                if isGroup && chat.canSend {
+                if isGroup && chat.canSend && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                     moreOptions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
                 }
@@ -792,7 +790,7 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
-        if chat.canSend && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
+        if chat.canSend && chat.isEncrypted && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
