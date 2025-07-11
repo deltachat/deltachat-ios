@@ -45,8 +45,8 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         self.dcContext = dcContext
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
-        self.useGroupWording = !chat.isBroadcast && !chat.isMailinglist
-        if chat.isBroadcast {
+        self.useGroupWording = !chat.isOutBroadcast && !chat.isMailinglist
+        if chat.isOutBroadcast {
             self.editRows = [.name]
         } else {
             self.editRows = [.name, .avatar]

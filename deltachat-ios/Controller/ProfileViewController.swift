@@ -38,12 +38,12 @@ class ProfileViewController: UITableViewController {
     private var contact: DcContact?
     private var memberIds: [Int] = []
     private var sharedChats: DcChatlist?
-    private let isGroup, isMailinglist, isBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
+    private let isGroup, isMailinglist, isOutBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isGroup || isBroadcast)
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -112,7 +112,7 @@ class ProfileViewController: UITableViewController {
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
         isGroup = chat?.isGroup ?? false
-        isBroadcast = chat?.isBroadcast ?? false
+        isOutBroadcast = chat?.isOutBroadcast ?? false
         isMailinglist = chat?.isMailinglist ?? false
         isSavedMessages = chat?.isSelfTalk ?? false
         isDeviceChat = chat?.isDeviceTalk ?? false
@@ -120,7 +120,7 @@ class ProfileViewController: UITableViewController {
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
         sections.append(.options)
-        if isBroadcast || isGroup {
+        if isOutBroadcast || isGroup {
             sections.append(.members)
         }
         if let sharedChats, sharedChats.length > 0 {
@@ -148,7 +148,7 @@ class ProfileViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         if isMailinglist {
             title = String.localized("mailing_list")
-        } else if isBroadcast {
+        } else if isOutBroadcast {
             title = String.localized("channel")
         } else if isGroup {
             title = String.localized("tab_group")
@@ -259,7 +259,7 @@ class ProfileViewController: UITableViewController {
 
         memberManagementRows = 0
         if let chat {
-            if isBroadcast {
+            if isOutBroadcast {
                 memberManagementRows = 1
             } else if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
                 memberManagementRows = 2
@@ -297,7 +297,7 @@ class ProfileViewController: UITableViewController {
             } else if isGroup && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
                 primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
-            if let chat, !isBroadcast && !isSavedMessages {
+            if let chat, !isOutBroadcast && !isSavedMessages {
                 primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
             }
             if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
@@ -334,7 +334,7 @@ class ProfileViewController: UITableViewController {
             }
 
             if let chat {
-                if (isBroadcast || (isGroup && chat.canSend)) && chat.isEncrypted {
+                if (isOutBroadcast || (isGroup && chat.canSend)) && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
@@ -365,8 +365,8 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            let subtitle: String? = if isGroup || isBroadcast {
-                String.localizedStringWithFormat(String.localized(isBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
+            let subtitle: String? = if isGroup || isOutBroadcast {
+                String.localizedStringWithFormat(String.localized(isOutBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
             } else {
                 nil
             }
@@ -558,7 +558,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showCloneChatController() {
-        navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isBroadcast, templateChatId: chatId), animated: true)
+        navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isOutBroadcast, templateChatId: chatId), animated: true)
     }
 
     private func showLeaveGroupConfirmationAlert() {
@@ -694,7 +694,7 @@ class ProfileViewController: UITableViewController {
             if isMemberManagementRow(row: indexPath.row) {
                 guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { return UITableViewCell() }
                 if indexPath.row == membersRowAddMembers {
-                    actionCell.actionTitle = String.localized(isBroadcast ? "add_recipients" : "group_add_members")
+                    actionCell.actionTitle = String.localized(isOutBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
                 } else if indexPath.row == membersRowQrInvite {
@@ -794,7 +794,7 @@ class ProfileViewController: UITableViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
-                let title = String.localizedStringWithFormat(String.localized(isBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), otherContact.displayName)
+                let title = String.localizedStringWithFormat(String.localized(isOutBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), otherContact.displayName)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { [weak self] _ in
                     guard let self else { return }

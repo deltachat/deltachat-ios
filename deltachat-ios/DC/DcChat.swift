@@ -60,7 +60,7 @@ public class DcChat {
         return type == DC_CHAT_TYPE_MAILINGLIST
     }
 
-    public var isBroadcast: Bool {
+    public var isOutBroadcast: Bool {
         return type == DC_CHAT_TYPE_OUT_BROADCAST
     }
 

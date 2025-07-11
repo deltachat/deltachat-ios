@@ -325,7 +325,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>) {
         let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
                                                                preselected: preselectedMembers,
-                                                               isBroadcast: createBroadcast)
+                                                               isOutBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] memberIds in
             guard let self else { return }
             var memberIds = memberIds
