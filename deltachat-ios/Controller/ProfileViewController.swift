@@ -149,7 +149,7 @@ class ProfileViewController: UITableViewController {
         if isMailinglist {
             title = String.localized("mailing_list")
         } else if isBroadcast {
-            title = String.localized("broadcast_list")
+            title = String.localized("channel")
         } else if isGroup {
             title = String.localized("tab_group")
         } else if isBot {

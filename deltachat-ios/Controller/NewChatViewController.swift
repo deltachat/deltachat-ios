@@ -68,7 +68,7 @@ class NewChatViewController: UITableViewController {
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
         var newOptions: [NewOption]
-        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
+        if UserDefaults.standard.bool(forKey: "channels") {
             newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
         } else {
             newOptions = [.scanQRCode, .newGroup]
@@ -157,7 +157,7 @@ class NewChatViewController: UITableViewController {
                 actionCell.actionTitle = String.localized("menu_new_group")
             case .newBroadcastList:
                 actionCell.imageView?.image = UIImage(systemName: "plus")
-                actionCell.actionTitle = String.localized("new_broadcast_list")
+                actionCell.actionTitle = String.localized("new_channel")
             case .newContact:
                 actionCell.imageView?.image = UIImage(systemName: "highlighter")
                 actionCell.actionTitle = String.localized("menu_new_classic_contact")

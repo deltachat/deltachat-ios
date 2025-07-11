@@ -39,7 +39,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized(createBroadcast ? "name_desktop" : "group_name"), placeholder: String.localized("name_desktop"))
+        let cell = TextFieldCell(description: String.localized(createBroadcast ? "channel_name" : "group_name"), placeholder: String.localized("name_desktop"))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
@@ -87,7 +87,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if createBroadcast {
-            title = String.localized("new_broadcast_list")
+            title = String.localized("new_channel")
         } else {
             title = String.localized("menu_new_group")
         }
@@ -186,8 +186,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section] == .invite && createBroadcast {
-            return String.localized("chat_new_broadcast_hint")
+        if sections[section] == .details && createBroadcast {
+            return String.localized("chat_new_channel_hint")
         }
         return nil
     }
