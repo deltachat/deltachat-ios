@@ -38,7 +38,7 @@ class ProfileViewController: UITableViewController {
     private var contact: DcContact?
     private var memberIds: [Int] = []
     private var sharedChats: DcChatlist?
-    private let isGroup, isMailinglist, isOutBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
+    private let isGroup, isMailinglist, isOutBroadcast, isInBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
@@ -113,6 +113,7 @@ class ProfileViewController: UITableViewController {
 
         isGroup = chat?.isGroup ?? false
         isOutBroadcast = chat?.isOutBroadcast ?? false
+        isInBroadcast = chat?.isInBroadcast ?? false
         isMailinglist = chat?.isMailinglist ?? false
         isSavedMessages = chat?.isSelfTalk ?? false
         isDeviceChat = chat?.isDeviceTalk ?? false
@@ -148,7 +149,7 @@ class ProfileViewController: UITableViewController {
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         if isMailinglist {
             title = String.localized("mailing_list")
-        } else if isOutBroadcast {
+        } else if isOutBroadcast || isInBroadcast {
             title = String.localized("channel")
         } else if isGroup {
             title = String.localized("tab_group")

@@ -64,6 +64,10 @@ public class DcChat {
         return type == DC_CHAT_TYPE_OUT_BROADCAST
     }
 
+    public var isInBroadcast: Bool {
+        return type == DC_CHAT_TYPE_IN_BROADCAST
+    }
+
     public var isSelfTalk: Bool {
         return Int(dc_chat_is_self_talk(chatPointer)) != 0
     }
