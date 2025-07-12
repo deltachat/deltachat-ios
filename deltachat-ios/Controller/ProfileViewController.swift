@@ -339,10 +339,14 @@ class ProfileViewController: UITableViewController {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
-                if isMultiUser && chat.canSend && chat.isEncrypted {
-                    let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
-                    moreOptions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
+
+                let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+                if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
+                    moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], showLeaveGroupConfirmationAlert))
+                } else if isInBroadcast {
+                    moreOptions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], showLeaveChannelConfirmationAlert))
                 }
+
                 let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 moreOptions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
                 actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
@@ -563,11 +567,20 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showLeaveGroupConfirmationAlert() {
-        guard let chat, isMultiUser else { return }
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chat.id, contactId: Int(DC_CONTACT_ID_SELF))
+            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func showLeaveChannelConfirmationAlert() {
+        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("menu_leave_channel"), style: .destructive, handler: { [weak self] _ in
+            guard let self else { return }
+            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
