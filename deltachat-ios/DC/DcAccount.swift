@@ -8,6 +8,10 @@ struct JsonrpcReturnError: Decodable {
     let error: JsonrpcError
 }
 
+struct JsonrpcIntResult: Decodable {
+    let result: Int
+}
+
 /// Represents [dc_accounts_t](https://c.delta.chat/classdc__accounts__t.html)
 public class DcAccounts {
     public static let shared = DcAccounts()

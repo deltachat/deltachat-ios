@@ -272,8 +272,15 @@ public class DcContext {
         return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
     }
 
-    public func createBroadcastList() -> Int {
-        return Int(dc_create_broadcast_list(contextPointer))
+    public func createBroadcast(name: String) -> Int {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "create_broadcast", params: [id as AnyObject, name as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return 0
     }
 
     public func addContactToChat(chatId: Int, contactId: Int) -> Bool {

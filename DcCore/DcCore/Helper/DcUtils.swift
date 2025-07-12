@@ -136,7 +136,7 @@ public struct DcUtils {
 
     public static func showRecentlySeen(context: DcContext, chat: DcChat) -> Bool {
         var recentlySeen = false
-        if !chat.isSelfTalk && !chat.isGroup && !chat.isMailinglist && !chat.isDeviceTalk {
+        if !chat.isSelfTalk && !chat.isMultiUser && !chat.isMailinglist && !chat.isDeviceTalk {
             let contactIds = chat.getContactIds(context)
             if contactIds.count == 1 {
                 recentlySeen = context.getContact(id: contactIds[0]).wasSeenRecently
