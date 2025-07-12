@@ -341,22 +341,31 @@ class ProfileViewController: UITableViewController {
                 }
 
                 let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+                let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
-                    moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], showLeaveGroupConfirmationAlert))
+                    moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], { [weak self] in
+                        self?.showLeaveAlert("menu_leave_group")
+                    }))
+                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 } else if isInBroadcast {
-                    moreOptions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], showLeaveChannelConfirmationAlert))
+                    actions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], { [weak self] in
+                        self?.showLeaveAlert("menu_leave_channel")
+                    }))
+                    actions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
+                } else {
+                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 }
 
-                let image = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-                moreOptions.append(action("clear_chat", image, attributes: [.destructive], showClearConfirmationAlert))
                 actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
 
-            actions.append(contentsOf: [
-                UIMenu(options: [.displayInline], children: [
-                    UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
+            if !moreOptions.isEmpty {
+                actions.append(contentsOf: [
+                    UIMenu(options: [.displayInline], children: [
+                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
+                    ])
                 ])
-            ])
+            }
 
             return actions
         }
@@ -566,19 +575,9 @@ class ProfileViewController: UITableViewController {
         navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isOutBroadcast, templateChatId: chatId), animated: true)
     }
 
-    private func showLeaveGroupConfirmationAlert() {
+    private func showLeaveAlert(_ buttonLabel: String) {
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func showLeaveChannelConfirmationAlert() {
-        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_leave_channel"), style: .destructive, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String.localized(buttonLabel), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
         }))
