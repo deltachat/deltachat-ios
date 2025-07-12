@@ -38,12 +38,12 @@ class ProfileViewController: UITableViewController {
     private var contact: DcContact?
     private var memberIds: [Int] = []
     private var sharedChats: DcChatlist?
-    private let isMultiUser, isMailinglist, isOutBroadcast, isInBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
+    private let isMultiUser, isGroup, isMailinglist, isOutBroadcast, isInBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isMultiUser || isOutBroadcast)
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -112,6 +112,7 @@ class ProfileViewController: UITableViewController {
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
         isMultiUser = chat?.isMultiUser ?? false
+        isGroup = (chat?.type ?? 0) == DC_CHAT_TYPE_GROUP
         isOutBroadcast = chat?.isOutBroadcast ?? false
         isInBroadcast = chat?.isInBroadcast ?? false
         isMailinglist = chat?.isMailinglist ?? false
@@ -262,7 +263,7 @@ class ProfileViewController: UITableViewController {
         if let chat {
             if isOutBroadcast {
                 memberManagementRows = 1
-            } else if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
+            } else if isGroup && chat.canSend && chat.isEncrypted {
                 memberManagementRows = 2
             }
         }
@@ -342,7 +343,7 @@ class ProfileViewController: UITableViewController {
 
                 let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                 let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-                if chat.type == DC_CHAT_TYPE_GROUP && chat.canSend && chat.isEncrypted {
+                if isGroup && chat.canSend && chat.isEncrypted {
                     moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], { [weak self] in
                         self?.showLeaveAlert("menu_leave_group")
                     }))
@@ -379,7 +380,7 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            let subtitle: String? = if isMultiUser || isOutBroadcast {
+            let subtitle: String? = if isGroup || isOutBroadcast {
                 String.localizedStringWithFormat(String.localized(isOutBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
             } else {
                 nil
