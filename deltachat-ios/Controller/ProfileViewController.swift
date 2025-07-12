@@ -38,12 +38,12 @@ class ProfileViewController: UITableViewController {
     private var contact: DcContact?
     private var memberIds: [Int] = []
     private var sharedChats: DcChatlist?
-    private let isGroup, isMailinglist, isOutBroadcast, isInBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
+    private let isMultiUser, isMailinglist, isOutBroadcast, isInBroadcast, isSavedMessages, isDeviceChat, isBot: Bool
 
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast)
+        let header = ProfileHeader(hasSubtitle: isMultiUser || isOutBroadcast)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -111,7 +111,7 @@ class ProfileViewController: UITableViewController {
         self.chat = self.chatId != 0 ? dcContext.getChat(chatId: self.chatId) : nil
         self.contact = self.contactId != 0 ? dcContext.getContact(id: self.contactId) : nil
 
-        isGroup = chat?.isGroup ?? false
+        isMultiUser = chat?.isMultiUser ?? false
         isOutBroadcast = chat?.isOutBroadcast ?? false
         isInBroadcast = chat?.isInBroadcast ?? false
         isMailinglist = chat?.isMailinglist ?? false
@@ -121,7 +121,7 @@ class ProfileViewController: UITableViewController {
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
         sections.append(.options)
-        if isOutBroadcast || isGroup {
+        if isOutBroadcast || isMultiUser {
             sections.append(.members)
         }
         if let sharedChats, sharedChats.length > 0 {
@@ -151,7 +151,7 @@ class ProfileViewController: UITableViewController {
             title = String.localized("mailing_list")
         } else if isOutBroadcast || isInBroadcast {
             title = String.localized("channel")
-        } else if isGroup {
+        } else if isMultiUser {
             title = String.localized("tab_group")
         } else if isBot {
             title = String.localized("bot")
@@ -295,7 +295,7 @@ class ProfileViewController: UITableViewController {
 
             if contact != nil, !isSavedMessages && !isDeviceChat {
                 primaryOptions.append(action("menu_share", "square.and.arrow.up", shareContact))
-            } else if isGroup && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
+            } else if isMultiUser && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
                 primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
             if let chat, !isOutBroadcast && !isSavedMessages {
@@ -335,11 +335,11 @@ class ProfileViewController: UITableViewController {
             }
 
             if let chat {
-                if (isOutBroadcast || (isGroup && chat.canSend)) && chat.isEncrypted {
+                if (isOutBroadcast || (isMultiUser && chat.canSend)) && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
-                if isGroup && chat.canSend && chat.isEncrypted {
+                if isMultiUser && chat.canSend && chat.isEncrypted {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                     moreOptions.append(action("menu_leave_group", image, attributes: [.destructive], showLeaveGroupConfirmationAlert))
                 }
@@ -366,7 +366,7 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            let subtitle: String? = if isGroup || isOutBroadcast {
+            let subtitle: String? = if isMultiUser || isOutBroadcast {
                 String.localizedStringWithFormat(String.localized(isOutBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
             } else {
                 nil
@@ -421,7 +421,7 @@ class ProfileViewController: UITableViewController {
     @objc func showEditController() {
         if contact != nil {
             navigationController?.pushViewController(EditContactController(dcContext: dcContext, contactIdForUpdate: contactId), animated: true)
-        } else if let chat, isGroup {
+        } else if let chat, isMultiUser {
             navigationController?.pushViewController(EditGroupViewController(dcContext: dcContext, chat: chat), animated: true)
         }
     }
@@ -563,7 +563,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showLeaveGroupConfirmationAlert() {
-        guard let chat, isGroup else { return }
+        guard let chat, isMultiUser else { return }
         let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_leave_group"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
