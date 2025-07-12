@@ -825,6 +825,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let chatContactIds = dcChat.getContactIds(dcContext)
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
+            } else if dcChat.isInBroadcast {
+                subtitle = String.localized(stringID: "channel")
             } else if dcChat.isOutBroadcast {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chatContactIds.count)
             } else if dcChat.isGroup {
