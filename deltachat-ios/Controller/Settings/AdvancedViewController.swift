@@ -150,9 +150,9 @@ internal final class AdvancedViewController: UITableViewController {
     lazy var broadcastListsCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("channels"),
-            on: UserDefaults.standard.bool(forKey: "channels"),
+            on: UserDefaults.standard.bool(forKey: "broadcast_lists"),
             action: { cell in
-                UserDefaults.standard.set(cell.isOn, forKey: "channels")
+                UserDefaults.standard.set(cell.isOn, forKey: "broadcast_lists")
                 if cell.isOn {
                     let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Channels\"!",
                         message: "You can now create new \"Channels\" from the \"New Chat\" dialog\n\n"
