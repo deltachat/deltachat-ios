@@ -10,6 +10,7 @@ class NewChatViewController: UITableViewController {
         case newGroup
         case newBroadcastList
         case newContact
+        case newEmail
     }
 
     private let newOptions: [NewOption]
@@ -67,15 +68,16 @@ class NewChatViewController: UITableViewController {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
-        var newOptions: [NewOption]
-        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
-            newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
-        } else {
-            newOptions = [.scanQRCode, .newGroup]
-        }
-
+        var newOptions: [NewOption] = [.scanQRCode]
         if self.dcContext.isChatmail == false {
             newOptions.append(.newContact)
+        }
+        newOptions.append(.newGroup)
+        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
+            newOptions.append(.newBroadcastList)
+        }
+        if self.dcContext.isChatmail == false {
+            newOptions.append(.newEmail)
         }
         self.newOptions = newOptions
 
@@ -161,6 +163,9 @@ class NewChatViewController: UITableViewController {
             case .newContact:
                 actionCell.imageView?.image = UIImage(systemName: "highlighter")
                 actionCell.actionTitle = String.localized("menu_new_classic_contact")
+            case .newEmail:
+                actionCell.imageView?.image = UIImage(systemName: "plus")
+                actionCell.actionTitle = String.localized("new_email")
             }
 
             return actionCell
@@ -201,6 +206,8 @@ class NewChatViewController: UITableViewController {
                 showNewGroupController()
             } else if newOption == .newBroadcastList {
                 showNewGroupController(createBroadcast: true)
+            } else if newOption == .newEmail {
+                showNewGroupController(createEmail: true)
             } else if newOption == .newContact {
                 showNewContactController()
             }
@@ -319,8 +326,8 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    private func showNewGroupController(createBroadcast: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast)
+    private func showNewGroupController(createBroadcast: Bool = false, createEmail: Bool = false) {
+        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast, createEmail: createEmail)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 
