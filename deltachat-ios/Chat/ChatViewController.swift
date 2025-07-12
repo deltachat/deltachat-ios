@@ -1036,7 +1036,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if show {
             if dcChat.isMultiUser {
                 if dcChat.isOutBroadcast {
-                    emptyStateView.text = String.localized("chat_new_broadcast_hint")
+                    emptyStateView.text = String.localized("chat_new_channel_hint")
                 } else if dcChat.isUnpromoted {
                     emptyStateView.text = String.localized("chat_new_group_hint")
                 } else {

@@ -50,7 +50,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(image: nil)
-        cell.hintLabel.text = String.localized("group_avatar")
+        cell.hintLabel.text = String.localized(createBroadcast ? "image" : "group_avatar")
         cell.onAvatarTapped = onAvatarTapped
         return cell
     }()
@@ -251,7 +251,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized(createBroadcast ? "image" : "group_avatar"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
             alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
             if avatarSelectionCell.isAvatarSet() {
