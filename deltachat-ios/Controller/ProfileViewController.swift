@@ -121,7 +121,7 @@ class ProfileViewController: UITableViewController {
         sharedChats = if contactId != 0, !isSavedMessages, !isDeviceChat { dcContext.getChatlist(flags: 0, queryString: nil, queryId: contactId) } else { nil }
 
         sections.append(.options)
-        if isOutBroadcast || isMultiUser {
+        if isMultiUser && !isMailinglist && !isInBroadcast {
             sections.append(.members)
         }
         if let sharedChats, sharedChats.length > 0 {
