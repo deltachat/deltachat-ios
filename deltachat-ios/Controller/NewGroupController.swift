@@ -12,6 +12,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private var deleteGroupImage: Bool = false
 
     let createBroadcast: Bool
+    let createEmail: Bool
     let dcContext: DcContext
 
     enum DetailsRows {
@@ -39,7 +40,14 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized(createBroadcast ? "channel_name" : "group_name"), placeholder: String.localized("name_desktop"))
+        let (title, placeholder) = if createBroadcast {
+            ("channel_name", "name_desktop")
+        } else if createEmail {
+            ("subject", "subject")
+        } else {
+            ("group_name", "name_desktop")
+        }
+        let cell = TextFieldCell(description: String.localized(title), placeholder: String.localized(placeholder))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
@@ -55,11 +63,16 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
-    init(dcContext: DcContext, createBroadcast: Bool, templateChatId: Int? = nil) {
+    init(dcContext: DcContext, createBroadcast: Bool, createEmail: Bool = false, templateChatId: Int? = nil) {
         self.createBroadcast = createBroadcast
+        self.createEmail = createEmail
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
-        self.detailsRows = [.name, .avatar]
+        if createEmail {
+            self.detailsRows = [.name]
+        } else {
+            self.detailsRows = [.name, .avatar]
+        }
         self.inviteRows = [.addMembers]
         if createBroadcast {
             self.contactIdsForGroup = []
@@ -86,6 +99,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         super.viewDidLoad()
         if createBroadcast {
             title = String.localized("new_channel")
+        } else if createEmail {
+            title = String.localized("new_email")
         } else {
             title = String.localized("menu_new_group")
         }
@@ -96,7 +111,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 changeGroupImage = image
             }
         }
-        doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
+        doneButton = UIBarButtonItem(title: String.localized(createEmail ? "perm_continue" : "create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
@@ -159,7 +174,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No ActionCell") }
             if inviteRows[row] == .addMembers {
                 actionCell.imageView?.image = UIImage(systemName: "plus")
-                actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
+                actionCell.actionTitle = String.localized(createBroadcast || createEmail ? "add_recipients" : "group_add_members")
                 actionCell.actionColor = UIColor.systemBlue
                 actionCell.isUserInteractionEnabled = true
             }
@@ -211,7 +226,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members && !contactIdsForGroup.isEmpty {
-            if createBroadcast {
+            if createBroadcast || createEmail {
                 return String.localized(stringID: "n_recipients", parameter: contactIdsForGroup.count)
             } else {
                 return String.localized(stringID: "n_members", parameter: contactIdsForGroup.count)
