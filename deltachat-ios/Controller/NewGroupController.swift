@@ -59,13 +59,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
+        self.detailsRows = [.name, .avatar]
+        self.inviteRows = [.addMembers]
         if createBroadcast {
-            self.detailsRows = [.name]
-            self.inviteRows = [.addMembers]
             self.contactIdsForGroup = []
         } else {
-            self.detailsRows = [.name, .avatar]
-            self.inviteRows = [.addMembers]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
         }
         if let templateChatId = templateChatId {
@@ -93,7 +91,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
-            if !createBroadcast, let image = templateChat.profileImage {
+            if let image = templateChat.profileImage {
                 avatarSelectionCell = AvatarSelectionCell(image: image)
                 changeGroupImage = image
             }
