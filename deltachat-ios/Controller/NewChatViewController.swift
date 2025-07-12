@@ -206,6 +206,8 @@ class NewChatViewController: UITableViewController {
                 showNewGroupController()
             } else if newOption == .newBroadcastList {
                 showNewGroupController(createBroadcast: true)
+            } else if newOption == .newEmail {
+                showNewGroupController(createEmail: true)
             } else if newOption == .newContact {
                 showNewContactController()
             }
@@ -324,8 +326,8 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    private func showNewGroupController(createBroadcast: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast)
+    private func showNewGroupController(createBroadcast: Bool = false, createEmail: Bool = false) {
+        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast, createEmail: createEmail)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 
