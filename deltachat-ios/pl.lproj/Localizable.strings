@@ -204,6 +204,12 @@
 "broadcast_lists" = "Lista rozgłoszeniowa";
 // deprecated
 "new_broadcast_list" = "Nowa lista rozgłoszeniowa";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanał";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanały";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Nowy kanał";
 "add_recipients" = "Dodaj odbiorców";
 // deprecated
 "edit_broadcast_list" = "Edytuj listę rozgłoszeniową";
@@ -211,6 +217,8 @@
 "broadcast_list_name" = "Nazwa listy rozgłoszeniowej";
 // deprecated
 "please_enter_broadcast_list_name" = "Wpisz nazwę listy rozgłoszeniowej";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Nazwa kanału";
 "menu_send" = "Wyślij";
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
@@ -220,6 +228,7 @@
 "menu_unarchive_chat" = "Przywróć czat z archiwum";
 "menu_add_attachment" = "Dodaj załącznik";
 "menu_leave_group" = "Opuść grupę";
+"menu_leave_channel" = "Opuść kanał";
 "menu_delete_chat" = "Usuń czat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Wyczyść czat";
@@ -330,6 +339,9 @@
 "videochat_instance_from_qr" = "Czy użyć „%1$@”, aby zaprosić innych do czatów wideo?\n\nPo ustawieniu możesz rozpocząć czat wideo z każdego czatu indywidualnego. Spowoduje to zastąpienie poprzedniego ustawienia czatów wideo, jeśli takie istnieją.";
 "videochat_invitation" = "Zaproszenie do czatu wideo";
 "videochat_invitation_body" = "Masz zaproszenie do czatu wideo, naciśnij %1$@, aby dołączyć.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Na pewno chcesz opuścić?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@” ze wszystkich urządzeń?";
 "ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
 // Used for the deletion of Device messages
@@ -345,6 +357,8 @@
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
 // deprecated
 "ask_remove_from_broadcast" = "Usunąć odbiorcę %1$@ z listy rozgłoszeniowej?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Usunąć %1$@ z kanału?";
 "open_url_confirmation" = "Czy chcesz otworzyć ten link?";
 // contact list
 "contacts_title" = "Kontakty";
@@ -360,6 +374,8 @@
 "chat_new_one_to_one_hint" = "Wyślij wiadomość do %1$@.";
 // deprecated
 "chat_new_broadcast_hint" = "Na liście rozgłoszeniowej odbiorcy będą otrzymywać wiadomości w czacie tylko do odczytu.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanały są narzędziem typu „jeden do wielu” do nadawania wiadomości.";
 "chat_new_group_hint" = "Napisz pierwszą wiadomość, by inni mogli odpowiedzieć w tej grupie.\n\n• Nie ma problemu, jeśli nie wszyscy członkowie korzystają z Delta Chat.\n\n• Dostarczenie pierwszej wiadomości może chwilę potrwać.";
 "chat_record_slide_to_cancel" = "PRZESUŃ, BY ANULOWAĆ";
 "chat_record_explain" = "Dotknij i przytrzymaj, aby nagrać wiadomość głosową, zwolnij, aby wysłać";
@@ -413,7 +429,7 @@
 "open_external_url_trust_domain" = "Nie pytaj ponownie dla %1$@";
 "puny_code_warning_header" = "Wykryto podejrzany link";
 // placeholder contains the hostname converted to ascii
-"puny_code_warning_question" = "Czy na pewno chcesz odwiedzić %1$@?";
+"puny_code_warning_question" = "Na pewno chcesz odwiedzić %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Wybrano link, który może przekłamywać znaki poprzez użycie podobnie wyglądających znaków z różnych alfabetów. Podążanie za linkiem oznaczonym %1$@ doprowadzi do %2$@, co jest normalne dla znaków niełacińskich. Jeśli nie spodziewałeś się takich znaków, ten link może być szkodliwy.";
 // search
@@ -589,7 +605,7 @@
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Przenieś na górę";
 "delete_account" = "Usuń konto";
-"delete_account_ask" = "Czy na pewno chcesz usunąć dane swojego konta?";
+"delete_account_ask" = "Na pewno chcesz usunąć dane swojego konta?";
 "delete_account_explain_with_name" = "Wszystkie dane konta „%1$@” na tym urządzeniu zostaną usunięte, w tym konfiguracja szyfrowania end-to-end, kontakty, czaty, wiadomości i multimedia. Tej operacji nie można cofnąć.";
 "unconfigured_account" = "Nieskonfigurowane konto";
 "unconfigured_account_hint" = "Otwórz konto, aby je skonfigurować";
@@ -801,6 +817,8 @@
 "remove_member_by_you" = "Usunięto członka %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Użytkownik %2$@ usunął członka %1$@.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Opuszczono";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupa opuszczona przez %1$@.";
 "group_image_deleted_by_you" = "Usunięto obraz grupy.";

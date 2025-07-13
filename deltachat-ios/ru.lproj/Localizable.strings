@@ -204,6 +204,12 @@
 "broadcast_lists" = "Списки рассылки";
 // deprecated
 "new_broadcast_list" = "Новый список рассылки";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Канал";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Каналы";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Новый канал";
 "add_recipients" = "Добавить получателей";
 // deprecated
 "edit_broadcast_list" = "Редактировать список рассылки";
@@ -211,6 +217,8 @@
 "broadcast_list_name" = "Название списка рассылки";
 // deprecated
 "please_enter_broadcast_list_name" = "Введите название списка рассылки.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Название канала";
 "menu_send" = "Отправить";
 "menu_toggle_keyboard" = "Эмодзи клавиатура";
 "menu_edit_group" = "Редактировать группу";
@@ -220,6 +228,7 @@
 "menu_unarchive_chat" = "Вернуть чат из архива";
 "menu_add_attachment" = "Добавить вложение";
 "menu_leave_group" = "Покинуть группу";
+"menu_leave_channel" = "Покинуть канал";
 "menu_delete_chat" = "Удалить чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистить чат";
@@ -330,6 +339,9 @@
 "videochat_instance_from_qr" = "Использовать \"%1$@\" чтобы приглашать других в видеочаты?\n\nНастроив один раз, вы можете начинать видеочат из каждого чата. Это заменит предыдущие настройки видеочатов, если они были.";
 "videochat_invitation" = "Приглашение в видеочат";
 "videochat_invitation_body" = "Вы приглашены в видеочат, нажмите %1$@, чтобы присоединиться.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Вы действительно хотите выйти?";
 "ask_delete_named_chat" = "Удалить чат \"%1$@\" на всех ваших устройствах?";
 "ask_delete_message" = "Удалить это сообщение на всех ваших устройствах?";
 // Used for the deletion of Device messages
@@ -345,6 +357,8 @@
 "ask_remove_members" = "Удалить %1$@ из группы?";
 // deprecated
 "ask_remove_from_broadcast" = "Удалить %1$@ из списка рассылки?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Удалить %1$@ из канала?";
 "open_url_confirmation" = "Вы хотите открыть эту ссылку?";
 // contact list
 "contacts_title" = "Контакты";
@@ -360,6 +374,8 @@
 "chat_new_one_to_one_hint" = "Отправьте сообщение %1$@.";
 // deprecated
 "chat_new_broadcast_hint" = "В списке рассылки получатели будут получать сообщения в чате с вами, доступном только для чтения.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Каналы представляют собой инструмент одностороннего вещания ваших сообщений множеству получателей.";
 "chat_new_group_hint" = "Другие пользователи увидят эту группу только после того, как вы отправите первое сообщение.";
 "chat_record_slide_to_cancel" = "Смахните для отмены";
 "chat_record_explain" = "Нажмите и удерживайте для записи голосового сообщения, отпустите для отправки";
@@ -801,6 +817,8 @@
 "remove_member_by_you" = "Вы удалили участника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ удаляет участника %1$@.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Вы покинули.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ покидает группу.";
 "group_image_deleted_by_you" = "Вы удалили изображение группы.";

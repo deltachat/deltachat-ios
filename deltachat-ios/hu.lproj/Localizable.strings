@@ -95,7 +95,7 @@
 "no_browser_installed" = "Nincs telepítve böngésző.";
 "file_not_found" = "%1$@ nem található.";
 // the placeholder will be replaced by the name of a file
-"cannot_save_file" = "Nem lehet elmenteni a következőt: %1$@.";
+"cannot_save_file" = "Nem lehet menteni a következőt: %1$@.";
 "copied_to_clipboard" = "Vágólapra másolva.";
 "contacts_headline" = "Névjegyek";
 "email_address" = "E-mail-cím";
@@ -204,6 +204,12 @@
 "broadcast_lists" = "Adásliták";
 // deprecated
 "new_broadcast_list" = "Új adáslista";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Csatorna";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Csatornák";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Új csatorna";
 "add_recipients" = "Címzettek hozzáadása";
 // deprecated
 "edit_broadcast_list" = "Adáslista szerkesztése";
@@ -211,6 +217,8 @@
 "broadcast_list_name" = "Adáslista neve";
 // deprecated
 "please_enter_broadcast_list_name" = "Adjon meg egy nevet az adáslistának";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Csatorna neve";
 "menu_send" = "Küldés";
 "menu_toggle_keyboard" = "Váltás emodzsibillentyűzetre";
 "menu_edit_group" = "Csoport szerkesztése";
@@ -220,6 +228,7 @@
 "menu_unarchive_chat" = "Archiválás visszavonása";
 "menu_add_attachment" = "Fájl mellékelése";
 "menu_leave_group" = "Csoport elhagyása";
+"menu_leave_channel" = "Csatorna elhagyása";
 "menu_delete_chat" = "Csevegés törlése";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Csevegés kiürítése";
@@ -314,7 +323,7 @@
 "share_location_for_one_hour" = "1 órára";
 "share_location_for_two_hours" = "2 órára";
 "share_location_for_six_hours" = "6 órára";
-"file_saved_to" = "A fájl elmentve ide: „%1$@”.";
+"file_saved_to" = "Fájl mentve ide: „%1$@”.";
 "videochat" = "Videócsevegés";
 "videochat_invite_user_to_videochat" = "Meghívja egy videócsevegésbe őt: %1$@?";
 "videochat_invite_user_hint" = "Ehhez mindkét oldalon kompatibilis alkalmazás vagy böngésző szükséges.";
@@ -330,6 +339,9 @@
 "videochat_instance_from_qr" = "„%1$@” használata mások meghívásához a videócsevegésekbe?\n\nAmint beállította, az összes csevegésből indíthat videócsevegést. Ez az összes korábbi beállítás helyébe lép a videócsevegéseknél.";
 "videochat_invitation" = "Videócsevegési meghívó";
 "videochat_invitation_body" = "Ön meg lett híva egy videócsevegésbe, kattintson ide: %1$@ a csatlakozáshoz.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Biztosan elhagyja a csatornát?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
 // Used for the deletion of Device messages
@@ -345,6 +357,8 @@
 "ask_remove_members" = "Eltávolítja a csoportból őt: %1$@?";
 // deprecated
 "ask_remove_from_broadcast" = "Eltávolítja az adáslistából őt: %1$@?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Eltávolítja a csatornából a következőt: %1$@?";
 "open_url_confirmation" = "Biztosan megnyitja ezt a hivatkozást?";
 // contact list
 "contacts_title" = "Névjegyek";
@@ -360,6 +374,8 @@
 "chat_new_one_to_one_hint" = "Üzenet küldése „%1$@” számára.";
 // deprecated
 "chat_new_broadcast_hint" = "Az adáslistán a címzettek csak olvasható módban kapják meg az üzeneteket öntől.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "A csatornák egy blogszerű eszköz az üzenetek megosztására a közönséggel.";
 "chat_new_group_hint" = "Mások csak az első üzenet elküldése után fogják látni ezt a csoportot.";
 "chat_record_slide_to_cancel" = "Visszavonás csúsztatással";
 "chat_record_explain" = "Hangüzenet rögzítéséhez koppintson és tartsa lenyomva; Az elküldéshez engedje el.";
@@ -664,8 +680,8 @@
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
 "pref_view_log" = "Naplófájl megtekintése";
-"pref_saved_log" = "A naplófájl elmentve a „Letöltések” nevű mappába";
-"pref_save_log_failed" = "Nem sikerült elmenteni a naplófájlt";
+"pref_saved_log" = "A naplófájl mentve a „Letöltések” nevű mappába";
+"pref_save_log_failed" = "Nem sikerült menteni a naplófájlt";
 "pref_log_header" = "Naplófájl";
 "pref_other" = "Egyéb";
 "pref_backup" = "Biztonsági mentés";
@@ -801,6 +817,8 @@
 "remove_member_by_you" = "Ön eltávolította őt: %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ eltávolította őt: %1$@.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Ön elhagyta a csevegést.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ elhagyta a csoportot.";
 "group_image_deleted_by_you" = "Ön törölte a csoport profilképét.";

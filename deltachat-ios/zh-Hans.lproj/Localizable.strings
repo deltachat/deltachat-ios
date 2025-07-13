@@ -204,6 +204,12 @@
 "broadcast_lists" = "广播列表";
 // deprecated
 "new_broadcast_list" = "新建广播列表";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "频道";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "频道";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "新频道";
 "add_recipients" = "添加接收者";
 // deprecated
 "edit_broadcast_list" = "编辑广播列表";
@@ -211,6 +217,8 @@
 "broadcast_list_name" = "广播列表名称";
 // deprecated
 "please_enter_broadcast_list_name" = "请属于广播列表的名称";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "频道名称";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换表情符号键盘";
 "menu_edit_group" = "编辑群组";
@@ -220,6 +228,7 @@
 "menu_unarchive_chat" = "取消归档聊天";
 "menu_add_attachment" = "添加附件";
 "menu_leave_group" = "离开群组";
+"menu_leave_channel" = "离开频道";
 "menu_delete_chat" = "删除聊天";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清空聊天记录";
@@ -330,6 +339,9 @@
 "videochat_instance_from_qr" = "使用“%1$@”邀请其他人参加视频聊天吗？\n\n设置好后，您就可以在聊天里发起视频聊天了。 这会取代之前的视频聊天设置。";
 "videochat_invitation" = "视频聊天邀请";
 "videochat_invitation_body" = "您被邀请参加视频聊天，点击 %1$@ 来加入。";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "是否确定要离开？";
 "ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
 "ask_delete_message" = "是否在所有设备上删除此消息？";
 // Used for the deletion of Device messages
@@ -345,6 +357,8 @@
 "ask_remove_members" = "将 %1$@ 从群组中移除？";
 // deprecated
 "ask_remove_from_broadcast" = "从广播列表中移除 %1$@？";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "从频道中移除 %1$@？";
 "open_url_confirmation" = "您要打开此链接吗？";
 // contact list
 "contacts_title" = "联系人";
@@ -360,6 +374,8 @@
 "chat_new_one_to_one_hint" = "发一条消息给 %1$@。";
 // deprecated
 "chat_new_broadcast_hint" = "在广播列表中，收件人会在和你进行的只读聊天中收到消息";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "频道是广播消息的一对多工具。";
 "chat_new_group_hint" = "在您发出第一条消息后，其他人才会看到此群组。";
 "chat_record_slide_to_cancel" = "滑动来取消";
 "chat_record_explain" = "按住来录制语音消息，松开来发送";
@@ -413,7 +429,7 @@
 "open_external_url_trust_domain" = "不再询问 %1$@";
 "puny_code_warning_header" = "检测到可疑链接";
 // placeholder contains the hostname converted to ascii
-"puny_code_warning_question" = "您确定要访问 %1$@ 吗？";
+"puny_code_warning_question" = "是否确定要访问 %1$@？";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "你将被转到一个链接，该链接可能通过使用来自不同字母表的相似字符对自己进行了伪装。打开标记为 %1$@ 的链接将把你带到以 ascii 码编码的 %2$@ 。如果这样的字符出乎你的意料，那么这个链接可能是有害的。";
 // search
@@ -562,7 +578,7 @@
 "proxy_invalid" = "无效或不受支持的代理";
 "proxy_list_header" = "已保存的代理";
 "proxy_delete" = "删除代理";
-"proxy_delete_explain" = "你确定要删除 \"%1$@\"吗？";
+"proxy_delete_explain" = "是否确定要删除“%1$@”？";
 "proxy_use_proxy_confirm" = "你想使用代理“%1$@”吗？";
 "proxy_share_explain" = "你的好友可以扫描二维码添加此代理";
 "proxy_share_link" = "分享链接";
@@ -801,6 +817,8 @@
 "remove_member_by_you" = "你移除了成员 %1$@";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ 移除了成员 %1$@";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "您已离开。";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ 退出了群组";
 "group_image_deleted_by_you" = "你删除了群组图像";
