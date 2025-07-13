@@ -18,5 +18,5 @@ public struct DcReactions: Decodable {
 }
 
 struct DcReactionResult: Decodable {
-    let result: DcReactions
+    let result: DcReactions?
 }
