@@ -204,6 +204,12 @@
 "broadcast_lists" = "Verzendlijsten";
 // deprecated
 "new_broadcast_list" = "Nieuwe verzendlijst";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanaal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanalen";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Nieuw kanaal";
 "add_recipients" = "Ontvangers toevoegen";
 // deprecated
 "edit_broadcast_list" = "Verzendlijst bewerken";
@@ -211,6 +217,8 @@
 "broadcast_list_name" = "Naam van verzendlijst";
 // deprecated
 "please_enter_broadcast_list_name" = "Geef de verzendlijst een naam.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanaalnaam";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emojitoetsenbord tonen/verbergen";
 "menu_edit_group" = "Groep aanpassen";
@@ -220,6 +228,7 @@
 "menu_unarchive_chat" = "Gesprek de-archiveren";
 "menu_add_attachment" = "Bijlage toevoegen";
 "menu_leave_group" = "Groep verlaten";
+"menu_leave_channel" = "Kanaal verlaten";
 "menu_delete_chat" = "Gesprek verwijderen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ale berichten wissen";
@@ -330,6 +339,9 @@
 "videochat_instance_from_qr" = "Wil je ‘%1$@’, gebruiken om anderen uit te nodigen voor videogesprekken?\n\nNa het instellen kun je een videogesprek starten vanuit elk een-op-eengesprek. Deze instelling vervangt de vorige videogespreksinstelling.";
 "videochat_invitation" = "Uitnodiging voor videogesprek";
 "videochat_invitation_body" = "Je bent uitgenodigd voor een videogesprek. Druk op %1$@ om deel te nemen.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
 "ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen van al je apparaten?";
 "ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
 // Used for the deletion of Device messages
@@ -345,6 +357,8 @@
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
 // deprecated
 "ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de verzendlijst?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Weet je zeker dat je %1$@ van het kanaal wilt verwijderen?";
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 // contact list
 "contacts_title" = "Contactpersonen";
@@ -360,6 +374,8 @@
 "chat_new_one_to_one_hint" = "Stuur een bericht aan %1$@ .";
 // deprecated
 "chat_new_broadcast_hint" = "Op een verzendlijst hebben ontvangers niet de mogelijkheid om te reageren op je berichten.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanalen zijn bedoeld om te gebruiken als verzendlijsten.";
 "chat_new_group_hint" = "Stel het eerste bericht op zodat anderen binnen deze groep kunnen reageren.";
 "chat_record_slide_to_cancel" = "Veeg opzij om te annuleren";
 "chat_record_explain" = "Houd ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
@@ -801,6 +817,8 @@
 "remove_member_by_you" = "Je hebt ‘%1$@’ verwijderd.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "‘%1$@’ is verwijderd door %2$@.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Je hebt het kanaal verlaten.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "De groep is verlaten door %1$@.";
 "group_image_deleted_by_you" = "Je hebt de groepsfoto verwijderd.";
