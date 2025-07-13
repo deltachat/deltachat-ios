@@ -5,6 +5,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
     lazy var isVerifiedGroup: Bool = false
     private var isOutBroadcast: Bool = false
+    private let gclFlags: Int32
 
     private lazy var sections: [AddGroupMemberSections] = {
         if isVerifiedGroup || dcContext.isChatmail {
@@ -40,8 +41,9 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isOutBroadcast: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isOutBroadcast: Bool, isEmail: Bool = false) {
         self.chat = nil
+        self.gclFlags = DC_GCL_ADD_SELF | (isEmail ? DC_GCL_ADDRESS : 0)
         super.init(dcContext: dcContext)
         isVerifiedGroup = false
         self.isOutBroadcast = isOutBroadcast
@@ -52,6 +54,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     // add members of existing group
     init(dcContext: DcContext, chatId: Int) {
         self.chat = dcContext.getChat(chatId: chatId)
+        self.gclFlags = DC_GCL_ADD_SELF
         super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
         isOutBroadcast = chat?.isOutBroadcast ?? false
@@ -120,7 +123,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }
 
     func loadMemberCandidates() -> [Int] {
-        return dcContext.getContacts(flags: DC_GCL_ADD_SELF)
+        return dcContext.getContacts(flags: gclFlags)
     }
 
     private func showNewContactController() {
@@ -139,6 +142,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
     
     // MARK: - search
     override open func filterContactIds(queryString: String) -> [Int] {
-        return dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: queryString)
+        return dcContext.getContacts(flags: gclFlags, queryString: queryString)
     }
 }
