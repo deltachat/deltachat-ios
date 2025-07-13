@@ -39,7 +39,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized(createBroadcast ? "name_desktop" : "group_name"), placeholder: String.localized("name_desktop"))
+        let cell = TextFieldCell(description: String.localized(createBroadcast ? "channel_name" : "group_name"), placeholder: String.localized("name_desktop"))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
@@ -50,7 +50,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(image: nil)
-        cell.hintLabel.text = String.localized("group_avatar")
+        cell.hintLabel.text = String.localized(createBroadcast ? "image" : "group_avatar")
         cell.onAvatarTapped = onAvatarTapped
         return cell
     }()
@@ -59,13 +59,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         self.createBroadcast = createBroadcast
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
+        self.detailsRows = [.name, .avatar]
+        self.inviteRows = [.addMembers]
         if createBroadcast {
-            self.detailsRows = [.name]
-            self.inviteRows = [.addMembers]
             self.contactIdsForGroup = []
         } else {
-            self.detailsRows = [.name, .avatar]
-            self.inviteRows = [.addMembers]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
         }
         if let templateChatId = templateChatId {
@@ -87,13 +85,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if createBroadcast {
-            title = String.localized("new_broadcast_list")
+            title = String.localized("new_channel")
         } else {
             title = String.localized("menu_new_group")
         }
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
-            if !createBroadcast, let image = templateChat.profileImage {
+            if let image = templateChat.profileImage {
                 avatarSelectionCell = AvatarSelectionCell(image: image)
                 changeGroupImage = image
             }
@@ -125,8 +123,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         guard let groupName = groupNameCell.textField.text else { return }
         let groupChatId: Int
         if createBroadcast {
-            groupChatId = dcContext.createBroadcastList()
-            _ = dcContext.setChatName(chatId: groupChatId, name: groupName)
+            groupChatId = dcContext.createBroadcast(name: groupName)
         } else {
             groupChatId = dcContext.createGroupChat(verified: allMembersVerified(), name: groupName)
         }
@@ -186,8 +183,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section] == .invite && createBroadcast {
-            return String.localized("chat_new_broadcast_hint")
+        if sections[section] == .details && createBroadcast {
+            return String.localized("chat_new_channel_hint")
         }
         return nil
     }
@@ -254,7 +251,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized("group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized(createBroadcast ? "image" : "group_avatar"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
             alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
             if avatarSelectionCell.isAvatarSet() {
@@ -325,7 +322,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func showAddMembers(preselectedMembers: Set<Int>) {
         let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
                                                                preselected: preselectedMembers,
-                                                               isBroadcast: createBroadcast)
+                                                               isOutBroadcast: createBroadcast)
         newGroupController.onMembersSelected = { [weak self] memberIds in
             guard let self else { return }
             var memberIds = memberIds

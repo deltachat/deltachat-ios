@@ -13,6 +13,7 @@
 - Images with huge pixel sizes are sent as "Files"
 - Improve sorting "Saved Messages"
 - Improve logging and error handling
+- Replace "Broadcast Lists" experiment by "Channels"
 - Update translations
 - Update to core 2.0.0
 

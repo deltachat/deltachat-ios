@@ -4,7 +4,7 @@ import DcCore
 class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
     lazy var isVerifiedGroup: Bool = false
-    private var isBroadcast: Bool = false
+    private var isOutBroadcast: Bool = false
 
     private lazy var sections: [AddGroupMemberSections] = {
         if isVerifiedGroup || dcContext.isChatmail {
@@ -40,11 +40,11 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isBroadcast: Bool) {
+    init(dcContext: DcContext, preselected: Set<Int>, isOutBroadcast: Bool) {
         self.chat = nil
         super.init(dcContext: dcContext)
         isVerifiedGroup = false
-        self.isBroadcast = isBroadcast
+        self.isOutBroadcast = isOutBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
     }
@@ -54,7 +54,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chat = dcContext.getChat(chatId: chatId)
         super.init(dcContext: dcContext)
         isVerifiedGroup = chat?.isProtected ?? false
-        isBroadcast = chat?.isBroadcast ?? false
+        isOutBroadcast = chat?.isOutBroadcast ?? false
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
     }
@@ -66,7 +66,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized(isBroadcast ? "add_recipients" : "group_add_members")
+        title = String.localized(isOutBroadcast ? "add_recipients" : "group_add_members")
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
         contactIds = loadMemberCandidates()

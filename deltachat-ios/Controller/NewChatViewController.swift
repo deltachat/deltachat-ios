@@ -157,7 +157,7 @@ class NewChatViewController: UITableViewController {
                 actionCell.actionTitle = String.localized("menu_new_group")
             case .newBroadcastList:
                 actionCell.imageView?.image = UIImage(systemName: "plus")
-                actionCell.actionTitle = String.localized("new_broadcast_list")
+                actionCell.actionTitle = String.localized("new_channel")
             case .newContact:
                 actionCell.imageView?.image = UIImage(systemName: "highlighter")
                 actionCell.actionTitle = String.localized("menu_new_classic_contact")

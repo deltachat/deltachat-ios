@@ -577,8 +577,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             showAvatar = !message.isFromCurrentSender
             showName = true
         } else {
-            showAvatar = dcChat.isGroup && !message.isFromCurrentSender
-            showName = dcChat.isGroup
+            showAvatar = dcChat.isMultiUser && !message.isFromCurrentSender
+            showName = dcChat.isMultiUser
         }
 
         cell.baseDelegate = self
@@ -626,7 +626,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         if dcChat.isProtectionBroken {
             bar = ChatContactRequestBar(.info, infoText: String.localizedStringWithFormat(String.localized("chat_protection_broken"), dcChat.name))
         } else {
-            bar = ChatContactRequestBar(dcChat.isGroup && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
+            bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
         }
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
@@ -825,9 +825,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             let chatContactIds = dcChat.getContactIds(dcContext)
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
-            } else if dcChat.isBroadcast {
+            } else if dcChat.isInBroadcast {
+                subtitle = String.localized(stringID: "channel")
+            } else if dcChat.isOutBroadcast {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chatContactIds.count)
-            } else if dcChat.isGroup {
+            } else if dcChat.isMultiUser {
                 subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
@@ -910,7 +912,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     private func canReplyPrivately(to message: DcMsg) -> Bool {
-        return !message.isMarkerOrInfo && dcChat.isGroup && !message.isFromCurrentSender
+        return !message.isMarkerOrInfo && dcChat.isMultiUser && !message.isFromCurrentSender
     }
 
     /// Verifies if the last message cell is fully visible
@@ -1032,9 +1034,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showEmptyStateView(_ show: Bool) {
         if show {
-            if dcChat.isGroup {
-                if dcChat.isBroadcast {
-                    emptyStateView.text = String.localized("chat_new_broadcast_hint")
+            if dcChat.isMultiUser {
+                if dcChat.isOutBroadcast {
+                    emptyStateView.text = String.localized("chat_new_channel_hint")
                 } else if dcChat.isUnpromoted {
                     emptyStateView.text = String.localized("chat_new_group_hint")
                 } else {
@@ -1323,7 +1325,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     // MARK: - coordinator
     private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
-        if !chat.isGroup {
+        if !chat.isMultiUser {
             if let contactId = chat.getContactIds(dcContext).first {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
             }
