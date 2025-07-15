@@ -724,6 +724,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_REACTED_BY, localizationKey: "reaction_by_other")
         dcContext.setStockTranslation(id: DC_STR_SECUREJOIN_WAIT, localizationKey: "secure_join_wait")
         dcContext.setStockTranslation(id: DC_STR_SECUREJOIN_TAKES_LONGER, localizationKey: "secure_join_takes_longer")
+        dcContext.setStockTranslation(id: DC_STR_DONATION_REQUEST, localizationKey: "donate_device_msg")
     }
 
     func appIsInForeground() -> Bool {
