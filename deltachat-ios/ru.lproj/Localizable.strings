@@ -219,6 +219,10 @@
 "please_enter_broadcast_list_name" = "Введите название списка рассылки.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Название канала";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Новое письмо";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Тема";
 "menu_send" = "Отправить";
 "menu_toggle_keyboard" = "Эмодзи клавиатура";
 "menu_edit_group" = "Редактировать группу";
@@ -313,6 +317,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Добавить на главный экран";
 "donate" = "Пожертвовать";
+"donate_device_msg" = "❤️ Кажется, вам нравится Delta Chat!\n\nРассмотрите возможность сделать пожертвование, чтобы Delta Chat и дальше оставался бесплатным для всех пользователей.\n\nDelta Chat — это бесплатное приложение с открытым исходным кодом, но его разработка требует денег. Поддержите нас, чтобы сохранить независимость Delta Chat и сделать его ещё более крутым в будущем.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "На 1 час";
 "mute_for_eight_hours" = "На 8 часов";
 "mute_for_one_day" = "На 1 день";

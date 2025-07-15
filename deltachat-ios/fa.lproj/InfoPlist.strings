@@ -5,3 +5,4 @@ NSLocationWhenInUseUsageDescription = "دلتاچت برای اشتراک موق
 NSMicrophoneUsageDescription = "دلتاچت از میکروفون برای ذخیره و ارسال پیام صوتی یا فیلم دارای صدا استفاده می‌کند.";
 NSPhotoLibraryUsageDescription = "دلتاچت به شما اجازه می دهد تصویر موردنظر برای ارسال را انتخاب کنید.";
 NSPhotoLibraryAddUsageDescription = "دلتاچت میخواهد تصاویر را در آلبوم شما ذخیره کند.";
+NSFaceIDUsageDescription = "دلتاچت می‌تواند از عکس چهرهٔ شما برای محافظت از نمایهٔ محلی، ساخت نسخهٔ پشتیبان و پیکره‌بندی دستگاه دوم استفاده کند.";

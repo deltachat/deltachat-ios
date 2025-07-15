@@ -219,6 +219,10 @@
 "please_enter_broadcast_list_name" = "Geef de verzendlijst een naam.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanaalnaam";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Nieuwe e-mail";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Onderwerp";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emojitoetsenbord tonen/verbergen";
 "menu_edit_group" = "Groep aanpassen";
@@ -313,6 +317,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Toevoegen aan startscherm";
 "donate" = "Doneren";
+"donate_device_msg" = "❤️ Het lijkt er op dat je blij bent met Delta Chat!\n\nAls dat zo is, zouden we je vriendelijk willen vragen om een donatie, zodat Delta Chat gratis beschikbaar kan blijven.\n\n Ook al is Delta Chat gratis en opensource, de ontwikkeling ervan kost wél geld. Jouw donatie kan het verschil maken!\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "1 uur lang uitschakelen";
 "mute_for_eight_hours" = "8 uur lang uitschakelen";
 "mute_for_one_day" = "1 dag lang uitschakelen";
