@@ -15,9 +15,10 @@
 - Improve logging and error handling
 - Replace "Broadcast Lists" experiment by "Channels"
 - Indicate which message was scrolled to (eg by tapping a quote or a notification)
+- Fix: No longer missing notifications when app was terminated by the system
 - After some time, add a device message asking to donate. Can't wait? Donate today at https://delta.chat/donate
 - Update translations
-- Update to core 2.0.0
+- Update to core 2.2.0
 
 
 ## v1.58.6
