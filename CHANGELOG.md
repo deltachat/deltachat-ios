@@ -16,6 +16,7 @@
 - Replace "Broadcast Lists" experiment by "Channels"
 - Update translations
 - Update to core 2.0.0
+- Indicate which message was scrolled to (eg by tapping a quote or a notification)
 
 
 ## v1.58.6
