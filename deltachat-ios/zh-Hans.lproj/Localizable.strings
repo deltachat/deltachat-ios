@@ -209,7 +209,7 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channels" = "频道";
 // consider keeping the term "channel" as in WhatsApp or Telegram
-"new_channel" = "新频道";
+"new_channel" = "新建频道";
 "add_recipients" = "添加接收者";
 // deprecated
 "edit_broadcast_list" = "编辑广播列表";
@@ -219,6 +219,10 @@
 "please_enter_broadcast_list_name" = "请属于广播列表的名称";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "频道名称";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "新建邮件";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "主题";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换表情符号键盘";
 "menu_edit_group" = "编辑群组";
@@ -313,6 +317,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "添加到主屏幕";
 "donate" = "捐赠";
+"donate_device_msg" = "❤️ 看起来您很喜欢 Delta Chat！\n\n恳请您考虑捐款支持，让 Delta Chat 始终保持自由开放。\n\n虽然 Delta Chat 是自由且开源的，但开发仍需资金支持。请帮助我们保持 Delta Chat 的独立性，并在未来让它变得更加出色。\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "静音 1 小时";
 "mute_for_eight_hours" = "静音 8 小时";
 "mute_for_one_day" = "静音 1 天";

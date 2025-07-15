@@ -32,6 +32,8 @@
 "update" = "به‌‌روزرسانی";
 "emoji" = "شکلک";
 "attachment" = "پیوست";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "پیوست کردن «%1$@»؟";
 "back" = "بازگشت";
 "close" = "بستن";
 "close_window" = "بستن پنجره";
@@ -56,6 +58,8 @@
 "media" = "رسانه";
 "apps_and_media" = "برنامه‌ها و رسانه‌ها";
 "profile" = "نمایه";
+"all_profiles" = "تمام نمایه‌ها";
+"current_profile" = "نمایهٔ فعلی";
 "main_menu" = "فهرست اصلی";
 "start_chat" = "شروع گپ";
 "show_full_message" = "نمایش پیام کامل...";
@@ -90,6 +94,8 @@
 "no_app_to_handle_data" = "نرم‌افزاری برای باز کردن این نوع داده یافت نشد";
 "no_browser_installed" = "هیچ مرورگری نصب نیست.";
 "file_not_found" = "عدم یافتن %1$@";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "نمی‌توان %1$@ را ذخیره کرد.";
 "copied_to_clipboard" = "در حافظه کپی شد.";
 "contacts_headline" = "مخاطبین";
 "email_address" = "نشانی رایانامه";
@@ -113,6 +119,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "انتخاب شده‌ها:";
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";
@@ -196,6 +203,12 @@
 "broadcast_lists" = "لیست‌های Broadcast";
 // deprecated
 "new_broadcast_list" = "لیست Broadcast جدید";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "کانال";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "کانال‌ها";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "کانال جدید";
 "add_recipients" = "افزودن گیرنده";
 // deprecated
 "edit_broadcast_list" = "ویرایش فهرست Broadcast";
@@ -203,6 +216,12 @@
 "broadcast_list_name" = "نام فهرست BroadCast";
 // deprecated
 "please_enter_broadcast_list_name" = "وارد کردن نام برای فهرست Broadcast.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "نام کانال";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "رایانامه جدید";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "موضوع";
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
 "menu_edit_group" = "ویرایش گروه";
@@ -212,6 +231,7 @@
 "menu_unarchive_chat" = "خروج چت از بایگانی";
 "menu_add_attachment" = "افزودن ضمیمه";
 "menu_leave_group" = "ترک گروه";
+"menu_leave_channel" = "ترک کانال";
 "menu_delete_chat" = "حذف گپ";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
@@ -298,6 +318,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "افزودن به صفحه خانه";
 "donate" = "حمایت مالی";
+"donate_device_msg" = "❤️ بنظر می‌آید شما در حال لذت بردن از دلتاچت هستید!\n\nلطفا هدیه دهید تا مطمئن باشیم دلتاچت برای همه آزاد باقی می‌ماند.\n\nبا وجودی که دلتاچت برای استفاده رایگان است و یک نرم‌افزار آزاد نیز هست، توسعهٔ آن هزینه دارد. به ما کمک کنید تا دلتاچت را مستقل نگه‌داریم و در آینده حتی آن‌را خفن‌تر کنیم. هدایا از طریق رمزارز نیز پذیرفته می‌شوند.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "ساکت کردن به مدت۱ ساعت";
 "mute_for_eight_hours" = "بی‌صدا کردن به مدت ۸ ساعت";
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
@@ -327,6 +348,9 @@ https://meet.jit.si/$ROOM
 "videochat_instance_from_qr" = "می‌خواهید از «%1$@» برای دعوت دیگران به گپ تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گپ فرد به فرد یک مکالمهٔ تصویری شروع کنید. این کار، تنظیم‌ها قبلی تماس تصویری را تغییر می‌دهد.";
 "videochat_invitation" = "دعوت به مکالمه تصویری.";
 "videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
 "ask_delete_named_chat" = "حذف گفتگوی «%1$@» از همه‌ی دستگاه‌های شما؟";
 "ask_delete_message" = "می‌خواهید این پیام را از همهٔ دستگاه‌هایتان حذف کنید؟";
 // Used for the deletion of Device messages
@@ -344,6 +368,8 @@ https://meet.jit.si/$ROOM
 "ask_remove_members" = "حذف %1$@ از گروه؟";
 // deprecated
 "ask_remove_from_broadcast" = "آيا%1$@ از لیست Broadcast پاک شود؟ ";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "حذف %1$@ از کانال؟";
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
 // contact list
 "contacts_title" = "مخاطبین";
@@ -359,6 +385,8 @@ https://meet.jit.si/$ROOM
 "chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
 // deprecated
 "chat_new_broadcast_hint" = "در یک فهرست Broadcast گیرنده‌ها در یک گپ فقط خواندنی با شما، پیام‌ها را دریافت می‌کنند.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "کانال‌ها یک ابزار یک به چند برای اعلام عمومی پیام‌هایتان هستند.";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
 "chat_record_slide_to_cancel" = "برای لغو بکشید.";
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
@@ -368,6 +396,7 @@ https://meet.jit.si/$ROOM
 "chat_input_placeholder" = "پیام";
 "chat_archived_label" = "بایگانی شد";
 "chat_request_label" = "درخواست";
+"chat_request_label_explain" = "حساب کردن درخواست‌ها در شمارنده‌ها و اعلان‌ها";
 "chat_no_messages" = "پیامی نیست. ";
 "chat_self_talk_subtitle" = "پیام‌هایی که برای خودم  ارسال کرده‌ام. ";
 "archive_empty_hint" = "اگر گپ‌ها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
@@ -449,6 +478,7 @@ https://meet.jit.si/$ROOM
 "tab_audio_empty_hint" = "پرونده‌های صوتی و پیام‌های صوتی هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_webxdc_empty_hint" = "برنامه‌هایی که در این گپ به اشتراک گذاشته شده‌اند، این‌جا نمایش داده خواهند شد.";
 "tab_all_media_empty_hint" = "رسانه‌های به اشتراک گذاشته شده همهٔ چت‌ها در اینجا ظاهر می‌شود.";
+"all_files_empty_hint" = "سند‌ها و دیگر پرونده‌هایی که در هر چپ پیوست شده‌اند این‌جا ظاهر خواهند شد.";
 "all_apps_empty_hint" = "برنامه‌های ارسال شده در همهٔ گپ‌ها اینجا ظاهر خواهند شد.";
 "media_preview" = "نمایش رسانه";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -473,6 +503,8 @@ https://meet.jit.si/$ROOM
 "multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
 "multidevice_open_settings_on_other_device" = "در دستگاه اول، به \"تنظیم‌ها / افزودن دستگاه دوم\" بروید و کد نشان داده شده در آنجا را اسکن کنید";
 "multidevice_receiver_scanning_ask" = "از حساب دستگاه دیگر رونوشتی برای این دستگاه گرفته شود؟";
+"multidevice_receiver_needs_update" = "نمایه‌ای که می‌خواهید وارد کنید از یک نسخهٔ جدید‌تر دلتاچت است.\n\n
+برای پیکره‌بندی یک دستگاه دوم، لطفا این دستگاه را به جدیدترین نسخهٔ دلتاچت بروزرسانی کنید.";
 "multidevice_abort" = "راه اندازی دستگاه دوم لغو شود؟";
 "multidevice_abort_will_invalidate_copied_qr" = "این کار رمزینهٔ پاس رونوشت شده در تخته‌گیره را باطل می کند.";
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
@@ -584,6 +616,8 @@ https://meet.jit.si/$ROOM
 "profile_tag" = "برچسب حساب";
 "profile_tag_hint" = "مثل «کار» یا «خانواده»";
 "profile_tag_explain" = "یک برچسب انتخاب کنید که تنها به شما نمایش داده می‌شود. این به شما کمک می‌کند حساب‌های مختلف خود را از هم تشخیص دهید.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "رفتن به بالا";
 "delete_account" = "حذف حساب کاربری";
 "delete_account_ask" = "آیا از حذف حساب کاربری اطمینان دارید؟";
 "delete_account_explain_with_name" = "همه اطلاعات حساب مربوط به «%1$@» روی این دستگاه پاک می‌شود. این شامل تنظیم‌های رمزگذاری سراسری، مخاطبین، گفتگوها، پیام‌ها و رسانه‌ها می‌شود. این عمل قابل بازگردانی نیست.";
@@ -714,6 +748,7 @@ https://meet.jit.si/$ROOM
 "n_bytes_message" = "پیام %1$@ ";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "سقف دانلود تا %1$@ فعال خواهد بود";
+"select_profile" = "انتخاب نمایه";
 "profile_image_select" = "انتخاب تصویر نمایه";
 "select_your_new_profile_image" = "تصویر نمایهٔ جدیدتان را برگزینید";
 "profile_image_delete" = "حذف تصویر نمایه";
@@ -793,6 +828,8 @@ https://meet.jit.si/$ROOM
 "remove_member_by_you" = "شما عضو گروه، %1$@، را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "شما این‌جا را ترک کردید.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
@@ -842,6 +879,7 @@ https://meet.jit.si/$ROOM
 "chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو اکنون تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهندهٔ رایانامه شما هم نمی‌تواند آن‌ها را بخواند.";
 "chat_protection_broken_tap_to_learn_more" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد. برای اطلاعات بیشتر ضربه بزنید.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ به رمزنگاری سراسری نیاز دارد که هنوز برای این گپ پیکره‌بندی نشده است. برای یادگیری بیش‌تر این‌جا بزنید.";
+"invalid_unencrypted_explanation" = "برای برقراری رمزنگاری سراسری، می‌توانید به صورت حضوری با مخاطب‌های خود دیدار کنید و کد کیوآر آن‌ها را برای معرفی اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -861,6 +899,7 @@ https://meet.jit.si/$ROOM
 "load_qr_code_as_image" = "بارگیری کیو آر کد به صورت تصویر";
 "qrscan_title" = "اسکن کردن کد کیو آر";
 "qrscan_hint" = "دوربین خود را روی کد کیوآر نگه دارید. ";
+"qrscan_hint_desktop" = "کد کیو‌آر را زیر دوربین بگیرید";
 "qrscan_failed" = "امکان رمزگشایی کد کیوآر وجود ندارد";
 "qrscan_ask_join_group" = "آیا می خواهید به گروه\"%1$@\" ملحق شوید؟";
 "qrscan_fingerprint_mismatch" = "اثرانگشت اسکن شده با انچه که برای %1$@مشاهده شده بود انطباق ندارد. ";
@@ -903,6 +942,7 @@ https://meet.jit.si/$ROOM
 "secure_join_wait" = "در حال برقراری رمزگذاری سراسری تضمین‌شده، لطفا صبر کنید...";
 // deprecated
 "secure_join_wait_timeout" = "اکنون نمی توانیم رمزگذاری سراسری تضمین‌شده را برقرار کنیم. با این وجود می‌توانید پیام ارسال کنید.";
+"secure_join_takes_longer" = "برای ادامه، مخاطب باید برخط باشد.\n\nاین فرآیند به صورت خودکار در پس‌زمینه ادامه خواهد داشت.";
 "contact_verified" = "%1$@ تأیید شد.";
 "contact_not_verified" = "امکان تایید رمزگذاری در مبدا، برای %1$@وجود ندارد.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.

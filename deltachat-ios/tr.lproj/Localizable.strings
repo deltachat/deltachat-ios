@@ -204,6 +204,12 @@
 "broadcast_lists" = "Yayın Listeleri";
 // deprecated
 "new_broadcast_list" = "Yeni Yayın Listesi";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanallar";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Yeni Kanal";
 "add_recipients" = "Alıcılar Ekle";
 // deprecated
 "edit_broadcast_list" = "Yayın Listesini Düzenle";
@@ -211,6 +217,12 @@
 "broadcast_list_name" = "Yayın Listesi Adı";
 // deprecated
 "please_enter_broadcast_list_name" = "Lütfen yayın listesi için bir ad girin.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanal Adı";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Yeni E-Posta";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Konu";
 "menu_send" = "Gönder";
 "menu_toggle_keyboard" = "Emoji Klavyesine Geç";
 "menu_edit_group" = "Öbeği Düzenle";
@@ -220,6 +232,7 @@
 "menu_unarchive_chat" = "Sohbeti Arşivleme";
 "menu_add_attachment" = "İlişik Ekle";
 "menu_leave_group" = "Öbekten Ayrıl";
+"menu_leave_channel" = "Kanaldan Ayrıl";
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
@@ -330,6 +343,9 @@
 "videochat_instance_from_qr" = "“%1$@” diğerlerini video sohbetlerine çağırmak için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
 "videochat_invitation" = "Video sohbeti çağrısı";
 "videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
+// get confirmations
+// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "Tüm aygıtlarınızdaki “%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Tüm aygıtlarınızdaki bu ileti silinsin mi?";
 // Used for the deletion of Device messages
@@ -345,6 +361,8 @@
 "ask_remove_members" = "%1$@ öbekten kaldırılsın mı?";
 // deprecated
 "ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "%1$@ kanaldan kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
 // contact list
 "contacts_title" = "Kişiler";
@@ -360,6 +378,8 @@
 "chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin.";
 // deprecated
 "chat_new_broadcast_hint" = "Bir yayın listesinde, alıcılar sizinle salt okunur bir sohbette iletiler alacak.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanallar, iletilerinizi yayınlamak için birden çoğa bir araçtır.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu öbeği görecek.";
 "chat_record_slide_to_cancel" = "İptal etmek için kaydırın";
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
@@ -801,6 +821,8 @@
 "remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Ayrıldınız.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ tarafından öbekten ayrılındı.";
 "group_image_deleted_by_you" = "Öbek görselini sildiniz.";
