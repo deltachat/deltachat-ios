@@ -197,11 +197,11 @@ class NewChatViewController: UITableViewController {
                     appDelegate.appCoordinator.presentQrCodeController()
                 }
             } else if newOption == .newGroup {
-                showNewGroupController()
+                showNewGroupController(createMode: .createGroup)
             } else if newOption == .newBroadcastList {
-                showNewGroupController(createBroadcast: true)
+                showNewGroupController(createMode: .createBroadcast)
             } else if newOption == .newEmail {
-                showNewGroupController(createEmail: true)
+                showNewGroupController(createMode: .createEmail)
             }
         } else if section == sectionInviteFriends, let cell = tableView.cellForRow(at: indexPath) {
             inviteFriends(cell: cell)
@@ -318,8 +318,8 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    private func showNewGroupController(createBroadcast: Bool = false, createEmail: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast, createEmail: createEmail)
+    private func showNewGroupController(createMode: NewGroupController.CreateMode) {
+        let newGroupController = NewGroupController(dcContext: dcContext, createMode: createMode)
         navigationController?.pushViewController(newGroupController, animated: true)
     }
 

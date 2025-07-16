@@ -573,7 +573,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showCloneChatController() {
-        navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createBroadcast: isOutBroadcast, templateChatId: chatId), animated: true)
+        navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createMode: isOutBroadcast ? .createBroadcast : .createGroup, templateChatId: chatId), animated: true)
     }
 
     private func showLeaveAlert(_ buttonLabel: String) {

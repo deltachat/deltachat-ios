@@ -41,12 +41,12 @@ class AddGroupMembersViewController: GroupMembersViewController {
     }()
 
     // add members of new group, no chat object yet
-    init(dcContext: DcContext, preselected: Set<Int>, isOutBroadcast: Bool, isEmail: Bool = false) {
+    init(dcContext: DcContext, preselected: Set<Int>, createMode: NewGroupController.CreateMode) {
         self.chat = nil
-        self.gclFlags = DC_GCL_ADD_SELF | (isEmail ? DC_GCL_ADDRESS : 0)
+        self.gclFlags = DC_GCL_ADD_SELF | (createMode == .createEmail ? DC_GCL_ADDRESS : 0)
         super.init(dcContext: dcContext)
         isVerifiedGroup = false
-        self.isOutBroadcast = isOutBroadcast
+        self.isOutBroadcast = createMode == .createBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
     }
