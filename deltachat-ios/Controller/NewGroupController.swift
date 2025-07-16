@@ -11,7 +11,13 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private var changeGroupImage: UIImage?
     private var deleteGroupImage: Bool = false
 
-    let createBroadcast: Bool
+    enum CreateMode {
+        case createGroup
+        case createBroadcast
+        case createEmail
+    }
+    private let createMode: CreateMode
+
     let dcContext: DcContext
 
     enum DetailsRows {
@@ -39,7 +45,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     lazy var groupNameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized(createBroadcast ? "channel_name" : "group_name"), placeholder: String.localized("name_desktop"))
+        let (title, placeholder) = switch createMode {
+        case .createBroadcast: ("channel_name", "name_desktop")
+        case .createEmail: ("subject", "subject")
+        case .createGroup: ("group_name", "name_desktop")
+        }
+        let cell = TextFieldCell(description: String.localized(title), placeholder: String.localized(placeholder))
         cell.onTextFieldChange = self.updateGroupName
         cell.textField.autocorrectionType = UITextAutocorrectionType.no
         cell.textField.enablesReturnKeyAutomatically = true
@@ -50,18 +61,22 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(image: nil)
-        cell.hintLabel.text = String.localized(createBroadcast ? "image" : "group_avatar")
+        cell.hintLabel.text = String.localized(createMode == .createGroup ? "group_avatar" : "image")
         cell.onAvatarTapped = onAvatarTapped
         return cell
     }()
 
-    init(dcContext: DcContext, createBroadcast: Bool, templateChatId: Int? = nil) {
-        self.createBroadcast = createBroadcast
+    init(dcContext: DcContext, createMode: CreateMode, templateChatId: Int? = nil) {
+        self.createMode = createMode
         self.dcContext = dcContext
         self.sections = [.details, .invite, .members]
-        self.detailsRows = [.name, .avatar]
+        if createMode == .createEmail {
+            self.detailsRows = [.name]
+        } else {
+            self.detailsRows = [.name, .avatar]
+        }
         self.inviteRows = [.addMembers]
-        if createBroadcast {
+        if createMode == .createBroadcast {
             self.contactIdsForGroup = []
         } else {
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
@@ -84,10 +99,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if createBroadcast {
-            title = String.localized("new_channel")
-        } else {
-            title = String.localized("menu_new_group")
+        switch createMode {
+        case .createGroup: title = String.localized("menu_new_group")
+        case .createBroadcast: title = String.localized("new_channel")
+        case .createEmail: title = String.localized("new_email")
         }
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
@@ -96,7 +111,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
                 changeGroupImage = image
             }
         }
-        doneButton = UIBarButtonItem(title: String.localized("create"), style: .done, target: self, action: #selector(doneButtonPressed))
+        doneButton = UIBarButtonItem(title: String.localized(createMode == .createEmail ? "perm_continue" : "create"), style: .done, target: self, action: #selector(doneButtonPressed))
         navigationItem.rightBarButtonItem = doneButton
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
@@ -121,11 +136,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     @objc func doneButtonPressed() {
         guard let groupName = groupNameCell.textField.text else { return }
-        let groupChatId: Int
-        if createBroadcast {
-            groupChatId = dcContext.createBroadcast(name: groupName)
-        } else {
-            groupChatId = dcContext.createGroupChat(verified: allMembersVerified(), name: groupName)
+        let groupChatId = switch createMode {
+        case .createBroadcast: dcContext.createBroadcast(name: groupName)
+        case .createEmail: dcContext.createGroupChatUnencrypted(name: groupName)
+        case .createGroup: dcContext.createGroupChat(verified: allMembersVerified(), name: groupName)
         }
 
         for contactId in contactIdsForGroup {
@@ -159,7 +173,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No ActionCell") }
             if inviteRows[row] == .addMembers {
                 actionCell.imageView?.image = UIImage(systemName: "plus")
-                actionCell.actionTitle = String.localized(createBroadcast ? "add_recipients" : "group_add_members")
+                actionCell.actionTitle = String.localized(createMode == .createGroup ? "group_add_members" : "add_recipients")
                 actionCell.actionColor = UIColor.systemBlue
                 actionCell.isUserInteractionEnabled = true
             }
@@ -183,7 +197,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section] == .details && createBroadcast {
+        if sections[section] == .details && createMode == .createBroadcast {
             return String.localized("chat_new_channel_hint")
         }
         return nil
@@ -211,10 +225,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .members && !contactIdsForGroup.isEmpty {
-            if createBroadcast {
-                return String.localized(stringID: "n_recipients", parameter: contactIdsForGroup.count)
-            } else {
+            if createMode == .createGroup {
                 return String.localized(stringID: "n_members", parameter: contactIdsForGroup.count)
+            } else {
+                return String.localized(stringID: "n_recipients", parameter: contactIdsForGroup.count)
             }
         }
         return nil
@@ -251,7 +265,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized(createBroadcast ? "image" : "group_avatar"), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized(createMode == .createGroup ? "group_avatar" : "image"), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
             alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
             if avatarSelectionCell.isAvatarSet() {
@@ -320,13 +334,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func showAddMembers(preselectedMembers: Set<Int>) {
-        let newGroupController = AddGroupMembersViewController(dcContext: dcContext,
-                                                               preselected: preselectedMembers,
-                                                               isOutBroadcast: createBroadcast)
+        let newGroupController = AddGroupMembersViewController(dcContext: dcContext, preselected: preselectedMembers, createMode: createMode)
         newGroupController.onMembersSelected = { [weak self] memberIds in
             guard let self else { return }
             var memberIds = memberIds
-            if !self.createBroadcast {
+            if self.createMode != .createBroadcast {
                 memberIds.insert(Int(DC_CONTACT_ID_SELF))
             }
             self.updateGroupContactIdsOnListSelection(memberIds)

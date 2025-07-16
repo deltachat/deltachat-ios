@@ -9,7 +9,7 @@ class NewChatViewController: UITableViewController {
         case scanQRCode
         case newGroup
         case newBroadcastList
-        case newContact
+        case newEmail
     }
 
     private let newOptions: [NewOption]
@@ -73,9 +73,8 @@ class NewChatViewController: UITableViewController {
         } else {
             newOptions = [.scanQRCode, .newGroup]
         }
-
         if self.dcContext.isChatmail == false {
-            newOptions.append(.newContact)
+            newOptions.append(.newEmail)
         }
         self.newOptions = newOptions
 
@@ -158,9 +157,9 @@ class NewChatViewController: UITableViewController {
             case .newBroadcastList:
                 actionCell.imageView?.image = UIImage(systemName: "plus")
                 actionCell.actionTitle = String.localized("new_channel")
-            case .newContact:
-                actionCell.imageView?.image = UIImage(systemName: "highlighter")
-                actionCell.actionTitle = String.localized("menu_new_classic_contact")
+            case .newEmail:
+                actionCell.imageView?.image = UIImage(systemName: "plus")
+                actionCell.actionTitle = String.localized("new_email")
             }
 
             return actionCell
@@ -198,11 +197,11 @@ class NewChatViewController: UITableViewController {
                     appDelegate.appCoordinator.presentQrCodeController()
                 }
             } else if newOption == .newGroup {
-                showNewGroupController()
+                showNewGroupController(createMode: .createGroup)
             } else if newOption == .newBroadcastList {
-                showNewGroupController(createBroadcast: true)
-            } else if newOption == .newContact {
-                showNewContactController()
+                showNewGroupController(createMode: .createBroadcast)
+            } else if newOption == .newEmail {
+                showNewGroupController(createMode: .createEmail)
             }
         } else if section == sectionInviteFriends, let cell = tableView.cellForRow(at: indexPath) {
             inviteFriends(cell: cell)
@@ -319,14 +318,9 @@ class NewChatViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-    private func showNewGroupController(createBroadcast: Bool = false) {
-        let newGroupController = NewGroupController(dcContext: dcContext, createBroadcast: createBroadcast)
+    private func showNewGroupController(createMode: NewGroupController.CreateMode) {
+        let newGroupController = NewGroupController(dcContext: dcContext, createMode: createMode)
         navigationController?.pushViewController(newGroupController, animated: true)
-    }
-
-    private func showNewContactController() {
-        let newContactController = NewContactController(dcContext: dcContext, searchResult: searchText)
-        navigationController?.pushViewController(newContactController, animated: true)
     }
 
     private func showNewChat(contactId: Int) {

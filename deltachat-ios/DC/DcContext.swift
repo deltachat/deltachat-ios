@@ -283,6 +283,17 @@ public class DcContext {
         return 0
     }
 
+    public func createGroupChatUnencrypted(name: String) -> Int {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "create_group_chat_unencrypted", params: [id as AnyObject, name as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return 0
+    }
+
     public func addContactToChat(chatId: Int, contactId: Int) -> Bool {
         return dc_add_contact_to_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
     }
