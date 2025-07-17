@@ -793,14 +793,14 @@ public class DcContext {
     }
 
     public func placeOutgoingCall(chatId: Int) -> Int {
-        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId))
+        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), "call-data")
         logger.info("☎️ (\(self.id),\(msgId))=dc_place_outgoing_call(\(chatId)")
         return Int(msgId)
     }
 
     public func acceptIncomingCall(msgId: Int) {
         logger.info("☎️ dc_accept_incoming_call(\(self.id),\(msgId))")
-        dc_accept_incoming_call(contextPointer, UInt32(msgId))
+        dc_accept_incoming_call(contextPointer, UInt32(msgId), "call-data")
     }
 
     public func endCall(msgId: Int) {
