@@ -1,14 +1,15 @@
 # Delta Chat iOS Changelog
 
-## Unrealeased
+## v2.2.0 Testflight
+2025-07
 
-- Extend webxdc view into safe area
-- Open media tabs deterministically at 'Apps'
-- Move 'Edit Group Name' to three-dot-menu
 - Separate between unencrypted and encrypted chats, avoiding mixing of encrypted/unencrypted messages in the same chat
 - Removed padlocks, as encrypted is the default "normal" state. Instead, unencrypted email is marked with a small letter icon
 - Classic email chats get a big letter icon making it easy to recognize
 - Option to create a new email with subject and recipients
+- Extend webxdc view into safe area
+- Open media tabs deterministically at 'Apps'
+- Move 'Edit Group Name' to three-dot-menu
 - Sort apps by "recently updated"
 - Add bio to vcards
 - Images with huge pixel sizes are sent as "Files"
