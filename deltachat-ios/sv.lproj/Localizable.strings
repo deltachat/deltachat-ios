@@ -769,7 +769,9 @@
 "chat_protection_broken" = "%1$@ skickade ett meddelande från en annan enhet.";
 "chat_protection_enabled_tap_to_learn_more" = "Meddelanden är garanterat totalsträckskrypterade från och med nu. Tryck för att få veta mer.";
 "chat_protection_enabled_explanation" = "Det är nu garanterat att alla meddelanden i den här chatten är totalsträckskrypterade.\n\nTotalsträckskryptering håller meddelanden privata mellan dig och dina chattpartners. Inte ens din e-postleverantör kan läsa dem.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ skickade ett meddelande från en annan enhet. Tryck för att läsa mer.";
+// deprecated
 "chat_protection_broken_explanation" = "Totalsträckskryptering kan inte garanteras längre, troligen för att %1$@ installerade om Delta Chat eller skickade ett meddelande från en annan enhet.\n\nDu kan träffa dem personligen och skanna deras QR-kod igen för att återupprätta garanterad totalsträckskryptering.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ kräver totalsträckskryptering som inte är kofigurerad för den här chatten ännu. Tryck för att lära dig mer.";
 "invalid_unencrypted_explanation" = "För att skapa totalsträckskryptering kan du träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";

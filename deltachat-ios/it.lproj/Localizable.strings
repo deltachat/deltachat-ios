@@ -317,6 +317,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Aggiungi alla Schermata Iniziale";
 "donate" = "Dona";
+"donate_device_msg" = "❤️ Sembra che Delta Chat ti piaccia!\n\nConsidera una donazione per contribuire a garantire che Delta Chat rimanga gratuita per tutti.\n\nSebbene Delta Chat sia gratuita e open source, lo sviluppo richiede soldi. Aiutaci a mantenere Delta Chat indipendente e a renderla ancora più fantastica in futuro.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Silenzia per 1 ora";
 "mute_for_eight_hours" = "Silenzia per 8 ore";
 "mute_for_one_day" = "Silenzia per 1 giorno";
@@ -870,7 +871,9 @@
 "chat_protection_broken" = "%1$@ ha inviato un messaggio da un altro dispositivo.";
 "chat_protection_enabled_tap_to_learn_more" = "D\'ora in poi i messaggi saranno garantiti crittografati end-to-end.  Tocca per saperne di più.";
 "chat_protection_enabled_explanation" = "Ora è garantito che tutti i messaggi in questa chat siano cifrati end-to-end.\n\nLa crittografia end-to-end mantiene privati i messaggi ​​tra te e i tuoi partner di chat. Nemmeno il server, il fornitore o il trasmettitore di e-mail può leggerli.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ ha inviato un messaggio da un altro dispositivo. Tocca per saperne di più.";
+// deprecated
 "chat_protection_broken_explanation" = "La crittografia end-to-end non può più essere garantita, probabilmente perché %1$@ ha reinstallato Delta Chat o inviato un messaggio da un altro dispositivo.\n\nPuoi incontrarlo di persona e scansionare nuovamente il suo Codice QR per ristabilire la crittografia end-to-end garantita.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
 "invalid_unencrypted_explanation" = "Per stabilire la crittografia end-to-end, potresti incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";

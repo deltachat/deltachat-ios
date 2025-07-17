@@ -870,7 +870,9 @@
 "chat_protection_broken" = "%1$@ envió un mensaje desde otro dispositivo.";
 "chat_protection_enabled_tap_to_learn_more" = "A partir de ahora se garantiza que los mensajes están cifrados de extremo a extremo . Toca para obtener más información.";
 "chat_protection_enabled_explanation" = "Ahora se garantiza que todos los mensajes en este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus compañeros de chat. Ni siquiera tu proveedor de correo electrónico puede leerlos.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ envió un mensaje desde otro dispositivo. Toca para obtener más información.";
+// deprecated
 "chat_protection_broken_explanation" = "El cifrado de extremo a extremo ya no se puede garantizar, probablemente porque %1$@ reinstaló Delta Chat o envió un mensaje desde otro dispositivo.\n\nPueden encontrarse en persona y escanear su código QR nuevamente para restablecer el cifrado de extremo a extremo garantizado.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";

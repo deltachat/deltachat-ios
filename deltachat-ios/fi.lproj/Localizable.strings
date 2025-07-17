@@ -761,7 +761,9 @@
 "chat_protection_broken" = "%1$@ lähetti viestin toiselta laitteelta.";
 "chat_protection_enabled_tap_to_learn_more" = "Tästä eteenpäin viestit on taatusti päästä-päähän salattuja. Lisätietoja napauttamalla.";
 "chat_protection_enabled_explanation" = "Kaikki viestit tässä keskustelussa ovat taatusti päästä-päähän salattuja.\n\nPäästä-päähän -salaus pitää viestisi sinun ja keskustelukumppanisi välillä. Edes sähköpostipalveluntarjoaja ei pysty niitä lukemaan.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ lähetti viestin toiselta laitteelta. Lue lisää napauttamalla.";
+// deprecated
 "chat_protection_broken_explanation" = "Päästä päähän salausta ei voida enää taata, todennäköisesti koska %1$@ uudelleenasensi Delta Chatin tai lähetti viestin toiselta laitteelta.\n\nTapaamalla hänet voit skannata hänen QR -koodinsa uudelleen päästä-päähän salauksen palauttamiseksi.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ vaatii päästä-päähän -salausta joka ei enää ole käytössä tässä keskustelussa. Lue lisää napauttamalla.";
 "invalid_unencrypted_explanation" = "Päästä-päähän salauksen saat käyttöön tapaamalla yhteystietosi ja skannaamalla hänen QR -koodinsa.";

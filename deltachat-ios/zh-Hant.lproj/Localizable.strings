@@ -848,7 +848,9 @@
 "chat_protection_broken" = "%1$@從另一台裝置傳送了一條訊息。";
 "chat_protection_enabled_tap_to_learn_more" = "從現在開始，保證消息進行端到端加密。輕觸以瞭解更多資訊。";
 "chat_protection_enabled_explanation" = "現在可以保證此聊天中的所有消息都是端到端加密的。\n\n端到端加密使您和您的聊天夥伴之間的消息保持私密。甚至您的電子郵件供應商也無法讀取它們。";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@從另一台裝置傳送了一條訊息。輕觸以瞭解更多資訊。";
+// deprecated
 "chat_protection_broken_explanation" = "無法再保證端到端加密，可能是因為%1$@重新安裝了 Delta Chat 或從其他裝置傳送了訊息\n\n您可以再次當面掃描他們的QR碼，以重新建立有保證的端到端加密。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@需要端到端加密，但尚未為此聊天設置。輕觸以瞭解更多資訊。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以當面掃描聯絡人的QR碼。";

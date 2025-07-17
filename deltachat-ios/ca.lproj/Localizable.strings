@@ -832,7 +832,9 @@
 "chat_protection_broken" = "%1$@ ha enviat un missatge des d\'un altre dispositiu.";
 "chat_protection_enabled_tap_to_learn_more" = "Us garantim que a partir d\'ara els missatges són xifrats d\'extrem a extrem. Toqueu per a obtenir més informació.";
 "chat_protection_enabled_explanation" = "Ara es garanteix que tots els missatges d\'aquest xat són xifrats d\'extrem a extrem.\n\nEl xifratge d\'extrem a extrem manté privats els missatges entre vós i els companys de xat. Ni tan sols el vostre proveïdor de correu electrònic pot llegir-los.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ ha enviat un missatge des d\'un altre dispositiu. Toqueu per a obtenir més informació.";
+// deprecated
 "chat_protection_broken_explanation" = "No es pot garantir el xifrat d\'extrem a extrem, probablement perquè %1$@ ha reinstal·lat Delta Chat o ha enviat un missatge des d\'un altre dispositiu.\n\n Podeu trobar-vos físicament amb la persona i tornar a escanejar el seu codi QR per tomar-hi a tenir xifrat d\'extrem a extrem.";
 "invalid_unencrypted_tap_to_learn_more" = "%1$@requereix xifratge d\'extrem a extrem, que encara no s\'ha configurat per a aquest xat. Toqueu per a obtenir més informació.";
 "invalid_unencrypted_explanation" = "Per a establir xifratge d\'extrem a extrem, heu de trobar-vos amb els contactes en persona i escanejar el seu codi QR per a poder afegir-los.";
