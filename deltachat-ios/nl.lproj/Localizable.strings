@@ -871,7 +871,9 @@
 "chat_protection_broken" = "%1$@ heeft een bericht verstuurd vanaf een ander apparaat.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn vanaf nu gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
 "chat_protection_enabled_explanation" = "Alle berichten in dit gesprek zijn vanaf nu gegarandeerd van eind-tot-eindversleuteling voorzien.\n\nMet behulp van deze versleuteling blijven berichten tussen jou en je gesprekspartners geheim - zelfs je e-mailprovider kan ze niet uitlezen.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ heeft een bericht verstuurd vanaf een ander apparaat. Druk hier voor meer informatie.";
+// deprecated
 "chat_protection_broken_explanation" = "Eind-tot-eindversleuteling kan niet meer worden gegarandeerd, omdat %1$@ Delta Chat opnieuw heeft geïnstalleerd of een bericht vanaf een ander apparaat heeft verstuurd.\n\nMaak een afspraak met hem/haar en scan de QR-code opnieuw om eind-tot-eindversleuteling weer in te schakelen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
 "invalid_unencrypted_explanation" = "Spreek met elkaar af en scan elkaars QR-code om eind-tot-eindversleuteling op te zetten.";

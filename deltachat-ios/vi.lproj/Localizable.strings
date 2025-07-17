@@ -720,7 +720,9 @@
 "chat_protection_broken" = "%1$@ đã gửi tin nhắn từ một thiết bị khác.";
 "chat_protection_enabled_tap_to_learn_more" = "Tin nhắn được đảm bảo sẽ được mã hóa hai đầu kể từ bây giờ. Nhấn để tìm hiểu thêm.";
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ đã gửi tin nhắn từ một thiết bị khác. Nhấn để tìm hiểu thêm.";
+// deprecated
 "chat_protection_broken_explanation" = "Mã hóa hai đầu không còn được đảm bảo nữa, có thể vì %1$@ đã cài đặt lại Delta Chat hoặc đã gửi tin nhắn từ một thiết bị khác.\n\nBạn có thể gặp trực tiếp họ và quét lại mã QR của họ để thiết lập lại tính năng mã hóa hai đầu được đảm bảo kết thúc mã hóa.";
 "learn_more" = "Tìm hiểu thêm";
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";

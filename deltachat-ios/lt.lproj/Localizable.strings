@@ -613,6 +613,7 @@
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ išsiuntė žinutę iš kito įrenginio.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ išsiuntė žinutę iš kito įrenginio. Bakstelėkite norėdami sužinoti daugiau.";
 "learn_more" = "Sužinoti daugiau";
 // %1%s will be replaced by date and time in some human-readable format

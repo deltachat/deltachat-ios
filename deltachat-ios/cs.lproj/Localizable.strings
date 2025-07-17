@@ -839,7 +839,9 @@
 "chat_protection_broken" = "Uživatel %1$@ odeslal zprávu z jiného zařízení.";
 "chat_protection_enabled_tap_to_learn_more" = "Nyní je garantováno koncové šifrování vašich zpráv. Stiskněte pro více informací.";
 "chat_protection_enabled_explanation" = "Nyní je garantováno, že všechny zprávy v tomto chatu jsou koncově šifrovány.\n\nKoncové šifrování zajišťuje soukromí mezi vámi a vašimi kontakty. Nedokáže je přečíst ani váš poskytovatel e-mailu.";
+// deprecated
 "chat_protection_broken_tap_to_learn_more" = "Uživatel %1$@ odeslal zprávu z jiného zařízení. Stiskněte pro více informací.";
+// deprecated
 "chat_protection_broken_explanation" = "Koncové šifrování již nemůže být garantováno, pravděpodobně protože uživatel %1$@ přeinstaloval Delta Chat nebo odeslal zprávu z jiného zařízení.\n\nPro obnovení garantovaného koncového šifrování se sejděte osobně a naskenujte si své QR kódy.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@ vyžaduje koncové šifrování, které pro tento chat ještě není nastaveno. Stiskněte pro více informací. ";
 "invalid_unencrypted_explanation" = "Pro navázání koncově šifrovaného spojení se můžete se svými kontakty setkat osobně a naskenovat jejich QR kódy.";

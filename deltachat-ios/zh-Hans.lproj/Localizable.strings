@@ -129,7 +129,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "贴纸";
 "add_to_sticker_collection" = "添加到贴纸收藏集";
-"add_stickers_instructions" = "要添加贴纸，请点击“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
+"add_stickers_instructions" = "要添加贴纸，请点按“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
 "open_sticker_folder" = "打开贴纸文件夹";
 "images" = "图片";
 "audio" = "音频";
@@ -163,7 +163,7 @@
 "webxdc_apps" = "私人应用";
 "webxdc_store_url" = "应用选择器 URL";
 "webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
-"webxdc_draft_hint" = "轻按“发送”分享";
+"webxdc_draft_hint" = "点按“发送”即可分享";
 "home" = "首页";
 "games" = "游戏";
 "tools" = "工具";
@@ -334,8 +334,8 @@
 "videochat_invite_user_hint" = "需要双方均装有兼容的应用或浏览器。";
 "videochat_contact_invited_hint" = "%1$@ 发出了视频聊天邀请。";
 "videochat_you_invited_hint" = "您发出了视频聊天邀请。";
-"videochat_tap_to_join" = "点击来加入";
-"videochat_tap_to_open" = "点击来打开";
+"videochat_tap_to_join" = "点按即可加入";
+"videochat_tap_to_open" = "点按即可打开";
 "videochat_instance" = "视频聊天实例";
 "videochat_instance_placeholder" = "您的视频聊天实例";
 // Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
@@ -383,7 +383,7 @@
 "chat_new_channel_hint" = "频道是广播消息的一对多工具。";
 "chat_new_group_hint" = "在您发出第一条消息后，其他人才会看到此群组。";
 "chat_record_slide_to_cancel" = "滑动来取消";
-"chat_record_explain" = "按住来录制语音消息，松开来发送";
+"chat_record_explain" = "按住即可录制语音消息，松开即可发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
 "chat_all_archived" = "所有聊天已归档。\n按“+”来开始新聊天。";
 "chat_share_with_title" = "分享给";
@@ -491,7 +491,7 @@
 "multidevice_this_creates_a_qr_code" = "这将创建一个二维码，第二台设备可以扫描该二维码来复制配置文件。\n\n请确保没有不必要的观察者或摄像机可以看到以下屏幕。";
 "multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "启动 Delta Chat，点击“我已有账号/添加为第二台设备”，扫描此处显示的二维码";
+"multidevice_tap_scan_on_other_device" = "启动 Delta Chat，点按“我已有账号/添加为第二台设备”，然后扫描此处显示的二维码";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
 "multidevice_qr_subtitle" = "扫描此处为 %1$@ 设置第二台设备";
 "multidevice_receiver_title" = "添加为第二台设备";
@@ -869,11 +869,13 @@
 "ephemeral_timer_weeks_by_other" = "%2$@ 将消息定时销毁计时器设为 %1$@ 周";
 // this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
 "chat_protection_broken" = "%1$@ 从另一台设备发送了消息";
-"chat_protection_enabled_tap_to_learn_more" = "从现在起，消息保证都是端到端加密。轻按了解更多。";
-"chat_protection_enabled_explanation" = "现在可以保证此聊天中的所有消息都是端到端加密的。\n\n端到端加密可确保您和您的聊天伙伴之间的消息私密性。即使是服务器、提供者或中继也无法读取它们。";
-"chat_protection_broken_tap_to_learn_more" = "%1$@ 从另一台设备发送了一则消息。轻按了解更多。";
+"chat_protection_enabled_tap_to_learn_more" = "消息是端到端加密的。点按即可了解详情。";
+"chat_protection_enabled_explanation" = "此聊天中的所有消息都经过端到端加密。\n\n端到端加密可确保您与聊天对象之间的消息保持私密。即使是服务器、提供者或中继也无法读取。";
+// deprecated
+"chat_protection_broken_tap_to_learn_more" = "%1$@ 从另一台设备发送了一条消息。点按即可了解详情。";
+// deprecated
 "chat_protection_broken_explanation" = "无法再确保端到端加密，可能的原因是 %1$@ 重新安装了 Delta Chat 或从其他设备发送了一则消息。\n\n你可以和联系人线下见面并再次扫描联系人的二维码重新建立端到端加密的通信。";
-"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@要求端到端加密，而此聊天尚未建立端到端加密。轻按了解更多。";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ 需要端到端加密，但此聊天尚未设置。点按即可了解详情。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，你可以亲自和联系人碰面并扫描联系人的二维码";
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
@@ -927,12 +929,12 @@
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
-"secure_join_wait" = "正在建立有保证的端到端加密，请稍候…";
+"secure_join_wait" = "正在建立端到端加密，请稍候…";
 // deprecated
 "secure_join_wait_timeout" = "无法建立有保证的端到端加密，但您可能已经发送了一条消息。";
 "secure_join_takes_longer" = "联系人必须在线才能继续。\n\n此过程将在后台自动继续。";
 "contact_verified" = "%1$@ 已验证。";
-"contact_not_verified" = "无法与 %1$@ 建立有保证的端到端加密。";
+"contact_not_verified" = "无法与 %1$@ 建立端到端加密。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "验证人 %1$@";
 "verified_by_you" = "由您验证";
@@ -1046,8 +1048,8 @@
 "a11y_disappearing_messages_activated" = "消息定时销毁已激活";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "停止共享位置";
-"a11y_voice_message_hint_ios" = "录音后轻按两次发送。要丢弃录音，用两根手指左右滑动。";
-"a11y_connectivity_hint" = "轻按两次查看连接详情";
+"a11y_voice_message_hint_ios" = "录制后，点按两次即可发送。如需舍弃录制内容，请双指滑动。";
+"a11y_connectivity_hint" = "点按两次即可查看连接详情";
 "login_error_no_internet_connection" = "无互联网连接，登录失败。";
 "share_account_not_configured" = "账号未配置。";
 "cannot_play_audio_file" = "无法播放音频文件。";
@@ -1087,7 +1089,7 @@
 "pref_reliable_service_explain" = "会形成永久通知";
 "pref_background_notifications_rationale" = "为了保持连接并在后台接收消息，请在下一步中忽略电池优化。\n\nDelta Chat 使用的资源很少，并且会注意不去耗尽电池电量。";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
-"perm_enable_bg_reminder_title" = "点击此处以在 Delta Chat 处于后台时接收消息。";
+"perm_enable_bg_reminder_title" = "点按此处即可在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 // device messages for updates
 "update_1_50_android" = "有什么新功能？\n\n❤️‍🔥 新的表情符号选择器，包含更多表情符号\n\n🎮 增强的聊天应用：获取通知并在上下文中打开支持应用，即直接打开添加的日历条目\n\n👍 收到有关对您的消息的回应的通知\n\n…🛠️ %1$@ 上的修复和更多内容";
