@@ -134,7 +134,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             // Don't show inputAccessoryView when context menu is visible
             return false
         } else {
-            return dcChat.canSend || dcChat.isHalfBlocked || tableView.isEditing || presentedViewController is UISearchController
+            return dcChat.canSend || dcChat.isContactRequest || tableView.isEditing || presentedViewController is UISearchController
         }
     }
 
@@ -249,7 +249,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         if dcChat.canSend {
             configureUIForWriting()
-        } else if dcChat.isHalfBlocked {
+        } else if dcChat.isContactRequest {
             configureContactRequestBar()
         } else {
             messageInputBar.isHidden = true
@@ -2178,7 +2178,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else if msg.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: msg)
         } else {
-            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isHalfBlocked: dcChat.isHalfBlocked)
+            let fullMessageViewController = FullMessageViewController(dcContext: dcContext, messageId: msg.id, isContactRequest: dcChat.isContactRequest)
             navigationController?.pushViewController(fullMessageViewController, animated: true)
         }
     }

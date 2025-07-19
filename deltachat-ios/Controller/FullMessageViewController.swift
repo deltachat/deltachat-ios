@@ -17,7 +17,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     var messageId: Int
-    private var isHalfBlocked: Bool
+    private var isContactRequest: Bool
     private var loadContentOnce = false
 
     // Block just everything :)
@@ -35,9 +35,9 @@ class FullMessageViewController: WebViewViewController {
     """
     
 
-    init(dcContext: DcContext, messageId: Int, isHalfBlocked: Bool) {
+    init(dcContext: DcContext, messageId: Int, isContactRequest: Bool) {
         self.messageId = messageId
-        self.isHalfBlocked = isHalfBlocked
+        self.isContactRequest = isContactRequest
         super.init(dcContext: dcContext)
         self.allowSearch = true
     }
@@ -60,7 +60,7 @@ class FullMessageViewController: WebViewViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !isHalfBlocked && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
+        if !isContactRequest && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
             loadHtml()
         } else {
             loadRestrictedHtml()
@@ -74,7 +74,7 @@ class FullMessageViewController: WebViewViewController {
         var alwaysCheckmark = ""
         if loadContentOnce {
             onceCheckmark = checkmark
-        } else if !isHalfBlocked && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
+        } else if !isContactRequest && UserDefaults.standard.bool(forKey: "html_load_remote_content") {
             alwaysCheckmark = checkmark
         } else {
             neverCheckmark = checkmark
@@ -83,9 +83,9 @@ class FullMessageViewController: WebViewViewController {
         let alert = UIAlertController(title: String.localized("load_remote_content"),
                                       message: String.localized("load_remote_content_ask"),
                                       preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized(isHalfBlocked ? "no" : "never"))", style: .default, handler: neverActionPressed(_:)))
+        alert.addAction(UIAlertAction(title: "\(neverCheckmark)\(String.localized(isContactRequest ? "no" : "never"))", style: .default, handler: neverActionPressed(_:)))
         alert.addAction(UIAlertAction(title: "\(onceCheckmark)\(String.localized("once"))", style: .default, handler: onceActionPressed(_:)))
-        if !isHalfBlocked {
+        if !isContactRequest {
             alert.addAction(UIAlertAction(title: "\(alwaysCheckmark)\(String.localized("always"))", style: .default, handler: alwaysActionPressed(_:)))
         }
 
@@ -100,7 +100,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     @objc func onceActionPressed(_ action: UIAlertAction) {
-        if !isHalfBlocked {
+        if !isContactRequest {
             UserDefaults.standard.set(false, forKey: "html_load_remote_content")
         }
         loadContentOnce = true
@@ -108,7 +108,7 @@ class FullMessageViewController: WebViewViewController {
     }
 
     @objc func neverActionPressed(_ action: UIAlertAction) {
-        if !isHalfBlocked {
+        if !isContactRequest {
             UserDefaults.standard.set(false, forKey: "html_load_remote_content")
         }
         loadContentOnce = false
