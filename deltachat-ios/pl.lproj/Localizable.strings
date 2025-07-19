@@ -219,6 +219,7 @@
 "please_enter_broadcast_list_name" = "Wpisz nazwę listy rozgłoszeniowej";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nazwa kanału";
+"email" = "E-mail";
 // "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
 "new_email" = "Nowy e-mail";
 // the "Subject" of an e-mail, use the term common in classic e-mail apps
@@ -977,7 +978,7 @@
 "ImageEditorHud_crop" = "Przytnij";
 "ImageEditorHud_flip" = "Przełącz";
 "ImageEditorHud_rotate" = "Obróć";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Zaszyfrowana wiadomość";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "To jest oficjalna aplikacja Delta Chat Desktop.";
@@ -1091,6 +1092,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Dotknij tutaj, aby odbierać wiadomości, podczas gdy Delta Chat działa w tle.";
 "perm_enable_bg_already_done" = "Pozwolono już Delta Chat na odbieranie wiadomości w tle.\n\nJeśli wiadomości nadal nie docierają w tle, sprawdź też ustawienia systemu.";
-// device messages for updates
 "update_1_50_android" = "Co nowego?\n\n❤️‍🔥 Nowy selektor emoji z większą liczbą emoji\n\n🎮 Ulepszone aplikacje czatu: Otrzymuj powiadomienia i otwieraj aplikacje pomocnicze w kontekście, np. otwieraj dodany wpis kalendarza bezpośrednio\n\n👍 Otrzymuj powiadomienia o reakcjach na swoje wiadomości\n\n... 🛠️ POPRAWKI i JESZCZE WIĘCEJ na %1$@";
 "update_switch_profile_placement" = "ℹ️ Opcja „Przełącz profil” została przeniesiona: Dotknij swojego zdjęcia profilowego w górnym rogu ekranu głównego, aby dodać lub przełączyć profile 💡";

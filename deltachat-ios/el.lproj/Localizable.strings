@@ -722,7 +722,7 @@
 "ImageEditorHud_crop" = "Περικοπή";
 "ImageEditorHud_flip" = "Εναλλαγή";
 "ImageEditorHud_rotate" = "Περιστροφή";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Κρυπτογραφημένο μήνυμα";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";

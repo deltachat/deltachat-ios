@@ -337,7 +337,7 @@
 // permissions
 "perm_required_title" = "Tillatelse kreves";
 "perm_continue" = "Fortsett";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Kryptert melding";
 "welcome_desktop" = "Velkommen til Delta Chat";
 "global_menu_preferences_language_desktop" = "Språk";

@@ -219,6 +219,7 @@
 "please_enter_broadcast_list_name" = "Bitten einen Namen für die Broadcast-Liste eingeben.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Name des Kanals";
+"email" = "E-Mail";
 // "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
 "new_email" = "Neue E-Mail";
 // the "Subject" of an e-mail, use the term common in classic e-mail apps
@@ -977,7 +978,7 @@
 "ImageEditorHud_crop" = "Zuschneiden";
 "ImageEditorHud_flip" = "Spiegeln";
 "ImageEditorHud_rotate" = "Drehen";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Verschlüsselte Nachricht";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Dies ist die offizielle Delta Chat Desktop App.";
@@ -1092,5 +1093,6 @@
 "perm_enable_bg_reminder_title" = "Tippen Sie hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_already_done" = "Sie haben Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls keine Nachrichten eingehen, überprüfen Sie bitte auch Ihre Systemeinstellungen.";
 // device messages for updates
+"update_2_0" = "Was ist neu?\n\n💯 Die Ende-zu-Ende-Verschlüsselung ist jetzt dauerhaft. Vorhängeschlösser 🔒 gibt es nicht mehr!\n\n✉️ Klassische E-Mails ohne Ende-zu-Ende-Verschlüsselung sind mit einem Buchstabensymbol gekennzeichnet\n\n😻 Neues, verbessertes Profil für alle Kontakte\n\n🔲 Neue Schaltfläche für den schnellen Zugriff auf Apps, die in einem Chat verwendet werden\n\n❤️ Bitte Spenden Sie und helfen uns, unabhängig zu bleiben und weiterhin Verbesserungen zu bringen: %1$@";
 "update_1_50_android" = "Was ist neu?\n\n❤️‍🔥 Neuer Emoji-icker mit mehr Emojis\n\n🎮 In-Chat-App Verbesserungen: Benachrichtigungen erhalten und Apps im Kontext öffnen, z.B. einen hinzugefügten Kalendereintrag direkt anzeigen\n\n👍 Lassen Sie sich über Reaktionen auf Ihre Nachrichten benachrichtigen\n\n... 🛠️ FIXES und NOCH MEHR unter %1$@";
 "update_switch_profile_placement" = "ℹ️ \"Profil wechseln\" verschoben: Tippen Sie auf Ihr Profilbild in der oberen Ecke des Hauptbildschirms, um Profile hinzuzufügen oder zu wechseln 💡.";

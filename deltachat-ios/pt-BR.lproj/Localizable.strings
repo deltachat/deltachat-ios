@@ -768,7 +768,7 @@
 "ImageEditorHud_crop" = "Cortar";
 "ImageEditorHud_flip" = "Girar";
 "ImageEditorHud_rotate" = "Rodar";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Mensagem criptografada";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Este é o aplicativo oficial Delta Chat Desktop.";

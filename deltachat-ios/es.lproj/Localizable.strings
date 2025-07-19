@@ -232,7 +232,7 @@
 "menu_unarchive_chat" = "Des-archivar chat";
 "menu_add_attachment" = "Añadir adjunto";
 "menu_leave_group" = "Abandonar grupo";
-"menu_leave_channel" = "Salir del canal";
+"menu_leave_channel" = "Abandonar canal";
 "menu_delete_chat" = "Eliminar chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vaciar chat";
@@ -976,7 +976,7 @@
 "ImageEditorHud_crop" = "Recortar";
 "ImageEditorHud_flip" = "Voltear";
 "ImageEditorHud_rotate" = "Rotar";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Mensaje cifrado";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Esta es la aplicación oficial de Delta Chat para escritorio.";
@@ -1090,6 +1090,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
-// device messages for updates
 "update_1_50_android" = "¿Qué hay de nuevo?\n\n❤️‍🔥 Nuevo selector de emojis con más emojis\n\n🎮 Aplicaciones de chat mejoradas: recibe notificaciones y abre aplicaciones en contexto, por ejemplo, abre una entrada de calendario agregada directamente\n\n👍 Recibe notificaciones sobre las reacciones a tus mensajes\n\n... 🛠️ CORRECCIONES y AÚN MÁS en %1$@";
 "update_switch_profile_placement" = "ℹ️ Se movió la opción \"Cambiar perfil\": toca tu imagen de perfil en la esquina superior de la pantalla principal para agregar o cambiar perfiles 💡";

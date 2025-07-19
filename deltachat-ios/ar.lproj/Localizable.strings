@@ -197,7 +197,7 @@
 // permissions
 "perm_required_title" = "منح إحدى الأذونات مطلو";
 "perm_continue" = "استمر";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "رسالة مشفرة";
 "global_menu_preferences_language_desktop" = "اختر اللغة…";
 "global_menu_file_desktop" = "الملف";

@@ -216,9 +216,10 @@
 // deprecated
 "broadcast_list_name" = "广播列表名称";
 // deprecated
-"please_enter_broadcast_list_name" = "请属于广播列表的名称";
+"please_enter_broadcast_list_name" = "请输入广播列表的名称。";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "频道名称";
+"email" = "邮件";
 // "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
 "new_email" = "新建邮件";
 // the "Subject" of an e-mail, use the term common in classic e-mail apps
@@ -977,7 +978,7 @@
 "ImageEditorHud_crop" = "裁剪";
 "ImageEditorHud_flip" = "翻转";
 "ImageEditorHud_rotate" = "旋转";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "加密的消息";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "这是 Delta Chat 官方桌面应用。";
@@ -1091,6 +1092,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "点按此处即可在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
-// device messages for updates
 "update_1_50_android" = "有什么新功能？\n\n❤️‍🔥 新的表情符号选择器，包含更多表情符号\n\n🎮 增强的聊天应用：获取通知并在上下文中打开支持应用，即直接打开添加的日历条目\n\n👍 收到有关对您的消息的回应的通知\n\n…🛠️ %1$@ 上的修复和更多内容";
 "update_switch_profile_placement" = "ℹ️ “切换账号”选项已移动：点击主屏幕上角的个人资料图片以添加或切换账号 💡";
