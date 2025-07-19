@@ -394,10 +394,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     self.messageInputBar.isHidden = false
                     self.becomeFirstResponder()
                 }
-            } else if dcChat.isProtectionBroken {
-                self.configureContactRequestBar()
-                self.messageInputBar.isHidden = false
-                self.becomeFirstResponder()
             } else if !dcChat.isContactRequest {
                 if !self.messageInputBar.isHidden {
                     self.messageInputBar.isHidden = true
@@ -622,12 +618,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func configureContactRequestBar() {
         messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
 
-        let bar: ChatContactRequestBar
-        if dcChat.isProtectionBroken {
-            bar = ChatContactRequestBar(.info, infoText: String.localizedStringWithFormat(String.localized("chat_protection_broken"), dcChat.name))
-        } else {
-            bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
-        }
+        let bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
         messageInputBar.setMiddleContentView(bar, animated: false)
@@ -771,8 +762,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         case (_, DC_INFO_PROTECTION_ENABLED):
             showProtectionEnabledDialog()
-        case (_, DC_INFO_PROTECTION_DISABLED):
-            showProtectionBrokenDialog()
         case (_, DC_INFO_INVALID_UNENCRYPTED_MAIL):
             showInvalidUnencryptedDialog()
         default:
@@ -1386,20 +1375,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func showPhotoVideoLibrary() {
         mediaPicker?.showGallery()
-    }
-
-    private func showProtectionBrokenDialog() {
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("chat_protection_broken_explanation"), dcChat.name), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#nocryptanymore"), animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                appDelegate.appCoordinator.presentQrCodeController()
-            }
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-        navigationController?.present(alert, animated: true, completion: nil)
     }
 
     private func showProtectionEnabledDialog() {
@@ -2689,10 +2664,6 @@ extension ChatViewController: ChatContactRequestDelegate {
 
     func onDeleteRequest() {
         self.askToDeleteChat()
-    }
-
-    func onShowInfoDialog() {
-        showProtectionBrokenDialog()
     }
 }
 

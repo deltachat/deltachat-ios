@@ -125,9 +125,6 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
             case DC_INFO_PROTECTION_ENABLED:
                 typeImageView.image = UIImage(named: "verified_large")
                 typeImageView.isHidden = false
-            case DC_INFO_PROTECTION_DISABLED:
-                typeImageView.image = UIImage(named: "verified_broken")
-                typeImageView.isHidden = false
             default:
                 typeImageView.isHidden = true
             }
