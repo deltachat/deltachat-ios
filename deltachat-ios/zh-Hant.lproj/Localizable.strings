@@ -954,7 +954,7 @@
 "ImageEditorHud_crop" = "裁切";
 "ImageEditorHud_flip" = "翻轉";
 "ImageEditorHud_rotate" = "旋轉";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "已加密的訊息";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "這是 Delta Chat 官方桌面應用程式。";
@@ -1068,6 +1068,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
-// device messages for updates
 "update_1_50_android" = "新功能\n\n❤️ 🔥 新的表情符號選擇器，包含更多表情符號\n\n🎮 增強的聊天應用程式：在上下文中獲取通知並打開支援應用程式，即直接打開添加的日曆條目\n\n👍獲取有關對您的消訊息的回應的通知\n\n...🛠️ 修復以及更多在%1$@";
 "update_switch_profile_placement" = "ℹ️「切換賬戶」選項已移動：點擊主螢幕右上角的賬戶大頭貼以添加或切換賬戶 💡";

@@ -366,7 +366,7 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
 "perm_explain_access_to_storage_denied" = "Delta Chat, fotoşəkilləri, videoları və ya səsləri əlavə etmək və ya ixrac etmək üçün saxlama icazəsini tələb edir, lakin bu daimi olaraq rədd edildi. Xahiş edirik tətbiq ayarları menyusuna davam edin, \"İzinlər\" seçin və \"Yaddaş\" funksiyasını aktivləşdirin.";
 "perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Şifrələnmiş mesaj";
 "global_menu_preferences_language_desktop" = "Dil səç";
 "global_menu_file_desktop" = "Fayl";

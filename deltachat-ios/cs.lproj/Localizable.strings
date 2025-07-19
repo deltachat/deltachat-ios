@@ -945,7 +945,7 @@
 "ImageEditorHud_crop" = "Ořez";
 "ImageEditorHud_flip" = "Zrcadlení";
 "ImageEditorHud_rotate" = "Otočení";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Šifrovaná zpráva";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Toto je oficiální aplikace Delta Chat Desktop.";
@@ -1059,6 +1059,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Stiskem nastavíte přijímání zpráv, když je aplikace Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí jste již aplikaci Delta Chat povolili.\n\nV případě, že vám zprávy na pozadí stále nechodí, prosím zkontrolujte svá systémová nastavení.";
-// device messages for updates
 "update_1_50_android" = "Co je nového?\n\n❤️‍🔥 Nová nabídka emoji s více druhy emoji\n\n🎮 Vylepšené aplikace v chatu: Oznámení a podpůrné aplikace přímo v kontextu chatu, např. odkaz na novou nové položky z kalendáři\n\n👍 Oznámení o reakcích na zprávy\n\n... 🛠️ OPRAVY a DALŠÍ na %1$@";
 "update_switch_profile_placement" = "ℹ️ Volba \"Přepnout profil\" byla přesunuta: Pro přidávání či přepínání profilů stiskněte svůj profilový obrázek v horním rohu hlavní obrazovky.";

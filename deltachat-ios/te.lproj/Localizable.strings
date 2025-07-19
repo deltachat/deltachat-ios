@@ -187,7 +187,7 @@
 // permissions
 "perm_required_title" = "అనుమతి అవసరం";
 "perm_continue" = "కొనసాగించు";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "ఎంక్రిప్ట్ చెసిన సందేశం";
 "welcome_desktop" = "Delta Chat కి స్వాగతం.";
 "global_menu_file_desktop" = "ఫైల్";

@@ -219,6 +219,11 @@
 "please_enter_broadcast_list_name" = "Adjon meg egy nevet az adáslistának";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Csatorna neve";
+"email" = "E-mail";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Új e-mail";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Tárgy";
 "menu_send" = "Küldés";
 "menu_toggle_keyboard" = "Váltás emodzsibillentyűzetre";
 "menu_edit_group" = "Csoport szerkesztése";
@@ -313,6 +318,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Hozzáadás a kezdőképernyőhöz";
 "donate" = "Adományozás";
+"donate_device_msg" = "❤️ Úgy tűnik, hogy tetszik önnek a Delta Chat!\n\nFontolja meg az adományozást, hogy a Delta Chat mindenki számára ingyenes maradhasson.\n\nUgyan a Delta Chat szabadon használható és nyílt forráskódú, de a fejlesztés pénzbe kerül. Segítsen nekünk, hogy a Delta Chat független maradhasson, és a jövőben még fantasztikusabbá váljon.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Némítás 1 órára";
 "mute_for_eight_hours" = "Némítás 8 órára";
 "mute_for_one_day" = "Némítás 1 napra";
@@ -972,7 +978,7 @@
 "ImageEditorHud_crop" = "Kivágás";
 "ImageEditorHud_flip" = "Tükrözés";
 "ImageEditorHud_rotate" = "Forgatás";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Titkosított üzenet";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ez a hivatalos Delta Chat Desktop alkalmazás.";
@@ -1086,7 +1092,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Koppintson ide az üzenetek fogadásához, miközben a Delta Chat a háttérben fut.";
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
-// device messages for updates
 "update_1_50_android" = "Mik az újdonságok?\n\n❤️‍🔥 Új emodzsi-választó még több emodzsival\n\n🎮 Továbbfejlesztett, a csevegésben használható alkalmazások: Értesítéseket kaphat és megnyithatja az azokat támogató alkalmazásokban, azaz közvetlenül megnyithat egy hozzáadott naptárbejegyzést\n\n👍 Értesítést kaphat az üzeneteire adott reakciókról\n\n… 🛠️ Egyéb javítások, tudjon meg többet itt: %1$@";
 "update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
 Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";

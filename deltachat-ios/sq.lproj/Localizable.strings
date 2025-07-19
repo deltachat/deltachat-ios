@@ -948,7 +948,7 @@
 "ImageEditorHud_crop" = "Qethe";
 "ImageEditorHud_flip" = "Ktheje në anë tjetër";
 "ImageEditorHud_rotate" = "Rrotulloje";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Mesazh i fshehtëzuar";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ky është aplikacioni zyrtar Delta Chat Desktop.";
@@ -1058,6 +1058,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
-// device messages for updates
 "update_1_50_android" = "Ç’ka të re?\n\n❤️‍🔥 Zgjedhës i ri emoji-sh, me më shumë të tillë\n\n🎮 Zgjerim aplikacionesh brenda fjalosjesh: Merrni njoftim dhe hapni aplikacionet përkatës sipas kontekstit, p.sh., hapni drejtpërdrejt një zë të saposhtuar kalendari\n\n👍 Merrni njoftim mbi reagime te mesazhet tuaj\n\n… 🛠️ NDREQJE DHE MË TEPËR te %1$@";
 "update_switch_profile_placement" = "ℹ️ Mundësia “Ndërroni Profil” u hoq: Që të shtoni, ose ndërroni profile, prekni figurën e profilit tuaj në cepin e sipërm të skenës kryesore 💡";

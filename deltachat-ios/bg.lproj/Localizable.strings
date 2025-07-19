@@ -866,7 +866,7 @@
 "ImageEditorHud_crop" = "Изрязване";
 "ImageEditorHud_flip" = "Обръщане";
 "ImageEditorHud_rotate" = "Завъртане";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Криптирано съобщение";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Това е официалното настолно приложение Delta Chat.";

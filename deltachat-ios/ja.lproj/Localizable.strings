@@ -562,7 +562,7 @@
 "ImageEditorHud_crop" = "切り抜き";
 "ImageEditorHud_flip" = "反転";
 "ImageEditorHud_rotate" = "回転";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "暗号化されたメッセージ";
 "welcome_desktop" = "Delta Chatにようこそ";
 "global_menu_preferences_language_desktop" = "言語を選択して下さい";

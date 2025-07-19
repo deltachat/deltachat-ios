@@ -676,7 +676,7 @@
 "ImageEditorHud_crop" = "Apkirpti";
 "ImageEditorHud_flip" = "Apversti";
 "ImageEditorHud_rotate" = "Pasukti";
-// dc_str_* resources
+// deprecated, use string "E-Mail" for non-encrypted messages instead
 "encrypted_message" = "Šifruota žinutė";
 "about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
