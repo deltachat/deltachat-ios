@@ -760,7 +760,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if let parent = message.parent {
                 showWebxdcViewFor(message: parent, href: message.getWebxdcHref())
             }
-        case (_, DC_INFO_PROTECTION_ENABLED):
+        case (_, DC_INFO_PROTECTION_ENABLED), (_, DC_INFO_CHAT_E2EE):
             showProtectionEnabledDialog()
         case (_, DC_INFO_INVALID_UNENCRYPTED_MAIL):
             showInvalidUnencryptedDialog()
