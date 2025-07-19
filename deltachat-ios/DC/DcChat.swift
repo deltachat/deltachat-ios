@@ -78,10 +78,6 @@ public class DcChat {
         return Int(dc_chat_is_contact_request(chatPointer)) != 0
     }
 
-    public var isHalfBlocked: Bool {
-        return isContactRequest
-    }
-
     public var isEncrypted: Bool {
         return Int(dc_chat_is_encrypted(chatPointer)) != 0
     }
