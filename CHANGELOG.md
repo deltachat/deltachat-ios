@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v2.2.0 Testflight
+## v2.3.0 Testflight
 2025-07
 
 - Separate between unencrypted and encrypted chats, avoiding mixing of encrypted/unencrypted messages in the same chat
@@ -20,7 +20,7 @@
 - Fix: No longer missing notifications when app was terminated by the system
 - After some time, add a device message asking to donate. Can't wait? Donate today at https://delta.chat/donate
 - Update translations
-- Update to core 2.2.0
+- Update to core 2.3.0
 
 
 ## v1.58.6
