@@ -78,12 +78,8 @@ public class DcChat {
         return Int(dc_chat_is_contact_request(chatPointer)) != 0
     }
 
-    public var isProtectionBroken: Bool {
-        return Int(dc_chat_is_protection_broken(chatPointer)) != 0
-    }
-
     public var isHalfBlocked: Bool {
-        return isContactRequest || isProtectionBroken
+        return isContactRequest
     }
 
     public var isEncrypted: Bool {
