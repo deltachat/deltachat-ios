@@ -27,7 +27,6 @@ class ContactCell: UITableViewCell {
     lazy var toplineStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
-            verifiedIndicator,
             spacerView,
             mutedIndicator,
             locationStreamingIndicator,
@@ -63,17 +62,6 @@ class ContactCell: UITableViewCell {
         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1), for: .horizontal)
         label.isAccessibilityElement = false
         return label
-    }()
-
-    private lazy var verifiedIndicator: UIImageView = {
-        let imgView = UIImageView()
-        let img = UIImage(named: "verified")
-        imgView.isHidden = true
-        imgView.image = img
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        imgView.isAccessibilityElement = false
-        return imgView
     }()
 
     private lazy var spacerView: UIView = {
@@ -250,8 +238,6 @@ class ContactCell: UITableViewCell {
         verticalStackView.axis = .vertical
 
         toplineStackView.addConstraints([
-            verifiedIndicator.constraintHeightTo(titleLabel.font.pointSize * 0.9),
-            verifiedIndicator.widthAnchor.constraint(equalTo: verifiedIndicator.heightAnchor),
             pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
             locationStreamingIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2)
@@ -269,11 +255,6 @@ class ContactCell: UITableViewCell {
         }
     }
 
-
-    func setVerified(isVerified: Bool) {
-        verifiedIndicator.isHidden = !isVerified
-    }
-
     func setImage(_ img: UIImage) {
         avatar.setImage(img)
     }
@@ -288,9 +269,8 @@ class ContactCell: UITableViewCell {
         avatar.setName(name)
     }
 
-    func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isChatMuted: Bool = false, isAccountMuted: Bool = false, isContactRequest: Bool, isArchiveLink: Bool, isVerified: Bool) {
+    private func setStatusIndicators(unreadCount: Int, status: Int, visibility: Int32, isLocationStreaming: Bool, isChatMuted: Bool = false, isAccountMuted: Bool = false, isContactRequest: Bool, isArchiveLink: Bool) {
         unreadMessageCounter.backgroundColor = isChatMuted || isAccountMuted || isArchiveLink  ? DcColors.unreadBadgeMuted : DcColors.unreadBadge
-        verifiedIndicator.isHidden = !isVerified
 
         if isLargeText {
             unreadMessageCounter.setCount(unreadCount)
@@ -403,8 +383,7 @@ class ContactCell: UITableViewCell {
                                 isChatMuted: chat.isMuted,
                                 isAccountMuted: cellViewModel.dcContext.isMuted(),
                                 isContactRequest: isContactRequest,
-                                isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK,
-                                isVerified: chat.isProtected)
+                                isArchiveLink: chatData.chatId == DC_CHAT_ID_ARCHIVED_LINK)
 
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
@@ -423,8 +402,7 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isContactRequest: false,
-                                isArchiveLink: false,
-                                isVerified: contact.isVerified)
+                                isArchiveLink: false)
         case .profile:
             let contact = cellViewModel.dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
             titleLabel.text = cellViewModel.title
@@ -441,8 +419,7 @@ class ContactCell: UITableViewCell {
                                 visibility: 0,
                                 isLocationStreaming: false,
                                 isContactRequest: false,
-                                isArchiveLink: false,
-                                isVerified: false)
+                                isArchiveLink: false)
         }
 
         accessibilityLabel = (titleLabel.text != nil ? ((titleLabel.text ?? "")+"\n") : "")

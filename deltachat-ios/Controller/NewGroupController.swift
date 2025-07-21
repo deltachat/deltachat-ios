@@ -190,7 +190,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             if let profileImage = contact.profileImage {
                 contactCell.avatar.setImage(profileImage)
             }
-            contactCell.setVerified(isVerified: contact.isVerified)
             contactCell.selectionStyle = .none
             return contactCell
         }
