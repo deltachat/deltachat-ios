@@ -835,7 +835,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 subtitle = nil
             }
 
-            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isVerified: dcChat.isProtected, isMuted: dcChat.isMuted,
+            titleView.updateTitleView(title: dcChat.name, subtitle: subtitle, isMuted: dcChat.isMuted,
                                       isEphemeral: dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0, isSendingLocations: dcChat.isSendingLocations)
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
