@@ -146,6 +146,6 @@ public class StatusView: UIView {
         default:
             state = ""
         }
-        return "\(message.formattedSentDate()), \(state)\(message.showPadlock() ? ", " + String.localized("encrypted_message") : "")"
+        return "\(message.formattedSentDate()), \(state)\(message.showPadlock() ? "" : (", " + String.localized("email")))"
     }
 }
