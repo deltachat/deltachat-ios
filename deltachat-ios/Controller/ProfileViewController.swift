@@ -58,7 +58,7 @@ class ProfileViewController: UITableViewController {
 
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(systemName: "hand.wave")
+        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 21.0)
         if let contact {
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
@@ -392,7 +392,6 @@ class ProfileViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
-            headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
         } else if let contact {
             headerCell.updateDetails(title: contact.displayName)
             if let img = contact.profileImage {
@@ -400,7 +399,6 @@ class ProfileViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: contact.displayName, color: contact.color)
             }
-            headerCell.setGreenCheckmark(greenCheckmark: contact.isVerified)
         }
     }
 

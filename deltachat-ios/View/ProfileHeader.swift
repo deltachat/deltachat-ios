@@ -31,19 +31,8 @@ class ProfileHeader: UIStackView {
         return label
     }()
 
-    private lazy var greenCheckmark: UIImageView = {
-        let imgView = UIImageView()
-        let img = UIImage(named: "verified")
-        imgView.isHidden = true
-        imgView.image = img
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        imgView.isAccessibilityElement = false
-        return imgView
-    }()
-
     private(set) lazy var titleLabelContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, greenCheckmark, UIView()])
+        let stackView = UIStackView(arrangedSubviews: [UIView(), titleLabel, UIView()])
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.alignment = .center
@@ -85,8 +74,6 @@ class ProfileHeader: UIStackView {
 
         addConstraints([
             spacerTop.heightAnchor.constraint(equalTo: spacerBottom.heightAnchor),
-            greenCheckmark.constraintHeightTo(titleLabel.font.pointSize * 0.8),
-            greenCheckmark.widthAnchor.constraint(equalTo: greenCheckmark.heightAnchor),
         ])
     }
 
@@ -115,10 +102,6 @@ class ProfileHeader: UIStackView {
     func setBackupImage(name: String, color: UIColor) {
         avatar.setColor(color)
         avatar.setName(name)
-    }
-
-    func setGreenCheckmark(greenCheckmark: Bool) {
-        self.greenCheckmark.isHidden = !greenCheckmark
     }
 
     @objc private func avatarTapped(_ sender: InitialsBadge) {
