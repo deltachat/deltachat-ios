@@ -808,7 +808,7 @@ class ProfileViewController: UITableViewController {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
-                let title = String.localizedStringWithFormat(String.localized(isOutBroadcast ? "ask_remove_from_broadcast" : "ask_remove_members"), otherContact.displayName)
+                let title = String.localizedStringWithFormat(String.localized(isOutBroadcast ? "ask_remove_from_channel" : "ask_remove_members"), otherContact.displayName)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
                 alert.addAction(UIAlertAction(title: String.localized("remove_desktop"), style: .destructive, handler: { [weak self] _ in
                     guard let self else { return }
