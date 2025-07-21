@@ -1380,7 +1380,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func showProtectionEnabledDialog() {
         let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#e2eeguarantee"), animated: true)
+            self.navigationController?.pushViewController(HelpViewController(dcContext: self.dcContext, fragment: "#e2ee"), animated: true)
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
