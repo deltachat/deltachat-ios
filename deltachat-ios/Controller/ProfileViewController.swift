@@ -63,7 +63,10 @@ class ProfileViewController: UITableViewController {
 
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
-            if verifierId == DC_CONTACT_ID_SELF {
+            if verifierId == 0 {
+                cell.accessoryType = .none
+                verifiedInfo = String.localized("verified_by_unknown")
+            } else if verifierId == DC_CONTACT_ID_SELF {
                 cell.accessoryType = .none
                 verifiedInfo = String.localized("verified_by_you")
             } else {
@@ -248,7 +251,7 @@ class ProfileViewController: UITableViewController {
             options.append(.bio)
         }
 
-        if let contact, contact.getVerifierId() != 0 {
+        if let contact, contact.isVerified {
             actions.append(.verifiedBy)
         }
 
