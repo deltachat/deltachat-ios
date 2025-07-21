@@ -58,8 +58,9 @@ class ProfileViewController: UITableViewController {
 
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 21.0)
         if let contact {
+            cell.imageView?.image = contact.isVerified ? UIImage(named: "verified")?.scaleDownImage(toMax: 21.0) : nil
+
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
             if verifierId == DC_CONTACT_ID_SELF {
