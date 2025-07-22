@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Add "e2ee encrypted" info message to all e2ee chats
+- Fix connection getting stuck sometimes (by handling errors when draining FETCH responses)
+- Fix some timeout errors
+- Update translations and local help
+- Update to core 2.4.0
+
+
 ## v2.3.0 Testflight
 2025-07
 
