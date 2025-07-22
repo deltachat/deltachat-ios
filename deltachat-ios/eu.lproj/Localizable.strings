@@ -395,8 +395,9 @@
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
 "contact_verified" = "%1$@ egiaztatuta.";
+// deprecated, was stock string
 "contact_not_verified" = "Ezin da %1$@ egiaztatu";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
 // notifications
 "notify_reply_button" = "Erantzun";

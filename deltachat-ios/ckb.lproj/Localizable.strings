@@ -438,8 +438,9 @@
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";
 "qraccount_qr_code_cannot_be_used" = "ناتوانی لە کۆدی QRە سکان کراوەکە کەڵک بگریت بۆ پێکهێنانی هەژمارێکی نوێ.";
 "contact_verified" = "%1$@ پشتڕاست کرایەوە";
+// deprecated, was stock string
 "contact_not_verified" = "%1$@ پشتڕاست ناکرێتەوە.";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
 // notifications
 "notify_reply_button" = "وەڵام دانەوە";

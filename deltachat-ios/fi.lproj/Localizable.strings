@@ -401,7 +401,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Neliöruudukko";
 "send_message" = "Lähetä viesti";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ vaihtui osoitteesta %2$@ osoitteeksi %3$@";
 // deprecated
 "aeap_explanation" = "Vaihdoit sähköpostiosoitteesi osoitteesta %1$@ osoitteeksi %2$@.\n\nJos lähetät viestin vahvistettuun ryhmään, ryhmän jäsenet saavat automaattisesti uuden osoitteesi.\n\nOn suositeltavaa asettaa vanha tilisi välittämään kaikki viestit uuteen osoitteeseesi. Muuten et välttämättä saa viestejä niiltä yhteystiedoiltasi, joilla ei ole uutta osoitettasi.";
@@ -757,7 +757,7 @@
 "ephemeral_timer_weeks_by_you" = "Katoavien viestien ajastin asetettu %1$@ viikkoon minun toimestani.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Katoavien viestien ajastin asetettu %1$@ viikkoon käyttäjän %2$@ toimesta.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ lähetti viestin toiselta laitteelta.";
 "chat_protection_enabled_tap_to_learn_more" = "Tästä eteenpäin viestit on taatusti päästä-päähän salattuja. Lisätietoja napauttamalla.";
 "chat_protection_enabled_explanation" = "Kaikki viestit tässä keskustelussa ovat taatusti päästä-päähän salattuja.\n\nPäästä-päähän -salaus pitää viestisi sinun ja keskustelukumppanisi välillä. Edes sähköpostipalveluntarjoaja ei pysty niitä lukemaan.";
@@ -823,11 +823,12 @@
 // deprecated
 "secure_join_wait_timeout" = "Taattua päästä päähän salausta ei vielä voitu ottaa käyttöön, mutta voit jo lähettää viestin.";
 "contact_verified" = "%1$@ varmistettu.";
+// deprecated, was stock string
 "contact_not_verified" = "Keskustelun päästä-päähän -salausta ei voida taata henkilön %1$@ kanssa.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ lisäsi";
 "verified_by_you" = "Lisäämäni";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Asetukset muutettu kohteessa %1$@.";
 "verified_contact_required_explain" = "Päästä-päähän -salauksen takaamiseksi, voit lisätä ryhmään ainoastaan yhteystietoja joilla on vihreä \"oikein\" -merkki.\n\nVoit tavata yhteystietoja kasvotusten ja skannata heidän QR -koodinsa niin saat lisättyä salauksen käyttöön";
 "mailto_dialog_header_select_chat" = "Valitse keskustelu viestien lähettämiseen";

@@ -398,7 +398,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Lưới vuông";
 "send_message" = "Gửi tin nhắn";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ đã thay đổi địa chỉ của họ từ %2$@ thành %3$@";
 // deprecated
 "aeap_explanation" = "Bạn đã thay đổi địa chỉ email của mình từ %1$@ thành %2$@.\n\nNếu bây giờ bạn gửi thư đến một nhóm đã được xác minh, những người liên hệ ở đó sẽ tự động thay thế địa chỉ cũ bằng địa chỉ mới của bạn.\n\nĐiều đó thật tuyệt vời khuyên bạn nên thiết lập nhà cung cấp email cũ để chuyển tiếp tất cả email đến địa chỉ email mới của bạn. Nếu không, bạn có thể bỏ lỡ tin nhắn của những người chưa nhận được địa chỉ mới của bạn.";
@@ -716,7 +716,7 @@
 "ephemeral_timer_weeks_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ tuần.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %2$@ đặt thành %1$@ tuần.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ đã gửi tin nhắn từ một thiết bị khác.";
 "chat_protection_enabled_tap_to_learn_more" = "Tin nhắn được đảm bảo sẽ được mã hóa hai đầu kể từ bây giờ. Nhấn để tìm hiểu thêm.";
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
@@ -774,11 +774,12 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ đã trả lời, đang chờ được thêm vào nhóm…";
 "contact_verified" = "%1$@ đã được giới thiệu.";
+// deprecated, was stock string
 "contact_not_verified" = "Không thể thiết lập mã hóa đầu cuối được đảm bảo với %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Được giới thiệu bởi %1$@";
 "verified_by_you" = "Được tôi giới thiệu";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Đã thay đổi thiết lập cho %1$@.";
 "verified_contact_required_explain" = "Để đảm bảo mã hóa hai đầu, bạn chỉ có thể thêm những người liên hệ có dấu kiểm màu xanh lục vào nhóm này.\n\nBạn có thể gặp trực tiếp những người liên hệ và quét Mã QR của họ để giới thiệu họ.";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";

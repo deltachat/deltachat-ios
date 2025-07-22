@@ -328,7 +328,7 @@
 "tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ pasikeitė adresą iš %2$@ į %3$@";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -611,7 +611,7 @@
 "ephemeral_timer_weeks_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sav.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ išsiuntė žinutę iš kito įrenginio.";
 // deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ išsiuntė žinutę iš kito įrenginio. Bakstelėkite norėdami sužinoti daugiau.";
@@ -648,8 +648,9 @@
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
 "contact_verified" = "%1$@ patvirtintas.";
+// deprecated, was stock string
 "contact_not_verified" = "Nepavyksta patvirtinti %1$@";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
 "mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";

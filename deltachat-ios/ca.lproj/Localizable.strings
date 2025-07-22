@@ -444,7 +444,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Graella quadrada";
 "send_message" = "Envia el missatge";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ ha canviat la seva adreça de %2$@ a %3$@";
 // deprecated
 "aeap_explanation" = "Heu canviat la vostra adreça de correu electrònic de %1$@ a %2$@.\n\nSi ara envieu un missatge a un grup verificat, els contactes del grup canviaran de forma automàtica l\'adreça antiga per la nova.\n\nUs recomanem que configureu el compte antic a fi que us reenvïi els missatges a l\'adreça nova. Si no ho feu, podríeu perdre missatges de contactes que encara no hagin actualitzat la vostra adreça.";
@@ -828,7 +828,7 @@
 "ephemeral_timer_weeks_by_you" = "Heu definit el temporitzador dels missatges fonedissos a %1$@ setmanes.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ setmanes.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ ha enviat un missatge des d\'un altre dispositiu.";
 "chat_protection_enabled_tap_to_learn_more" = "Us garantim que a partir d\'ara els missatges són xifrats d\'extrem a extrem. Toqueu per a obtenir més informació.";
 "chat_protection_enabled_explanation" = "Ara es garanteix que tots els missatges d\'aquest xat són xifrats d\'extrem a extrem.\n\nEl xifratge d\'extrem a extrem manté privats els missatges entre vós i els companys de xat. Ni tan sols el vostre proveïdor de correu electrònic pot llegir-los.";
@@ -894,11 +894,12 @@
 // deprecated
 "secure_join_wait_timeout" = "Encara no es pot garantir el xifrat punt-a-punt, però ja podeu enviar un missatge.";
 "contact_verified" = "%1$@ verificat.";
+// deprecated, was stock string
 "contact_not_verified" = "No es pot verificar%1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Afegit per %1$@";
 "verified_by_you" = "Afegit per mi";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Configuració canviada per %1$@";
 "verified_contact_required_explain" = "Per a garantir el xifrat extrem a extrem, només podeu afegir a aquest grup contactes que tinguin la marca verda.\n\nPodeu trobar-vos en persona amb els contactes per a escanejar els seus codis QR i poder-los afegir. ";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
@@ -1051,5 +1052,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";
 "perm_enable_bg_already_done" = "Ja heu autoritzat Delta Chat a rebre missatges en segon pla.\n\nSi encara no us arriben els missatge, reviseu els paràmetres de sistema.";
+// deprecated
 "update_1_50_android" = "Què hi ha de nou?\n\n❤️‍🔥 Un selector d\'emojis nou amb més emojis\n\n🎮 Aplicacions al xat millorades: rebeu notificacions i obriu les aplicacions suportades segons el context. P. ex. obriu una entrada afegida al calendari directament.\n\n👍 Rebeu notificacions de les reaccions dels vostres missatges\n\n... 🛠️ Correccions i moltes coses més a %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ S\'ha mogut l\'opció «Canvia el perfil»: toqueu en la vostra imatge de perfil en la cantonada superior de la finestra principal per a afegir o canviar perfils 💡";

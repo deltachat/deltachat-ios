@@ -363,7 +363,7 @@
 "tab_all_media_empty_hint" = "Materialele media partajate în orice chat vor apărea aici.";
 "media_preview" = "Previzualizare Media";
 "send_message" = "Trimiteți Mesaj";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ și-au schimbat adresa de la %2$@ la %3$@";
 // deprecated
 "aeap_explanation" = "V-ați schimbat adresa de e-mail de la %1$@ la %2$@.\n\nDacă trimiteți acum un mesaj către un grup verificat, contactele de acolo vor înlocui automat vechea adresă cu noua dumneavoastră adresă.\n\nSe recomandă să vă configurați vechiul furnizor de e-mail pentru a redirecționa toate e-mailurile către noua dumneavoastră adresă de e-mail. În caz contrar, s-ar putea să pierdeți mesaje ale contactelor care nu au primit încă noua dumneavoastră adresă.";

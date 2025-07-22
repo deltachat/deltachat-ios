@@ -438,7 +438,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Grille de photos carrées";
 "send_message" = "Envoyer message";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ a changé son adresse de %2$@ à %3$@";
 // deprecated
 "aeap_explanation" = "Vous avez changé votre adresse courriel de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe connu, votre ancienne adresse sera automatiquement remplacée par la nouvelle chez tous vos contacts dans ce groupe.\n\nIl est fortement conseillé de configurer votre ancien fournisseur de courriel de sorte à transférer tous vos courriels à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
@@ -814,7 +814,7 @@
 "ephemeral_timer_weeks_by_you" = "Vous avez réglé le temps d\'affichage des messages éphémères à %1$@ semaines.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Minuterie des messages éphémères réglée à %1$@ semaines par %2$@.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ a envoyé un message depuis un nouvel appareil.";
 "chat_protection_enabled_tap_to_learn_more" = "Les messages sont désormais garantis chiffrés de bout en bout. Appuyer pour en savoir plus.";
 "chat_protection_enabled_explanation" = "Il n\'est pas garanti que tous les messages de cette discussion sont chiffrés de bout en bout.\n\nLe chiffrement de bout en bout assure la confidentialité des messages échangés par les membres d\'une discussion. Même votre fournisseur de courriel ne peut pas les lire. ";
@@ -880,11 +880,12 @@
 // deprecated
 "secure_join_wait_timeout" = "Le chiffrement de bout en bout n\'est pas encore garanti, mais vous pouvez déjà envoyer un message.";
 "contact_verified" = "%1$@ connu.";
+// deprecated, was stock string
 "contact_not_verified" = "Impossible de garantir le chiffrement de bout en bout avec %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Connu par %1$@";
 "verified_by_you" = "Connu par vous";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Configuration modifiée pour %1$@";
 "verified_contact_required_explain" = "Pour garantir le chiffrement de bout en bout, vous pouvez ajouter à ce groupe uniquement les contacts avec un badge vert.\n\nVous pouvez rencontrer ces contacts en personne pour scanner leur code QR et les ajouter à votre liste de contacts connus.";
 "mailto_dialog_header_select_chat" = "Sélectionnez une discussion à qui envoyer le message";

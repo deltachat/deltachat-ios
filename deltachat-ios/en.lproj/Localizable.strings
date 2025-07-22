@@ -481,7 +481,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Square Grid";
 "send_message" = "Send Message";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ changed their address from %2$@ to %3$@";
 // deprecated
 "aeap_explanation" = "You changed your email address from %1$@ to %2$@.\n\nIf you now send a message to a verified group, contacts there will automatically replace the old with your new address.\n\nIt\'s highly advised to set up your old email provider to forward all emails to your new email address. Otherwise you might miss messages of contacts who did not get your new address yet.";
@@ -868,7 +868,7 @@
 "ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ sent a message from another device.";
 "chat_protection_enabled_tap_to_learn_more" = "Messages are end-to-end encrypted. Tap to learn more.";
 "chat_protection_enabled_explanation" = "All messages in this chat are end-to-end encrypted.\n\nEnd-to-end encryption keeps messages private between you and your chat partners. Not even servers, providers or relays can read them.";
@@ -933,13 +933,16 @@
 "secure_join_wait" = "Establishing end-to-end encryption, please wait…";
 // deprecated
 "secure_join_wait_timeout" = "Could not yet establish guaranteed end-to-end encryption, but you may already send a message.";
+// deprecated, was stock string
 "secure_join_takes_longer" = "The contact must be online to proceed.\n\nThis process will continue automatically in background.";
 "contact_verified" = "%1$@ introduced.";
+// deprecated, was stock string
 "contact_not_verified" = "Cannot establish end-to-end encryption with %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introduced by %1$@";
 "verified_by_you" = "Introduced by me";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"verified_by_unknown" = "Introduced";
+// deprecated, was stock string
 "contact_setup_changed" = "Changed setup for %1$@.";
 "verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green checkmark to this group.\n\nYou may meet contacts in person and scan their QR Code to introduce them.";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
@@ -1094,7 +1097,9 @@
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
 "update_2_0" = "What\'s new?\n\n💯 End-to-end encryption is reliable and forever now. Padlocks 🔒 are gone!\n\n✉️ Classic email without end-to-end encryption is marked with a letter symbol\n\n😻 New enhanced profile screen for all your contacts\n\n🔲 New button for quick access to apps used in a chat\n\n❤️ Please donate to help us remain independent and continue to bring improvements: %1$@";
+// deprecated
 "update_1_50_android" = "What\'s new?\n\n❤️‍🔥 New emojis picker with more emoji\n\n🎮 Enhanced in-chat apps: Get notifications and open supporting apps in context, i.e. open an added calendar entry directly\n\n👍 Get notified about reactions to your messages\n\n... 🛠️ FIXES and EVEN MORE at %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ \"Switch Profile\" option moved: Tap your profile image in the upper corner of the main screen to add or switch profiles 💡";
 // iOS specific untranslated strings
 "connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";

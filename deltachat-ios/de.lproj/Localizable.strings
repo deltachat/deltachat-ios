@@ -481,7 +481,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Quadratisches Raster";
 "send_message" = "Nachricht senden";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ hat die E-Mail-Adresse von %2$@ nach %3$@ geändert";
 // deprecated
 "aeap_explanation" = "Sie haben Ihre E-Mail-Adresse von %1$@ auf %2$@ geändert.\n\nWenn Sie jetzt eine Nachricht an eine verifizierte Gruppe senden, wird dort automatisch die alte durch die neue Adresse ersetzt.\n\nEs wird dringend empfohlen, Ihren alten E-Mail-Anbieter so einzurichten, dass er alle E-Mails an Ihre neue E-Mail-Adresse weiterleitet. Andernfalls könnten Sie Nachrichten von Kontakten verpassen, die Ihre neue E-Mail-Adresse noch nicht erhalten haben.";
@@ -868,7 +868,7 @@
 "ephemeral_timer_weeks_by_you" = "Sie haben die Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt von %2$@.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ hat eine Nachricht von einem anderen Gerät gesendet.";
 "chat_protection_enabled_tap_to_learn_more" = "Nachrichten sind Ende-zu-Ende-verschlüsselt. Tippen, um mehr zu erfahren.";
 "chat_protection_enabled_explanation" = "Alle Nachrichten in diesem Chat sind Ende-zu-Ende verschlüsselt.\n\nDurch die Ende-zu-Ende-Verschlüsselung bleiben die Nachrichten zwischen Ihnen und Ihren Chat-Partnern privat. Nicht einmal Server, Provider oder Relays können sie lesen.";
@@ -933,13 +933,16 @@
 "secure_join_wait" = "Ende-zu-Ende-Verschlüsselung wird aufgebaut, bitte warten...";
 // deprecated
 "secure_join_wait_timeout" = "Noch konnte keine garantierte Ende-zu-Ende-Verschlüsselung aufgebaut werden, aber Sie können bereits eine Nachricht senden.";
+// deprecated, was stock string
 "secure_join_takes_longer" = "Der Kontakt muss online sein, um fortzufahren.\n\nDieser Vorgang wird automatisch im Hintergrund fortgesetzt.";
 "contact_verified" = "%1$@ eingeführt.";
+// deprecated, was stock string
 "contact_not_verified" = "Kann keine Ende-zu-Ende-Verschlüsselung mit %1$@ herstellen.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Eingeführt von %1$@";
 "verified_by_you" = "Durch mich eingeführt";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+"verified_by_unknown" = "Eingeführt";
+// deprecated, was stock string
 "contact_setup_changed" = "Geändertes Setup für %1$@";
 "verified_contact_required_explain" = "Um Ende-zu-Ende-Verschlüsselung zu gewährleisten, können nur Kontakte mit grünem Häkchen zu dieser Gruppe hinzugefügt werden.\n\nSie könne Kontakte persönlich treffen und ihren QR-Code scannen, um sie einzuführen.";
 "mailto_dialog_header_select_chat" = "Wählen Sie den Chat, an den die Nachricht gesendet werden soll";
@@ -1093,6 +1096,8 @@
 "perm_enable_bg_reminder_title" = "Tippen Sie hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_already_done" = "Sie haben Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls keine Nachrichten eingehen, überprüfen Sie bitte auch Ihre Systemeinstellungen.";
 // device messages for updates
-"update_2_0" = "Was ist neu?\n\n💯 Die Ende-zu-Ende-Verschlüsselung ist jetzt dauerhaft. Vorhängeschlösser 🔒 gibt es nicht mehr!\n\n✉️ Klassische E-Mails ohne Ende-zu-Ende-Verschlüsselung sind mit einem Buchstabensymbol gekennzeichnet\n\n😻 Neues, verbessertes Profil für alle Kontakte\n\n🔲 Neue Schaltfläche für den schnellen Zugriff auf Apps, die in einem Chat verwendet werden\n\n❤️ Bitte Spenden Sie und helfen uns, unabhängig zu bleiben und weiterhin Verbesserungen zu bringen: %1$@";
+"update_2_0" = "Was ist neu?\n\n💯 Die Ende-zu-Ende-Verschlüsselung ist jetzt dauerhaft. Vorhängeschlösser 🔒 gibt es nicht mehr!\n\n✉️ Klassische E-Mails ohne Ende-zu-Ende-Verschlüsselung sind mit einem Umschlag-Symbol gekennzeichnet\n\n😻 Neues, verbessertes Profil für alle Kontakte\n\n🔲 Neue Schaltfläche für den schnellen Zugriff auf Apps, die in einem Chat verwendet werden\n\n❤️ Bitte Spenden Sie und helfen uns, unabhängig zu bleiben und weiterhin Verbesserungen zu bringen: %1$@";
+// deprecated
 "update_1_50_android" = "Was ist neu?\n\n❤️‍🔥 Neuer Emoji-icker mit mehr Emojis\n\n🎮 In-Chat-App Verbesserungen: Benachrichtigungen erhalten und Apps im Kontext öffnen, z.B. einen hinzugefügten Kalendereintrag direkt anzeigen\n\n👍 Lassen Sie sich über Reaktionen auf Ihre Nachrichten benachrichtigen\n\n... 🛠️ FIXES und NOCH MEHR unter %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ \"Profil wechseln\" verschoben: Tippen Sie auf Ihr Profilbild in der oberen Ecke des Hauptbildschirms, um Profile hinzuzufügen oder zu wechseln 💡.";
