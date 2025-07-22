@@ -5,8 +5,10 @@
 - Add "e2ee encrypted" info message to all e2ee chats
 - Fix connection getting stuck sometimes (by handling errors when draining FETCH responses)
 - Fix some timeout errors
+- Fix "Verified by Me" migration
+- Fix: Mark all email chats as unprotected in the migration
 - Update translations and local help
-- Update to core 2.4.0
+- Update to core 2.5.0
 
 
 ## v2.3.0 Testflight
