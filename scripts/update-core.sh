@@ -27,3 +27,7 @@ git commit -m "update deltachat-core-rust to '$commitmsg' of '$NEW'"
 echo "old: $OLD, new: $NEW"
 echo "changes are committed to local repo."
 echo "use 'git push' to use them or 'git reset HEAD~1; git submodule update --recursive' to abort."
+echo
+echo "👆 do not forget to bump version in Xcode"
+echo "👆 at 'View/Navigators/Project/deltachat-ios',"
+echo "👆 project 'deltachat-ios', 'Build Settings/Versioning'"
