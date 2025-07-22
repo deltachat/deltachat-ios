@@ -21,16 +21,6 @@ class ChatTitleView: UIStackView {
         return titleLabel
     }()
 
-    private lazy var verifiedView: UIImageView = {
-        let imgView = UIImageView()
-        let img = UIImage(named: "verified")?.scaleDownImage(toMax: 14.4)
-        imgView.isHidden = true
-        imgView.image = img
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        imgView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return imgView
-    }()
-
     private lazy var muteView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = DcColors.middleGray
@@ -55,7 +45,7 @@ class ChatTitleView: UIStackView {
     }()
 
     private lazy var titleContainer: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, verifiedView, muteView, ephemeralView, locationView])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, muteView, ephemeralView, locationView])
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 3
@@ -94,10 +84,9 @@ class ChatTitleView: UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func updateTitleView(title: String, subtitle: String?, isVerified: Bool, isMuted: Bool, isEphemeral: Bool, isSendingLocations: Bool) {
+    func updateTitleView(title: String, subtitle: String?, isMuted: Bool, isEphemeral: Bool, isSendingLocations: Bool) {
         titleLabel.text = title
         titleLabel.textColor = DcColors.defaultTextColor
-        verifiedView.isHidden = !isVerified
         muteView.isHidden = !isMuted
         ephemeralView.isHidden = !isEphemeral
         locationView.isHidden = !isSendingLocations
@@ -114,7 +103,6 @@ class ChatTitleView: UIStackView {
     func setEnabled(_ enabled: Bool) {
         titleLabel.isEnabled = enabled
         subtitleLabel.isEnabled = enabled
-        verifiedView.alpha = enabled ? 1 : 0.4
         muteView.alpha = enabled ? 1 : 0.4
         ephemeralView.alpha = enabled ? 1 : 0.4
         locationView.alpha = enabled ? 1 : 0.4

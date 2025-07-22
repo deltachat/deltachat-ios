@@ -21,15 +21,6 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
 
     private var imageHeightConstraint: NSLayoutConstraint?
 
-    private lazy var typeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.isHidden = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        imageView.isAccessibilityElement = false
-        return imageView
-    }()
-
     private lazy var iconView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +39,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
     }()
 
     private lazy var contentContainerOuterView: UIStackView = {
-        let container = UIStackView(arrangedSubviews: [typeImageView, contentContainerInnerView])
+        let container = UIStackView(arrangedSubviews: [contentContainerInnerView])
         container.axis = .vertical
         container.distribution = .fill
         container.spacing = 12
@@ -120,18 +111,6 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
             messageLabel.font =  UIFont.preferredFont(for: .subheadline, weight: .medium)
         }
 
-        if let infoType = infoType {
-            switch infoType {
-            case DC_INFO_PROTECTION_ENABLED:
-                typeImageView.image = UIImage(named: "verified_large")
-                typeImageView.isHidden = false
-            default:
-                typeImageView.isHidden = true
-            }
-        } else {
-            typeImageView.isHidden = true
-        }
-
         iconView.image = image
         iconView.isHidden = image == nil
         var corners: UIRectCorner = []
@@ -158,7 +137,6 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
         messageLabel.attributedText = nil
         showSelectionBackground = false
         iconView.image = nil
-        typeImageView.isHidden = true
     }
     
     public override func willTransition(to state: UITableViewCell.StateMask) {

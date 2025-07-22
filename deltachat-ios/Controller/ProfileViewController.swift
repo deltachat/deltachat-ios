@@ -58,11 +58,15 @@ class ProfileViewController: UITableViewController {
 
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(systemName: "hand.wave")
         if let contact {
+            cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 21.0)
+
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
-            if verifierId == DC_CONTACT_ID_SELF {
+            if verifierId == 0 {
+                cell.accessoryType = .none
+                verifiedInfo = String.localized("verified_by_unknown")
+            } else if verifierId == DC_CONTACT_ID_SELF {
                 cell.accessoryType = .none
                 verifiedInfo = String.localized("verified_by_you")
             } else {
@@ -247,7 +251,7 @@ class ProfileViewController: UITableViewController {
             options.append(.bio)
         }
 
-        if let contact, contact.getVerifierId() != 0 {
+        if !isSavedMessages && !isDeviceChat, let contact, contact.isVerified {
             actions.append(.verifiedBy)
         }
 
@@ -392,7 +396,6 @@ class ProfileViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
-            headerCell.setGreenCheckmark(greenCheckmark: chat.isProtected)
         } else if let contact {
             headerCell.updateDetails(title: contact.displayName)
             if let img = contact.profileImage {
@@ -400,7 +403,6 @@ class ProfileViewController: UITableViewController {
             } else {
                 headerCell.setBackupImage(name: contact.displayName, color: contact.color)
             }
-            headerCell.setGreenCheckmark(greenCheckmark: contact.isVerified)
         }
     }
 
