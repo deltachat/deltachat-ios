@@ -459,7 +459,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "方形網格";
 "send_message" = "傳送訊息";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ 已將他的位址從 %2$@更改 為 %3$@";
 // deprecated
 "aeap_explanation" = "您已將電子郵件位址從%1$@更改為%2$@ 。\n\n如果您現在向已驗證的群組發送消息，那裡的聯絡人會自動將舊位址替換為您的新位址。\n\n強烈建議您將舊電子郵件供應商設置為將所有電子郵件轉發到您的新電子郵件位址。否則，您可能會錯過尚未獲得新地址的聯絡人的消息。";
@@ -844,7 +844,7 @@
 "ephemeral_timer_weeks_by_you" = "您將自動刪除訊息計時器設置為%1$@週。";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@將自動刪除訊息計時器設置為%1$@週。";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@從另一台裝置傳送了一條訊息。";
 "chat_protection_enabled_tap_to_learn_more" = "從現在開始，保證消息進行端到端加密。輕觸以瞭解更多資訊。";
 "chat_protection_enabled_explanation" = "現在可以保證此聊天中的所有消息都是端到端加密的。\n\n端到端加密使您和您的聊天夥伴之間的消息保持私密。甚至您的電子郵件供應商也無法讀取它們。";
@@ -909,13 +909,15 @@
 "secure_join_wait" = "正在建立有保證的端到端加密，請稍候...";
 // deprecated
 "secure_join_wait_timeout" = "尚無法建立有保證的端到端加密，但您可能已經送出了一條訊息。";
+// deprecated, was stock string
 "secure_join_takes_longer" = "聯繫人必須處於連線狀態才能繼續。\n\n此過程將在後台自動繼續。";
 "contact_verified" = "%1$@已介紹。";
+// deprecated, was stock string
 "contact_not_verified" = "無法與%1$@建立有保證的端到端加密。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "由%1$@介紹";
 "verified_by_you" = "由我介紹";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "已爲%1$@更改設定。";
 "verified_contact_required_explain" = "為了保證端到端加密，您只能將帶有綠色驗證標識的聯絡人添加到此群組。\n\n您可以當面掃描聯絡人的QR碼以介紹他們。";
 "mailto_dialog_header_select_chat" = "選擇要將消息發送到的聊天";
@@ -1068,5 +1070,7 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
+// deprecated
 "update_1_50_android" = "新功能\n\n❤️ 🔥 新的表情符號選擇器，包含更多表情符號\n\n🎮 增強的聊天應用程式：在上下文中獲取通知並打開支援應用程式，即直接打開添加的日曆條目\n\n👍獲取有關對您的消訊息的回應的通知\n\n...🛠️ 修復以及更多在%1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️「切換賬戶」選項已移動：點擊主螢幕右上角的賬戶大頭貼以添加或切換賬戶 💡";

@@ -481,7 +481,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Kare Izgara";
 "send_message" = "İleti Gönder";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
 // deprecated
 "aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan öbeğe ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
@@ -868,7 +868,7 @@
 "ephemeral_timer_weeks_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ hafta olarak ayarladınız.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ başka bir aygıttan bir ileti gönderdi.";
 "chat_protection_enabled_tap_to_learn_more" = "İletiler uçtan uca şifreleniyor. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Bu sohbetteki tüm iletiler uçtan uca şifreleniyor.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. Sunucular, sağlayıcılar ya da aktarıcılar bile onları okuyamaz.";
@@ -933,13 +933,15 @@
 "secure_join_wait" = "Uçtan uca şifreleme kuruluyor, lütfen bekleyin…";
 // deprecated
 "secure_join_wait_timeout" = "Henüz güvencelenen uçtan uca şifreleme kurulamadı; ama zaten bir ileti gönderebilirsiniz.";
+// deprecated, was stock string
 "secure_join_takes_longer" = "Sürdürmek için kişi çevrimiçi olmalıdır.\n\nBu işlem, arka planda otomatik olarak sürecek.";
 "contact_verified" = "%1$@ tanıtıldı.";
+// deprecated, was stock string
 "contact_not_verified" = "%1$@ ile uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ tarafından tanıtıldı";
 "verified_by_you" = "Benim tarafımdan tanıtıldı";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir onay imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
@@ -1092,5 +1094,9 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat arka plandayken iletileri almak için buraya dokunun.";
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
+// device messages for updates
+"update_2_0" = "Ne yeni?\n\n💯 Uçtan uca şifreleme artık güvenilir ve sonsuza kadar geçerli. Asma kilitlerle 🔒 anlaşılabilir!\n\n✉️ Uçtan uca şifrelemeli olmayan klasik e-posta bir mektup sembolü olarak işaretlenir\n\n😻 Tüm kişileriniz için yeni geliştirilen profil ekranı\n\n🔲 Bir sohbette kullanılan uygulamalara hızlı erişim için yeni düğme\n\n❤️ Bağımsız kalmamız ve yeni geliştirmeler getirmemiz için lütfen bize yardım edin: %1$@";
+// deprecated
 "update_1_50_android" = "Ne yeni?\n\n❤️‍🔥 Daha fazla emojiyle yeni emoji seçicisi\n\n🎮 Geliştirilen sohbet içi uygulamalar: Bildirimler alın ve destekleyen uygulamaları bağlamda açın, yani eklenen bir takvim girdisini doğrudan açın\n\n👍 İletilerinize verilen tepkiler hakkında bildirimler alın\n\n... 🛠️ DÜZELTMELER ve HATTA DAHA FAZLASI için %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ “Profili Değiştir” seçeneği taşındı: Yeni profil eklemek ya da profilleri değiştirmek için ana ekranın üst köşesindeki profil görselinize dokunun 💡";

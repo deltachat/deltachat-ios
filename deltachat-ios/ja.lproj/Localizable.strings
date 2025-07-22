@@ -543,8 +543,9 @@
 "qrshow_join_contact_no_connection_toast" = "インターネットに接続されていないので、QRコードの設定ができません。";
 "qraccount_ask_create_and_login" = "%1$@に新しいメールアドレスを作ってログしますか。";
 "contact_verified" = "%1$@を確認しました。";
+// deprecated, was stock string
 "contact_not_verified" = "%1$@を確認できません。";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "設定が%1$@に変わりました。";
 // notifications
 "notify_reply_button" = "返信";

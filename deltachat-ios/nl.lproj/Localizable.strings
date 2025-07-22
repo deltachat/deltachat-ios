@@ -481,7 +481,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Vierkant rooster";
 "send_message" = "Bericht versturen";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ heeft zijn/haar adres veranderd van %2$@ naar %3$@";
 // deprecated
 "aeap_explanation" = "Je hebt je e-mailadres veranderd van %1$@ naar %2$@.\n\nAls je een bericht stuurt aan een goedgekeurde groep, dan zien contactpersonen in de groep je nieuwe adres.\n\nWel raden we aan om bij je oude provider in te stellen dat je e-mails wilt doorsturen naar je nieuwe adres, anders missen sommige contactpersonen mogelijk je berichten.";
@@ -868,7 +868,7 @@
 "ephemeral_timer_weeks_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ weken.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ heeft een bericht verstuurd vanaf een ander apparaat.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
 "chat_protection_enabled_explanation" = "Alle berichten in dit gesprek zijn gegarandeerd van eind-tot-eindversleuteling voorzien.\n\nMet behulp van deze versleuteling blijven berichten tussen jou en je gesprekspartners geheim - zelfs je e-mailprovider kan ze niet uitlezen.";
@@ -933,13 +933,15 @@
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
 // deprecated
 "secure_join_wait_timeout" = "Er kan nog geen eind-tot-eindversleuteling worden gegarandeerd, maar je kunt wel alvast een bericht sturen.";
+// deprecated, was stock string
 "secure_join_takes_longer" = "Het lijkt langer te duren dan verwacht - wellicht is een van jullie offline.\n\nHet proces wordt echter op de achtergrond voortgezet.";
 "contact_verified" = "%1$@ is goedgekeurd.";
+// deprecated, was stock string
 "contact_not_verified" = "Er kan geen eind-tot-eindversleuteling met %1$@ worden gegarandeerd.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Geïntroduceerd door %1$@";
 "verified_by_you" = "Geïntroduceerd door mij";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_contact_required_explain" = "Om de eind-tot-eindversleuteling te garanderen, kun je alleen contactpersonen met een groen vinkje toevoegen aan deze groep.\n\nVan niet-goedgekeurde contactpersonen kun je de QR-code scannen om ze goed te keuren.";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
@@ -1092,5 +1094,9 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
 "perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
+// device messages for updates
+"update_2_0" = "Wijzigingslog:\n\n💯 Eind-tot-eindversleuteling is voortaan betrouwbaarder én standaard. Slotjes 🔒 zijn verleden tijd!\n\n✉️ Klassieke e-mails zonder eind-tot-eindversleuteling worden voortaan gemarkeerd met een letter\n\n😻 Nieuwe, mooiere profielpagina\'s van al je contactpersonen\n\n🔲 Nieuwe knop voor snelle toegang tot apps in gesprekken\n\n❤️ Overweeg een donatie, zodat we onafhankelijk kunnen blijven en verbeteringen kunnen blijven aanbrengen: %1$@";
+// deprecated
 "update_1_50_android" = "Wijzigingslog:\n\n❤️‍🔥 Nieuwe emojikiezer met veel meer emojis\n\n🎮 Verbeterde apps in gesprekken: ontvang meldingen open ondersteunde apps met links, bijv. een agenda-uitnodiging\n\n👍 Ontvang meldingen bij reacties op berichten\n\n… 🛠️ Opgeloste fouten en VEEL MEER op %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ De optie om een ander profiel te kiezen is verplaatst: druk op je profielfoto op het hoofdscherm om het profielmenu te openen.💡";

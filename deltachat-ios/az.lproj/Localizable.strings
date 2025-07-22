@@ -346,8 +346,9 @@
 "qrshow_join_contact_hint" = "%1$@ilə əlaqə qurmaq üçün bunu skan edin";
 "qrshow_join_contact_no_connection_toast" = "İnternet bağlantısı yoxdur, QR kodunu qura bilmir.";
 "contact_verified" = "%1$@ yoxlanıldı.";
+// deprecated, was stock string
 "contact_not_verified" = "%1$@Doğrula bilmir";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "%1$@üçün quraşdırma dəyişdirildi";
 // notifications
 "notify_reply_button" = "Cavab ver";

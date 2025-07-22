@@ -481,7 +481,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
 // deprecated
 "aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani partnerei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail-szolgáltatója továbbítsa-e az összes e-mailt az e-mail-címére. Ellenkező esetben lemaradhat azoknak a partnereinek az üzeneteiről, akik még nem kapták meg az új címét.";
@@ -868,7 +868,7 @@
 "ephemeral_timer_weeks_by_you" = "Ön az eltűnő üzenetek időzítőjét %1$@ hétre állította be.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ az eltűnő üzenetek időzítőjét%1$@ hétre állította be.";
-// this may be shown instead of the chat's input field, with buttons "More Info" and "OK"
+// deprecated
 "chat_protection_broken" = "%1$@ egy másik eszközről küldött üzenetet.";
 "chat_protection_enabled_tap_to_learn_more" = "Az üzenetek mostantól garantáltan titkosítva lesznek a végpontok között. Koppintson, ha többet szeretne tudni.";
 "chat_protection_enabled_explanation" = "Mostantól garantált, hogy ebben a csevegésben az összes üzenet végpontok közötti titkosítással rendelkezik.\n\nA végpontok közötti titkosítással az üzenetek bizalmasak maradnak Ön és a partnerei között. Még az e-mail-szolgáltatója sem tudja elolvasni őket.";
@@ -933,13 +933,15 @@
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
 // deprecated
 "secure_join_wait_timeout" = "Még nem sikerült a garantált végpontok közötti titkosítást létrehozni, de már küldhet üzenetet.";
+// deprecated, was stock string
 "secure_join_takes_longer" = "Úgy tűnik, hogy ez tovább tart, mint gondoltuk, talán a partnere vagy Ön offline állapotban van.\n\nMindenesetre a folyamat a háttérben folytatódik, eközben csinálhat valami mást…";
 "contact_verified" = "%1$@ bemutatva.";
+// deprecated, was stock string
 "contact_not_verified" = "Nem lehet garantált végpontok közötti titkosítást létrehozni vele: %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ által bemutatva";
 "verified_by_you" = "Ön által bemutatva";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Megváltoztatta a beállításokat %1$@ számára.";
 "verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
@@ -1092,6 +1094,8 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Koppintson ide az üzenetek fogadásához, miközben a Delta Chat a háttérben fut.";
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
+// deprecated
 "update_1_50_android" = "Mik az újdonságok?\n\n❤️‍🔥 Új emodzsi-választó még több emodzsival\n\n🎮 Továbbfejlesztett, a csevegésben használható alkalmazások: Értesítéseket kaphat és megnyithatja az azokat támogató alkalmazásokban, azaz közvetlenül megnyithat egy hozzáadott naptárbejegyzést\n\n👍 Értesítést kaphat az üzeneteire adott reakciókról\n\n… 🛠️ Egyéb javítások, tudjon meg többet itt: %1$@";
+// deprecated
 "update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
 Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";

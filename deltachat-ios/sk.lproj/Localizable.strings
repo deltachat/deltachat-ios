@@ -354,7 +354,7 @@
 "tab_webxdc_empty_hint" = "Tu sú zobrazené súkromné aplikácie zdieľané v rámci tejto konverzácie.";
 "media_preview" = "Ukážka pre médiá";
 "send_message" = "Odoslanie správy";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ zmenil(a) svoju adresu z %2$@ na %3$@";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
@@ -684,8 +684,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@odpovedal a čaká sa na pridanie do skupiny...";
 "contact_verified" = "%1$@ overené.";
+// deprecated, was stock string
 "contact_not_verified" = "Cannot verify %1$@.";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Zmena nastavenia pre %1$@.";
 "mailto_dialog_header_select_chat" = "Vyberte konverzáciu, kam bude správa odoslaná";
 // first placeholder is the name of the chat

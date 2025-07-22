@@ -355,7 +355,7 @@
 "all_apps_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ.";
 "media_preview" = "Προεπισκόπιση";
 "send_message" = "Αποστολή μηνύματος";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ άλλαξαν την διεύθυνσή τους από %2$@ σε %3$@";
 // deprecated
 "aeap_explanation" = "Αλλάξατε την διεύθυνσή σας από %1$@ σε %2$@.\n\nΤώρα, εάν στείλετε ένα μήνυμα σε μια επαληθευμένη ομάδα, οι επαφές εκεί θα αντικαταστήσουν αυτόματα την παλιά με τη νέα σας διεύθυνση.\n\nΣυνιστάται ιδιαίτερα να ρυθμίσετε τον παλιό σας πάροχο email ώστε να προωθεί όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου στη νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου. Διαφορετικά, ενδέχεται να χάσετε μηνύματα επαφών που δεν έχουν λάβει ακόμη τη νέα σας διεύθυνση.";
@@ -689,8 +689,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ απάντησε, αναμονή για να προστεθεί στην ομάδα…";
 "contact_verified" = "%1$@ επαληθεύτηκε.";
+// deprecated, was stock string
 "contact_not_verified" = "Αδυναμία επαλήθευσης %1$@.";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Άλλαξε η ρύθμιση για %1$@.";
 "mailto_dialog_header_select_chat" = "Επιλέξτε συνομιλία για να στείλετε το μήνυμα";
 // first placeholder is the name of the chat

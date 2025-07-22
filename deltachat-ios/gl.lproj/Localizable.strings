@@ -435,7 +435,7 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Grella cadrada";
 "send_message" = "Enviar mensaxe";
-// Placeholder %1$s will be replaced by the name of the contact changing their address. Placeholders %2$s and %3$s will be replaced by old/new addresses.
+// deprecated, was stock string
 "aeap_addr_changed" = "%1$@ cambiou o seu enderezo de %2$@ a %3$@";
 // deprecated
 "aeap_explanation" = "Cambiaches o teu enderezo de email de %1$@ a %2$@.\n\nSe envías unha mensaxe a un grupo verificado os contactos cambiarán automáticamente o enderezo antigo polo novo.\n\nÉ moi recomendable que configures o email antigo para que che reenvíe todo o correo ao novo enderezo. De non facelo poderías perder mensaxes de contactos que aínda non coñezan o teu novo enderezo.";
@@ -798,8 +798,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ respondeu, agardando a que sexa engadido ao grupo...";
 "contact_verified" = "%1$@ verificado.";
+// deprecated, was stock string
 "contact_not_verified" = "Non se puido verificar %1$@.";
-// translators: "setup" is the "encryption setup" here, as in "Autocrypt Setup Message"
+// deprecated, was stock string
 "contact_setup_changed" = "Cambiaron os axustes para %1$@.";
 "mailto_dialog_header_select_chat" = "Elexir chat ao que enviar a mensaxe";
 // first placeholder is the name of the chat
