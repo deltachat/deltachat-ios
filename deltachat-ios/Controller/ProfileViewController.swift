@@ -59,7 +59,7 @@ class ProfileViewController: UITableViewController {
     private lazy var verifiedByCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         if let contact {
-            cell.imageView?.image = contact.isVerified ? UIImage(named: "verified")?.scaleDownImage(toMax: 21.0) : nil
+            cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 21.0)
 
             let verifierId = contact.getVerifierId()
             let verifiedInfo: String
@@ -251,7 +251,7 @@ class ProfileViewController: UITableViewController {
             options.append(.bio)
         }
 
-        if let contact, contact.isVerified {
+        if !isSavedMessages && !isDeviceChat, let contact, contact.isVerified {
             actions.append(.verifiedBy)
         }
 
