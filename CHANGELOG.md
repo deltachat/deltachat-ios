@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Green checkmarks removed where they mostly refer to encryption, which is the default now. They are still used for profile's "Introduced by"
 - Add "e2ee encrypted" info message to all e2ee chats
 - Fix connection getting stuck sometimes (by handling errors when draining FETCH responses)
 - Fix some timeout errors
@@ -16,7 +17,7 @@
 2025-07
 
 - Separate between unencrypted and encrypted chats, avoiding mixing of encrypted/unencrypted messages in the same chat
-- Removed padlocks and most green checkmarks, as encrypted is the default "normal" state. Instead, unencrypted email is marked with a small letter icon
+- Removed padlocks, as encrypted is the default "normal" state. Instead, unencrypted email is marked with a small letter icon
 - Classic email chats get a big letter icon making it easy to recognize
 - Option to create a new email with subject and recipients
 - Extend webxdc view into safe area
