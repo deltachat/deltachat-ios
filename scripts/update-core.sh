@@ -25,9 +25,8 @@ cd ../../..
 git add deltachat-ios/libraries/deltachat-core-rust
 git commit -m "update deltachat-core-rust to '$commitmsg' of '$NEW'"
 echo "old: $OLD, new: $NEW"
-echo "changes are committed to local repo."
-echo "use 'git push' to use them or 'git reset HEAD~1; git submodule update --recursive' to abort."
+echo "use 'git push' to use chages or 'git reset HEAD~1; git submodule update --recursive' to abort."
 echo
-echo "👆 do not forget to bump version in Xcode"
-echo "👆 at 'View/Navigators/Project/deltachat-ios',"
-echo "👆 project 'deltachat-ios', 'Build Settings/Versioning'"
+echo "👆 do not forget to update CHANGELOG and to bump version in Xcode"
+echo "👆 ('View/Navigators/Project/deltachat-ios',"
+echo "👆 project 'deltachat-ios', 'Build Settings/Versioning')"

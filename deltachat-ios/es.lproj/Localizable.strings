@@ -219,6 +219,7 @@
 "please_enter_broadcast_list_name" = "Por favor, introduce un nombre para la difusión.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nombre del canal";
+"email" = "Correo electrónico";
 // "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
 "new_email" = "Nuevo correo electrónico";
 // the "Subject" of an e-mail, use the term common in classic e-mail apps
@@ -317,6 +318,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Añadir a la pantalla principal";
 "donate" = "Donar";
+"donate_device_msg" = "❤️ ¡Parece que disfrutas de Delta Chat!\n\nPor favor, considera donar para ayudar a garantizar que Delta Chat siga siendo gratuito para todos.\n\nAunque Delta Chat es gratuito y de código abierto, su desarrollo cuesta dinero. Ayúdanos a mantener la independencia de Delta Chat y a hacerlo aún mejor en el futuro.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_eight_hours" = "Silenciar por 8 horas";
 "mute_for_one_day" = "Silenciar por 1 día";
@@ -454,7 +456,7 @@
 "group_add_members" = "Añadir miembros";
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
 "profile_encryption" = "Cifrado";
-"profile_shared_chats" = "Chats compartidos";
+"profile_shared_chats" = "Chats en común";
 "related_chats" = "Chats similares";
 // Separator between the list of actual members and past members
 "past_members" = "Miembros anteriores";
@@ -939,6 +941,7 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificado por %1$@";
 "verified_by_you" = "Verificado por ti";
+"verified_by_unknown" = "Introducido";
 // deprecated, was stock string
 "contact_setup_changed" = "Configuración cambiada para %1$@.";
 "verified_contact_required_explain" = "Para garantizar el cifrado de extremo a extremo, solo puedes añadir contactos con una marca de verificación verde";
@@ -1092,6 +1095,8 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
+// device messages for updates
+"update_2_0" = "¿Qué hay de nuevo?\n\n💯 El cifrado de extremo a extremo es fiable y para siempre. ¡Se acabaron los candados 🔒!\n\n✉️ El correo electrónico clásico sin cifrado de extremo a extremo es marcado con un símbolo de carta.\n\n😻 Nueva pantalla de perfil mejorada para todos tus contactos.\n\n🔲 Nuevo botón para acceder rápidamente a las apps usadas en el chat.\n\n❤️ Dona para ayudarnos a mantener nuestra independencia y seguir mejorando: %1$@";
 // deprecated
 "update_1_50_android" = "¿Qué hay de nuevo?\n\n❤️‍🔥 Nuevo selector de emojis con más emojis\n\n🎮 Aplicaciones de chat mejoradas: recibe notificaciones y abre aplicaciones en contexto, por ejemplo, abre una entrada de calendario agregada directamente\n\n👍 Recibe notificaciones sobre las reacciones a tus mensajes\n\n... 🛠️ CORRECCIONES y AÚN MÁS en %1$@";
 // deprecated
