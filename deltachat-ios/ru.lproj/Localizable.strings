@@ -941,6 +941,7 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Подтверждён: %1$@";
 "verified_by_you" = "Подтверждён: Лично";
+"verified_by_unknown" = "Подтверждён";
 // deprecated, was stock string
 "contact_setup_changed" = "Изменены настройки для %1$@";
 "verified_contact_required_explain" = "Чтобы обеспечить сквозное шифрование, вы можете добавлять в эту группу только контакты с зеленой галочкой.\n\nВы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";

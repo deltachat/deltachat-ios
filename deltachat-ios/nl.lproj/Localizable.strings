@@ -941,6 +941,7 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Geïntroduceerd door %1$@";
 "verified_by_you" = "Geïntroduceerd door mij";
+"verified_by_unknown" = "Geïntroduceerd";
 // deprecated, was stock string
 "contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_contact_required_explain" = "Om de eind-tot-eindversleuteling te garanderen, kun je alleen contactpersonen met een groen vinkje toevoegen aan deze groep.\n\nVan niet-goedgekeurde contactpersonen kun je de QR-code scannen om ze goed te keuren.";
