@@ -7,8 +7,9 @@
 - Fix some timeout errors
 - Fix "Verified by Me" migration
 - Fix: Mark all email chats as unprotected in the migration
+- Fix rare crash on self-sent verification-gossiping message
 - Update translations and local help
-- Update to core 2.5.0
+- Update to core 2.6.0
 
 
 ## v2.3.0 Testflight
