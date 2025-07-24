@@ -941,6 +941,7 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificato da %1$@";
 "verified_by_you" = "Verificato da me";
+"verified_by_unknown" = "Presentato";
 // deprecated, was stock string
 "contact_setup_changed" = "Impostazioni modificate per %1$@";
 "verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo i contatti con un segno di spunta verde.\n\nPuoi incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
