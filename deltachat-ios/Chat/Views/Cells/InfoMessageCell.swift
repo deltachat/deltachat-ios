@@ -21,6 +21,13 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
 
     private var imageHeightConstraint: NSLayoutConstraint?
 
+    private lazy var spacerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
+        return view
+    }()
+
     private lazy var iconView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +46,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
     }()
 
     private lazy var contentContainerOuterView: UIStackView = {
-        let container = UIStackView(arrangedSubviews: [contentContainerInnerView])
+        let container = UIStackView(arrangedSubviews: [spacerView, contentContainerInnerView])
         container.axis = .vertical
         container.distribution = .fill
         container.spacing = 12
@@ -91,6 +98,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
             messageBackgroundContainer.constraintAlignTopTo(contentContainerInnerView, paddingTop: -6),
             messageBackgroundContainer.constraintAlignBottomTo(contentContainerInnerView, paddingBottom: -6),
             messageBackgroundContainer.constraintAlignTrailingTo(contentContainerInnerView, paddingTrailing: -10),
+            spacerView.heightAnchor.constraint(equalToConstant: 16),
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
         ])
 
@@ -103,7 +111,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
         trailingConstraintEditingMode?.isActive = isEditing
     }
 
-    func update(text: String?, weight: UIFont.Weight? = nil, image: UIImage? = nil, infoType: Int32? = nil) {
+    func update(text: String?, weight: UIFont.Weight? = nil, image: UIImage? = nil, infoType: Int32? = nil, isHeader: Bool = false) {
         messageLabel.text = text
         if let weight = weight {
             messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: weight)
@@ -111,6 +119,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
             messageLabel.font =  UIFont.preferredFont(for: .subheadline, weight: .medium)
         }
 
+        spacerView.isHidden = !isHeader
         iconView.image = image
         iconView.isHidden = image == nil
         var corners: UIRectCorner = []
