@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.6.0 Testflight
+2025-07
 
 - Green checkmarks removed where they mostly refer to encryption, which is the default now. They are still used for profile's "Introduced by"
 - Add "e2ee encrypted" info message to all e2ee chats
