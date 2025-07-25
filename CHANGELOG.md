@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Easier recognizable date headlines
 - Fix updating avatars when scanning other's QR code
 
 
