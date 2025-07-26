@@ -1,9 +1,11 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.6.1 Testflight
 
 - Easier recognizable date headlines
 - Fix updating avatars when scanning other's QR code
+- Update translations and local help
+- Using core 2.6.0
 
 
 ## v2.6.0 Testflight
