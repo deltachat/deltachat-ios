@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix updating avatars when scanning other's QR code
+
+
 ## v2.6.0 Testflight
 2025-07
 
