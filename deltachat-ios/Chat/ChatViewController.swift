@@ -178,6 +178,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMsgReadDeliveredReactionFailed(_:)), name: Event.messageReadDeliveredFailedReaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleChatModified(_:)), name: Event.chatModified, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleContactsChanged(_:)), name: Event.contactsChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleEphemeralTimerModified(_:)), name: Event.ephemeralTimerModified, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: nil)
@@ -399,6 +400,16 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                     self.messageInputBar.isHidden = true
                 }
             }
+            self.updateTitle()
+        }
+    }
+
+    @objc private func handleContactsChanged(_ notification: Notification) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            dcChat = self.dcContext.getChat(chatId: chatId)
+            self.refreshMessages()
             self.updateTitle()
         }
     }
