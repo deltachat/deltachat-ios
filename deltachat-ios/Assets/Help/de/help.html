@@ -40,20 +40,20 @@
     <ul>
       <li><a href="#welche-standards-werden-für-die-ende-zu-ende-verschlüsselung-verwendet">Welche Standards werden für die Ende-zu-Ende-Verschlüsselung verwendet?</a></li>
       <li><a href="#whene2e">Wie kann ich wissen, ob Nachrichten Ende-zu-Ende-verschlüsselt sind?</a></li>
-      <li><a href="#can-i-still-receive-or-send-mails-without-end-to-end-encryption">Can i still receive or send mails without end-to-end encryption?</a></li>
-      <li><a href="#howtoe2ee">How can I establish a chat with a new contact?</a></li>
-      <li><a href="#e2eeguarantee">What does the green checkmark in a contact profile mean?</a></li>
+      <li><a href="#kann-ich-e-mails-ohne-ende-zu-ende-verschlüsselung-empfangen-oder-senden">Kann ich E-Mails ohne Ende-zu-Ende-Verschlüsselung empfangen oder senden?</a></li>
+      <li><a href="#howtoe2ee">Wie kann ich einen Chat mit einem neuen Kontakt erstellen?</a></li>
+      <li><a href="#e2eeguarantee">Was bedeutet das grüne Häkchen in einem Kontaktprofil?</a></li>
       <li><a href="#sind-anhänge-bilder-dateien-audio-usw-ende-zu-ende-verschlüsselt">Sind Anhänge (Bilder, Dateien, Audio usw.) Ende-zu-Ende-verschlüsselt?</a></li>
       <li><a href="#openpgp-secure">Ist OpenPGP sicher?</a></li>
-      <li><a href="#openpgp-alternatives">Did you consider using alternatives to OpenPGP for end-to-end-encryption?</a></li>
+      <li><a href="#openpgp-alternatives">Wurden Alternativen zu OpenPGP für die Ende-zu-Ende-Verschlüsselung in Betracht gezogen?</a></li>
       <li><a href="#ist-delta-chat-anfällig-für-efail">Ist Delta Chat anfällig für EFAIL?</a></li>
-      <li><a href="#tls">Are messages marked with the mail icon exposed on the Internet?</a></li>
+      <li><a href="#tls">Sind mit dem Mail-Symbol markierte Nachrichten im Internet sichtbar?</a></li>
       <li><a href="#message-metadata">Wie schützt Delta Chat Metadaten in Nachrichten?</a></li>
       <li><a href="#device-seizure">Wie schützt man Metadaten und Kontakte, wenn ein Gerät beschlagnahmt wird?</a></li>
-      <li><a href="#sealedsender">Does Delta Chat support “Sealed Sender”?</a></li>
+      <li><a href="#sealedsender">Unterstützt Delta Chat „Sealed Sender“?</a></li>
       <li><a href="#pfs">Unterstützt Delta Chat “Perfect Forward Secrecy”?</a></li>
-      <li><a href="#pqc">Does Delta Chat support Post-Quantum-Cryptography?</a></li>
-      <li><a href="#how-can-i-manually-check-encryption-information">How can I manually check encryption information?</a></li>
+      <li><a href="#pqc">Unterstützt Delta Chat Post-Quantum-Verschlüsselung?</a></li>
+      <li><a href="#wie-kann-ich-die-verschlüsselung-manuell-überprüfen">Wie kann ich die Verschlüsselung manuell überprüfen?</a></li>
       <li><a href="#importkey">Kann ich meinen existierenden privaten Schlüssel weiter verwenden?</a></li>
       <li><a href="#security-audits">Wurde Delta Chat unabhängig auf Sicherheitslücken geprüft?</a></li>
     </ul>
@@ -87,7 +87,7 @@
     <ul>
       <li><a href="#welche-app-berechtigungen-benötigt-delta-chat">Welche App-Berechtigungen benötigt Delta Chat?</a></li>
       <li><a href="#funktioniert-delta-chat-mit-meinem-e-mail-anbieter">Funktioniert Delta Chat mit <em>meinem</em> E-Mail-Anbieter?</a></li>
-      <li><a href="#i-want-to-manage-my-own-server-for-delta-chat-what-do-you-recommend">I want to manage my own server for Delta Chat. What do you recommend?</a></li>
+      <li><a href="#ich-möchte-meinen-eigenen-server-für-delta-chat-verwalten-gibt-es-empfehlungen">Ich möchte meinen eigenen Server für Delta Chat verwalten. Gibt es Empfehlungen?</a></li>
       <li><a href="#weshalb-muss-ich-mein-e-mail-kennwort-in-delta-chat-eingeben-ist-das-sicher">Weshalb muss ich mein E-Mail-Kennwort in Delta Chat eingeben? Ist das sicher?</a></li>
       <li><a href="#welche-nachrichten-erscheinen-in-delta-chat">Welche Nachrichten erscheinen in Delta Chat?</a></li>
       <li><a href="#unterstützt-delta-chat-html-e-mails">Unterstützt Delta Chat HTML-E-Mails?</a></li>
@@ -727,26 +727,25 @@ enables receivers to use end-to-end encryption with the contact.</p>
 Since the Delta Chat Version 2 release series (July 2025) 
 there are no lock or similar markers on end-to-end encrypted messages, anymore.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="can-i-still-receive-or-send-mails-without-end-to-end-encryption">
+      <p class="back"><a href="#top">^</a></p><h3 id="kann-ich-e-mails-ohne-ende-zu-ende-verschlüsselung-empfangen-oder-senden">
         
         
-          Can i still receive or send mails without end-to-end encryption? <a href="#can-i-still-receive-or-send-mails-without-end-to-end-encryption" class="anchor"></a>
+          Kann ich E-Mails ohne Ende-zu-Ende-Verschlüsselung empfangen oder senden? <a href="#kann-ich-e-mails-ohne-ende-zu-ende-verschlüsselung-empfangen-oder-senden" class="anchor"></a>
         
         
       </h3>
 
-<p>If you use default <a href="https://chatmail.at/relays">chatmail relays</a>,
-it is impossible to receive or send messages without end-to-end encryption.</p>
+<p>Wenn Sie die Standard-<a href="https://chatmail.at/relays">Chatmail-Relays</a> verwenden, ist es unmöglich, Nachrichten ohne End-to-End-Verschlüsselung zu empfangen oder zu senden.</p>
 
-<p>If you instead create a profile using a classic e-mail server,
-you can send and receive messages without end-to-end encryption. 
-Such messages lacking end-to-end encryption are marked with an e-mail icon 
+<p>Wenn Sie stattdessen ein Profil mit einem klassischen E-Mail-Server erstellen,
+können Sie Nachrichten ohne End-to-End-Verschlüsselung senden und empfangen. 
+Solche Nachrichten werden mit einem E-Mail-Symbol gekennzeichnet 
 <img style="vertical-align:middle; width:1.2em; margin:1px" src="../email-icon.png" alt="email" />.</p>
     
       <p class="back"><a href="#top">^</a></p><h3 id="howtoe2ee">
         
         
-          How can I establish a chat with a new contact? <a href="#howtoe2ee" class="anchor"></a>
+          Wie kann ich einen Chat mit einem neuen Kontakt erstellen? <a href="#howtoe2ee" class="anchor"></a>
         
         
       </h3>
@@ -795,7 +794,7 @@ end-to-end encryption will be established among all members.</p>
       <p class="back"><a href="#top">^</a></p><h3 id="e2eeguarantee">
         
         
-          What does the green checkmark in a contact profile mean? <a href="#e2eeguarantee" class="anchor"></a>
+          Was bedeutet das grüne Häkchen in einem Kontaktprofil? <a href="#e2eeguarantee" class="anchor"></a>
         
         
       </h3>
@@ -859,7 +858,7 @@ die Sicherheitseigenschaften durch das im Sommer 2023 angenommene
       <p class="back"><a href="#top">^</a></p><h3 id="openpgp-alternatives">
         
         
-          Did you consider using alternatives to OpenPGP for end-to-end-encryption? <a href="#openpgp-alternatives" class="anchor"></a>
+          Wurden Alternativen zu OpenPGP für die Ende-zu-Ende-Verschlüsselung in Betracht gezogen? <a href="#openpgp-alternatives" class="anchor"></a>
         
         
       </h3>
@@ -902,7 +901,7 @@ so wie in der Autocrypt-Level-1-Spezifikation definiert.</p>
       <p class="back"><a href="#top">^</a></p><h3 id="tls">
         
         
-          Are messages marked with the mail icon exposed on the Internet? <a href="#tls" class="anchor"></a>
+          Sind mit dem Mail-Symbol markierte Nachrichten im Internet sichtbar? <a href="#tls" class="anchor"></a>
         
         
       </h3>
@@ -931,21 +930,21 @@ selbst wenn die Nachricht nicht Ende-zu-Ende-verschlüsselt war.</p>
         
       </h3>
 
-<p>Unlike most other messengers, 
-Delta Chat apps do not store any metadata about contacts or groups on servers, also not in encrypted form. 
-Instead, all group metadata is end-to-end encrypted and stored on end-user devices, only.</p>
+<p>Anders als die meisten anderen Messenger 
+speichern Delta-Chat-Apps keine Metadaten über Kontakte oder Gruppen auf Servern. Auch nicht in verschlüsselter Form. 
+Stattdessen werden alle Gruppen-Metadaten durchgängig verschlüsselt und ausschließlich auf den Endgeräten der Nutzer gespeichert.</p>
 
-<p>E-mail Servers can therefore only see</p>
+<p>E-Mail-Server können deshalb nur das Folgende sehen:</p>
 
 <ul>
   <li>
-    <p>the message date,</p>
+    <p>Uhrzeit und Datum der Nachricht</p>
   </li>
   <li>
-    <p>sender and receiver addresses</p>
+    <p>Absende- und Empfangsadresse</p>
   </li>
   <li>
-    <p>and message size.</p>
+    <p>Größe der Nachricht</p>
   </li>
 </ul>
 
@@ -972,7 +971,7 @@ can not be identified easily.</p>
       <p class="back"><a href="#top">^</a></p><h3 id="sealedsender">
         
         
-          Does Delta Chat support “Sealed Sender”? <a href="#sealedsender" class="anchor"></a>
+          Unterstützt Delta Chat „Sealed Sender“? <a href="#sealedsender" class="anchor"></a>
         
         
       </h3>
@@ -1019,22 +1018,22 @@ which would make it available in all <a href="https://chatmail.at/clients">chatm
       <p class="back"><a href="#top">^</a></p><h3 id="pqc">
         
         
-          Does Delta Chat support Post-Quantum-Cryptography? <a href="#pqc" class="anchor"></a>
+          Unterstützt Delta Chat Post-Quantum-Verschlüsselung? <a href="#pqc" class="anchor"></a>
         
         
       </h3>
 
 <p>No, not yet.</p>
 
-<p>Delta Chat uses the Rust OpenPGP library <a href="https://github.com/rpg/rpg">rPGP</a>
+<p>Delta Chat uses the Rust OpenPGP library <a href="https://github.com/rpgp/rpgp">rPGP</a>
 which supports the latest <a href="https://datatracker.ietf.org/doc/draft-ietf-openpgp-pqc/">IETF Post-Quantum-Cryptography OpenPGP draft</a>. 
 We aim to add PQC support in <a href="https://github.com/chatmail/core">chatmail core</a>  after the draft is finalized at the IETF
 in collaboration with other OpenPGP implementers.</p>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="how-can-i-manually-check-encryption-information">
+      <p class="back"><a href="#top">^</a></p><h3 id="wie-kann-ich-die-verschlüsselung-manuell-überprüfen">
         
         
-          How can I manually check encryption information? <a href="#how-can-i-manually-check-encryption-information" class="anchor"></a>
+          Wie kann ich die Verschlüsselung manuell überprüfen? <a href="#wie-kann-ich-die-verschlüsselung-manuell-überprüfen" class="anchor"></a>
         
         
       </h3>
@@ -1483,10 +1482,10 @@ gesendet haben, Nachrichten an Ihre neue Adresse senden.</p>
 Allerdings benötigen einige Anbieter besondere Einstellungen, um ordnungsgemäß zu funktionieren; eine von NutzerInnen erstellte Sammlung zu einigen Optionen findet sich unter <a href="https://providers.delta.chat">Provider Overview</a>.</li>
 </ul>
     
-      <p class="back"><a href="#top">^</a></p><h3 id="i-want-to-manage-my-own-server-for-delta-chat-what-do-you-recommend">
+      <p class="back"><a href="#top">^</a></p><h3 id="ich-möchte-meinen-eigenen-server-für-delta-chat-verwalten-gibt-es-empfehlungen">
         
         
-          I want to manage my own server for Delta Chat. What do you recommend? <a href="#i-want-to-manage-my-own-server-for-delta-chat-what-do-you-recommend" class="anchor"></a>
+          Ich möchte meinen eigenen Server für Delta Chat verwalten. Gibt es Empfehlungen? <a href="#ich-möchte-meinen-eigenen-server-für-delta-chat-verwalten-gibt-es-empfehlungen" class="anchor"></a>
         
         
       </h3>
