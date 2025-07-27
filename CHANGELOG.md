@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v2.7.0 Testflight
+
+- More resilient members adding (by ordering recipients by time of addition)
+- Fix: Do not fail 1.x to 2.x migration if the verifier of a contact doesn't exist anymore
+- Fix realtime late join
+- Update to core 2.7.0
+
+
 ## v2.6.1 Testflight
 
 - Easier recognizable date headlines
