@@ -1,5 +1,13 @@
 # Delta Chat iOS Changelog
 
+## v2.8.0 Testflight
+
+- Remove ProtectionBroken, make such chats Unprotected
+- Fix: Show yourself in new groups created by v1.x Delta Chat versions (lookup self by address if there is no fingerprint or gossip)
+- Update translations
+- Update to core 2.8.0
+
+
 ## v2.7.0 Testflight
 
 - More resilient members adding (by ordering recipients by time of addition)
