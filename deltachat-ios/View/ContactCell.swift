@@ -397,6 +397,7 @@ class ContactCell: UITableViewCell {
                 avatar.setColor(contact.color)
             }
             avatar.setRecentlySeen(contact.wasSeenRecently)
+            setTimeLabel(0)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
                                 visibility: 0,
@@ -414,6 +415,7 @@ class ContactCell: UITableViewCell {
                 avatar.setColor(contact.color)
             }
             avatar.setRecentlySeen(false)
+            setTimeLabel(0)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,
                                 visibility: 0,
