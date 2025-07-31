@@ -9,11 +9,7 @@ For the core library and other common info, please refer to the
 
 For general contribution hints, please refer to [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-<img width=250 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/1.png>
-<img width=250 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/2.png>
-<img width=250 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/3.png>
-<img width=250 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/4.png>
-<img width=250 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/5.png>
+<img width=150 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/1.png> <img width=150 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/2.png> <img width=150 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/3.png> <img width=150 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/4.png> <img width=150 src=https://raw.githubusercontent.com/deltachat/interface/main/screenshots/2025-07/ios/screenshots.pro-output/5.png>
 
 
 ## Testing
