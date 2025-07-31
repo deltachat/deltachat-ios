@@ -26,8 +26,8 @@
 "join" = "Долучитися";
 "rejoin" = "Передолучитися";
 "delete" = "Видалити";
-"delete_for_me" = "Видалить у мене";
-"delete_for_everyone" = "Видалити в усіх";
+"delete_for_me" = "Видалити для мене";
+"delete_for_everyone" = "Видалити для всіх";
 "info" = "Відомості";
 "update" = "Оновити";
 "emoji" = "Емодзі";
