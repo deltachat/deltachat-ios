@@ -315,7 +315,7 @@ class ProfileViewController: UITableViewController {
             }
             actions.append(contentsOf: [primaryMenu])
 
-            if let chat, chat.canSend {
+            if let chat, chat.isEncrypted, chat.canSend {
                 let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
                 let action = action("ephemeral_messages", "stopwatch", showEphemeralController)
                 action.state = ephemeralTimer > 0 ? .on : .off
