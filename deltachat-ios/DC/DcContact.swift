@@ -57,6 +57,10 @@ public class DcContact {
         return swiftString
     }
 
+    public var isKeyContact: Bool {
+        return dc_contact_is_key_contact(contactPointer) == 1
+    }
+
     public var isVerified: Bool {
         return dc_contact_is_verified(contactPointer) > 0
     }
