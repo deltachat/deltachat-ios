@@ -1,10 +1,14 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.9.0
 
+- Fix: Display correct timer value for ephemeral timer changes
+- Fix sometimes wrong daymarkers
 - Fix: Disable non-functional 'disappearing messages' in classic email chats
 - Fix: Don't enlage email chats avatar placeholder
 - Fix contacts in global search sometimes displaying superfluous and wrong time
+- Update translations
+- Update to core 2.9.0
 
 
 ## v2.8.0
