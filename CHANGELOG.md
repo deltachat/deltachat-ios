@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix contacts in global search sometimes displaying superfluous and wrong time
+
+
 ## v2.8.0
 2025-07
 
