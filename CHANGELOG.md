@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fix: Disable non-functional 'disappearing messages' in classic email chats
+- Fix: Don't enlage email chats avatar placeholder
 - Fix contacts in global search sometimes displaying superfluous and wrong time
 
 
