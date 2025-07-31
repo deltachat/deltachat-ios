@@ -1,49 +1,13 @@
 # Delta Chat iOS Changelog
 
-## v2.8.0 Testflight
-
-- Remove ProtectionBroken, make such chats Unprotected
-- Fix: Show yourself in new groups created by v1.x Delta Chat versions (lookup self by address if there is no fingerprint or gossip)
-- Update translations
-- Update to core 2.8.0
-
-
-## v2.7.0 Testflight
-
-- More resilient members adding (by ordering recipients by time of addition)
-- Fix: Do not fail 1.x to 2.x migration if the verifier of a contact doesn't exist anymore
-- Fix realtime late join
-- Update to core 2.7.0
-
-
-## v2.6.1 Testflight
-
-- Easier recognizable date headlines
-- Fix updating avatars when scanning other's QR code
-- Update translations and local help
-- Using core 2.6.0
-
-
-## v2.6.0 Testflight
-2025-07
-
-- Green checkmarks removed where they mostly refer to encryption, which is the default now. They are still used for profile's "Introduced by"
-- Add "e2ee encrypted" info message to all e2ee chats
-- Fix connection getting stuck sometimes (by handling errors when draining FETCH responses)
-- Fix some timeout errors
-- Fix "Verified by Me" migration
-- Fix: Mark all email chats as unprotected in the migration
-- Fix rare crash on self-sent verification-gossiping message
-- Update translations and local help
-- Update to core 2.6.0
-
-
-## v2.3.0 Testflight
+## v2.8.0
 2025-07
 
 - Separate between unencrypted and encrypted chats, avoiding mixing of encrypted/unencrypted messages in the same chat
 - Removed padlocks, as encrypted is the default "normal" state. Instead, unencrypted email is marked with a small letter icon
 - Classic email chats get a big letter icon making it easy to recognize
+- Green checkmarks removed where they mostly refer to encryption, which is the default now. They are still used for profile's "Introduced by"
+- Add "e2ee encrypted" info message to all e2ee chats
 - Option to create a new email with subject and recipients
 - Extend webxdc view into safe area
 - Open media tabs deterministically at 'Apps'
@@ -55,10 +19,16 @@
 - Improve logging and error handling
 - Replace "Broadcast Lists" experiment by "Channels"
 - Indicate which message was scrolled to (eg by tapping a quote or a notification)
+- Easier recognizable date headlines
 - Fix: No longer missing notifications when app was terminated by the system
+- Fix: More resilient members adding (by ordering recipients by time of addition)
+- Fix connection getting stuck sometimes (by handling errors when draining FETCH responses)
+- Fix some timeout errors
+- Fix updating avatars when scanning other's QR code
+- Fix realtime late join
 - After some time, add a device message asking to donate. Can't wait? Donate today at https://delta.chat/donate
 - Update translations
-- Update to core 2.3.0
+- Update to core 2.8.0
 
 
 ## v1.58.6
