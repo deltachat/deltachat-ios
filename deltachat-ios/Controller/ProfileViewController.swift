@@ -466,11 +466,11 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showEnlargedAvatar() {
-        if let chat, let url = chat.profileImageURL {
+        if let chat, chat.isEncrypted, let url = chat.profileImageURL {
             let previewController = PreviewController(dcContext: dcContext, type: .single(url))
             previewController.customTitle = chat.name
             navigationController?.pushViewController(previewController, animated: true)
-        } else if let contact, let url = contact.profileImageURL {
+        } else if let contact, contact.isKeyContact, let url = contact.profileImageURL {
             let previewController = PreviewController(dcContext: dcContext, type: .single(url))
             previewController.customTitle = contact.displayName
             navigationController?.pushViewController(previewController, animated: true)
