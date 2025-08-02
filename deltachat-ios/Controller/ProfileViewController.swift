@@ -466,14 +466,18 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showEnlargedAvatar() {
-        if let chat, chat.isEncrypted, let url = chat.profileImageURL {
-            let previewController = PreviewController(dcContext: dcContext, type: .single(url))
-            previewController.customTitle = chat.name
-            navigationController?.pushViewController(previewController, animated: true)
-        } else if let contact, contact.isKeyContact, let url = contact.profileImageURL {
-            let previewController = PreviewController(dcContext: dcContext, type: .single(url))
-            previewController.customTitle = contact.displayName
-            navigationController?.pushViewController(previewController, animated: true)
+        if let chat {
+            if chat.isEncrypted && !chat.isSelfTalk && !chat.isDeviceTalk, let url = chat.profileImageURL {
+                let previewController = PreviewController(dcContext: dcContext, type: .single(url))
+                previewController.customTitle = chat.name
+                navigationController?.pushViewController(previewController, animated: true)
+            }
+        } else if let contact {
+            if contact.isKeyContact, let url = contact.profileImageURL {
+                let previewController = PreviewController(dcContext: dcContext, type: .single(url))
+                previewController.customTitle = contact.displayName
+                navigationController?.pushViewController(previewController, animated: true)
+            }
         }
     }
 
