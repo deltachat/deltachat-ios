@@ -834,7 +834,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
-                subtitle = nil
+                subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
                 let dcContact = dcContext.getContact(id: chatContactIds[0])
                 if dcContact.isBot {
@@ -858,13 +858,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             button.accessibilityLabel = String.localized("apps_and_media")
             rightBarButtonItems.append(button)
 
+            if let image = dcChat.profileImage {
+                titleView.initialsBadge.setImage(image)
+            } else {
+                titleView.initialsBadge.setName(dcChat.name)
+                titleView.initialsBadge.setColor(dcChat.color)
+            }
+
             if !dcChat.isSelfTalk {
-                if let image = dcChat.profileImage {
-                    titleView.initialsBadge.setImage(image)
-                } else {
-                    titleView.initialsBadge.setName(dcChat.name)
-                    titleView.initialsBadge.setColor(dcChat.color)
-                }
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
             } else {
