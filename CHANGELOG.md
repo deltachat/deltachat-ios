@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Do not enlarge default icons as 'Saved Messages' or 'Device Chat'
+- show 'Saved Messages' icon in title
+
+
 ## v2.9.0
 
 - Fix: Display correct timer value for ephemeral timer changes
