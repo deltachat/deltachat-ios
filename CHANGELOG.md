@@ -1,12 +1,17 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.10.0
+2025-08
 
 - Do not enlarge default icons as 'Saved Messages' or 'Device Chat'
-- show 'Saved Messages' icon in title
+- Show 'Saved Messages' icon in title
+- When tapping an email address, open existing encrypted chat, if any
+- Update translations
+- Update to core 2.10.0
 
 
 ## v2.9.0
+2025-08
 
 - Fix: Display correct timer value for ephemeral timer changes
 - Fix sometimes wrong daymarkers
