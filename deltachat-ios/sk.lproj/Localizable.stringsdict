@@ -102,6 +102,26 @@
 			<string>%d správa</string>
 		</dict>
 	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d reakcia</string>
+			<key>few</key>
+			<string>%d reakcie</string>
+			<key>many</key>
+			<string>%d reakcií</string>
+			<key>other</key>
+			<string>%d reakcií</string>
+		</dict>
+	</dict>
 	<key>n_members</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -180,6 +200,46 @@
 			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
 			<key>other</key>
 			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Odstrániť %d konverzáciu zo všetkých vašich zariadení?</string>
+			<key>few</key>
+			<string>Odstrániť %d konverzácie zo všetkých vašich zariadení?</string>
+			<key>many</key>
+			<string>Odstrániť %d konverzácii zo všetkých vašich zariadení?</string>
+			<key>other</key>
+			<string>Odstrániť %d konverzácii zo všetkých vašich zariadení?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Odstrániť %d správu zo všetkých vašich zariadení?</string>
+			<key>few</key>
+			<string>Odstrániť %d správy zo všetkých vašich zariadení?</string>
+			<key>many</key>
+			<string>Odstrániť %d správ zo všetkých vašich zariadení?</string>
+			<key>other</key>
+			<string>Odstrániť %d správ zo všetkých vašich zariadení?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

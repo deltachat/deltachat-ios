@@ -3,6 +3,10 @@
 "ok" = "OK";
 "cancel" = "Zrušiť";
 "clear_search" = "Zrušiť hľadanie";
+// a noun, used on a button, short for "show link"
+"link" = "Odkaz";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skenovať";
 "yes" = "Áno";
 "no" = "Nie";
 "select" = "Vybrať";
@@ -22,15 +26,24 @@
 "join" = "Spojiť";
 "rejoin" = "Znovu spojiť";
 "delete" = "Odstrániť";
+"delete_for_me" = "Odstrániť pre mňa";
+"delete_for_everyone" = "Odstrániť pre všetkých";
 "info" = "Informácia";
 "update" = "Aktualizovať";
 "emoji" = "Smajlíci";
 "attachment" = "Príloha";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Priložiť „%1$@“?";
 "back" = "Späť";
 "close" = "Zatvoriť";
+"close_window" = "Zavrieť okno";
 "forward" = "Vpred";
+"create" = "Vytvoriť";
+"later" = "Neskôr";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Znovu poslať";
+"edited" = "Upravená";
+"edit_message" = "Upraviť správu";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Archivovať";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
@@ -41,10 +54,18 @@
 "save" = "Uložiť";
 "chat" = "Konverzácia";
 "media" = "Médiá";
-"profile" = "Profil";
+"apps_and_media" = "Aplikácie a médiá";
+"profile" = "Účet";
+"all_profiles" = "Všetky účty";
+"current_profile" = "Aktuálny účet";
 "main_menu" = "Hlavné menu";
 "start_chat" = "Začať konverzáciu";
 "show_full_message" = "Zobraziť celú správu ...";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Všetko prečítané";
+"mark_as_read" = "Označiť ako prečítané";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Prečítané";
 // Placeholder text when something is loading
 "loading" = "Načítam…";
 "hide" = "Skryť";
@@ -54,6 +75,7 @@
 "load_remote_content_ask" = "Na sledovanie vás možno použiť obrázky nadiaľku.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď je vypnutá, stále sa vám môžu zobrazovať vložené alebo uložené obrázky.\n\nNačítať vzdialené obrázky?";
 "always" = "Vždy";
 "once" = "Raz";
+"show_warning" = "Zobraziť varovanie";
 "show_password" = "Ukáž heslo";
 "hide_password" = "Skryť heslo";
 "not_now" = "Teraz nie";
@@ -69,9 +91,11 @@
 "no_app_to_handle_data" = "Nemôžem nájsť aplikáciu na spracovanie tohto typu údajov.";
 "no_browser_installed" = "Nie je nainštalovaný žiadny prehliadač.";
 "file_not_found" = "Nemohol nájsť %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Nepodarilo sa uložiť %1$@.";
 "copied_to_clipboard" = "Skopírované do schránky.";
 "contacts_headline" = "Kontakty";
-"email_address" = "Emailová adresa";
+"email_address" = "E-mailová adresa";
 "bad_email_address" = "Zlá e-mailová adresa";
 "password" = "Heslo";
 "existing_password" = "Existujúce heslo";
@@ -86,10 +110,13 @@
 "last_month" = "Minulý mesiac";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
 "last_seen_at" = "Naposledy videné o%1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Naposledy online %1$@";
 "last_seen_unknown" = "Naposledy videné: Neznáme";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Vybrané:";
 "self" = "Ja";
 "draft" = "Návrh";
 "image" = "Obrázok";
@@ -98,6 +125,9 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Nálepka";
+"add_to_sticker_collection" = "Pridať do zbierky nálepiek";
+"add_stickers_instructions" = "Pre pridanie nálepiek, ťuknite na \"Otvoriť priečinok s nálepkami\", vytvorte priečinok pre svoju sadu nálepiek a prekopírujte doň nálepky";
+"open_sticker_folder" = "Otvoriť priečinok s nálepkami";
 "images" = "Snímky";
 "audio" = "Zvuk";
 "voice_message" = "Hlasová správa";
@@ -108,6 +138,7 @@
 "video" = "Video";
 "documents" = "Dokumenty";
 "contact" = "Kontakt";
+"bot" = "Bot";
 "camera" = "Fotoaparát";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Zachytiť";
@@ -118,10 +149,18 @@
 "images_and_videos" = "Obrázky a videá";
 "file" = "Súbor";
 "files" = "Súbory";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Vybrať zo súborov";
+"choose_from_gallery" = "Vybrať z galérie";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Súkromná aplikácia";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Súkromné aplikácie";
+"home" = "Domov";
+"games" = "Hry";
+"tools" = "Nástroje";
+"app_size" = "Veľkosť";
+"add_to_chat" = "Pridať do konverzácie";
 "unknown" = "Neznáme";
 "green" = "Zelená";
 "red" = "Červená";
@@ -141,15 +180,30 @@
 "slow" = "Pomaly";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nový kontakt";
+"menu_new_classic_contact" = "Pridať kontakt ručne";
 "menu_new_chat" = "Nová konverzácia";
 "menu_new_group" = "Nová skupina";
+"clone_chat" = "Kopírovať konverzáciu";
 // deprecated
 "broadcast_list" = "Zoznam Rozosielania";
 // deprecated
 "broadcast_lists" = "Zoznamy Rozosielania";
 // deprecated
 "new_broadcast_list" = "Nový Zoznam Rozosielania";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanál";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanály";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Nový kanál";
 "add_recipients" = "Pridať Príjemcov";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Názov kanálu";
+"email" = "E-mail";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Nový e-mail";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Predmet";
 "menu_send" = "Poslať";
 "menu_toggle_keyboard" = "Prepnúť klávesnicu emodži";
 "menu_edit_group" = "Upraviť skupinu";
@@ -159,17 +213,25 @@
 "menu_unarchive_chat" = "Zrušiť archiváciu konverzácie";
 "menu_add_attachment" = "Pridať prílohu";
 "menu_leave_group" = "Opustiť skupinu";
+"menu_leave_channel" = "Opustiť kanál";
 "menu_delete_chat" = "Odstrániť konverzáciu";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Vyčistiť konverzáciu";
 "delete_contact" = "Odstrániť kontakt";
 "menu_delete_location" = "Odstrániť toto miesto?";
 "menu_message_details" = "Podrobnosti správy";
 "menu_copy_to_clipboard" = "Skopírovať do schránky";
+"invite_friends" = "Pozvať priateľov";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Kontaktujte ma na Delta Chat:
+%1$@";
 "menu_copy_selection_to_clipboard" = "Kopírovať výber";
 "menu_copy_link_to_clipboard" = "Skopírovať odkaz";
 "menu_copy_text_to_clipboard" = "Kopírovať text";
 "menu_copy_image_to_clipboard" = "Kopírovať obrázok";
-"menu_copy_email_to_clipboard" = "Kopírovať E-Mail";
+"menu_copy_email_to_clipboard" = "Kopírovať e-mail";
 "paste_from_clipboard" = "Prilepiť zo schránky";
+"ask_copy_unopenable_link_to_clipboard" = "Odkaz \"%1$d\" nie je možné otvoriť vo webovom prehliadači. Chcete ho skopírovať do schránky?";
 "menu_forward" = "Preposlať správu";
 "menu_reply" = "Odpovedať na správu";
 "menu_mute" = "Ignorovať upozornenia";
@@ -177,8 +239,10 @@
 "menu_export_attachment" = "Exportovať prílohu";
 "menu_export_attachments" = "Exportovať príloh";
 "menu_all_media" = "Všetky médiá";
+"all_apps_and_media" = "Všetky aplikácie a médiá";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Zobraziť v konverzácií";
+"show_app_in_chat" = "Zobraziť aplikáciu v konverzácii";
 "menu_share" = "Zdieľam";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blokovať";
@@ -190,13 +254,19 @@
 "menu_scroll_to_bottom" = "Posuňte sa nadol";
 "menu_scroll_to_top" = "Prejdite hore";
 "menu_help" = "Pomocník";
+"what_is_webxdc" = "Čo je Webxdc?";
 "privacy_policy" = "Zásady súkromia";
 "menu_select_all" = "Vybrať všetko";
+"select_chat" = "Vybrať konverzáciu";
 "select_more" = "Vyberte viac";
 "menu_edit_name" = "Upraviť meno";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Nastavte prezývku, ktorá sa vám bude zobrazovať miesto \"%1$@\". Ak neuvediete prezývku, použije sa meno kontaktu.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Prezývka pre \"%1$@\"";
 "menu_settings" = "Nastavenia";
 "menu_advanced" = "Pokročilé";
-"menu_view_profile" = "Prezrieť profil";
+"menu_view_profile" = "Zobraziť účet";
 "menu_zoom_in" = "Priblížiť";
 "menu_zoom_out" = "Oddialiť";
 "menu_save_log" = "Uložiť záznam";
@@ -204,6 +274,7 @@
 "menu_learn_spelling" = "Naučiť sa pravopis";
 "menu_chat_audit_log" = "Auditovací protokol konverzácie";
 "jump_to_message" = "Prejsť na správu";
+"jump_to_original_message" = "Zobraziť pôvodnú správu";
 "copy_json" = "Kopírovať JSON";
 "replace_draft" = "Nahradiť koncept";
 "title_share_location" = "Zdieľať polohu so všetkými členmi skupiny";
@@ -224,6 +295,7 @@
 "source_code" = "Zdrojový kód";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Pridať na domovskú obrazovku";
+"donate" = "Prispieť";
 "mute_for_one_hour" = "Stíšiť na 1 hodinu";
 "mute_for_eight_hours" = "Stíšiť na 8 hodiny";
 "mute_for_one_day" = "Stíšiť na 1 deň";
@@ -250,6 +322,8 @@
 "videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
 "videochat_invitation" = "Pozvánka na videohovor";
 "videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
+"ask_delete_named_chat" = "Odstrániť konverzáciu \"%1$@\" zo všetkých vašich zariadení?";
+"ask_delete_message" = "Odstrániť túto správu zo všetkých vašich zariadení?";
 // Used for the deletion of Device messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
@@ -263,6 +337,8 @@
 "ask_remove_members" = "Odstrániť %1$@ zo skupiny?";
 // deprecated
 "ask_remove_from_broadcast" = "Odstrániť %1$@ zo zoznamu rozosielania?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Odstrániť %1$@ z kanálu?";
 "open_url_confirmation" = "Chcete otvoriť tento odkaz?";
 // contact list
 "contacts_title" = "Kontakty";
@@ -309,6 +385,10 @@
 "start_app" = "Spustiť...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Prosím, najprv prijmite požiadavku na konverzáciu.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Poslať \"%1$@\"...";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Poslať správu...";
 // map
 "filter_map_on_time" = "Zobraziť polohy v časovom rámci";
 "show_location_traces" = "Zobraziť stopy";
@@ -327,8 +407,12 @@
 "puny_code_warning_description" = "Sledovali ste odkaz, ktorý by mohol skresľovať znaky použitím podobne vyzerajúcich znakov z rôznych abecied. Sledovanie odkazu označeného %1$@ povedie k %2$@, čo je normálne pre znaky mimo latinky. Ak ste takéto znaky nečakali, tento odkaz môže byť škodlivý";
 // search
 "search" = "Vyhľadávanie";
+"search_in_chat" = "Hľadať v konverzácii";
+"search_files" = "Hľadať súbory";
 "search_explain" = "Vyhľadajte konverzácie, kontakty a správy";
 "search_no_result_for_x" = "Neboli nájdené žiadne výsledky pre \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Neprečítané";
 // create/edit groups, contact/group profile
 "group_name" = "Názov skupiny";
 "group_avatar" = "Obrázok skupiny";
@@ -356,6 +440,28 @@
 "send_message" = "Odoslanie správy";
 // deprecated, was stock string
 "aeap_addr_changed" = "%1$@ zmenil(a) svoju adresu z %2$@ na %3$@";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Pridať ďalšie zariadenie";
+"multidevice_same_network_hint" = "Uistite sa, že obe zariadenia sú na rovnakej Wi-Fi sieti.";
+"multidevice_install_dc_on_other_device" = "Nainštalujte Delta Chat na vašom ďalšom zariadení (https://get.delta.chat)";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Otvorte Delta Chat, ťuknite na \"Existujúci účet / Pridať ako ďalšie zariadenie\" a naskenujte zobrazený kód";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+"multidevice_qr_subtitle" = "Naskenujte pre nastavenie ďalšieho zariadenia pre %1$@";
+"multidevice_receiver_title" = "Pridať ako ďalšie zariadenie";
+"multidevice_open_settings_on_other_device" = "Na pôvodnom zariadení, choďte do \"Nastavenia / Pridať ďalšie zariadenie\" a naskenujte zobrazený kód";
+"multidevice_receiver_scanning_ask" = "Skopírovať účet na toto zariadenie?";
+"multidevice_receiver_needs_update" = "Účet, ktorý sa snažíte importovať bol vytvorený novšou verziou Delta Chat.
+
+Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta Chat.";
+"multidevice_abort" = "Zrušiť pridávanie nového zariadenia?";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Účet pridaný do ďalšieho zariadenia.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Pripravuje sa účet...";
+// Shown beside progress bar, stay short
+"transferring" = "Prenos dát...";
+"troubleshooting" = "Riešenie problémov";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Prichádzajúce Správy";
@@ -379,6 +485,26 @@
 "messages" = "Správy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ z %2$@využitých ";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Nový účet";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Existujúci účet";
+// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Použiť bežné e-mailové konto";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Váš účet";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "Zásady ochrany osobných údajov na %1$@";
+// The placeholder will be replaced by instance name, the whole text will link to the instance page
+"instant_onboarding_agree_instance" = "O účtoch na %1$@";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Súhlasím, vytvoriť účet";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Použiť iný server";
+"instant_onboarding_other_server" = "Zoznam Chatmail serverov";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Chcete vytvoriť nový účet a začať konverzáciu s %1$@?";
 "scan_invitation_code" = "Skenovať kód pozvánky";
 "login_title" = "Prihlásiť sa";
 "login_header" = "Prihláste sa na server";
@@ -397,6 +523,19 @@
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Zabezpečenie SMTP";
 "login_auth_method" = "Metóda autorizácie";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Použiť proxy";
+"proxy_add" = "Pridať proxy";
+"proxy_add_explain" = "Podporované typy proxy serverov: HTTP(S), SOCKS5 and Shadowsocks.";
+"proxy_add_url_hint" = "Sem vložte odkaz na proxy server";
+"proxy_invalid" = "Neplatný alebo nepodporovaný proxy server";
+"proxy_list_header" = "Uložené proxy servery";
+"proxy_delete" = "Odstrániť proxy";
+"proxy_delete_explain" = "Naozaj chcete odstrániť \"%1$@\"?";
+"proxy_use_proxy_confirm" = "Chcete použiť proxy \"%1$@\"?";
+"proxy_share_explain" = "Vaši priatelia si môžu pridať túto proxy naskenovaním QR kódu.";
+"proxy_share_link" = "Zdieľať odkaz";
 "login_info_oauth2_title" = "Pokračovať v zjednodušenom nastavovaní?";
 "login_info_oauth2_text" = "Zadaná e-mailová adresa podporuje zjednodušené nastavenie (OAuth 2.0).\n\nV ďalšom kroku povoľte aplikácii Delta Chat, aby fungovala ako vaša aplikácia Chat cez e-mail.\n\nNie sú k dispozícii servery Delta Chat, vaše dáta zostanú vo vašom zariadení .";
 "login_certificate_checks" = "Osvedčovacie kontroly";
@@ -416,8 +555,8 @@
 "delete_account" = "Odstrániť účet";
 "delete_account_ask" = "Naozaj chcete odstrániť údaje svojho účtu?";
 "delete_account_explain_with_name" = "Budú odstránené všetky údaje účtu používateľa „%1$@“ z tohto zariadenia vrátane vášho kompletného nastavenia šifrovania, kontaktov, konverzácií, správ a médií. Túto akciu nie je možné vrátiť späť.";
-"unconfigured_account" = "Nekonfigurovaný účet";
-"unconfigured_account_hint" = "Otvorte účet aby ste ho nakonfigurovali.";
+"unconfigured_account" = "Nenastavený účet";
+"unconfigured_account_hint" = "Otvoriť účet pre nastavenie.";
 "try_connect_now" = "Skúste sa teraz pripojiť";
 "sync_all" = "Synchronizovať Všetko ";
 // Translations: %1$s will be replaced by a more detailed error message
@@ -431,7 +570,7 @@
 // preferences
 "pref_using_custom" = "Používa sa vlastné: %1$@";
 "pref_using_default" = "Používa sa predvolené nastavenie: %1$@";
-"pref_profile_info_headline" = "Informácie o vašom profile";
+"pref_profile_info_headline" = "Informácie o vašom účte";
 "pref_profile_photo" = "Profilový obrázok";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Ak zablokujete kontakty, zobrazia sa tu.";
@@ -468,11 +607,14 @@
 "pref_appearance" = "Vzhľad";
 "pref_theme" = "Motív";
 "pref_language" = "Jazyk";
+"pref_use_system_ui_font" = "Používať systémový štýl písma";
 "pref_incognito_keyboard" = "Inkognito klávesnica";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Požiadajte o klávesnicu, aby deaktivovala prispôsobené učenie";
 "pref_read_receipts" = "Prečítajte si potvrdenia";
 "pref_read_receipts_explain" = "Ak sú potvrdenia o prečítaní zakázané, neuvidíte potvrdenia o prečítaní od ostatných.";
+"pref_server" = "Server";
+"pref_encryption" = "Šifrovanie";
 "pref_manage_keys" = "Správa kľúčov";
 "pref_use_system_emoji" = "Používajte systémové emodži";
 "pref_use_system_emoji_explain" = "Vypnite vstavanú podporu emodži v aplikácii Delta Chat";
@@ -486,6 +628,10 @@
 "pref_backup" = "Zálohovanie";
 "pref_backup_explain" = "Zálohujte konverzácie na externé úložisko";
 "pref_backup_export_explain" = "Záloha vám pomôže nastaviť novú inštaláciu na tomto alebo na inom zariadení.\n\nZáloha bude obsahovať všetky správy, kontakty a konverzácie a vaše úplné nastavenie automatického šifrovania. Uložte záložný súbor na bezpečnom mieste alebo ho čo najskôr odstráňte.";
+// the placeholder will be replaced by the profile name
+"pref_backup_export_x" = "Exportovať %1$@";
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
+"pref_backup_export_all" = "Exportovať %1$d účty/účtov";
 "pref_backup_export_start_button" = "Spustiť zálohovanie";
 "pref_backup_written_to_x" = "Záloha bola úspešne zapísaná do priečinka „%1$@“.";
 "pref_managekeys_menu_title" = "Správa kľúčov";
@@ -531,11 +677,13 @@
 "n_bytes_message" = "%1$@ správa";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maximálny počet stiahnutí k dispozícii do %1$@";
+"select_profile" = "Vybrať účet";
 "profile_image_select" = "Vyberte profilový obrázok";
 "select_your_new_profile_image" = "Vyberte svoj nový profilový obrázok";
 "profile_image_delete" = "Odstrániť profilový obrázok";
 "pref_show_tray_icon" = "Zobraziť ikonu v systémovej lište";
-"pref_edit_profile" = "Upraviť profil";
+"pref_edit_profile" = "Upraviť účet";
+"send_stats_to_devs" = "Zasielať štatistické údaje Delta Chat vývojárom";
 // Emoji picker and categories
 "emoji_search_results" = "Výsledky vyhľadávania";
 "emoji_not_found" = "Nenašli sa žiadne emodži";
@@ -548,6 +696,14 @@
 "emoji_objects" = "Predmety";
 "emoji_symbols" = "Symboly";
 "emoji_flags" = "Vlajky";
+// Reactions
+"reactions" = "Reakcie";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Pridať reakciu";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "Reagovali ste %1$@ na \"%2$@\"";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@ reagoval/a %2$@ na \"%3$@\"";
 // automatically delete message
 "delete_old_messages" = "Odstraňovať staré správy";
 "autodel_device_title" = "Odstráňte správy zo zariadenia";
@@ -594,6 +750,8 @@
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
+// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
+"group_left_by_you" = "Opustili ste konverzáciu.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Skupinu opustil(a) %1$@.";
 "group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";
@@ -637,6 +795,8 @@
 "ephemeral_timer_weeks_by_you" = "Časovač zmiznutia správ nastavený na %1$@ týždne mnou.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Časovač zmiznutia správ nastavený na %1$@ týždne od %2$@.";
+"chat_protection_enabled_tap_to_learn_more" = "Správy sú šifrované. Ťuknite pre viac informácií.";
+"learn_more" = "Zistiť viac";
 "devicemsg_self_deleted" = "Odstránili ste konverzáciu \"Uložené správy\".\n\nℹ️ Aby ste využili funkciu \"Uložené správy\" znova, vytvorte novú konverzáciu so sebou.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
 "devicemsg_storage_exceeding" = "⚠️ Úložisko vašeho poskytovateľa čoskoro prekročí limit, už%1$@%%  sú využité.\n\n Je možné, že nebudete môcť prijímať správy, ak bude úložisko 100 %% využité.\n\n👉 Prosím skontrolujte, či môžete vo webovom rozhraní poskytovateľa vymazať staré údaje, a zvážte aktiváciu „Nastavenia / Odstrániť Staré Správy“. Aktuálne využitie úložiska si môžete kedykoľvek skontrolovať v časti „Nastavenia / Pripojenie“. ";
@@ -674,15 +834,23 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Naskenujte a vytvorte kontakt s %1$@ .";
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
-"qraccount_ask_create_and_login" = "Vytvoriť novú e-mailovú adresu na „%1$@“ a prihlásiť sa tam?";
-"qraccount_ask_create_and_login_another" = "Vytvorte novú e-mailovú adresu na „%1$@“ a prihláste sa tam?\n\nVáš existujúci účet nebude odstránený. Medzi položkami môžete prepínať pomocou položky „Prepnúť účet“.";
+"qraccount_ask_create_and_login" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?";
+"qraccount_ask_create_and_login_another" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?
+
+Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
+"please_enter_name" = "Prosím, zadajte meno.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prihlásiť sa na \"%1$@\"?";
+// the placeholder will be replaced by the address of the profile
+"qrlogin_ask_login_another" = "Prihlásiť sa do „%1$@“?
+
+Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
 // first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pripojili k tejto skupine.\n\nČaká sa na odpoveď zo zariadenia používateľa %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@odpovedal a čaká sa na pridanie do skupiny...";
+"secure_join_wait" = "Nadväzovanie šifrovaného spojenia, počkajte prosím...";
 "contact_verified" = "%1$@ overené.";
 // deprecated, was stock string
 "contact_not_verified" = "Cannot verify %1$@.";
@@ -701,6 +869,9 @@
 "notify_name_and_message" = "Meno a správa";
 "notify_name_only" = "Iba meno";
 "notify_no_name_or_message" = "Žiadne meno ani správa";
+"new_messages" = "Nové správy";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Máte nové správy";
 // permissions
 "perm_required_title" = "Vyžaduje sa povolenie";
 "perm_continue" = "ďalej";
@@ -738,6 +909,7 @@
 "global_menu_view_developer_desktop" = "Vývojár";
 "global_menu_view_developer_tools_desktop" = "Nástroje pre vývojárov";
 "global_menu_help_desktop" = "Pomocník";
+"delta_chat_homepage" = "Stránka Delta Chat";
 "global_menu_help_report_desktop" = "Nahlásiť problém";
 "global_menu_help_about_desktop" = "O spoločnosti Delta Chat";
 "global_menu_file_open_desktop" = "Otvoriť Delta Chat";
@@ -805,6 +977,7 @@
 "notifications_avg_minutes" = "V priemere každých %1$d minút";
 "notifications_avg_hours" = "V priemere každých %1$d hodín";
 "last_check_at" = "Skontrolované %1$@";
+"system_settings" = "Systémové nastavenia";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Ak chcete zachovať pripojenie k svojmu e-mailovému serveru a prijímať správy na pozadí, v ďalšom kroku ignorujte optimalizáciu batérie. \n\nDelta Chat využíva málo zdrojov a dbá na to, aby sa batéria nevybíjala.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
