@@ -853,7 +853,12 @@ extension ProfileViewController: MultilineLabelCellDelegate {
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), email), message: nil, preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
                 guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                let contactId = dcContext.createContact(name: "", email: email)
+
+                var contactId = dcContext.lookupContactIdByAddress(email)
+                if contactId == 0 {
+                    contactId = dcContext.createContact(name: "", email: email)
+                }
+
                 appDelegate.appCoordinator.showChat(chatId: dcContext.createChatByContactId(contactId: contactId), clearViewControllerStack: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
