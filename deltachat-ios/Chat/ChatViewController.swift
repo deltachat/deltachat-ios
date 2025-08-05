@@ -1255,7 +1255,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
 
     private func askToChatWith(email: String) {
-        let contactId = self.dcContext.createContact(name: "", email: email)
+        var contactId = self.dcContext.lookupContactIdByAddress(email)
+        if contactId == 0 {
+            contactId = dcContext.createContact(name: "", email: email)
+        }
+
         if dcContext.getChatIdByContactId(contactId: contactId) != 0 {
             self.dismiss(animated: true, completion: nil)
             let chatId = self.dcContext.createChatByContactId(contactId: contactId)
