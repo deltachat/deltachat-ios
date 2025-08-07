@@ -516,7 +516,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
                 }
 
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .safeActionSheet)
-                alert.addAction(UIAlertAction(title: String.localized("select_chat"), style: .default, handler: { _ in
+                let selectAction = UIAlertAction(title: String.localized("select_chat"), style: .default, handler: { _ in
                     let base64 = dict["base64"] as? String
                     let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
                     RelayHelper.shared.setForwardMessage(dialogTitle: title, text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
@@ -526,10 +526,12 @@ extension WebxdcViewController: WKScriptMessageHandler {
                         appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
                         rootController.popToRootViewController(animated: false)
                     }
-                }))
+                })
+                selectAction.setValue(UIImage(systemName: "paperplane"), forKey: "image")
+                alert.addAction(selectAction)
 
                 if let name = dict["name"] as? String {
-                    alert.addAction(UIAlertAction(title: String.localized("menu_share"), style: .default, handler: { [weak self] _ in
+                    let shareAction = UIAlertAction(title: String.localized("menu_share"), style: .default, handler: { [weak self] _ in
                         guard let self else { return }
                         if let base64 = dict["base64"] as? String, let data = Data(base64Encoded: base64), let sourceItem = navigationItem.rightBarButtonItem {
                             let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(name)
@@ -537,7 +539,9 @@ extension WebxdcViewController: WKScriptMessageHandler {
                             try? data.write(to: fileURL)
                             Utils.share(url: fileURL, parentViewController: self, sourceItem: sourceItem)
                         }
-                    }))
+                    })
+                    shareAction.setValue(UIImage(systemName: "square.and.arrow.up"), forKey: "image")
+                    alert.addAction(shareAction)
                 }
 
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
