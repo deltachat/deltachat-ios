@@ -340,7 +340,7 @@ class ProfileViewController: UITableViewController {
             }
 
             if let chat {
-                if (isOutBroadcast || (isMultiUser && chat.canSend)) && chat.isEncrypted {
+                if isMultiUser && !isMailinglist {
                     let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
