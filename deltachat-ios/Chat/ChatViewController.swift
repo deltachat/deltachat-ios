@@ -2002,6 +2002,10 @@ extension ChatViewController: MCEmojiPickerDelegate {
 extension ChatViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard !tableView.isEditing else { return [] }
+        // Prevent the drag preview from an showing upside down preview
+        // by requiring a context menu to be shown first.
+        guard lastContextMenuPreviewSnapshot != nil else { return [] }
+        
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
 
