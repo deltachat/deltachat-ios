@@ -1,5 +1,0 @@
-NSCameraUsageDescription = "សាហារីសង្ឃ ប្រើកាម៉េរ៉ារបស់អ្នកដើម្បីថតរូប និងផ្ញើរូបថត និងវីដេអូ និងស្កេនកូដ QR។";
-NSContactsUsageDescription = "សា Delta Chat ប្រើទំនាក់ទំនងរបស់អ្នកដើម្បីបង្ហាញបញ្ជីអស័យដ្ឋានអុីម៉េល ដែលអ្នកអាចសរសេរទៅ។ សា Delta Chat គ្មានម៉ាសុីនមេទេ។ ទំនាក់ទំនងរបស់អ្នកមិនត្រូវបានផ្ញើទៅណាទេ។";
-NSMicrophoneUsageDescription = "សា Delta Chat ប្រើមីក្រូហ្វូនរបស់អ្នកដើម្បីថត និងផ្ញើសារជាសម្លេង និងវីដេអូជាមួយសម្លេង។";
-NSPhotoLibraryUsageDescription = "សា Delta Chat នឹងអនុញ្ញាតឲ្យអ្នកជ្រើសរើសរូបថតមួយណា ពីបណ្ណាល័យរូបថតរបស់អ្នកដើម្បីផ្ញើ។";
-NSPhotoLibraryAddUsageDescription = "សា Delta Chat ចង់រក្សាទុករូបភាពទៅបណ្ណាល័យរូបថតរបស់អ្មក។";
