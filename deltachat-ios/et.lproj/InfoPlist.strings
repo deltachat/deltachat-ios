@@ -1,0 +1,8 @@
+NSCameraUsageDescription = "Delta Chat kasutab sinu nutiseadme kaamerat pildistamiseks, videote salvestamiseks ja QR-koodide skaneerimiseks.";
+NSContactsUsageDescription = "Delta Chat kasutab sinu kontakte aadressiloendi kuvamiseks eesmärgiga leida osapooli, kellele saad kirjutada. Kuna rakendusel puudub keskne server, siis sinu kontakte ei saadeta väljaspoole nutiseadet.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat vajab õigust sinu asukoha jagamiseks nii kaua, kui sul see teenus on sisse lülitatud.";
+NSLocationWhenInUseUsageDescription = "Delta Chat vajab õigust sinu asukoha jagamiseks nii kaua, kui sul see teenus on sisse lülitatud.";
+NSMicrophoneUsageDescription = "Delta Chat kasutab sinu nutiseadme mikrofoni häälsõnumite ja videote heliriba salvestamiseks.";
+NSPhotoLibraryUsageDescription = "Delta Chat võimaldab sul valida fotosid teistele edastamiseks.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat soovib pilte salvestada sinu fotode kogusse.";
+NSFaceIDUsageDescription = "Delta Chat võib kasutada Face ID teenust sinu kohaliku profiili kaitsmiseks, varukoopia tegemiseks ja täiendavate seadmete seadistamiseks.";

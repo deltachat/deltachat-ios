@@ -12,8 +12,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d min</string>
 			<key>other</key>
-			<string>%d នាទី</string>
+			<string>%d min</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -26,8 +28,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d tund</string>
 			<key>other</key>
-			<string>%d ម៉ោង</string>
+			<string>%d tundi</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -40,8 +44,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d vestlus</string>
 			<key>other</key>
-			<string>សន្ទនា %d</string>
+			<string>%d vestlust</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -54,8 +60,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d kontakt</string>
 			<key>other</key>
-			<string>ទំនាក់ទំនង %d</string>
+			<string>%d kontakti</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -68,8 +76,26 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d sõnum</string>
 			<key>other</key>
-			<string>សារ %d</string>
+			<string>%d sõnumit</string>
+		</dict>
+	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d reageerimine</string>
+			<key>other</key>
+			<string>%d reageerimist</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -82,8 +108,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d liige</string>
 			<key>other</key>
-			<string>សមាជិក %d</string>
+			<string>%d liiget</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -96,11 +124,13 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d saaja</string>
 			<key>other</key>
-			<string>%d អ្នកទទួល</string>
+			<string>%d saajat</string>
 		</dict>
 	</dict>
-	<key>ask_send_following_n_files_to</key>
+	<key>n_selected</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>
@@ -110,11 +140,13 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>Valitud: %d</string>
 			<key>other</key>
-			<string>ផ្ញើឯកសារ %d ខាងក្រោមទៅ %s?</string>
+			<string>Valitud: %d</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages_simple</key>
+	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>
@@ -124,8 +156,26 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>Kas kustutad %d vestluse kõikidest oma seadmetest?</string>
 			<key>other</key>
-			<string>លុបសារ %d</string>
+			<string>Kas kustutad %d vestlust kõikidest oma seadmetest?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Kas kustutad %d sõnumi kõikidest oma seadmetest?</string>
+			<key>other</key>
+			<string>Kas kustutad %d sõnumit kõikidest oma seadmetest?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -138,8 +188,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d vestlus on arhiveeritud</string>
 			<key>other</key>
-			<string>បានទុកសារសន្ទនា %d ក្នុងប័ណ្ណ</string>
+			<string>%d vestlust on arhiveeritud</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -152,8 +204,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d vestlus on arhiivist eemaldatud</string>
 			<key>other</key>
-			<string>បានយកចេញសារសន្ទនា %d ពីប័ណ្ណ</string>
+			<string>%d vestlust on arhiivist eemaldatud</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -166,8 +220,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
+			<key>one</key>
+			<string>%d uus sõnum</string>
 			<key>other</key>
-			<string>មានសារថ្មី %d</string>
+			<string>%d uut sõnumit</string>
 		</dict>
 	</dict>
 </dict>

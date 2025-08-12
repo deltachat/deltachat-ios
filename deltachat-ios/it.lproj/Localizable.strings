@@ -56,7 +56,7 @@
 "save" = "Salva";
 "chat" = "Chat";
 "media" = "Media";
-"apps_and_media" = "App & Media";
+"apps_and_media" = "Apps & Media";
 "profile" = "Profilo";
 "all_profiles" = "Tutti i Profili";
 "current_profile" = "Profilo Corrente";
@@ -260,7 +260,7 @@
 "menu_export_attachment" = "Esporta Allegato";
 "menu_export_attachments" = "Esporta Allegati";
 "menu_all_media" = "Tutti i Media";
-"all_apps_and_media" = "Tutte le App & Media";
+"all_apps_and_media" = "Tutte le Apps & Media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostra in Chat";
 "show_app_in_chat" = "Mostra App in Chat";
@@ -347,7 +347,7 @@
 "videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
-"ask_leave_group" = "Sei sicuro di voler uscire?";
+"ask_leave_group" = "Sei sicuro di voler abbandonare?";
 "ask_delete_named_chat" = "Eliminare la chat \"%1$@\" su tutti i tuoi dispositivi?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
 // Used for the deletion of Device messages
@@ -421,7 +421,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Invia Messaggio a...";
 "enable_realtime" = "App in Tempo Reale";
-"enable_realtime_explain" = "Abilita connessioni in tempo reale per app condivise nelle chat. Se abilitato, i partner della chat potrebbero essere in grado di scoprire il tuo indirizzo IP quando avvii un\'app.";
+"enable_realtime_explain" = "Abilita connessioni in tempo reale per apps condivise nelle chats. Se abilitato, i partner della chat potrebbero essere in grado di scoprire il tuo indirizzo IP quando avvii un\'app.";
 // map
 "filter_map_on_time" = "Mostra le posizioni nell\'intervallo di tempo";
 "show_location_traces" = "Mostra tracce";
@@ -456,7 +456,7 @@
 "group_add_members" = "Aggiungi Membri";
 "group_self_not_in_group" = "Devi essere un membro del gruppo per fare questa azione.";
 "profile_encryption" = "Crittografia";
-"profile_shared_chats" = "Chat Condivise";
+"profile_shared_chats" = "Chats in Comune";
 "related_chats" = "Chat Correlate";
 // Separator between the list of actual members and past members
 "past_members" = "Membri Passati";
@@ -467,14 +467,14 @@
 "tab_links" = "Collegamenti";
 "tab_map" = "Mappa";
 "tab_gallery_empty_hint" = "Immagini e video condivisi in questa chat verranno mostrate qui.";
-"tab_docs_empty_hint" = "Documenti e altri file condivisi in questa chat verranno mostrate qui.";
-"tab_image_empty_hint" = "Le immagini condivise in questa chat verranno mostrate qui.";
-"tab_video_empty_hint" = "I video condivisi in questa chat verranno mostrate qui.";
-"tab_audio_empty_hint" = "I file audio e i messaggi vocali condivisi in questa chat verranno mostrati qui.";
-"tab_webxdc_empty_hint" = "Le app condivise in questa chat verranno mostrate qui.";
-"tab_all_media_empty_hint" = "I media condivisi in qualsiasi chat verranno mostrate qui.";
-"all_files_empty_hint" = "Qui verranno visualizzati i documenti e gli altri file condivisi in qualsiasi chat.";
-"all_apps_empty_hint" = "Le app condivise in qualsiasi chat appariranno qui.";
+"tab_docs_empty_hint" = "Documenti e altri file allegati in questa chat verranno mostrate qui.";
+"tab_image_empty_hint" = "Le immagini allegate in questa chat verranno mostrate qui.";
+"tab_video_empty_hint" = "I video allegati in questa chat verranno mostrati qui.";
+"tab_audio_empty_hint" = "I files audio e i messaggi vocali allegati in questa chat verranno mostrati qui.";
+"tab_webxdc_empty_hint" = "Le apps allegate in questa chat verranno mostrate qui.";
+"tab_all_media_empty_hint" = "I media allegati in qualsiasi chat verranno mostrati qui.";
+"all_files_empty_hint" = "Qui verranno visualizzati i documenti e gli altri file allegati in qualsiasi chat.";
+"all_apps_empty_hint" = "Le apps allegate n qualsiasi chat appariranno qui.";
 "media_preview" = "Anteprima Media";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Aspetto Griglia Proporzioni";
@@ -824,7 +824,7 @@
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membro %1$@ rimosso da %2$@.";
 // "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Sei uscito.";
+"group_left_by_you" = "Hai abbandonato.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Gruppo lasciato da %1$@.";
 "group_image_deleted_by_you" = "Hai eliminato l\'immagine del gruppo.";
@@ -870,8 +870,8 @@
 "ephemeral_timer_weeks_by_other" = "Timer messaggi a scomparsa impostato su %1$@ settimane da %2$@.";
 // deprecated
 "chat_protection_broken" = "%1$@ ha inviato un messaggio da un altro dispositivo.";
-"chat_protection_enabled_tap_to_learn_more" = "D\'ora in poi i messaggi saranno garantiti crittografati end-to-end.  Tocca per saperne di più.";
-"chat_protection_enabled_explanation" = "Ora è garantito che tutti i messaggi in questa chat siano cifrati end-to-end.\n\nLa crittografia end-to-end mantiene privati i messaggi ​​tra te e i tuoi partner di chat. Nemmeno il server, il fornitore o il trasmettitore di e-mail può leggerli.";
+"chat_protection_enabled_tap_to_learn_more" = "I messaggi sono crittografati end-to-end. Tocca per saperne di più.";
+"chat_protection_enabled_explanation" = "Tutti i messaggi in questa chat sono crittografati end-to-end. La crittografia end-to-end mantiene privati i messaggi tra te e i tuoi interlocutori. Nemmeno servers, providers o relays possono leggerli.";
 // deprecated
 "chat_protection_broken_tap_to_learn_more" = "%1$@ ha inviato un messaggio da un altro dispositivo. Tocca per saperne di più.";
 // deprecated
@@ -930,14 +930,14 @@
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
-"secure_join_wait" = "Creazione della crittografia end-to-end garantita, per piacere attendere...";
+"secure_join_wait" = "Impostazione della crittografia end-to-end, attendere...";
 // deprecated
 "secure_join_wait_timeout" = "Non è ancora possibile stabilire la crittografia end-to-end garantita, ma potresti già inviare un messaggio.";
 // deprecated, was stock string
 "secure_join_takes_longer" = "Il contatto deve essere in linea per proseguire.\n\nQuesto processo continuerà automaticamente in sottofondo.";
 "contact_verified" = "%1$@ verificato.";
 // deprecated, was stock string
-"contact_not_verified" = "Impossibile stabilire una crittografia end-to-end garantita con %1$@.";
+"contact_not_verified" = "Impossibile stabilire una crittografia end-to-end con %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificato da %1$@";
 "verified_by_you" = "Verificato da me";
@@ -968,7 +968,7 @@
 "perm_continue" = "Continua";
 "perm_explain_access_to_camera_denied" = "Per scattare foto o registrare video, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Fotocamera\".";
 // give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
-"perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Microfono\".";
+"perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai nelle impostazioni di sistema o dell\'app, seleziona \"Autorizzazioni\" o \"Privacy  & Sicurezza\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare file, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Per allegare una posizione, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
 "perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni di Sistema / App / Delta Chat\" e attiva \"Notifiche\".";

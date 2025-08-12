@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Allow to clone email chats
+- Add Estonian translation, update other translations
 
 
 ## v2.10.0
