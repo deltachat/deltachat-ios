@@ -1,10 +1,14 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.11.0
+2025-08
 
 - Allow to clone email chats
-- Add Estonian translation, update other translations
 - Fix: Prevent the drag preview from showing upside down when long pressing reaction on an image
+- Fix some small bugs
+- Add Estonian translation
+- Update translations and local help
+- Update to core 2.11.0
 
 
 ## v2.10.0
