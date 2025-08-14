@@ -515,8 +515,13 @@ class ProfileViewController: UITableViewController {
     }
 
     private func shareContact() {
-        guard let vcardData = dcContext.makeVCard(contactIds: [contactId]) else { return }
-        RelayHelper.shared.setForwardVCard(vcardData: vcardData)
+        guard let contact else { return }
+        if contact.isKeyContact {
+            guard let vcardData = dcContext.makeVCard(contactIds: [contactId]) else { return }
+            RelayHelper.shared.setForwardVCard(vcardData: vcardData)
+        } else {
+            RelayHelper.shared.setForwardMessage(dialogTitle: String.localized("chat_share_with_title"), text: contact.email, fileData: nil, fileName: nil)
+        }
         navigationController?.popToRootViewController(animated: true)
     }
 
