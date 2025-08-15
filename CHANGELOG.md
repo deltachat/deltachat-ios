@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Share email address for email contacts instead of vCard
+
+
 ## v2.11.0
 2025-08
 
