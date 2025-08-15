@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Share email address for email contacts instead of vCard
+- In case of errors, tapping message text or status opens "message info" directly
 
 
 ## v2.11.0
