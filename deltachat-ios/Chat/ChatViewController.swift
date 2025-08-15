@@ -754,6 +754,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             updateTitle()
             return
         }
+        // handle taps outside textTapped(), imageTapped(), avatarTapped(), statusTapped() etc.
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
         switch (message.type, message.infoType) {
@@ -1651,10 +1652,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func info(for msgId: Int) {
         let msg = self.dcContext.getMessage(id: msgId)
-        let msgViewController = MessageInfoViewController(dcContext: self.dcContext, message: msg)
-        if let ctrl = self.navigationController {
-            ctrl.pushViewController(msgViewController, animated: true)
-        }
+        navigationController?.pushViewController(MessageInfoViewController(dcContext: self.dcContext, message: msg), animated: true)
     }
 
     private func forward(_ msgId: Int) {
@@ -2233,7 +2231,9 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleSelection(indexPath: indexPath) { return }
 
         let message = dcContext.getMessage(id: messageIds[indexPath.row])
-        if message.type == DC_MSG_VCARD {
+        if message.state == DC_STATE_OUT_FAILED {
+            info(for: message.id)
+        } else if message.type == DC_MSG_VCARD {
             didTapVcard(msg: message)
         } else if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
@@ -2277,7 +2277,6 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
     }
 
-
     @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
         if handleSelection(indexPath: indexPath) { return }
 
@@ -2316,6 +2315,15 @@ extension ChatViewController: BaseMessageCellDelegate {
         }
 
         self.present(navigationController, animated: true)
+    }
+
+    @objc func statusTapped(indexPath: IndexPath) {
+        if handleSelection(indexPath: indexPath) { return }
+
+        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        if message.state == DC_STATE_OUT_FAILED {
+            info(for: message.id)
+        }
     }
 }
 

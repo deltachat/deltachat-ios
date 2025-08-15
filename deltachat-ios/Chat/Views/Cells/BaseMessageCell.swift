@@ -295,6 +295,9 @@ public class BaseMessageCell: UITableViewCell {
         quoteViewGestureRecognizer.numberOfTapsRequired = 1
         quoteView.addGestureRecognizer(quoteViewGestureRecognizer)
 
+        let statusGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onStatusTapped))
+        statusGestureRecognizer.numberOfTapsRequired = 1
+        statusView.addGestureRecognizer(statusGestureRecognizer)
 
         contentView.addSubview(reactionsView)
 
@@ -342,6 +345,11 @@ public class BaseMessageCell: UITableViewCell {
         }
     }
 
+    @objc func onStatusTapped() {
+        if let tableView = self.superview as? UITableView, let indexPath = tableView.indexPath(for: self) {
+            baseDelegate?.statusTapped(indexPath: indexPath)
+        }
+    }
     public override func willTransition(to state: UITableViewCell.StateMask) {
         super.willTransition(to: state)
         // while the content view gets intended by the appearance of the edit control,
@@ -720,6 +728,7 @@ public protocol BaseMessageCellDelegate: AnyObject {
     func textTapped(indexPath: IndexPath)
     func quoteTapped(indexPath: IndexPath)
     func actionButtonTapped(indexPath: IndexPath)
+    func statusTapped(indexPath: IndexPath)
     func gotoOriginal(indexPath: IndexPath)
     func reactionsTapped(indexPath: IndexPath)
 }
