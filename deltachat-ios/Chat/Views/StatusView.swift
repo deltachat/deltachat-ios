@@ -87,11 +87,11 @@ public class StatusView: UIView {
         editedLabel.isHidden = !message.isEdited
         editedLabel.textColor = tintColor
 
-        if message.showPadlock() {
-            envelopeView.isHidden = true
-        } else {
+        if message.showEnvelope() {
             envelopeView.image = UIImage(systemName: "envelope")?.maskWithColor(color: tintColor)
             envelopeView.isHidden = false
+        } else {
+            envelopeView.isHidden = true
         }
 
         if message.hasLocation {
@@ -146,6 +146,6 @@ public class StatusView: UIView {
         default:
             state = ""
         }
-        return "\(message.formattedSentDate()), \(state)\(message.showPadlock() ? "" : (", " + String.localized("email")))"
+        return "\(message.formattedSentDate()), \(state)\(message.showEnvelope() ? (", " + String.localized("email")) : "")"
     }
 }
