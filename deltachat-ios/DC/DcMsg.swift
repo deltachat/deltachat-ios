@@ -344,8 +344,8 @@ public class DcMsg {
         return DcLot(dcLotPointer)
     }
 
-    public func showPadlock() -> Bool {
-        return dc_msg_get_showpadlock(messagePointer) == 1
+    public func showEnvelope() -> Bool {
+        return dc_msg_get_showpadlock(messagePointer) == 0 && downloadState == DC_DOWNLOAD_DONE
     }
 
     public func getVideoChatUrl() -> String {

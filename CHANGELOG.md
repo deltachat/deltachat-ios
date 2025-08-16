@@ -4,6 +4,7 @@
 
 - Share email address for email contacts instead of vCard
 - In case of errors, tapping message text or status opens "message info" directly
+- Fix: do not show letter icon for partially downloaded messages
 
 
 ## v2.11.0
