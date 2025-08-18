@@ -816,6 +816,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func updateTitle() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
+        var dcContact: DcContact? = nil
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
@@ -838,8 +839,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isSelfTalk {
                 subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
-                let dcContact = dcContext.getContact(id: chatContactIds[0])
-                if dcContact.isBot {
+                dcContact = dcContext.getContact(id: chatContactIds[0])
+                if let dcContact, dcContact.isBot {
                     subtitle = String.localized("bot")
                 } else {
                     subtitle = nil
@@ -871,7 +872,9 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
 
-                if !dcChat.isMultiUser && dcChat.canSend, let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
+                if !dcChat.isMultiUser && dcChat.canSend,
+                   let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty,
+                   let dcContact, dcContact.isKeyContact {
                     let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
                     rightBarButtonItems.append(button)
                 }
