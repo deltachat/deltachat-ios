@@ -48,8 +48,7 @@ class CallWindow: UIWindow {
 
 class CallViewController: UIViewController {
     var call: DcCall
-    
-    // TODO: What do we need for a call? - URL?
+
     init(call: DcCall) {
         self.call = call
         super.init(nibName: nil, bundle: nil)
@@ -74,9 +73,11 @@ class CallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
+
         view.addSubview(webView)
         webView.fillSuperview()
-        webView.load(URLRequest(url: URL(string: "https://meet.systemli.org/32784921974298#config.prejoinConfig.enabled=false&config.notifications=[]&config.toolbarButtons=[%22microphone%22,%22camera%22,%22hangup%22]")!))
+        webView.loadFileURL(fileURL, allowingReadAccessTo: fileURL.deletingLastPathComponent())
         view.addSubview(hideButton)
         hideButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         hideButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
