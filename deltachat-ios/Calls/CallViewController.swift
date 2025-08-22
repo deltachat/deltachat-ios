@@ -90,11 +90,15 @@ class CallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
-
         view.addSubview(webView)
         webView.fillSuperview()
-        webView.loadFileURL(fileURL, allowingReadAccessTo: fileURL.deletingLastPathComponent())
+
+        guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
+        guard var fileComponents = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else { return }
+        fileComponents.fragment = "calls"
+        guard let urlWithFragment = fileComponents.url else { return }
+        webView.load(URLRequest(url: urlWithFragment))
+
         view.addSubview(hideButton)
         hideButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         hideButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
