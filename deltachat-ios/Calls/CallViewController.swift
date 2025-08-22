@@ -57,9 +57,26 @@ class CallViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    lazy var config: WKWebViewConfiguration = {
+        let config = WKWebViewConfiguration()
+        let preferences = WKPreferences()
+        let contentController = WKUserContentController()
+        let scriptSource = """
+            console.log("call-js: startup");
+            """
+        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+
+        contentController.addUserScript(script)
+        config.userContentController = contentController
+        config.defaultWebpagePreferences.allowsContentJavaScript = true
+        config.preferences = preferences
+
+        return config
+    }()
+
     lazy var webView: WKWebView = {
-        let webView = WKWebView(frame: view.frame)
+        let webView = WKWebView(frame: view.frame, configuration: config)
         webView.uiDelegate = self
         return webView
     }()
