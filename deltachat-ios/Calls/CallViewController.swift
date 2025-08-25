@@ -63,9 +63,19 @@ class CallViewController: UIViewController {
         let preferences = WKPreferences()
         let contentController = WKUserContentController()
         let scriptSource = """
-            console.log("call-js: startup");
+            window.calls = {
+              startCall: (payload) => {
+                console.log("startCall() called");
+              },
+              acceptCall: (payload) => {
+                console.log("acceptCall() called");
+              },
+              endCall: () => {
+                console.log("endCall() called");
+              },
+            };
             """
-        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
 
         contentController.addUserScript(script)
         config.userContentController = contentController
