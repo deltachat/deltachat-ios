@@ -65,19 +65,25 @@ class CallViewController: UIViewController {
         let scriptSource = """
             window.calls = {
               startCall: (payload) => {
-                console.log("startCall() called");
+                console.log("startCall() called: " + payload);
+                webkit.messageHandlers.startCall.postMessage(payload);
               },
               acceptCall: (payload) => {
-                console.log("acceptCall() called");
+                console.log("acceptCall() called: " + payload);
+                webkit.messageHandlers.acceptCall.postMessage(payload);
               },
               endCall: () => {
                 console.log("endCall() called");
+                webkit.messageHandlers.endCall.postMessage("");
               },
             };
             """
         let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
 
         contentController.addUserScript(script)
+        contentController.add(weak: self, name: "startCall")
+        contentController.add(weak: self, name: "acceptCall")
+        contentController.add(weak: self, name: "endCall")
         config.userContentController = contentController
         config.defaultWebpagePreferences.allowsContentJavaScript = true
         config.mediaTypesRequiringUserActionForPlayback = []
@@ -124,5 +130,25 @@ class CallViewController: UIViewController {
 extension CallViewController: WKUIDelegate {
     @available(iOS 15.0, *) func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping @MainActor (WKPermissionDecision) -> Void) {
         decisionHandler(.grant)
+    }
+}
+
+extension CallViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        switch message.name {
+        case "startCall":
+            guard let payload = message.body as? String else { logger.error("errStartCall: \(message.body)"); return }
+            logger.info("startCall: " + payload)
+
+        case "acceptCall":
+            guard let payload = message.body as? String else { logger.error("errAcceptCall: \(message.body)"); return }
+            logger.info("acceptCall: " + payload)
+
+        case "endCall":
+            logger.info("endCall")
+
+        default:
+            logger.error("errMessageHandler: \(message.name)")
+        }
     }
 }
