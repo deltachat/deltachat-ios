@@ -792,8 +792,8 @@ public class DcContext {
         setConfig("proxy_url", allProxies)
     }
 
-    public func placeOutgoingCall(chatId: Int) -> Int {
-        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), "call-data")
+    public func placeOutgoingCall(chatId: Int, payload: String) -> Int {
+        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), payload)
         logger.info("☎️ (\(self.id),\(msgId))=dc_place_outgoing_call(\(chatId)")
         return Int(msgId)
     }

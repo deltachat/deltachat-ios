@@ -5,7 +5,8 @@ let canVideoCalls = true
 
 struct DcCall {
     let contextId: Int
-    let messageId: Int?
+    let chatId: Int
+    var messageId: Int?
     let incoming: Bool
     let uuid: UUID
 }
@@ -43,9 +44,8 @@ class CallManager: NSObject {
             return
         }
 
-        let messageId = dcContext.placeOutgoingCall(chatId: dcChat.id)
         let uuid = UUID()
-        currentCall = DcCall(contextId: dcContext.id, messageId: messageId, incoming: false, uuid: uuid)
+        currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, messageId: nil, incoming: false, uuid: uuid)
 
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
@@ -97,7 +97,7 @@ class CallManager: NSObject {
         let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
         let name = dcChat.name
         let uuid = UUID()
-        currentCall = DcCall(contextId: accountId, messageId: msgId, incoming: true, uuid: uuid)
+        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, messageId: msgId, incoming: true, uuid: uuid)
 
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: name)
