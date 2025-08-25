@@ -5,7 +5,7 @@ let canVideoCalls = true
 
 struct DcCall {
     let contextId: Int
-    let messageId: Int
+    let messageId: Int?
     let incoming: Bool
     let uuid: UUID
 }
@@ -140,9 +140,9 @@ class CallManager: NSObject {
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("☎️ call accepted pressed")
-        if let currentCall {
+        if let currentCall, let messageId = currentCall.messageId {
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
-            dcContext.acceptIncomingCall(msgId: currentCall.messageId)
+            dcContext.acceptIncomingCall(msgId: messageId)
             DispatchQueue.main.async {
                 CallWindow.shared?.showCallUI(for: currentCall)
             }
@@ -152,9 +152,8 @@ extension CallManager: CXProviderDelegate {
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         logger.info("☎️ call ended pressed")
-        if let currentCall {
+        if let currentCall, let messageId = currentCall.messageId {
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
-            let messageId = currentCall.messageId
             self.currentCall = nil
             dcContext.endCall(msgId: messageId)
         }
