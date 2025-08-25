@@ -107,7 +107,7 @@ class CallViewController: UIViewController {
 
         guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
         guard var fileComponents = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else { return }
-        fileComponents.fragment = "calls"
+        fileComponents.fragment = "call"
         guard let urlWithFragment = fileComponents.url else { return }
         webView.load(URLRequest(url: urlWithFragment))
 
