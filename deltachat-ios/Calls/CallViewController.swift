@@ -80,6 +80,8 @@ class CallViewController: UIViewController {
         contentController.addUserScript(script)
         config.userContentController = contentController
         config.defaultWebpagePreferences.allowsContentJavaScript = true
+        config.mediaTypesRequiringUserActionForPlayback = []
+        config.allowsInlineMediaPlayback = true
         config.preferences = preferences
 
         return config
