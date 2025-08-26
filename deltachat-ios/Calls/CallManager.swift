@@ -3,12 +3,20 @@ import DcCore
 
 let canVideoCalls = true
 
-struct DcCall {
+class DcCall {
     let contextId: Int
     let chatId: Int
-    var messageId: Int?
     let incoming: Bool
     let uuid: UUID
+    var messageId: Int? // set when the call is started by dc_place_outgoing_call()
+
+    init(contextId: Int, chatId: Int, messageId: Int? = nil, incoming: Bool, uuid: UUID) {
+        self.contextId = contextId
+        self.chatId = chatId
+        self.messageId = messageId
+        self.incoming = incoming
+        self.uuid = uuid
+    }
 }
 
 class CallManager: NSObject {
