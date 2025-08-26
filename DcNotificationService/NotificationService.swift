@@ -92,7 +92,8 @@ class NotificationService: UNNotificationServiceExtension {
                     let payload = [
                         "account_id": dcContext.id,
                         "message_id": msg.id,
-                    ]
+                        "place_call_info": event.data2String,
+                    ] as [String : Any]
                     // calling reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
                         if let error {
