@@ -25,7 +25,8 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
         logger.info("☎️ didReceiveIncomingPushWith")
         let callInfo = payload.dictionaryPayload
         guard let accountId = callInfo["account_id"] as? Int,
-              let msgId = callInfo["message_id"] as? Int else { return }
-        CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId)
+              let msgId = callInfo["message_id"] as? Int,
+              let placeCallInfo = callInfo["place_call_info"] as? String else { return }
+        CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
     }
 }

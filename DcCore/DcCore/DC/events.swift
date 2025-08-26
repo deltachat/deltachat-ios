@@ -210,6 +210,7 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: [
                 "account_id": Int(accountId),
                 "message_id": Int(data1),
+                "place_call_info": event.data2String,
             ])
 
         case DC_EVENT_INCOMING_CALL_ACCEPTED:

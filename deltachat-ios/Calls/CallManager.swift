@@ -14,13 +14,15 @@ class DcCall {
     let uuid: UUID
     let direction: CallDirection
     var messageId: Int? // set for incoming calls or after dc_place_outgoing_call()
+    var placeCallInfo: String? // payload from caller given to dc_place_outgoing_call()
 
-    init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil) {
+    init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil, placeCallInfo: String? = nil) {
         self.contextId = contextId
         self.chatId = chatId
         self.uuid = uuid
         self.direction = direction
         self.messageId = messageId
+        self.placeCallInfo = placeCallInfo
     }
 }
 
@@ -81,8 +83,9 @@ class CallManager: NSObject {
     @objc private func handleIncomingCallEvent(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
         guard let accountId = ui["account_id"] as? Int,
-              let msgId = ui["message_id"] as? Int else { return }
-        reportIncomingCall(accountId: accountId, msgId: msgId)
+              let msgId = ui["message_id"] as? Int,
+              let placeCallInfo = ui["place_call_info"] as? String else { return }
+        reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
     }
 
     @objc private func handleCallEndedEvent(_ notification: Notification) {
@@ -104,13 +107,13 @@ class CallManager: NSObject {
     // this function is called from didReceiveIncomingPushWith
     // and needs to report an incoming call _immediately_ and _unconditionally_.
     // dispatching and conditions should be done by the caller
-    func reportIncomingCall(accountId: Int, msgId: Int) {
+    func reportIncomingCall(accountId: Int, msgId: Int, placeCallInfo: String) {
         let dcContext = DcAccounts.shared.get(id: accountId)
         let dcMsg = dcContext.getMessage(id: msgId)
         let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
         let name = dcChat.name
         let uuid = UUID()
-        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, messageId: msgId)
+        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, messageId: msgId, placeCallInfo: placeCallInfo)
 
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: name)
