@@ -152,14 +152,18 @@ extension CallViewController: WKScriptMessageHandler {
             guard let payload = message.body as? String else { logger.error("errStartCall: \(message.body)"); return }
             logger.info("startCall: " + payload)
             let dcContext = DcAccounts.shared.get(id: call.contextId)
-            call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, payload: payload)
+            call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: payload)
 
         case "acceptCall":
             guard let payload = message.body as? String else { logger.error("errAcceptCall: \(message.body)"); return }
+            guard let messageId = call.messageId else { logger.error("errAcceptCall: messageId not set"); return }
             logger.info("acceptCall: " + payload)
+            let dcContext = DcAccounts.shared.get(id: call.contextId)
+            dcContext.acceptIncomingCall(msgId: messageId, acceptCallInfo: payload)
 
         case "endCall":
             logger.info("endCall")
+            // TODO
 
         default:
             logger.error("errMessageHandler: \(message.name)")
