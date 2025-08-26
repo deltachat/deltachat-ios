@@ -88,22 +88,6 @@ class CallManager: NSObject {
         reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
     }
 
-    @objc private func handleCallEndedEvent(_ notification: Notification) {
-        guard let ui = notification.userInfo else { return }
-        guard let accountId = ui["account_id"] as? Int,
-              let msgId = ui["message_id"] as? Int else { return }
-        if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
-            logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
-            requestCallControllerToEnd(uuid: currentCall.uuid)
-        } else {
-            logger.info("☎️ call (\(accountId),\(msgId)) already ended")
-        }
-        
-        DispatchQueue.main.async {
-            CallWindow.shared?.hideCallUIAndSetRoot()
-        }
-    }
-
     // this function is called from didReceiveIncomingPushWith
     // and needs to report an incoming call _immediately_ and _unconditionally_.
     // dispatching and conditions should be done by the caller
@@ -130,7 +114,23 @@ class CallManager: NSObject {
         }
     }
 
-    private func requestCallControllerToEnd(uuid: UUID) {
+    @objc private func handleCallEndedEvent(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+        guard let accountId = ui["account_id"] as? Int,
+              let msgId = ui["message_id"] as? Int else { return }
+        if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
+            endCallController(uuid: currentCall.uuid)
+        } else {
+            logger.info("☎️ call (\(accountId),\(msgId)) already ended")
+        }
+
+        DispatchQueue.main.async {
+            CallWindow.shared?.hideCallUIAndSetRoot()
+        }
+    }
+
+    private func endCallController(uuid: UUID) {
         let endCallAction = CXEndCallAction(call: uuid)
         let transaction = CXTransaction(action: endCallAction)
 
