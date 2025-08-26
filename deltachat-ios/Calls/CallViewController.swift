@@ -131,7 +131,7 @@ class CallViewController: UIViewController {
     }
 
     func setWebviewFragment(fragment: String) {
-        let js = "history.replaceState(null, '', '#\(fragment)');"
+        let js = "window.location.hash = '#\(fragment)';"
         webView.evaluateJavaScript(js, completionHandler: nil)
     }
 }
