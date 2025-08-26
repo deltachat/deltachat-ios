@@ -120,9 +120,13 @@ class CallManager: NSObject {
               let msgId = ui["message_id"] as? Int else { return }
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
-            endCallControllerAndHideUI()
+            endCallController(uuid: currentCall.uuid)
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
+        }
+
+        DispatchQueue.main.async {
+            CallWindow.shared?.hideCallUIAndSetRoot()
         }
     }
 
