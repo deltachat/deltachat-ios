@@ -179,9 +179,9 @@ extension CallViewController: WKScriptMessageHandler {
             logger.info("endCall")
             let dcContext = DcAccounts.shared.get(id: call.contextId)
             if let messageId = call.messageId {
-                dcContext.endCall(msgId: messageId)
+                dcContext.endCall(msgId: messageId) // this ends up in DC_EVENT_CALL_ENDED, which then calls endCallControllerAndHideUI()
             } else {
-                // TODO: close UI if there is no connection yet
+                CallManager.shared.endCallControllerAndHideUI()
             }
 
         default:
