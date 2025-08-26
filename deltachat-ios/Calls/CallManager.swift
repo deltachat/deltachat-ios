@@ -156,8 +156,7 @@ class CallManager: NSObject {
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("☎️ call accepted pressed")
-        if let currentCall, let messageId = currentCall.messageId {
-            let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
+        if let currentCall {
             DispatchQueue.main.async {
                 CallWindow.shared?.showCallUI(for: currentCall)
             }
