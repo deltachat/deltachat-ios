@@ -134,6 +134,9 @@ extension CallViewController: WKUIDelegate {
 }
 
 extension CallViewController: WKScriptMessageHandler {
+    // receiving messages from the webview,
+    // need to be declared in swift-land by contentController.add(FUNC_NAME)
+    // and called in js-land as webkit.messageHandlers.FUNC_NAME.postMessage(payload)
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         switch message.name {
         case "startCall":
