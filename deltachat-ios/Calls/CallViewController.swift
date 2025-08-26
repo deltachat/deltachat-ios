@@ -49,15 +49,6 @@ class CallWindow: UIWindow {
 class CallViewController: UIViewController {
     var call: DcCall
 
-    init(call: DcCall) {
-        self.call = call
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     lazy var config: WKWebViewConfiguration = {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()
@@ -105,7 +96,17 @@ class CallViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
+    init(call: DcCall) {
+        self.call = call
+        super.init(nibName: nil, bundle: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CallViewController.handleOutgoingCallAcceptedEvent(_:)), name: Event.outgoingCallAccepted, object: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(webView)
@@ -133,6 +134,19 @@ class CallViewController: UIViewController {
     func setWebviewFragment(fragment: String) {
         let js = "window.location.hash = '#\(fragment)';"
         webView.evaluateJavaScript(js, completionHandler: nil)
+    }
+
+    // MARK: - Notifications
+
+    @objc private func handleOutgoingCallAcceptedEvent(_ notification: Notification) {
+        guard let ui = notification.userInfo else { return }
+        guard let accountId = ui["account_id"] as? Int, let msgId = ui["message_id"] as? Int else { return }
+        guard accountId == call.contextId && msgId == call.messageId else { return }
+        guard let acceptCallInfo = ui["accept_call_info"] as? String else { return }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.setWebviewFragment(fragment: "answer=\(acceptCallInfo)")
+        }
     }
 }
 
