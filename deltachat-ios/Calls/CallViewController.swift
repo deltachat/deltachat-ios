@@ -131,6 +131,15 @@ class CallViewController: UIViewController {
         CallWindow.shared?.hideCallUI()
     }
 
+    private func hangup() {
+        let dcContext = DcAccounts.shared.get(id: call.contextId)
+        if let messageId = call.messageId {
+            dcContext.endCall(msgId: messageId) // this ends up in DC_EVENT_CALL_ENDED, which then calls endCallControllerAndHideUI()
+        } else {
+            CallManager.shared.endCallControllerAndHideUI()
+        }
+    }
+
     func setWebviewFragment(fragment: String) {
         let js = "window.location.hash = '#\(fragment)';"
         webView.evaluateJavaScript(js, completionHandler: nil)
@@ -177,12 +186,7 @@ extension CallViewController: WKScriptMessageHandler {
 
         case "endCall":
             logger.info("endCall")
-            let dcContext = DcAccounts.shared.get(id: call.contextId)
-            if let messageId = call.messageId {
-                dcContext.endCall(msgId: messageId) // this ends up in DC_EVENT_CALL_ENDED, which then calls endCallControllerAndHideUI()
-            } else {
-                CallManager.shared.endCallControllerAndHideUI()
-            }
+            hangup()
 
         default:
             logger.error("errMessageHandler: \(message.name)")
