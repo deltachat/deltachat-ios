@@ -29,6 +29,7 @@ public enum Event {
 
     public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
     public static let incomingCall = Notification.Name(rawValue: "incomingCall")
+    public static let incomingCallAccepted = Notification.Name(rawValue: "incomingCallAccepted")
     public static let outgoingCallAccepted = Notification.Name(rawValue: "outgoingCallAccepted")
     public static let callEnded = Notification.Name(rawValue: "callEnded")
 }
@@ -216,6 +217,10 @@ public class DcEventHandler {
 
         case DC_EVENT_INCOMING_CALL_ACCEPTED:
             logger.info("☎️ DC_EVENT_INCOMING_CALL_ACCEPTED(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.incomingCallAccepted, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+            ])
 
         case DC_EVENT_OUTGOING_CALL_ACCEPTED:
             logger.info("☎️ DC_EVENT_OUTGOING_CALL_ACCEPTED(\(accountId),\(data1))")

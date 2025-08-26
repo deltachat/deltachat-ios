@@ -13,8 +13,9 @@ class DcCall {
     let chatId: Int
     let uuid: UUID
     let direction: CallDirection
-    var messageId: Int? // set for incoming calls or after dc_place_outgoing_call()
+    var messageId: Int?        // set for incoming calls or after dc_place_outgoing_call()
     var placeCallInfo: String? // payload from caller given to dc_place_outgoing_call()
+    var callAcceptedHere: Bool // for multidevice, stop ringing elsewhere
 
     init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil, placeCallInfo: String? = nil) {
         self.contextId = contextId
@@ -23,6 +24,7 @@ class DcCall {
         self.direction = direction
         self.messageId = messageId
         self.placeCallInfo = placeCallInfo
+        self.callAcceptedHere = false
     }
 }
 
@@ -50,6 +52,7 @@ class CallManager: NSObject {
         provider.setDelegate(self, queue: nil)
         callObserver.setDelegate(self, queue: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallAcceptedEvent(_:)), name: Event.incomingCallAccepted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleCallEndedEvent(_:)), name: Event.callEnded, object: nil)
     }
 
@@ -114,6 +117,19 @@ class CallManager: NSObject {
         }
     }
 
+    @objc private func handleIncomingCallAcceptedEvent(_ notification: Notification) {
+        guard let ui = notification.userInfo,
+              let accountId = ui["account_id"] as? Int,
+              let msgId = ui["message_id"] as? Int else { return }
+
+        if let currentCall, !currentCall.callAcceptedHere, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            logger.info("☎️ incoming call accepted on other device")
+            let uuid = currentCall.uuid
+            self.currentCall = nil  // avoid dcContext.endCall() being called
+            endCallController(uuid: uuid)
+        }
+    }
+
     @objc private func handleCallEndedEvent(_ notification: Notification) {
         guard let ui = notification.userInfo else { return }
         guard let accountId = ui["account_id"] as? Int,
@@ -144,6 +160,7 @@ class CallManager: NSObject {
         let endCallAction = CXEndCallAction(call: uuid)
         let transaction = CXTransaction(action: endCallAction)
 
+        // requesting CXEndCallAction will result in provider(CXEndCallAction) being called below, which results in dcContext.endCall() for valid objects
         callController.request(transaction) { error in
             if let error {
                 logger.info("☎️ error ending call: \(error.localizedDescription)")

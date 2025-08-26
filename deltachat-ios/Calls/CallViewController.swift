@@ -182,6 +182,7 @@ extension CallViewController: WKScriptMessageHandler {
             guard let messageId = call.messageId else { logger.error("errAcceptCall: messageId not set"); return }
             logger.info("acceptCall: " + payload)
             let dcContext = DcAccounts.shared.get(id: call.contextId)
+            call.callAcceptedHere = true
             dcContext.acceptIncomingCall(msgId: messageId, acceptCallInfo: payload)
 
         case "endCall":
