@@ -113,7 +113,11 @@ class CallViewController: UIViewController {
 
         guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
         guard var fileComponents = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else { return }
-        fileComponents.fragment = "call"
+        switch call.direction {
+        case .outgoing: fileComponents.fragment = "call"
+        case .incoming: fileComponents.fragment = "offer=\(call.placeCallInfo ?? "ErrNoCallInfo")"
+        }
+
         guard let urlWithFragment = fileComponents.url else { return }
         webView.load(URLRequest(url: urlWithFragment))
 
