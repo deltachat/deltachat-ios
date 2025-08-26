@@ -129,6 +129,11 @@ class CallViewController: UIViewController {
     @objc private func hideButtonPressed() {
         CallWindow.shared?.hideCallUI()
     }
+
+    func setWebviewFragment(fragment: String) {
+        let js = "history.replaceState(null, '', '#\(fragment)');"
+        webView.evaluateJavaScript(js, completionHandler: nil)
+    }
 }
 
 extension CallViewController: WKUIDelegate {
