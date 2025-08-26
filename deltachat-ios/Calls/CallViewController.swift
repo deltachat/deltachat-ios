@@ -128,7 +128,7 @@ class CallViewController: UIViewController {
     }
     
     @objc private func hideButtonPressed() {
-        CallWindow.shared?.hideCallUI()
+        hangup()
     }
 
     private func hangup() {
