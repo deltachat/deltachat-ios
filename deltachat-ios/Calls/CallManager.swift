@@ -94,13 +94,13 @@ class CallManager: NSObject {
               let msgId = ui["message_id"] as? Int else { return }
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
-            endCall(uuid: currentCall.uuid)
+            requestCallControllerToEnd(uuid: currentCall.uuid)
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
         
         DispatchQueue.main.async {
-            CallWindow.shared?.endCall()
+            CallWindow.shared?.hideCallUIAndSetRoot()
         }
     }
 
@@ -130,7 +130,7 @@ class CallManager: NSObject {
         }
     }
 
-    func endCall(uuid: UUID) {
+    private func requestCallControllerToEnd(uuid: UUID) {
         let endCallAction = CXEndCallAction(call: uuid)
         let transaction = CXTransaction(action: endCallAction)
 
