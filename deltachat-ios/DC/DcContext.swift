@@ -792,15 +792,15 @@ public class DcContext {
         setConfig("proxy_url", allProxies)
     }
 
-    public func placeOutgoingCall(chatId: Int, payload: String) -> Int {
-        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), payload)
+    public func placeOutgoingCall(chatId: Int, placeCallInfo: String) -> Int {
+        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), placeCallInfo)
         logger.info("☎️ (\(self.id),\(msgId))=dc_place_outgoing_call(\(chatId)")
         return Int(msgId)
     }
 
-    public func acceptIncomingCall(msgId: Int) {
+    public func acceptIncomingCall(msgId: Int, acceptCallInfo: String) {
         logger.info("☎️ dc_accept_incoming_call(\(self.id),\(msgId))")
-        dc_accept_incoming_call(contextPointer, UInt32(msgId), "call-data")
+        dc_accept_incoming_call(contextPointer, UInt32(msgId), acceptCallInfo)
     }
 
     public func endCall(msgId: Int) {
