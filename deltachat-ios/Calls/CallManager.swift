@@ -3,19 +3,24 @@ import DcCore
 
 let canVideoCalls = true
 
+enum CallDirection {
+    case incoming
+    case outgoing
+}
+
 class DcCall {
     let contextId: Int
     let chatId: Int
-    let incoming: Bool
     let uuid: UUID
-    var messageId: Int? // set when the call is started by dc_place_outgoing_call()
+    let direction: CallDirection
+    var messageId: Int? // set for incoming calls or after dc_place_outgoing_call()
 
-    init(contextId: Int, chatId: Int, messageId: Int? = nil, incoming: Bool, uuid: UUID) {
+    init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil) {
         self.contextId = contextId
         self.chatId = chatId
-        self.messageId = messageId
-        self.incoming = incoming
         self.uuid = uuid
+        self.direction = direction
+        self.messageId = messageId
     }
 }
 
@@ -53,7 +58,7 @@ class CallManager: NSObject {
         }
 
         let uuid = UUID()
-        currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, messageId: nil, incoming: false, uuid: uuid)
+        currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, uuid: uuid, direction: .outgoing)
 
         let nameToDisplay = dcChat.name
         let handle = CXHandle(type: .generic, value: nameToDisplay)
@@ -105,7 +110,7 @@ class CallManager: NSObject {
         let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
         let name = dcChat.name
         let uuid = UUID()
-        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, messageId: msgId, incoming: true, uuid: uuid)
+        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, messageId: msgId)
 
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: name)
