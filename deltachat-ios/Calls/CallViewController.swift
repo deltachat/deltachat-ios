@@ -177,7 +177,12 @@ extension CallViewController: WKScriptMessageHandler {
 
         case "endCall":
             logger.info("endCall")
-            // TODO
+            let dcContext = DcAccounts.shared.get(id: call.contextId)
+            if let messageId = call.messageId {
+                dcContext.endCall(msgId: messageId)
+            } else {
+                // TODO: close UI if there is no connection yet
+            }
 
         default:
             logger.error("errMessageHandler: \(message.name)")
