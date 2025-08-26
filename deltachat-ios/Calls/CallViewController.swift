@@ -114,8 +114,8 @@ class CallViewController: UIViewController {
         guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
         guard var fileComponents = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else { return }
         switch call.direction {
-        case .outgoing: fileComponents.fragment = "call"
-        case .incoming: fileComponents.fragment = "offer=\(call.placeCallInfo ?? "ErrNoCallInfo")"
+        case .outgoing: fileComponents.percentEncodedFragment = "call"
+        case .incoming: fileComponents.percentEncodedFragment = "offer=\(call.placeCallInfo ?? "ErrNoCallInfo")"
         }
 
         guard let urlWithFragment = fileComponents.url else { return }
