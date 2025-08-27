@@ -1,4 +1,5 @@
 import PushKit
+import DcCore
 
 class VoIPPushManager: NSObject, PKPushRegistryDelegate {
     var pushRegistry: PKPushRegistry?
@@ -24,9 +25,15 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
         // this is not theory, but happens during development :)
         logger.info("☎️ didReceiveIncomingPushWith")
         let callInfo = payload.dictionaryPayload
-        guard let accountId = callInfo["account_id"] as? Int,
-              let msgId = callInfo["message_id"] as? Int,
-              let placeCallInfo = callInfo["place_call_info"] as? String else { return }
-        CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
+        guard let event = callInfo["event_id"] as? Int,
+              let accountId = callInfo["account_id"] as? Int,
+              let msgId = callInfo["message_id"] as? Int else { return }
+
+        if event == DC_EVENT_INCOMING_CALL {
+            guard let placeCallInfo = callInfo["place_call_info"] as? String else { return }
+            CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
+        } else {
+            logger.error("unknown event: \(event)")
+        }
     }
 }

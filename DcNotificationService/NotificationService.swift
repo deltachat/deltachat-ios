@@ -85,17 +85,14 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
-                let dcContext = dcAccounts.get(id: event.accountId)
-                let msg = dcContext.getMessage(id: event.data1Int)
-
                 if #available(iOSApplicationExtension 14.5, *) {
-                    let payload = [
-                        "account_id": dcContext.id,
-                        "message_id": msg.id,
+                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload([
+                        "event_id": Int(DC_EVENT_INCOMING_CALL),
+                        "account_id": event.accountId,
+                        "message_id": event.data1Int,
                         "place_call_info": event.data2String,
-                    ] as [String: Any]
-                    // calling reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
-                    CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
+                    ] as [String: Any]) { error in
                         if let error {
                             UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
                         } else {
@@ -104,9 +101,10 @@ class NotificationService: UNNotificationServiceExtension {
                     }
                 } else {
                     let content = UNMutableNotificationContent()
+                    let msg = dcAccounts.get(id: event.accountId).getMessage(id: event.data1Int)
                     content.title = "Incoming Call"
-                    content.body = "This requires iOS 14.5 or newer"
-                    content.userInfo["account_id"] = dcContext.id
+                    content.body = "Calls require iOS 14.5 or newer"
+                    content.userInfo["account_id"] = event.accountId
                     content.userInfo["chat_id"] = msg.chatId
                     content.userInfo["message_id"] = msg.id
                     notifications.append(content)
