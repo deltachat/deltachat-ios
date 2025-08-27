@@ -32,8 +32,8 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
         if event == DC_EVENT_INCOMING_CALL {
             guard let placeCallInfo = callInfo["place_call_info"] as? String else { return }
             CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
-        } else if event == DC_EVENT_CALL_ENDED {
-            CallManager.shared.endCallControllerIfIncoming()
+        } else if event == DC_EVENT_CALL_ENDED || event == DC_EVENT_INCOMING_CALL_ACCEPTED {
+            CallManager.shared.endCallControllerIfUnacceptedIncoming()
         } else {
             logger.error("unknown event: \(event)")
         }

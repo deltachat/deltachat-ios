@@ -156,10 +156,10 @@ class CallManager: NSObject {
         }
     }
 
-    func endCallControllerIfIncoming() {
+    func endCallControllerIfUnacceptedIncoming() {
         guard let currentCall else { return }
 
-        if currentCall.direction == .incoming {
+        if currentCall.direction == .incoming && !currentCall.callAcceptedHere {
             endCallController(uuid: currentCall.uuid)
         }
     }
