@@ -156,6 +156,14 @@ class CallManager: NSObject {
         }
     }
 
+    func endCallControllerIfIncoming() {
+        guard let currentCall else { return }
+
+        if currentCall.direction == .incoming {
+            endCallController(uuid: currentCall.uuid)
+        }
+    }
+
     private func endCallController(uuid: UUID) {
         let endCallAction = CXEndCallAction(call: uuid)
         let transaction = CXTransaction(action: endCallAction)

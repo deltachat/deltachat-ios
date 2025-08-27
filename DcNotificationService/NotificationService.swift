@@ -109,6 +109,22 @@ class NotificationService: UNNotificationServiceExtension {
                     content.userInfo["message_id"] = msg.id
                     notifications.append(content)
                 }
+            } else if event.id == DC_EVENT_CALL_ENDED {
+                UserDefaults.pushToDebugArray("CALL_ENDED")
+                if #available(iOSApplicationExtension 14.5, *) {
+                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload([
+                        "event_id": Int(DC_EVENT_CALL_ENDED),
+                        "account_id": event.accountId,
+                        "message_id": event.data1Int,
+                    ] as [String: Any]) { error in
+                        if let error {
+                            UserDefaults.pushToDebugArray("ERR7 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK4")
+                        }
+                    }
+                }
             }
         }
 
