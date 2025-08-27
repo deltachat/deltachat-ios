@@ -109,12 +109,12 @@ class NotificationService: UNNotificationServiceExtension {
                     content.userInfo["message_id"] = msg.id
                     notifications.append(content)
                 }
-            } else if event.id == DC_EVENT_CALL_ENDED {
-                UserDefaults.pushToDebugArray("CALL_ENDED")
+            } else if event.id == DC_EVENT_CALL_ENDED || event.id == DC_EVENT_INCOMING_CALL_ACCEPTED {
+                UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
                 if #available(iOSApplicationExtension 14.5, *) {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
-                        "event_id": Int(DC_EVENT_CALL_ENDED),
+                        "event_id": Int(event.id),
                         "account_id": event.accountId,
                         "message_id": event.data1Int,
                     ] as [String: Any]) { error in
