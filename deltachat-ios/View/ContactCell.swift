@@ -388,7 +388,7 @@ class ContactCell: UITableViewCell {
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            subtitleLabel.isHidden = contact.isVerified
+            subtitleLabel.isHidden = contact.isKeyContact
 
             if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
