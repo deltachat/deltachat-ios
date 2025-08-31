@@ -353,22 +353,20 @@ class ProfileViewController: UITableViewController {
                     }))
                     moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 } else if isInBroadcast {
-                    actions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], { [weak self] in
+                    moreOptions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], { [weak self] in
                         self?.showLeaveAlert("menu_leave_channel")
                     }))
-                    actions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
+                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 } else {
                     moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 }
 
-                actions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
+                moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
 
             if !moreOptions.isEmpty {
                 actions.append(contentsOf: [
-                    UIMenu(options: [.displayInline], children: [
-                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
-                    ])
+                    UIMenu(options: [.displayInline], children: moreOptions)
                 ])
             }
 
