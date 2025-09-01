@@ -83,7 +83,7 @@ internal final class NotificationsViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
-        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -158,7 +158,7 @@ internal final class NotificationsViewController: UITableViewController {
     }
 
     private func updateNotificationWarning() {
-        getNotificationStatus { warning in
+        NotificationsViewController.getNotificationStatus(dcContext: dcContext) { warning in
             DispatchQueue.runOnMain { [weak self] in
                 self?.sections[0].footerTitle = if let warning {
                     "⚠️ " + warning
@@ -170,16 +170,14 @@ internal final class NotificationsViewController: UITableViewController {
         }
     }
 
-    private func getNotificationStatus(completionHandler: @escaping (String?) -> Void) {
-        DispatchQueue.runOnMain { [weak self] in
+    static func getNotificationStatus(dcContext: DcContext, completionHandler: @escaping (String?) -> Void) {
+        DispatchQueue.runOnMain {
             // `UIApplication.shared` needs to be called from main thread
             let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
 
             // do the remaining things in background thread
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self else { return }
-
-                let connectiviy = self.dcContext.getConnectivity()
+            DispatchQueue.global(qos: .userInitiated).async {
+                let connectiviy = dcContext.getConnectivity()
                 let pushState = dcContext.getPushState()
                 let notificationsEnabledInDC = !dcContext.isMuted()
                 var notificationsEnabledInSystem = false

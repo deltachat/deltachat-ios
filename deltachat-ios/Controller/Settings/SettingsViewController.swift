@@ -156,6 +156,7 @@ internal final class SettingsViewController: UITableViewController {
         // set connectivity changed observer before we acutally init `connectivityCell.detailTextLabel` in `updateCells()`,
         // otherwise, we may miss events and the label is not correct.
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -238,6 +239,13 @@ internal final class SettingsViewController: UITableViewController {
 
             self.connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: self.dcContext,
                                                                                    connectedString: String.localized("connectivity_connected"))
+            updateNotificationCell()
+        }
+    }
+
+    @objc func applicationDidBecomeActive(_ notification: NSNotification) {
+        if navigationController?.visibleViewController == self {
+            updateNotificationCell()
         }
     }
 
@@ -246,7 +254,20 @@ internal final class SettingsViewController: UITableViewController {
         profileCell.updateCell(cellViewModel: ProfileViewModel(context: dcContext))
         connectivityCell.detailTextLabel?.text = DcUtils.getConnectivityString(dcContext: dcContext,
                                                                                connectedString: String.localized("connectivity_connected"))
-        notificationCell.detailTextLabel?.text = String.localized(dcContext.isMuted() ? "off" : "on")
+        updateNotificationCell()
+    }
+
+    private func updateNotificationCell() {
+        NotificationsViewController.getNotificationStatus(dcContext: dcContext) { warning in
+            DispatchQueue.runOnMain { [weak self] in
+                guard let self else { return }
+                notificationCell.detailTextLabel?.text = if warning != nil {
+                    "⚠️"
+                } else {
+                    String.localized(dcContext.isMuted() ? "off" : "on")
+                }
+            }
+        }
     }
 
     // MARK: - coordinator
