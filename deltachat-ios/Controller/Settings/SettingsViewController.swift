@@ -157,6 +157,7 @@ internal final class SettingsViewController: UITableViewController {
         // otherwise, we may miss events and the label is not correct.
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.powerStateDidChange(_:)), name: NSNotification.Name.NSProcessInfoPowerStateDidChange, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -246,6 +247,10 @@ internal final class SettingsViewController: UITableViewController {
         if navigationController?.visibleViewController == self {
             updateNotificationCell()
         }
+    }
+
+    @objc private func powerStateDidChange(_ notification: Notification) {
+        updateNotificationCell()
     }
 
     // MARK: - updates
