@@ -170,6 +170,21 @@ internal final class NotificationsViewController: UITableViewController {
         }
     }
 
+    static func isLowDataMode() -> Bool {
+        assert(!Thread.isMainThread)
+        var result = false
+        let semaphore = DispatchSemaphore(value: 0)
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { path in
+            result = path.isConstrained
+            semaphore.signal()
+        }
+        monitor.start(queue: DispatchQueue.global())
+        _ = semaphore.wait(timeout: .now() + 1)
+        monitor.cancel()
+        return result
+    }
+
     static func getNotificationStatus(dcContext: DcContext, completionHandler: @escaping (String?) -> Void) {
         DispatchQueue.runOnMain {
             // `UIApplication.shared` needs to be called from main thread
@@ -218,18 +233,19 @@ internal final class NotificationsViewController: UITableViewController {
                     return
                 }
 
-                if NWPathMonitor().currentPath.isConstrained {
+                if pushState == DC_PUSH_CONNECTED {
+                    // "low data" and "low power" modes do not affect push
+                    completionHandler(nil)
+                    return
+                }
+
+                if isLowDataMode() {
                     completionHandler(String.localized("connectivity_low_data_mode"))
                     return
                 }
 
                 if ProcessInfo.processInfo.isLowPowerModeEnabled {
                     completionHandler(String.localized("connectivity_low_power_mode"))
-                    return
-                }
-
-                if pushState == DC_PUSH_CONNECTED {
-                    completionHandler(nil)
                     return
                 }
 
