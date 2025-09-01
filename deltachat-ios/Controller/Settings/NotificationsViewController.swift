@@ -58,17 +58,22 @@ internal final class NotificationsViewController: UITableViewController {
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let preferencesSection = SectionConfigs(
+        let notificationsSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: nil,
+            cells: [notificationsCell]
+        )
+        let mentionsSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_mention_notifications_explain"),
-            cells: [notificationsCell, mentionsCell]
+            cells: [mentionsCell]
         )
         let systemSettingsSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("system_settings_notify_explain_ios"),
             cells: [systemSettingsCell]
         )
-        return [preferencesSection, systemSettingsSection]
+        return [notificationsSection, mentionsSection, systemSettingsSection]
     }()
 
     init(dcAccounts: DcAccounts) {
