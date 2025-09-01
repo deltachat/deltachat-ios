@@ -52,7 +52,7 @@ internal final class SettingsViewController: UITableViewController {
     }()
 
     private lazy var notificationCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.notifications.rawValue
         cell.textLabel?.text = String.localized("pref_notifications")
         cell.imageView?.image = UIImage(systemName: "bell")
@@ -108,7 +108,7 @@ internal final class SettingsViewController: UITableViewController {
     }()
 
     private lazy var connectivityCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.connectivity.rawValue
         cell.textLabel?.text = String.localized("connectivity")
         cell.imageView?.image = UIImage(systemName: "arrow.up.arrow.down")
@@ -172,8 +172,7 @@ internal final class SettingsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-
+        notificationCell.detailTextLabel?.text = " " // nil does not reserve space for the warning calculated in background
         updateCells()
     }
 
@@ -261,10 +260,10 @@ internal final class SettingsViewController: UITableViewController {
         NotificationsViewController.getNotificationStatus(dcContext: dcContext) { warning in
             DispatchQueue.runOnMain { [weak self] in
                 guard let self else { return }
-                notificationCell.detailTextLabel?.text = if warning != nil {
-                    "⚠️"
+                if let warning {
+                    notificationCell.detailTextLabel?.text = "⚠️ " + warning
                 } else {
-                    String.localized(dcContext.isMuted() ? "off" : "on")
+                    notificationCell.detailTextLabel?.text = String.localized(dcContext.isMuted() ? "off" : "on")
                 }
             }
         }
