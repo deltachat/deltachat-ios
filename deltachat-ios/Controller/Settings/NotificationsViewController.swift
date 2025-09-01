@@ -1,12 +1,13 @@
 import UIKit
 import DcCore
 import Intents
+import Network
 
 internal final class NotificationsViewController: UITableViewController {
 
     private struct SectionConfigs {
         let headerTitle: String?
-        let footerTitle: String?
+        var footerTitle: String?
         let cells: [UITableViewCell]
     }
 
@@ -36,6 +37,7 @@ internal final class NotificationsViewController: UITableViewController {
                 }
 
                 updateCells()
+                updateNotificationWarning()
                 NotificationManager.updateBadgeCounters()
                 NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
         })
@@ -81,6 +83,7 @@ internal final class NotificationsViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
+        NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -97,6 +100,13 @@ internal final class NotificationsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateCells()
+        updateNotificationWarning()
+    }
+
+    @objc func applicationDidBecomeActive(_ notification: NSNotification) {
+        if navigationController?.visibleViewController == self {
+            updateNotificationWarning()
+        }
     }
 
     // MARK: - UITableViewDelegate + UITableViewDatasource
@@ -145,5 +155,116 @@ internal final class NotificationsViewController: UITableViewController {
     private func updateCells() {
         mentionsCell.uiSwitch.isEnabled = !dcContext.isMuted()
         mentionsCell.uiSwitch.isOn = !dcContext.isMuted() && dcContext.isMentionsEnabled
+    }
+
+    private func updateNotificationWarning() {
+        getNotificationStatus { warning in
+            DispatchQueue.runOnMain { [weak self] in
+                self?.sections[0].footerTitle = if let warning {
+                    "⚠️ " + warning
+                } else {
+                    nil
+                }
+                self?.tableView.reloadData()
+            }
+        }
+    }
+
+    private func getNotificationStatus(completionHandler: @escaping (String?) -> Void) {
+        DispatchQueue.runOnMain { [weak self] in
+            // `UIApplication.shared` needs to be called from main thread
+            let backgroundRefreshStatus = UIApplication.shared.backgroundRefreshStatus
+
+            // do the remaining things in background thread
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                guard let self else { return }
+
+                let connectiviy = self.dcContext.getConnectivity()
+                let pushState = dcContext.getPushState()
+                let notificationsEnabledInDC = !dcContext.isMuted()
+                var notificationsEnabledInSystem = false
+                let semaphore = DispatchSemaphore(value: 0)
+                DispatchQueue.global(qos: .userInitiated).async {
+                    NotificationManager.notificationEnabledInSystem { enabled in
+                        notificationsEnabledInSystem = enabled
+                        semaphore.signal()
+                    }
+                }
+                if semaphore.wait(timeout: .now() + 1) == .timedOut {
+                    completionHandler(nil)
+                    return
+                }
+
+                if dcContext.isAnyDatabaseEncrypted() {
+                    completionHandler("Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
+                    return
+                }
+
+                if !notificationsEnabledInDC {
+                    completionHandler(nil)
+                    return
+                }
+
+                if !notificationsEnabledInSystem {
+                    completionHandler(String.localized("disabled_in_system_settings"))
+                    return
+                }
+
+                if backgroundRefreshStatus != .available {
+                    completionHandler(String.localized("bg_app_refresh_disabled"))
+                    return
+                }
+
+                if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
+                    completionHandler(String.localized("connectivity_not_connected"))
+                    return
+                }
+
+                if NWPathMonitor().currentPath.isConstrained {
+                    completionHandler(String.localized("connectivity_low_data_mode"))
+                    return
+                }
+
+                if ProcessInfo.processInfo.isLowPowerModeEnabled {
+                    completionHandler(String.localized("connectivity_low_power_mode"))
+                    return
+                }
+
+                if pushState == DC_PUSH_CONNECTED {
+                    completionHandler(nil)
+                    return
+                }
+
+                let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
+                guard let timestamps = timestamps, !timestamps.isEmpty else {
+                    // in most cases, here the app was just installed and we do not have any data.
+                    // so, do not show something error-like here.
+                    // (in case of errors, it usually converts to an error sooner or later)
+                    completionHandler(nil)
+                    return
+                }
+
+                let averageDelta = (Double(Date().timeIntervalSince1970) - timestamps.first!) / Double(timestamps.count)
+
+                var lastWakeups = ""
+                var lastWakeupsCnt = 0
+                for timestamp in timestamps.reversed() {
+                    lastWakeups += (lastWakeupsCnt > 0 ? ", " : "") + DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamp)
+                    lastWakeupsCnt += 1
+                    if lastWakeupsCnt >= 3 {
+                        break
+                    }
+                }
+
+                let avg = "Server does not support instant delivery. "
+                    .appending(" ")
+                    .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
+                    .appending(", ")
+                    .appending(averageDelta / 3600 > 2 ?
+                               String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
+                                String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
+                completionHandler(avg)
+            }
+        }
     }
 }
