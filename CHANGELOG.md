@@ -6,6 +6,7 @@
 - Share email address for email contacts instead of vCard
 - In case of errors, tapping message text or status opens "message info" directly
 - Flatten profile menu
+- Show possible notification issues promimently in settings
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
 - Fix: do not show letter icon for partially downloaded messages
