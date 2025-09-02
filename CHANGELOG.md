@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Disappearing messages options range from 5 minutes to 1 year now
 - Share email address for email contacts instead of vCard
 - In case of errors, tapping message text or status opens "message info" directly
 - Flatten profile menu
