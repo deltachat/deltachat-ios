@@ -576,7 +576,11 @@ class ProfileViewController: UITableViewController {
     }
 
     private func showEncrInfoAlert() {
-        let alert = UIAlertController(title: String.localized("encryption_info_title_desktop"), message: dcContext.getContactEncrInfo(contactId: contactId), preferredStyle: .alert)
+        let encrInfo = dcContext.getContactEncrInfo(contactId: contactId)
+        let alert = UIAlertController(title: String.localized("encryption_info_title_desktop"), message: encrInfo, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("global_menu_edit_copy_desktop"), style: .default, handler: { _ in
+            UIPasteboard.general.string = encrInfo
+        }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default))
         self.present(alert, animated: true, completion: nil)
     }
