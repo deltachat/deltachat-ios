@@ -197,9 +197,18 @@ internal final class NotificationsViewController: UITableViewController {
 
             // do the remaining things in background thread
             DispatchQueue.global(qos: .userInitiated).async {
+                if dcContext.isAnyDatabaseEncrypted() {
+                    completionHandler("Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
+                    return
+                }
+
+                if dcContext.isMuted() {
+                    completionHandler(nil)
+                    return
+                }
+
                 let connectiviy = dcContext.getConnectivity()
                 let pushState = dcContext.getPushState()
-                let notificationsEnabledInDC = !dcContext.isMuted()
                 var notificationsEnabledInSystem = false
                 let semaphore = DispatchSemaphore(value: 0)
                 DispatchQueue.global(qos: .userInitiated).async {
@@ -209,16 +218,6 @@ internal final class NotificationsViewController: UITableViewController {
                     }
                 }
                 if semaphore.wait(timeout: .now() + 1) == .timedOut {
-                    completionHandler(nil)
-                    return
-                }
-
-                if dcContext.isAnyDatabaseEncrypted() {
-                    completionHandler("Unreliable due to \"Encrypted Accounts\" experiment, see \"Device Messages\" for fixing")
-                    return
-                }
-
-                if !notificationsEnabledInDC {
                     completionHandler(nil)
                     return
                 }
