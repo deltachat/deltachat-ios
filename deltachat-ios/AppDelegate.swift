@@ -715,6 +715,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_DAYS_BY_OTHER, localizationKey: "ephemeral_timer_days_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_YOU, localizationKey: "ephemeral_timer_weeks_by_you")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_WEEKS_BY_OTHER, localizationKey: "ephemeral_timer_weeks_by_other")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_YEAR_BY_YOU, localizationKey: "ephemeral_timer_1_year_by_you")
+        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_YEAR_BY_OTHER, localizationKey: "ephemeral_timer_1_year_by_other")
         dcContext.setStockTranslation(id: DC_STR_BACKUP_TRANSFER_QR, localizationKey: "multidevice_qr_subtitle")
         dcContext.setStockTranslation(id: DC_STR_BACKUP_TRANSFER_MSG_BODY, localizationKey: "multidevice_transfer_done_devicemsg")
         dcContext.setStockTranslation(id: DC_STR_CHAT_PROTECTION_ENABLED, localizationKey: "chat_protection_enabled_tap_to_learn_more")

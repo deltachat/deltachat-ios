@@ -19,7 +19,6 @@ struct Constants {
 }
 
 struct Time {
-    static let oneMinute = 60
     static let fiveMinutes = 5 * 60
     static let thirtyMinutes = 30 * 60
     static let oneHour = 60 * 60
@@ -29,4 +28,5 @@ struct Time {
     static let oneDay = 24 * 60 * 60
     static let oneWeek = 7 * 24 * 60 * 60
     static let fiveWeeks = 5 * 7 * 24 * 60 * 60
+    static let oneYear = 365 * 24 * 60 * 60
 }
