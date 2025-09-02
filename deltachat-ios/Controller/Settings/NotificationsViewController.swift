@@ -83,8 +83,8 @@ internal final class NotificationsViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.powerStateDidChange(_:)), name: NSNotification.Name.NSProcessInfoPowerStateDidChange, object: nil)
     }
 
     required init?(coder _: NSCoder) {
@@ -104,13 +104,13 @@ internal final class NotificationsViewController: UITableViewController {
         updateNotificationWarning()
     }
 
-    @objc func applicationDidBecomeActive(_ notification: NSNotification) {
+    @objc private func applicationDidBecomeActive(_ notification: NSNotification) {
         if navigationController?.visibleViewController == self {
             updateNotificationWarning()
         }
     }
 
-    @objc private func powerStateDidChange(_ notification: Notification) {
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
         updateNotificationWarning()
     }
 
