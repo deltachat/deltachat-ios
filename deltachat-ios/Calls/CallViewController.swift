@@ -134,7 +134,12 @@ class CallViewController: UIViewController {
     private func hangup() {
         let dcContext = DcAccounts.shared.get(id: call.contextId)
         if let messageId = call.messageId {
-            dcContext.endCall(msgId: messageId) // this ends up in DC_EVENT_CALL_ENDED, which then calls endCallControllerAndHideUI()
+            // depending on $things,
+            // dc_end_call() may or may not result in "delegate CXEndCallAction" being called (via DC_EVENT_CALL_ENDED -> endCallControllerAndHideUI).
+            // but in any case we have to call dc_end_call() in "delegate CXEndCallAction"; the user may have ended the calls by other means.
+            // to avoid double calls to dc_end_call(), we use a flag.
+            call.coreEndCallCalled = true
+            dcContext.endCall(msgId: messageId)
         } else {
             CallManager.shared.endCallControllerAndHideUI()
         }
