@@ -1929,7 +1929,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                 )
 
-                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
+                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && message.type != DC_MSG_CALL && dcChat.canSend {
                     children.append(
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
                     )
