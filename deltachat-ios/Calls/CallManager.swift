@@ -16,7 +16,6 @@ class DcCall {
     var messageId: Int?        // set for incoming calls or after dc_place_outgoing_call()
     var placeCallInfo: String? // payload from caller given to dc_place_outgoing_call()
     var callAcceptedHere: Bool // for multidevice, stop ringing elsewhere
-    var coreEndCallCalled: Bool
 
     init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil, placeCallInfo: String? = nil) {
         self.contextId = contextId
@@ -26,7 +25,6 @@ class DcCall {
         self.messageId = messageId
         self.placeCallInfo = placeCallInfo
         self.callAcceptedHere = false
-        self.coreEndCallCalled = false
     }
 }
 
@@ -204,12 +202,9 @@ extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         logger.info("☎️ call ended pressed")
         if let currentCall, let messageId = currentCall.messageId {
-            let coreEndCallCalled = currentCall.coreEndCallCalled
             let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
             self.currentCall = nil
-            if !coreEndCallCalled {
-                dcContext.endCall(msgId: messageId)
-            }
+            dcContext.endCall(msgId: messageId)
         }
         action.fulfill()
     }
