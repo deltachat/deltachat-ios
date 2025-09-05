@@ -9,6 +9,7 @@
 - Show possible notification issues promimently in settings
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
+- Experimental "Calls" option replaces "Videochat Invitation" experiment
 - Fix: do not show letter icon for partially downloaded messages
 
 

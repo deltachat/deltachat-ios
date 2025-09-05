@@ -6,6 +6,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 import Combine
+import CallKit
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -815,6 +816,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func updateTitle() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
+        var dcContact: DcContact? = nil
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
@@ -837,8 +839,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isSelfTalk {
                 subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
-                let dcContact = dcContext.getContact(id: chatContactIds[0])
-                if dcContact.isBot {
+                dcContact = dcContext.getContact(id: chatContactIds[0])
+                if let dcContact, dcContact.isBot {
                     subtitle = String.localized("bot")
                 } else {
                     subtitle = nil
@@ -869,6 +871,13 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if !dcChat.isSelfTalk {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
+
+                if !dcChat.isMultiUser && dcChat.canSend,
+                   let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty,
+                   let dcContact, dcContact.isKeyContact {
+                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
+                    rightBarButtonItems.append(button)
+                }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
@@ -1169,6 +1178,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @objc private func appsAndMediaPressed() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
+    }
+
+    @objc private func callPressed() {
+        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
@@ -1916,7 +1929,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                 )
 
-                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
+                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && message.type != DC_MSG_CALL && dcChat.canSend {
                     children.append(
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
                     )
