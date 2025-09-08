@@ -52,7 +52,7 @@ public class DcMsg {
     }
 
     public var isMarkerOrInfo: Bool {
-        return id == DC_MSG_ID_MARKER1 || id == DC_MSG_ID_DAYMARKER || isInfo || type == DC_MSG_VIDEOCHAT_INVITATION
+        return id == DC_MSG_ID_MARKER1 || id == DC_MSG_ID_DAYMARKER || isInfo
     }
 
     public var canSave: Bool {
@@ -347,12 +347,4 @@ public class DcMsg {
     public func showEnvelope() -> Bool {
         return dc_msg_get_showpadlock(messagePointer) == 0 && downloadState == DC_DOWNLOAD_DONE
     }
-
-    public func getVideoChatUrl() -> String {
-        guard let cString = dc_msg_get_videochat_url(messagePointer) else { return "" }
-        let swiftString = String(cString: cString)
-        dc_str_unref(cString)
-        return swiftString
-    }
-
 }

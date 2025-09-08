@@ -15,7 +15,6 @@ internal final class AdvancedViewController: UITableViewController {
         case defaultTagValue = 0
         case showEmails
         case sendAutocryptMessage
-        case videoChat
         case viewLog
         case accountSettings
         case proxySettings
@@ -139,14 +138,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    private lazy var videoChatInstanceCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.videoChat.rawValue
-        cell.textLabel?.text = String.localized("videochat_instance")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
     lazy var broadcastListsCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("channels"),
@@ -226,7 +217,7 @@ internal final class AdvancedViewController: UITableViewController {
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [videoChatInstanceCell, broadcastListsCell, callsCell, locationStreamingCell])
+            cells: [broadcastListsCell, callsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
             let encryptionSection = SectionConfigs(
@@ -302,7 +293,6 @@ internal final class AdvancedViewController: UITableViewController {
         case .showEmails: showClassicMailController()
         case .sendAutocryptMessage: sendAutocryptSetupMessage()
 
-        case .videoChat: showVideoChatInstance()
         case .viewLog: showLogViewController()
 
         case .accountSettings:
@@ -385,13 +375,6 @@ internal final class AdvancedViewController: UITableViewController {
     // MARK: - updates
     private func updateCells() {
         showEmailsCell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
-        videoChatInstanceCell.detailTextLabel?.text = VideoChatInstanceViewController.getValString(val: dcContext.getConfig("webrtc_instance") ?? "")
         proxySettingsCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
-    }
-
-    // MARK: - coordinator
-    private func showVideoChatInstance() {
-        let videoInstanceController = VideoChatInstanceViewController(dcContext: dcContext)
-        navigationController?.pushViewController(videoInstanceController, animated: true)
     }
 }

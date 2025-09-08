@@ -117,10 +117,6 @@ public class DcContext {
         }
     }
 
-    public func sendVideoChatInvitation(chatId: Int) -> Int {
-        return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
-    }
-
     public func getChatMsgs(chatId: Int, flags: Int32) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(flags), 0)
