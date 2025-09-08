@@ -158,12 +158,6 @@
 "menu_new_contact" = "Novo contato";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// deprecated
-"broadcast_list" = "Lista de Transmissão";
-// deprecated
-"broadcast_lists" = "Listas de Transmissão";
-// deprecated
-"new_broadcast_list" = "Nova Lista de Transmissão";
 "add_recipients" = "Adicionar Destinatários";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
@@ -279,8 +273,6 @@
 "ask_start_chat_with" = "Conversar com %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
-// deprecated
-"ask_remove_from_broadcast" = "Remover %1$@ da lista de transmissão?";
 "open_url_confirmation" = "Você quer abrir este link?";
 // contact list
 "contacts_title" = "Contatos";
@@ -378,10 +370,6 @@
 "all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Pré-visualização.";
 "send_message" = "Enviar mensagem";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ mudou seu endereço de %2$@ para %3$@";
-// deprecated
-"aeap_explanation" = "Você mudou seu endereço de e-mail de %1$@ para %2$@.\n\nSe você agora enviar uma mensagem para um grupo verificado, os contatos lá substituirão automaticamente o antigo por seu novo endereço.\n\nÉ altamente recomendável configurar seu antigo provedor de e-mail para encaminhar todos os e-mails para seu novo endereço de e-mail. Caso contrário, você pode perder mensagens de contatos que ainda não receberam seu novo endereço.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Adicionar Outro Dispositivo";
@@ -733,12 +721,8 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@respondeu, esperando para ser adicionado ao grupo...";
 "contact_verified" = "%1$@ verificado.";
-// deprecated, was stock string
-"contact_not_verified" = "Impossível verificar %1$@";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificado por %1$@";
-// deprecated, was stock string
-"contact_setup_changed" = "A configuração Autocrypt mudou para %1$@";
 "mailto_dialog_header_select_chat" = "Selecione o bate-papo para enviar a mensagem";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ já tem um rascunho de mensagem, deseja substituí-lo?";
@@ -769,8 +753,6 @@
 "ImageEditorHud_crop" = "Cortar";
 "ImageEditorHud_flip" = "Girar";
 "ImageEditorHud_rotate" = "Rodar";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Mensagem criptografada";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Este é o aplicativo oficial Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Este software é licenciado sob a GNU GPL versão 3 e o código-fonte está disponível no GitHub.";

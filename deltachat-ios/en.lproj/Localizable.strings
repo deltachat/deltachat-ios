@@ -198,12 +198,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chat with…";
 "clone_chat" = "Clone Chat";
-// deprecated
-"broadcast_list" = "Broadcast List";
-// deprecated
-"broadcast_lists" = "Broadcast Lists";
-// deprecated
-"new_broadcast_list" = "New Broadcast List";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Channel";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -211,12 +205,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "New Channel";
 "add_recipients" = "Add Recipients";
-// deprecated
-"edit_broadcast_list" = "Edit Broadcast List";
-// deprecated
-"broadcast_list_name" = "Broadcast List Name";
-// deprecated
-"please_enter_broadcast_list_name" = "Please enter a name for the broadcast list.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Channel Name";
 "email" = "E-Mail";
@@ -361,8 +349,6 @@
 "ask_start_chat_with" = "Chat with %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remove %1$@ from group?";
-// deprecated
-"ask_remove_from_broadcast" = "Remove %1$@ from broadcast list?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Remove %1$@ from channel?";
 "open_url_confirmation" = "Do you want to open this link?";
@@ -378,8 +364,6 @@
 "chat_unable_to_record_audio" = "Unable to record audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Send a message to %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "In a broadcast list, recipients will receive messages in a read-only chat with you.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "Channels are a one-to-many tool for broadcasting your messages.";
 "chat_new_group_hint" = "Others will only see this group after you sent a first message.";
@@ -481,10 +465,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Square Grid";
 "send_message" = "Send Message";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ changed their address from %2$@ to %3$@";
-// deprecated
-"aeap_explanation" = "You changed your email address from %1$@ to %2$@.\n\nIf you now send a message to a verified group, contacts there will automatically replace the old with your new address.\n\nIt\'s highly advised to set up your old email provider to forward all emails to your new email address. Otherwise you might miss messages of contacts who did not get your new address yet.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Add Second Device";
@@ -852,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "You set disappearing messages timer to 1 week.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_week_by_other" = "Disappearing messages timer set to 1 week by %1$@.";
+"ephemeral_timer_1_year_by_you" = "You set disappearing messages timer to 1 year.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "Disappearing messages timer set to 1 year by %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "You set disappearing messages timer to %1$@ minutes.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -868,14 +851,8 @@
 "ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
-// deprecated
-"chat_protection_broken" = "%1$@ sent a message from another device.";
 "chat_protection_enabled_tap_to_learn_more" = "Messages are end-to-end encrypted. Tap to learn more.";
 "chat_protection_enabled_explanation" = "All messages in this chat are end-to-end encrypted.\n\nEnd-to-end encryption keeps messages private between you and your chat partners. Not even servers, providers or relays can read them.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ sent a message from another device. Tap to learn more.";
-// deprecated
-"chat_protection_broken_explanation" = "End-to-end encryption cannot be guaranteed anymore, likely because %1$@ reinstalled Delta Chat or sent a message from another device.\n\nYou may meet them in person and scan their QR code again to reestablish guaranteed end-to-end encryption.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
 "invalid_unencrypted_explanation" = "To establish end-to-end-encryption, you may meet contacts in person and scan their QR Code to introduce them.";
 "learn_more" = "Learn More";
@@ -931,19 +908,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
 "secure_join_wait" = "Establishing end-to-end encryption, please wait…";
-// deprecated
-"secure_join_wait_timeout" = "Could not yet establish guaranteed end-to-end encryption, but you may already send a message.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "The contact must be online to proceed.\n\nThis process will continue automatically in background.";
 "contact_verified" = "%1$@ introduced.";
-// deprecated, was stock string
-"contact_not_verified" = "Cannot establish end-to-end encryption with %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introduced by %1$@";
 "verified_by_you" = "Introduced by me";
 "verified_by_unknown" = "Introduced";
-// deprecated, was stock string
-"contact_setup_changed" = "Changed setup for %1$@.";
 "verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green checkmark to this group.\n\nYou may meet contacts in person and scan their QR Code to introduce them.";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat
@@ -981,8 +950,6 @@
 "ImageEditorHud_crop" = "Crop";
 "ImageEditorHud_flip" = "Flip";
 "ImageEditorHud_rotate" = "Rotate";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Encrypted message";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
@@ -1097,13 +1064,9 @@
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
 "update_2_0" = "What\'s new?\n\n💯 End-to-end encryption is reliable and forever now. Padlocks 🔒 are gone!\n\n✉️ Classic email without end-to-end encryption is marked with a letter symbol\n\n😻 New enhanced profile screen for all your contacts\n\n🔲 New button for quick access to apps used in a chat\n\n❤️ Please donate to help us remain independent and continue to bring improvements: %1$@";
-// deprecated
-"update_1_50_android" = "What\'s new?\n\n❤️‍🔥 New emojis picker with more emoji\n\n🎮 Enhanced in-chat apps: Get notifications and open supporting apps in context, i.e. open an added calendar entry directly\n\n👍 Get notified about reactions to your messages\n\n... 🛠️ FIXES and EVEN MORE at %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ \"Switch Profile\" option moved: Tap your profile image in the upper corner of the main screen to add or switch profiles 💡";
 // iOS specific untranslated strings
-"connectivity_low_data_mode" = "Disabled by system's \"Low Data Mode\".";
-"connectivity_low_power_mode" = "Disabled by system's \"Low Power Mode\".";
+"connectivity_low_data_mode" = "Throttled by system's \"Low Data Mode\".";
+"connectivity_low_power_mode" = "Throttled by system's \"Low Power Mode\".";
 "backup_successful" = "Backup successful";
 "backup_successful_explain_ios" = "You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.";
 "location_denied" = "Location access denied";

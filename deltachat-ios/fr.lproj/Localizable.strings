@@ -182,19 +182,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Discuter avec...";
 "clone_chat" = "Cloner la discussion";
-// deprecated
-"broadcast_list" = "Liste de diffusion";
-// deprecated
-"broadcast_lists" = "Listes de diffusion";
-// deprecated
-"new_broadcast_list" = "Nouvelle liste de diffusion";
 "add_recipients" = "Ajouter des destinataires";
-// deprecated
-"edit_broadcast_list" = "Modifier la liste de diffusion";
-// deprecated
-"broadcast_list_name" = "Nom de la liste de diffusion";
-// deprecated
-"please_enter_broadcast_list_name" = "Entrez un nom pour la liste de diffusion.";
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
 "menu_edit_group" = "Modifier le groupe";
@@ -323,8 +311,6 @@
 "ask_start_chat_with" = "Discuter avec %1$@ ?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Retirer %1$@ du groupe ?";
-// deprecated
-"ask_remove_from_broadcast" = "Retirer %1$@ de la liste de diffusion ?";
 "open_url_confirmation" = "Voulez-vous ouvrir ce lien ?";
 // contact list
 "contacts_title" = "Contacts";
@@ -338,8 +324,6 @@
 "chat_unable_to_record_audio" = "Impossible d\'enregistrer le son.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Envoyez un message. Il n\'y a pas de problème si %1$@ n\'utilise pas Delta Chat.";
-// deprecated
-"chat_new_broadcast_hint" = "Dans une liste de diffusion, les destinataires reçoivent les messages dans une discussion avec vous en lecture seule.";
 "chat_new_group_hint" = "Les autres participants ne verront ce groupe qu\'après que vous avez envoyé un premier message.";
 "chat_record_slide_to_cancel" = "Glisser pour annuler";
 "chat_record_explain" = "Appuyer et maintenir pour enregistrer un message vocal, relâcher pour l’envoyer";
@@ -438,10 +422,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Grille de photos carrées";
 "send_message" = "Envoyer message";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ a changé son adresse de %2$@ à %3$@";
-// deprecated
-"aeap_explanation" = "Vous avez changé votre adresse courriel de %1$@ à %2$@.\n\nSi vous envoyez maintenant un message à un groupe connu, votre ancienne adresse sera automatiquement remplacée par la nouvelle chez tous vos contacts dans ce groupe.\n\nIl est fortement conseillé de configurer votre ancien fournisseur de courriel de sorte à transférer tous vos courriels à votre nouvelle adresse. Sinon, vous risquez de manquer des messages de contacts qui n\'ont pas encore reçu votre nouvelle adresse.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Ajouter un deuxième appareil";
@@ -814,14 +794,8 @@
 "ephemeral_timer_weeks_by_you" = "Vous avez réglé le temps d\'affichage des messages éphémères à %1$@ semaines.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Minuterie des messages éphémères réglée à %1$@ semaines par %2$@.";
-// deprecated
-"chat_protection_broken" = "%1$@ a envoyé un message depuis un nouvel appareil.";
 "chat_protection_enabled_tap_to_learn_more" = "Les messages sont désormais garantis chiffrés de bout en bout. Appuyer pour en savoir plus.";
 "chat_protection_enabled_explanation" = "Il n\'est pas garanti que tous les messages de cette discussion sont chiffrés de bout en bout.\n\nLe chiffrement de bout en bout assure la confidentialité des messages échangés par les membres d\'une discussion. Même votre fournisseur de courriel ne peut pas les lire. ";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ a envoyé un message depuis un nouvel appareil. Appuyez pour en savoir plus.";
-// deprecated
-"chat_protection_broken_explanation" = "Le chiffrement de bout en bout ne peut plus être garanti, probablement parce que %1$@ a réinstallé Delta Chat ou envoyé un message depuis un nouvel appareil.\n\nVous pouvez convenir d\'une rencontre physique afin de scanner à nouveau son code QR pour ré-instaurer la garantie du chiffrement de bout en bout.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ nécessite un chiffrement de bout en bout qui n\'est pas encore configuré sur cette discussion. Appuyez pour en savoir plus.";
 "invalid_unencrypted_explanation" = "Pour établir un chiffrement de bout en bout vous pouvez rencontrer vos contacts en personne et scanner leur code QR.";
 "learn_more" = "En savoir plus";
@@ -877,16 +851,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ a répondu, en attente d’être ajouté au groupe…";
 "secure_join_wait" = "Chiffrement de bout en bout en cours d\'établissement, merci de patienter...";
-// deprecated
-"secure_join_wait_timeout" = "Le chiffrement de bout en bout n\'est pas encore garanti, mais vous pouvez déjà envoyer un message.";
 "contact_verified" = "%1$@ connu.";
-// deprecated, was stock string
-"contact_not_verified" = "Impossible de garantir le chiffrement de bout en bout avec %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Connu par %1$@";
 "verified_by_you" = "Connu par vous";
-// deprecated, was stock string
-"contact_setup_changed" = "Configuration modifiée pour %1$@";
 "verified_contact_required_explain" = "Pour garantir le chiffrement de bout en bout, vous pouvez ajouter à ce groupe uniquement les contacts avec un badge vert.\n\nVous pouvez rencontrer ces contacts en personne pour scanner leur code QR et les ajouter à votre liste de contacts connus.";
 "mailto_dialog_header_select_chat" = "Sélectionnez une discussion à qui envoyer le message";
 // first placeholder is the name of the chat
@@ -924,8 +892,6 @@
 "ImageEditorHud_crop" = "Rogner";
 "ImageEditorHud_flip" = "Tourner";
 "ImageEditorHud_rotate" = "Pivoter";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Message chiffré";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ceci est l\'application de bureau Delta Chat officielle.";
 "about_licensed_under_desktop" = "Ce logiciel est sous licence GNU GPL version 3 et le code source est disponible sur GitHub.";

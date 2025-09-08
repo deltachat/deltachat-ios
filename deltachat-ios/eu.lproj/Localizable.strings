@@ -2,35 +2,80 @@
 "app_name" = "Delta Chat";
 "ok" = "Ados";
 "cancel" = "Utzi";
+"clear_search" = "Garbitu bilaketa";
+// a noun, used on a button, short for "show link"
+"link" = "Esteka";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Eskaneatu";
 "yes" = "Bai";
 "no" = "Ez";
+"select" = "Hautatu";
 "on" = "Bai";
 "off" = "Ez";
-"def" = "Lehenetsita";
+"def" = "Lehenetsia";
+"default_value" = "Lehenetsia (%1$@)";
+"default_value_as_above" = "Lehenetsia (aurreko bera)";
 "custom" = "Pertsonalizatua";
 "none" = "Bat ere ez";
 "automatic" = "Automatikoa";
 "strict" = "Zorrotza";
 "open" = "Ireki";
+"download" = "Deskargatu";
+"downloading" = "Deskargatzen...";
+"open_attachment" = "Erantsitakoa ireki";
+"join" = "Batu";
+"rejoin" = "Batu berriro";
 "delete" = "Ezabatu";
+"delete_for_me" = "Ezabatu niretzat";
+"delete_for_everyone" = "Ezabatu denontzat";
 "info" = "Informazioa";
 "update" = "Eguneratu";
 "emoji" = "Emojia";
 "attachment" = "Eranskina";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Erantsi \"%1$@\"?";
 "back" = "Atzera";
 "close" = "Itxi";
+"close_window" = "Leihoa itxi";
 "forward" = "Birbidali";
+"create" = "Sortu";
+"reset" = "Berrezarri";
+"later" = "Geroago";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Berriro bidali";
+"edited" = "Editatu egin da";
+"edit_message" = "Mezua editatu";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Artxibatu";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Berreskuratu artxibotik";
 "mute" = "Isilarazi";
+"muted" = "Isilarazia";
 "ephemeral_messages" = "Mezuen desagerpena";
+"ephemeral_messages_hint" = "Txat honetako kide guztiei aplikatzen zaie; mezuak kopiatu, gorde eta birbidali ahal izango dituzte oraindik ere.";
 "save" = "Gorde";
 "chat" = "Txata";
 "media" = "Multimedia";
+"profile" = "Profila";
+"all_profiles" = "Profil guztiak";
+"current_profile" = "Oraingo profila";
 "main_menu" = "Menu nagusia";
 "start_chat" = "Hasi txata";
+"show_full_message" = "Erakutsi mezu osoa";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Ezarri denak irakurri gisa";
+"mark_as_read" = "Ezarri irakurri gisa";
+// Placeholder text when something is loading
+"loading" = "Kargatzen...";
+"hide" = "Ezkutatu";
+"activate" = "Aktibatu";
+"load_remote_content" = "Kargatu urrutiko irudiak";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Urrutiko irudiek zure jarraipena egin dezakete.\n\nEzarpen honek letra-tipoak eta beste eduki batzuk ere karga ditzake. Desaktibatuta badago irudi kapsulatuak edo cachean daudenak agertu ahal dira.\n\nKargatu urrutiko irudiak?";
+"always" = "Beti";
+"always_load_remote_images" = "Kargatu urrutiko irudiak beti";
+"once" = "Behin";
+"show_warning" = "Erakutsi abisua";
 "show_password" = "Erakutsi pasahitza";
 "hide_password" = "Ezkutatu pasahitza";
 "not_now" = "Orain ez";
@@ -38,6 +83,7 @@
 "one_moment" = "Unetxo bat...";
 "done" = "Egina";
 "undo" = "Desegin";
+"offline" = "Lineaz kanpo";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Hurrengoa";
 "error" = "Errorea";
@@ -45,6 +91,8 @@
 "no_app_to_handle_data" = "Ezin izan da datu mota hau kudeatzeko aplikaziorik.";
 "no_browser_installed" = "Ez dago nabigatzailerik instalatuta.";
 "file_not_found" = "Ezin izan da %1$@ aurkitu.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Ezin da %1$@ gorde.";
 "copied_to_clipboard" = "Arbelera kopiatuta.";
 "contacts_headline" = "Kontaktuak";
 "email_address" = "E-mail helbidea";
@@ -60,16 +108,33 @@
 "this_month" = "Hilabete honetan";
 "last_week" = "Azken astea";
 "last_month" = "Azken hilabetea";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "%1$@-n ikusi da azken";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Azken aldiz begiratua %1$@";
+"last_seen_unknown" = "Azken aldiz begiratzea: ezezaguna";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Items Selected"
+"selected_colon" = "Hautaketa:";
 "self" = "Ni";
 "draft" = "Zirriborroa";
 "image" = "Irudia";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Erantzuna";
 "gif" = "Gif-a";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Stickerra";
+"add_to_sticker_collection" = "Gehitu Sticker bildumara";
+"add_stickers_instructions" = "Stickerretara gehitzeko, klik egin \"Ireki sticker karpeta\"  aukeran, sortu azpikarpeta bat zure sticker multzoarentzat eta arrastatu irudi eta sticker fitxategiak bertara.";
+"open_sticker_folder" = "Ireki sticker karpeta";
 "images" = "Irudiak";
 "audio" = "Audioa";
 "voice_message" = "Ahots-mezua";
+"forwarded" = "Birbidalia";
 "forwarded_message" = "Birbidalitako mezua";
+// %1$s will be replaced by the name of the person who forwarded the message
+"forwarded_by" = "%1$@(e)k birbidalia";
 "video" = "Bideoa";
 "documents" = "Dokumentuak";
 "contact" = "Kontaktua";
@@ -395,10 +460,6 @@
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
 "contact_verified" = "%1$@ egiaztatuta.";
-// deprecated, was stock string
-"contact_not_verified" = "Ezin da %1$@ egiaztatu";
-// deprecated, was stock string
-"contact_setup_changed" = "Aldatu %1$@(r)en ezarpena";
 // notifications
 "notify_reply_button" = "Erantzun";
 "notify_new_message" = "Mezu berria";
@@ -416,8 +477,6 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \"Baimenak\" eta gaitu \"Mikrofonoa\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Biltegiratzea\"";
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Zifratutako mezua";
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";

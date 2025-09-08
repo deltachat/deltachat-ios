@@ -198,19 +198,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
-// deprecated
-"broadcast_list" = "廣播列表";
-// deprecated
-"broadcast_lists" = "廣播列表";
-// deprecated
-"new_broadcast_list" = "新增廣播列表";
 "add_recipients" = "新增對象";
-// deprecated
-"edit_broadcast_list" = "編輯廣播列表";
-// deprecated
-"broadcast_list_name" = "廣播列表名稱";
-// deprecated
-"please_enter_broadcast_list_name" = "請為廣播列表輸入名稱。";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";
 "menu_edit_group" = "編輯群組";
@@ -343,8 +331,6 @@
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
-// deprecated
-"ask_remove_from_broadcast" = "將%1$@自廣播列表中移除？";
 "open_url_confirmation" = "你想開啟此連結嗎？";
 // contact list
 "contacts_title" = "聯絡人清單";
@@ -358,8 +344,6 @@
 "chat_unable_to_record_audio" = "無法錄音";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "向 %1$@ 傳送訊息。";
-// deprecated
-"chat_new_broadcast_hint" = "在廣播清單中，收件者將在與您的只讀聊天中收到消息。";
 "chat_new_group_hint" = "只有在你傳送第一條訊息後，其他人才會看到此群組。";
 "chat_record_slide_to_cancel" = "滑動以取消";
 "chat_record_explain" = "按住錄音，放開後傳送";
@@ -459,10 +443,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "方形網格";
 "send_message" = "傳送訊息";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ 已將他的位址從 %2$@更改 為 %3$@";
-// deprecated
-"aeap_explanation" = "您已將電子郵件位址從%1$@更改為%2$@ 。\n\n如果您現在向已驗證的群組發送消息，那裡的聯絡人會自動將舊位址替換為您的新位址。\n\n強烈建議您將舊電子郵件供應商設置為將所有電子郵件轉發到您的新電子郵件位址。否則，您可能會錯過尚未獲得新地址的聯絡人的消息。";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "新增另一個裝置";
@@ -844,14 +824,8 @@
 "ephemeral_timer_weeks_by_you" = "您將自動刪除訊息計時器設置為%1$@週。";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@將自動刪除訊息計時器設置為%1$@週。";
-// deprecated
-"chat_protection_broken" = "%1$@從另一台裝置傳送了一條訊息。";
 "chat_protection_enabled_tap_to_learn_more" = "從現在開始，保證消息進行端到端加密。輕觸以瞭解更多資訊。";
 "chat_protection_enabled_explanation" = "現在可以保證此聊天中的所有消息都是端到端加密的。\n\n端到端加密使您和您的聊天夥伴之間的消息保持私密。甚至您的電子郵件供應商也無法讀取它們。";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@從另一台裝置傳送了一條訊息。輕觸以瞭解更多資訊。";
-// deprecated
-"chat_protection_broken_explanation" = "無法再保證端到端加密，可能是因為%1$@重新安裝了 Delta Chat 或從其他裝置傳送了訊息\n\n您可以再次當面掃描他們的QR碼，以重新建立有保證的端到端加密。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@需要端到端加密，但尚未為此聊天設置。輕觸以瞭解更多資訊。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以當面掃描聯絡人的QR碼。";
 "learn_more" = "瞭解更多";
@@ -907,18 +881,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@已回覆，等待被添加到群組中...";
 "secure_join_wait" = "正在建立有保證的端到端加密，請稍候...";
-// deprecated
-"secure_join_wait_timeout" = "尚無法建立有保證的端到端加密，但您可能已經送出了一條訊息。";
-// deprecated, was stock string
-"secure_join_takes_longer" = "聯繫人必須處於連線狀態才能繼續。\n\n此過程將在後台自動繼續。";
 "contact_verified" = "%1$@已介紹。";
-// deprecated, was stock string
-"contact_not_verified" = "無法與%1$@建立有保證的端到端加密。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "由%1$@介紹";
 "verified_by_you" = "由我介紹";
-// deprecated, was stock string
-"contact_setup_changed" = "已爲%1$@更改設定。";
 "verified_contact_required_explain" = "為了保證端到端加密，您只能將帶有綠色驗證標識的聯絡人添加到此群組。\n\n您可以當面掃描聯絡人的QR碼以介紹他們。";
 "mailto_dialog_header_select_chat" = "選擇要將消息發送到的聊天";
 // first placeholder is the name of the chat
@@ -956,8 +922,6 @@
 "ImageEditorHud_crop" = "裁切";
 "ImageEditorHud_flip" = "翻轉";
 "ImageEditorHud_rotate" = "旋轉";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "已加密的訊息";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "這是 Delta Chat 官方桌面應用程式。";
 "about_licensed_under_desktop" = "該軟體根據 GNU GPL 第 3 版獲得許可，原始程式碼可在 GitHub 上找到。";
@@ -1070,7 +1034,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
-// deprecated
-"update_1_50_android" = "新功能\n\n❤️ 🔥 新的表情符號選擇器，包含更多表情符號\n\n🎮 增強的聊天應用程式：在上下文中獲取通知並打開支援應用程式，即直接打開添加的日曆條目\n\n👍獲取有關對您的消訊息的回應的通知\n\n...🛠️ 修復以及更多在%1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️「切換賬戶」選項已移動：點擊主螢幕右上角的賬戶大頭貼以添加或切換賬戶 💡";

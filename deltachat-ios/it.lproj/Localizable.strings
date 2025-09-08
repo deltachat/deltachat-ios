@@ -198,12 +198,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatta con…";
 "clone_chat" = "Clona Chat";
-// deprecated
-"broadcast_list" = "Lista Trasmissione";
-// deprecated
-"broadcast_lists" = "Liste Trasmissioni";
-// deprecated
-"new_broadcast_list" = "Nuova Lista Trasmissione";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Canale";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -211,12 +205,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nuovo Canale";
 "add_recipients" = "Aggiungi Destinatari";
-// deprecated
-"edit_broadcast_list" = "Modifica Lista Trasmissione";
-// deprecated
-"broadcast_list_name" = "Nome Lista Trasmissione";
-// deprecated
-"please_enter_broadcast_list_name" = "Per piacere inserisci un nome per la lista trasmissione.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nome Canale";
 "email" = "E-Mail";
@@ -361,8 +349,6 @@
 "ask_start_chat_with" = "Chattare con %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Rimuovere %1$@ dal gruppo?";
-// deprecated
-"ask_remove_from_broadcast" = "Rimuovere %1$@ dalla lista di trasmissione?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Rimuovere %1$@ dal canale?";
 "open_url_confirmation" = "Vuoi aprire questo collegamento?";
@@ -378,8 +364,6 @@
 "chat_unable_to_record_audio" = "Impossibile registrare audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Invia un messaggio a %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "In una lista di trasmissione, i destinatari riceveranno i messaggi in una chat di sola lettura con te.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "I canali sono uno strumento uno-a-molti per trasmettere i tuoi messaggi.";
 "chat_new_group_hint" = "Gli altri vedranno questo gruppo solo dopo che avrai inviato un primo messaggio.";
@@ -481,10 +465,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Griglia Quadrata";
 "send_message" = "Invia Messaggio";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ ha cambiato il suo indirizzo da %2$@ a %3$@";
-// deprecated
-"aeap_explanation" = "Hai cambiato il tuo indirizzo email da %1$@ a %2$@.\n\nSe ora invii un messaggio a un gruppo verificato, i contatti sostituiranno automaticamente il vecchio indirizzo con il tuo nuovo indirizzo.\n\nSi consiglia vivamente di impostare il tuo vecchio fornitore email per inoltrare tutte le email al tuo nuovo indirizzo. Altrimenti potresti perdere i messaggi di contatti che non hanno ancora ricevuto il tuo nuovo indirizzo.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Aggiungi Secondo Dispositivo";
@@ -852,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 settimana.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_week_by_other" = "Timer messaggi a scomparsa impostato su 1 settimana da %1$@.";
+"ephemeral_timer_1_year_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 anno.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "Timer messaggi a scomparsa impostato su 1 anno da %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ minuti.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -868,14 +851,8 @@
 "ephemeral_timer_weeks_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ settimane.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Timer messaggi a scomparsa impostato su %1$@ settimane da %2$@.";
-// deprecated
-"chat_protection_broken" = "%1$@ ha inviato un messaggio da un altro dispositivo.";
 "chat_protection_enabled_tap_to_learn_more" = "I messaggi sono crittografati end-to-end. Tocca per saperne di più.";
 "chat_protection_enabled_explanation" = "Tutti i messaggi in questa chat sono crittografati end-to-end. La crittografia end-to-end mantiene privati i messaggi tra te e i tuoi interlocutori. Nemmeno servers, providers o relays possono leggerli.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ ha inviato un messaggio da un altro dispositivo. Tocca per saperne di più.";
-// deprecated
-"chat_protection_broken_explanation" = "La crittografia end-to-end non può più essere garantita, probabilmente perché %1$@ ha reinstallato Delta Chat o inviato un messaggio da un altro dispositivo.\n\nPuoi incontrarlo di persona e scansionare nuovamente il suo Codice QR per ristabilire la crittografia end-to-end garantita.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
 "invalid_unencrypted_explanation" = "Per stabilire la crittografia end-to-end, potresti incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
 "learn_more" = "Per Saperne di Più";
@@ -931,19 +908,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "secure_join_wait" = "Impostazione della crittografia end-to-end, attendere...";
-// deprecated
-"secure_join_wait_timeout" = "Non è ancora possibile stabilire la crittografia end-to-end garantita, ma potresti già inviare un messaggio.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Il contatto deve essere in linea per proseguire.\n\nQuesto processo continuerà automaticamente in sottofondo.";
 "contact_verified" = "%1$@ verificato.";
-// deprecated, was stock string
-"contact_not_verified" = "Impossibile stabilire una crittografia end-to-end con %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificato da %1$@";
 "verified_by_you" = "Verificato da me";
 "verified_by_unknown" = "Presentato";
-// deprecated, was stock string
-"contact_setup_changed" = "Impostazioni modificate per %1$@";
 "verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo i contatti con un segno di spunta verde.\n\nPuoi incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
@@ -981,8 +950,6 @@
 "ImageEditorHud_crop" = "Ritaglia";
 "ImageEditorHud_flip" = "Capovolgi";
 "ImageEditorHud_rotate" = "Ruota";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Messaggio cifrato";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Questa è l\'app Desktop Delta Chat ufficiale.";
 "about_licensed_under_desktop" = "Questo software è concesso in licenza con GNU GPL versione 3 e il codice sorgente è disponibile su GitHub.";
@@ -1097,7 +1064,3 @@
 "perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in secondo piano.\n\nSe i messaggi non arrivano in secondo piano, per piacere controlla anche le impostazioni di sistema.";
 // device messages for updates
 "update_2_0" = "Novità?\n\n💯 La crittografia end-to-end è ora affidabile e definitiva. I lucchetti 🔒 sono spariti!\n\n✉️ Le email classiche senza crittografia end-to-end sono contrassegnate dal simbolo di una lettera\n\n😻 Nuova schermata del profilo migliorata per tutti i tuoi contatti\n\n🔲 Nuovo pulsante per l\'accesso rapido alle app utilizzate in una chat\n\n❤️ Dona per aiutarci a rimanere indipendenti e continuare a migliorare: %1$@";
-// deprecated
-"update_1_50_android" = "Novità?\n\n❤️‍🔥 Nuovo selettore di emoji con più emoji\n\n🎮 App in chat migliorate: ricevi notifiche e apri le app supportate nel contesto, es. apri una voce del calendario cliccando direttamente sul messaggio\n\n👍 Ricevi notifiche sulle reazioni ai tuoi messaggi...\n\n🛠️ CORREZIONI e ANCORA DI PIÙ su %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ Opzione \"Cambia Profilo\" spostata: Tocca l\'immagine del tuo profilo nell\'angolo superiore della schermata principale per aggiungere o cambiare profili 💡";

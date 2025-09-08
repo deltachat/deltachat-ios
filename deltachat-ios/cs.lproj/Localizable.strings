@@ -191,19 +191,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatovat s...";
 "clone_chat" = "Klonovat chat";
-// deprecated
-"broadcast_list" = "Seznam vysílání";
-// deprecated
-"broadcast_lists" = "Seznamy vysílání";
-// deprecated
-"new_broadcast_list" = "Nový seznam vysílání";
 "add_recipients" = "Přidat příjemce";
-// deprecated
-"edit_broadcast_list" = "Upravit seznam vysílání";
-// deprecated
-"broadcast_list_name" = "Název seznamu vysílání";
-// deprecated
-"please_enter_broadcast_list_name" = "Prosím, zadejte název seznamu vysílání.";
 "menu_send" = "Odeslat";
 "menu_toggle_keyboard" = "Přepnout emoji klávesnici";
 "menu_edit_group" = "Upravit skupinu";
@@ -336,8 +324,6 @@
 "ask_start_chat_with" = "Přejete si chatovat s uživatelem %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Přejete si odstranit uživatele %1$@ ze skupiny?";
-// deprecated
-"ask_remove_from_broadcast" = "Přejete si odstranit uživatele %1$@ ze seznamu vysílání?";
 "open_url_confirmation" = "Přejete si otevřít tento odkaz?";
 // contact list
 "contacts_title" = "Kontakty";
@@ -351,8 +337,6 @@
 "chat_unable_to_record_audio" = "Nelze nahrávat zvuk.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Poslat zprávu uživateli %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "Seznam vysílání slouží k posílání zpráv příjemcům v chatu, který je pro ně pouze pro čtení.";
 "chat_new_group_hint" = "Ostatní tuto skupinu uvidí až poté, co odešlete první zprávu.";
 "chat_record_slide_to_cancel" = "Zrušit tahem";
 "chat_record_explain" = "Pro nahrání hlasové zprávy stiskněte a držte ikonu mikrofonu; uvolněte pro odeslání.";
@@ -451,10 +435,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Mřížka čtverců";
 "send_message" = "Odeslat zprávu";
-// deprecated, was stock string
-"aeap_addr_changed" = "Uživatel %1$@ změnil svou adresu z %2$@ na %3$@";
-// deprecated
-"aeap_explanation" = "Změnili jste svou e-mailovou adresu z %1$@ na %2$@.\n\nPokud nyní pošlete zprávu ověřené skupině, všem kontaktům v ní se vaše adresa aktualizuje na novou.\n\nJe důrazně doporučeno, abyste u svého starého poskytovatele nastavili přesměrování všech e-mailů na novou adresu, jinak byste mohli přijít o zprávy od kontaktů, které vaši novou adresu dosud nedostaly. ";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Přidat další zařízení";
@@ -835,14 +815,8 @@
 "ephemeral_timer_weeks_by_you" = "Samomazací zprávy vyprší po %1$@ týdnech ode mě.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Uživatel %2$@ změnil časovač mizejících zpráv na %1$@ týdnů.";
-// deprecated
-"chat_protection_broken" = "Uživatel %1$@ odeslal zprávu z jiného zařízení.";
 "chat_protection_enabled_tap_to_learn_more" = "Nyní je garantováno koncové šifrování vašich zpráv. Stiskněte pro více informací.";
 "chat_protection_enabled_explanation" = "Nyní je garantováno, že všechny zprávy v tomto chatu jsou koncově šifrovány.\n\nKoncové šifrování zajišťuje soukromí mezi vámi a vašimi kontakty. Nedokáže je přečíst ani váš poskytovatel e-mailu.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "Uživatel %1$@ odeslal zprávu z jiného zařízení. Stiskněte pro více informací.";
-// deprecated
-"chat_protection_broken_explanation" = "Koncové šifrování již nemůže být garantováno, pravděpodobně protože uživatel %1$@ přeinstaloval Delta Chat nebo odeslal zprávu z jiného zařízení.\n\nPro obnovení garantovaného koncového šifrování se sejděte osobně a naskenujte si své QR kódy.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@ vyžaduje koncové šifrování, které pro tento chat ještě není nastaveno. Stiskněte pro více informací. ";
 "invalid_unencrypted_explanation" = "Pro navázání koncově šifrovaného spojení se můžete se svými kontakty setkat osobně a naskenovat jejich QR kódy.";
 "learn_more" = "Další informace";
@@ -898,18 +872,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Uživatel %1$@ odpověděl, čekání na přidání do skupiny...";
 "secure_join_wait" = "Navazování koncově šifrovaného spojení, prosím, čekejte...";
-// deprecated
-"secure_join_wait_timeout" = "Zatím nebylo navázáno koncově šifrované spojení, ale již nyní můžete posílat zprávy.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Vypadá to, že to trvá trochu déle. Možná jste vy nebo váš kontakt offline.\n\nProces však pokračuje na pozadí. Zatím můžete dělat něco jiného...";
 "contact_verified" = "Uživatel %1$@ ověřen.";
-// deprecated, was stock string
-"contact_not_verified" = "Navázání garantovaného koncově šifrovaného spojení s uživatelem %1$@ selhalo.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Ověřeni uživatelem %1$@.";
 "verified_by_you" = "Ověřeni mnou";
-// deprecated, was stock string
-"contact_setup_changed" = "Nastavení pro uživatele %1$@ změněno.";
 "verified_contact_required_explain" = "Aby mohlo být garantováno koncové šifrování, můžete do této skupiny přidávat pouze uživatele se zeleným zaškrtávátkem.\n\nSe svými kontakty se můžete setkat osobně a naskenovat jejich QR kód, abyste je ověřili.";
 "mailto_dialog_header_select_chat" = "Vyberte chat, do kterého chcete zprávu poslat";
 // first placeholder is the name of the chat
@@ -947,8 +913,6 @@
 "ImageEditorHud_crop" = "Ořez";
 "ImageEditorHud_flip" = "Zrcadlení";
 "ImageEditorHud_rotate" = "Otočení";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Šifrovaná zpráva";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Toto je oficiální aplikace Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Tento software je distribuován pod licencí GNU GPL verze 3 a jeho zdrojový kód je k dispozici na GitHubu.";
@@ -1061,7 +1025,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Stiskem nastavíte přijímání zpráv, když je aplikace Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí jste již aplikaci Delta Chat povolili.\n\nV případě, že vám zprávy na pozadí stále nechodí, prosím zkontrolujte svá systémová nastavení.";
-// deprecated
-"update_1_50_android" = "Co je nového?\n\n❤️‍🔥 Nová nabídka emoji s více druhy emoji\n\n🎮 Vylepšené aplikace v chatu: Oznámení a podpůrné aplikace přímo v kontextu chatu, např. odkaz na novou nové položky z kalendáři\n\n👍 Oznámení o reakcích na zprávy\n\n... 🛠️ OPRAVY a DALŠÍ na %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ Volba \"Přepnout profil\" byla přesunuta: Pro přidávání či přepínání profilů stiskněte svůj profilový obrázek v horním rohu hlavní obrazovky.";

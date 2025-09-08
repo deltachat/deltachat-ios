@@ -198,12 +198,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Gesprek voeren met…";
 "clone_chat" = "Gesprek klonen";
-// deprecated
-"broadcast_list" = "Verzendlijst";
-// deprecated
-"broadcast_lists" = "Verzendlijsten";
-// deprecated
-"new_broadcast_list" = "Nieuwe verzendlijst";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Kanaal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -211,12 +205,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nieuw kanaal";
 "add_recipients" = "Ontvangers toevoegen";
-// deprecated
-"edit_broadcast_list" = "Verzendlijst bewerken";
-// deprecated
-"broadcast_list_name" = "Naam van verzendlijst";
-// deprecated
-"please_enter_broadcast_list_name" = "Geef de verzendlijst een naam.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanaalnaam";
 "email" = "E-mail";
@@ -361,8 +349,6 @@
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
-// deprecated
-"ask_remove_from_broadcast" = "Wil je %1$@ verwijderen van de verzendlijst?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Weet je zeker dat je %1$@ van het kanaal wilt verwijderen?";
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
@@ -378,8 +364,6 @@
 "chat_unable_to_record_audio" = "Er kan geen audio worden opgenomen.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Stuur een bericht aan %1$@ .";
-// deprecated
-"chat_new_broadcast_hint" = "Op een verzendlijst hebben ontvangers niet de mogelijkheid om te reageren op je berichten.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "Kanalen zijn bedoeld om te gebruiken als verzendlijsten.";
 "chat_new_group_hint" = "Stel het eerste bericht op zodat anderen binnen deze groep kunnen reageren.";
@@ -481,10 +465,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Vierkant rooster";
 "send_message" = "Bericht versturen";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ heeft zijn/haar adres veranderd van %2$@ naar %3$@";
-// deprecated
-"aeap_explanation" = "Je hebt je e-mailadres veranderd van %1$@ naar %2$@.\n\nAls je een bericht stuurt aan een goedgekeurde groep, dan zien contactpersonen in de groep je nieuwe adres.\n\nWel raden we aan om bij je oude provider in te stellen dat je e-mails wilt doorsturen naar je nieuwe adres, anders missen sommige contactpersonen mogelijk je berichten.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Secundair apparaat toevoegen";
@@ -852,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 week.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_week_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 week.";
+"ephemeral_timer_1_year_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 jaar.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 jaar.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ minuten.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -868,14 +851,8 @@
 "ephemeral_timer_weeks_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ weken.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
-// deprecated
-"chat_protection_broken" = "%1$@ heeft een bericht verstuurd vanaf een ander apparaat.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
 "chat_protection_enabled_explanation" = "Alle berichten in dit gesprek zijn gegarandeerd van eind-tot-eindversleuteling voorzien.\n\nMet behulp van deze versleuteling blijven berichten tussen jou en je gesprekspartners geheim - zelfs je e-mailprovider kan ze niet uitlezen.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ heeft een bericht verstuurd vanaf een ander apparaat. Druk hier voor meer informatie.";
-// deprecated
-"chat_protection_broken_explanation" = "Eind-tot-eindversleuteling kan niet meer worden gegarandeerd, omdat %1$@ Delta Chat opnieuw heeft geïnstalleerd of een bericht vanaf een ander apparaat heeft verstuurd.\n\nMaak een afspraak met hem/haar en scan de QR-code opnieuw om eind-tot-eindversleuteling weer in te schakelen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
 "invalid_unencrypted_explanation" = "Spreek met elkaar af en scan elkaars QR-code om eind-tot-eindversleuteling op te zetten.";
 "learn_more" = "Meer informatie";
@@ -931,19 +908,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ heeft geantwoord en wacht op toelating tot de groep…";
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
-// deprecated
-"secure_join_wait_timeout" = "Er kan nog geen eind-tot-eindversleuteling worden gegarandeerd, maar je kunt wel alvast een bericht sturen.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Het lijkt langer te duren dan verwacht - wellicht is een van jullie offline.\n\nHet proces wordt echter op de achtergrond voortgezet.";
 "contact_verified" = "%1$@ is goedgekeurd.";
-// deprecated, was stock string
-"contact_not_verified" = "Er kan geen eind-tot-eindversleuteling met %1$@ worden gegarandeerd.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Geïntroduceerd door %1$@";
 "verified_by_you" = "Geïntroduceerd door mij";
 "verified_by_unknown" = "Geïntroduceerd";
-// deprecated, was stock string
-"contact_setup_changed" = "Gewijzigde instellingen voor %1$@";
 "verified_contact_required_explain" = "Om de eind-tot-eindversleuteling te garanderen, kun je alleen contactpersonen met een groen vinkje toevoegen aan deze groep.\n\nVan niet-goedgekeurde contactpersonen kun je de QR-code scannen om ze goed te keuren.";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat
@@ -981,8 +950,6 @@
 "ImageEditorHud_crop" = "Bijsnijden";
 "ImageEditorHud_flip" = "Spiegelen";
 "ImageEditorHud_rotate" = "Draaien";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Versleuteld bericht";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Dit is de officiële Delta Chat-computerapp.";
 "about_licensed_under_desktop" = "Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.";
@@ -1097,7 +1064,3 @@
 "perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
 // device messages for updates
 "update_2_0" = "Wijzigingslog:\n\n💯 Eind-tot-eindversleuteling is voortaan betrouwbaarder én standaard. Slotjes 🔒 zijn verleden tijd!\n\n✉️ Klassieke e-mails zonder eind-tot-eindversleuteling worden voortaan gemarkeerd met een letter\n\n😻 Nieuwe, mooiere profielpagina\'s van al je contactpersonen\n\n🔲 Nieuwe knop voor snelle toegang tot apps in gesprekken\n\n❤️ Overweeg een donatie, zodat we onafhankelijk kunnen blijven en verbeteringen kunnen blijven aanbrengen: %1$@";
-// deprecated
-"update_1_50_android" = "Wijzigingslog:\n\n❤️‍🔥 Nieuwe emojikiezer met veel meer emojis\n\n🎮 Verbeterde apps in gesprekken: ontvang meldingen open ondersteunde apps met links, bijv. een agenda-uitnodiging\n\n👍 Ontvang meldingen bij reacties op berichten\n\n… 🛠️ Opgeloste fouten en VEEL MEER op %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ De optie om een ander profiel te kiezen is verplaatst: druk op je profielfoto op het hoofdscherm om het profielmenu te openen.💡";

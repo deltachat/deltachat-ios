@@ -161,19 +161,7 @@
 "menu_new_chat" = "Uusi keskustelu";
 "menu_new_group" = "Uusi ryhmä";
 "clone_chat" = "Kloonaa keskustelu";
-// deprecated
-"broadcast_list" = "Kuulutuslista";
-// deprecated
-"broadcast_lists" = "Kuulutuslistat";
-// deprecated
-"new_broadcast_list" = "Uusi kuulutuslista";
 "add_recipients" = "Lisää vastaanottajia";
-// deprecated
-"edit_broadcast_list" = "Muokkaa kuulutuslistaa";
-// deprecated
-"broadcast_list_name" = "Kuulutuslistan nimi";
-// deprecated
-"please_enter_broadcast_list_name" = "Anna kuulutuslistalle nimi.";
 "menu_send" = "Lähetä";
 "menu_toggle_keyboard" = "Näytä emoji-näppäimistö";
 "menu_edit_group" = "Muokkaa ryhmää";
@@ -293,8 +281,6 @@
 "ask_start_chat_with" = "Aloita keskustelu yhteystiedon %1$@ kanssa?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Poista %1$@ ryhmästä?";
-// deprecated
-"ask_remove_from_broadcast" = "Poista %1$@ kuulutuslistalta?";
 "open_url_confirmation" = "Haluatko avata tämän linkin?";
 // contact list
 "contacts_title" = "Yhteystiedot";
@@ -308,8 +294,6 @@
 "chat_unable_to_record_audio" = "Äänen tallentaminen ei onnistunut.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Lähetä viesti. Ei haittaa, vaikka %1$@ ei käyttäisi Delta Chatia.";
-// deprecated
-"chat_new_broadcast_hint" = "Kuulutuslistalla vastaanottajat saavat viestit keskusteluna kanssasi, jossa heillä on vain lukuoikeus.";
 "chat_new_group_hint" = "Muut näkevät ryhmän vasta, kun lähetät ensimmäisen viestin.";
 "chat_record_slide_to_cancel" = "Pyyhkäise peruuttaaksesi";
 "chat_record_explain" = "Pidä painettuna nauhoittaaksesi ääniviestin, irrota lähettääksesi";
@@ -401,10 +385,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Neliöruudukko";
 "send_message" = "Lähetä viesti";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ vaihtui osoitteesta %2$@ osoitteeksi %3$@";
-// deprecated
-"aeap_explanation" = "Vaihdoit sähköpostiosoitteesi osoitteesta %1$@ osoitteeksi %2$@.\n\nJos lähetät viestin vahvistettuun ryhmään, ryhmän jäsenet saavat automaattisesti uuden osoitteesi.\n\nOn suositeltavaa asettaa vanha tilisi välittämään kaikki viestit uuteen osoitteeseesi. Muuten et välttämättä saa viestejä niiltä yhteystiedoiltasi, joilla ei ole uutta osoitettasi.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Lisää toinen laite";
@@ -757,14 +737,8 @@
 "ephemeral_timer_weeks_by_you" = "Katoavien viestien ajastin asetettu %1$@ viikkoon minun toimestani.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Katoavien viestien ajastin asetettu %1$@ viikkoon käyttäjän %2$@ toimesta.";
-// deprecated
-"chat_protection_broken" = "%1$@ lähetti viestin toiselta laitteelta.";
 "chat_protection_enabled_tap_to_learn_more" = "Tästä eteenpäin viestit on taatusti päästä-päähän salattuja. Lisätietoja napauttamalla.";
 "chat_protection_enabled_explanation" = "Kaikki viestit tässä keskustelussa ovat taatusti päästä-päähän salattuja.\n\nPäästä-päähän -salaus pitää viestisi sinun ja keskustelukumppanisi välillä. Edes sähköpostipalveluntarjoaja ei pysty niitä lukemaan.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ lähetti viestin toiselta laitteelta. Lue lisää napauttamalla.";
-// deprecated
-"chat_protection_broken_explanation" = "Päästä päähän salausta ei voida enää taata, todennäköisesti koska %1$@ uudelleenasensi Delta Chatin tai lähetti viestin toiselta laitteelta.\n\nTapaamalla hänet voit skannata hänen QR -koodinsa uudelleen päästä-päähän salauksen palauttamiseksi.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ vaatii päästä-päähän -salausta joka ei enää ole käytössä tässä keskustelussa. Lue lisää napauttamalla.";
 "invalid_unencrypted_explanation" = "Päästä-päähän salauksen saat käyttöön tapaamalla yhteystietosi ja skannaamalla hänen QR -koodinsa.";
 "learn_more" = "Lue lisää";
@@ -820,16 +794,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Vastaus saatu käyttäjältä %1$@, odotetaan lisäystä ryhmään...";
 "secure_join_wait" = "Otetaan taattua päästä-päähän salausta käyttöön, odota...";
-// deprecated
-"secure_join_wait_timeout" = "Taattua päästä päähän salausta ei vielä voitu ottaa käyttöön, mutta voit jo lähettää viestin.";
 "contact_verified" = "%1$@ varmistettu.";
-// deprecated, was stock string
-"contact_not_verified" = "Keskustelun päästä-päähän -salausta ei voida taata henkilön %1$@ kanssa.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ lisäsi";
 "verified_by_you" = "Lisäämäni";
-// deprecated, was stock string
-"contact_setup_changed" = "Asetukset muutettu kohteessa %1$@.";
 "verified_contact_required_explain" = "Päästä-päähän -salauksen takaamiseksi, voit lisätä ryhmään ainoastaan yhteystietoja joilla on vihreä \"oikein\" -merkki.\n\nVoit tavata yhteystietoja kasvotusten ja skannata heidän QR -koodinsa niin saat lisättyä salauksen käyttöön";
 "mailto_dialog_header_select_chat" = "Valitse keskustelu viestien lähettämiseen";
 // first placeholder is the name of the chat
@@ -867,8 +835,6 @@
 "ImageEditorHud_crop" = "Rajaa";
 "ImageEditorHud_flip" = "Käännä";
 "ImageEditorHud_rotate" = "Pyöritä";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Salattu viesti";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Tämä on virallinen Delta Chat -työpöytäsovellus.";
 "about_licensed_under_desktop" = "Tämä ohjelmisto on GNU GPL v3 -lisensoitu, ja lähdekoodi on saatavilla GitHubissa.";

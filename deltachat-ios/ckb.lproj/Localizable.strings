@@ -438,10 +438,6 @@
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";
 "qraccount_qr_code_cannot_be_used" = "ناتوانی لە کۆدی QRە سکان کراوەکە کەڵک بگریت بۆ پێکهێنانی هەژمارێکی نوێ.";
 "contact_verified" = "%1$@ پشتڕاست کرایەوە";
-// deprecated, was stock string
-"contact_not_verified" = "%1$@ پشتڕاست ناکرێتەوە.";
-// deprecated, was stock string
-"contact_setup_changed" = "ڕێکخستن بۆ %1$@ گۆڕا.";
 // notifications
 "notify_reply_button" = "وەڵام دانەوە";
 "notify_new_message" = "پەیامی نوێ";
@@ -459,8 +455,6 @@
 "perm_explain_access_to_mic_denied" = "بۆ هەناردنی پەیامی دەنگی، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"مایک\" چالاک بکەوە.";
 "perm_explain_access_to_storage_denied" = "بۆ هەناردن و وەرگرتنی پەڕگەکان، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"بیرگە\" چالاک بکەوە.";
 "perm_explain_access_to_location_denied" = "بۆ لکاندنی شوێنێک، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"شوێن\" چالاک بکەوە.";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "پەیامی شفرەکراو";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "ئەمە نەرمامێری فەرمی دێڵتا چاتە بۆ کۆمپووتەری ڕوومێز.";
 "welcome_desktop" = "بەخێر بێن بۆ دێڵتا چات";

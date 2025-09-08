@@ -194,19 +194,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Bisedoni me… ";
 "clone_chat" = "Klononi Fjalosjen";
-// deprecated
-"broadcast_list" = "Listë Transmetimi";
-// deprecated
-"broadcast_lists" = "Lista Transmetimi";
-// deprecated
-"new_broadcast_list" = "Listë e Re Transmetimi";
 "add_recipients" = "Shtoni Marrës";
-// deprecated
-"edit_broadcast_list" = "Përpunoni Listë Transmetimesh";
-// deprecated
-"broadcast_list_name" = "Emër Liste Transmetimesh";
-// deprecated
-"please_enter_broadcast_list_name" = "Ju lutemi, jepni një emër për listën e transmetimeve";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih Tastierë Emoji-sh";
 "menu_edit_group" = "Përpunoni Grup";
@@ -339,8 +327,6 @@
 "ask_start_chat_with" = "Të bisedohet me %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Të hiqet %1$@ nga grupi?";
-// deprecated
-"ask_remove_from_broadcast" = "Të hiqen %1$@ prej liste transmetimi?";
 "open_url_confirmation" = "Doni të hapet kjo lidhje?";
 // contact list
 "contacts_title" = "Kontakte";
@@ -354,8 +340,6 @@
 "chat_unable_to_record_audio" = "S\’arrihet të incizohet audio.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Dërgoni një mesazh për %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "Në një listë transmetimesh, marrësit do të marrin mesazhe në një fjalosje të llojit “vetëm lexim” me ju.";
 "chat_new_group_hint" = "Të tjerët do ta shohin këtë grup pasi të keni dërguar një mesazh të parë.";
 "chat_record_slide_to_cancel" = "Rrëshqiteni që të anulohet";
 "chat_record_explain" = "Prekeni dhe mbajeni të prekur që të incizoni një mesazh zanor; lëshojeni, që të dërgohet";
@@ -454,10 +438,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Mozaik Katror";
 "send_message" = "Dërgo Mesazh";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ ndryshoi adresën e vet nga %2$@ në %3$@";
-// deprecated
-"aeap_explanation" = "Ndryshuat adresën tuaj nga %1$@ në %2$@.\n\nNëse dërgoni tani një mesazh te një grup i verifikuar, kontaktet atje do të zëvendësojnë automatikisht adresën tuaj të vjetër me të renë.\n\nËshtë tejet e këshillueshme të ujdisni shërbimin tuaj të vjetër të email-it të përcjellë krejt email-et te adresa juaj e re email. Përndryshe, mund të humbni mesazhe të kontakteve që s’e kanë marrë ende adresën tuaj të re.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Shtoni Pajisje të Dytë";
@@ -838,14 +818,8 @@
 "ephemeral_timer_weeks_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ javë.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
-// deprecated
-"chat_protection_broken" = "%1$@ dërgoi një mesazh nga një pajisje tjetër.";
 "chat_protection_enabled_tap_to_learn_more" = "Nga sot e tutje për mesazhet garantohet fshehtëzimi skaj-më-skaj. Prekeni, që të mësoni më tepër.";
 "chat_protection_enabled_explanation" = "Tanimë për mesazhet në këtë fjalosje garantohet fshehtëzimi skaj-më-skaj.\n\nFshehtëzimi skaj-më-skaj i mban private mesazhet mes jush dhe partnerëve tuaj të fjalosjes. Ato s’mund t’i lexojë as furnizuesi i shërbimit tuaj email.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ dërgoi një mesazh nga një pajisje tjetër. Prekeni, që të mësoni më tepër.";
-// deprecated
-"chat_protection_broken_explanation" = "Fshehtëzimi skaj-më-skaj s’mund të garantohet më, ngaqë, sipas gjasash, %1$@ riinstaloi Delta Chat-in, ose dërgoi një mesazh nga një tjetër pajisje.\n\nMund ta takoni dhe të skanoni sërish KODIN e tij QR, që të rivendoset fshehtëzim skaj-më-skaj i garantuar.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
 "invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
 "learn_more" = "Mësoni Më Tepër";
@@ -901,18 +875,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj i garantuar, ju lutemi, pritni…";
-// deprecated
-"secure_join_wait_timeout" = "S’u vendos dot fshehtëzim skaj-më-skaj i garantuar, por mundeni tashmë të dërgoni një mesazh.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Duket se po zgjat ca, mos ndoshta kontakti juaj, ose vetë ju s’jeni lidhur në internet.\n\nSidoqoftë, procesi vazhdon në prapaskenë, mund të merreni me diçka tjetër…";
 "contact_verified" = "%1$@ u verifikua.";
-// deprecated, was stock string
-"contact_not_verified" = "S’vendoset dot fshehtëzim i garantuar skaj-më-skaj me %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Sjellë nga %1$@";
 "verified_by_you" = "Sjellë nga unë";
-// deprecated, was stock string
-"contact_setup_changed" = "U ndryshua udjisja për %1$@";
 "verified_contact_required_explain" = "Që të garantohet fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat
@@ -950,8 +916,6 @@
 "ImageEditorHud_crop" = "Qethe";
 "ImageEditorHud_flip" = "Ktheje në anë tjetër";
 "ImageEditorHud_rotate" = "Rrotulloje";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Mesazh i fshehtëzuar";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ky është aplikacioni zyrtar Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Ky program licencohet sipas GNU GPL version 3 dhe kodi burim mund të kihet që prej GitHub-i.";
@@ -1060,7 +1024,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Prekeni këtu që të merrni mesazhe, teksa Delta Chat rri në prapaskenë.";
 "perm_enable_bg_already_done" = "E keni lejuar tashmë Delta Chat-in të marrë mesazhe në prapaskenë.\n\nNëse mesazhet prapë nuk mbërrijnë në prapaskenë, ju lutemi, kontrolloni edhe rregullimet e sistemit tuaj.";
-// deprecated
-"update_1_50_android" = "Ç’ka të re?\n\n❤️‍🔥 Zgjedhës i ri emoji-sh, me më shumë të tillë\n\n🎮 Zgjerim aplikacionesh brenda fjalosjesh: Merrni njoftim dhe hapni aplikacionet përkatës sipas kontekstit, p.sh., hapni drejtpërdrejt një zë të saposhtuar kalendari\n\n👍 Merrni njoftim mbi reagime te mesazhet tuaj\n\n… 🛠️ NDREQJE DHE MË TEPËR te %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ Mundësia “Ndërroni Profil” u hoq: Që të shtoni, ose ndërroni profile, prekni figurën e profilit tuaj në cepin e sipërm të skenës kryesore 💡";

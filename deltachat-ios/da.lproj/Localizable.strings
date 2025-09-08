@@ -564,10 +564,6 @@
 "qraccount_ask_create_and_login_another" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?\n\nDin eksisterende konto bliver ikke slettet. Brug \"Skift konto\" for at skifte imellem dine konti.";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
 "contact_verified" = "%1$@ bekræftet.";
-// deprecated, was stock string
-"contact_not_verified" = "Kan ikke bekræfte %1$@";
-// deprecated, was stock string
-"contact_setup_changed" = "Ændret opsætning for %1$@";
 // notifications
 "notify_reply_button" = "Svar";
 "notify_new_message" = "Ny besked";
@@ -588,8 +584,6 @@
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Tegn hvor som helst for at sløre";
 "ImageEditorHud_rotate" = "Roter";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Krypteret besked";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Dette er den officielle Delta Chat Desktop app.";
 "about_licensed_under_desktop" = "Denne software er licenseret under GNU GPL version 3 og kildekoden er tilgængelig på GitHub";

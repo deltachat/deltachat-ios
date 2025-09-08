@@ -149,12 +149,6 @@
 "menu_new_contact" = "Contact Nou";
 "menu_new_chat" = "Chat Nou";
 "menu_new_group" = "Grup Nou";
-// deprecated
-"broadcast_list" = "Listă de difuzare";
-// deprecated
-"broadcast_lists" = "Liste de difuzare";
-// deprecated
-"new_broadcast_list" = "Noua Listă de Difuzare";
 "add_recipients" = "Adăugați Destinatari";
 "menu_send" = "Trimiteți";
 "menu_toggle_keyboard" = "Comutați Tastatura Emoji";
@@ -269,8 +263,6 @@
 "ask_start_chat_with" = "Chat cu %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Scoateți  %1$@ din grup?";
-// deprecated
-"ask_remove_from_broadcast" = "Eliminați %1$@ din lista de difuzare?";
 "open_url_confirmation" = "Doriți să deschideți acest link?";
 // contact list
 "contacts_title" = "Contacte";
@@ -363,10 +355,6 @@
 "tab_all_media_empty_hint" = "Materialele media partajate în orice chat vor apărea aici.";
 "media_preview" = "Previzualizare Media";
 "send_message" = "Trimiteți Mesaj";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ și-au schimbat adresa de la %2$@ la %3$@";
-// deprecated
-"aeap_explanation" = "V-ați schimbat adresa de e-mail de la %1$@ la %2$@.\n\nDacă trimiteți acum un mesaj către un grup verificat, contactele de acolo vor înlocui automat vechea adresă cu noua dumneavoastră adresă.\n\nSe recomandă să vă configurați vechiul furnizor de e-mail pentru a redirecționa toate e-mailurile către noua dumneavoastră adresă de e-mail. În caz contrar, s-ar putea să pierdeți mesaje ale contactelor care nu au primit încă noua dumneavoastră adresă.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Adăugați un al doilea dispozitiv";
