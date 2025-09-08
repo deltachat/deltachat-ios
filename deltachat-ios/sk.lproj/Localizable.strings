@@ -184,12 +184,6 @@
 "menu_new_chat" = "Nová konverzácia";
 "menu_new_group" = "Nová skupina";
 "clone_chat" = "Kopírovať konverzáciu";
-// deprecated
-"broadcast_list" = "Zoznam Rozosielania";
-// deprecated
-"broadcast_lists" = "Zoznamy Rozosielania";
-// deprecated
-"new_broadcast_list" = "Nový Zoznam Rozosielania";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Kanál";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -335,8 +329,6 @@
 "ask_start_chat_with" = "Písať si s %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Odstrániť %1$@ zo skupiny?";
-// deprecated
-"ask_remove_from_broadcast" = "Odstrániť %1$@ zo zoznamu rozosielania?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Odstrániť %1$@ z kanálu?";
 "open_url_confirmation" = "Chcete otvoriť tento odkaz?";
@@ -438,8 +430,6 @@
 "tab_webxdc_empty_hint" = "Tu sú zobrazené súkromné aplikácie zdieľané v rámci tejto konverzácie.";
 "media_preview" = "Ukážka pre médiá";
 "send_message" = "Odoslanie správy";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ zmenil(a) svoju adresu z %2$@ na %3$@";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Pridať ďalšie zariadenie";
@@ -852,10 +842,6 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "secure_join_replies" = "%1$@odpovedal a čaká sa na pridanie do skupiny...";
 "secure_join_wait" = "Nadväzovanie šifrovaného spojenia, počkajte prosím...";
 "contact_verified" = "%1$@ overené.";
-// deprecated, was stock string
-"contact_not_verified" = "Cannot verify %1$@.";
-// deprecated, was stock string
-"contact_setup_changed" = "Zmena nastavenia pre %1$@.";
 "mailto_dialog_header_select_chat" = "Vyberte konverzáciu, kam bude správa odoslaná";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ už má koncept správy, chcete ho nahradiť?";
@@ -889,8 +875,6 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "ImageEditorHud_crop" = "Orezať";
 "ImageEditorHud_flip" = "Preklopiť";
 "ImageEditorHud_rotate" = "Otočiť";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Zašifrovaná správa";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Toto je oficiálna aplikácia Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Tento softvér je licencovaný pod GNU GPL verzie 3 a zdrojový kód je k dispozícii na GitHub-e.";

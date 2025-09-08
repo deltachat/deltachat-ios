@@ -143,12 +143,6 @@
 "menu_new_contact" = "Νέα Επαφή";
 "menu_new_chat" = "Νέα Συνομιλία";
 "menu_new_group" = "Νέα ομάδα";
-// deprecated
-"broadcast_list" = "Λίστα Μέσων";
-// deprecated
-"broadcast_lists" = "Λίστες Μέσων";
-// deprecated
-"new_broadcast_list" = "Νέα Λίστα Μέσων";
 "add_recipients" = "Προσθήκη Παραλήπτη";
 "menu_send" = "Αποστολή";
 "menu_toggle_keyboard" = "Εναλλαγή πληκτρολογίου emoji";
@@ -261,8 +255,6 @@
 "ask_start_chat_with" = "Συνομιλία με %1$@;";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Αφαίρεση του/της %1$@ από την ομάδα;";
-// deprecated
-"ask_remove_from_broadcast" = "Αφαίρεση %1$@ από την λίστα εκπομπών;";
 "open_url_confirmation" = "Θέλετε να ανοίξετε αυτό τον σύνδεσμό;";
 // contact list
 "contacts_title" = "Επαφές";
@@ -355,10 +347,6 @@
 "all_apps_empty_hint" = "Οι ιδιωτικές εφαρμογές που λαμβάνονται ή αποστέλλονται σε οποιαδήποτε συνομιλία θα εμφανίζονται εδώ.";
 "media_preview" = "Προεπισκόπιση";
 "send_message" = "Αποστολή μηνύματος";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ άλλαξαν την διεύθυνσή τους από %2$@ σε %3$@";
-// deprecated
-"aeap_explanation" = "Αλλάξατε την διεύθυνσή σας από %1$@ σε %2$@.\n\nΤώρα, εάν στείλετε ένα μήνυμα σε μια επαληθευμένη ομάδα, οι επαφές εκεί θα αντικαταστήσουν αυτόματα την παλιά με τη νέα σας διεύθυνση.\n\nΣυνιστάται ιδιαίτερα να ρυθμίσετε τον παλιό σας πάροχο email ώστε να προωθεί όλα τα μηνύματα ηλεκτρονικού ταχυδρομείου στη νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου. Διαφορετικά, ενδέχεται να χάσετε μηνύματα επαφών που δεν έχουν λάβει ακόμη τη νέα σας διεύθυνση.";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Εισερχόμενα Μηνύματα";
@@ -689,10 +677,6 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ απάντησε, αναμονή για να προστεθεί στην ομάδα…";
 "contact_verified" = "%1$@ επαληθεύτηκε.";
-// deprecated, was stock string
-"contact_not_verified" = "Αδυναμία επαλήθευσης %1$@.";
-// deprecated, was stock string
-"contact_setup_changed" = "Άλλαξε η ρύθμιση για %1$@.";
 "mailto_dialog_header_select_chat" = "Επιλέξτε συνομιλία για να στείλετε το μήνυμα";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ έχει ήδη ένα πρόχειρο μήνυμα, θέλετε να το αντικαταστήσετε;";
@@ -723,8 +707,6 @@
 "ImageEditorHud_crop" = "Περικοπή";
 "ImageEditorHud_flip" = "Εναλλαγή";
 "ImageEditorHud_rotate" = "Περιστροφή";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Κρυπτογραφημένο μήνυμα";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";
 "about_licensed_under_desktop" = "Αυτό το λογισμικό έχει άδεια χρήσης σύμφωνα με την GNU GPL έκδοση 3 και ο πηγαίος κώδικας είναι διαθέσιμος στο GitHub.";

@@ -22,7 +22,7 @@
 "open" = "گۊشیڌن";
 "download" = "دانلود";
 "downloading" = "هونی دانلود ابۊ...";
-"open_attachment" = "گۊشیڌن زمینه";
+"open_attachment" = "گۊشیڌن پیوست";
 "join" = "ٱووڌن";
 "rejoin" = "ز نۊ ٱووڌن";
 "delete" = "پاک کردن";
@@ -31,7 +31,7 @@
 "info" = "زبار";
 "update" = "ورۊ کردن";
 "emoji" = "ایموجی";
-"attachment" = "زمینه";
+"attachment" = "پیوست";
 // the placeholder will be replaced by the name of the image or file to attach
 "ask_attach" = "«%1$@» پیوست بۊ؟";
 "back" = "وورگشتن";
@@ -52,17 +52,17 @@
 "mute" = "بؽ دونگ";
 "muted" = "بؽ دونگ";
 "ephemeral_messages" = "پیوما بؽڌارکۊنی";
-"ephemeral_messages_hint" = "یو ری پوی منتورا ای گوفت ۉ لوفت، ٱر دلتا چت ن و کار بگرن ائمال ابۊ. ولی هنی ترن پیوما ن لف گیری، زفت وو فوروارد کونن.";
+"ephemeral_messages_hint" = "یو ری پوی منتورا ای گوفت وو لوفت، ٱر دلتا چت ن و کار بگرن ائمال ابۊ. ولی هنی ترن پیوما ن لف گیری، زفت وو فوروارد کونن.";
 "save" = "زفت کردن";
-"chat" = "گوفت ۉ لوفت";
+"chat" = "گوفت وو لوفت";
 "media" = "وارسگر";
 "apps_and_media" = "برنومه یل وو وارسگرا";
 "profile" = "پوروفایل";
 "all_profiles" = "پوی پوروفایلا";
 "current_profile" = "پوروفایل هیم سکویی";
 "main_menu" = "نومگه ٱسلی";
-"start_chat" = "ناڌن پا گوفت ۉ لوفت";
-"show_full_message" = "نشۉ داڌن پیوم کامل...";
+"start_chat" = "ناڌن پا گوفت وو لوفت";
+"show_full_message" = "نشووݩ داڌن پیوم کامل...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "پوی ن خونده بیڌه بزݩ";
 "mark_as_read" = "نشووه ناڌن و عونوان خونده وابیڌه";
@@ -76,12 +76,12 @@
 "always" = "همیشه";
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
-"show_warning" = "نشۉ داڌن هوشدار";
-"show_password" = "نشۉ داڌن رزم";
+"show_warning" = "نشووݩ داڌن هوشدار";
+"show_password" = "نشووݩ داڌن رزم";
 "hide_password" = "بؽڌار کردن رزم";
 "not_now" = "سکو ن";
 "never" = "هیچ";
-"one_moment" = "ی دمۉ...";
+"one_moment" = "ی دمووݩ...";
 "done" = "ٱنجوم وابی";
 "undo" = "وورگندن";
 "offline" = "آفلاین";
@@ -95,11 +95,11 @@
 // the placeholder will be replaced by the name of a file
 "cannot_save_file" = "نتره %1$@ ن زفت کونه.";
 "copied_to_clipboard" = "من ویرگه لف گیری وابی.";
-"contacts_headline" = "هومدنگۉݩ";
+"contacts_headline" = "هومدنگووݩ";
 "email_address" = "نشۊوی ایمیل";
 "bad_email_address" = "نشۊوی ایمیل موشکل داره.";
 "password" = "رزم";
-"existing_password" = "رزم مۉجۊڌ";
+"existing_password" = "رزم مووجۊد";
 "now" = "سکو";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "بپا";
@@ -154,6 +154,7 @@
 "files_attach_hint" = "فشناڌن فایلا ٱسلی وو شؽواتا تپنیڌه نوابیڌه";
 // "Files" here means the "Files Selector App" or "Files Manager App"
 "choose_from_files" = "پسند ز من فایلا";
+"choose_from_gallery" = "پسند ز شؽوات مال";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "برنومه";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
@@ -166,7 +167,7 @@
 "tools" = "ٱوزار";
 "app_size" = "هندا";
 "app_date_published" = "تیجنیڌن";
-"add_to_chat" = "ٱووردن و گوفت ۉ لوفت";
+"add_to_chat" = "ٱووردن و گوفت وو لوفت";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "پیتینیڌن";
 "unknown" = "ناشناس";
@@ -189,43 +190,56 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "هومدنگ نۊ";
 "menu_new_classic_contact" = "ٱووردن هومدنگ و هالت دستی";
-"menu_new_chat" = "گوفت ۉ لوفت نۊ";
+"menu_new_chat" = "گوفت وو لوفت نۊ";
 "menu_new_group" = "جرگه نۊ";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
-"chat_with" = "ناڌن پا گوفت ۉ لوفت وا...";
-"clone_chat" = "وورکل گوفت ۉ لوفت نۊ ز ای گوفت ۉ لوفت";
-// deprecated
-"broadcast_list" = "نومگه Broadcast";
-// deprecated
-"broadcast_lists" = "نومگه یل Broadcast";
-// deprecated
-"new_broadcast_list" = "نومگه Broadcast نۊ";
-// deprecated
-"edit_broadcast_list" = "آلشت نومگه Broadcast";
+"chat_with" = "ناڌن پا گوفت وو لوفت وا...";
+"clone_chat" = "وورکل گوفت وو لوفت نۊ ز ای گوفت وو لوفت";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "تورگه";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "تورگه یل";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "تورگه نۊ";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "نوم تورگه";
+"email" = "ایمیل";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "ایمیل نۊ";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "سرتال";
 "menu_send" = "فشناڌن";
+"menu_toggle_keyboard" = "آلشت تخته کیلیت ایموجی یل";
 "menu_edit_group" = "آلشت جرگه";
 "menu_group_name_and_image" = "نوم وو شؽوات جرگه";
-"menu_archive_chat" = "بایگۊوی گوفت ۉ لوفت";
-"menu_unarchive_chat" = "و در زیڌن گوفت ۉ لوفت ز بایگۊوی";
-"menu_add_attachment" = "ازاف کردن زمینه";
+"menu_show_global_map" = "نشووݩ داڌن پوی جاگه یل";
+"menu_archive_chat" = "بایگۊوی گوفت وو لوفت";
+"menu_unarchive_chat" = "و در زیڌن گوفت وو لوفت ز بایگۊوی";
+"menu_add_attachment" = "ازاف کردن پیوست";
 "menu_leave_group" = "رئڌن ز جرگه";
-"menu_delete_chat" = "پاک کردن گوفت ۉ لوفت";
+"menu_leave_channel" = "رئڌن ز تورگه";
+"menu_delete_chat" = "پاک کردن گوفت وو لوفت";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
-"clear_chat" = "روفتن ویرگار گوفت ۉ لوفت";
+"clear_chat" = "روفتن ویرگار گوفت وو لوفت";
 "delete_contact" = "پاک کردن هومدنگ";
 "menu_delete_location" = "ای جاگه پاک بۊ؟";
+"menu_message_details" = "جۊزیات پیوم";
 "menu_copy_to_clipboard" = "لف گیری من ویرگه";
+"share_invite_link" = "یک رسۊوی لینگ موکش";
+"invite_friends" = "موکش رفؽقووݩ";
+"menu_copy_selection_to_clipboard" = "لف گیری ز پسند بیڌه";
 "menu_copy_link_to_clipboard" = "لف گیری لینک";
 "menu_copy_text_to_clipboard" = "لف گیری هؽل";
 "menu_copy_image_to_clipboard" = "لف گیری شؽوات";
 "menu_copy_email_to_clipboard" = "لف گیری ایمیل";
 "paste_from_clipboard" = "جا وندن ز ویرگه";
+"menu_forward" = "فوروارد پیوم";
 "menu_reply" = "ولوم ب پیوم";
 "menu_mute" = "بؽ دونگ کردن وارسۊویا";
 "menu_unmute" = "وا دونگ کردن";
 "menu_all_media" = "پوی وارسگرا";
 // Command to jump to the original message corresponding to a gallery image or document
-"show_in_chat" = "نشۉ داڌن من گوفت ۉ لوفت";
+"show_in_chat" = "نشووݩ داڌن من گوفت وو لوفت";
 "menu_share" = "یک رسۊوی";
 "accept" = "قوۊل";
 "menu_play" = "پشک";
@@ -234,7 +248,7 @@
 "menu_scroll_to_top" = "رئڌن ب روء";
 "menu_help" = "هیاری";
 "menu_select_all" = "پسند پوی";
-"select_chat" = "پسند گوفت ۉ لوفت";
+"select_chat" = "پسند گوفت وو لوفت";
 "select_more" = "پسند بیشتر";
 "menu_edit_name" = "آلشت نوم";
 "menu_settings" = "سامووا";
@@ -249,7 +263,7 @@
 "device_talk_subtitle" = "پیوما منی";
 "edit_contact" = "آلشت هومدنگ";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
-"pin_chat" = "دیسنیڌن گوفت ۉ لوفت";
+"pin_chat" = "دیسنیڌن گوفت وو لوفت";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "دیسنیڌن";
 "source_code" = "کود بونچک";
@@ -264,17 +278,15 @@
 "share_location_for_two_hours" = "سی 2 ساعت";
 "share_location_for_six_hours" = "سی 6 ساعت";
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
-"videochat" = "گوفت ۉ لوفت ویدیویی";
-"videochat_invitation" = "موکش و گوفت ۉ لوفت ویدیویی";
+"videochat" = "گوفت وو لوفت ویدیویی";
+"videochat_invitation" = "موکش و گوفت وو لوفت ویدیویی";
 // Used for the deletion of Device messages
-"ask_start_chat_with" = "گوفت ۉ لوفت وا %1$@؟";
+"ask_start_chat_with" = "گوفت وو لوفت وا %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "پاک کردن %1$@ ز جرگه؟";
-// deprecated
-"ask_remove_from_broadcast" = "%1$@ ز نومگه Broadcast پاک بۊ؟";
 "open_url_confirmation" = "اخۊی ای لینگن بۊگۊشی؟";
 // contact list
-"contacts_title" = "هومدنگۉݩ";
+"contacts_title" = "هومدنگووݩ";
 "contacts_empty_hint" = "بؽ هومدنگ.";
 "chat_please_enter_message" = "ی پیوم بزݩ.";
 "chat_record_slide_to_cancel" = "سی رڌ کردن بکشس.";
@@ -294,7 +306,7 @@
 "send_file_to" = "فشناڌن \"%1$@\" و...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "فشناڌن پیوم و...";
-"show_location_traces" = "نشۉ داڌن جا پا";
+"show_location_traces" = "نشووݩ داڌن جا پا";
 // search
 "search" = "پیتینیڌن";
 // create/edit groups, contact/group profile
@@ -310,7 +322,7 @@
 "tab_docs" = "سندا";
 "tab_links" = "لینگا";
 "tab_map" = "نقشه";
-"media_preview" = "نشۉ داڌن وارسگر";
+"media_preview" = "نشووݩ داڌن وارسگر";
 "send_message" = "فشناڌن پیوم";
 // Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "زفت کردن من %1$@";
@@ -325,9 +337,13 @@
 "messages" = "پیوما";
 "sync_all" = "ورۊ کردن پوی";
 "pref_your_name" = "نوم ایسا";
-"pref_notifications_show" = "نشۉ داڌن";
-"pref_language" = "زۉݩ";
-"pref_chats" = "گوفت ۉ لوفتا";
+"pref_notifications_show" = "نشووݩ داڌن";
+"pref_dark_theme" = "تاریک";
+"pref_appearance" = "شؽوات";
+"pref_theme" = "تم";
+"pref_language" = "زووݩ";
+"pref_use_system_ui_font" = "فونت سیستوم ن و کار بگر";
+"pref_chats" = "گوفت وو لوفتا";
 "pref_log_header" = "گوزارش";
 "pref_background_btn_gallery" = "پسند ز شؽوات مال";
 "pref_show_emails_all" = "پوی";
@@ -370,13 +386,14 @@
 "notify_name_and_message" = "نوم وو پیوم";
 "notify_name_only" = "تینا نوم";
 "notify_no_name_or_message" = "بؽ نوم یا پیوم";
-"global_menu_preferences_language_desktop" = "زۉݩ";
+"global_menu_preferences_language_desktop" = "زووݩ";
 "global_menu_file_desktop" = "فایل";
 "global_menu_file_quit_desktop" = "و در زیڌن";
 "global_menu_edit_desktop" = "آلشت";
 "global_menu_edit_cut_desktop" = "جا گورو";
 "global_menu_edit_copy_desktop" = "لف گیری";
 "global_menu_edit_paste_desktop" = "جا وندن";
+"global_menu_help_about_desktop" = "زبار دلتا چت";
 "global_menu_file_open_desktop" = "گۊشیڌن دلتا چت";
 "delete_message_desktop" = "پاک کردن پیوم";
 "remove_desktop" = "پاک کردن";
@@ -385,5 +402,5 @@
 "select_group_image_desktop" = "پسند شؽوات جرگه";
 "message_detail_sent_desktop" = "فشناڌ";
 "message_detail_received_desktop" = "گرؽڌه وابی";
-"show_window" = "نشۉ داڌن نیمدری";
+"show_window" = "نشووݩ داڌن نیمدری";
 "open_settings" = "گۊشیڌن سامووا";

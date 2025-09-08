@@ -159,19 +159,7 @@
 "menu_new_chat" = "Trò chuyện mới";
 "menu_new_group" = "Nhóm mới";
 "clone_chat" = "Sao chép cuộc trò chuyện";
-// deprecated
-"broadcast_list" = "Danh sách phát sóng";
-// deprecated
-"broadcast_lists" = "Danh sách phát sóng";
-// deprecated
-"new_broadcast_list" = "Danh sách phát sóng mới";
 "add_recipients" = "Thêm người nhận";
-// deprecated
-"edit_broadcast_list" = "Chỉnh sửa danh sách phát sóng";
-// deprecated
-"broadcast_list_name" = "Tên danh sách phát sóng";
-// deprecated
-"please_enter_broadcast_list_name" = "Vui lòng nhập tên cho danh sách phát sóng.";
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";
 "menu_edit_group" = "Chỉnh sửa nhóm";
@@ -290,8 +278,6 @@
 "ask_start_chat_with" = "Trò chuyện với %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Loại %1$@ khỏi nhóm?";
-// deprecated
-"ask_remove_from_broadcast" = "Loại %1$@ khỏi danh sách phát sóng?";
 "open_url_confirmation" = "Bạn có muốn mở liên kết này không?";
 // contact list
 "contacts_title" = "Danh bạ";
@@ -305,8 +291,6 @@
 "chat_unable_to_record_audio" = "Không thể ghi âm.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Gửi tin nhắn tới %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "Trong danh sách phát sóng, người nhận sẽ nhận được tin nhắn trong cuộc trò chuyện chỉ đọc với bạn.";
 "chat_new_group_hint" = "Những người khác sẽ chỉ nhìn thấy nhóm này sau khi bạn gửi tin nhắn đầu tiên.";
 "chat_record_slide_to_cancel" = "Trượt để hủy";
 "chat_record_explain" = "Nhấn và giữ để ghi tin nhắn thoại, thả ra để gửi";
@@ -398,10 +382,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Lưới vuông";
 "send_message" = "Gửi tin nhắn";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ đã thay đổi địa chỉ của họ từ %2$@ thành %3$@";
-// deprecated
-"aeap_explanation" = "Bạn đã thay đổi địa chỉ email của mình từ %1$@ thành %2$@.\n\nNếu bây giờ bạn gửi thư đến một nhóm đã được xác minh, những người liên hệ ở đó sẽ tự động thay thế địa chỉ cũ bằng địa chỉ mới của bạn.\n\nĐiều đó thật tuyệt vời khuyên bạn nên thiết lập nhà cung cấp email cũ để chuyển tiếp tất cả email đến địa chỉ email mới của bạn. Nếu không, bạn có thể bỏ lỡ tin nhắn của những người chưa nhận được địa chỉ mới của bạn.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Thêm thiết bị thứ hai";
@@ -716,14 +696,8 @@
 "ephemeral_timer_weeks_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ tuần.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %2$@ đặt thành %1$@ tuần.";
-// deprecated
-"chat_protection_broken" = "%1$@ đã gửi tin nhắn từ một thiết bị khác.";
 "chat_protection_enabled_tap_to_learn_more" = "Tin nhắn được đảm bảo sẽ được mã hóa hai đầu kể từ bây giờ. Nhấn để tìm hiểu thêm.";
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ đã gửi tin nhắn từ một thiết bị khác. Nhấn để tìm hiểu thêm.";
-// deprecated
-"chat_protection_broken_explanation" = "Mã hóa hai đầu không còn được đảm bảo nữa, có thể vì %1$@ đã cài đặt lại Delta Chat hoặc đã gửi tin nhắn từ một thiết bị khác.\n\nBạn có thể gặp trực tiếp họ và quét lại mã QR của họ để thiết lập lại tính năng mã hóa hai đầu được đảm bảo kết thúc mã hóa.";
 "learn_more" = "Tìm hiểu thêm";
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -774,13 +748,9 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ đã trả lời, đang chờ được thêm vào nhóm…";
 "contact_verified" = "%1$@ đã được giới thiệu.";
-// deprecated, was stock string
-"contact_not_verified" = "Không thể thiết lập mã hóa đầu cuối được đảm bảo với %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Được giới thiệu bởi %1$@";
 "verified_by_you" = "Được tôi giới thiệu";
-// deprecated, was stock string
-"contact_setup_changed" = "Đã thay đổi thiết lập cho %1$@.";
 "verified_contact_required_explain" = "Để đảm bảo mã hóa hai đầu, bạn chỉ có thể thêm những người liên hệ có dấu kiểm màu xanh lục vào nhóm này.\n\nBạn có thể gặp trực tiếp những người liên hệ và quét Mã QR của họ để giới thiệu họ.";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";
 // first placeholder is the name of the chat
@@ -816,8 +786,6 @@
 "ImageEditorHud_crop" = "Cắt";
 "ImageEditorHud_flip" = "Lật";
 "ImageEditorHud_rotate" = "Xoay";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Tin nhắn được mã hóa";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Đây là ứng dụng Delta Chat Desktop chính thức.";
 "about_licensed_under_desktop" = "Phần mềm này được cấp phép theo GNU GPL phiên bản 3 và mã nguồn có sẵn trên GitHub.";

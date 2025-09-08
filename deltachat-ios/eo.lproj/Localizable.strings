@@ -150,12 +150,6 @@
 "menu_new_contact" = "Nova kontakto";
 "menu_new_chat" = "Nova babilo";
 "menu_new_group" = "Nova grupo";
-// deprecated
-"broadcast_list" = "Elsenda Listo";
-// deprecated
-"broadcast_lists" = "Elsendaj Listoj";
-// deprecated
-"new_broadcast_list" = "Nova Elsenda Listo";
 "add_recipients" = "Aldoni Ricevantojn";
 "menu_send" = "Sendi";
 "menu_toggle_keyboard" = "Baskuligi emoĝian klavaron";

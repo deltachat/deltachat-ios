@@ -328,8 +328,6 @@
 "tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ pasikeitė adresą iš %2$@ į %3$@";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Pridėti antrąjį įrenginį";
@@ -611,10 +609,6 @@
 "ephemeral_timer_weeks_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sav.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
-// deprecated
-"chat_protection_broken" = "%1$@ išsiuntė žinutę iš kito įrenginio.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ išsiuntė žinutę iš kito įrenginio. Bakstelėkite norėdami sužinoti daugiau.";
 "learn_more" = "Sužinoti daugiau";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
@@ -648,10 +642,6 @@
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
 "contact_verified" = "%1$@ patvirtintas.";
-// deprecated, was stock string
-"contact_not_verified" = "Nepavyksta patvirtinti %1$@";
-// deprecated, was stock string
-"contact_setup_changed" = "Pakeista sąranka, skirta %1$@.";
 "mailto_dialog_header_select_chat" = "Pasirinkite pokalbį, į kurį siųsti žinutę";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
 // notifications
@@ -677,8 +667,6 @@
 "ImageEditorHud_crop" = "Apkirpti";
 "ImageEditorHud_flip" = "Apversti";
 "ImageEditorHud_rotate" = "Pasukti";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Šifruota žinutė";
 "about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";

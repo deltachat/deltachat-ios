@@ -161,19 +161,7 @@
 "menu_new_chat" = "Нов чат";
 "menu_new_group" = "Нова група";
 "clone_chat" = "Клониране на чат";
-// deprecated
-"broadcast_list" = "Списък за разпространение";
-// deprecated
-"broadcast_lists" = "Списъци за разпространение";
-// deprecated
-"new_broadcast_list" = "Нов списък за разпространение";
 "add_recipients" = "Добавяне на получатели";
-// deprecated
-"edit_broadcast_list" = "Редактиране на списък за разпространение";
-// deprecated
-"broadcast_list_name" = "Име на списък за разпространение";
-// deprecated
-"please_enter_broadcast_list_name" = "Моля, въведете име за списъка за разпространение";
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";
 "menu_edit_group" = "Редактиране на група";
@@ -293,8 +281,6 @@
 "ask_start_chat_with" = "Чат с %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Премахване на %1$@ от групата?";
-// deprecated
-"ask_remove_from_broadcast" = "Да бъдат ли премахнати %1$@ от списъка за разпространение?";
 "open_url_confirmation" = "Искате ли да отворите тази връзка?";
 // contact list
 "contacts_title" = "Контакти";
@@ -308,8 +294,6 @@
 "chat_unable_to_record_audio" = "Не е възможно да се записва аудио.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Изпращане на съобщение до %1$@.";
-// deprecated
-"chat_new_broadcast_hint" = "Получателите в един списък за разпространение получават съобщения в чат \"само за четене\" с Вас.";
 "chat_new_group_hint" = "Другите ще виждат тази група едва след като изпратите първо съобщение.";
 "chat_record_slide_to_cancel" = "Приплъзнете, за да откажете";
 "chat_record_explain" = "Докоснете и задръжте, за да запишете гласово съобщение, отпуснете, за да го изпратите";
@@ -401,10 +385,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Мрежа от квадрати";
 "send_message" = "Изпращане на съобщение";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ промени своя адрес от %2$@ на %3$@";
-// deprecated
-"aeap_explanation" = "Променихте своя email адрес от %1$@ на %2$@.\n\nАко от тук нататък изпратите съобщение до проверена група, контактите в нея автоматично ще заменят стария с новия Ви адрес.\n\nСилно се препоръчва да извършите настройка в предишния си доставчик на електронна поща така, че всички email съобщения да се препращат към новия Ви email адрес. В противен случай е възможно да не получавате съобщения от контакти, които все още не са получили новия Ви адрес.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Добавяне на допълнително устройство";
@@ -757,14 +737,8 @@
 "ephemeral_timer_weeks_by_you" = "Установихте таймера на изчезващите съобщения на %1$@ седмици.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Таймерът на изчезващите съобщения е установен на %1$@ седмици от %2$@.";
-// deprecated
-"chat_protection_broken" = "%1$@ изпрати съобщение от друго устройство.";
 "chat_protection_enabled_tap_to_learn_more" = "От тук нататък е гарантирано, че съобщенията ще бъдат криптирани от край до край. Докоснете, за да научите повече.";
 "chat_protection_enabled_explanation" = "От тук нататък е гарантирано, че всички съобщения в този чат са криптирани от край до край.\n\nКриптирането от край до край запазва поверителността на съобщенията между вас и вашите партньори в чата. Дори Вашият e-mail доставчик не може да ги прочете.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ изпрати съобщение от друго съобщение. Докоснете, за да научите повече.";
-// deprecated
-"chat_protection_broken_explanation" = "Криптирането от край до край повече не може да бъде гарантирано, вероятно защото %1$@ преинсталира Delta Chat или изпрати съобщение от друго устройство.\n\nБихте могли да се срещнете с него/нея лично, да сканирате неговия/нейния QR код отново и отново да установите гарантирано криптиране от край до край.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@ изисква криптиране от край до край, което все още не е установено за този чат. Докоснете, за да научите повече.";
 "invalid_unencrypted_explanation" = "За да установите криптиране от край до край, бихте могли да се срещате с лицата, с които желаете да контактувате, лично и да сканирате техните QR кодове, за да ги въведете.";
 "learn_more" = "Научете повече";
@@ -820,16 +794,10 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ отговори, изчаква се да бъдете добавени към групата…";
 "secure_join_wait" = "Установява се гарантирано криптиране от край до край, моля изчакайте…";
-// deprecated
-"secure_join_wait_timeout" = "Все още не може да бъде установено гарантирано криптиране от край до край, но вече можете да пратите съобщение.";
 "contact_verified" = "%1$@ е проверен.";
-// deprecated, was stock string
-"contact_not_verified" = "Не може да бъде проверен %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Проверен от%1$@";
 "verified_by_you" = "Представен от мен";
-// deprecated, was stock string
-"contact_setup_changed" = "Настройката за %1$@ е сменена.";
 "verified_contact_required_explain" = "За да се гарантира криптирането от край до край, можете да добавяте в тази група само контакти, отбелязани със зелена отметка.\n\nБихте могли да се срещнете с лицата, с които желаете да контактувате, лично и да сканирате техните QR кодове, за да ги въведете.";
 "mailto_dialog_header_select_chat" = "Изберете чат, към който да бъде пратено съобщението";
 // first placeholder is the name of the chat
@@ -867,8 +835,6 @@
 "ImageEditorHud_crop" = "Изрязване";
 "ImageEditorHud_flip" = "Обръщане";
 "ImageEditorHud_rotate" = "Завъртане";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Криптирано съобщение";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Това е официалното настолно приложение Delta Chat.";
 "about_licensed_under_desktop" = "Този софтуер е лицензиран под GNU GPL версия 3. Изходният код е наличен в GitHub.";

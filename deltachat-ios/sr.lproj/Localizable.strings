@@ -151,12 +151,6 @@
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
 "menu_new_group" = "Нова група";
-// deprecated
-"broadcast_list" = "Листа за емитовање";
-// deprecated
-"broadcast_lists" = "Листе за емитовање";
-// deprecated
-"new_broadcast_list" = "Нова листа за емитовање";
 "add_recipients" = "Додај примаоце";
 "menu_send" = "Пошаљи";
 "menu_toggle_keyboard" = "Емоџи тастатура";
@@ -272,8 +266,6 @@
 "ask_start_chat_with" = "Да ли желите да ћаскате са %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Да ли желите да уклонитите %1$@ из групе?";
-// deprecated
-"ask_remove_from_broadcast" = "Да ли желите да уклоните %1$@ са листе за емитовање?";
 "open_url_confirmation" = "Да ли желите да отворите ову везу?";
 // contact list
 "contacts_title" = "Контакти";
@@ -366,10 +358,6 @@
 "all_apps_empty_hint" = "Приватне апликације примљене или послате у било ком ћаскању ће се појавити овде.";
 "media_preview" = "Преглед медијума";
 "send_message" = "Пошаљи поруку";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@је променио њихову адресу %2$@у %3$@";
-// deprecated
-"aeap_explanation" = "Ви сте променили вашу имејл адресу %1$@у %2$@.\n\nАко сада пошаљете поруку провереној групи, тамошњи контакти ће аутоматски заменити стару адресу новом.\n\nПрепоручљиво је да подесите свог предходног имејл провајдера да прослеђује све имејл поруке на вашу нову имејл адресу. У супротном бисте могли да пропустите поруке од контаката који још нису добили вашу нову адресу.";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "Долазеће поруке";
@@ -700,12 +688,8 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ је одговорио и чека да буде додат у групу...";
 "contact_verified" = "%1$@ потврђен.";
-// deprecated, was stock string
-"contact_not_verified" = "Немогуће је проверити %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Проверено од %1$@";
-// deprecated, was stock string
-"contact_setup_changed" = "Подешавања су се променила за %1$@.";
 "mailto_dialog_header_select_chat" = "Изабери ћаскање у које желите да пошаљете поруку";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ већ има нацрт поруке, да ли желите да је замените?";
@@ -736,8 +720,6 @@
 "ImageEditorHud_crop" = "Одрежи";
 "ImageEditorHud_flip" = "Окрени";
 "ImageEditorHud_rotate" = "Обрни";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Шифрована порука";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ово је званична Delta Chat апликација за рачунар.";
 "about_licensed_under_desktop" = "Овај програм је лиценциран под ГНУ ГПЛ верзија 3 лиценцом и изворни код је доступан на Гитхабу.";

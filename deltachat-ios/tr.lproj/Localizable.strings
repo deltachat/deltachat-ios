@@ -198,12 +198,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Sohbet et…";
 "clone_chat" = "Sohbeti Çoğalt";
-// deprecated
-"broadcast_list" = "Yayın Listesi";
-// deprecated
-"broadcast_lists" = "Yayın Listeleri";
-// deprecated
-"new_broadcast_list" = "Yeni Yayın Listesi";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Kanal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -211,12 +205,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Yeni Kanal";
 "add_recipients" = "Alıcılar Ekle";
-// deprecated
-"edit_broadcast_list" = "Yayın Listesini Düzenle";
-// deprecated
-"broadcast_list_name" = "Yayın Listesi Adı";
-// deprecated
-"please_enter_broadcast_list_name" = "Lütfen yayın listesi için bir ad girin.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanal Adı";
 "email" = "E-Posta";
@@ -361,8 +349,6 @@
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ öbekten kaldırılsın mı?";
-// deprecated
-"ask_remove_from_broadcast" = "%1$@ yayın listesinden kaldırılsın mı?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "%1$@ kanaldan kaldırılsın mı?";
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
@@ -378,8 +364,6 @@
 "chat_unable_to_record_audio" = "Ses kaydedilemiyor.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "%1$@ kişisine bir ileti gönderin.";
-// deprecated
-"chat_new_broadcast_hint" = "Bir yayın listesinde, alıcılar sizinle salt okunur bir sohbette iletiler alacak.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "Kanallar, iletilerinizi yayınlamak için birden çoğa bir araçtır.";
 "chat_new_group_hint" = "Diğerleri, yalnızca siz bir ilk ileti gönderdikten sonra bu öbeği görecek.";
@@ -481,10 +465,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Kare Izgara";
 "send_message" = "İleti Gönder";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@, %2$@ adresini %3$@ olarak değiştirdi";
-// deprecated
-"aeap_explanation" = "%1$@ e-posta adresinizi %2$@ olarak değiştirdiniz.\n\nŞimdi bir doğrulanan öbeğe ileti gönderirseniz, oradaki kişiler yeni adresinizle eskisini otomatik olarak değiştirecek.\n\nTüm e-postaları yeni e-posta adresinize iletmek için eski e-posta sağlayıcınızı ayarlamanız önemle önerilir. Yoksa henüz yeni adresinizi almamış olan kişilerin iletilerini kaçırabilirsiniz.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "İkinci Aygıt Ekle";
@@ -852,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "Kaybolan iletiler zamanlayıcısını 1 hafta olarak ayarladınız.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 hafta olarak ayarlandı.";
+"ephemeral_timer_1_year_by_you" = "Kaybolan iletiler zamanlayıcısını 1 yıl olarak ayarladınız.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 yıl olarak ayarlandı.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ dakika olarak ayarladınız.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -868,14 +851,8 @@
 "ephemeral_timer_weeks_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ hafta olarak ayarladınız.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
-// deprecated
-"chat_protection_broken" = "%1$@ başka bir aygıttan bir ileti gönderdi.";
 "chat_protection_enabled_tap_to_learn_more" = "İletiler uçtan uca şifreleniyor. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Bu sohbetteki tüm iletiler uçtan uca şifreleniyor.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. Sunucular, sağlayıcılar ya da aktarıcılar bile onları okuyamaz.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ başka bir aygıttan bir ileti gönderdi. Daha fazlasını öğrenmek için dokunun.";
-// deprecated
-"chat_protection_broken_explanation" = "Uçtan uca şifreleme artık güvencelenemiyor; çünkü büyük olasılıkla %1$@ Delta Chat\'i yeniden yükledi ya da başka bir aygıttan ileti gönderdi.\n\nOnlarla kişisel olarak tanışabilir ve güvenceli uçtan uca şifrelemeyi yeniden kurmak için onların QR kodunu yeniden tarayabilirsiniz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
@@ -931,19 +908,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; öbeğe eklenmesi bekleniyor…";
 "secure_join_wait" = "Uçtan uca şifreleme kuruluyor, lütfen bekleyin…";
-// deprecated
-"secure_join_wait_timeout" = "Henüz güvencelenen uçtan uca şifreleme kurulamadı; ama zaten bir ileti gönderebilirsiniz.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Sürdürmek için kişi çevrimiçi olmalıdır.\n\nBu işlem, arka planda otomatik olarak sürecek.";
 "contact_verified" = "%1$@ tanıtıldı.";
-// deprecated, was stock string
-"contact_not_verified" = "%1$@ ile uçtan uca şifreleme kurulamıyor.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ tarafından tanıtıldı";
 "verified_by_you" = "Benim tarafımdan tanıtıldı";
 "verified_by_unknown" = "Tanıtıldı";
-// deprecated, was stock string
-"contact_setup_changed" = "%1$@ için ayarlama değiştirildi.";
 "verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir onay imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
@@ -981,8 +950,6 @@
 "ImageEditorHud_crop" = "Kırp";
 "ImageEditorHud_flip" = "Çevir";
 "ImageEditorHud_rotate" = "Döndür";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Şifrelenen ileti";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
 "about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
@@ -1097,7 +1064,3 @@
 "perm_enable_bg_already_done" = "Delta Chat\'in arka planda iletileri almasına zaten izin verdiniz.\n\nİletiler arka planda hâlâ gelmiyorsa, lütfen sistem ayarlarınızı da denetleyin.";
 // device messages for updates
 "update_2_0" = "Ne yeni?\n\n💯 Uçtan uca şifreleme artık güvenilir ve sonsuza kadar geçerli. Asma kilitlerle 🔒 anlaşılabilir!\n\n✉️ Uçtan uca şifrelemeli olmayan klasik e-posta bir mektup sembolü olarak işaretlenir\n\n😻 Tüm kişileriniz için yeni geliştirilen profil ekranı\n\n🔲 Bir sohbette kullanılan uygulamalara hızlı erişim için yeni düğme\n\n❤️ Bağımsız kalmamız ve yeni geliştirmeler getirmemiz için lütfen bize yardım edin: %1$@";
-// deprecated
-"update_1_50_android" = "Ne yeni?\n\n❤️‍🔥 Daha fazla emojiyle yeni emoji seçicisi\n\n🎮 Geliştirilen sohbet içi uygulamalar: Bildirimler alın ve destekleyen uygulamaları bağlamda açın, yani eklenen bir takvim girdisini doğrudan açın\n\n👍 İletilerinize verilen tepkiler hakkında bildirimler alın\n\n... 🛠️ DÜZELTMELER ve HATTA DAHA FAZLASI için %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ “Profili Değiştir” seçeneği taşındı: Yeni profil eklemek ya da profilleri değiştirmek için ana ekranın üst köşesindeki profil görselinize dokunun 💡";

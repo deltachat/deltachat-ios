@@ -198,12 +198,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Csevegés vele…";
 "clone_chat" = "Csevegés klónozása";
-// deprecated
-"broadcast_list" = "Adáslista";
-// deprecated
-"broadcast_lists" = "Adásliták";
-// deprecated
-"new_broadcast_list" = "Új adáslista";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Csatorna";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -211,12 +205,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Új csatorna";
 "add_recipients" = "Címzettek hozzáadása";
-// deprecated
-"edit_broadcast_list" = "Adáslista szerkesztése";
-// deprecated
-"broadcast_list_name" = "Adáslista neve";
-// deprecated
-"please_enter_broadcast_list_name" = "Adjon meg egy nevet az adáslistának";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Csatorna neve";
 "email" = "E-mail";
@@ -361,8 +349,6 @@
 "ask_start_chat_with" = "Csevegés vele: %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Eltávolítja a csoportból őt: %1$@?";
-// deprecated
-"ask_remove_from_broadcast" = "Eltávolítja az adáslistából őt: %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Eltávolítja a csatornából a következőt: %1$@?";
 "open_url_confirmation" = "Biztosan megnyitja ezt a hivatkozást?";
@@ -378,8 +364,6 @@
 "chat_unable_to_record_audio" = "Nem lehet hangfelvételt készíteni.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Üzenet küldése „%1$@” számára.";
-// deprecated
-"chat_new_broadcast_hint" = "Az adáslistán a címzettek csak olvasható módban kapják meg az üzeneteket öntől.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "A csatornák egy blogszerű eszköz az üzenetek megosztására a közönséggel.";
 "chat_new_group_hint" = "Mások csak az első üzenet elküldése után fogják látni ezt a csoportot.";
@@ -481,10 +465,6 @@
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@ megváltoztatta a címét következőről: %2$@, erre: %3$@ ";
-// deprecated
-"aeap_explanation" = "Ön megváltoztatta a saját e-mail-címét erről: %1$@ erre: %2$@.\n\nHa most üzenetet küld egy hitelesített csoportba, az ottani partnerei automatikusan lecserélik az Ön régi címét az új címére.\n\nEzért nagyon ajánlott beállítani, hogy a régi e-mail-szolgáltatója továbbítsa-e az összes e-mailt az e-mail-címére. Ellenkező esetben lemaradhat azoknak a partnereinek az üzeneteiről, akik még nem kapták meg az új címét.";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Második eszköz hozzáadása";
@@ -636,10 +616,10 @@
 "pref_blocked_contacts" = "Letiltott névjegyek";
 "blocked_empty_hint" = "A letiltott névjegyek itt fognak megjelenni";
 "pref_password_and_account_settings" = "Fiók és jelszó";
-"pref_who_can_see_profile_explain" = "A profilképe, neve és életrajza az üzenetekkel együtt kerül elküldésre, amikor más felhasználókkal kommunikál.";
+"pref_who_can_see_profile_explain" = "A profilképe, neve és névjegye az üzenetekkel együtt kerül elküldésre, amikor más felhasználókkal kommunikál.";
 "pref_your_name" = "Név";
 // Label of the Bio/Signature/Status/Motto field
-"pref_default_status_label" = "Életrajz";
+"pref_default_status_label" = "Névjegy";
 "pref_enter_sends" = "Küldés „Enterrel”";
 "pref_enter_sends_explain" = "Az „Enter” billentyű megnyomásával szöveges üzeneteket küldhet";
 "pref_outgoing_media_quality" = "Kimenő média minősége";
@@ -852,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "Ön az eltűnő üzenetek időzítőjét 1 hétre állította be.";
 // %1$s will be replaced by name and address of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ az eltűnő üzenetek időzítőjét 1 hétre állította be.";
+"ephemeral_timer_1_year_by_you" = "Ön az eltűnő üzenetek időzítőjét 1 évre állította be.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "%1$@ az eltűnő üzenetek időzítőjét 1 évre állította be.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Ön az eltűnő üzenetek időzítőjét %1$@ percre állította be.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
@@ -868,14 +851,8 @@
 "ephemeral_timer_weeks_by_you" = "Ön az eltűnő üzenetek időzítőjét %1$@ hétre állította be.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ az eltűnő üzenetek időzítőjét%1$@ hétre állította be.";
-// deprecated
-"chat_protection_broken" = "%1$@ egy másik eszközről küldött üzenetet.";
 "chat_protection_enabled_tap_to_learn_more" = "Az üzenetek mostantól garantáltan titkosítva lesznek a végpontok között. Koppintson, ha többet szeretne tudni.";
 "chat_protection_enabled_explanation" = "Mostantól garantált, hogy ebben a csevegésben az összes üzenet végpontok közötti titkosítással rendelkezik.\n\nA végpontok közötti titkosítással az üzenetek bizalmasak maradnak Ön és a partnerei között. Még az e-mail-szolgáltatója sem tudja elolvasni őket.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ egy másik eszközről küldött üzenetet. Koppintson, ha többet szeretne tudni.";
-// deprecated
-"chat_protection_broken_explanation" = "A végpontok közötti titkosítás már nem garantálható, valószínűleg azért, mert %1$@ újratelepítette a Delta Chatet, vagy egy másik eszközről küldött üzenetet.\n\n Személyesen találkozhat vele, és újra beolvashatja a QR-kódját a garantált végpontok közötti titkosítás visszaállításához.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ A(z) %1$@ végpontok közötti titkosítást igényel, ami még nincs beállítva erre a csevegésre. Koppintson, ha többet szeretne megtudni.";
 "invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat a partnereivel, és a QR-kódjukat beolvasva bemutathatja őket.";
 "learn_more" = "Tudjon meg többet";
@@ -931,19 +908,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ válaszolt, várakozik, hogy fölvegyék a csoportba…";
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
-// deprecated
-"secure_join_wait_timeout" = "Még nem sikerült a garantált végpontok közötti titkosítást létrehozni, de már küldhet üzenetet.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Úgy tűnik, hogy ez tovább tart, mint gondoltuk, talán a partnere vagy Ön offline állapotban van.\n\nMindenesetre a folyamat a háttérben folytatódik, eközben csinálhat valami mást…";
 "contact_verified" = "%1$@ bemutatva.";
-// deprecated, was stock string
-"contact_not_verified" = "Nem lehet garantált végpontok közötti titkosítást létrehozni vele: %1$@.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ által bemutatva";
 "verified_by_you" = "Ön által bemutatva";
 "verified_by_unknown" = "Bemutatva";
-// deprecated, was stock string
-"contact_setup_changed" = "Megváltoztatta a beállításokat %1$@ számára.";
 "verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat
@@ -981,8 +950,6 @@
 "ImageEditorHud_crop" = "Kivágás";
 "ImageEditorHud_flip" = "Tükrözés";
 "ImageEditorHud_rotate" = "Forgatás";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Titkosított üzenet";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "Ez a hivatalos Delta Chat Desktop alkalmazás.";
 "about_licensed_under_desktop" = "Ez a szoftver a GNU GPLv3 licenc alatt áll és a forráskód elérhető a GitHubon.";
@@ -1097,8 +1064,3 @@
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";
 // device messages for updates
 "update_2_0" = "Újdonságok:\n\n💯 A végpontok közötti titkosítás most már megbízható és örökre megmarad. A lakatok 🔒 eltűntek!\n\n✉️ A végpontok közötti titkosítás nélküli klasszikus e-mailek betűszimbólummal vannak jelölve\n\n😻 Új, továbbfejlesztett profilképernyő az összes névjegyhez\n\n🔲 Új gomb a csevegésben használt alkalmazások gyors eléréséhez\n\n❤️ Ha teheti, adományozzon nekünk, hogy függetlenek maradhassunk és továbbra is fejlesztéseket tudjunk végrehajtani: %1$@";
-// deprecated
-"update_1_50_android" = "Mik az újdonságok?\n\n❤️‍🔥 Új emodzsi-választó még több emodzsival\n\n🎮 Továbbfejlesztett, a csevegésben használható alkalmazások: Értesítéseket kaphat és megnyithatja az azokat támogató alkalmazásokban, azaz közvetlenül megnyithat egy hozzáadott naptárbejegyzést\n\n👍 Értesítést kaphat az üzeneteire adott reakciókról\n\n… 🛠️ Egyéb javítások, tudjon meg többet itt: %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ A „Profilváltás” beállítás át lett helyezve:
-Érintse meg a főképernyő felső sarkában lévő profilképet a profilok hozzáadásához vagy váltásához 💡";

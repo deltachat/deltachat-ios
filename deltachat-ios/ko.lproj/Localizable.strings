@@ -143,12 +143,6 @@
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
 "menu_new_group" = "새 그룹";
-// deprecated
-"broadcast_list" = "방송 목록";
-// deprecated
-"broadcast_lists" = "방송 목록";
-// deprecated
-"new_broadcast_list" = "새 방송 목록";
 "add_recipients" = "수신자 추가";
 "menu_send" = "보내기";
 "menu_toggle_keyboard" = "이모티콘 키보드 전환";
@@ -260,8 +254,6 @@
 "ask_start_chat_with" = "%1$@와 채팅하시겠습니까?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "그룹에서 %1$@을/를 제거하시겠습니까?";
-// deprecated
-"ask_remove_from_broadcast" = "브로드 캐스트 목록에서 %1$@을/를 제거하시겠습니까?";
 "open_url_confirmation" = "이 링크를 여시겠습니까?";
 // contact list
 "contacts_title" = "연락처";
@@ -350,10 +342,6 @@
 "all_apps_empty_hint" = "채팅에서 보내거나 받은 개인 앱들이 여기에 나타납니다.";
 "media_preview" = "미디어 미리보기";
 "send_message" = "메시지 전송";
-// deprecated, was stock string
-"aeap_addr_changed" = "%1$@의 주소가 %2$@에서 %3$@로 변경됨.";
-// deprecated
-"aeap_explanation" = "이메일 주소를 %1$@에서 %2$@로 바꿨습니다.\n\n확인된 그룹으로 메시지를 보내면 해당 그룹의 연락처가 자동으로 이전 주소를 새 주소로 대체합니다.\n\n모든 이메일을 새 이메일 주소로 전달하도록 이전 이메일 공급자를 설정하는 것이 좋습니다. 그렇지 않으면 새 주소를 받지 못한 연락처의 메시지를 놓칠 수 있습니다.";
 // Connectivity
 // Headline for the "Inbox" eg. in the "Connectivity" view
 "incoming_messages" = "수신 메시지";
@@ -669,10 +657,6 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@이 응하여, 그룹에 추가되기를 기다리는 중입니다...";
 "contact_verified" = "%1$@이 확인됨";
-// deprecated, was stock string
-"contact_not_verified" = "%1$@ 확인할 수 없음";
-// deprecated, was stock string
-"contact_setup_changed" = "%1$@에 대한 설정이 변경되었습니다.";
 "mailto_dialog_header_select_chat" = "메시지를 보내려면 채팅을 선택하십시오";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@에 이미 임시 저장된 메시지가 있습니다. 바꾸시겠습니까?";
@@ -703,8 +687,6 @@
 "ImageEditorHud_crop" = "자르기";
 "ImageEditorHud_flip" = "뒤집기";
 "ImageEditorHud_rotate" = "돌리기";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "암호화된 메시지";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "이것은 Delta Chat 데스크톱 공식 앱입니다.";
 "about_licensed_under_desktop" = "이 소프트웨어는 GNU GPL 버전 3에 따라 라이센스가 부여되며 소스 코드는 GitHub에서 사용할 수 있습니다.";

@@ -197,12 +197,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "شروع گفتگو با...";
 "clone_chat" = "درست کردن گپ جدید از این گپ";
-// deprecated
-"broadcast_list" = "لیست Broadcast";
-// deprecated
-"broadcast_lists" = "لیست‌های Broadcast";
-// deprecated
-"new_broadcast_list" = "لیست Broadcast جدید";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "کانال";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -210,12 +204,6 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "کانال جدید";
 "add_recipients" = "افزودن گیرنده";
-// deprecated
-"edit_broadcast_list" = "ویرایش فهرست Broadcast";
-// deprecated
-"broadcast_list_name" = "نام فهرست BroadCast";
-// deprecated
-"please_enter_broadcast_list_name" = "وارد کردن نام برای فهرست Broadcast.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "نام کانال";
 // "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
@@ -366,8 +354,6 @@ https://meet.jit.si/$ROOM
 "ask_start_chat_with" = "گپ زدن با %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
-// deprecated
-"ask_remove_from_broadcast" = "آيا%1$@ از لیست Broadcast پاک شود؟ ";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "حذف %1$@ از کانال؟";
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
@@ -383,8 +369,6 @@ https://meet.jit.si/$ROOM
 "chat_unable_to_record_audio" = "ضبط صدا ممکن نیست. ";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "ارسال پیام. مشکلی نیست اگر %1$@ از دلتاچت استفاده نمی‌کند.";
-// deprecated
-"chat_new_broadcast_hint" = "در یک فهرست Broadcast گیرنده‌ها در یک گپ فقط خواندنی با شما، پیام‌ها را دریافت می‌کنند.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "کانال‌ها یک ابزار یک به چند برای اعلام عمومی پیام‌هایتان هستند.";
 "chat_new_group_hint" = "نوشتن اولین پیام به دیگران امکان می‌دهد در این گروه پاسخ دهند. \n\n• مشکلی نیست اگر همه اعضا از دلتاچت استفاده نکنند\n\n• دریافت اولین پیام ممکن است به زمان بیشتری نیاز داشته باشد. ";
@@ -486,10 +470,6 @@ https://meet.jit.si/$ROOM
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "جدول مربعی";
 "send_message" = "ارسال پیام";
-// deprecated, was stock string
-"aeap_addr_changed" = "مخاطب %1$@ نشانی خود را از %2$@ به %3$@ تغییر داده است.  ";
-// deprecated
-"aeap_explanation" = "شما نشانی رایانامهٔ خود را از %1$@ به %2$@ تغییر دادید.\n\nاگر به یک گروه تأیید شده پیام بفرستید، مخاطبان آن به صورت خودکار نشانی جدید را جایگزین نشانی پیشین می‌کنند.\n\nبه شدت توصیه می‌شود که نشانی رایانامهٔ پیشین خود را به نحوی تنظیم کنید که تمام رایانامه‌ها را به نشانی جدید شما هدایت کند؛ در غیر این صورت ممکن است پیام‌های مخاطبانی که از تغییر نشانی شما مطلع نشده‌اند را از دست بدهید. ";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "افزودن دستگاه دوم";
@@ -873,12 +853,8 @@ https://meet.jit.si/$ROOM
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
-// deprecated
-"chat_protection_broken" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد.";
 "chat_protection_enabled_tap_to_learn_more" = "رمزنگاری سرتاسر پیام ها از این به بعد تضمین می شود. برای اطلاعات بیشتر ضربه بزنید.";
 "chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو اکنون تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهندهٔ رایانامه شما هم نمی‌تواند آن‌ها را بخواند.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ پیامی را از دستگاه دیگری ارسال کرد. برای اطلاعات بیشتر ضربه بزنید.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ به رمزنگاری سراسری نیاز دارد که هنوز برای این گپ پیکره‌بندی نشده است. برای یادگیری بیش‌تر این‌جا بزنید.";
 "invalid_unencrypted_explanation" = "برای برقراری رمزنگاری سراسری، می‌توانید به صورت حضوری با مخاطب‌های خود دیدار کنید و کد کیوآر آن‌ها را برای معرفی اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
@@ -941,18 +917,10 @@ https://meet.jit.si/$ROOM
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
 "secure_join_wait" = "در حال برقراری رمزگذاری سراسری تضمین‌شده، لطفا صبر کنید...";
-// deprecated
-"secure_join_wait_timeout" = "اکنون نمی توانیم رمزگذاری سراسری تضمین‌شده را برقرار کنیم. با این وجود می‌توانید پیام ارسال کنید.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "برای ادامه، مخاطب باید برخط باشد.\n\nاین فرآیند به صورت خودکار در پس‌زمینه ادامه خواهد داشت.";
 "contact_verified" = "%1$@ تأیید شد.";
-// deprecated, was stock string
-"contact_not_verified" = "امکان تایید رمزگذاری در مبدا، برای %1$@وجود ندارد.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "احراز هویت شده توسط %1$@";
 "verified_by_you" = "تأیید شده توسط من";
-// deprecated, was stock string
-"contact_setup_changed" = "تنظیم‌ها برای %1$@ تغییر کرد. ";
 "verified_contact_required_explain" = "برای تضمین رمزنگاری سراسری شما تنها می‌توانید مخاطب‌هایی که یک تیک سبز دارند به این گروه اضافه کنید.\n\nمی‌توانید با مخاطب‌هایتان حضوری ملاقات کنید و برای معرفی، کد QR آن‌ها را اسکن کنید.";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
@@ -1002,8 +970,6 @@ https://meet.jit.si/$ROOM
 "ImageEditorHud_crop" = "بریدن";
 "ImageEditorHud_flip" = "برعکس کردن";
 "ImageEditorHud_rotate" = "چرخاندن";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "پیام رمزگذاری شده";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "این نرم‌افزار رسمی دلتاچت در محیط رایانه است.";
 "about_licensed_under_desktop" = "این نرم افزار تحت مجوز 

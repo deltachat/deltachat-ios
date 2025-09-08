@@ -51,7 +51,7 @@
 "unarchive" = "Tõsta arhiivist välja";
 "mute" = "Summuta";
 "muted" = "Summutatud";
-"ephemeral_messages" = "Kaduvad sõnumid";
+"ephemeral_messages" = "Isekustuvad sõnumid";
 "ephemeral_messages_hint" = "Kehtib kõikidele selles vestluses osalejatele - aga siiski saavad nad sõnumeid kopeerida, salvestada ja edastada.";
 "save" = "Salvesta";
 "chat" = "Vestlus";
@@ -258,7 +258,7 @@
 "menu_unblock_contact" = "Lõpeta kontakti blokeerimine";
 "accept" = "Nõustu";
 "menu_play" = "Esita";
-"menu_pause" = "eata";
+"menu_pause" = "Peata";
 "menu_scroll_to_bottom" = "Keri lõpuni";
 "menu_scroll_to_top" = "Keri algusesse";
 "menu_help" = "Abiteave";
@@ -273,6 +273,7 @@
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Kasutaja „%1$@“ hüüdnimi";
 "menu_settings" = "Seadistused";
+"menu_advanced" = "Täiendavad seadistused";
 "menu_view_profile" = "Vaata profiili";
 "menu_zoom_in" = "Suumi sisse";
 "menu_zoom_out" = "Suumi välja";
@@ -283,8 +284,10 @@
 "jump_to_message" = "Mine sõnumi juurde";
 "jump_to_original_message" = "Mine algse sõnumi juurde";
 "copy_json" = "Kopeeri JSON-vormingus";
+"replace_draft" = "Asenda kavand";
 "title_share_location" = "Jaga asukohta kõikide grupi liikmetega";
 "device_talk" = "Seadme sõnumid";
+"device_talk_subtitle" = "Kohalikus seadmes loodud sõnumid";
 "edit_contact" = "Muuda kontakti";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Tõsta vestlus esile";
@@ -306,6 +309,11 @@
 "mute_for_one_day" = "Summuta üheks päevaks";
 "mute_for_seven_days" = "Summuta seitsmeks päevaks";
 "mute_forever" = "Summuta alatiseks";
+"share_location_for_5_minutes" = "Kestusega 5 minutit";
+"share_location_for_30_minutes" = "Kestusega 30 minutit";
+"share_location_for_one_hour" = "Kestusega 1 tund";
+"share_location_for_two_hours" = "Kestusega 2 tundi";
+"share_location_for_six_hours" = "Kestusega 6 tundi";
 "file_saved_to" = "Fail on salvestatud: „%1$@“.";
 "videochat" = "Videovestlus";
 "videochat_invite_user_to_videochat" = "Kas kutsud %1$@ osalema videovestluses?";
@@ -318,6 +326,8 @@
 "videochat_instance_placeholder" = "Sinu videovestluse server";
 // Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
 "videochat_instance_example" = "Näide: https://sinu-server.org/$ROOM";
+"videochat_invitation" = "Kutse videovestlusele";
+"videochat_invitation_body" = "Oled saanud kutse videovestlusele - liitumiseks klõpsi %1$@.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
@@ -327,7 +337,12 @@
 "ask_unblock_contact" = "Kas lõpetad kontakti blokeerimise?";
 "ask_start_chat_with" = "Kas soovid vestelda kasutajaga %1$@?";
 // %1$s is replaced by a comma-separated list of names
+"ask_remove_members" = "Kas eemaldad järgnevad kasutajad grupist: %1$@?";
+// %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Kas eemaldad järgnevad kasutajad kanalilt: %1$@?";
+"open_url_confirmation" = "Kas sa soovid selle lingi avada?";
+// contact list
+"contacts_title" = "Kontaktid";
 "contacts_enter_name_or_email" = "Sisesta nimi või e-posti aadress";
 "contacts_type_email_above" = "Palun sisesta ülale e-posti aadress";
 "contacts_empty_hint" = "Kontakte pole.";
@@ -341,17 +356,29 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "chat_new_channel_hint" = "Kanalid on üks-mitmele suhtlusviisid oma sõnumite levitamiseks.";
 "chat_record_slide_to_cancel" = "Katkestamiseks viipa";
+"chat_record_explain" = "Häälsõnumi salvestamiseks vajuta nupp alla ja hoia all ning saatmiseks lase nupp lahti";
 "chat_no_chats_yet_title" = "Vestlusi pole.\nUue vestluse loomiseks klõpsi + ikooni.";
 "chat_all_archived" = "Kõik vestlused on arhiveeritud.\nUue vestluse algatamiseks klõpsi + ikooni.";
+"chat_share_with_title" = "Jaga kasutajaga";
+"chat_input_placeholder" = "Sõnum";
+"chat_archived_label" = "Arhiveeritud";
+"chat_request_label" = "Päring";
 "chat_request_label_explain" = "Lisa päringud nii loenduritesse kui teavitustesse";
+"chat_no_messages" = "Sõnumeid pole.";
 "saved_messages" = "Salvestatud sõnumid";
 // Should match "Saved" from "Saved messages"
 "saved" = "Salvestatud";
 "save_as" = "Salvesta kui";
+"retry_send" = "Proovi uuesti sõnumit saata";
+"cannot_display_unsuported_file_type" = "Selle failitüübi kuvamine pole võimalik: %1$@";
+"attachment_failed_to_load" = "Manuse laadimine ei õnnestunud";
 // mailing lists
 "mailing_list" = "Postiloend";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Saada sõnum…";
+"add_poi" = "Saada huvipunkti teave";
+"chat_audit_log_title" = "%1$@ vestluse kontroll-logi";
+"puny_code_warning_header" = "Tuvastasin kahtlase lingi";
 // search
 "search" = "Otsi";
 "search_in_chat" = "Otsi vestlusest";
@@ -371,7 +398,7 @@
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";
 "profile_encryption" = "Krüptimine";
 "profile_shared_chats" = "Ühised vestlused";
-"related_chats" = "Sarnased vestlused";
+"related_chats" = "Sarnaste osalejatega vestlused";
 // Separator between the list of actual members and past members
 "past_members" = "Varasemad liikmed";
 "tab_contact" = "Kontakt";
@@ -478,6 +505,7 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP turvalisus";
+"login_auth_method" = "Tuvastamise meetod";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proksiserver";
 "proxy_use_proxy" = "Kasuta proksiserverit";
@@ -519,15 +547,41 @@
 "sync_all" = "Sünkrooni kõik";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Seadistamine ei õnnestunud: Viga: %1$@";
+// share and forward messages
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
+"forward_to" = "Edasta kasutajale…";
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Kas saadad %1$d faili „%2$@“ vestlusesse?";
+"ask_send_files_to_selected_chats" = "Kas saadad %1$d faili „%2$d“ vestlusesse?";
 "videos_sent_without_recoding" = "(Videod saadetakse algupäraste suurte failidena. Videote mahu vähendamiseks lisa nad manustena ükshaaval)";
+"share_abort" = "Puuduvate õiguste tõttu on jagamine katkestatud.";
+// preferences
+"pref_using_custom" = "Kasutan kohandatud väärtust: %1$@";
+"pref_using_default" = "Kasutan vaikimisi väärtust: %1$@";
 "pref_profile_info_headline" = "Sinu profiil";
+"pref_profile_photo" = "Profiilipilt";
 "pref_blocked_contacts" = "Blokeeritud kontaktid";
+"blocked_empty_hint" = "Blokeeritud kontaktid saavad olema leitavad siin.";
 "pref_password_and_account_settings" = "Salasõna ja kasutajakonto";
 "pref_your_name" = "Sinu nimi";
+// Label of the Bio/Signature/Status/Motto field
+"pref_default_status_label" = "Elulugu/allkiri/moto";
+"pref_enter_sends" = "Sisestusklahv saadab sõnumi";
 "pref_outgoing_media_quality" = "Saadetava meediumi kvaliteet";
+"pref_outgoing_worse" = "Kõige kehvem kvaliteet, aga väikseim maht";
+"pref_vibrate" = "Väristamine";
+"pref_screen_security" = "Ekraani turvalisus";
+"pref_screen_security_please_restart_hint" = "Ekraaniturvalisusega seotud seadistuste kasutamisele võtmiseks palun käivita rakendus uuesti.";
 "pref_notifications" = "Teavitused";
+"pref_mention_notifications" = "Mainimised";
+"pref_notifications_show" = "Näita";
+"pref_notifications_priority" = "Prioriteet";
+"pref_notifications_explain" = "Kasuta uute sõnumite puhul süsteemi teavitusi";
+"pref_show_notification_content" = "Näita teavituses sõnumi sisu";
+"pref_show_notification_content_explain" = "Näitab teavituses sõnumi saatjat ja esimesi sõnu";
+"pref_led_color" = "LED-värv";
+"pref_sound" = "Heli";
+"pref_silent" = "Vaikne";
 "pref_privacy" = "Privaatsus";
 "pref_chats_and_media" = "Vestlused ja meediumid";
 "pref_system_default" = "Süsteemi vaikimisi valik";
@@ -538,6 +592,9 @@
 "pref_theme" = "Kujundus";
 "pref_language" = "Keel";
 "pref_use_system_ui_font" = "Kasuta süsteemi kirjatüüpi";
+"pref_incognito_keyboard" = "Privaatne klahvistik";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_incognito_keyboard_explain" = "Palu, et operatsioonisüsteem ei jätaks meelde klahvistikust sisestatud (aga see ei pruugi alati toimida)";
 "pref_read_receipts" = "Lugemisteatised";
 "pref_read_receipts_explain" = "Kui sinu lugemisteatised on lülitatud välja, siis ka sina ei näe teiste lugemisteatisi.";
 "pref_server" = "Server";
@@ -573,9 +630,11 @@
 "pref_background" = "Taustapilt";
 "pref_background_btn_default" = "Kasuta vaikimisi pilti";
 "pref_background_btn_gallery" = "Vali galeriist";
+"pref_imap_folder_handling" = "IMAP-i kaustade kasutamine";
 "pref_watch_sent_folder" = "Välju saadetud sõnumite kausta";
 "pref_send_copy_to_self" = "Saada koopia iseendale";
 "pref_send_copy_to_self_explain" = "Vajalik, kui kasutad seda kontot mitmes seadmes.";
+"pref_show_emails" = "Näita klassikalisi e-kirju";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_developer_mode" = "Arendaja režiim";
 "pref_developer_mode_explain" = "Lülitab sisse veaotsingu tarvikud ja see võib rakenduse töökindlust vähendada. Sobib arendajatele.";
@@ -625,8 +684,19 @@
 "delete_old_messages" = "Kustuta vanad sõnumid";
 "autodel_device_title" = "Kustuta sõnumid seadmest";
 "autodel_server_title" = "Kustuta sõnumid serverist";
+"autodel_confirm" = "Ma saan aru, kustuta kõik need sõnumid";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Kohe peale allalaadimist";
+"after_5_minutes" = "5 minuti järel";
+"after_30_minutes" = "30 minuti järel";
+"autodel_after_1_hour" = "5 tunni järel";
+"autodel_after_1_day" = "5 päeva järel";
+"autodel_after_1_week" = "5 nädala järel";
+"after_5_weeks" = "5 nädala järel";
+"autodel_after_1_year" = "5 aasta järel";
+// autocrypt
+"autocrypt_send_asm_title" = "Saada Autocrypti seadistussõnum";
+"autocrypt_send_asm_button" = "Saada Autocrypti seadistussõnum";
 "autocrypt_prefer_e2ee" = "Eelista läbivat krüptimist";
 "systemmsg_subject_for_new_contact" = "Sõnum kasutajalt %1$@";
 "systemmsg_failed_sending_to" = "Sõnumi saatmine kasutajale %1$@ ei õnnestunud.";
@@ -657,14 +727,46 @@
 "location_enabled_by_you" = "Sina lülitasid sisse oma asukoha jagamise reaalajas.";
 // %1$s will be replaced by name and address of the contact
 "location_enabled_by_other" = "%1$@ lülitas sisse oma asukoha jagamise reaalajas.";
-// deprecated
-"chat_protection_broken" = "%1$@ saatis sõnumi muust seadmest.";
+"ephemeral_timer_disabled_by_you" = "Sa lülitasid isekustuvate sõnumite taimeri välja.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_disabled_by_other" = "%1$@ lülitas isekustuvate sõnumite taimeri välja.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_seconds_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
+"ephemeral_timer_1_minute_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 minuti.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_minute_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 minuti.";
+"ephemeral_timer_1_hour_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 tunni.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_hour_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 tunni.";
+"ephemeral_timer_1_day_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 päeva.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_day_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 päeva.";
+"ephemeral_timer_1_week_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 nädala.";
+// %1$s will be replaced by name and address of the contact
+"ephemeral_timer_1_week_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 nädala.";
+"ephemeral_timer_1_year_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 aasta.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 aasta.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ minutit.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_minutes_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ minutit.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ tundi.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_hours_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ tundi.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ päeva.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_days_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ päeva.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+"ephemeral_timer_weeks_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
 "chat_protection_enabled_tap_to_learn_more" = "Sõnumid on läbivalt krüptitud. Lisateabe ligemiseks klõpsi.";
 "chat_protection_enabled_explanation" = "Kõik selle vestluse sõnumid on läbivalt krüptitud.\n\nSee tagab, et sõnumid on loetavad vaid sinu ja vestluse teis(t)e osapool(t)e poolt. Ei teenusepakkujad, serverihaldajad, ega põrgatajad ei saa neid sõnumeid lugeda.";
-// deprecated
-"chat_protection_broken_tap_to_learn_more" = "%1$@ saatis sõnumi muust seadmest. Lisateabeks klõpsi.";
-// deprecated
-"chat_protection_broken_explanation" = "Läbiv krüptimine pole enam garanteeritud. Ilmselt on põhjuseks see, et %1$@ on Delta Chati uuesti paigaldanud või saatnud sõnumi muust seadmest.\n\nParim viis olukorra lahendamiseks on see, kui kohtute omavahel ja sa skaneerid tema QR-koodi ning sellega korrektselt lisad ta uuesti läbivalt krüptitud vestlusesse.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ eeldab läbiva krüptimise kasutamist, aga see pole veel antud vestluse jaoks seadistatud. Lisateabe ligemiseks klõpsi.";
 "invalid_unencrypted_explanation" = "Läbiva krüptimise kasutuselevõtmiseks oarim viis on omavahel kohtuda ning teise osapoole QR-koodi skaneerimisega lisada ta vestlusesse.";
 "learn_more" = "Lisateave";
@@ -709,19 +811,11 @@
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Kas logid sisse „%1$@“ profiili?";
 "secure_join_wait" = "Panen aluse läbivale krüptimisele…";
-// deprecated
-"secure_join_wait_timeout" = "Tagatud läbivat krüptimist ei saa veel luua, aga sa võid juba sõnumit saata.";
-// deprecated, was stock string
-"secure_join_takes_longer" = "Jätkamaks peab kontakt olema hetkel võrgus.\n\nProtsess jätkub automaatselt taustal.";
 "contact_verified" = "%1$@ lisas vestlusesse.";
-// deprecated, was stock string
-"contact_not_verified" = "Läbivat krüptimist teise osapoolega (%1$@) ei õnnestu luua.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ lisas kontakti vestlusesse";
 "verified_by_you" = "Mina lisasin kontakti vestlusesse";
 "verified_by_unknown" = "Vestlusesse lisatud";
-// deprecated, was stock string
-"contact_setup_changed" = "%1$@ seadistus on muutunud";
 "verified_contact_required_explain" = "Selleks, et läbiv krüptimine toimiks garanteeritult, sa võid sellesse vestlusesse lisada vaid rohelise linnukesega kontakte.\n\nParim viis on omavahel kohtuda ning teise osapoole QR-koodi skaneerimisega lisada ta vestlusesse.";
 "mailto_dialog_header_select_chat" = "Vali vestlus, kuhu soovid sõnumi saata";
 // first placeholder is the name of the chat
@@ -730,6 +824,9 @@
 // notifications
 "notify_reply_button" = "Vasta";
 "notify_new_message" = "Uus sõnum";
+"notify_background_connection_enabled" = "Taustal toimiv ühendus on kasutusel";
+"notify_priority_high" = "Oluline";
+"notify_priority_max" = "Kõik olulisem";
 "notify_name_and_message" = "Nimi ja sõnum";
 "notify_name_only" = "Vaid nimi";
 "notify_no_name_or_message" = "Ei nime ega sõnumit";
@@ -756,8 +853,6 @@
 "ImageEditorHud_crop" = "Kadreeri";
 "ImageEditorHud_flip" = "Pööra teistpidi";
 "ImageEditorHud_rotate" = "Pööra";
-// deprecated, use string "E-Mail" for non-encrypted messages instead
-"encrypted_message" = "Krüptitud sõnum";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "See on Delta Chati ametlik töölauarakendus.";
 "about_licensed_under_desktop" = "See tarkvara on litsentseeritud GNU GPL versiooni 3 alusel ning rakenduse lähtekood on saadaval GitHubis.";
@@ -824,6 +919,7 @@
 "a11y_delivery_status_invalid" = "Vigane kohaletoimetamise olek";
 "a11y_message_context_menu_btn_label" = "Tegevused sõnumiga";
 "a11y_background_preview_label" = "Taustapildi eelvaade";
+"a11y_disappearing_messages_activated" = "Isekustuvad sõnumid on kasutusel";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Lõpeta asukoha jagamine";
 "a11y_voice_message_hint_ios" = "Peale salvestamist saad topeltpuudutusega saata. Salvestisest saad loobuda hõõrudes kahe sõrmega.";
@@ -858,9 +954,7 @@
 // use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
 "add_to_widget" = "Lisa vidinale";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"perm_enable_bg_reminder_title" = "Kui soovid, et Delta Chat saaks sõnumeid ka taustateenusena toimides, siis klõpsi siin.";
 // device messages for updates
 "update_2_0" = "Mida on meil uut?\n\n💯 Läbiv krüptimine on töökindel ja seda nüüd igaveseks. Tabalukud 🔒 on läinud!\n\n✉️ Klassikalised e-kirjad, kus läbiv krüptimine on puudu, on märgitud ümbriku ikooniga\n\n😻 Uus ja tõhusam profiilivaade kõikide sinu kontaktide jaoks\n\n🔲 Uus nupp kiireks ligipääsuks vestluses kasutatavate rakendusteni\n\n❤️ Palun toeta meie arendust rahaliselt - nii saame jääda sõltumatuteks ja jätkata selle rakenduse täiustamist: %1$@";
-// deprecated
-"update_1_50_android" = "Mida on meil uut?\n\n❤️‍🔥 Uus emojide valija lisaemojidega\n\n🎮 Paremad vestlusesisesed rakendused: saa teavitusi ja ava kontekstuaalseid tugirakendusi, nt. ava otse vajalik kalendrikirje\n\n👍 Teavitused, kui keegi reageerib sinu sõnumitele\n\n... 🛠️ PARANDUSED ja PALJUGI VEEL siin %1$@";
-// deprecated
-"update_switch_profile_placement" = "ℹ️ Valik „Vaheta profiili“ on uues kohas: Profiilide lisamiseks ja vahetamiseks klõpsi põhivate ülanurgas asuvat tunnuspilti💡";
