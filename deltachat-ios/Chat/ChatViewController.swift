@@ -872,8 +872,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
 
-                if !dcChat.isMultiUser && dcChat.canSend,
-                   let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty,
+                if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
                    let dcContact, dcContact.isKeyContact {
                     let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
                     rightBarButtonItems.append(button)
@@ -1929,7 +1928,7 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                 )
 
-                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && message.type != DC_MSG_CALL && dcChat.canSend {
+                if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                     children.append(
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
                     )

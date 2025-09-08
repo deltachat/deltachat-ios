@@ -164,6 +164,25 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
+    lazy var callsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: "Video Calls",
+            on: UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
+            action: { cell in
+                UserDefaults.standard.set(cell.isOn, forKey: "pref_calls_enabled")
+                if cell.isOn {
+                    let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Video Calls\"!",
+                        message: "You can now video call your contacts if they are using Delta Chat as well\n\n"
+                               + "Note, that this experiment is about stabilizing call infrastructure and notifications for one-to-one calls. "
+                               + "It is known, that some options are missing and this is already in discussion internally.\n\n"
+                               + "If you want to quit the experimental feature, disable it at \"Settings / Advanced\".",
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
+        })
+    }()
+
     lazy var locationStreamingCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_on_demand_location_streaming"),
@@ -207,7 +226,7 @@ internal final class AdvancedViewController: UITableViewController {
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [videoChatInstanceCell, broadcastListsCell, locationStreamingCell])
+            cells: [videoChatInstanceCell, broadcastListsCell, callsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
             let encryptionSection = SectionConfigs(
