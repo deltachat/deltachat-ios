@@ -816,7 +816,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func updateTitle() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
-        var dcContact: DcContact? = nil
+        var dcContact: DcContact?
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
@@ -1197,10 +1197,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         actions.append(action("file", "doc", showFilesLibrary))
         actions.append(action("webxdc_app", "square.grid.2x2", showAppPicker))
         actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
-        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
-            actions.append(action("videochat", videoChatImage, videoChatButtonPressed))
-        }
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
             actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
@@ -1469,31 +1465,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-    }
-
-    private func videoChatButtonPressed() {
-        let chat = dcContext.getChat(chatId: chatId)
-
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_invite_user_to_videochat"), chat.name),
-                                      message: String.localized("videochat_invite_user_hint"),
-                                      preferredStyle: .alert)
-        let cancel = UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil)
-        let ok = UIAlertAction(title: String.localized("ok"),
-                               style: .default,
-                               handler: { _ in
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self else { return }
-                let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
-                let inviteMessage = self.dcContext.getMessage(id: messageId)
-                if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.open(url as URL)
-                    }
-                }
-            }})
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
     }
 
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
