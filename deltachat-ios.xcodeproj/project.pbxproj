@@ -12,7 +12,6 @@
 		3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7124F93EB900E6A617 /* AudioMessageCell.swift */; };
 		3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */; };
 		3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3008CB7524F95B6D00E6A617 /* AudioController.swift */; };
-		3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3010968826838A040032CBA0 /* VideoInviteCell.swift */; };
 		3011E8052787365D00214221 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3011E8042787365D00214221 /* KeychainManager.swift */; };
 		30149D9322F21129003C12B5 /* QrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30149D9222F21129003C12B5 /* QrViewController.swift */; };
 		30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4BFED252E3E020006B9B3 /* PaddingTextView.swift */; };
@@ -31,7 +30,6 @@
 		302B84C72396770B001C261F /* RelayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84C42396627F001C261F /* RelayHelper.swift */; };
 		302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302B84CD2397F6CD001C261F /* URL+Extension.swift */; };
 		302D5450268B6B2300A8B271 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D544F268B6B2300A8B271 /* StatusView.swift */; };
-		302D5454268B84CB00A8B271 /* VideoChatInstanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D5453268B84CB00A8B271 /* VideoChatInstanceViewController.swift */; };
 		302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D54692693591700A8B271 /* ChatContactRequestBar.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
 		302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */; };
@@ -132,6 +130,7 @@
 		5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */; };
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
+		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		64F9EBA02E117CD8007EE3D9 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -197,7 +196,9 @@
 		B206C2AB2B7B8088003ACBE6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B206C2AA2B7B8088003ACBE6 /* MapViewController.swift */; };
 		B20A907B2D05112800F44463 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20A907A2D05112700F44463 /* NotificationsViewController.swift */; };
 		B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */; };
+		B210FF162D83673A00D3A0B4 /* VoIPPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */; };
 		B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2172F3B29C125F2002C289E /* AdvancedViewController.swift */; };
+		B23977F52D7BA351006290CE /* CallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23977F42D7BA336006290CE /* CallManager.swift */; };
 		B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B259D64229B771D5008FB706 /* BackupTransferViewController.swift */; };
 		B2636B5C2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
 		B2636B5D2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */; };
@@ -315,7 +316,6 @@
 		3008CB7124F93EB900E6A617 /* AudioMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessageCell.swift; sourceTree = "<group>"; };
 		3008CB7324F9436C00E6A617 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3008CB7524F95B6D00E6A617 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
-		3010968826838A040032CBA0 /* VideoInviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInviteCell.swift; sourceTree = "<group>"; };
 		3011E8042787365D00214221 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = ../../DcCore/DcCore/Helper/KeychainManager.swift; sourceTree = "<group>"; };
 		30149D9222F21129003C12B5 /* QrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewController.swift; sourceTree = "<group>"; };
 		3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderController.swift; sourceTree = "<group>"; };
@@ -345,7 +345,6 @@
 		302B84C42396627F001C261F /* RelayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayHelper.swift; sourceTree = "<group>"; };
 		302B84CD2397F6CD001C261F /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		302D544F268B6B2300A8B271 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
-		302D5453268B84CB00A8B271 /* VideoChatInstanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoChatInstanceViewController.swift; sourceTree = "<group>"; };
 		302D54692693591700A8B271 /* ChatContactRequestBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContactRequestBar.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
@@ -474,6 +473,7 @@
 		5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCellProtocol.swift; sourceTree = "<group>"; };
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -551,7 +551,9 @@
 		B209B2062B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B20A907A2D05112700F44463 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B21005DA23383664004C70C5 /* EmailOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailOptionsViewController.swift; sourceTree = "<group>"; };
+		B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoIPPushManager.swift; sourceTree = "<group>"; };
 		B2172F3B29C125F2002C289E /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
+		B23977F42D7BA336006290CE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		B2537DD625E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2537DD725E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ckb; path = ckb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2537DD825E2F92F0010D739 /* ckb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ckb; path = ckb.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -939,7 +941,6 @@
 				30E348E424F6647D005C93D1 /* FileTextCell.swift */,
 				30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */,
 				3008CB7124F93EB900E6A617 /* AudioMessageCell.swift */,
-				3010968826838A040032CBA0 /* VideoInviteCell.swift */,
 				30AAD71A2762869600DE3DC1 /* SelectableCell.swift */,
 				30703B6C27AA80FF00BDADE6 /* WebxdcCell.swift */,
 				D8CDEFDF2C087CDA00146773 /* ContactCardCell.swift */,
@@ -994,6 +995,7 @@
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
 				30FDB6B224D18E390066C48D /* Chat */,
+				B23977F32D7BA324006290CE /* Calls */,
 				AE851AC1227C694300ED86F0 /* Coordinator */,
 				AE851AC0227C693B00ED86F0 /* Controller */,
 				AE851ACB227C7A5000ED86F0 /* Handler */,
@@ -1194,6 +1196,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B23977F32D7BA324006290CE /* Calls */ = {
+			isa = PBXGroup;
+			children = (
+				B23977F42D7BA336006290CE /* CallManager.swift */,
+				B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */,
+				646896652E00415900E965B3 /* CallViewController.swift */,
+			);
+			path = Calls;
+			sourceTree = "<group>";
+		};
 		B28D25882913CE8600B9067F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1209,7 +1221,6 @@
 				30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */,
 				B20462E32440A4A600367A57 /* AutodelOverviewViewController.swift */,
 				B20462E52440C99600367A57 /* AutodelOptionsViewController.swift */,
-				302D5453268B84CB00A8B271 /* VideoChatInstanceViewController.swift */,
 				30DAF71B275901610073C154 /* BackgroundOptionsViewController.swift */,
 			);
 			path = Settings;
@@ -1740,6 +1751,7 @@
 				5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */,
 				3080A022277DE09900E74565 /* InputTextView.swift in Sources */,
 				30734326249A280B00BF9AD1 /* MediaQualityViewController.swift in Sources */,
+				646896662E00416100E965B3 /* CallViewController.swift in Sources */,
 				3080A01C277DDB8A00E74565 /* InputBarAccessoryViewDelegate.swift in Sources */,
 				D89C456D2D0AF6A8005B1491 /* WidgetEntry.swift in Sources */,
 				30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */,
@@ -1759,6 +1771,7 @@
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
 				AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */,
 				B20462E62440C99600367A57 /* AutodelOptionsViewController.swift in Sources */,
+				B23977F52D7BA351006290CE /* CallManager.swift in Sources */,
 				3015634423A003BA00E9DEF4 /* AudioRecorderController.swift in Sources */,
 				30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */,
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
@@ -1769,7 +1782,6 @@
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				3080A02D277DE26000E74565 /* HorizontalEdgePadding.swift in Sources */,
 				30DAF71C275901610073C154 /* BackgroundOptionsViewController.swift in Sources */,
-				3010968926838A050032CBA0 /* VideoInviteCell.swift in Sources */,
 				303492CB257A814200A523D0 /* DraftArea.swift in Sources */,
 				AEE6EC3F2282C59C00EDC689 /* GroupMembersViewController.swift in Sources */,
 				B26B3BC7236DC3DC008ED35A /* SwitchCell.swift in Sources */,
@@ -1842,7 +1854,6 @@
 				30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */,
 				3080A00F277DDA4C00E74565 /* InputBarAccessoryView.swift in Sources */,
 				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
-				302D5454268B84CB00A8B271 /* VideoChatInstanceViewController.swift in Sources */,
 				B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */,
 				3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */,
 				D8E426D82D423FCF0078C735 /* DownloadingActivityView.swift in Sources */,
@@ -1874,6 +1885,7 @@
 				3080A028277DE12D00E74565 /* InputBarSendButton.swift in Sources */,
 				AE0AA958247834A400D42A7F /* Date+Extension.swift in Sources */,
 				307D822E241669C7006D2490 /* LocationManager.swift in Sources */,
+				B210FF162D83673A00D3A0B4 /* VoIPPushManager.swift in Sources */,
 				21D54500299415B9008B54D5 /* Character+Extentions.swift in Sources */,
 				30238CFF28A5554C00EF14AC /* FileHelper.swift in Sources */,
 				D8A072A02BED0FD8001A4C7C /* InstantOnboardingView.swift in Sources */,

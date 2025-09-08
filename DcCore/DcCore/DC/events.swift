@@ -28,6 +28,10 @@ public enum Event {
     public static let webxdcRealtimeDataReceived = Notification.Name(rawValue: "webxdcRealtimeDataReceived")
 
     public static let ephemeralTimerModified =  Notification.Name(rawValue: "ephemeralTimerModified")
+    public static let incomingCall = Notification.Name(rawValue: "incomingCall")
+    public static let incomingCallAccepted = Notification.Name(rawValue: "incomingCallAccepted")
+    public static let outgoingCallAccepted = Notification.Name(rawValue: "outgoingCallAccepted")
+    public static let callEnded = Notification.Name(rawValue: "callEnded")
 }
 
 
@@ -201,6 +205,36 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
                 "message_id": Int(data1),
                 "data": event.data2Data,
+            ])
+
+        case DC_EVENT_INCOMING_CALL:
+            logger.info("☎️ DC_EVENT_INCOMING_CALL(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+                "place_call_info": event.data2String,
+            ])
+
+        case DC_EVENT_INCOMING_CALL_ACCEPTED:
+            logger.info("☎️ DC_EVENT_INCOMING_CALL_ACCEPTED(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.incomingCallAccepted, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+            ])
+
+        case DC_EVENT_OUTGOING_CALL_ACCEPTED:
+            logger.info("☎️ DC_EVENT_OUTGOING_CALL_ACCEPTED(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.outgoingCallAccepted, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+                "accept_call_info": event.data2String,
+            ])
+
+        case DC_EVENT_CALL_ENDED:
+            logger.info("☎️ DC_EVENT_CALL_ENDED(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.callEnded, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
             ])
 
         default:
