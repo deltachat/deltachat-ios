@@ -197,7 +197,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
-        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: WebxdcCell.reuseIdentifier)
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
@@ -551,12 +550,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let cell: BaseMessageCell
         switch message.type {
-        case DC_MSG_VIDEOCHAT_INVITATION:
-            let videoInviteCell = dequeueCell(ofType: VideoInviteCell.self)
-            videoInviteCell.showSelectionBackground(tableView.isEditing)
-            videoInviteCell.update(dcContext: dcContext, msg: message)
-            return videoInviteCell
-
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = dequeueCell(ofType: ImageTextCell.self)
 
@@ -761,10 +754,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         switch (message.type, message.infoType) {
         case (DC_MSG_FILE, _), (DC_MSG_AUDIO, _), (DC_MSG_VOICE, _):
             showMediaGalleryFor(message: message)
-        case (DC_MSG_VIDEOCHAT_INVITATION, _):
-            if let url = NSURL(string: message.getVideoChatUrl()) {
-                UIApplication.shared.open(url as URL)
-            }
         case (DC_MSG_VCARD, _):
             didTapVcard(msg: message)
         case (DC_MSG_WEBXDC, _):
