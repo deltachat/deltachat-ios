@@ -62,7 +62,7 @@ class ShareViewController: UIViewController {
             }
             
             // Complete
-            extensionContext!.completeRequest(returningItems: [])
+            extensionContext?.completeRequest(returningItems: [])
         }
     }
     
