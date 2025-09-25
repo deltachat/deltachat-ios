@@ -13,6 +13,9 @@
 - Share flow rework
 - Fix: Share to Delta Chat when already in Delta Chat now works
 - Fix: Drag and Dropping text into the chat
+- Share flow rework
+- Fix: Share to Delta Chat when already in Delta Chat now works
+- Fix: Drag and Dropping text into the chat
 
 
 ## v2.11.0
