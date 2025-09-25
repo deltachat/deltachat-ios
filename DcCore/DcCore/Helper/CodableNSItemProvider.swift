@@ -37,6 +37,7 @@ public enum CodableNSItemProvider: Codable {
             case UTType.movie.identifier: loadFileURL(forType: .movie, DC_MSG_VIDEO)
             case UTType.video.identifier: loadFileURL(forType: .video, DC_MSG_VIDEO)
             case UTType.url.identifier: loadText(forType: .url)
+            case UTType.plainText.identifier: loadText(forType: .plainText)
             case UTType.text.identifier: loadText(forType: .text)
             case UTType.item.identifier: loadFileURL(forType: .item, DC_MSG_FILE)
             default: continuation.resume(throwing: Error.unknownType)
