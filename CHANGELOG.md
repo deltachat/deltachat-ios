@@ -10,6 +10,7 @@
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
 - Fix: do not show letter icon for partially downloaded messages
+- Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
 
 
 ## v2.11.0
