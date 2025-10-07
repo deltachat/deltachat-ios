@@ -53,23 +53,26 @@ class CallViewController: UIViewController {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()
         let contentController = WKUserContentController()
+        let iceServers = DcAccounts.shared.get(id: call.contextId).iceServers()
+        let iceServersEncoded = iceServers.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+
         let scriptSource = """
             window.calls = {
               startCall: (payload) => {
-                console.log("startCall() called: " + payload);
                 webkit.messageHandlers.startCall.postMessage(payload);
               },
               acceptCall: (payload) => {
-                console.log("acceptCall() called: " + payload);
                 webkit.messageHandlers.acceptCall.postMessage(payload);
               },
               endCall: () => {
-                console.log("endCall() called");
                 webkit.messageHandlers.endCall.postMessage("");
+              },
+              getIceServers: () => {
+                return decodeURI("\((iceServersEncoded ?? "[]"))");
               },
             };
             """
-        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
 
         contentController.addUserScript(script)
         contentController.add(weak: self, name: "startCall")
@@ -115,8 +118,14 @@ class CallViewController: UIViewController {
         guard let fileURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "Assets/calls") else { return }
         guard var fileComponents = URLComponents(url: fileURL, resolvingAgainstBaseURL: false) else { return }
         switch call.direction {
-        case .outgoing: fileComponents.percentEncodedFragment = "call"
-        case .incoming: fileComponents.percentEncodedFragment = "offer=\(call.placeCallInfo ?? "ErrNoCallInfo")"
+        case .outgoing:
+            fileComponents.percentEncodedFragment = "startCall"
+        case .incoming:
+            if let placeCallInfo = call.placeCallInfo {
+                fileComponents.percentEncodedFragment = "acceptCall=" + CallViewController.stringToBase64PercentEncoded(placeCallInfo)
+            } else {
+                logger.error("placeCallInfo missing for acceptCall")
+            }
         }
 
         guard let urlWithFragment = fileComponents.url else { return }
@@ -145,6 +154,13 @@ class CallViewController: UIViewController {
         webView.evaluateJavaScript(js, completionHandler: nil)
     }
 
+    private static func stringToBase64PercentEncoded(_ input: String) -> String {
+        guard let data = input.data(using: .utf8) else { return "" }
+        let base64 = data.base64EncodedString()
+        guard let percentEncoded = base64.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return "" }
+        return percentEncoded
+    }
+
     // MARK: - Notifications
 
     @objc private func handleOutgoingCallAcceptedEvent(_ notification: Notification) {
@@ -154,7 +170,7 @@ class CallViewController: UIViewController {
         guard let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.setWebviewFragment(fragment: "answer=\(acceptCallInfo)")
+            self?.setWebviewFragment(fragment: "onAnswer=" + CallViewController.stringToBase64PercentEncoded(acceptCallInfo))
         }
     }
 }

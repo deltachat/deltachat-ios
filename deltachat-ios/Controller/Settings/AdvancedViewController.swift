@@ -157,12 +157,12 @@ internal final class AdvancedViewController: UITableViewController {
 
     lazy var callsCell: SwitchCell = {
         return SwitchCell(
-            textLabel: "Video Calls",
+            textLabel: "Calls",
             on: UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
             action: { cell in
                 UserDefaults.standard.set(cell.isOn, forKey: "pref_calls_enabled")
                 if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Video Calls\"!",
+                    let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Calls\"!",
                         message: "You can now video call your contacts if they are using Delta Chat as well\n\n"
                                + "Note, that this experiment is about stabilizing call infrastructure and notifications for one-to-one calls. "
                                + "It is known, that some options are missing and this is already in discussion internally.\n\n"
