@@ -157,16 +157,15 @@ internal final class AdvancedViewController: UITableViewController {
 
     lazy var callsCell: SwitchCell = {
         return SwitchCell(
-            textLabel: "Calls",
+            textLabel: "Debug Calls",
             on: UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
             action: { cell in
                 UserDefaults.standard.set(cell.isOn, forKey: "pref_calls_enabled")
                 if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Calls\"!",
-                        message: "You can now video call your contacts if they are using Delta Chat as well\n\n"
-                               + "Note, that this experiment is about stabilizing call infrastructure and notifications for one-to-one calls. "
-                               + "It is known, that some options are missing and this is already in discussion internally.\n\n"
-                               + "If you want to quit the experimental feature, disable it at \"Settings / Advanced\".",
+                    let alert = UIAlertController(title: "Thanks for helping to debug 🧪 \"Calls\"!",
+                        message: "You can now debug calls using the phone-icon in one-to-one-chats\n\n"
+                               + "The experiment is about making decentralised calls work and reliable at all, not about options or UI. "
+                               + "We're happy about focused feedback at support.delta.chat",
                         preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
                     self.navigationController?.present(alert, animated: true, completion: nil)
