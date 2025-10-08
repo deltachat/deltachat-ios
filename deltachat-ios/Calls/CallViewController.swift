@@ -122,7 +122,7 @@ class CallViewController: UIViewController {
             fileComponents.percentEncodedFragment = "startCall"
         case .incoming:
             if let placeCallInfo = call.placeCallInfo {
-                fileComponents.percentEncodedFragment = "acceptCall=" + CallViewController.stringToBase64PercentEncoded(placeCallInfo)
+                fileComponents.percentEncodedFragment = "acceptCall=" + CallViewController.toBase64ValuePercentEncoded(placeCallInfo)
             } else {
                 logger.error("placeCallInfo missing for acceptCall")
             }
@@ -154,10 +154,11 @@ class CallViewController: UIViewController {
         webView.evaluateJavaScript(js, completionHandler: nil)
     }
 
-    private static func stringToBase64PercentEncoded(_ input: String) -> String {
+    private static func toBase64ValuePercentEncoded(_ input: String) -> String {
         guard let data = input.data(using: .utf8) else { return "" }
         let base64 = data.base64EncodedString()
-        guard let percentEncoded = base64.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return "" }
+        let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "="))
+        guard let percentEncoded = base64.addingPercentEncoding(withAllowedCharacters: allowedChars) else { return "" }
         return percentEncoded
     }
 
@@ -170,7 +171,7 @@ class CallViewController: UIViewController {
         guard let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.setWebviewFragment(fragment: "onAnswer=" + CallViewController.stringToBase64PercentEncoded(acceptCallInfo))
+            self?.setWebviewFragment(fragment: "onAnswer=" + CallViewController.toBase64ValuePercentEncoded(acceptCallInfo))
         }
     }
 }
