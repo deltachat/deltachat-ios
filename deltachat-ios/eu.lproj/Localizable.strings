@@ -139,9 +139,29 @@
 "documents" = "Dokumentuak";
 "contact" = "Kontaktua";
 "camera" = "Kamera";
+"toggle_fullscreen" = "Aldatu pantaila osoa modua";
 "location" = "Kokalekua";
 "gallery" = "Galeria";
+"images_and_videos" = "Irudiak eta bideoak";
 "file" = "Fitxategia";
+"files" = "Fitxategiak";
+"files_attach_hint" = "Bidali jatorrizko fitxategiak eta konprimatu gabeko irudiak";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Aukeratu fitxategien artean";
+"choose_from_gallery" = "Aukeratu Galeriatik";
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Aplikazioa";
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Aplikazioak";
+"webxdc_draft_hint" = "Sakatu \"Bidali\" partekatzeko";
+"home" = "Hasiera";
+"games" = "Jokoak";
+"tools" = "Tresnak";
+"app_size" = "Tamaina";
+"app_date_published" = "Argitaratua";
+"add_to_chat" = "Gehitu txatera";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Arakatu";
 "unknown" = "Ezezaguna";
 "green" = "Berdea";
 "red" = "Gorria";
@@ -151,6 +171,8 @@
 "purple" = "Morea";
 "magenta" = "Magenta";
 "white" = "Zuria";
+"zoom" = "Zooma";
+"extra_small" = "Txiki txikia";
 "small" = "Txikia";
 "normal" = "Arrunta";
 "large" = "Handia";
@@ -159,6 +181,7 @@
 "slow" = "Motela";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Kontaktu berria";
+"menu_new_classic_contact" = "Gehitu kontaktua eskuz";
 "menu_new_chat" = "Txat berria";
 "menu_new_group" = "Talde berria";
 "menu_send" = "Bidali";
@@ -249,6 +272,8 @@
 "chat_archived_label" = "Artxibatuta";
 "chat_no_messages" = "Mezurik ez.";
 "chat_self_talk_subtitle" = "Nire buruari bidalitako mezuak";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Gorde";
 "saved_messages" = "Gordetako mezuak";
 "saved_messages_explain" = "• Birbidali mezuak hona eskura izateko\n\n• Hartu oharrak edo ahots mezuak\n\n• Gehitu multimedia horietara";
 "retry_send" = "Saiatu berriro mezua bidaltzen";

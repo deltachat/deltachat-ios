@@ -127,6 +127,8 @@
 "chat_archived_label" = "ஆவண காக்கப்படுத்தப்பட்டது";
 "chat_no_messages" = "சேதிகள் இல்லை";
 "chat_self_talk_subtitle" = "தங்களுக்கே அனுப்பி கொண்ட செய்திகள்";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "சேமி";
 // search
 "search" = "தேடு";
 // create/edit groups, contact/group profile

@@ -125,6 +125,8 @@
 "chat_input_placeholder" = "సందేశం";
 "chat_archived_label" = "ఆర్చివ్ అయినది";
 "chat_no_messages" = "సందేశాలు లేవు";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "భద్రపరుచు";
 // search
 "search" = "వెతుకు";
 // create/edit groups, contact/group profile
