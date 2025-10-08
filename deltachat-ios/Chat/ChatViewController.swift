@@ -2119,7 +2119,7 @@ extension ChatViewController {
             for id in sortedIds {
                 let msg = self.dcContext.getMessage(id: id)
                 var textToCopy: String?
-                if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+                if msg.type == DC_MSG_TEXT, let msgText = msg.text {
                     textToCopy = msgText
                 } else if let msgSummary = msg.summary(chars: 10000000) {
                     textToCopy = msgSummary
@@ -2140,7 +2140,7 @@ extension ChatViewController {
             }
         } else {
             let msg = self.dcContext.getMessage(id: ids[0])
-            if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+            if msg.type == DC_MSG_TEXT, let msgText = msg.text {
                 stringsToCopy.append("\(msgText)")
             } else if let msgSummary = msg.summary(chars: 10000000) {
                 stringsToCopy.append("\(msgSummary)")
