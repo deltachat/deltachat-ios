@@ -70,6 +70,9 @@ class CallViewController: UIViewController {
               getIceServers: () => {
                 return decodeURI("\((iceServersEncoded ?? "[]"))");
               },
+              getAvatar: () => {
+                return \"https://delta.chat/assets/blog/2vampire.png\"; // TODO: return correct avatar as data url
+              },
             };
             """
         let script = WKUserScript(source: scriptSource, injectionTime: .atDocumentStart, forMainFrameOnly: false)
