@@ -120,6 +120,8 @@
 "chat_share_with_title" = "شارك مع";
 "chat_input_placeholder" = "رسالة";
 "chat_archived_label" = "محتفظة";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "حفظ";
 // search
 "search" = "بحث";
 // create/edit groups, contact/group profile

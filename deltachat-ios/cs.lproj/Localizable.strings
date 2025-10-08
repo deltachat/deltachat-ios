@@ -296,20 +296,33 @@
 "share_location_for_two_hours" = "Na 2 hodiny";
 "share_location_for_six_hours" = "Na 6 hodin";
 "file_saved_to" = "Soubor uložen do \"%1$@\".";
+// deprecated
 "videochat" = "Videohovor";
+// deprecated
 "videochat_invite_user_to_videochat" = "Pozvat uživatele %1$@ k videohovoru?";
+// deprecated
 "videochat_invite_user_hint" = "Toto vyžaduje kompatibilní aplikaci či prohlížeč na obou stranách.";
+// deprecated
 "videochat_contact_invited_hint" = "Uživatel %1$@ pozván k videohovoru.";
+// deprecated
 "videochat_you_invited_hint" = "Odeslali jste pozvánku k videohovoru.";
+// deprecated
 "videochat_tap_to_join" = "Připojit se stisknutím";
+// deprecated
 "videochat_tap_to_open" = "Otevřít stisknutím";
+// deprecated
 "videochat_instance" = "Instance pro videohovory";
+// deprecated
 "videochat_instance_placeholder" = "Vaše instance pro videohovory";
-// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
+// deprecated
 "videochat_instance_example" = "Příklad: https://your-server.org/$ROOM";
+// deprecated
 "videochat_instance_explain_2" = "Je-li tato volba povolena, můžete ve všech chatech spouštět videohovory. Vyžaduje kompatibilní aplikaci nebo prohlížeč na obou stranách.";
+// deprecated
 "videochat_instance_from_qr" = "Použít \"%1$@\" ke zvaní na videohovory?\n\nJakmile je volba nastavena, můžete ve všech chatech spouštět videohovory. Předchozí hodnota bude tímto přepsána.";
+// deprecated
 "videochat_invitation" = "Pozvánka k videohovoru";
+// deprecated
 "videochat_invitation_body" = "Byli jste pozváni k videohovoru, připojte se stisknutím %1$@";
 "ask_delete_named_chat" = "Smazat chat \"%1$@\" ze všech vašich zařízení?";
 "ask_delete_message" = "Smazat tuto zprávu ze všech vašich zařízení?";
@@ -349,6 +362,8 @@
 "chat_no_messages" = "Žádné zprávy.";
 "chat_self_talk_subtitle" = "Zprávy poslané sobě";
 "archive_empty_hint" = "Zde se zobrazí archivované chaty.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Uložit";
 "saved_messages" = "Uložené zprávy";
 "saved_messages_explain" = "Sem si můžete:\n\n• přeposílat zprávy pro rychlý přístup,\n\n• zapisovat textové i hlasové poznámky,\n\n• ukládat multimédia";
 // Should match "Saved" from "Saved messages"
@@ -736,8 +751,10 @@
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Ihned po stažení";
 "after_30_seconds" = "Po 30 sekundách";
+// deprecated
 "after_1_minute" = "Po 1 minutě";
 "after_5_minutes" = "Po 5 minutách";
+// deprecated
 "after_30_minutes" = "Po 30 minutách";
 "autodel_after_1_hour" = "Po 1 hodině";
 "autodel_after_1_day" = "Po 1 dni";
@@ -787,8 +804,9 @@
 "ephemeral_timer_seconds_by_you" = "Nastavili jste časovač mizejících zpráv na %1$@ sekund.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_seconds_by_other" = "Uživatel %2$@ nastavil časovač mizejících zpráv na %1$@ sekund.";
+// deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Nastavili jste časovač mizejících zpráv na 1 minutu.";
-// %1$s will be replaced by name and address of the contact
+// deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Uživatel %1$@ změnil časovač mizejících zpráv na 1 minutu.";
 "ephemeral_timer_1_hour_by_you" = "Nastavili jste časovač mizejících zpráv na 1 hodinu.";
 // %1$s will be replaced by name and address of the contact
@@ -997,7 +1015,7 @@
 "disabled_in_dc" = "Zakázáno aplikací Delta Chat";
 "disabled_in_system_settings" = "Zakázáno v systémovém nastavení";
 "bg_app_refresh_disabled" = "\"Aktualizace aplikací na pozadí\" jsou vypnuty v systémovém nastavení";
-// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
+// deprecated, was used on iOS only
 "delayed" = "Odložené";
 "notifications_avg_minutes" = "Průměrně jednou za %1$d minut";
 "notifications_avg_hours" = "Průměrně jednou za %1$d hodin";

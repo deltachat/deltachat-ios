@@ -2,21 +2,76 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Cancelar";
+"clear_search" = "Limpar Pesquisa";
+// a noun, used on a button, short for "show link"
+"link" = "Ligação";
 "yes" = "Sim";
 "no" = "Não";
+"select" = "Seleccionar";
 "on" = "Ligado";
 "off" = "Desligado";
 "def" = "Padrão";
+"default_value" = "Padrão (%1$@)";
+"default_value_as_above" = "Padrão (igual acima)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
+"automatic" = "Automático";
 "open" = "Abrir";
+"download" = "Descarregar";
+"downloading" = "A descarregar…";
+"open_attachment" = "Abrir Anexo";
+"join" = "Entrar";
+"rejoin" = "Re-entrar";
 "delete" = "Apagar";
+"delete_for_me" = "Apagar para mim";
+"delete_for_everyone" = "Apagar para toda a gente";
+"info" = "Informação";
+"update" = "Actualizar";
+"emoji" = "Emoji";
+"attachment" = "Anexo";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Anexar \"%1$@\"?";
+"close" = "Fechar";
+"close_window" = "Fechar Janela";
+"forward" = "Reencaminhar";
+"create" = "Criar";
+"later" = "Mais tarde";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Re-enviar";
+"edit_message" = "Editar Mensagem";
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
+"archive" = "Arquivar";
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
+"unarchive" = "Desarquivar";
+"mute" = "Silenciar";
 "ephemeral_messages" = "Destruição de mensagens";
+"save" = "Guardar";
+"chat" = "Conversa";
+"profile" = "Perfil";
+"all_profiles" = "Todos os Perfis";
+"current_profile" = "Perfil Actual";
+"main_menu" = "Menu Principal";
+"show_full_message" = "Mostrar mensagem completa...";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Marcar como lidas";
+"mark_as_read" = "Marcar como lida";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Marcar lida";
+// Placeholder text when something is loading
+"loading" = "A carregar...";
+"hide" = "Ocultar";
+"activate" = "Activar";
+"always" = "Sempre";
+"show_password" = "Mostrar palavra-passe";
+"hide_password" = "Ocultar palavra-passe";
 "not_now" = "Agora não";
 "never" = "Nunca";
 "one_moment" = "Um momento...";
 "done" = "Feito";
 "undo" = "Desfazer";
+"offline" = "Offline";
+// For the next view or as "continue". Should be as short as possible.
+"next" = "Próx.";
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
 "no_app_to_handle_data" = "Não é possível encontrar uma aplicação para lidar com esse tipo de dados.";
@@ -39,6 +94,8 @@
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Resposta";
 "gif" = "Gif";
 "images" = "Imagens";
 "audio" = "Áudio";
@@ -51,6 +108,13 @@
 "location" = "Local";
 "gallery" = "Galeria";
 "file" = "Ficheiro";
+"files" = "ficheiros";
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "App";
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Apps";
+"games" = "Jogos";
+"tools" = "Ferramentas";
 "unknown" = "Desconhecido";
 "green" = "Verde";
 "red" = "Vermelho";
@@ -70,16 +134,34 @@
 "menu_new_contact" = "Novo contacto";
 "menu_new_chat" = "Nova chat";
 "menu_new_group" = "Novo grupo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Conversar com…";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Canal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Canais";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Novo Canal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Nome do Canal";
+"email" = "E-mail";
+// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+"new_email" = "Novo E-mail";
+// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"subject" = "Assunto";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
+"menu_group_name_and_image" = "Nome e imagem de grupo";
 "menu_archive_chat" = "Arquivar chat";
 "menu_unarchive_chat" = "Desarquivar chat";
 "menu_add_attachment" = "Juntar anexo";
 "menu_leave_group" = "Deixar grupo";
+"menu_leave_channel" = "Sair do Canal";
 "menu_delete_chat" = "Apagar convesa";
 "menu_message_details" = "Detalhe da mensagem";
 "menu_copy_to_clipboard" = "Copiar para área de transferência";
+"invite_friends" = "Convidar amigos";
 "menu_forward" = "Reencaminhar mensagem";
 "menu_reply" = "Responder";
 "menu_mute" = "Silenciar notificações";
@@ -87,32 +169,47 @@
 "menu_export_attachment" = "Exportar anexo";
 "menu_all_media" = "Todos os arquivos de mídia";
 "menu_share" = "Partilhar";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Bloquear";
 "menu_block_contact" = "Bloquear contacto";
 "menu_unblock_contact" = "Desbloquear contacto";
+"accept" = "Aceitar";
 "menu_play" = "Tocar";
 "menu_pause" = "Pausar";
 "menu_scroll_to_bottom" = "Ir para o fim";
+"menu_scroll_to_top" = "Ir para o início";
 "menu_help" = "Ajuda";
+"privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
+"select_chat" = "Seleccionar Chat";
+"select_more" = "Seleccionar mais";
 "menu_edit_name" = "Editar nome";
 "menu_settings" = "Definições";
 "menu_advanced" = "Avançado";
 "menu_view_profile" = "Ver perfil";
+"copy_json" = "Copiar JSON";
 "mute_for_one_hour" = "Calado por 1 hora";
 "mute_for_eight_hours" = "Calado por 8 horas";
 "mute_for_one_day" = "Calado por 1 dia";
 "mute_for_seven_days" = "Calado por 7 dias";
+"mute_forever" = "Silenciar para sempre";
 "share_location_for_5_minutes" = "por 5 min";
 "share_location_for_30_minutes" = "por 30 min";
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
+// Used for the deletion of Device messages
 "ask_forward" = "Reencaminhar mensages para %1$@?";
+"ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? A exportação de anexos permitirá o seu acesso a qualquer outra aplicação no seu dispositivo.\n\nContinuar?";
-"ask_block_contact" = "Bloquear este contacto? Não receberá mais mensagens deste contacto.";
+"ask_block_contact" = "Bloquear este contacto?\n\nMensagens directas e grupos criados por contactos bloqueados serão ocultados.\n\nMensagens de contactos bloqueados não serão ocultadas noutros grupos.";
 "ask_unblock_contact" = "Desbloquear esse contacto? Poderá mais uma vez receber mensagens deste contacto.";
 "ask_delete_contacts" = "Remover contactos? Assim removerá permanentemente os contactos selecionados.\n\nContactos com chats a decorrer e contactos com  endereços do sistema não podem ser removidos permanentemente.";
 "ask_start_chat_with" = "Conversar com %1$@?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_members" = "Remover %1$@ do grupo?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Remover %1$@ do canal?";
 // contact list
 "contacts_title" = "Contactos";
 "contacts_enter_name_or_email" = "Digite o nome ou endereço de e-mail";
@@ -123,6 +220,8 @@
 "chat_please_enter_message" = "Por favor introduza uma mensagem.";
 "chat_camera_unavailable" = "Camera indisponivel.";
 "chat_unable_to_record_audio" = "Não é possível gravar áudio.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Canais são uma ferramenta de-um-para-muitos para difundir as tuas mensagens.";
 "chat_new_group_hint" = "Componha a primeira mensagem, permitindo que outras pessoas respondam dentro deste grupo.\n\n• Tudo bem se nem todos os membros usarem o Delta Chat.\n\n• A entrega da primeira mensagem pode demorar um pouco.";
 "chat_record_slide_to_cancel" = "Deslize para cancelar";
 "chat_record_explain" = "Toque e segure para gravar uma mensagem de voz, solte para enviar";
@@ -131,6 +230,15 @@
 "chat_archived_label" = "Arquivada";
 "chat_no_messages" = "Sem mensagens";
 "chat_self_talk_subtitle" = "Mensagens que enviei para mim";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Guardar mensagem";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Arrancar…";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Enviar \"%1$@\" para…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Enviar mensagem para…";
 // search
 "search" = "Pesquisar";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
@@ -141,12 +249,23 @@
 "group_create_button" = "Criar grupo";
 "group_please_enter_group_name" = "Por favor, introduza um nome para o grupo.";
 "group_add_members" = "Adicionar membros";
-"group_self_not_in_group" = "Você deve ser um membro do grupo para executar essa ação.";
+"group_self_not_in_group" = "Tem de ser membro do grupo para realizar a ação.";
 "profile_encryption" = "Encriptação";
+"tab_contact" = "Contacto";
+"tab_group" = "Grupo";
+"tab_gallery" = "Galeria";
+"tab_links" = "Ligações";
 "all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Visualização de mídia";
+// Shown beside progress bar, stay short
+"preparing_account" = "A preparar perfil…";
+// Shown beside progress bar, stay short
+"transferring" = "A transferir…";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "A actualizar…";
+"sending" = "A enviar…";
 "login_title" = "Login";
-"login_header" = "Login no seu servidor";
+"login_header" = "Iniciar sessão na sua conta de e-mail";
 "login_subheader" = "Para os provedores de e-mail conhecidos as configurações adicionais são configuradas automaticamente. Por vezes, o IMAP precisa estar activado no frontend da web. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";
@@ -161,7 +280,7 @@
 "login_smtp_security" = "SMTP segurança";
 "login_auth_method" = "Método de autorização";
 "login_info_oauth2_title" = "Usar configuração simplificada?";
-"login_info_oauth2_text" = "Seu servidor de e-mail aceita o método de configuração simplificada (OAuth2).\n\n No próximo passo, por favor, permita que o Delta Chat seja seu aplicativo de e-mail.\n\nNão há servidor do Delta Chat. Seus dados ficam no seu aparelho!";
+"login_info_oauth2_text" = "O endereço inserido pode ser configurado de maneira simples (OAuth 2.0).\n\nNo passo seguinte dê permissão ao Delta Chat para enviar e receber mensagens.\n\nO Delta Chat não recolhe dados de utilizador, permanece tudo no seu dispositivo.";
 "login_error_mail" = "Por favor insira um endereço de e-mail válido";
 "login_error_server" = "Por favor insira um servidor ou endereço IP válido";
 "login_error_port" = "Por favor, insira um porto válido (1-65535)";
@@ -283,6 +402,7 @@
 "qrshow_join_contact_title" = "QR com código de convite";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Digitalize para configurar um contato com %1$@";
+"secure_join_wait" = "A estabelecer ligação cifrada de ponta-a-ponta, por favor aguarde…";
 "contact_verified" = "%1$@ verificado.";
 // notifications
 "notify_reply_button" = "Responder";
@@ -301,6 +421,7 @@
 "perm_explain_access_to_mic_denied" = "O Delta Chat necessita de permissão de  acesso ao microfone para enviar mensagens de áudio, mas foi negado. Por favor, continue com as configurações do aplicativo, selecione \"Permissões\" e active \"Microfone\".";
 "perm_explain_access_to_storage_denied" = "O Delta Chat necessita da permissão de armazenamento para anexar ou exportar fotos, vídeos ou áudio, mas foi negado. Por favor, continue no menu de configurações do aplicativo, seleccione \"Permissões\" e active \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
+"ImageEditorHud_rotate" = "Rodar";
 "global_menu_preferences_language_desktop" = "Escolha o seu idioma...";
 "global_menu_file_desktop" = "Arquivo";
 "global_menu_file_quit_desktop" = "Sair";
@@ -316,6 +437,7 @@
 "global_menu_view_developer_tools_desktop" = "Ferramentas do programador";
 "global_menu_help_desktop" = "Ajuda";
 "global_menu_help_report_desktop" = "Comunicar um problema";
+"global_menu_minimize_to_tray" = "Minimizar";
 "no_chat_selected_suggestion_desktop" = "Selecione um CHAT ou crie um novo";
 "write_message_desktop" = "Escreva uma mensagem";
 "encryption_info_title_desktop" = "Informação sobre encriptação";

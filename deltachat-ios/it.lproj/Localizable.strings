@@ -50,7 +50,7 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Ripristina";
 "mute" = "Silenzia";
-"muted" = "Disattivato";
+"muted" = "Silenziato";
 "ephemeral_messages" = "Messaggi a Scomparsa";
 "ephemeral_messages_hint" = "Si applica a tutti i membri di questa chat; possono comunque copiare, salvare e inoltrare i messaggi.";
 "save" = "Salva";
@@ -116,6 +116,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = " Ultimo accesso %1$@";
 "last_seen_unknown" = "Ultimo accesso: Sconosciuto";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -318,20 +320,46 @@
 "share_location_for_two_hours" = "Per 2 ore";
 "share_location_for_six_hours" = "Per 6 ore";
 "file_saved_to" = "File salvato su \"%1$@\".";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Chiamata";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Risposta";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Rifiuta";
+"outgoing_call" = "Chiamata in uscita";
+"incoming_call" = "Chiamata in arrivo";
+"declined_call" = "Chiamata rifiutata";
+"canceled_call" = "Chiamata annullata";
+"missed_call" = "Chiamata persa";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
+// deprecated
 "videochat" = "Chat Video";
+// deprecated
 "videochat_invite_user_to_videochat" = "Invito %1$@ a una chat video?";
+// deprecated
 "videochat_invite_user_hint" = "Questo richiede un\'app compatibile o un browser compatibile da entrambe le parti.";
+// deprecated
 "videochat_contact_invited_hint" = "%1$@ ha invitato a una chat video.";
+// deprecated
 "videochat_you_invited_hint" = "Hai invitato un invito a una chat video.";
+// deprecated
 "videochat_tap_to_join" = "Tocca per Partecipare";
+// deprecated
 "videochat_tap_to_open" = "Tocca per Aprire";
+// deprecated
 "videochat_instance" = "Istanza Chat Video";
+// deprecated
 "videochat_instance_placeholder" = "La Tua Istanza Chat Video";
-// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
+// deprecated
 "videochat_instance_example" = "Esempio: https://your-server.org/$ROOM";
+// deprecated
 "videochat_instance_explain_2" = "Se abilitata, è possibile avviare una chat video da ogni chat. Richiedono un\'applicazione compatibile o un browser compatibile da entrambe le parti.";
+// deprecated
 "videochat_instance_from_qr" = "Utilizza \"%1$@\" per invitare altri alla chat video?\n\nUna volta impostato, è possibile avviare una chat video da ogni chat. Ciò sostituirà l\'eventuale impostazione precedente per le chat video.";
+// deprecated
 "videochat_invitation" = "Invito alla chat video";
+// deprecated
 "videochat_invitation_body" = "Sei invitato a una chat video, fai clic %1$@ per partecipare.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
@@ -379,6 +407,8 @@
 "chat_no_messages" = "Nessun messaggio.";
 "chat_self_talk_subtitle" = "Messaggi a Me";
 "archive_empty_hint" = "Le chat archiviate verranno mostrate qui.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Salva Messaggio";
 "saved_messages" = "Messaggi Salvati";
 "saved_messages_explain" = "• Inoltra i messaggi qui per un facile accesso\n\n• Prendi appunti o promemoria vocali\n\n• Allega file multimediali per salvarli";
 // Should match "Saved" from "Saved messages"
@@ -614,7 +644,7 @@
 "pref_profile_info_headline" = "Il tuo Profilo";
 "pref_profile_photo" = "Immagine Profilo";
 "pref_blocked_contacts" = "Contatti Bloccati";
-"blocked_empty_hint" = "I contatti bloccati, verranno mostrati qui.";
+"blocked_empty_hint" = "I contatti bloccati verranno mostrati qui.";
 "pref_password_and_account_settings" = "Password e Profilo";
 "pref_who_can_see_profile_explain" = "La tua immagine del profilo, il tuo nome e la tua biografia verranno inviati insieme ai tuoi messaggi quando comunichi con altri utenti.";
 "pref_your_name" = "Il tuo Nome";
@@ -632,7 +662,7 @@
 "pref_screen_security_please_restart_hint" = "Per attivare la sicurezza dello schermo per piacere riavvia l\'app.";
 "pref_notifications" = "Notifiche";
 "pref_mention_notifications" = "Menzioni";
-"pref_mention_notifications_explain" = "Nei gruppi disattivati, notifica i messaggi a te indirizzati, come risposte o reazioni";
+"pref_mention_notifications_explain" = "Nei gruppi silenziati notifica i messaggi indirizzati a te, come risposte o reazioni";
 "pref_notifications_show" = "Mostra";
 "pref_notifications_priority" = "Priorità";
 "pref_notifications_explain" = "Abilita le notifiche di sistema per i nuovi messaggi";
@@ -767,8 +797,10 @@
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Subito dopo Scaricato";
 "after_30_seconds" = "Dopo 30 secondi";
+// deprecated
 "after_1_minute" = "Dopo 1 minuto";
 "after_5_minutes" = "Dopo 5 minuti";
+// deprecated
 "after_30_minutes" = "Dopo 30 minuti";
 "autodel_after_1_hour" = "Dopo 1 ora";
 "autodel_after_1_day" = "Dopo 1 giorno";
@@ -820,8 +852,9 @@
 "ephemeral_timer_seconds_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ secondi";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_seconds_by_other" = "Timer messaggi a scomparsa impostato su %1$@ secondi da %2$@.";
+// deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 minuto.";
-// %1$s will be replaced by name and address of the contact
+// deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Timer messaggi a scomparsa impostato su 1 minuto da %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 ora.";
 // %1$s will be replaced by name and address of the contact
@@ -885,7 +918,7 @@
 "revive_qr_code" = "Attiva Codice QR ";
 "qrshow_title" = "Codice QR Invito";
 "qrshow_x_joining" = "%1$@ si unisce.";
-"qrshow_x_verified" = "%1$@ verificato.";
+"qrshow_x_verified" = "%1$@ introdotto.";
 "qrshow_x_has_joined_group" = "%1$@ è entrato nel gruppo.";
 "qrshow_join_group_title" = "Codice QR Invito";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -908,11 +941,11 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "secure_join_wait" = "Impostazione della crittografia end-to-end, attendere...";
-"contact_verified" = "%1$@ verificato.";
+"contact_verified" = "%1$@ introdotto.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-"verified_by" = "Verificato da %1$@";
-"verified_by_you" = "Verificato da me";
-"verified_by_unknown" = "Presentato";
+"verified_by" = "Introdotto da %1$@";
+"verified_by_you" = "Introdotto da me";
+"verified_by_unknown" = "Introdotto";
 "verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo i contatti con un segno di spunta verde.\n\nPuoi incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
@@ -928,6 +961,7 @@
 "notify_name_only" = "Solo nome";
 "notify_no_name_or_message" = "Nessun nome nè messaggio";
 "notifications_disabled" = "Notifiche disabilitate";
+"unreliable_bg_notifications" = "Abilita \"Forza Connessione in Secondo Piano\" per notifiche affidabili";
 "new_messages" = "Nuovi messaggi";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Hai nuovi messaggi";
@@ -1034,7 +1068,7 @@
 "disabled_in_dc" = "Disabilitato in Delta Chat";
 "disabled_in_system_settings" = "Disabilitato nelle impostazioni di sistema";
 "bg_app_refresh_disabled" = "\"Aggiornamento App Secondo Piano\" disabilitato nelle impostazioni di sistema";
-// iOS connectivity view, Adjective, used eg. as "Notifications: Delayed"
+// deprecated, was used on iOS only
 "delayed" = "Ritardato";
 "notifications_avg_minutes" = "In media ogni %1$d minuti";
 "notifications_avg_hours" = "In media ogni %1$d ore";

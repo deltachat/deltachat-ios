@@ -254,6 +254,8 @@
 "chat_archived_label" = "Enarĥivigitaj";
 "chat_no_messages" = "Neniu mesaĝo.";
 "chat_self_talk_subtitle" = "Mesaĝoj senditaj al mi mem";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Konservi";
 "saved_messages" = "Konservitaj mesaĝoj";
 "retry_send" = "Reprovi sendi mesaĝon";
 "show_location_traces" = "Montri spurojn";
