@@ -96,9 +96,9 @@ class CallViewController: UIViewController {
         return webView
     }()
     
-    lazy var hideButton: UIButton = {
+    lazy var closeButton: UIButton = {
         let button = UIButton(type: .close)
-        button.addTarget(self, action: #selector(hideButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -134,12 +134,12 @@ class CallViewController: UIViewController {
         guard let urlWithFragment = fileComponents.url else { return }
         webView.load(URLRequest(url: urlWithFragment))
 
-        view.addSubview(hideButton)
-        hideButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
-        hideButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
+        view.addSubview(closeButton)
+        closeButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
+        closeButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
     }
     
-    @objc private func hideButtonPressed() {
+    @objc private func closeButtonPressed() {
         hangup()
     }
 
