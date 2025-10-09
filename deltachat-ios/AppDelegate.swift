@@ -732,6 +732,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_REACTED_BY, localizationKey: "reaction_by_other")
         dcContext.setStockTranslation(id: DC_STR_SECUREJOIN_WAIT, localizationKey: "secure_join_wait")
         dcContext.setStockTranslation(id: DC_STR_DONATION_REQUEST, localizationKey: "donate_device_msg")
+        dcContext.setStockTranslation(id: DC_STR_OUTGOING_CALL, localizationKey: "outgoing_call")
+        dcContext.setStockTranslation(id: DC_STR_INCOMING_CALL, localizationKey: "incoming_call")
+        dcContext.setStockTranslation(id: DC_STR_DECLINED_CALL, localizationKey: "declined_call")
+        dcContext.setStockTranslation(id: DC_STR_CANCELED_CALL, localizationKey: "canceled_call")
+        dcContext.setStockTranslation(id: DC_STR_MISSED_CALL, localizationKey: "missed_call")
     }
 
     func appIsInForeground() -> Bool {
