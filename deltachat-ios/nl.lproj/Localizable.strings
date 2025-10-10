@@ -116,6 +116,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Laatst gezien: %1$@";
 "last_seen_unknown" = "Laatst gezien: onbekend";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -318,6 +320,19 @@
 "share_location_for_two_hours" = "2 uur lang";
 "share_location_for_six_hours" = "6 uur lang";
 "file_saved_to" = "Het bestand is opgeslagen in ‘%1$@’.";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Bellen";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Aanvaarden";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Weigeren";
+"outgoing_call" = "Uitgaande oproep";
+"incoming_call" = "Inkomende oproep";
+"declined_call" = "Geweigerde oproep";
+"canceled_call" = "Afgebroken oproep";
+"missed_call" = "Gemiste oproep";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@ %2$@";
 // deprecated
 "videochat" = "Videogesprek";
 // deprecated
