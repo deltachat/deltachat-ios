@@ -237,20 +237,33 @@
 "share_location_for_two_hours" = "Timp de 2 ore";
 "share_location_for_six_hours" = "Timp de 6 ore";
 "file_saved_to" = "Fișier salvat la \"%1$@\".";
+// deprecated
 "videochat" = "Chat video";
+// deprecated
 "videochat_invite_user_to_videochat" = "Invitați %1$@ la un chat video?";
+// deprecated
 "videochat_invite_user_hint" = "Acest lucru necesită o aplicație sau un browser compatibil la ambele capete.";
+// deprecated
 "videochat_contact_invited_hint" = "%1$@ invitat la o discuție video.";
+// deprecated
 "videochat_you_invited_hint" = "Ați trimis o invitație de videochat.";
+// deprecated
 "videochat_tap_to_join" = "Atingeți pentru a vă alătura";
+// deprecated
 "videochat_tap_to_open" = "Atingeți pentru a deschide";
+// deprecated
 "videochat_instance" = "Instanță de Videochat";
+// deprecated
 "videochat_instance_placeholder" = "Instanța Dumneavoastră de Videochat";
-// Do not translate "$ROOM", since it is a fixed token Delta Chat will replace with a generated room ID like "aOclju5eCky"
+// deprecated
 "videochat_instance_example" = "Exemple: https://meet.jit.si/$ROOM ori basicwebrtc:https://your-server";
+// deprecated
 "videochat_instance_explain_2" = "Dacă este activată, puteți începe un chat video din fiecare chat. Necesită un app compatibil sau un browser la ambele capete.";
+// deprecated
 "videochat_instance_from_qr" = "Folosiți \"%1$@\" pentru a invita alte persoane la chat-uri video?\n\nOnce setat, puteți începe un chat video din fiecare chat. Acest lucru înlocuiește orice setare anterioară pentru chat-urile video.";
+// deprecated
 "videochat_invitation" = "Invitație la chat video";
+// deprecated
 "videochat_invitation_body" = "Sunteți invitat la un chat video, faceți clic %1$@ pentru a vă alătura.";
 // Used for the deletion of Device messages
 "ask_forward" = "Transmiteți mesajele către %1$@?";
@@ -288,6 +301,8 @@
 "chat_no_messages" = "Nu există mesaje.";
 "chat_self_talk_subtitle" = "Mesaje către sine";
 "archive_empty_hint" = "Chat-urile arhivate vor apărea aici.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Salvați";
 "saved_messages" = "Mesaje salvate";
 "saved_messages_explain" = "• Redirecționați mesajele aici pentru acces ușor\n\n• Luați notițe sau notițe vocale\n\n\n• Atașați fișiere media pentru a le salva";
 // Should match "Saved" from "Saved messages"

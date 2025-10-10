@@ -169,17 +169,29 @@
 "share_location_for_two_hours" = "pro 2 oras";
 "share_location_for_six_hours" = "pro 6 oras";
 "file_saved_to" = "Documentu sarvadu in \"%1$@\".";
+// deprecated
 "videochat" = "Vìdeu-tzarrada";
+// deprecated
 "videochat_invite_user_to_videochat" = "Cheres invitare %1$@ a una vìdeu-tzarrada?";
+// deprecated
 "videochat_invite_user_hint" = "Custu bisòngiat de un\'aplicatzione cumpatìbile o unu navigadore cumpatìbile dae ambas alas.";
+// deprecated
 "videochat_contact_invited_hint" = "%1$@ t\'at invitadu a una vìdeu-tzarrada.";
+// deprecated
 "videochat_you_invited_hint" = "As invitadu a una vìdeu-tzarrada.";
+// deprecated
 "videochat_tap_to_join" = "Toca pro bi pigare parte";
+// deprecated
 "videochat_tap_to_open" = "Toca pro abèrrere";
+// deprecated
 "videochat_instance" = "Istàntzia de vìdeu-tzarrada";
+// deprecated
 "videochat_instance_placeholder" = "S\'istàntzia de vìdeu-tzarrada tua";
+// deprecated
 "videochat_instance_from_qr" = "Cheres impreare \"%1$@\" pro invitare calicun\'àteru a sa vìdeu-tzarrada?\n\nA pustis de s\'impostatzione, podes fàghere incumentzare una vìdeu-tzarrada dae cada tzarrada unu-a-unu. Custu at a remplasare sas impostatziones antepostas pro sas vìdeu-tzarradas, si bi nde fiant.";
+// deprecated
 "videochat_invitation" = "Invitu a sa vìdeu-tzarrada";
+// deprecated
 "videochat_invitation_body" = "Ses invitadu a una vìdeu-tzarrada. Incarca %1$@ pro bi pigare parte.";
 "ask_forward" = "Inoltrare su messàgiu a %1$@?";
 "ask_forward_multiple" = "Inoltrare messàgios a %1$d tzarradas?";
@@ -212,6 +224,8 @@
 "chat_archived_label" = "Archiviadu";
 "chat_no_messages" = "Perunu messàgiu.";
 "chat_self_talk_subtitle" = "Messàgios chi m\'apo imbiadu a sa sola";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Sarva";
 "saved_messages" = "Messàgios sarvados";
 "saved_messages_explain" = "• Inoltra sos messàgios inoghe pro bi pòdere atzèdere in manera lestra\n\n• Sarva notas iscritas o sonoras\n\n• Allega mèdios pro los sarvare";
 // Should match "Saved" from "Saved messages"
@@ -396,6 +410,7 @@
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Una borta";
 "after_30_seconds" = "A pustis de 30 segundos";
+// deprecated
 "after_1_minute" = "A pustis de 1 minutu";
 "autodel_after_1_hour" = "A pustis de 1 ora";
 "autodel_after_1_day" = "A pustis de 1 die";

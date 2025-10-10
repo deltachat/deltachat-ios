@@ -9,8 +9,17 @@
 - Show possible notification issues promimently in settings
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
+- User colors get a more consistent appearance
+- Create user colors based on cryptographic identity instead of address
+- Withdraw all QR codes when one QR code is withdrawn
+- Experimental "Debug Calls" option replaces "Videochat Invitation" experiment
+- Fix: Make calendar files available as an attachment
+- Fix transparency of larger stickers
 - Fix: do not show letter icon for partially downloaded messages
 - Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
+- Fix group creation and verification issues
+- Update translations and local help
+- Update to core 2.18.0
 
 
 ## v2.11.0

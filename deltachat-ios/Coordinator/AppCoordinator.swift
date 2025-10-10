@@ -378,21 +378,6 @@ class AppCoordinator: NSObject {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
             viewController.present(alert, animated: true)
 
-        case DC_QR_WEBRTC_INSTANCE:
-            guard let domain = qrParsed.text1 else { return }
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_instance_from_qr"), domain),
-                                          message: nil,
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                let success = dcContext.setConfigFromQR(qrCode: code)
-                if !success {
-                    logger.warning("Could not set webrtc instance from QR code.")
-                    // TODO: alert?!
-                }
-            }))
-            viewController.present(alert, animated: true)
-
         case DC_QR_WITHDRAW_VERIFYCONTACT:
             let alert = UIAlertController(title: String.localized("withdraw_verifycontact_explain"),
                                           message: nil, preferredStyle: .alert)

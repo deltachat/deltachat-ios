@@ -114,6 +114,8 @@
 "chat_input_placeholder" = "Poruka";
 "chat_archived_label" = "Arhivirano";
 "chat_no_messages" = "Nema poruka.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Spremi";
 "saved_messages" = "Sačuvane poruke";
 // search
 "search" = "Traži";

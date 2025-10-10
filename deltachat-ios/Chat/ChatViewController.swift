@@ -6,6 +6,7 @@ import AVFoundation
 import DcCore
 import SDWebImage
 import Combine
+import CallKit
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -196,7 +197,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
         tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
-        tableView.register(VideoInviteCell.self, forCellReuseIdentifier: VideoInviteCell.reuseIdentifier)
         tableView.register(WebxdcCell.self, forCellReuseIdentifier: WebxdcCell.reuseIdentifier)
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
@@ -550,12 +550,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         let cell: BaseMessageCell
         switch message.type {
-        case DC_MSG_VIDEOCHAT_INVITATION:
-            let videoInviteCell = dequeueCell(ofType: VideoInviteCell.self)
-            videoInviteCell.showSelectionBackground(tableView.isEditing)
-            videoInviteCell.update(dcContext: dcContext, msg: message)
-            return videoInviteCell
-
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = dequeueCell(ofType: ImageTextCell.self)
 
@@ -760,10 +754,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         switch (message.type, message.infoType) {
         case (DC_MSG_FILE, _), (DC_MSG_AUDIO, _), (DC_MSG_VOICE, _):
             showMediaGalleryFor(message: message)
-        case (DC_MSG_VIDEOCHAT_INVITATION, _):
-            if let url = NSURL(string: message.getVideoChatUrl()) {
-                UIApplication.shared.open(url as URL)
-            }
         case (DC_MSG_VCARD, _):
             didTapVcard(msg: message)
         case (DC_MSG_WEBXDC, _):
@@ -815,6 +805,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private func updateTitle() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
 
+        var dcContact: DcContact?
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
@@ -837,8 +828,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             } else if dcChat.isSelfTalk {
                 subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
-                let dcContact = dcContext.getContact(id: chatContactIds[0])
-                if dcContact.isBot {
+                dcContact = dcContext.getContact(id: chatContactIds[0])
+                if let dcContact, dcContact.isBot {
                     subtitle = String.localized("bot")
                 } else {
                     subtitle = nil
@@ -869,6 +860,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if !dcChat.isSelfTalk {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
+
+                if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
+                   let dcContact, dcContact.isKeyContact {
+                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
+                    rightBarButtonItems.append(button)
+                }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
@@ -1171,6 +1168,10 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
+    @objc private func callPressed() {
+        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
+    }
+
     private func clipperButtonMenu() -> UIMenu {
         var actions = [UIMenuElement]()
         func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
@@ -1185,10 +1186,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         actions.append(action("file", "doc", showFilesLibrary))
         actions.append(action("webxdc_app", "square.grid.2x2", showAppPicker))
         actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
-        if let config = dcContext.getConfig("webrtc_instance"), !config.isEmpty {
-            let videoChatImage = if #available(iOS 17, *) { "video.bubble" } else { "video" }
-            actions.append(action("videochat", videoChatImage, videoChatButtonPressed))
-        }
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
             actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
@@ -1457,31 +1454,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-    }
-
-    private func videoChatButtonPressed() {
-        let chat = dcContext.getChat(chatId: chatId)
-
-        let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("videochat_invite_user_to_videochat"), chat.name),
-                                      message: String.localized("videochat_invite_user_hint"),
-                                      preferredStyle: .alert)
-        let cancel = UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil)
-        let ok = UIAlertAction(title: String.localized("ok"),
-                               style: .default,
-                               handler: { _ in
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self else { return }
-                let messageId = self.dcContext.sendVideoChatInvitation(chatId: self.chatId)
-                let inviteMessage = self.dcContext.getMessage(id: messageId)
-                if let url = NSURL(string: inviteMessage.getVideoChatUrl()) {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.open(url as URL)
-                    }
-                }
-            }})
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
     }
 
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
@@ -2147,7 +2119,7 @@ extension ChatViewController {
             for id in sortedIds {
                 let msg = self.dcContext.getMessage(id: id)
                 var textToCopy: String?
-                if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+                if msg.type == DC_MSG_TEXT, let msgText = msg.text {
                     textToCopy = msgText
                 } else if let msgSummary = msg.summary(chars: 10000000) {
                     textToCopy = msgSummary
@@ -2168,7 +2140,7 @@ extension ChatViewController {
             }
         } else {
             let msg = self.dcContext.getMessage(id: ids[0])
-            if msg.type == DC_MSG_TEXT || msg.type == DC_MSG_VIDEOCHAT_INVITATION, let msgText = msg.text {
+            if msg.type == DC_MSG_TEXT, let msgText = msg.text {
                 stringsToCopy.append("\(msgText)")
             } else if let msgSummary = msg.summary(chars: 10000000) {
                 stringsToCopy.append("\(msgSummary)")

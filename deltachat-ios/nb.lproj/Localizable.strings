@@ -161,17 +161,29 @@
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
 "file_saved_to" = "Lagre fil til \"%1$@\".";
+// deprecated
 "videochat" = "Videochat";
+// deprecated
 "videochat_invite_user_to_videochat" = "Inviter %1$@ til en videochat?";
+// deprecated
 "videochat_invite_user_hint" = "Dette krever en kompatibel app, eller en kompatible nettleser i begge ender.";
+// deprecated
 "videochat_contact_invited_hint" = "%1$@ inviterte til en videochat.";
+// deprecated
 "videochat_you_invited_hint" = "Du inviterte til en videochat.";
+// deprecated
 "videochat_tap_to_join" = "Trykk for å bli med";
+// deprecated
 "videochat_tap_to_open" = "Trykk for å åpne";
+// deprecated
 "videochat_instance" = "Videochatteinstans";
+// deprecated
 "videochat_instance_placeholder" = "Din videochatteinstans";
+// deprecated
 "videochat_instance_from_qr" = "Bruk \"%1$@\" til å invitere andre til videochatter?\n\nNår satt, kan dere starte videochatter til hverandre en-til-en. Dette vil erstatte, eventuelle, tidligere innstillinger for videochatter.";
+// deprecated
 "videochat_invitation" = "Videochatinvitasjon";
+// deprecated
 "videochat_invitation_body" = "Du er invitert til en videochat, klikk %1$@ for å bli med.";
 "ask_forward" = "Videresend meldinger til %1$@?";
 "ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
@@ -203,6 +215,8 @@
 "chat_archived_label" = "Arkivert";
 "chat_no_messages" = "Ingen meldinger.";
 "chat_self_talk_subtitle" = "Meldinger jeg har sendt til meg selv";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Lagre";
 "saved_messages" = "Lagrede meldinger";
 // search
 "search" = "Søk";
