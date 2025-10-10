@@ -531,8 +531,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // This method will be called if an incoming message was received while the app was in foreground.
     // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        logger.info("Notifications: foreground notification")
-        completionHandler([.badge])
+        if appIsInForeground() { // This is necessary as this function is called when in app switcher
+            logger.info("Notifications: foreground notification")
+            completionHandler([.badge])
+        } else {
+            completionHandler([.badge, .banner, .list, .sound])
+        }
     }
 
     // this method will be called if the user tapped on a notification

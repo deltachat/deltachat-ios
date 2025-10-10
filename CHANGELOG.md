@@ -16,6 +16,7 @@
 - Fix: Make calendar files available as an attachment
 - Fix transparency of larger stickers
 - Fix: do not show letter icon for partially downloaded messages
+- Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
 - Fix group creation and verification issues
 - Update translations and local help
 - Update to core 2.18.0
