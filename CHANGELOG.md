@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.18.0 Testflight
+2025-10
 
 - Disappearing messages options range from 5 minutes to 1 year now
 - Share email address for email contacts instead of vCard
