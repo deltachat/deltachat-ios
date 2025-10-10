@@ -331,6 +331,8 @@
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";
 "missed_call" = "Yanıtlanmayan arama";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
 // deprecated
 "videochat" = "Video Sohbeti";
 // deprecated
