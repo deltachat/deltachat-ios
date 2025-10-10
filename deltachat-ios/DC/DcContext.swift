@@ -117,10 +117,6 @@ public class DcContext {
         }
     }
 
-    public func sendVideoChatInvitation(chatId: Int) -> Int {
-        return Int(dc_send_videochat_invitation(contextPointer, UInt32(chatId)))
-    }
-
     public func getChatMsgs(chatId: Int, flags: Int32) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(flags), 0)
@@ -790,5 +786,32 @@ public class DcContext {
         let allProxies = proxyURLs.joined(separator: "\n")
 
         setConfig("proxy_url", allProxies)
+    }
+
+    public func placeOutgoingCall(chatId: Int, placeCallInfo: String) -> Int {
+        let msgId = dc_place_outgoing_call(contextPointer, UInt32(chatId), placeCallInfo)
+        logger.info("☎️ (\(self.id),\(msgId))=dc_place_outgoing_call(\(chatId)")
+        return Int(msgId)
+    }
+
+    public func acceptIncomingCall(msgId: Int, acceptCallInfo: String) {
+        logger.info("☎️ dc_accept_incoming_call(\(self.id),\(msgId))")
+        dc_accept_incoming_call(contextPointer, UInt32(msgId), acceptCallInfo)
+    }
+
+    public func endCall(msgId: Int) {
+        logger.info("☎️ dc_end_call(\(self.id),\(msgId))")
+        dc_end_call(contextPointer, UInt32(msgId))
+    }
+
+    public func iceServers() -> String {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "ice_servers", params: [id as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return "[]"
     }
 }

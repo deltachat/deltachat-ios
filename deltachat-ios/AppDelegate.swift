@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
+    var callManager: CallManager?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
+    var callWindow: CallWindow!
     var notifyToken: String?
     var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -61,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         logger.info("➡️ didFinishLaunchingWithOptions")
         DarwinNotificationCenter.current.addObserver(self, selector: #selector(Self.appRunningQuestion), for: .appRunningQuestion)
+        callManager = CallManager.shared
         UserDefaults.standard.populateDefaultEmojis()
         UserDefaults.setMainIoRunning()
         UNUserNotificationCenter.current().delegate = self
@@ -123,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             fatalError("window was nil in app delegate")
         }
         window.backgroundColor = UIColor.systemBackground
-
+        callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
         relayHelper = RelayHelper.setup(dcAccounts.getSelected())
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
@@ -180,17 +183,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-            let incomingURL = userActivity.webpageURL,
-            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-            let host = components.host else {
-            return false
-        }
-        logger.info("➡️ open univeral link url")
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let incomingURL = userActivity.webpageURL,
+           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+           let host = components.host {
+            logger.info("➡️ open univeral link url")
 
-        if host == "i.delta.chat" {
-            appCoordinator.handleQRCode(incomingURL.absoluteString)
-            return true
+            if host == "i.delta.chat" {
+                appCoordinator.handleQRCode(incomingURL.absoluteString)
+                return true
+            } else {
+                return false
+            }
+        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
+            logger.info("➡️ INStartAudioCallIntent")
+            return false
         } else {
             return false
         }
@@ -652,8 +659,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_UNKNOWN_SENDER_FOR_CHAT, localizationKey: "systemmsg_unknown_sender_for_chat")
         dcContext.setStockTranslation(id: DC_STR_SUBJECT_FOR_NEW_CONTACT, localizationKey: "systemmsg_subject_for_new_contact")
         dcContext.setStockTranslation(id: DC_STR_FAILED_SENDING_TO, localizationKey: "systemmsg_failed_sending_to")
-        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITATION, localizationKey: "videochat_invitation")
-        dcContext.setStockTranslation(id: DC_STR_VIDEOCHAT_INVITE_MSG_BODY, localizationKey: "videochat_invitation_body")
         dcContext.setStockTranslation(id: DC_STR_CONFIGURATION_FAILED, localizationKey: "configuration_failed_with_error")
         dcContext.setStockTranslation(id: DC_STR_BAD_TIME_MSG_BODY, localizationKey: "devicemsg_bad_time")
         dcContext.setStockTranslation(id: DC_STR_UPDATE_REMINDER_MSG_BODY, localizationKey: "devicemsg_update_reminder")
@@ -727,6 +732,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_REACTED_BY, localizationKey: "reaction_by_other")
         dcContext.setStockTranslation(id: DC_STR_SECUREJOIN_WAIT, localizationKey: "secure_join_wait")
         dcContext.setStockTranslation(id: DC_STR_DONATION_REQUEST, localizationKey: "donate_device_msg")
+        dcContext.setStockTranslation(id: DC_STR_OUTGOING_CALL, localizationKey: "outgoing_call")
+        dcContext.setStockTranslation(id: DC_STR_INCOMING_CALL, localizationKey: "incoming_call")
+        dcContext.setStockTranslation(id: DC_STR_DECLINED_CALL, localizationKey: "declined_call")
+        dcContext.setStockTranslation(id: DC_STR_CANCELED_CALL, localizationKey: "canceled_call")
+        dcContext.setStockTranslation(id: DC_STR_MISSED_CALL, localizationKey: "missed_call")
     }
 
     func appIsInForeground() -> Bool {

@@ -1,4 +1,5 @@
 import UserNotifications
+import CallKit
 import DcCore
 
 class NotificationService: UNNotificationServiceExtension {
@@ -81,6 +82,48 @@ class NotificationService: UNNotificationServiceExtension {
                 let chat = dcContext.getChat(chatId: msg.chatId)
                 if let content = UNMutableNotificationContent(forWebxdcNotification: event.data2String, msg: msg, chat: chat, context: dcContext) {
                     notifications.append(content)
+                }
+            } else if event.id == DC_EVENT_INCOMING_CALL {
+                UserDefaults.pushToDebugArray("☎️")
+                if #available(iOSApplicationExtension 14.5, *) {
+                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload([
+                        "event_id": Int(DC_EVENT_INCOMING_CALL),
+                        "account_id": event.accountId,
+                        "message_id": event.data1Int,
+                        "place_call_info": event.data2String,
+                    ] as [String: Any]) { error in
+                        if let error {
+                            UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK2")
+                        }
+                    }
+                } else {
+                    let content = UNMutableNotificationContent()
+                    let msg = dcAccounts.get(id: event.accountId).getMessage(id: event.data1Int)
+                    content.title = "Incoming Call"
+                    content.body = "Calls require iOS 14.5 or newer"
+                    content.userInfo["account_id"] = event.accountId
+                    content.userInfo["chat_id"] = msg.chatId
+                    content.userInfo["message_id"] = msg.id
+                    notifications.append(content)
+                }
+            } else if event.id == DC_EVENT_CALL_ENDED || event.id == DC_EVENT_INCOMING_CALL_ACCEPTED {
+                UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
+                if #available(iOSApplicationExtension 14.5, *) {
+                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload([
+                        "event_id": Int(event.id),
+                        "account_id": event.accountId,
+                        "message_id": event.data1Int,
+                    ] as [String: Any]) { error in
+                        if let error {
+                            UserDefaults.pushToDebugArray("ERR7 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK4")
+                        }
+                    }
                 }
             }
         }
