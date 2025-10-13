@@ -1,13 +1,13 @@
 # Delta Chat iOS Changelog
 
-## v2.19.0 Testflight
+## v2.20.0 Testflight
 2025-10
 
 - Disappearing messages options range from 5 minutes to 1 year now
 - Share email address for email contacts instead of vCard
 - In case of errors, tapping message text or status opens "message info" directly
 - Flatten profile menu
-- Show possible notification issues promimently in settings
+- Show possible notification issues prominently in settings
 - Show addresses for address contacts only
 - Option to copy contact profile's "Encryption Info" to the clipboard
 - User colors get a more consistent appearance
@@ -20,7 +20,7 @@
 - Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
 - Fix group creation and verification issues
 - Update translations and local help
-- Update to core v2.19.0
+- Update to core v2.20.0
 
 
 ## v2.11.0
