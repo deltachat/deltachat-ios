@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v2.18.0 Testflight
+## v2.19.0 Testflight
 2025-10
 
 - Disappearing messages options range from 5 minutes to 1 year now
@@ -20,7 +20,7 @@
 - Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
 - Fix group creation and verification issues
 - Update translations and local help
-- Update to core 2.18.0
+- Update to core v2.19.0
 
 
 ## v2.11.0
