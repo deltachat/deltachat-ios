@@ -42,7 +42,6 @@ public class DcAccounts {
 
     public func add() -> Int {
         let accountId = Int(dc_accounts_add_account(accountsPointer))
-        get(id: accountId).setConfig("verified_one_on_one_chats", "1")
         freshlyAddedAccountIds.append(accountId)
         return accountId
     }
@@ -152,12 +151,6 @@ public class DcAccounts {
         if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
             sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
             accountsPointer = dc_accounts_new(sharedDbLocation.path, writeable ? 1 : 0)
-
-            for accountId in getAll() {
-                let dcContext = get(id: accountId)
-                dcContext.setConfig("verified_one_on_one_chats", "1")
-            }
-
             rpcPointer = dc_jsonrpc_init(accountsPointer)
         }
     }
