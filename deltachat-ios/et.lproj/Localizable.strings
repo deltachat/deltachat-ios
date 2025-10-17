@@ -116,6 +116,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Viimati nähtud: %1$@";
 "last_seen_unknown" = "Viimati nähtud: pole teada";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -197,6 +199,7 @@
 "menu_new_group" = "Uus grupp";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Saada sõnum…";
+"clone_chat" = "Tee vestlusest koopia";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel" = "Kanal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
@@ -315,6 +318,19 @@
 "share_location_for_two_hours" = "Kestusega 2 tundi";
 "share_location_for_six_hours" = "Kestusega 6 tundi";
 "file_saved_to" = "Fail on salvestatud: „%1$@“.";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Helista";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Vasta";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Keeldu";
+"outgoing_call" = "Väljuv kõne";
+"incoming_call" = "Saabuv kõne";
+"declined_call" = "Keeldutud kõne";
+"canceled_call" = "katkestatud kõne";
+"missed_call" = "Märkamata kõne";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
 // deprecated
 "videochat" = "Videovestlus";
 // deprecated
@@ -344,7 +360,9 @@
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
 "ask_delete_named_chat" = "Kas kustutad „%1$@“ vestluse kõikidest oma seadmetest?";
 "ask_delete_message" = "Kas kustutad selle sõnumi kõikidest oma seadmetest?";
+// Used for the deletion of Device messages
 "ask_forward" = "Kas edastad sõnumi kasutajale %1$@?";
+"ask_forward_multiple" = "Kas edastad sõnumid %1$d vestlusesse?";
 "ask_unblock_contact" = "Kas lõpetad kontakti blokeerimise?";
 "ask_start_chat_with" = "Kas soovid vestelda kasutajaga %1$@?";
 // %1$s is replaced by a comma-separated list of names
@@ -376,6 +394,8 @@
 "chat_request_label" = "Päring";
 "chat_request_label_explain" = "Lisa päringud nii loenduritesse kui teavitustesse";
 "chat_no_messages" = "Sõnumeid pole.";
+"chat_self_talk_subtitle" = "Sõnumid sulle endale";
+"archive_empty_hint" = "Arhiveeritud vestlused saavad olema leitavad siin.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Salvesta sõnum";
 "saved_messages" = "Salvestatud sõnumid";
@@ -385,12 +405,26 @@
 "retry_send" = "Proovi uuesti sõnumit saata";
 "cannot_display_unsuported_file_type" = "Selle failitüübi kuvamine pole võimalik: %1$@";
 "attachment_failed_to_load" = "Manuse laadimine ei õnnestunud";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Jätka salvestamist";
 // mailing lists
 "mailing_list" = "Postiloend";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Alusta…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Esmalt palun nõustu vestluskutsega.";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Saada sõnum…";
+"enable_realtime" = "Reaalajas toimivad rakendused";
+"enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
 "add_poi" = "Saada huvipunkti teave";
+// chat audit log
+"chat_audit_log_empty_message" = "Sellele vestluse süsteemsed teated saavad olema nähtavad siin.";
 "chat_audit_log_title" = "%1$@ vestluse kontroll-logi";
+// punycode warning / labeled links
+// placeholder is domain/hostname that should be trusted
+"open_external_url_trust_domain" = "Ära enam %1$@ puhul küsi";
 "puny_code_warning_header" = "Tuvastasin kahtlase lingi";
 // search
 "search" = "Otsi";
@@ -430,6 +464,10 @@
 "all_files_empty_hint" = "Ükspuha mis vestlusele lisatud dokumendid ja muud failid saavad olema nähtavad siin.";
 "all_apps_empty_hint" = "Ükspuha mis vestlusele lisatud rakendused saavad olema nähtavad siin.";
 "media_preview" = "Meediumi eelvaade";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Proportsionaalne ruudustikuvaade";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Range ruudustikuvaade";
 "send_message" = "Saada sõnum";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -539,6 +577,8 @@
 "login_error_port" = "Palun sisesta korrektne pordi number (1–65535)";
 "login_error_required_fields" = "Palun sisesta kehtiv e-posti aadress ja salasõna";
 "import_backup_title" = "Taasta varukoopiast";
+"import_backup_ask" = "Asukohas „%1$@“ on olemas varukoopia.\n\nKas sa soovid ta importida ning kasutada kõiki seal leiduvaid andmeid ja seadistusi?";
+"import_backup_no_backup_found" = "Varukoopiaid ei leidu.\n\nKopeeri varukoopia siia: „%1$@“ ning proovi uuesti. Alternatiivina võid vajutada „Alusta suhtlemist“ ning jätka tavalist seadistamist.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "E-posti aadressiga „%1$@“ ei õnnestu sisse logida. Palun kontrolli, kas aadress ja salasõna on õiged.";
 // TLS certificate checks
@@ -581,6 +621,7 @@
 "pref_default_status_label" = "Elulugu/allkiri/moto";
 "pref_enter_sends" = "Sisestusklahv saadab sõnumi";
 "pref_outgoing_media_quality" = "Saadetava meediumi kvaliteet";
+"pref_outgoing_balanced" = "Tasakaalustatud";
 "pref_outgoing_worse" = "Kõige kehvem kvaliteet, aga väikseim maht";
 "pref_vibrate" = "Väristamine";
 "pref_screen_security" = "Ekraani turvalisus";
@@ -647,7 +688,10 @@
 "pref_watch_sent_folder" = "Välju saadetud sõnumite kausta";
 "pref_send_copy_to_self" = "Saada koopia iseendale";
 "pref_send_copy_to_self_explain" = "Vajalik, kui kasutad seda kontot mitmes seadmes.";
+"pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
+"pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
 "pref_show_emails" = "Näita klassikalisi e-kirju";
+"pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_developer_mode" = "Arendaja režiim";
 "pref_developer_mode_explain" = "Lülitab sisse veaotsingu tarvikud ja see võib rakenduse töökindlust vähendada. Sobib arendajatele.";
@@ -672,6 +716,7 @@
 "profile_image_delete" = "Kustuta profiilipilt";
 "pref_show_tray_icon" = "Näita süsteemisalve ikooni";
 "pref_edit_profile" = "Muuda profiili";
+"disable_imap_idle" = "Lülita IMAP IDLE välja";
 "send_stats_to_devs" = "Saada statistikat Delta Chati kasutajatele";
 // Emoji picker and categories
 "emoji_search_results" = "Otsingutulemused";
@@ -971,6 +1016,7 @@
 "add_to_widget" = "Lisa vidinale";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_reliable_service" = "Kasuta ühendust taustal";
+"pref_reliable_service_explain" = "Põhjustab püsiteavituse";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Kui soovid, et Delta Chat saaks sõnumeid ka taustateenusena toimides, siis klõpsi siin.";
 // device messages for updates

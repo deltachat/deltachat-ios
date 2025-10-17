@@ -328,8 +328,8 @@
 "end_call" = "Отклонить";
 "outgoing_call" = "Исходящий звонок";
 "incoming_call" = "Входящий звонок";
-"declined_call" = "Отклоненный звонок";
-"canceled_call" = "Отмененный звонок";
+"declined_call" = "Отклонённый звонок";
+"canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
