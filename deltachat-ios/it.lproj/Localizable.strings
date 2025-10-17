@@ -321,9 +321,9 @@
 "share_location_for_six_hours" = "Per 6 ore";
 "file_saved_to" = "File salvato su \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
-"start_call" = "Chiamata";
+"start_call" = "Chiama";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
-"answer_call" = "Risposta";
+"answer_call" = "Rispondi";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rifiuta";
 "outgoing_call" = "Chiamata in uscita";
@@ -435,7 +435,7 @@
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Invia Messaggio a...";
 "enable_realtime" = "App in Tempo Reale";
-"enable_realtime_explain" = "Abilita connessioni in tempo reale per apps condivise nelle chats. Se abilitato, i partner della chat potrebbero essere in grado di scoprire il tuo indirizzo IP quando avvii un\'app.";
+"enable_realtime_explain" = "Abilita connessioni in tempo reale per apps condivise nelle chat. Se abilitato, i partner della chat potrebbero essere in grado di scoprire il tuo indirizzo IP quando avvii un\'app.";
 // map
 "filter_map_on_time" = "Mostra le posizioni nell\'intervallo di tempo";
 "show_location_traces" = "Mostra tracce";
@@ -470,7 +470,7 @@
 "group_add_members" = "Aggiungi Membri";
 "group_self_not_in_group" = "Devi essere un membro del gruppo per fare questa azione.";
 "profile_encryption" = "Crittografia";
-"profile_shared_chats" = "Chats in Comune";
+"profile_shared_chats" = "Chat in Comune";
 "related_chats" = "Chat Correlate";
 // Separator between the list of actual members and past members
 "past_members" = "Membri Passati";
@@ -693,7 +693,7 @@
 "pref_use_system_emoji_explain" = "Disattiva il supporto delle emoji integrato in Delta Chat";
 "pref_show_system_contacts" = "Leggi Rubrica di Sistema";
 "pref_show_system_contacts_explain" = "Offri la possibilità di creare chat con i contatti della rubrica.";
-"pref_chats" = "Chats";
+"pref_chats" = "Chat";
 "pref_in_chat_sounds" = "Suoni In-Chat";
 "pref_view_log" = "Vedi Registro";
 "pref_saved_log" = "Registro salvato nella cartella \"Downloads\"";
@@ -965,7 +965,7 @@
 "new_messages" = "Nuovi messaggi";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Hai nuovi messaggi";
-"n_messages_in_m_chats" = "%1$d messaggi in %2$d chats";
+"n_messages_in_m_chats" = "%1$d messaggi in %2$d chat";
 // permissions
 "perm_required_title" = "Autorizzazione richiesta";
 "perm_continue" = "Continua";

@@ -233,7 +233,7 @@
 			<key>many</key>
 			<string>Eliminare %d chats su tutti i tuoi dispositivi?</string>
 			<key>other</key>
-			<string>Eliminare %d chats su tutti i tuoi dispositivi?</string>
+			<string>Eliminare %d chat su tutti i tuoi dispositivi?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
