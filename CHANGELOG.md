@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## v2.22.0 "More Twos Than Usual" Testflight Release
+2025-10
+
+- Support TLS 1.3 session resumption
+- Fix: Do not let blocked and unaccepted contact ring the recipients device
+- Fix avatar color in vcards
+- Fix removing Exif data from corrupted images
+- Update translations and local help
+- Update to core v2.22.0
+
+
 ## v2.20.0 Testflight
 2025-10
 
