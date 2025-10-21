@@ -59,8 +59,7 @@ class HelpViewController: WebViewViewController {
                 Bundle.main.url(forResource: "help", withExtension: "html", subdirectory: "Assets/Help/en")
 
             guard let url = fileURL else {
-                safe_fatalError("could not find help asset")
-                return
+                return assertionFailure("could not find help asset")
             }
             completionHandler?(url)
         }

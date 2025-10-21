@@ -155,7 +155,6 @@
 		AE0D26FD1FB1FE88002FAFCE /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */; };
 		AE18F294228C602A0007B1BE /* SecuritySettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */; };
 		AE19887523EB264000B4CD5F /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE19887423EB264000B4CD5F /* HelpViewController.swift */; };
-		AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1988A423EB2FBA00B4CD5F /* Errors.swift */; };
 		AE1988A723EB382A00B4CD5F /* Help in Resources */ = {isa = PBXBuildFile; fileRef = AE1988A623EB382A00B4CD5F /* Help */; };
 		AE1988AB23EB3C7600B4CD5F /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = AE1988AA23EB3C7600B4CD5F /* Assets */; };
 		AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */; };
@@ -500,7 +499,6 @@
 		AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		AE18F293228C602A0007B1BE /* SecuritySettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuritySettingsController.swift; sourceTree = "<group>"; };
 		AE19887423EB264000B4CD5F /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
-		AE1988A423EB2FBA00B4CD5F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		AE1988A623EB382A00B4CD5F /* Help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Help; sourceTree = "<group>"; };
 		AE1988AA23EB3C7600B4CD5F /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarSelectionCell.swift; sourceTree = "<group>"; };
@@ -1136,7 +1134,6 @@
 				5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */,
 				30AC265E237F1807002A943F /* AvatarHelper.swift */,
 				302B84C42396627F001C261F /* RelayHelper.swift */,
-				AE1988A423EB2FBA00B4CD5F /* Errors.swift */,
 				307D822D241669C7006D2490 /* LocationManager.swift */,
 				AE0AA9552478191900D42A7F /* GridCollectionViewFlowLayout.swift */,
 				21D6C9392606190600D0755A /* NotificationManager.swift */,
@@ -1853,7 +1850,6 @@
 				AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */,
 				30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */,
 				3080A00F277DDA4C00E74565 /* InputBarAccessoryView.swift in Sources */,
-				AE1988A523EB2FBA00B4CD5F /* Errors.swift in Sources */,
 				B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */,
 				3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */,
 				D8E426D82D423FCF0078C735 /* DownloadingActivityView.swift in Sources */,

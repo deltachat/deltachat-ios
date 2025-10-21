@@ -202,8 +202,7 @@ class AccountSwitchViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else {
-            safe_fatalError()
-            return
+            return assertionFailure()
         }
 
         tableView.deselectRow(at: indexPath, animated: false)
@@ -216,7 +215,7 @@ class AccountSwitchViewController: UITableViewController {
         case addSection:
             addAccount(previousAccountId: selectedAccountId)
         default:
-            safe_fatalError("no such tableView section expected")
+            assertionFailure("no such tableView section expected")
         }
     }
 

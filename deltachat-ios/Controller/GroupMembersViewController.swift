@@ -122,7 +122,7 @@ class GroupMembersViewController: UITableViewController {
 
     func updateContactCell(for indexPath: IndexPath) -> UITableViewCell {
         guard let cell: ContactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else {
-            safe_fatalError("unsupported cell type")
+            assertionFailure("unsupported cell type")
             return UITableViewCell()
         }
 

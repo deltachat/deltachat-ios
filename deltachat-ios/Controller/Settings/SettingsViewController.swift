@@ -199,8 +199,7 @@ internal final class SettingsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else {
-            safe_fatalError()
-            return
+            return assertionFailure()
         }
         tableView.deselectRow(at: indexPath, animated: false)
 

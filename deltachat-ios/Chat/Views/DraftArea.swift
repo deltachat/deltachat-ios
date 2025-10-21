@@ -74,8 +74,7 @@ public class DraftArea: UIView, InputItem {
 
     public func configure(draft: DraftModel) {
         guard let  chatInputBar = inputBarAccessoryView else {
-            safe_fatalError("Expecting inputBarAccessoryView of type ChatInputBar")
-            return
+            return assertionFailure("Expecting inputBarAccessoryView of type ChatInputBar")
         }
         quotePreview.configure(draft: draft)
         mediaPreview.configure(draft: draft)
