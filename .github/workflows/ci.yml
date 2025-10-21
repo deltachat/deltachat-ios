@@ -10,7 +10,7 @@ jobs:
         with:
           submodules: true
           show-progress: false
-      - run: sudo xcode-select --switch /Applications/Xcode_16.1.app/Contents/Developer
+      - run: sudo xcode-select --switch /Applications/Xcode_16.4.app/Contents/Developer
       - run: xcrun simctl list devices
       - run: cargo install cargo-lipo
       - run: pod install
