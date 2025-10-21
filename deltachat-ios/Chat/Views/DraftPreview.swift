@@ -78,10 +78,10 @@ public class DraftPreview: UIView {
     }
 
     @objc public func cancel() {
-        safe_fatalError("cancel needs to be implemented in inheriting class")
+        assertionFailure("cancel needs to be implemented in inheriting class")
     }
 
     public func configure(draft: DraftModel) {
-        safe_fatalError("configure needs to be implemented in inheriting class")
+        assertionFailure("configure needs to be implemented in inheriting class")
     }
 }

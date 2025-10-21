@@ -439,7 +439,7 @@ class ChatListViewController: UITableViewController {
                 return chatCell
             }
         case .contact:
-            safe_assert(viewModel.searchActive)
+            assert(viewModel.searchActive)
             if let contactCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell {
                 contactCell.updateCell(cellViewModel: cellData)
                 return contactCell
@@ -510,7 +510,7 @@ class ChatListViewController: UITableViewController {
                 self.askToChatWith(contactId: contactId)
             }
         case .profile:
-            safe_fatalError("CellData type profile not allowed")
+            assertionFailure("CellData type profile not allowed")
         }
         tableView.deselectRow(at: indexPath, animated: false)
     }

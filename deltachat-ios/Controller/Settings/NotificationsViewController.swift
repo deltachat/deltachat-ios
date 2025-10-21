@@ -136,7 +136,7 @@ internal final class NotificationsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else { safe_fatalError(); return }
+        guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else { return assertionFailure() }
         tableView.deselectRow(at: indexPath, animated: false)
 
         switch cellTag {
