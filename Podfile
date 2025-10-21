@@ -15,6 +15,8 @@ target 'deltachat-ios' do
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :modular_headers => true
   pod 'MCEmojiPicker', :git => 'https://github.com/deltachat/MCEmojiPicker', :branch => 'main'
+  # Using the fork until memory leak fix is merged https://github.com/LottieFiles/dotlottie-ios/pull/89
+  pod 'dotLottie-iOS', :git => 'https://github.com/Amzd/dotlottie-ios', :branch => 'main'
 
 end
 

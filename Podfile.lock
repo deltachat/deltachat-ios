@@ -2,6 +2,7 @@ PODS:
   - CocoaLumberjack (3.8.5):
     - CocoaLumberjack/Core (= 3.8.5)
   - CocoaLumberjack/Core (3.8.5)
+  - dotLottie-iOS (0.8.0)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -32,6 +33,7 @@ PODS:
   - SwiftLint (0.57.1)
 
 DEPENDENCIES:
+  - dotLottie-iOS (from `https://github.com/Amzd/dotlottie-ios`, branch `main`)
   - MCEmojiPicker (from `https://github.com/deltachat/MCEmojiPicker`, branch `main`)
   - ReachabilitySwift
   - SCSiriWaveformView
@@ -56,17 +58,24 @@ SPEC REPOS:
     - SwiftLint
 
 EXTERNAL SOURCES:
+  dotLottie-iOS:
+    :branch: main
+    :git: https://github.com/Amzd/dotlottie-ios
   MCEmojiPicker:
     :branch: main
     :git: https://github.com/deltachat/MCEmojiPicker
 
 CHECKOUT OPTIONS:
+  dotLottie-iOS:
+    :commit: f58f8ec4686f5214951e2e6abbafb16bfa0dd06e
+    :git: https://github.com/Amzd/dotlottie-ios
   MCEmojiPicker:
     :commit: d9eb480883c0a46b8813b9fe1f4e00d4df1ad071
     :git: https://github.com/deltachat/MCEmojiPicker
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
+  dotLottie-iOS: 4a893c789ccac19d326bb22b4a72576c80f7c7c4
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   MCEmojiPicker: d24f72731881c05143870eefff52f586d493b982
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
@@ -78,6 +87,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 2f3558ca02842dcd3fd970360d2d4054bd21624a
   SwiftLint: 92196976e597b9afec5dbe374810103e6c1d9d7c
 
-PODFILE CHECKSUM: 2da95f11b974320ff49308be31714c4fd2efb4ac
+PODFILE CHECKSUM: 00dd34fa2c89bddd62058dcfa97a243e6bc09878
 
 COCOAPODS: 1.16.2

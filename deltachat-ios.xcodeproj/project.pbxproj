@@ -129,6 +129,7 @@
 		5F153E9A2CC38BAA00871ABE /* GiveBackMyFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */; };
 		5F4945AB2D315E7000DCD50A /* UIPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */; };
 		5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */; };
+		6421C97A2E86E836006C71F8 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 6421C9792E86E836006C71F8 /* Gzip */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		64F9EBA02E117CD8007EE3D9 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */; };
@@ -715,6 +716,7 @@
 			files = (
 				8A19190635E24C1DF7F0A35D /* Pods_deltachat_ios.framework in Frameworks */,
 				D89EC91A2D4BDEB800352298 /* PhotosUI.framework in Frameworks */,
+				6421C97A2E86E836006C71F8 /* Gzip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1339,8 +1341,6 @@
 				643B44782E0C2BD900AEE026 /* DcTests */,
 			);
 			name = DcTests;
-			packageProductDependencies = (
-			);
 			productName = DcTests;
 			productReference = 643B44772E0C2BD800AEE026 /* DcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1507,6 +1507,9 @@
 				et,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
+			packageReferences = (
+				6421C9782E86E836006C71F8 /* XCRemoteSwiftPackageReference "GzipSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7A9FB1411FB061E2001FEA36 /* Products */;
 			projectDirPath = "";
@@ -2725,6 +2728,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6421C9782E86E836006C71F8 /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6421C9792E86E836006C71F8 /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6421C9782E86E836006C71F8 /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7A9FB1381FB061E2001FEA36 /* Project object */;
 }

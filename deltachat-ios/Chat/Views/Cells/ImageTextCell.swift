@@ -1,7 +1,10 @@
 import Foundation
+import dotLottie
+import DotLottiePlayer
 import UIKit
 import DcCore
 import SDWebImage
+import Gzip
 
 class ImageTextCell: BaseMessageCell, ReusableCell {
 
@@ -21,6 +24,8 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         return imageView
     }()
     var contentImageIsPlaceholder: Bool = true
+    private var lottieURL: URL?
+    private lazy var lottieView: DotLottieAnimationView? = nil
 
     /// The play button view to display on video messages.
     open lazy var playButtonView: PlayButtonView = {
@@ -57,23 +62,59 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         topLabel.isHidden = msg.type == DC_MSG_STICKER
         contentImageIsPlaceholder = true
         tag = msg.id
+        playButtonView.isHidden = true
+        lottieURL = nil
+        lottieView?.isHidden = true
 
-        if let url = msg.fileURL,
-            msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF || msg.type == DC_MSG_STICKER {
-            contentImageView.sd_setImage(with: url,
-                                         placeholderImage: UIImage(color: UIColor.init(alpha: 0,
-                                                                                       red: 255,
-                                                                                       green: 255,
-                                                                                       blue: 255),
-                                                                   size: CGSize(width: 500, height: 500)))
+        if let url = msg.fileURL, msg.isLottieSticker() {
+            if lottieURL != url {
+                lottieURL = url
+                lottieView?.removeFromSuperview()
+                contentImageView.image = nil
+                DispatchQueue.global(qos: .userInitiated).async {
+                    let lottieFileData = try? Data(contentsOf: url).gunzipped()
+                    let size = lottieFileData.flatMap { try? JSONDecoder().decode(Size.self, from: $0) }
+                    let animation = lottieFileData.flatMap { DotLottieAnimation(lottieData: $0, config: .init(autoplay: true, loop: true)) }
+
+                    if let animation, let size {
+                        DispatchQueue.main.async { [self] in
+                            guard tag == msg.id else { return }
+                            let view: DotLottieAnimationView = animation.view()
+                            if #unavailable(iOS 17) {
+                                // There is a Metal view in here that somehow gets unflipped on iOS 16
+                                view.transform = CGAffineTransform(scaleX: 1, y: -1)
+                            }
+                            lottieView = view
+                            contentImageView.addSubview(view)
+                            view.fillSuperview()
+
+                            if msg.messageWidth == 0 || msg.messageHeight == 0 {
+                                msg.setLateFilingMediaSize(width: size.w, height: size.h, duration: 0)
+                            }
+                        }
+                    }
+                }
+                contentImageView.image = UIImage(color: .clear, size: CGSize(width: 200, height: 200))
+                setStickerAspectRatio(width: 200, height: 200)
+            }
+            a11yDcType = String.localized("gif")
+            lottieView?.isHidden = false
+        } else if let url = msg.fileURL,
+                  msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF || msg.type == DC_MSG_STICKER {
+            contentImageView.sd_setImage(with: url, placeholderImage: UIImage(
+                color: UIColor(alpha: 0, red: 255, green: 255, blue: 255),
+                size: CGSize(width: 500, height: 500)
+            ))
             contentImageIsPlaceholder = false
-            playButtonView.isHidden = true
             a11yDcType = msg.type == DC_MSG_GIF ? String.localized("gif") : String.localized("image")
             setAspectRatioFor(message: msg)
         } else if msg.type == DC_MSG_VIDEO, let url = msg.fileURL {
             playButtonView.isHidden = false
             a11yDcType = String.localized("video")
-            let placeholderImage = UIImage(color: UIColor.init(alpha: 0, red: 255, green: 255, blue: 255), size: CGSize(width: 250, height: 250))
+            let placeholderImage = UIImage(
+                color: UIColor(alpha: 0, red: 255, green: 255, blue: 255),
+                size: CGSize(width: 250, height: 250)
+            )
             contentImageView.image = placeholderImage
             DispatchQueue.global(qos: .userInteractive).async {
                 let thumbnailImage = DcUtils.generateThumbnailFromVideo(url: url)
@@ -155,13 +196,13 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
             height = (height / width) * minImageWidth
             width = minImageWidth
         }
-        
+
         // in some cases we show images in square sizes
         // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
         // it results in a good balance between message text width and image size
         let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
         var squareSize  = UIScreen.main.bounds.width * factor
-        
+
         if  height > width {
             // show square image for portrait images
             // reduce the image square size if there's no message text so that it fits best in the viewable area
@@ -201,8 +242,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
     private func setAspectRatioFor(message: DcMsg) {
         var width = message.messageWidth
         var height = message.messageHeight
-        if width == 0 || height == 0,
-           let image = message.image {
+        if width == 0 || height == 0, let image = message.image {
             width = image.size.width
             height = image.size.height
             message.setLateFilingMediaSize(width: width, height: height, duration: 0)
@@ -236,4 +276,9 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         contentImageIsPlaceholder = true
         tag = -1
     }
+}
+
+private struct Size: Codable {
+    let w: Double
+    let h: Double
 }
