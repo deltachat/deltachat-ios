@@ -81,7 +81,7 @@ class AutodelOverviewViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let cellTag = CellTags(rawValue: section) else {
-            safe_fatalError()
+            assertionFailure()
             return nil
         }
         if cellTag == .autodelServer && dcContext.getConfigInt("delete_server_after") != 0 {
@@ -92,8 +92,7 @@ class AutodelOverviewViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath), let cellTag = CellTags(rawValue: cell.tag) else {
-            safe_fatalError()
-            return
+            return assertionFailure()
         }
         tableView.deselectRow(at: indexPath, animated: false)
 
