@@ -161,7 +161,7 @@ class ChatListViewModel: NSObject {
     }
 
     func isMessageSearchResult(indexPath: IndexPath) -> Bool {
-        if searchActive {
+        if searchActive, searchResultSections.count > indexPath.section {
             switch searchResultSections[indexPath.section] {
             case .messages:
                 return true
