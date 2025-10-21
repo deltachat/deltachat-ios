@@ -7,7 +7,7 @@ public protocol ChatSearchDelegate: AnyObject {
 }
 
 public class ChatSearchAccessoryBar: UIView, InputItem {
-    public var inputBarAccessoryView: InputBarAccessoryView?
+    public weak var inputBarAccessoryView: InputBarAccessoryView?
     public var parentStackViewPosition: InputStackView.Position?
     public func textViewDidChangeAction(with textView: InputTextView) {}
     public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
