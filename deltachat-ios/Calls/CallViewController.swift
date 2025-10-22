@@ -33,6 +33,8 @@ class CallWindow: UIWindow {
     }
     
     func showCallUI(for call: DcCall) {
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = true
+
         if callViewController?.call.uuid != call.uuid {
             let new = CallViewController(call: call)
             rootViewController = new
@@ -42,6 +44,7 @@ class CallWindow: UIWindow {
     }
     
     func hideCallUI() {
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = false
         isHidden = true
     }
     
