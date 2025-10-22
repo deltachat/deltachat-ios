@@ -139,8 +139,29 @@ class CallViewController: UIViewController {
         view.addSubview(closeButton)
         closeButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         closeButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
+        logger.info("🤯!!!viewDidLoad")
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        logger.info("🤯!!!viewWillAppear")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        logger.info("🤯!!!viewDidAppear")
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        logger.info("🤯!!!viewWillDisappear")
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        logger.info("🤯!!!viewDidDisappear")
+    }
+
     @objc private func closeButtonPressed() {
         hangup()
     }
