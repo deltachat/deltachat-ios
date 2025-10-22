@@ -34,6 +34,7 @@ class CallWindow: UIWindow {
     
     func showCallUI(for call: DcCall) {
         (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = true
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.isUserInteractionEnabled = false
 
         if callViewController?.call.uuid != call.uuid {
             let new = CallViewController(call: call)
@@ -45,6 +46,7 @@ class CallWindow: UIWindow {
     
     func hideCallUI() {
         (UIApplication.shared.delegate as? AppDelegate)?.window?.isHidden = false
+        (UIApplication.shared.delegate as? AppDelegate)?.window?.isUserInteractionEnabled = true
         isHidden = true
     }
     
