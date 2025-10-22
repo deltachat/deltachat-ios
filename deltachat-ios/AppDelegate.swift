@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
-    var callWindow: CallWindow!
     var notifyToken: String?
     var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -126,7 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             fatalError("window was nil in app delegate")
         }
         window.backgroundColor = UIColor.systemBackground
-        callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
         relayHelper = RelayHelper.setup(dcAccounts.getSelected())
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)

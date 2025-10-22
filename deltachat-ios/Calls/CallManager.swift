@@ -77,7 +77,7 @@ class CallManager: NSObject {
             } else if let currentCall {
                 logger.info("☎️ call started to \(nameToDisplay)")
                 DispatchQueue.main.async {
-                    CallWindow.shared?.showCallUI(for: currentCall)
+                    CallWindow.sharedX?.showCallUI(for: currentCall)
                 }
             }
         }
@@ -142,7 +142,7 @@ class CallManager: NSObject {
         }
 
         DispatchQueue.main.async {
-            CallWindow.shared?.hideCallUIAndSetRoot()
+            CallWindow.sharedX?.hideCallUIAndSetRoot()
         }
     }
 
@@ -152,7 +152,7 @@ class CallManager: NSObject {
         endCallController(uuid: currentCall.uuid)
 
         DispatchQueue.main.async {
-            CallWindow.shared?.hideCallUIAndSetRoot()
+            CallWindow.sharedX?.hideCallUIAndSetRoot()
         }
     }
 
@@ -193,7 +193,7 @@ extension CallManager: CXProviderDelegate {
         logger.info("☎️ call accepted pressed")
         if let currentCall {
             DispatchQueue.main.async {
-                CallWindow.shared?.showCallUI(for: currentCall)
+                CallWindow.sharedX?.showCallUI(for: currentCall)
             }
         }
         action.fulfill()

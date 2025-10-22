@@ -2,9 +2,14 @@ import DcCore
 import UIKit
 import WebKit
 
+var thisCallWindow: CallWindow?
+
 class CallWindow: UIWindow {
-    static var shared: CallWindow? {
-        (UIApplication.shared.delegate as? AppDelegate)?.callWindow
+    static var sharedX: CallWindow? {
+        if thisCallWindow == nil {
+            thisCallWindow = CallWindow(frame: UIScreen.main.bounds)
+        }
+        return thisCallWindow
     }
     
     private weak var callViewController: CallViewController?
