@@ -76,9 +76,9 @@ class CallManager: NSObject {
                 logger.error("☎️ failed to start call: \(error.localizedDescription)")
             } else if let currentCall {
                 logger.info("☎️ call started to \(nameToDisplay)")
-                DispatchQueue.main.async {
+                //DispatchQueue.main.async {
                     CallWindow.sharedX?.showCallUI(for: currentCall)
-                }
+                //}
             }
         }
     }
@@ -192,9 +192,9 @@ extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("☎️ call accepted pressed")
         if let currentCall {
-            DispatchQueue.main.async {
+            //DispatchQueue.main.async {
                 CallWindow.sharedX?.showCallUI(for: currentCall)
-            }
+            //}
         }
         action.fulfill()
     }
