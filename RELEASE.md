@@ -73,8 +73,7 @@ on https://appstoreconnect.apple.com :
    d) make sure, the credentials for the apple-review-team are working
    e) select "Release update over 7-day period using phased release"
    f) click on "Save" and then "Add for Review"
-   g) on the "Confirm Submission" page, another time "Submit to App Review"
-   the overview must read for the new version "Waiting for Review" afterwards
+   g) in the "Draft Submission" dialog, hit "Submit for Review" another time
 
    final state should be "Waiting for Review" - if it is only "Ready for Review",
    watch out for some additional alerts.
