@@ -140,7 +140,12 @@ class CallViewController: UIViewController {
         closeButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         closeButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
     }
-    
+
+    deinit {
+        // This makes sure the webview relinquishes camera and microphone
+        webView.load(URLRequest(url: URL(string: "about:blank")!))
+    }
+
     @objc private func closeButtonPressed() {
         hangup()
     }
