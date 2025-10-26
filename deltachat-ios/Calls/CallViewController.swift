@@ -90,6 +90,11 @@ class CallViewController: UIViewController {
     lazy var webView: WKWebView = {
         let webView = WKWebView(frame: view.frame, configuration: config)
         webView.uiDelegate = self
+        #if DEBUG
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
+        #endif
         return webView
     }()
     
