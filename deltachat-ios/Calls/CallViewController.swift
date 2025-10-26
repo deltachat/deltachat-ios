@@ -127,7 +127,7 @@ class CallViewController: UIViewController {
             fileComponents.percentEncodedFragment = "startCall"
         case .incoming:
             if let placeCallInfo = call.placeCallInfo {
-                fileComponents.percentEncodedFragment = "acceptCall=" + CallViewController.toBase64ValuePercentEncoded(placeCallInfo)
+                fileComponents.percentEncodedFragment = "acceptCall=" + placeCallInfo.toBase64PercentEncoded()
             } else {
                 logger.error("placeCallInfo missing for acceptCall")
             }
@@ -154,17 +154,9 @@ class CallViewController: UIViewController {
         }
     }
 
-    func setWebviewFragment(fragment: String) {
+    func setWebviewFragment(_ fragment: String) {
         let js = "window.location.hash = '#\(fragment)';"
         webView.evaluateJavaScript(js, completionHandler: nil)
-    }
-
-    private static func toBase64ValuePercentEncoded(_ input: String) -> String {
-        guard let data = input.data(using: .utf8) else { return "" }
-        let base64 = data.base64EncodedString()
-        let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "="))
-        guard let percentEncoded = base64.addingPercentEncoding(withAllowedCharacters: allowedChars) else { return "" }
-        return percentEncoded
     }
 
     // MARK: - Notifications
@@ -176,7 +168,7 @@ class CallViewController: UIViewController {
         guard let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.setWebviewFragment(fragment: "onAnswer=" + CallViewController.toBase64ValuePercentEncoded(acceptCallInfo))
+            self?.setWebviewFragment("onAnswer=" + acceptCallInfo.toBase64PercentEncoded())
         }
     }
 }
@@ -214,5 +206,14 @@ extension CallViewController: WKScriptMessageHandler {
         default:
             logger.error("errMessageHandler: \(message.name)")
         }
+    }
+}
+
+private extension String {
+    func toBase64PercentEncoded() -> String {
+        guard let data = data(using: .utf8) else { return "" }
+        let base64 = data.base64EncodedString()
+        let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "="))
+        return base64.addingPercentEncoding(withAllowedCharacters: allowedChars) ?? ""
     }
 }
