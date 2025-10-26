@@ -108,7 +108,7 @@ class CallViewController: UIViewController {
     init(call: DcCall) {
         self.call = call
         super.init(nibName: nil, bundle: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CallViewController.handleOutgoingCallAcceptedEvent(_:)), name: Event.outgoingCallAccepted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOutgoingCallAcceptedEvent), name: Event.outgoingCallAccepted, object: nil)
     }
 
     required init?(coder: NSCoder) {
