@@ -181,6 +181,12 @@ class CallViewController: UIViewController {
 extension CallViewController: WKUIDelegate {
     @available(iOS 15.0, *) func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping @MainActor (WKPermissionDecision) -> Void) {
         decisionHandler(.grant)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if webView.cameraCaptureState == .muted {
+                webView.setMicrophoneCaptureState(.active)
+                webView.setCameraCaptureState(.active)
+            }
+        }
     }
 }
 
