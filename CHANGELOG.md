@@ -1,17 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v2.22.0 "More Twos Than Usual" Testflight Release
-2025-10
-
-- Support TLS 1.3 session resumption
-- Fix: Do not let blocked and unaccepted contact ring the recipients device
-- Fix avatar color in vcards
-- Fix removing Exif data from corrupted images
-- Update translations and local help
-- Update to core v2.22.0
-
-
-## v2.20.0 Testflight
+## v2.22.1
 2025-10
 
 - Disappearing messages options range from 5 minutes to 1 year now
@@ -24,14 +13,17 @@
 - User colors get a more consistent appearance
 - Create user colors based on cryptographic identity instead of address
 - Withdraw all QR codes when one QR code is withdrawn
-- Experimental "Debug Calls" option replaces "Videochat Invitation" experiment
+- Support TLS 1.3 session resumption
+- Fix: Do not let blocked and unaccepted contact ring the recipients device
+- Fix avatar color in vcards
+- Fix removing Exif data from corrupted images
 - Fix: Make calendar files available as an attachment
 - Fix transparency of larger stickers
 - Fix: do not show letter icon for partially downloaded messages
 - Fix: notifications now show up while the app is inactive in foreground (eg when in the app switcher)
 - Fix group creation and verification issues
 - Update translations and local help
-- Update to core v2.20.0
+- Update to core v2.22.0
 
 
 ## v2.11.0
