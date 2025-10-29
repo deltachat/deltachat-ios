@@ -15,7 +15,7 @@ class TextMessageCell: BaseMessageCell, ReusableCell {
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         if msg.type == DC_MSG_CALL {
-            msg.text = "📞 " + (msg.text ?? "")
+            msg.text = "📞 " + (msg.text ?? "") + " - Use Testflight to debug calls"
         }
 
         messageLabel.text = msg.text

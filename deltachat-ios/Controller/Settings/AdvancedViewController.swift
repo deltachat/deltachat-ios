@@ -155,24 +155,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    lazy var callsCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: "Debug Calls",
-            on: UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
-            action: { cell in
-                UserDefaults.standard.set(cell.isOn, forKey: "pref_calls_enabled")
-                if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for helping to debug 🧪 \"Calls\"!",
-                        message: "You can now debug calls using the phone-icon in one-to-one-chats\n\n"
-                               + "The experiment is about making decentralised calls work and reliable at all, not about options or UI. "
-                               + "We're happy about focused feedback at support.delta.chat",
-                        preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
-                }
-        })
-    }()
-
     lazy var locationStreamingCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_on_demand_location_streaming"),
@@ -216,7 +198,7 @@ internal final class AdvancedViewController: UITableViewController {
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [broadcastListsCell, callsCell, locationStreamingCell])
+            cells: [broadcastListsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
             let encryptionSection = SectionConfigs(

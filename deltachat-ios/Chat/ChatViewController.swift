@@ -6,7 +6,6 @@ import AVFoundation
 import DcCore
 import SDWebImage
 import Combine
-import CallKit
 
 class ChatViewController: UITableViewController, UITableViewDropDelegate {
     public let chatId: Int
@@ -860,12 +859,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             if !dcChat.isSelfTalk {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
-
-                if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
-                   let dcContact, dcContact.isKeyContact {
-                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
-                    rightBarButtonItems.append(button)
-                }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
                 rightBarButtonItems.append(button)
@@ -1166,10 +1159,6 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     @objc private func appsAndMediaPressed() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
-    }
-
-    @objc private func callPressed() {
-        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
