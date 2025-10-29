@@ -90,6 +90,11 @@ class CallViewController: UIViewController {
     lazy var webView: WKWebView = {
         let webView = WKWebView(frame: view.frame, configuration: config)
         webView.uiDelegate = self
+        #if DEBUG
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
+        #endif
         return webView
     }()
     
@@ -103,7 +108,7 @@ class CallViewController: UIViewController {
     init(call: DcCall) {
         self.call = call
         super.init(nibName: nil, bundle: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CallViewController.handleOutgoingCallAcceptedEvent(_:)), name: Event.outgoingCallAccepted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleOutgoingCallAcceptedEvent), name: Event.outgoingCallAccepted, object: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -122,7 +127,7 @@ class CallViewController: UIViewController {
             fileComponents.percentEncodedFragment = "startCall"
         case .incoming:
             if let placeCallInfo = call.placeCallInfo {
-                fileComponents.percentEncodedFragment = "acceptCall=" + CallViewController.toBase64ValuePercentEncoded(placeCallInfo)
+                fileComponents.percentEncodedFragment = "acceptCall=" + placeCallInfo.toBase64PercentEncoded()
             } else {
                 logger.error("placeCallInfo missing for acceptCall")
             }
@@ -135,7 +140,12 @@ class CallViewController: UIViewController {
         closeButton.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
         closeButton.alignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 10)
     }
-    
+
+    deinit {
+        // This makes sure the webview relinquishes camera and microphone
+        webView.load(URLRequest(url: URL(string: "about:blank")!))
+    }
+
     @objc private func closeButtonPressed() {
         hangup()
     }
@@ -149,17 +159,9 @@ class CallViewController: UIViewController {
         }
     }
 
-    func setWebviewFragment(fragment: String) {
+    func setWebviewFragment(_ fragment: String) {
         let js = "window.location.hash = '#\(fragment)';"
         webView.evaluateJavaScript(js, completionHandler: nil)
-    }
-
-    private static func toBase64ValuePercentEncoded(_ input: String) -> String {
-        guard let data = input.data(using: .utf8) else { return "" }
-        let base64 = data.base64EncodedString()
-        let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "="))
-        guard let percentEncoded = base64.addingPercentEncoding(withAllowedCharacters: allowedChars) else { return "" }
-        return percentEncoded
     }
 
     // MARK: - Notifications
@@ -171,7 +173,7 @@ class CallViewController: UIViewController {
         guard let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
         DispatchQueue.main.async { [weak self] in
-            self?.setWebviewFragment(fragment: "onAnswer=" + CallViewController.toBase64ValuePercentEncoded(acceptCallInfo))
+            self?.setWebviewFragment("onAnswer=" + acceptCallInfo.toBase64PercentEncoded())
         }
     }
 }
@@ -179,6 +181,12 @@ class CallViewController: UIViewController {
 extension CallViewController: WKUIDelegate {
     @available(iOS 15.0, *) func webView(_ webView: WKWebView, requestMediaCapturePermissionFor origin: WKSecurityOrigin, initiatedByFrame frame: WKFrameInfo, type: WKMediaCaptureType, decisionHandler: @escaping @MainActor (WKPermissionDecision) -> Void) {
         decisionHandler(.grant)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if webView.cameraCaptureState == .muted {
+                webView.setMicrophoneCaptureState(.active)
+                webView.setCameraCaptureState(.active)
+            }
+        }
     }
 }
 
@@ -209,5 +217,14 @@ extension CallViewController: WKScriptMessageHandler {
         default:
             logger.error("errMessageHandler: \(message.name)")
         }
+    }
+}
+
+private extension String {
+    func toBase64PercentEncoded() -> String {
+        guard let data = data(using: .utf8) else { return "" }
+        let base64 = data.base64EncodedString()
+        let allowedChars = CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "="))
+        return base64.addingPercentEncoding(withAllowedCharacters: allowedChars) ?? ""
     }
 }
