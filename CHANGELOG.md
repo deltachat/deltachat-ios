@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Update chatmail relay list
+
+
 ## v2.22.1
 2025-10
 

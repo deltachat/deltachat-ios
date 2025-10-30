@@ -176,7 +176,7 @@ class InstantOnboardingViewController: UIViewController {
 
             self?.storeImageAndName()
 
-            guard let url = URL(string: "https://delta.chat/en/chatmail") else { return }
+            guard let url = URL(string: "https://chatmail.at/relays") else { return }
 
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
