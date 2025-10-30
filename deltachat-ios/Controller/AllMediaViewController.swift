@@ -24,13 +24,14 @@ class AllMediaViewController: UIPageViewController {
             type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
         ),
         Page(
+            headerTitle: String.localized("audio"),
+            type1: DC_MSG_AUDIO, type2: DC_MSG_VOICE, type3: 0
+        ),
+        Page(
             headerTitle: String.localized("files"),
             type1: DC_MSG_FILE, type2: 0, type3: 0
         ),
-        Page(
-            headerTitle: String.localized("audio"),
-            type1: DC_MSG_AUDIO, type2: DC_MSG_VOICE, type3: 0
-        )]
+    ]
 
     private lazy var segmentControl: UISegmentedControl = {
         let control = UISegmentedControl(items: pages.map({$0.headerTitle}))
