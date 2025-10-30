@@ -72,7 +72,6 @@ class ChatListViewController: UITableViewController {
 
     private lazy var accountButtonAvatar: InitialsBadge = {
         let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
-        badge.setLabelFont(UIFont.systemFont(ofSize: 14))
         badge.accessibilityTraits = .button
         let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
         badge.addGestureRecognizer(tapGestureRecognizer)

@@ -114,10 +114,6 @@ public class InitialsBadge: UIView {
         imageView.isHidden = !name.isEmpty
     }
 
-    public func setLabelFont(_ font: UIFont) {
-        label.font = font
-    }
-
     public func setImage(_ image: UIImage?) {
         self.imageView.image = image
         self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
