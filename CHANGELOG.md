@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Streamline 'All media' view width desktop and android
 - Update chatmail relay list
 
 
