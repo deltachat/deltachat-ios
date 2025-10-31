@@ -58,15 +58,6 @@ internal final class AdvancedViewController: UITableViewController {
         return cell
     }()
 
-    lazy var sentboxWatchCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_watch_sent_folder"),
-            on: dcContext.getConfigBool("sentbox_watch"),
-            action: { cell in
-                self.dcContext.setConfigBool("sentbox_watch", cell.isOn)
-        })
-    }()
-
     lazy var sendCopyToSelfCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_send_copy_to_self"),
@@ -240,7 +231,7 @@ internal final class AdvancedViewController: UITableViewController {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, sentboxWatchCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
             return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
         }
     }()
