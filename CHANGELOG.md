@@ -4,6 +4,7 @@
 
 - Streamline 'All media' view width desktop and android
 - Update chatmail relay list
+- Fix: Unify font of lettered avatars
 
 
 ## v2.22.1
