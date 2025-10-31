@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.22.2 Testflight
 
 - Streamline 'All media' view width desktop and android
 - Update chatmail relay list
