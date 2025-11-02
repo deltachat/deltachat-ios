@@ -57,6 +57,8 @@ struct Provider: TimelineProvider {
                 switch entry.type {
                 case .app(let messageId):
                     let msg = dcContext.getMessage(id: messageId)
+                    if !msg.isValid { return nil }
+                    
                     let name = msg.getWebxdcAppName()
                     let image = msg.getWebxdcPreviewImage()
 
@@ -72,6 +74,8 @@ struct Provider: TimelineProvider {
 
                 case .chat(let chatId):
                     let chat = dcContext.getChat(chatId: chatId)
+                    if !chat.isValid { return nil }
+                    
                     let title = chat.name
                     let image = chat.profileImage
                     let color = chat.color
