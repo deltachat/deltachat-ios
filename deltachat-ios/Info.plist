@@ -113,5 +113,7 @@
 	<string>Delta Chat uses Face ID to protect your local profile, backup creation and second device setup.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
