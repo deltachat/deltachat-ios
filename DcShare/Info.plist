@@ -48,5 +48,7 @@ ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url"
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
