@@ -10,7 +10,7 @@ struct DcShortcutWidgetView: View {
             Text(String.localized("shortcuts_widget_description"))
         } else {
             let rows = [GridItem(.fixed(56)), GridItem(.fixed(56))]
-            LazyHGrid(rows: rows) {
+            let content = LazyHGrid(rows: rows) {
                 ForEach(entry.shortcuts) { shortcut in
                     switch shortcut {
                     case .app(let app):
@@ -19,6 +19,17 @@ struct DcShortcutWidgetView: View {
                         ChatShortcutView(chat: chat)
                     }
                 }
+            }
+            if #available(iOS 18.0, *) {
+                ZStack {
+                    Button(intent: DummyIntent()) {
+                        Color.clear.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }.buttonStyle(PlainButtonStyle())
+                    .accessibilityHidden(true)
+                    content
+                }
+            } else {
+                content
             }
         }
     }

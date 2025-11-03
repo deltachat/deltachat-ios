@@ -1336,8 +1336,6 @@
 				643B44782E0C2BD900AEE026 /* DcTests */,
 			);
 			name = DcTests;
-			packageProductDependencies = (
-			);
 			productName = DcTests;
 			productReference = 643B44772E0C2BD800AEE026 /* DcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1605,13 +1603,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
