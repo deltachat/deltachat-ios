@@ -74,7 +74,7 @@ struct Provider: TimelineProvider {
 
                 case .chat(let chatId):
                     let chat = dcContext.getChat(chatId: chatId)
-                    if !chat.isValid { return nil }
+                    guard chat.isValid else { return nil }
                     
                     let title = chat.name
                     let image = chat.profileImage
