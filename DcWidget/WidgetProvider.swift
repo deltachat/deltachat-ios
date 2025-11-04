@@ -57,7 +57,7 @@ struct Provider: TimelineProvider {
                 switch entry.type {
                 case .app(let messageId):
                     let msg = dcContext.getMessage(id: messageId)
-                    if !msg.isValid { return nil }
+                    guard msg.isValid else { return nil }
                     
                     let name = msg.getWebxdcAppName()
                     let image = msg.getWebxdcPreviewImage()
