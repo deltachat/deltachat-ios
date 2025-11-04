@@ -10,9 +10,8 @@ jobs:
         with:
           submodules: true
           show-progress: false
-      - run: sudo xcode-select --switch /Applications/Xcode_16.4.app/Contents/Developer
-      - run: xcrun simctl list devices
+      - run: sudo xcode-select --switch /Applications/Xcode_26.1.app/Contents/Developer
       - run: cargo install cargo-lipo
       - run: pod install
-      - run: xcodebuild -downloadPlatform iOS 18.6
-      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,OS=18.6,name=iPhone SE (3rd generation)" test | xcbeautify --renderer github-actions
+      - run: xcodebuild -downloadPlatform iOS
+      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=18.6" test | xcbeautify --renderer github-actions
