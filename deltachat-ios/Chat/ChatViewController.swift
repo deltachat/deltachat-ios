@@ -758,6 +758,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             didTapVcard(msg: message)
         case (DC_MSG_WEBXDC, _):
             showWebxdcViewFor(message: message)
+        case (DC_MSG_CALL, _):
+            CallManager.shared.answerIncomingCall(forMessage: messageId, chatId: chatId, contextId: dcContext.id)
         case (_, DC_INFO_WEBXDC_INFO_MESSAGE):
             if let parent = message.parent {
                 showWebxdcViewFor(message: parent, href: message.getWebxdcHref())

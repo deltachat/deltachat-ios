@@ -86,6 +86,9 @@ class NotificationService: UNNotificationServiceExtension {
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
                 if #available(iOSApplicationExtension 14.5, *) {
+                    // From our app review:
+                    // "Voice over Internet Protocol (VoIP) call functionality continues to be allowed in China but can no longer take advantage of CallKit’s intuitive look and feel."
+                    // This API does not take advantage of CallKit's "look and feel", it just transmits a payload to the main app process, so it is fine to use in China.
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
                         "event_id": Int(DC_EVENT_INCOMING_CALL),

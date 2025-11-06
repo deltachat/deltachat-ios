@@ -1,4 +1,5 @@
 import CallKit
+import UserNotifications
 import DcCore
 
 let canVideoCalls = true
@@ -36,6 +37,7 @@ class CallManager: NSObject {
     private let callController: CXCallController
     private let callObserver: CXCallObserver
     private var currentCall: DcCall?
+    private let canUseCallKit = false
 
     override init() {
         voIPPushManager = VoIPPushManager()
@@ -65,20 +67,26 @@ class CallManager: NSObject {
         let uuid = UUID()
         currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, uuid: uuid, direction: .outgoing)
 
-        let nameToDisplay = dcChat.name
-        let handle = CXHandle(type: .generic, value: nameToDisplay)
-        let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-        startCallAction.isVideo = canVideoCalls
+        if canUseCallKit {
+            let nameToDisplay = dcChat.name
+            let handle = CXHandle(type: .generic, value: nameToDisplay)
+            let startCallAction = CXStartCallAction(call: uuid, handle: handle)
+            startCallAction.isVideo = canVideoCalls
 
-        let transaction = CXTransaction(action: startCallAction)
-        callController.request(transaction) { [currentCall] error in
-            if let error {
-                logger.error("☎️ failed to start call: \(error.localizedDescription)")
-            } else if let currentCall {
-                logger.info("☎️ call started to \(nameToDisplay)")
-                DispatchQueue.main.async {
-                    CallWindow.shared?.showCallUI(for: currentCall)
+            let transaction = CXTransaction(action: startCallAction)
+            callController.request(transaction) { [currentCall] error in
+                if let error {
+                    logger.error("☎️ failed to start call: \(error.localizedDescription)")
+                } else if let currentCall {
+                    logger.info("☎️ call started to \(nameToDisplay)")
+                    DispatchQueue.main.async {
+                        CallWindow.shared?.showCallUI(for: currentCall)
+                    }
                 }
+            }
+        } else if let currentCall {
+            DispatchQueue.main.async {
+                CallWindow.shared?.showCallUI(for: currentCall)
             }
         }
     }
@@ -102,17 +110,30 @@ class CallManager: NSObject {
         let uuid = UUID()
         currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, messageId: msgId, placeCallInfo: placeCallInfo)
 
-        let update = CXCallUpdate()
-        update.remoteHandle = CXHandle(type: .generic, value: name)
-        update.supportsHolding = false
-        update.supportsGrouping = false
-        update.supportsUngrouping = false
-        update.supportsDTMF = false
-        update.hasVideo = canVideoCalls
+        if canUseCallKit {
+            let update = CXCallUpdate()
+            update.remoteHandle = CXHandle(type: .generic, value: name)
+            update.supportsHolding = false
+            update.supportsGrouping = false
+            update.supportsUngrouping = false
+            update.supportsDTMF = false
+            update.hasVideo = canVideoCalls
 
-        provider.reportNewIncomingCall(with: uuid, update: update) { error in
-            if let error {
-                logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
+            provider.reportNewIncomingCall(with: uuid, update: update) { error in
+                if let error {
+                    logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
+                }
+            }
+        } else {
+            let content = UNMutableNotificationContent(
+                forIncomingCall: uuid,
+                msg: dcMsg,
+                chat: dcChat,
+                context: dcContext
+            )
+            if let content {
+                let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
         }
     }
@@ -122,11 +143,17 @@ class CallManager: NSObject {
               let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
 
-        if let currentCall, !currentCall.callAcceptedHere, currentCall.contextId == accountId, currentCall.messageId == msgId {
-            logger.info("☎️ incoming call accepted on other device")
-            let uuid = currentCall.uuid
-            self.currentCall = nil  // avoid dcContext.endCall() being called
-            endCallController(uuid: uuid)
+        if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            if !currentCall.callAcceptedHere {
+                logger.info("☎️ incoming call accepted on other device")
+                let uuid = currentCall.uuid
+                self.currentCall = nil  // avoid dcContext.endCall() being called
+                endCallController(uuid: uuid)
+            }
+
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [
+                "incoming-call"
+            ])
         }
     }
 
@@ -137,13 +164,34 @@ class CallManager: NSObject {
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCallController(uuid: currentCall.uuid)
+            if !currentCall.callAcceptedHere, !canUseCallKit {
+                // missed? idk if it is correct to assume missed call here
+                let dcContext = DcAccounts.shared.get(id: accountId)
+                let dcMsg = dcContext.getMessage(id: msgId)
+                let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
+                let content = UNMutableNotificationContent(
+                    forMissedCall: currentCall.uuid,
+                    msg: dcMsg,
+                    chat: dcChat,
+                    context: dcContext
+                )
+                if let content {
+                    let id = "missed-call-" + currentCall.uuid.uuidString
+                    let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                }
+            }
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
 
         DispatchQueue.main.async {
-            CallWindow.shared?.hideCallUIAndSetRoot()
+            CallWindow.shared?.quitCallUI()
         }
+
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [
+            "incoming-call"
+        ])
     }
 
     func endCallControllerAndHideUI() {
@@ -152,7 +200,7 @@ class CallManager: NSObject {
         endCallController(uuid: currentCall.uuid)
 
         DispatchQueue.main.async {
-            CallWindow.shared?.hideCallUIAndSetRoot()
+            CallWindow.shared?.quitCallUI()
         }
     }
 
@@ -165,36 +213,58 @@ class CallManager: NSObject {
     }
 
     private func endCallController(uuid: UUID) {
-        let endCallAction = CXEndCallAction(call: uuid)
-        let transaction = CXTransaction(action: endCallAction)
+        if canUseCallKit {
+            let endCallAction = CXEndCallAction(call: uuid)
+            let transaction = CXTransaction(action: endCallAction)
 
-        // requesting CXEndCallAction will result in provider(CXEndCallAction) being called below, which results in dcContext.endCall() for valid objects
-        callController.request(transaction) { error in
-            if let error {
-                logger.info("☎️ error ending call: \(error.localizedDescription)")
-            } else {
-                logger.info("☎️ call ended successfully")
+            // requesting CXEndCallAction will result in provider(CXEndCallAction) being called below, which results in dcContext.endCall() for valid objects
+            callController.request(transaction) { error in
+                if let error {
+                    logger.info("☎️ error ending call: \(error.localizedDescription)")
+                } else {
+                    logger.info("☎️ call ended successfully")
+                }
             }
+        } else if let currentCall, let messageId = currentCall.messageId {
+            let dcContext = DcAccounts.shared.get(id: currentCall.contextId)
+            self.currentCall = nil
+            dcContext.endCall(msgId: messageId)
         }
     }
 
     func isCalling() -> Bool {
-        for call in callObserver.calls {
-            if !call.hasEnded {
-                return true
+        if canUseCallKit {
+            for call in callObserver.calls {
+                if !call.hasEnded {
+                    return true
+                }
             }
+            return false
+        } else {
+            return currentCall != nil
         }
-        return false
+    }
+
+
+    func answerIncomingCall(withUUID uuid: UUID) {
+        guard currentCall?.uuid == uuid else { return }
+        answerIncomingCall()
+    }
+    func answerIncomingCall(forMessage msgId: Int, chatId: Int, contextId: Int) {
+        guard currentCall?.messageId == msgId, currentCall?.chatId == chatId, currentCall?.contextId == contextId else { return }
+        answerIncomingCall()
+    }
+    func answerIncomingCall() {
+        guard let currentCall else { return }
+        CallWindow.shared?.showCallUI(for: currentCall)
     }
 }
 
 extension CallManager: CXProviderDelegate {
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         logger.info("☎️ call accepted pressed")
-        if let currentCall {
-            DispatchQueue.main.async {
-                CallWindow.shared?.showCallUI(for: currentCall)
-            }
+        DispatchQueue.main.async {
+            CallManager.shared.answerIncomingCall()
         }
         action.fulfill()
     }

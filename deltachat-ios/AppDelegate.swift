@@ -531,7 +531,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // This method will be called if an incoming message was received while the app was in foreground.
     // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        if appIsInForeground() { // This is necessary as this function is called when in app switcher
+        // The foreground check is necessary as this function is called when in app switcher
+        if appIsInForeground(), notification.request.content.userInfo["answer_call"] == nil {
             logger.info("Notifications: foreground notification")
             completionHandler([.badge])
         } else {
@@ -558,6 +559,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 appCoordinator.showTab(index: appCoordinator.chatsTab)
             } else if let chatId = userInfo["chat_id"] as? Int, !appCoordinator.isShowingChat(chatId: chatId) {
                 appCoordinator.showChat(chatId: chatId, msgId: userInfo["message_id"] as? Int, animated: false, clearViewControllerStack: true)
+            }
+            if let call = userInfo["answer_call"] as? String, let uuid = UUID(uuidString: call) {
+                CallManager.shared.answerIncomingCall(withUUID: uuid)
             }
         }
 

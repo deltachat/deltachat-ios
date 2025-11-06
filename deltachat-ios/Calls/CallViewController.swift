@@ -39,8 +39,8 @@ class CallWindow: UIWindow {
     func hideCallUI() {
         isHidden = true
     }
-    
-    func hideCallUIAndSetRoot() {
+
+    func quitCallUI() {
         hideCallUI()
         rootViewController = UIViewController()
     }
