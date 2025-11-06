@@ -183,30 +183,6 @@
 "share_location_for_two_hours" = "بۆ ماوەی 2 کاتژمێر";
 "share_location_for_six_hours" = "بۆ ماوەی 6 کاتژمێر";
 "file_saved_to" = "پەڕگەکە پاشەکەوت کرا لە \"%1$@\".";
-// deprecated
-"videochat" = "وتووێژی ڤیدیۆیی";
-// deprecated
-"videochat_invite_user_to_videochat" = "بانگهێشتی %1$@ دەکەی بۆ وتووێژی ڤیدیۆیی؟";
-// deprecated
-"videochat_invite_user_hint" = "نەرمامێر یان وێبگەڕێکی گونجاو، لەلایەن هەردووکتانەوە، پێویستە.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ بانگێشت کرا بۆ وتووێژی ڤیدیۆیی.";
-// deprecated
-"videochat_you_invited_hint" = "بانگهێشت کراوی بۆ وتووێژێکی ڤیدیۆیی";
-// deprecated
-"videochat_tap_to_join" = "بۆ بەشدار بوون کرتە بکە.";
-// deprecated
-"videochat_tap_to_open" = "بۆ کردنەوە کرتە بکە.";
-// deprecated
-"videochat_instance" = "نموونەی وتووێژی ڤیدیۆیی";
-// deprecated
-"videochat_instance_placeholder" = "نموونەی وتووێژی ڤیدیۆییەکەت";
-// deprecated
-"videochat_instance_from_qr" = "%1$@ بەکار دەهێنی بۆ بانگهێشتی کەسانی دیکە بۆ وتووێژی ڤیدیۆیی؟\n\n بەم چەشنە، دەتوانیت لە هەموو وتووێژێکی دووقۆڵیدا وتووێژێکی ڤیدیۆیی دەستپێبکەیت. ئەمە جێگای ڕێکخستنەکانی پێشووتر، لەسەر وتووێژی ڤیدیۆیی، دەگرێتەوە. ئەگەر ڕێکخستنێک بووبێت.";
-// deprecated
-"videochat_invitation" = "بانگهێشتی وتووێژی ڤیدیۆیی";
-// deprecated
-"videochat_invitation_body" = "تۆ بانگهێشت کراوی بۆ وتووێژێکی ڤیدیۆیی، بۆ بەشدار بوون لەسەر %1$@ کرتە بکە.";
 "ask_forward" = "ئەو پەیامانە دەنێریت بۆ %1$@؟";
 "ask_forward_multiple" = "ئەو پەیامانە دەنێریت بۆ نێو %1$dوتووێژ؟";
 "ask_export_attachment" = "پێوەلکاوەکە هەناردە دەکەیت؟ هەناردەکردنی پێوەلکاوەکان وادەکات نەرمامێرەکانی دیکەی سەر مۆبایلەکەت بتوانن دەستیان بەو بەڵگە هەناردەکراوە بگات.\n\n بەردەوام دەبیت؟";
@@ -222,7 +198,6 @@
 "contacts_title" = "بەردەنگەکان";
 "contacts_enter_name_or_email" = "ناو یان ئیمەیل بنووسە";
 "contacts_type_email_above" = "ئیمەیلەکە لە سەرەوە بنووسە";
-"contacts_empty_hint" = "هیچ بەردەنگێک نییە";
 // chatlist and chat view
 "chat_archived_chats_title" = "وتووێژە ئەرشیڤکراوەکان";
 "chat_please_enter_message" = "تکایە پەیامێک بنووسە";
@@ -245,8 +220,6 @@
 // Should match "Saved" from "Saved messages"
 "saved" = "پاشەکەوت کرا";
 "retry_send" = "دیسان هەوڵ بدەوە بۆ هەناردنی پەیامەکە";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "تۆ ناتوانیت لێرە بنووسیت چونکە لەم کۆڕەدا بەشدار نیت. بۆ بەشدار بوون لە ئەندامێکی کۆڕەکە داوابکە بەشدارت بکات.";
 "cannot_display_unsuported_file_type" = "ئەم چەشنە پەڕگەیە پیشان نادرێت: %1$@";
 "attachment_failed_to_load" = "پێوەلکاوەکە دانەگیرا";
 // mailing lists
@@ -280,9 +253,13 @@
 "media_preview" = "پێشدیتنی ڕەنگاڵە";
 "send_message" = "پەیام بنێرە";
 "login_title" = "بچۆ ژوورەوە";
+// deprecated
 "login_header" = "بچۆ ژوورەوە بۆ سێرڤێرەکەی خۆت";
+// deprecated
 "login_explain" = "بچۆ ژوورەوە بە ناونیشانی ئیمەیلێکەوە";
+// deprecated
 "login_subheader" = "بۆ دابینکەرە ناسراوەکانی ئیمەیلەکان، ڕێکخستنە زیادییەکان خۆکارانە ڕێکدەخرێن. هەندێجار دەبێت IMAP لەنێو ڕێکخستنەکانی وێبدا چالاک بکرێنەوە. بۆ ڕێنمایی وەرگرتن، لەگەڵ دابینکەری ئیمەیلەکەتان یان هاوڕێکانتان ڕاوێژ بکەن.";
+// deprecated
 "login_no_servers_hint" = "دێڵتاچات هیچ سێرڤەرێکی نییە، داتاکانتان لەسەر ئامرێکەتان دەمێنێتەوە.";
 "login_inbox" = "هاتنگە";
 "login_imap_login" = "ناوی چوونەژوورەوەی IMAP";
@@ -295,7 +272,9 @@
 "login_smtp_server" = "سێرڤەری SMTP";
 "login_smtp_port" = "پۆرتی SMTP";
 "login_smtp_security" = "ئاسایشی SMTP";
+// deprecated
 "login_auth_method" = "شێوازی پشتڕاشتکردنەوە";
+// deprecated
 "login_info_oauth2_title" = "بە ڕێکخستنە ئاسانکراوەکەوە بەردەوام دەبیت؟";
 "login_error_mail" = "تکایە ئیمەیلێکی ڕاست بنووسە";
 "login_error_server" = "تکایە سێرڤەرێکی / شوێنەواری ئای پی ڕەوا بنووسە.";
@@ -358,8 +337,6 @@
 "pref_read_receipts" = "وەرگرنامەی خوێندنەوە";
 "pref_read_receipts_explain" = "ئەگەر \"وەرگرنامەی خوێندن\" ناچالاک بێت، ئیدی تۆش نایبینیت کە ئاخۆ کەسانی دی پەیامەکەتیان خوێندووەتەوە یان نا.";
 "pref_manage_keys" = "بەڕێوەبردنی کلیلەکان";
-"pref_use_system_emoji" = "بەکارهێنانی وێنۆچکەکانی سیستەم";
-"pref_use_system_emoji_explain" = "ئیمۆجییە ناوخۆییەکانی دێڵتا چات، ناچالاک دەبێتەوە.";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
 "pref_other" = "کەسانی دی";
@@ -368,16 +345,14 @@
 "pref_backup_export_explain" = "یەدەک یارمەتیت دەدات تاکوو نەرمامێرەکە لەسەر ئەم ئامێرە یان ئامێرێکی دیکە دەبمەزرێنیتەوە.\n\n یەدەکەکە بریتی دەبێت لە هەموو پەیامەکان و بەردەنگەکان و وتووێژەکان و ڕێکخستنی ئۆتۆکریپتی ئەمسەر-ئەوسەر. پەڕگەی یەدەکەکە لە شوێنێکی قایمدا بپارێزە یان بە زووترین کات بیسڕەوە.";
 "pref_backup_export_start_button" = "دەستپێبکە";
 "pref_backup_written_to_x" = "یەدەک بە سەرکەوتوویی لە \"%1$@\"دا  پاشەکەوت کرا.";
-"pref_managekeys_menu_title" = "بەڕێوەبردنی کلیلەکان";
 "pref_managekeys_export_secret_keys" = "هەناردەکردنی کلیلە نهێنییەکان";
 "pref_managekeys_export_explain" = "کلیلە نهێنییەکان دەنێریت بۆ \"%1$@\"؟";
-"pref_managekeys_import_secret_keys" = "هاوردەکردنی کلیلە نهێنییەکان";
 "pref_managekeys_secret_keys_exported_to_x" = "کلیلە نهێنییەکان لە \"%1$@\"دا پاشەکەوت کران.";
-"pref_managekeys_secret_keys_imported_from_x" = "کلیلە نهێنییەکان لە \"%1$@\" هاوردەکران.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";
 "pref_background_btn_gallery" = "هەڵبژاردن لە پیشانگا";
+// deprecated
 "pref_watch_sent_folder" = "دیتنی بوخچەی هەنێردراوەکان";
 "pref_send_copy_to_self" = "هەناردنی ڕوونووسێک بۆ خۆت";
 "pref_auto_folder_moves" = "هەناردنی خۆکار بۆ بوخچەی دێڵتاچات";
@@ -413,12 +388,7 @@
 "autodel_confirm" = "تێگەیشتم، هەموو ئەم پەیامانە بسڕەوە";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "بەیەکجاری";
-"after_30_seconds" = "پاش 30 چرکە";
-// deprecated
-"after_1_minute" = "پاش 1 خولەک";
 "after_5_minutes" = "پاش 5 خولەک";
-// deprecated
-"after_30_minutes" = "پاش 30 خولەک";
 "autodel_after_1_hour" = "پاش 1 کاتژمێر";
 "autodel_after_1_day" = "پاش 1 ڕۆژ";
 "autodel_after_1_week" = "پاش 1 حەوتە";
@@ -427,6 +397,8 @@
 // autocrypt
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
+// system messages
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
@@ -501,7 +473,6 @@
 "message_detail_received_desktop" = "وەرگیراو";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "دۆخی گەیشتن: هەڵە";
-"a11y_encryption_padlock" = "قفڵی شفرەکردن";
 "a11y_delivery_status_sending" = "دۆخی گەیشتن: هەناردن";
 "a11y_delivery_status_draft" = "دۆخی گەیشتن: ڕەشنووس";
 "a11y_delivery_status_delivered" = "دۆخی گەیشتن: گەیشت";

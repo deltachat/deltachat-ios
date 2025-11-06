@@ -301,34 +301,6 @@
 "share_location_for_two_hours" = "po dobu 2 hodín";
 "share_location_for_six_hours" = "po dobu 6 hodín";
 "file_saved_to" = "Súbor bol uložený do priečinka %1$@";
-// deprecated
-"videochat" = "Videohovor";
-// deprecated
-"videochat_invite_user_to_videochat" = "Pozvať %1$@ na videohovor?";
-// deprecated
-"videochat_invite_user_hint" = "Vyžaduje to kompatibilnú aplikáciu alebo kompatibilný prehliadač na oboch stranách.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ pozvaný na videohovor.";
-// deprecated
-"videochat_you_invited_hint" = "Pozvali ste na videohovor.";
-// deprecated
-"videochat_tap_to_join" = "Klepnutím sa pripojíte";
-// deprecated
-"videochat_tap_to_open" = "Otvoríte klepnutím";
-// deprecated
-"videochat_instance" = "Inštancia videohovoru";
-// deprecated
-"videochat_instance_placeholder" = "Vaša inštancia videohovoru";
-// deprecated
-"videochat_instance_example" = "Príklady: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Ak to zapnete, môžete začať video rozhovor z každej konverzácie. Vyžaduje kompatibilnú aplikáciu alebo prehliadač na oboch stranách.";
-// deprecated
-"videochat_instance_from_qr" = "Použiť „%1$@“ na odoslanie pozvánky na videohovor?\n\nPo nastavení môžete začať videohovor z každej jednotlivej konverzácie. Toto nahradí predchádzajúce nastavenie pre videohovory, ak existujú.";
-// deprecated
-"videochat_invitation" = "Pozvánka na videohovor";
-// deprecated
-"videochat_invitation_body" = "Ste pozvaní na videohovor, kliknutím %1$@ sa pripojíte.";
 "ask_delete_named_chat" = "Odstrániť konverzáciu \"%1$@\" zo všetkých vašich zariadení?";
 "ask_delete_message" = "Odstrániť túto správu zo všetkých vašich zariadení?";
 // Used for the deletion of Device messages
@@ -349,7 +321,6 @@
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Zadajte meno alebo e-mailovú adresu";
 "contacts_type_email_above" = "Vyššie zadajte e-mailovú adresu";
-"contacts_empty_hint" = "Žiadne kontakty.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivované konverzácie";
 "chat_please_enter_message" = "Zadajte správu.";
@@ -377,9 +348,6 @@
 "saved" = "Uložené";
 "save_as" = "Uložiť ako";
 "retry_send" = "Skúste správu odoslať znova";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Nemôžete písať, pretože nie ste v tejto skupine. Ak sa chcete pripojiť, požiadajte iného člena.";
-"messaging_disabled_mailing_list" = "Posielanie správ do diskusných skupín (mailing list) zatiaľ nie je podporované.";
 "cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";
 "attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -512,9 +480,13 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "instant_onboarding_confirm_contact" = "Chcete vytvoriť nový účet a začať konverzáciu s %1$@?";
 "scan_invitation_code" = "Skenovať kód pozvánky";
 "login_title" = "Prihlásiť sa";
+// deprecated
 "login_header" = "Prihláste sa na server";
+// deprecated
 "login_explain" = "Prihláste sa pomocou existujúceho e-mailového účtu";
+// deprecated
 "login_subheader" = "Pre známych poskytovateľov e-mailov sa automaticky nastavujú ďalšie nastavenia. Niekedy je potrebné v nastaveniach webu povoliť protokol IMAP. Požiadajte o pomoc svojho poskytovateľa e-mailu alebo priateľov";
+// deprecated
 "login_no_servers_hint" = "Neexistujú žiadne servery Delta Chat, vaše dáta zostanú vo vašom zariadení.";
 "login_inbox" = "Doručená pošta";
 "login_imap_login" = "Prihlasovacie meno IMAP";
@@ -527,6 +499,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "login_smtp_server" = "Server SMTP";
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Zabezpečenie SMTP";
+// deprecated
 "login_auth_method" = "Metóda autorizácie";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
@@ -541,7 +514,9 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "proxy_use_proxy_confirm" = "Chcete použiť proxy \"%1$@\"?";
 "proxy_share_explain" = "Vaši priatelia si môžu pridať túto proxy naskenovaním QR kódu.";
 "proxy_share_link" = "Zdieľať odkaz";
+// deprecated
 "login_info_oauth2_title" = "Pokračovať v zjednodušenom nastavovaní?";
+// deprecated
 "login_info_oauth2_text" = "Zadaná e-mailová adresa podporuje zjednodušené nastavenie (OAuth 2.0).\n\nV ďalšom kroku povoľte aplikácii Delta Chat, aby fungovala ako vaša aplikácia Chat cez e-mail.\n\nNie sú k dispozícii servery Delta Chat, vaše dáta zostanú vo vašom zariadení .";
 "login_certificate_checks" = "Osvedčovacie kontroly";
 "login_error_mail" = "Prosím zadajte platnú emailovú adresu";
@@ -550,7 +525,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "login_error_required_fields" = "Zadajte platnú e-mailovú adresu a heslo";
 "import_backup_title" = "Importovať zálohu";
 "import_backup_ask" = "Záloha sa našla na „%1$@“.\n\nChcete z nej importovať a použiť všetky dáta a nastavenia?";
-"import_backup_no_backup_found" = "Neboli nájdené žiadne zálohy.\n\nSkopírujte zálohu na „%1$@“ a skúste to znova. Prípadne stlačte tlačidlo „Spustiť zasielanie správ“ a pokračujte v bežnom procese nastavenia.";
+"import_backup_no_backup_found" = "Neboli nájdené žiadne zálohy.\n\nSkopírujte zálohu na „%1$@“ a skúste to znova.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nie je možné prihlásiť sa ako „%1$@“. Skontrolujte správnosť e-mailovej adresy a hesla.";
 // TLS certificate checks
@@ -621,8 +596,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_server" = "Server";
 "pref_encryption" = "Šifrovanie";
 "pref_manage_keys" = "Správa kľúčov";
-"pref_use_system_emoji" = "Používajte systémové emodži";
-"pref_use_system_emoji_explain" = "Vypnite vstavanú podporu emodži v aplikácii Delta Chat";
 "pref_chats" = "Konverzácie";
 "pref_in_chat_sounds" = "Zvuky v konverzáciách";
 "pref_view_log" = "Prezrieť záznam";
@@ -633,25 +606,21 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_backup" = "Zálohovanie";
 "pref_backup_explain" = "Zálohujte konverzácie na externé úložisko";
 "pref_backup_export_explain" = "Záloha vám pomôže nastaviť novú inštaláciu na tomto alebo na inom zariadení.\n\nZáloha bude obsahovať všetky správy, kontakty a konverzácie a vaše úplné nastavenie automatického šifrovania. Uložte záložný súbor na bezpečnom mieste alebo ho čo najskôr odstráňte.";
-// the placeholder will be replaced by the profile name
+// deprecated
 "pref_backup_export_x" = "Exportovať %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportovať %1$d účty/účtov";
 "pref_backup_export_start_button" = "Spustiť zálohovanie";
 "pref_backup_written_to_x" = "Záloha bola úspešne zapísaná do priečinka „%1$@“.";
-"pref_managekeys_menu_title" = "Správa kľúčov";
 "pref_managekeys_export_secret_keys" = "Exportovať tajné kľúče";
 "pref_managekeys_export_explain" = "Exportovať tajné kľúče do priečinka „%1$@“?";
-"pref_managekeys_import_secret_keys" = "Importovať tajné kľúče";
-"pref_managekeys_import_explain" = "Importovať tajné kľúče z priečinka „%1$@“?\n\n• Existujúce tajné kľúče nebudú odstránené\n\n• Posledný importovaný kľúč sa použije ako nový predvolený kľúč, pokiaľ v názve súboru nebude slovo „legacy“.";
 "pref_managekeys_secret_keys_exported_to_x" = "Tajné kľúče boli úspešne zapísané do priečinka „%1$@“.";
-"pref_managekeys_secret_keys_imported_from_x" = "Tajné kľúče importované z „%1$@“.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Pozadie";
 "pref_background_btn_default" = "Použiť predvolený obrázok";
 "pref_background_btn_gallery" = "Vyberte z galérie";
-"pref_imap_folder_handling" = "Spracovanie priečinka IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
+// deprecated
 "pref_watch_sent_folder" = "Pozrieť priečinok Odoslané";
 "pref_send_copy_to_self" = "Odoslať kópiu sebe";
 "pref_send_copy_to_self_explain" = "Vyžaduje sa, ak používate tento účet na viacerých zariadeniach.";
@@ -722,12 +691,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "autodel_confirm" = "Rozumiem, vymazať všetky tieto správy";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Naraz";
-"after_30_seconds" = "Po 30 sekundách";
-// deprecated
-"after_1_minute" = "Po 1 minúte";
 "after_5_minutes" = "Po 5 minútach";
-// deprecated
-"after_30_minutes" = "Po 30 minútach";
 "autodel_after_1_hour" = "Po 1 hodine";
 "autodel_after_1_day" = "Po 1 dni";
 "autodel_after_1_week" = "Po 1 týždni";
@@ -739,6 +703,8 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "autocrypt_send_asm_button" = "Pošlite správu s nastavením autokryptovania";
 "autocrypt_send_asm_explain_after" = "Vaše nastavenie bolo odoslané vám. Prepnite na druhé zariadenie a otvorte správu o nastavení. Mali by ste byť požiadaní o nastavovací kód. Zadajte nasledujúce číslice:";
 "autocrypt_prefer_e2ee" = "Preferovať šifrovanie typu end-to-end";
+// system messages
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
@@ -757,8 +723,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Opustili ste konverzáciu.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Skupinu opustil(a) %1$@.";
 "group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";
@@ -948,7 +912,6 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "insert_newline" = "Vloženie nového riadka";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručenia: Chyba";
-"a11y_encryption_padlock" = "Šifrovací zámok";
 "a11y_delivery_status_sending" = "Stav doručenia: Odosiela sa";
 "a11y_delivery_status_draft" = "Stav doručenia: Koncept";
 "a11y_delivery_status_delivered" = "Stav doručenia: Doručené";
@@ -974,8 +937,6 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "disabled_in_dc" = "Vypnuté v Delta Chat-e";
 "disabled_in_system_settings" = "Vypnuté v nastaveniach systém";
 "bg_app_refresh_disabled" = "\"Obnovenie aplikácie na pozadí\" vypnuté v nastaveniach systém";
-// deprecated, was used on iOS only
-"delayed" = "Oneskorené";
 "notifications_avg_minutes" = "V priemere každých %1$d minút";
 "notifications_avg_hours" = "V priemere každých %1$d hodín";
 "last_check_at" = "Skontrolované %1$@";

@@ -333,34 +333,6 @@
 "missed_call" = "Yanıtlanmayan arama";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
-// deprecated
-"videochat" = "Video Sohbeti";
-// deprecated
-"videochat_invite_user_to_videochat" = "%1$@ bir video sohbetine çağrılsın mı?";
-// deprecated
-"videochat_invite_user_hint" = "Bu, her iki uçta da uyumlu bir uygulama ya da tarayıcı gerektirir.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ bir video sohbetine çağrıldı.";
-// deprecated
-"videochat_you_invited_hint" = "Bir video sohbeti çağrısı gönderdiniz.";
-// deprecated
-"videochat_tap_to_join" = "Katılmak için Dokunun";
-// deprecated
-"videochat_tap_to_open" = "Açmak için Dokunun";
-// deprecated
-"videochat_instance" = "Video Sohbeti Örneği";
-// deprecated
-"videochat_instance_placeholder" = "Video Sohbeti Örneğiniz";
-// deprecated
-"videochat_instance_example" = "Örnek: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Etkinleştirilirse, her sohbetten video sohbeti başlatabilirsiniz. Her iki uçta da uyumlu bir uygulama ya da bir tarayıcı gerektirir.";
-// deprecated
-"videochat_instance_from_qr" = "“%1$@” diğerlerini video sohbetlerine çağırmak için kullanılsın mı?\n\nBir kez ayarlandığında, her sohbetten video sohbeti başlatabilirsiniz. Bu, video sohbetleri için herhangi bir önceki ayarın yerini alır.";
-// deprecated
-"videochat_invitation" = "Video sohbeti çağrısı";
-// deprecated
-"videochat_invitation_body" = "Bir video sohbetine çağrıldınız; katılmak için %1$@ öğesini tıklayın.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
@@ -384,7 +356,6 @@
 "contacts_title" = "Kişiler";
 "contacts_enter_name_or_email" = "Ad ya da e-posta adresi girin";
 "contacts_type_email_above" = "Yukarıya e-posta adresi yazın";
-"contacts_empty_hint" = "Kişi yok.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Arşivlenen Sohbetler";
 "chat_please_enter_message" = "Lütfen bir ileti girin.";
@@ -415,9 +386,6 @@
 "saved" = "Kaydedilen";
 "save_as" = "Farklı Kaydet";
 "retry_send" = "İletiyi göndermeyi yeniden dene";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Bir ileti göndermek için bu öbekte olmalısınız. Katılmak için başka bir üyeye sorun.";
-"messaging_disabled_mailing_list" = "Posta listelerine iletiler gönderme henüz desteklenmiyor";
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -569,9 +537,13 @@
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
+// deprecated
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
+// deprecated
 "login_explain" = "Varolan bir e-posta hesabıyla giriş yapın";
+// deprecated
 "login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Giriş Adı";
@@ -584,6 +556,7 @@
 "login_smtp_server" = "SMTP Sunucusu";
 "login_smtp_port" = "SMTP Bağlantı Noktası";
 "login_smtp_security" = "SMTP Güvenliği";
+// deprecated
 "login_auth_method" = "Yetkilendirme Yöntemi";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
@@ -598,7 +571,11 @@
 "proxy_use_proxy_confirm" = "“%1$@” proxy\'sini kullanmak istiyor musunuz?";
 "proxy_share_explain" = "Arkadaşlarınız, QR kodunu tarayarak bu proxy\'yi ekleyebilir.";
 "proxy_share_link" = "Bağlantı Paylaş";
+"proxy_enabled" = "Proxy Etkinleştirildi";
+"proxy_enabled_hint" = "Bir proxy kullanıyorsunuz. Bağlanmakta sorun yaşıyorsanız başka bir proxy deneyin.";
+// deprecated
 "login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
+// deprecated
 "login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'e iletiler gönderme ve alma izni verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
@@ -607,7 +584,7 @@
 "login_error_required_fields" = "Lütfen geçerli bir e-posta adresi ve bir parola girin";
 "import_backup_title" = "Yedekten Geri Yükle";
 "import_backup_ask" = "“%1$@” üzerinde yedek bulundu.\n\nİçe aktarmak ve ondan gelen tüm verileri ve ayarları kullanmak istiyor musunuz?";
-"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği “%1$@” üzerine kopyalayın ve yeniden deneyin. Ek olarak, normal ayarlama işlemiyle sürdürmek için “İletileşmeye başla”ya basın.";
+"import_backup_no_backup_found" = "Yedek bulunamadı.\n\nYedeği “%1$@” konumuna kopyalayın ve yeniden deneyin.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "“%1$@” olarak giriş yapılamıyor. Lütfen adresin ve parolanın doğru olup olmadığını denetleyin.";
 // TLS certificate checks
@@ -689,8 +666,6 @@
 "pref_server" = "Sunucu";
 "pref_encryption" = "Şifreleme";
 "pref_manage_keys" = "Anahtarları Yönet";
-"pref_use_system_emoji" = "Sistem Emojisini Kullan";
-"pref_use_system_emoji_explain" = "Delta Chat\'in gömülü emoji desteğini kapat";
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
 "pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbetler oluşturmayı teklif edin.";
 "pref_chats" = "Sohbetler";
@@ -703,25 +678,22 @@
 "pref_backup" = "Yedekleme";
 "pref_backup_explain" = "Sohbetleri Dış Depolamaya Yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardımcı olur.\n\nYedek; tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
-// the placeholder will be replaced by the profile name
+"pref_backup_export_this" = "Bu profili dışa aktar";
+// deprecated
 "pref_backup_export_x" = "%1$@ hesabını dışa aktar";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Tüm %1$d profili dışa aktar";
 "pref_backup_export_start_button" = "Yedeklemeyi Başlat";
 "pref_backup_written_to_x" = "Yedek “%1$@” üzerine başarıyla yazıldı.";
-"pref_managekeys_menu_title" = "Anahtarları Yönet";
 "pref_managekeys_export_secret_keys" = "Sır Anahtarları Dışa Aktar";
 "pref_managekeys_export_explain" = "Sır anahtarlar “%1$@” üzerinde dışa aktarılsın mı?";
-"pref_managekeys_import_secret_keys" = "Sır Anahtarları İçe Aktar";
-"pref_managekeys_import_explain" = "Sır anahtarlar “%1$@” üzerinden içe aktarılsın mı?\n\n• Varolan sır anahtarlar silinmeyecek\n\n• Son içe aktarılan anahtar, dosya adında “legacy” sözcüğü olmadıkça yeni varsayılan anahtar olarak kullanılacak.";
 "pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar “%1$@” üzerine başarıyla yazıldı.";
-"pref_managekeys_secret_keys_imported_from_x" = "Sır anahtarlar “%1$@” üzerinden içe aktarıldı.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Duvar Kâğıdı";
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
-"pref_imap_folder_handling" = "IMAP Klasör İşleme";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçeneği değiştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nDeğilse özellikler hiç çalışmayabilir.";
+// deprecated
 "pref_watch_sent_folder" = "Gönderilen Klasörünü İzle";
 "pref_send_copy_to_self" = "Kendime Kopya Gönder";
 "pref_send_copy_to_self_explain" = "Bu hesap çoklu aygıtlarda kullanılırken gereklidir.";
@@ -796,12 +768,7 @@
 "autodel_confirm" = "Anladım, tüm bu iletileri sil";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "İndirdikten sonra bir kerede";
-"after_30_seconds" = "30 saniye sonra";
-// deprecated
-"after_1_minute" = "1 dakika sonra";
 "after_5_minutes" = "5 dakika sonra";
-// deprecated
-"after_30_minutes" = "30 dakika sonra";
 "autodel_after_1_hour" = "1 saat sonra";
 "autodel_after_1_day" = "1 gün sonra";
 "autodel_after_1_week" = "1 hafta sonra";
@@ -814,7 +781,7 @@
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 // system messages
-"systemmsg_cannot_decrypt" = "Bu ileti şifresi çözülemiyor.\n\n• Bu iletiye basitçe yanıt vermek ve gönderenden iletiyi yeniden göndermesini istemek zaten yardımcı olabilir.\n\n• Delta Chat\'i yeni kurduysanız, Delta Chat\'i şimdi yeniden ayarlayıp “İkinci Aygıt Olarak Ekle”yi seçmeniz ya da bir yedeği içe aktarmanız en iyisidir.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
@@ -835,8 +802,11 @@
 "remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Ayrıldınız.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Gruptan ayrıldınız.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Kanaldan ayrıldınız.";
+"you_joined_the_channel" = "Kanala katıldınız.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ tarafından öbekten ayrılındı.";
 "group_image_deleted_by_you" = "Öbek görselini sildiniz.";
@@ -923,6 +893,7 @@
 "qrshow_join_group_title" = "QR Çağrı Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "“%1$@” öbeğine katılmak için bunu tarayın";
+"qrshow_join_channel_hint" = "“%1$@” kanalına katılmak için tarayın";
 "qrshow_join_contact_title" = "QR Çağrı Kodu";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
@@ -946,6 +917,7 @@
 "verified_by" = "%1$@ tarafından tanıtıldı";
 "verified_by_you" = "Benim tarafımdan tanıtıldı";
 "verified_by_unknown" = "Tanıtıldı";
+// deprecated
 "verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu öbeğe yalnızca yeşil bir onay imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
@@ -1042,7 +1014,6 @@
 "insert_newline" = "Yeni Satır Ekle";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Teslimat durumu: Hata";
-"a11y_encryption_padlock" = "Şifreleme asma kilidi";
 "a11y_delivery_status_sending" = "Teslimat durumu: Gönderiliyor";
 "a11y_delivery_status_draft" = "Teslimat durumu: Taslak";
 "a11y_delivery_status_delivered" = "Teslimat durumu: Teslim edildi";
@@ -1068,8 +1039,6 @@
 "disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";
 "disabled_in_system_settings" = "Sistem ayarlarından etkisizleştirildi";
 "bg_app_refresh_disabled" = "“Arka Planda Uygulama Yenileme” sistem ayarlarından etkisizleştirildi";
-// deprecated, was used on iOS only
-"delayed" = "Gecikmeli";
 "notifications_avg_minutes" = "Ortalama olarak her %1$d dakikada bir";
 "notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";
 "last_check_at" = "Denetleme %1$@";

@@ -234,26 +234,6 @@
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
-// deprecated
-"videochat" = "Obrolan video";
-// deprecated
-"videochat_invite_user_to_videochat" = "Undang %1$@ ke obrolan video?";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ diundang ke obrolan video.";
-// deprecated
-"videochat_you_invited_hint" = "Anda diundang ke obrolan video.";
-// deprecated
-"videochat_tap_to_join" = "Ketuk untuk bergabung";
-// deprecated
-"videochat_tap_to_open" = "Ketuk untuk membuka";
-// deprecated
-"videochat_instance_example" = "Contoh: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_from_qr" = "Gunakan \"%1$@\" untuk mengundang orang lain ke obrolan video? Setelah diatur, Anda dapat memulai obrolan video dari setiap obrolan. Ini menggantikan pengaturan sebelumnya untuk obrolan video.";
-// deprecated
-"videochat_invitation" = "Undangan obrolan video";
-// deprecated
-"videochat_invitation_body" = "Anda diundang ke obrolan video, klik %1$@ untuk bergabung.";
 // Used for the deletion of Device messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
@@ -269,7 +249,6 @@
 "contacts_title" = "Kontak";
 "contacts_enter_name_or_email" = "Masukkan nama atau alamat email";
 "contacts_type_email_above" = "Ketik alamat email di atas";
-"contacts_empty_hint" = "Tidak ada kontak.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Obrolan terarsip";
 "chat_please_enter_message" = "Silakan masukkan pesan.";
@@ -324,9 +303,13 @@
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
 "login_title" = "Masuk";
+// deprecated
 "login_header" = "Masuk ke server Anda";
+// deprecated
 "login_explain" = "Masuk dengan akun surel yang ada";
+// deprecated
 "login_subheader" = "Pengaturan surel penyedia tambahan yang sudah diketahui dipasang secara otomatis. Terkadang IMAP perlu daktifkan di pengaturan aplikasi. Hubungi surel penyedia Anda atau minta tolong teman.";
+// deprecated
 "login_no_servers_hint" = "Tidak ada server Delta Chat, data Anda tetap di perangkat Anda.";
 "login_inbox" = "Surel masuk";
 "login_imap_login" = "Nama login IMAP";
@@ -339,8 +322,11 @@
 "login_smtp_server" = "Server SMTP";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
+// deprecated
 "login_auth_method" = "Metode otorisasi";
+// deprecated
 "login_info_oauth2_title" = "Lanjutkan dengan pengaturan yang disederhanakan?";
+// deprecated
 "login_info_oauth2_text" = "Bantuan untuk alamat surel yang telah dimasukkan adalah pengaturan yang disederhanakan (OAuth 2.0).\n\nPada langkah selanjutnya, izinkan Delta Chat sebagai Obrolan Anda pada aplikasi Surel.\n\nTidak ada server Delta Chat, obrolan Anda tetap di perangkat Anda.";
 "login_certificate_checks" = "Cek sertifikat";
 "login_error_mail" = "Masukkan alamat surel yang sahih";
@@ -349,7 +335,7 @@
 "login_error_required_fields" = "Silakan masukkan alamat email dan kata sandi yang sah";
 "import_backup_title" = "Impor cadangan";
 "import_backup_ask" = "Cadangan ditemukan di \"%1$@\".\n\n Apakah Anda ingin mengimpor dan menggunakan semua data dan pengaturan darinya?";
-"import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi. Cara lain, tekan \"Mulai obrolan\" untuk melanjutkan proses pengaturan normal.";
+"import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
@@ -405,8 +391,6 @@
 "pref_read_receipts" = "Baca tanda terima";
 "pref_read_receipts_explain" = "Jika tanda terima baca dinonaktifkan, Anda tidak akan dapat melihat tanda terima baca dari orang lain.";
 "pref_manage_keys" = "Kelola kunci";
-"pref_use_system_emoji" = "Gunakan emoji sistem";
-"pref_use_system_emoji_explain" = "Matikan dukungan emoji Delta Chat yang ada";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
 "pref_view_log" = "Lihat catatan";
@@ -419,13 +403,9 @@
 "pref_backup_export_explain" = "Cadangan membantu Anda untuk membuat instalasi baru di perangkat ini atau perangkat lain.\n\nDalam cadangan terdapat semua pesan, kontak dan obrolan dan pengaturan Autocrypt ujung ke ujung Anda. Simpan berkas cadangan di tempat yang aman atau hapus secepatnya.";
 "pref_backup_export_start_button" = "Mulai Cadangkan";
 "pref_backup_written_to_x" = "Cadangan berhasil ditulis ke \"%1$@\".";
-"pref_managekeys_menu_title" = "Kelola kunci";
 "pref_managekeys_export_secret_keys" = "Ekspor kunci rahasia";
 "pref_managekeys_export_explain" = "Ekspor kunci rahasia ke \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Impor kunci rahasia";
-"pref_managekeys_import_explain" = "Impor kunci rahasia dari \"%1$@\"?\n\n• Kunci rahasia sebelumnya tidak akan terhapus\n\n• Kunci terakhir yang diimpo akan digunakan sebagai kunci default baru kecuali ada kata \"legacy\" di nama berkas.";
 "pref_managekeys_secret_keys_exported_to_x" = "Kunci rahasia berhasil ditulis ke \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Kunci rahasia diimpor dari \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
@@ -458,12 +438,7 @@
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Segera";
-"after_30_seconds" = "Setelah 30 detik";
-// deprecated
-"after_1_minute" = "Setelah 1 menit";
 "after_5_minutes" = "Setelah 5 menit";
-// deprecated
-"after_30_minutes" = "Setelah 30 menit";
 "autodel_after_1_hour" = "Setelah 1 jam";
 "autodel_after_1_day" = "Setelah 1 hari";
 "autodel_after_1_week" = "Setelah 1 minggu";
@@ -475,6 +450,8 @@
 "autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
 "autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
+// system messages
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
@@ -576,7 +553,6 @@
 "menu.view.developer.open.current.log.file" = "Buka log berkas saat ini";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Status pengiriman: Kesalahan";
-"a11y_encryption_padlock" = "Enkripsi padlock";
 "a11y_delivery_status_sending" = "Status pengiriman: Mengirim";
 "a11y_delivery_status_draft" = "Status pengiriman: Draft";
 "a11y_delivery_status_delivered" = "Status pengiriman: Terkirim";

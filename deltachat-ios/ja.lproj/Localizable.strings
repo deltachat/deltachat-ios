@@ -205,30 +205,6 @@
 "share_location_for_two_hours" = "2時間";
 "share_location_for_six_hours" = "6時間";
 "file_saved_to" = "%1$@に保存しました。";
-// deprecated
-"videochat" = "ビデオ通話";
-// deprecated
-"videochat_invite_user_to_videochat" = "%1$@をビデオ通話に招待しますか？";
-// deprecated
-"videochat_invite_user_hint" = "互換性のあるブラウザ又はアプリが必要です。";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@をビデオ通話に招待しました。";
-// deprecated
-"videochat_you_invited_hint" = "ビデオ通話に招待しました。";
-// deprecated
-"videochat_tap_to_join" = "タップして参加";
-// deprecated
-"videochat_tap_to_open" = "タップして開く";
-// deprecated
-"videochat_instance" = "ビデオ通話サーバー";
-// deprecated
-"videochat_instance_placeholder" = "選んだビデオ通話サーバー";
-// deprecated
-"videochat_instance_from_qr" = "%1$@で他人をビデオ通話に招待しますか？設定次第に各チャットからビデオ通話を開始することができます。以前の設定も置き換えます。";
-// deprecated
-"videochat_invitation" = "ビデオ通話に招待";
-// deprecated
-"videochat_invitation_body" = "ビデオ通話に招待されて、%1$@で参加";
 "ask_forward" = "%1$@にメッセージを転送しますか？";
 "ask_forward_multiple" = "%1$dチャットにメッセージを転送しますか？";
 "ask_export_attachment" = "添付ファイルをエクスポートしますか？添付ファイルをエクスポートすると、他のアプリからもアクセスできるようになります。\n\nよろしいですか？";
@@ -244,7 +220,6 @@
 "contacts_title" = "連絡先一覧";
 "contacts_enter_name_or_email" = "名前かメールアドレスを入力";
 "contacts_type_email_above" = "上にメールアドレスを入力してください。";
-"contacts_empty_hint" = "連絡先無し";
 // chatlist and chat view
 "chat_archived_chats_title" = "アーカイブしたチャット";
 "chat_please_enter_message" = "メッセージを入力してください。";
@@ -267,8 +242,6 @@
 // Should match "Saved" from "Saved messages"
 "saved" = "保存しました";
 "retry_send" = "メッセージの配信を再試行します";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "このグループに参加していないので書き込めません。参加するには、他のメンバーに知らせてください。";
 "cannot_display_unsuported_file_type" = "%1$@形式のファイルは表示できません";
 "attachment_failed_to_load" = "添付ファイルの読み込みに失敗しました";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -313,9 +286,13 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
 "login_title" = "ログイン";
+// deprecated
 "login_header" = "自分のメールサーバーにログインする";
+// deprecated
 "login_explain" = "既存のメールアカウントにログインする";
+// deprecated
 "login_subheader" = "主なメールサーバーは自動で設定されます｡一般にIMAPはサーバー側で有効に設定する必要が有ります｡サーバー提供者や詳しい人に確認しましょう｡";
+// deprecated
 "login_no_servers_hint" = "Delta Chatには専用サーバーが有りません｡つまりあなたのデータ･個人情報はこの端末内に保存されています｡";
 "login_inbox" = "受信";
 "login_imap_login" = "IMAPログイン名";
@@ -328,8 +305,11 @@
 "login_smtp_server" = "SMTPサーバー";
 "login_smtp_port" = "SMTPポート";
 "login_smtp_security" = "SMTP暗号方式";
+// deprecated
 "login_auth_method" = "認証方法";
+// deprecated
 "login_info_oauth2_title" = "簡単セットアップを使用しましょうか？";
+// deprecated
 "login_info_oauth2_text" = "入力されたメールアドレスは、簡易セットアップ（OAuth 2.0）に対応しています。次に「メールでチャット」を許可してください。Delta Chatにはサーバーがなく、テーダはデバイスにあります。";
 "login_certificate_checks" = "有効な証明書です";
 "login_error_mail" = "有効なメールアドレスを入力してください";
@@ -403,8 +383,6 @@
 "pref_read_receipts" = "既読通知";
 "pref_read_receipts_explain" = "既読通知を無効にすると、相手の既読通知も受け取れません。";
 "pref_manage_keys" = "暗号鍵の管理";
-"pref_use_system_emoji" = "システムの絵文字を使う";
-"pref_use_system_emoji_explain" = "Delta Chat独自の絵文字機能を無効にする";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
 "pref_view_log" = "ログの表示";
@@ -417,16 +395,14 @@
 "pref_backup_export_explain" = "バックアップは、本デバイスまたは別のデバイスに新たにインストールする際に役立ちます。\n\nこのバックアップには、すべてのメッセージ、連絡先、チャット、およびエンドツーエンドの自動暗号化設定が含まれます。バックアップファイルは安全な場所に保管するか、できるだけ早く削除してください。";
 "pref_backup_export_start_button" = "バックアップを開始する";
 "pref_backup_written_to_x" = "バックアップは%1$@に正常に完了しました。";
-"pref_managekeys_menu_title" = "暗号鍵の管理";
 "pref_managekeys_export_secret_keys" = "秘密鍵のエクスポート";
 "pref_managekeys_export_explain" = "%1$@に秘密鍵をエクスポートしますか？";
-"pref_managekeys_import_secret_keys" = "秘密鍵のインポート";
 "pref_managekeys_secret_keys_exported_to_x" = "暗号鍵は%1$@に正常に書き込まれました。";
-"pref_managekeys_secret_keys_imported_from_x" = "暗号鍵は%1$@からインポートされました。";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "背景";
 "pref_background_btn_default" = "デフォルトの画像を使う";
 "pref_background_btn_gallery" = "ギャラリーから選ぶ";
+// deprecated
 "pref_watch_sent_folder" = "送信トレイを監視する";
 "pref_send_copy_to_self" = "自分にコピーを送る";
 "pref_auto_folder_moves" = "DeltaChatフォルダに自動で移動する";
@@ -466,12 +442,7 @@
 "autodel_confirm" = "分かりました。メッセージを削除していいです。";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "すぐに";
-"after_30_seconds" = "30秒";
-// deprecated
-"after_1_minute" = "1分";
 "after_5_minutes" = "5分";
-// deprecated
-"after_30_minutes" = "30分";
 "autodel_after_1_hour" = "1時間";
 "autodel_after_1_day" = "1日後";
 "autodel_after_1_week" = "1週間後";

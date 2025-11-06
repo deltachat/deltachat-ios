@@ -333,34 +333,6 @@
 "missed_call" = "Llamada perdida";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
-// deprecated
-"videochat" = "Video llamada";
-// deprecated
-"videochat_invite_user_to_videochat" = "¿Invitar a %1$@ a una videollamada?";
-// deprecated
-"videochat_invite_user_hint" = "Esto requiere una app compatible o un navegador compatible en los dos lados.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ invitado a una videollamada.";
-// deprecated
-"videochat_you_invited_hint" = "Invitaste a una videollamada.";
-// deprecated
-"videochat_tap_to_join" = "Toca para unirte";
-// deprecated
-"videochat_tap_to_open" = "Toca para abrir";
-// deprecated
-"videochat_instance" = "Instancia de videollamada";
-// deprecated
-"videochat_instance_placeholder" = "Tu instancia de videollamada";
-// deprecated
-"videochat_instance_example" = "Ejemplo: https://tu-servidor.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Si el videochat está activado, puedes iniciar un videochat desde cada chat. Los chats de vídeo necesitan una aplicación o un navegador compatible en los dos lados.";
-// deprecated
-"videochat_instance_from_qr" = "¿Usa \"%1$@\" para invitar a otros a la videollamada?\n\nUna vez configurado, puedes iniciar una videollamada desde el chat individual. Esto reemplaza la configuración previa de videollamadas. Si la hubiera.";
-// deprecated
-"videochat_invitation" = "Invitación a videollamada";
-// deprecated
-"videochat_invitation_body" = "Fuiste invitado a una videollamada, click en %1$@ para unirse.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "¿Seguro que quieres abandonar este canal?";
@@ -384,7 +356,6 @@
 "contacts_title" = "Contactos";
 "contacts_enter_name_or_email" = "Nombre o correo electrónico";
 "contacts_type_email_above" = "Escriba la dirección de correo arriba";
-"contacts_empty_hint" = "Sin contactos.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Chats archivados";
 "chat_please_enter_message" = "Por favor, introduzca un mensaje.";
@@ -415,9 +386,6 @@
 "saved" = "Guardado";
 "save_as" = "Guardar como";
 "retry_send" = "Reintentar enviar mensaje";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "No puedes escribir porque no estás en este grupo. Para unirte, pregúntale a otro miembro.";
-"messaging_disabled_mailing_list" = "Todavía no se admite el envío de mensajes en listas de correo";
 "cannot_display_unsuported_file_type" = "No se puede mostrar este tipo de archivo: %1$@";
 "attachment_failed_to_load" = "Fallo al cargar el adjunto";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -569,9 +537,13 @@
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
+// deprecated
 "login_header" = "Inicie sesión en su servidor";
+// deprecated
 "login_explain" = "Iniciar sesión con una cuenta de correo existente";
+// deprecated
 "login_subheader" = "Para los proveedores de correo conocidos, la configuración es realizada automáticamente. A veces, IMAP debe estar habilitado en la interfaz web. Consulte a su proveedor de correo o amigos para obtener ayuda.";
+// deprecated
 "login_no_servers_hint" = "No hay servidores de Delta Chat, tus datos permanecen en tu dispositivo!";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
@@ -584,6 +556,7 @@
 "login_smtp_server" = "Servidor SMTP";
 "login_smtp_port" = "Puerto SMTP";
 "login_smtp_security" = "Seguridad SMTP";
+// deprecated
 "login_auth_method" = "Método de autorización";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
@@ -598,7 +571,9 @@
 "proxy_use_proxy_confirm" = "¿Quieres utilizar el proxy \"%1$@\"?";
 "proxy_share_explain" = "Tus amigos pueden agregar este proxy escaneando el código QR.";
 "proxy_share_link" = "Compartir enlace";
+// deprecated
 "login_info_oauth2_title" = "¿Continuar con la configuración simplificada?";
+// deprecated
 "login_info_oauth2_text" = "La dirección de correo electrónico introducida admite una configuración simplificada (OAuth 2.0).\n\nEn el próximo paso, permita que Delta Chat actúe como su aplicación de chat por correo electrónico.\n\nNo hay servidores de Delta Chat, tus datos permanecen en tu dispositivo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
@@ -607,7 +582,7 @@
 "login_error_required_fields" = "Por favor, introduzca una dirección de correo válida y una contraseña";
 "import_backup_title" = "Importar copia de respaldo";
 "import_backup_ask" = "Copia de respaldo encontrada en \"%1$@\".\n\n¿Desea importar y utilizar todos los datos y configuraciones de ella?";
-"import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \"%1$@\" e inténtelo de nuevo. Alternativamente, presione \"Empezar a Chatear\" para continuar con el proceso de configuración normal.";
+"import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \"%1$@\" e inténtelo de nuevo.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // TLS certificate checks
@@ -689,8 +664,6 @@
 "pref_server" = "Servidor";
 "pref_encryption" = "Cifrado";
 "pref_manage_keys" = "Administrar claves";
-"pref_use_system_emoji" = "Usar emoji del sistema";
-"pref_use_system_emoji_explain" = "Deshabilitar el soporte de emoji integrado de Delta Chat";
 "pref_show_system_contacts" = "Leer la libreta de direcciones del sistema";
 "pref_show_system_contacts_explain" = "Ofrecer crear chats con contactos de la libreta de direcciones. Algunos proveedores necesitan primero una configuración de cifrado de extremo a extremo.";
 "pref_chats" = "Chats";
@@ -703,25 +676,21 @@
 "pref_backup" = "Copia de respaldo";
 "pref_backup_explain" = "Hacer copias de respaldo de chats en almacenamiento externo";
 "pref_backup_export_explain" = "Una copia de respaldo lo ayuda a configurar una nueva instalación en este u otro dispositivo.\n\nLa copia de respaldo contendrá todos los mensajes, contactos y chats, y su configuración Autocrypt de extremo a extremo. Guarde el archivo de respaldo en un lugar seguro o elimínelo lo antes posible.";
-// the placeholder will be replaced by the profile name
+// deprecated
 "pref_backup_export_x" = "Exportar %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportar todo (%1$d cuentas)";
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
 "pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
-"pref_managekeys_menu_title" = "Administrar claves";
 "pref_managekeys_export_secret_keys" = "Exportar claves secretas";
 "pref_managekeys_export_explain" = "¿Exportar claves secretas a \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Importar claves secretas";
-"pref_managekeys_import_explain" = "Importar claves secretas de \"%1$@\"?\n\n• Las claves secretas existentes no se eliminarán\n\n• La última clave importada se usará como la nueva clave predeterminada a menos que tenga la palabra \"legacy\" en su nombre de archivo.";
 "pref_managekeys_secret_keys_exported_to_x" = "Claves secretas escritas exitosamente a \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Claves secretas importadas de \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imagen por defecto";
 "pref_background_btn_gallery" = "Seleccionar de la galería";
-"pref_imap_folder_handling" = "Manejo de carpetas IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si deshabilita esta opción, asegúrese de que su servidor y sus otros clientes estén configurados en consecuencia.\n\nDe lo contrario, las cosas pueden no funcionar en absoluto.";
+// deprecated
 "pref_watch_sent_folder" = "Monitorear carpeta Enviados";
 "pref_send_copy_to_self" = "Enviar autocopia";
 "pref_send_copy_to_self_explain" = "Necesario cuando utilizando esta cuenta en varios dispositivos.";
@@ -796,12 +765,7 @@
 "autodel_confirm" = "Comprendo, borrar todos estos mensajes";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Inmediatamente";
-"after_30_seconds" = "Luego de 30 segundos";
-// deprecated
-"after_1_minute" = "Luego de 1 minuto";
 "after_5_minutes" = "Luego de 5 minutos";
-// deprecated
-"after_30_minutes" = "Luego de 30 minutos";
 "autodel_after_1_hour" = "Luego de 1 hora";
 "autodel_after_1_day" = "Luego de 1 día";
 "autodel_after_1_week" = "Luego de 1 semana";
@@ -814,7 +778,7 @@
 "autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:.\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
 // system messages
-"systemmsg_cannot_decrypt" = "Este mensaje no se puede descifrar.\n\n• Podría ayudar simplemente responder a este mensaje y pedir al remitente que lo envíe de nuevo.\n\n• Si acabas de reinstalar Delta Chat, es mejor que configures Delta Chat de nuevo y elijas \"Agregar como segundo dispositivo\" o importes una copia de seguridad.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Remitente desconocido. Mira \"info\" para más detalles.";
 "systemmsg_subject_for_new_contact" = "Mensaje de %1$@";
 "systemmsg_failed_sending_to" = "Falla en enviar el mensaje a %1$@.";
@@ -835,8 +799,6 @@
 "remove_member_by_you" = "Eliminaste al miembro %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Miembro %1$@ eliminado por %2$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Abandonaste.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupo abandonado por %1$@.";
 "group_image_deleted_by_you" = "Eliminaste la imagen del grupo.";
@@ -946,6 +908,7 @@
 "verified_by" = "Verificado por %1$@";
 "verified_by_you" = "Verificado por ti";
 "verified_by_unknown" = "Introducido";
+// deprecated
 "verified_contact_required_explain" = "Para garantizar el cifrado de extremo a extremo, solo puedes añadir contactos con una marca de verificación verde";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat
@@ -1042,7 +1005,6 @@
 "insert_newline" = "Insertar nueva línea";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estado de envío: Error";
-"a11y_encryption_padlock" = "Candado de cifrado";
 "a11y_delivery_status_sending" = "Estado de envío: Enviando";
 "a11y_delivery_status_draft" = "Estado de envío: Borrador";
 "a11y_delivery_status_delivered" = "Estado de envío: Enviado";
@@ -1068,8 +1030,6 @@
 "disabled_in_dc" = "Deshabilitado en Delta Chat";
 "disabled_in_system_settings" = "Deshabilitado en la configuración del sistema";
 "bg_app_refresh_disabled" = "\"Actualización de aplicaciones en segundo plano\" desactivada en los ajustes del sistema";
-// deprecated, was used on iOS only
-"delayed" = "Demorado";
 "notifications_avg_minutes" = "Promedio cada %1$d minutos";
 "notifications_avg_hours" = "Promedio cada %1$d horas";
 "last_check_at" = "Comprobado en %1$@";

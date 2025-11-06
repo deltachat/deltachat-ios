@@ -116,6 +116,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Vist per darrer cop: %1$@";
 "last_seen_unknown" = "Vist per darrer cop: desconegut";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -318,34 +320,19 @@
 "share_location_for_two_hours" = "Durant 2 hores";
 "share_location_for_six_hours" = "Durant 6 hores";
 "file_saved_to" = "El fitxer s\'ha desat a «%1$@».";
-// deprecated
-"videochat" = "Xat de vídeo";
-// deprecated
-"videochat_invite_user_to_videochat" = "Voleu convidar %1$@ a un xat de vídeo?";
-// deprecated
-"videochat_invite_user_hint" = "Això requereix una aplicació o navegador compatible en ambdós extrems.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ ha estat convidat a un xat de vídeo.";
-// deprecated
-"videochat_you_invited_hint" = "Heu enviat una invitació de xat de video.";
-// deprecated
-"videochat_tap_to_join" = "Toca per a afegir-t\'hi";
-// deprecated
-"videochat_tap_to_open" = "Toca per a obrir-ho";
-// deprecated
-"videochat_instance" = "Instància de xat de vídeo";
-// deprecated
-"videochat_instance_placeholder" = "La vostra instància de xat de vídeo";
-// deprecated
-"videochat_instance_example" = "Exemple: https://el-vostre-servidor.org/$SALA";
-// deprecated
-"videochat_instance_explain_2" = "Si està activada, podeu iniciar un xat de video des de cada xat. Necessita una aplicació o navegador compatible en ambdós extrems.";
-// deprecated
-"videochat_instance_from_qr" = "Voleu usar «%1$@» per a convidar altres participants a xats de video?\n\nUna vegada definit, podeu iniciar un xat de vídeo des de cada xat. Això substitueix la configuració anterior per a xats de video.";
-// deprecated
-"videochat_invitation" = "Invitació a un xat de vídeo";
-// deprecated
-"videochat_invitation_body" = "Us han convidat a un xat de vídeo, feu clic a %1$@ per unir-vos-hi.";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Truca";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Respon";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Rebutja";
+"outgoing_call" = "Trucada sortint";
+"incoming_call" = "Trucada entrant";
+"declined_call" = "Trucada rebutjada";
+"canceled_call" = "Trucada cancel·lada";
+"missed_call" = "Trucada perduda";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Segur que vols sortir?";
@@ -369,7 +356,6 @@
 "contacts_title" = "Llista de contactes";
 "contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça de correu electrònic";
 "contacts_type_email_above" = "Escriviu l\'adreça d\'email superior";
-"contacts_empty_hint" = "Cap contacte.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Xats arxivats";
 "chat_please_enter_message" = "Si us plau, escriviu un missatge";
@@ -400,9 +386,6 @@
 "saved" = "Desat";
 "save_as" = "Desa com";
 "retry_send" = "Torna a provar d\'enviar el missatge";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "No hi podeu escriure perquè no sou en aquest grup. Per ser-hi, demaneu-ho a un altre membre.";
-"messaging_disabled_mailing_list" = "L\'enviament de missatges a una llista de correu encara no funciona";
 "cannot_display_unsuported_file_type" = "Aquest tipus de fitxer: %1$@ no es pot mostrar";
 "attachment_failed_to_load" = "La càrrega de l\'adjunt ha fallat";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -554,9 +537,13 @@
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
+// deprecated
 "login_header" = "Identifiqueu-vos al vostre servidor";
+// deprecated
 "login_explain" = "Inicia sessió amb un compte de correu electrònic existent";
+// deprecated
 "login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
+// deprecated
 "login_no_servers_hint" = "No hi ha servidors de Delta Chat: les vostres dades es queden al vostre dispositiu!";
 "login_inbox" = "Safata d\'entrada";
 "login_imap_login" = "Nom d\'identificació IMAP";
@@ -569,6 +556,7 @@
 "login_smtp_server" = "Servidor SMTP";
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
+// deprecated
 "login_auth_method" = "Mètode d\'autorització";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Servidor intermediari";
@@ -583,7 +571,9 @@
 "proxy_use_proxy_confirm" = "Voleu utilitzar el proxy \"%1$@\"?";
 "proxy_share_explain" = "Els vostres amics poden afegir aquest servidor intermediari escanejant el codi QR.";
 "proxy_share_link" = "Comparteix l\'enllaç";
+// deprecated
 "login_info_oauth2_title" = "Voleu continuar amb la configuració simplificada?";
+// deprecated
 "login_info_oauth2_text" = "L’adreça electrònica que heu introduït admet una configuració simplificada. (OAuth2.0).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
@@ -592,7 +582,7 @@
 "login_error_required_fields" = "Si us plau poseu una adreça i contrasenya vàlids";
 "import_backup_title" = "Importa una còpia de seguretat";
 "import_backup_ask" = "S\'ha trobat una còpia de seguretat a \"%1$@\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
-"import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCol·loca la còpia de seguretat a \"%1$@\" i torneu-ho a provar. Com a alternativa, premeu \"Comença a escriure\" per continuar amb el procés de configuració habitual.";
+"import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCol·loca la còpia de seguretat a \"%1$@\" i torneu-ho a provar.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // TLS certificate checks
@@ -674,8 +664,6 @@
 "pref_server" = "Servidor";
 "pref_encryption" = "Xifratge";
 "pref_manage_keys" = "Gestió de les claus";
-"pref_use_system_emoji" = "Usa els emojis del sistema";
-"pref_use_system_emoji_explain" = "Desactiva el suport de sèrie per emojis a Delta Chat";
 "pref_show_system_contacts" = "Llegeix la llibreta d\'adreces del sistema";
 "pref_show_system_contacts_explain" = "Ofereix de crear xats amb els contactes de la llibreta d\'adreces. Alguns proveïdors necessiten de configurar abans el xifratge d\'extrem a extrem.";
 "pref_chats" = "Xats";
@@ -688,25 +676,21 @@
 "pref_backup" = "Còpia de seguretat";
 "pref_backup_explain" = "Copia els xats a un magatzem extern";
 "pref_backup_export_explain" = "La còpia de seguretat és útil a l\'hora de reinstal·lar l\'aplicació en aquest dispositiu o en un altre.\n\nLa còpia tindrà tot els missatges, contactes i xats i la configuració d\'extrem a extrem d\'Autocrypt. Conserveu el fitxer de la còpia en un lloc segur o esborreu-lo tan aviat com pugueu.";
-// the placeholder will be replaced by the profile name
+// deprecated
 "pref_backup_export_x" = "Exporta %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exporta tots %1$d perfils";
 "pref_backup_export_start_button" = "Inicia la còpia de seguretat";
 "pref_backup_written_to_x" = "La còpia de seguretat s\'ha escrit correctament a %1$@";
-"pref_managekeys_menu_title" = "Gestiona les claus";
 "pref_managekeys_export_secret_keys" = "Exporta les claus secretes";
 "pref_managekeys_export_explain" = "Exporto les claus secretes a \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Importa les claus secretes";
-"pref_managekeys_import_explain" = "Importo les claus secretes de \"%1$@\"?\n\n• Les claus secretes existents no s\'esborraran\n\n• L\'última clau importada s\'usarà com la nova clau per defecte a menys que tingui la paraula \"legacy\" en el nom de l\'arxiu";
 "pref_managekeys_secret_keys_exported_to_x" = "Les claus secretes s\'han copiat correctament a \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Claus secretes importades de \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fons";
 "pref_background_btn_default" = "Usa la imatge per defecte";
 "pref_background_btn_gallery" = "Trieu de la galeria";
-"pref_imap_folder_handling" = "Gestió de carpetes IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si desactiveu aquesta opció, assegureu-vos que el vostre servidor i els altres programes estiguin configurats de la mateixa manera.\n\nAltrament podeu tenir problemes de funcionament.";
+// deprecated
 "pref_watch_sent_folder" = "Mostra la safata de sortida";
 "pref_send_copy_to_self" = "Envia\'n una còpia a mi mateix";
 "pref_send_copy_to_self_explain" = "Imprescindible quan s\'utilitza aquest compte en diversos dispositius.";
@@ -781,12 +765,7 @@
 "autodel_confirm" = "Ho entenc, esborra tots aquests missatges";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Immediatament després de baixar";
-"after_30_seconds" = "Després de 30 segons";
-// deprecated
-"after_1_minute" = "Després d\'1 minut";
 "after_5_minutes" = "Després de 5 minuts";
-// deprecated
-"after_30_minutes" = "Després de 30 minuts";
 "autodel_after_1_hour" = "Després d\'1 hora";
 "autodel_after_1_day" = "Després d\'1 dia";
 "autodel_after_1_week" = "Després d\'1 setmana";
@@ -799,7 +778,7 @@
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
 // system messages
-"systemmsg_cannot_decrypt" = "Aquest missatge no es pot desxifrar.\n\n• Potser pot ajudar de respondre el missatge i demanar a l\'emissor que torni a enviar-lo,\n\n• Si acabeu de reinstal·lar Delta Chat, aleshores és millor de reconfigurar Delta Chat ara i triar «Afegeix un segon dispositiu» o importar una còpia de seguretat.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Remitent desconegut per a aquest xat. Vegeu «informació» per a més detalls.";
 "systemmsg_subject_for_new_contact" = "Missatge de %1$@";
 "systemmsg_failed_sending_to" = "No s\'ha pogut enviar el missatge a %1$@.";
@@ -820,10 +799,13 @@
 "remove_member_by_you" = "Heu eliminat el membre %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Has sortit.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Heu abandonat el grup.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Heu abandonat el canal.";
+"you_joined_the_channel" = "Us heu unit al canal";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
-"group_left_by_other" = "%1$@ha abandonat el grup";
+"group_left_by_other" = "%1$@ ha abandonat el grup";
 "group_image_deleted_by_you" = "Heu esborrat la imatge de grup.";
 // %1$s will be replaced by name and address of the contact
 "group_image_deleted_by_other" = "%1$@ ha esborrat la imatge de grup.";
@@ -908,6 +890,7 @@
 "qrshow_join_group_title" = "Codi QR d\'invitació";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Escanegeu això per unir-vos al grup \"%1$@\".";
+"qrshow_join_channel_hint" = "Escanegeu per a unir-vos al canal «%1$@»";
 "qrshow_join_contact_title" = "Codi QR d\'invitació";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
@@ -931,6 +914,7 @@
 "verified_by" = "Afegit per %1$@";
 "verified_by_you" = "Afegit per mi";
 "verified_by_unknown" = "Afegit";
+// deprecated
 "verified_contact_required_explain" = "Per a garantir el xifrat extrem a extrem, només podeu afegir a aquest grup contactes que tinguin la marca verda.\n\nPodeu trobar-vos en persona amb els contactes per a escanejar els seus codis QR i poder-los afegir. ";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
 // first placeholder is the name of the chat
@@ -946,6 +930,7 @@
 "notify_name_only" = "Només nom";
 "notify_no_name_or_message" = "Ni nom ni missatge";
 "notifications_disabled" = "Notificacions desactivades";
+"unreliable_bg_notifications" = "Activeu «Força la connexió en segon pla» per a notificacions fiables";
 "new_messages" = "Missatges nous";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Teniu missatges nous";
@@ -1026,7 +1011,6 @@
 "insert_newline" = "Insereix un salt de línia";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Estat d\'entrega: error";
-"a11y_encryption_padlock" = "Cadenat de xifratge";
 "a11y_delivery_status_sending" = "Estat d\'entrega: enviant-se";
 "a11y_delivery_status_draft" = "Estat d\'entrega: esborrany";
 "a11y_delivery_status_delivered" = "Estat d\'entrega: entregat";
@@ -1052,8 +1036,6 @@
 "disabled_in_dc" = "Desactivat a Delta Chat";
 "disabled_in_system_settings" = "Desactivat a la configuració del sistema";
 "bg_app_refresh_disabled" = "El \"Refresc en segon pla d\'aplicacions\" està deshabilitat als paràmetres del sistema";
-// deprecated, was used on iOS only
-"delayed" = "Ajornat";
 "notifications_avg_minutes" = "De mitjana, cada %1$d minuts";
 "notifications_avg_hours" = "De mitjana, cada %1$d hores";
 "last_check_at" = "Comprovat a les %1$@";

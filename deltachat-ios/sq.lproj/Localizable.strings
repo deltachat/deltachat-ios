@@ -329,34 +329,6 @@
 "missed_call" = "Thirrje e humbur";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
-// deprecated
-"videochat" = "Fjalosje me Video";
-// deprecated
-"videochat_invite_user_to_videochat" = "Të ftohet %1$@ te një thirrje me video?";
-// deprecated
-"videochat_invite_user_hint" = "Kjo lyp në të dy anët një aplikacion të përputhshëm ose një shfletues të përputhshëm";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ ftoi te një fjalosje me video.";
-// deprecated
-"videochat_you_invited_hint" = "Dërguat një ftesë fjalosje me video.";
-// deprecated
-"videochat_tap_to_join" = "Prekeni që të Hyni";
-// deprecated
-"videochat_tap_to_open" = "Prekeni që të Hapet";
-// deprecated
-"videochat_instance" = "Instancë Fjalosjeje me Video";
-// deprecated
-"videochat_instance_placeholder" = "Instanca juaj e Fjalosjes me Video";
-// deprecated
-"videochat_instance_example" = "Shembull: https://shërbyesi-juaj.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Nëse është aktivizuar, mund të nisni një fjalosje me video prej secilës fjalosje. Kjo lyp në të dy skajet një aplikacion të përputhshëm, ose një shfletues të përputhshëm.";
-// deprecated
-"videochat_instance_from_qr" = "Të përdoret “%1$@” për të ftuar të tjerë në fjalosje me video?\n\nPasi të ujdiset kjo, mund të filloni një fjalosje me video që prej një fjalosjeje tek-për-tek. Kështu do të zëvendësohet rregullimi i mëparshëm për fjalosje video, në pastë.";
-// deprecated
-"videochat_invitation" = "Ftesë për fjalosje me video";
-// deprecated
-"videochat_invitation_body" = "Jeni ftuar në një fjalosje video, klikoni mbi %1$@ që të hyni në të.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
@@ -380,7 +352,6 @@
 "contacts_title" = "Kontakte";
 "contacts_enter_name_or_email" = "Jepni emër ose adresë email";
 "contacts_type_email_above" = "Shtypni më sipër adresën email";
-"contacts_empty_hint" = "S\’ka kontakte.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Fjalosje të Arkivuara";
 "chat_please_enter_message" = "Ju lutemi, jepni një mesazh.";
@@ -411,9 +382,6 @@
 "saved" = "Të ruajtur";
 "save_as" = "Ruaje Si";
 "retry_send" = "Riprovo të dërgosh mesazhin";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Që të postoni një mesazh, duhet të jeni në këtë grup. Për t’u bërë pjesë, kërkojani një anëtari tjetër.";
-"messaging_disabled_mailing_list" = "Dërgimi i mesazheve në lista postimesh nuk mbulohet ende";
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -564,9 +532,13 @@
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
+// deprecated
 "login_header" = "Hyni te Llogaria juaj Email";
+// deprecated
 "login_explain" = "Hyni me një llogari email ekzistuese.";
+// deprecated
 "login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë ujdisen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te rregullimet për web. Për ndihmë këshillohuni me shërbimin tuaj email, ose shokë tuajt.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat s’grumbullon të dhëna përdoruesish, gjithçka rri në pajisjen tuaj.";
 "login_inbox" = "Të marrë";
 "login_imap_login" = "Emër Hyrjeje në IMAP";
@@ -579,6 +551,7 @@
 "login_smtp_server" = "Shërbyes SMTP";
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
+// deprecated
 "login_auth_method" = "Metodë Autorizimi";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Ndërmjetës";
@@ -593,7 +566,11 @@
 "proxy_use_proxy_confirm" = "Doni të përdore ndërmjetësi “%1$@”?";
 "proxy_share_explain" = "Shokët tuaj mund ta shtojnë këtë ndërmjetës përmes skanimit të kodit QR.";
 "proxy_share_link" = "Jepeni Lidhjen";
+"proxy_enabled" = "Ndërmjetësi u Aktivizua";
+"proxy_enabled_hint" = "Po përdorni një ndërmjetës. Nëse keni problemi për t’u lidhur, provoni një ndërmjetës tjetër.";
+// deprecated
 "login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
+// deprecated
 "login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth 2.0).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të dërgojë dhe marrë mesazhe.\n\nDelta Chat s’grumbullon të dhëna përdoruesish, gjithçka rri në pajisjen tuaj.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
@@ -602,7 +579,7 @@
 "login_error_required_fields" = "Ju lutemi, jepni një adresë email dhe fjalëkalim të vlefshëm";
 "import_backup_title" = "Rikthe prej Kopjeruajtje";
 "import_backup_ask" = "U gjet kopjeruajtje te “%1$@”.\n\nDoni të importohen dhe përdoren krejt të dhënat dhe rregullimet prej atij?";
-"import_backup_no_backup_found" = "S\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te “%1$@” dhe riprovoni. Ndryshe, shtypni “Filloni të shkëmbeni mesazhe”, që të vazhdoni me procesin normal të ujdisjes.";
+"import_backup_no_backup_found" = "S\’u gjetën kopjeruajtje.\n\nKopjojeni kopjeruajtjen te “%1$@” dhe riprovoni.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "S\’bëhet dot hyrja si “%1$@”. Ju lutemi, shihni nëse adresa email dhe fjalëkalimi janë të saktë.";
 // TLS certificate checks
@@ -684,8 +661,6 @@
 "pref_server" = "Shërbyes";
 "pref_encryption" = "Fshehtëzim";
 "pref_manage_keys" = "Administroni Kyçe";
-"pref_use_system_emoji" = "Përdor Emoji Sistemi";
-"pref_use_system_emoji_explain" = "Çaktivizo mbulimin e brendshëm Delta Chat për emoji-t";
 "pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
 "pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash.";
 "pref_chats" = "Fjalosje";
@@ -698,25 +673,22 @@
 "pref_backup" = "Kopjeruajtje";
 "pref_backup_explain" = "Kopjeruaji Fjalosjet në Depozitim të Jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezik, përndryshe fshijeni as më shpejt që të jetë e mundur.";
-// the placeholder will be replaced by the profile name
+"pref_backup_export_this" = "Eksportojeni këtë profil";
+// deprecated
 "pref_backup_export_x" = "Eksporto %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt %1$d proflet";
 "pref_backup_export_start_button" = "Nis Kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te “%1$@”";
-"pref_managekeys_menu_title" = "Administroni Kyçe";
 "pref_managekeys_export_secret_keys" = "Eksportoni Kyçe të Fshehtë";
 "pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te “%1$@”?";
-"pref_managekeys_import_secret_keys" = "Importoni Kyçe të Fshehtë";
-"pref_managekeys_import_explain" = "Të importohen kyçe të fshehtë prej “%1$@”?\n\n• Kyçet e fshehtë ekzistues s\’do të fshihen\n\n• Kyçi i fundit i importuar do të përdoret si kyçi i ri parazgjedhje, hiq rastin kur përmban te emri i kartelës fjalën “legacy”";
 "pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te “%1$@”.";
-"pref_managekeys_secret_keys_imported_from_x" = "U importuan kyçe të fshehtë nga “%1$@”.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Sfond";
 "pref_background_btn_default" = "Përdor Figurën Parazgjedhje";
 "pref_background_btn_gallery" = "Përzgjidhni Nga Galeri";
-"pref_imap_folder_handling" = "Trajtim Dosjesh IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Nëse e ndryshoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
+// deprecated
 "pref_watch_sent_folder" = "Vëzhgo Dosje Të dërguarish";
 "pref_send_copy_to_self" = "Dërgojini Kopje Vetes";
 "pref_send_copy_to_self_explain" = "E domosdoshme kur kjo llogari përdoret në një numër pajisjesh.";
@@ -790,12 +762,7 @@
 "autodel_confirm" = "E kuptoj, fshiji krejt këto mesazhe";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Menjëherë pas Shkarkimi";
-"after_30_seconds" = "Pas 30 sekondash";
-// deprecated
-"after_1_minute" = "Pas 1 minute";
 "after_5_minutes" = "Pas 5 minutash";
-// deprecated
-"after_30_minutes" = "Pas 30 minutash";
 "autodel_after_1_hour" = "Pas 1 ore";
 "autodel_after_1_day" = "Pas 1 dite";
 "autodel_after_1_week" = "Pas 1 jave";
@@ -808,7 +775,7 @@
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese:";
 "autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
 // system messages
-"systemmsg_cannot_decrypt" = "Ky mesazh s’mund të shfshehtëzohet.\n\n• Mundet t’ju ndihë thjesht t’i përgjigjeni këtij mesazhi dhe t’i kërkoni dërguesit ta ridërgojë mesazhin.\n\n• Nëse sapo riinstaluat Delta Chat-in, atëherë më e mira është të riujdisni Delta Chat-in tani dhe të zgjidhni “Shtoje si pajisje të dytë”, ose të importoni një kopjeruajtje.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
 "systemmsg_failed_sending_to" = "S’u arrit të dërgohej mesazh te %1$@.";
@@ -829,8 +796,11 @@
 "remove_member_by_you" = "Hoqët anëtarin %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Anëtari %1$@ u hoq nga %2$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Ikët.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Ikët nga grupi.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Ikët nga kanali.";
+"you_joined_the_channel" = "Erdhët në kanal.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Grupi u braktis nga %1$@.";
 "group_image_deleted_by_you" = "Fshitë figurën e grupit.";
@@ -917,6 +887,7 @@
 "qrshow_join_group_title" = "Kod QR Ftese";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Për t’u bërë pjesë e grupit “%1$@”, skanojeni";
+"qrshow_join_channel_hint" = "Që të hyni në kanalin “%1$@”, skanojeni";
 "qrshow_join_contact_title" = "Kod QR Ftese";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Që të bisedoni me %1$@, skanojeni";
@@ -940,6 +911,7 @@
 "verified_by" = "Sjellë nga %1$@";
 "verified_by_you" = "Sjellë nga unë";
 "verified_by_unknown" = "Sjellë nga";
+// deprecated
 "verified_contact_required_explain" = "Që të garantohet fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat
@@ -1036,7 +1008,6 @@
 "insert_newline" = "Futni Rresht të Ri";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Gjendje dërgimi: Gabim";
-"a11y_encryption_padlock" = "Dry fshehtëzimi";
 "a11y_delivery_status_sending" = "Gjendje dërgimi: Po dërgohet";
 "a11y_delivery_status_draft" = "Gjendje dërgimi: Skicë";
 "a11y_delivery_status_delivered" = "Gjendje dërgimi: I dërguar";

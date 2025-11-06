@@ -278,10 +278,6 @@
 "share_location_for_two_hours" = "سی 2 ساعت";
 "share_location_for_six_hours" = "سی 6 ساعت";
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
-// deprecated
-"videochat" = "گوفت وو لوفت ویدیویی";
-// deprecated
-"videochat_invitation" = "موکش و گوفت وو لوفت ویدیویی";
 // Used for the deletion of Device messages
 "ask_start_chat_with" = "گوفت وو لوفت وا %1$@؟";
 // %1$s is replaced by a comma-separated list of names
@@ -289,7 +285,6 @@
 "open_url_confirmation" = "اخۊی ای لینگن بۊگۊشی؟";
 // contact list
 "contacts_title" = "هومدنگووݩ";
-"contacts_empty_hint" = "بؽ هومدنگ.";
 "chat_please_enter_message" = "ی پیوم بزݩ.";
 "chat_record_slide_to_cancel" = "سی رڌ کردن بکشس.";
 "chat_share_with_title" = "یک رسۊوی وا";
@@ -368,12 +363,7 @@
 "autodel_server_title" = "پاک کردن پیوما ز سرور";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "ی کرت دیندا دانلود";
-"after_30_seconds" = "دیندا 30 سانیه";
-// deprecated
-"after_1_minute" = "دیندا 1 دؽقه";
 "after_5_minutes" = "دیندا 5 دؽقه";
-// deprecated
-"after_30_minutes" = "دیندا 30 دؽقه";
 "autodel_after_1_hour" = "دیندا 1 ساعت";
 "autodel_after_1_day" = "دیندا 1 رۊ";
 "autodel_after_1_week" = "دیندا 1 هفته";
