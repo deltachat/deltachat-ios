@@ -82,7 +82,7 @@ class AccountSetupController: UITableViewController {
 
     lazy var advancedShowCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("menu_advanced")
+        cell.textLabel?.text = String.localized("menu_more_options")
         cell.accessoryType = .disclosureIndicator
         cell.tag = tagAdvancedCell
         return cell
@@ -266,7 +266,7 @@ class AccountSetupController: UITableViewController {
         if editView {
             title = String.localized("pref_password_and_account_settings")
         } else {
-            title = String.localized("login_header")
+            title = String.localized("manual_account_setup_option")
         }
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = loginButton
@@ -311,19 +311,9 @@ class AccountSetupController: UITableViewController {
         }
     }
 
-    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if sections[section] == basicSection && editView {
-            return String.localized("login_header")
-        } else {
-            return nil
-        }
-    }
-
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if sections[section] == basicSection {
-            return String.localized("login_no_servers_hint")
-        } else if sections[section] == advancedSection {
-            return String.localized("login_subheader")
+            return String.localized("login_advanced_hint")
         } else {
             return nil
         }
@@ -441,7 +431,7 @@ class AccountSetupController: UITableViewController {
         }
         progressAlertHandler.dataSource = self
         resignFirstResponderOnAllCells()
-        progressAlertHandler.showProgressAlert(title: String.localized("login_header"), dcContext: dcContext)
+        progressAlertHandler.showProgressAlert(title: String.localized("manual_account_setup_option"), dcContext: dcContext)
 
         var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
         loginParam.imapServer = imapServerCell.getText()
