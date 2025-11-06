@@ -169,30 +169,6 @@
 "share_location_for_two_hours" = "pro 2 oras";
 "share_location_for_six_hours" = "pro 6 oras";
 "file_saved_to" = "Documentu sarvadu in \"%1$@\".";
-// deprecated
-"videochat" = "Vìdeu-tzarrada";
-// deprecated
-"videochat_invite_user_to_videochat" = "Cheres invitare %1$@ a una vìdeu-tzarrada?";
-// deprecated
-"videochat_invite_user_hint" = "Custu bisòngiat de un\'aplicatzione cumpatìbile o unu navigadore cumpatìbile dae ambas alas.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ t\'at invitadu a una vìdeu-tzarrada.";
-// deprecated
-"videochat_you_invited_hint" = "As invitadu a una vìdeu-tzarrada.";
-// deprecated
-"videochat_tap_to_join" = "Toca pro bi pigare parte";
-// deprecated
-"videochat_tap_to_open" = "Toca pro abèrrere";
-// deprecated
-"videochat_instance" = "Istàntzia de vìdeu-tzarrada";
-// deprecated
-"videochat_instance_placeholder" = "S\'istàntzia de vìdeu-tzarrada tua";
-// deprecated
-"videochat_instance_from_qr" = "Cheres impreare \"%1$@\" pro invitare calicun\'àteru a sa vìdeu-tzarrada?\n\nA pustis de s\'impostatzione, podes fàghere incumentzare una vìdeu-tzarrada dae cada tzarrada unu-a-unu. Custu at a remplasare sas impostatziones antepostas pro sas vìdeu-tzarradas, si bi nde fiant.";
-// deprecated
-"videochat_invitation" = "Invitu a sa vìdeu-tzarrada";
-// deprecated
-"videochat_invitation_body" = "Ses invitadu a una vìdeu-tzarrada. Incarca %1$@ pro bi pigare parte.";
 "ask_forward" = "Inoltrare su messàgiu a %1$@?";
 "ask_forward_multiple" = "Inoltrare messàgios a %1$d tzarradas?";
 "ask_export_attachment" = "Esportare sos allegados? S\'esportatzione de sos allegados at a permìtere a cale si siat àtera aplicatzione in su dispositivu tuo de b\'atzèdere.\n\nSighire?";
@@ -208,7 +184,6 @@
 "contacts_title" = "Cuntatos";
 "contacts_enter_name_or_email" = "Inserta su nùmene o s\'indiritzu de posta eletrònica";
 "contacts_type_email_above" = "Inserta s\'indiritzu de posta eletrònica inoghe in subra";
-"contacts_empty_hint" = "Perunu cuntatu.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Tzarradas archiviadas";
 "chat_please_enter_message" = "Pro praghere inserta unu messàgiu.";
@@ -231,8 +206,6 @@
 // Should match "Saved" from "Saved messages"
 "saved" = "Sarvadu";
 "retry_send" = "Torra a proare a imbiare su messàgiu";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Non podes iscrìere ca non ses in custu grupu. Pro b\'intrare pedi a un\'àteru membru.";
 "cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
 // map
 "filter_map_on_time" = "Ammustra sas positziones in su tempus";
@@ -264,9 +237,13 @@
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
 "login_title" = "Intra";
+// deprecated
 "login_header" = "Intra in su servidore tuo";
+// deprecated
 "login_explain" = "Intra cun un\'indiritzu de posta eletrònica chi esistat";
+// deprecated
 "login_subheader" = "Pro sos frunidores de posta eletrònica connotos sas impostatziones additzionales benint impostadas in automàticu. Cada tantu s\'IMAP cheret abilitadu in sas impostatziones web. Si ti serbit agiudu pedi a su frunidore de posta eletrònica tuo o a sos amigos tuos.";
+// deprecated
 "login_no_servers_hint" = "No esistint serbidores de Delta Chat, sos datos tuos abarrant in su dispositivu tuo.";
 "login_inbox" = "In arrivu";
 "login_imap_login" = "Nùmene impreadore IMAP";
@@ -279,8 +256,11 @@
 "login_smtp_server" = "Serbidore SMTP";
 "login_smtp_port" = "Ghenna SMTP";
 "login_smtp_security" = "Seguresa SMTP";
+// deprecated
 "login_auth_method" = "Manera de autenticatzione";
+// deprecated
 "login_info_oauth2_title" = "Cheres sighire cun s\'impostatzione semplificada?";
+// deprecated
 "login_info_oauth2_text" = "S\'indiritzu de posta eletrònica insertadu suportat un\'impostztione semplificada (OAuth 2.0).\n\n In su passu chi sighet, pro praghere, permite a Delta Chat de operare che a aplicatzione de tzarrada pro mèdiu de posta eletrònica.\n\nNon bi sunt serbidores de Delta Chat, abarrat totu in su dispositivu tuo.";
 "login_certificate_checks" = "Verìficas de su tzertificadu";
 "login_error_mail" = "Inserta un\'indiritzu de posta eletrònica bàlidu";
@@ -289,7 +269,7 @@
 "login_error_required_fields" = "Inserta un\'indiritzu de posta eletrònica e una crae de intrada bàlidos";
 "import_backup_title" = "Importa una còpia de seguresa";
 "import_backup_ask" = "Còpia de seguresa agatada in \"%1$@\".\n\nCheres a l\'importare e a impreare totu sos datos e sas impostatziones dae cue?";
-"import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca. Asinuncas, incarca \"Incumintza a messagiare\" pro sighire cun su protzessu de impostatzione normale.";
+"import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
@@ -352,8 +332,6 @@
 "pref_read_receipts" = "Retzidas de leghidura";
 "pref_read_receipts_explain" = "Si sas retzidas de leghidura sunt disabilitadas, no as a pòdere bìdere sas retzidas de leghidura de àtere.";
 "pref_manage_keys" = "Amministra sas craes";
-"pref_use_system_emoji" = "Imprea sas emoji de sistema";
-"pref_use_system_emoji_explain" = "Istuda su suportu de sas emoji incorporadu in Delta Chat";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
 "pref_view_log" = "Pòmpia su registru";
@@ -366,19 +344,15 @@
 "pref_backup_export_explain" = "Una còpia de seguresa t\'agiudat a impostare un\'installatzione noa in custu o in un\'àteru dispositivu.\n\nSa còpia de seguresa ant a cuntènnere totu sos messàgios, sos cuntatos, sas tzarradas e s\'impostatzione de sa tzifradura a nodu terminale (end-to-end) de Autocrypt. Mantene su documentu in unu logu seguru o iscantzellalu in su primu momentu chi podes.";
 "pref_backup_export_start_button" = "Incumintza sa còpia de seguresa";
 "pref_backup_written_to_x" = "Còpia de seguresa sarvada in \"%1$@\"chene problemas.";
-"pref_managekeys_menu_title" = "Amministra sas craes";
 "pref_managekeys_export_secret_keys" = "Esporta sas craes segretas";
 "pref_managekeys_export_explain" = "Esportare sas craes segretas in \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Importa sas craes segretas";
-"pref_managekeys_import_explain" = "Cheres importare sas craes segretas dae \"%1$@\"?\n\n• Sas craes de como no ant a èssere iscantzelladas\n\n• S\'ùrtima crae importada at a èssere impreada comente crae predefinida francu chi tèngiat sa paràula \"legacy\" in su nùmene de su documentu suo.";
 "pref_managekeys_secret_keys_exported_to_x" = "Craes segretas sarvadas in \"%1$@\" chene problemas.";
-"pref_managekeys_secret_keys_imported_from_x" = "Craes segredas importadas dae \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Isfundu";
 "pref_background_btn_default" = "Imprea s\'immàgine predefinida";
 "pref_background_btn_gallery" = "Ischerta dae sa galleria";
-"pref_imap_folder_handling" = "Amministratzione de sa cartella IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Si disabìlitas custa opztione assegura·ti chi su serbidore tuo e totu sos àteros clientes siant cunfigurados in sa matessi manera\n\nSi nono sas cosas diant pòdere non funtzionare pro nudda.";
+// deprecated
 "pref_watch_sent_folder" = "Pòmpia sa cartella de sos imbiados";
 "pref_send_copy_to_self" = "Imbia·ti·nche una còpia";
 "pref_auto_folder_moves" = "Tramudòngios automàticos a sa cartella DeltaChat";
@@ -409,9 +383,6 @@
 "autodel_confirm" = "Apo cumpresu, iscantzella totu sos messàgios";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Una borta";
-"after_30_seconds" = "A pustis de 30 segundos";
-// deprecated
-"after_1_minute" = "A pustis de 1 minutu";
 "autodel_after_1_hour" = "A pustis de 1 ora";
 "autodel_after_1_day" = "A pustis de 1 die";
 "autodel_after_1_week" = "A pustis de 1 chida";
@@ -425,4 +396,3 @@
 "write_message_desktop" = "Iscrie unu messàgiu";
 "encryption_info_title_desktop" = "Informatziones de tzifradura";
 "more_info_desktop" = "Àteras informatziones";
-"a11y_encryption_padlock" = "Luchete de tzifradura";

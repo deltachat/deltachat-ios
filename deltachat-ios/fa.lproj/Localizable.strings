@@ -318,37 +318,6 @@
 "share_location_for_two_hours" = "به مدت ۲ ساعت";
 "share_location_for_six_hours" = "به مدت ۶ ساعت";
 "file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
-// deprecated
-"videochat" = "گپ تصویری";
-// deprecated
-"videochat_invite_user_to_videochat" = "دعوت کردن %1$@به گپ تصویری";
-// deprecated
-"videochat_invite_user_hint" = "این عمل، به نرم افزار یا مرورگر سازگار برای هردوطرف مکالمه نیاز دارد. ";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ دعوت به تماس تصویری  ";
-// deprecated
-"videochat_you_invited_hint" = "شما به تماس تصویری دعوت شده‌اید.";
-// deprecated
-"videochat_tap_to_join" = "برای پیوستن ضربه بزنید. ";
-// deprecated
-"videochat_tap_to_open" = "برای باز کردن ضربه بزنید. ";
-// deprecated
-"videochat_instance" = "جلسه تماس تصویری";
-// deprecated
-"videochat_instance_placeholder" = "جلسه تماس تصویری شما";
-// deprecated
-"videochat_instance_example" = "مثال‌: 
-https://meet.jit.si/$ROOM 
-یا
- basicwebrtc:https://your-server";
-// deprecated
-"videochat_instance_explain_2" = "اگر به کا بیفتد، می‌توانید یک مکالمهٔ تصویری را در هر گپ شروع کنید. نیازمند نرم‌افزار مورد نیاز یا مرورگر در هر دو طرف است. ";
-// deprecated
-"videochat_instance_from_qr" = "می‌خواهید از «%1$@» برای دعوت دیگران به گپ تصویری استفاده کنید؟/n/n وقتی تعیین شد، می‌توانید در هر گپ فرد به فرد یک مکالمهٔ تصویری شروع کنید. این کار، تنظیم‌ها قبلی تماس تصویری را تغییر می‌دهد.";
-// deprecated
-"videochat_invitation" = "دعوت به مکالمه تصویری.";
-// deprecated
-"videochat_invitation_body" = "شما به مکالمه تصویری دعوت شده اید برای پیوستن%1$@ را بزنید.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
@@ -374,7 +343,6 @@ https://meet.jit.si/$ROOM
 "contacts_title" = "مخاطبین";
 "contacts_enter_name_or_email" = "نام یا نشانی رایانامه را وارد کنید";
 "contacts_type_email_above" = "نشانی رایانامه را در بخش بالا وارد کنید";
-"contacts_empty_hint" = "بدون مخاطب.";
 // chatlist and chat view
 "chat_archived_chats_title" = "گپ‌های بایگانی شده";
 "chat_please_enter_message" = "لطفا یک پیام وارد کنید.";
@@ -405,9 +373,6 @@ https://meet.jit.si/$ROOM
 "saved" = "ذخیره شد";
 "save_as" = "ذخیره به عنوان";
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "نمی‌توانید بنویسید چرا که در این گروه نیستید. برای عضو شدن از یکی از اعضا درخواست کنید. ";
-"messaging_disabled_mailing_list" = "ارسال پیام در فهرست‌های پستی فعلاً پشتیبانی نمی‌شود.";
 "cannot_display_unsuported_file_type" = "امکان نمایش این نوع پرونده وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -560,9 +525,13 @@ https://meet.jit.si/$ROOM
 "welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
+// deprecated
 "login_header" = "به سرور خود وارد شوید";
+// deprecated
 "login_explain" = "ورود با یک رایانامه موجود";
+// deprecated
 "login_subheader" = "برای ارائه‌دهندگان شناخته شده تنظبمات اضافه به صورت خودکار انجام می‌شود. گاهی اوقات IMAP باید در تنظیم‌ها رایانامهٔ شما فعال شود. از ارائه‌دهندهٔ رایانامه یا دوستانتان در این مورد کمک بگیرید.";
+// deprecated
 "login_no_servers_hint" = "دلتاچت هیچ سروری ندارد، داده‌های شما در دستگاه شما باقی می‌ماند.";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
@@ -575,6 +544,7 @@ https://meet.jit.si/$ROOM
 "login_smtp_server" = "SMTP Server";
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
+// deprecated
 "login_auth_method" = "Authorization Method";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "پروکسی";
@@ -589,7 +559,9 @@ https://meet.jit.si/$ROOM
 "proxy_use_proxy_confirm" = "می‌خواهید از پروکسی «%1$@» استفاده کنید؟";
 "proxy_share_explain" = "دوست‌هایتان می‌توانند با اسکن کردن کد QR این پروکسی را اضافه کنند.";
 "proxy_share_link" = "اشتراک گذاشتن پیوند";
+// deprecated
 "login_info_oauth2_title" = "با تنظیم‌ها ساده‌ شده ادامه می‌دهید؟";
+// deprecated
 "login_info_oauth2_text" = "نشانی رایانامه وارد شده از تنظیم‌های ساده پشتیبانی می‌کند
 (OAuth 2.0).\n\nIn
  لطفا در مرحله بعد، به دلتاچت اجازه دهید که به عنوان نرم‌افزار رایانامه شما عمل نماید\n\n دلتاچت کارساز(سرور) ندارد؛ داده‌های شما در دستگاه خودتان باقی می‌ماند. ";
@@ -681,8 +653,6 @@ https://meet.jit.si/$ROOM
 "pref_server" = "کارساز";
 "pref_encryption" = "رمزگذاری";
 "pref_manage_keys" = "مدیریت کلیدها";
-"pref_use_system_emoji" = "استفاده از شکلک‌های سیستم";
-"pref_use_system_emoji_explain" = "غیرفعال کردن شکلک‌های داخلی دلتاچت";
 "pref_show_system_contacts" = "خواندن دفترچه آدرس دستگاه";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
@@ -694,25 +664,21 @@ https://meet.jit.si/$ROOM
 "pref_backup" = "نسخه پشتیبان";
 "pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
 "pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
-// the placeholder will be replaced by the profile name
+// deprecated
 "pref_backup_export_x" = "برون‌ریزی%1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "برون‌ریزی همه%1$d حساب ها";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
 "pref_backup_written_to_x" = "نسخه پشتیبان با موفقیت در\"%1$@\" ذخیره شد.";
-"pref_managekeys_menu_title" = "مدیریت کلیدها";
 "pref_managekeys_export_secret_keys" = "صادر کردن کلید خصوصی";
 "pref_managekeys_export_explain" = "صادر کردن کلیدهای خصوصی به\"%1$@\"؟";
-"pref_managekeys_import_secret_keys" = "وارد کردن کلیدهای خصوصی";
-"pref_managekeys_import_explain" = "وارد کردن کلیدهای خصوصی از «%1$@»؟\n\n• کلیدهای خصوصی موجود پاک نخواهند شد\n\n•  آخرین کلید وارد شده به عنوان کلید پیش‌فرض جدید استفاده می شود مگر اینکه در نام پرونده کلمهٔ «Legacy» وجود داشته باشد. ";
 "pref_managekeys_secret_keys_exported_to_x" = "کلیدهای خصوصی با موفقیت در\"%1$@\" ذخیره شدند. ";
-"pref_managekeys_secret_keys_imported_from_x" = "کلیدهای خصوصی از \"%1$@\" وارد شدند. ";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "پس‌زمینه";
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";
-"pref_imap_folder_handling" = "IMAP نحوه مدیریت پوشه ";
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
+// deprecated
 "pref_watch_sent_folder" = "پوشه ارسال شده‌ها را نگاه کن";
 "pref_send_copy_to_self" = "ارسال رونوشت به خودم";
 "pref_send_copy_to_self_explain" = "درصورت استفاده از این حساب در چند دستگاه مورد نیاز است. ";
@@ -784,12 +750,7 @@ https://meet.jit.si/$ROOM
 "autodel_confirm" = "متوجه هستم، همه پیام‌ها حذف شوند";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "یک بار بعد از بارگیری";
-"after_30_seconds" = "بعد از ۳۰ ثانیه";
-// deprecated
-"after_1_minute" = "بعد از ۱ دقیقه";
 "after_5_minutes" = "بعد از ۵ دقیقه";
-// deprecated
-"after_30_minutes" = "بعد از ۳۰ دقیقه";
 "autodel_after_1_hour" = "بعد از ۱ ساعت";
 "autodel_after_1_day" = "بعد از ۱  روز";
 "autodel_after_1_week" = "بعد از ۱ هفته";
@@ -802,9 +763,7 @@ https://meet.jit.si/$ROOM
 "autocrypt_send_asm_explain_after" = "تنظیم‌های شما برای خودتان ارسال شدند. پیام تنظیم‌ها را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید";
 "autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
 // system messages
-"systemmsg_cannot_decrypt" = "این پیام قابل رمزگشایی نیست.
-می‌توانید با پاسخ به این پیام از فرستنده درخواست کنید پیام را مجدد ارسال کند.
-اگر دلتاچت را به تازگی دوباره نصب کرده‌اید بهتر است آن را مجدد راه‌اندازی کرده و از گزینه‌ی «افزودن به عنوان دستگاه دوم» استفاده کنید، یا از نسخه‌ی پشتیبان بازیابی کنید.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از %1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
@@ -825,8 +784,6 @@ https://meet.jit.si/$ROOM
 "remove_member_by_you" = "شما عضو گروه، %1$@، را حذف کردید.  ";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "شما این‌جا را ترک کردید.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
@@ -939,6 +896,7 @@ https://meet.jit.si/$ROOM
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "احراز هویت شده توسط %1$@";
 "verified_by_you" = "تأیید شده توسط من";
+// deprecated
 "verified_contact_required_explain" = "برای تضمین رمزنگاری سراسری شما تنها می‌توانید مخاطب‌هایی که یک تیک سبز دارند به این گروه اضافه کنید.\n\nمی‌توانید با مخاطب‌هایتان حضوری ملاقات کنید و برای معرفی، کد QR آن‌ها را اسکن کنید.";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
@@ -1048,7 +1006,6 @@ GNU GPL ورژن ۳
 "insert_newline" = "افزودن خط جدید";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "وضعیت ارسال: خطا";
-"a11y_encryption_padlock" = "قفل رمزگذاری";
 "a11y_delivery_status_sending" = "وضعیت ارسال: درحال ارسال";
 "a11y_delivery_status_draft" = "وضعیت ارسال: پیش نویس";
 "a11y_delivery_status_delivered" = "وضعیت ارسال: دریافت شد";
@@ -1074,8 +1031,6 @@ GNU GPL ورژن ۳
 "disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";
 "disabled_in_system_settings" = "در تنظیم‌های سیستم غیر فعال شده است. ";
 "bg_app_refresh_disabled" = "گزینه «بازخوانی نرم‌افزار در پس‌زمینه» در تنظیم‌های سیستم غیر فعال شده است. ";
-// deprecated, was used on iOS only
-"delayed" = "دارای تاخیر";
 "notifications_avg_minutes" = "به صورت متوسط هر%1$d دقیقه";
 "notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
 "last_check_at" = "بررسی شده در %1$@";

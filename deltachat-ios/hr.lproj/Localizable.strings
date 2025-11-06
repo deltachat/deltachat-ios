@@ -105,7 +105,6 @@
 "mute_for_seven_days" = "Utišaj na 7 dana";
 // contact list
 "contacts_title" = "Kontakti";
-"contacts_empty_hint" = "Nema kontakata.";
 "chat_please_enter_message" = "Molimo unesite poruku.";
 "chat_camera_unavailable" = "Kamera nije dostupna.";
 "chat_record_slide_to_cancel" = "Kliznite za otkazivanje";
@@ -168,8 +167,6 @@
 "pref_incognito_keyboard_explain" = "Zahtijevaj od tipkovnice da onemogući personalizirano učenje";
 "pref_read_receipts" = "Potvrde čitanja";
 "pref_read_receipts_explain" = "Ukoliko ste onemogućili potvrdu čitanja kod sebe, nećete moći vidjeti potvrde čitanja od drugih.";
-"pref_use_system_emoji" = "Koristi emotikone sustava";
-"pref_use_system_emoji_explain" = "Onemogući ugrađenu Delta Chat podršku za emotikone";
 "pref_chats" = "Razgovori";
 "pref_in_chat_sounds" = "Zvuk unutar razgovora";
 "pref_other" = "Ostalo";

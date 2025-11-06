@@ -240,7 +240,6 @@
 "contacts_title" = "Kontaktoj";
 "contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
 "contacts_type_email_above" = "Enigu retadreson supren";
-"contacts_empty_hint" = "Neniu kontakto.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Enarĥivigitaj babiloj";
 "chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
@@ -282,6 +281,7 @@
 "media_preview" = "Aŭdvida antaŭrigardo";
 "send_message" = "Sendi mesaĝon";
 "login_title" = "Ensaluti";
+// deprecated
 "login_header" = "Ensaluti al via servilo";
 "login_inbox" = "Ricevujo";
 "login_imap_login" = "IMAP salutnomo";
@@ -294,7 +294,9 @@
 "login_smtp_server" = "SMTP servilo";
 "login_smtp_port" = "SMTP pordo";
 "login_smtp_security" = "SMTP sekureco";
+// deprecated
 "login_auth_method" = "Metodo de rajtigado";
+// deprecated
 "login_info_oauth2_title" = "Ĉu daŭri kun faciligitaj agordoj?";
 "login_certificate_checks" = "Atestilaj kontroloj";
 "login_error_mail" = "Bonvolu enigi validan retadreson";
@@ -341,8 +343,6 @@
 "pref_read_receipts" = "Legokonfirmoj";
 "pref_read_receipts_explain" = "Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.";
 "pref_manage_keys" = "Administri ŝlosilojn";
-"pref_use_system_emoji" = "Uzi sisteman emoĝiaron";
-"pref_use_system_emoji_explain" = "Malebligi emoĝiaron de Delta Chat";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
 "pref_view_log" = "Vidi protokolon";
@@ -354,15 +354,13 @@
 "pref_backup_explain" = "Savkopii babilojn al ekstera memorilo";
 "pref_backup_export_start_button" = "Komenci savkopiadon";
 "pref_backup_written_to_x" = "Savkopio sukcese konservita al \"%1$@\".";
-"pref_managekeys_menu_title" = "Administri ŝlosilojn";
 "pref_managekeys_export_secret_keys" = "Eksporti sekretajn ŝlosilojn";
 "pref_managekeys_export_explain" = "Ĉu eksporti sekretajn ŝlosilojn al \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Importi sekretajn ŝlosilojn";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fono";
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
-"pref_imap_folder_handling" = "IMAP dosieruja traktado";
+// deprecated
 "pref_watch_sent_folder" = "Kontroli senditujon";
 "pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";

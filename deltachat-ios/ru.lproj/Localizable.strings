@@ -333,34 +333,6 @@
 "missed_call" = "Пропущенный звонок";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
-// deprecated
-"videochat" = "Видеочат";
-// deprecated
-"videochat_invite_user_to_videochat" = "Пригласить %1$@ в видеочат?";
-// deprecated
-"videochat_invite_user_hint" = "Это требует совместимого приложения или браузера на обоих сторонах.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ приглашает в видеочат.";
-// deprecated
-"videochat_you_invited_hint" = "Вы отправили приглашение на видеочат.";
-// deprecated
-"videochat_tap_to_join" = "Нажмите, чтобы присоединиться.";
-// deprecated
-"videochat_tap_to_open" = "Нажмите, чтобы открыть";
-// deprecated
-"videochat_instance" = "Инстанс видеочатов";
-// deprecated
-"videochat_instance_placeholder" = "Ваш инстанс видеочатов";
-// deprecated
-"videochat_instance_example" = "Пример: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Если функция активирована, вы можете запустить видеочат из любого чата. Для этого требуется совместимое приложение или браузер у всех участников.";
-// deprecated
-"videochat_instance_from_qr" = "Использовать \"%1$@\" чтобы приглашать других в видеочаты?\n\nНастроив один раз, вы можете начинать видеочат из каждого чата. Это заменит предыдущие настройки видеочатов, если они были.";
-// deprecated
-"videochat_invitation" = "Приглашение в видеочат";
-// deprecated
-"videochat_invitation_body" = "Вы приглашены в видеочат, нажмите %1$@, чтобы присоединиться.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы действительно хотите выйти?";
@@ -384,7 +356,6 @@
 "contacts_title" = "Контакты";
 "contacts_enter_name_or_email" = "Введите имя или адрес электронной почты";
 "contacts_type_email_above" = "Введите адрес электронной почты выше";
-"contacts_empty_hint" = "Нет контактов.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Архивные чаты";
 "chat_please_enter_message" = "Введите сообщение.";
@@ -415,9 +386,6 @@
 "saved" = "Сохранено";
 "save_as" = "Сохранить как…";
 "retry_send" = "Повторить отправку сообщения";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Чтобы отправить сообщение, вы должны быть членом этой группы. Чтобы присоединиться, обратитесь к другому участнику.";
-"messaging_disabled_mailing_list" = "Отправка сообщений в списках рассылки пока не поддерживается ";
 "cannot_display_unsuported_file_type" = "Невозможно показать этот тип файла: %1$@";
 "attachment_failed_to_load" = "Не удалось загрузить вложение";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -569,9 +537,13 @@
 "welcome_chat_over_email" = "Безопасный децентрализованный чат";
 "scan_invitation_code" = "Сканировать код приглашения";
 "login_title" = "Войти";
+// deprecated
 "login_header" = "Вход в аккаунт";
+// deprecated
 "login_explain" = "Вход в аккаунт электронной почты";
+// deprecated
 "login_subheader" = "Для известных провайдеров электронной почты дополнительные настройки устанавливаются автоматически. Иногда необходимо включить IMAP в настройках веб-сайта. Проконсультируйтесь с технической поддержкой вашей почтовой службы или друзьями, для получения помощи.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat не собирает данные пользователей, все данные хранятся на вашем устройстве!";
 "login_inbox" = "Входящие";
 "login_imap_login" = "Имя пользователя IMAP";
@@ -584,6 +556,7 @@
 "login_smtp_server" = "Сервер SMTP";
 "login_smtp_port" = "Порт SMTP";
 "login_smtp_security" = "Защита соединения SMTP";
+// deprecated
 "login_auth_method" = "Метод авторизации";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Прокси";
@@ -598,7 +571,11 @@
 "proxy_use_proxy_confirm" = "Вы хотите использовать прокси \"%1$@\"?";
 "proxy_share_explain" = "Ваши друзья могут добавить этот прокси, отсканировав QR-код.";
 "proxy_share_link" = "Поделиться ссылкой";
+"proxy_enabled" = "Прокси включен";
+"proxy_enabled_hint" = "Вы используете прокси. При проблемах с подключением, попробуйте другой прокси.";
+// deprecated
 "login_info_oauth2_title" = "Продолжить упрощенную настройку?";
+// deprecated
 "login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth 2.0).\n\nНа следующем шаге, разрешите Delta Chat отправлять и получать сообщения.\n\nDelta Chat не собирает ваши данные, они все остаются на вашем устройстве.";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Введите правильный адрес электронной почты";
@@ -607,7 +584,7 @@
 "login_error_required_fields" = "Введите правильный адрес электронной почты и пароль";
 "import_backup_title" = "Восстановить из резервной копии";
 "import_backup_ask" = "Найдена резервная копия в \"%1$@\".\n\nВы хотите импортировать и использовать все данные и настройки из нее?";
-"import_backup_no_backup_found" = "Резервных копий не найдено.\n\nСкопируйте резервную копию в \"%1$@\" и повторите попытку. Или нажмите \"Начать общение\", чтобы продолжить стандартный процесс установки.";
+"import_backup_no_backup_found" = "Резервных копий не найдено.\n\nСкопируйте резервную копию в \"%1$@\" и повторите попытку.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не удалось авторизоваться как \"%1$@\". Убедитесь, что адрес электронной почты и пароль введены правильно.";
 // TLS certificate checks
@@ -689,8 +666,6 @@
 "pref_server" = "Сервер";
 "pref_encryption" = "Шифрование";
 "pref_manage_keys" = "Управление ключами";
-"pref_use_system_emoji" = "Использовать системные эмодзи";
-"pref_use_system_emoji_explain" = "Отключить поддержку встроенных эмодзи Delta Chat";
 "pref_show_system_contacts" = "Чтение системной адресной книги";
 "pref_show_system_contacts_explain" = "Предлагать создать чаты с контактами из адресной книги.";
 "pref_chats" = "Чаты";
@@ -703,25 +678,22 @@
 "pref_backup" = "Резервное копирование";
 "pref_backup_explain" = "Резервное копирование чатов на внешний носитель";
 "pref_backup_export_explain" = "Резервная копия поможет вам восстановить данные на этом или на другом устройстве.\n\nРезервная копия содержит все сообщения, контакты и чаты, а также параметры сквозного шифрования Autocrypt. Храните файл резервной копии в безопасном месте или удалите его как можно скорее.";
-// the placeholder will be replaced by the profile name
+"pref_backup_export_this" = "Экспортировать профиль";
+// deprecated
 "pref_backup_export_x" = "Экспорт %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспорт всех %1$d профилей";
 "pref_backup_export_start_button" = "Начать резервное копирование";
 "pref_backup_written_to_x" = "Резервная копия успешно записана в \"%1$@\".";
-"pref_managekeys_menu_title" = "Управление ключами";
 "pref_managekeys_export_secret_keys" = "Экспорт секретных ключей";
 "pref_managekeys_export_explain" = "Экспортировать секретные ключи в \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Импорт секретных ключей";
-"pref_managekeys_import_explain" = "Импортировать секретные ключи из \"%1$@\"?\n\n• Существующие секретные ключи не будут удалены\n\n• Последний импортированный ключ будет использован как новый ключ по умолчанию, если он не содержит слова \"legacy\" в названии файла.";
 "pref_managekeys_secret_keys_exported_to_x" = "Секретные ключи успешно сохранены в \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Секретные ключи импортированы из \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Обои для чатов";
 "pref_background_btn_default" = "Использовать изображение по умолчанию";
 "pref_background_btn_gallery" = "Выбрать из галереи";
-"pref_imap_folder_handling" = "Обработка папок IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Если вы измените этот параметр, убедитесь, что ваш сервер и другие клиенты настроены соответствующим образом.\n\nВ противном случае, всё может перестать работать.";
+// deprecated
 "pref_watch_sent_folder" = "Следить за папкой \"Исходящие\"";
 "pref_send_copy_to_self" = "Отправлять копию себе";
 "pref_send_copy_to_self_explain" = "Требуется при использовании этого аккаунта на нескольких устройствах.";
@@ -796,12 +768,7 @@
 "autodel_confirm" = "Я понимаю, удалить все эти сообщения";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Сразу после загрузки";
-"after_30_seconds" = "Через 30 секунд";
-// deprecated
-"after_1_minute" = "Через 1 минуту";
 "after_5_minutes" = "Через 5 минут";
-// deprecated
-"after_30_minutes" = "Через 30 минут";
 "autodel_after_1_hour" = "Через 1 час";
 "autodel_after_1_day" = "Через 1 день";
 "autodel_after_1_week" = "Через 1 неделю";
@@ -814,7 +781,7 @@
 "autocrypt_send_asm_explain_after" = "Ваши настройки были оправлены вам. Переключитесь на другое устройство и откройте сообщение с настройкой. Вам будет предложено ввести код настройки. Введите следующие цифры:";
 "autocrypt_prefer_e2ee" = "Предпочитать сквозное шифрование";
 // system messages
-"systemmsg_cannot_decrypt" = "Это сообщение не может быть расшифровано.\n\n• Попробуйте просто ответить на это сообщение и попросить отправителя отправить его снова.\n\n• Если вы только что переустановили Delta Chat, то лучше сейчас заново настроить Delta Chat и выбрать \"Добавить как второе устройство\" или импортировать резервную копию.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Неизвестный отправитель для данного чата. Смотрите \"информацию\" для подробностей.";
 "systemmsg_subject_for_new_contact" = "Сообщение от %1$@";
 "systemmsg_failed_sending_to" = "Не удалось отправить сообщение %1$@.";
@@ -835,8 +802,11 @@
 "remove_member_by_you" = "Вы удалили участника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ удаляет участника %1$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "Вы покинули.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Вы покинули группу.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Вы покинули канал.";
+"you_joined_the_channel" = "Вы присоединились к каналу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ покидает группу.";
 "group_image_deleted_by_you" = "Вы удалили изображение группы.";
@@ -923,6 +893,7 @@
 "qrshow_join_group_title" = "QR-код приглашения";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Сканируйте QR-код, чтобы присоединиться к группе \"%1$@\"";
+"qrshow_join_channel_hint" = "Отсканируйте, чтобы присоединиться к каналу \"%1$@\"";
 "qrshow_join_contact_title" = "QR-код приглашения";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Отсканируйте, чтобы начать чат с %1$@";
@@ -946,6 +917,7 @@
 "verified_by" = "Подтверждён: %1$@";
 "verified_by_you" = "Подтверждён: Лично";
 "verified_by_unknown" = "Подтверждён";
+// deprecated
 "verified_contact_required_explain" = "Чтобы обеспечить сквозное шифрование, вы можете добавлять в эту группу только контакты с зеленой галочкой.\n\nВы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";
 "mailto_dialog_header_select_chat" = "Выберите чат, чтобы отправить сообщение";
 // first placeholder is the name of the chat
@@ -1042,7 +1014,6 @@
 "insert_newline" = "Вставить новую строку";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Статус доставки: Ошибка";
-"a11y_encryption_padlock" = "Значок шифрования";
 "a11y_delivery_status_sending" = "Статус доставки: Отправляется";
 "a11y_delivery_status_draft" = "Статус доставки: Черновик";
 "a11y_delivery_status_delivered" = "Статус доставки: Доставлено";
@@ -1068,8 +1039,6 @@
 "disabled_in_dc" = "Отключено в Delta Chat.";
 "disabled_in_system_settings" = "Отключено в системных настройках";
 "bg_app_refresh_disabled" = "\"Фоновое обновление приложений\" отключено в системных настройках";
-// deprecated, was used on iOS only
-"delayed" = "Отложено";
 "notifications_avg_minutes" = "В среднем каждые %1$d минут(ы)";
 "notifications_avg_hours" = "В среднем каждые %1$d часа(ов)";
 "last_check_at" = "Проверено в %1$@";

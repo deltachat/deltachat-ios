@@ -120,7 +120,6 @@
 "ask_block_contact" = "இந்த தொடர்பை முடக்கவா ?";
 // contact list
 "contacts_title" = "தொடர்புகள்";
-"contacts_empty_hint" = "எந்த தொடர்புகளும் இல்லை";
 "chat_record_slide_to_cancel" = "ரத்து செய்ய திரையில் சறுக்கவும்";
 "chat_share_with_title" = "பகிர்";
 "chat_input_placeholder" = "சேதி";
@@ -138,6 +137,7 @@
 "profile_encryption" = "மறைகுறியாக்கம்";
 "tab_contact" = "தொடர்பு";
 "tab_gallery" = "காட்சி கூடம்";
+// deprecated
 "login_subheader" = "அறியப்பட்ட மின் அஞ்சல் வழங்குநர்களுக்கு மற்ற அமைப்புகள் தானாக தீர்மானிக்கப்படும் ";
 "login_inbox" = "உட்பெட்டி";
 "login_outbox" = "வெளிப்பெட்டி";
@@ -174,8 +174,6 @@
 "pref_incognito_keyboard_explain" = "தனிப்பயனாக்கப்பட்ட கற்றலை முடக்க விசைப்பலகை கோருங்கள்";
 "pref_read_receipts" = "ரசீதுகளைப் படியுங்கள்";
 "pref_read_receipts_explain" = "வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் ";
-"pref_use_system_emoji" = "கணினி ஈமோஜியைப் பயன்படுத்தவும்";
-"pref_use_system_emoji_explain" = "Delta Chat உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு";
 "pref_chats" = "அரட்டைகள்";
 "pref_in_chat_sounds" = "௨ள்ளார்ந்த செயலி அறிவிப்புகள்";
 "pref_other" = "மற்றவை";

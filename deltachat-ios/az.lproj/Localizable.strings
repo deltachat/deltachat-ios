@@ -148,7 +148,6 @@
 "contacts_title" = "Kontaktlar";
 "contacts_enter_name_or_email" = "Ad ya e-poçt daxil et";
 "contacts_type_email_above" = "E-poçt ünvanını yazın";
-"contacts_empty_hint" = "Kontakt yoxdur.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Çatlar saxlanıldı";
 "chat_please_enter_message" = "Mesajı daxıl edin";
@@ -195,9 +194,13 @@
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
 "login_title" = "Daxil ol";
+// deprecated
 "login_header" = "Serverinə daxil ol";
+// deprecated
 "login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
+// deprecated
 "login_subheader" = "Məlum elektron poçt provayderləri üçün əlavə parametrlər avtomatik olaraq quraşdırılır. Bəzən IMAP-ın web məkanında aktiv olması lazımdır. Yardım üçün e-poçt provayderinizə və ya dostlarınıza müraciət edin.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat serverləri yoxdur, məlumatlarınız cihazınızda qalır!";
 "login_inbox" = "Gələn";
 "login_imap_login" = "IMAP logini";
@@ -210,8 +213,11 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP təhlükəsizliyi";
+// deprecated
 "login_auth_method" = "Yetkiləndirmə metodu";
+// deprecated
 "login_info_oauth2_title" = "Sadələşdirilmiş tənzimləmə ilə davam edirsiniz?";
+// deprecated
 "login_info_oauth2_text" = "Daxil edilmiş e-poçt ünvanı sadələşdirilmiş bir quraşdırma (OAuth2) dəstəkləyir. \n\nNövbəti addımda Delta Chat e-poçt tətbiqinizlə söhbət etməyə icazə verin. \n\n Delta Chat serverləri, cihazınızda qalır!";
 "login_certificate_checks" = "Sertifikat yoxlanmaları";
 "login_error_mail" = "Xahiş edirik düzgün bir e-poçt ünvanı daxil et";
@@ -266,8 +272,6 @@
 "pref_read_receipts" = "Qəbul olunanları oxuyun";
 "pref_read_receipts_explain" = "Bildirişlər aradan qaldırılırsa, başqalarının oxuduğu bildirişləri görə bilməyəcəksiniz.";
 "pref_manage_keys" = "Açar edarəetməsi";
-"pref_use_system_emoji" = "Sistem emojisini istifadə edin";
-"pref_use_system_emoji_explain" = "Emoji Delta chat üçün daxili dəstəyi bağlayın. ";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
 "pref_view_log" = "Log-a bax";
@@ -280,18 +284,15 @@
 "pref_backup_export_explain" = "Ehtiyat nüsxəsi bu və ya digər bir cihazda yeni bir quraşdırma qurmağa kömək edir. \n\nNüsxədə bütün mesajlar, kontaktlar, çatlar və son ucdan uca avtoşifrələmə quraşdırmaınız olacaq. Nüsxə faylını təhlükəsiz yerdə saxlayın və ya mümkün qədər tez silin.";
 "pref_backup_export_start_button" = "Nüsxəyə başla";
 "pref_backup_written_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
-"pref_managekeys_menu_title" = "Açar idarəetməsi";
 "pref_managekeys_export_secret_keys" = "Gizli açar ixracı";
 "pref_managekeys_export_explain" = " \"%1$@\" - ə gizli açar ixracı?";
-"pref_managekeys_import_secret_keys" = "Gizli açar idxalı";
 "pref_managekeys_secret_keys_exported_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
-"pref_managekeys_secret_keys_imported_from_x" = " \"%1$@\" - dən gizli açar idxalı?";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fon";
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
-"pref_imap_folder_handling" = "IMAP qovluqunun idarə edilməsi";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçimi ləğv etsəniz, serverinizin və digər müştərilərinizin müvafiq olaraq konfiqurasiya olunduğundan əmin olun. \n\nAyrıca şeylər işləməyəcəkdir.";
+// deprecated
 "pref_watch_sent_folder" = "Göndərilmişlərin qovluğunu izləyin";
 "pref_send_copy_to_self" = "Özünə kopya göndər";
 "pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";

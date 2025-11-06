@@ -296,34 +296,6 @@
 "share_location_for_two_hours" = "Na 2 hodiny";
 "share_location_for_six_hours" = "Na 6 hodin";
 "file_saved_to" = "Soubor uložen do \"%1$@\".";
-// deprecated
-"videochat" = "Videohovor";
-// deprecated
-"videochat_invite_user_to_videochat" = "Pozvat uživatele %1$@ k videohovoru?";
-// deprecated
-"videochat_invite_user_hint" = "Toto vyžaduje kompatibilní aplikaci či prohlížeč na obou stranách.";
-// deprecated
-"videochat_contact_invited_hint" = "Uživatel %1$@ pozván k videohovoru.";
-// deprecated
-"videochat_you_invited_hint" = "Odeslali jste pozvánku k videohovoru.";
-// deprecated
-"videochat_tap_to_join" = "Připojit se stisknutím";
-// deprecated
-"videochat_tap_to_open" = "Otevřít stisknutím";
-// deprecated
-"videochat_instance" = "Instance pro videohovory";
-// deprecated
-"videochat_instance_placeholder" = "Vaše instance pro videohovory";
-// deprecated
-"videochat_instance_example" = "Příklad: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "Je-li tato volba povolena, můžete ve všech chatech spouštět videohovory. Vyžaduje kompatibilní aplikaci nebo prohlížeč na obou stranách.";
-// deprecated
-"videochat_instance_from_qr" = "Použít \"%1$@\" ke zvaní na videohovory?\n\nJakmile je volba nastavena, můžete ve všech chatech spouštět videohovory. Předchozí hodnota bude tímto přepsána.";
-// deprecated
-"videochat_invitation" = "Pozvánka k videohovoru";
-// deprecated
-"videochat_invitation_body" = "Byli jste pozváni k videohovoru, připojte se stisknutím %1$@";
 "ask_delete_named_chat" = "Smazat chat \"%1$@\" ze všech vašich zařízení?";
 "ask_delete_message" = "Smazat tuto zprávu ze všech vašich zařízení?";
 // Used for the deletion of Device messages
@@ -342,7 +314,6 @@
 "contacts_title" = "Kontakty";
 "contacts_enter_name_or_email" = "Zadejte jméno nebo e-mail";
 "contacts_type_email_above" = "Zadejte e-mail výše";
-"contacts_empty_hint" = "Žádné kontakty.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivované chaty";
 "chat_please_enter_message" = "Zadejte zprávu, prosím.";
@@ -370,9 +341,6 @@
 "saved" = "Uložené";
 "save_as" = "Uložit jako";
 "retry_send" = "Opakovat pokus o zaslání zprávy";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "Abyste mohli poslat zprávu, musíte být členem této skupiny. Požádejte jiného člena, aby vás přidal.";
-"messaging_disabled_mailing_list" = "Posílání zpráv do e-mailových seznamů zatím není podporováno";
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Načtení přílohy se nezdařilo";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -524,9 +492,13 @@
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
 "login_title" = "Přihlaš se";
+// deprecated
 "login_header" = "Přihlašte se ke svému e-mailovému účtu";
+// deprecated
 "login_explain" = "Přihlásit se se stávajícím účtem pro e-mail.";
+// deprecated
 "login_subheader" = "Pro standardní poskytovatele jsou nastavení dopněna automaticky. Někdy je potřeba povolit IMAP ve webovém rozhraní. Potřebujete-li pomoc, obraťte se na svého poskytovatele e-mailu nebo přátele.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat nesbírá uživatelská data, vše zůstává na vašem zařízení.";
 "login_inbox" = "Příchozí";
 "login_imap_login" = "IMAP uživatelské jméno";
@@ -539,6 +511,7 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP zabezpečení";
+// deprecated
 "login_auth_method" = "Metoda autorizace";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy server";
@@ -553,7 +526,9 @@
 "proxy_use_proxy_confirm" = "Přejete si použít proxy server \"%1$@\"?";
 "proxy_share_explain" = "Vaši přátele si mohou tento proxy server přidat naskenováním tohoto QR kódu.";
 "proxy_share_link" = "Sdílet odkaz";
+// deprecated
 "login_info_oauth2_title" = "Pokračovat se zjednodušeným nastavením?";
+// deprecated
 "login_info_oauth2_text" = "Zadaný e-mail podporuje zjednodušené nastavení (OAuth 2.0).\n\nV následujícím kroku, prosíme, povolte Delta Chatu chovat se jako aplikace typu Chat přes e-mail.\n\nDelta Chat nesbírá uživatelská data, vše zůstává na vašem zařízení.";
 "login_certificate_checks" = "Kontroly certifikátu";
 "login_error_mail" = "Prosím, zadejte platnou e-mailovou adresu";
@@ -562,7 +537,7 @@
 "login_error_required_fields" = "Prosím, zadejte platnou e-mailovou adresu a heslo";
 "import_backup_title" = "Obnovit ze zálohy";
 "import_backup_ask" = "Záloha nalezena v \"%1$@\"\n\nPřejete si soubor načíst a použít všechna jeho data a nastavení?";
-"import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopírujte zálohu do \"%1$@\" a zkuste to znovu. Můžete také stisknout \"Začít...\"  a pokračovat běžným postupem pro nastavení aplikace.";
+"import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopírujte zálohu do \"%1$@\" a zkuste to znovu.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
@@ -644,8 +619,6 @@
 "pref_server" = "Server";
 "pref_encryption" = "Šifrování";
 "pref_manage_keys" = "Správa klíčů";
-"pref_use_system_emoji" = "Používat systémová emoji";
-"pref_use_system_emoji_explain" = "Vypnout vestavěná emoji Data Chatu";
 "pref_show_system_contacts" = "Čtení systémových kontaktů";
 "pref_show_system_contacts_explain" = "Nabízet vytváření chatů s kontakty z adresáře. Pro některé poskytovatele je nejprve nutné nastavit koncové šifrování.";
 "pref_chats" = "Chaty";
@@ -658,25 +631,21 @@
 "pref_backup" = "Záloha";
 "pref_backup_explain" = "Zálohovat chaty na externí úložiště";
 "pref_backup_export_explain" = "Záloha vám pomůže s novou instalací na tomto či jiném zařízení.\n\nZáloha bude obsahovat všechny zprávy, kontakty a chaty, a nastavení automatického koncového šifrování. Soubor se zálohou uchovávejte na bezpečném místě, nebo jej co nejdříve smažte.";
-// the placeholder will be replaced by the profile name
+// deprecated
 "pref_backup_export_x" = "Exportovat %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportovat všech %1$d profilů";
 "pref_backup_export_start_button" = "Spustit zálohu";
 "pref_backup_written_to_x" = "Záloha úspěšně zapsána v \"%1$@\"";
-"pref_managekeys_menu_title" = "Správa klíčů";
 "pref_managekeys_export_secret_keys" = "Exportovat tajné klíče";
 "pref_managekeys_export_explain" = "Exportovat tajné klíče do \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Importovat tajné klíče";
-"pref_managekeys_import_explain" = "Načíst tajné klíče z \"%1$@\"?\n\n• Stávající klíče nebudou smazány\n\n• Klíč načtený jako poslední bude použit jako výchozí, pokud název souboru nebsahuje slovo \"legacy\".";
 "pref_managekeys_secret_keys_exported_to_x" = "Tajné klíče úspěšně zapsány v \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Tajné klíče načteny z \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Pozadí";
 "pref_background_btn_default" = "Použít výchozí obrázek";
 "pref_background_btn_gallery" = "Vybrat z galerie";
-"pref_imap_folder_handling" = "Použití složek z IMAP";
 "pref_imap_folder_warn_disable_defaults" = "Při změně této volby se ujistěte, že váš server a ostatní klientské aplikace mají odpovídající nastavení.\n\nJinak může vše přestat fungovat.";
+// deprecated
 "pref_watch_sent_folder" = "Sledovat složku Odeslané";
 "pref_send_copy_to_self" = "Posílat si kopie";
 "pref_send_copy_to_self_explain" = "Tato volba je potřebná, pokud je tento účet používán na více zařízeních.";
@@ -750,12 +719,7 @@
 "autodel_confirm" = "Rozumím. Smazat všechny tyto zprávy";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Ihned po stažení";
-"after_30_seconds" = "Po 30 sekundách";
-// deprecated
-"after_1_minute" = "Po 1 minutě";
 "after_5_minutes" = "Po 5 minutách";
-// deprecated
-"after_30_minutes" = "Po 30 minutách";
 "autodel_after_1_hour" = "Po 1 hodině";
 "autodel_after_1_day" = "Po 1 dni";
 "autodel_after_1_week" = "Po 1 týdnu";
@@ -768,7 +732,7 @@
 "autocrypt_send_asm_explain_after" = "Vaše nastavení bylo odesláno. Vezměte si zařízení, kam si přejete nastavení přenést, a zprávu na něm otevřete. Mělo by se objevit pole pro zadání kódu. Do něj vložte následující číslice:";
 "autocrypt_prefer_e2ee" = "Upřednostňovat koncové šifrování";
 // system messages
-"systemmsg_cannot_decrypt" = "Tuto zprávu nelze dešifrovat.\n\n• Již nyní by mohlo pomoci jednoduše odpovědět na tuto zprávu a požádat odesílatele, aby ji odeslal znovu.\n\n• Pokud jste právě přeinstalovali Delta Chat, bude nejlepší, když jej znovu nastavíte a zvolíte \"Přidat jako další zařízení\" nebo importujete zálohu.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Chat má neznámého odesílatele. Podrobnosti naleznete v části „informace“.";
 "systemmsg_subject_for_new_contact" = "Zpráva od uživatele %1$@";
 "systemmsg_failed_sending_to" = "Odeslání zprávy uživateli %1$@ selhalo.";
@@ -894,6 +858,7 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Ověřeni uživatelem %1$@.";
 "verified_by_you" = "Ověřeni mnou";
+// deprecated
 "verified_contact_required_explain" = "Aby mohlo být garantováno koncové šifrování, můžete do této skupiny přidávat pouze uživatele se zeleným zaškrtávátkem.\n\nSe svými kontakty se můžete setkat osobně a naskenovat jejich QR kód, abyste je ověřili.";
 "mailto_dialog_header_select_chat" = "Vyberte chat, do kterého chcete zprávu poslat";
 // first placeholder is the name of the chat
@@ -989,7 +954,6 @@
 "insert_newline" = "Vložit nový řádek";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Stav doručení: Chyba";
-"a11y_encryption_padlock" = "Zámek šifrování";
 "a11y_delivery_status_sending" = "Stav doručení: Odesílání";
 "a11y_delivery_status_draft" = "Stav doručení: Rozepsané";
 "a11y_delivery_status_delivered" = "Stav doručení: Doručeno";
@@ -1015,8 +979,6 @@
 "disabled_in_dc" = "Zakázáno aplikací Delta Chat";
 "disabled_in_system_settings" = "Zakázáno v systémovém nastavení";
 "bg_app_refresh_disabled" = "\"Aktualizace aplikací na pozadí\" jsou vypnuty v systémovém nastavení";
-// deprecated, was used on iOS only
-"delayed" = "Odložené";
 "notifications_avg_minutes" = "Průměrně jednou za %1$d minut";
 "notifications_avg_hours" = "Průměrně jednou za %1$d hodin";
 "last_check_at" = "Naposledy zkontrolováno %1$@";

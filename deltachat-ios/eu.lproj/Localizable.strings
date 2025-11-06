@@ -256,7 +256,6 @@
 "contacts_title" = "Kontaktuak";
 "contacts_enter_name_or_email" = "Sartu izena edo e-mail helbidea";
 "contacts_type_email_above" = "Idatzi e-mail helbidea goian";
-"contacts_empty_hint" = "Kontakturik ez";
 // chatlist and chat view
 "chat_archived_chats_title" = "Artxibatutako txatak";
 "chat_please_enter_message" = "Idatzi mezu bat.";
@@ -305,9 +304,13 @@
 "media_preview" = "Multimediaren aurrebista";
 "send_message" = "Bidali mezua";
 "login_title" = "Hasi saioa";
+// deprecated
 "login_header" = "Hasi saioa zure zerbitzarian";
+// deprecated
 "login_explain" = "Badagoen e-mail kontu batekin saioa hasten";
+// deprecated
 "login_subheader" = "E-mail hornitzaile ezagunentzat ezarpen gehigarriak automatikoki sortzen dira. Batzuetan IMAP gaitu behar da web interfazearen bidez. Kontsultatu zure e-mail hornitzaileari edo eskatu laguntza lagunei.";
+// deprecated
 "login_no_servers_hint" = "Ez dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
 "login_inbox" = "Sarrera ontzia";
 "login_imap_login" = "IMAP erabiltzaile-izena";
@@ -320,8 +323,11 @@
 "login_smtp_server" = "SMTP zerbitzaria";
 "login_smtp_port" = "SMTP ataka";
 "login_smtp_security" = "SMTP segurtasuna";
+// deprecated
 "login_auth_method" = "Baimentze metodoa";
+// deprecated
 "login_info_oauth2_title" = "Jarraitu ezarpen sinplifikatuarekin";
+// deprecated
 "login_info_oauth2_text" = "Sartu duzun e-mail helbideak ezarpen sinplifikatua onartzen du (OAuth2).\n\nHurrengo urratsean, baimendu Detla Chat zure e-mail bidezko txat aplikazio gisa erabili ahal izateko.\n\nEz dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
@@ -330,7 +336,7 @@
 "login_error_required_fields" = "Sartu baliozko e-mail helbidea eta pasahitza";
 "import_backup_title" = "Inportatu babes-kopia";
 "import_backup_ask" = "Babes-kopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
-"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \"%1$@\" karpetan eta saiatu berriro. Bestela, sakatu \"Hasi txateatzen\" ezarpen arruntarekin aurrera egiteko.";
+"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \"%1$@\" karpetan eta saiatu berriro.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // TLS certificate checks
@@ -385,8 +391,6 @@
 "pref_read_receipts" = "Irakurragiriak";
 "pref_read_receipts_explain" = "Irakurragiriak desgaituta badaude, ezin izango dituzu besteen irakurragiriak ikusi.";
 "pref_manage_keys" = "Kudeatu gakoak";
-"pref_use_system_emoji" = "Erabili sistemako emojiak";
-"pref_use_system_emoji_explain" = "Desgaitu Delta Chat-en barne emoji euskarria";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
 "pref_view_log" = "Ikusi egunkaria";
@@ -399,19 +403,15 @@
 "pref_backup_export_explain" = "Babes-kopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabes-kopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babes-kopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
 "pref_backup_export_start_button" = "Hasi babes-kopia";
 "pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
-"pref_managekeys_menu_title" = "Kudeatu gakoak";
 "pref_managekeys_export_secret_keys" = "Esportatu gako sekretuak";
 "pref_managekeys_export_explain" = "Esportatu gako sekretuak \"%1$@\"-ra?";
-"pref_managekeys_import_secret_keys" = "Inportatu gako sekretuak";
-"pref_managekeys_import_explain" = "Inportatu gako sekretuak \"%1$@\"-tik?\n\n• Dauden gako sekretuak ez dira ezabatuko\n\n• Inportatutako azken gakoa lehenetsitako gako berri gisa erabiliko da fitxategiaren izenean \"legacy\" ez badu.";
 "pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Gako sekretuak hemendik inportatu dira: \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Atzealdea";
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
-"pref_imap_folder_handling" = "IMAP karpeten kudeaketa";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
+// deprecated
 "pref_watch_sent_folder" = "Begiztatu bidalitakoak karpeta";
 "pref_send_copy_to_self" = "Bidali kopia norberari";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
@@ -538,7 +538,6 @@
 "menu.view.developer.open.current.log.file" = "Ireki uneko egunkari-fitxategia";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bidalketa-egoera: Errorea";
-"a11y_encryption_padlock" = "Zifratze giltzarrapoa";
 "a11y_delivery_status_sending" = "Bidalketa-egoera: Bidaltzen";
 "a11y_delivery_status_draft" = "Bidalketa-egoera: Zirriborroa";
 "a11y_delivery_status_delivered" = "Bidalketa-egoera: Bidalita";

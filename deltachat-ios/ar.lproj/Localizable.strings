@@ -115,7 +115,6 @@
 // contact list
 "contacts_title" = "جهات الإتصا";
 "contacts_enter_name_or_email" = "ادخل الإسم أو البريد الإلكتروني";
-"contacts_empty_hint" = "لا توجد جهات اتصال.";
 "chat_camera_unavailable" = "الكاميرا غير متاحة.";
 "chat_share_with_title" = "شارك مع";
 "chat_input_placeholder" = "رسالة";
@@ -138,6 +137,7 @@
 "tab_map" = "الخريطة";
 "media_preview" = "معاينة الصورة";
 "login_title" = "الولوج";
+// deprecated
 "login_header" = "الإتصال بخادومك";
 "login_inbox" = "صندوق الوارد";
 "login_imap_login" = "مستخدم IMAP";
@@ -179,8 +179,6 @@
 "pref_appearance" = "المظهر";
 "pref_theme" = "السمة";
 "pref_language" = "اللغة";
-"pref_use_system_emoji" = "استخدام الرموز التعبيرية بالنظام";
-"pref_use_system_emoji_explain" = " Delta Chat تعطيل الرموز التعبيرية المدمجة في ";
 "pref_chats" = "المحادثات";
 "pref_in_chat_sounds" = "أصوات خلال الدردش";
 "pref_other" = "أخرى";

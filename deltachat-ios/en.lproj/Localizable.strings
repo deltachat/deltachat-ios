@@ -333,34 +333,6 @@
 "missed_call" = "Missed call";
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
-// deprecated
-"videochat" = "Video Chat";
-// deprecated
-"videochat_invite_user_to_videochat" = "Invite %1$@ to a video chat?";
-// deprecated
-"videochat_invite_user_hint" = "This requires a compatible app or browser on both ends.";
-// deprecated
-"videochat_contact_invited_hint" = "%1$@ invited to a video chat.";
-// deprecated
-"videochat_you_invited_hint" = "You sent a video chat invitation.";
-// deprecated
-"videochat_tap_to_join" = "Tap to Join";
-// deprecated
-"videochat_tap_to_open" = "Tap to Open";
-// deprecated
-"videochat_instance" = "Video Chat Instance";
-// deprecated
-"videochat_instance_placeholder" = "Your Video Chat Instance";
-// deprecated
-"videochat_instance_example" = "Example: https://your-server.org/$ROOM";
-// deprecated
-"videochat_instance_explain_2" = "If enabled, you can start a video chat from each chat. Requires a compatible app or a browser on both ends.";
-// deprecated
-"videochat_instance_from_qr" = "Use \"%1$@\" to invite others to video chats?\n\nOnce set, you can start a video chat from each chat. This replaces any previous setting for video chats.";
-// deprecated
-"videochat_invitation" = "Video chat invitation";
-// deprecated
-"videochat_invitation_body" = "You are invited to a video chat, click %1$@ to join.";
 // get confirmations
 // confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Are you sure you want to leave?";
@@ -384,7 +356,6 @@
 "contacts_title" = "Contacts";
 "contacts_enter_name_or_email" = "Enter name or e-mail address";
 "contacts_type_email_above" = "Type e-mail address above";
-"contacts_empty_hint" = "No contacts.";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archived Chats";
 "chat_please_enter_message" = "Please enter a message.";
@@ -415,9 +386,6 @@
 "saved" = "Saved";
 "save_as" = "Save As";
 "retry_send" = "Retry to send message";
-// reasons for a disabled message composer
-"messaging_disabled_not_in_group" = "You must be in this group to post a message. To join, ask another member.";
-"messaging_disabled_mailing_list" = "Sending messages in mailing lists is not yet supported";
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -569,9 +537,14 @@
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
+"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an account you\'re using in another app.\n\n• Classic e-mail server allow chats without end-to-end encryption marked by a mail icon.";
+// deprecated
 "login_header" = "Log into your E-Mail Account";
+// deprecated
 "login_explain" = "Log in with an existing e-mail account";
+// deprecated
 "login_subheader" = "For known e-mail providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your e-mail provider or friends for help.";
+// deprecated
 "login_no_servers_hint" = "Delta Chat does not collect user data, everything stays on your device.";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP Login Name";
@@ -584,6 +557,7 @@
 "login_smtp_server" = "SMTP Server";
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
+// deprecated
 "login_auth_method" = "Authorization Method";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
@@ -598,7 +572,11 @@
 "proxy_use_proxy_confirm" = "Do you want to use proxy \"%1$@\"?";
 "proxy_share_explain" = "Your friends can add this proxy by scanning the QR code.";
 "proxy_share_link" = "Share Link";
+"proxy_enabled" = "Proxy Enabled";
+"proxy_enabled_hint" = "You are using a proxy. If you\'re having trouble connecting, try a different proxy.";
+// deprecated
 "login_info_oauth2_title" = "Continue with simplified setup?";
+// deprecated
 "login_info_oauth2_text" = "The entered address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to send and receive messages.\n\nDelta Chat does not collect user data, everything stays on your device.";
 "login_certificate_checks" = "Certificate Checks";
 "login_error_mail" = "Please enter a valid e-mail address";
@@ -607,7 +585,7 @@
 "login_error_required_fields" = "Please enter a valid e-mail address and a password";
 "import_backup_title" = "Restore from Backup";
 "import_backup_ask" = "Backup found at \"%1$@\".\n\nDo you want to import and use all data and settings from it?";
-"import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again. Alternatively, press \"Start messaging\" to continue with the normal setup process.";
+"import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Cannot login as \"%1$@\". Please check if the address and the password are correct.";
 // TLS certificate checks
@@ -689,8 +667,6 @@
 "pref_server" = "Server";
 "pref_encryption" = "Encryption";
 "pref_manage_keys" = "Manage Keys";
-"pref_use_system_emoji" = "Use System Emoji";
-"pref_use_system_emoji_explain" = "Turn off Delta Chat\'s built-in emoji support";
 "pref_show_system_contacts" = "Read System Address Book";
 "pref_show_system_contacts_explain" = "Offer to create chats with contacts from the address book.";
 "pref_chats" = "Chats";
@@ -703,25 +679,22 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Back Up Chats to External Storage";
 "pref_backup_export_explain" = "A backup helps you to set up a new installation on this or on another device.\n\nThe backup will contain all messages, contacts and chats and your end-to-end Autocrypt setup. Keep the backup file in a safe place or delete it as soon as possible.";
-// the placeholder will be replaced by the profile name
+"pref_backup_export_this" = "Export this profile";
+// deprecated
 "pref_backup_export_x" = "Export %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Export all %1$d profiles";
 "pref_backup_export_start_button" = "Start Backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
-"pref_managekeys_menu_title" = "Manage Keys";
 "pref_managekeys_export_secret_keys" = "Export Secret Keys";
 "pref_managekeys_export_explain" = "Export secret keys to \"%1$@\"?";
-"pref_managekeys_import_secret_keys" = "Import Secret Keys";
-"pref_managekeys_import_explain" = "Import secret keys from \"%1$@\"?\n\n• Existing secret keys will not be deleted\n\n• The last imported key will be used as the new default key unless it has the word \"legacy\" in its filename.";
 "pref_managekeys_secret_keys_exported_to_x" = "Secret keys written successfully to \"%1$@\".";
-"pref_managekeys_secret_keys_imported_from_x" = "Secret keys imported from \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Wallpaper";
 "pref_background_btn_default" = "Use Default Image";
 "pref_background_btn_gallery" = "Select From Gallery";
-"pref_imap_folder_handling" = "IMAP Folder Handling";
 "pref_imap_folder_warn_disable_defaults" = "If you change this option, make sure, your server and your other clients are configured accordingly.\n\nOtherwise things may not work at all.";
+// deprecated
 "pref_watch_sent_folder" = "Watch Sent Folder";
 "pref_send_copy_to_self" = "Send Copy to Self";
 "pref_send_copy_to_self_explain" = "Required when using this account on multiple devices.";
@@ -796,12 +769,7 @@
 "autodel_confirm" = "I understand, delete all these messages";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "At once after Download";
-"after_30_seconds" = "After 30 seconds";
-// deprecated
-"after_1_minute" = "After 1 minute";
 "after_5_minutes" = "After 5 minutes";
-// deprecated
-"after_30_minutes" = "After 30 minutes";
 "autodel_after_1_hour" = "After 1 hour";
 "autodel_after_1_day" = "After 1 day";
 "autodel_after_1_week" = "After 1 week";
@@ -814,7 +782,7 @@
 "autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 // system messages
-"systemmsg_cannot_decrypt" = "This message cannot be decrypted.\n\n• It might already help to simply reply to this message and ask the sender to send the message again.\n\n• If you just re-installed Delta Chat then it is best if you re-setup Delta Chat now and choose \"Add as second device\" or import a backup.";
+// deprecated
 "systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
@@ -835,8 +803,11 @@
 "remove_member_by_you" = "You removed member %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "Member %1$@ removed by %2$@.";
-// "left" in the meaning of "exited". This string is added to a chat after groups, channels, broadcasts or mailinglists are left. If a subject is needed, "You left the chat." would work as well.
-"group_left_by_you" = "You left.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "You left the group.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "You left the channel.";
+"you_joined_the_channel" = "You joined the channel.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "Group left by %1$@.";
 "group_image_deleted_by_you" = "You deleted the group image.";
@@ -884,6 +855,7 @@
 "ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
+"chat_unencrypted_explanation" = "Messages in this chat use classic email and are not end-to-end encrypted.";
 "chat_protection_enabled_tap_to_learn_more" = "Messages are end-to-end encrypted. Tap to learn more.";
 "chat_protection_enabled_explanation" = "All messages in this chat are end-to-end encrypted.\n\nEnd-to-end encryption keeps messages private between you and your chat partners. Not even servers, providers or relays can read them.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
@@ -905,6 +877,7 @@
 "qrscan_hint_desktop" = "Move the QR code to the camera";
 "qrscan_failed" = "QR code could not be decoded";
 "qrscan_ask_join_group" = "Do you want to join the group \"%1$@\"?";
+"qrscan_ask_join_channel" = "Do you want to join the channel \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "The scanned fingerprint does not match the last seen for %1$@.";
 "qrscan_no_addr_found" = "This QR code contains a fingerprint but no address.\n\nFor an out-of-band-verification, please establish an encrypted connection to the recipient first.";
 "qrscan_contains_text" = "Scanned QR code text:\n\n%1$@";
@@ -923,6 +896,7 @@
 "qrshow_join_group_title" = "QR Invite Code";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Scan to join group \"%1$@\"";
+"qrshow_join_channel_hint" = "Scan to join channel \"%1$@\"";
 "qrshow_join_contact_title" = "QR Invite Code";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
@@ -946,6 +920,7 @@
 "verified_by" = "Introduced by %1$@";
 "verified_by_you" = "Introduced by me";
 "verified_by_unknown" = "Introduced";
+// deprecated
 "verified_contact_required_explain" = "To guarantee end-to-end-encryption, you can only add contacts with a green checkmark to this group.\n\nYou may meet contacts in person and scan their QR Code to introduce them.";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat
@@ -1042,7 +1017,6 @@
 "insert_newline" = "Insert Newline";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Delivery status: Error";
-"a11y_encryption_padlock" = "Encryption padlock";
 "a11y_delivery_status_sending" = "Delivery status: Sending";
 "a11y_delivery_status_draft" = "Delivery status: Draft";
 "a11y_delivery_status_delivered" = "Delivery status: Delivered";
@@ -1068,8 +1042,6 @@
 "disabled_in_dc" = "Disabled in Delta Chat";
 "disabled_in_system_settings" = "Disabled in system settings";
 "bg_app_refresh_disabled" = "\"Background App Refresh\" disabled in system settings";
-// deprecated, was used on iOS only
-"delayed" = "Delayed";
 "notifications_avg_minutes" = "On average every %1$d minutes";
 "notifications_avg_hours" = "On average every %1$d hours";
 "last_check_at" = "Checked at %1$@";
