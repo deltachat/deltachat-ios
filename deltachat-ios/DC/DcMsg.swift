@@ -347,4 +347,8 @@ public class DcMsg {
     public func showEnvelope() -> Bool {
         return dc_msg_get_showpadlock(messagePointer) == 0 && downloadState == DC_DOWNLOAD_DONE
     }
+
+    public func isLottieSticker() -> Bool {
+        return type == DC_MSG_STICKER && ["tgs", "lottie"].contains(fileURL?.pathExtension)
+    }
 }
