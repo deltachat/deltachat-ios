@@ -86,20 +86,19 @@ class NotificationService: UNNotificationServiceExtension {
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
                 if #available(iOSApplicationExtension 14.5, *) {
-                    // From our app review:
-                    // "Voice over Internet Protocol (VoIP) call functionality continues to be allowed in China but can no longer take advantage of CallKit’s intuitive look and feel."
-                    // This API does not take advantage of CallKit's "look and feel", it just transmits a payload to the main app process, so it is fine to use in China.
-                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
-                    CXProvider.reportNewIncomingVoIPPushPayload([
-                        "event_id": Int(DC_EVENT_INCOMING_CALL),
-                        "account_id": event.accountId,
-                        "message_id": event.data1Int,
-                        "place_call_info": event.data2String,
-                    ] as [String: Any]) { error in
-                        if let error {
-                            UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
-                        } else {
-                            UserDefaults.pushToDebugArray("OK2")
+                    if canUseCallKit {
+                        // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                        CXProvider.reportNewIncomingVoIPPushPayload([
+                            "event_id": Int(DC_EVENT_INCOMING_CALL),
+                            "account_id": event.accountId,
+                            "message_id": event.data1Int,
+                            "place_call_info": event.data2String,
+                        ] as [String: Any]) { error in
+                            if let error {
+                                UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
+                            } else {
+                                UserDefaults.pushToDebugArray("OK2")
+                            }
                         }
                     }
                 } else {
@@ -114,7 +113,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_CALL_ENDED || event.id == DC_EVENT_INCOMING_CALL_ACCEPTED {
                 UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
-                if #available(iOSApplicationExtension 14.5, *) {
+                if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
                         "event_id": Int(event.id),

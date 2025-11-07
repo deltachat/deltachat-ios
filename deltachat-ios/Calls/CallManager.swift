@@ -37,7 +37,6 @@ class CallManager: NSObject {
     private let callController: CXCallController
     private let callObserver: CXCallObserver
     private var currentCall: DcCall?
-    private let canUseCallKit = false
 
     override init() {
         voIPPushManager = VoIPPushManager()
