@@ -3,7 +3,6 @@
 ## Unreleased
 
 - Fix: Don't show removed chats in widget
-- Fix: Fixed bug where camera would activate when not on the scanning screen
 
 
 ## v2.22.2 Testflight
