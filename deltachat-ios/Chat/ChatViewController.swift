@@ -1372,6 +1372,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             actionHandler: { [weak self] _ in
                 guard let self else { return }
                 RelayHelper.shared.shareAndFinishRelaying(to: chatId)
+                becomeFirstResponder()
             },
             cancelHandler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
