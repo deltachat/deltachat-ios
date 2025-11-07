@@ -164,8 +164,11 @@ class CallManager: NSObject {
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCallController(uuid: currentCall.uuid)
+
+            // call is missed if
+            // - not accepted elsewhere (currentCall would have been set to nil in handleIncomingCallAcceptedEvent)
+            // - and not accepted here (check currentCall.callAcceptedHere)
             if !currentCall.callAcceptedHere, !canUseCallKit {
-                // missed? idk if it is correct to assume missed call here
                 let dcContext = DcAccounts.shared.get(id: accountId)
                 let dcMsg = dcContext.getMessage(id: msgId)
                 let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
