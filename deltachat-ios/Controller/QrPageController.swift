@@ -59,14 +59,12 @@ class QrPageController: UIPageViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        // QrCodeReaderController.viewWillAppear() is on called on section change, not on main-tab change
-        qrCodeReaderController.startSession()
+        super.viewWillAppear(animated)
         updateHintTextIfNeeded()    // needed in case user changes profile name
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        // QrCodeReaderController.viewWillDisappear() is on called on section change, not on main-tab change
-        qrCodeReaderController.stopSession()
+        super.viewWillDisappear(animated)
         self.progressObserver = nil
     }
 
