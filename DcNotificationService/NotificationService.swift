@@ -85,23 +85,21 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
-                if #available(iOSApplicationExtension 14.5, *) {
-                    if canUseCallKit {
-                        // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
-                        CXProvider.reportNewIncomingVoIPPushPayload([
-                            "event_id": Int(DC_EVENT_INCOMING_CALL),
-                            "account_id": event.accountId,
-                            "message_id": event.data1Int,
-                            "place_call_info": event.data2String,
-                        ] as [String: Any]) { error in
-                            if let error {
-                                UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
-                            } else {
-                                UserDefaults.pushToDebugArray("OK2")
-                            }
+                if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
+                    // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
+                    CXProvider.reportNewIncomingVoIPPushPayload([
+                        "event_id": Int(DC_EVENT_INCOMING_CALL),
+                        "account_id": event.accountId,
+                        "message_id": event.data1Int,
+                        "place_call_info": event.data2String,
+                    ] as [String: Any]) { error in
+                        if let error {
+                            UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
+                        } else {
+                            UserDefaults.pushToDebugArray("OK2")
                         }
                     }
-                } else {
+                } else if #unavailable(iOSApplicationExtension 14.5) {
                     let content = UNMutableNotificationContent()
                     let msg = dcAccounts.get(id: event.accountId).getMessage(id: event.data1Int)
                     content.title = "Incoming Call"
