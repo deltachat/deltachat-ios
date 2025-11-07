@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added experimental debug calls option
 - Fix: Don't show removed chats in widget
 
 
