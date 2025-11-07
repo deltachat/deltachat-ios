@@ -1134,8 +1134,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         attachButton.showsMenuAsPrimaryAction = true
         attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
-        attachButton.addAction(UIAction { [weak self] _ in
-            attachButton.menu = self?.clipperButtonMenu()
+        attachButton.addAction(UIAction { [weak attachButton, weak self] _ in
+            attachButton?.menu = self?.clipperButtonMenu()
         }, for: .menuActionTriggered)
 
         let leftItems = [attachButton]
