@@ -1185,24 +1185,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func clipperButtonMenu() -> UIMenu {
         var actions = [UIMenuElement]()
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping (ChatViewController) -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { [unowned self] _ in handler(self) })
         }
 
         actions.append(UIMenu(options: [.displayInline], children: [
-            action("camera", "camera", showCameraViewController),
-            action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
+            action("camera", "camera", { $0.showCameraViewController() }),
+            action("gallery", "photo.on.rectangle", { $0.showPhotoVideoLibrary() })
         ]))
 
-        actions.append(action("file", "doc", showFilesLibrary))
-        actions.append(action("webxdc_app", "square.grid.2x2", showAppPicker))
-        actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
+        actions.append(action("file", "doc", { $0.showFilesLibrary() }))
+        actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-            actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
-                                  attributes: isLocationStreaming ? .destructive : [], locationStreamingButtonPressed))
+            actions.append(action(
+                isLocationStreaming ? "stop_sharing_location" : "location",
+                isLocationStreaming ? "location.slash" : "location",
+                attributes: isLocationStreaming ? .destructive : [],
+                { $0.locationStreamingButtonPressed() }
+            ))
         }
-        actions.append(action("contact", "person.crop.circle", showContactList))
+        actions.append(action("contact", "person.crop.circle", { $0.showContactList() }))
 
         return UIMenu(children: actions)
     }
