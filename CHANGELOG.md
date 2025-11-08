@@ -5,9 +5,15 @@
 - Added experimental debug calls option
 - Remove sending ASM as it is about sharing profile with non-chat apps which is not supported;
   use "Add Second Device" instead
+- metadata protection: protect Date header
+- metadata protection: protect Autocrypt header
+- better multi-device: synchronize group creation across devices
+- data saving: do not send Autocrypt header in read receipts
+- improve onboarding speed
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 - Update translations and local help
+- Update core to 2.25.0
 
 
 ## v2.22.2 Testflight
