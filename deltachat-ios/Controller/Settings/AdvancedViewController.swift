@@ -14,7 +14,6 @@ internal final class AdvancedViewController: UITableViewController {
     private enum CellTags: Int {
         case defaultTagValue = 0
         case showEmails
-        case sendAutocryptMessage
         case viewLog
         case accountSettings
         case proxySettings
@@ -32,13 +31,6 @@ internal final class AdvancedViewController: UITableViewController {
         cell.textLabel?.text = String.localized("pref_show_emails")
         cell.accessoryType = .disclosureIndicator
         cell.detailTextLabel?.text = EmailOptionsViewController.getValString(val: dcContext.showEmails)
-        return cell
-    }()
-
-    private lazy var sendAutocryptMessageCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.tag = CellTags.sendAutocryptMessage.rawValue
-        cell.textLabel?.text = String.localized("autocrypt_send_asm_title")
         return cell
     }()
 
@@ -210,29 +202,21 @@ internal final class AdvancedViewController: UITableViewController {
             cells: [broadcastListsCell, callsCell, locationStreamingCell])
 
         if dcContext.isChatmail {
-            let encryptionSection = SectionConfigs(
-                headerTitle: String.localized("pref_encryption"),
-                footerTitle: nil,
-                cells: [sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: nil,
                 cells: [accountSettingsCell, proxySettingsCell])
-            return [viewLogSection, experimentalSection, encryptionSection, serverSection]
+            return [viewLogSection, experimentalSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
                 headerTitle: nil,
                 footerTitle: String.localized("pref_show_system_contacts_explain"),
                 cells: [showSystemContactsCell])
-            let encryptionSection = SectionConfigs(
-                headerTitle: String.localized("pref_encryption"),
-                footerTitle: nil,
-                cells: [sendAutocryptMessageCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
                 footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
                 cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
-            return [viewLogSection, experimentalSection, appAccessSection, encryptionSection, serverSection]
+            return [viewLogSection, experimentalSection, appAccessSection, serverSection]
         }
     }()
 
@@ -280,7 +264,6 @@ internal final class AdvancedViewController: UITableViewController {
 
         switch cellTag {
         case .showEmails: showClassicMailController()
-        case .sendAutocryptMessage: sendAutocryptSetupMessage()
 
         case .viewLog: showLogViewController()
 
@@ -303,29 +286,6 @@ internal final class AdvancedViewController: UITableViewController {
     }
 
     // MARK: - actions
-    private func sendAutocryptSetupMessage() {
-        let askAlert = UIAlertController(title: String.localized("autocrypt_send_asm_explain_before"), message: nil, preferredStyle: .safeActionSheet)
-        askAlert.addAction(UIAlertAction(title: String.localized("autocrypt_send_asm_title"), style: .default, handler: { _ in
-                let sc = self.dcContext.initiateKeyTransfer()
-                guard var sc = sc else {
-                    return
-                }
-                if sc.count == 44 {
-                    // format setup code to the typical 3 x 3 numbers
-                    sc = sc.substring(0, 4) + "  -  " + sc.substring(5, 9) + "  -  " + sc.substring(10, 14) + "  -\n\n" +
-                        sc.substring(15, 19) + "  -  " + sc.substring(20, 24) + "  -  " + sc.substring(25, 29) + "  -\n\n" +
-                        sc.substring(30, 34) + "  -  " + sc.substring(35, 39) + "  -  " + sc.substring(40, 44)
-                }
-
-                let text = String.localized("autocrypt_send_asm_explain_after") + "\n\n" + sc
-                let showAlert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
-                showAlert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                self.present(showAlert, animated: true, completion: nil)
-        }))
-        askAlert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(askAlert, animated: true, completion: nil)
-    }
-
     private func showSystemContactsRestrictedAlert() {
         let alert = UIAlertController(title: String.localized("import_device_contacts"), message: String.localized("import_device_contacts_hint"), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
