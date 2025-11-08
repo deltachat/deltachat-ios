@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Added experimental debug calls option
+- Remove sending ASM as it is about sharing profile with non-chat apps which is not supported;
+  use "Add Second Device" instead
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 - Update translations and local help
