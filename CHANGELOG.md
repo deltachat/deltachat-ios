@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added experimental debug calls option
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 

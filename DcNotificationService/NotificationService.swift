@@ -85,7 +85,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
-                if #available(iOSApplicationExtension 14.5, *) {
+                if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
                         "event_id": Int(DC_EVENT_INCOMING_CALL),
@@ -99,7 +99,7 @@ class NotificationService: UNNotificationServiceExtension {
                             UserDefaults.pushToDebugArray("OK2")
                         }
                     }
-                } else {
+                } else if #unavailable(iOSApplicationExtension 14.5) {
                     let content = UNMutableNotificationContent()
                     let msg = dcAccounts.get(id: event.accountId).getMessage(id: event.data1Int)
                     content.title = "Incoming Call"
@@ -111,7 +111,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_CALL_ENDED || event.id == DC_EVENT_INCOMING_CALL_ACCEPTED {
                 UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
-                if #available(iOSApplicationExtension 14.5, *) {
+                if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
                         "event_id": Int(event.id),
