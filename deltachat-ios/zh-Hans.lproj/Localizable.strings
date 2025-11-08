@@ -206,13 +206,14 @@
 "channels" = "频道";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "新建频道";
+// deprecated
 "add_recipients" = "添加接收者";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "频道名称";
 "email" = "邮件";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "新建邮件";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "主题";
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换表情符号键盘";
@@ -242,7 +243,7 @@
 "menu_copy_image_to_clipboard" = "复制图像";
 "menu_copy_email_to_clipboard" = "复制电子邮件";
 "paste_from_clipboard" = "从剪贴板粘贴";
-"ask_copy_unopenable_link_to_clipboard" = "无法在浏览器中打开链接 “%1$d”。你要将链接复制到剪贴板吗？";
+"ask_copy_unopenable_link_to_clipboard" = "无法在网络浏览器中打开链接“%1$d”。是否要将链接复制到剪贴板？";
 "menu_forward" = "转发消息";
 "menu_reply" = "回复消息";
 "menu_mute" = "通知静音";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@ %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
 "ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
 "ask_delete_message" = "是否在所有设备上删除此消息？";
@@ -351,7 +352,7 @@
 "ask_remove_members" = "将 %1$@ 从群组中移除？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "从频道中移除 %1$@？";
-"open_url_confirmation" = "您要打开此链接吗？";
+"open_url_confirmation" = "是否要打开此链接？";
 // contact list
 "contacts_title" = "联系人";
 "contacts_enter_name_or_email" = "输入名称或电子邮件地址";
@@ -537,6 +538,7 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
+"login_advanced_hint" = "此登录适用于高级用户：\n\n• 请勿使用您在其他应用中已使用的账号。\n\n• 传统电子邮件服务器允许进行未端到端加密的聊天，此类聊天以邮件图标标记。";
 // deprecated
 "login_header" = "登录您的电子邮件账号";
 // deprecated
@@ -568,7 +570,7 @@
 "proxy_list_header" = "已保存的代理";
 "proxy_delete" = "删除代理";
 "proxy_delete_explain" = "是否确定要删除“%1$@”？";
-"proxy_use_proxy_confirm" = "你想使用代理“%1$@”吗？";
+"proxy_use_proxy_confirm" = "是否要使用代理“%1$@”？";
 "proxy_share_explain" = "你的好友可以扫描二维码添加此代理";
 "proxy_share_link" = "分享链接";
 "proxy_enabled" = "代理已启用";
@@ -583,7 +585,7 @@
 "login_error_port" = "请输入有效的端口（1-65535）";
 "login_error_required_fields" = "请输入有效的电子邮件地址和密码";
 "import_backup_title" = "从备份恢复";
-"import_backup_ask" = "在“%1$@”找到备份。\n\n您要导入并使用其中的全部数据与设置吗？";
+"import_backup_ask" = "在“%1$@”找到备份。\n\n是否要导入并使用其中的所有数据和设置？";
 "import_backup_no_backup_found" = "未找到备份。\n\n请将备份复制到“%1$@”，然后重试。";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
@@ -854,6 +856,7 @@
 "ephemeral_timer_weeks_by_you" = "你将消息定时销毁计时器设为 %1$@ 周";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ 将消息定时销毁计时器设为 %1$@ 周";
+"chat_unencrypted_explanation" = "此聊天中的消息使用传统电子邮件，未进行端到端加密。";
 "chat_protection_enabled_tap_to_learn_more" = "消息是端到端加密的。点按即可了解详情。";
 "chat_protection_enabled_explanation" = "此聊天中的所有消息都经过端到端加密。\n\n端到端加密可确保您与聊天对象之间的消息保持私密。即使是服务器、提供者或中继也无法读取。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ 需要端到端加密，但此聊天尚未设置。点按即可了解详情。";
@@ -874,7 +877,8 @@
 "qrscan_hint" = "将摄像头对准二维码。";
 "qrscan_hint_desktop" = "移动二维码到相机";
 "qrscan_failed" = "二维码无法被解码";
-"qrscan_ask_join_group" = "您要加入群组“%1$@”吗？";
+"qrscan_ask_join_group" = "是否要加入群组“%1$@”？";
+"qrscan_ask_join_channel" = "是否要加入频道“%1$@”？";
 "qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的 %1$@ 的指纹不匹配。";
 "qrscan_no_addr_found" = "此二维码包含指纹，但没有电子邮件地址。\n\n对于带外验证，请先与接收者建立加密连接。";
 "qrscan_contains_text" = "已扫描到的二维码文本：\n\n%1$@";
@@ -921,7 +925,7 @@
 "verified_contact_required_explain" = "要确保端到端加密，你只能将带有绿色验证标识的联系人到此群中。\n\n你可以亲自和未验证联系人线下碰面并扫描联系人二维码来验证。";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
-"confirm_replace_draft" = "%1$@ 已经有一条草稿信息，要替换它吗？";
+"confirm_replace_draft" = "%1$@ 已经有一条草稿消息，是否要替换？";
 "mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
 // notifications
 "notify_reply_button" = "回复";

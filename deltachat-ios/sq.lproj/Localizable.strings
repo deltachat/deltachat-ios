@@ -202,13 +202,14 @@
 "channels" = "Kanale";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Kanal i Ri";
+// deprecated
 "add_recipients" = "Shtoni Marrës";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Emër Kanali";
 "email" = "Email";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Email i Ri";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Subjekt";
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih Tastierë Emoji-sh";
@@ -330,7 +331,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
 "ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
@@ -532,6 +533,7 @@
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
+"login_advanced_hint" = "Kjo hyrje është për përdorues të përparuar:\n\n• Mos përdorni një llogari që po e përdorni me një aplikacion tjetër.\n\n• Shërbyesi klasik i email-eve lejon fjalosje pa fshehtëzim skaj-më-skaj, shënuar me një ikonë poste.";
 // deprecated
 "login_header" = "Hyni te Llogaria juaj Email";
 // deprecated
@@ -848,6 +850,7 @@
 "ephemeral_timer_weeks_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ javë.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
+"chat_unencrypted_explanation" = "Mesazhet në këtë fjalosje përdorin email klasik dhe s’janë të fshehtëzuar skaj-më-skaj.";
 "chat_protection_enabled_tap_to_learn_more" = "Mesazhet fshehtëzohen skaj-më-skaj. Prekeni, që të mësoni më tepër.";
 "chat_protection_enabled_explanation" = "Krejt mesazhet në këtë fjalosje janë të fshehtëzuar skaj-më-skaj.\n\nFshehtëzimi skaj-më-skaj i mban private mesazhet mes jush dhe partnerëve tuaj të fjalosjes. Ato s’mund t’i lexojnë as shërbyesit, shërbime apo reletë.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
@@ -869,6 +872,7 @@
 "qrscan_hint_desktop" = "Kalojeni kodin QR te kamera";
 "qrscan_failed" = "Kodi QR s’u shkodua dot";
 "qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit “%1$@”?";
+"qrscan_ask_join_channel" = "Doni të hyni te kanali “%1$@”?";
 "qrscan_fingerprint_mismatch" = "Shenjat e gishtave të skanuar nuk përputhen me shenjat e gishtave parë së fundi për %1$@.";
 "qrscan_no_addr_found" = "Ky kod QR përmban shenja gishtash, por jo adresë.\n\nPër një verifikim “out-of-band”, ju lutemi, së pari vendosni me marrësin një lidhje të fshehtëzuar.";
 "qrscan_contains_text" = "Tekst kodi QR të skanuar:\n\n%1$@";

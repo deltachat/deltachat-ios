@@ -161,6 +161,7 @@
 "menu_new_chat" = "Нов чат";
 "menu_new_group" = "Нова група";
 "clone_chat" = "Клониране на чат";
+// deprecated
 "add_recipients" = "Добавяне на получатели";
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";

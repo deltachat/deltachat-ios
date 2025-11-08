@@ -206,13 +206,14 @@
 "channels" = "Canali";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nuovo Canale";
+// deprecated
 "add_recipients" = "Aggiungi Destinatari";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nome Canale";
 "email" = "E-Mail";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nuova E-Mail";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Oggetto";
 "menu_send" = "Invia";
 "menu_toggle_keyboard" = "Attiva/Disattiva Tastiera Emoji";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
 "ask_delete_named_chat" = "Eliminare la chat \"%1$@\" su tutti i tuoi dispositivi?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
@@ -537,6 +538,7 @@
 "welcome_chat_over_email" = "Chat Decentralizzata Sicura";
 "scan_invitation_code" = "Scansiona Codice Invito";
 "login_title" = "Accedi";
+"login_advanced_hint" = "Questo accesso è per utenti avanzati:\n\n• Non utilizzare un account che stai utilizzando in un\'altra app.\n\n• Il server e-mail classico consente chat senza crittografia end-to-end, contrassegnate da un\'icona di posta.";
 // deprecated
 "login_header" = "Accedi al tuo Profilo E-Mail";
 // deprecated
@@ -571,6 +573,8 @@
 "proxy_use_proxy_confirm" = "Vuoi usare il proxy \"%1$@\"?";
 "proxy_share_explain" = "I tuoi amici possono aggiungere questo proxy scansionando il codice QR.";
 "proxy_share_link" = "Condividi Collegamento";
+"proxy_enabled" = "Proxy Abilitato";
+"proxy_enabled_hint" = "Stai utilizzando un proxy. Se riscontri problemi di connessione, prova un proxy diverso.";
 // deprecated
 "login_info_oauth2_title" = "Continuare con la configurazione semplificata?";
 // deprecated
@@ -676,6 +680,7 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup Chat su Memoria Esterna";
 "pref_backup_export_explain" = "Un backup ti aiuta a impostare una nuova installazione su questo o un altro dispositivo.\n\nIl backup conterrà tutti i messaggi, i contatti, le chat e le impostazioni end-to-end Autocrypt. Tieni il file di backup in un luogo sicuro oppure eliminarlo il prima possibile.";
+"pref_backup_export_this" = "Esporta questo profilo";
 // deprecated
 "pref_backup_export_x" = "Esporta %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
@@ -851,6 +856,7 @@
 "ephemeral_timer_weeks_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ settimane.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "Timer messaggi a scomparsa impostato su %1$@ settimane da %2$@.";
+"chat_unencrypted_explanation" = "I messaggi in questa chat utilizzano l\' e-mail classica e non sono crittografati end-to-end.";
 "chat_protection_enabled_tap_to_learn_more" = "I messaggi sono crittografati end-to-end. Tocca per saperne di più.";
 "chat_protection_enabled_explanation" = "Tutti i messaggi in questa chat sono crittografati end-to-end. La crittografia end-to-end mantiene privati i messaggi tra te e i tuoi interlocutori. Nemmeno servers, providers o relays possono leggerli.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";
@@ -872,6 +878,7 @@
 "qrscan_hint_desktop" = "Sposta il codice QR sulla fotocamera";
 "qrscan_failed" = "Impossibile decodificare il codice QR";
 "qrscan_ask_join_group" = "Vuoi entrare nel gruppo \"%1$@\"?";
+"qrscan_ask_join_channel" = "Vuoi unirti al canale \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "L\'impronta digitale scansionata non corrisponde all\'ultima visualizzata per %1$@.";
 "qrscan_no_addr_found" = "Questo codice QR contiene un\'impronta ma non un indirizzo email.\n\nPer una verifica efficace, per favore prima stabilisci una connessione cifrata col destinatario.";
 "qrscan_contains_text" = "Testo codice QR scansionato:\n\n%1$@";

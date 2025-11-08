@@ -198,6 +198,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
+// deprecated
 "add_recipients" = "新增對象";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";

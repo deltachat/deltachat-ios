@@ -158,6 +158,7 @@
 "menu_new_contact" = "Novo contato";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
+// deprecated
 "add_recipients" = "Adicionar Destinatários";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";

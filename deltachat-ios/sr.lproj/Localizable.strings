@@ -168,6 +168,7 @@
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
 "menu_new_group" = "Нова група";
+// deprecated
 "add_recipients" = "Додај примаоце";
 "menu_send" = "Пошаљи";
 "menu_toggle_keyboard" = "Емоџи тастатура";
@@ -264,7 +265,7 @@
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Одби";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Да ли сте сигурни да желите да напустите?";
 // Used for the deletion of Device messages
 "ask_forward" = "Да ли желите да проследите поруке %1$@?";

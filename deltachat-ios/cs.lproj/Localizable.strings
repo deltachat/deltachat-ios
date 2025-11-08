@@ -191,6 +191,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Chatovat s...";
 "clone_chat" = "Klonovat chat";
+// deprecated
 "add_recipients" = "Přidat příjemce";
 "menu_send" = "Odeslat";
 "menu_toggle_keyboard" = "Přepnout emoji klávesnici";

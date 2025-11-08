@@ -206,13 +206,14 @@
 "channels" = "Kanäle";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Neuer Kanal";
+// deprecated
 "add_recipients" = "Empfänger hinzufügen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Name des Kanals";
 "email" = "E-Mail";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Neue E-Mail";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Betreff";
 "menu_send" = "Senden";
 "menu_toggle_keyboard" = "Emojis einblenden";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" von allen Geräten löschen?";
 "ask_delete_message" = "Diese Nachricht von allen Geräten löschen?";
@@ -537,6 +538,7 @@
 "welcome_chat_over_email" = "Sicherer dezentraler Chat";
 "scan_invitation_code" = "Einladungscode scannen";
 "login_title" = "Login";
+"login_advanced_hint" = "Für fortgeschrittene Benutzer:\n\n• Verwenden Sie kein Konto, das Sie bereits in einer anderen App nutzen.\n\n• Klassische E-Mail-Server ermöglichen Chats ohne Ende-zu-Ende-Verschlüsselung, gekennzeichnet durch ein E-Mail-Symbol.";
 // deprecated
 "login_header" = "Bei deinem E-Mail-Konto anmelden";
 // deprecated

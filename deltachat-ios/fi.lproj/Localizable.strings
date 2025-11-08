@@ -161,6 +161,7 @@
 "menu_new_chat" = "Uusi keskustelu";
 "menu_new_group" = "Uusi ryhmä";
 "clone_chat" = "Kloonaa keskustelu";
+// deprecated
 "add_recipients" = "Lisää vastaanottajia";
 "menu_send" = "Lähetä";
 "menu_toggle_keyboard" = "Näytä emoji-näppäimistö";

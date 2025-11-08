@@ -149,6 +149,7 @@
 "menu_new_contact" = "Contact Nou";
 "menu_new_chat" = "Chat Nou";
 "menu_new_group" = "Grup Nou";
+// deprecated
 "add_recipients" = "Adăugați Destinatari";
 "menu_send" = "Trimiteți";
 "menu_toggle_keyboard" = "Comutați Tastatura Emoji";

@@ -143,6 +143,7 @@
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
 "menu_new_group" = "새 그룹";
+// deprecated
 "add_recipients" = "수신자 추가";
 "menu_send" = "보내기";
 "menu_toggle_keyboard" = "이모티콘 키보드 전환";
