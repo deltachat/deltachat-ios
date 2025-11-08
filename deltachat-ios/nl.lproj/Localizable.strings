@@ -206,13 +206,14 @@
 "channels" = "Kanalen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nieuw kanaal";
+// deprecated
 "add_recipients" = "Ontvangers toevoegen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanaalnaam";
 "email" = "E-mail";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nieuwe e-mail";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Onderwerp";
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emojitoetsenbord tonen/verbergen";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@ %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
 "ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen van al je apparaten?";
 "ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
@@ -537,6 +538,7 @@
 "welcome_chat_over_email" = "Veilige, gedecentraliseerde gesprekken";
 "scan_invitation_code" = "Uitnodigingscode scannen";
 "login_title" = "Inloggen";
+"login_advanced_hint" = "Deze inlogfunctie is bedoeld voor gevorderden:\n\n• Gebruik géén account dat je al in een andere app gebruikt;\n\n• Op klassieke e-mailservers worden gesprekken zonder eind-tot-eindversleuteling aangeduid met een envelopje.";
 // deprecated
 "login_header" = "Inloggen op je server";
 // deprecated
@@ -854,6 +856,7 @@
 "ephemeral_timer_weeks_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ weken.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
+"chat_unencrypted_explanation" = "Berichten in dit gesprek maken gebruik van traditionele e-mailcommunicatie - eind-tot-endversleuteling is daarom niet gegarandeerd.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
 "chat_protection_enabled_explanation" = "Alle berichten in dit gesprek zijn gegarandeerd van eind-tot-eindversleuteling voorzien.\n\nMet behulp van deze versleuteling blijven berichten tussen jou en je gesprekspartners geheim - zelfs je e-mailprovider kan ze niet uitlezen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
@@ -875,6 +878,7 @@
 "qrscan_hint_desktop" = "Houd de QR-code voor de camera";
 "qrscan_failed" = "De QR-code kan niet worden ontcijferd";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep ‘%1$@’?";
+"qrscan_ask_join_channel" = "Wil je deelnemen aan het kanaal ‘%1$@’?";
 "qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
 "qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-bandgoedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
 "qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";

@@ -206,13 +206,14 @@
 "channels" = "Canales";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nuevo canal";
+// deprecated
 "add_recipients" = "Agregar destinatarios";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nombre del canal";
 "email" = "Correo electrónico";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nuevo correo electrónico";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Asunto";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "¿Seguro que quieres abandonar este canal?";
 "ask_delete_named_chat" = "¿Eliminar chat \"%1$@\" de todos tus dispositivos?";
 "ask_delete_message" = "¿Eliminar este mensaje de todos tus dispositivos?";

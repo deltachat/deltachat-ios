@@ -159,6 +159,7 @@
 "menu_new_chat" = "Trò chuyện mới";
 "menu_new_group" = "Nhóm mới";
 "clone_chat" = "Sao chép cuộc trò chuyện";
+// deprecated
 "add_recipients" = "Thêm người nhận";
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";

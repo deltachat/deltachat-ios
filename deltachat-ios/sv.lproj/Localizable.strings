@@ -163,6 +163,7 @@
 "menu_new_chat" = "Ny chatt";
 "menu_new_group" = "Ny grupp";
 "clone_chat" = "Klona chatt";
+// deprecated
 "add_recipients" = "Lägg till mottagare";
 "menu_send" = "Skicka";
 "menu_toggle_keyboard" = "Byt emoji-tangentbord";

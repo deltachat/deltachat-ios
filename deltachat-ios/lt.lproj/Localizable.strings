@@ -154,8 +154,9 @@
 "menu_new_classic_contact" = "Pridėti adresatą rankiniu būdu";
 "menu_new_chat" = "Naujas pokalbis";
 "menu_new_group" = "Nauja grupė";
+// deprecated
 "add_recipients" = "Pridėti gavėjus";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Tema";
 "menu_send" = "Siųsti";
 "menu_toggle_keyboard" = "Perjungti šypsniukų klaviatūrą";

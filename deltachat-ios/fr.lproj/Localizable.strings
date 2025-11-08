@@ -182,6 +182,7 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Discuter avec...";
 "clone_chat" = "Cloner la discussion";
+// deprecated
 "add_recipients" = "Ajouter des destinataires";
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";

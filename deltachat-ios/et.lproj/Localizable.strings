@@ -206,13 +206,14 @@
 "channels" = "Kanalid";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Uus kanal";
+// deprecated
 "add_recipients" = "Lisa saajaid";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanali nimi";
 "email" = "E-post";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Uus e-kiri";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Teema";
 "menu_send" = "Saada";
 "menu_toggle_keyboard" = "Lülita emojide klahvistik sisse/välja";
@@ -332,7 +333,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
 "ask_delete_named_chat" = "Kas kustutad „%1$@“ vestluse kõikidest oma seadmetest?";
 "ask_delete_message" = "Kas kustutad selle sõnumi kõikidest oma seadmetest?";
@@ -524,6 +525,7 @@
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
 "login_title" = "Logi sisse";
+"login_advanced_hint" = "See sisselogimine sobib  oskuskasutajatele:\n\n• Ära kasuta kontot, mis juba on kasutusel mõnes muus rakenduses.\n\n• Klassikaline e-posti server võimaldab vestlemist vaid ilma läbiva krüptimiseta ja seda märgistab kirja ikoon.";
 // deprecated
 "login_header" = "Logi sisse oma e-postikontoga";
 // deprecated
@@ -670,12 +672,14 @@
 "pref_background" = "Taustapilt";
 "pref_background_btn_default" = "Kasuta vaikimisi pilti";
 "pref_background_btn_gallery" = "Vali galeriist";
+"pref_imap_folder_warn_disable_defaults" = "Kui sa seda eelistust muudad, siis palun kontrolli, et server ja muud kliendid on vastavalt seadistatud.\n\nVastasel juhul võib minna nii, et mitte miski ei toimi.";
 // deprecated
 "pref_watch_sent_folder" = "Välju saadetud sõnumite kausta";
 "pref_send_copy_to_self" = "Saada koopia iseendale";
 "pref_send_copy_to_self_explain" = "Vajalik, kui kasutad seda kontot mitmes seadmes.";
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
+"pref_only_fetch_mvbox_explain" = "Eira muid kaustu. See eeldab, et sinu server oskab tõsta vestluste sõnumid DeltaChati kausta.";
 "pref_show_emails" = "Näita klassikalisi e-kirju";
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
@@ -747,6 +751,9 @@
 "autocrypt_send_asm_title" = "Saada Autocrypti seadistussõnum";
 "autocrypt_send_asm_button" = "Saada Autocrypti seadistussõnum";
 "autocrypt_prefer_e2ee" = "Eelista läbivat krüptimist";
+// system messages
+// deprecated
+"systemmsg_unknown_sender_for_chat" = "Tundmatu saatja selle vestluse jaoks. Üksikasju näed infovaatest.";
 "systemmsg_subject_for_new_contact" = "Sõnum kasutajalt %1$@";
 "systemmsg_failed_sending_to" = "Sõnumi saatmine kasutajale %1$@ ei õnnestunud.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -818,6 +825,7 @@
 "ephemeral_timer_weeks_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
+"chat_unencrypted_explanation" = "Sõnumid siin vestluses kasutavad klassikalist e-postiliidestust ja pole läbivalt krüptitud.";
 "chat_protection_enabled_tap_to_learn_more" = "Sõnumid on läbivalt krüptitud. Lisateabe ligemiseks klõpsi.";
 "chat_protection_enabled_explanation" = "Kõik selle vestluse sõnumid on läbivalt krüptitud.\n\nSee tagab, et sõnumid on loetavad vaid sinu ja vestluse teis(t)e osapool(t)e poolt. Ei teenusepakkujad, serverihaldajad, ega põrgatajad ei saa neid sõnumeid lugeda.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ eeldab läbiva krüptimise kasutamist, aga see pole veel antud vestluse jaoks seadistatud. Lisateabe ligemiseks klõpsi.";
@@ -837,6 +845,7 @@
 "qrscan_hint_desktop" = "Liiguta QR-kood kaamera poole";
 "qrscan_failed" = "QR-koodi dekodeerimine ei õnnestunud";
 "qrscan_ask_join_group" = "Kas soovid liituda „%1$@“ grupiga?";
+"qrscan_ask_join_channel" = "Kas sa soovid liituda „%1$@“ kanaliga?";
 "qrscan_fingerprint_mismatch" = "Skaneeritud sõrmejälg ei vasta %1$@ viimati nähtud sõrmejäljele.";
 "qrscan_no_addr_found" = "Selles QR-koois on sõrmejälg, kuid pole aadressi.\n\nTavakanalivälise verifitseerimise jaoks palun esmalt loo teise osapoolega krüptitud ühendus.";
 "qrscan_contains_text" = "Skaneeritud QR-koodi tekst:\n\n%1$@";

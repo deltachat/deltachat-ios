@@ -98,8 +98,8 @@
 "cannot_save_file" = "Cannot save %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
-"email_address" = "E-Mail Address";
-"bad_email_address" = "Bad e-mail address.";
+"email_address" = "Email Address";
+"bad_email_address" = "Bad email address.";
 "password" = "Password";
 "existing_password" = "Existing Password";
 "now" = "Now";
@@ -194,7 +194,7 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "New Contact";
 "menu_new_classic_contact" = "Add Contact Manually";
-"new_classic_contact_explain" = "Manually added contacts can be used to text to classic e-mail and are not guaranteed end-to-end encrypted.";
+"new_classic_contact_explain" = "Manually added contacts can be used to text to classic email and are not guaranteed end-to-end encrypted.";
 "menu_new_chat" = "New Chat";
 "menu_new_group" = "New Group";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
@@ -206,13 +206,14 @@
 "channels" = "Channels";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "New Channel";
-"add_recipients" = "Add Recipients";
+// deprecated
+"add_recipients" = "Add Subscribers";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Channel Name";
-"email" = "E-Mail";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
-"new_email" = "New E-Mail";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+"email" = "Email";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "New Email";
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Subject";
 "menu_send" = "Send";
 "menu_toggle_keyboard" = "Toggle Emoji Keyboard";
@@ -240,7 +241,7 @@
 "menu_copy_link_to_clipboard" = "Copy Link";
 "menu_copy_text_to_clipboard" = "Copy Text";
 "menu_copy_image_to_clipboard" = "Copy Image";
-"menu_copy_email_to_clipboard" = "Copy E-Mail";
+"menu_copy_email_to_clipboard" = "Copy Email";
 "paste_from_clipboard" = "Paste from Clipboard";
 "ask_copy_unopenable_link_to_clipboard" = "The link \"%1$d\" can not be opened in the web browser. Do you want to copy the link to the clipboard instead?";
 "menu_forward" = "Forward Message";
@@ -292,7 +293,7 @@
 "device_talk" = "Device Messages";
 "device_talk_subtitle" = "Locally generated messages";
 "device_talk_explain" = "Messages in this chat are generated on your device to inform about app updates and problems during usage.";
-"device_talk_welcome_message2" = "Get in contact!\n\n🙌 Tap \"QR code\" on the main screen of both devices. Choose \"Scan QR Code\" on one device, and point it at the other\n\n🌍 If not in the same room, scan via video call or share an invite link from \"Scan QR code\"\n\nThen: Enjoy your messenger experience over the largest decentralized network that ever existed: E-mail. And in contrast to other popular apps, without central control or tracking or selling you, friends, colleagues or family out to large organizations.";
+"device_talk_welcome_message2" = "Get in contact!\n\n🙌 Tap \"QR code\" on the main screen of both devices. Choose \"Scan QR Code\" on one device, and point it at the other\n\n🌍 If not in the same room, scan via video call or share an invite link from \"Scan QR code\"\n\nThen: Enjoy your messenger experience over the largest decentralized network that ever existed: Email. And in contrast to other popular apps, without central control or tracking or selling you, friends, colleagues or family out to large organizations.";
 "edit_contact" = "Edit Contact";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Pin Chat";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Are you sure you want to leave?";
 "ask_delete_named_chat" = "Delete chat \"%1$@\" on all your devices?";
 "ask_delete_message" = "Delete this message on all your devices?";
@@ -354,8 +355,8 @@
 "open_url_confirmation" = "Do you want to open this link?";
 // contact list
 "contacts_title" = "Contacts";
-"contacts_enter_name_or_email" = "Enter name or e-mail address";
-"contacts_type_email_above" = "Type e-mail address above";
+"contacts_enter_name_or_email" = "Enter name or email address";
+"contacts_type_email_above" = "Type email address above";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archived Chats";
 "chat_please_enter_message" = "Please enter a message.";
@@ -514,7 +515,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "I Already Have a Profile";
 // Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Classic E-Mail Login";
+"manual_account_setup_option" = "Classic Email Login";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Your Profile";
 // The placeholder will be replaced by the default onboarding server
@@ -537,13 +538,13 @@
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
-"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an account you\'re using in another app.\n\n• Classic e-mail server allow chats without end-to-end encryption marked by a mail icon.";
+"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an account you\'re using in another app.\n\n• Classic email server allow chats without end-to-end encryption marked by a mail icon.";
 // deprecated
-"login_header" = "Log into your E-Mail Account";
+"login_header" = "Log into your Email Account";
 // deprecated
-"login_explain" = "Log in with an existing e-mail account";
+"login_explain" = "Log in with an existing email account";
 // deprecated
-"login_subheader" = "For known e-mail providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your e-mail provider or friends for help.";
+"login_subheader" = "For known email providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your email provider or friends for help.";
 // deprecated
 "login_no_servers_hint" = "Delta Chat does not collect user data, everything stays on your device.";
 "login_inbox" = "Inbox";
@@ -579,10 +580,10 @@
 // deprecated
 "login_info_oauth2_text" = "The entered address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to send and receive messages.\n\nDelta Chat does not collect user data, everything stays on your device.";
 "login_certificate_checks" = "Certificate Checks";
-"login_error_mail" = "Please enter a valid e-mail address";
+"login_error_mail" = "Please enter a valid email address";
 "login_error_server" = "Please enter a valid server / IP address";
 "login_error_port" = "Please enter a valid port (1–65535)";
-"login_error_required_fields" = "Please enter a valid e-mail address and a password";
+"login_error_required_fields" = "Please enter a valid email address and a password";
 "import_backup_title" = "Restore from Backup";
 "import_backup_ask" = "Backup found at \"%1$@\".\n\nDo you want to import and use all data and settings from it?";
 "import_backup_no_backup_found" = "No backups found.\n\nCopy the backup to \"%1$@\" and try again.";
@@ -702,7 +703,7 @@
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
 "pref_only_fetch_mvbox_title" = "Only Fetch from DeltaChat Folder";
 "pref_only_fetch_mvbox_explain" = "Ignore other folders. Requires your server to move chat messages to the DeltaChat folder.";
-"pref_show_emails" = "Show Classic E-Mails";
+"pref_show_emails" = "Show Classic Emails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
 "pref_show_emails_all" = "All";
@@ -761,9 +762,9 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n• This includes all media\n\n• Messages will be deleted whether they were seen or not\n\n• \"Saved messages\" will be skipped from local deletion";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n⚠️ This includes e-mails, media and \"Saved messages\" in all server folders\n\n⚠️ Do not use this function if you want to keep data on the server or if you use classic e-mail clients as well";
+"autodel_server_ask" = "Do you want to delete %1$d messages now and all newly fetched messages \"%2$@\" in the future?\n\n⚠️ This includes emails, media and \"Saved messages\" in all server folders\n\n⚠️ Do not use this function if you want to keep data on the server or if you use classic email clients as well";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "This includes e-mails, media and \"Saved messages\" in all server folders. Do not use this function if you want to keep data on the server or if you use classic e-mail clients as well";
+"autodel_server_enabled_hint" = "This includes emails, media and \"Saved messages\" in all server folders. Do not use this function if you want to keep data on the server or if you use classic email clients as well";
 "autodel_server_warn_multi_device_title" = "Turn on at-once deletion";
 "autodel_server_warn_multi_device" = "If you enable at-once deletion you cannot use multiple devices on this profile.";
 "autodel_confirm" = "I understand, delete all these messages";

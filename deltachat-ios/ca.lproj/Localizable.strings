@@ -206,13 +206,14 @@
 "channels" = "Canals";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nou Canal";
+// deprecated
 "add_recipients" = "Afegeix destinataris";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nom del Canal";
 "email" = "Correu electrònic";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nou correu electrònic";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "Assumpte";
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emojis";
@@ -334,7 +335,7 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Segur que vols sortir?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";

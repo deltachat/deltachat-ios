@@ -143,6 +143,7 @@
 "menu_new_contact" = "Νέα Επαφή";
 "menu_new_chat" = "Νέα Συνομιλία";
 "menu_new_group" = "Νέα ομάδα";
+// deprecated
 "add_recipients" = "Προσθήκη Παραλήπτη";
 "menu_send" = "Αποστολή";
 "menu_toggle_keyboard" = "Εναλλαγή πληκτρολογίου emoji";

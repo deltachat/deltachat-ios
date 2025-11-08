@@ -150,6 +150,7 @@
 "menu_new_contact" = "Kontak baru";
 "menu_new_chat" = "Obrolan baru";
 "menu_new_group" = "Grup baru";
+// deprecated
 "add_recipients" = "Tambahkan Penerima";
 "menu_send" = "Terkirim";
 "menu_toggle_keyboard" = "Tekan tombol emoji keyboard";

@@ -203,12 +203,13 @@
 "channels" = "کانال‌ها";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "کانال جدید";
+// deprecated
 "add_recipients" = "افزودن گیرنده";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "نام کانال";
-// "New" as in "Create New E-Mail"; shown together with "New Group" and "New Channel"
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "رایانامه جدید";
-// the "Subject" of an e-mail, use the term common in classic e-mail apps
+// the "Subject" of an email, use the term common in classic email apps
 "subject" = "موضوع";
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
@@ -319,7 +320,7 @@
 "share_location_for_six_hours" = "به مدت ۶ ساعت";
 "file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
 // get confirmations
-// confirmation for leaving groups, channels, broadcasts or a mailinglists. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
 "ask_delete_named_chat" = "حذف گفتگوی «%1$@» از همه‌ی دستگاه‌های شما؟";
 "ask_delete_message" = "می‌خواهید این پیام را از همهٔ دستگاه‌هایتان حذف کنید؟";
