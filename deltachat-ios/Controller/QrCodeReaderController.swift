@@ -6,7 +6,7 @@ class QrCodeReaderController: UIViewController {
 
     weak var delegate: QrCodeReaderDelegate?
 
-    private let captureSession = AVCaptureSession()
+    private lazy var captureSession = AVCaptureSession()
 
     private let addHints: String?
     private let showTroubleshooting: Bool
