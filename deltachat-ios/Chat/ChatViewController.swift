@@ -8,7 +8,7 @@ import SDWebImage
 import Combine
 import CallKit
 
-class ChatViewController: UITableViewController, UITableViewDropDelegate {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDropDelegate {
     public let chatId: Int
 
     private var dcContext: DcContext
@@ -32,6 +32,38 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     private var searchMessageIds: [Int] = []
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundView = backgroundContainer
+        tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
+        tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
+        tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
+        tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
+        tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
+        tableView.register(WebxdcCell.self, forCellReuseIdentifier: WebxdcCell.reuseIdentifier)
+        tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .interactive
+        tableView.allowsMultipleSelectionDuringEditing = true
+
+        // Transform the tableView to maintain scroll position from bottom when views are added
+        // this flips the default behavior of maintaining scroll position from the top of the
+        // scrollview when views are added to maintaining scroll position from the bottom
+        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
+
+        // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
+        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.automaticallyAdjustsScrollIndicatorInsets = false
+        tableView.publisher(for: \.contentInset)
+            .assign(to: \.verticalScrollIndicatorInsets, on: tableView)
+            .store(in: &bag)
+
+        return tableView
+    }()
 
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -191,29 +223,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = backgroundContainer
-        tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
-        tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
-        tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
-        tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
-        tableView.register(AudioMessageCell.self, forCellReuseIdentifier: AudioMessageCell.reuseIdentifier)
-        tableView.register(WebxdcCell.self, forCellReuseIdentifier: WebxdcCell.reuseIdentifier)
-        tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .interactive
-        tableView.allowsMultipleSelectionDuringEditing = true
-
-        // Transform the tableView to maintain scroll position from bottom when views are added
-        // this flips the default behavior of maintaining scroll position from the top of the
-        // scrollview when views are added to maintaining scroll position from the bottom
-        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-        // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
-        tableView.contentInsetAdjustmentBehavior = .never
-        tableView.automaticallyAdjustsScrollIndicatorInsets = false
-        tableView.publisher(for: \.contentInset)
-            .assign(to: \.verticalScrollIndicatorInsets, on: tableView)
-            .store(in: &bag)
+        view.addSubview(tableView)
+        tableView.fillSuperview()
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
@@ -223,7 +234,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView = tableView!] notification in
+        keyboardManager?.on(event: .willShow) { [tableView] notification in
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -502,11 +513,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
     }
 
     /// UITableView methods
-    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageIds.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         func dequeueCell<T: UITableViewCell & ReusableCell>(ofType _: T.Type = T.self) -> T {
             let cell = tableView.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath)
             cell.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -595,23 +606,23 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return cell
     }
 
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastContextMenuPreviewSnapshot?.removeFromSuperview()
     }
 
-    public override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
             updateScrollDownButtonVisibility()
         }
     }
 
-    public override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
         updateScrollDownButtonVisibility()
     }
 
-    override func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         markSeenMessagesInVisibleArea()
         updateScrollDownButtonVisibility()
     }
@@ -663,12 +674,12 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [])
     }
 
 
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let messageId = messageIds[indexPath.row]
         let message = dcContext.getMessage(id: messageId)
         if !canReply(to: message) {
@@ -719,11 +730,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return tableView.cellForRow(at: indexPath) is SelectableCell
     }
 
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let tableViewCell = tableView.cellForRow(at: indexPath)
         if let selectableCell = tableViewCell as? SelectableCell,
            !(tableView.isEditing &&
@@ -735,14 +746,14 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return nil
     }
 
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             handleEditingBar()
             updateTitle()
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             handleEditingBar()
             updateTitle()
@@ -773,11 +784,11 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         }
     }
 
-    override func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldBeginMultipleSelectionInteractionAt indexPath: IndexPath) -> Bool {
         let canMultiSelect = !searchController.isActive
         return canMultiSelect
     }
-    override func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didBeginMultipleSelectionInteractionAt indexPath: IndexPath) {
         setEditing(isEditing: true)
     }
 
@@ -1123,8 +1134,8 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
             }
         attachButton.showsMenuAsPrimaryAction = true
         attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
-        attachButton.addAction(UIAction { [weak self] _ in
-            attachButton.menu = self?.clipperButtonMenu()
+        attachButton.addAction(UIAction { [weak attachButton, weak self] _ in
+            attachButton?.menu = self?.clipperButtonMenu()
         }, for: .menuActionTriggered)
 
         let leftItems = [attachButton]
@@ -1174,24 +1185,28 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
     private func clipperButtonMenu() -> UIMenu {
         var actions = [UIMenuElement]()
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
+        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping (ChatViewController) -> Void) -> UIAction {
+            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { [unowned self] _ in handler(self) })
         }
 
         actions.append(UIMenu(options: [.displayInline], children: [
-            action("camera", "camera", showCameraViewController),
-            action("gallery", "photo.on.rectangle", showPhotoVideoLibrary)
+            action("camera", "camera", { $0.showCameraViewController() }),
+            action("gallery", "photo.on.rectangle", { $0.showPhotoVideoLibrary() })
         ]))
 
-        actions.append(action("file", "doc", showFilesLibrary))
-        actions.append(action("webxdc_app", "square.grid.2x2", showAppPicker))
-        actions.append(action("voice_message", "mic", showVoiceMessageRecorder))
+        actions.append(action("file", "doc", { $0.showFilesLibrary() }))
+        actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-            actions.append(action(isLocationStreaming ? "stop_sharing_location" : "location", isLocationStreaming ? "location.slash" : "location",
-                                  attributes: isLocationStreaming ? .destructive : [], locationStreamingButtonPressed))
+            actions.append(action(
+                isLocationStreaming ? "stop_sharing_location" : "location",
+                isLocationStreaming ? "location.slash" : "location",
+                attributes: isLocationStreaming ? .destructive : [],
+                { $0.locationStreamingButtonPressed() }
+            ))
         }
-        actions.append(action("contact", "person.crop.circle", showContactList))
+        actions.append(action("contact", "person.crop.circle", { $0.showContactList() }))
 
         return UIMenu(children: actions)
     }
@@ -1708,7 +1723,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
         return self.dropInteraction.dropInteraction(performDrop: coordinator.session)
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let id = messageIds[indexPath.row]
         return id != DC_MSG_ID_DAYMARKER && id != DC_MSG_ID_MARKER1
     }
@@ -1716,7 +1731,7 @@ class ChatViewController: UITableViewController, UITableViewDropDelegate {
 
 extension ChatViewController {
 
-    override func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else { return }
 
         let indexPath = IndexPath(row: index, section: 0)
@@ -1730,7 +1745,7 @@ extension ChatViewController {
         updateScrollDownButtonVisibility()
     }
 
-    override func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+    func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else {
             debugPrint("booooom")
             return
@@ -1749,11 +1764,11 @@ extension ChatViewController {
         updateScrollDownButtonVisibility()
     }
 
-    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return targetedPreview(for: configuration)
     }
 
-    override func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return targetedPreview(for: configuration)
     }
 
@@ -1848,7 +1863,7 @@ extension ChatViewController {
         return nil
     }
 
-    override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messageIds[indexPath.row]
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
