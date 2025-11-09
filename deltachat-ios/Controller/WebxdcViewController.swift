@@ -456,7 +456,7 @@ class WebxdcViewController: WebViewViewController {
 
             if sourceCodeUrl != nil {
                 actions.append(UIMenu(options: [.displayInline], children: [
-                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "globe")) { [weak self] _ in
+                    UIAction(title: String.markAsExternal(String.localized("source_code"))) { [weak self] _ in
                         self?.openUrl()
                     },
                 ]))

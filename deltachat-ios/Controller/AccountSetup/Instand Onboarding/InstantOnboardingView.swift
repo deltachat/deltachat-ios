@@ -151,10 +151,11 @@ class InstantOnboardingView: UIView {
     }
 
     func updateContent(with customProvider: String?) {
-        if let customProvider {
-            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider), for: .normal)
+        let title = if let customProvider {
+            String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider)
         } else {
-            privacyButton.setTitle(String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain), for: .normal)
+            String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain)
         }
+        privacyButton.setTitle(String.markAsExternal(title), for: .normal)
     }
 }

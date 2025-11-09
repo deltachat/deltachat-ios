@@ -41,7 +41,7 @@ class ProviderInfoCell: UITableViewCell {
 
     private lazy var infoButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("more_info_desktop")
+        let title = String.markAsExternal(String.localized("more_info_desktop"))
         button.setTitle(title, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
         button.addTarget(self, action: #selector(infoButtonPressed(_:)), for: .touchUpInside)
