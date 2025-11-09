@@ -2,8 +2,12 @@ import Foundation
 import UIKit
 
 public extension String {
-    
-	static func localized(_ stringID: String) -> String {
+
+    static func markAsExternal(_ string: String) -> String {
+        return string + " ↗"
+    }
+
+    static func localized(_ stringID: String) -> String {
         let value = NSLocalizedString(stringID, comment: "")
         if value != stringID || NSLocale.preferredLanguages.first == "en" {
             return value

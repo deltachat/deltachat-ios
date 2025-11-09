@@ -67,22 +67,22 @@ class HelpViewController: WebViewViewController {
 
     private func moreButtonMenu() -> UIMenu {
         let actions = [
-            UIAction(title: String.localized("delta_chat_homepage"), image: UIImage(systemName: "globe")) { _ in
+            UIAction(title: String.markAsExternal(String.localized("delta_chat_homepage"))) { _ in
                 if let url = URL(string: "https://delta.chat") {
                     UIApplication.shared.open(url)
                 }
             },
-            UIAction(title: String.localized("privacy_policy"), image: UIImage(systemName: "hand.raised")) { _ in
+            UIAction(title: String.markAsExternal(String.localized("privacy_policy"))) { _ in
                 if let url = URL(string: "https://delta.chat/gdpr") {
                     UIApplication.shared.open(url)
                 }
             },
-            UIAction(title: String.localized("contribute"), image: UIImage(systemName: "wrench.and.screwdriver")) { _ in
+            UIAction(title: String.markAsExternal(String.localized("contribute"))) { _ in
                 if let url = URL(string: "https://delta.chat/contribute") {
                     UIApplication.shared.open(url)
                 }
             },
-            UIAction(title: String.localized("global_menu_help_report_desktop"), image: UIImage(systemName: "ant")) { _ in
+            UIAction(title: String.markAsExternal(String.localized("global_menu_help_report_desktop"))) { _ in
                 if let url = URL(string: "https://github.com/deltachat/deltachat-ios/issues") {
                     UIApplication.shared.open(url)
                 }
