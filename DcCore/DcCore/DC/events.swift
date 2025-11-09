@@ -32,6 +32,8 @@ public enum Event {
     public static let incomingCallAccepted = Notification.Name(rawValue: "incomingCallAccepted")
     public static let outgoingCallAccepted = Notification.Name(rawValue: "outgoingCallAccepted")
     public static let callEnded = Notification.Name(rawValue: "callEnded")
+    
+    public static let relayHelperDidChange = Notification.Name(rawValue: "relayHelperDidChange")
 }
 
 

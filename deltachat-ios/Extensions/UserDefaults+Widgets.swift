@@ -106,8 +106,8 @@ extension UserDefaults {
         guard bool(forKey: Self.widgetPrepopulatedKey) == false else { return }
 
         let context = DcAccounts.shared.getSelected()
-        let selfTalkChatId = context.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_SELF))
-        let deviceTalkChatId = context.getChatIdByContactId(contactId: Int(DC_CONTACT_ID_DEVICE))
+        let selfTalkChatId = context.getChatIdByContactId(Int(DC_CONTACT_ID_SELF))
+        let deviceTalkChatId = context.getChatIdByContactId(Int(DC_CONTACT_ID_DEVICE))
 
         addChatToHomescreenWidget(accountId: context.id, chatId: deviceTalkChatId)
         addChatToHomescreenWidget(accountId: context.id, chatId: selfTalkChatId)
