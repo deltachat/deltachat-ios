@@ -55,7 +55,7 @@ class RelayHelper {
     
     func setShareMessages(messages: [DcMsg]) {
         finishRelaying()
-        self.dialogTitle = "Share to..." // TODO: Localisation
+        self.dialogTitle = String.localized("chat_share_with_title")
         self.data = .share(messages)
     }
 
