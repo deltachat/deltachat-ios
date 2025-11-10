@@ -382,10 +382,19 @@ class ProfileViewController: UITableViewController {
 
     private func updateHeader() {
         if let chat {
-            let subtitle: String? = if isGroup || isOutBroadcast {
-                String.localizedStringWithFormat(String.localized(isOutBroadcast ? "n_recipients" : "n_members"), chat.getContactIds(dcContext).count)
+            let subtitle: String?
+            if isOutBroadcast {
+                subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds(dcContext).count)
+            } else if isGroup {
+                let chatContactIds = chat.getContactIds(dcContext)
+                if chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
+                    subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
+                } else {
+                    // do not show misleading "1 member" in case securejoin has not finished
+                    subtitle = nil
+                }
             } else {
-                nil
+                subtitle = nil
             }
 
             headerCell.updateDetails(title: chat.name, subtitle: subtitle)
