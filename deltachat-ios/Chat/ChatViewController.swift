@@ -2259,6 +2259,8 @@ extension ChatViewController: BaseMessageCellDelegate {
             didTapVcard(msg: message)
         } else if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
+        } else if message.type == DC_MSG_CALL {
+            CallManager.shared.answerIncomingCall(forMessage: message.id, chatId: message.chatId, contextId: dcContext.id)
         }
     }
 
