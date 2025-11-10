@@ -101,10 +101,11 @@ public class BaseMessageCell: UITableViewCell {
         view.font = UIFont.preferredFont(for: .body, weight: .regular)
         view.delegate = self
         view.enabledDetectors = [.url, .phoneNumber, .command]
-        let attributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: DcColors.defaultTextColor,
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: view.tintColor!,
             NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-            NSAttributedString.Key.underlineColor: DcColors.defaultTextColor ]
+            NSAttributedString.Key.underlineColor: view.tintColor!
+        ]
         view.label.setAttributes(attributes, detector: .url)
         view.label.setAttributes(attributes, detector: .phoneNumber)
         view.label.setAttributes(attributes, detector: .command)
