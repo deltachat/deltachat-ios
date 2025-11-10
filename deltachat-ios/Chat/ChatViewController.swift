@@ -849,7 +849,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else if dcChat.isOutBroadcast {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chatContactIds.count)
             } else if dcChat.isMultiUser {
-                subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
+                if chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
+                    subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
+                } else {
+                    // do not show misleading "1 member" in case securejoin has not finished
+                    subtitle = "…"
+                }
             } else if dcChat.isDeviceTalk {
                 subtitle = String.localized("device_talk_subtitle")
             } else if dcChat.isSelfTalk {
