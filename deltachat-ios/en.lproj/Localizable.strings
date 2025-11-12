@@ -371,7 +371,7 @@
 "chat_record_explain" = "Tap and hold to record a voice message, release to send";
 "chat_no_chats_yet_title" = "No Chats.\nPress \"+\" to start a new chat.";
 "chat_all_archived" = "All chats archived.\nPress \"+\" to start a new chat.";
-"chat_share_with_title" = "Share with";
+"chat_share_with_title" = "Share with…";
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archived";
 "chat_request_label" = "Request";

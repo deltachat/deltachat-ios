@@ -292,6 +292,7 @@
 "title_share_location" = "Jaga asukohta kõikide grupi liikmetega";
 "device_talk" = "Seadme sõnumid";
 "device_talk_subtitle" = "Kohalikus seadmes loodud sõnumid";
+"device_talk_explain" = "Selle vestluse sõnumid on koostatud selles nutiseadmes ja nende abil teavitatakse sind rakenduse uuendustest ja märgatud probleemidest.";
 "edit_contact" = "Muuda kontakti";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Tõsta vestlus esile";
@@ -343,6 +344,8 @@
 "ask_export_attachment" = "Kui ekspordid manused, siis sinu nutiseadme muud rakendused saavad neile ligi.\n\nKas soovid jätkata?";
 "ask_block_contact" = "Kas soovid selle kontakti blokeerida?\n\nBlokeeritud kontaktide otsesõnumid ja loodud grupid ei saa enam olema nähtavad.\n\nMuude gruppide, kus blokeeritud kontakt on liikmeks, sõnumid saavad jätkuvalt olema nähtavad.";
 "ask_unblock_contact" = "Kas lõpetad kontakti blokeerimise?";
+"ask_delete_contacts" = "Kas soovid kontaktid kustutada?\n\nPooleli vestluste ja süsteemi aadressiraamatu kontakte ei saa jäädavalt kustutada.";
+"ask_delete_contact" = "Kas soovid %1$@ kontakti kustutada?\n\nPooleli vestluste ja süsteemi aadressiraamatu kontakte ei saa jäädavalt kustutada.";
 "ask_start_chat_with" = "Kas soovid vestelda kasutajaga %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kas eemaldad järgnevad kasutajad grupist: %1$@?";
@@ -530,6 +533,8 @@
 "login_header" = "Logi sisse oma e-postikontoga";
 // deprecated
 "login_explain" = "Logi sisse olemasoleva e-postikontoga";
+// deprecated
+"login_subheader" = "Teadaolevate e-postiteenuste jaoks vajalikud täiendavad seadistused lisanduvad automaatselt. Mõnel juhul pead IMAP-i veebi seadistustest sisse lülitama. Lisateavet leiad oma e-postiteenuse pakkujalt ja võib-olla oskavad ka sõbrad aidata.";
 // deprecated
 "login_no_servers_hint" = "Delta Chat ei  kogu kasutajate andmeid - kogu teave jääb sinu seadmesse.";
 "login_inbox" = "Saabuvad kirjad";
@@ -1026,8 +1031,10 @@
 "add_to_widget" = "Lisa vidinale";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications" = "Kasuta ühendust taustal";
+"pref_background_notifications_explain" = "Eeldab, et akukasutuse optimeerimine on lülitatud välja. Kasuta siis, kui sõnumid pole õigeaegselt näha.";
 "pref_reliable_service" = "Kasuta ühendust taustal";
 "pref_reliable_service_explain" = "Põhjustab püsiteavituse";
+"pref_background_notifications_rationale" = "Tagamaks, et rakenduse võrguühendus jääb taustal tööle ning sõnumite vastuvõtmine jätkub, siis keela järgmises sammus selle rakenduse jaoks akukasutuse optimeerimine.\n\nDelta Chat kasutab väga vähe nutiseadme ressursse ning oleme eraldi pingutanud, et koormus akule oleks minimaalne.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Kui soovid, et Delta Chat saaks sõnumeid ka taustateenusena toimides, siis klõpsi siin.";
 // device messages for updates

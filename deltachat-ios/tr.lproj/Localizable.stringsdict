@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d alıcı</string>
+			<string>%d abone</string>
 			<key>other</key>
-			<string>%d alıcı</string>
+			<string>%d abone</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>

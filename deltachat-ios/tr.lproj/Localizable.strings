@@ -207,7 +207,7 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Yeni Kanal";
 // deprecated
-"add_recipients" = "Alıcılar Ekle";
+"add_recipients" = "Aboneleri Ekle";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanal Adı";
 "email" = "E-Posta";
@@ -371,7 +371,7 @@
 "chat_record_explain" = "Bir sesli ileti kaydetmek için dokunun ve basılı tutun, göndermek için bırakın";
 "chat_no_chats_yet_title" = "Sohbet yok.\nYeni bir sohbet başlatmak için “+” simgesine basın.";
 "chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbet başlatmak için “+” simgesine basın.";
-"chat_share_with_title" = "Paylaş";
+"chat_share_with_title" = "Paylaş…";
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlenen";
 "chat_request_label" = "İstek";
@@ -538,6 +538,7 @@
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
+"login_advanced_hint" = "Bu giriş gelişmiş kullanıcılar içindir:\n\n• Başka bir uygulamada kullandığınız bir hesabı kullanmayın.\n\n• Klasik e-posta sunucusu, bir posta simgesiyle işaretlenerek uçtan uca şifreleme olmayan sohbetlere izin verir.";
 // deprecated
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
 // deprecated
@@ -855,6 +856,7 @@
 "ephemeral_timer_weeks_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ hafta olarak ayarladınız.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
+"chat_unencrypted_explanation" = "Bu sohbetteki iletiler klasik e-posta kullanıyor ve uçtan uca şifreli değil.";
 "chat_protection_enabled_tap_to_learn_more" = "İletiler uçtan uca şifreleniyor. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Bu sohbetteki tüm iletiler uçtan uca şifreleniyor.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. Sunucular, sağlayıcılar ya da aktarıcılar bile onları okuyamaz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
@@ -876,6 +878,7 @@
 "qrscan_hint_desktop" = "QR kodunu kameraya taşıyın";
 "qrscan_failed" = "QR kodu çözülemedi";
 "qrscan_ask_join_group" = "“%1$@” öbeğine katılmak istiyor musunuz?";
+"qrscan_ask_join_channel" = "“%1$@” kanalına katılmak istiyor musunuz?";
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
 "qrscan_no_addr_found" = "Bu QR kodu bir parmak izi içeriyor ama adres yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";

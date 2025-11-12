@@ -371,7 +371,7 @@
 "chat_record_explain" = "Houd ingedrukt om een spraakbericht op te nemen; laat los om te versturen";
 "chat_no_chats_yet_title" = "Er zijn nog geen gesprekken.\nDruk op ‘+’ om een gesprek te beginnen.";
 "chat_all_archived" = "Alle gesprekken zijn gearchiveerd.\nDruk op ‘+’ om een gesprek te beginnen.";
-"chat_share_with_title" = "Delen met";
+"chat_share_with_title" = "Delen met…";
 "chat_input_placeholder" = "Bericht";
 "chat_archived_label" = "Gearchiveerd";
 "chat_request_label" = "Verzoek";

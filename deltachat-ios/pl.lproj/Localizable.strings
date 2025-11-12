@@ -538,6 +538,7 @@
 "welcome_chat_over_email" = "Bezpieczny zdecentralizowany czat";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "login_title" = "Zaloguj się";
+"login_advanced_hint" = "To logowanie jest przeznaczone dla zaawansowanych użytkowników:\n\n• Nie używaj konta, z którego korzystasz w innej aplikacji.\n\n• Klasyczny serwer pocztowy umożliwia rozmowy bez szyfrowania end-to-end, oznaczone ikoną poczty.";
 // deprecated
 "login_header" = "Zaloguj się na swoje konto e-mail";
 // deprecated
@@ -855,6 +856,7 @@
 "ephemeral_timer_weeks_by_you" = "Ustawiono zegar znikających wiadomości na %1$@ tyg.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = " Użytkownik %2$@ ustawił zegar znikających wiadomości na %1$@ tyg.";
+"chat_unencrypted_explanation" = "Wiadomości w tym czacie są przesyłane za pośrednictwem klasycznej poczty e-mail i nie są szyfrowane metodą end-to-end.";
 "chat_protection_enabled_tap_to_learn_more" = "Wiadomości będą szyfrowane metodą end-to-end. Dotknij, aby przeczytać więcej.";
 "chat_protection_enabled_explanation" = "Wszystkie wiadomości w tym czacie są szyfrowane metodą end-to-end.\n\nSzyfrowanie end-to-end zapewnia prywatność wiadomości między tobą a twoimi partnerami czatów. Nawet serwery, dostawcy i pośrednicy nie są w stanie ich odczytać.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ wymaga szyfrowania end-to-end, które nie zostało jeszcze skonfigurowane dla tego czatu. Dotknij, aby dowiedzieć się więcej.";
@@ -876,6 +878,7 @@
 "qrscan_hint_desktop" = "Przysuń kod QR do kamery";
 "qrscan_failed" = "Nie udało się zdekodować kodu QR";
 "qrscan_ask_join_group" = "Czy chcesz dołączyć do grupy „%1$@?";
+"qrscan_ask_join_channel" = "Czy chcesz dołączyć do kanału „%1$@”?";
 "qrscan_fingerprint_mismatch" = "Zeskanowany odcisk palca nie pasuje do odcisku palca ostatnio widzianego u %1$@";
 "qrscan_no_addr_found" = "Ten kod QR zawiera odcisk palca, ale nie zawiera adresu.\n\nW celu weryfikacji poza zasadniczym pasmem należy najpierw nawiązać szyfrowane połączenie z odbiorcą.";
 "qrscan_contains_text" = "Zeskanowany kod QR zawiera następujący tekst:\n\n%1$@";
