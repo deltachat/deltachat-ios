@@ -1,3 +1,4 @@
+rm deltachat-ios/Assets/Help/*.png
 ../deltachat-pages/tools/create-local-help.py ../deltachat-pages/result deltachat-ios/Assets/Help --add_top_links
 
 rm -r deltachat-ios/Assets/Help/zh-Hant
