@@ -20,6 +20,16 @@ class HelpViewController: WebViewViewController {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
     }()
 
+    private lazy var prevPageButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "chevron.left")
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(prevPageButtonPressed))
+    }()
+
+    private lazy var nextPageButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "chevron.right")
+        return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(nextPageButtonPressed))
+    }()
+
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
@@ -27,12 +37,12 @@ class HelpViewController: WebViewViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = String.localized("menu_help")
+        self.title = nil // mavigation bar is dense, and there is already a title in the page
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
         navigationItem.leftBarButtonItem = doneButton
-        navigationItem.rightBarButtonItem = moreButton
+        navigationItem.rightBarButtonItems = [moreButton, nextPageButton, prevPageButton]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +82,20 @@ class HelpViewController: WebViewViewController {
 
     @objc func doneButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc func prevPageButtonPressed() {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            webView.evaluateJavaScript("window.scrollTo(0,0)")
+        }
+    }
+
+    @objc func nextPageButtonPressed() {
+        if webView.canGoForward {
+            webView.goForward()
+        }
     }
 
     private func moreButtonMenu() -> UIMenu {
