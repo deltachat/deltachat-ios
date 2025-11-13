@@ -16,6 +16,10 @@ class HelpViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private lazy var doneButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+    }()
+
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
@@ -27,6 +31,7 @@ class HelpViewController: WebViewViewController {
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
+        navigationItem.leftBarButtonItem = doneButton
         navigationItem.rightBarButtonItem = moreButton
     }
 
@@ -63,6 +68,10 @@ class HelpViewController: WebViewViewController {
             }
             completionHandler?(url)
         }
+    }
+
+    @objc func doneButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
 
     private func moreButtonMenu() -> UIMenu {
