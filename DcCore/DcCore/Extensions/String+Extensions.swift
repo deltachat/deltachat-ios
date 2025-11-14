@@ -3,8 +3,8 @@ import UIKit
 
 public extension String {
 
-    static func markAsExternal(_ string: String) -> String {
-        return string + " ↗"
+    func markAsExternal() -> String {
+        return self + " ↗"
     }
 
     static func localized(_ stringID: String) -> String {

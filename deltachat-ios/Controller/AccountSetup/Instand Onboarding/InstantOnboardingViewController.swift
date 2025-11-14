@@ -172,7 +172,7 @@ class InstantOnboardingViewController: UIViewController {
 
     @objc private func showOtherOptions(_ sender: UIButton) {
         let alertController = UIAlertController(title: String.localized("instant_onboarding_show_more_instances"), message: nil, preferredStyle: .safeActionSheet)
-        let otherServersAction = UIAlertAction(title: String.markAsExternal(String.localized("instant_onboarding_other_server")), style: .default) { [weak self] _ in
+        let otherServersAction = UIAlertAction(title: String.localized("instant_onboarding_other_server").markAsExternal(), style: .default) { [weak self] _ in
 
             self?.storeImageAndName()
 
