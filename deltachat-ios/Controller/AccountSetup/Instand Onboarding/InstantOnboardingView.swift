@@ -156,6 +156,6 @@ class InstantOnboardingView: UIView {
         } else {
             String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain)
         }
-        privacyButton.setTitle(String.markAsExternal(title), for: .normal)
+        privacyButton.setTitle(title.markAsExternal(), for: .normal)
     }
 }
