@@ -213,8 +213,8 @@ class InstantOnboardingViewController: UIViewController {
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
 
         alertController.addAction(otherServersAction)
-        alertController.addAction(manualAccountSetup)
         alertController.addAction(scanQRCode)
+        alertController.addAction(manualAccountSetup)
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true)
