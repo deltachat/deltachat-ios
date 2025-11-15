@@ -371,8 +371,8 @@
 "chat_record_explain" = "按住即可录制语音消息，松开即可发送";
 "chat_no_chats_yet_title" = "收件箱为空。\n按“+”来开始新聊天。";
 "chat_all_archived" = "所有聊天已归档。\n按“+”来开始新聊天。";
-"chat_share_with_title" = "分享给";
-"chat_input_placeholder" = "输入消息…";
+"chat_share_with_title" = "分享…";
+"chat_input_placeholder" = "消息";
 "chat_archived_label" = "已归档";
 "chat_request_label" = "请求";
 "chat_request_label_explain" = "在计数器和通知中包含请求";
@@ -514,8 +514,8 @@
 "onboarding_create_instant_account" = "创建新账号";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "我已有账号";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "传统电子邮件登录";
+// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "使用传统电子邮件作为传输";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "个人资料";
 // The placeholder will be replaced by the default onboarding server
@@ -624,6 +624,7 @@
 "pref_profile_photo" = "个人资料图片";
 "pref_blocked_contacts" = "已屏蔽的联系人";
 "blocked_empty_hint" = "被您屏蔽的联系人将显示于此。";
+// deprecated
 "pref_password_and_account_settings" = "密码和账号";
 "pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片和名称将与您的消息一起发送。";
 "pref_your_name" = "您的名称";
@@ -915,7 +916,7 @@
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
-"secure_join_wait" = "正在建立端到端加密，请稍候…";
+"secure_join_wait" = "正在建立连接，请稍候…";
 "contact_verified" = "%1$@ 已验证。";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "验证人 %1$@";

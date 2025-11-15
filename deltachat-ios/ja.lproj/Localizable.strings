@@ -344,6 +344,7 @@
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
 "blocked_empty_hint" = "ブロックされた連絡先がここに表示されます。";
+// deprecated
 "pref_password_and_account_settings" = "パスワードとアカウント";
 "pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";

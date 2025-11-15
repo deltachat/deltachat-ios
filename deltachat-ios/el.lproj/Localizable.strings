@@ -417,6 +417,7 @@
 "pref_profile_photo" = "Εικόνα Προφίλ";
 "pref_blocked_contacts" = "Αποκλεισμένες Επαφές";
 "blocked_empty_hint" = "Οι αποκλεισμένες επαφές θα εμφανίζονται εδώ.";
+// deprecated
 "pref_password_and_account_settings" = "Κωδικός και Λογαριασμός";
 "pref_who_can_see_profile_explain" = "Η εικόνα του προφίλ, το όνομα και η υπογραφή σας θα αποστέλλονται μαζί με τα μηνύματά σας κατά την επικοινωνία με άλλους χρήστες.";
 "pref_your_name" = "Το όνομά σου";

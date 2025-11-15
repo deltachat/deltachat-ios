@@ -355,6 +355,7 @@
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
+// deprecated
 "pref_password_and_account_settings" = "Pasahitza eta kontua";
 "pref_who_can_see_profile_explain" = "Zure profileko argazkia eta izena zure mezuekin batera erakutsiko dira beste erabiltzaileekin komunikatzen zarenean. Informazioa behin bidalita ezin da ezabatu edo kendu.";
 "pref_your_name" = "Zure izena";

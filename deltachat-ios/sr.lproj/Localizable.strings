@@ -458,6 +458,7 @@
 "pref_profile_photo" = "Слика профила";
 "pref_blocked_contacts" = "Блокирани контакти";
 "blocked_empty_hint" = "Блокирани контакти ће се појавити овде.";
+// deprecated
 "pref_password_and_account_settings" = "Лозинка и налог";
 "pref_who_can_see_profile_explain" = "Слика вашег профила, име и потпис ће бити послан заједно са вашом поруком када комуницирате са другим корисницима.";
 "pref_your_name" = "Ваше име";

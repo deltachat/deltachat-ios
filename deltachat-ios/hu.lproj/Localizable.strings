@@ -514,7 +514,7 @@
 "onboarding_create_instant_account" = "Új profil létrehozása";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Már van profilom";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klasszikus e-mail bejelentkezés";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profil";
@@ -623,6 +623,7 @@
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott névjegyek";
 "blocked_empty_hint" = "A letiltott névjegyek itt fognak megjelenni";
+// deprecated
 "pref_password_and_account_settings" = "Fiók és jelszó";
 "pref_who_can_see_profile_explain" = "A profilképe, neve és névjegye az üzenetekkel együtt kerül elküldésre, amikor más felhasználókkal kommunikál.";
 "pref_your_name" = "Név";

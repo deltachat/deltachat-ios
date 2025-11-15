@@ -20,31 +20,46 @@
 "join" = "Aliĝi";
 "rejoin" = "Realiĝi";
 "delete" = "Forigi";
+"delete_for_me" = "Forigi por mi";
+"delete_for_everyone" = "Forigi por ĉiuj";
 "info" = "Informoj";
 "update" = "Ĝisdatigi";
 "emoji" = "Emoji";
 "attachment" = "Aldonaĵo";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Ĉu alkroĉi \"%1$@\"?";
 "back" = "Reen";
 "close" = "Fermi";
+"close_window" = "Fermi fenestron";
 "forward" = "Plusendi";
+"create" = "Krei";
+"reset" = "Restartigi";
+"later" = "Poste";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Resendi";
+"edited" = "Redaktita";
+"edit_message" = "Redakti mesaĝon";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arĥivi";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Malarĥivi";
 "mute" = "Muta sciigoj";
+"muted" = "Silentigita";
 "ephemeral_messages" = "Memviŝontaj mesaĝoj";
 "ephemeral_messages_hint" = "Aplikebla al ĉiuj anoj de tiu ĉi babilejo kiuj uzas Delta Chat; ili ankoraŭ povas kopii, konservi kaj plusendi mesaĝojn, kaj uzi aliajn retpoŝtajn klientojn.";
 "save" = "Konservi";
 "chat" = "Babilo";
 "media" = "Aŭdovidaĵoj";
+"apps_and_media" = "Apoj kaj vidaĵoj";
 "profile" = "Profilo";
+"all_profiles" = "Ĉiuj profiloj";
+"current_profile" = "Aktuala profilo";
 "main_menu" = "Ĉefa menuo";
 "start_chat" = "Komenci Babiladon";
 "show_full_message" = "Afiŝu la tutan mesaĝon...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marki ĉiujn legitaj";
+"mark_as_read" = "Marki kiel legita";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Legi";
 // Placeholder text when something is loading
@@ -73,6 +88,8 @@
 "no_app_to_handle_data" = "Ne povas trovi aplikaĵon por trakti tiun ĉi tipon de datumo.";
 "no_browser_installed" = "Neniu retumilo instalita.";
 "file_not_found" = "Ne povis trovi %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Ne eblas konservi la dosieron %1$@.";
 "copied_to_clipboard" = "Kopiita al tondujo";
 "contacts_headline" = "Kontaktoj";
 "email_address" = "Retadreso";
@@ -93,6 +110,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Laste vidita %1$@";
 "last_seen_unknown" = "Laste vidita: nedisponebla informo";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -315,6 +334,7 @@
 "share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
+// deprecated
 "pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";

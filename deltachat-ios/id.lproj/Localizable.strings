@@ -358,6 +358,7 @@
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
+// deprecated
 "pref_password_and_account_settings" = "Kata sandi dan akun";
 "pref_who_can_see_profile_explain" = "Foto dan nama profil Anda akan tampak bersama dengan pesan-pesan ketika berkomunikasi dengan pengguna lain. Informasi yang telah dikirimkan tidak dapat dihapus atau dipindah.";
 "pref_your_name" = "Nama Anda";

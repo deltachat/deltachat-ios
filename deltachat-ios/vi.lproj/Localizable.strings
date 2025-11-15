@@ -473,6 +473,7 @@
 "pref_profile_photo" = "Ảnh hồ sơ";
 "pref_blocked_contacts" = "Liên hệ bị chặn";
 "blocked_empty_hint" = "Các liên hệ bị chặn sẽ xuất hiện ở đây.";
+// deprecated
 "pref_password_and_account_settings" = "Mật khẩu và tài khoản";
 "pref_who_can_see_profile_explain" = "Ảnh hồ sơ, tên và chữ ký của bạn sẽ được gửi cùng với tin nhắn của bạn khi giao tiếp với người dùng khác.";
 "pref_your_name" = "Tên của bạn";

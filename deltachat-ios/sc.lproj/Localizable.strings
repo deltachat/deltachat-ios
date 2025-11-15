@@ -294,6 +294,7 @@
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
 "blocked_empty_hint" = "Si as a blocare cuntatos ant a èssere allistados inoghe.";
+// deprecated
 "pref_password_and_account_settings" = "Crae de intrada e contu";
 "pref_who_can_see_profile_explain" = "S\'immàgine de profilu tua e su nùmene tuo ant a èssere ammustrados in paris cun sos messàgios tuos cando ses comunichende cun àteros impreadores. Sas informatziones giai imbiadas non podent èssere iscantzelladas o bogadas.";
 "pref_your_name" = "Su nùmene tuo";
