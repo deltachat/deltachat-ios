@@ -229,6 +229,7 @@
 "pref_profile_info_headline" = "Din profilinfo";
 "pref_profile_photo" = "Profilbilde";
 "pref_blocked_contacts" = "Blokkerte kontakter";
+// deprecated
 "pref_password_and_account_settings" = "Kontoinnstillinger";
 "pref_your_name" = "Mitt navn";
 // Label of the Bio/Signature/Status/Motto field

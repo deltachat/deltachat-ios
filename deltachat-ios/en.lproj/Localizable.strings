@@ -514,8 +514,8 @@
 "onboarding_create_instant_account" = "Create New Profile";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "I Already Have a Profile";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Classic Email Login";
+// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Use Classic Email as Transport";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Your Profile";
 // The placeholder will be replaced by the default onboarding server
@@ -575,6 +575,15 @@
 "proxy_share_link" = "Share Link";
 "proxy_enabled" = "Proxy Enabled";
 "proxy_enabled_hint" = "You are using a proxy. If you\'re having trouble connecting, try a different proxy.";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Transports";
+"add_transport" = "Add Transport";
+"remove_transport" = "Remove Transport";
+"edit_transport" = "Edit Transport";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "Add this transport?";
+"invalid_transport_qr" = "The scanned QR code does not contain a valid transport.";
+"confirm_remove_transport" = "Remove transport \"%1$@\"?\n\nYour contacts can only reach you if you\'ve previously contacted them via another transport.\n\nIf in doubt, remove the transport later.";
 // deprecated
 "login_info_oauth2_title" = "Continue with simplified setup?";
 // deprecated
@@ -624,6 +633,7 @@
 "pref_profile_photo" = "Profile Image";
 "pref_blocked_contacts" = "Blocked Contacts";
 "blocked_empty_hint" = "Blocked contacts will appear here.";
+// deprecated
 "pref_password_and_account_settings" = "Password and Account";
 "pref_who_can_see_profile_explain" = "Your profile image, name and bio will be sent together with your messages when communicating with other users.";
 "pref_your_name" = "Your Name";
@@ -915,7 +925,7 @@
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
-"secure_join_wait" = "Establishing end-to-end encryption, please wait…";
+"secure_join_wait" = "Establishing connection, please wait…";
 "contact_verified" = "%1$@ introduced.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introduced by %1$@";

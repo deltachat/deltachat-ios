@@ -147,6 +147,7 @@
 "login_smtp_port" = "SMTP போர்ட்";
 "pref_profile_info_headline" = "உங்கள் சுயவிவரத் தகவல்";
 "pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
+// deprecated
 "pref_password_and_account_settings" = "கணக்கு அமைப்புகள்";
 "pref_your_name" = "எனது பெயர்";
 "pref_enter_sends" = "\"enter\" மூலம் அனுப்பவும்";

@@ -514,7 +514,7 @@
 "onboarding_create_instant_account" = "Utwórz nowy profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mam już profil";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klasyczne logowanie e-mail";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Twój profil";
@@ -624,6 +624,7 @@
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "blocked_empty_hint" = "Zablokowane kontakty, zostaną pokazane tutaj.";
+// deprecated
 "pref_password_and_account_settings" = "Hasło i konto";
 "pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe i nazwa będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
 "pref_your_name" = "Twoja nazwa";

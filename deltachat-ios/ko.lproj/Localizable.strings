@@ -411,6 +411,7 @@
 "pref_profile_photo" = "프로필 사진";
 "pref_blocked_contacts" = "차단 목록";
 "blocked_empty_hint" = "차단된 연락처가 여기에 나타납니다.";
+// deprecated
 "pref_password_and_account_settings" = "계정 설정";
 "pref_who_can_see_profile_explain" = "다른 사용자와 통신할 때 프로필 이미지, 이름 및 서명이 메시지와 함께 전송됩니다.";
 "pref_your_name" = "내 이름";

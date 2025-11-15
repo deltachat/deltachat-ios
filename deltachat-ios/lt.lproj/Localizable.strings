@@ -437,6 +437,7 @@
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
 "blocked_empty_hint" = "Jei užblokuosite adresatus, jie bus rodomi čia.";
+// deprecated
 "pref_password_and_account_settings" = "Slaptažodis ir paskyra";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
 "pref_your_name" = "Jūsų vardas";

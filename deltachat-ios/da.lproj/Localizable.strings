@@ -349,6 +349,7 @@
 "pref_profile_photo" = "Profilbillede";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "blocked_empty_hint" = "Hvis du blokerer kontakter, bliver de vist her.";
+// deprecated
 "pref_password_and_account_settings" = "Adgangskode og konto";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Dit navn";

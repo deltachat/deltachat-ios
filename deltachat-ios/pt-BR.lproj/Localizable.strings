@@ -461,6 +461,7 @@
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Contatos bloqueados";
 "blocked_empty_hint" = "Se você bloquear contatos, eles serão mostrados aqui.";
+// deprecated
 "pref_password_and_account_settings" = "Senha e conta";
 "pref_who_can_see_profile_explain" = "Sua foto de perfil e nome serão exibidos com suas mensagens a outros usuários. Informações já enviadas não podem ser apagas ou removidas.";
 "pref_your_name" = "Seu nome";

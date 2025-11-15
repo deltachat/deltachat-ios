@@ -424,7 +424,7 @@
 "onboarding_create_instant_account" = "Skapa ny profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Jag har redan en profil";
-// Button, allows to log in to existing email accounts, setting ports, passwords and so on
+// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klassisk e-postinloggning";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Din profil";
@@ -509,6 +509,7 @@
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
 "blocked_empty_hint" = "Blockerade kontakter kommer att visas här.";
+// deprecated
 "pref_password_and_account_settings" = "Lösenord och konto";
 "pref_who_can_see_profile_explain" = "Din profilbild och ditt namn visas tillsammans med dina meddelanden när du kommunicerar med andra användare. Information som redan skickats kan inte tas bort eller flyttas.";
 "pref_your_name" = "Ditt namn";

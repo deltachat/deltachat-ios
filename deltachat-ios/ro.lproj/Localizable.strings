@@ -446,6 +446,7 @@
 "pref_profile_photo" = "Imagine de profil";
 "pref_blocked_contacts" = "Contacte blocate";
 "blocked_empty_hint" = "Contactele blocate vor apărea aici.";
+// deprecated
 "pref_password_and_account_settings" = "Parolă și cont";
 "pref_who_can_see_profile_explain" = "Imaginea de profil, numele și semnătura dumneavoastră vor fi trimise împreună cu mesajele dumneavoastră atunci când comunicați cu alți utilizatori.";
 "pref_your_name" = "Numele dumneavoastră";
