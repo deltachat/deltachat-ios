@@ -36,7 +36,7 @@ internal final class AdvancedViewController: UITableViewController {
 
     private lazy var accountSettingsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("pref_password_and_account_settings")
+        cell.textLabel?.text = String.localized("edit_transport")
         cell.accessoryType = .disclosureIndicator
         cell.tag = CellTags.accountSettings.rawValue
         return cell
@@ -268,7 +268,7 @@ internal final class AdvancedViewController: UITableViewController {
         case .viewLog: showLogViewController()
 
         case .accountSettings:
-            Utils.authenticateDeviceOwner(reason: String.localized("pref_password_and_account_settings")) { [weak self] in
+            Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
                 self?.showAccountSettingsController()
             }
         case .proxySettings:

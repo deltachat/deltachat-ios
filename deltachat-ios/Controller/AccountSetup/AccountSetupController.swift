@@ -264,7 +264,7 @@ class AccountSetupController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if editView {
-            title = String.localized("pref_password_and_account_settings")
+            title = String.localized("edit_transport")
         } else {
             title = String.localized("manual_account_setup_option")
         }
@@ -431,7 +431,7 @@ class AccountSetupController: UITableViewController {
         }
         progressAlertHandler.dataSource = self
         resignFirstResponderOnAllCells()
-        progressAlertHandler.showProgressAlert(title: String.localized("manual_account_setup_option"), dcContext: dcContext)
+        progressAlertHandler.showProgressAlert(title: nil, dcContext: dcContext)
 
         var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
         loginParam.imapServer = imapServerCell.getText()
