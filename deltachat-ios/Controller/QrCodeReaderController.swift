@@ -201,7 +201,8 @@ class QrCodeReaderController: UIViewController {
         })
         if showTroubleshooting {
             actions.append(UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
-                self?.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: "#multiclient"), animated: true)
+                guard let self else { return }
+                HelpViewController.open(self, fragment: "#multiclient")
             })
         }
         return UIMenu(children: actions)

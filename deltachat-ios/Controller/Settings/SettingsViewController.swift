@@ -304,7 +304,7 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func showHelp() {
-        navigationController?.pushViewController(HelpViewController(dcContext: dcContext), animated: true)
+        HelpViewController.open(self)
     }
 
     private func showConnectivity() {
