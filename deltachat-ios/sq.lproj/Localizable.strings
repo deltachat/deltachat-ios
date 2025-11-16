@@ -262,6 +262,7 @@
 "menu_scroll_to_bottom" = "Rrëshqit drejt Fundit";
 "menu_scroll_to_top" = "Rrëshqit sipër në Krye";
 "menu_help" = "Ndihmë";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Ç’është Webxdc?";
 "privacy_policy" = "Rregulla Privatësie";
 "menu_select_all" = "Përzgjidhi Krejt";

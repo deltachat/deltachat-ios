@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Ga naar het einde";
 "menu_scroll_to_top" = "Ga naar het begin";
 "menu_help" = "Hulp";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Wat is Webxdc?";
 "privacy_policy" = "Privacybeleid";
 "menu_select_all" = "Alles selecteren";
@@ -896,9 +897,11 @@
 "qrscan_fingerprint_label" = "Vingerafdruk";
 "withdraw_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
 "withdraw_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
+"withdraw_joinbroadcast_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan het kanaal ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
 "withdraw_qr_code" = "QR-code deactiveren";
 "revive_verifycontact_explain" = "Deze QR-code is gedactiveerd en kan niet meer worden gebruikt.";
 "revive_verifygroup_explain" = "Deze QR-code voor de groep ‘%1$@’ is gedeactiveerd en kan niet meer worden gebruikt.";
+"revive_joinbroadcast_explain" = "Deze QR-code voor het kanaal ‘%1$@’ is gedeactiveerd en kan niet meer worden gebruikt.";
 "revive_qr_code" = "QR-code activeren";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";

@@ -249,6 +249,7 @@
 "menu_scroll_to_bottom" = "Posuňte sa nadol";
 "menu_scroll_to_top" = "Prejdite hore";
 "menu_help" = "Pomocník";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Čo je Webxdc?";
 "privacy_policy" = "Zásady súkromia";
 "menu_select_all" = "Vybrať všetko";

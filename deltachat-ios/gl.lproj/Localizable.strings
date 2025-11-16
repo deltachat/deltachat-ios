@@ -258,6 +258,7 @@
 "menu_scroll_to_bottom" = "Moverse abaixo";
 "menu_scroll_to_top" = "Moverse arriba";
 "menu_help" = "Axuda";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Que é Webxdc?";
 "privacy_policy" = "Política de Privacidade";
 "menu_select_all" = "Escoller todo";

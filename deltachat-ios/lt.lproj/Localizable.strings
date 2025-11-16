@@ -201,6 +201,7 @@
 "menu_scroll_to_bottom" = "Slinkti į apačią";
 "menu_scroll_to_top" = "Slinkti į viršų";
 "menu_help" = "Žinynas";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Kas yra „Webxdc“?";
 "privacy_policy" = "Privatumo politika";
 "menu_select_all" = "Žymėti viską";

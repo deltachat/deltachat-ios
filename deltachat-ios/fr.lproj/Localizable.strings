@@ -233,6 +233,7 @@
 "menu_scroll_to_bottom" = "Faire défiler jusqu\'en bas";
 "menu_scroll_to_top" = "Faire défiler jusqu\'en haut";
 "menu_help" = "Aide";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Qu\'est-ce qu\'une appli Webxdc ?";
 "privacy_policy" = "Politique de confidentialité";
 "menu_select_all" = "Tout sélectionner";

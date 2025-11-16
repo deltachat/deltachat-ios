@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Desplaça\'t al final";
 "menu_scroll_to_top" = "Desplaça\'t a l\'inici";
 "menu_help" = "Ajuda";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Què és Webxdc?";
 "privacy_policy" = "Política de privadesa";
 "menu_select_all" = "Selecciona-ho tot";

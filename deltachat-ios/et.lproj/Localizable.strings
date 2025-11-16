@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Keri lõpuni";
 "menu_scroll_to_top" = "Keri algusesse";
 "menu_help" = "Abiteave";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Mis on Webxdc?";
 "privacy_policy" = "Privaatsusreeglid";
 "menu_select_all" = "Vali kõik";

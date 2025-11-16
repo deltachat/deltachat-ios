@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Przewiń na dołu";
 "menu_scroll_to_top" = "Przewiń na górę";
 "menu_help" = "Pomoc";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Co to jest Webxdc?";
 "privacy_policy" = "Polityka prywatności";
 "menu_select_all" = "Zaznacz wszystko";

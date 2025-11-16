@@ -213,6 +213,7 @@
 "menu_scroll_to_bottom" = "Skrolla till botten";
 "menu_scroll_to_top" = "Bläddra till toppen";
 "menu_help" = "Hjälp";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Vad är Webxdc?";
 "privacy_policy" = "Integritetspolicy";
 "menu_select_all" = "Markera alla";

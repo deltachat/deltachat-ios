@@ -241,7 +241,7 @@
 "menu_copy_link_to_clipboard" = "Скопіювати посилання";
 "menu_copy_text_to_clipboard" = "Копіювати текст";
 "menu_copy_image_to_clipboard" = "Копіювати зображення";
-"menu_copy_email_to_clipboard" = "Копіювати електронну пошту";
+"menu_copy_email_to_clipboard" = "Копіювати e-mail";
 "paste_from_clipboard" = "Вставити із буферу обміну";
 "ask_copy_unopenable_link_to_clipboard" = "Посилання \"%1$d\" не можна відкрити у веб-браузері. Скопіювати посилання в буфер обміну?";
 "menu_forward" = "Переслати повідомлення";
@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Перейти в кінець";
 "menu_scroll_to_top" = "Прокрутити на початок";
 "menu_help" = "Допомога";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Що таке Webxdc?";
 "privacy_policy" = "Політика конфіденційності";
 "menu_select_all" = "Вибрати все";
@@ -371,7 +372,7 @@
 "chat_record_explain" = "Натиснувши втримуйте, щоби записати голосове повідомлення, а для відправки відпустіть";
 "chat_no_chats_yet_title" = "Немає вхідних повідомлень.\nНатисніть \"+\" щоб почати новий чат.";
 "chat_all_archived" = "Всі чати заархівовано.\nНатисніть \"+\", щоб почати новий чат.";
-"chat_share_with_title" = "Поділитися";
+"chat_share_with_title" = "Поділитися з...";
 "chat_input_placeholder" = "Повідомлення";
 "chat_archived_label" = "Заархівовано";
 "chat_request_label" = "Запит";
@@ -515,7 +516,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "У мене вже є профіль";
 // Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Класичний вхід до електронної пошти";
+"manual_account_setup_option" = "Транспорт через класичну електронну пошту";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Ваш профіль";
 // The placeholder will be replaced by the default onboarding server
@@ -538,6 +539,7 @@
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
 "login_title" = "Увійти";
+"login_advanced_hint" = "Цей спосіб входу призначений для досвідчених користувачів:\n\n• Не використовуйте обліковий запис, який ви вже використовуєте в іншому застосунку.\n\n• Класичний поштовий сервер дозволяє чати без наскрізного шифрування — вони позначені піктограмою листа.";
 // deprecated
 "login_header" = "Увійдіть до свого облікового запису електронної пошти";
 // deprecated
@@ -572,6 +574,17 @@
 "proxy_use_proxy_confirm" = "Ви хочете використовувати проксі \"%1$@\"?";
 "proxy_share_explain" = "Ваші друзі можуть додати цей проксі, відсканувавши QR-код.";
 "proxy_share_link" = "Поділитися посиланням";
+"proxy_enabled" = "Проксі увімкнено";
+"proxy_enabled_hint" = "Ви використовуєте проксі-сервер. Якщо у вас проблеми з підключенням, спробуйте інший проксі.";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Транспортні сервери";
+"add_transport" = "Додати транспортний сервер";
+"remove_transport" = "Видалити транспортний сервер";
+"edit_transport" = "Редагувати транспортний сервер";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "Додати цей транспортний сервер?";
+"invalid_transport_qr" = "Відсканований QR-код не містить дійсного транспортного сервера.";
+"confirm_remove_transport" = "Видаліть транспортний сервер \"%1$@\"?\n\nВаш контакти можуть зв\'язатися з вами, тільки якщо ви раніше зв\'язалися з ними через інший транспортний сервер.\n\nЯкщо ви сумніваєтеся, видаліть транспортний сервер пізніше.";
 // deprecated
 "login_info_oauth2_title" = "Продовжити спрощене налаштування?";
 // deprecated
@@ -678,6 +691,7 @@
 "pref_backup" = "Резервне копіювання";
 "pref_backup_explain" = "Зберегти чати на зовнішній носій";
 "pref_backup_export_explain" = "Резервне копіювання дозволяє відновлювати попередні налаштування програми під час нової установки на цьому або іншому пристрої.\n\nРезервна копія містить всі повідомлення, контакти та чати, а також параметри Autocrypt. Після створення резервної копії якомога швидше перенесіть її в надійне місце.";
+"pref_backup_export_this" = "Експортуйте цей профіль";
 // deprecated
 "pref_backup_export_x" = "Експортувати %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
@@ -801,6 +815,11 @@
 "remove_member_by_you" = "Ви видалили учасника %1$@.";
 // %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
 "remove_member_by_other" = "%2$@ видалив (-ла) учасника %1$@.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Ви покинули групу.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Ви покинули канал.";
+"you_joined_the_channel" = "Ви приєдналися до каналу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
 "group_left_by_other" = "%1$@ залишив (-ла) групу.";
 "group_image_deleted_by_you" = "Ви видалили емблему групи.";
@@ -848,6 +867,7 @@
 "ephemeral_timer_weeks_by_you" = "Ви встановили таймер зникнення повідомлень на %1$@ тижнів.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ встановив (-ла) таймер зникнення повідомлень на %1$@ тижнів.";
+"chat_unencrypted_explanation" = "Повідомлення в цьому чаті використовують класичну електронну пошту і не мають наскрізного шифрування.";
 "chat_protection_enabled_tap_to_learn_more" = "Відтепер повідомлення гарантовано будуть мати наскрізне шифрування. Торкніться, щоб дізнатися більше.";
 "chat_protection_enabled_explanation" = "Тепер гарантовано, що всі повідомлення в цьому чаті наскрізь зашифровані.\n\nНаскрізне шифрування зберігає конфіденційність повідомлень між вами і вашими партнерами по чату. Навіть сервери, провайдери або ретранслятори не можуть їх прочитати.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ вимагає наскрізного шифрування, яке ще не налаштоване для цього чату. Натисніть, щоб дізнатися більше.";
@@ -869,6 +889,7 @@
 "qrscan_hint_desktop" = "Піднесіть QR-код до камери";
 "qrscan_failed" = "Неможливо декодувати QR-код";
 "qrscan_ask_join_group" = "Приєднатися до групи «%1$@»?";
+"qrscan_ask_join_channel" = "Бажаєте приєднатися до каналу \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "Відсканований відбиток не збігається з останнім відомим відбитком %1$@";
 "qrscan_no_addr_found" = "Цей QR-код містить відбиток пальця, але не адресу.\n\nДля позасмугової перевірки, будь ласка, спочатку встановіть зашифроване з\'єднання з одержувачем.";
 "qrscan_contains_text" = "Текст з QR-коду:\n\n%1$@";
@@ -887,6 +908,7 @@
 "qrshow_join_group_title" = "Баркод із запрошенням";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Відскануйте код, щоб приєднатися до групи \"%1$@\".";
+"qrshow_join_channel_hint" = "Відскануйте щоб приєднатися до каналу \"%1$@\"";
 "qrshow_join_contact_title" = "Запрошувальний баркод";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
 "qrshow_join_contact_hint" = "Відскануйте код, щоб спілкуватись з %1$@";

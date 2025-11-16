@@ -205,6 +205,7 @@
 "menu_scroll_to_bottom" = "Cuộn xuống dưới cùng";
 "menu_scroll_to_top" = "Cuộn lên trên cùng";
 "menu_help" = "Trợ giúp";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Webxdc là gì?";
 "privacy_policy" = "Chính sách quyền riêng tư";
 "menu_select_all" = "Chọn tất cả";

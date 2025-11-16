@@ -207,6 +207,7 @@
 "menu_scroll_to_bottom" = "Vieritä alas";
 "menu_scroll_to_top" = "Vieritä ylös";
 "menu_help" = "Ohje";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Mikä on Webxdc?";
 "privacy_policy" = "Yksityisyyskäytäntö";
 "menu_select_all" = "Valitse kaikki";
