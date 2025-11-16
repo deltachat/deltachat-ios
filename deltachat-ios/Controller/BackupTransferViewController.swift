@@ -266,7 +266,7 @@ class BackupTransferViewController: UIViewController {
         }
         actions.append(UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
             guard let self else { return }
-            navigationController?.pushViewController(HelpViewController(dcContext: dcContext, fragment: "#multiclient"), animated: true)
+            HelpViewController.open(self, fragment: "#multiclient")
         })
         return UIMenu(children: actions)
     }
