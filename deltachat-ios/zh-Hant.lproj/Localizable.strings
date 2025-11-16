@@ -250,6 +250,7 @@
 "menu_scroll_to_bottom" = "捲動到底端";
 "menu_scroll_to_top" = "捲動到頂端";
 "menu_help" = "幫助";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "甚麼是 Webxdc？";
 "privacy_policy" = "隱私權政策";
 "menu_select_all" = "全選";

@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Ugrás az aljára";
 "menu_scroll_to_top" = "Ugrás a tetejére";
 "menu_help" = "Súgó";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Mi az a Webxdc?";
 "privacy_policy" = "Adatvédelmi irányelvek";
 "menu_select_all" = "Összes kiválasztása";

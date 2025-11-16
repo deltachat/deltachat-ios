@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Scorri alla Fine";
 "menu_scroll_to_top" = "Scorri in Cima";
 "menu_help" = "Aiuto";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Cos\'è Webxdc?";
 "privacy_policy" = "Politica sulla Riservatezza";
 "menu_select_all" = "Seleziona Tutto";
@@ -575,6 +576,15 @@
 "proxy_share_link" = "Condividi Collegamento";
 "proxy_enabled" = "Proxy Abilitato";
 "proxy_enabled_hint" = "Stai utilizzando un proxy. Se riscontri problemi di connessione, prova un proxy diverso.";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Trasporti";
+"add_transport" = "Aggiungi Trasporto";
+"remove_transport" = "Rimuovi Trasporto";
+"edit_transport" = "Modifica Trasporto";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "Aggiungere questo trasporto?";
+"invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
+"confirm_remove_transport" = "Rimuovere il trasporto \"%1$@\"?\n\nI tuoi contatti potranno contattarti solo se li hai contattati in precedenza tramite un altro mezzo di trasporto.\n\nIn caso di dubbio, rimuovi il mezzo di trasporto in un secondo momento.";
 // deprecated
 "login_info_oauth2_title" = "Continuare con la configurazione semplificata?";
 // deprecated

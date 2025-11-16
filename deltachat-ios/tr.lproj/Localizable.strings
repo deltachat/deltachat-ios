@@ -266,7 +266,8 @@
 "menu_scroll_to_bottom" = "En Alta Kaydır";
 "menu_scroll_to_top" = "En Üste Kaydır";
 "menu_help" = "Yardım";
-"what_is_webxdc" = "Webxdc nedir?";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Uygulamalar Hakkında";
 "privacy_policy" = "Gizlilik İlkesi";
 "menu_select_all" = "Tümünü Seç";
 "select_chat" = "Sohbet Seç";
@@ -896,9 +897,11 @@
 "qrscan_fingerprint_label" = "Parmak izi";
 "withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
 "withdraw_verifygroup_explain" = "Bu QR kodu, “%1$@” grubuna katılmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
+"withdraw_joinbroadcast_explain" = "Bu QR kodu, “%1$@” kanalına katılmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz, böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
 "withdraw_qr_code" = "QR Kodunu Sıfırla";
 "revive_verifycontact_explain" = "Bu QR kodu sıfırlandı ve artık etkin değil.";
 "revive_verifygroup_explain" = "“%1$@” grubuna katılmak için taranan bu QR kodu sıfırlandı ve artık etkin değil.";
+"revive_joinbroadcast_explain" = "“%1$@” kanalına katılmak için kullanılan bu QR kodu sıfırlandı ve artık etkin değil.";
 "revive_qr_code" = "QR Kodunu Etkinleştir";
 "qrshow_title" = "QR Çağrı Kodu";
 "qrshow_x_joining" = "%1$@ katılıyor.";

@@ -83,7 +83,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个联系人</string>
+			<string>%d 位联系人</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 个成员</string>
+			<string>%d 位成员</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -139,7 +139,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%d 位接收者</string>
+			<string>%d 位订阅者</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>

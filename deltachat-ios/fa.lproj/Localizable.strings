@@ -263,6 +263,7 @@
 "menu_scroll_to_bottom" = "رفتن به پایین";
 "menu_scroll_to_top" = "رفن تا بالا";
 "menu_help" = "کمک";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Webxdc چیست؟";
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";

@@ -266,6 +266,7 @@
 "menu_scroll_to_bottom" = "Прокрутить вниз";
 "menu_scroll_to_top" = "Прокрутить вверх";
 "menu_help" = "Справка";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Что такое Webxdc?";
 "privacy_policy" = "Политика конфиденциальности";
 "menu_select_all" = "Выбрать всё";

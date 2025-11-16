@@ -2,39 +2,83 @@
 "app_name" = "Delta Chat";
 "ok" = "OK";
 "cancel" = "Avbryt";
+"clear_search" = "Nullstill søk";
+// a noun, used on a button, short for "show link"
+"link" = "Lenke";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skann";
 "yes" = "Ja";
 "no" = "Nei";
 "select" = "Velg";
 "on" = "På";
 "off" = "Av";
 "def" = "Forvalg";
+"default_value" = "Standardverdi (%1$@)";
+"default_value_as_above" = "Standardverdi (som over)";
 "custom" = "Egendefinert";
 "none" = "Ingen";
 "automatic" = "Automatisk";
 "strict" = "Streng";
 "open" = "Åpne";
+"download" = "Last ned";
+"downloading" = "Laster ned...";
+"open_attachment" = "Åpne vedlegg";
 "join" = "Bli med";
 "rejoin" = "Bli med igjen";
 "delete" = "Slett";
+"delete_for_me" = "Slett for meg";
+"delete_for_everyone" = "Slett for alle";
 "info" = "Info";
 "update" = "Oppdater";
 "emoji" = "Emoji";
 "attachment" = "Vedlegg";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Legg ved \"%1$@\"?";
 "back" = "Forrige";
 "close" = "Lukk";
+"close_window" = "Lukk vindu";
 "forward" = "Videresend";
+"create" = "Opprett";
+"reset" = "Tilbakestill";
+"later" = "Senere";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Resend";
+"edited" = "Redigert";
+"edit_message" = "Rediger melding";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkiver";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Fjern fra arkiv";
 "mute" = "Demp";
+"muted" = "Dempet";
 "ephemeral_messages" = "Forsvinnende meldinger";
 "ephemeral_messages_hint" = "Disse innstillingene gjelder alle deltakerne som bruker Delta Chat. Men de kan kopiere, lagre og videresende meldinger eller bruke annen e-postklient.";
 "save" = "Lagre";
 "chat" = "Chat";
 "media" = "Media";
+"apps_and_media" = "Apper & Media";
+"profile" = "Profil";
+"all_profiles" = "Alle profiler";
+"current_profile" = "Gjeldende profil";
 "main_menu" = "Hovedmeny";
 "start_chat" = "Start chat";
+"show_full_message" = "Vis hele meldingen";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Merk alt som lest";
+"mark_as_read" = "Merk som lest";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Lest";
+// Placeholder text when something is loading
+"loading" = "Laster...";
+"hide" = "Skjul";
+"activate" = "Aktiver";
+"load_remote_content" = "Last eksternt innhold";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Eksterne bilder kan spore deg.\n\nDenne innstillingen kan også laste skrifttyper og annet innhold. Hvis avslått vil innkapslede og mellomlagrede bilder kunne vises.\n\nLast eksternt innhold?";
+"always" = "Alltid";
+"always_load_remote_images" = "Last alltid eksterne bilder";
+"once" = "Én gang";
+"show_warning" = "Vis advarsel";
 "show_password" = "Vis passord";
 "hide_password" = "Skjul passord";
 "not_now" = "Ikke nå";
@@ -42,6 +86,7 @@
 "one_moment" = "Et øyeblikk…";
 "done" = "Ferdig";
 "undo" = "Angre";
+"offline" = "Avlogget";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Neste";
 "error" = "Feil";
@@ -49,6 +94,8 @@
 "no_app_to_handle_data" = "Kan ikke finne en app som kan handtere denne typen data.";
 "no_browser_installed" = "Ingen nettleser installert";
 "file_not_found" = "Filen %1$@ ble ikke funnet.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Kan ikke lagre fil %1$@";
 "copied_to_clipboard" = "Kopiert til utklippstavle";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadresse";
@@ -64,25 +111,69 @@
 "this_month" = "Denne måneden";
 "last_week" = "Forrige uken";
 "last_month" = "Forrige måneden";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Sist sett %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Sist sett %1$@";
+"last_seen_unknown" = "Sist sett: uvisst";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Items Selected"
+"selected_colon" = "Valgt:";
 "self" = "Meg";
 "draft" = "Kladd";
 "image" = "Bilde";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Svar";
 "gif" = "Gif";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Merke";
+"add_to_sticker_collection" = "Legg til merkesamling";
+"add_stickers_instructions" = "For å legge til merker, trykk på \"Åpne merkemappe\", lag en undermappe for merkepakken, og dra bilder og merkefiler dit";
+"open_sticker_folder" = "Åpne merkemappe";
 "images" = "Bilder";
 "audio" = "Lyd";
 "voice_message" = "Stemmemelding";
+"forwarded" = "Videresendt";
 "forwarded_message" = "Videresendt melding";
+// %1$s will be replaced by the name of the person who forwarded the message
+"forwarded_by" = "Videresendt av %1$@";
 "video" = "Video";
 "documents" = "Dokumenter";
 "contact" = "Kontakt";
+"bot" = "Bot";
 "camera" = "Kamera";
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
+"capture" = "Ta opp";
+"switch_camera" = "Bytt kamera";
+"toggle_fullscreen" = "Vis fullskjerm";
 "location" = "Posisjon";
+"locations" = "Posisjoner";
 "gallery" = "Galleri";
 "images_and_videos" = "Bilder og videoer";
 "file" = "Fil";
 "files" = "Filer";
+"files_attach_hint" = "Send originale filer og ukomprimerte bilder";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Velg fra filer";
+"choose_from_gallery" = "Velg fra galleri";
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "App";
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Apper";
+"webxdc_store_url" = "Appvelger-URL";
+"webxdc_store_url_explain" = "Hvis satt, vil URL'en brukes som appvelger i stedet for den forvalgte";
+"webxdc_draft_hint" = "Trykk \"Send\" for å dele";
+"home" = "Hjem";
+"games" = "Spill";
+"tools" = "Verktøy";
+"app_size" = "Størrelse";
+"app_date_published" = "Publisert";
+"add_to_chat" = "Legg til Chat";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Utforsk";
 "unknown" = "Ukjent";
 "green" = "Grønn";
 "red" = "Rød";
@@ -92,6 +183,8 @@
 "purple" = "Purple";
 "magenta" = "Magenta";
 "white" = "Hvit";
+"zoom" = "Zoom";
+"extra_small" = "Ekstra liten";
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
@@ -100,8 +193,28 @@
 "slow" = "Langsomt";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Ny kontakt";
+"menu_new_classic_contact" = "Legg til kontakt manuelt";
+"new_classic_contact_explain" = "Manuelle kontakter kan brukes til å sende tekst til klassisk e-post og er ikke garantert ende-til-ende-kryptert";
 "menu_new_chat" = "Ny chat";
 "menu_new_group" = "Ny gruppe";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Chat med…";
+"clone_chat" = "Klon chat";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanaler";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Ny kanal";
+// deprecated
+"add_recipients" = "Legg til mottakere";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanalnavn";
+"email" = "E-post";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Ny e-post";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Emne";
 "menu_send" = "Send";
 "menu_toggle_keyboard" = "Slå på/av emoji-tastatur";
 "menu_edit_group" = "Rediger gruppe";
@@ -111,36 +224,77 @@
 "menu_unarchive_chat" = "Fjern chat fra arkiv";
 "menu_add_attachment" = "Legg ved filer";
 "menu_leave_group" = "Forlat gruppe";
-"menu_delete_chat" = "Slett sludring";
+"menu_leave_channel" = "Forlat kanal";
+"menu_delete_chat" = "Slett chat";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Tøm chat";
+"delete_contact" = "Slett kontakt";
 "menu_delete_location" = "Slett på dette stedet?";
 "menu_message_details" = "Meldingsdetaljer";
 "menu_copy_to_clipboard" = "Kopier til utklippstavle";
+"share_invite_link" = "Del invitasjonslenke";
+"share_invite_link_explain" = "Alle som har denne lenken kan se profilen din og starte en chat med deg. Den bør bare deles med folk du stoler på.";
+"invite_friends" = "Inviter venner";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Ta kontakt på Delta Chat:\n%1$@";
+"menu_copy_selection_to_clipboard" = "Kopier utvalg";
+"menu_copy_link_to_clipboard" = "Kopier lenge";
+"menu_copy_text_to_clipboard" = "Kopier tekst";
+"menu_copy_image_to_clipboard" = "Kopier bilde";
+"menu_copy_email_to_clipboard" = "Kopier e-post";
+"paste_from_clipboard" = "Lim inn fra utklippstavle";
+"ask_copy_unopenable_link_to_clipboard" = "Lenken \"%1$d\" kan ikke åpnes i nettleseren. Vil du heller kopiere den til utklippstavlen?";
 "menu_forward" = "Videresend melding";
 "menu_reply" = "Svar på melding";
 "menu_mute" = "Demp merknader";
 "menu_unmute" = "Fjern demping";
 "menu_export_attachment" = "Eksporter vedlegg";
+"menu_export_attachments" = "Eksporter vedlegg";
 "menu_all_media" = "Alle medier";
+"all_apps_and_media" = "Alle apper og media";
+// Command to jump to the original message corresponding to a gallery image or document
+"show_in_chat" = "Vis i chat";
+"show_app_in_chat" = "Vis app i chat";
 "menu_share" = "Del";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Blokker";
 "menu_block_contact" = "Blokker kontakt";
 "menu_unblock_contact" = "Fjern blokkering av kontakt";
+"accept" = "Aksepter";
 "menu_play" = "Spill av";
 "menu_pause" = "Pause";
 "menu_scroll_to_bottom" = "Rull til bunnen";
 "menu_scroll_to_top" = "Rull til toppen";
 "menu_help" = "Hjelp";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Hva er Webxdc?";
+"privacy_policy" = "Personvernerklæring";
 "menu_select_all" = "Velg alle";
+"select_chat" = "Velg chat";
+"select_more" = "Velg mer";
 "menu_edit_name" = "Rediger navn";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Sett et kallenavn som vil bli brukt istedenfor \"%1$@\". La det være tomt for å bruke kontaktens valgte navn.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Kallenavn for \"%1$@\"";
 "menu_settings" = "Innstillinger";
 "menu_advanced" = "Avanserte innstillinger";
 "menu_view_profile" = "Vis profil";
 "menu_zoom_in" = "Zoome in";
 "menu_zoom_out" = "Zoome ut";
 "menu_save_log" = "Lagre logg";
-"title_share_location" = "Del beliggenhet med alle gruppemedlemmer";
+"menu_more_options" = "Flere valg";
+"menu_learn_spelling" = "Lær staving";
+"menu_chat_audit_log" = "Kontrollog av chat";
+"jump_to_message" = "Gå til melding";
+"jump_to_original_message" = "Gå til opprinnelig melding";
+"copy_json" = "Kopien JSON";
+"replace_draft" = "Erstatt kladd";
+"title_share_location" = "Del posisjon med alle gruppemedlemmer";
 "device_talk" = "Enhetsmeldinger";
 "device_talk_subtitle" = "Lokalt genererte meldinger";
 "device_talk_explain" = "Meldinger i denne chatten blir generert lokalt av Delta Chat-appen. Produsentene bruker den for å informere om appoppdateringer og problemer under bruk.";
+"device_talk_welcome_message2" = "Ta kontakt!\n\n🙌 Trykk \"QR-kode\" begge enhetenes hovedskjerm. Velg \"Skann QR-kode\" på den ene enheten, og pek med kameraet på den andre\n\n🌍 Hvis enhetene ikke er i samme rom, skann i en videosamtale eller del en invitasjonslenke fra \"Skann QR-kode\"\n\nSå kan du ta del i en meldingstjeneste som er bygget på det største desentraliserte nettverket som noen gang er laget: e-post. Og, i motsetning til andre populære apper, uten sentral kontroll, sporing, og salg av data om deg, dine venner, dine kolleger, eller din familie til store selskaper.";
 "edit_contact" = "Rediger kontakt";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fest chat";
@@ -150,6 +304,13 @@
 "pin" = "Fest";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Løsn";
+"ConversationFragment_quoted_message_not_found" = "Fant ikke opprinnelig melding";
+"reply_privately" = "Svar privat";
+"source_code" = "Kildekode";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Legg til på hjemmeskjermen";
+"donate" = "Doner";
+"donate_device_msg" = "❤️ Det ser ut som du liker Delta Chat!\n\nVurder å donere for å holde Delta Chat gratis for alle.\n\nSelv om Delta Chat er gratis å bruke og åpen kildekode, så koster det penger å utvikle. Hjelp oss å holde Delta Chat uavhengig og gjøre det enda bedre.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Demp i 1 time";
 "mute_for_eight_hours" = "Demp i 8 timer";
 "mute_for_one_day" = "Demp i 1 dag";
@@ -161,6 +322,25 @@
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
 "file_saved_to" = "Lagre fil til \"%1$@\".";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Ring";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Svar";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Avvis";
+"outgoing_call" = "Utgående anrop";
+"incoming_call" = "Innkommende anrop";
+"declined_call" = "Avvist anrop";
+"canceled_call" = "Avbrutt anrop";
+"missed_call" = "Ubesvart anrop";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Er du sikker på at du vil forlate?";
+"ask_delete_named_chat" = "Slett chatten \"%1$@\" fra alle dine enheter?";
+"ask_delete_message" = "Slett denne meldingen fra alle dine enheter?";
+// Used for the deletion of Device messages
 "ask_forward" = "Videresend meldinger til %1$@?";
 "ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
 "ask_export_attachment" = "Eksporter vedlegg? Eksport av vedlegg vil gi andre apper på din enhet tilgang til dem\n\nFortsett?";
@@ -168,18 +348,25 @@
 "ask_unblock_contact" = "Fjern blokkering av denne kontakten? Du vil igjen kunne motta meldinger fra kontakten.";
 "ask_delete_contacts" = "Slett kontakter?\n\nKontakter med pågående chatter og kontakter fra systemet adressebok kan ikke bli slettet permanent.";
 "ask_delete_contact" = "Slett kontakter %1$@?\n\nKontakter med pågående chatter og kontakter fra systemets adressebok, kan ikke slettes permanent.";
-"ask_start_chat_with" = "Begynn å sludre med %1$@?";
+"ask_start_chat_with" = "Begynn å chatte med %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Fjern %1$@ fra gruppen?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Fjern %1$@ fra kanalen?";
+"open_url_confirmation" = "Vil du åpne denne lenken?";
 // contact list
 "contacts_title" = "Kontakter";
 "contacts_enter_name_or_email" = "Skriv navn eller e-postadresse";
 "contacts_type_email_above" = "Skriv e-postadresse over";
 // chatlist and chat view
-"chat_archived_chats_title" = "Arkiverte sludringer";
+"chat_archived_chats_title" = "Arkiverte chatter";
 "chat_please_enter_message" = "Vennligst skiv en melding.";
 "chat_camera_unavailable" = "Kamera ikke tilgjengelig.";
 "chat_unable_to_record_audio" = "Ikke mulig å ta opp lyd.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Send en melding til %1$@.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanaler er et en-til-mange-verktøy for å publisere meldingene dine.";
 "chat_new_group_hint" = "Forfatt den første meldingen, noe som lar andre svare i gruppen.\n\n• Det er greit at ikke alle medlemmer bruker Delta Chat.\n\n• Levering av den første meldingen kan ta sin tid.";
 "chat_record_slide_to_cancel" = "Dra for å avbryte";
 "chat_record_explain" = "Trykk og hold for å ta opp en melding, slipp for å sende";
@@ -188,11 +375,45 @@
 "chat_share_with_title" = "Del med";
 "chat_input_placeholder" = "Melding";
 "chat_archived_label" = "Arkivert";
+"chat_request_label" = "Forespørsel";
+"chat_request_label_explain" = "Inkluder forespørsler i tellere og varsler";
 "chat_no_messages" = "Ingen meldinger.";
 "chat_self_talk_subtitle" = "Meldinger jeg har sendt til meg selv";
+"archive_empty_hint" = "Arkiverte chatter vil havne her.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
-"save_message" = "Lagre";
+"save_message" = "Lagre melding";
 "saved_messages" = "Lagrede meldinger";
+"saved_messages_explain" = "• Videresend meldinger hit for enkel tilgang\n\n• Ta tekst- eller tale-notater\n\n• Legg ved media for å lagre dem";
+// Should match "Saved" from "Saved messages"
+"saved" = "Lagret";
+"save_as" = "Lagre som";
+"retry_send" = "Forsøk å sende på nytt";
+"cannot_display_unsuported_file_type" = "Kan ikke vise denne filtypen: %1$@";
+"attachment_failed_to_load" = "Kunne ikke laste vedlegg";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Lås opptak";
+// mailing lists
+"mailing_list" = "E-postliste";
+"mailing_list_profile_info" = "Endringer av e-postlistens navn og bilde gjelder bare for denne enheten.";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Start…";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Du må akseptere chatte-forespørselen før du kan sende.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Send \"%1$@\" til…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Send melding til…";
+"enable_realtime" = "Sanntidsapper";
+"enable_realtime_explain" = "Slå på sanntidstilkoblinger for apper tilknyttet chatter. Når det er slått på kan chattepartnere se din IP-adresse når du starter en app.";
+// map
+"filter_map_on_time" = "Vis plasseringer innenfor tidsramme";
+"show_location_traces" = "Vis bevegelsesspor";
+"add_poi" = "Send interessepunkt";
+// chat audit log
+"chat_audit_log_empty_message" = "Systemmeldinger for denne chatten vises her";
+"chat_audit_log_title" = "Chat-kontrollog for %1$@";
+"chat_audit_log_description" = "Viser bare system- og info-meldinger; praktisk for å finne de siste chat-hendelsene uten å bla igjennom mange meldinger.";
 // search
 "search" = "Søk";
 // create/edit groups, contact/group profile
@@ -200,7 +421,7 @@
 "group_create_button" = "Lag gruppe";
 "group_add_members" = "Legg til medlem";
 "profile_encryption" = "Kryptering";
-"profile_shared_chats" = "Delte sludringer";
+"profile_shared_chats" = "Delte chatter";
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";
@@ -246,7 +467,7 @@
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
 "pref_privacy" = "Personvern";
-"pref_chats_and_media" = "Sludringer og medier";
+"pref_chats_and_media" = "Chatter og medier";
 "pref_system_default" = "System standard";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Lys";
@@ -260,7 +481,7 @@
 "pref_read_receipts" = "Meldingskvitteringer";
 "pref_read_receipts_explain" = "Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.";
 "pref_manage_keys" = "Behandle nøkler";
-"pref_chats" = "Sludringer";
+"pref_chats" = "Chatter";
 "pref_in_chat_sounds" = "Merknader i programmet";
 "pref_view_log" = "Vis logg";
 "pref_log_header" = "Logg";
@@ -268,7 +489,7 @@
 "pref_backup" = "Sikkerhetskopi";
 "pref_managekeys_export_secret_keys" = "Eksporter private nøkler";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
-"pref_background" = "Sludrebakgrunn";
+"pref_background" = "Chattebakgrunn";
 // autocrypt
 "autocrypt_send_asm_title" = "Igangsett Autocrypt-nøkkeloverføring";
 "autocrypt_send_asm_explain_before" = "The Autocrypt-nøkkeloverføring krever at e-postklienten på den andre enheten er Autocrypt-kompatibel.\n\nDu kan så sende din hemmelige nøkkel til deg selv. Nøkkelen vil bli kryptert av en oppsettskode som vises her og må skrives inn på den andre enheten.";

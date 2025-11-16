@@ -207,6 +207,7 @@
 "menu_scroll_to_bottom" = "Превъртане до дъното";
 "menu_scroll_to_top" = "Превъртане до върха";
 "menu_help" = "Помощ";
+// use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Какво е Webxdc?";
 "privacy_policy" = "Политика за поверителност";
 "menu_select_all" = "Избор на всичко";
