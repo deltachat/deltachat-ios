@@ -1448,8 +1448,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func showProtectionEnabledDialog() {
         let alert = UIAlertController(title: String.localized("chat_protection_enabled_explanation"), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            HelpViewController.open(self, fragment: "#e2ee")
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { [weak self] _ in
+            self?.openHelp(fragment: "#e2ee")
         }))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
         navigationController?.present(alert, animated: true, completion: nil)
@@ -1457,8 +1457,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func showInvalidUnencryptedDialog() {
         let alert = UIAlertController(title: String.localized("invalid_unencrypted_explanation"), message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-            HelpViewController.open(self, fragment: "#howtoe2ee")
+        alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { [weak self] _ in
+            self?.openHelp(fragment: "#howtoe2ee")
         }))
         alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {

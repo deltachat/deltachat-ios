@@ -210,7 +210,7 @@ internal final class SettingsViewController: UITableViewController {
         case .notifications: showNotificationsViewController()
         case .advanced: showAdvanced()
         case .allAppsAndMedia: showAllAppsAndMedia()
-        case .help: showHelp()
+        case .help: openHelp()
         case .connectivity: showConnectivity()
         case .selectBackground: selectBackground()
         case .inviteFriends: inviteFriends()
@@ -301,10 +301,6 @@ internal final class SettingsViewController: UITableViewController {
 
     private func showAllAppsAndMedia() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext), animated: true)
-    }
-
-    private func showHelp() {
-        HelpViewController.open(self)
     }
 
     private func showConnectivity() {

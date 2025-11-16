@@ -148,8 +148,8 @@ class GroupMembersViewController: UITableViewController {
             } else {
                 if verifiedContactRequired && !dcContext.getContact(id: contactId).isVerified {
                     let alert = UIAlertController(title: String.localized("verified_contact_required_explain"), message: nil, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { _ in
-                        HelpViewController.open(self, fragment: "#howtoe2ee")
+                    alert.addAction(UIAlertAction(title: String.localized("learn_more"), style: .default, handler: { [weak self] _ in
+                        self?.openHelp(fragment: "#howtoe2ee")
                     }))
                     alert.addAction(UIAlertAction(title: String.localized("qrscan_title"), style: .default, handler: { _ in
                         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
