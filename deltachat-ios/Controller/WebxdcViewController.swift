@@ -454,13 +454,17 @@ class WebxdcViewController: WebViewViewController {
                 }
             }
 
+            var helpActions = [UIMenuElement]()
+            helpActions.append(UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+                self?.openHelp(fragment: "#webxdc")
+            })
             if sourceCodeUrl != nil {
-                actions.append(UIMenu(options: [.displayInline], children: [
-                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
-                        self?.openUrl()
-                    },
-                ]))
+                helpActions.append(UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
+                    self?.openSourceCodeUrl()
+                })
             }
+            actions.append(UIMenu(options: [.displayInline], children: helpActions))
+
             return actions
         }
 
@@ -478,7 +482,7 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    private func openUrl() {
+    private func openSourceCodeUrl() {
         if let sourceCodeUrl,
            let url = URL(string: sourceCodeUrl) {
             UIApplication.shared.open(url)
