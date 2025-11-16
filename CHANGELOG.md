@@ -13,6 +13,7 @@
 - Share flow rework
 - Links in messages are now highlighted
 - Improve navigation in offline help
+- Opened in-chat apps got an 'About Apps' menu item
 - Fix: Hide member count, if not yet known
 - Fix: Share to Delta Chat when already in Delta Chat now works
 - Fix: Drag and Dropping text into the chat
