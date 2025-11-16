@@ -6,10 +6,6 @@ class HelpViewController: WebViewViewController {
 
     let fragment: String?
 
-    static func open(_ parent: UIViewController, fragment: String? = nil) {
-        parent.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: fragment), animated: true)
-    }
-
     init(dcContext: DcContext, fragment: String? = nil) {
         self.fragment = fragment
         super.init(dcContext: dcContext)
@@ -126,5 +122,11 @@ class HelpViewController: WebViewViewController {
             },
         ]
         return UIMenu(children: actions)
+    }
+}
+
+extension UIViewController {
+    func openHelp(fragment: String? = nil) {
+        self.navigationController?.pushViewController(HelpViewController(dcContext: DcAccounts.shared.getSelected(), fragment: fragment), animated: true)
     }
 }

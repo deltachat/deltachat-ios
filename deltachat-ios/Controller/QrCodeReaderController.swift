@@ -201,8 +201,7 @@ class QrCodeReaderController: UIViewController {
         })
         if showTroubleshooting {
             actions.append(UIAction(title: String.localized("troubleshooting"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
-                guard let self else { return }
-                HelpViewController.open(self, fragment: "#multiclient")
+                self?.openHelp(fragment: "#multiclient")
             })
         }
         return UIMenu(children: actions)
