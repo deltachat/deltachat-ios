@@ -387,7 +387,7 @@ class ProfileViewController: UITableViewController {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds(dcContext).count)
             } else if isGroup {
                 let chatContactIds = chat.getContactIds(dcContext)
-                if chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
+                if chatContactIds.count > 1 || chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
                     subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
                 } else {
                     // do not show misleading "1 member" in case securejoin has not finished
