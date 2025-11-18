@@ -396,6 +396,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("Notifications: Token: \(notifyToken)")
         self.notifyToken = notifyToken
         dcAccounts.setPushToken(token: notifyToken)
+        if dcAccounts.isFreshlyAdded(id: dcAccounts.getSelected().id) {
+            dcAccounts.maybeNetwork()
+        }
     }
 
     // `didFailToRegisterForRemoteNotificationsWithError` is called by iOS
