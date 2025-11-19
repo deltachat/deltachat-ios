@@ -48,7 +48,9 @@
 "load_remote_content" = "Hent billeder";
 "always" = "Altid";
 "once" = "En gang";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Vis adgangskode";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Vis ikke adgangskode";
 "not_now" = "Ikke nu";
 "never" = "Aldrig";
@@ -294,10 +296,6 @@
 "login_header" = "Login til server";
 // deprecated
 "login_explain" = "Login med en eksisterende e-mailkonto";
-// deprecated
-"login_subheader" = "For kendte e-mailudbydere opsættes yderligere indstillinger automatisk. Nogle gange skal IMAP aktiveres i brugerfladen. Kontakt din e-mailudbyder eller venner for at få hjælp.";
-// deprecated
-"login_no_servers_hint" = "Der er ingen Delta Chat server, data forbliver på enhed!";
 "login_inbox" = "Indbakke";
 "login_imap_login" = "IMAP logind navn";
 "login_imap_server" = "IMAP server";
@@ -309,12 +307,6 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP sikkerhed";
-// deprecated
-"login_auth_method" = "Autorisationsmetode";
-// deprecated
-"login_info_oauth2_title" = "Fortsæt med forenklet opsætning?";
-// deprecated
-"login_info_oauth2_text" = "Indtastet e-mail adresse understøtter simple opsætning (OAuth2).\n\nTillad i næste trin at Delta Chat agerer som samtale med e-mail program.\n\nDer er ingen Delta Chat servere, data forbliver på enhed.";
 "login_certificate_checks" = "Certifikationstjek";
 "login_error_mail" = "Indtast gyldig e-mailadresse";
 "login_error_server" = "Indtast gyldig server / IP adresse";
@@ -409,9 +401,6 @@
 "pref_background_btn_default" = "Brug standardbillede";
 "pref_background_btn_gallery" = "Vælg fra galleri";
 "pref_imap_folder_warn_disable_defaults" = "Ved deaktivering af denne indstiiling vær sikker på at server og andre klienter er indstillet tilsvarende.\n\nEllers fungerer det måske slet ikke.";
-// deprecated
-"pref_watch_sent_folder" = "Overvåg sendt mappe";
-"pref_send_copy_to_self" = "Send kopi til mig selv";
 "pref_auto_folder_moves" = "Flytter automatisk til DeltaChat mappe";
 "pref_auto_folder_moves_explain" = "Samtaler er flyttet for at undgå rodet indbakke";
 "pref_show_emails" = "Vis klassisk e-mail";
@@ -466,8 +455,6 @@
 "autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
 "autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Ukent afsender af denne chat. Se \'info\' for flere detaljer.";
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -475,54 +462,54 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Gruppenavn ændret fra \"%1$@\" til \"%2$@\" af %3$@.";
 "group_image_changed_by_you" = "Gruppebillede ændret af mig.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppebillede ændret af %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Medlem %1$@ tilføjet af mig.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Medlem %1$@ tilføjet af %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Medlem %1$@ fjernet af mig.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Medlem %1$@ fjernet af %2$@.";
 "group_image_deleted_by_you" = "Gruppebillede slettet af mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gruppebillede slettet af %1$@.";
 "ephemeral_timer_disabled_by_you" = "Tidsudløb for beskeder er deaktiveret af mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Tidsudløb for beskeder er deaktiveret af %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Tidsudløb for beskeder sat til %1$@ s af mig.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Tidsudløb for beskeder sat til %1$@ s af %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Tidsudløb for beskeder sat til 1 minut af mig.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Tidsudløb for beskeder sat til 1 minut af %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Tidsudløb for beskeder sat til 1 time af mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Tidsudløb for beskeder sat til 1 time af %1$@.";
 "ephemeral_timer_1_day_by_you" = "Tidsudløb for beskeder sat til 1 dag af mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Tidsudløb for beskeder sat til 1 dag af %1$@.";
 "ephemeral_timer_1_week_by_you" = "Tidsudløb for beskeder sat til 1 uge af mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Tidsudløb for beskeder sat til 1 uge af %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Beskeder sat til at udløbe efter %1$@ minutter af mig.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Beskeder sat til at udløbe efter %1$@ minutter af %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Beskeder sat til at udløbe efter %1$@ timer af mig.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Beskeder sat til at udløbe efter %1$@ timer af %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Beskeder sat til at udløbe efter %1$@ dage af mig.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Beskeder sat til at udløbe efter %1$@ dage af %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Beskeder sat til at udløbe efter %1$@ uger af mig.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Beskeder sat til at udløbe efter %1$@ uger af %2$@.";
 // qr code stuff
 "qr_code" = "QR kode";
@@ -546,7 +533,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Skan dette for at deltage i gruppen \"%1$@\".";
 "qrshow_join_contact_title" = "QR-invitationskode";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skan dette for at indstille kontakt med %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ingen internet forbindelse, kan ikke udføre QR kode opsætning.";
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";

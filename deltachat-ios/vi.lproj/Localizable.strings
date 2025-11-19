@@ -63,7 +63,9 @@
 "always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
 "show_warning" = "Hiển thị cảnh báo";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Hiển thị mật khẩu";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Ẩn mật khẩu";
 "not_now" = "Không phải bây giờ";
 "never" = "Không bao giờ";
@@ -375,7 +377,7 @@
 "multidevice_install_dc_on_other_device" = "Cài đặt Delta Chat trên thiết bị khác của bạn (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Bắt đầu Delta Chat, nhấn vào “Thêm làm thiết bị thứ hai” và quét mã được hiển thị ở đây";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Quét để thiết lập thiết bị thứ hai cho %1$@";
 "multidevice_receiver_title" = "Thêm làm thiết bị thứ hai";
 "multidevice_open_settings_on_other_device" = "Trên thiết bị đầu tiên, hãy đi tới “Cài đặt / Thêm thiết bị thứ hai” và quét mã hiển thị ở đó";
@@ -417,10 +419,6 @@
 "login_header" = "Đăng nhập vào tài khoản E-Mail của bạn";
 // deprecated
 "login_explain" = "Đăng nhập bằng tài khoản e-mail hiện có";
-// deprecated
-"login_subheader" = "Đối với các nhà cung cấp e-mail đã biết, cài đặt bổ sung sẽ được thiết lập tự động. Đôi khi IMAP cần được bật trong cài đặt web. Hãy tham khảo nhà cung cấp e-mail hoặc bạn bè của bạn để được trợ giúp.";
-// deprecated
-"login_no_servers_hint" = "Không có máy chủ Delta Chat, dữ liệu của bạn vẫn còn trên thiết bị của bạn.";
 "login_inbox" = "Hộp thư đến";
 "login_imap_login" = "Tên đăng nhập IMAP";
 "login_imap_server" = "Máy chủ IMAP";
@@ -432,12 +430,6 @@
 "login_smtp_server" = "Máy chủ SMTP";
 "login_smtp_port" = "Cổng SMTP";
 "login_smtp_security" = "Bảo mật SMTP";
-// deprecated
-"login_auth_method" = "Phương thức ủy quyền";
-// deprecated
-"login_info_oauth2_title" = "Tiếp tục với thiết lập đơn giản hóa?";
-// deprecated
-"login_info_oauth2_text" = "Địa chỉ e-mail đã nhập hỗ trợ thiết lập đơn giản hóa (OAuth 2.0).\n\nTrong bước tiếp theo, vui lòng cho phép Delta Chat hoạt động như ứng dụng Trò chuyện qua E-mail của bạn.\n\nKhông có máy chủ Delta Chat, dữ liệu của bạn vẫn ở trên thiết bị của bạn.";
 "login_certificate_checks" = "Kiểm tra chứng chỉ";
 "login_error_mail" = "Vui lòng nhập địa chỉ e-mail hợp lệ";
 "login_error_server" = "Vui lòng nhập địa chỉ máy chủ / IP hợp lệ";
@@ -524,8 +516,6 @@
 "pref_backup" = "Sao lưu";
 "pref_backup_explain" = "Sao lưu cuộc trò chuyện vào bộ nhớ ngoài";
 "pref_backup_export_explain" = "Bản sao lưu giúp bạn thiết lập cài đặt mới trên thiết bị này hoặc trên thiết bị khác.\n\nBản sao lưu sẽ chứa tất cả tin nhắn, danh bạ và cuộc trò chuyện cũng như thiết lập Autocrypt hai đầu của bạn. Giữ tập tin sao lưu ở nơi an toàn hoặc xóa nó càng sớm càng tốt.";
-// deprecated
-"pref_backup_export_x" = "Xuất %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Xuất tất cả tài khoản %1$d";
 "pref_backup_export_start_button" = "Bắt đầu sao lưu";
@@ -538,10 +528,6 @@
 "pref_background_btn_default" = "Sử dụng hình ảnh mặc định";
 "pref_background_btn_gallery" = "Chọn từ thư viện";
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
-// deprecated
-"pref_watch_sent_folder" = "Xem thư mục đã gửi";
-"pref_send_copy_to_self" = "Gửi bản sao cho chính mình";
-"pref_send_copy_to_self_explain" = "Bắt buộc khi sử dụng tài khoản này trên nhiều thiết bị.";
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
 "pref_auto_folder_moves_explain" = "Các cuộc trò chuyện được di chuyển để tránh làm lộn xộn Hộp thư đến";
 "pref_only_fetch_mvbox_title" = "Chỉ tìm nạp từ thư mục DeltaChat";
@@ -616,8 +602,6 @@
 "autocrypt_send_asm_explain_after" = "Thiết lập của bạn đã được gửi cho chính bạn. Chuyển sang thiết bị khác và mở thông báo thiết lập. Bạn sẽ được yêu cầu nhập mã thiết lập. Nhập các chữ số sau:";
 "autocrypt_prefer_e2ee" = "Ưu tiên mã hóa đầu cuối";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Người gửi không xác định cho cuộc trò chuyện này. Xem \'thông tin\' để biết thêm chi tiết.";
 "systemmsg_subject_for_new_contact" = "Tin nhắn từ %1$@";
 "systemmsg_failed_sending_to" = "Không gửi được tin nhắn tới %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -625,61 +609,61 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Tên nhóm đã thay đổi từ \"%1$@\" thành \"%2$@\" bởi %3$@.";
 "group_image_changed_by_you" = "Bạn đã thay đổi hình ảnh nhóm.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Hình ảnh nhóm đã được thay đổi bởi %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Đã thêm thành viên %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Bạn đã thêm thành viên %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Thành viên %1$@ được thêm bởi %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Bạn đã loại bỏ thành viên %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Thành viên %1$@ đã bị xóa bởi %2$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Nhóm bỏ lại bởi %1$@.";
 "group_image_deleted_by_you" = "Bạn đã xóa hình ảnh nhóm.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Hình ảnh nhóm đã bị xóa bởi %1$@.";
 "location_enabled_by_you" = "Bạn đã bật tính năng truyền phát vị trí.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Tính năng phát trực tuyến vị trí được bật bởi %1$@.";
 "ephemeral_timer_disabled_by_you" = "Bạn đã tắt tính năng hẹn giờ cho tin nhắn biến mất.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Bộ hẹn giờ tin nhắn biến mất đã bị tắt bởi %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ giây";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Bộ hẹn giờ tin nhắn biến mất được %2$@ đặt thành %1$@ giây.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành 1 phút.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 phút.";
 "ephemeral_timer_1_hour_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành 1 giờ.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 giờ.";
 "ephemeral_timer_1_day_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành 1 ngày.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 ngày.";
 "ephemeral_timer_1_week_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất là 1 tuần.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 tuần.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ phút.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Bộ hẹn giờ tin nhắn biến mất được đặt thành %1$@ phút theo %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ giờ.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Bộ hẹn giờ tin nhắn biến mất được đặt thành %1$@ giờ theo %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ ngày.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Bộ hẹn giờ tin nhắn biến mất được %2$@ đặt thành %1$@ ngày.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ tuần.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %2$@ đặt thành %1$@ tuần.";
 "chat_protection_enabled_tap_to_learn_more" = "Tin nhắn được đảm bảo sẽ được mã hóa hai đầu kể từ bây giờ. Nhấn để tìm hiểu thêm.";
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
@@ -718,7 +702,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Quét để tham gia nhóm \"%1$@\"";
 "qrshow_join_contact_title" = "Mã mời QR";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Quét để trò chuyện với %1$@";
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
@@ -728,7 +712,7 @@
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Đăng nhập vào \"%1$@\"?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ đã trả lời, đang chờ được thêm vào nhóm…";

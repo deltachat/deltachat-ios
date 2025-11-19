@@ -73,7 +73,9 @@
 "always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
 "show_warning" = "Afiŝu averton";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Montri pasvorton";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Kaŝi pasvorton";
 "not_now" = "Ne nun";
 "never" = "Neniam";
@@ -314,10 +316,6 @@
 "login_smtp_server" = "SMTP servilo";
 "login_smtp_port" = "SMTP pordo";
 "login_smtp_security" = "SMTP sekureco";
-// deprecated
-"login_auth_method" = "Metodo de rajtigado";
-// deprecated
-"login_info_oauth2_title" = "Ĉu daŭri kun faciligitaj agordoj?";
 "login_certificate_checks" = "Atestilaj kontroloj";
 "login_error_mail" = "Bonvolu enigi validan retadreson";
 "login_error_server" = "Bonvolu enigi validan servilon / IP adreson";
@@ -381,9 +379,6 @@
 "pref_background" = "Fono";
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
-// deprecated
-"pref_watch_sent_folder" = "Kontroli senditujon";
-"pref_send_copy_to_self" = "Sendi kopion al mi mem";
 "pref_show_emails_all" = "Ĉiuj";
 "autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
 // notifications

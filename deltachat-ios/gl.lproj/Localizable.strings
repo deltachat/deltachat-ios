@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Descargar sempre imaxes remotas";
 "once" = "Unha vez";
 "show_warning" = "Mostrar aviso";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Mostrar contrasinal";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Agochar contrasinal";
 "not_now" = "Agora non";
 "never" = "Nunca";
@@ -449,7 +451,7 @@
 "multidevice_install_dc_on_other_device" = "Instala Delta Chat no teu outro dispositivo (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Inicia Delta Chat, toca en \"Xa teño un perfil / Engadir como segundo dispositivo\" e escanea este código";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Escanea para configurar un segundo dispositivo para %1$@";
 "multidevice_receiver_title" = "Engadir como segundo dispositivo";
 "multidevice_open_settings_on_other_device" = "No primeiro dispositivo, vai a \"Axustes / Engadir segundo dispositivo\" e escanea o código que alí se mostra";
@@ -506,7 +508,7 @@
 "instant_onboarding_other_server" = "Lista de servidores Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Crear un perfil para unirse ao grupo \"%1$@\".";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Crear un perfil para conversar con %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Queres crear un novo perfil e comezar a conversar con %1$@?";
@@ -519,10 +521,6 @@
 "login_header" = "Accede ao teu servidor";
 // deprecated
 "login_explain" = "Accede cunha conta de correo existente";
-// deprecated
-"login_subheader" = "Para os provedores de correo máis frecuentes os axustes establécense automaticamente. Porén poderías ter que activar IMAP nos seus axustes. Consulta o teu provedor de correo ou aos amigos se tes dúbidas.";
-// deprecated
-"login_no_servers_hint" = "Non hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_inbox" = "Entrada";
 "login_imap_login" = "identificador IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -534,8 +532,6 @@
 "login_smtp_server" = "Servidor SMTP";
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
-// deprecated
-"login_auth_method" = "Método de autorización";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Usar Proxy";
@@ -548,10 +544,6 @@
 "proxy_delete_explain" = "Tes certeza de querer eliminar \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Queres usar o proxy \"%1$@\"?";
 "proxy_share_link" = "Compartir ligazón";
-// deprecated
-"login_info_oauth2_title" = "Continuar co axuste simplificado?";
-// deprecated
-"login_info_oauth2_text" = "O enderezo introducido soporta o axuste simplificado (OAuth 2.0).\n\nNo seguinte paso, permite a Delta Chat actuar como app de Conversa sobre Correo-e.\n\nNon hai servidores Delta Chat, os teus datos permanecen no dispositivo.";
 "login_certificate_checks" = "Comprobacións do certificado";
 "login_error_mail" = "Introduce un enderezo de correo válido";
 "login_error_server" = "Introduce un servidor válido / enderezo IP";
@@ -644,8 +636,6 @@
 "pref_backup" = "Respaldo";
 "pref_backup_explain" = "Respaldar conversas na almacenaxe externa";
 "pref_backup_export_explain" = "Un respaldo axúdache a configurar unha nova instalación neste ou noutro dispositivo.\n\nO respaldo contén as mensaxes, contactos e conversas e os axustes de cifrado extremo-a-extremo Autocrypt. Garda o ficheiro de respaldo nun lugar seguro ou bórrao tan pronto sexa posible.";
-// deprecated
-"pref_backup_export_x" = "Exportar %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportar todos os %1$d perfís";
 "pref_backup_export_start_button" = "Inciar respaldo";
@@ -658,10 +648,6 @@
 "pref_background_btn_default" = "Usar imaxe por omisión";
 "pref_background_btn_gallery" = "Escoller na galería";
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
-// deprecated
-"pref_watch_sent_folder" = "Vixiar cartafol Enviados";
-"pref_send_copy_to_self" = "Enviar copia a ti mesmo";
-"pref_send_copy_to_self_explain" = "Requerido se utilizas esta conta en varios dispositivos.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
 "pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";
 "pref_only_fetch_mvbox_title" = "Obter só desde cartafol DeltaChat";
@@ -738,8 +724,6 @@
 "autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:";
 "autocrypt_prefer_e2ee" = "Preferir cifrado extremo-a-extremo";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Remitente descoñecido para esta convers. Mira en \'info\' para saber máis.";
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
 "systemmsg_failed_sending_to" = "Fallou o envío para %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -747,64 +731,64 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ cambiou o nome do grupo de \"%1$@\" a \"%2$@\".";
 "group_image_changed_by_you" = "Cambiaches a imaxe do grupo.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imaxe do grupo cambiada por %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Membro %1$@ adicionado/a.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Engadiches un membro %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%1$@ engadido por %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Eliminaches a %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ eliminado por %2$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ deixou o grupo.";
 "group_image_deleted_by_you" = "Eliminaches a imaxe do grupo";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ eliminou a imaxe do grupo.";
 "location_enabled_by_you" = "Activaches a compartición da localización.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Difusión da localización activada por %1$@.";
 "ephemeral_timer_disabled_by_you" = "Desactivaches o temporizador de eliminación de mensaxes.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Temporizador da eliminación de mensaxes descativado por %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Estableceches que as mensaxes desaparezan en  %1$@ s";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "O temporizador de desaparición de mensaxes establecido en %1$@ segundos por %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Puxeches en 1 minuto o temporizador de desaparición de mensaxes.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Temporizador de desaparición de mensaxes definido en 1 minuto por %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 hora.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Temporizador de desaparición de mensaxes definido en 1 hora por %1$@.";
 "ephemeral_timer_1_day_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 día.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Temporizador de desaparición de mensaxes definido en 1 día por %1$@.";
 "ephemeral_timer_1_week_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 semana.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Temporizador de desaparición de mensaxes definido en 1 semana por %1$@.";
 "ephemeral_timer_1_year_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 ano.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "Temporizador de desaparición de mensaxes definido en 1 ano por %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Definiches o temporizador de desaparición de mensaxes en %1$@ minutos.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ minutos por %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Definiches o temporizador de desaparición de mensaxes en %1$@ horas.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ horas por %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Definiches o temporizador de desaparición de mensaxes en %1$@ días.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ días por %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Definiches o temporizador de desaparición de mensaxes en %1$@ semanas.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -840,7 +824,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Escanea esto para unirte ao grupo \"%1$@\".";
 "qrshow_join_contact_title" = "Código QR de convite";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
@@ -848,7 +832,7 @@
 "set_name_and_avatar_explain" = "Define un nome recoñecíbel polos teus contactos. Tamén podes definir unha imaxe de perfil.";
 "please_enter_name" = "Por favor introduce un nome.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ convidoute a este grupo.\n\nAgardando a que responda o dispositivo de %2$@ ...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ respondeu, agardando a que sexa engadido ao grupo...";

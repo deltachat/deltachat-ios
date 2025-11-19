@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Her Zaman Uzak Görselleri Yükle";
 "once" = "Bir kez";
 "show_warning" = "Uyarı Göster";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Parolayı Göster";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Parolayı Gizle";
 "not_now" = "Şimdi değil";
 "never" = "Hiçbir zaman";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Delta Chat\'i diğer aygıtınıza kurun (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Delta Chat\'i başlatın, “Zaten Bir Profilim Var / İkinci Aygıt Olarak Ekle”ye dokunun ve burada gösterilen kodu tarayın";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "%1$@ için ikinci aygıtı ayarlamak üzere tarayın";
 "multidevice_receiver_title" = "İkinci Aygıt Olarak Ayarla";
 "multidevice_open_settings_on_other_device" = "Birinci aygıtta “Ayarlar / İkinci Aygıt Ekle”ye gidin ve orada gösterilen kodu tarayın";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "Chatmail Sunucularını Listele";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "“%1$@” grubuna katılmak için bir profil oluşturun.";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "%1$@ ile sohbet etmek için bir profil oluşturun.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Yeni bir profil oluşturmak ve %1$@ ile sohbet başlatmak istiyor musunuz?";
@@ -544,10 +546,6 @@
 "login_header" = "E-Posta Hesabınıza Giriş Yapın";
 // deprecated
 "login_explain" = "Varolan bir e-posta hesabıyla giriş yapın";
-// deprecated
-"login_subheader" = "Bilinen e-posta sağlayıcıları için ek ayarlar otomatik olarak ayarlanır. Bazen IMAP\'in web ayarlarından etkinleştirilmesi gerekir. Yardım için e-posta sağlayıcınıza ya da arkadaşlarınıza danışın.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Giriş Adı";
 "login_imap_server" = "IMAP Sunucusu";
@@ -559,8 +557,6 @@
 "login_smtp_server" = "SMTP Sunucusu";
 "login_smtp_port" = "SMTP Bağlantı Noktası";
 "login_smtp_security" = "SMTP Güvenliği";
-// deprecated
-"login_auth_method" = "Yetkilendirme Yöntemi";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Proxy Kullan";
@@ -585,10 +581,6 @@
 "confirm_add_transport" = "Bu taşıma aracı eklensin mi?";
 "invalid_transport_qr" = "Taranan QR kodu, geçerli bir taşıma aracı içermiyor.";
 "confirm_remove_transport" = "“%1$@” taşıma aracı kaldırılsın mı?\n\nKişileriniz yalnızca onlara önceden ulaştığınız başka bir taşıma aracı üzerinden size ulaşabilir.\n\nKuşkuluysanız taşıma aracını daha sonra kaldırın.";
-// deprecated
-"login_info_oauth2_title" = "Basitleştirilen ayarlamayla sürdürülsün mü?";
-// deprecated
-"login_info_oauth2_text" = "Girilen e-posta adresi basitleştirilen bir ayarlamayı (OAuth 2.0) destekliyor.\n\nSonraki adımda, lütfen Delta Chat\'e iletiler gönderme ve alma izni verin.\n\nDelta Chat kullanıcı verisi toplamaz; her şey aygıtınızda kalır.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -692,8 +684,6 @@
 "pref_backup_explain" = "Sohbetleri Dış Depolamaya Yedekle";
 "pref_backup_export_explain" = "Bir yedek, bu ya da başka bir aygıtta yeni bir kurulum ayarlamanıza yardımcı olur.\n\nYedek; tüm iletileri, kişileri ve sohbetleri ve uçtan uca Autocrypt ayarlamanızı içerecek. Yedek dosyasını güvenli bir yerde tutun ya da olanaklıysa en kısa sürede silin.";
 "pref_backup_export_this" = "Bu profili dışa aktar";
-// deprecated
-"pref_backup_export_x" = "%1$@ hesabını dışa aktar";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Tüm %1$d profili dışa aktar";
 "pref_backup_export_start_button" = "Yedeklemeyi Başlat";
@@ -706,10 +696,6 @@
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçeneği değiştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nDeğilse özellikler hiç çalışmayabilir.";
-// deprecated
-"pref_watch_sent_folder" = "Gönderilen Klasörünü İzle";
-"pref_send_copy_to_self" = "Kendime Kopya Gönder";
-"pref_send_copy_to_self_explain" = "Bu hesap çoklu aygıtlarda kullanılırken gereklidir.";
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
@@ -794,8 +780,6 @@
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Bu sohbet için bilinmeyen gönderen. Daha fazla ayrıntı için \'bilgi\'ye bakın.";
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
 "systemmsg_failed_sending_to" = "%1$@ kişisine ileti gönderme başarısız.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -803,69 +787,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ tarafından “%1$@” grup adı “%2$@” olarak değiştirildi.";
 "group_image_changed_by_you" = "Grup görselini değiştirdiniz.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ tarafından grup görseli değiştirildi.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ üyesi eklendi.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "%1$@ üyesini eklediniz.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ tarafından %1$@ üyesi eklendi.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Gruptan ayrıldınız.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Kanaldan ayrıldınız.";
 "you_joined_the_channel" = "Kanala katıldınız.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ tarafından gruptan ayrılındı.";
 "group_image_deleted_by_you" = "Grup görselini sildiniz.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ tarafından grup görseli silindi.";
 "location_enabled_by_you" = "Konum akışını etkinleştirdiniz.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ tarafından konum akışı etkinleştirildi.";
 "ephemeral_timer_disabled_by_you" = "Kaybolan iletiler zamanlayıcısını etkisizleştirdiniz.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı etkisizleştirildi.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ saniye olarak ayarladınız.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ saniye olarak ayarlandı.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Kaybolan iletiler zamanlayıcısını 1 dakika olarak ayarladınız.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 dakika olarak ayarlandı.";
 "ephemeral_timer_1_hour_by_you" = "Kaybolan iletiler zamanlayıcısını 1 saat olarak ayarladınız.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 saat olarak ayarlandı.";
 "ephemeral_timer_1_day_by_you" = "Kaybolan iletiler zamanlayıcısını 1 gün olarak ayarladınız.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 gün olarak ayarlandı.";
 "ephemeral_timer_1_week_by_you" = "Kaybolan iletiler zamanlayıcısını 1 hafta olarak ayarladınız.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 hafta olarak ayarlandı.";
 "ephemeral_timer_1_year_by_you" = "Kaybolan iletiler zamanlayıcısını 1 yıl olarak ayarladınız.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 yıl olarak ayarlandı.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ dakika olarak ayarladınız.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ dakika olarak ayarlandı.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ saat olarak ayarladınız.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ saat olarak ayarlandı.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ gün olarak ayarladınız.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ gün olarak ayarlandı.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ hafta olarak ayarladınız.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
 "chat_unencrypted_explanation" = "Bu sohbetteki iletiler klasik e-posta kullanıyor ve uçtan uca şifreli değil.";
 "chat_protection_enabled_tap_to_learn_more" = "İletiler uçtan uca şifreleniyor. Daha fazlasını öğrenmek için dokunun.";
@@ -912,7 +896,7 @@
 "qrshow_join_group_hint" = "“%1$@” grubuna katılmak için bunu tarayın";
 "qrshow_join_channel_hint" = "“%1$@” kanalına katılmak için tarayın";
 "qrshow_join_contact_title" = "QR Çağrı Kodu";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "“%1$@” üzerinde yeni profil oluşturulsun ve orada giriş yapılsın mı?";
@@ -924,7 +908,7 @@
 "qrlogin_ask_login" = "“%1$@” adresine giriş yapılsın mı?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "“%1$@” adresine giriş yapılsın mı?\n\nVarolan profiliniz silinmeyecek. Profilleriniz arasında geçiş yapmak için “Profili Değiştir” öğesini kullanın.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; gruba eklenmesi bekleniyor…";

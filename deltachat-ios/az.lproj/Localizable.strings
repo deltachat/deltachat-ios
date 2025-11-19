@@ -198,10 +198,6 @@
 "login_header" = "Serverinə daxil ol";
 // deprecated
 "login_explain" = "Mövcud e-mail hesabı ilə daxil olun";
-// deprecated
-"login_subheader" = "Məlum elektron poçt provayderləri üçün əlavə parametrlər avtomatik olaraq quraşdırılır. Bəzən IMAP-ın web məkanında aktiv olması lazımdır. Yardım üçün e-poçt provayderinizə və ya dostlarınıza müraciət edin.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat serverləri yoxdur, məlumatlarınız cihazınızda qalır!";
 "login_inbox" = "Gələn";
 "login_imap_login" = "IMAP logini";
 "login_imap_server" = "IMAP server";
@@ -213,12 +209,6 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP təhlükəsizliyi";
-// deprecated
-"login_auth_method" = "Yetkiləndirmə metodu";
-// deprecated
-"login_info_oauth2_title" = "Sadələşdirilmiş tənzimləmə ilə davam edirsiniz?";
-// deprecated
-"login_info_oauth2_text" = "Daxil edilmiş e-poçt ünvanı sadələşdirilmiş bir quraşdırma (OAuth2) dəstəkləyir. \n\nNövbəti addımda Delta Chat e-poçt tətbiqinizlə söhbət etməyə icazə verin. \n\n Delta Chat serverləri, cihazınızda qalır!";
 "login_certificate_checks" = "Sertifikat yoxlanmaları";
 "login_error_mail" = "Xahiş edirik düzgün bir e-poçt ünvanı daxil et";
 "login_error_server" = "Xahiş edirik, düzgün bir server / IP ünvanı daxil et";
@@ -292,9 +282,6 @@
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçimi ləğv etsəniz, serverinizin və digər müştərilərinizin müvafiq olaraq konfiqurasiya olunduğundan əmin olun. \n\nAyrıca şeylər işləməyəcəkdir.";
-// deprecated
-"pref_watch_sent_folder" = "Göndərilmişlərin qovluğunu izləyin";
-"pref_send_copy_to_self" = "Özünə kopya göndər";
 "pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";
 "pref_auto_folder_moves_explain" = "Çat söhbətləri Daxil olanlar qovluğunun yığılmaması üçün taşınır";
 "pref_show_emails" = "Klassik e-poçtları göstər";
@@ -316,18 +303,18 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi ilə %3$@.";
 "group_image_changed_by_you" = "Qrup şəkili dəyişildi məndən. ";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Qrup şəkili dəyişildi ilə %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Üzv %1$@ əlavə olundu məndən. ";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Üzv %1$@ əlavə olundu ilə %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "%1$@ üzv silindi məndən. ";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ üzv silindi ilə %2$@.";
 "group_image_deleted_by_you" = "Qrupun şəkili silindi məndən. ";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Qrupun şəkili silindi ilə %1$@.";
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
@@ -345,7 +332,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = " \"%1$@\" qrupuna qoşulmaq üçün bunu skan edin. ";
 "qrshow_join_contact_title" = "Dəvət QR-kodu";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "%1$@ilə əlaqə qurmaq üçün bunu skan edin";
 "qrshow_join_contact_no_connection_toast" = "İnternet bağlantısı yoxdur, QR kodunu qura bilmir.";
 "contact_verified" = "%1$@ yoxlanıldı.";

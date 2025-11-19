@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Alati laadi kaugseadmes asuvaid pilte";
 "once" = "Vaid see kord";
 "show_warning" = "Näita hoiatust";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Näita salasõna";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Peida salasõna";
 "not_now" = "Mitte praegu";
 "never" = "Mitte kunagi";
@@ -267,7 +269,7 @@
 "menu_scroll_to_top" = "Keri algusesse";
 "menu_help" = "Abiteave";
 // use the same term for "Apps" as elsewhere
-"what_is_webxdc" = "Mis on Webxdc?";
+"what_is_webxdc" = "Teave rakenduste kohta";
 "privacy_policy" = "Privaatsusreeglid";
 "menu_select_all" = "Vali kõik";
 "select_chat" = "Vali vestlus";
@@ -392,6 +394,7 @@
 "lock_recording" = "Jätka salvestamist";
 // mailing lists
 "mailing_list" = "Postiloend";
+"mailing_list_profile_info" = "Postiloendi nime ja tunnuspildi muudatused kehtivad vaid selles seadmes.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Alusta…";
@@ -407,6 +410,7 @@
 // chat audit log
 "chat_audit_log_empty_message" = "Sellele vestluse süsteemsed teated saavad olema nähtavad siin.";
 "chat_audit_log_title" = "%1$@ vestluse kontroll-logi";
+"chat_audit_log_description" = "Näed vaid süsteemi- ja infosõnumeid. Sobib kasutamiseks viimaste tegevuset tuvastamiseks ilma, et peaksid paljusid sõnumeid läbi lappama.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Ära enam %1$@ puhul küsi";
@@ -464,7 +468,7 @@
 "multidevice_install_dc_on_other_device" = "Paigalda teise seadmesse Delta Chat (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Klõpsi valikut „Mul juba on profiil olemas / Lisa täiendava seadmena“ ja skaneeri siin näidatud koodi.";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Skaneeri täiendava seadme lisamiseks kasutajale %1$@";
 "multidevice_receiver_title" = "Lisa täiendava seadmena";
 "multidevice_open_settings_on_other_device" = "Oma esimeses seadmes ava „Seadistused / Lisa täiendav seade“ ja skaneeri siintoodud koodi";
@@ -507,7 +511,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mul juba on profiil olemas";
 // Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Sisselogimine klassikalise e-postiga";
+"manual_account_setup_option" = "Klassikaline e-post alusühendusena";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Sinu profiil";
 // The placeholder will be replaced by the default onboarding server
@@ -520,7 +524,7 @@
 "instant_onboarding_show_more_instances" = "Kasuta muud serverid";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "„%1$@“ grupiga liitumiseks loo profiil.";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "„%1$@“ kasutajaga vestlemiseks loo profiil.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Kas sa soovid luua uue profiili ja alustada vestlemist %1$@ kasutajaga?";
@@ -534,10 +538,6 @@
 "login_header" = "Logi sisse oma e-postikontoga";
 // deprecated
 "login_explain" = "Logi sisse olemasoleva e-postikontoga";
-// deprecated
-"login_subheader" = "Teadaolevate e-postiteenuste jaoks vajalikud täiendavad seadistused lisanduvad automaatselt. Mõnel juhul pead IMAP-i veebi seadistustest sisse lülitama. Lisateavet leiad oma e-postiteenuse pakkujalt ja võib-olla oskavad ka sõbrad aidata.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat ei  kogu kasutajate andmeid - kogu teave jääb sinu seadmesse.";
 "login_inbox" = "Saabuvad kirjad";
 "login_imap_login" = "IMAP-i kasutajanimi";
 "login_imap_server" = "IMAP-i server";
@@ -549,8 +549,6 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP turvalisus";
-// deprecated
-"login_auth_method" = "Tuvastamise meetod";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proksiserver";
 "proxy_use_proxy" = "Kasuta proksiserverit";
@@ -566,8 +564,15 @@
 "proxy_share_link" = "Jaga linki";
 "proxy_enabled" = "Proksiserver on kasutusel";
 "proxy_enabled_hint" = "Sa kasutad proksiserverit. Kui võrguühendus ei toimi korralikult, siis proovi teist proksiserverit.";
-// deprecated
-"login_info_oauth2_title" = "Kas jätkame lihtsustatud seadistamisega?";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Alusühendused";
+"add_transport" = "Lisa alusühendus";
+"remove_transport" = "Eemalda alusühendus";
+"edit_transport" = "Muuda alusühendust";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "Kas lisad selle alusühenduse?";
+"invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust";
+"confirm_remove_transport" = "Kas eemaldad „%1$@“ alusühenduse?\n\nSinu kontaktid saavad sind kätte vaid siis, kui oled selleks kasutanud mõnda muud alusühendust.\n\nKui kahtled, siis eemalda alusühendus hiljem.";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";
 "login_error_server" = "Palun sisesta korrektne serveri täisnimi või ip-aadress";
@@ -614,6 +619,7 @@
 "blocked_empty_hint" = "Blokeeritud kontaktid saavad olema leitavad siin.";
 // deprecated
 "pref_password_and_account_settings" = "Salasõna ja kasutajakonto";
+"pref_who_can_see_profile_explain" = "Kui suhtled teiste kasutajatega, siis koos sinu sõnumitega edastatakse neile ka sinu tunnuspilt, nimi ja kirjeldus/elulugu.";
 "pref_your_name" = "Sinu nimi";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Elulugu/allkiri/moto";
@@ -666,8 +672,6 @@
 "pref_backup" = "Varundus";
 "pref_backup_explain" = "Varunda vestlused välisesse andmeruumi";
 "pref_backup_export_this" = "Ekspordi see profiil";
-// deprecated
-"pref_backup_export_x" = "Ekspordi %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Ekspordi kõik %1$d profiili";
 "pref_backup_export_start_button" = "Alusta varundamist";
@@ -680,10 +684,10 @@
 "pref_background_btn_default" = "Kasuta vaikimisi pilti";
 "pref_background_btn_gallery" = "Vali galeriist";
 "pref_imap_folder_warn_disable_defaults" = "Kui sa seda eelistust muudad, siis palun kontrolli, et server ja muud kliendid on vastavalt seadistatud.\n\nVastasel juhul võib minna nii, et mitte miski ei toimi.";
-// deprecated
-"pref_watch_sent_folder" = "Välju saadetud sõnumite kausta";
-"pref_send_copy_to_self" = "Saada koopia iseendale";
-"pref_send_copy_to_self_explain" = "Vajalik, kui kasutad seda kontot mitmes seadmes.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Mitme seadme tugi";
+"pref_multidevice_explain" = "Sünkrooni oma sõnumid oma muude seadmetega. Teise seadme lisamisel lülitatakse automaatselt sisse.";
+"pref_multidevice_change_warn" = "Kui kasutad sama profiili mitmes seadmes, siis peab mitme seadme režiimi sisse lülitama. Lülita see seadistus välja vaid siis, kui oled selle profiili eemaldanud kõikidest muudest oma seadmetest.\n\nKui aga lülitad välja siis, kui profiil on kasutusel mitmes seadmes, on tulemuseks kadunud sõnumid ja muud imelikud juhtumised.";
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
 "pref_only_fetch_mvbox_explain" = "Eira muid kaustu. See eeldab, et sinu server oskab tõsta vestluste sõnumid DeltaChati kausta.";
@@ -714,6 +718,7 @@
 "pref_show_tray_icon" = "Näita süsteemisalve ikooni";
 "pref_edit_profile" = "Muuda profiili";
 "disable_imap_idle" = "Lülita IMAP IDLE välja";
+"disable_imap_idle_explain" = "Ära kasuta IMAP IDLE meetodit, seda isegi siis, kui server seda toetab. Sisselülitamisel tekib sõnumite laadimisel viivitusi. Kasuta seda vaid testimiseks.";
 "send_stats_to_devs" = "Saada statistikat Delta Chati kasutajatele";
 // Emoji picker and categories
 "emoji_search_results" = "Otsingutulemused";
@@ -745,6 +750,8 @@
 "autodel_server_ask" = "Kas soovid kustutada %1$d sõnumit kohe ja kõik uued sõnumid ajavahemikus „%2$@“\n\n⚠️ Sealhulgas e-kirjad, meediafailid ja „Salvestatud sõnumid“ kõikides serveri kasutades.\n\n⚠️ Ära kasuta seda võimalust, kui tahad andmeid hoida serveris või pruugid ka klassikalisi e-posti kliente";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Sealhulgas e-kirjad, meediafailid ja „Salvestatud sõnumid“ kõikides serveri kasutades. Ära kasuta seda võimalust, kui tahad andmeid hoida serveris või pruugid ka klassikalisi e-posti kliente";
+"autodel_server_warn_multi_device_title" = "Lülita kohene kustutamine sisse";
+"autodel_server_warn_multi_device" = "Kui lülitad kohese kustutamise sisse, siis sa ei saa selles profiilis kasutada mitut seadet.";
 "autodel_confirm" = "Ma saan aru, kustuta kõik need sõnumid";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Kohe peale allalaadimist";
@@ -759,8 +766,6 @@
 "autocrypt_send_asm_button" = "Saada Autocrypti seadistussõnum";
 "autocrypt_prefer_e2ee" = "Eelista läbivat krüptimist";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Tundmatu saatja selle vestluse jaoks. Üksikasju näed infovaatest.";
 "systemmsg_subject_for_new_contact" = "Sõnum kasutajalt %1$@";
 "systemmsg_failed_sending_to" = "Sõnumi saatmine kasutajale %1$@ ei õnnestunud.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -768,69 +773,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ muutis grupi nime: „%1$@“ → „%2$@“.";
 "group_image_changed_by_you" = "Sina muutsid grupi tunnuspilti.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ muutis grupi tunnuspilti.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Lisanudus uus liige: %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Sina lisasid uue liikme: %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ lisas uue liikme: %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Sina eemaldasid liikme: %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ eemaldas liikme: %1$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Sa lahkusid grupist.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Sa lahkusid kanalilt.";
 "you_joined_the_channel" = "Sa liitusid kanaliga.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ lahkus grupist.";
 "group_image_deleted_by_you" = "Sina kustutasid grupi tunnuspildi.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ kustutas grupi tunnuspildi.";
 "location_enabled_by_you" = "Sina lülitasid sisse oma asukoha jagamise reaalajas.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ lülitas sisse oma asukoha jagamise reaalajas.";
 "ephemeral_timer_disabled_by_you" = "Sa lülitasid isekustuvate sõnumite taimeri välja.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ lülitas isekustuvate sõnumite taimeri välja.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 minuti.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 minuti.";
 "ephemeral_timer_1_hour_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 tunni.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 tunni.";
 "ephemeral_timer_1_day_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 päeva.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 päeva.";
 "ephemeral_timer_1_week_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 nädala.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 nädala.";
 "ephemeral_timer_1_year_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 aasta.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 aasta.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ minutit.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ minutit.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ tundi.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ tundi.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ päeva.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ päeva.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
 "chat_unencrypted_explanation" = "Sõnumid siin vestluses kasutavad klassikalist e-postiliidestust ja pole läbivalt krüptitud.";
 "chat_protection_enabled_tap_to_learn_more" = "Sõnumid on läbivalt krüptitud. Lisateabe ligemiseks klõpsi.";
@@ -860,9 +865,11 @@
 "qrscan_fingerprint_label" = "Sõrmejälg";
 "withdraw_verifycontact_explain" = "Seda QR-koodi saavad teised skaneerida nii sinuga suhtlema hakata\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
 "withdraw_verifygroup_explain" = "Seda QR-koodi saab kasutada „%1$@“ grupiga liitumiseks.\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
+"withdraw_joinbroadcast_explain" = "Seda QR-koodi saab kasutada „%1$@“ kanaliga liitumiseks.\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
 "withdraw_qr_code" = "Lähtesta QR-kood";
 "revive_verifycontact_explain" = "See QR-kood on lähtestatud ega pole enam kasutatav.";
 "revive_verifygroup_explain" = "See QR-kood, mis oli mõeldud „%1$@“ grupiga liitumiseks, on lähtestatud ega pole enam kasutatav.";
+"revive_joinbroadcast_explain" = "See QR-kood, mis oli mõeldud „%1$@“ kanaliga liitumiseks, on lähtestatud ega pole enam kasutatav.";
 "revive_qr_code" = "Aktiveeri QR-kood";
 "qrshow_title" = "Kutse QR-koodina";
 "qrshow_x_joining" = "%1$@ liitus.";
@@ -873,7 +880,7 @@
 "qrshow_join_group_hint" = "Skaneeri liitumaks „%1$@“ grupiga";
 "qrshow_join_channel_hint" = "Skaneeri liitumaks „%1$@“ kanaliga";
 "qrshow_join_contact_title" = "Kutse QR-koodina";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skaneeri vestlemaks kasutajaga „%1$@“";
 "qrshow_join_contact_no_connection_toast" = "Internetiühendus puudub ja QR-koodil põhinevat seadistamist kasutada ei saa.";
 "qraccount_ask_create_and_login" = "Kas lood uue profiili nimega „%1$@“ ja logid sinna sisse?";
@@ -885,7 +892,7 @@
 "qrlogin_ask_login" = "Kas logid sisse „%1$@“ profiili?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Kas soovid sisse logid oma kontoga „%1$@“ serveris?\n\nSinu olemasolev profiil jääb alles. Profiile saad vahetada käsuga „Vaheta profiili“.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsus sind liituma selle grupiga.\n\nOotan vastust kasutaja %2$@ seadmest…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ vastas, ootan gruppi lisamist…";

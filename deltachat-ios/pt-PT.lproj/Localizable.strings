@@ -62,7 +62,9 @@
 "hide" = "Ocultar";
 "activate" = "Activar";
 "always" = "Sempre";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Mostrar palavra-passe";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Ocultar palavra-passe";
 "not_now" = "Agora não";
 "never" = "Nunca";
@@ -266,8 +268,6 @@
 "login_title" = "Login";
 // deprecated
 "login_header" = "Iniciar sessão na sua conta de e-mail";
-// deprecated
-"login_subheader" = "Para os provedores de e-mail conhecidos as configurações adicionais são configuradas automaticamente. Por vezes, o IMAP precisa estar activado no frontend da web. Consulte seu provedor de e-mail ou amigos para obter ajuda.";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";
 "login_imap_server" = "IMAP servidor";
@@ -279,12 +279,6 @@
 "login_smtp_server" = "SMTP servidor";
 "login_smtp_port" = "SMTP porto";
 "login_smtp_security" = "SMTP segurança";
-// deprecated
-"login_auth_method" = "Método de autorização";
-// deprecated
-"login_info_oauth2_title" = "Usar configuração simplificada?";
-// deprecated
-"login_info_oauth2_text" = "O endereço inserido pode ser configurado de maneira simples (OAuth 2.0).\n\nNo passo seguinte dê permissão ao Delta Chat para enviar e receber mensagens.\n\nO Delta Chat não recolhe dados de utilizador, permanece tudo no seu dispositivo.";
 "login_error_mail" = "Por favor insira um endereço de e-mail válido";
 "login_error_server" = "Por favor insira um servidor ou endereço IP válido";
 "login_error_port" = "Por favor, insira um porto válido (1-65535)";
@@ -351,8 +345,6 @@
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fundo";
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
-// deprecated
-"pref_watch_sent_folder" = "Ver a pasta de enviados";
 "pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
 "pref_auto_folder_moves_explain" = "As chats de chat são movidas para evitar atravancar da pasta Inbox";
 "pref_show_emails" = "Exibir e-mails comuns";
@@ -369,18 +361,18 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por %3$@.";
 "group_image_changed_by_you" = "Imagem do grupo modificada por mim.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imagem do grupo modificada por %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Membro %1$@ adicionado por mim.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Membro %1$@ adicionado por %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Membro %1$@ removido por mim.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Membro %1$@ removido por %2$@.";
 "group_image_deleted_by_you" = "Imagem do grupo apagada por mim.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Imagem do grupo apagada por %1$@.";
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";
@@ -398,7 +390,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Digitalize para se juntar ao geupo \"%1$@\".";
 "qrshow_join_contact_title" = "QR com código de convite";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Digitalize para configurar um contato com %1$@";
 "secure_join_wait" = "A estabelecer ligação cifrada de ponta-a-ponta, por favor aguarde…";
 "contact_verified" = "%1$@ verificado.";

@@ -76,7 +76,9 @@
 "always_load_remote_images" = "Kargatu urrutiko irudiak beti";
 "once" = "Behin";
 "show_warning" = "Erakutsi abisua";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Erakutsi pasahitza";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Ezkutatu pasahitza";
 "not_now" = "Orain ez";
 "never" = "Inoiz ez";
@@ -308,10 +310,6 @@
 "login_header" = "Hasi saioa zure zerbitzarian";
 // deprecated
 "login_explain" = "Badagoen e-mail kontu batekin saioa hasten";
-// deprecated
-"login_subheader" = "E-mail hornitzaile ezagunentzat ezarpen gehigarriak automatikoki sortzen dira. Batzuetan IMAP gaitu behar da web interfazearen bidez. Kontsultatu zure e-mail hornitzaileari edo eskatu laguntza lagunei.";
-// deprecated
-"login_no_servers_hint" = "Ez dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
 "login_inbox" = "Sarrera ontzia";
 "login_imap_login" = "IMAP erabiltzaile-izena";
 "login_imap_server" = "IMAP zerbitzaria";
@@ -323,12 +321,6 @@
 "login_smtp_server" = "SMTP zerbitzaria";
 "login_smtp_port" = "SMTP ataka";
 "login_smtp_security" = "SMTP segurtasuna";
-// deprecated
-"login_auth_method" = "Baimentze metodoa";
-// deprecated
-"login_info_oauth2_title" = "Jarraitu ezarpen sinplifikatuarekin";
-// deprecated
-"login_info_oauth2_text" = "Sartu duzun e-mail helbideak ezarpen sinplifikatua onartzen du (OAuth2).\n\nHurrengo urratsean, baimendu Detla Chat zure e-mail bidezko txat aplikazio gisa erabili ahal izateko.\n\nEz dago Delta Chat zerbitzaririk, zure datuak zure gailuan mantentzen dira!";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
@@ -412,9 +404,6 @@
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
-// deprecated
-"pref_watch_sent_folder" = "Begiztatu bidalitakoak karpeta";
-"pref_send_copy_to_self" = "Bidali kopia norberari";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
 "pref_auto_folder_moves_explain" = "Txat elkarrizketak lekuz aldatzen dira sarrera ontzian enbarazu ez egiteko";
 "pref_show_emails" = "Erakutsi ohiko e-mailak";
@@ -449,18 +438,18 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@(e)k: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
 "group_image_changed_by_you" = "Nik: Taldearen irudia aldatuta";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@(e)k: Taldearen irudia aldatuta";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Nik: %1$@ kidea gehituta";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@(e)k: %1$@ kidea gehituta";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Nik: %1$@ kidea kenduta";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@(e)k: %1$@ kidea kenduta";
 "group_image_deleted_by_you" = "Nik: Taldearen irudia ezabatuta";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@(e)k: Taldearen irudia ezabatuta";
 // qr code stuff
 "qr_code" = "QR kodea";
@@ -480,7 +469,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Eskaneatu hau \"%1$@\" taldera elkartzeko.";
 "qrshow_join_contact_title" = "QR gonbidapen-kodea";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";

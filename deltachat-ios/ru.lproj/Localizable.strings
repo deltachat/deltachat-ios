@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Всегда загружать изображения из внешних источников";
 "once" = "Только сейчас";
 "show_warning" = "Показать предупреждение";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Показать пароль";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Скрыть пароль";
 "not_now" = "Не сейчас";
 "never" = "Никогда";
@@ -267,7 +269,7 @@
 "menu_scroll_to_top" = "Прокрутить вверх";
 "menu_help" = "Справка";
 // use the same term for "Apps" as elsewhere
-"what_is_webxdc" = "Что такое Webxdc?";
+"what_is_webxdc" = "О приложениях";
 "privacy_policy" = "Политика конфиденциальности";
 "menu_select_all" = "Выбрать всё";
 "select_chat" = "Выбрать чат";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Установите Delta Chat на другом устройстве (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Запустите Delta Chat, выберите \"У меня уже есть профиль / Добавить как второе устройство\" и отсканируйте код, показанный здесь";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Отсканируйте, чтобы настроить второе устройство для %1$@";
 "multidevice_receiver_title" = "Добавить как второе устройство";
 "multidevice_open_settings_on_other_device" = "На первом устройстве, откройте \"Настройки / Добавить второе устройство\" и отсканируйте код, показанный там";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "Список серверов Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Создайте профиль, чтобы присоединиться к группе \"%1$@\".";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Создайте профиль для чата с %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Вы хотите создать новый профиль и начать чат с %1$@?";
@@ -544,10 +546,6 @@
 "login_header" = "Вход в аккаунт";
 // deprecated
 "login_explain" = "Вход в аккаунт электронной почты";
-// deprecated
-"login_subheader" = "Для известных провайдеров электронной почты дополнительные настройки устанавливаются автоматически. Иногда необходимо включить IMAP в настройках веб-сайта. Проконсультируйтесь с технической поддержкой вашей почтовой службы или друзьями, для получения помощи.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat не собирает данные пользователей, все данные хранятся на вашем устройстве!";
 "login_inbox" = "Входящие";
 "login_imap_login" = "Имя пользователя IMAP";
 "login_imap_server" = "Сервер IMAP";
@@ -559,8 +557,6 @@
 "login_smtp_server" = "Сервер SMTP";
 "login_smtp_port" = "Порт SMTP";
 "login_smtp_security" = "Защита соединения SMTP";
-// deprecated
-"login_auth_method" = "Метод авторизации";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Прокси";
 "proxy_use_proxy" = "Использовать прокси";
@@ -585,15 +581,11 @@
 "confirm_add_transport" = "Добавить этот транспорт?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный транспорт.";
 "confirm_remove_transport" = "Удалить транспорт \"%1$@\"?\n\nВаши контакты смогут связаться с вами, только если вы ранее связывались с ними через другой транспорт.\n\nЕсли сомневаетесь, удалите транспорт позже.";
-// deprecated
-"login_info_oauth2_title" = "Продолжить упрощенную настройку?";
-// deprecated
-"login_info_oauth2_text" = "Введённый адрес электронной почты поддерживает упрощённую настройку (OAuth 2.0).\n\nНа следующем шаге, разрешите Delta Chat отправлять и получать сообщения.\n\nDelta Chat не собирает ваши данные, они все остаются на вашем устройстве.";
 "login_certificate_checks" = "Проверки сертификатов";
-"login_error_mail" = "Введите правильный адрес электронной почты";
-"login_error_server" = "Введите действительный адрес сервера / IP-адрес";
-"login_error_port" = "Введите действительный порт (1-65535)";
-"login_error_required_fields" = "Введите правильный адрес электронной почты и пароль";
+"login_error_mail" = "Введите корректный адрес электронной почты";
+"login_error_server" = "Введите корректный адрес сервера / IP-адрес";
+"login_error_port" = "Введите корректный порт (1-65535)";
+"login_error_required_fields" = "Введите корректный адрес электронной почты и пароль";
 "import_backup_title" = "Восстановить из резервной копии";
 "import_backup_ask" = "Найдена резервная копия в \"%1$@\".\n\nВы хотите импортировать и использовать все данные и настройки из нее?";
 "import_backup_no_backup_found" = "Резервных копий не найдено.\n\nСкопируйте резервную копию в \"%1$@\" и повторите попытку.";
@@ -692,8 +684,6 @@
 "pref_backup_explain" = "Резервное копирование чатов на внешний носитель";
 "pref_backup_export_explain" = "Резервная копия поможет вам восстановить данные на этом или на другом устройстве.\n\nРезервная копия содержит все сообщения, контакты и чаты, а также параметры сквозного шифрования Autocrypt. Храните файл резервной копии в безопасном месте или удалите его как можно скорее.";
 "pref_backup_export_this" = "Экспортировать профиль";
-// deprecated
-"pref_backup_export_x" = "Экспорт %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспорт всех %1$d профилей";
 "pref_backup_export_start_button" = "Начать резервное копирование";
@@ -706,10 +696,10 @@
 "pref_background_btn_default" = "Использовать изображение по умолчанию";
 "pref_background_btn_gallery" = "Выбрать из галереи";
 "pref_imap_folder_warn_disable_defaults" = "Если вы измените этот параметр, убедитесь, что ваш сервер и другие клиенты настроены соответствующим образом.\n\nВ противном случае, всё может перестать работать.";
-// deprecated
-"pref_watch_sent_folder" = "Следить за папкой \"Исходящие\"";
-"pref_send_copy_to_self" = "Отправлять копию себе";
-"pref_send_copy_to_self_explain" = "Требуется при использовании этого аккаунта на нескольких устройствах.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Режим нескольких устройств";
+"pref_multidevice_explain" = "Синхронизируйте свои сообщения с другими устройствами. Автоматически включается при добавлении второго устройства";
+"pref_multidevice_change_warn" = "Режим нескольких устройств должен быть включен при использовании одного и того же профиля на нескольких устройствах. Отключайте эту настройку, только если вы удалили этот профиль со всех остальных устройств.\n\nОтключение режима нескольких устройств при использовании профиля на нескольких устройствах приведет к пропуску сообщений и другим проблемам.";
 "pref_auto_folder_moves" = "Автоперемещение в папку DeltaChat";
 "pref_auto_folder_moves_explain" = "Сообщения чатов переносятся, избежать захламления папки \"Входящие\"";
 "pref_only_fetch_mvbox_title" = "Загружать только из папки DeltaChat";
@@ -794,8 +784,6 @@
 "autocrypt_send_asm_explain_after" = "Ваши настройки были оправлены вам. Переключитесь на другое устройство и откройте сообщение с настройкой. Вам будет предложено ввести код настройки. Введите следующие цифры:";
 "autocrypt_prefer_e2ee" = "Предпочитать сквозное шифрование";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Неизвестный отправитель для данного чата. Смотрите \"информацию\" для подробностей.";
 "systemmsg_subject_for_new_contact" = "Сообщение от %1$@";
 "systemmsg_failed_sending_to" = "Не удалось отправить сообщение %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -803,69 +791,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ меняет название группы с \"%1$@\" на \"%2$@\".";
 "group_image_changed_by_you" = "Вы изменили изображение группы.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ меняет изображение группы.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Добавлен участник %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Вы добавили участника %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ добавляет участника %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Вы удалили участника %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ удаляет участника %1$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Вы покинули группу.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Вы покинули канал.";
 "you_joined_the_channel" = "Вы присоединились к каналу.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ покидает группу.";
 "group_image_deleted_by_you" = "Вы удалили изображение группы.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ удаляет изображение группы.";
 "location_enabled_by_you" = "Вы включили трансляцию местоположения.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ включил трансляцию местоположения.";
 "ephemeral_timer_disabled_by_you" = "Вы отключили удаление сообщений по таймеру.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ отключает удаление сообщений по таймеру.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Вы включили автоудаление сообщений через %1$@ сек";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ включает автоудаление сообщений через %1$@ сек";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Вы включили автоудаление сообщений через 1 минуту.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ включает автоудаление сообщений через 1 минуту.";
 "ephemeral_timer_1_hour_by_you" = "Вы включили автоудаление сообщений через 1 час.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ включает автоудаление сообщений через 1 час.";
 "ephemeral_timer_1_day_by_you" = "Вы включили автоудаление сообщений через 1 день.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ включает автоудаление сообщений через 1 день.";
 "ephemeral_timer_1_week_by_you" = "Вы включили автоудаление сообщений через 1 неделю.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ включает автоудаление сообщений через 1 неделю.";
 "ephemeral_timer_1_year_by_you" = "Вы включили автоудаление сообщений на 1 год.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "%1$@ включает автоудаление сообщений на 1 год.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Вы включили автоудаление сообщений через %1$@ минут.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ включает автоудаление сообщений через %1$@ минут.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Вы включили автоудаление сообщений через %1$@ часов.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ включает автоудаление сообщений через %1$@ часов.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Вы включили автоудаление сообщений через %1$@ дней.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ включает автоудаление сообщений через %1$@ дней.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Вы включили автоудаление сообщений через %1$@ недель.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ включает автоудаление сообщений через %1$@ недель.";
 "chat_unencrypted_explanation" = "Сообщения в этом чате используют обычную электронную почту и не зашифрованы сквозным шифрованием.";
 "chat_protection_enabled_tap_to_learn_more" = "Сообщения защищены сквозным шифрованием. Нажмите, чтобы узнать больше.";
@@ -897,9 +885,11 @@
 "qrscan_fingerprint_label" = "Отпечаток";
 "withdraw_verifycontact_explain" = "Этот QR-код могут сканировать другие люди, чтобы связаться с вами.\n\nВы можете сбросить его, чтобы существующий QR-код или ссылка-приглашение больше не работали.";
 "withdraw_verifygroup_explain" = "Этот QR-код могут сканировать другие люди, чтобы присоединиться к группе \"%1$@\".\n\nВы можете сбросить его, чтобы существующий QR-код или ссылка-приглашение больше не работали.";
+"withdraw_joinbroadcast_explain" = "Этот QR-код могут сканировать другие пользователи для присоединения к каналу \"%1$@\".\n\nВы можете сбросить его, чтобы существующий QR-код или пригласительная ссылка перестали работать.";
 "withdraw_qr_code" = "Сбросить QR-код";
 "revive_verifycontact_explain" = "Этот QR-код был сброшен и больше не работает.";
 "revive_verifygroup_explain" = "Этот QR-код для присоединения к группе \"%1$@\" был сброшен и больше не работает.";
+"revive_joinbroadcast_explain" = "Этот QR-код для присоединения к каналу \"%1$@\" был сброшен и больше не активен.";
 "revive_qr_code" = "Активировать QR-код";
 "qrshow_title" = "QR-код приглашения";
 "qrshow_x_joining" = "%1$@ присоединяется.";
@@ -910,7 +900,7 @@
 "qrshow_join_group_hint" = "Сканируйте QR-код, чтобы присоединиться к группе \"%1$@\"";
 "qrshow_join_channel_hint" = "Отсканируйте, чтобы присоединиться к каналу \"%1$@\"";
 "qrshow_join_contact_title" = "QR-код приглашения";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Отсканируйте, чтобы начать чат с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нет соединения с интернетом, невозможно выполнить настройку QR-кода.";
 "qraccount_ask_create_and_login" = "Создать новый профиль на \"%1$@\" и авторизоваться?";
@@ -922,11 +912,11 @@
 "qrlogin_ask_login" = "Авторизоваться в \"%1$@\"?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Авторизоваться в \"%1$@\"?\n\nВаш существующий профиль не будет удалён. Используйте меню \"Сменить профиль\", чтобы переключаться между профилями.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ приглашает вас в группу.\n\nОжидаем ответ от %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ответил(а), ожидаем добавления в группу…";
-"secure_join_wait" = "Устанавливается сквозное шифрование, пожалуйста, подождите…";
+"secure_join_wait" = "Устанавливается соединение, пожалуйста, подождите…";
 "contact_verified" = "%1$@ подтверждён.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Подтверждён: %1$@";

@@ -137,8 +137,6 @@
 "profile_encryption" = "மறைகுறியாக்கம்";
 "tab_contact" = "தொடர்பு";
 "tab_gallery" = "காட்சி கூடம்";
-// deprecated
-"login_subheader" = "அறியப்பட்ட மின் அஞ்சல் வழங்குநர்களுக்கு மற்ற அமைப்புகள் தானாக தீர்மானிக்கப்படும் ";
 "login_inbox" = "உட்பெட்டி";
 "login_outbox" = "வெளிப்பெட்டி";
 "login_smtp_login" = "SMTP க் கான உள் நுழைவு பெயர்";

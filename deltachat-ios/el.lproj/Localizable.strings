@@ -54,7 +54,9 @@
 "load_remote_content_ask" = "Εικόνες μπορούν να σας εντοπίσουν.\n\nΑυτή η ρύθμιση μπορεί να φορτώσει γραμματοσειρές και αλλά περιεχόμενα. Αν απενεργοποιηθεί, ενδέχεται να εμφανιστούν ενσωματωμένες ή προσωρινές εικόνες.\n\nΦόρτωση εικόνων;";
 "always" = "Πάντα";
 "once" = "Μία φορά";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Εμφάνιση Κωδικού";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Απόκριψη Κωδικού";
 "not_now" = "Όχι τώρα";
 "never" = "Ποτέ";
@@ -360,10 +362,6 @@
 "login_header" = "Συνδεθείτε στον λογαριασμό σας E-Mail";
 // deprecated
 "login_explain" = "Συνδεθείτε με έναν υπάρχοντα λογαριασμό e-mail";
-// deprecated
-"login_subheader" = "Για γνωστούς παρόχους email ρυθμίζονται αυτόματα πρόσθετες ρυθμίσεις. Μερικές φορές το IMAP πρέπει να είναι ενεργοποιημένο στις ρυθμίσεις Ιστού. Συμβουλευτείτε τον πάροχο e-mail ή τους φίλους σας για βοήθεια.";
-// deprecated
-"login_no_servers_hint" = "Δεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένουν στη συσκευή σας.";
 "login_inbox" = "Εισερχόμενα";
 "login_imap_login" = "Όνομα Σύνδεσης IMAP";
 "login_imap_server" = "Διακομιστής IMAP";
@@ -375,12 +373,6 @@
 "login_smtp_server" = "Διακομιστής SMTP";
 "login_smtp_port" = "Θύρα SMTP";
 "login_smtp_security" = "Ασφάλεια SMTP";
-// deprecated
-"login_auth_method" = "Μέθοδος Πιστοποίησης";
-// deprecated
-"login_info_oauth2_title" = "Συνέχεια με την απλοποιημένη ρύθμιση;";
-// deprecated
-"login_info_oauth2_text" = "Η εισαγόμενη διεύθυνση e-mail υποστηρίζει μια απλοποιημένη ρύθμιση (OAuth 2.0).\n\nΣτο επόμενο βήμα, επιτρέψτε στο Delta Chat να λειτουργεί ως η εφαρμογή Chat μέσω ηλεκτρονικού ταχυδρομείου.\n\nΔεν υπάρχουν διακομιστές Delta Chat, τα δεδομένα σας παραμένει στη συσκευή σας.";
 "login_certificate_checks" = "Έλεγχοι Πιστοποιητικών";
 "login_error_mail" = "Παρακαλώ εισάγετε μια έγκυρη διεύθυνση e-mail";
 "login_error_server" = "Εισαγάγετε έναν έγκυρο διακομιστή / διεύθυνση IP";
@@ -477,10 +469,6 @@
 "pref_background_btn_default" = "Χρήση προκαθορισμένου";
 "pref_background_btn_gallery" = "Επιλογή";
 "pref_imap_folder_warn_disable_defaults" = "Εάν αλλάξετε αυτήν την επιλογή, βεβαιωθείτε ότι ο διακομιστής σας και οι άλλοι πελάτες σας έχουν διαμορφωθεί ανάλογα.\n\nΔιαφορετικά, τα πράγματα ενδέχεται να μην λειτουργούν καθόλου.";
-// deprecated
-"pref_watch_sent_folder" = "Παρακολουθήστε τον Απεσταλμένο Φάκελο";
-"pref_send_copy_to_self" = "Αποστολή Αντιγράφου στον Εαυτό";
-"pref_send_copy_to_self_explain" = "Απαιτείται κατά τη χρήση αυτού του λογαριασμού σε πολλές συσκευές.";
 "pref_auto_folder_moves" = "Μετακίνηση αυτόματα στον φάκελο DeltaChat";
 "pref_auto_folder_moves_explain" = "Οι συνομιλίες συνομιλίας μετακινούνται για να αποφευχθεί η ακαταστασία των Εισερχομένων";
 "pref_only_fetch_mvbox_title" = "Λήψη μόνο από τον φάκελο DeltaChat";
@@ -551,8 +539,6 @@
 "autocrypt_send_asm_explain_after" = "Η ρύθμισή σας έχει σταλεί στον εαυτό σας. Μεταβείτε στην άλλη συσκευή και ανοίξτε το μήνυμα ρύθμισης. Θα πρέπει να σας ζητηθεί κωδικός ρύθμισης. Εισαγάγετε τα ακόλουθα ψηφία:";
 "autocrypt_prefer_e2ee" = "Προτιμήστε την κρυπτογράφηση από άκρο σε άκρο";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Άγνωστος αποστολέας για αυτήν τη συνομιλία. Δείτε \"πληροφορίες\" για περισσότερες λεπτομέρειες.";
 "systemmsg_subject_for_new_contact" = "Μήνυμα από τον/την %1$@";
 "systemmsg_failed_sending_to" = "Αποτυχία αποστολής μηνύματος σε %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -560,59 +546,59 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Το όνομα της ομάδας άλλαξε από \"%1$@\" σε \"%2$@\" από %3$@.";
 "group_image_changed_by_you" = "Άλλαξες το εικονίδιο της ομάδας.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Ο/Η %1$@ άλλαξε το εικονίδιο της ομάδας.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Πρόσθεσες τον/την %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Ο/Η %2$@ πρόσθεσε τον/την %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Αφαίρεσες τον/την %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Ο/Η %2$@ αφαίρεσε τον/την %1$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Ο/Η %1$@ έφυγε απ\' την ομαδα.";
 "group_image_deleted_by_you" = "Διαγράψατε την εικόνα της ομάδας.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Η εικόνα ομάδας διαγράφηκε από %1$@.";
 "location_enabled_by_you" = "Ενεργοποιήσατε την αναμετάδωση τοποθεσίας.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Η αναμετάδωση τοποθεσίας ενεργοποιήθηκε από %1$@.";
 "ephemeral_timer_disabled_by_you" = "Απενεργοποίησες τα μηνύματα που εξαφανίζονται.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Ο/Η %1$@ απενεργοποίησε τα μηνύματα που εξαφανίζονται.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
 "ephemeral_timer_1_hour_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";
 "ephemeral_timer_1_day_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 ημέρα.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 ημέρα.";
 "ephemeral_timer_1_week_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 εβδομάδα.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 εβδομάδα.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@  λεπτά.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ λεπτά.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ώρες.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ώρες.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ημέρες.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ ημέρες.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ εβδομάδες.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ εβδομάδες.";
 "devicemsg_self_deleted" = "Διαγράψατε τη συνομιλία \"Αποθηκευμένα μηνύματα\".\n\nℹ️ Για να χρησιμοποιήσετε ξανά τη λειτουργία \"Αποθηκευμένα μηνύματα\", δημιουργήστε μια νέα συνομιλία με τον εαυτό σας.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -648,7 +634,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Σάρωση για συμμετοχή στην ομάδα \"%1$@\"";
 "qrshow_join_contact_title" = "Κωδικός Πρόσκλησης QR";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Σάρωση για συνομιλία με %1$@";
 "qrshow_join_contact_no_connection_toast" = "Δεν υπάρχει σύνδεση στο διαδίκτυο, δεν είναι δυνατή η ρύθμιση κωδικού QR.";
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
@@ -658,7 +644,7 @@
 "qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Σύνδεση στο \"%1$@\";\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ σας προσκάλεσε να συμμετάσχετε σε αυτήν την ομάδα.\n\nΑναμονή για απάντηση από τη συσκευή του %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ απάντησε, αναμονή για να προστεθεί στην ομάδα…";

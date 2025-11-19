@@ -51,7 +51,9 @@
 "load_remote_content_ask" = "リモート画像で追跡ができる。\n\nこの設定はフォントや他のコンテツを読み込むことも許可する。無効にしても埋め込まれた画像やキャッシュされた画像を表示されます。\n\nリモート画像を読み込む？";
 "always" = "常に";
 "once" = "一回のみ";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "パスワードを表示する";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "パスワードを非表示する";
 "not_now" = "今はしない";
 "never" = "しない";
@@ -290,10 +292,6 @@
 "login_header" = "自分のメールサーバーにログインする";
 // deprecated
 "login_explain" = "既存のメールアカウントにログインする";
-// deprecated
-"login_subheader" = "主なメールサーバーは自動で設定されます｡一般にIMAPはサーバー側で有効に設定する必要が有ります｡サーバー提供者や詳しい人に確認しましょう｡";
-// deprecated
-"login_no_servers_hint" = "Delta Chatには専用サーバーが有りません｡つまりあなたのデータ･個人情報はこの端末内に保存されています｡";
 "login_inbox" = "受信";
 "login_imap_login" = "IMAPログイン名";
 "login_imap_server" = "IMAPサーバー";
@@ -305,12 +303,6 @@
 "login_smtp_server" = "SMTPサーバー";
 "login_smtp_port" = "SMTPポート";
 "login_smtp_security" = "SMTP暗号方式";
-// deprecated
-"login_auth_method" = "認証方法";
-// deprecated
-"login_info_oauth2_title" = "簡単セットアップを使用しましょうか？";
-// deprecated
-"login_info_oauth2_text" = "入力されたメールアドレスは、簡易セットアップ（OAuth 2.0）に対応しています。次に「メールでチャット」を許可してください。Delta Chatにはサーバーがなく、テーダはデバイスにあります。";
 "login_certificate_checks" = "有効な証明書です";
 "login_error_mail" = "有効なメールアドレスを入力してください";
 "login_error_server" = "有効なサーバー或いはIPアドレスを入力してください";
@@ -403,9 +395,6 @@
 "pref_background" = "背景";
 "pref_background_btn_default" = "デフォルトの画像を使う";
 "pref_background_btn_gallery" = "ギャラリーから選ぶ";
-// deprecated
-"pref_watch_sent_folder" = "送信トレイを監視する";
-"pref_send_copy_to_self" = "自分にコピーを送る";
 "pref_auto_folder_moves" = "DeltaChatフォルダに自動で移動する";
 "pref_auto_folder_moves_explain" = "チャットは受信箱の邪魔にならないように移動されます。";
 "pref_show_emails" = "一般的なメールを表示する";
@@ -454,6 +443,7 @@
 "autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
 "autocrypt_send_asm_button" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
 "autocrypt_prefer_e2ee" = "エンドツーエンド暗号化を好む";
+// system messages
 "systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
 "systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -461,54 +451,54 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@からグループ名を%1$@から%2$@に変更しました。";
 "group_image_changed_by_you" = "自分からグループ画像が変わりました。";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@からグループ画像が変わりました。";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "自分から%1$@が追加されました。";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@から%1$@が追加されました。";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "自分から%1$@が退会されました。";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@から%1$@が退会されました。";
 "group_image_deleted_by_you" = "自分からグループ画像を削除しました。";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@からグループ画像を削除しました。";
 "ephemeral_timer_disabled_by_you" = "自分から消えるメッセージを無効にしました。";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@から消えるメッセージを無効にしました。";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "自分から消えるメッセージを%1$@秒にしました。";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@から消えるメッセージを%1$@秒にしました。";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "自分から消えるメッセージを1分にしました。";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@から消えるメッセージを1分にしました。";
 "ephemeral_timer_1_hour_by_you" = "自分から消えるメッセージを1時間にしました。";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@から消えるメッセージを1時間にしました。";
 "ephemeral_timer_1_day_by_you" = "自分から消えるメッセージを1日にしました。";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@から消えるメッセージを1日にしました。";
 "ephemeral_timer_1_week_by_you" = "自分から消えるメッセージを1週間にしました。";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@から消えるメッセージを1週間にしました。";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "自分から消えるメッセージを%1$@分にしました。";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@から消えるメッセージを%1$@分にしました。";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "自分から消えるメッセージを%1$@時間にしました。";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@から消えるメッセージを%1$@時間にしました。";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "自分から消えるメッセージを%1$@日にしました。";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@から消えるメッセージを%1$@日にしました。";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "自分から消えるメッセージを%1$@週間にしました。";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@から消えるメッセージを%1$@週間にしました。";
 // qr code stuff
 "qr_code" = "QRコード";
@@ -527,7 +517,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "スキャンして%1$@に参加します";
 "qrshow_join_contact_title" = "自分のQRｺｰﾄﾞ";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "スキャンして%1$@に連絡します。";
 "qrshow_join_contact_no_connection_toast" = "インターネットに接続されていないので、QRコードの設定ができません。";
 "qraccount_ask_create_and_login" = "%1$@に新しいメールアドレスを作ってログしますか。";

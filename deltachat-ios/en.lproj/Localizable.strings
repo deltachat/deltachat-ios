@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Always Load Remote Images";
 "once" = "Once";
 "show_warning" = "Show Warning";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Show Password";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Hide Password";
 "not_now" = "Not now";
 "never" = "Never";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Install Delta Chat on your other device (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Start Delta Chat, tap “I Already Have a Profile / Add as Second Device” and scan the code shown here";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Scan to set up second device for %1$@";
 "multidevice_receiver_title" = "Add as Second Device";
 "multidevice_open_settings_on_other_device" = "On the first device, go to “Settings / Add Second Device“ and scan the code shown there";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "List Chatmail Servers";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Create a profile to join the group \"%1$@\".";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Create a profile to chat with %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Do you want to create a new profile and start chatting with %1$@?";
@@ -544,10 +546,6 @@
 "login_header" = "Log into your Email Account";
 // deprecated
 "login_explain" = "Log in with an existing email account";
-// deprecated
-"login_subheader" = "For known email providers additional settings are set up automatically. Sometimes IMAP needs to be enabled in the web settings. Consult your email provider or friends for help.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat does not collect user data, everything stays on your device.";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -559,8 +557,6 @@
 "login_smtp_server" = "SMTP Server";
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
-// deprecated
-"login_auth_method" = "Authorization Method";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Use Proxy";
@@ -585,10 +581,6 @@
 "confirm_add_transport" = "Add this transport?";
 "invalid_transport_qr" = "The scanned QR code does not contain a valid transport.";
 "confirm_remove_transport" = "Remove transport \"%1$@\"?\n\nYour contacts can only reach you if you\'ve previously contacted them via another transport.\n\nIf in doubt, remove the transport later.";
-// deprecated
-"login_info_oauth2_title" = "Continue with simplified setup?";
-// deprecated
-"login_info_oauth2_text" = "The entered address supports a simplified setup (OAuth 2.0).\n\nIn the next step, please allow Delta Chat to send and receive messages.\n\nDelta Chat does not collect user data, everything stays on your device.";
 "login_certificate_checks" = "Certificate Checks";
 "login_error_mail" = "Please enter a valid email address";
 "login_error_server" = "Please enter a valid server / IP address";
@@ -692,8 +684,6 @@
 "pref_backup_explain" = "Back Up Chats to External Storage";
 "pref_backup_export_explain" = "A backup helps you to set up a new installation on this or on another device.\n\nThe backup will contain all messages, contacts and chats and your end-to-end Autocrypt setup. Keep the backup file in a safe place or delete it as soon as possible.";
 "pref_backup_export_this" = "Export this profile";
-// deprecated
-"pref_backup_export_x" = "Export %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Export all %1$d profiles";
 "pref_backup_export_start_button" = "Start Backup";
@@ -706,10 +696,10 @@
 "pref_background_btn_default" = "Use Default Image";
 "pref_background_btn_gallery" = "Select From Gallery";
 "pref_imap_folder_warn_disable_defaults" = "If you change this option, make sure, your server and your other clients are configured accordingly.\n\nOtherwise things may not work at all.";
-// deprecated
-"pref_watch_sent_folder" = "Watch Sent Folder";
-"pref_send_copy_to_self" = "Send Copy to Self";
-"pref_send_copy_to_self_explain" = "Required when using this account on multiple devices.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Multi-Device Mode";
+"pref_multidevice_explain" = "Synchronize your messages with your other devices. Automatically enabled on adding a second device";
+"pref_multidevice_change_warn" = "Multi-Device Mode must be enabled when using the same profile on multiple devices. Only disable this setting if you have removed this profile from all your other devices.\n\nDisabling Multi-Device Mode while using the profile on multiple devices will result in missed messages and other problems.";
 "pref_auto_folder_moves" = "Move automatically to DeltaChat Folder";
 "pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
 "pref_only_fetch_mvbox_title" = "Only Fetch from DeltaChat Folder";
@@ -794,8 +784,6 @@
 "autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
 "autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Unknown sender for this chat. See \'info\' for more details.";
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -803,69 +791,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Group name changed from \"%1$@\" to \"%2$@\" by %3$@.";
 "group_image_changed_by_you" = "You changed the group image.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Group image changed by %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Member %1$@ added.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "You added member %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Member %1$@ added by %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "You removed member %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Member %1$@ removed by %2$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "You left the group.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "You left the channel.";
 "you_joined_the_channel" = "You joined the channel.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Group left by %1$@.";
 "group_image_deleted_by_you" = "You deleted the group image.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Group image deleted by %1$@.";
 "location_enabled_by_you" = "You enabled location streaming.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Location streaming enabled by %1$@.";
 "ephemeral_timer_disabled_by_you" = "You disabled disappearing messages timer.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Disappearing messages timer disabled by %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "You set disappearing messages timer to %1$@ seconds";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Disappearing messages timer set to %1$@ seconds by %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "You set disappearing messages timer to 1 minute.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Disappearing messages timer set to 1 minute by %1$@.";
 "ephemeral_timer_1_hour_by_you" = "You set disappearing messages timer to 1 hour.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Disappearing messages timer set to 1 hour by %1$@.";
 "ephemeral_timer_1_day_by_you" = "You set disappearing messages timer to 1 day.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Disappearing messages timer set to 1 day by %1$@.";
 "ephemeral_timer_1_week_by_you" = "You set disappearing messages timer to 1 week.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Disappearing messages timer set to 1 week by %1$@.";
 "ephemeral_timer_1_year_by_you" = "You set disappearing messages timer to 1 year.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "Disappearing messages timer set to 1 year by %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "You set disappearing messages timer to %1$@ minutes.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Disappearing messages timer set to %1$@ minutes by %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "You set disappearing messages timer to %1$@ hours.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Disappearing messages timer set to %1$@ hours by %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "You set disappearing messages timer to %1$@ days.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Disappearing messages timer set to %1$@ days by %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "You set disappearing messages timer to %1$@ weeks.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
 "chat_unencrypted_explanation" = "Messages in this chat use classic email and are not end-to-end encrypted.";
 "chat_protection_enabled_tap_to_learn_more" = "Messages are end-to-end encrypted. Tap to learn more.";
@@ -912,7 +900,7 @@
 "qrshow_join_group_hint" = "Scan to join group \"%1$@\"";
 "qrshow_join_channel_hint" = "Scan to join channel \"%1$@\"";
 "qrshow_join_contact_title" = "QR Invite Code";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
 "qraccount_ask_create_and_login" = "Create new profile on \"%1$@\" and log in there?";
@@ -924,7 +912,7 @@
 "qrlogin_ask_login" = "Log into \"%1$@\"?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Log into \"%1$@\"?\n\nYour existing profile will not be deleted. Use the \"Switch Profile\" item to switch between your profiles.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";

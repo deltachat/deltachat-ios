@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Carrega sempre les imatges remotes";
 "once" = "Una vegada";
 "show_warning" = "Mostra l\'advertiment";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Mostra la contrasenya";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Amaga la contrasenya";
 "not_now" = "Ara no";
 "never" = "Mai";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Instal·leu Delta Chat en el vostre altre dispositiu (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Inicieu Delta Chat, toqueu  «Ja tinc un perfil / Afegeix un segon dispositiu» i escanegeu el codi que es mostra aquí.";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Escanegeu-lo per configurar un segon dispositiu per a %1$@";
 "multidevice_receiver_title" = "Afegeix com a segon dispositiu";
 "multidevice_open_settings_on_other_device" = "En el primer dispositiu, aneu a «Configuració / Afegeix un segon dispositiu» i escanegeu el codi que es mostra allà.";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "Llista els servidors chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Creeu un perfil per unir-vos al grup \"%1$@\".";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Crea un perfil per a xatejar amb %1$@";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Voleu crear un perfil nou i començar a xatejar amb %1$@?";
@@ -543,10 +545,6 @@
 "login_header" = "Identifiqueu-vos al vostre servidor";
 // deprecated
 "login_explain" = "Inicia sessió amb un compte de correu electrònic existent";
-// deprecated
-"login_subheader" = "Als proveïdors de mail coneguts els paràmetres es configuren automàticament. De vegades l\'IMAP s\'ha d\'activar a la interfície web. Consulta el teu proveïdor de correu electrònic o a un amic perquè t\'ajudi. ";
-// deprecated
-"login_no_servers_hint" = "No hi ha servidors de Delta Chat: les vostres dades es queden al vostre dispositiu!";
 "login_inbox" = "Safata d\'entrada";
 "login_imap_login" = "Nom d\'identificació IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -558,8 +556,6 @@
 "login_smtp_server" = "Servidor SMTP";
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Seguretat SMTP";
-// deprecated
-"login_auth_method" = "Mètode d\'autorització";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Servidor intermediari";
 "proxy_use_proxy" = "Usa un servidor intermediari";
@@ -573,10 +569,6 @@
 "proxy_use_proxy_confirm" = "Voleu utilitzar el proxy \"%1$@\"?";
 "proxy_share_explain" = "Els vostres amics poden afegir aquest servidor intermediari escanejant el codi QR.";
 "proxy_share_link" = "Comparteix l\'enllaç";
-// deprecated
-"login_info_oauth2_title" = "Voleu continuar amb la configuració simplificada?";
-// deprecated
-"login_info_oauth2_text" = "L’adreça electrònica que heu introduït admet una configuració simplificada. (OAuth2.0).\n\nEn el pas següent, permeteu que Delta Chat actuï com a xat amb l\'aplicació de correu electrònic..\n\nNo hi ha servidors de Delta Chat, les vostres dades romanen al vostre dispositiu!";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
@@ -679,8 +671,6 @@
 "pref_backup" = "Còpia de seguretat";
 "pref_backup_explain" = "Copia els xats a un magatzem extern";
 "pref_backup_export_explain" = "La còpia de seguretat és útil a l\'hora de reinstal·lar l\'aplicació en aquest dispositiu o en un altre.\n\nLa còpia tindrà tot els missatges, contactes i xats i la configuració d\'extrem a extrem d\'Autocrypt. Conserveu el fitxer de la còpia en un lloc segur o esborreu-lo tan aviat com pugueu.";
-// deprecated
-"pref_backup_export_x" = "Exporta %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exporta tots %1$d perfils";
 "pref_backup_export_start_button" = "Inicia la còpia de seguretat";
@@ -693,10 +683,6 @@
 "pref_background_btn_default" = "Usa la imatge per defecte";
 "pref_background_btn_gallery" = "Trieu de la galeria";
 "pref_imap_folder_warn_disable_defaults" = "Si desactiveu aquesta opció, assegureu-vos que el vostre servidor i els altres programes estiguin configurats de la mateixa manera.\n\nAltrament podeu tenir problemes de funcionament.";
-// deprecated
-"pref_watch_sent_folder" = "Mostra la safata de sortida";
-"pref_send_copy_to_self" = "Envia\'n una còpia a mi mateix";
-"pref_send_copy_to_self_explain" = "Imprescindible quan s\'utilitza aquest compte en diversos dispositius.";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
 "pref_auto_folder_moves_explain" = "Les converses de xat s\'han mogut per no atapeir la safata d’entrada";
 "pref_only_fetch_mvbox_title" = "Agafa només de la carpeta de DeltaChat";
@@ -781,8 +767,6 @@
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Remitent desconegut per a aquest xat. Vegeu «informació» per a més detalls.";
 "systemmsg_subject_for_new_contact" = "Missatge de %1$@";
 "systemmsg_failed_sending_to" = "No s\'ha pogut enviar el missatge a %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -790,69 +774,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per %3$@.";
 "group_image_changed_by_you" = "Heu canviat la imatge de grup.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imatge de grup canviada per %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "S\'ha afegit el membre %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Heu afegit el membre %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Membre %1$@ afegit per %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Heu eliminat el membre %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Heu abandonat el grup.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Heu abandonat el canal.";
 "you_joined_the_channel" = "Us heu unit al canal";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ ha abandonat el grup";
 "group_image_deleted_by_you" = "Heu esborrat la imatge de grup.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ ha esborrat la imatge de grup.";
 "location_enabled_by_you" = "Heu habilitat la difusió de la ubicació.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ha habilitat la difusió de la ubicació.";
 "ephemeral_timer_disabled_by_you" = "Heu desactivat el temporitzador dels missatges efímers.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ ha desactivat el temporitzador dels missatges efímers.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Heu definit el temporitzador dels missatges efímers a %1$@ segons.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ segons.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 segon.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1  minut.";
 "ephemeral_timer_1_hour_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 hora.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1 hora.";
 "ephemeral_timer_1_day_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 dia.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1 dia.";
 "ephemeral_timer_1_week_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 setmana";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1 setmana.";
 "ephemeral_timer_1_year_by_you" = "Has establert el temporitzador de missatges efímers a 1 any.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "El temporitzador de missatges efímers s’ha establert a 1 any per %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Heu definit el temporitzador dels missatges fonedissos a %1$@ minuts.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ minuts.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Heu definit el temporitzador dels missatges fonedissos a %1$@ hores.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ hores.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Heu definit el temporitzador dels missatges fonedissos a %1$@ dies.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ dies.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Heu definit el temporitzador dels missatges fonedissos a %1$@ setmanes.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ setmanes.";
 "chat_protection_enabled_tap_to_learn_more" = "Us garantim que a partir d\'ara els missatges són xifrats d\'extrem a extrem. Toqueu per a obtenir més informació.";
 "chat_protection_enabled_explanation" = "Ara es garanteix que tots els missatges d\'aquest xat són xifrats d\'extrem a extrem.\n\nEl xifratge d\'extrem a extrem manté privats els missatges entre vós i els companys de xat. Ni tan sols el vostre proveïdor de correu electrònic pot llegir-los.";
@@ -895,7 +879,7 @@
 "qrshow_join_group_hint" = "Escanegeu això per unir-vos al grup \"%1$@\".";
 "qrshow_join_channel_hint" = "Escanegeu per a unir-vos al canal «%1$@»";
 "qrshow_join_contact_title" = "Codi QR d\'invitació";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
 "qrshow_join_contact_no_connection_toast" = "No hi ha connexió a internet, no es pot fer la configuració amb codi QR.";
 "qraccount_ask_create_and_login" = "Voleu crear un perfil nou a «%1$@» i iniciar sessió allà?";
@@ -907,7 +891,7 @@
 "qrlogin_ask_login" = "Voleu iniciar sessió a «%1$@»?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Voleu iniciar «%1$@»?\n\nNo s\'esborrarà el perfil existent. Useu l\'element «Canvia el perfil» per a canviar entre els vostres perfils.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ us ha convidat a unir-vos a aquest grup.\n\nS\'està esperant el dispositiu de %2$@ per a respondre...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha respost, espereu per a ser afegit al grup...";
