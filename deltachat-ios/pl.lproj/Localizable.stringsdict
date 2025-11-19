@@ -199,7 +199,7 @@
 			<key>many</key>
 			<string>%d odbiorców</string>
 			<key>other</key>
-			<string>%d odbiorcy</string>
+			<string>%d subskrybenci</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>

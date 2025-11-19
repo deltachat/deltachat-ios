@@ -76,7 +76,9 @@
 "always" = "Vždy";
 "once" = "Raz";
 "show_warning" = "Zobraziť varovanie";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Ukáž heslo";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Skryť heslo";
 "not_now" = "Teraz nie";
 "never" = "Nikdy";
@@ -422,7 +424,7 @@
 "multidevice_install_dc_on_other_device" = "Nainštalujte Delta Chat na vašom ďalšom zariadení (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Otvorte Delta Chat, ťuknite na \"Existujúci účet / Pridať ako ďalšie zariadenie\" a naskenujte zobrazený kód";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Naskenujte pre nastavenie ďalšieho zariadenia pre %1$@";
 "multidevice_receiver_title" = "Pridať ako ďalšie zariadenie";
 "multidevice_open_settings_on_other_device" = "Na pôvodnom zariadení, choďte do \"Nastavenia / Pridať ďalšie zariadenie\" a naskenujte zobrazený kód";
@@ -486,10 +488,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "login_header" = "Prihláste sa na server";
 // deprecated
 "login_explain" = "Prihláste sa pomocou existujúceho e-mailového účtu";
-// deprecated
-"login_subheader" = "Pre známych poskytovateľov e-mailov sa automaticky nastavujú ďalšie nastavenia. Niekedy je potrebné v nastaveniach webu povoliť protokol IMAP. Požiadajte o pomoc svojho poskytovateľa e-mailu alebo priateľov";
-// deprecated
-"login_no_servers_hint" = "Neexistujú žiadne servery Delta Chat, vaše dáta zostanú vo vašom zariadení.";
 "login_inbox" = "Doručená pošta";
 "login_imap_login" = "Prihlasovacie meno IMAP";
 "login_imap_server" = "Server IMAP";
@@ -501,8 +499,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "login_smtp_server" = "Server SMTP";
 "login_smtp_port" = "Port SMTP";
 "login_smtp_security" = "Zabezpečenie SMTP";
-// deprecated
-"login_auth_method" = "Metóda autorizácie";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Použiť proxy";
@@ -516,10 +512,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "proxy_use_proxy_confirm" = "Chcete použiť proxy \"%1$@\"?";
 "proxy_share_explain" = "Vaši priatelia si môžu pridať túto proxy naskenovaním QR kódu.";
 "proxy_share_link" = "Zdieľať odkaz";
-// deprecated
-"login_info_oauth2_title" = "Pokračovať v zjednodušenom nastavovaní?";
-// deprecated
-"login_info_oauth2_text" = "Zadaná e-mailová adresa podporuje zjednodušené nastavenie (OAuth 2.0).\n\nV ďalšom kroku povoľte aplikácii Delta Chat, aby fungovala ako vaša aplikácia Chat cez e-mail.\n\nNie sú k dispozícii servery Delta Chat, vaše dáta zostanú vo vašom zariadení .";
 "login_certificate_checks" = "Osvedčovacie kontroly";
 "login_error_mail" = "Prosím zadajte platnú emailovú adresu";
 "login_error_server" = "Zadajte platný server / IP adresu";
@@ -609,8 +601,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_backup" = "Zálohovanie";
 "pref_backup_explain" = "Zálohujte konverzácie na externé úložisko";
 "pref_backup_export_explain" = "Záloha vám pomôže nastaviť novú inštaláciu na tomto alebo na inom zariadení.\n\nZáloha bude obsahovať všetky správy, kontakty a konverzácie a vaše úplné nastavenie automatického šifrovania. Uložte záložný súbor na bezpečnom mieste alebo ho čo najskôr odstráňte.";
-// deprecated
-"pref_backup_export_x" = "Exportovať %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportovať %1$d účty/účtov";
 "pref_backup_export_start_button" = "Spustiť zálohovanie";
@@ -623,10 +613,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_background_btn_default" = "Použiť predvolený obrázok";
 "pref_background_btn_gallery" = "Vyberte z galérie";
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
-// deprecated
-"pref_watch_sent_folder" = "Pozrieť priečinok Odoslané";
-"pref_send_copy_to_self" = "Odoslať kópiu sebe";
-"pref_send_copy_to_self_explain" = "Vyžaduje sa, ak používate tento účet na viacerých zariadeniach.";
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
 "pref_auto_folder_moves_explain" = "Konverzácie sa presunú, aby sa predišlo preplneniu doručenej pošty";
 "pref_only_fetch_mvbox_title" = "Prijímať iba z priečinka DeltaChat";
@@ -707,8 +693,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "autocrypt_send_asm_explain_after" = "Vaše nastavenie bolo odoslané vám. Prepnite na druhé zariadenie a otvorte správu o nastavení. Mali by ste byť požiadaní o nastavovací kód. Zadajte nasledujúce číslice:";
 "autocrypt_prefer_e2ee" = "Preferovať šifrovanie typu end-to-end";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Neznámy odosielateľ pre túto konverzáciu. Ďalšie informácie nájdete v časti „Informácie“.";
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -716,59 +700,59 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Názov skupiny sa zmenil z „%1$@“ na „%2$@“ od %3$@.";
 "group_image_changed_by_you" = "Zmenili ste obrázok skupiny.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Obrázok skupiny zmenil(a) %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Člen %1$@ pridaný mnou.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Člen %1$@ pridaný od %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Člen %1$@ bol odstránený mnou.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ bol odstránený od %2$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Skupinu opustil(a) %1$@.";
 "group_image_deleted_by_you" = "Odstránili ste obrázok skupiny.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Obrázok skupiny odstránil(a) %1$@.";
 "location_enabled_by_you" = "Zapli ste vysielanie vašej polohy.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ povolil(a) vysielanie svojej polohy.";
 "ephemeral_timer_disabled_by_you" = "Časovač zmiznutia správ je deaktivovaný mnou.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Časovač zmiznutia správ je deaktivovaný od %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Časovač zmiznutia správ nastavený na %1$@ s mnou.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Časovač zmiznutia správ nastavený na %1$@ s od %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Časovač zmiznutia správ bol nastavený na 1 minútu mnou.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Časovač zmiznutia správ bol nastavený na 1 minútu od %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Časovač zmiznutia správ bol nastavený na 1 hodinu mnou.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Časovač zmiznutia správ bol nastavený na 1 hodinu od %1$@.";
 "ephemeral_timer_1_day_by_you" = "Časovač zmiznutia správ nastavený na 1 deň mnou.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Časovač zmiznutia správ nastavený na 1 deň od %1$@.";
 "ephemeral_timer_1_week_by_you" = "Časovač zmiznutia správ nastavený na 1 týždeň mnou.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Časovač zmiznutia správ nastavený na 1 týždeň od %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Časovač zmiznutia správ bol nastavený na %1$@ minúty mnou.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Časovač zmiznutia správ bol nastavený na %1$@ minúty od %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Časovač zmiznutia správ bol nastavený na %1$@ hodiny mnou.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Časovač zmiznutia správ bol nastavený na %1$@ hodiny od %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Časovač zmiznutia správ nastavený na %1$@ dni mnou.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Časovač zmiznutia správ nastavený na %1$@ dni od %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Časovač zmiznutia správ nastavený na %1$@ týždne mnou.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Časovač zmiznutia správ nastavený na %1$@ týždne od %2$@.";
 "chat_protection_enabled_tap_to_learn_more" = "Správy sú šifrované. Ťuknite pre viac informácií.";
 "learn_more" = "Zistiť viac";
@@ -806,7 +790,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Naskenujte a pripojte sa ku skupine „%1$@“.";
 "qrshow_join_contact_title" = "QR pozývací kód";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Naskenujte a vytvorte kontakt s %1$@ .";
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
 "qraccount_ask_create_and_login" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?";
@@ -821,7 +805,7 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "qrlogin_ask_login_another" = "Prihlásiť sa do „%1$@“?
 
 Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pripojili k tejto skupine.\n\nČaká sa na odpoveď zo zariadenia používateľa %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@odpovedal a čaká sa na pridanie do skupiny...";

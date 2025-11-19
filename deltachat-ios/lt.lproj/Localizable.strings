@@ -62,7 +62,9 @@
 "always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
 "show_warning" = "Rodyti įspėjimą";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Rodyti slaptažodį";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Slėpti slaptažodį";
 "not_now" = "Ne dabar";
 "never" = "Niekada";
@@ -377,10 +379,6 @@
 "login_header" = "Prisijungti prie savo serverio";
 // deprecated
 "login_explain" = "Prisijungti naudojant esamą el. pašto paskyrą";
-// deprecated
-"login_subheader" = "Žinomiems el. pašto teikėjams papildomi nustatymai yra nustatomi automatiškai. Kartais, IMAP turi būti įjungtas prisijungus per naršyklę. Išsamesnės pagalbos teiraukitės savo el. pašto teikėjo ar draugų.";
-// deprecated
-"login_no_servers_hint" = "Nėra jokių Delta Chat serverių, jūsų duomenys išlieka jūsų įrenginyje!";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
 "login_imap_server" = "IMAP serveris";
@@ -392,8 +390,6 @@
 "login_smtp_server" = "SMTP serveris";
 "login_smtp_port" = "SMTP prievadas";
 "login_smtp_security" = "SMTP saugumas";
-// deprecated
-"login_auth_method" = "Įgaliojimų suteikimo metodas";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Įgaliotasis serveris";
 "proxy_use_proxy" = "Naudoti įgaliotąjį serverį";
@@ -403,8 +399,6 @@
 "proxy_delete" = "Ištrinti įgaliotąjį serverį";
 "proxy_delete_explain" = "Ar tikrai norite ištrinti „%1$@“?";
 "proxy_use_proxy_confirm" = "Ar norite naudoti įgaliotąjį serverį „%1$@“?";
-// deprecated
-"login_info_oauth2_title" = "Tęsti naudojant supaprastintą sąranką?";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";
@@ -490,8 +484,6 @@
 "pref_backup" = "Atsarginė kopija";
 "pref_backup_explain" = "Padaro atsarginę pokalbių kopiją į išorinę saugyklą";
 "pref_backup_export_explain" = "Atsarginė kopija padeda jums nusistatyti naują diegimą šiame ar kitame įrenginyje.\n\nAtsarginėje kopijoje bus visos žinutės, adresatai ir pokalbiai bei jūsų ištisinė Autocrypt sąranka. Atsarginės kopijos failą laikykite saugioje vietoje arba kaip įmanoma greičiau jį ištrinkite.";
-// deprecated
-"pref_backup_export_x" = "Eksportuoti %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksportuoti visas %1$d paskyras";
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
@@ -504,9 +496,6 @@
 "pref_background_btn_default" = "Naudoti numatytąjį paveikslą";
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
 "pref_imap_folder_warn_disable_defaults" = "Jeigu išjungiate šį parametrą, įsitikinkite, kad jūsų serveris ir kiti klientai yra sukonfigūruoti atitinkamai.\n\nPriešingu atveju, tai gali iš viso neveikti.";
-// deprecated
-"pref_watch_sent_folder" = "Stebėti išsiųstųjų aplanką";
-"pref_send_copy_to_self" = "Siųsti kopiją sau pačiam";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
 "pref_show_emails" = "Rodyti klasikinius el. laiškus";
@@ -568,51 +557,52 @@
 "autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
 "autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
 "autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
+// system messages
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Jūs pakeitėte grupės pavadinimą iš „%1$@“ į „%2$@“.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ pakeitė grupės pavadinimą iš „%1$@“ į „%2$@“.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ išėjo iš grupės.";
 "group_image_deleted_by_you" = "Jūs ištrynėte grupės paveikslą.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@ ištrynė grupės paveikslą.";
 "ephemeral_timer_disabled_by_you" = "Jūs išjungėte išnykstančių žinučių laikmatį.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ išjungė išnykstančių žinučių laikmatį.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sek.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sek.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 minutę.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 minutę. ";
 "ephemeral_timer_1_hour_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 valandą.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 valandą.";
 "ephemeral_timer_1_day_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 dieną.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 dieną.";
 "ephemeral_timer_1_week_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 savaitę.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 savaitę.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ min.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ min. ";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ val.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ val. ";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ d.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ d. ";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sav.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
 "learn_more" = "Sužinoti daugiau";
 // %1%s will be replaced by date and time in some human-readable format
@@ -638,7 +628,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \"%1$@\" grupės.";
 "qrshow_join_contact_title" = "QR pakvietimo kodas";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";

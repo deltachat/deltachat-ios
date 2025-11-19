@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Externe afbeeldingen altijd laden";
 "once" = "Eenmalig";
 "show_warning" = "Waarschuwing tonen";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Wachtwoord tonen";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
 "never" = "Nooit";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Installeer Delta Chat op je andere apparaat (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Start Delta Chat, druk op ‘Ik heb al een profiel → Toevoegen als secundair apparaat’ en scan de hier getoonde code";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Scan om een secundair apparaat voor %1$@ in te stellen";
 "multidevice_receiver_title" = "Toevoegen als secundair apparaat";
 "multidevice_open_settings_on_other_device" = "Ga op het eerste apparaat naar ‘Instellingen → Secundair apparaat toevoegen’ en scan de hier getoonde code";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "Lijst met chatmailservers tonen";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Maak een profiel aan om deel te nemen aan de groep ‘%1$@’.";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Maak een profiel aan om een gesprek te voeren met ‘%1$@’.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Wil je een nieuw profiel aanmaken en een gesprek beginnen met ‘%1$@’?";
@@ -544,10 +546,6 @@
 "login_header" = "Inloggen op je server";
 // deprecated
 "login_explain" = "Log in met een bestaand e-mailaccount.";
-// deprecated
-"login_subheader" = "Bij bekende e-mailproviders gaat het instellen vrijwel geheel automatisch. Soms moet je imap inschakelen in de webversie van je e-mailclient. Vraag je e-mailprovider of vrienden om hulp.";
-// deprecated
-"login_no_servers_hint" = "Er is geen Delta Chat-server; jóuw gegevens blijven op jóuw apparaat.";
 "login_inbox" = "Postvak in";
 "login_imap_login" = "IMAP-inlognaam";
 "login_imap_server" = "IMAP-server";
@@ -559,8 +557,6 @@
 "login_smtp_server" = "SMTP-server";
 "login_smtp_port" = "SMTP-poort";
 "login_smtp_security" = "SMTP-beveiliging";
-// deprecated
-"login_auth_method" = "Autorisatiemethode";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Proxy gebruiken";
@@ -585,10 +581,6 @@
 "confirm_add_transport" = "Wil je deze server toevoegen?";
 "invalid_transport_qr" = "De gescande QR-code bevat geen geldige overdrachtsserver.";
 "confirm_remove_transport" = "Weet je zeker dat je de overdrachtsserver ‘%1$@’ wilt verwijderen?\n\nJe contactpersonen kunnen dan alleen nog contact met je opnemen als je ze al eerder bericht hebt via een andere server.\n\nStel bij twijfel het verwijderen uit.";
-// deprecated
-"login_info_oauth2_title" = "Wil je doorgaan met vereenvoudigd instellen?";
-// deprecated
-"login_info_oauth2_text" = "Het ingevoerde e-mailadres ondersteunt vereenvoudigd instellen (OAuth2).\n\nTijdens de volgende stap moet je Delta Chat toestaan te fungeren als je e-mailapp.\n\nDelta Chat heeft geen eigen servers; jóuw gegevens blijven op jóuw apparaat!";
 "login_certificate_checks" = "Certificaatcontrole";
 "login_error_mail" = "Voer een geldig e-mailadres in";
 "login_error_server" = "Voer een geldig(e) ip-adres/server in";
@@ -692,8 +684,6 @@
 "pref_backup_explain" = "Gesprekken bewaren op externe opslag";
 "pref_backup_export_explain" = "Met een reservekopie kun je een nieuwe installatie instellen op dit of een ander apparaat.\n\nEen reservekopie bevat alle berichten, contactpersonen, gesprekken en je eind-tot-eindversleuteling. Bewaar het reservekopiebestand op een veilige plaats of verwijder het zo snel mogelijk.";
 "pref_backup_export_this" = "Profiel exporteren";
-// deprecated
-"pref_backup_export_x" = "‘%1$@’ exporteren";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "%1$d accounts exporteren";
 "pref_backup_export_start_button" = "Reservekopie maken";
@@ -706,10 +696,10 @@
 "pref_background_btn_default" = "Standaardafbeelding gebruiken";
 "pref_background_btn_gallery" = "Kiezen uit galerij";
 "pref_imap_folder_warn_disable_defaults" = "Als je deze optie uitschakelt, zorg er dan voor dat je server en overige clients goed ingesteld zijn.\n\nAls dat niet zo is, dan werkt het misschien helemaal niet.";
-// deprecated
-"pref_watch_sent_folder" = "Map ‘Verzonden’ controleren op nieuwe berichten";
-"pref_send_copy_to_self" = "Kopie versturen naar mijzelf";
-"pref_send_copy_to_self_explain" = "Vereist bij gebruik van dit account op meerdere apparaten.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Meerdere apparaten";
+"pref_multidevice_explain" = "Synchroniseer berichten met andere apparaten. Dit wordt automatisch ingeschakeld na het toevoegen van een secundair apparaat.";
+"pref_multidevice_change_warn" = "Let op: deze modus moet op alle apparaten worden ingeschakeld op hetzelfde profiel. Schakel deze instelling alleen uit als je je profiel van alle andere apparaten hebt verwijderd.\n\nDoor deze modus uit te schakelen terwijl het profiel nog gebruikt wordt, gaan er berichten verloren en kunnen er andere problemen ontstaan.";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
 "pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je postvak netjes te houden";
 "pref_only_fetch_mvbox_title" = "Alleen DeltaChat-map controleren";
@@ -794,8 +784,6 @@
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Dit gesprek bevat een onbekende afzender. Zie ‘Informatie’ voor meer informatie.";
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
 "systemmsg_failed_sending_to" = "Het bericht kan niet worden verstuurd aan %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -803,69 +791,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "De groepsnaam is gewijzigd door %3$@. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
 "group_image_changed_by_you" = "Je hebt de groepsfoto gewijzigd.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "De groepsfoto is gewijzigd door %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "‘%1$@’ is toegevoegd.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Je hebt ‘%1$@’ toegevoegd.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "‘%1$@’ is toegevoegd door %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Je hebt ‘%1$@’ verwijderd.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "‘%1$@’ is verwijderd door %2$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Je hebt de groep verlaten.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Je hebt het kanaal verlaten.";
 "you_joined_the_channel" = "Je neemt vanaf nu deel aan het kanaal.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "De groep is verlaten door %1$@.";
 "group_image_deleted_by_you" = "Je hebt de groepsfoto verwijderd.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "De groepfoto is verwijderd door %1$@.";
 "location_enabled_by_you" = "Je hebt locatiedeling ingeschakeld.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Locatiedeling is ingeschakeld door %1$@.";
 "ephemeral_timer_disabled_by_you" = "Je hebt de tijdklok van verdwijnende berichten uitgeschakeld.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "De tijdklok van verdwijnende berichten is uitgeschakeld door %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ sec.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ sec.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 minuut.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 minuut.";
 "ephemeral_timer_1_hour_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 uur.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 uur.";
 "ephemeral_timer_1_day_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 dag.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 dag.";
 "ephemeral_timer_1_week_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 week.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 week.";
 "ephemeral_timer_1_year_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 jaar.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 jaar.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ minuten.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ minuten.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ uur.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ uur.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ dagen.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ dagen.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ weken.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
 "chat_unencrypted_explanation" = "Berichten in dit gesprek maken gebruik van traditionele e-mailcommunicatie - eind-tot-endversleuteling is daarom niet gegarandeerd.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
@@ -912,7 +900,7 @@
 "qrshow_join_group_hint" = "Scan dit om deel te nemen aan de groep ‘%1$@’.";
 "qrshow_join_channel_hint" = "Scan dit om deel te nemen aan het kanaal ‘%1$@’";
 "qrshow_join_contact_title" = "QR-uitnodigingscode";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Scan dit om een gesprek te beginnen met %1$@";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
@@ -924,7 +912,7 @@
 "qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Wil je inloggen als ‘%1$@’?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ heeft geantwoord en wacht op toelating tot de groep…";

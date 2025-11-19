@@ -41,7 +41,9 @@
 "show_full_message" = "هەموو پەیامەکە پیشان بدە...";
 "always" = "هەمیشە";
 "once" = "یەکجار";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "تێپەڕوشەکە پیشان بدە";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "تێپەڕوشەکە بشارەوە";
 "not_now" = "ئێستا نا";
 "never" = "قەت";
@@ -257,10 +259,6 @@
 "login_header" = "بچۆ ژوورەوە بۆ سێرڤێرەکەی خۆت";
 // deprecated
 "login_explain" = "بچۆ ژوورەوە بە ناونیشانی ئیمەیلێکەوە";
-// deprecated
-"login_subheader" = "بۆ دابینکەرە ناسراوەکانی ئیمەیلەکان، ڕێکخستنە زیادییەکان خۆکارانە ڕێکدەخرێن. هەندێجار دەبێت IMAP لەنێو ڕێکخستنەکانی وێبدا چالاک بکرێنەوە. بۆ ڕێنمایی وەرگرتن، لەگەڵ دابینکەری ئیمەیلەکەتان یان هاوڕێکانتان ڕاوێژ بکەن.";
-// deprecated
-"login_no_servers_hint" = "دێڵتاچات هیچ سێرڤەرێکی نییە، داتاکانتان لەسەر ئامرێکەتان دەمێنێتەوە.";
 "login_inbox" = "هاتنگە";
 "login_imap_login" = "ناوی چوونەژوورەوەی IMAP";
 "login_imap_server" = "سێرڤەری IMAP";
@@ -272,10 +270,6 @@
 "login_smtp_server" = "سێرڤەری SMTP";
 "login_smtp_port" = "پۆرتی SMTP";
 "login_smtp_security" = "ئاسایشی SMTP";
-// deprecated
-"login_auth_method" = "شێوازی پشتڕاشتکردنەوە";
-// deprecated
-"login_info_oauth2_title" = "بە ڕێکخستنە ئاسانکراوەکەوە بەردەوام دەبیت؟";
 "login_error_mail" = "تکایە ئیمەیلێکی ڕاست بنووسە";
 "login_error_server" = "تکایە سێرڤەرێکی / شوێنەواری ئای پی ڕەوا بنووسە.";
 "login_error_port" = "تکایە پۆرتێکی (1-65535) درووست بنووسە";
@@ -353,9 +347,6 @@
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";
 "pref_background_btn_gallery" = "هەڵبژاردن لە پیشانگا";
-// deprecated
-"pref_watch_sent_folder" = "دیتنی بوخچەی هەنێردراوەکان";
-"pref_send_copy_to_self" = "هەناردنی ڕوونووسێک بۆ خۆت";
 "pref_auto_folder_moves" = "هەناردنی خۆکار بۆ بوخچەی دێڵتاچات";
 "pref_show_emails" = "پیشاندانی ئیمەیلە کلاسیکەکان";
 "pref_show_emails_no" = "نا، بەس چاتەکان";
@@ -399,8 +390,6 @@
 "autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
 "autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "پەیامنێری ئەم وتووێژە نەناسراوە. بۆ وردەکاری زۆرتر سەیری \'زانیارییەکان\' بکە.";
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
 // qr code stuff
@@ -421,7 +410,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "بۆ بەشداربوون لە کۆڕ ئەمە سکان بکە: \"%1$@\"";
 "qrshow_join_contact_title" = "کۆدی QRی بانگهێشت کردن";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "بۆ ڕێکخستنی پێوەندی لەگەڵ %1$@، ئەم کۆدە سکان بکە. ";
 "qrshow_join_contact_no_connection_toast" = "هێڵی ئینتەرنێت بەردەست نییە، ڕێکخستنی کۆدی QR جێبەجێ ناکرێ.";
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";

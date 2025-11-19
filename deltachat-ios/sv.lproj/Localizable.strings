@@ -64,7 +64,9 @@
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
 "show_warning" = "Visa varning";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Visa lösenord";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Dölj lösenord";
 "not_now" = "Inte nu";
 "never" = "Aldrig";
@@ -384,7 +386,7 @@
 "multidevice_install_dc_on_other_device" = "Installera Delta Chat på din andra enhet (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Starta Delta Chat, tryck på \"Jag har redan en profil / Lägg till som andra enhet\" och skanna koden som visas här.";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Skanna för att ställa in en andra enhet för %1$@";
 "multidevice_receiver_title" = "Lägg till som andra enhet";
 "multidevice_open_settings_on_other_device" = "På den första enheten går du till \"Inställningar / Lägg till en andra enhet\" och skannar koden som visas där";
@@ -440,7 +442,7 @@
 "instant_onboarding_other_server" = "Lista chatmail-servrar";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Skapa en profil för att ansluta till gruppen \"%1$@\".";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Skapa en profil för att chatta med %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Vill du skapa en ny profil och börja chatta med %1$@?";
@@ -453,10 +455,6 @@
 "login_header" = "Logga in på din server";
 // deprecated
 "login_explain" = "Logga in med ett befintligt e-postkonto";
-// deprecated
-"login_subheader" = "För kända e-postleverantörer installeras ytterligare inställningar automatiskt. Ibland måste IMAP aktiveras i webbinställningarna. Kontakta din e-postleverantör eller vänner för hjälp.";
-// deprecated
-"login_no_servers_hint" = "Det finns ingen Delta Chat-server, din data stannar på din enhet.";
 "login_inbox" = "Inkorg";
 "login_imap_login" = "IMAP inloggningsnamn";
 "login_imap_server" = "IMAP server";
@@ -468,12 +466,6 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP säkerhet";
-// deprecated
-"login_auth_method" = "Auktoriseringsmetod";
-// deprecated
-"login_info_oauth2_title" = "Fortsätta med förenklad installation?";
-// deprecated
-"login_info_oauth2_text" = "Den angivna e-postadressen stödjer förenklad inställning (OAuth 2.0).\n\nLåt Delta Chat agera som ditt chatt-över-epost-program, i nästa steg.\n\nDet finns ingen Delta Chat-server, din data stannar på din enhet.";
 "login_certificate_checks" = "Certifikatkontroller";
 "login_error_mail" = "Ange en giltig e-postadress";
 "login_error_server" = "Ange en giltig server/IP-adress";
@@ -564,8 +556,6 @@
 "pref_backup" = "Säkerhetskopiering";
 "pref_backup_explain" = "Säkerhetskopiera chattar till extern lagring";
 "pref_backup_export_explain" = "En säkerhetskopia hjälper dig att ställa in en ny installation på denna eller någon annan enhet.\n\nSäkerhetskopian innehåller alla meddelanden, kontakter och chattar, liksom din autokrypterade slutpunkt-till-slutpunkt-inställning. Förvara säkerhetskopian på ett säkert ställe eller ta bort den så fort som möjligt.";
-// deprecated
-"pref_backup_export_x" = "Exportera %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportera all %1$d profiler";
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
@@ -578,10 +568,6 @@
 "pref_background_btn_default" = "Använd standardbild";
 "pref_background_btn_gallery" = "Välj från galleriet";
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
-// deprecated
-"pref_watch_sent_folder" = "Övervaka mappen \"Skickat\"";
-"pref_send_copy_to_self" = "Skicka kopia till mig själv";
-"pref_send_copy_to_self_explain" = "Krävs när du använder detta konto på flera enheter.";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
 "pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";
 "pref_only_fetch_mvbox_title" = "Hämta endast från DeltaChat-mappen";
@@ -665,8 +651,6 @@
 "autocrypt_send_asm_explain_after" = "Dina inställningar har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
 "autocrypt_prefer_e2ee" = "Föredra slutpunkt-till-slutpunkt-kryptering";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Okänd avsändare för denna chatt. Se info för fler detaljer.";
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -674,61 +658,61 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Gruppnamnet ändrades från \"%1$@\" till \"%2$@\" av %3$@.";
 "group_image_changed_by_you" = "Gruppbilden ändrades av mig.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppbilden ändrades av %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Medlemmen %1$@ lades till.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Medlemmen %1$@ lades till av mig.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Medlemmen %1$@ lades till av %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Medlemmen %1$@ togs bort av mig.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Medlemmen %1$@ togs bort av %2$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Gruppen lämnades av %1$@.";
 "group_image_deleted_by_you" = "Gruppbilden togs bort av mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gruppbilden togs bort av %1$@.";
 "location_enabled_by_you" = "Du aktiverade platsströmning.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Platsströmning aktiverad av %1$@.";
 "ephemeral_timer_disabled_by_you" = "Tiduret för meddelandeborttagning är inaktiverat av mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Tiduret för meddelandeborttagning är inaktiverat av %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Tiduret för meddelandeborttagning är satt till %1$@ s av mig.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ s av %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Tiduret för meddelandeborttagning är satt till 1 minut av mig.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Tiduret för meddelandeborttagning är satt till 1 minut av %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Tiduret för meddelandeborttagning är satt till 1 timma av mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Tiduret för meddelandeborttagning är satt till 1 timma av %1$@.";
 "ephemeral_timer_1_day_by_you" = "Tiduret för meddelandeborttagning är satt till 1 dag av mig.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Tiduret för meddelandeborttagning är satt till 1 dag av %1$@.";
 "ephemeral_timer_1_week_by_you" = "Du satte tiduret för meddelandeborttagning till 1 vecka.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Tiduret för meddelandeborttagning är satt till 1 vecka av %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ minuter.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ minuter av %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ timmar.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ timmar av %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ dagar.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ dagar av %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ veckor.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ veckor av %2$@.";
 "chat_protection_enabled_tap_to_learn_more" = "Meddelanden är garanterat totalsträckskrypterade från och med nu. Tryck för att få veta mer.";
 "chat_protection_enabled_explanation" = "Det är nu garanterat att alla meddelanden i den här chatten är totalsträckskrypterade.\n\nTotalsträckskryptering håller meddelanden privata mellan dig och dina chattpartners. Inte ens din e-postleverantör kan läsa dem.";
@@ -770,7 +754,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Skanna det här för att ansluta till gruppen \"%1$@\".";
 "qrshow_join_contact_title" = "QR-kod för inbjudan";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
@@ -782,7 +766,7 @@
 "qrlogin_ask_login" = "Vill du logga in på \"%1$@\"?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Vill du logga in på \"%1$@\"?\n\nDin befintliga profil kommer inte att raderas. Använd alternativet \"Byt profil\" för att växla mellan dina profiler.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ bjöd in dig att gå med i den här gruppen.\n\nVäntar på att enheten hos %2$@ ska svara...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ svarade och väntar på att bli tillagd i gruppen...";

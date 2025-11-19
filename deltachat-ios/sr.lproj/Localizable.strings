@@ -69,7 +69,9 @@
 "always_load_remote_images" = "Увек учитај слике са сервера";
 "once" = "Само једном";
 "show_warning" = "Прикажи упозорење";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Прикажи лозинку";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Сакри лозинку";
 "not_now" = "Не сада";
 "never" = "Никад";
@@ -401,10 +403,6 @@
 "login_header" = "Пријавите се у ваш налог е-поште";
 // deprecated
 "login_explain" = "Пријавите се преко постојећег налога е-поште";
-// deprecated
-"login_subheader" = "За познате пружаоце услуге е-поште, додатне поставке се одређују аутоматски. Каткад, морате омогућити ИМАП у поставкама на веб сучељу ваше е-поште.\n\nПосаветујте се са пружаоцем услуге е-поште или пријатељима ако наиђете на проблеме.";
-// deprecated
-"login_no_servers_hint" = "Не постоји сервер Делта ћаскања. Апликација користи само сервер ваше е-поште.";
 "login_inbox" = "Пријем";
 "login_imap_login" = "Корисничко име за ИМАП";
 "login_imap_server" = "ИМАП сервер";
@@ -416,12 +414,6 @@
 "login_smtp_server" = "СМТП сервер";
 "login_smtp_port" = "СМТП порт";
 "login_smtp_security" = "СМТП безбедност";
-// deprecated
-"login_auth_method" = "Начин овлашћења";
-// deprecated
-"login_info_oauth2_title" = "Наставите са поједностављеним поставкама?";
-// deprecated
-"login_info_oauth2_text" = "Унета е-адреса подржава поједностављено подешавање (OAuth 2.0).\n\nУ следећем кораку, дозволите Delta Chat-у да  да дејствује као ваша апликација за ћаскање преко е-поште.\n\nDelta Chat нема сервере и ваши подаци остају на вашем уређају.";
 "login_certificate_checks" = "Провери сертификате";
 "login_error_mail" = "Унесите важећу е-адресу";
 "login_error_server" = "Унесите важеће име сервера или ИП адресу";
@@ -518,10 +510,6 @@
 "pref_background_btn_default" = "Користи дату слику";
 "pref_background_btn_gallery" = "Изабери из галерије";
 "pref_imap_folder_warn_disable_defaults" = "Ако промените ову опцију, морате проверити да су ваш сервер и ваши други клијенти конфигурисани у складу са тим.\n\nУ супротном апликација можда уопште неће функционисати.";
-// deprecated
-"pref_watch_sent_folder" = "Посматрај директоријум са пошиљкама";
-"pref_send_copy_to_self" = "Пошаљи копију поруке себи";
-"pref_send_copy_to_self_explain" = "Обавезно када користите овај налог на више уређаја.";
 "pref_auto_folder_moves" = "Аутоматски премести у DeltaChat директоријум";
 "pref_auto_folder_moves_explain" = "Ћаскања се померају да би се избегло затрпавање пријемног сандучета";
 "pref_only_fetch_mvbox_title" = "Примај поруке само из DeltaChat директоријума";
@@ -592,8 +580,6 @@
 "autocrypt_send_asm_explain_after" = "Ваше подешавање вам је послато. Пређите на други уређај и отворите поруку за подешавање. На другом уређају од се вас очекује да унесете код за подешавање. Унесите следеће цифре:";
 "autocrypt_prefer_e2ee" = "Преферирај с-краја-на-крај шифровање";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Непознати пошиљалац за ово ћаскање. Погледајте „информације“ за више детаља.";
 "systemmsg_subject_for_new_contact" = "Поруке од %1$@";
 "systemmsg_failed_sending_to" = "Слање поруке %1$@ је било неуспешно.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -601,59 +587,59 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Назив групе је измењен из „%1$@“ у „%2$@“ од стране %3$@.";
 "group_image_changed_by_you" = "Слика групе је промењена од мене.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Слика групе је промењена од стране %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Члан %1$@ је додат од мене.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Члан %1$@ је додат од стране %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Члан %1$@ је уклоњен од мене.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Члан %1$@ је уклоњен од стране %2$@.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ је напустио групу.";
 "group_image_deleted_by_you" = "Ви сте обрисали слику групе.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Слика групе је обрисана од стране %1$@.";
 "location_enabled_by_you" = "Ви сте омогућили проток положаја.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Проток положаја омогућен од %1$@.";
 "ephemeral_timer_disabled_by_you" = "Онемогућили сте хронометар за нестајуће поруке.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "%1$@ је онемогућио нестајуће поруке.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ секунде";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ секунде.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 минут.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "%1$@ је подесио хронометар за нестајуће поруке на 1 минут.";
 "ephemeral_timer_1_hour_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 сат.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@је подесио хронометар за нестајуће поруке на 1 сат.";
 "ephemeral_timer_1_day_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 дан.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "%1$@ је подесио хронометар за нестајуће поруке на 1 дан.";
 "ephemeral_timer_1_week_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 недељу.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@ је подесио хронометар за нестајуће поруке на 1 недељу.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ минутa.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ минута.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ сати.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ сата.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ дана.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ дана.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ недеља.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ недеље.";
 "devicemsg_self_deleted" = "Обрисали сте ћаскање „Сачуване поруке“.\n\nℹ️ Ако желите да користите „Сачуване поруке“ могућност поново, направите ново ћаскање са самим собом.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -689,7 +675,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Скенирај да се придружиш групи „%1$@“";
 "qrshow_join_contact_title" = "Бар-кôд за потврду";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Очитај да ћаскате са %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нисте повезани на интернет, није могуће подесити бар-кôд.";
 "qraccount_ask_create_and_login" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?";
@@ -699,7 +685,7 @@
 "qrlogin_ask_login" = "Пријави се у „%1$@“?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Пријави се у „%1$@“? Ваш постојећи налог неће бити избрисан. Користите „Промени налог“ опцију да прелазите са једног на други налог.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@вас је позвао да се придружите групи.\n\nЧекамо да уређај од %2$@одговори...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ је одговорио и чека да буде додат у групу...";

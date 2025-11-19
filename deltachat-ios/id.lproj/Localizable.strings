@@ -58,7 +58,9 @@
 "always" = "Selalu";
 "once" = "Sekali";
 "show_warning" = "Tampilkan Peringatan";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Tunjukkan kata kunci";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Sembunyikan kata kunci";
 "not_now" = "Tidak sekarang";
 "never" = "Tidak pernah";
@@ -308,10 +310,6 @@
 "login_header" = "Masuk ke server Anda";
 // deprecated
 "login_explain" = "Masuk dengan akun surel yang ada";
-// deprecated
-"login_subheader" = "Pengaturan surel penyedia tambahan yang sudah diketahui dipasang secara otomatis. Terkadang IMAP perlu daktifkan di pengaturan aplikasi. Hubungi surel penyedia Anda atau minta tolong teman.";
-// deprecated
-"login_no_servers_hint" = "Tidak ada server Delta Chat, data Anda tetap di perangkat Anda.";
 "login_inbox" = "Surel masuk";
 "login_imap_login" = "Nama login IMAP";
 "login_imap_server" = "Server IMAP";
@@ -323,12 +321,6 @@
 "login_smtp_server" = "Server SMTP";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
-// deprecated
-"login_auth_method" = "Metode otorisasi";
-// deprecated
-"login_info_oauth2_title" = "Lanjutkan dengan pengaturan yang disederhanakan?";
-// deprecated
-"login_info_oauth2_text" = "Bantuan untuk alamat surel yang telah dimasukkan adalah pengaturan yang disederhanakan (OAuth 2.0).\n\nPada langkah selanjutnya, izinkan Delta Chat sebagai Obrolan Anda pada aplikasi Surel.\n\nTidak ada server Delta Chat, obrolan Anda tetap di perangkat Anda.";
 "login_certificate_checks" = "Cek sertifikat";
 "login_error_mail" = "Masukkan alamat surel yang sahih";
 "login_error_server" = "Tolong masukan server / alamat IP yang sah";
@@ -412,7 +404,6 @@
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
-"pref_send_copy_to_self" = "Kirim salinan ke saya";
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
 "pref_auto_folder_moves_explain" = "Percakapan dipindahkan untuk menghindari memenuhi kotak masuk";
 "pref_show_emails" = "Tampilkan email klasik";
@@ -453,8 +444,6 @@
 "autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
 "autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Pengirim tidak dikenal untuk obrolan ini. Lihat \'info\' untuk lebih jelasnya.";
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -462,18 +451,18 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nama grup diganti dari \"%1$@\" ke \"%2$@\" oleh %3$@.";
 "group_image_changed_by_you" = "Gambar grup telah diubah oleh saya.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gambar grup telah diubah oleh %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Member %1$@ telah ditambahkan oleh saya.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Member %1$@ telah ditambahkan oleh %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Member %1$@ telah dikeluarkan oleh saya.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Member %1$@ telah dikeluarkan oleh %2$@.";
 "group_image_deleted_by_you" = "Gambar grup telah dihapus oleh saya.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gambar grup telah dihapus oleh %1$@.";
 // qr code stuff
 "qr_code" = "Kode QR";
@@ -492,7 +481,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Pindai ini untuk bergabung dengan grup \"%1$@\".";
 "qrshow_join_contact_title" = "Kode undangan QR";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Pindai ini untuk mengatur kontak dengan%1$@.";
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";

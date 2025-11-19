@@ -79,7 +79,9 @@
 "always_load_remote_images" = "تصاویر دوردست همیشه بار شوند";
 "once" = "همین یک بار";
 "show_warning" = "نمایش هشدار";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "نمایش رمزعبور";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "مخفی کردن رمز عبور";
 "not_now" = "اکنون نه";
 "never" = "هرگز";
@@ -460,7 +462,7 @@
 "multidevice_install_dc_on_other_device" = "دلتاچت را روی دستگاه دیگر خود نصب کنید (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "دلتاچت را باز کنید، روی «افزودن به عنوان دستگاه دوم» بزنید و کد نشان داده شده در اینجا را اسکن کنید";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "برای راه اندازی دستگاه دوم برای %1$@ اسکن کنید";
 "multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
 "multidevice_open_settings_on_other_device" = "در دستگاه اول، به \"تنظیم‌ها / افزودن دستگاه دوم\" بروید و کد نشان داده شده در آنجا را اسکن کنید";
@@ -518,7 +520,7 @@
 "instant_onboarding_other_server" = "فهرست کارسازهای Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "ایجاد نمایه برای وارد شدن به گپ «%1$@».";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "برای گفتگو با %1$@ یک حساب کاربری ایجاد کنید.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "می‌خواهید یک نمایهٔ جدید درست کنید و با %1$@شروع به گپ زدن کنید؟";
@@ -531,10 +533,6 @@
 "login_header" = "به سرور خود وارد شوید";
 // deprecated
 "login_explain" = "ورود با یک رایانامه موجود";
-// deprecated
-"login_subheader" = "برای ارائه‌دهندگان شناخته شده تنظبمات اضافه به صورت خودکار انجام می‌شود. گاهی اوقات IMAP باید در تنظیم‌ها رایانامهٔ شما فعال شود. از ارائه‌دهندهٔ رایانامه یا دوستانتان در این مورد کمک بگیرید.";
-// deprecated
-"login_no_servers_hint" = "دلتاچت هیچ سروری ندارد، داده‌های شما در دستگاه شما باقی می‌ماند.";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -546,8 +544,6 @@
 "login_smtp_server" = "SMTP Server";
 "login_smtp_port" = "SMTP Port";
 "login_smtp_security" = "SMTP Security";
-// deprecated
-"login_auth_method" = "Authorization Method";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "پروکسی";
 "proxy_use_proxy" = "استفاده از پروکسی";
@@ -561,12 +557,6 @@
 "proxy_use_proxy_confirm" = "می‌خواهید از پروکسی «%1$@» استفاده کنید؟";
 "proxy_share_explain" = "دوست‌هایتان می‌توانند با اسکن کردن کد QR این پروکسی را اضافه کنند.";
 "proxy_share_link" = "اشتراک گذاشتن پیوند";
-// deprecated
-"login_info_oauth2_title" = "با تنظیم‌ها ساده‌ شده ادامه می‌دهید؟";
-// deprecated
-"login_info_oauth2_text" = "نشانی رایانامه وارد شده از تنظیم‌های ساده پشتیبانی می‌کند
-(OAuth 2.0).\n\nIn
- لطفا در مرحله بعد، به دلتاچت اجازه دهید که به عنوان نرم‌افزار رایانامه شما عمل نماید\n\n دلتاچت کارساز(سرور) ندارد؛ داده‌های شما در دستگاه خودتان باقی می‌ماند. ";
 "login_certificate_checks" = "بررسی‌های گواهینامه";
 "login_error_mail" = "لطفاً یک نشانی رایانامهٔ معتبر وارد کنید";
 "login_error_server" = "لطفا یک کارساز / نشانی آی‌پی صحیح وارد کنید";
@@ -667,8 +657,6 @@
 "pref_backup" = "نسخه پشتیبان";
 "pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
 "pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
-// deprecated
-"pref_backup_export_x" = "برون‌ریزی%1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "برون‌ریزی همه%1$d حساب ها";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
@@ -681,10 +669,6 @@
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
-// deprecated
-"pref_watch_sent_folder" = "پوشه ارسال شده‌ها را نگاه کن";
-"pref_send_copy_to_self" = "ارسال رونوشت به خودم";
-"pref_send_copy_to_self_explain" = "درصورت استفاده از این حساب در چند دستگاه مورد نیاز است. ";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_auto_folder_moves_explain" = "گپ‌ها برای جلوگیری از پر شدن صندوق ورودی جابه‌جا شدند";
 "pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
@@ -766,8 +750,6 @@
 "autocrypt_send_asm_explain_after" = "تنظیم‌های شما برای خودتان ارسال شدند. پیام تنظیم‌ها را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید";
 "autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "فرستنده در این گفت و گو ناشناس است. برای جزئیات بیشتر به \"اطلاعات\" مراجعه کنید.";
 "systemmsg_subject_for_new_contact" = "پیام از %1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -775,61 +757,61 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "نام گروه توسط %3$@ از «%1$@» به «%2$@ » تغییر کرد. ";
 "group_image_changed_by_you" = "شما تصویر گروه را تغییر دادید. ";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "تصویر گروه توسط %1$@ تغییر کرد. ";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ عضو شد.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "شما %1$@ را به عنوان عضو جدید اضافه کردید. ";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "عضو جدید با نام %1$@ توسط %2$@ افزوده شد. ";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "شما عضو گروه، %1$@، را حذف کردید.  ";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "تصویر گروه توسط %1$@ حذف شد.";
 "location_enabled_by_you" = "هم‌رسانی زندهٔ مکان را به کار انداختید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "هم‌رسانی زندهٔ مکان توسط %1$@ به کار افتاد.";
 "ephemeral_timer_disabled_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را غیرفعال کردید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ غیرفعال شد.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ ثانیه تنظیم کردید";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ثانیه تنظیم شد.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 دقیقه تنظیم کرده‌اید.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 دقیقه تنظیم شد.";
 "ephemeral_timer_1_hour_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 ساعت تنظیم کرده‌اید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 ساعت تنظیم شد.";
 "ephemeral_timer_1_day_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 روز تنظیم کرده‌اید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 روز تنظیم شد.";
 "ephemeral_timer_1_week_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 هفته تنظیم کرده‌اید.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 هفته تنظیم شد.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ دقیقه تنظیم کردید.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ دقیقه تنظیم شد.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ ساعت تنظیم کردید.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ساعت تنظیم شد.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ روز تنظیم کردید.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ روز تنظیم شد.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
 "chat_protection_enabled_tap_to_learn_more" = "رمزنگاری سرتاسر پیام ها از این به بعد تضمین می شود. برای اطلاعات بیشتر ضربه بزنید.";
 "chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو اکنون تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهندهٔ رایانامه شما هم نمی‌تواند آن‌ها را بخواند.";
@@ -876,7 +858,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "برای عضو شدن در گروه\"%1$@\" این را اسکن کنید.";
 "qrshow_join_contact_title" = "کد دعوت کیوآر";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
 "qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
@@ -889,7 +871,7 @@
 "qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "آیا به «%1$@» وارد شوید؟\n\nحساب موجود شما حذف نخواهد شد. برای جابه‌جایی میان حساب‌هایتان از «تغییر حساب» استفاده کنید.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "کاربر %1$@ شما را دعوت کرده است تا عضو این گروه شوید.
 در انتظار دستگاه %2$@ برای پاسخگویی...";
 // placeholder will be replaced by the name of the inviter.

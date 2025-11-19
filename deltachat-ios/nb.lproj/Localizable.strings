@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Last alltid eksterne bilder";
 "once" = "Én gang";
 "show_warning" = "Vis advarsel";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Vis passord";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Skjul passord";
 "not_now" = "Ikke nå";
 "never" = "Aldri";
@@ -164,7 +166,7 @@
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apper";
 "webxdc_store_url" = "Appvelger-URL";
-"webxdc_store_url_explain" = "Hvis satt, vil URL'en brukes som appvelger i stedet for den forvalgte";
+"webxdc_store_url_explain" = "Hvis satt, vil URL\'en brukes som appvelger i stedet for den forvalgte";
 "webxdc_draft_hint" = "Trykk \"Send\" for å dele";
 "home" = "Hjem";
 "games" = "Spill";
@@ -439,8 +441,6 @@
 "login_smtp_server" = "SMTP-tjener";
 "login_smtp_port" = "SMTP-port";
 "login_smtp_security" = "SMTP-sikkerhet";
-// deprecated
-"login_auth_method" = "Autoriseringsmetode";
 "login_certificate_checks" = "Sertifikat sjekker";
 "import_backup_title" = "Importer sikkerhetskopi";
 "import_backup_no_backup_found" = "Fant ingen sikkerhetskopier.\n\nKopier sikkerhetskopien til %1$@ og prøv igjen.";
@@ -501,18 +501,18 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Gruppenavn endret fra \"%1$@\" til \"%2$@\" av %3$@.";
 "group_image_changed_by_you" = "Gruppebilde endret av meg.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppebilde endret av %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Medlem %1$@ lagt til av meg.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Medlem %1$@ lagt til av %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Medlem %1$@ fjernet av meg.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Medlem %1$@ fjernet av %2$@.";
 "group_image_deleted_by_you" = "Gruppebilde slettet av meg.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gruppebilde slettet av %1$@.";
 // qr code stuff
 "qr_code" = "QR-kode";
@@ -530,7 +530,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Skann denne for å ta del i den gruppen %1$@.";
 "qrshow_join_contact_title" = "QR-invitasjonskode";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skann dette for å bekrefte en kontakt med %1$@.";
 "contact_verified" = "%1$@ bekreftet.";
 // notifications

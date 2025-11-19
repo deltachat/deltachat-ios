@@ -78,7 +78,9 @@
 "always_load_remote_images" = "Ngarko Përherë Figura të Largëta";
 "once" = "Vetëm një herë";
 "show_warning" = "Shfaq Sinjalizim";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Shfaqe Fjalëkalimin";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Fshihe Fjalëkalimin";
 "not_now" = "Jo tani";
 "never" = "Kurrë";
@@ -468,7 +470,7 @@
 "multidevice_install_dc_on_other_device" = "Instaloni Delta Chat-in në pajisjen tuaj tjetër (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Nisni Delta Chat-in, prekni mbi “Kam Tashmë një Profil / Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Skanojeni, që të ujdisni pajise të dytë për %1$@";
 "multidevice_receiver_title" = "Shtoni Pajisje të Dytë";
 "multidevice_open_settings_on_other_device" = "Te pajisja e parë, kaloni te “Rregullime / Shtoje si Pajisje të Dytë” dhe skanoni kodin e treguar këtu";
@@ -525,7 +527,7 @@
 "instant_onboarding_other_server" = "Paraqit Shërbyes Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Krijoni një profil, që të merrni pjesë te grupi “%1$@”.";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Krijoni një profil, që të bisedoni me %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Doni të krijohet një profil i ri dhe të fillohet të bisedohet me %1$@?";
@@ -539,10 +541,6 @@
 "login_header" = "Hyni te Llogaria juaj Email";
 // deprecated
 "login_explain" = "Hyni me një llogari email ekzistuese.";
-// deprecated
-"login_subheader" = "Për shërbime të njohura email-i, rregullimet shtesë ujdisen automatikisht. Ndonjëherë shërbyesi IMAP lyp të aktivizohet te rregullimet për web. Për ndihmë këshillohuni me shërbimin tuaj email, ose shokë tuajt.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat s’grumbullon të dhëna përdoruesish, gjithçka rri në pajisjen tuaj.";
 "login_inbox" = "Të marrë";
 "login_imap_login" = "Emër Hyrjeje në IMAP";
 "login_imap_server" = "Shërbyes IMAP";
@@ -554,8 +552,6 @@
 "login_smtp_server" = "Shërbyes SMTP";
 "login_smtp_port" = "Portë SMTP";
 "login_smtp_security" = "Siguri SMTP";
-// deprecated
-"login_auth_method" = "Metodë Autorizimi";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Ndërmjetës";
 "proxy_use_proxy" = "Përdor Ndërmjetës";
@@ -571,10 +567,6 @@
 "proxy_share_link" = "Jepeni Lidhjen";
 "proxy_enabled" = "Ndërmjetësi u Aktivizua";
 "proxy_enabled_hint" = "Po përdorni një ndërmjetës. Nëse keni problemi për t’u lidhur, provoni një ndërmjetës tjetër.";
-// deprecated
-"login_info_oauth2_title" = "Të vazhdohet me rregullimin e thjeshtuar?";
-// deprecated
-"login_info_oauth2_text" = "Adresa email e dhënë mbulon një ujdisje të thjeshtuar (OAuth 2.0).\n\nNë hapin pasues, ju lutemi, lejojeni Delta Chat-in të dërgojë dhe marrë mesazhe.\n\nDelta Chat s’grumbullon të dhëna përdoruesish, gjithçka rri në pajisjen tuaj.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
@@ -678,8 +670,6 @@
 "pref_backup_explain" = "Kopjeruaji Fjalosjet në Depozitim të Jashtëm";
 "pref_backup_export_explain" = "Një kopjeruajtje ju lejon të rregulloni një instalim të ri në këtë apo në një tjetër pajisje.\n\nKopjeruajtja do të përmbajë krejt mesazhet, kontaktet dhe fjalosjet, si dhe rregullimin tuaj për Autocrypt skaj-më-skaj. Mbajeni kartelën e kopjeruajtjes diku të parrezik, përndryshe fshijeni as më shpejt që të jetë e mundur.";
 "pref_backup_export_this" = "Eksportojeni këtë profil";
-// deprecated
-"pref_backup_export_x" = "Eksporto %1$@";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt %1$d proflet";
 "pref_backup_export_start_button" = "Nis Kopjeruajtjen";
@@ -692,10 +682,10 @@
 "pref_background_btn_default" = "Përdor Figurën Parazgjedhje";
 "pref_background_btn_gallery" = "Përzgjidhni Nga Galeri";
 "pref_imap_folder_warn_disable_defaults" = "Nëse e ndryshoni këtë mundësi, garantoni që shërbyesi juaj dhe klientët tuaj të tjerët të jenë formësuar për këtë.\n\nPërndryshe gjërat mund të mos punojnë fare.";
-// deprecated
-"pref_watch_sent_folder" = "Vëzhgo Dosje Të dërguarish";
-"pref_send_copy_to_self" = "Dërgojini Kopje Vetes";
-"pref_send_copy_to_self_explain" = "E domosdoshme kur kjo llogari përdoret në një numër pajisjesh.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Mënyra Shumë-Pajisje";
+"pref_multidevice_explain" = "Njëkohësoni mesazhet tuaj në pajisje tuajat të tjera. E aktivizuar automatikisht gjatë shtimit të një pajisjeje të dytë";
+"pref_multidevice_change_warn" = "Mënyra Shumë-Pajisje duhet aktivizuar, kur përdoret i njëjti profil në disa pajisje. Çaktivizojeni këtë rregullim vetëm në se e keni hequr këtë profil nga krejt pajisjet tuaja të tjera.\n\nÇaktivizimi i Mënyrës Shumë-Pajisje, teksa përdoret profili në disa pajisje, do të sjellë mesazhe të humbura dhe probleme të tjera.";
 "pref_auto_folder_moves" = "Kaloji vetvetiu te Dosja DeltaChat";
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
 "pref_only_fetch_mvbox_title" = "Sill Vetëm nga Dosje DeltaChat";
@@ -779,8 +769,6 @@
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese:";
 "autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Dërgues i panjohur për këtë fjalosje. Për më tepër hollësi, shihni \'info\'.";
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
 "systemmsg_failed_sending_to" = "S’u arrit të dërgohej mesazh te %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -788,69 +776,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Emri i grupit u ndryshua nga “%1$@” në “%2$@” nga %3$@.";
 "group_image_changed_by_you" = "Ndryshuat figurën e grupit";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Figura e grupit u ndryshua nga %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "U shtua anëtar %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Shtuat anëtarin %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Anëtari %1$@ u shtua nga %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Hoqët anëtarin %1$@.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Anëtari %1$@ u hoq nga %2$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Ikët nga grupi.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Ikët nga kanali.";
 "you_joined_the_channel" = "Erdhët në kanal.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Grupi u braktis nga %1$@.";
 "group_image_deleted_by_you" = "Fshitë figurën e grupit.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Figura e grupit u fshi nga %1$@.";
 "location_enabled_by_you" = "Aktivizuat dhënie vendndodhjeje";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Dhënie vendndodhjeje aktivizuar nga %1$@.";
 "ephemeral_timer_disabled_by_you" = "Çaktivizuat kohëmatësin e zhdukjes së mesazheve.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Kohëmatësi i zhdukjes së mesazheve u çaktivizua nga %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ sekonda";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ sekonda nga %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 minutë.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 minutë nga %1$@.";
 "ephemeral_timer_1_hour_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 orë.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 orë nga %1$@.";
 "ephemeral_timer_1_day_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 ditë.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 ditë nga %1$@.";
 "ephemeral_timer_1_week_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 javë.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 javë nga %1$@.";
 "ephemeral_timer_1_year_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve 1 vit.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 vit nga %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ minuta.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ minuta nga %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ orë.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ orë nga %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ ditë.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ ditë nga %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ javë.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
 "chat_unencrypted_explanation" = "Mesazhet në këtë fjalosje përdorin email klasik dhe s’janë të fshehtëzuar skaj-më-skaj.";
 "chat_protection_enabled_tap_to_learn_more" = "Mesazhet fshehtëzohen skaj-më-skaj. Prekeni, që të mësoni më tepër.";
@@ -882,9 +870,11 @@
 "qrscan_fingerprint_label" = "Shenja gishtash";
 "withdraw_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u lidhur me ju.\n\nMund ta riprodhoni, në mënyrë që kodi QR ekzistues, ose ftesa, s’do të funksionojnë më.";
 "withdraw_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nMund ta riprodhoni, në mënyrë që kodi QR ekzistues, ose ftesa, s’do të funksionojnë më.";
+"withdraw_joinbroadcast_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e kanalit “%1$@”.\n\nMund ta riprodhoni, në mënyrë që kodi QR ekzistues, ose ftesa, s’do të funksionojnë më.";
 "withdraw_qr_code" = "Riprodho Kodin QR";
 "revive_verifycontact_explain" = "Ky kod QR është riprodhuar dhe s’është më i vlefshëm.";
 "revive_verifygroup_explain" = "Ky kod QR për pjesëmarrje në grupin “%1$@” është riprodhuar dhe s’është më i vlefshëm.";
+"revive_joinbroadcast_explain" = "Ky kod QR për pjesëmarrje në kanalin “%1$@” është riprodhuar dhe s’është më i vlefshëm.";
 "revive_qr_code" = "Aktivizoni Kod QR";
 "qrshow_title" = "Kod QR Ftese";
 "qrshow_x_joining" = "%1$@ vjen.";
@@ -895,7 +885,7 @@
 "qrshow_join_group_hint" = "Për t’u bërë pjesë e grupit “%1$@”, skanojeni";
 "qrshow_join_channel_hint" = "Që të hyni në kanalin “%1$@”, skanojeni";
 "qrshow_join_contact_title" = "Kod QR Ftese";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Që të bisedoni me %1$@, skanojeni";
 "qrshow_join_contact_no_connection_toast" = "S\’ka lidhje në internet, s\’bëhet dot ujdisja e kodit QR.";
 "qraccount_ask_create_and_login" = "Të krijohet profil i ri te “%1$@” dhe të bëhet hyrja atje?";
@@ -907,7 +897,7 @@
 "qrlogin_ask_login" = "Të hyhet si “%1$@”?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Të hyhet si “%1$@”?\n\nProfili juaj ekzistues s’do të fshihet. Që të kaloni nga një profil i juaji në një tjetër, përdorni zërin “Ndërroni Profil”.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";

@@ -77,7 +77,9 @@
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
 "show_warning" = "نشووݩ داڌن هوشدار";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "نشووݩ داڌن رزم";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "بؽڌار کردن رزم";
 "not_now" = "سکو ن";
 "never" = "هیچ";
@@ -369,7 +371,7 @@
 "autodel_after_1_week" = "دیندا 1 هفته";
 "after_5_weeks" = "دیندا 5 هفته";
 "autodel_after_1_year" = "دیندا 1 سال";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ ز جرگه رئڌ.";
 "qrshow_x_joining" = "%1$@ ٱووڌ.";
 "qrshow_x_verified" = "%1$@ تاییڌ وابی.";

@@ -79,7 +79,9 @@
 "always_load_remote_images" = "Bilder immer nachladen";
 "once" = "Einmal";
 "show_warning" = "Warnung anzeigen";
+// deprecated, UI must not offer an option to show the password
 "show_password" = "Passwort anzeigen";
+// deprecated, UI must not offer an option to show the password
 "hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
 "never" = "Nie";
@@ -473,7 +475,7 @@
 "multidevice_install_dc_on_other_device" = "Delta Chat auf dem anderen Gerät installieren (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Delta Chat starten, \"Ich habe bereits ein Profil / Als Zweitgerät hinzufügen\" wählen und den QR-Code scannen";
-// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and/or address eg. "Scan to set up second device for Alice (alice@example.org)"
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Scannen, um ein zweites Gerät für %1$@ hinzuzufügen";
 "multidevice_receiver_title" = "Als Zweitgerät hinzufügen";
 "multidevice_open_settings_on_other_device" = "Auf dem ersten Gerät, gehe zu \"Einstellungen / Zweitgerät hinzufügen\" und scanne den dort angezeigten Code";
@@ -530,7 +532,7 @@
 "instant_onboarding_other_server" = "Chatmail-Server anzeigen";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
 "instant_onboarding_group_info" = "Erstelle ein Profil, um der Gruppe \"%1$@\" beizutreten.";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name and/or address
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Erstelle ein Profil, um mit %1$@ zu chatten.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Ein neues Profil erstellen und mit %1$@ chatten?";
@@ -544,10 +546,6 @@
 "login_header" = "Bei deinem E-Mail-Konto anmelden";
 // deprecated
 "login_explain" = "Mit existierendem E-Mail-Konto einloggen";
-// deprecated
-"login_subheader" = "Für bekannte E-Mail-Anbieter werden zusätzliche Einstellungen automatisch vorgenommen. Manchmal muss IMAP in der Weboberfläche eingeschaltet werden. Bitte deinen Anbieter oder Freunde um Rat, wenn es Probleme gibt.";
-// deprecated
-"login_no_servers_hint" = "Delta Chat sammelt keine Benutzerdaten, alles bleibt auf deinem Gerät.";
 "login_inbox" = "Posteingang";
 "login_imap_login" = "IMAP-Anmeldename";
 "login_imap_server" = "IMAP-Server";
@@ -559,8 +557,6 @@
 "login_smtp_server" = "SMTP-Server";
 "login_smtp_port" = "SMTP-Port";
 "login_smtp_security" = "SMTP-Sicherheit";
-// deprecated
-"login_auth_method" = "Autorisierungsmethode";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Proxy verwenden";
@@ -585,10 +581,6 @@
 "confirm_add_transport" = "Transport hinzufügen?";
 "invalid_transport_qr" = "Der gescannte QR-Code enthält keine gültigen Transportserver.";
 "confirm_remove_transport" = "Transport \"%1$@\" entfernen?\n\nDeine Kontakte können dich nur erreichen, wenn du sie zuvor über einen anderen Transport erreicht hast.\n\nIm Zweifel, entferne den Transport später.";
-// deprecated
-"login_info_oauth2_title" = "Weiter mit vereinfachter Einrichtung?";
-// deprecated
-"login_info_oauth2_text" = "Die eingegebene Adresse unterstützt eine vereinfachte Einrichtung (OAuth 2.0).\n\nBitte erlauben Sie Delta Chat im nächsten Schritt, Nachrichten zu Senden und zu Empfangen.\n\nDelta Chat sammelt keine Benutzerdaten, alles bleibt auf deinem Gerät.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
 "login_error_mail" = "Bitte eine gültige E-Mail-Adresse eingeben";
 "login_error_server" = "Bitte eine gültige Server/IP-Adresse eingeben";
@@ -692,8 +684,6 @@
 "pref_backup_explain" = "Chats auf externem Speicher speichern";
 "pref_backup_export_explain" = "Ein Backup hilft bei einer Neuinstallation auf diesem oder einem anderen Gerät.\n\nDas Backup enthält alle Nachrichten, Kontakte und Chats sowie die Ende-zu-Ende Autocrypt-Einstellungen. Das Backup bitte an einem sicheren Ort aufbewahren oder es so bald wie möglich löschen.";
 "pref_backup_export_this" = "Dieses Profil exportieren";
-// deprecated
-"pref_backup_export_x" = "%1$@ exportieren";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Alle %1$d Profile exportieren";
 "pref_backup_export_start_button" = "Backup starten";
@@ -706,10 +696,10 @@
 "pref_background_btn_default" = "Standard-Bild verwenden";
 "pref_background_btn_gallery" = "Aus Galerie auswählen";
 "pref_imap_folder_warn_disable_defaults" = "Wenn du diese Option änderst, stelle sicher, dass der Server und die anderen Geräte entsprechend konfiguriert sind\n\nAndernfalls funktionieren Dinge möglicherweise nicht wie erwartet.";
-// deprecated
-"pref_watch_sent_folder" = "Gesendet-Ordner beobachten";
-"pref_send_copy_to_self" = "Kopie an mich selbst senden";
-"pref_send_copy_to_self_explain" = "Erforderlich bei Verwendung des E-Mail-Kontos auf mehreren Geräten.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Mehrgerätemodus";
+"pref_multidevice_explain" = "Synchronisiere deine Nachrichten mit deinen anderen Geräten. Wird beim Hinzufügen eines zweiten Geräts automatisch aktiviert.";
+"pref_multidevice_change_warn" = "Der Mehrgerätemodus muss aktiviert sein, wenn dasselbe Profil auf mehreren Geräten verwendet wird. Deaktiviere diese Einstellung nur, wenn du dieses Profil von allen anderen Geräten entfernt hast.\n\nDie Deaktivierung des Mehrgerätemodus bei Verwendung des Profils auf mehreren Geräten führt zu verlorenen Nachrichten und anderen Problemen.";
 "pref_auto_folder_moves" = "Autom. Verschieben in den DeltaChat-Ordner";
 "pref_auto_folder_moves_explain" = "Konversationen verschieben für einen übersichtlichen Posteingang";
 "pref_only_fetch_mvbox_title" = "Nur aus DeltaChat-Ordner lesen";
@@ -794,8 +784,6 @@
 "autocrypt_send_asm_explain_after" = "Das Setup wurde an dich geschickt. Nun zum anderen Gerät wechseln und die Setup-Nachricht öffnen. Den Anweisungen folgen und den folgenden Setup-Code eingeben:";
 "autocrypt_prefer_e2ee" = "Ende-zu-Ende-Verschlüsselung bevorzugen";
 // system messages
-// deprecated
-"systemmsg_unknown_sender_for_chat" = "Absender ist für diesen Chat unbekannt. Siehe \"Info\" für weitere Details,";
 "systemmsg_subject_for_new_contact" = "Nachricht von %1$@";
 "systemmsg_failed_sending_to" = "Nachricht senden an %1$@ fehlgeschlagen.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -803,69 +791,69 @@
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Gruppenname geändert von \"%1$@\" zu \"%2$@\" von %3$@.";
 "group_image_changed_by_you" = "Du hast das Gruppenbild geändert.";
-// %1$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppenbild geändert von %1$@.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ hinzugefügt.";
-// %1$s will be replaced by name and address of the contact added to the group
+// %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "%1$@ hinzugefügt.";
-// %1$s will be replaced by name and address of the contact added to the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%1$@ hinzugefügt von %2$@.";
-// %1$s will be replaced by name and address of the contact removed from the group
+// %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Du hast %1$@ entfernt.";
-// %1$s will be replaced by name and address of the contact removed from the group, %2$s will be replaced by name and address of the contact who did the action
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ entfernt von %2$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Du hast die Gruppe verlassen.";
 // "left" in the meaning of "exited".
 "channel_left_by_you" = "Du hast den Kanal verlassen.";
 "you_joined_the_channel" = "Du bist dem Kanal beigetreten.";
-// "left" in the meaning of "exited"; %1$s will be replaced by name and address of the contact leaving the group
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Gruppe verlassen von %1$@.";
 "group_image_deleted_by_you" = "Du hast das Gruppenbild gelöscht.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gruppenbild gelöscht von %1$@.";
 "location_enabled_by_you" = "Du hast die Standortübertragung aktiviert.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "Standortübertragung aktiviert von %1$@.";
 "ephemeral_timer_disabled_by_you" = "Du hast verschwindende Nachrichten ausgeschaltet.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Verschwindende Nachrichten ausgeschaltet von %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
 "ephemeral_timer_seconds_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt.";
-// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt von %2$@.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Minute gesetzt.";
 // deprecated, usage needs to be removed in core
 "ephemeral_timer_1_minute_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 MInute gesetzt von %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Stunde gesetzt.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 Stunde gesetzt von %1$@.";
 "ephemeral_timer_1_day_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Tag gesetzt.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_day_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 Tag gesetzt von %1$@.";
 "ephemeral_timer_1_week_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Woche gesetzt.";
-// %1$s will be replaced by name and address of the contact
+// %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 Woche gesetzt von %1$@.";
 "ephemeral_timer_1_year_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Jahr gesetzt.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 Jahr gesetzt von %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Minuten gesetzt.";
-// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Minuten gesetzt von %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Stunden gesetzt.";
-// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Stunden gesetzt von %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Tage gesetzt.";
-// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Tage gesetzt von %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt.";
-// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name and address of the contact
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt von %2$@.";
 "chat_unencrypted_explanation" = "Dieser Chat verwendet klassische E-Mails und ist nicht Ende-zu-Ende-verschlüsselt.";
 "chat_protection_enabled_tap_to_learn_more" = "Nachrichten sind Ende-zu-Ende-verschlüsselt. Tippen, um mehr zu erfahren.";
@@ -912,11 +900,11 @@
 "qrshow_join_group_hint" = "Scannen, um der Gruppe \"%1$@\" beizutreten";
 "qrshow_join_channel_hint" = "Scannen, um dem Kanal \"%1$@\" beizutreten";
 "qrshow_join_contact_title" = "QR-Einladungscode";
-// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by name and address eg. "Scan to chat with Alice (alice@example.org)"
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Scannen für Chat mit %1$@";
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
 "qraccount_ask_create_and_login" = "Profil auf \"%1$@\" erzeugen und dort anmelden?";
-"qraccount_ask_create_and_login_another" = "Profil auf \"%1$@\" erzeugen und dort anmelden?\n\nDein bisheriges E-Mail-Konto wird dabei nicht gelöscht. Du kannst mit der Option \"E-Mail-Konto wechseln\" jederzeit zwischen den Konten hin- und herschalten.";
+"qraccount_ask_create_and_login_another" = "Profil auf \"%1$@\" erzeugen und dort anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Konten hin- und herschalten.";
 "set_name_and_avatar_explain" = "Lege einen Namen fest, unter dem deine Kontakte dich kennen. Du kannst auch ein Profilbild festlegen.";
 "please_enter_name" = "Bitte gib einen Namen an.";
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues Profil zu erstellen.";
@@ -924,7 +912,7 @@
 "qrlogin_ask_login" = "Bei \"%1$@\" anmelden?";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login_another" = "Bei \"%1$@\" anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Profilen hin- und herschalten.";
-// first placeholder will be replaced by name and address of the inviter, second placeholder will be replaced by the name of the inviter.
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
