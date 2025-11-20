@@ -14,18 +14,19 @@
 - Links in messages are now highlighted
 - Improve navigation in offline help
 - Opened in-chat apps got an 'About Apps' menu item
+- Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
 - Fix: Share to Delta Chat when already in Delta Chat now works
 - Fix: Drag and Dropping text into the chat
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 - Update translations and local help
-- Update core to 2.26.0
+- Update core to 2.27.0
 
 
 ## v2.22.2 Testflight
 
-- Streamline 'All media' view width desktop and android
+- Use same 'All media' tab order as desktop and android
 - Update chatmail relay list
 - Remove "Watch Sent Folder" preference
 - Fix: Unify font of lettered avatars
