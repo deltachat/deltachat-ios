@@ -33,6 +33,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
 
+    /// Set additionalSafeAreaInsets on this view controller to cause PiP to avoid that area.
+    /// Specifically this is used to avoid the draft area so you can see what you are typing while in a call
+    private lazy var pipInsetViewController: UIViewController = {
+        let controller = UIViewController()
+        addChild(controller)
+        view.addSubview(controller.view)
+        view.sendSubviewToBack(controller.view)
+        controller.didMove(toParent: self)
+        return controller
+    }()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -234,7 +245,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView] notification in
+        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -250,6 +261,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // the bottom of the content to the top of the keyboard.
                     tableView.contentOffset.y -= inset + tableView.contentOffset.y
                 }
+                self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - tableView.safeAreaInsets.bottom
             }
         }
 
