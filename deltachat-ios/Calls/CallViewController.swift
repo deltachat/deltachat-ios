@@ -3,7 +3,6 @@ import UIKit
 import WebKit
 import WebRTC
 
-// TODO: Delete the calls web app from this repo
 // TODO: "Connecting..." and "Ringing..." status messages
 // TODO: Minimize call to PiP when app is opened from a deeplink (or from a notification)
 // TODO: Avatar instead of remote camera view when there is no camera feed
