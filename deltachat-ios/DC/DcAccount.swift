@@ -8,12 +8,11 @@ struct JsonrpcReturnError: Decodable {
     let error: JsonrpcError
 }
 
-struct JsonrpcIntResult: Decodable {
-    let result: Int
-}
+typealias JsonrpcIntResult = JsonrpcResult<Int>
+typealias JsonrpcStringResult = JsonrpcResult<String>
 
-struct JsonrpcStringResult: Decodable {
-    let result: String
+struct JsonrpcResult<T: Decodable>: Decodable {
+    let result: T
 }
 
 /// Represents [dc_accounts_t](https://c.delta.chat/classdc__accounts__t.html)
@@ -108,6 +107,11 @@ public class DcAccounts {
                     } else {
                         dc_accounts_start_io(accountsPointer)
                         NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
+                        // Post incoming call event that came in while app was in background
+                        if let callPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
+                            UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
+                            NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: callPayload)
+                        }
                     }
                 }
             }
@@ -167,7 +171,7 @@ public class DcAccounts {
         }
     }
 
-    public func getFreshMessageCount(skipCurrent: Bool = false) -> Int {
+    public func getFreshMessagesCount(skipCurrent: Bool = false) -> Int {
         var freshCount = 0
         let skipId = skipCurrent ? getSelected().id : -1
         for accountId in getAll() {

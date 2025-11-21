@@ -58,9 +58,8 @@ class CallManager: NSObject {
     }
 
     func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
-        if isCalling() {
-            logger.warning("already calling")
-            return
+        guard !isCalling() else {
+            return logger.warning("already calling")
         }
 
         let uuid = UUID()
@@ -95,7 +94,19 @@ class CallManager: NSObject {
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int,
               let placeCallInfo = ui["place_call_info"] as? String else { return }
+        if !canUseCallKit {
+            let dcContext = DcAccounts.shared.get(id: accountId)
+            let dcMsg = dcContext.getMessage(id: msgId)
+            let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
+            if let content = UNMutableNotificationContent(forIncomingCallMsg: dcMsg, chat: dcChat, context: dcContext) {
+                let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
+        }
+        guard !isCalling() else { return }
         reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
+
+
     }
 
     // this function is called from didReceiveIncomingPushWith
@@ -122,17 +133,6 @@ class CallManager: NSObject {
                 if let error {
                     logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
                 }
-            }
-        } else {
-            let content = UNMutableNotificationContent(
-                forIncomingCall: uuid,
-                msg: dcMsg,
-                chat: dcChat,
-                context: dcContext
-            )
-            if let content {
-                let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
         }
     }
@@ -171,12 +171,7 @@ class CallManager: NSObject {
                 let dcContext = DcAccounts.shared.get(id: accountId)
                 let dcMsg = dcContext.getMessage(id: msgId)
                 let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-                let content = UNMutableNotificationContent(
-                    forMissedCall: currentCall.uuid,
-                    msg: dcMsg,
-                    chat: dcChat,
-                    context: dcContext
-                )
+                let content = UNMutableNotificationContent(forMissedCallMsg: dcMsg, chat: dcChat, context: dcContext)
                 if let content {
                     let id = "missed-call-" + currentCall.uuid.uuidString
                     let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
@@ -187,8 +182,10 @@ class CallManager: NSObject {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
 
-        DispatchQueue.main.async {
-            CallWindow.shared?.quitCallUI()
+        if currentCall == nil || (currentCall?.contextId == accountId && currentCall?.messageId == msgId) {
+            DispatchQueue.main.async {
+                CallWindow.shared?.quitCallUI()
+            }
         }
 
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [
@@ -247,11 +244,6 @@ class CallManager: NSObject {
         }
     }
 
-
-    func answerIncomingCall(withUUID uuid: UUID) {
-        guard currentCall?.uuid == uuid else { return }
-        answerIncomingCall()
-    }
     func answerIncomingCall(forMessage msgId: Int, chatId: Int, contextId: Int) {
         guard currentCall?.messageId == msgId, currentCall?.chatId == chatId, currentCall?.contextId == contextId else { return }
         answerIncomingCall()

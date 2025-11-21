@@ -15,7 +15,8 @@ target 'deltachat-ios' do
   pod 'SDWebImageSVGKitPlugin'
   pod 'SVGKit', :modular_headers => true
   pod 'MCEmojiPicker', :git => 'https://github.com/deltachat/MCEmojiPicker', :branch => 'main'
-
+  # version 141.0.0 is broken see https://github.com/stasel/WebRTC/issues/132
+  pod 'WebRTC-lib', '140.0.0'
 end
 
 target 'DcShare' do
