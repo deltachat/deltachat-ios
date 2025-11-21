@@ -263,7 +263,7 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
-        let numberOfUnreadMessages = DcAccounts.shared.getFreshMessageCount()
+        let numberOfUnreadMessages = DcAccounts.shared.getFreshMessagesCount()
 
         if isArchive {
             navigationItem.backBarButtonItem = nil
@@ -695,7 +695,7 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateAccountButton() {
-        let unreadMessages = dcAccounts.getFreshMessageCount(skipCurrent: true)
+        let unreadMessages = dcAccounts.getFreshMessagesCount(skipCurrent: true)
         accountButtonAvatar.setUnreadMessageCount(unreadMessages)
         if unreadMessages > 0 {
             accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"

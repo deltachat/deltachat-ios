@@ -55,8 +55,8 @@ public extension UNMutableNotificationContent {
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 
-    convenience init?(forIncomingCall uuid: UUID, msg: DcMsg, chat: DcChat, context: DcContext) {
-        guard !context.isMuted(), !chat.isMuted else { return nil }
+    convenience init?(forIncomingCallMsg msg: DcMsg, chat: DcChat, context: DcContext) {
+        guard !context.isMuted(), !chat.isMuted, !canUseCallKit else { return nil }
         self.init()
         let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
         title = chat.isMultiUser ? chat.name : sender
@@ -64,14 +64,14 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
-        userInfo["answer_call"] = uuid.uuidString
+        userInfo["answer_call"] = true
         threadIdentifier = "calls"
         sound = .default // TODO: Ring?
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 
-    convenience init?(forMissedCall: UUID, msg: DcMsg, chat: DcChat, context: DcContext) {
-        guard !context.isMuted(), !chat.isMuted else { return nil }
+    convenience init?(forMissedCallMsg msg: DcMsg, chat: DcChat, context: DcContext) {
+        guard !context.isMuted(), !chat.isMuted, !canUseCallKit else { return nil }
         self.init()
         let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
         title = chat.isMultiUser ? chat.name : sender
