@@ -10,6 +10,7 @@ import WebRTC
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic and camera when muted/cam off
 // TODO: Can't receive notifications while in a call (because NotificationService requires main app not running)
+// TODO: Integrate with CallKit again
 
 class CallWindow: UIWindow {
     static var shared: CallWindow? {
