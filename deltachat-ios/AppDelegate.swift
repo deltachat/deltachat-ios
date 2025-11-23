@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
            let host = components.host {
             logger.info("➡️ open univeral link url")
 
-            if host == "i.delta.chat" {
+            if host == Utils.inviteDomain {
                 appCoordinator.handleQRCode(incomingURL.absoluteString)
                 return true
             } else {
@@ -217,7 +217,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("➡️ open url")
 
         switch url.scheme?.lowercased() {
-        case "dcaccount", "dclogin":
+        case "dcaccount", "dclogin",
+             "https" where url.host == Utils.inviteDomain:
             appCoordinator.handleQRCode(url.absoluteString)
             return true
         case "openpgp4fpr":

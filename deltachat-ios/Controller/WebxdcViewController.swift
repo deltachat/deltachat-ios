@@ -360,21 +360,25 @@ class WebxdcViewController: WebViewViewController {
     }
 
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url {
-            if url.scheme == "mailto" {
-                openChatFor(url: url)
-                decisionHandler(.cancel)
-                return
-            } else if url.scheme?.lowercased() == "openpgp4fpr" {
-                UIApplication.shared.open(url)
-                decisionHandler(.cancel)
-                return
-            } else if url.scheme != INTERNALSCHEMA {
-                decisionHandler(.cancel)
-                return
-            }
+        guard let url = navigationAction.request.url else {
+            return decisionHandler(.allow)
         }
-        decisionHandler(.allow)
+        switch url.scheme?.lowercased() {
+        case INTERNALSCHEMA:
+            decisionHandler(.allow)
+        case "mailto":
+            openChatFor(url: url)
+            decisionHandler(.cancel)
+        case "https" where url.host == Utils.inviteDomain,
+             "openpgp4fpr":
+            _ = UIApplication.shared.delegate?.application?(UIApplication.shared, open: url)
+            decisionHandler(.cancel)
+        case "geo":
+            UIApplication.shared.open(url)
+            decisionHandler(.cancel)
+        default:
+            decisionHandler(.cancel)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
