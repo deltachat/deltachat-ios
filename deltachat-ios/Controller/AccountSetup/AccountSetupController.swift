@@ -61,6 +61,9 @@ class AccountSetupController: UITableViewController {
         cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = .next
+        if editView {
+            cell.textField.isUserInteractionEnabled = false
+        }
         return cell
     }()
 
