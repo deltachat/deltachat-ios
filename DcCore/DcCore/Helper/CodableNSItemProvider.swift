@@ -36,6 +36,8 @@ public enum CodableNSItemProvider: Codable {
             case UTType.quickTimeMovie.identifier: loadFileURL(forType: .quickTimeMovie, DC_MSG_VIDEO)
             case UTType.movie.identifier: loadFileURL(forType: .movie, DC_MSG_VIDEO)
             case UTType.video.identifier: loadFileURL(forType: .video, DC_MSG_VIDEO)
+            case UTType.fileURL.identifier where provider.hasItemConformingToTypeIdentifier(UTType.data.identifier):
+                loadFileURL(forType: .data, DC_MSG_FILE)
             case UTType.url.identifier: loadText(forType: .url)
             case UTType.plainText.identifier: loadText(forType: .plainText)
             case UTType.text.identifier: loadText(forType: .text)
@@ -47,9 +49,7 @@ public enum CodableNSItemProvider: Codable {
                     guard let url else {
                         return continuation.resume(throwing: error ?? Error.providerDidNotReturnValueNorError)
                     }
-                    let tempFile = shareExtensionDirectory
-                        .appendingPathComponent(UUID().uuidString)
-                        .appendingPathExtension(url.pathExtension)
+                    let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
                     do {
                         // If an app shares a UIImage instead of a path (eg the native screenshot process)
                         // the file we receive is a PList so we need to load the UIImage differently.
