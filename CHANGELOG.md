@@ -21,6 +21,7 @@
 - Fix: Drag and Dropping text into the chat
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
+- Fix: Fixed bug where sharing files through the share extension did not work
 - Update translations and local help
 - Update core to 2.27.0
 
