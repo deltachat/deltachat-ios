@@ -50,12 +50,25 @@ internal final class AdvancedViewController: UITableViewController {
         return cell
     }()
 
-    lazy var sendCopyToSelfCell: SwitchCell = {
+    lazy var multiDeviceModeCell: SwitchCell = {
         return SwitchCell(
-            textLabel: String.localized("pref_send_copy_to_self"),
+            textLabel: String.localized("pref_multidevice"),
             on: dcContext.getConfigBool("bcc_self"),
             action: { cell in
-                self.dcContext.setConfigBool("bcc_self", cell.isOn)
+                if cell.isOn {
+                    self.dcContext.setConfigBool("bcc_self", true)
+                } else {
+                    let alert = UIAlertController(title: String.localized("pref_multidevice"),
+                        message: String.localized("pref_multidevice_change_warn"),
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { _ in
+                        self.dcContext.setConfigBool("bcc_self", false)
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+                        cell.uiSwitch.setOn(true, animated: true)
+                    }))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
         })
     }()
 
@@ -204,8 +217,8 @@ internal final class AdvancedViewController: UITableViewController {
         if dcContext.isChatmail {
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
-                footerTitle: nil,
-                cells: [accountSettingsCell, proxySettingsCell])
+                footerTitle: String.localized("pref_multidevice_explain"),
+                cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
             return [viewLogSection, experimentalSection, serverSection]
         } else {
             let appAccessSection = SectionConfigs(
@@ -214,8 +227,8 @@ internal final class AdvancedViewController: UITableViewController {
                 cells: [showSystemContactsCell])
             let serverSection = SectionConfigs(
                 headerTitle: String.localized("pref_server"),
-                footerTitle: String.localized("pref_only_fetch_mvbox_explain"),
-                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, sendCopyToSelfCell, mvboxMoveCell, onlyFetchMvboxCell])
+                footerTitle: String.localized("pref_multidevice_explain"),
+                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell, multiDeviceModeCell])
             return [viewLogSection, experimentalSection, appAccessSection, serverSection]
         }
     }()
