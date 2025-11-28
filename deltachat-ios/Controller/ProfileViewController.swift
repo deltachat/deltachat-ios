@@ -23,13 +23,15 @@ class ProfileViewController: UITableViewController {
         case addr
     }
 
+    enum ManageMembersActions {
+        case addMembers
+        case qrInvite
+    }
+
     private var sections: [Sections] = []
     private var options: [Options] = []
     private var actions: [Actions] = []
-
-    private let membersRowAddMembers = 0
-    private let membersRowQrInvite = 1
-    private var memberManagementRows: Int = 0
+    private var manageMembersActions: [ManageMembersActions] = []
 
     private let dcContext: DcContext
     private let chatId: Int
@@ -246,6 +248,7 @@ class ProfileViewController: UITableViewController {
     private func updateOptions() {
         options = []
         actions = []
+        manageMembersActions = []
 
         if isSavedMessages || !(contact?.status.isEmpty ?? true) {
             options.append(.bio)
@@ -263,12 +266,12 @@ class ProfileViewController: UITableViewController {
 
         options.append(.media) // add unconditionally, to have a visual anchor
 
-        memberManagementRows = 0
         if let chat {
             if isOutBroadcast {
-                memberManagementRows = 1
+                manageMembersActions.append(.qrInvite)
             } else if isGroup && chat.canSend && chat.isEncrypted {
-                memberManagementRows = 2
+                manageMembersActions.append(.addMembers)
+                manageMembersActions.append(.qrInvite)
             }
         }
 
@@ -667,11 +670,11 @@ class ProfileViewController: UITableViewController {
     // MARK: - UITableViewDatasource, UITableViewDelegate
 
     private func isMemberManagementRow(row: Int) -> Bool {
-        return row < memberManagementRows
+        return row < manageMembersActions.count
     }
 
     private func getMemberIdFor(_ row: Int) -> Int {
-        let index = row - memberManagementRows
+        let index = row - manageMembersActions.count
         if index >= 0 && index < memberIds.count {
             return memberIds[index]
         } else {
@@ -698,7 +701,7 @@ class ProfileViewController: UITableViewController {
         case .options:
             return options.count
         case .members:
-            return memberIds.count + memberManagementRows
+            return manageMembersActions.count + memberIds.count
         case .sharedChats:
             return sharedChats?.length ?? 0
         case .actions:
@@ -729,11 +732,12 @@ class ProfileViewController: UITableViewController {
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
                 guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { return UITableViewCell() }
-                if indexPath.row == membersRowAddMembers {
+                switch manageMembersActions[indexPath.row] {
+                case .addMembers:
                     actionCell.actionTitle = String.localized(isOutBroadcast ? "add_recipients" : "group_add_members")
                     actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
-                } else if indexPath.row == membersRowQrInvite {
+                case .qrInvite:
                     actionCell.actionTitle = String.localized("qrshow_join_group_title")
                     actionCell.imageView?.image = UIImage(systemName: "qrcode")
                     actionCell.actionColor = UIColor.systemBlue
@@ -779,9 +783,10 @@ class ProfileViewController: UITableViewController {
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
                 guard let chat else { return }
-                if indexPath.row == membersRowAddMembers {
+                switch manageMembersActions[indexPath.row] {
+                case .addMembers:
                     showAddGroupMember(chatId: chat.id)
-                } else if indexPath.row == membersRowQrInvite {
+                case .qrInvite:
                     showQrCodeInvite(chatId: chat.id)
                 }
             } else {
@@ -850,7 +855,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func removeMemberFromTableAt(_ indexPath: IndexPath) {
-        memberIds.remove(at: indexPath.row - memberManagementRows)
+        memberIds.remove(at: indexPath.row - manageMembersActions.count)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         updateHeader()
     }
