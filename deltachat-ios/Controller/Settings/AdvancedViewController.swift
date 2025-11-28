@@ -213,23 +213,19 @@ internal final class AdvancedViewController: UITableViewController {
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
             cells: [broadcastListsCell, callsCell, locationStreamingCell])
+        let serverSection = SectionConfigs(
+            headerTitle: String.localized("pref_server"),
+            footerTitle: String.localized("pref_multidevice_explain"),
+            cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
 
         if dcContext.isChatmail {
-            let serverSection = SectionConfigs(
-                headerTitle: String.localized("pref_server"),
-                footerTitle: String.localized("pref_multidevice_explain"),
-                cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
             return [viewLogSection, experimentalSection, serverSection]
         } else {
-            let appAccessSection = SectionConfigs(
-                headerTitle: nil,
-                footerTitle: String.localized("pref_show_system_contacts_explain"),
-                cells: [showSystemContactsCell])
-            let serverSection = SectionConfigs(
-                headerTitle: String.localized("pref_server"),
-                footerTitle: String.localized("pref_multidevice_explain"),
-                cells: [accountSettingsCell, proxySettingsCell, showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell, multiDeviceModeCell])
-            return [viewLogSection, experimentalSection, appAccessSection, serverSection]
+            let legacySection = SectionConfigs(
+                headerTitle: "Legacy Options",
+                footerTitle: nil,
+                cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell, showSystemContactsCell])
+            return [viewLogSection, experimentalSection, serverSection, legacySection]
         }
     }()
 
