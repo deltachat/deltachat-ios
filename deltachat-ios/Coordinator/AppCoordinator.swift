@@ -361,6 +361,15 @@ class AppCoordinator: NSObject {
                 dcContext: dcContext
             )
 
+        case DC_QR_ASK_VERIFYBROADCAST:
+            let broadcastName = qrParsed.text1 ?? "ErrBroadcastName"
+            joinSecureJoin(
+                alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_channel"), broadcastName),
+                code: code,
+                viewController: viewController,
+                dcContext: dcContext
+            )
+
         case DC_QR_FPR_WITHOUT_ADDR:
             let msg = String.localized("qrscan_no_addr_found") + "\n\n" +
                 String.localized("qrscan_fingerprint_label") + ":\n" + (qrParsed.text1 ?? "")
