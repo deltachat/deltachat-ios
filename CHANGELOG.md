@@ -11,6 +11,7 @@
 - data saving: do not send Autocrypt header in read receipts
 - improve onboarding speed
 - Share flow rework
+- New "Advanced / Multi-Device Mode" option instead of "Delete from server"
 - Links in messages are now highlighted
 - Improve navigation in offline help
 - Opened in-chat apps got an 'About Apps' menu item
