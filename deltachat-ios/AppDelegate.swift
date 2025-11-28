@@ -115,6 +115,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     logger.error("\(error)")
                 }
             }
+
+            // migration 2025-11-28: needed until core starts ignoring "delete_server_after" for chatmail or drops the setting at all
+            if dcContext.isChatmail {
+                dcContext.setConfig("delete_server_after", nil) // reset - let core decide based on bcc_self aka "Multi-Transport Mode"
+            }
+            // /migration 2025-11-28
         }
 
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
