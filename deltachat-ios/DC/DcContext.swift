@@ -577,11 +577,7 @@ public class DcContext {
     }
 
     public func setConfig(_ key: String, _ value: String?) {
-        if let value {
-            dc_set_config(self.contextPointer, key, value)
-        } else {
-            dc_set_config(self.contextPointer, key, nil)
-        }
+        dc_set_config(self.contextPointer, key, value)
     }
 
     public func getConfigBool(_ key: String) -> Bool {
