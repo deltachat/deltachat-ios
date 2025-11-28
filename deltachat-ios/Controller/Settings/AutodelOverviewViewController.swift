@@ -36,11 +36,16 @@ class AutodelOverviewViewController: UITableViewController {
             headerTitle: String.localized("autodel_device_title"),
             cells: [autodelDeviceCell]
         )
-        let autodelSection2 = SectionConfigs(
-            headerTitle: String.localized("autodel_server_title"),
-            cells: [autodelServerCell]
-        )
-        return [autodelSection, autodelSection2]
+
+        if dcContext.isChatmail {
+            return [autodelSection]
+        } else {
+            let autodelSection2 = SectionConfigs(
+                headerTitle: String.localized("autodel_server_title"),
+                cells: [autodelServerCell]
+            )
+            return [autodelSection, autodelSection2]
+        }
     }()
 
     init(dcContext: DcContext) {
