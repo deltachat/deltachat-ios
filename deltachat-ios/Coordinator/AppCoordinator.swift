@@ -447,7 +447,7 @@ class AppCoordinator: NSObject {
             }))
             viewController.present(alert, animated: true)
 
-        case DC_QR_REVIVE_VERIFYCONTACT, DC_QR_REVIVE_VERIFYGROUP:
+        case DC_QR_REVIVE_VERIFYCONTACT, DC_QR_REVIVE_VERIFYGROUP, DC_QR_REVIVE_JOINBROADCAST:
             let alert = UIAlertController(title: String.localized("revive_verifycontact_explain"),
                                           message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
@@ -456,10 +456,10 @@ class AppCoordinator: NSObject {
             }))
             viewController.present(alert, animated: true)
 
-        case DC_QR_WITHDRAW_VERIFYGROUP:
-            guard let groupName = qrParsed.text1 else { return }
-            let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("withdraw_verifygroup_explain"), groupName),
-                                          message: nil, preferredStyle: .alert)
+        case DC_QR_WITHDRAW_VERIFYGROUP, DC_QR_WITHDRAW_JOINBROADCAST:
+            guard let name = qrParsed.text1 else { return }
+            let msg = String.localizedStringWithFormat(String.localized(state == DC_QR_WITHDRAW_JOINBROADCAST ? "withdraw_joinbroadcast_explain" : "withdraw_verifygroup_explain"), name)
+            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default))
             alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { _ in
                 _ = dcContext.setConfigFromQR(qrCode: code)
