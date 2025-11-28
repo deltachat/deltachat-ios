@@ -18,6 +18,8 @@
 - Address at 'Edit Transport' cannot be edited
 - Open geo: url and invite links from webxdc
 - stop scanning system address book as it does no longer help on getting in contact
+- Add members to channels by QR codes
+- Channel QR codes can be withdrawn and revived
 - Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
 - Fix: Share to Delta Chat when already in Delta Chat now works
