@@ -69,7 +69,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     init(dcContext: DcContext, createMode: CreateMode, templateChatId: Int? = nil) {
         self.createMode = createMode
         self.dcContext = dcContext
-        self.sections = [.details, .invite, .members]
         if createMode == .createEmail {
             self.detailsRows = [.name]
         } else {
@@ -77,8 +76,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         self.inviteRows = [.addMembers]
         if createMode == .createBroadcast {
+            self.sections = [.details, .members]
             self.contactIdsForGroup = []
         } else {
+            self.sections = [.details, .invite, .members]
             self.contactIdsForGroup = [Int(DC_CONTACT_ID_SELF)]
         }
         if let templateChatId = templateChatId {
@@ -122,7 +123,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func checkDoneButton() {
         let name = groupNameCell.textField.text ?? ""
         let nameOk = !name.isEmpty
-        doneButton.isEnabled = nameOk && contactIdsForGroup.count >= 1
+        doneButton.isEnabled = nameOk
     }
 
     private func allMembersVerified() -> Bool {
