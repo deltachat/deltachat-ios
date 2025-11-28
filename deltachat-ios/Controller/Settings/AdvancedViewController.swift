@@ -207,25 +207,29 @@ internal final class AdvancedViewController: UITableViewController {
     private lazy var sections: [SectionConfigs] = {
         let viewLogSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: String.localized("enable_realtime_explain"),
-            cells: [viewLogCell, realtimeChannelsCell])
-        let experimentalSection = SectionConfigs(
-            headerTitle: String.localized("pref_experimental_features"),
             footerTitle: nil,
-            cells: [broadcastListsCell, callsCell, locationStreamingCell])
+            cells: [viewLogCell])
         let serverSection = SectionConfigs(
             headerTitle: String.localized("pref_server"),
             footerTitle: String.localized("pref_multidevice_explain"),
             cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
+        let experimentalSection = SectionConfigs(
+            headerTitle: String.localized("pref_experimental_features"),
+            footerTitle: nil,
+            cells: [broadcastListsCell, callsCell, locationStreamingCell])
+        let miscSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: String.localized("enable_realtime_explain"),
+            cells: [realtimeChannelsCell])
 
         if dcContext.isChatmail {
-            return [viewLogSection, experimentalSection, serverSection]
+            return [viewLogSection, serverSection, experimentalSection, miscSection]
         } else {
             let legacySection = SectionConfigs(
                 headerTitle: "Legacy Options",
                 footerTitle: nil,
                 cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell, showSystemContactsCell])
-            return [viewLogSection, experimentalSection, serverSection, legacySection]
+            return [viewLogSection, serverSection, experimentalSection, miscSection, legacySection]
         }
     }()
 
