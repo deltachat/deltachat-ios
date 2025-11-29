@@ -44,7 +44,7 @@ public enum CodableNSItemProvider: Codable {
             default: continuation.resume(throwing: Error.unknownType)
             }
             func loadFileURL() {
-                provider.loadObject(ofClass: URL.self) { url, error in
+                _ = provider.loadObject(ofClass: URL.self) { url, error in
                     if let url {
                         do {
                             let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
