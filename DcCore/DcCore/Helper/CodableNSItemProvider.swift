@@ -44,15 +44,18 @@ public enum CodableNSItemProvider: Codable {
             default: continuation.resume(throwing: Error.unknownType)
             }
             func loadFileURL() {
-                provider.loadObject(ofClass: NSURL.self) { url, error in
-                    if let url = url as? URL, FileManager.default.isReadableFile(atPath: url.absoluteString) {
+                provider.loadObject(ofClass: URL.self) { url, error in
+                    if let url {
                         do {
                             let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
                             try FileManager.default.copyItem(at: url, to: tempFile)
                             let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE
                             return continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
-                        } catch {}
+                        } catch {
+                            logger.error("Failed to copy file from fileUrl with error \(error)")
+                        }
                     }
+                    // Fallback in case we could not load the url or access the file at the location of the url
                     if provider.hasItemConformingToTypeIdentifier(UTType.item.identifier) {
                         loadFile(forType: .item, DC_MSG_FILE)
                     } else {
