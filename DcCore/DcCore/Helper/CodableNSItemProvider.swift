@@ -27,29 +27,48 @@ public enum CodableNSItemProvider: Codable {
     public init(from provider: NSItemProvider) async throws {
         self = try await withCheckedThrowingContinuation { continuation in
             switch provider.hasItemConformingToTypeIdentifier {
-            case UTType.gif.identifier: loadFileURL(forType: .gif, DC_MSG_GIF, plistToImage: true)
-            case UTType.webP.identifier: loadFileURL(forType: .webP, DC_MSG_IMAGE, plistToImage: true)
-            case UTType.png.identifier: loadFileURL(forType: .png, DC_MSG_IMAGE, plistToImage: true)
-            case UTType.jpeg.identifier: loadFileURL(forType: .jpeg, DC_MSG_IMAGE, plistToImage: true)
-            case UTType.image.identifier: loadFileURL(forType: .image, DC_MSG_IMAGE, plistToImage: true)
-            case UTType.mpeg4Movie.identifier: loadFileURL(forType: .mpeg4Movie, DC_MSG_VIDEO)
-            case UTType.quickTimeMovie.identifier: loadFileURL(forType: .quickTimeMovie, DC_MSG_VIDEO)
-            case UTType.movie.identifier: loadFileURL(forType: .movie, DC_MSG_VIDEO)
-            case UTType.video.identifier: loadFileURL(forType: .video, DC_MSG_VIDEO)
+            case UTType.gif.identifier: loadFile(forType: .gif, DC_MSG_GIF, plistToImage: true)
+            case UTType.webP.identifier: loadFile(forType: .webP, DC_MSG_IMAGE, plistToImage: true)
+            case UTType.png.identifier: loadFile(forType: .png, DC_MSG_IMAGE, plistToImage: true)
+            case UTType.jpeg.identifier: loadFile(forType: .jpeg, DC_MSG_IMAGE, plistToImage: true)
+            case UTType.image.identifier: loadFile(forType: .image, DC_MSG_IMAGE, plistToImage: true)
+            case UTType.mpeg4Movie.identifier: loadFile(forType: .mpeg4Movie, DC_MSG_VIDEO)
+            case UTType.quickTimeMovie.identifier: loadFile(forType: .quickTimeMovie, DC_MSG_VIDEO)
+            case UTType.movie.identifier: loadFile(forType: .movie, DC_MSG_VIDEO)
+            case UTType.video.identifier: loadFile(forType: .video, DC_MSG_VIDEO)
+            case UTType.fileURL.identifier: loadFileURL()
             case UTType.url.identifier: loadText(forType: .url)
             case UTType.plainText.identifier: loadText(forType: .plainText)
             case UTType.text.identifier: loadText(forType: .text)
-            case UTType.item.identifier: loadFileURL(forType: .item, DC_MSG_FILE)
+            case UTType.item.identifier: loadFile(forType: .item, DC_MSG_FILE)
             default: continuation.resume(throwing: Error.unknownType)
             }
-            func loadFileURL(forType type: UTType, _ viewType: Int32, plistToImage: Bool = false) {
+            func loadFileURL() {
+                _ = provider.loadObject(ofClass: URL.self) { url, error in
+                    if let url {
+                        do {
+                            let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
+                            try FileManager.default.copyItem(at: url, to: tempFile)
+                            let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE
+                            return continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
+                        } catch {
+                            logger.error("Failed to copy file from fileUrl with error \(error)")
+                        }
+                    }
+                    // Fallback in case we could not load the url or access the file at the location of the url
+                    if provider.hasItemConformingToTypeIdentifier(UTType.item.identifier) {
+                        loadFile(forType: .item, DC_MSG_FILE)
+                    } else {
+                        loadText(forType: .fileURL)
+                    }
+                }
+            }
+            func loadFile(forType type: UTType, _ viewType: Int32, plistToImage: Bool = false) {
                 provider.loadFileRepresentation(forTypeIdentifier: type.identifier) { url, error in
                     guard let url else {
                         return continuation.resume(throwing: error ?? Error.providerDidNotReturnValueNorError)
                     }
-                    let tempFile = shareExtensionDirectory
-                        .appendingPathComponent(UUID().uuidString)
-                        .appendingPathExtension(url.pathExtension)
+                    let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
                     do {
                         // If an app shares a UIImage instead of a path (eg the native screenshot process)
                         // the file we receive is a PList so we need to load the UIImage differently.
@@ -64,6 +83,7 @@ public enum CodableNSItemProvider: Codable {
                             }
                         } else {
                             try FileManager.default.copyItem(at: url, to: tempFile)
+                            let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : viewType
                             continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
                         }
                     } catch {
