@@ -1,5 +1,4 @@
 NSCameraUsageDescription = "Delta Chat usa la càmera per a fer i enviar fotos i vídeos i per a escanejar codis QR.";
-NSContactsUsageDescription = "Delta Chat usa els vostres contactes per a mostrar una llista d\'adreces electròniques on podeu escriure. Delta Chat no té cap servidor, els contactes no s\'envien enlloc.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat necessita permisos per a compartir la vostra ubicació durant el temps que heu habilitat la compartició de la ubicació.";
 NSLocationWhenInUseUsageDescription = "Delta Chat necessita permisos per a compartir la vostra ubicació durant el temps que heu habilitat la compartició de la ubicació.";
 NSMicrophoneUsageDescription = "Delta Chat usa el vostre micròfon per a enregistrar i enviar missatges de veu i vídeos amb so.";

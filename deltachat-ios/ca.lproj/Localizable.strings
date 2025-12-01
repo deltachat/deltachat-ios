@@ -287,6 +287,7 @@
 "menu_save_log" = "Desa el registre";
 "menu_more_options" = "Més opcions";
 "menu_learn_spelling" = "Aprèn l\'ortografia";
+// deprecated
 "menu_chat_audit_log" = "Registre de l\'auditoria de xat";
 "jump_to_message" = "Ves al missatge";
 "jump_to_original_message" = "Vés al Missatge Original";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Voleu obrir aquest enllaç?";
 // contact list
 "contacts_title" = "Llista de contactes";
+// deprecated
 "contacts_enter_name_or_email" = "Introduïu el vostre nom o la vostra adreça de correu electrònic";
 "contacts_type_email_above" = "Escriviu l\'adreça d\'email superior";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Mostra les ubicacions al llarg del temps";
 "show_location_traces" = "Mostra el rastre";
 "add_poi" = "Envia el punt d\'interès";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Els missatges de sistema d\'aquest xat es mostraran aquí";
+// deprecated
 "chat_audit_log_title" = "Registre de l\'auditoria del xat per %1$@";
+// deprecated
 "chat_audit_log_description" = "Només mostra els missatges del sistema i informació. Això és útil per a trobar les últimes accions al xat sense desplaçar-se entre massa missatges.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";
 "profile_encryption" = "Encriptació";
 "profile_shared_chats" = "Xats compartits";
+// deprecated
 "related_chats" = "Xats relacionats";
 // Separator between the list of actual members and past members
 "past_members" = "Antics membres";
@@ -536,7 +541,7 @@
 "instant_onboarding_contact_info" = "Crea un perfil per a xatejar amb %1$@";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Voleu crear un perfil nou i començar a xatejar amb %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Voleu crear un perfil nou i unir-vos al grup de xat «%1$@»?";
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
@@ -659,7 +664,9 @@
 "pref_server" = "Servidor";
 "pref_encryption" = "Xifratge";
 "pref_manage_keys" = "Gestió de les claus";
+// deprecated
 "pref_show_system_contacts" = "Llegeix la llibreta d\'adreces del sistema";
+// deprecated
 "pref_show_system_contacts_explain" = "Ofereix de crear xats amb els contactes de la llibreta d\'adreces. Alguns proveïdors necessiten de configurar abans el xifratge d\'extrem a extrem.";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
@@ -675,8 +682,11 @@
 "pref_backup_export_all" = "Exporta tots %1$d perfils";
 "pref_backup_export_start_button" = "Inicia la còpia de seguretat";
 "pref_backup_written_to_x" = "La còpia de seguretat s\'ha escrit correctament a %1$@";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exporta les claus secretes";
+// deprecated
 "pref_managekeys_export_explain" = "Exporto les claus secretes a \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Les claus secretes s\'han copiat correctament a \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fons";
@@ -684,8 +694,10 @@
 "pref_background_btn_gallery" = "Trieu de la galeria";
 "pref_imap_folder_warn_disable_defaults" = "Si desactiveu aquesta opció, assegureu-vos que el vostre servidor i els altres programes estiguin configurats de la mateixa manera.\n\nAltrament podeu tenir problemes de funcionament.";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Les converses de xat s\'han mogut per no atapeir la safata d’entrada";
 "pref_only_fetch_mvbox_title" = "Agafa només de la carpeta de DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ignora les altres carpetes. Requereix que el vostre servidor mogui els missatges de xat a la carpeta DeltaChat.";
 "pref_show_emails" = "Mostra els correus clàssics";
 "pref_show_emails_no" = "No, només xats";
@@ -693,7 +705,9 @@
 "pref_show_emails_all" = "Tot";
 "pref_experimental_features" = "Funcionalitats experimentals";
 "pref_on_demand_location_streaming" = "Difusió de la ubicació sota demanda";
+// deprecated
 "pref_developer_mode" = "Mode de desenvolupador";
+// deprecated
 "pref_developer_mode_explain" = "Activa les opcions de depuració i pot fer que l\'aplicació sigui menys estable. Només per a desenvolupadors.";
 "pref_background_default" = "Imatge per defecte";
 "pref_background_default_color" = "Color per defecte";
@@ -760,11 +774,15 @@
 "autodel_after_1_week" = "Després d\'1 setmana";
 "after_5_weeks" = "Després de 5 setmanes";
 "autodel_after_1_year" = "Després d\'1 any";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Envia el missatge de configuració d\'Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Un \"missatge de configuració Autocrypt\" comparteix de forma segura la vostra configuració d\'extrem a extrem amb altres aplicacions compatibles amb Autocrypt.\n\nLa configuració es xifrarà amb un codi de configuració que es mostrarà aquí i que haureu d\'escriure a l’altre dispositiu.";
+// deprecated
 "autocrypt_send_asm_button" = "Envia el missatge de configuració d\'Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Se us ha enviat la vostra configuració. Canvieu a l\'altre dispositiu i obriu el missatge de configuració. Se us demanarà un codi de configuració. Introduïu els dígits següents a l\'indicador.\n\nUn cop fet, l\'altre dispositiu estarà llest per utilitzar Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Prefereix l\'encriptació d\'extrem a extrem";
 // system messages
 "systemmsg_subject_for_new_contact" = "Missatge de %1$@";
@@ -786,6 +804,8 @@
 "remove_member_by_you" = "Heu eliminat el membre %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Membre %1$@ eliminat.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Heu abandonat el grup.";
 // "left" in the meaning of "exited".
@@ -977,6 +997,7 @@
 "name_desktop" = "Nom";
 "select_group_image_desktop" = "Trieu una imatge de grup";
 "export_backup_desktop" = "Exporta la còpia de seguretat";
+// deprecated
 "autocrypt_correct_desktop" = "S\'ha transferit correctament la configuració Autocrypt!";
 "forget_login_confirmation_desktop" = "Voleu esborrar aquest perfil? S\'esborrarà tot, incloent-hi la configuració, els contactes, els xats, els missatges i el contingut multimèdia. Aquesta acció és definitiva i no es pot desfer.";
 "message_detail_sent_desktop" = "enviat";

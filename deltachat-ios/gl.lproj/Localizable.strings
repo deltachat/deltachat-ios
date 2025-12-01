@@ -279,6 +279,7 @@
 "menu_save_log" = "Gardar rexistro";
 "menu_more_options" = "Máis opcións";
 "menu_learn_spelling" = "Aprender palabras";
+// deprecated
 "menu_chat_audit_log" = "Rexistro de auditoría do chat";
 "jump_to_message" = "Ir á mensaxe";
 "jump_to_original_message" = "Ir á mensaxe orixinal";
@@ -335,6 +336,7 @@
 "open_url_confirmation" = "Queres abrir esta ligazón?";
 // contact list
 "contacts_title" = "Contactos";
+// deprecated
 "contacts_enter_name_or_email" = "Introducir nome ou enderezo de correo";
 "contacts_type_email_above" = "Escribir arriba o enderezo de correo";
 // chatlist and chat view
@@ -388,9 +390,11 @@
 "filter_map_on_time" = "Mostrar localizacións no marco temporal";
 "show_location_traces" = "Mostrar trazas";
 "add_poi" = "Enviar punto de interese";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "As mensaxes de sistema deste chat aparecerán aquí";
+// deprecated
 "chat_audit_log_title" = "Rexistro de auditoría para %1$@";
+// deprecated
 "chat_audit_log_description" = "Esta vista só mostra mensaxes e info do sistema. Resulta útil para atopar as últimas accións sen ter que desprazarse a través das mensaxes normais.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -419,6 +423,7 @@
 "group_self_not_in_group" = "Debes ser membro do grupo para executar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Conversas compartidas";
+// deprecated
 "related_chats" = "Conversas relacionadas";
 // Separator between the list of actual members and past members
 "past_members" = "Membros anteriores";
@@ -512,7 +517,7 @@
 "instant_onboarding_contact_info" = "Crear un perfil para conversar con %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Queres crear un novo perfil e comezar a conversar con %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Queres crear un novo perfil e unirte ao grupo \"%1$@\"?";
 "welcome_chat_over_email" = "Conversas Seguras e Descentralizadas";
 "scan_invitation_code" = "Escanear código de convite";
@@ -640,8 +645,11 @@
 "pref_backup_export_all" = "Exportar todos os %1$d perfís";
 "pref_backup_export_start_button" = "Inciar respaldo";
 "pref_backup_written_to_x" = "Respaldo gardado en \"%1$@\".";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exportar chaves segredas";
+// deprecated
 "pref_managekeys_export_explain" = "Exportar chaves segredas a \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Exportación correcta das chaves a \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fondo";
@@ -649,8 +657,10 @@
 "pref_background_btn_gallery" = "Escoller na galería";
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";
 "pref_only_fetch_mvbox_title" = "Obter só desde cartafol DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ignorar outros cartafoles. Require que o teu servidor mova as mensaxes de chat ao cartafol DeltaChat.";
 "pref_show_emails" = "Mostrar correos clásicos";
 "pref_show_emails_no" = "Non, só conversas";
@@ -658,7 +668,9 @@
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Zona de probas";
 "pref_on_demand_location_streaming" = "Difusión da ubicación por solicitude";
+// deprecated
 "pref_developer_mode" = "Modo Desenvolvemento";
+// deprecated
 "pref_developer_mode_explain" = "Activa opcións de depuración e pode desestabilizar a app. Só para desenvolvedoras.";
 "pref_background_default" = "Fondo por omisión";
 "pref_background_default_color" = "Cor por omisión";
@@ -717,11 +729,15 @@
 "autodel_after_1_week" = "Após 1 semana";
 "after_5_weeks" = "Após 5 semanas";
 "autodel_after_1_year" = "Após 1 ano";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Enviar Mensaxe de Configuración Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Unha Mensaxe de Configuración Autocrypt comparte de xeito seguro o teu cifrado extremo-a-extremo con outras apps compatibles con Autocrypt.\n\nO axuste realízase cifrado e protexido cun código que se debe escribir no outro dispositivo.";
+// deprecated
 "autocrypt_send_asm_button" = "Enviar Mensaxe de Configuración Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Os axustes envíanse a ti mesma. Vaite ao outro dispositivo e abre a mensaxe de configuración. Debería solicitarche un código. Introduce os seguintes díxitos:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferir cifrado extremo-a-extremo";
 // system messages
 "systemmsg_subject_for_new_contact" = "Mensaxe de %1$@";
@@ -743,6 +759,8 @@
 "remove_member_by_you" = "Eliminaches a %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ eliminado por %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Eliminouse a %1$@.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ deixou o grupo.";
 "group_image_deleted_by_you" = "Eliminaches a imaxe do grupo";
@@ -914,6 +932,7 @@
 "name_desktop" = "Nome";
 "select_group_image_desktop" = "Escoller imaxe do grupo";
 "export_backup_desktop" = "Exportar respaldo";
+// deprecated
 "autocrypt_correct_desktop" = "Axuste Autocrypt transferido.";
 "forget_login_confirmation_desktop" = "Eliminar esta conexión? Borrarase todo, incluíndo os axustes de cifrado, contactos, conversas, mensaxes e ficheiros de medios. Esta acción non ten volta atrás.";
 "message_detail_sent_desktop" = "enviado";

@@ -287,6 +287,7 @@
 "menu_save_log" = "Logdatei speichern";
 "menu_more_options" = "Mehr Optionen";
 "menu_learn_spelling" = "Schreibweise lernen";
+// deprecated
 "menu_chat_audit_log" = "Chat-Ereignisprotokoll";
 "jump_to_message" = "Zur Nachricht springen";
 "jump_to_original_message" = "Zur Originalnachricht springen";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Diesen Link öffnen?";
 // contact list
 "contacts_title" = "Kontakte";
+// deprecated
 "contacts_enter_name_or_email" = "Namen oder E-Mail-Adresse eingeben";
 "contacts_type_email_above" = "Oben eine E-Mail-Adresse eingeben";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Standorte im Zeitrahmen anzeigen";
 "show_location_traces" = "Spuren anzeigen";
 "add_poi" = "Sende eine Ortsmarkierung. ";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Systemmeldungen dieses Chats werden hier angezeigt.";
+// deprecated
 "chat_audit_log_title" = "Chat-Ereignisprotokoll für %1$@";
+// deprecated
 "chat_audit_log_description" = "Diese Ansicht zeigt nur System- und Infomeldungen. Nützlich, um die letzten Chat-Aktionen zu finden, ohne durch viele normale Nachrichten zu scrollen.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Du must ein Mitglied der Gruppe sein, um diese Aktion durchführen zu können.";
 "profile_encryption" = "Verschlüsselung";
 "profile_shared_chats" = "Gemeinsame Chats";
+// deprecated
 "related_chats" = "Ähnliche Chats";
 // Separator between the list of actual members and past members
 "past_members" = "Ehemalige Mitglieder";
@@ -536,8 +541,8 @@
 "instant_onboarding_contact_info" = "Erstelle ein Profil, um mit %1$@ zu chatten.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Ein neues Profil erstellen und mit %1$@ chatten?";
-// Question shown when group's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_group" = "Ein neues Profil erstellen und der Gruppe \"%1$@\" beitreten?";
+// Question shown when group's/channel's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Ein neues Profil erstellen und \"%1$@\" beitreten?";
 "welcome_chat_over_email" = "Sicherer dezentraler Chat";
 "scan_invitation_code" = "Einladungscode scannen";
 "login_title" = "Login";
@@ -671,7 +676,9 @@
 "pref_server" = "Server";
 "pref_encryption" = "Verschlüsselung";
 "pref_manage_keys" = "Schlüssel verwalten";
+// deprecated
 "pref_show_system_contacts" = "System-Adressbuch lesen";
+// deprecated
 "pref_show_system_contacts_explain" = "Anbieten, Chats mit Kontakten aus dem Adressbuch zu erstellen.";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat-Klänge";
@@ -688,8 +695,11 @@
 "pref_backup_export_all" = "Alle %1$d Profile exportieren";
 "pref_backup_export_start_button" = "Backup starten";
 "pref_backup_written_to_x" = "Backup nach \"%1$@\" erfolgreich.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exportiere geheime Schlüssel";
+// deprecated
 "pref_managekeys_export_explain" = "Geheime Schlüssel nach \"%1$@\" exportieren?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Geheime Schlüssel erfolgreich nach \"%1$@\" geschrieben.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Hintergrund";
@@ -701,8 +711,10 @@
 "pref_multidevice_explain" = "Synchronisiere deine Nachrichten mit deinen anderen Geräten. Wird beim Hinzufügen eines zweiten Geräts automatisch aktiviert.";
 "pref_multidevice_change_warn" = "Der Mehrgerätemodus muss aktiviert sein, wenn dasselbe Profil auf mehreren Geräten verwendet wird. Deaktiviere diese Einstellung nur, wenn du dieses Profil von allen anderen Geräten entfernt hast.\n\nDie Deaktivierung des Mehrgerätemodus bei Verwendung des Profils auf mehreren Geräten führt zu verlorenen Nachrichten und anderen Problemen.";
 "pref_auto_folder_moves" = "Autom. Verschieben in den DeltaChat-Ordner";
+// deprecated
 "pref_auto_folder_moves_explain" = "Konversationen verschieben für einen übersichtlichen Posteingang";
 "pref_only_fetch_mvbox_title" = "Nur aus DeltaChat-Ordner lesen";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Andere Ordner ignorieren. Erfordert, dass der Server Chat-Nachrichten in den DeltaChat-Ordner verschiebt.";
 "pref_show_emails" = "Normale E-Mails anzeigen";
 "pref_show_emails_no" = "Nein, nur Chats";
@@ -710,7 +722,9 @@
 "pref_show_emails_all" = "Alle";
 "pref_experimental_features" = "Experimentelle Features";
 "pref_on_demand_location_streaming" = "Standortübertragung nach Bedarf";
+// deprecated
 "pref_developer_mode" = "Entwicklungsoptionen";
+// deprecated
 "pref_developer_mode_explain" = "Aktiviert Debug-Optionen; kann die Stabilität der App beeinträchtigen. Nur zum Entwickeln.";
 "pref_background_default" = "Voreingestellter Hintergrund";
 "pref_background_default_color" = "Voreingestellte Farbe";
@@ -736,6 +750,7 @@
 "disable_imap_idle" = "IMAP IDLE deaktivieren";
 "disable_imap_idle_explain" = "IMAP IDLE ausschalten, selbst wenn vom Server unterstützt. Die Aktivierung dieser Option verzögert den Abruf von Nachrichten; nur zu Testzwecken aktivieren";
 "send_stats_to_devs" = "Statistik an Delta Chat Entwickler senden";
+"stats_msg_body" = "Der Anhang enthält anonyme Statistiken, die uns helfen, Delta Chat zu verbessern. Vielen Dank!";
 // Emoji picker and categories
 "emoji_search_results" = "Suchergebnisse";
 "emoji_not_found" = "Keine Emoji gefunden";
@@ -777,11 +792,15 @@
 "autodel_after_1_week" = "Nach 1 Woche";
 "after_5_weeks" = "Nach 5 Wochen";
 "autodel_after_1_year" = "Nach 1 Jahr";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Autocrypt-Setup-Nachricht senden";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Eine \"Autocrypt-Setup-Nachricht\" überträgt das Ende-zu-Ende-Setup sicher auf ein anderes Autocrypt-kompatibles Gerät.\n\nWenn du Delta Chat auf dem anderen Gerät verwendest, verwende stattdessen „Einstellungen / Zweitgerät hinzufügen“.";
+// deprecated
 "autocrypt_send_asm_button" = "Autocrypt-Setup-Nachricht senden";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Das Setup wurde an dich geschickt. Nun zum anderen Gerät wechseln und die Setup-Nachricht öffnen. Den Anweisungen folgen und den folgenden Setup-Code eingeben:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Ende-zu-Ende-Verschlüsselung bevorzugen";
 // system messages
 "systemmsg_subject_for_new_contact" = "Nachricht von %1$@";
@@ -803,6 +822,8 @@
 "remove_member_by_you" = "Du hast %1$@ entfernt.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ entfernt von %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "%1$@ entfernt.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Du hast die Gruppe verlassen.";
 // "left" in the meaning of "exited".
@@ -914,6 +935,8 @@
 "qrlogin_ask_login_another" = "Bei \"%1$@\" anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Profilen hin- und herschalten.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ hat dich zu diesem Kanal eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
 "secure_join_wait" = "Verbindungsaufbau, bitte warten...";
@@ -998,6 +1021,7 @@
 "name_desktop" = "Name";
 "select_group_image_desktop" = "Gruppenbild auswählen";
 "export_backup_desktop" = "Backup exportieren";
+// deprecated
 "autocrypt_correct_desktop" = "Erfolgreich übertragenes Autocrypt-Setup!";
 "forget_login_confirmation_desktop" = "Dieses Profil löschen? Alles wird gelöscht, einschließlich des Ende-zu-Ende-Setups, der Kontakte, Chats, Nachrichten und Medien. Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden.";
 "message_detail_sent_desktop" = "gesendet";

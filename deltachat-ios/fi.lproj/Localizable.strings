@@ -224,6 +224,7 @@
 "menu_save_log" = "Tallenna loki";
 "menu_more_options" = "Lisää asetuksia";
 "menu_learn_spelling" = "Opi tavaus";
+// deprecated
 "menu_chat_audit_log" = "Keskustelun tarkastusloki";
 "jump_to_message" = "Siirry viestiin";
 "copy_json" = "Kopioi JSON";
@@ -273,6 +274,7 @@
 "open_url_confirmation" = "Haluatko avata tämän linkin?";
 // contact list
 "contacts_title" = "Yhteystiedot";
+// deprecated
 "contacts_enter_name_or_email" = "Anna nimi tai sähköpostiosoite";
 "contacts_type_email_above" = "Kirjoita sähköpostiosoite ylle";
 // chatlist and chat view
@@ -322,9 +324,11 @@
 "filter_map_on_time" = "Näytä sijainnit aikajanalla";
 "show_location_traces" = "Näytä jäljet";
 "add_poi" = "Lähetä erikseen valittu piste";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Keskustelun järjestelmäviestit näkyvät tässä";
+// deprecated
 "chat_audit_log_title" = "Keskustelun tarkastusloki yhteystiedolle %1$@";
+// deprecated
 "chat_audit_log_description" = "Tässä näytetään vain järjestelmä- ja ohjeviestit. Tämä näkymä helpottaa viimeisimpien tapahtumien löytämistä tavallisten viestien joukosta.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -351,6 +355,7 @@
 "group_self_not_in_group" = "Sinun täytyy olla ryhmän jäsen suorittaaksesi tämän toiminnon.";
 "profile_encryption" = "Salaus";
 "profile_shared_chats" = "Jaetut keskustelut";
+// deprecated
 "related_chats" = "Liittyvät keskustelut";
 "tab_contact" = "Yhteystieto";
 "tab_group" = "Ryhmä";
@@ -440,7 +445,7 @@
 "instant_onboarding_contact_info" = "Keskustele %1$@ kanssa luomalla profiili.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Haluatko luoda uuden profiilin ja aloittaa keskustelun %1$@ kanssa?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Haluatko luoda uuden profiilin ja liittyä ryhmään \"%1$@\"?";
 "welcome_chat_over_email" = "Turvallinen hajautettu keskustelu";
 "scan_invitation_code" = "Skannaa kutsukoodi";
@@ -538,7 +543,9 @@
 "pref_server" = "Palvelin";
 "pref_encryption" = "Salaus";
 "pref_manage_keys" = "Hallinnoi avaimia";
+// deprecated
 "pref_show_system_contacts" = "Lue laitteen osoitekirja";
+// deprecated
 "pref_show_system_contacts_explain" = "Tarjoa keskustelujen avaamista yhteystietojen perusteella. Jotkin palveluntarjoajat vaativat ensin päästä-päähän salauksen käyttöönottoa. ";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
@@ -554,8 +561,11 @@
 "pref_backup_export_all" = "Vie kaikki %1$d profiilia";
 "pref_backup_export_start_button" = "Aloita varmuuskopiointi";
 "pref_backup_written_to_x" = "Varmuuskopio kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Vie salaiset avaimet";
+// deprecated
 "pref_managekeys_export_explain" = "Vie salaiset avaimet kohteeseen \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Salaiset avaimet kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Taustakuva";
@@ -563,8 +573,10 @@
 "pref_background_btn_gallery" = "Valitse galleriasta";
 "pref_imap_folder_warn_disable_defaults" = "Jos muutat tätä asetusta, varmista että palvelimesi ja muut päätelaitteesi ovat määritetty vastaavasti.\n\nMuutoin ne eivät ehkä toimi lainkaan.";
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat -kansioon";
+// deprecated
 "pref_auto_folder_moves_explain" = "Saapuneet -kansion täyttämisen välttämiseksi, pikaviestikeskustelut siirretään ";
 "pref_only_fetch_mvbox_title" = "Hae vain DeltaChat -kansiosta";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Älä huomioi muita kansioita. Vaatii että palvelimesi siirtää pikaviestit DeltaChat -kansioon.";
 "pref_show_emails" = "Näytä tavanomaiset sähköpostiviestit";
 "pref_show_emails_no" = "Ei, vain pikaviestit";
@@ -572,7 +584,9 @@
 "pref_show_emails_all" = "Kaikki";
 "pref_experimental_features" = "Kokeelliset ominaisuudet";
 "pref_on_demand_location_streaming" = "Tarvittaessa sijainnin jatkuva jakaminen";
+// deprecated
 "pref_developer_mode" = "Kehittäjätila";
+// deprecated
 "pref_developer_mode_explain" = "Kytkee päälle debuggausvaihtoehdot ja saattaa tehdä sovelluksesta epävakaan. Vain kehittäjille.";
 "pref_background_default" = "Oletuskuva";
 "pref_background_default_color" = "Oletusväri";
@@ -636,11 +650,15 @@
 "autodel_after_1_week" = "1 viikon päästä";
 "after_5_weeks" = "5 viikon päästä";
 "autodel_after_1_year" = "1 vuoden päästä";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Lähetä Autocrypt -käyttöönottoviesti";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Autocrypt -käyttöönottoviesti jakaa turvallisesti päästä-päähän -salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nMäärittely salataan tässä näytettävällä käyttöönottokoodilla, joka on syötettävä toisella laittella.";
+// deprecated
 "autocrypt_send_asm_button" = "Lähetä Autocrypt -käyttöönottoviesti";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Käyttöönottoviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään käyttöönottokoodia. Anna seuraavat numerot:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Suosi päästä-päähän -salausta";
 // system messages
 "systemmsg_subject_for_new_contact" = "Viesti lähettäjältä %1$@";
@@ -662,6 +680,8 @@
 "remove_member_by_you" = "Jäsen %1$@ poistettu minun toimestani.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Jäsen %1$@ poistettu käyttäjän %2$@ toimesta.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Jäsen %1$@ poistettu";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ poistui ryhmästä.";
 "group_image_deleted_by_you" = "Ryhmän kuva poistettu minun toimestani.";
@@ -838,6 +858,7 @@
 "name_desktop" = "Nimi";
 "select_group_image_desktop" = "Valitse ryhmän kuva";
 "export_backup_desktop" = "Vie varmuuskopio";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
 "forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
 "message_detail_sent_desktop" = "lähetetty";

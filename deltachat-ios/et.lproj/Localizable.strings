@@ -287,6 +287,7 @@
 "menu_save_log" = "Salvesta logi";
 "menu_more_options" = "Täiendavad valikud";
 "menu_learn_spelling" = "Õpi õigekirja";
+// deprecated
 "menu_chat_audit_log" = "Vestluse kontroll-logi";
 "jump_to_message" = "Mine sõnumi juurde";
 "jump_to_original_message" = "Mine algse sõnumi juurde";
@@ -347,8 +348,8 @@
 "ask_export_attachment" = "Kui ekspordid manused, siis sinu nutiseadme muud rakendused saavad neile ligi.\n\nKas soovid jätkata?";
 "ask_block_contact" = "Kas soovid selle kontakti blokeerida?\n\nBlokeeritud kontaktide otsesõnumid ja loodud grupid ei saa enam olema nähtavad.\n\nMuude gruppide, kus blokeeritud kontakt on liikmeks, sõnumid saavad jätkuvalt olema nähtavad.";
 "ask_unblock_contact" = "Kas lõpetad kontakti blokeerimise?";
-"ask_delete_contacts" = "Kas soovid kontaktid kustutada?\n\nPooleli vestluste ja süsteemi aadressiraamatu kontakte ei saa jäädavalt kustutada.";
-"ask_delete_contact" = "Kas soovid %1$@ kontakti kustutada?\n\nPooleli vestluste ja süsteemi aadressiraamatu kontakte ei saa jäädavalt kustutada.";
+"ask_delete_contacts" = "Kas soovid kontaktid kustutada?\n\nPooleli vestluste kontakte ei saa jäädavalt kustutada.";
+"ask_delete_contact" = "Kas soovid %1$@ kontakti kustutada?\n\nPooleli vestluste kontakte ei saa jäädavalt kustutada.";
 "ask_start_chat_with" = "Kas soovid vestelda kasutajaga %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kas eemaldad järgnevad kasutajad grupist: %1$@?";
@@ -357,6 +358,7 @@
 "open_url_confirmation" = "Kas sa soovid selle lingi avada?";
 // contact list
 "contacts_title" = "Kontaktid";
+// deprecated
 "contacts_enter_name_or_email" = "Sisesta nimi või e-posti aadress";
 "contacts_type_email_above" = "Palun sisesta ülale e-posti aadress";
 // chatlist and chat view
@@ -407,9 +409,11 @@
 "enable_realtime" = "Reaalajas toimivad rakendused";
 "enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
 "add_poi" = "Saada huvipunkti teave";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Sellele vestluse süsteemsed teated saavad olema nähtavad siin.";
+// deprecated
 "chat_audit_log_title" = "%1$@ vestluse kontroll-logi";
+// deprecated
 "chat_audit_log_description" = "Näed vaid süsteemi- ja infosõnumeid. Sobib kasutamiseks viimaste tegevuset tuvastamiseks ilma, et peaksid paljusid sõnumeid läbi lappama.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -436,6 +440,7 @@
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";
 "profile_encryption" = "Krüptimine";
 "profile_shared_chats" = "Ühised vestlused";
+// deprecated
 "related_chats" = "Sarnaste osalejatega vestlused";
 // Separator between the list of actual members and past members
 "past_members" = "Varasemad liikmed";
@@ -528,7 +533,7 @@
 "instant_onboarding_contact_info" = "„%1$@“ kasutajaga vestlemiseks loo profiil.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Kas sa soovid luua uue profiili ja alustada vestlemist %1$@ kasutajaga?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Kas sa soovid luua uue profiili ja liituda „%1$@“ grupiga?";
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
@@ -660,7 +665,9 @@
 "pref_server" = "Server";
 "pref_encryption" = "Krüptimine";
 "pref_manage_keys" = "Halda võtmeid";
+// deprecated
 "pref_show_system_contacts" = "Kasuta süsteemi aadressiraamatut";
+// deprecated
 "pref_show_system_contacts_explain" = "Paku võimalust lisada vestlusi süsteemi aadressiraamatus leiduvate kontaktide alusel.";
 "pref_chats" = "Vestlused";
 "pref_in_chat_sounds" = "Helid vestluses";
@@ -676,8 +683,11 @@
 "pref_backup_export_all" = "Ekspordi kõik %1$d profiili";
 "pref_backup_export_start_button" = "Alusta varundamist";
 "pref_backup_written_to_x" = "Varukoopia tegemine asukohta „%1$@“ õnnestus.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Ekspordi salavõtmed";
+// deprecated
 "pref_managekeys_export_explain" = "Kas ekspordime salavõtmed siia: %1$@?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Salavõtmete salvestamine asukohta „%1$@“ õnnestus.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Taustapilt";
@@ -690,11 +700,14 @@
 "pref_multidevice_change_warn" = "Kui kasutad sama profiili mitmes seadmes, siis peab mitme seadme režiimi sisse lülitama. Lülita see seadistus välja vaid siis, kui oled selle profiili eemaldanud kõikidest muudest oma seadmetest.\n\nKui aga lülitad välja siis, kui profiil on kasutusel mitmes seadmes, on tulemuseks kadunud sõnumid ja muud imelikud juhtumised.";
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Eira muid kaustu. See eeldab, et sinu server oskab tõsta vestluste sõnumid DeltaChati kausta.";
 "pref_show_emails" = "Näita klassikalisi e-kirju";
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
+// deprecated
 "pref_developer_mode" = "Arendaja režiim";
+// deprecated
 "pref_developer_mode_explain" = "Lülitab sisse veaotsingu tarvikud ja see võib rakenduse töökindlust vähendada. Sobib arendajatele.";
 "pref_background_default" = "Vaikimisi pilt";
 "pref_background_default_color" = "Vaikimisi värv";
@@ -720,6 +733,7 @@
 "disable_imap_idle" = "Lülita IMAP IDLE välja";
 "disable_imap_idle_explain" = "Ära kasuta IMAP IDLE meetodit, seda isegi siis, kui server seda toetab. Sisselülitamisel tekib sõnumite laadimisel viivitusi. Kasuta seda vaid testimiseks.";
 "send_stats_to_devs" = "Saada statistikat Delta Chati kasutajatele";
+"stats_msg_body" = "Selles manuses leidub anonüümne statistika rakenduse kasutuse kohta ja see aitab meil Delta Chatti paremaks muuta. Suur tänu!";
 // Emoji picker and categories
 "emoji_search_results" = "Otsingutulemused";
 "emoji_not_found" = "Ühtegi emojit ei leidu";
@@ -761,9 +775,11 @@
 "autodel_after_1_week" = "5 nädala järel";
 "after_5_weeks" = "5 nädala järel";
 "autodel_after_1_year" = "5 aasta järel";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Saada Autocrypti seadistussõnum";
+// deprecated
 "autocrypt_send_asm_button" = "Saada Autocrypti seadistussõnum";
+// deprecated
 "autocrypt_prefer_e2ee" = "Eelista läbivat krüptimist";
 // system messages
 "systemmsg_subject_for_new_contact" = "Sõnum kasutajalt %1$@";
@@ -776,7 +792,7 @@
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ muutis grupi tunnuspilti.";
 // %1$s will be replaced by name of the contact added to the group
-"member_x_added" = "Lisanudus uus liige: %1$@.";
+"member_x_added" = "Lisandus uus liige: %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Sina lisasid uue liikme: %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
@@ -785,6 +801,8 @@
 "remove_member_by_you" = "Sina eemaldasid liikme: %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ eemaldas liikme: %1$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Grupi liige „%1$@“ on eemaldatud.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Sa lahkusid grupist.";
 // "left" in the meaning of "exited".
@@ -894,6 +912,8 @@
 "qrlogin_ask_login_another" = "Kas soovid sisse logid oma kontoga „%1$@“ serveris?\n\nSinu olemasolev profiil jääb alles. Profiile saad vahetada käsuga „Vaheta profiili“.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsus sind liituma selle grupiga.\n\nOotan vastust kasutaja %2$@ seadmest…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ kutsus sind liituma selle kanaliga.\n\nOotan vastust kasutaja %2$@ seadmest…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ vastas, ootan gruppi lisamist…";
 "secure_join_wait" = "Panen aluse läbivale krüptimisele…";
@@ -978,6 +998,7 @@
 "name_desktop" = "Nimi";
 "select_group_image_desktop" = "Vali grupi tunnuspilti";
 "export_backup_desktop" = "Ekspordi varukoopia";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypti seadistused on edastatud.";
 "forget_login_confirmation_desktop" = "Kas kustutad selle profiili? Kõik profiiliandmed kaovad sellest seadmest,  sealhulgas läbiva krüptimise seadistus, kontaktid, vestlused, sõnumid ja meediumid. Seda tegevust ei saa tagasi pöörata.";
 "message_detail_sent_desktop" = "saadetud";
@@ -1023,6 +1044,7 @@
 // iOS notification settings
 "disabled_in_dc" = "Pole Delta Chatis kasutusel";
 "disabled_in_system_settings" = "On süsteemi seadistustest välja lülitatud";
+"bg_app_refresh_disabled" = "Rakenduse uuendamine taustal on süsteemi seadistustest välja lülitatud";
 "notifications_avg_minutes" = "Keskmiselt iga %1$d minuti järel";
 "notifications_avg_hours" = "Keskmiselt iga %1$d tunni järel";
 "last_check_at" = "Kontrollitud %1$@";

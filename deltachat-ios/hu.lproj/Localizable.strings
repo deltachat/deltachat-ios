@@ -287,6 +287,7 @@
 "menu_save_log" = "Naplófájl mentése";
 "menu_more_options" = "További beállítások";
 "menu_learn_spelling" = "Helyesírás tanulása";
+// deprecated
 "menu_chat_audit_log" = "Csevegésellenőrzési-naplófájl";
 "jump_to_message" = "Ugrás az üzenetre";
 "jump_to_original_message" = "Ugrás az eredeti üzenetre";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Biztosan megnyitja ezt a hivatkozást?";
 // contact list
 "contacts_title" = "Névjegyek";
+// deprecated
 "contacts_enter_name_or_email" = "Adjon meg egy nevet vagy egy e-mail-címet";
 "contacts_type_email_above" = "Írja be a fenti e-mail-címet";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Helyek megjelenítése időkeretben";
 "show_location_traces" = "Nyomvonalak megjelenítése";
 "add_poi" = "Érdekes hely megosztása";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Az ehhez a csevegéshez tartozó rendszerüzenetek itt fognak megjelenni";
+// deprecated
 "chat_audit_log_title" = "Csevegés ellenőrzési naplófájl ehhez: %1$@";
+// deprecated
 "chat_audit_log_description" = "Csak a rendszer- és információs üzeneteket jeleníti meg; hasznos a legutóbbi csevegési műveletek megtalálásához anélkül, hogy sok üzenetet görgetne át.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "A csoport tagjának kell lennie, ahhoz, hogy ezt megtehesse.";
 "profile_encryption" = "Titkosítás";
 "profile_shared_chats" = "Közös csevegések";
+// deprecated
 "related_chats" = "Kapcsolódó csevegések";
 // Separator between the list of actual members and past members
 "past_members" = "Már nem tagok";
@@ -536,7 +541,7 @@
 "instant_onboarding_contact_info" = "Hozzon létre egy profilt, hogy csevegni tudjon vele: %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Szeretne új profilt létrehozni és csevegni vele: %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Szeretne új profilt létrehozni és csatlakozni a „%1$@” szobához?";
 "welcome_chat_over_email" = "Biztonságos decentralizált csevegés";
 "scan_invitation_code" = "QR-kód-meghívó beolvasása";
@@ -661,7 +666,9 @@
 "pref_server" = "Kiszolgáló";
 "pref_encryption" = "Titkosítás";
 "pref_manage_keys" = "Kulcsok kezelése";
+// deprecated
 "pref_show_system_contacts" = "A rendszer névjegyzékének olvasása";
+// deprecated
 "pref_show_system_contacts_explain" = "Beszélgetések létrehozásának felajánlása az eszköz névjegyzékében lévő partnerekkel.";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
@@ -678,8 +685,11 @@
 "pref_backup_export_all" = "Az összes (%1$d) profil exportálása";
 "pref_backup_export_start_button" = "Biztonsági mentés készítése";
 "pref_backup_written_to_x" = "A biztonsági mentés sikeresen létrehozva itt: „%1$@”.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Titkos kulcsok exportálása";
+// deprecated
 "pref_managekeys_export_explain" = "Privát kulcsok exportálása ide: „%1$@”?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "A titkosítási kulcsok sikeresen beíródtak ide: „%1$@”.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Háttérkép";
@@ -687,8 +697,10 @@
 "pref_background_btn_gallery" = "Kiválasztás a galériából";
 "pref_imap_folder_warn_disable_defaults" = "Ha megváltoztatja ezt a beállítást, győződjön meg arról, hogy a kiszolgálója és a többi kliense is ennek megfelelően van beállítva.\n\nMáskülönben előfordulhat, hogy a dolgok egyáltalán nem fognak működni.";
 "pref_auto_folder_moves" = "Automatikus áthelyezés a DeltaChat nevű mappába";
+// deprecated
 "pref_auto_folder_moves_explain" = "A csevegések áthelyezésre kerülnek, hogy elkerüljék a bejövő üzenetek mappa zűrzavarát.";
 "pref_only_fetch_mvbox_title" = "Csak a DeltaChat nevű mappából történjen lekérdezés";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Más mappák figyelmen kívül hagyása. A kiszolgálónak a DeltaChat nevű mappába kell áthelyeznie a csevegőüzeneteket.";
 "pref_show_emails" = "Klasszikus e-mailek megjelenítése";
 "pref_show_emails_no" = "Nem, csak csevegések";
@@ -696,7 +708,9 @@
 "pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
 "pref_on_demand_location_streaming" = "On-Demand folyamatos helymegosztás";
+// deprecated
 "pref_developer_mode" = "Fejlesztői mód";
+// deprecated
 "pref_developer_mode_explain" = "A hibakeresési beállítások bekapcsolásával instabillá teheti az alkalmazást. Csak fejlesztőknek ajánlott a bekapcsolása.";
 "pref_background_default" = "Alapértelmezett kép";
 "pref_background_default_color" = "Alapértelmezett szín";
@@ -763,11 +777,15 @@
 "autodel_after_1_week" = "1 hét elteltével";
 "after_5_weeks" = "5 hét elteltével";
 "autodel_after_1_year" = "1 év elteltével";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Autocrypt-beállítási üzenet küldése";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Az Autocrypt-beállítási üzenet biztonságosan megosztja a végponttól-végpontig titkosított beállításait más Autocrypt-kompatibilis alkalmazásokkal.\n\nHa a másik eszközön is a Delta Chat alkalmazást használja, akkor válassza inkább a „Beállítások / Második eszköz hozzáadása” lehetőséget helyette.";
+// deprecated
 "autocrypt_send_asm_button" = "Autocrypt-beállítási üzenet küldése";
+// deprecated
 "autocrypt_send_asm_explain_after" = "A beállításokat elküldtük önnek. Váltson a másik eszközre, és nyissa meg a beállítási üzenetet. Meg kell adnia a beállítási kódot. Írja be a következő számjegyeket:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Végpontok közötti titkosítás előnyben részesítése";
 // system messages
 "systemmsg_subject_for_new_contact" = "Üzenet tőle: %1$@";
@@ -789,6 +807,8 @@
 "remove_member_by_you" = "Ön eltávolította őt: %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ eltávolította őt: %1$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "%1$@ eltávolítva a csoportból.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Ön elhagyta a csoportot.";
 // "left" in the meaning of "exited".
@@ -980,6 +1000,7 @@
 "name_desktop" = "Név";
 "select_group_image_desktop" = "Csoport képének kiválasztása";
 "export_backup_desktop" = "Biztonsági mentés exportálása";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt-beállítások átvitele.";
 "forget_login_confirmation_desktop" = "Törli ezt a profilt? Az összes adata törlődni fog, beleértve a végpontok közötti titkosítási beállításokat, névjegyeket, csevegéseket, üzeneteket és médiát. Ez a művelet nem vonható vissza.";
 "message_detail_sent_desktop" = "elküldött";

@@ -184,6 +184,7 @@
 "open_url_confirmation" = "Cheres abèrrere custu ligàmene?";
 // contact list
 "contacts_title" = "Cuntatos";
+// deprecated
 "contacts_enter_name_or_email" = "Inserta su nùmene o s\'indiritzu de posta eletrònica";
 "contacts_type_email_above" = "Inserta s\'indiritzu de posta eletrònica inoghe in subra";
 // chatlist and chat view
@@ -337,8 +338,11 @@
 "pref_backup_export_explain" = "Una còpia de seguresa t\'agiudat a impostare un\'installatzione noa in custu o in un\'àteru dispositivu.\n\nSa còpia de seguresa ant a cuntènnere totu sos messàgios, sos cuntatos, sas tzarradas e s\'impostatzione de sa tzifradura a nodu terminale (end-to-end) de Autocrypt. Mantene su documentu in unu logu seguru o iscantzellalu in su primu momentu chi podes.";
 "pref_backup_export_start_button" = "Incumintza sa còpia de seguresa";
 "pref_backup_written_to_x" = "Còpia de seguresa sarvada in \"%1$@\"chene problemas.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Esporta sas craes segretas";
+// deprecated
 "pref_managekeys_export_explain" = "Esportare sas craes segretas in \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Craes segretas sarvadas in \"%1$@\" chene problemas.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Isfundu";
@@ -346,6 +350,7 @@
 "pref_background_btn_gallery" = "Ischerta dae sa galleria";
 "pref_imap_folder_warn_disable_defaults" = "Si disabìlitas custa opztione assegura·ti chi su serbidore tuo e totu sos àteros clientes siant cunfigurados in sa matessi manera\n\nSi nono sas cosas diant pòdere non funtzionare pro nudda.";
 "pref_auto_folder_moves" = "Tramudòngios automàticos a sa cartella DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Sos arresonos de sas tzarradas benint tramudados pro evitare su prenamentu de sa cartella de intrada";
 "pref_show_emails" = "Ammustra sas lìteras traditzionales";
 "pref_show_emails_no" = "Nono, tzarradas ebbia";
@@ -377,11 +382,15 @@
 "autodel_after_1_day" = "A pustis de 1 die";
 "autodel_after_1_week" = "A pustis de 1 chida";
 "autodel_after_1_year" = "A pustis de 1 annu";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Imbia unu messàgiu de impostatzione de Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Unu \'Messàgiu de configuratzione Autocrypt\' cumpartzit sa configuratzione a nodu terminale (end-to-end) cun àteras aplicatziones cumpatìbiles cun Autocrypt.\n\nSa configuratzione ant a èssere tzifradas cun unu còdighe ammustradu inoghe chi depet èssere insertadu in s\'àteru dispositivu. ";
+// deprecated
 "autocrypt_send_asm_button" = "Imbia unu messàgiu de impostatzione de Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Ti ses imbiadu sa configuratzione tua. Cola a s\'àteru dispositivu e aberi su messàgiu de configuratzione. Ti diat dèpere èssere pedidu unu còdighe de configuratzione. Inserta custas tzifras:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferi sa tzifradura a nodu terminale (end-to-end)";
 "write_message_desktop" = "Iscrie unu messàgiu";
 "encryption_info_title_desktop" = "Informatziones de tzifradura";

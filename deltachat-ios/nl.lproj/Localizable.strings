@@ -287,6 +287,7 @@
 "menu_save_log" = "Logboek opslaan";
 "menu_more_options" = "Meer opties";
 "menu_learn_spelling" = "Spelling leren";
+// deprecated
 "menu_chat_audit_log" = "Gesprekslogboek";
 "jump_to_message" = "Ga naar bericht";
 "jump_to_original_message" = "Ga naar oorspronkelijk bericht";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Weet je zeker dat je deze link wilt openen?";
 // contact list
 "contacts_title" = "Contactpersonen";
+// deprecated
 "contacts_enter_name_or_email" = "Voer een naam of e-mailadres in.";
 "contacts_type_email_above" = "Typ hierboven het e-mailadres";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Locaties tonen in tijdsbeeld";
 "show_location_traces" = "Sporen tonen";
 "add_poi" = "Afspraaklocatie versturen";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Systeemberichten uit dit gesprek worden hier getoond";
+// deprecated
 "chat_audit_log_title" = "Gesprekslog van %1$@";
+// deprecated
 "chat_audit_log_description" = "In deze weergave zie je alleen systeem- en informatieberichten - zo kun je in één oogopslag zien welke gespreksacties je hebt uitgevoerd.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
 "profile_encryption" = "Versleuteling";
 "profile_shared_chats" = "Gemeenschappelijke gesprekken";
+// deprecated
 "related_chats" = "Verwante gesprekken";
 // Separator between the list of actual members and past members
 "past_members" = "Voormalige deelnemers";
@@ -536,7 +541,7 @@
 "instant_onboarding_contact_info" = "Maak een profiel aan om een gesprek te voeren met ‘%1$@’.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Wil je een nieuw profiel aanmaken en een gesprek beginnen met ‘%1$@’?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Wil je een nieuw profiel aanmaken en deelnemen aan ‘%1$@’?";
 "welcome_chat_over_email" = "Veilige, gedecentraliseerde gesprekken";
 "scan_invitation_code" = "Uitnodigingscode scannen";
@@ -671,7 +676,9 @@
 "pref_server" = "Server";
 "pref_encryption" = "Versleuteling";
 "pref_manage_keys" = "Sleutels beheren";
+// deprecated
 "pref_show_system_contacts" = "Adresboek uitlezen";
+// deprecated
 "pref_show_system_contacts_explain" = "Bied aan om gesprekken te beginnen met contactpersonen uit het adresboek. Let op: voor sommige providers is eind-tot-eindversleuteling benodigd.";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
@@ -688,8 +695,11 @@
 "pref_backup_export_all" = "%1$d accounts exporteren";
 "pref_backup_export_start_button" = "Reservekopie maken";
 "pref_backup_written_to_x" = "De reservekopie is opgeslagen in ‘%1$@’.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Geheime sleutels exporteren";
+// deprecated
 "pref_managekeys_export_explain" = "Geheime sleutels exporteren naar ‘%1$@’?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "De geheime sleutels zijn opgeslagen in ‘%1$@’.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Achtergrond";
@@ -701,8 +711,10 @@
 "pref_multidevice_explain" = "Synchroniseer berichten met andere apparaten. Dit wordt automatisch ingeschakeld na het toevoegen van een secundair apparaat.";
 "pref_multidevice_change_warn" = "Let op: deze modus moet op alle apparaten worden ingeschakeld op hetzelfde profiel. Schakel deze instelling alleen uit als je je profiel van alle andere apparaten hebt verwijderd.\n\nDoor deze modus uit te schakelen terwijl het profiel nog gebruikt wordt, gaan er berichten verloren en kunnen er andere problemen ontstaan.";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
+// deprecated
 "pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je postvak netjes te houden";
 "pref_only_fetch_mvbox_title" = "Alleen DeltaChat-map controleren";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Negeer andere mappen. Hiervoor is vereist dat je server gesprekken kan verplaatsen naar de DeltaChat-map.";
 "pref_show_emails" = "Klassieke e-mails tonen";
 "pref_show_emails_no" = "Nee, alleen gesprekken";
@@ -710,7 +722,9 @@
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
 "pref_on_demand_location_streaming" = "Locatie delen (op verzoek)";
+// deprecated
 "pref_developer_mode" = "Ontwikkelaarsmodus";
+// deprecated
 "pref_developer_mode_explain" = "Schakelt foutopsporingspoties in die de app mogelijk minder stabiel maken. Alléén voor ontwikkelaars.";
 "pref_background_default" = "Standaardachtergrond";
 "pref_background_default_color" = "Standaardkleur";
@@ -736,6 +750,7 @@
 "disable_imap_idle" = "IMAP IDLE uitschakelen";
 "disable_imap_idle_explain" = "Maak geen gebruik van IMAP IDLE, zelfs niet als de server het ondersteunt. Schakel deze optie in om het ophalen van berichten te vertragen. Let op: gebruik deze optie alleen voor testdoeleinden.";
 "send_stats_to_devs" = "Statistieken delen met Delta Chat-ontwikkelaars";
+"stats_msg_body" = "De bijlage bevat anonieme gebruiksstatistieken die ons helpen Delta Chat te verbeteren. Bij voorbaat dank!";
 // Emoji picker and categories
 "emoji_search_results" = "Zoekresultaten";
 "emoji_not_found" = "Geen emoji gevonden";
@@ -777,11 +792,15 @@
 "autodel_after_1_week" = "Na 1 week";
 "after_5_weeks" = "Na 5 weken";
 "autodel_after_1_year" = "Na 1 jaar";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Autocrypt-instelbericht versturen";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Een ‘Autocrypt-instelbericht’ deelt je eind-tot-eindinstellingen veilig met andere Autocrypt-compatibele apps.\n\nAls je Delta Chat ook op het andere apparaat gebruikt, voeg het dan als tweede apparaat toe.";
+// deprecated
 "autocrypt_send_asm_button" = "Autocrypt-instelbericht versturen";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Je instellingen zijn aan jezelf verstuurd. Schakel over naar het andere apparaat en open het instelbericht. Je zou nu moeten worden gevraagd om een code. Typ de volgende getallen in het invoerveld:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Voorkeur voor eind-tot-eindversleuteling";
 // system messages
 "systemmsg_subject_for_new_contact" = "Bericht van %1$@";
@@ -803,6 +822,8 @@
 "remove_member_by_you" = "Je hebt ‘%1$@’ verwijderd.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "‘%1$@’ is verwijderd door %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "‘%1$@’ is verwijderd.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Je hebt de groep verlaten.";
 // "left" in the meaning of "exited".
@@ -914,6 +935,8 @@
 "qrlogin_ask_login_another" = "Wil je inloggen als ‘%1$@’?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ heeft je uitgenodigd voor dit groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ heeft geantwoord en wacht op toelating tot de groep…";
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
@@ -998,6 +1021,7 @@
 "name_desktop" = "Naam";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "export_backup_desktop" = "Reservekopie exporteren";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt-instellingen overgedragen!";
 "forget_login_confirmation_desktop" = "Wil je dit account verwijderen? Alles wordt verwijderd: je eind-tot-eindinstellingen, contactpersonen, gesprekken, berichten en media. Deze actie is onomkeerbaar.";
 "message_detail_sent_desktop" = "verstuurd";

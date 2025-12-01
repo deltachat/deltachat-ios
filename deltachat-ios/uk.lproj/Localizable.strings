@@ -287,6 +287,7 @@
 "menu_save_log" = "Зберегти лог";
 "menu_more_options" = "Більше опцій";
 "menu_learn_spelling" = "Вчити правопис";
+// deprecated
 "menu_chat_audit_log" = "Журнал аудиту чату";
 "jump_to_message" = "Перейти до повідомлення";
 "jump_to_original_message" = "Перейти до оригінального повідомлення";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Ви впевнені, що хочете відкрити це посилання?";
 // contact list
 "contacts_title" = "Контактні особи";
+// deprecated
 "contacts_enter_name_or_email" = "Введіть ім\'я або адресу електронної пошти";
 "contacts_type_email_above" = "Введіть адресу електронної пошти вище";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Показати місця у часовому проміжку";
 "show_location_traces" = "Показати треки";
 "add_poi" = "Послати географійні координати";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Тут відображатимуться системні повідомлення для цього чату";
+// deprecated
 "chat_audit_log_title" = "Журнал аудиту чату для %1$@";
+// deprecated
 "chat_audit_log_description" = "На цьому екрані відображаються лише системні та інформаційні повідомлення. Корисно для пошуку останніх дій чату без прокрутки багатьох звичайних повідомлень.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Потрібно участвувати в групі, щоби виконати цю дію.";
 "profile_encryption" = "Шифрування";
 "profile_shared_chats" = "Спільні з вами чати";
+// deprecated
 "related_chats" = "Повʼязані чати";
 // Separator between the list of actual members and past members
 "past_members" = "Колишнє учасництво";
@@ -536,7 +541,7 @@
 "instant_onboarding_contact_info" = "Створіть профіль для спілкування з %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Бажаєте створити новий профіль і почати спілкуватися з %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Ви хочете створити новий профіль і приєднатися до групи чату \"%1$@\"?";
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
@@ -671,7 +676,9 @@
 "pref_server" = "Сервер";
 "pref_encryption" = "Шифрування";
 "pref_manage_keys" = "Розпорядження ключами";
+// deprecated
 "pref_show_system_contacts" = "Прочитати адресну книгу системи";
+// deprecated
 "pref_show_system_contacts_explain" = "Пропонувати створювати чати з контактами з адресної книги.";
 "pref_chats" = "Чати";
 "pref_in_chat_sounds" = "Звуки в чаті";
@@ -688,8 +695,11 @@
 "pref_backup_export_all" = "Експортувати всі %1$d профілі";
 "pref_backup_export_start_button" = "Почати резервне копіювання";
 "pref_backup_written_to_x" = "Резервна копія успішно записана на %1$@";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Експорт секретних ключів";
+// deprecated
 "pref_managekeys_export_explain" = "Експортувати секретні ключі до \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Секретні ключі успішно збережені в \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Фон";
@@ -697,8 +707,10 @@
 "pref_background_btn_gallery" = "Вибрати з галереї";
 "pref_imap_folder_warn_disable_defaults" = "Якщо ви змінюєте цей параметр, переконайтеся, що Ваш сервер та інші Ваші клієнти налаштовані відповідним чином.\n\nІнакше щось може взагалі не працювати.";
 "pref_auto_folder_moves" = "Автоматично пересувати до папки DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Чати були переміщені, щоб уникнути плутанини в папці «Вхідні».";
 "pref_only_fetch_mvbox_title" = "Збирати лише з теки DeltaChat.";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ігнорувати інші теки. Вимагає від вашого сервера переміщувати повідомлення чату до теки DeltaChat.";
 "pref_show_emails" = "Показувати звичайну пошту";
 "pref_show_emails_no" = "Ні, лише чати";
@@ -706,7 +718,9 @@
 "pref_show_emails_all" = "Всі";
 "pref_experimental_features" = "Експериментальні функції";
 "pref_on_demand_location_streaming" = "Стримінг геоданих за вимогою";
+// deprecated
 "pref_developer_mode" = "Режим розробника";
+// deprecated
 "pref_developer_mode_explain" = "Активує опції режиму налагодження та може зробити програму менш стабільною. Тільки для розробників.";
 "pref_background_default" = "Тло за замовчуванням";
 "pref_background_default_color" = "Колір за замовчуванням";
@@ -773,11 +787,15 @@
 "autodel_after_1_week" = "Через 1 тиждень";
 "after_5_weeks" = "Через 5 тижнів";
 "autodel_after_1_year" = "Через 1 рік";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Відправлення повідомлення для налаштування Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Повідомлення про налаштування Autocrypt безпечно передає ваші налаштування наскрізного шифрування іншим програмам, що підтримують Autocrypt.\n\nЯкщо ви використовуєте Delta Chat і на іншому пристрої, скористайтеся \"Налаштування / Додати другий пристрій\" замість цього.";
+// deprecated
 "autocrypt_send_asm_button" = "Надіслати повідомлення для налаштування Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Налаштування було Вам надіслано. Перейдіть на інший пристрій і відкрийте повідомлення про налаштування. У Вас має з\'явитися запит на введення коду налаштування. Введіть наступні цифри:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Віддавати перевагу наскрізному шифруванню";
 // system messages
 "systemmsg_subject_for_new_contact" = "%1$@ шле повідомлення";
@@ -799,6 +817,8 @@
 "remove_member_by_you" = "Ви видалили учасника %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ видалив (-ла) учасника %1$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Видалено учасника %1$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Ви покинули групу.";
 // "left" in the meaning of "exited".
@@ -992,6 +1012,7 @@
 "name_desktop" = "Імʼя";
 "select_group_image_desktop" = "Вибрати емблему групи";
 "export_backup_desktop" = "Експорт резервної копії";
+// deprecated
 "autocrypt_correct_desktop" = "Налаштування Autocrypt успішно передані!";
 "forget_login_confirmation_desktop" = "Видалити цей профіль? Все буде видалено, включно з усіма вашими налаштуваннями, контактами, чатами, повідомленнями та медіа. Цю дію неможливо скасувати.";
 "message_detail_sent_desktop" = "надіслано";

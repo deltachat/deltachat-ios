@@ -287,6 +287,7 @@
 "menu_save_log" = "Salvar log";
 "menu_more_options" = "Más opciones";
 "menu_learn_spelling" = "Aprender ortografía";
+// deprecated
 "menu_chat_audit_log" = "Registro de auditoría de chat";
 "jump_to_message" = "Saltar al mensaje";
 "jump_to_original_message" = "Saltar al mensaje original";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "¿Quieres abrir este enlace?";
 // contact list
 "contacts_title" = "Contactos";
+// deprecated
 "contacts_enter_name_or_email" = "Nombre o correo electrónico";
 "contacts_type_email_above" = "Escriba la dirección de correo arriba";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
 "add_poi" = "Enviar punto de interés";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Los mensajes del sistema de este chat aparecerían aquí";
+// deprecated
 "chat_audit_log_title" = "Registro de auditoría de chat para %1$@";
+// deprecated
 "chat_audit_log_description" = "Esta vista solo muestra mensajes de información y del sistema. Útil para encontrar las últimas acciones de chat sin tener que desplazarse por muchos mensajes normales.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Chats en común";
+// deprecated
 "related_chats" = "Chats similares";
 // Separator between the list of actual members and past members
 "past_members" = "Miembros anteriores";
@@ -536,11 +541,12 @@
 "instant_onboarding_contact_info" = "Crear un perfil para chatear con %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "¿Desea crear un nuevo perfil y comenzar a chatear con %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "¿Desea crear un nuevo perfil y unirse al grupo \"%1$@\"?";
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
+"login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados:\n\n• No utilice una cuenta que esté usando en otra  app.\n\n• El servidor de correo electrónico clásico permite chats sin cifrado de extremo a extremo, los cuales están marcados por un icono de correo.";
 // deprecated
 "login_header" = "Inicie sesión en su servidor";
 // deprecated
@@ -569,6 +575,17 @@
 "proxy_use_proxy_confirm" = "¿Quieres utilizar el proxy \"%1$@\"?";
 "proxy_share_explain" = "Tus amigos pueden agregar este proxy escaneando el código QR.";
 "proxy_share_link" = "Compartir enlace";
+"proxy_enabled" = "Proxy activado";
+"proxy_enabled_hint" = "Estás utilizando un proxy. Si tienes problemas para conectarte, prueba con otro proxy.";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Transportes";
+"add_transport" = "Añadir transporte";
+"remove_transport" = "Eliminar transporte";
+"edit_transport" = "Editar transporte";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "¿Añadir este transporte?";
+"invalid_transport_qr" = "El código QR escaneado no contiene un transporte válido.";
+"confirm_remove_transport" = "¿Eliminar el transporte \"%1$@\"?\nTus contactos solo podrán localizarte si previamente has contactado con ellos mediante otro transporte.\nEn caso de duda, quita el transporte más tarde.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
@@ -659,7 +676,9 @@
 "pref_server" = "Servidor";
 "pref_encryption" = "Cifrado";
 "pref_manage_keys" = "Administrar claves";
+// deprecated
 "pref_show_system_contacts" = "Leer la libreta de direcciones del sistema";
+// deprecated
 "pref_show_system_contacts_explain" = "Ofrecer crear chats con contactos de la libreta de direcciones. Algunos proveedores necesitan primero una configuración de cifrado de extremo a extremo.";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
@@ -671,21 +690,32 @@
 "pref_backup" = "Copia de respaldo";
 "pref_backup_explain" = "Hacer copias de respaldo de chats en almacenamiento externo";
 "pref_backup_export_explain" = "Una copia de respaldo lo ayuda a configurar una nueva instalación en este u otro dispositivo.\n\nLa copia de respaldo contendrá todos los mensajes, contactos y chats, y su configuración Autocrypt de extremo a extremo. Guarde el archivo de respaldo en un lugar seguro o elimínelo lo antes posible.";
+"pref_backup_export_this" = "Exportar este perfil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportar todo (%1$d cuentas)";
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
 "pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exportar claves secretas";
+// deprecated
 "pref_managekeys_export_explain" = "¿Exportar claves secretas a \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Claves secretas escritas exitosamente a \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imagen por defecto";
 "pref_background_btn_gallery" = "Seleccionar de la galería";
 "pref_imap_folder_warn_disable_defaults" = "Si deshabilita esta opción, asegúrese de que su servidor y sus otros clientes estén configurados en consecuencia.\n\nDe lo contrario, las cosas pueden no funcionar en absoluto.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Modo multidispositivo";
+"pref_multidevice_explain" = "Sincroniza tus mensajes con tus otros dispositivos. Se activa automáticamente al añadir un segundo dispositivo";
+"pref_multidevice_change_warn" = "El modo multidispositivo debe estar activado cuando usas el mismo perfil en varios dispositivos.
+Desactiva este ajuste solo si has eliminado este perfil de todos tus demás dispositivos.\n\nSi desactivas el modo multidispositivo mientras usas el perfil en varios dispositivos, se perderán mensajes y se producirán otros problemas.";
 "pref_auto_folder_moves" = "Mover automáticamente a la carpeta DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Las conversaciones son movidas para evitar saturar la Bandeja de entrada";
 "pref_only_fetch_mvbox_title" = "Solo obtener de la carpeta DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ignorar otras carpetas. Requiere que su servidor mueva los mensajes de chat a la carpeta DeltaChat.";
 "pref_show_emails" = "Mostrar correos clásicos";
 "pref_show_emails_no" = "No, sólo chats";
@@ -693,7 +723,9 @@
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Características experimentales";
 "pref_on_demand_location_streaming" = "Transmisión de ubicación bajo demanda";
+// deprecated
 "pref_developer_mode" = "Modo desarrollador";
+// deprecated
 "pref_developer_mode_explain" = "Activa las opciones de depuración y puede hacer que la aplicación sea menos estable. Solo para desarrolladores.";
 "pref_background_default" = "Fondo por defecto";
 "pref_background_default_color" = "Color por defecto";
@@ -760,11 +792,15 @@
 "autodel_after_1_week" = "Luego de 1 semana";
 "after_5_weeks" = "Luego de 5 semanas";
 "autodel_after_1_year" = "Luego de 1 año";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Enviar Mensaje de Configuración de Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Un \"Mensaje de Configuración de Autocrypt\" comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt.\n\nLa configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
+// deprecated
 "autocrypt_send_asm_button" = "Enviar Mensaje de Configuración de Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:.\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
 // system messages
 "systemmsg_subject_for_new_contact" = "Mensaje de %1$@";
@@ -786,6 +822,13 @@
 "remove_member_by_you" = "Eliminaste al miembro %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Miembro %1$@ eliminado por %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Miembro %1$@ eliminado.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Saliste del grupo.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Saliste del canal.";
+"you_joined_the_channel" = "Te uniste al canal.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Grupo abandonado por %1$@.";
 "group_image_deleted_by_you" = "Eliminaste la imagen del grupo.";
@@ -833,6 +876,7 @@
 "ephemeral_timer_weeks_by_you" = "Estableciste el temporizador de la desaparición de mensajes en %1$@ semanas.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de la desaparición de mensajes establecido en %1$@ semanas por %2$@.";
+"chat_unencrypted_explanation" = "Los mensajes en este chat usan el correo electrónico clásico y no están cifrados de extremo a extremo.";
 "chat_protection_enabled_tap_to_learn_more" = "A partir de ahora se garantiza que los mensajes están cifrados de extremo a extremo . Toca para obtener más información.";
 "chat_protection_enabled_explanation" = "Ahora se garantiza que todos los mensajes en este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus compañeros de chat. Ni siquiera tu proveedor de correo electrónico puede leerlos.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
@@ -854,6 +898,7 @@
 "qrscan_hint_desktop" = "Mueve el código QR hacia la cámara";
 "qrscan_failed" = "El código QR no pudo ser decodificado";
 "qrscan_ask_join_group" = "¿Quieres unirte al grupo \"%1$@\"?";
+"qrscan_ask_join_channel" = "¿Quieres unirte al canal \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "La huella digital escaneada no coincide con la última huella vista para \"%1$@\".";
 "qrscan_no_addr_found" = "Este código QR contiene una huella digital pero no una dirección de correo electrónico.\n\nPara una verificación fuera de banda, establezca primero una conexión cifrada con el destinatario.";
 "qrscan_contains_text" = "Texto del código QR escaneado:\n\n%1$@";
@@ -861,9 +906,11 @@
 "qrscan_fingerprint_label" = "Huella digital";
 "withdraw_verifycontact_explain" = "Este código QR puede ser escaneado por otras personas para contactarlo.\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
+"withdraw_joinbroadcast_explain" = "Este código QR puede ser escaneado por otros para unirse al canal \"%1$@\".\n\nPuedes restablecerlo, de modo que el código QR existente o el enlace de invitación dejarán de funcionar.";
 "withdraw_qr_code" = "Desactivar código QR";
 "revive_verifycontact_explain" = "Este código QR puede ser escaneado por otros para contactarlo.\n\nEl código QR no está activo en este dispositivo.";
 "revive_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nEl código QR no está activo en este dispositivo.";
+"revive_joinbroadcast_explain" = "Este código QR para unirse al canal \"%1$@\" ha sido reiniciado y ya no está activo.";
 "revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código de invitación QR";
 "qrshow_x_joining" = "%1$@ se une.";
@@ -872,6 +919,7 @@
 "qrshow_join_group_title" = "Código de invitación QR";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Escanea esto para unirte al grupo verificado \"%1$@\".";
+"qrshow_join_channel_hint" = "Escanea para entrar en el canal \"%1$@\"";
 "qrshow_join_contact_title" = "Código de invitación QR";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanea esto para configurar un contacto con %1$@";
@@ -971,6 +1019,7 @@
 "name_desktop" = "Nombre";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";
 "export_backup_desktop" = "Exportar copia de respaldo";
+// deprecated
 "autocrypt_correct_desktop" = "Configuración de Autocrypt transferida exitosamente!";
 "forget_login_confirmation_desktop" = "¿Borrar esta sesión? Todo se eliminará, incluida la configuración de extremo a extremo, contactos, chats, mensajes y multimedia. Esta acción es definitiva y no puede ser revertida.";
 "message_detail_sent_desktop" = "enviado";

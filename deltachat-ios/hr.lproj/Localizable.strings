@@ -180,6 +180,8 @@
 "pref_show_emails_all" = "Sve";
 "pref_background_default" = "Zadana pozadina";
 "pref_background_default_color" = "Zadana boja";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Član %1$@ uklonjen.";
 // qr code stuff
 "qr_code" = "QR kod";
 "qrscan_fingerprint_label" = "Otisak prsta";

@@ -218,6 +218,7 @@
 "open_url_confirmation" = "Vil du åbne dette link?";
 // contact list
 "contacts_title" = "Kontakter";
+// deprecated
 "contacts_enter_name_or_email" = "Indtast navn eller e-mailadresse";
 "contacts_type_email_above" = "Indtast e-mailadresse ovenover";
 // chatlist and chat view
@@ -393,8 +394,11 @@
 "pref_backup_export_explain" = "En sikkerhedskopi hjælper til at opsætte en ny installation på denne eller en anden enhed.\n\nSikkerhedskopien indeholder alle beskeder, kontakter og samtaler og end-to-end krypteringsopsætning. Gem sikkerhedskopien et sikkert sted eller slet den så hurtigt som muligt.";
 "pref_backup_export_start_button" = "Start sikkerhedskopiering";
 "pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$@";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Eksporter hemmelige nøgler";
+// deprecated
 "pref_managekeys_export_explain" = "Eksporter hemmelige nøgler til \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Hemmelige nøgler skrevet til \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Baggrund";
@@ -402,6 +406,7 @@
 "pref_background_btn_gallery" = "Vælg fra galleri";
 "pref_imap_folder_warn_disable_defaults" = "Ved deaktivering af denne indstiiling vær sikker på at server og andre klienter er indstillet tilsvarende.\n\nEllers fungerer det måske slet ikke.";
 "pref_auto_folder_moves" = "Flytter automatisk til DeltaChat mappe";
+// deprecated
 "pref_auto_folder_moves_explain" = "Samtaler er flyttet for at undgå rodet indbakke";
 "pref_show_emails" = "Vis klassisk e-mail";
 "pref_show_emails_no" = "Nej, kun samtaler";
@@ -448,11 +453,15 @@
 "autodel_after_1_week" = "Efter 1 uge";
 "after_5_weeks" = "Efter 5 uger";
 "autodel_after_1_year" = "Efter 1 år";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Send Autocrypt opsætning besked";
+// deprecated
 "autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
+// deprecated
 "autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
+// deprecated
 "autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 // system messages
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
@@ -472,6 +481,8 @@
 "remove_member_by_you" = "Medlem %1$@ fjernet af mig.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Medlem %1$@ fjernet af %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Medlem %1$@ fjernet.";
 "group_image_deleted_by_you" = "Gruppebillede slettet af mig.";
 // %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Gruppebillede slettet af %1$@.";
@@ -592,6 +603,7 @@
 "name_desktop" = "Navn";
 "select_group_image_desktop" = "Vælg gruppebillede";
 "export_backup_desktop" = "Eksporter sikkerhedskopi";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt opsætning overført!";
 "forget_login_confirmation_desktop" = "Slet login? Alt vil blive slettet, din end-to-end opsætning, kontakter, samtaler, meddelelser og medier. Denne handling er endelig og kan ikke fortrydes.";
 "message_detail_sent_desktop" = "sendt";
