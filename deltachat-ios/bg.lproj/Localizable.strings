@@ -224,6 +224,7 @@
 "menu_save_log" = "Запис на дневник";
 "menu_more_options" = "Още опции";
 "menu_learn_spelling" = "Запомняне на правописа";
+// deprecated
 "menu_chat_audit_log" = "Одитен дневник на чатовете";
 "jump_to_message" = "Към съобщение";
 "copy_json" = "Копиране на JSON";
@@ -273,6 +274,7 @@
 "open_url_confirmation" = "Искате ли да отворите тази връзка?";
 // contact list
 "contacts_title" = "Контакти";
+// deprecated
 "contacts_enter_name_or_email" = "Въведете име или адрес за електронна поща";
 "contacts_type_email_above" = "Въведете адрес за електронна поща по-горе";
 // chatlist and chat view
@@ -322,9 +324,11 @@
 "filter_map_on_time" = "Показване на местоположенията във времева рамка";
 "show_location_traces" = "Показване на съобщенията за проследяване";
 "add_poi" = "Изпращане на място, представляващо интерес";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Системните съобщения за този чат ще се появяват тук";
+// deprecated
 "chat_audit_log_title" = "Одитен дневник на чата за %1$@";
+// deprecated
 "chat_audit_log_description" = "Показва само системни и информационни съобщения; това е от полза, ако искаме да намерим последните чат действия, без да преминаваме през много на брой съобщения.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -351,6 +355,7 @@
 "group_self_not_in_group" = "Трябва да сте член на групата, за да изпълните това действие.";
 "profile_encryption" = "Криптиране";
 "profile_shared_chats" = "Споделени чатове";
+// deprecated
 "related_chats" = "Свързани чатове";
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
@@ -440,7 +445,7 @@
 "instant_onboarding_contact_info" = "Създайте профил, за да обменяте съобщения с %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Искате ли да създадете нов профил и да започнете да обменяте съобщения с %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Искате ли да създадете нов профил и да се присъедините към чат групата \"%1$@\"?";
 "welcome_chat_over_email" = "Защитен децентрализиран чат";
 "scan_invitation_code" = "Сканиране на код за покана";
@@ -538,7 +543,9 @@
 "pref_server" = "Сървър";
 "pref_encryption" = "Криптиране";
 "pref_manage_keys" = "Управление на ключове";
+// deprecated
 "pref_show_system_contacts" = "Прочитане на системната адресна книга";
+// deprecated
 "pref_show_system_contacts_explain" = "Да се предлага създаване на чатове с контакти от адресната книга. За някои доставчици е необходимо първо да се настрои криптиране от край до край.";
 "pref_chats" = "Чатове";
 "pref_in_chat_sounds" = "Звуци в чата";
@@ -554,8 +561,11 @@
 "pref_backup_export_all" = "Експортиране на всички %1$d профила";
 "pref_backup_export_start_button" = "Започване на създаването на резервно копие";
 "pref_backup_written_to_x" = "Резервното копие е успешно записано в \"%1$@\".";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Експорт на тайните ключове";
+// deprecated
 "pref_managekeys_export_explain" = "Да бъдат ли експортирани тайните ключове в \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Тайните ключове са записани успешно в \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Фон";
@@ -563,8 +573,10 @@
 "pref_background_btn_gallery" = "Избор от галерията";
 "pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Разговорите са преместени, за да се избегне претрупване на папката \"Входящи\"";
 "pref_only_fetch_mvbox_title" = "Да се извлича само от папката DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Другите папки да не бъдат взимани под внимание. Изисква Вашият сървър да премества чат съобщенията в папката DeltaChat.";
 "pref_show_emails" = "Да се показват класически e-mail съобщения";
 "pref_show_emails_no" = "Не, само чатове";
@@ -572,7 +584,9 @@
 "pref_show_emails_all" = "Всички";
 "pref_experimental_features" = "Експериментални възможности";
 "pref_on_demand_location_streaming" = "Поточно излъчване на местоположението при поискване";
+// deprecated
 "pref_developer_mode" = "Режим за разработчици";
+// deprecated
 "pref_developer_mode_explain" = "Активира опциите за отстраняване на грешки и може да направи приложението по-малко стабилно. Само за разработчици.";
 "pref_background_default" = "Подразбиращо се изображение";
 "pref_background_default_color" = "Подразбиращ се цвят";
@@ -636,11 +650,15 @@
 "autodel_after_1_week" = "След 1 седмица";
 "after_5_weeks" = "След 5 седмици";
 "autodel_after_1_year" = "След 1 година";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Изпращане на съобщение за настройка на Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Съобщението за настройка на Autocrypt споделя по сигурен начин Вашата настройка за криптиране \"от край до край\" с други съвместими с Autorcypt приложения.\n\nНастройката се криптира с код, който се показва тук и трябва да бъде въведен на другото устройство.";
+// deprecated
 "autocrypt_send_asm_button" = "Изпращане на съобщението за настройка на Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Изпратихте Вашата настройка до себе си. Отворете съобщението за настройка в другото устройство. Би трябвало да Ви бъде поискан код за настройка. Въведете следните цифри:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Да се предпочита криптиране \"от край до край\"";
 // system messages
 "systemmsg_subject_for_new_contact" = "Съобщение от %1$@";
@@ -838,6 +856,7 @@
 "name_desktop" = "Име";
 "select_group_image_desktop" = "Изберете изображение за групата";
 "export_backup_desktop" = "Експорт на резервно копие";
+// deprecated
 "autocrypt_correct_desktop" = "Найстроката на Autocrypt е прехвърлена.";
 "forget_login_confirmation_desktop" = "Да бъде ли изтрита тази регистрация? Всичко ще бъде изтрито, включително Вашата настройка за криптиране \"от край до край\", контакти, чатове, съобщения и медийни файлове. Това действие не може да бъде отменено.";
 "message_detail_sent_desktop" = "изпратено";

@@ -227,6 +227,7 @@
 "menu_save_log" = "Сними дневник";
 "menu_more_options" = "Више опција";
 "menu_learn_spelling" = "Научи правопис";
+// deprecated
 "menu_chat_audit_log" = "Дневник ревизије ћаскања";
 "jump_to_message" = "Иди на поруку";
 "copy_json" = "Копирај JSON";
@@ -285,6 +286,7 @@
 "open_url_confirmation" = "Да ли желите да отворите ову везу?";
 // contact list
 "contacts_title" = "Контакти";
+// deprecated
 "contacts_enter_name_or_email" = "Унесите име или е-адресу";
 "contacts_type_email_above" = "Унесите е-адресу изнад";
 // chatlist and chat view
@@ -330,9 +332,11 @@
 "filter_map_on_time" = "Прикажи положаје у временском периоду?";
 "show_location_traces" = "Прикажи трагове";
 "add_poi" = "Пошаљи интересантно место";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Поруке оперативног система за ово ћаскање ће се појавити овде.";
+// deprecated
 "chat_audit_log_title" = "Дневник ревизије ћаскања за %1$@";
+// deprecated
 "chat_audit_log_description" = "Приказује само информативне и поруке оперативног система; корисно за проналажење последњих радњи ћаскања без листања кроз много порука.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -502,8 +506,11 @@
 "pref_backup_export_explain" = "Резервна копија вам помаже да подесите нову инсталацију на овом или другом уређају.\n\nРезервна копија ће садржати све поруке, контакте и ћаскања и ваше комплетно подешавање аутоматског шифровања. Чувајте резервну копију на безбедном месту или је избришите што је пре могуће.";
 "pref_backup_export_start_button" = "Покрени складиштење резервне копије";
 "pref_backup_written_to_x" = "Записивање резервне копије је успешно до „%1$@“.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Извези тајне кључеве";
+// deprecated
 "pref_managekeys_export_explain" = "Извези тајне кључеве на „%1$@“?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Записивање тајних кључева је успешно до „%1$@“.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Позадина";
@@ -511,8 +518,10 @@
 "pref_background_btn_gallery" = "Изабери из галерије";
 "pref_imap_folder_warn_disable_defaults" = "Ако промените ову опцију, морате проверити да су ваш сервер и ваши други клијенти конфигурисани у складу са тим.\n\nУ супротном апликација можда уопште неће функционисати.";
 "pref_auto_folder_moves" = "Аутоматски премести у DeltaChat директоријум";
+// deprecated
 "pref_auto_folder_moves_explain" = "Ћаскања се померају да би се избегло затрпавање пријемног сандучета";
 "pref_only_fetch_mvbox_title" = "Примај поруке само из DeltaChat директоријума";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Игнориши остале директоријуме. Захтева да ваш сервер премести поруке у DeltaChat директоријум.";
 "pref_show_emails" = "Прикажи обичне поруке е-поште";
 "pref_show_emails_no" = "Не, само ћаскања";
@@ -520,7 +529,9 @@
 "pref_show_emails_all" = "Сви";
 "pref_experimental_features" = "Експерименталне могућности";
 "pref_on_demand_location_streaming" = "Проток положаја на захтев";
+// deprecated
 "pref_developer_mode" = "Режим програмера";
+// deprecated
 "pref_developer_mode_explain" = "Активира опције за отклањање грешака и може учинити апликацију мање стабилном. Само за програмере.";
 "pref_background_default" = "Подразумевана позадина";
 "pref_background_default_color" = "Подразумевана боја";
@@ -573,11 +584,15 @@
 "autodel_after_1_week" = "За 1 недељу";
 "after_5_weeks" = "За 5 недеља";
 "autodel_after_1_year" = "За 1 годину";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Пошаљите поруку поставки за аутошифровање";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Порука о подешавању аутоматског шифровања безбедно дели ваше комплетно подешавање са другим апликацијама које су компатибилне са аутоматским шифровањем.\n\nПодешавање ће бити шифровано кодом за подешавање приказаним овде и мора се унети на другом уређају.";
+// deprecated
 "autocrypt_send_asm_button" = "Пошаљите поруку поставки за аутошифровање";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Ваше подешавање вам је послато. Пређите на други уређај и отворите поруку за подешавање. На другом уређају од се вас очекује да унесете код за подешавање. Унесите следеће цифре:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Преферирај с-краја-на-крај шифровање";
 // system messages
 "systemmsg_subject_for_new_contact" = "Поруке од %1$@";
@@ -597,6 +612,8 @@
 "remove_member_by_you" = "Члан %1$@ је уклоњен од мене.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Члан %1$@ је уклоњен од стране %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Члан %1$@ је уклоњен.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ је напустио групу.";
 "group_image_deleted_by_you" = "Ви сте обрисали слику групе.";
@@ -755,6 +772,7 @@
 "name_desktop" = "Име";
 "select_group_image_desktop" = "Изабери слику групе";
 "export_backup_desktop" = "Извези резервну копију";
+// deprecated
 "autocrypt_correct_desktop" = "Поставке за аутошифровање су послате.";
 "forget_login_confirmation_desktop" = "Да ли желите да избришете овај налог? Све ће бити избрисано, укључујући и ваше подешавање с-краја-на-крај шифровања, контакти, ћаскања, поруке и медији. Ова радња се не може опозвати.";
 "message_detail_sent_desktop" = "послато";

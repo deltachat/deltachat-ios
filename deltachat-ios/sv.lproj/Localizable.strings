@@ -230,6 +230,7 @@
 "menu_save_log" = "Spara logg";
 "menu_more_options" = "Mer alternativ";
 "menu_learn_spelling" = "Lär stavning";
+// deprecated
 "menu_chat_audit_log" = "Granskningslogg av chatt";
 "jump_to_message" = "Hoppa till meddelande";
 "copy_json" = "Kopiera JSON";
@@ -279,6 +280,7 @@
 "open_url_confirmation" = "Vill du öppna denna länk?";
 // contact list
 "contacts_title" = "Kontakter";
+// deprecated
 "contacts_enter_name_or_email" = "Ange namn eller e-postadress";
 "contacts_type_email_above" = "Skriv in e-postadressen ovan";
 // chatlist and chat view
@@ -328,9 +330,11 @@
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
 "add_poi" = "Skicka intressant plats";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Systemmeddelanden för denna chatt visas här";
+// deprecated
 "chat_audit_log_title" = "Chattgranskningslogg för %1$@";
+// deprecated
 "chat_audit_log_description" = "Visar endast system- och informationsmeddelanden; användbart för att hitta de senaste chattåtgärderna utan att skrolla igenom många meddelanden.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -357,6 +361,7 @@
 "group_self_not_in_group" = "Du måste vara medlem i gruppen för att utföra denna åtgärd.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delade chattar";
+// deprecated
 "related_chats" = "Relaterade chattar";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
@@ -446,7 +451,7 @@
 "instant_onboarding_contact_info" = "Skapa en profil för att chatta med %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Vill du skapa en ny profil och börja chatta med %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Vill du skapa en ny profil och gå med i chattgruppen \"%1$@\"?";
 "welcome_chat_over_email" = "Säker decentraliserad chatt";
 "scan_invitation_code" = "Skanna inbjudningskod";
@@ -544,7 +549,9 @@
 "pref_server" = "Server";
 "pref_encryption" = "Kryptering";
 "pref_manage_keys" = "Hantera nycklar";
+// deprecated
 "pref_show_system_contacts" = "Läs systemets adressbok";
+// deprecated
 "pref_show_system_contacts_explain" = "Erbjud att skapa chattar med kontakter från adressboken. Vissa leverantörer behöver först konfigureras för totalsträckskryptering.";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
@@ -560,8 +567,11 @@
 "pref_backup_export_all" = "Exportera all %1$d profiler";
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
 "pref_backup_written_to_x" = "Säkerhetskopia korrekt skriven till \"%1$@\".";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exportera säkerhetsnycklar";
+// deprecated
 "pref_managekeys_export_explain" = "Exportera säkerhetsnycklar till \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Säkerhetsnycklar korrekt skrivna till \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Bakgrund";
@@ -569,8 +579,10 @@
 "pref_background_btn_gallery" = "Välj från galleriet";
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
+// deprecated
 "pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";
 "pref_only_fetch_mvbox_title" = "Hämta endast från DeltaChat-mappen";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ignorera andra mappar. Kräver att din server flyttar chattmeddelanden till DeltaChat-mappen.";
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
 "pref_show_emails_no" = "Nej, bara chattar";
@@ -578,7 +590,9 @@
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
 "pref_on_demand_location_streaming" = "På-begäran platsströmning";
+// deprecated
 "pref_developer_mode" = "Utvecklarläge";
+// deprecated
 "pref_developer_mode_explain" = "Aktiverar felsökningsalternativ och kan göra appen mindre stabil. Endast för utvecklare.";
 "pref_background_default" = "Standardbakgrund";
 "pref_background_default_color" = "Standardfärg";
@@ -644,11 +658,15 @@
 "autodel_after_1_week" = "Efter 1 vecka";
 "after_5_weeks" = "Efter 5 veckor";
 "autodel_after_1_year" = "Efter 1 år";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Skicka Autocrypt inställningsmeddelande";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Ett meddelande för att ställa in Autocrypt, delar den informationen med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
+// deprecated
 "autocrypt_send_asm_button" = "Skicka Autocrypt inställningsmeddelande";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Dina inställningar har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Föredra slutpunkt-till-slutpunkt-kryptering";
 // system messages
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
@@ -670,6 +688,8 @@
 "remove_member_by_you" = "Medlemmen %1$@ togs bort av mig.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Medlemmen %1$@ togs bort av %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Medlemmen %1$@ togs bort.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Gruppen lämnades av %1$@.";
 "group_image_deleted_by_you" = "Gruppbilden togs bort av mig.";
@@ -846,6 +866,7 @@
 "name_desktop" = "Namn";
 "select_group_image_desktop" = "Välj en gruppbild";
 "export_backup_desktop" = "Exportera säkerhetskopia";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt-inställning överförd.";
 "forget_login_confirmation_desktop" = "Ta bort den här inloggningen? Allt kommer att raderas, inklusive din slutpunkt-till-slutpunkt-inställning, dina kontakter, media och meddelanden. Denna åtgärd kan inte ångras.";
 "message_detail_sent_desktop" = "skickat";

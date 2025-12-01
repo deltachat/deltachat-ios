@@ -116,6 +116,7 @@
 "mute_for_seven_days" = "أكتم لمدة أسبوع";
 // contact list
 "contacts_title" = "جهات الإتصا";
+// deprecated
 "contacts_enter_name_or_email" = "ادخل الإسم أو البريد الإلكتروني";
 "chat_camera_unavailable" = "الكاميرا غير متاحة.";
 "chat_share_with_title" = "شارك مع";

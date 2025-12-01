@@ -264,6 +264,7 @@
 "menu_save_log" = "Uložit protokol";
 "menu_more_options" = "Další možnosti";
 "menu_learn_spelling" = "Naučte se pravopis";
+// deprecated
 "menu_chat_audit_log" = "Auditní protokol chatu";
 "jump_to_message" = "Přejít na zprávu";
 "jump_to_original_message" = "Přejít na původní zprávu";
@@ -316,6 +317,7 @@
 "open_url_confirmation" = "Přejete si otevřít tento odkaz?";
 // contact list
 "contacts_title" = "Kontakty";
+// deprecated
 "contacts_enter_name_or_email" = "Zadejte jméno nebo e-mail";
 "contacts_type_email_above" = "Zadejte e-mail výše";
 // chatlist and chat view
@@ -367,9 +369,11 @@
 "filter_map_on_time" = "Zobrazit polohy v časovém úseku";
 "show_location_traces" = "Zobrazit trasy";
 "add_poi" = "Odeslat bod zájmu";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Zde se zobrazují systémové zprávy pro tento chat";
+// deprecated
 "chat_audit_log_title" = "Auditní protokol pro chat %1$@";
+// deprecated
 "chat_audit_log_description" = "Zobrazuje pouze systémové a informační zprávy; užitečné pro nalezení posledních akcí v chatu bez procházení mnoha zpráv.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -398,6 +402,7 @@
 "group_self_not_in_group" = "Pro tuto akci je nutné být členem této skupiny.";
 "profile_encryption" = "Šifrování";
 "profile_shared_chats" = "Sdílené chaty";
+// deprecated
 "related_chats" = "Související chaty";
 // Separator between the list of actual members and past members
 "past_members" = "Bývalí členové";
@@ -491,7 +496,7 @@
 "instant_onboarding_contact_info" = "Založit profil k chatování s uživatelem %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Přejete si založit nový profil a začít chatovat s uživatelem %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Přejete si založit nový profil a připojit se k chatovací skupině \"%1$@\"?";
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
@@ -614,7 +619,9 @@
 "pref_server" = "Server";
 "pref_encryption" = "Šifrování";
 "pref_manage_keys" = "Správa klíčů";
+// deprecated
 "pref_show_system_contacts" = "Čtení systémových kontaktů";
+// deprecated
 "pref_show_system_contacts_explain" = "Nabízet vytváření chatů s kontakty z adresáře. Pro některé poskytovatele je nejprve nutné nastavit koncové šifrování.";
 "pref_chats" = "Chaty";
 "pref_in_chat_sounds" = "Zvuky v rámci chatu";
@@ -630,8 +637,11 @@
 "pref_backup_export_all" = "Exportovat všech %1$d profilů";
 "pref_backup_export_start_button" = "Spustit zálohu";
 "pref_backup_written_to_x" = "Záloha úspěšně zapsána v \"%1$@\"";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Exportovat tajné klíče";
+// deprecated
 "pref_managekeys_export_explain" = "Exportovat tajné klíče do \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Tajné klíče úspěšně zapsány v \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Pozadí";
@@ -639,8 +649,10 @@
 "pref_background_btn_gallery" = "Vybrat z galerie";
 "pref_imap_folder_warn_disable_defaults" = "Při změně této volby se ujistěte, že váš server a ostatní klientské aplikace mají odpovídající nastavení.\n\nJinak může vše přestat fungovat.";
 "pref_auto_folder_moves" = "Automaticky přesouvat do složky DeltaChat ";
+// deprecated
 "pref_auto_folder_moves_explain" = "Zprávy chatů jsou přesouvány, aby nezahlcovaly složku Doručené";
 "pref_only_fetch_mvbox_title" = "Načítat pouze ze složky DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Ignorovat ostatní složky. Vyžaduje, aby váš server přesouval zprávy chatu do složky DeltaChat.";
 "pref_show_emails" = "Zobrazovat běžné e-maily";
 "pref_show_emails_no" = "Ne, pouze chaty";
@@ -648,7 +660,9 @@
 "pref_show_emails_all" = "Vše";
 "pref_experimental_features" = "Experimentální funkce ";
 "pref_on_demand_location_streaming" = "Streamování polohy na vyžádání";
+// deprecated
 "pref_developer_mode" = "Vývojový režim";
+// deprecated
 "pref_developer_mode_explain" = "Povolí debugovací volby a může aplikaci učinit méně stabilní. Pouze pro vývojáře.";
 "pref_background_default" = "Výchozí obrázek";
 "pref_background_default_color" = "Výchozí barva";
@@ -714,11 +728,15 @@
 "autodel_after_1_week" = "Po 1 týdnu";
 "after_5_weeks" = "Po 5 týdnech";
 "autodel_after_1_year" = "Po 1 roce";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Odeslat zprávu s nastavením Autocryptu";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Pomocí zprávy s nastavením Autocryptu lze sdílet vaše nastavení koncového šifrování s dalšími aplikacemi využívajícími Autocrypt.\n\nNastavení je zašifrované zobrazeným kódem, který musí být zadán na zařízení, na které si přejete nastavení přenést.";
+// deprecated
 "autocrypt_send_asm_button" = "Odeslat nastavení Autocryptu";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Vaše nastavení bylo odesláno. Vezměte si zařízení, kam si přejete nastavení přenést, a zprávu na něm otevřete. Mělo by se objevit pole pro zadání kódu. Do něj vložte následující číslice:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Upřednostňovat koncové šifrování";
 // system messages
 "systemmsg_subject_for_new_contact" = "Zpráva od uživatele %1$@";
@@ -740,6 +758,8 @@
 "remove_member_by_you" = "Odebrali jste člena %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Člen %1$@ byl odebrán uživatelem %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Člen %1$@ byl odebrán.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Uživatel %1$@ opustil skupinu.";
 "group_image_deleted_by_you" = "Smazali jste obrázek skupiny.";
@@ -920,6 +940,7 @@
 "name_desktop" = "Jméno";
 "select_group_image_desktop" = "Vybrat obrázek skupiny";
 "export_backup_desktop" = "Exportovat zálohu";
+// deprecated
 "autocrypt_correct_desktop" = "Nastavení Autocryptu přeneseno.";
 "forget_login_confirmation_desktop" = "Opravdu si přejete smazat tento profil? Všechna data budou smazána, včetně nastavení koncového šifrování, kontaktů, hovorů, zpráv a multimédií. Tuto akci nelze vrátit zpět.";
 "message_detail_sent_desktop" = "odesláno";

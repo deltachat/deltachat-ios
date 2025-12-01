@@ -287,6 +287,7 @@
 "menu_save_log" = "Günlüğü Kaydet";
 "menu_more_options" = "Daha Fazla Seçenek";
 "menu_learn_spelling" = "Yazımı Öğrenin";
+// deprecated
 "menu_chat_audit_log" = "Sohbet Denetim Günlüğü";
 "jump_to_message" = "İletiye Atla";
 "jump_to_original_message" = "Özgün İletiye Atla";
@@ -348,8 +349,8 @@
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
 "ask_block_contact" = "Bu kişi engellensin mi?\n\nEngellenen kişiler tarafından oluşturulan doğrudan iletiler ya da gruplar gösterilmeyecek.\n\nEngellenen kişilerle olan diğer gruplar, onların iletilerini gösterecek.";
 "ask_unblock_contact" = "Bu kişi engellenmesin mi?";
-"ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
-"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü ya da sistem adres defterinden gelen kişiler kalıcı olarak silinemez.";
+"ask_delete_contacts" = "Kişiler silinsin mi?\n\nSohbetlerin sürdüğü kişiler kalıcı olarak silinemez.";
+"ask_delete_contact" = "%1$@ kişisi silinsin mi?\n\nSohbetlerin sürdüğü kişiler kalıcı olarak silinemez.";
 "ask_start_chat_with" = "%1$@ ile sohbet edilsin mi?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "%1$@ gruptan kaldırılsın mı?";
@@ -358,6 +359,7 @@
 "open_url_confirmation" = "Bu bağlantıyı açmak istiyor musunuz?";
 // contact list
 "contacts_title" = "Kişiler";
+// deprecated
 "contacts_enter_name_or_email" = "Ad ya da e-posta adresi girin";
 "contacts_type_email_above" = "Yukarıya e-posta adresi yazın";
 // chatlist and chat view
@@ -412,9 +414,11 @@
 "filter_map_on_time" = "Konumları zaman çerçevesinde göster";
 "show_location_traces" = "İzleri göster";
 "add_poi" = "İlgi çekici noktayı gönder";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Bu sohbet için sistem iletileri burada görünür";
+// deprecated
 "chat_audit_log_title" = "%1$@ için Sohbet Denetim Günlüğü";
+// deprecated
 "chat_audit_log_description" = "Yalnızca sistem ve bilgi iletilerini gösterir; birçok ileti arasında kaydırmadan son sohbet eylemlerini bulmak için kullanışlıdır.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -443,6 +447,7 @@
 "group_self_not_in_group" = "Bu eylemi gerçekleştirmek için grubun bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
 "profile_shared_chats" = "Ortak\'taki Sohbetler";
+// deprecated
 "related_chats" = "İlgili Sohbetler";
 // Separator between the list of actual members and past members
 "past_members" = "Geçmişteki Üyeler";
@@ -536,8 +541,8 @@
 "instant_onboarding_contact_info" = "%1$@ ile sohbet etmek için bir profil oluşturun.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Yeni bir profil oluşturmak ve %1$@ ile sohbet başlatmak istiyor musunuz?";
-// Question shown when group's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_group" = "Yeni bir profil oluşturmak ve “%1$@” sohbet grubuna katılmak istiyor musunuz?";
+// Question shown when group's/channel's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Yeni bir profil oluşturmak ve “%1$@” grubuna katılmak istiyor musunuz?";
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
@@ -671,7 +676,9 @@
 "pref_server" = "Sunucu";
 "pref_encryption" = "Şifreleme";
 "pref_manage_keys" = "Anahtarları Yönet";
+// deprecated
 "pref_show_system_contacts" = "Sistem Adres Defterini Oku";
+// deprecated
 "pref_show_system_contacts_explain" = "Adres defterinden gelen kişilerle sohbetler oluşturmayı teklif edin.";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
@@ -688,17 +695,26 @@
 "pref_backup_export_all" = "Tüm %1$d profili dışa aktar";
 "pref_backup_export_start_button" = "Yedeklemeyi Başlat";
 "pref_backup_written_to_x" = "Yedek “%1$@” üzerine başarıyla yazıldı.";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Sır Anahtarları Dışa Aktar";
+// deprecated
 "pref_managekeys_export_explain" = "Sır anahtarlar “%1$@” üzerinde dışa aktarılsın mı?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Sır anahtarlar “%1$@” üzerine başarıyla yazıldı.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Duvar Kâğıdı";
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçeneği değiştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nDeğilse özellikler hiç çalışmayabilir.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Çoklu Aygıt Modu";
+"pref_multidevice_explain" = "İletilerinizi diğer aygıtlarınızla eşzamanlayın. İkinci bir aygıt eklendiğinde otomatik olarak etkinleştirilir";
+"pref_multidevice_change_warn" = "Aynı profili birden fazla aygıtta kullanırken Çoklu Aygıt Modu etkinleştirilmelidir. Bu ayarı yalnızca bu profili diğer tüm aygıtlarınızdan kaldırdıysanız etkisizleştirin.\n\nProfili birden fazla aygıtta kullanırken Çoklu Aygıt Modu\'nu etkisizleştirmek, iletilerin kaçırılmasına ve diğer sorunlara neden olur.";
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
+// deprecated
 "pref_auto_folder_moves_explain" = "Sohbet görüşmeleri, Gelen Kutusu\'ndaki dağınıklığı önlemek için taşınır";
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Diğer klasörleri yoksayar. Sunucunuzun sohbet iletilerini DeltaChat klasörüne taşımasını gerektirir.";
 "pref_show_emails" = "Klasik E-Postaları Göster";
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
@@ -706,7 +722,9 @@
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
 "pref_on_demand_location_streaming" = "İsteğe Bağlı Konum Akışı";
+// deprecated
 "pref_developer_mode" = "Geliştirici Modu";
+// deprecated
 "pref_developer_mode_explain" = "Hata ayıklama seçeneklerini etkinleştirir ve uygulamayı daha az kararlı yapabilir. Yalnızca geliştiriciler içindir.";
 "pref_background_default" = "Varsayılan görsel";
 "pref_background_default_color" = "Varsayılan renk";
@@ -732,6 +750,7 @@
 "disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
 "disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
 "send_stats_to_devs" = "Delta Chat\'in geliştiricilerine istatistikleri gönder";
+"stats_msg_body" = "İlişik, Delta Chat\'i geliştirmemize yardımcı olan belirsiz kullanım istatistikleri içerir. Teşekkür ederiz!";
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
@@ -773,11 +792,15 @@
 "autodel_after_1_week" = "1 hafta sonra";
 "after_5_weeks" = "5 hafta sonra";
 "autodel_after_1_year" = "1 yıl sonra";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Autocrypt Ayarlama İletisi Gönder";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Bir Autocrypt Ayarlama İletisi, uçtan uca ayarlamanızı diğer Autocrypt uyumlu uygulamalarla güvenli olarak paylaşır.\n\nDelta Chat\'i diğer aygıtta da kullanmak istiyorsanız, bunun yerine “Ayarlar / İkinci Aygıt Ekle”yi kullanın.";
+// deprecated
 "autocrypt_send_asm_button" = "Autocrypt Ayarlama İletisi Gönder";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Ayarlamanız kendinize gönderildi. Diğer aygıta geçin ve ayarlama iletisini açın. Size bir ayarlama kodu sorulmalı. Aşağıdaki sayıları girin:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Uçtan Uca Şifrelemeyi Yeğle";
 // system messages
 "systemmsg_subject_for_new_contact" = "%1$@ kişisinden gelen ileti";
@@ -799,6 +822,8 @@
 "remove_member_by_you" = "%1$@ üyesini kaldırdınız.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ tarafından %1$@ üyesi kaldırıldı.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "%1$@ üyesi kaldırıldı.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Gruptan ayrıldınız.";
 // "left" in the meaning of "exited".
@@ -910,6 +935,8 @@
 "qrlogin_ask_login_another" = "“%1$@” adresine giriş yapılsın mı?\n\nVarolan profiliniz silinmeyecek. Profilleriniz arasında geçiş yapmak için “Profili Değiştir” öğesini kullanın.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@, sizi bu kanala katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ yanıtladı; gruba eklenmesi bekleniyor…";
 "secure_join_wait" = "Bağlantı kuruluyor, lütfen bekleyin…";
@@ -994,6 +1021,7 @@
 "name_desktop" = "Ad";
 "select_group_image_desktop" = "Grup Görseli Seç";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
+// deprecated
 "autocrypt_correct_desktop" = "Autocrypt ayarlaması aktarıldı.";
 "forget_login_confirmation_desktop" = "Bu profil silinsin mi? Uçtan uca ayarlamanızı, kişilerinizi, sohbetlerinizi, iletilerinizi ve ortamlarınızı kapsayarak her şey silinecek. Bu eylem geri alınamaz.";
 "message_detail_sent_desktop" = "gönderilme";

@@ -222,6 +222,7 @@
 "menu_save_log" = "Lưu nhật ký";
 "menu_more_options" = "Tùy chọn khác";
 "menu_learn_spelling" = "Học đánh vần";
+// deprecated
 "menu_chat_audit_log" = "Nhật ký kiểm tra trò chuyện";
 "jump_to_message" = "Chuyển tới tin nhắn";
 "copy_json" = "Sao chép JSON";
@@ -270,6 +271,7 @@
 "open_url_confirmation" = "Bạn có muốn mở liên kết này không?";
 // contact list
 "contacts_title" = "Danh bạ";
+// deprecated
 "contacts_enter_name_or_email" = "Nhập tên hoặc địa chỉ e-mail";
 "contacts_type_email_above" = "Nhập địa chỉ e-mail ở trên";
 // chatlist and chat view
@@ -319,9 +321,11 @@
 "filter_map_on_time" = "Hiển thị vị trí trong khung thời gian";
 "show_location_traces" = "Hiển thị dấu vết";
 "add_poi" = "Gửi điểm ưa thích";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Tin nhắn hệ thống cho cuộc trò chuyện này xuất hiện ở đây";
+// deprecated
 "chat_audit_log_title" = "Nhật ký kiểm tra trò chuyện cho %1$@";
+// deprecated
 "chat_audit_log_description" = "Chỉ hiển thị thông báo hệ thống và thông tin; hữu ích cho việc tìm kiếm các hành động trò chuyện cuối cùng mà không cần phải cuộn qua nhiều tin nhắn.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -348,6 +352,7 @@
 "group_self_not_in_group" = "Bạn phải là thành viên của nhóm để thực hiện hành động này.";
 "profile_encryption" = "Mã hóa";
 "profile_shared_chats" = "Cuộc trò chuyện được chia sẻ";
+// deprecated
 "related_chats" = "Cuộc trò chuyện liên quan";
 "tab_contact" = "Liên hệ";
 "tab_group" = "Nhóm";
@@ -520,8 +525,11 @@
 "pref_backup_export_all" = "Xuất tất cả tài khoản %1$d";
 "pref_backup_export_start_button" = "Bắt đầu sao lưu";
 "pref_backup_written_to_x" = "Sao lưu được ghi thành công vào \"%1$@\".";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Xuất khóa bí mật";
+// deprecated
 "pref_managekeys_export_explain" = "Xuất khóa bí mật sang \"%1$@\"?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Khóa bí mật được ghi thành công vào \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Hình nền";
@@ -529,8 +537,10 @@
 "pref_background_btn_gallery" = "Chọn từ thư viện";
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Các cuộc trò chuyện được di chuyển để tránh làm lộn xộn Hộp thư đến";
 "pref_only_fetch_mvbox_title" = "Chỉ tìm nạp từ thư mục DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Bỏ qua các thư mục khác. Yêu cầu máy chủ của bạn di chuyển tin nhắn trò chuyện vào thư mục DeltaChat.";
 "pref_show_emails" = "Hiển thị E-mail cổ điển";
 "pref_show_emails_no" = "Không, chỉ trò chuyện";
@@ -538,7 +548,9 @@
 "pref_show_emails_all" = "Tất cả";
 "pref_experimental_features" = "Tính năng thử nghiệm";
 "pref_on_demand_location_streaming" = "Truyền phát vị trí theo yêu cầu";
+// deprecated
 "pref_developer_mode" = "Chế độ nhà phát triển";
+// deprecated
 "pref_developer_mode_explain" = "Kích hoạt các tùy chọn gỡ lỗi và có thể làm cho ứng dụng kém ổn định hơn. Chỉ dành cho nhà phát triển.";
 "pref_background_default" = "Hình ảnh mặc định";
 "pref_background_default_color" = "Màu mặc định";
@@ -595,11 +607,15 @@
 "autodel_after_1_week" = "Sau 1 tuần";
 "after_5_weeks" = "Sau 5 tuần";
 "autodel_after_1_year" = "Sau 1 năm";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Gửi tin nhắn thiết lập Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Thông báo thiết lập Autocrypt chia sẻ an toàn thiết lập end-to-end của bạn với các ứng dụng tương thích Autocrypt khác.\n\nThiết lập sẽ được mã hóa bằng mã thiết lập được hiển thị ở đây và phải được nhập trên thiết bị kia.";
+// deprecated
 "autocrypt_send_asm_button" = "Gửi tin nhắn thiết lập Autocrypt";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Thiết lập của bạn đã được gửi cho chính bạn. Chuyển sang thiết bị khác và mở thông báo thiết lập. Bạn sẽ được yêu cầu nhập mã thiết lập. Nhập các chữ số sau:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Ưu tiên mã hóa đầu cuối";
 // system messages
 "systemmsg_subject_for_new_contact" = "Tin nhắn từ %1$@";
@@ -789,6 +805,7 @@
 "name_desktop" = "Tên";
 "select_group_image_desktop" = "Chọn hình ảnh nhóm";
 "export_backup_desktop" = "Xuất bản sao lưu";
+// deprecated
 "autocrypt_correct_desktop" = "Đã chuyển thiết lập Autocrypt.";
 "forget_login_confirmation_desktop" = "Xóa thông tin đăng nhập này? Mọi thứ sẽ bị xóa, bao gồm thiết lập đầu cuối, danh bạ, cuộc trò chuyện, tin nhắn và phương tiện của bạn. Hành động này không thể hoàn tác được.";
 "message_detail_sent_desktop" = "đã gửi";

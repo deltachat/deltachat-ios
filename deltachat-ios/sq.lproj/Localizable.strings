@@ -283,6 +283,7 @@
 "menu_save_log" = "Ruaje Regjistrin";
 "menu_more_options" = "Më Tepër Mundësi";
 "menu_learn_spelling" = "Mëso Drejtshkrim";
+// deprecated
 "menu_chat_audit_log" = "Regjistër Auditimi Fjalosjeje";
 "jump_to_message" = "Hidhu te Mesazh";
 "jump_to_original_message" = "Hidhu te Mesazhi Origjinal";
@@ -354,6 +355,7 @@
 "open_url_confirmation" = "Doni të hapet kjo lidhje?";
 // contact list
 "contacts_title" = "Kontakte";
+// deprecated
 "contacts_enter_name_or_email" = "Jepni emër ose adresë email";
 "contacts_type_email_above" = "Shtypni më sipër adresën email";
 // chatlist and chat view
@@ -407,9 +409,11 @@
 "filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
 "show_location_traces" = "Shfaq gjurmë";
 "add_poi" = "Dërgo pikë interesi";
-// chat audit log
+// deprecated
 "chat_audit_log_empty_message" = "Mesazhet e sistemit për këtë fjalosje do të shfaqen këtu";
+// deprecated
 "chat_audit_log_title" = "Regjistër Auditimi Fjalosjeje %1$@";
+// deprecated
 "chat_audit_log_description" = "Shfaq vetëm mesazhe sistemi dhe informacionesh; e dobishme për gjetjen e veprimeve të fundit pa u dashur të parakalohet nëpër mjaft mesazhe.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -438,6 +442,7 @@
 "group_self_not_in_group" = "Që të kryeni këtë veprim, duhet të jeni anëtar i grupit.";
 "profile_encryption" = "Fshehtëzim";
 "profile_shared_chats" = "Fjalosje të Përbashkëta";
+// deprecated
 "related_chats" = "Fjalosje të Afërta";
 // Separator between the list of actual members and past members
 "past_members" = "Anëtarë të Dikurshëm";
@@ -531,7 +536,7 @@
 "instant_onboarding_contact_info" = "Krijoni një profil, që të bisedoni me %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_contact" = "Doni të krijohet një profil i ri dhe të fillohet të bisedohet me %1$@?";
-// Question shown when group's QR code is scanned from onboarding screen
+// Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Doni të krijohet një profil i ri dhe të hyhet te grupi “%1$@” i fjalosjeve?";
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
@@ -567,6 +572,15 @@
 "proxy_share_link" = "Jepeni Lidhjen";
 "proxy_enabled" = "Ndërmjetësi u Aktivizua";
 "proxy_enabled_hint" = "Po përdorni një ndërmjetës. Nëse keni problemi për t’u lidhur, provoni një ndërmjetës tjetër.";
+// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+"transports" = "Rele";
+"add_transport" = "Shtoni Rele";
+"remove_transport" = "Hiqni Rele";
+"edit_transport" = "Përpunoni Rele";
+// shown if a QR code was scanned that can be used as a transport
+"confirm_add_transport" = "Të shtohet kjo rele?";
+"invalid_transport_qr" = "Kodi QR i skanuar s’përmban një rele të vlefshme.";
+"confirm_remove_transport" = "Të hiqet releja “%1$@”?\n\nKontaktet tuaja munden t’ju kapin vetëm nëse jeni lidhur me ta më herët përmes një releje tjetër.\n\n\n\nNëse jeni në mëdyshje, hiqeni relenë më vonë.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
@@ -657,7 +671,9 @@
 "pref_server" = "Shërbyes";
 "pref_encryption" = "Fshehtëzim";
 "pref_manage_keys" = "Administroni Kyçe";
+// deprecated
 "pref_show_system_contacts" = "Të Lexojë Libër Adresash Sistemi";
+// deprecated
 "pref_show_system_contacts_explain" = "Ofro krijim fjalosjesh me kontakte prej libri adresash.";
 "pref_chats" = "Fjalosje";
 "pref_in_chat_sounds" = "Tinguj Brenda Fjalosjeje";
@@ -674,8 +690,11 @@
 "pref_backup_export_all" = "Eksporto krejt %1$d proflet";
 "pref_backup_export_start_button" = "Nis Kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te “%1$@”";
+// deprecated
 "pref_managekeys_export_secret_keys" = "Eksportoni Kyçe të Fshehtë";
+// deprecated
 "pref_managekeys_export_explain" = "Të eksportohen kyçet e fshehtë te “%1$@”?";
+// deprecated
 "pref_managekeys_secret_keys_exported_to_x" = "Kyçe të fshehtë shkruar me sukses te “%1$@”.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Sfond";
@@ -687,15 +706,19 @@
 "pref_multidevice_explain" = "Njëkohësoni mesazhet tuaj në pajisje tuajat të tjera. E aktivizuar automatikisht gjatë shtimit të një pajisjeje të dytë";
 "pref_multidevice_change_warn" = "Mënyra Shumë-Pajisje duhet aktivizuar, kur përdoret i njëjti profil në disa pajisje. Çaktivizojeni këtë rregullim vetëm në se e keni hequr këtë profil nga krejt pajisjet tuaja të tjera.\n\nÇaktivizimi i Mënyrës Shumë-Pajisje, teksa përdoret profili në disa pajisje, do të sjellë mesazhe të humbura dhe probleme të tjera.";
 "pref_auto_folder_moves" = "Kaloji vetvetiu te Dosja DeltaChat";
+// deprecated
 "pref_auto_folder_moves_explain" = "Bisedat zhvendosen, që të shmanget rrëmuja te dosja Të marrë";
 "pref_only_fetch_mvbox_title" = "Sill Vetëm nga Dosje DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_explain" = "Shpërfill dosje të tjera. Lyp që shërbyesi juaj të kalojë mesazhe fjalosjeje te dosje DeltaChat.";
 "pref_show_emails" = "Shfaq Email-e Klasikë";
 "pref_show_emails_no" = "Jo, vetëm fjalosje";
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
 "pref_show_emails_all" = "Krejt";
 "pref_experimental_features" = "Veçori Eksperimentale";
+// deprecated
 "pref_developer_mode" = "Mënyra Zhvillues";
+// deprecated
 "pref_developer_mode_explain" = "Aktivizon mundësi diagnostikimi dhe mund ta bëjë aplikacionin më pak të qëndrueshëm. Vetëm për zhvillues.";
 "pref_background_default" = "Figurë parazgjedhje";
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
@@ -721,6 +744,7 @@
 "disable_imap_idle" = "Çaktivizo IMAP IDLE";
 "disable_imap_idle_explain" = "Mos e përdor zgjerimin IMAP IDLE, edhe kur shërbyesi e mbulon. Aktivizimi i kësaj mundësie do të vonojë marrjen e mesazheve, aktivizojeni vetëm për testime.";
 "send_stats_to_devs" = "Dërgojuni zhvilluesve të Delta Chat-it statistika";
+"stats_msg_body" = "Bashkëngjitja përmban statistika anonime përdorimi, që na ndihmojnë të përmirësojmë Delta Chat-in. Faleminderit!";
 // Emoji picker and categories
 "emoji_search_results" = "Përfundime Kërkimi";
 "emoji_not_found" = "S’u gjetën emoji";
@@ -762,11 +786,15 @@
 "autodel_after_1_week" = "Pas 1 jave";
 "after_5_weeks" = "Pas 5 javësh";
 "autodel_after_1_year" = "Pas 1 viti";
-// autocrypt
+// deprecated
 "autocrypt_send_asm_title" = "Dërgo Mesazh Rregullimi Autocrypt-i";
+// deprecated
 "autocrypt_send_asm_explain_before" = "Një “Mesazh Rregullimi Autocrypt-i“ ua jep, në mënyrë të parrezik, rregullimin tuaj për fshehtëzimin skaj-më-skaj pajisjeve të tjera që përdorin Autocrypt-in.\n\nNëse përdorni Delta Chat edhe në pajisjen tjetër, përdorni “Rregullime / Shtoni Pajisje të Dytë”.";
+// deprecated
 "autocrypt_send_asm_button" = "Dërgo Mesazh Rregullimi Autocrypt-i";
+// deprecated
 "autocrypt_send_asm_explain_after" = "Rregullimi juaj u dërgua te ju. Kaloni te pajisja tjetër dhe hapni mesazhin e rregullimit. Do t\’ju kërkohet një kod rregullimi. Shtypni atje shifrat vijuese:";
+// deprecated
 "autocrypt_prefer_e2ee" = "Parapëlqe Fshehtëzim Skaj-Më-Skaj";
 // system messages
 "systemmsg_subject_for_new_contact" = "Mesazh nga %1$@";
@@ -788,6 +816,8 @@
 "remove_member_by_you" = "Hoqët anëtarin %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Anëtari %1$@ u hoq nga %2$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "U hoq anëtari %1$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Ikët nga grupi.";
 // "left" in the meaning of "exited".
@@ -899,6 +929,8 @@
 "qrlogin_ask_login_another" = "Të hyhet si “%1$@”?\n\nProfili juaj ekzistues s’do të fshihet. Që të kaloni nga një profil i juaji në një tjetër, përdorni zërin “Ndërroni Profil”.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ ju ftoi të vini në këtë kanal.\n\nPo pritet që të përgjigjet pajisja e %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj, ju lutemi, pritni…";
@@ -983,6 +1015,7 @@
 "name_desktop" = "Emër";
 "select_group_image_desktop" = "Përzgjidhni Figurë Grupi";
 "export_backup_desktop" = "Eksportoni Kopjeruajtje";
+// deprecated
 "autocrypt_correct_desktop" = "Ujdisja e Autocrypt-it u shpërngul.";
 "forget_login_confirmation_desktop" = "Të fshihet ky profil? Do të fshihet gjithçka, përfshi ujdisjen tuaj të fshehtëzimit skaj-më-skaj, kontaktet, fjalosjet, mesazhet dhe mediat. Ky veprim s\’mund të zhbëhet.";
 "message_detail_sent_desktop" = "të dërguar";
