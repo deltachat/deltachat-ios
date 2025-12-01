@@ -103,37 +103,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    lazy var showSystemContactsCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_show_system_contacts"),
-            on: dcContext.getConfigBool("ui.ios.show_system_contacts") && CNContactStore.authorizationStatus(for: .contacts) == .authorized,
-            action: { cell in
-                if cell.isOn {
-                    switch CNContactStore.authorizationStatus(for: .contacts) {
-                    case .authorized, .limited:
-                        self.dcContext.setConfigBool("ui.ios.show_system_contacts", true)
-                    case .restricted, .notDetermined:
-                        CNContactStore().requestAccess(for: .contacts) { [weak self] granted, _ in
-                            DispatchQueue.main.async {
-                                if granted {
-                                    self?.dcContext.setConfigBool("ui.ios.show_system_contacts", true)
-                                } else {
-                                    cell.uiSwitch.setOn(false, animated: true)
-                                }
-                            }
-                        }
-                    case .denied:
-                        self.showSystemContactsRestrictedAlert()
-                        cell.uiSwitch.setOn(false, animated: true)
-                    @unknown default:
-                        cell.uiSwitch.setOn(false, animated: true)
-                    }
-                } else {
-                    self.dcContext.setConfigBool("ui.ios.show_system_contacts", false)
-                }
-        })
-    }()
-
     lazy var broadcastListsCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("channels"),
@@ -228,7 +197,7 @@ internal final class AdvancedViewController: UITableViewController {
             let legacySection = SectionConfigs(
                 headerTitle: "Legacy Options",
                 footerTitle: nil,
-                cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell, showSystemContactsCell])
+                cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell])
             return [viewLogSection, serverSection, experimentalSection, miscSection, legacySection]
         }
     }()

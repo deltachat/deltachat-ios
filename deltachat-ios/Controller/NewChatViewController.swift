@@ -57,12 +57,6 @@ class NewChatViewController: UITableViewController {
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    lazy var deviceContactHandler: DeviceContactsHandler = {
-        let handler = DeviceContactsHandler(dcContext: dcContext)
-        handler.contactListDelegate = self
-        return handler
-    }()
-
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
@@ -92,7 +86,6 @@ class NewChatViewController: UITableViewController {
 
         title = String.localized("menu_new_chat")
 
-        deviceContactHandler.importDeviceContacts()
         navigationItem.searchController = searchController
         definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
         if #available(iOS 11.0, *) {
@@ -338,13 +331,6 @@ class NewChatViewController: UITableViewController {
 
     private func showContactDetail(contactId: Int) {
         navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
-    }
-}
-
-extension NewChatViewController: ContactListDelegate {
-    func deviceContactsImported() {
-        contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
-        tableView.reloadData()
     }
 }
 
