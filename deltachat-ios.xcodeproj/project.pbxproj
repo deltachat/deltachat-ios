@@ -127,6 +127,7 @@
 		641620FC2ECFCDC70076CFA3 /* CallUIToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641620FB2ECFCDC70076CFA3 /* CallUIToggleButton.swift */; };
 		641620FE2ECFFA880076CFA3 /* WebRTC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
+		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
 		64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */; };
@@ -468,6 +469,7 @@
 		641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRTC+Extensions.swift"; sourceTree = "<group>"; };
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		64D0499F2EC890840093A0A8 /* PiPVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPVideoView.swift; sourceTree = "<group>"; };
 		64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPFrameProcessor.swift; sourceTree = "<group>"; };
@@ -1167,6 +1169,7 @@
 			children = (
 				B23977F42D7BA336006290CE /* CallManager.swift */,
 				B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */,
+				645575202EDEE69700F46CD3 /* CallWindow.swift */,
 				646896652E00415900E965B3 /* CallViewController.swift */,
 				641620FB2ECFCDC70076CFA3 /* CallUIToggleButton.swift */,
 				64D0499F2EC890840093A0A8 /* PiPVideoView.swift */,
@@ -1767,6 +1770,7 @@
 				78E45E3A21D3CFBC00D4B15E /* SettingsViewController.swift in Sources */,
 				3080A021277DE09900E74565 /* InputStackView.swift in Sources */,
 				B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */,
+				645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */,
 				302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */,
 				78ED838321D5379000243125 /* TextFieldCell.swift in Sources */,
 				64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */,
