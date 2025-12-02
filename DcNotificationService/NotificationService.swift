@@ -90,7 +90,7 @@ class NotificationService: UNNotificationServiceExtension {
                     "account_id": event.accountId,
                     "message_id": event.data1Int,
                     "place_call_info": event.data2String,
-                    "is_video": event.data2Int == 1,
+                    "has_video": event.data2Int == 1,
                 ]
                 if !canUseCallKit {
                     UserDefaults.shared?.set(payload, forKey: UserDefaults.incomingCallPayloadKey)

@@ -908,7 +908,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                 if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
                    let dcContact, dcContact.isKeyContact {
-                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
+                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
+                        UIAction(title: .localized("audio"), image: UIImage(systemName: "phone")) { [unowned self] _ in
+                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideo: false)
+                        },
+                        UIAction(title: .localized("video"), image: UIImage(systemName: "video")) { [unowned self] _ in
+                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideo: true)
+                        }
+                    ]))
                     rightBarButtonItems.append(button)
                 }
             } else {
@@ -1211,10 +1218,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @objc private func appsAndMediaPressed() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
-    }
-
-    @objc private func callPressed() {
-        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {

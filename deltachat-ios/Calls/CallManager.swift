@@ -14,15 +14,17 @@ class DcCall {
     let chatId: Int
     let uuid: UUID
     let direction: CallDirection
+    let hasVideo: Bool
     var messageId: Int?        // set for incoming calls or after dc_place_outgoing_call()
     var placeCallInfo: String? // payload from caller given to dc_place_outgoing_call()
     var callAcceptedHere: Bool // for multidevice, stop ringing elsewhere
 
-    init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, messageId: Int? = nil, placeCallInfo: String? = nil) {
+    init(contextId: Int, chatId: Int, uuid: UUID, direction: CallDirection, hasVideo: Bool, messageId: Int? = nil, placeCallInfo: String? = nil) {
         self.contextId = contextId
         self.chatId = chatId
         self.uuid = uuid
         self.direction = direction
+        self.hasVideo = hasVideo
         self.messageId = messageId
         self.placeCallInfo = placeCallInfo
         self.callAcceptedHere = false
@@ -57,13 +59,13 @@ class CallManager: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleCallEndedEvent(_:)), name: Event.callEnded, object: nil)
     }
 
-    func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat) {
+    func placeOutgoingCall(dcContext: DcContext, dcChat: DcChat, hasVideo: Bool) {
         guard !isCalling() else {
             return logger.warning("already calling")
         }
 
         let uuid = UUID()
-        currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, uuid: uuid, direction: .outgoing)
+        currentCall = DcCall(contextId: dcContext.id, chatId: dcChat.id, uuid: uuid, direction: .outgoing, hasVideo: hasVideo)
 
         if canUseCallKit {
             let nameToDisplay = dcChat.name
@@ -104,21 +106,20 @@ class CallManager: NSObject {
             }
         }
         guard !isCalling() else { return }
-        reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo)
-
-
+        let hasVideo = ui["has_video"] as? Bool == true
+        reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo, hasVideo: hasVideo)
     }
 
     // this function is called from didReceiveIncomingPushWith
     // and needs to report an incoming call _immediately_ and _unconditionally_.
     // dispatching and conditions should be done by the caller
-    func reportIncomingCall(accountId: Int, msgId: Int, placeCallInfo: String) {
+    func reportIncomingCall(accountId: Int, msgId: Int, placeCallInfo: String, hasVideo: Bool) {
         let dcContext = DcAccounts.shared.get(id: accountId)
         let dcMsg = dcContext.getMessage(id: msgId)
         let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
         let name = dcChat.name
         let uuid = UUID()
-        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, messageId: msgId, placeCallInfo: placeCallInfo)
+        currentCall = DcCall(contextId: accountId, chatId: dcChat.id, uuid: uuid, direction: .incoming, hasVideo: hasVideo, messageId: msgId, placeCallInfo: placeCallInfo)
 
         if canUseCallKit {
             let update = CXCallUpdate()
