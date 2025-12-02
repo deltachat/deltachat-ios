@@ -215,7 +215,7 @@ public class DcEventHandler {
                 "account_id": Int(accountId),
                 "message_id": Int(data1),
                 "place_call_info": event.data2String,
-                "is_video": data2 == 1,
+                "has_video": data2 == 1,
             ])
 
         case DC_EVENT_INCOMING_CALL_ACCEPTED:

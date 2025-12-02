@@ -6,7 +6,6 @@ import WebRTC
 // TODO: "Connecting..." and "Ringing..." status messages
 // TODO: Minimize call to PiP when app is opened from a deeplink (or from a notification)
 // TODO: Avatar instead of remote camera view when there is no camera feed
-// TODO: Start without video if is_video payload is false
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic and camera when muted/cam off
 // TODO: Can't receive notifications while in a call (because NotificationService requires main app not running)
@@ -40,6 +39,7 @@ class CallViewController: UIViewController {
         shadowView.layer.shadowOffset = CGSize(width: 4, height: 4)
         shadowView.layer.shadowOpacity = 0.2
         shadowView.layer.shadowRadius = 5.0
+        shadowView.isHidden = !call.hasVideo
         return shadowView
     }()
     private var remoteVideoTrack: RTCVideoTrack?
@@ -73,13 +73,14 @@ class CallViewController: UIViewController {
             localVideoTrack?.isEnabled.toggle()
             flipCameraButton.isHidden = localVideoTrack?.isEnabled != true
         }, for: .touchUpInside)
+        toggleVideoButton.isHidden = !call.hasVideo
         return toggleVideoButton
     }()
 
     private lazy var startPiPButton: UIButton = {
         let startPiPButton = CallUIToggleButton(imageSystemName: "pip.enter", state: false)
         startPiPButton.addAction(UIAction { [unowned self] _ in
-            guard remoteVideoView.pipController?.isPictureInPictureActive == false else { return }
+            guard remoteVideoView.pipController?.isPictureInPictureActive != true else { return }
             remoteVideoView.pipController?.startPictureInPicture()
             CallWindow.shared?.hideCallUI()
         }, for: .touchUpInside)
@@ -117,6 +118,7 @@ class CallViewController: UIViewController {
                 localVideoCapturer?.startCapture(facing: currentlyFacing == .front ? .back : .front)
             }
         }, for: .touchUpInside)
+        flipCameraButton.isHidden = !call.hasVideo
         return flipCameraButton
     }()
 
@@ -236,18 +238,20 @@ class CallViewController: UIViewController {
         localAudioTrack = audioTrack
         peerConnection?.add(audioTrack, streamIds: ["localStream"])
 
-        // Local video
-        let videoSource = factory.videoSource()
-        localVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        localVideoCapturer?.startCapture(facing: .front)
-        let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
-        peerConnection?.add(videoTrack, streamIds: ["localStream"])
-        localVideoTrack = videoTrack
-        localVideoTrack?.add(localVideoView)
-
-        // Remote video
-        remoteVideoTrack = peerConnection?.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
-        remoteVideoTrack?.add(remoteVideoView)
+        if call.hasVideo {
+            // Local video
+            let videoSource = factory.videoSource()
+            localVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+            localVideoCapturer?.startCapture(facing: .front)
+            let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
+            peerConnection?.add(videoTrack, streamIds: ["localStream"])
+            localVideoTrack = videoTrack
+            localVideoTrack?.add(localVideoView)
+            
+            // Remote video
+            remoteVideoTrack = peerConnection?.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
+            remoteVideoTrack?.add(remoteVideoView)
+        }
     }
 
     @objc private func hangup() {
