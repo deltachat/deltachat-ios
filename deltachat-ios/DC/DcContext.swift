@@ -810,4 +810,15 @@ public class DcContext {
         }
         return "[]"
     }
+
+    public func getStorageUsageReportString() -> String {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "get_storage_usage_report_string", params: [id as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return "ErrUsageReport"
+    }
 }
