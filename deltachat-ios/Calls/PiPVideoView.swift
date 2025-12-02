@@ -96,7 +96,9 @@ extension PiPVideoView: RTCVideoRenderer {
     }
     
     func renderFrame(_ frame: RTCVideoFrame?) {
-        avatarView.isHidden = true
+        DispatchQueue.main.async { [weak self] in
+            self?.avatarView.isHidden = true
+        }
         pipRenderView.frameProcessor?.renderFrame(frame)
     }
 
