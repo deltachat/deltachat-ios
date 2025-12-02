@@ -52,13 +52,14 @@ public class LogViewController: UIViewController {
         logText.setContentOffset(.zero, animated: false)
 
         DispatchQueue.global().async { [weak self] in
-            if let log = self?.getLogLines() {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
-                    let debugVariables = self.logText.text.replacingOccurrences(of: self.loadingIndicator, with: "")
-                    self.logText.text = debugVariables + "\n" + log
-                    self.shareButton.isEnabled = true
-                }
+            guard let self else { return }
+            let usageReport = dcContext.getStorageUsageReportString()
+            let log = getLogLines()
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                let debugVariables = self.logText.text.replacingOccurrences(of: self.loadingIndicator, with: "")
+                self.logText.text = debugVariables + "\n\n" + usageReport + "\n" + log
+                self.shareButton.isEnabled = true
             }
         }
 
