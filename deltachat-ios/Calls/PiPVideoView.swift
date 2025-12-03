@@ -8,6 +8,7 @@ class PiPVideoView: UIView {
 
     /// Container view in which the video renderer view is placed when not in PiP
     private lazy var videoCallSourceView = UIView()
+    /// We need to change the source view's height to have a good looking transition to and from PiP
     private lazy var videoCallSourceViewHeightConstraint: NSLayoutConstraint = {
         videoCallSourceView.heightAnchor.constraint(equalToConstant: frame.height)
     }()
