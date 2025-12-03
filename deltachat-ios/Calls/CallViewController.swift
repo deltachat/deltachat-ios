@@ -1,6 +1,5 @@
 import DcCore
 import UIKit
-import WebKit
 import WebRTC
 
 // TODO: "Connecting..." and "Ringing..." status messages
