@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
-    var callManager: CallManager?
+    var callManager: CallManager!
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
@@ -312,6 +312,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
+        if callManager.isCalling() {
+            callManager.endCallControllerAndHideUI()
+            // We need to block here because otherwise the io will stop
+            // before letting the other participant know the call ended.
+            // Our implementation of the applicationWillTerminate method
+            // has approximately five seconds to perform any tasks
+            // and return according to the doc so this safely blocks termination.
+            sleep(1)
+        }
         uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
