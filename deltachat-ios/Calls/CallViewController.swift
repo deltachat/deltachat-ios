@@ -152,6 +152,7 @@ class CallViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleOutgoingCallAcceptedEvent), name: Event.outgoingCallAccepted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(statusBarTapped), name: UIStatusBarManager.statusBarTappedNotification, object: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -291,6 +292,12 @@ class CallViewController: UIViewController {
         if remoteVideoView.pipController?.isPictureInPictureActive == true {
             remoteVideoView.pipController?.stopPictureInPicture()
         }
+    }
+
+    @objc private func statusBarTapped(_ notification: Notification) {
+        // show call and end pip when statusbar tapped
+        CallWindow.shared?.showCallUI()
+        if remoteVideoView.pipController?.isPictureInPictureActive == true {
             remoteVideoView.pipController?.stopPictureInPicture()
         }
     }
