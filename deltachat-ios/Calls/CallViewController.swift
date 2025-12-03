@@ -286,8 +286,11 @@ class CallViewController: UIViewController {
     }
 
     @objc private func applicationDidBecomeActive(_ notification: Notification) {
-        // end pip when returning to foreground while call is on the screen
-        if remoteVideoView.pipController?.isPictureInPictureActive == true && view.window?.isHidden == false {
+        // show call and end pip when returning to foreground
+        CallWindow.shared?.showCallUI()
+        if remoteVideoView.pipController?.isPictureInPictureActive == true {
+            remoteVideoView.pipController?.stopPictureInPicture()
+        }
             remoteVideoView.pipController?.stopPictureInPicture()
         }
     }
