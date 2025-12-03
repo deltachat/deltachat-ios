@@ -107,16 +107,20 @@ public class DcAccounts {
                     } else {
                         dc_accounts_start_io(accountsPointer)
                         NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
-                        // Post incoming call event that came in while app was in background
-                        if let callPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
-                            UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
-                            NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: callPayload)
-                        }
+                        sendQueuedCallPayload()
                     }
                 }
             }
         } else {
             dc_accounts_start_io(accountsPointer)
+            sendQueuedCallPayload()
+        }
+        /// Post incoming call event that was posted while the app was in background
+        func sendQueuedCallPayload() {
+            if let callPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
+                UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
+                NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: callPayload)
+            }
         }
     }
 
