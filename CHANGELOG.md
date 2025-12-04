@@ -5,8 +5,7 @@
 - Added experimental debug calls option
 - Remove sending ASM as it is about sharing profile with non-chat apps which is not supported;
   use "Add Second Device" instead
-- metadata protection: protect Date header
-- metadata protection: protect Autocrypt header
+- metadata protection: protect To:, Date:, and Autocrypt: headers
 - better multi-device: synchronize group creation across devices
 - data saving: do not send Autocrypt header in read receipts
 - improve onboarding speed
@@ -27,8 +26,10 @@
 - Fix: Don't show removed chats in widget
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 - Fix: Fixed bug where sharing files through the share extension did not work
+- Fix: Sort system messages to the bottom of the chat
+- Fix app getting stale (set SQLite busy timeout to 1 minute on iOS)
 - Update translations and local help
-- Update core to 2.27.0
+- Update core to 2.29.0
 
 
 ## v2.22.2 Testflight
