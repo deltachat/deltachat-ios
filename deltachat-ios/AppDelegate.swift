@@ -698,7 +698,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SETUP_CONTACT_QR_DESC, localizationKey: "qrshow_join_contact_hint")
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_GROUP_QR_DESC, localizationKey: "qrshow_join_group_hint")
         dcContext.setStockTranslation(id: DC_STR_NOT_CONNECTED, localizationKey: "connectivity_not_connected")
-        dcContext.setStockTranslation(id: DC_STR_AEAP_EXPLANATION_AND_LINK, localizationKey: "aeap_explanation")
         dcContext.setStockTranslation(id: DC_STR_GROUP_NAME_CHANGED_BY_YOU, localizationKey: "group_name_changed_by_you")
         dcContext.setStockTranslation(id: DC_STR_GROUP_NAME_CHANGED_BY_OTHER, localizationKey: "group_name_changed_by_other")
         dcContext.setStockTranslation(id: DC_STR_GROUP_IMAGE_CHANGED_BY_YOU, localizationKey: "group_image_changed_by_you")
