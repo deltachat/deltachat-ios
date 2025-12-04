@@ -1068,5 +1068,6 @@
 "pref_background_notifications_rationale" = "Tagamaks, et rakenduse võrguühendus jääb taustal tööle ning sõnumite vastuvõtmine jätkub, siis keela järgmises sammus selle rakenduse jaoks akukasutuse optimeerimine.\n\nDelta Chat kasutab väga vähe nutiseadme ressursse ning oleme eraldi pingutanud, et koormus akule oleks minimaalne.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Kui soovid, et Delta Chat saaks sõnumeid ka taustateenusena toimides, siis klõpsi siin.";
+"perm_enable_bg_already_done" = "Sa juba oled Delta Chatil lubanud laadida sõnumeid taustal.\n\nKui see siiski ei toimi, siis palun kontrolli rakenduse õigusi süsteemi seadistustest.";
 // device messages for updates
 "update_2_0" = "Mida on meil uut?\n\n💯 Läbiv krüptimine on töökindel ja seda nüüd igaveseks. Tabalukud 🔒 on läinud!\n\n✉️ Klassikalised e-kirjad, kus läbiv krüptimine on puudu, on märgitud ümbriku ikooniga\n\n😻 Uus ja tõhusam profiilivaade kõikide sinu kontaktide jaoks\n\n🔲 Uus nupp kiireks ligipääsuks vestluses kasutatavate rakendusteni\n\n❤️ Palun toeta meie arendust rahaliselt - nii saame jääda sõltumatuteks ja jätkata selle rakenduse täiustamist: %1$@";

@@ -721,6 +721,7 @@
 "pref_show_emails_accepted_contacts" = "Akzeptierte Kontakte";
 "pref_show_emails_all" = "Alle";
 "pref_experimental_features" = "Experimentelle Features";
+"pref_experimental_features_explain" = "Die Features können instabil sein und geändert oder entfernt werden";
 "pref_on_demand_location_streaming" = "Standortübertragung nach Bedarf";
 // deprecated
 "pref_developer_mode" = "Entwicklungsoptionen";

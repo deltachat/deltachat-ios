@@ -716,6 +716,7 @@
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
 "pref_show_emails_all" = "Krejt";
 "pref_experimental_features" = "Veçori Eksperimentale";
+"pref_experimental_features_explain" = "Këto veçori mund të jenë të paqëndrueshme dhe mund të ndryshohen, ose hiqen";
 // deprecated
 "pref_developer_mode" = "Mënyra Zhvillues";
 // deprecated

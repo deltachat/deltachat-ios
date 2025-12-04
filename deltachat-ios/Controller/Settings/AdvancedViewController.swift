@@ -184,7 +184,7 @@ internal final class AdvancedViewController: UITableViewController {
             cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
-            footerTitle: nil,
+            footerTitle: String.localized("pref_experimental_features_explain"),
             cells: [broadcastListsCell, callsCell, locationStreamingCell])
         let miscSection = SectionConfigs(
             headerTitle: nil,
