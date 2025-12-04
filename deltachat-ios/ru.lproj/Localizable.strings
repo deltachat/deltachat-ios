@@ -349,8 +349,8 @@
 "ask_export_attachment" = "Экспорт вложений позволит любому приложению на вашем устройстве получить к ним доступ.\n\nПродолжить?";
 "ask_block_contact" = "Заблокировать этот контакт?\n\nЗаблокированные контакты не будут показаны в личных сообщениях или группах, созданных ими.\n\nВ других группах сообщения заблокированных контактов будут по-прежнему доступны.";
 "ask_unblock_contact" = "Разблокировать этот контакт?";
-"ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
-"ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов или из системной адресной книги не могут быть удалены навсегда.";
+"ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов не могут быть удалены навсегда.";
+"ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов не могут быть удалены навсегда.";
 "ask_start_chat_with" = "Создать чат с %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Удалить %1$@ из группы?";
@@ -721,6 +721,7 @@
 "pref_show_emails_accepted_contacts" = "Для принятых контактов";
 "pref_show_emails_all" = "Все";
 "pref_experimental_features" = "Экспериментальные функции";
+"pref_experimental_features_explain" = "Эти функции могут быть нестабильными и могут быть изменены или удалены";
 "pref_on_demand_location_streaming" = "Трансляция местоположения по запросу";
 // deprecated
 "pref_developer_mode" = "Режим разработчика";
@@ -750,6 +751,7 @@
 "disable_imap_idle" = "Отключить IMAP IDLE";
 "disable_imap_idle_explain" = "Не используйте расширение IMAP IDLE даже если сервер поддерживает его. Включение этой опции замедлит получение сообщений, включайте только для тестирования.";
 "send_stats_to_devs" = "Отправить статистику разработчикам Delta Chat";
+"stats_msg_body" = "Вложение содержит анонимную статистику использования, которая поможет нам улучшить Delta Chat. Спасибо!";
 // Emoji picker and categories
 "emoji_search_results" = "Результаты поиска";
 "emoji_not_found" = "Эмодзи не найдены";
@@ -934,6 +936,8 @@
 "qrlogin_ask_login_another" = "Авторизоваться в \"%1$@\"?\n\nВаш существующий профиль не будет удалён. Используйте меню \"Сменить профиль\", чтобы переключаться между профилями.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ приглашает вас в группу.\n\nОжидаем ответ от %2$@…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ приглашает вас присоединиться к этому каналу.\n\nОжидаем ответа устройства %2$@…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ответил(а), ожидаем добавления в группу…";
 "secure_join_wait" = "Устанавливается соединение, пожалуйста, подождите…";
