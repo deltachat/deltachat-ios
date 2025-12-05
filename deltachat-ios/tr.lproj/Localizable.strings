@@ -721,6 +721,7 @@
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
+"pref_experimental_features_explain" = "Bu özellikler, kararsız olabilir ve değiştirilebilir ya da kaldırılabilir";
 "pref_on_demand_location_streaming" = "İsteğe Bağlı Konum Akışı";
 // deprecated
 "pref_developer_mode" = "Geliştirici Modu";

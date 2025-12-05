@@ -721,6 +721,7 @@
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
+"pref_experimental_features_explain" = "Let op: deze functies zijn experimenteel en kunnen te allen tijde worden aangepast of verwijderd";
 "pref_on_demand_location_streaming" = "Locatie delen (op verzoek)";
 // deprecated
 "pref_developer_mode" = "Ontwikkelaarsmodus";
