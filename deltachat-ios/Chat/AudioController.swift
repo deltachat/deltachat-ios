@@ -81,10 +81,12 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     ///   This protocol method is called by MessageKit every time an audio cell needs to be configure
     func update(_ cell: AudioMessageCell, with messageId: Int) {
         cell.delegate = self
-        cell.audioPlayerView.onSpeedButtonTapped = { [weak self] in
+        cell.audioPlayerView.onSpeedButtonTapped = { [weak self, weak cell] in
+            guard let cell = cell else { return }
             self?.speedButtonTapped(cell: cell, messageId: messageId)
         }
-        cell.audioPlayerView.onSeek = { [weak self] progress in
+        cell.audioPlayerView.onSeek = { [weak self, weak cell] progress in
+            guard let cell = cell else { return }
             self?.seekToPosition(progress: progress, cell: cell, messageId: messageId)
         }
         if playingMessage?.id == messageId, let player = audioPlayer {
