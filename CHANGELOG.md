@@ -20,6 +20,8 @@
 - Add members to channels by QR codes
 - Channel QR codes can be withdrawn and revived
 - Add storage usage information to "Settings / Advanced / View Log"
+- Add option to set just a color as background
+- Allow changing chat bubble border radius
 - Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
 - Fix: Share to Delta Chat when already in Delta Chat now works
