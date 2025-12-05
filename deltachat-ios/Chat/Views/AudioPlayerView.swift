@@ -21,6 +21,25 @@ open class AudioPlayerView: UIView {
         return playButton
     }()
 
+    /// The playback speed badge button
+    lazy var speedButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("1x", for: .normal)
+        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.setTitleColor(.label, for: .normal)
+        button.backgroundColor = UIColor.systemGray5
+        button.layer.cornerRadius = 8
+        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = true
+        button.isHidden = true  // Hidden by default, shown only while playing
+        return button
+    }()
+    
+    /// Callback for when speed button is tapped
+    public var onSpeedButtonTapped: (() -> Void)?
+
     /// The time duration lable to display on audio messages.
     private lazy var durationLabel: UILabel = {
         let durationLabel = UILabel(frame: CGRect.zero)
@@ -59,9 +78,12 @@ open class AudioPlayerView: UIView {
 
         let playButtonConstraints = [playButton.constraintCenterYTo(self),
                                      playButton.constraintAlignLeadingTo(self, paddingLeading: 12)]
-        let durationLabelConstraints = [durationLabel.constraintAlignTrailingTo(self, paddingTrailing: 12),
+        let speedButtonConstraints = [speedButton.constraintAlignTrailingTo(self, paddingTrailing: 12),
+                                      speedButton.constraintCenterYTo(self)]
+        let durationLabelConstraints = [durationLabel.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor, constant: -8),
                                         durationLabel.constraintCenterYTo(self)]
         self.addConstraints(playButtonConstraints)
+        self.addConstraints(speedButtonConstraints)
         self.addConstraints(durationLabelConstraints)
 
         progressView.addConstraints(left: playButton.rightAnchor,
@@ -77,8 +99,16 @@ open class AudioPlayerView: UIView {
     open func setupSubviews() {
         self.addSubview(playButton)
         self.addSubview(durationLabel)
+        self.addSubview(speedButton)
         self.addSubview(progressView)
+        
+        speedButton.addTarget(self, action: #selector(speedButtonTapped), for: .touchUpInside)
+        
         setupConstraints()
+    }
+    
+    @objc private func speedButtonTapped() {
+        onSpeedButtonTapped?()
     }
 
     open func reset() {
@@ -86,6 +116,8 @@ open class AudioPlayerView: UIView {
         playButton.isSelected = false
         durationLabel.text = "0:00"
         playButton.accessibilityLabel = String.localized("menu_play")
+        speedButton.isHidden = true
+        speedButton.setTitle("1x", for: .normal)
     }
 
     open func setProgress(_ progress: Float) {
@@ -113,5 +145,20 @@ open class AudioPlayerView: UIView {
     open func showPlayLayout(_ play: Bool) {
         playButton.isSelected = play
         playButton.accessibilityLabel = play ? String.localized("menu_pause") : String.localized("menu_play")
+        speedButton.isHidden = !play
+    }
+    
+    open func setPlaybackSpeed(_ speed: Float) {
+        let speedText: String
+        if speed == 1.0 {
+            speedText = "1x"
+        } else if speed == 1.5 {
+            speedText = "1.5x"
+        } else if speed == 2.0 {
+            speedText = "2x"
+        } else {
+            speedText = String(format: "%.1fx", speed)
+        }
+        speedButton.setTitle(speedText, for: .normal)
     }
 }
