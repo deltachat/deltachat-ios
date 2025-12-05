@@ -1818,7 +1818,7 @@ extension ChatViewController {
         parameters.backgroundColor = .clear
         
         // Apply the same rounded corners as the message bubble to preserve the shape during transition
-        let radius: CGFloat = 16
+        let radius = BackgroundContainer.getCurrentCornerRadius()
         let rectCorners = cell.messageBackgroundContainer.rectCorners ?? UIRectCorner()
         let path = UIBezierPath(roundedRect: messageSnapshotView.bounds,
                                 byRoundingCorners: rectCorners,

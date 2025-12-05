@@ -8,6 +8,7 @@ class ChatBubblesViewController: UITableViewController {
     private enum CellTags: Int {
         case senderBubble
         case receiverBubble
+        case cornerRadius
         case resetDefaults
     }
     
@@ -59,6 +60,120 @@ class ChatBubblesViewController: UITableViewController {
         return cell
     }()
     
+    private lazy var cornerRadiusCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.cornerRadius.rawValue
+        cell.selectionStyle = .none
+        
+        let containerStack = UIStackView()
+        containerStack.axis = .vertical
+        containerStack.spacing = 12
+        containerStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Label and value stack
+        let labelStack = UIStackView()
+        labelStack.axis = .horizontal
+        labelStack.distribution = .equalSpacing
+        
+        let titleLabel = UILabel()
+        titleLabel.text = String.localized("pref_bubble_corner_radius")
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        cornerRadiusValueLabel.text = String(format: "%.0f", getCurrentCornerRadius())
+        cornerRadiusValueLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        cornerRadiusValueLabel.textColor = .secondaryLabel
+        
+        labelStack.addArrangedSubview(titleLabel)
+        labelStack.addArrangedSubview(cornerRadiusValueLabel)
+        
+        // Slider
+        cornerRadiusSlider.minimumValue = 0
+        cornerRadiusSlider.maximumValue = 30
+        cornerRadiusSlider.value = getCurrentCornerRadius()
+        cornerRadiusSlider.addTarget(self, action: #selector(cornerRadiusChanged(_:)), for: .valueChanged)
+        
+        // Preview bubbles stack
+        let previewStack = UIStackView()
+        previewStack.axis = .vertical
+        previewStack.spacing = 8
+        previewStack.alignment = .fill
+        
+        // Sender bubble preview (right aligned)
+        let senderContainer = UIView()
+        senderBubblePreview.backgroundColor = getSenderBubbleColor()
+        senderBubblePreview.translatesAutoresizingMaskIntoConstraints = false
+        senderContainer.addSubview(senderBubblePreview)
+        
+        let senderLabel = UILabel()
+        senderLabel.text = String.localized("pref_sender_bubble_preview")
+        senderLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        senderLabel.textColor = .label
+        senderLabel.numberOfLines = 0
+        senderLabel.translatesAutoresizingMaskIntoConstraints = false
+        senderBubblePreview.addSubview(senderLabel)
+        
+        NSLayoutConstraint.activate([
+            senderBubblePreview.trailingAnchor.constraint(equalTo: senderContainer.trailingAnchor),
+            senderBubblePreview.topAnchor.constraint(equalTo: senderContainer.topAnchor),
+            senderBubblePreview.bottomAnchor.constraint(equalTo: senderContainer.bottomAnchor),
+            senderBubblePreview.widthAnchor.constraint(lessThanOrEqualTo: senderContainer.widthAnchor, multiplier: 0.7),
+            senderLabel.leadingAnchor.constraint(equalTo: senderBubblePreview.leadingAnchor, constant: 12),
+            senderLabel.trailingAnchor.constraint(equalTo: senderBubblePreview.trailingAnchor, constant: -12),
+            senderLabel.topAnchor.constraint(equalTo: senderBubblePreview.topAnchor, constant: 8),
+            senderLabel.bottomAnchor.constraint(equalTo: senderBubblePreview.bottomAnchor, constant: -8)
+        ])
+        
+        // Receiver bubble preview (left aligned)
+        let receiverContainer = UIView()
+        receiverBubblePreview.backgroundColor = getReceiverBubbleColor()
+        receiverBubblePreview.translatesAutoresizingMaskIntoConstraints = false
+        receiverContainer.addSubview(receiverBubblePreview)
+        
+        let receiverLabel = UILabel()
+        receiverLabel.text = String.localized("pref_receiver_bubble_preview")
+        receiverLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        receiverLabel.textColor = .label
+        receiverLabel.numberOfLines = 0
+        receiverLabel.translatesAutoresizingMaskIntoConstraints = false
+        receiverBubblePreview.addSubview(receiverLabel)
+        
+        NSLayoutConstraint.activate([
+            receiverBubblePreview.leadingAnchor.constraint(equalTo: receiverContainer.leadingAnchor),
+            receiverBubblePreview.topAnchor.constraint(equalTo: receiverContainer.topAnchor),
+            receiverBubblePreview.bottomAnchor.constraint(equalTo: receiverContainer.bottomAnchor),
+            receiverBubblePreview.widthAnchor.constraint(lessThanOrEqualTo: receiverContainer.widthAnchor, multiplier: 0.7),
+            receiverLabel.leadingAnchor.constraint(equalTo: receiverBubblePreview.leadingAnchor, constant: 12),
+            receiverLabel.trailingAnchor.constraint(equalTo: receiverBubblePreview.trailingAnchor, constant: -12),
+            receiverLabel.topAnchor.constraint(equalTo: receiverBubblePreview.topAnchor, constant: 8),
+            receiverLabel.bottomAnchor.constraint(equalTo: receiverBubblePreview.bottomAnchor, constant: -8)
+        ])
+        
+        previewStack.addArrangedSubview(senderContainer)
+        previewStack.addArrangedSubview(receiverContainer)
+        
+        containerStack.addArrangedSubview(labelStack)
+        containerStack.addArrangedSubview(cornerRadiusSlider)
+        containerStack.addArrangedSubview(previewStack)
+        
+        cell.contentView.addSubview(containerStack)
+        
+        NSLayoutConstraint.activate([
+            containerStack.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+            containerStack.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
+            containerStack.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 12),
+            containerStack.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -12)
+        ])
+        
+        updateBubblePreviewCorners()
+        
+        return cell
+    }()
+    
+    private let cornerRadiusSlider = UISlider()
+    private let cornerRadiusValueLabel = UILabel()
+    private let senderBubblePreview = UIView()
+    private let receiverBubblePreview = UIView()
+    
     private lazy var resetDefaultsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.resetDefaults.rawValue
@@ -74,10 +189,15 @@ class ChatBubblesViewController: UITableViewController {
             footerTitle: String.localized("pref_chat_bubble_colors_explain"),
             cells: [senderBubbleCell, receiverBubbleCell]
         )
+        let cornerRadiusSection = SectionConfigs(
+            headerTitle: String.localized("pref_bubble_corner_radius"),
+            footerTitle: String.localized("pref_bubble_corner_radius_explain"),
+            cells: [cornerRadiusCell]
+        )
         let resetSection = SectionConfigs(
             cells: [resetDefaultsCell]
         )
-        return [colorsSection, resetSection]
+        return [colorsSection, cornerRadiusSection, resetSection]
     }()
     
     init(dcContext: DcContext) {
@@ -129,6 +249,8 @@ class ChatBubblesViewController: UITableViewController {
             showColorPicker(for: .sender)
         case .receiverBubble:
             showColorPicker(for: .receiver)
+        case .cornerRadius:
+            break // Slider interaction is handled directly
         case .resetDefaults:
             resetToDefaultColors()
         }
@@ -199,6 +321,25 @@ class ChatBubblesViewController: UITableViewController {
         }
     }
     
+    private func getCurrentCornerRadius() -> Float {
+        return Float(BackgroundContainer.getCurrentCornerRadius())
+    }
+    
+    @objc private func cornerRadiusChanged(_ slider: UISlider) {
+        let value = slider.value
+        cornerRadiusValueLabel.text = String(format: "%.0f", value)
+        UserDefaults.standard.set(value, forKey: Constants.Keys.customBubbleCornerRadiusKey)
+        updateBubblePreviewCorners()
+    }
+    
+    private func updateBubblePreviewCorners() {
+        let radius = BackgroundContainer.getCurrentCornerRadius()
+        senderBubblePreview.layer.cornerRadius = radius
+        senderBubblePreview.clipsToBounds = true
+        receiverBubblePreview.layer.cornerRadius = radius
+        receiverBubblePreview.clipsToBounds = true
+    }
+    
     private func resetToDefaultColors() {
         let alert = UIAlertController(
             title: String.localized("pref_reset_default_colors"),
@@ -210,10 +351,19 @@ class ChatBubblesViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .destructive) { [weak self] _ in
             UserDefaults.standard.removeObject(forKey: Constants.Keys.customSenderBubbleColorKey)
             UserDefaults.standard.removeObject(forKey: Constants.Keys.customReceiverBubbleColorKey)
+            UserDefaults.standard.removeObject(forKey: Constants.Keys.customBubbleCornerRadiusKey)
             self?.updateColorPreviews()
+            self?.updateCornerRadiusUI()
         })
         
         present(alert, animated: true)
+    }
+    
+    private func updateCornerRadiusUI() {
+        let radius = getCurrentCornerRadius()
+        cornerRadiusSlider.value = radius
+        cornerRadiusValueLabel.text = String(format: "%.0f", radius)
+        updateBubblePreviewCorners()
     }
     
     private func updateColorPreviews() {
@@ -223,6 +373,8 @@ class ChatBubblesViewController: UITableViewController {
         if let receiverPreview = receiverBubbleCell.accessoryView {
             receiverPreview.backgroundColor = getReceiverBubbleColor()
         }
+        senderBubblePreview.backgroundColor = getSenderBubbleColor()
+        receiverBubblePreview.backgroundColor = getReceiverBubbleColor()
     }
 }
 
