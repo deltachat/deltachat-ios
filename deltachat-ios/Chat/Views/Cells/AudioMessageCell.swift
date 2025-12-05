@@ -5,6 +5,7 @@ import DcCore
 // do not confuse with BaseMessageCellDelegate that is for sending events to ChatViewControllerNew.
 public protocol AudioMessageCellDelegate: AnyObject {
     func playButtonTapped(cell: AudioMessageCell, messageId: Int)
+    func speedButtonTapped(cell: AudioMessageCell, messageId: Int)
     func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void)
 
 }
@@ -35,10 +36,16 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onPlayButtonTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         audioPlayerView.playButton.addGestureRecognizer(gestureRecognizer)
+        
+        statusView.speedButton.addTarget(self, action: #selector(onSpeedButtonTapped), for: .touchUpInside)
     }
 
     @objc public func onPlayButtonTapped() {
         delegate?.playButtonTapped(cell: self, messageId: messageId)
+    }
+    
+    @objc public func onSpeedButtonTapped() {
+        delegate?.speedButtonTapped(cell: self, messageId: messageId)
     }
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
@@ -58,10 +65,15 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
         delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] messageId, duration in
             if let self,
                messageId == self.messageId {
-                self.audioPlayerView.setDuration(duration: duration)
+                // Show duration in status view on the left
+                self.statusView.durationLabel.text = self.audioPlayerView.formatDuration(duration)
+                self.statusView.durationLabel.isHidden = false
             }
         })
         
+        // Configure waveform colors based on message context
+        let bubbleColor = getBackgroundColor(dcContext: dcContext, message: msg)
+        audioPlayerView.configureWaveformColors(isFromCurrentSender: msg.isFromCurrentSender, bubbleColor: bubbleColor)
 
         super.update(dcContext: dcContext,
                      msg: msg,

@@ -21,44 +21,52 @@ open class AudioPlayerView: UIView {
         return playButton
     }()
 
-    /// The playback speed badge button
+    /// The playback speed badge button (now hidden, speed shown in status view)
     lazy var speedButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("1x", for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
-        button.titleLabel?.adjustsFontForContentSizeCategory = true
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = UIColor.systemGray5
-        button.layer.cornerRadius = 8
-        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.isUserInteractionEnabled = true
-        button.isHidden = true  // Hidden by default, shown only while playing
+        button.isHidden = true  // Always hidden, speed shown in status view
         return button
     }()
     
     /// Callback for when speed button is tapped
     public var onSpeedButtonTapped: (() -> Void)?
+    
+    /// Callback for when user seeks to a new position (value between 0.0 and 1.0)
+    public var onSeek: ((Float) -> Void)?
 
-    /// The time duration lable to display on audio messages.
-    private lazy var durationLabel: UILabel = {
-        let durationLabel = UILabel(frame: CGRect.zero)
-        durationLabel.textAlignment = .right
-        durationLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        durationLabel.adjustsFontForContentSizeCategory = true
-        durationLabel.text = "0:00"
-        durationLabel.translatesAutoresizingMaskIntoConstraints = false
-        durationLabel.isAccessibilityElement = false
-        return durationLabel
+    private lazy var waveformView: WaveformView = {
+        let waveformView = WaveformView()
+        waveformView.translatesAutoresizingMaskIntoConstraints = false
+        waveformView.isAccessibilityElement = false
+        return waveformView
     }()
-
-    private lazy var progressView: UIProgressView = {
-        let progressView = UIProgressView(progressViewStyle: .default)
-        progressView.progress = 0.0
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.isAccessibilityElement = false
-        return progressView
+    
+    /// The scrubber line that shows current playback position and can be dragged
+    private lazy var scrubberLine: UIView = {
+        let line = UIView()
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .white
+        line.layer.cornerRadius = 1
+        line.layer.shadowColor = UIColor.black.cgColor
+        line.layer.shadowOffset = CGSize(width: 0, height: 0)
+        line.layer.shadowRadius = 2
+        line.layer.shadowOpacity = 0.3
+        line.isUserInteractionEnabled = false
+        return line
     }()
+    
+    /// Container view for scrubber to handle touch events
+    private lazy var scrubberContainer: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.backgroundColor = .clear
+        return container
+    }()
+    
+    private var scrubberLeadingConstraint: NSLayoutConstraint?
+    private var isDragging = false
+    private var currentProgress: Float = 0.0
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,29 +88,54 @@ open class AudioPlayerView: UIView {
                                      playButton.constraintAlignLeadingTo(self, paddingLeading: 12)]
         let speedButtonConstraints = [speedButton.constraintAlignTrailingTo(self, paddingTrailing: 12),
                                       speedButton.constraintCenterYTo(self)]
-        let durationLabelConstraints = [durationLabel.trailingAnchor.constraint(equalTo: speedButton.leadingAnchor, constant: -8),
-                                        durationLabel.constraintCenterYTo(self)]
         self.addConstraints(playButtonConstraints)
         self.addConstraints(speedButtonConstraints)
-        self.addConstraints(durationLabelConstraints)
 
-        progressView.addConstraints(left: playButton.rightAnchor,
-                                    right: durationLabel.leftAnchor,
+        waveformView.addConstraints(left: playButton.rightAnchor,
+                                    right: self.rightAnchor,
                                     centerY: self.centerYAnchor,
                                     leftConstant: 8,
-                                    rightConstant: 8)
+                                    rightConstant: 12)
+        // Set a minimum height for the waveform
+        waveformView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         let height = self.heightAnchor.constraint(equalTo: playButton.heightAnchor)
         height.priority = .required
         height.isActive = true
+        
+        // Scrubber container constraints - covers the waveform area
+        NSLayoutConstraint.activate([
+            scrubberContainer.leftAnchor.constraint(equalTo: waveformView.leftAnchor),
+            scrubberContainer.rightAnchor.constraint(equalTo: waveformView.rightAnchor),
+            scrubberContainer.topAnchor.constraint(equalTo: waveformView.topAnchor),
+            scrubberContainer.bottomAnchor.constraint(equalTo: waveformView.bottomAnchor)
+        ])
+        
+        // Scrubber line constraints - height matches play button
+        scrubberLine.widthAnchor.constraint(equalToConstant: 2).isActive = true
+        scrubberLine.heightAnchor.constraint(equalTo: playButton.heightAnchor).isActive = true
+        scrubberLine.centerYAnchor.constraint(equalTo: scrubberContainer.centerYAnchor).isActive = true
+        
+        // Position scrubber at the start initially
+        scrubberLeadingConstraint = scrubberLine.leadingAnchor.constraint(equalTo: scrubberContainer.leadingAnchor)
+        scrubberLeadingConstraint?.isActive = true
     }
 
     open func setupSubviews() {
         self.addSubview(playButton)
-        self.addSubview(durationLabel)
         self.addSubview(speedButton)
-        self.addSubview(progressView)
+        self.addSubview(waveformView)
+        self.addSubview(scrubberContainer)
+        scrubberContainer.addSubview(scrubberLine)
         
         speedButton.addTarget(self, action: #selector(speedButtonTapped), for: .touchUpInside)
+        
+        // Add pan gesture for scrubbing
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        scrubberContainer.addGestureRecognizer(panGesture)
+        
+        // Add tap gesture for quick seek
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        scrubberContainer.addGestureRecognizer(tapGesture)
         
         setupConstraints()
     }
@@ -110,21 +143,57 @@ open class AudioPlayerView: UIView {
     @objc private func speedButtonTapped() {
         onSpeedButtonTapped?()
     }
+    
+    @objc private func handlePan(_ gesture: UIPanGestureRecognizer) {
+        let location = gesture.location(in: scrubberContainer)
+        let progress = Float(max(0, min(location.x, scrubberContainer.bounds.width)) / scrubberContainer.bounds.width)
+        
+        switch gesture.state {
+        case .began:
+            isDragging = true
+        case .changed:
+            updateScrubberPosition(progress: progress)
+            waveformView.setProgress(progress)
+        case .ended, .cancelled:
+            isDragging = false
+            onSeek?(progress)
+        default:
+            break
+        }
+    }
+    
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: scrubberContainer)
+        let progress = Float(max(0, min(location.x, scrubberContainer.bounds.width)) / scrubberContainer.bounds.width)
+        
+        updateScrubberPosition(progress: progress)
+        waveformView.setProgress(progress)
+        onSeek?(progress)
+    }
+    
+    private func updateScrubberPosition(progress: Float) {
+        currentProgress = progress
+        let offset = CGFloat(progress) * scrubberContainer.bounds.width
+        scrubberLeadingConstraint?.constant = offset
+    }
 
     open func reset() {
-        progressView.progress = 0
+        waveformView.reset()
         playButton.isSelected = false
-        durationLabel.text = "0:00"
         playButton.accessibilityLabel = String.localized("menu_play")
-        speedButton.isHidden = true
-        speedButton.setTitle("1x", for: .normal)
+        currentProgress = 0.0
+        updateScrubberPosition(progress: 0.0)
     }
 
     open func setProgress(_ progress: Float) {
-        progressView.progress = progress
+        waveformView.setProgress(progress)
+        // Only update scrubber if not currently dragging
+        if !isDragging {
+            updateScrubberPosition(progress: progress)
+        }
     }
 
-    open func setDuration(duration: Double) {
+    open func formatDuration(_ duration: Double) -> String {
         var formattedTime = "0:00"
         // print the time as 0:ss if duration is up to 59 seconds
         // print the time as m:ss if duration is up to 59:59 seconds
@@ -138,27 +207,70 @@ open class AudioPlayerView: UIView {
             let remainingMinutsInSeconds = Int(duration) - hours*3600
             formattedTime = String(format: "%.02d:%.02d:%.02d", hours, Int(remainingMinutsInSeconds/60), Int(remainingMinutsInSeconds) % 60)
         }
-
-        durationLabel.text = formattedTime
+        return formattedTime
     }
 
     open func showPlayLayout(_ play: Bool) {
         playButton.isSelected = play
         playButton.accessibilityLabel = play ? String.localized("menu_pause") : String.localized("menu_play")
-        speedButton.isHidden = !play
+        // Speed button stays hidden, speed is shown in status view
     }
     
-    open func setPlaybackSpeed(_ speed: Float) {
-        let speedText: String
+    open func formatPlaybackSpeed(_ speed: Float) -> String {
         if speed == 1.0 {
-            speedText = "1x"
+            return "1x"
         } else if speed == 1.5 {
-            speedText = "1.5x"
+            return "1.5x"
         } else if speed == 2.0 {
-            speedText = "2x"
+            return "2x"
         } else {
-            speedText = String(format: "%.1fx", speed)
+            return String(format: "%.1fx", speed)
         }
-        speedButton.setTitle(speedText, for: .normal)
+    }
+    
+    /// Configure waveform and scrubber colors based on message context
+    /// - Parameters:
+    ///   - isFromCurrentSender: Whether the message is from the current sender
+    ///   - bubbleColor: Optional custom bubble color to derive waveform colors from
+    open func configureWaveformColors(isFromCurrentSender: Bool, bubbleColor: UIColor? = nil) {
+        // Update scrubber color for contrast
+        if let bubbleColor = bubbleColor {
+            let isLightBubble = bubbleColor.isLight()
+            scrubberLine.backgroundColor = isLightBubble ? .darkGray : .white
+        } else {
+            scrubberLine.backgroundColor = isFromCurrentSender ? .white : .darkGray
+        }
+        
+        if let bubbleColor = bubbleColor {
+            // Check if bubble is light or dark to ensure good contrast
+            let isLightBubble = bubbleColor.isLight()
+            
+            if isLightBubble {
+                // For light bubbles, use darker colors for visibility
+                waveformView.playedColor = bubbleColor.darker(by: 0.5) ?? .darkGray
+                waveformView.unplayedColor = bubbleColor.darker(by: 0.25) ?? .lightGray
+            } else {
+                // For dark bubbles, use lighter colors for visibility
+                waveformView.playedColor = bubbleColor.lighter(by: 0.4) ?? .white
+                waveformView.unplayedColor = bubbleColor.lighter(by: 0.2) ?? .lightGray
+            }
+        } else {
+            // Use default colors based on message direction
+            if isFromCurrentSender {
+                // Sent messages - use darker green for played, lighter for unplayed
+                waveformView.playedColor = UIColor.themeColor(
+                    light: UIColor.rgb(red: 96, green: 160, blue: 82),
+                    dark: UIColor.rgb(red: 76, green: 140, blue: 62)
+                )
+                waveformView.unplayedColor = UIColor.themeColor(
+                    light: UIColor.rgb(red: 180, green: 220, blue: 170),
+                    dark: UIColor.rgb(red: 56, green: 100, blue: 42)
+                )
+            } else {
+                // Received messages - use blue/gray tones
+                waveformView.playedColor = .systemBlue
+                waveformView.unplayedColor = .systemGray3
+            }
+        }
     }
 }
