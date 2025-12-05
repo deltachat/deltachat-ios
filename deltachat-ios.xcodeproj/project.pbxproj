@@ -241,6 +241,8 @@
 		D8E426D82D423FCF0078C735 /* DownloadingActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E426D72D423FCF0078C735 /* DownloadingActivityView.swift */; };
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
+		EBA7FE852EE33EDC004C181F /* CustomizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA7FE842EE33EDC004C181F /* CustomizationViewController.swift */; };
+		EBA7FE862EE33EDC004C181F /* ChatBubblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA7FE832EE33EDC004C181F /* ChatBubblesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -649,6 +651,8 @@
 		D8E426D72D423FCF0078C735 /* DownloadingActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadingActivityView.swift; sourceTree = "<group>"; };
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		EBA7FE832EE33EDC004C181F /* ChatBubblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubblesViewController.swift; sourceTree = "<group>"; };
+		EBA7FE842EE33EDC004C181F /* CustomizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationViewController.swift; sourceTree = "<group>"; };
 		FCEAC85C8C41D57193C24E9A /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1164,6 +1168,8 @@
 		B28D25882913CE8600B9067F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				EBA7FE832EE33EDC004C181F /* ChatBubblesViewController.swift */,
+				EBA7FE842EE33EDC004C181F /* CustomizationViewController.swift */,
 				D8CF2DDB2CDD110F001C2352 /* Proxy */,
 				78E45E3921D3CFBC00D4B15E /* SettingsViewController.swift */,
 				B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */,
@@ -1742,6 +1748,8 @@
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
 				6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */,
 				30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */,
+				EBA7FE852EE33EDC004C181F /* CustomizationViewController.swift in Sources */,
+				EBA7FE862EE33EDC004C181F /* ChatBubblesViewController.swift in Sources */,
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsViewController.swift in Sources */,
 				3080A021277DE09900E74565 /* InputStackView.swift in Sources */,

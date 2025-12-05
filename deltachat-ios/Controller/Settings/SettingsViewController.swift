@@ -22,6 +22,7 @@ internal final class SettingsViewController: UITableViewController {
         case addAnotherDevice
         case notifications
         case selectBackground
+        case customization
         case advanced
         case help
         case allAppsAndMedia
@@ -125,6 +126,15 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
+    private lazy var customizationCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.tag = CellTags.customization.rawValue
+        cell.textLabel?.text = String.localized("pref_customization")
+        cell.imageView?.image = UIImage(systemName: "paintbrush")
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }()
+
     private lazy var sections: [SectionConfigs] = {
         var appNameAndVersion = "Delta Chat"
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -135,7 +145,7 @@ internal final class SettingsViewController: UITableViewController {
             cells: [self.profileCell]
         )
         let preferencesSection = SectionConfigs(
-            cells: [self.chatsAndMediaCell, self.notificationCell, self.selectBackgroundCell, self.addAnotherDeviceCell, self.connectivityCell, self.advancedCell]
+            cells: [self.chatsAndMediaCell, self.notificationCell, self.customizationCell, self.addAnotherDeviceCell, self.connectivityCell, self.advancedCell]
         )
         let listsSection = SectionConfigs(
             cells: [allAppsAndMediaCell]
@@ -208,6 +218,7 @@ internal final class SettingsViewController: UITableViewController {
         case .chatsAndMedia: showChatsAndMedia()
         case .addAnotherDevice: showBackupProviderViewController()
         case .notifications: showNotificationsViewController()
+        case .customization: showCustomization()
         case .advanced: showAdvanced()
         case .allAppsAndMedia: showAllAppsAndMedia()
         case .help: openHelp()
@@ -309,6 +320,10 @@ internal final class SettingsViewController: UITableViewController {
 
     private func selectBackground() {
         navigationController?.pushViewController(BackgroundOptionsViewController(dcContext: dcContext), animated: true)
+    }
+
+    private func showCustomization() {
+        navigationController?.pushViewController(CustomizationViewController(dcContext: dcContext), animated: true)
     }
 
     private func inviteFriends() {
