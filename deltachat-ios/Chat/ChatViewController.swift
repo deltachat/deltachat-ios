@@ -90,20 +90,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.transform = CGAffineTransform(scaleX: 1, y: -1)
-        if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
-            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
-                             placeholderImage: nil,
-                             options: [.retryFailed]) { [weak self] (_, error, _, _) in
-                if let error = error {
-                    logger.error("Error loading background image: \(error.localizedDescription)" )
-                    DispatchQueue.main.async { [weak self] in
-                        self?.setDefaultBackgroundImage(view: view)
-                    }
-                }
-            }
-        } else {
-            setDefaultBackgroundImage(view: view)
-        }
+        loadBackgroundImage(into: view)
         return view
     }()
 
@@ -810,7 +797,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
-        if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
+        if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil && getBackgroundColor() == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
     }
@@ -2173,6 +2160,39 @@ extension ChatViewController {
 
     private func setDefaultBackgroundImage(view: UIImageView) {
         view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        view.backgroundColor = nil
+    }
+
+    private func loadBackgroundImage(into view: UIImageView) {
+        // Check for custom color first
+        if let color = getBackgroundColor() {
+            view.backgroundColor = color
+            view.image = nil
+        } else if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
+            // Load custom image
+            view.backgroundColor = nil
+            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
+                             placeholderImage: nil,
+                             options: [.retryFailed]) { [weak self] (_, error, _, _) in
+                if let error = error {
+                    logger.error("Error loading background image: \(error.localizedDescription)")
+                    DispatchQueue.main.async { [weak self] in
+                        self?.setDefaultBackgroundImage(view: view)
+                    }
+                }
+            }
+        } else {
+            // Use default
+            setDefaultBackgroundImage(view: view)
+        }
+    }
+
+    private func getBackgroundColor() -> UIColor? {
+        if let colorData = UserDefaults.standard.data(forKey: Constants.Keys.customBackgroundColorKey),
+           let color = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) {
+            return color
+        }
+        return nil
     }
 
     private func copyTextToClipboard(ids: [Int]) {
