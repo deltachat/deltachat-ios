@@ -30,7 +30,7 @@
 - Fix: Sort system messages to the bottom of the chat
 - Fix app getting stale (set SQLite busy timeout to 1 minute on iOS)
 - Update translations and local help
-- Update core to 2.29.0
+- Update core to 2.32.0
 
 
 ## v2.22.2 Testflight
