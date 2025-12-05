@@ -26,10 +26,10 @@
 		30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */; };
 		30E8F24D2449D30200CE2C90 /* DcColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E8F24C2449D30200CE2C90 /* DcColors.swift */; };
 		5F0FCC772DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */; };
-		640BC0472DCC941D0049B475 /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */; };
-		64E7AA642EBE43E400DB88B7 /* CallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7AA632EBE43DE00DB88B7 /* CallKit.swift */; };
 		640ACB472E1E3BA9000FBBCC /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */; };
+		640BC0472DCC941D0049B475 /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */; };
 		64E2FCC12E1AD9D200CA9662 /* CodableNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */; };
+		64E7AA642EBE43E400DB88B7 /* CallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7AA632EBE43DE00DB88B7 /* CallKit.swift */; };
 		78072F172A040ED800EB7C98 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78072F162A040ED800EB7C98 /* libdeltachat.a */; };
 		7871729629BA495200F110DC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7871729529BA495200F110DC /* SystemConfiguration.framework */; };
 		B2526A222DEA12A000EB90CC /* DcEnteredLoginParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2526A212DEA12A000EB90CC /* DcEnteredLoginParam.swift */; };
@@ -71,10 +71,10 @@
 		30E8F2472449C98600CE2C90 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		30E8F24C2449D30200CE2C90 /* DcColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcColors.swift; sourceTree = "<group>"; };
 		5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNMutableNotificationContent+init.swift"; sourceTree = "<group>"; };
-		640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
-		64E7AA632EBE43DE00DB88B7 /* CallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKit.swift; sourceTree = "<group>"; };
 		640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFormat.swift; sourceTree = "<group>"; };
+		640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
 		64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableNSItemProvider.swift; sourceTree = "<group>"; };
+		64E7AA632EBE43DE00DB88B7 /* CallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKit.swift; sourceTree = "<group>"; };
 		78072F162A040ED800EB7C98 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/libdeltachat.a"; sourceTree = "<group>"; };
 		7827C8882A04089900B8470D /* libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; name = libraries; path = "../deltachat-ios/libraries"; sourceTree = "<group>"; };
 		7827C88A2A0408A700B8470D /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/deltachat-core-rust/libdeltachat.a"; sourceTree = "<group>"; };
@@ -388,7 +388,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -453,7 +452,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -480,7 +478,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8Y86453UA8;
+				DEVELOPMENT_TEAM = A5WGSYXZUD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -501,7 +499,7 @@
 					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					"$(PROJECT_DIR)/../deltachat-ios/libraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCore;
+				PRODUCT_BUNDLE_IDENTIFIER = sfydevchat.delta.DcCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -514,7 +512,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8Y86453UA8;
+				DEVELOPMENT_TEAM = A5WGSYXZUD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -535,7 +533,7 @@
 					"$(PROJECT_DIR)/../deltachat-ios/libraries/deltachat-core-rust/deltachat-ffi",
 					"$(PROJECT_DIR)/../deltachat-ios/libraries",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcCore;
+				PRODUCT_BUNDLE_IDENTIFIER = sfydevchat.delta.DcCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";

@@ -22,7 +22,7 @@ public class DcAccounts {
 
     /// The application group identifier defines a group of apps or extensions that have access to a shared container.
     /// The ID is created in the apple developer portal and can be changed there.
-    let applicationGroupIdentifier = "group.chat.delta.ios"
+    let applicationGroupIdentifier = "group.sfydev.chat.delta"
     var accountsPointer: OpaquePointer?
     var rpcPointer: OpaquePointer?
     public var fetchSemaphore: DispatchSemaphore?

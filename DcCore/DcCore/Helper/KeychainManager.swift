@@ -12,8 +12,8 @@ public class KeychainManager {
     // the development team id is equivalent to $(AppIdentifierPrefix) in deltachat-ios.entitlements
     // It is required as a prefix for the shared keychain identifier, but not straight forward to access programmatically,
     // so we're hardcoding it here
-    private static let teamId = "8Y86453UA8"
-    private static let sharedKeychainGroup = "\(KcM.teamId).group.chat.delta.ios"
+    private static let teamId = "A5WGSYXZUD"
+    private static let sharedKeychainGroup = "\(KcM.teamId).group.sfydev.chat.delta.ios"
 
     public static func getAccountSecret(accountID: Int) throws -> String {
         do {

@@ -12,8 +12,8 @@ rm -f "${DIR}/${FILENAME}"
 
 rustc `cat ../rust-toolchain` --version
 
-# ensure all targets are installed
-rustup target add aarch64-apple-ios x86_64-apple-ios --toolchain `cat ../rust-toolchain`
+# ensure all targets are installed (device + simulators)
+rustup target add aarch64-apple-ios x86_64-apple-ios aarch64-apple-ios-sim --toolchain `cat ../rust-toolchain`
 
 # --xcode-integ determines --release and --targets from Xcode's env vars.
 # Depending your setup, specify the rustup toolchain explicitly.

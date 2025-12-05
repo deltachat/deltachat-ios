@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.chat.delta.ios</string>
+		<string>group.sfydev.chat.delta</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)group.chat.delta.ios</string>
+		<string>$(AppIdentifierPrefix)group.sfydev.chat.delta.ios</string>
 	</array>
 </dict>
 </plist>
