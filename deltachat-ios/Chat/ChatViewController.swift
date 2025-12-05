@@ -1829,6 +1829,15 @@ extension ChatViewController {
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
+        
+        // Apply the same rounded corners as the message bubble to preserve the shape during transition
+        let radius: CGFloat = 16
+        let rectCorners = cell.messageBackgroundContainer.rectCorners ?? UIRectCorner()
+        let path = UIBezierPath(roundedRect: messageSnapshotView.bounds,
+                                byRoundingCorners: rectCorners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        parameters.visiblePath = path
+        
         let preview = UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
         
         self.lastContextMenuPreviewSnapshot = messageSnapshotView
