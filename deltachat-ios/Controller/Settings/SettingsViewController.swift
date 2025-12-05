@@ -308,7 +308,7 @@ internal final class SettingsViewController: UITableViewController {
     }
 
     private func selectBackground() {
-        navigationController?.pushViewController(BackgroundOptionsViewController(dcContext: dcContext), animated: true)
+        navigationController?.pushViewController(WallpaperViewController(dcContext: dcContext), animated: true)
     }
 
     private func inviteFriends() {

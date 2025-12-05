@@ -5,7 +5,7 @@ protocol CertificateCheckDelegate: AnyObject {
     func onCertificateCheckChanged(newValue: Int)
 }
 
-class CertificateCheckController: UITableViewController {
+class CertificateCheckViewController: UITableViewController {
 
     private let options = [Int(DC_CERTCK_AUTO), Int(DC_CERTCK_STRICT), Int(DC_CERTCK_ACCEPT_INVALID)]
     private var currentValue: Int
