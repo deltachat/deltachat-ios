@@ -29,6 +29,7 @@
 - Fix: Fixed bug where camera would activate when not on the scanning screen
 - Fix: Fixed bug where sharing files through the share extension did not work
 - Fix: Sort system messages to the bottom of the chat
+- Fix: Rounded corners while holding on chat bubble (#2934)
 - Fix app getting stale (set SQLite busy timeout to 1 minute on iOS)
 - Update translations and local help
 - Update core to 2.33.0
