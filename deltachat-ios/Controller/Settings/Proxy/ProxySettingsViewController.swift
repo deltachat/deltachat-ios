@@ -1,7 +1,7 @@
 import UIKit
 import DcCore
 
-enum ProxySettingsSection: Int {
+private enum ProxySettingsSection: Int {
     case enableProxies = 0
     case proxies
     case add
