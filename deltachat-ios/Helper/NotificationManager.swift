@@ -28,17 +28,20 @@ public class NotificationManager {
 
     public static func updateBadgeCounters(forceZero: Bool = false) {
         DispatchQueue.main.async {
-            let number = forceZero ? 0 : DcAccounts.shared.getFreshMessageCount()
+            let number = forceZero ? 0 : DcAccounts.shared.getFreshMessagesCount()
 
             // update badge counter on iOS homescreen
             UIApplication.shared.applicationIconBadgeNumber = number
 
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+
             // update badge counter on our tabbar
-            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-               let appCoordinator = appDelegate.appCoordinator,
+            if let appCoordinator = appDelegate?.appCoordinator,
                let chatsNavigationController = appCoordinator.tabBarController.viewControllers?[appCoordinator.chatsTab] {
                 chatsNavigationController.tabBarItem.badgeValue = number > 0 ? "\(number)" : nil
             }
+
+            appDelegate?.callWindow?.callViewController?.setUnreadMessageCount(number)
         }
     }
 

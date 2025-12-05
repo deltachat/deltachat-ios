@@ -6,6 +6,7 @@ public extension UserDefaults {
     static var debugArrayKey = "notify-fetch-info"
     static var mainIoRunningKey = "mainIoRunning"
     static var nseFetchingKey = "nseFetching"
+    static var incomingCallPayloadKey = "incomingCallPayload"
 
     static var shared: UserDefaults? {
         return UserDefaults(suiteName: "group.chat.delta.ios")
