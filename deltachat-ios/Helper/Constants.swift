@@ -16,6 +16,7 @@ struct Constants {
         static let customSenderBubbleColorKey = "__CUSTOM_SENDER_BUBBLE_COLOR__"
         static let customReceiverBubbleColorKey = "__CUSTOM_RECEIVER_BUBBLE_COLOR__"
         static let customBackgroundColorKey = "__CUSTOM_BACKGROUND_COLOR__"
+        static let customBubbleCornerRadiusKey = "__CUSTOM_BUBBLE_CORNER_RADIUS__"
     }
 
     static let backgroundImageName = "BACKGROUND_IMAGE"

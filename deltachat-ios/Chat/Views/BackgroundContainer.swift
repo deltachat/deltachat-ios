@@ -6,6 +6,11 @@ class BackgroundContainer: UIImageView {
 
     var rectCorners: UIRectCorner?
     var color: UIColor?
+    
+    static func getCurrentCornerRadius() -> CGFloat {
+        let radius = CGFloat(UserDefaults.standard.float(forKey: Constants.Keys.customBubbleCornerRadiusKey))
+        return radius > 0 ? radius : 16.0
+    }
 
     func update(rectCorners: UIRectCorner, color: UIColor) {
         self.rectCorners = rectCorners
@@ -21,7 +26,7 @@ class BackgroundContainer: UIImageView {
     }
 
     func applyPath() {
-        let radius: CGFloat = 16
+        let radius = BackgroundContainer.getCurrentCornerRadius()
         let path = UIBezierPath(roundedRect: bounds,
                                 byRoundingCorners: rectCorners ?? UIRectCorner(),
                                 cornerRadii: CGSize(width: radius, height: radius))

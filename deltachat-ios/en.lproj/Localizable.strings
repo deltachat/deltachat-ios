@@ -739,6 +739,10 @@
 "pref_sender_bubble_color" = "Sender Bubble Color";
 "pref_receiver_bubble_color" = "Receiver Bubble Color";
 "tap_to_change" = "Tap to change";
+"pref_bubble_corner_radius" = "Corner Radius";
+"pref_bubble_corner_radius_explain" = "Adjust the roundness of message bubble corners";
+"pref_sender_bubble_preview" = "Sender bubble";
+"pref_receiver_bubble_preview" = "Receiver bubble";
 "pref_reset_default_colors" = "Reset to Default Colors";
 "pref_reset_default_colors_confirm" = "Are you sure you want to reset chat bubble colors to their default values?";
 "export_aborted" = "Export aborted.";
