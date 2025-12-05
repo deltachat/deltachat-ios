@@ -13,6 +13,8 @@ struct Constants {
         static let backgroundImageName = "__BACKGROUND_IMAGE_NAME__"
         static let notificationTimestamps = "__NOTIFICATION_TIMESTAMPS__"
         static let lastDeviceMessageLabel = "last_device_message_label"
+        static let customSenderBubbleColorKey = "__CUSTOM_SENDER_BUBBLE_COLOR__"
+        static let customReceiverBubbleColorKey = "__CUSTOM_RECEIVER_BUBBLE_COLOR__"
     }
 
     static let backgroundImageName = "BACKGROUND_IMAGE"

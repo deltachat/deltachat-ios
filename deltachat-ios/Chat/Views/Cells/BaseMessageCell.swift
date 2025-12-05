@@ -629,9 +629,21 @@ public class BaseMessageCell: UITableViewCell {
         if isTransparent {
             backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)
         } else if message.isFromCurrentSender {
-            backgroundColor =  DcColors.messagePrimaryColor
+            // Check for custom sender bubble color
+            if let colorData = UserDefaults.standard.data(forKey: Constants.Keys.customSenderBubbleColorKey),
+               let customColor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) {
+                backgroundColor = customColor
+            } else {
+                backgroundColor = DcColors.messagePrimaryColor
+            }
         } else {
-            backgroundColor = DcColors.messageSecondaryColor
+            // Check for custom receiver bubble color
+            if let colorData = UserDefaults.standard.data(forKey: Constants.Keys.customReceiverBubbleColorKey),
+               let customColor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: UIColor.self, from: colorData) {
+                backgroundColor = customColor
+            } else {
+                backgroundColor = DcColors.messageSecondaryColor
+            }
         }
         return backgroundColor
     }

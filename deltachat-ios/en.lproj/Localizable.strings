@@ -731,6 +731,16 @@
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
 "pref_background_custom_color" = "Custom color";
+"pref_customization" = "Customization";
+"pref_customization_explain" = "Customize the appearance of your chats";
+"pref_chat_bubbles" = "Chat Bubbles";
+"pref_chat_bubble_colors" = "Chat Bubble Colors";
+"pref_chat_bubble_colors_explain" = "Choose custom colors for sender and receiver message bubbles";
+"pref_sender_bubble_color" = "Sender Bubble Color";
+"pref_receiver_bubble_color" = "Receiver Bubble Color";
+"tap_to_change" = "Tap to change";
+"pref_reset_default_colors" = "Reset to Default Colors";
+"pref_reset_default_colors_confirm" = "Are you sure you want to reset chat bubble colors to their default values?";
 "export_aborted" = "Export aborted.";
 "auto_download_messages" = "Auto-Download Messages";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
