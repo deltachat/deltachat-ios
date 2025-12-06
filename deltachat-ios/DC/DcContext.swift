@@ -735,33 +735,6 @@ public class DcContext {
         }
     }
 
-    private var serverFlags: Int {
-        // IMAP-/SMTP-flags as a combination of DC_LP flags
-        get {
-            if let str = getConfig("server_flags") {
-                return Int(str) ?? 0
-            } else {
-                return 0
-            }
-        }
-        set {
-            setConfig("server_flags", "\(newValue)")
-        }
-    }
-
-    public func setAuthFlags(flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x6 // DC_LP_AUTH_FLAGS
-        sf = sf | flags
-        serverFlags = sf
-    }
-
-    public func getAuthFlags() -> Int {
-        var sf = serverFlags
-        sf = sf & 0x6 // DC_LP_AUTH_FLAGS
-        return sf
-    }
-
     public var mdnsEnabled: Bool {
         get { return getConfigBool("mdns_enabled") }
         set { setConfigBool("mdns_enabled", newValue) }
