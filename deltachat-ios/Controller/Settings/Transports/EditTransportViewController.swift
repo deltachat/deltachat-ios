@@ -47,7 +47,7 @@ class EditTransportViewController: UITableViewController {
         proxyCell,
         viewLogCell
     ]
-    private let editView: Bool
+    private let editAddr: String?
     private var advancedSectionShowing: Bool = false
     private var providerInfoShowing: Bool = false
 
@@ -61,7 +61,7 @@ class EditTransportViewController: UITableViewController {
         cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = .next
-        if editView {
+        if editAddr != nil {
             cell.textField.isUserInteractionEnabled = false
         }
         return cell
@@ -244,8 +244,8 @@ class EditTransportViewController: UITableViewController {
     }()
 
     // MARK: - constructor
-    init(dcAccounts: DcAccounts, editView: Bool) {
-        self.editView = editView
+    init(dcAccounts: DcAccounts, editAddr: String? = nil) {
+        self.editAddr = editAddr
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
 
@@ -266,7 +266,7 @@ class EditTransportViewController: UITableViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if editView {
+        if editAddr != nil {
             title = String.localized("edit_transport")
         } else {
             title = String.localized("manual_account_setup_option")
