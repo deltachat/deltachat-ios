@@ -13,6 +13,7 @@ class TransportListViewController: UITableViewController {
     var transports: [DcEnteredLoginParam]
 
     let addTransportCell: ActionCell
+    private var qrCodeReader: QrCodeReaderController?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts) {
         self.dcContext = dcContext
@@ -44,7 +45,10 @@ class TransportListViewController: UITableViewController {
     }
 
     private func addTransport() {
-        // TODO
+        let qrReader = QrCodeReaderController(title: String.localized("add_transport"))
+        qrReader.delegate = self
+        qrCodeReader = qrReader
+        navigationController?.pushViewController(qrReader, animated: true)
     }
 
     private func deleteTransport(at indexPath: IndexPath) {
@@ -73,7 +77,7 @@ extension TransportListViewController {
 
             let transport = transports[indexPath.row]
 
-            cell.accessoryType = .checkmark
+            cell.accessoryType = .checkmark // TODO: mark correct default
             cell.textLabel?.text = transport.addr
 
             return cell
@@ -129,5 +133,50 @@ extension TransportListViewController {
                 return UIMenu(children: children)
             }
         )
+    }
+}
+
+// MARK: - QrCodeReaderDelegate
+extension TransportListViewController: QrCodeReaderDelegate {
+    func handleQrCode(_ qrCode: String) {
+        let parsedQrCode = dcContext.checkQR(qrCode: qrCode)
+        if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT, let host = parsedQrCode.text1, let url = URL(string: "https://\(host)") {
+            let alert = UIAlertController(title: String.localized("confirm_add_transport"), message: host, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismissQRReader()
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                self.dismissQRReader()
+                self.addFromQrCode(qrCode)
+            }))
+            qrCodeReader?.present(alert, animated: true, completion: nil)
+        } else {
+            qrErrorAlert()
+        }
+    }
+
+    private func addFromQrCode(_ qrCode: String) {
+        // TODO: that should be in bg with progress alert
+        // TODO: update list on adding accordingly
+        do {
+            _ = try self.dcContext.addTransportFromQr(qrCode: qrCode)
+        } catch {
+            logAndAlert(error: error.localizedDescription)
+        }
+    }
+
+    private func qrErrorAlert() {
+        let alert = UIAlertController(title: String.localized("invalid_transport_qr"), message: dcContext.lastErrorString, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+            self?.qrCodeReader?.startSession()
+        }))
+        qrCodeReader?.present(alert, animated: true, completion: nil)
+    }
+
+    private func dismissQRReader() {
+        self.navigationController?.popViewController(animated: true)
+        self.qrCodeReader = nil
     }
 }
