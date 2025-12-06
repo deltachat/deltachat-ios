@@ -14,6 +14,7 @@ class TransportListViewController: UITableViewController {
 
     let addTransportCell: ActionCell
     private var qrCodeReader: QrCodeReaderController?
+    private var progressAlertHandler: ProgressAlertHandler?
 
     init(dcContext: DcContext, dcAccounts: DcAccounts) {
         self.dcContext = dcContext
@@ -34,6 +35,11 @@ class TransportListViewController: UITableViewController {
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    private func reloadTransports() {
+        transports = dcContext.listTransports()
+        tableView.reloadData()
+    }
 
     // MARK: - Actions
 
@@ -84,7 +90,7 @@ extension TransportListViewController {
 
             cell.textLabel?.text = transport.addr
             cell.accessoryType = isDefault ? .checkmark : .none
-            cell.detailTextLabel?.text = isDefault ? "Default" : nil
+            cell.detailTextLabel?.text = isDefault ? String.localized("def") : nil
 
             return cell
         } else {
@@ -184,13 +190,25 @@ extension TransportListViewController: QrCodeReaderDelegate {
     }
 
     private func addFromQrCode(_ qrCode: String) {
-        // TODO: that should be in bg with progress alert
-        // TODO: update list on adding accordingly
-        do {
-            _ = try self.dcContext.addTransportFromQr(qrCode: qrCode)
-        } catch {
-            logAndAlert(error: error.localizedDescription)
+        let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, onSuccess: { [weak self] in
+            self?.reloadTransports()
+        })
+        progressAlertHandler.dataSource = self
+        progressAlertHandler.showProgressAlert(title: String.localized("add_transport"), dcContext: self.dcContext)
+
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+
+            do {
+                _ = try self.dcContext.addTransportFromQr(qrCode: qrCode)
+            } catch {
+                DispatchQueue.main.async {
+                    progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
+                }
+            }
         }
+
+        self.progressAlertHandler = progressAlertHandler
     }
 
     private func qrErrorAlert() {
