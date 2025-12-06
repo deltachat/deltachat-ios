@@ -138,6 +138,7 @@ class EditTransportViewController: UITableViewController {
         return cell
     }()
 
+    let imapSecurityValue = AccountSetupSecurityValue()
     lazy var imapSecurityCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_imap_security")
@@ -145,8 +146,6 @@ class EditTransportViewController: UITableViewController {
         cell.tag = tagImapSecurityCell
         return cell
     }()
-
-    let imapSecurityValue: AccountSetupSecurityValue
 
     lazy var smtpServerCell: TextFieldCell = {
         let cell = TextFieldCell(
@@ -196,6 +195,7 @@ class EditTransportViewController: UITableViewController {
         return cell
     }()
 
+    let smtpSecurityValue = AccountSetupSecurityValue()
     lazy var smtpSecurityCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_smtp_security")
@@ -204,8 +204,7 @@ class EditTransportViewController: UITableViewController {
         return cell
     }()
 
-    let smtpSecurityValue: AccountSetupSecurityValue
-
+    var certValue: Int = 0
     lazy var certCheckCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("login_certificate_checks")
@@ -213,8 +212,6 @@ class EditTransportViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
-
-    lazy var certValue: Int = dcContext.certificateChecks
 
     lazy var proxyCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
@@ -252,9 +249,6 @@ class EditTransportViewController: UITableViewController {
         self.sections.append(basicSection)
         self.sections.append(advancedSection)
 
-        self.imapSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("mail_security"))
-        self.smtpSecurityValue = AccountSetupSecurityValue(initValue: dcContext.getConfigInt("send_security"))
-
         super.init(style: .insetGrouped)
         hidesBottomBarWhenPushed = true
     }
@@ -280,10 +274,13 @@ class EditTransportViewController: UITableViewController {
         imapUserCell.setText(text: dcContext.getConfig("mail_user"))
         imapServerCell.setText(text: dcContext.getConfig("mail_server"))
         imapPortCell.setText(text: editablePort(port: dcContext.getConfig("mail_port")))
+        imapSecurityValue.value = dcContext.getConfigInt("mail_security")
         smtpUserCell.setText(text: dcContext.getConfig("send_user"))
         smtpPasswordCell.setText(text: dcContext.getConfig("send_pw"))
         smtpServerCell.setText(text: dcContext.getConfig("send_server"))
         smtpPortCell.setText(text: editablePort(port: dcContext.getConfig("send_port")))
+        smtpSecurityValue.value = dcContext.getConfigInt("send_security")
+        certValue = dcContext.certificateChecks
         handleLoginButton()
     }
 
@@ -574,8 +571,8 @@ extension EditTransportViewController: CertificateCheckDelegate {
 class AccountSetupSecurityValue: SecuritySettingsDelegate {
     var value: Int
 
-    init(initValue: Int) {
-        value = initValue
+    init() {
+        value = 0
     }
 
     func onSecuritySettingsChanged(newValue: Int) {
