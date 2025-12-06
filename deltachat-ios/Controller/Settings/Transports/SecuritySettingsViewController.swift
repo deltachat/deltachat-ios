@@ -2,25 +2,25 @@ import UIKit
 import DcCore
 
 protocol SecuritySettingsDelegate: AnyObject {
-    func onSecuritySettingsChanged(newValue: Int)
+    func onSecuritySettingsChanged(newValue: String)
 }
 
 class SecuritySettingsViewController: UITableViewController {
 
-    private let options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
+    private let options: [String] = ["automatic", "ssl", "starttls", "plain"]
     private var selectedIndex: Int
     weak var delegate: SecuritySettingsDelegate?
 
     private var staticCells: [UITableViewCell] {
         return options.map {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = SecurityConverter.getSocketName(value: $0)
+            cell.textLabel?.text = SecuritySettingsViewController.valueToName(value: $0)
             return cell
         }
     }
 
-    init(initValue: Int, title: String) {
-        selectedIndex = options.firstIndex(of: Int32(initValue)) ?? 0
+    init(initValue: String, title: String) {
+        selectedIndex = options.firstIndex(of: initValue) ?? 0
         super.init(style: .insetGrouped)
         self.title = title
     }
@@ -54,23 +54,21 @@ class SecuritySettingsViewController: UITableViewController {
             cell.accessoryType = .checkmark
         }
         selectedIndex = indexPath.row
-        delegate?.onSecuritySettingsChanged(newValue: Int(options[selectedIndex]))
+        delegate?.onSecuritySettingsChanged(newValue: options[selectedIndex])
     }
-}
 
-class SecurityConverter {
-    static func getSocketName(value: Int32) -> String {
+    static func valueToName(value: String) -> String {
         switch value {
-        case DC_SOCKET_AUTO:
+        case "automatic":
             return String.localized("automatic")
-        case DC_SOCKET_SSL:
+        case "ssl":
             return "SSL/TLS"
-        case DC_SOCKET_STARTTLS:
+        case "starttls":
             return "StartTLS"
-        case DC_SOCKET_PLAIN:
+        case "plain":
             return String.localized("off")
         default:
-            return "Undefined"
+            return value
         }
     }
 }

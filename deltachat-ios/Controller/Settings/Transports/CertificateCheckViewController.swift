@@ -2,31 +2,31 @@ import UIKit
 import DcCore
 
 protocol CertificateCheckDelegate: AnyObject {
-    func onCertificateCheckChanged(newValue: Int)
+    func onCertificateCheckChanged(newValue: String)
 }
 
 class CertificateCheckViewController: UITableViewController {
 
-    private let options = [Int(DC_CERTCK_AUTO), Int(DC_CERTCK_STRICT), Int(DC_CERTCK_ACCEPT_INVALID)]
-    private var currentValue: Int
+    private let options: [String] = ["automatic", "strict", "acceptInvalidCertificates"]
+    private var currentValue: String
     private var selectedIndex: Int?
     weak var delegate: CertificateCheckDelegate?
 
     var staticCells: [UITableViewCell] {
         return options.map({
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text =  ValueConverter.convertHexToString(value: $0)
+            cell.textLabel?.text = CertificateCheckViewController.valueToName(value: $0)
             return cell
         })
     }
 
-    init(initValue: Int, sectionTitle: String?) {
+    init(initValue: String) {
         self.currentValue = initValue
         for (index, value) in options.enumerated() where currentValue == value {
             selectedIndex = index
         }
         super.init(style: .insetGrouped)
-        self.title = sectionTitle
+        self.title = String.localized("login_certificate_checks")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -72,18 +72,16 @@ class CertificateCheckViewController: UITableViewController {
         delegate?.onCertificateCheckChanged(newValue: currentValue)
     }
 
-    class ValueConverter {
-        static func convertHexToString(value: Int) -> String {
-            switch value {
-            case Int(DC_CERTCK_AUTO):
-                return String.localized("automatic")
-            case Int(DC_CERTCK_STRICT):
-                return String.localized("strict")
-            case Int(DC_CERTCK_ACCEPT_INVALID):
-                return String.localized("accept_invalid_certificates")
-            default:
-                return "Undefined"
-            }
+    static func valueToName(value: String) -> String {
+        switch value {
+        case "automatic":
+            return String.localized("automatic")
+        case "strict":
+            return String.localized("strict")
+        case "acceptInvalidCertificates":
+            return String.localized("accept_invalid_certificates")
+        default:
+            return value
         }
     }
 }
