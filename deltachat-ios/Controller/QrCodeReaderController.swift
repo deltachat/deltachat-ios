@@ -19,6 +19,10 @@ class QrCodeReaderController: UIViewController {
         return videoPreviewLayer
     }()
 
+    private lazy var cancelButton: UIBarButtonItem = {
+        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
+    }()
+
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis.circle")
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
@@ -73,6 +77,7 @@ class QrCodeReaderController: UIViewController {
             })
         }
 
+        navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = moreButton
     }
 
@@ -205,6 +210,10 @@ class QrCodeReaderController: UIViewController {
             })
         }
         return UIMenu(children: actions)
+    }
+
+    @objc func onCancelPressed() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
