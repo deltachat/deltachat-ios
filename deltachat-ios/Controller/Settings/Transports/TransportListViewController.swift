@@ -38,7 +38,9 @@ class TransportListViewController: UITableViewController {
     // MARK: - Actions
 
     private func setDefaultTransport(at indexPath: IndexPath) {
-        // TODO
+        guard let transport = transports.get(at: indexPath.row) else { return }
+        dcContext.setConfig("configured_addr", transport.addr)
+        tableView.reloadData()
     }
 
     private func editTransport(at indexPath: IndexPath) {
