@@ -37,7 +37,7 @@ class TransportListViewController: UITableViewController {
     // MARK: - Actions
 
     private func editTransport(at indexPath: IndexPath) {
-        // TODO
+        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editView: true), animated: true)
     }
 
     private func addTransport() {
