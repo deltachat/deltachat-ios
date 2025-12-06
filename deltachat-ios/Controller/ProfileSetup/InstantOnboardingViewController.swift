@@ -281,7 +281,7 @@ class InstantOnboardingViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
 
-            let qrCodeData = self.qrCodeData ?? "dcaccount:https://nine.testrun.org/new"
+            let qrCodeData = self.qrCodeData ?? "dcaccount:nine.testrun.org"
             do {
                 _ = try self.dcContext.addTransportFromQr(qrCode: qrCodeData)
             } catch {
