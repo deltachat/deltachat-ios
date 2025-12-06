@@ -3,8 +3,12 @@ import UIKit
 import DcCore
 
 public class StatusView: UIView {
+    private let leftStackView: UIStackView
     private let contentStackView: UIStackView
     let dateLabel: UILabel
+    let durationLabel: UILabel
+    let separatorLabel: UILabel
+    let speedButton: UIButton
     private let editedLabel: UILabel
     private let envelopeView: UIImageView
     private let locationView: UIImageView
@@ -16,6 +20,29 @@ public class StatusView: UIView {
         dateLabel = UILabel()
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+
+        durationLabel = UILabel()
+        durationLabel.translatesAutoresizingMaskIntoConstraints = false
+        durationLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        durationLabel.isHidden = true
+
+        separatorLabel = UILabel()
+        separatorLabel.text = "•"
+        separatorLabel.translatesAutoresizingMaskIntoConstraints = false
+        separatorLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
+        separatorLabel.isHidden = true
+
+        speedButton = UIButton(type: .custom)
+        speedButton.setTitle("1x", for: .normal)
+        speedButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
+        speedButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        speedButton.setTitleColor(.label, for: .normal)
+        speedButton.backgroundColor = UIColor.systemGray5
+        speedButton.layer.cornerRadius = 8
+        speedButton.contentEdgeInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
+        speedButton.translatesAutoresizingMaskIntoConstraints = false
+        speedButton.isUserInteractionEnabled = true
+        speedButton.isHidden = true
 
         editedLabel = UILabel()
         editedLabel.text = String.localized("edited")
@@ -31,6 +58,12 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
+        leftStackView = UIStackView(arrangedSubviews: [durationLabel, separatorLabel, speedButton])
+        leftStackView.alignment = .center
+        leftStackView.spacing = 4
+        leftStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, stateView])
         contentStackView.alignment = .center
         contentStackView.spacing = 4
@@ -38,6 +71,7 @@ public class StatusView: UIView {
 
         super.init(frame: frame)
 
+        addSubview(leftStackView)
         addSubview(contentStackView)
 
         layer.cornerRadius = 5
@@ -49,9 +83,19 @@ public class StatusView: UIView {
 
     private func setupConstraints() {
         let constraints = [
-
+            // Left stack view (duration • speed) on the left
+            leftStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            leftStackView.centerYAnchor.constraint(equalTo: contentStackView.centerYAnchor),
+            
+            // Fixed width for duration label to keep dot position stable
+            durationLabel.widthAnchor.constraint(equalToConstant: 30),
+            
+            // Fixed width for speed button to prevent resizing when text changes
+            speedButton.widthAnchor.constraint(equalToConstant: 36),
+            
+            // Content stack view on the right
             contentStackView.topAnchor.constraint(equalTo: topAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            contentStackView.leadingAnchor.constraint(greaterThanOrEqualTo: leftStackView.trailingAnchor, constant: 8),
             trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 5),
             bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
 
@@ -74,6 +118,11 @@ public class StatusView: UIView {
 
     public func prepareForReuse() {
         dateLabel.text = nil
+        durationLabel.text = nil
+        durationLabel.isHidden = true
+        separatorLabel.isHidden = true
+        speedButton.setTitle(nil, for: .normal)
+        speedButton.isHidden = true
         editedLabel.isHidden = true
         envelopeView.isHidden = true
         locationView.isHidden = true
@@ -84,6 +133,9 @@ public class StatusView: UIView {
     public func update(message: DcMsg, tintColor: UIColor) {
         dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
+        durationLabel.textColor = tintColor
+        separatorLabel.textColor = tintColor
+        speedButton.setTitleColor(tintColor, for: .normal)
         editedLabel.isHidden = !message.isEdited
         editedLabel.textColor = tintColor
 

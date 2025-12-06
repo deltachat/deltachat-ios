@@ -61,4 +61,57 @@ public extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
         return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
+    
+    /// Returns a lighter version of the color
+    /// - Parameter percentage: Percentage to lighten (0.0 - 1.0)
+    /// - Returns: A lighter UIColor or nil if the operation fails
+    func lighter(by percentage: CGFloat = 0.3) -> UIColor? {
+        return adjust(by: abs(percentage))
+    }
+    
+    /// Returns a darker version of the color
+    /// - Parameter percentage: Percentage to darken (0.0 - 1.0)
+    /// - Returns: A darker UIColor or nil if the operation fails
+    func darker(by percentage: CGFloat = 0.3) -> UIColor? {
+        return adjust(by: -abs(percentage))
+    }
+    
+    /// Adjusts the brightness of the color
+    /// - Parameter percentage: Positive value lightens, negative value darkens
+    /// - Returns: An adjusted UIColor or nil if the operation fails
+    private func adjust(by percentage: CGFloat) -> UIColor? {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return nil
+        }
+        
+        return UIColor(
+            red: min(max(red + percentage, 0.0), 1.0),
+            green: min(max(green + percentage, 0.0), 1.0),
+            blue: min(max(blue + percentage, 0.0), 1.0),
+            alpha: alpha
+        )
+    }
+    
+    /// Determines if the color is light or dark based on perceived brightness
+    /// - Returns: true if the color is light (perceived brightness > 0.5), false if dark
+    func isLight() -> Bool {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return true // Default to light if we can't determine
+        }
+        
+        // Calculate perceived brightness using the relative luminance formula
+        // https://www.w3.org/TR/WCAG20/#relativeluminancedef
+        let brightness = (red * 0.299) + (green * 0.587) + (blue * 0.114)
+        return brightness > 0.5
+    }
 }

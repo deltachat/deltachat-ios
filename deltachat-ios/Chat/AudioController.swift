@@ -49,6 +49,9 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     /// The `Timer` that update playing progress
     internal var progressTimer: Timer?
+    
+    /// Current playback speed
+    private var currentPlaybackSpeed: Float = 1.0
 
     // MARK: - Init Methods
 
@@ -78,11 +81,21 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     ///   This protocol method is called by MessageKit every time an audio cell needs to be configure
     func update(_ cell: AudioMessageCell, with messageId: Int) {
         cell.delegate = self
+        cell.audioPlayerView.onSpeedButtonTapped = { [weak self, weak cell] in
+            guard let cell = cell else { return }
+            self?.speedButtonTapped(cell: cell, messageId: messageId)
+        }
+        cell.audioPlayerView.onSeek = { [weak self, weak cell] progress in
+            guard let cell = cell else { return }
+            self?.seekToPosition(progress: progress, cell: cell, messageId: messageId)
+        }
         if playingMessage?.id == messageId, let player = audioPlayer {
             playingCell = cell
             cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
             cell.audioPlayerView.showPlayLayout((player.isPlaying == true) ? true : false)
-            cell.audioPlayerView.setDuration(duration: player.currentTime)
+            cell.statusView.durationLabel.text = cell.audioPlayerView.formatDuration(player.currentTime)
+            cell.statusView.durationLabel.isHidden = false
+            updateSpeedDisplay(in: cell)
         }
     }
     
@@ -141,6 +154,52 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                 playSound(for: message, in: cell)
             }
     }
+    
+    public func speedButtonTapped(cell: AudioMessageCell, messageId: Int) {
+        // Cycle through speeds: 1x -> 1.5x -> 2x -> 1x
+        let nextSpeed: Float
+        if currentPlaybackSpeed == 1.0 {
+            nextSpeed = 1.5
+        } else if currentPlaybackSpeed == 1.5 {
+            nextSpeed = 2.0
+        } else {
+            nextSpeed = 1.0
+        }
+        
+        currentPlaybackSpeed = nextSpeed
+        updateSpeedDisplay(in: cell)
+        
+        // Apply speed to currently playing audio
+        if let player = audioPlayer {
+            player.enableRate = true
+            player.rate = nextSpeed
+        }
+    }
+    
+    public func seekToPosition(progress: Float, cell: AudioMessageCell, messageId: Int) {
+        let message = dcContext.getMessage(id: messageId)
+        
+        // If this is the currently playing message, seek to the position
+        if playingMessage?.id == messageId, let player = audioPlayer {
+            let newTime = Double(progress) * player.duration
+            player.currentTime = newTime
+            cell.audioPlayerView.setProgress(progress)
+            cell.statusView.durationLabel.text = cell.audioPlayerView.formatDuration(newTime)
+        } else {
+            // If not currently playing, start playing from the seek position
+            stopAnyOngoingPlaying()
+            playSound(for: message, in: cell)
+            
+            // Seek to the desired position after a short delay to ensure player is ready
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                guard let self = self, let player = self.audioPlayer else { return }
+                let newTime = Double(progress) * player.duration
+                player.currentTime = newTime
+                cell.audioPlayerView.setProgress(progress)
+                cell.statusView.durationLabel.text = cell.audioPlayerView.formatDuration(newTime)
+            }
+        }
+    }
 
     /// Used to start play audio sound
     ///
@@ -156,8 +215,11 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                 audioPlayer = player
                 audioPlayer?.prepareToPlay()
                 audioPlayer?.delegate = self
+                audioPlayer?.enableRate = true
+                audioPlayer?.rate = currentPlaybackSpeed
                 audioPlayer?.play()
                 state = .playing
+                updateSpeedDisplay(in: audioCell)
                 audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
                 startProgressTimer()
             } else {
@@ -187,13 +249,18 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         if let cell = playingCell {
             cell.audioPlayerView.setProgress(0.0)
             cell.audioPlayerView.showPlayLayout(false)
-            cell.audioPlayerView.setDuration(duration: player.duration)
+            cell.statusView.durationLabel.text = cell.audioPlayerView.formatDuration(player.duration)
+            cell.statusView.durationLabel.isHidden = false
+            // Hide speed display when playback stops
+            cell.statusView.speedButton.isHidden = true
+            cell.statusView.separatorLabel.isHidden = true
         }
         progressTimer?.invalidate()
         progressTimer = nil
         audioPlayer = nil
         playingMessage = nil
         playingCell = nil
+        currentPlaybackSpeed = 1.0  // Reset speed for next message
         try? audioSession.setActive(false)
     }
 
@@ -204,6 +271,8 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             return
         }
         player.prepareToPlay()
+        player.enableRate = true
+        player.rate = currentPlaybackSpeed
         player.play()
         state = .playing
         startProgressTimer()
@@ -216,7 +285,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             return
         }
         cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-        cell.audioPlayerView.setDuration(duration: player.currentTime)
+        cell.statusView.durationLabel.text = cell.audioPlayerView.formatDuration(player.currentTime)
     }
 
     // MARK: - Private Methods
@@ -230,6 +299,14 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                                              repeats: true)
     }
 
+    // MARK: - Helper Methods
+    private func updateSpeedDisplay(in cell: AudioMessageCell) {
+        // Always show speed during playback
+        cell.statusView.speedButton.setTitle(cell.audioPlayerView.formatPlaybackSpeed(currentPlaybackSpeed), for: .normal)
+        cell.statusView.speedButton.isHidden = false
+        cell.statusView.separatorLabel.isHidden = false
+    }
+    
     // MARK: - AVAudioPlayerDelegate
     open func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         stopAnyOngoingPlaying()
