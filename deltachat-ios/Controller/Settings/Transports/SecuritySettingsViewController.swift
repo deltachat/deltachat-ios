@@ -5,7 +5,7 @@ protocol SecuritySettingsDelegate: AnyObject {
     func onSecuritySettingsChanged(newValue: Int)
 }
 
-class SecuritySettingsController: UITableViewController {
+class SecuritySettingsViewController: UITableViewController {
 
     private let options: [Int32] = [DC_SOCKET_AUTO, DC_SOCKET_SSL, DC_SOCKET_STARTTLS, DC_SOCKET_PLAIN]
     private var selectedIndex: Int

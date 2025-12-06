@@ -21,6 +21,7 @@
 - Channel QR codes can be withdrawn and revived
 - Add storage usage information to "Settings / Advanced / View Log"
 - Add playback speed control for voice messages
+- Fix: Case-insensitive search for non-ASCII chat and contact names
 - Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
 - Fix: Share to Delta Chat when already in Delta Chat now works
@@ -31,7 +32,7 @@
 - Fix: Sort system messages to the bottom of the chat
 - Fix app getting stale (set SQLite busy timeout to 1 minute on iOS)
 - Update translations and local help
-- Update core to 2.29.0
+- Update core to 2.33.0
 
 
 ## v2.22.2 Testflight

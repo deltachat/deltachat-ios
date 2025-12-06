@@ -720,7 +720,7 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func accountButtonTapped() {
-        let viewController = AccountSwitchViewController(dcAccounts: dcAccounts)
+        let viewController = ProfileSwitchViewController(dcAccounts: dcAccounts)
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
         if #available(iOS 15.0, *) {
             if let sheet = accountSwitchNavigationController.sheetPresentationController {

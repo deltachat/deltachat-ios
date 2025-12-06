@@ -2,7 +2,7 @@ import SafariServices
 import UIKit
 import DcCore
 
-class AccountSetupController: UITableViewController {
+class EditTransportViewController: UITableViewController {
     private var dcContext: DcContext
     private let dcAccounts: DcAccounts
     var onLoginSuccess: (() -> Void)?
@@ -293,7 +293,7 @@ class AccountSetupController: UITableViewController {
         // init selection cells (updated them when coming back from a child view controller)
         imapSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(imapSecurityValue.value))
         smtpSecurityCell.detailTextLabel?.text = SecurityConverter.getSocketName(value: Int32(smtpSecurityValue.value))
-        certCheckCell.detailTextLabel?.text = CertificateCheckController.ValueConverter.convertHexToString(value: certValue)
+        certCheckCell.detailTextLabel?.text = CertificateCheckViewController.ValueConverter.convertHexToString(value: certValue)
         proxyCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
@@ -520,19 +520,19 @@ class AccountSetupController: UITableViewController {
     }
 
     private func showCertCheckOptions() {
-        let certificateCheckController = CertificateCheckController(initValue: certValue, sectionTitle: String.localized("login_certificate_checks"))
+        let certificateCheckController = CertificateCheckViewController(initValue: certValue, sectionTitle: String.localized("login_certificate_checks"))
         certificateCheckController.delegate = self
         navigationController?.pushViewController(certificateCheckController, animated: true)
     }
 
     private func showImapSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(initValue: imapSecurityValue.value, title: String.localized("login_imap_security"))
+        let securitySettingsController = SecuritySettingsViewController(initValue: imapSecurityValue.value, title: String.localized("login_imap_security"))
         securitySettingsController.delegate = imapSecurityValue
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
 
     private func showSmtpSecurityOptions() {
-        let securitySettingsController = SecuritySettingsController(initValue: smtpSecurityValue.value, title: String.localized("login_smtp_security"))
+        let securitySettingsController = SecuritySettingsViewController(initValue: smtpSecurityValue.value, title: String.localized("login_smtp_security"))
         securitySettingsController.delegate = smtpSecurityValue
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
@@ -544,7 +544,7 @@ class AccountSetupController: UITableViewController {
 }
 
 // MARK: - UITextFieldDelegate
-extension AccountSetupController: UITextFieldDelegate {
+extension EditTransportViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let currentTag = textField.tag
         if let nextField = tableView.viewWithTag(currentTag + 100) as? UITextField {
@@ -565,7 +565,7 @@ extension AccountSetupController: UITextFieldDelegate {
     }
 }
 
-extension AccountSetupController: CertificateCheckDelegate {
+extension EditTransportViewController: CertificateCheckDelegate {
     func onCertificateCheckChanged(newValue: Int) {
         certValue = newValue
     }

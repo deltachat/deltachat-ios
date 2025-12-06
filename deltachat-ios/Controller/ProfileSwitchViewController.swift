@@ -2,7 +2,7 @@ import UIKit
 import Intents
 import DcCore
 
-class AccountSwitchViewController: UITableViewController {
+class ProfileSwitchViewController: UITableViewController {
 
     private let dcAccounts: DcAccounts
     private let accountSection = 0

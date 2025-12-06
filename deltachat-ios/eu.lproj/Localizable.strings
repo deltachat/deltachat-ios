@@ -115,6 +115,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Azken aldiz begiratua %1$@";
 "last_seen_unknown" = "Azken aldiz begiratzea: ezezaguna";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -141,8 +143,10 @@
 "documents" = "Dokumentuak";
 "contact" = "Kontaktua";
 "camera" = "Kamera";
+"switch_camera" = "Aldatu kamera";
 "toggle_fullscreen" = "Aldatu pantaila osoa modua";
 "location" = "Kokalekua";
+"locations" = "Kokalekuak";
 "gallery" = "Galeria";
 "images_and_videos" = "Irudiak eta bideoak";
 "file" = "Fitxategia";
@@ -186,6 +190,24 @@
 "menu_new_classic_contact" = "Gehitu kontaktua eskuz";
 "menu_new_chat" = "Txat berria";
 "menu_new_group" = "Talde berria";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Txateatu honekin...";
+"clone_chat" = "Klonatu txata";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanala";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanalak";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Kanal berria";
+// deprecated
+"add_recipients" = "Gehitu harpidedunak";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanalaren izena";
+"email" = "Posta elektronikoa";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Posta elektroniko berria";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Gaia";
 "menu_send" = "Bidali";
 "menu_toggle_keyboard" = "Txandakatu emoji teklatua";
 "menu_edit_group" = "Editatu taldea";
@@ -195,10 +217,15 @@
 "menu_unarchive_chat" = "Berreskuratu txata artxibotik";
 "menu_add_attachment" = "Gehitu eranskina";
 "menu_leave_group" = "Atera taldetik";
+"menu_leave_channel" = "Utzi kanala";
 "menu_delete_chat" = "Ezabatu txata";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Garbitu txata";
+"delete_contact" = "Ezabatu kontaktua";
 "menu_delete_location" = "Ezabatu kokaleku hau?";
 "menu_message_details" = "Mezuaren xehetasunak";
 "menu_copy_to_clipboard" = "Kopiatu arbelera";
+"share_invite_link" = "Partekatu gonbidapen esteka";
 "menu_forward" = "Birbidali mezua";
 "menu_reply" = "Erantzun mezuari";
 "menu_mute" = "Mututu jakinarazpenak";

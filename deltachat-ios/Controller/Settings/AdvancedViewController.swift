@@ -288,7 +288,7 @@ internal final class AdvancedViewController: UITableViewController {
     }
 
     private func showAccountSettingsController() {
-        let controller = AccountSetupController(dcAccounts: dcAccounts, editView: true)
+        let controller = EditTransportViewController(dcAccounts: dcAccounts, editView: true)
         navigationController?.pushViewController(controller, animated: true)
     }
 
