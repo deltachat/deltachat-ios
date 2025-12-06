@@ -15,7 +15,7 @@ internal final class AdvancedViewController: UITableViewController {
         case defaultTagValue = 0
         case showEmails
         case viewLog
-        case accountSettings
+        case transportSettings
         case proxySettings
     }
 
@@ -34,11 +34,11 @@ internal final class AdvancedViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var accountSettingsCell: UITableViewCell = {
+    private lazy var transportSettingsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("edit_transport")
+        cell.textLabel?.text = String.localized("transports")
         cell.accessoryType = .disclosureIndicator
-        cell.tag = CellTags.accountSettings.rawValue
+        cell.tag = CellTags.transportSettings.rawValue
         return cell
     }()
 
@@ -181,7 +181,7 @@ internal final class AdvancedViewController: UITableViewController {
         let serverSection = SectionConfigs(
             headerTitle: String.localized("pref_server"),
             footerTitle: String.localized("pref_multidevice_explain"),
-            cells: [accountSettingsCell, proxySettingsCell, multiDeviceModeCell])
+            cells: [transportSettingsCell, proxySettingsCell, multiDeviceModeCell])
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: String.localized("pref_experimental_features_explain"),
@@ -249,9 +249,9 @@ internal final class AdvancedViewController: UITableViewController {
 
         case .viewLog: showLogViewController()
 
-        case .accountSettings:
+        case .transportSettings:
             Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
-                self?.showAccountSettingsController()
+                self?.showTransportsViewController()
             }
         case .proxySettings:
             showProxySettings()
@@ -287,8 +287,8 @@ internal final class AdvancedViewController: UITableViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
 
-    private func showAccountSettingsController() {
-        let controller = EditTransportViewController(dcAccounts: dcAccounts, editView: true)
+    private func showTransportsViewController() {
+        let controller = TransportListViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(controller, animated: true)
     }
 

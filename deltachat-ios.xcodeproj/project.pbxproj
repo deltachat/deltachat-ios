@@ -206,6 +206,8 @@
 		B2D0E4992B93A4B200791949 /* DcNotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B2D0E4922B93A4B200791949 /* DcNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B2D255972BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D255962BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift */; };
 		B2D4B63B29C38D1900B47DA8 /* ChatsAndMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D4B63A29C38D1900B47DA8 /* ChatsAndMediaViewController.swift */; };
+		B2DF962F2EE328E30037F07F /* TransportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DF962E2EE328E30037F07F /* TransportListViewController.swift */; };
+		B2DF96312EE3368F0037F07F /* TransportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DF96302EE3368F0037F07F /* TransportCell.swift */; };
 		B2F899E129F96A67003797D5 /* AllMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F899E029F96A67003797D5 /* AllMediaViewController.swift */; };
 		D8083AD02D14384F005DCB7D /* UserDefaults+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */; };
 		D8083AD12D143868005DCB7D /* UserDefaults+Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */; };
@@ -620,6 +622,8 @@
 		B2D729E927C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		B2D729EA27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B2D729EB27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		B2DF962E2EE328E30037F07F /* TransportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportListViewController.swift; sourceTree = "<group>"; };
+		B2DF96302EE3368F0037F07F /* TransportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportCell.swift; sourceTree = "<group>"; };
 		B2F899E029F96A67003797D5 /* AllMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMediaViewController.swift; sourceTree = "<group>"; };
 		BF8DFC4D179F4CF1E83D78C9 /* Pods_DcShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DcShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Widgets.swift"; sourceTree = "<group>"; };
@@ -1162,6 +1166,8 @@
 		B240E55F2EE31DAE00786BA2 /* Transports */ = {
 			isa = PBXGroup;
 			children = (
+				B2DF962E2EE328E30037F07F /* TransportListViewController.swift */,
+				B2DF96302EE3368F0037F07F /* TransportCell.swift */,
 				B240E55E2EE31DAE00786BA2 /* EditTransportViewController.swift */,
 				AE18F293228C602A0007B1BE /* SecuritySettingsViewController.swift */,
 				30C0D49C237C4908008E2A0E /* CertificateCheckViewController.swift */,
@@ -1676,6 +1682,7 @@
 				78ED839421D5AF8A00243125 /* QrCodeView.swift in Sources */,
 				30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */,
 				D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */,
+				B2DF96312EE3368F0037F07F /* TransportCell.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
 				30DED713292EE4280040835D /* LogViewController.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
@@ -1709,6 +1716,7 @@
 				AE52EA20229EB9F000C586C9 /* EditGroupViewController.swift in Sources */,
 				AE18F294228C602A0007B1BE /* SecuritySettingsViewController.swift in Sources */,
 				30C2BFFE27032375005505DA /* ChatSearchAccessoryBar.swift in Sources */,
+				B2DF962F2EE328E30037F07F /* TransportListViewController.swift in Sources */,
 				AE39D323249CFC1A007346A1 /* FilesViewController.swift in Sources */,
 				AE8DD451249D1DFB009A4BC1 /* DocumentGalleryFileCell.swift in Sources */,
 				D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */,

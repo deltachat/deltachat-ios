@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Added experimental debug calls option
+- Handle additional transports
 - Remove sending ASM as it is about sharing profile with non-chat apps which is not supported;
   use "Add Second Device" instead
 - metadata protection: protect To:, Date:, and Autocrypt: headers

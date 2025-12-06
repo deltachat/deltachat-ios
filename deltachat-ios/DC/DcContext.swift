@@ -544,6 +544,17 @@ public class DcContext {
         return nil
     }
 
+    public func listTransports() -> [DcEnteredLoginParam] {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "list_transports", params: [id as AnyObject]) {
+                return try JSONDecoder().decode(DcEnteredLoginParamResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return []
+    }
+
     public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
         let res = try DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
         return res != nil
@@ -711,44 +722,6 @@ public class DcContext {
 
     public var addr: String? {
         return getConfig("addr")
-    }
-
-    public var certificateChecks: Int {
-        switch Int32(getConfigInt("imap_certificate_checks")) {
-        case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
-            return Int(DC_CERTCK_ACCEPT_INVALID)
-        case DC_CERTCK_STRICT:
-            return Int(DC_CERTCK_STRICT)
-        default:
-            return Int(DC_CERTCK_AUTO)
-        }
-    }
-
-    private var serverFlags: Int {
-        // IMAP-/SMTP-flags as a combination of DC_LP flags
-        get {
-            if let str = getConfig("server_flags") {
-                return Int(str) ?? 0
-            } else {
-                return 0
-            }
-        }
-        set {
-            setConfig("server_flags", "\(newValue)")
-        }
-    }
-
-    public func setAuthFlags(flags: Int) {
-        var sf = serverFlags
-        sf = sf & ~0x6 // DC_LP_AUTH_FLAGS
-        sf = sf | flags
-        serverFlags = sf
-    }
-
-    public func getAuthFlags() -> Int {
-        var sf = serverFlags
-        sf = sf & 0x6 // DC_LP_AUTH_FLAGS
-        return sf
     }
 
     public var mdnsEnabled: Bool {
