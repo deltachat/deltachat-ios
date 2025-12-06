@@ -76,9 +76,11 @@ extension TransportListViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TransportCell.reuseIdentifier, for: indexPath) as? TransportCell else { fatalError() }
 
             let transport = transports[indexPath.row]
+            let isDefault = transport.isDefault(dcContext)
 
-            cell.accessoryType = .checkmark // TODO: mark correct default
             cell.textLabel?.text = transport.addr
+            cell.accessoryType = isDefault ? .checkmark : .none
+            cell.detailTextLabel?.text = isDefault ? "Default" : nil
 
             return cell
         } else {
@@ -140,7 +142,7 @@ extension TransportListViewController {
 extension TransportListViewController: QrCodeReaderDelegate {
     func handleQrCode(_ qrCode: String) {
         let parsedQrCode = dcContext.checkQR(qrCode: qrCode)
-        if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT, let host = parsedQrCode.text1, let url = URL(string: "https://\(host)") {
+        if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT, let host = parsedQrCode.text1 {
             let alert = UIAlertController(title: String.localized("confirm_add_transport"), message: host, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
                 guard let self = self else { return }
