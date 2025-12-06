@@ -388,20 +388,7 @@ class EditTransportViewController: UITableViewController {
 
     @objc private func loginButtonPressed() {
         guard let emailAddress = emailCell.getText() else { return }
-
-        if dcContext.isConfigured(),
-           let oldAddress = dcContext.getConfig("configured_addr"),
-           oldAddress != emailAddress {
-            let msg = String.localizedStringWithFormat(String.localized("aeap_explanation"), oldAddress, emailAddress)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { [weak self] _ in
-                self?.login(emailAddress: emailAddress)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            login(emailAddress: emailAddress)
-        }
+        login(emailAddress: emailAddress)
     }
 
     private func updateProviderInfo() {
