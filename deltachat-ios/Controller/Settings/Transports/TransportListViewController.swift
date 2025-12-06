@@ -37,7 +37,10 @@ class TransportListViewController: UITableViewController {
     // MARK: - Actions
 
     private func editTransport(at indexPath: IndexPath) {
-        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editView: true), animated: true)
+        guard indexPath.row < transports.count else { return }
+
+        let transport = transports[indexPath.row]
+        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.addr), animated: true)
     }
 
     private func addTransport() {

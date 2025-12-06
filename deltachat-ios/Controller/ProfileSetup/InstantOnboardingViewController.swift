@@ -187,7 +187,7 @@ class InstantOnboardingViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
 
-                let accountSetupController = EditTransportViewController(dcAccounts: self.dcAccounts, editView: false)
+                let accountSetupController = EditTransportViewController(dcAccounts: self.dcAccounts)
                 accountSetupController.onLoginSuccess = {
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                         appDelegate.reloadDcContext()
