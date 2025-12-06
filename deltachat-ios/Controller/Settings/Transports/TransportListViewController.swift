@@ -93,10 +93,11 @@ extension TransportListViewController {
 
             let transport = transports[indexPath.row]
             let isDefault = transport.isDefault(dcContext)
+            let parts = transport.addr.components(separatedBy: "@")
 
-            cell.textLabel?.text = transport.addr
+            cell.textLabel?.text = parts.last ?? transport.addr
+            cell.detailTextLabel?.text = (parts.first ?? "") + (isDefault ? (" · " + String.localized("def")) : "")
             cell.accessoryType = isDefault ? .checkmark : .none
-            cell.detailTextLabel?.text = isDefault ? String.localized("def") : nil
 
             return cell
         } else {
