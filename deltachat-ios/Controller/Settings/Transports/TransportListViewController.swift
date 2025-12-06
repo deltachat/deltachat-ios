@@ -37,10 +37,12 @@ class TransportListViewController: UITableViewController {
 
     // MARK: - Actions
 
-    private func editTransport(at indexPath: IndexPath) {
-        guard indexPath.row < transports.count else { return }
+    private func setDefaultTransport(at indexPath: IndexPath) {
+        // TODO
+    }
 
-        let transport = transports[indexPath.row]
+    private func editTransport(at indexPath: IndexPath) {
+        guard let transport = transports.get(at: indexPath.row) else { return }
         navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.addr), animated: true)
     }
 
@@ -94,7 +96,7 @@ extension TransportListViewController {
 extension TransportListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == TransportSection.transports.rawValue {
-            editTransport(at: indexPath)
+            setDefaultTransport(at: indexPath)
         } else {
             addTransport()
         }
@@ -103,35 +105,55 @@ extension TransportListViewController {
     }
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard !transports.isEmpty, indexPath.section == TransportSection.transports.rawValue else { return nil }
+        guard indexPath.section == TransportSection.transports.rawValue else { return nil }
+        guard let transport = transports.get(at: indexPath.row) else { return nil }
+        var actions: [UIContextualAction] = []
 
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+        if !transport.isDefault(dcContext) {
+            let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+                DispatchQueue.main.async {
+                    self?.deleteTransport(at: indexPath)
+                    completion(true)
+                }
+            }
+            deleteAction.backgroundColor = .systemRed
+            deleteAction.accessibilityLabel = String.localized("delete")
+            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+            actions.append(deleteAction)
+        }
+
+        let editAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
             DispatchQueue.main.async {
-                self?.deleteTransport(at: indexPath)
+                self?.editTransport(at: indexPath)
                 completion(true)
             }
         }
-        deleteAction.backgroundColor = .systemRed
-        deleteAction.accessibilityLabel = String.localized("delete")
-        deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+        editAction.backgroundColor = .lightGray
+        editAction.accessibilityLabel = String.localized("edit_transport")
+        editAction.image = Utils.makeImageWithText(image: UIImage(systemName: "pencil"), text: String.localized("global_menu_edit_desktop"))
+        actions.append(editAction)
 
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        configuration.performsFirstActionWithFullSwipe = true
-
-        return configuration
+        let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
+        actionsConfiguration.performsFirstActionWithFullSwipe = false
+        return actionsConfiguration
     }
 
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        guard !transports.isEmpty, indexPath.section == TransportSection.transports.rawValue else { return nil }
+        guard indexPath.section == TransportSection.transports.rawValue else { return nil }
 
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                let children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport),
-                ]
+                guard let transport = transports.get(at: indexPath.row) else { return nil }
+                var children: [UIMenuElement] = []
+
+                children.append(UIAction.menuAction(localizationKey: "edit_transport", systemImageName: "pencil", with: indexPath, action: editTransport))
+                if !transport.isDefault(dcContext) {
+                    children.append(UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
+                }
+
                 return UIMenu(children: children)
             }
         )

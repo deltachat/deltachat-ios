@@ -158,3 +158,10 @@ extension DispatchQueue {
         }
     }
 }
+
+extension Array {
+    func get(at: Int) -> Element? {
+        guard at >= 0 && at < count else { return nil }
+        return self[at]
+    }
+}
