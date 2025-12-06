@@ -111,6 +111,17 @@ extension TransportListViewController {
         guard let transport = transports.get(at: indexPath.row) else { return nil }
         var actions: [UIContextualAction] = []
 
+        let editAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+            DispatchQueue.main.async {
+                self?.editTransport(at: indexPath)
+                completion(true)
+            }
+        }
+        editAction.backgroundColor = .lightGray
+        editAction.accessibilityLabel = String.localized("edit_transport")
+        editAction.image = Utils.makeImageWithText(image: UIImage(systemName: "pencil"), text: String.localized("global_menu_edit_desktop"))
+        actions.append(editAction)
+
         if !transport.isDefault(dcContext) {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
                 DispatchQueue.main.async {
@@ -124,19 +135,8 @@ extension TransportListViewController {
             actions.append(deleteAction)
         }
 
-        let editAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
-            DispatchQueue.main.async {
-                self?.editTransport(at: indexPath)
-                completion(true)
-            }
-        }
-        editAction.backgroundColor = .lightGray
-        editAction.accessibilityLabel = String.localized("edit_transport")
-        editAction.image = Utils.makeImageWithText(image: UIImage(systemName: "pencil"), text: String.localized("global_menu_edit_desktop"))
-        actions.append(editAction)
-
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
-        actionsConfiguration.performsFirstActionWithFullSwipe = false
+        actionsConfiguration.performsFirstActionWithFullSwipe = true
         return actionsConfiguration
     }
 
