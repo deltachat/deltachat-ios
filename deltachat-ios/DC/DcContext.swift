@@ -724,17 +724,6 @@ public class DcContext {
         return getConfig("addr")
     }
 
-    public var certificateChecks: Int {
-        switch Int32(getConfigInt("imap_certificate_checks")) {
-        case DC_CERTCK_ACCEPT_INVALID, DC_CERTCK_ACCEPT_INVALID_CERTIFICATES:
-            return Int(DC_CERTCK_ACCEPT_INVALID)
-        case DC_CERTCK_STRICT:
-            return Int(DC_CERTCK_STRICT)
-        default:
-            return Int(DC_CERTCK_AUTO)
-        }
-    }
-
     public var mdnsEnabled: Bool {
         get { return getConfigBool("mdns_enabled") }
         set { setConfigBool("mdns_enabled", newValue) }
