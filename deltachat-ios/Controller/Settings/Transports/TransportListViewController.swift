@@ -64,7 +64,9 @@ class TransportListViewController: UITableViewController {
     private func deleteTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
 
-        let alert = UIAlertController(title: String.localized(stringID: "confirm_remove_transport", parameter: transport.addr), message: nil, preferredStyle: .safeActionSheet)
+        let parts = transport.addr.components(separatedBy: "@")
+        let text = String.localized(stringID: "confirm_remove_transport", parameter: parts.last ?? transport.addr)
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("remove_transport"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             do {
