@@ -62,7 +62,13 @@ class TransportListViewController: UITableViewController {
     }
 
     private func deleteTransport(at indexPath: IndexPath) {
-        // TODO
+        guard let transport = transports.get(at: indexPath.row) else { return }
+        do {
+            _ = try self.dcContext.deleteTransport(addr: transport.addr)
+        } catch {
+            logAndAlert(error: error.localizedDescription)
+        }
+        reloadTransports()
     }
 }
 
