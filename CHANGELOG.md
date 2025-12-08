@@ -1,8 +1,8 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.33.0 Testflight
+2025-12
 
-- Added experimental debug calls option
 - Handle additional transports
 - Remove sending ASM as it is about sharing profile with non-chat apps which is not supported;
   use "Add Second Device" instead
@@ -38,7 +38,9 @@
 
 
 ## v2.22.2 Testflight
+2025-11
 
+- Added experimental debug calls option
 - Use same 'All media' tab order as desktop and android
 - Update chatmail relay list
 - Remove "Watch Sent Folder" preference
