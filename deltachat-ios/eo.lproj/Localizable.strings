@@ -260,8 +260,6 @@
 "ask_remove_members" = "Forigi %1$@el la grupo?";
 // contact list
 "contacts_title" = "Kontaktoj";
-// deprecated
-"contacts_enter_name_or_email" = "Enigi nomon aŭ retadreson";
 "contacts_type_email_above" = "Enigu retadreson supren";
 // chatlist and chat view
 "chat_archived_chats_title" = "Enarĥivigitaj babiloj";
@@ -304,8 +302,6 @@
 "media_preview" = "Aŭdvida antaŭrigardo";
 "send_message" = "Sendi mesaĝon";
 "login_title" = "Ensaluti";
-// deprecated
-"login_header" = "Ensaluti al via servilo";
 "login_inbox" = "Ricevujo";
 "login_imap_login" = "IMAP salutnomo";
 "login_imap_server" = "IMAP servilo";
@@ -333,8 +329,6 @@
 "share_abort" = "Kunhavigado ĉesis pro manko de permesoj.";
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
-// deprecated
-"pref_password_and_account_settings" = "Pasvorto kaj konto";
 "pref_your_name" = "Via nomo";
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
@@ -374,17 +368,11 @@
 "pref_backup_explain" = "Savkopii babilojn al ekstera memorilo";
 "pref_backup_export_start_button" = "Komenci savkopiadon";
 "pref_backup_written_to_x" = "Savkopio sukcese konservita al \"%1$@\".";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Eksporti sekretajn ŝlosilojn";
-// deprecated
-"pref_managekeys_export_explain" = "Ĉu eksporti sekretajn ŝlosilojn al \"%1$@\"?";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fono";
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
 "pref_show_emails_all" = "Ĉiuj";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferi tutvojan ĉifradon";
 // notifications
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";

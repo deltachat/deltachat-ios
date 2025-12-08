@@ -283,8 +283,6 @@
 "ask_remove_members" = "Kendu %1$@ taldetik?";
 // contact list
 "contacts_title" = "Kontaktuak";
-// deprecated
-"contacts_enter_name_or_email" = "Sartu izena edo e-mail helbidea";
 "contacts_type_email_above" = "Idatzi e-mail helbidea goian";
 // chatlist and chat view
 "chat_archived_chats_title" = "Artxibatutako txatak";
@@ -334,10 +332,6 @@
 "media_preview" = "Multimediaren aurrebista";
 "send_message" = "Bidali mezua";
 "login_title" = "Hasi saioa";
-// deprecated
-"login_header" = "Hasi saioa zure zerbitzarian";
-// deprecated
-"login_explain" = "Badagoen e-mail kontu batekin saioa hasten";
 "login_inbox" = "Sarrera ontzia";
 "login_imap_login" = "IMAP erabiltzaile-izena";
 "login_imap_server" = "IMAP zerbitzaria";
@@ -375,8 +369,6 @@
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
-// deprecated
-"pref_password_and_account_settings" = "Pasahitza eta kontua";
 "pref_who_can_see_profile_explain" = "Zure profileko argazkia eta izena zure mezuekin batera erakutsiko dira beste erabiltzaileekin komunikatzen zarenean. Informazioa behin bidalita ezin da ezabatu edo kendu.";
 "pref_your_name" = "Zure izena";
 // Label of the Bio/Signature/Status/Motto field
@@ -424,12 +416,6 @@
 "pref_backup_export_explain" = "Babes-kopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabes-kopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babes-kopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
 "pref_backup_export_start_button" = "Hasi babes-kopia";
 "pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Esportatu gako sekretuak";
-// deprecated
-"pref_managekeys_export_explain" = "Esportatu gako sekretuak \"%1$@\"-ra?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Gako sekretuak ongi idatzi dira hemen: \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Atzealdea";
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
@@ -459,16 +445,6 @@
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
 "autodel_after_1_year" = "Urtebete eta gero";
-// deprecated
-"autocrypt_send_asm_title" = "Bidali Autocrypt ezarpen mezua";
-// deprecated
-"autocrypt_send_asm_explain_before" = "\"Autocrypt ezarpen mezua\" batek modu seguruan partekatzen du zure muturretik muturrerako ezarpena Autocryptekin bateragarriak diren beste aplikazioekin. Ezarpena hemen bistaratutako ezarpen kodearekin zifratuko  da, eta beste gailuan kode hau sartu beharko da.";
-// deprecated
-"autocrypt_send_asm_button" = "Bidali Autocrypt ezarpen mezua";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Zure ezarpena zuri bidali zaizu. Aldatu beste gailura eta ireki ezarpen mezua. Ezarpen kode bat eskatuko zaizu, Idatzi honako zenbaki hauek han.\n\nBehin bukatuta, zure beste gailua Autocrypt erabiltzeko prest egongo da.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Hobetsi muturretik muturrerako zifratzea";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -556,9 +532,6 @@
 "name_desktop" = "Izena";
 "select_group_image_desktop" = "Hautatu taldearen irudia";
 "export_backup_desktop" = "Esportatu babes-kopia";
-// deprecated
-"autocrypt_correct_desktop" = "Ongi igorri da Autocrypt ezarpena!";
-"forget_login_confirmation_desktop" = "Ezabatu erabiltzaile-izen hau? Dena ezabatuko da, muturretik muturrerako ezarpena, txatak, mezuak eta multimedia barne. Ekintza hau behin betikoa da eta ezin da desegin.";
 "message_detail_sent_desktop" = "bidalita";
 "message_detail_received_desktop" = "jasota";
 "menu.view.developer.open.log.folder" = "Ireki egunkarien karpeta";

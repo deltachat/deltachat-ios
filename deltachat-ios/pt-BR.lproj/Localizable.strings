@@ -217,8 +217,6 @@
 "menu_save_log" = "Salvar registro";
 "menu_more_options" = "Mais opções";
 "menu_learn_spelling" = "Aprender ortografia";
-// deprecated
-"menu_chat_audit_log" = "Registro de Auditoria do Bate-papo";
 "jump_to_message" = "Pular para a mensagem";
 "copy_json" = "Copiar JSON";
 "replace_draft" = "Substituir rascunho ";
@@ -265,8 +263,6 @@
 "open_url_confirmation" = "Você quer abrir este link?";
 // contact list
 "contacts_title" = "Contatos";
-// deprecated
-"contacts_enter_name_or_email" = "Insira um nome ou e-mail";
 "contacts_type_email_above" = "Digite o e-mail acima";
 // chatlist and chat view
 "chat_archived_chats_title" = "Conversas arquivadas";
@@ -315,12 +311,6 @@
 "filter_map_on_time" = "Exibir localização no tempo.";
 "show_location_traces" = "Exibir pegadas";
 "add_poi" = "Enviar ponto de interesse";
-// deprecated
-"chat_audit_log_empty_message" = "As mensagens do sistema deste bate-papo apareceriam aqui ";
-// deprecated
-"chat_audit_log_title" = "Registro de Auditoria de Bate-papo para  %1$@";
-// deprecated
-"chat_audit_log_description" = "Esta visualização mostra apenas mensagens do sistema e de informações. Útil para localizar as últimas ações do bate-papo sem rolar por muitas mensagens normais. ";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Não perguntar de novo por  %1$@";
@@ -400,16 +390,12 @@
 "sending" = "Enviando...";
 "last_msg_sent_successfully" = "Última mensagem enviada com sucesso.";
 "not_supported_by_provider" = "Não suportado pelo seu provedor. ";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensagens";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usado";
 "scan_invitation_code" = "Escanear Código De Convite";
 "login_title" = "Acessar";
-// deprecated
-"login_header" = "Acesse seu servidor";
-// deprecated
-"login_explain" = "Acesse com uma conta de email existente";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "Login IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -457,8 +443,6 @@
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Contatos bloqueados";
 "blocked_empty_hint" = "Se você bloquear contatos, eles serão mostrados aqui.";
-// deprecated
-"pref_password_and_account_settings" = "Senha e conta";
 "pref_who_can_see_profile_explain" = "Sua foto de perfil e nome serão exibidos com suas mensagens a outros usuários. Informações já enviadas não podem ser apagas ou removidas.";
 "pref_your_name" = "Seu nome";
 // Label of the Bio/Signature/Status/Motto field
@@ -509,12 +493,6 @@
 "pref_backup_export_explain" = "Um becape ajudará a configurar uma nova instalação neste ou em outro dispositivo. \n\n O becape conterá todas as mensagens, contatos, conversas e a configuração de criptografia. Mantenha o arquivo de becape em um local seguro ou apague-o o mais rápido possível.";
 "pref_backup_export_start_button" = "Fazer becape";
 "pref_backup_written_to_x" = "Becape salvo em %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Exportar chaves secretas";
-// deprecated
-"pref_managekeys_export_explain" = "Exportar chaves secretas para \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Chaves secretas exportadas para \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Papel de parede";
 "pref_background_btn_default" = "Usar imagem padrão";
@@ -532,10 +510,6 @@
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Recursos experimentais";
 "pref_on_demand_location_streaming" = "Streaming de localização sob demanda";
-// deprecated
-"pref_developer_mode" = "Modo de Desenvolvedor";
-// deprecated
-"pref_developer_mode_explain" = "Ativa as opções de depuração e pode tornar o aplicativo menos estável. Apenas para desenvolvedores.";
 "pref_background_default" = "Imagem padrão";
 "pref_background_default_color" = "Cor padrão";
 "pref_background_custom_image" = "Imagem personalizada";
@@ -587,16 +561,6 @@
 "autodel_after_1_week" = "Após 1 semana";
 "after_5_weeks" = "Após 5 semanas ";
 "autodel_after_1_year" = "Após 1 ano";
-// deprecated
-"autocrypt_send_asm_title" = "Enviar \"mensagem de configuração do Autocrypt\"?";
-// deprecated
-"autocrypt_send_asm_explain_before" = "A \"mensagem de configuração do Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis. \n\nA configuração será criptografada por um código de configuração que será exibido aqui e deverá ser digitado no outro dispositivo.";
-// deprecated
-"autocrypt_send_asm_button" = "Enviar \"mensagem de configuração do Autocrypt\"?";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Sua chave foi enviada para você mesmo. Abra a mensagem de configuração no seu outro dispositivo. Lá será exibido uma solicitação de código. Digite-o lá.\n\nDepois disso, seu dispositivo estará pronto para usar o Autocrypt.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferir criptografia ponta a ponta";
 // system messages
 "systemmsg_subject_for_new_contact" = "Mensagem de %1$@";
 "systemmsg_failed_sending_to" = "Falha ao enviar mensagem para %1$@.";
@@ -685,6 +649,7 @@
 "withdraw_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para entrar no grupo \"%1$@\".\n\nVocê pode desativar o código QR aqui e reativá-lo escaneando-o novamente.";
 "withdraw_qr_code" = "Desativar Código QR";
 "revive_verifycontact_explain" = "Este código QR pode ser lido por outras pessoas para entrar em contato com você.\n\nO código QR não está ativo neste dispositivo.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para se juntar ao grupo \"%1$@\".\n\nO código QR não está ativo neste dispositivo.";
 "revive_qr_code" = "Ativar Código QR";
 "qrshow_title" = "Código QR de convite";
@@ -775,9 +740,6 @@
 "name_desktop" = "Nome";
 "select_group_image_desktop" = "Selecionar avatar de grupo";
 "export_backup_desktop" = "Exportar becape";
-// deprecated
-"autocrypt_correct_desktop" = "Configuração Autocrypt completada!";
-"forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de criptografia, contatos, conversas, mensagens e mídia. Esta ação é final e irreversível.";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recebido";
 "menu.view.developer.open.log.folder" = "Abrir pasta de relatórios";

@@ -141,8 +141,6 @@
 "pref_profile_info_headline" = "మీ రూప సమాచారం";
 "pref_profile_photo" = "రూపచిత్రం";
 "pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
-// deprecated
-"pref_password_and_account_settings" = "ఖాతా సెట్టింగులు";
 "pref_your_name" = "మీ పేరు";
 "pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";
 "pref_vibrate" = "వైబ్రేషన్";
@@ -172,8 +170,6 @@
 "pref_in_chat_sounds" = "యాప్-లోపల నోటిఫికేషన్లు";
 "pref_other" = "ఇతర";
 "pref_backup" = "బ్యాకప్";
-// deprecated
-"pref_managekeys_export_secret_keys" = "రహస్య కీలను ఎగుమతి చెయి";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "చాట్ నేపధ్యం";
 "qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";

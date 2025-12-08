@@ -271,8 +271,6 @@
 "menu_save_log" = "儲存日誌";
 "menu_more_options" = "更多選項";
 "menu_learn_spelling" = "學習拼寫";
-// deprecated
-"menu_chat_audit_log" = "對話審查紀錄";
 "jump_to_message" = "移動至訊息";
 "jump_to_original_message" = "跳轉到原始訊息";
 "copy_json" = "複製 JSON 內容";
@@ -324,8 +322,6 @@
 "open_url_confirmation" = "你想開啟此連結嗎？";
 // contact list
 "contacts_title" = "聯絡人清單";
-// deprecated
-"contacts_enter_name_or_email" = "輸入名稱或電子郵件位址";
 "contacts_type_email_above" = "在上面輸入電子郵件位址";
 // chatlist and chat view
 "chat_archived_chats_title" = "封存的對話";
@@ -377,12 +373,6 @@
 "filter_map_on_time" = "顯示指定時間內的所在地";
 "show_location_traces" = "顯示移動足跡";
 "add_poi" = "傳送興趣點";
-// deprecated
-"chat_audit_log_empty_message" = "此聊天的系統消息顯示在此處";
-// deprecated
-"chat_audit_log_title" = "%1$@的聊天審核日誌";
-// deprecated
-"chat_audit_log_description" = "僅顯示系統和資訊消息;對於查找上次聊天操作而不滾動流覽許多消息非常有用。";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "不在詢問%1$@";
@@ -410,8 +400,6 @@
 "group_self_not_in_group" = "你必須先加入群組，才能執行本功能。";
 "profile_encryption" = "加密";
 "profile_shared_chats" = "共享的對話";
-// deprecated
-"related_chats" = "相關對話";
 // Separator between the list of actual members and past members
 "past_members" = "以前成員";
 "tab_contact" = "聯絡人";
@@ -476,7 +464,7 @@
 "sending" = "傳送中…";
 "last_msg_sent_successfully" = "已成功送出上一條消息。";
 "not_supported_by_provider" = "您的供應商不支援。";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "訊息";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "使用了 %2$@ 中的 %1$@";
@@ -485,7 +473,7 @@
 "onboarding_create_instant_account" = "創建新帳戶";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "我已經有了一個賬戶";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "經典電子郵件登入";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "你的個人檔案";
@@ -509,10 +497,6 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "掃描邀請碼";
 "login_title" = "登入";
-// deprecated
-"login_header" = "登入你的電子郵件帳戶";
-// deprecated
-"login_explain" = "使用現有的電子郵件帳戶登入";
 "login_inbox" = "收件匣";
 "login_imap_login" = "IMAP 帳號";
 "login_imap_server" = "IMAP 伺服器";
@@ -582,8 +566,6 @@
 "pref_profile_photo" = "大頭照";
 "pref_blocked_contacts" = "已封鎖的聯絡人";
 "blocked_empty_hint" = "被封鎖的聯絡人將在此處顯示。";
-// deprecated
-"pref_password_and_account_settings" = "密碼和帳戶";
 "pref_who_can_see_profile_explain" = "你的名字和大頭照在通訊的過程中，會提供給對方看到。已傳送的資訊無法被刪除或移除。";
 "pref_your_name" = "你的名字";
 // Label of the Bio/Signature/Status/Motto field
@@ -627,10 +609,6 @@
 "pref_server" = "伺服器";
 "pref_encryption" = "加密";
 "pref_manage_keys" = "管理金鑰";
-// deprecated
-"pref_show_system_contacts" = "讀取系統通訊錄";
-// deprecated
-"pref_show_system_contacts_explain" = "建議與通訊錄中的聯絡人建立聊天。一些供應商需要先進行端到端加密設置。";
 "pref_chats" = "對話";
 "pref_in_chat_sounds" = "對話內的音效";
 "pref_view_log" = "觀看系統紀錄";
@@ -645,12 +623,6 @@
 "pref_backup_export_all" = "匯出全部%1$d個賬戶";
 "pref_backup_export_start_button" = "開始備份";
 "pref_backup_written_to_x" = "成功備份至 「%1$@」";
-// deprecated
-"pref_managekeys_export_secret_keys" = "匯出金鑰";
-// deprecated
-"pref_managekeys_export_explain" = "將金鑰匯出至 「%1$@」 ?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "成功匯出金鑰至「%1$@」。";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用預設圖案";
@@ -668,10 +640,6 @@
 "pref_show_emails_all" = "所有郵件";
 "pref_experimental_features" = "實驗性功能";
 "pref_on_demand_location_streaming" = "按需要位置串流";
-// deprecated
-"pref_developer_mode" = "開發者模式";
-// deprecated
-"pref_developer_mode_explain" = "啟動調試選項，可能使應用程式不太穩定。僅供開發人員使用。";
 "pref_background_default" = "預設圖片";
 "pref_background_default_color" = "預設顏色";
 "pref_background_custom_image" = "自訂圖片";
@@ -737,16 +705,6 @@
 "autodel_after_1_week" = "1 週後";
 "after_5_weeks" = "5 週後";
 "autodel_after_1_year" = "1 年後";
-// deprecated
-"autocrypt_send_asm_title" = "傳送AutoCrypt設定訊息";
-// deprecated
-"autocrypt_send_asm_explain_before" = "「AutoCrypt設定訊息」可以安全地和你使用的其它支援AutoCrypt的 app 共享端到端加密設定。\n\n本訊息含一組設定碼，請在其它支援的設備中輸入這組設定碼。";
-// deprecated
-"autocrypt_send_asm_button" = "傳送AutoCrypt設定訊息";
-// deprecated
-"autocrypt_send_asm_explain_after" = "你的設定已經傳送給你自己了。請到其它支援自動加密設定的裝置，開啟設定訊息，並輸入以下的設定碼\n\n輸入完之後，你的其它裝置就可以使用AutoCrypt了。";
-// deprecated
-"autocrypt_prefer_e2ee" = "偏好端到端加密";
 // system messages
 "systemmsg_subject_for_new_contact" = "來自 %1$@ 的訊息";
 "systemmsg_failed_sending_to" = "無法向%1$@發送消息。";
@@ -843,6 +801,7 @@
 "withdraw_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n您可以在此處停用 QR 碼，然後再次掃描以重新啟動它。";
 "withdraw_qr_code" = "停用QR碼";
 "revive_verifycontact_explain" = "此 QR 碼可以被其他人掃描以與您聯絡。\n\n此裝置上的 QR 碼未啟用。";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n此 QR 碼在此裝置上未啟用。";
 "revive_qr_code" = "啟用QR碼";
 "qrshow_title" = "邀請QR碼";
@@ -949,9 +908,6 @@
 "name_desktop" = "名稱";
 "select_group_image_desktop" = "選擇群組圖片";
 "export_backup_desktop" = "匯出備份";
-// deprecated
-"autocrypt_correct_desktop" = "已傳輸自動加密設定。";
-"forget_login_confirmation_desktop" = "確定要刪除這裡的登入嗎? 所有的設定都會被刪除，包括端到端加密設定、聯絡人、對話、訊息、媒體檔案等。本動作不能復原。";
 "message_detail_sent_desktop" = "已傳送";
 "message_detail_received_desktop" = "已收到";
 "menu.view.developer.open.log.folder" = "打開日誌資料夾";

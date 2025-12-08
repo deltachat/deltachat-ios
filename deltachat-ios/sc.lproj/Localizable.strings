@@ -184,8 +184,6 @@
 "open_url_confirmation" = "Cheres abèrrere custu ligàmene?";
 // contact list
 "contacts_title" = "Cuntatos";
-// deprecated
-"contacts_enter_name_or_email" = "Inserta su nùmene o s\'indiritzu de posta eletrònica";
 "contacts_type_email_above" = "Inserta s\'indiritzu de posta eletrònica inoghe in subra";
 // chatlist and chat view
 "chat_archived_chats_title" = "Tzarradas archiviadas";
@@ -240,10 +238,6 @@
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
 "login_title" = "Intra";
-// deprecated
-"login_header" = "Intra in su servidore tuo";
-// deprecated
-"login_explain" = "Intra cun un\'indiritzu de posta eletrònica chi esistat";
 "login_inbox" = "In arrivu";
 "login_imap_login" = "Nùmene impreadore IMAP";
 "login_imap_server" = "Serbidore IMAP";
@@ -287,8 +281,6 @@
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
 "blocked_empty_hint" = "Si as a blocare cuntatos ant a èssere allistados inoghe.";
-// deprecated
-"pref_password_and_account_settings" = "Crae de intrada e contu";
 "pref_who_can_see_profile_explain" = "S\'immàgine de profilu tua e su nùmene tuo ant a èssere ammustrados in paris cun sos messàgios tuos cando ses comunichende cun àteros impreadores. Sas informatziones giai imbiadas non podent èssere iscantzelladas o bogadas.";
 "pref_your_name" = "Su nùmene tuo";
 // Label of the Bio/Signature/Status/Motto field
@@ -338,12 +330,6 @@
 "pref_backup_export_explain" = "Una còpia de seguresa t\'agiudat a impostare un\'installatzione noa in custu o in un\'àteru dispositivu.\n\nSa còpia de seguresa ant a cuntènnere totu sos messàgios, sos cuntatos, sas tzarradas e s\'impostatzione de sa tzifradura a nodu terminale (end-to-end) de Autocrypt. Mantene su documentu in unu logu seguru o iscantzellalu in su primu momentu chi podes.";
 "pref_backup_export_start_button" = "Incumintza sa còpia de seguresa";
 "pref_backup_written_to_x" = "Còpia de seguresa sarvada in \"%1$@\"chene problemas.";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Esporta sas craes segretas";
-// deprecated
-"pref_managekeys_export_explain" = "Esportare sas craes segretas in \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Craes segretas sarvadas in \"%1$@\" chene problemas.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Isfundu";
 "pref_background_btn_default" = "Imprea s\'immàgine predefinida";
@@ -382,16 +368,6 @@
 "autodel_after_1_day" = "A pustis de 1 die";
 "autodel_after_1_week" = "A pustis de 1 chida";
 "autodel_after_1_year" = "A pustis de 1 annu";
-// deprecated
-"autocrypt_send_asm_title" = "Imbia unu messàgiu de impostatzione de Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Unu \'Messàgiu de configuratzione Autocrypt\' cumpartzit sa configuratzione a nodu terminale (end-to-end) cun àteras aplicatziones cumpatìbiles cun Autocrypt.\n\nSa configuratzione ant a èssere tzifradas cun unu còdighe ammustradu inoghe chi depet èssere insertadu in s\'àteru dispositivu. ";
-// deprecated
-"autocrypt_send_asm_button" = "Imbia unu messàgiu de impostatzione de Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Ti ses imbiadu sa configuratzione tua. Cola a s\'àteru dispositivu e aberi su messàgiu de configuratzione. Ti diat dèpere èssere pedidu unu còdighe de configuratzione. Inserta custas tzifras:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferi sa tzifradura a nodu terminale (end-to-end)";
 "write_message_desktop" = "Iscrie unu messàgiu";
 "encryption_info_title_desktop" = "Informatziones de tzifradura";
 "more_info_desktop" = "Àteras informatziones";

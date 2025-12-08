@@ -198,8 +198,6 @@
 "open_url_confirmation" = "دەتەوێت ئەم بەستەرە بکەیتەوە؟";
 // contact list
 "contacts_title" = "بەردەنگەکان";
-// deprecated
-"contacts_enter_name_or_email" = "ناو یان ئیمەیل بنووسە";
 "contacts_type_email_above" = "ئیمەیلەکە لە سەرەوە بنووسە";
 // chatlist and chat view
 "chat_archived_chats_title" = "وتووێژە ئەرشیڤکراوەکان";
@@ -256,10 +254,6 @@
 "media_preview" = "پێشدیتنی ڕەنگاڵە";
 "send_message" = "پەیام بنێرە";
 "login_title" = "بچۆ ژوورەوە";
-// deprecated
-"login_header" = "بچۆ ژوورەوە بۆ سێرڤێرەکەی خۆت";
-// deprecated
-"login_explain" = "بچۆ ژوورەوە بە ناونیشانی ئیمەیلێکەوە";
 "login_inbox" = "هاتنگە";
 "login_imap_login" = "ناوی چوونەژوورەوەی IMAP";
 "login_imap_server" = "سێرڤەری IMAP";
@@ -297,8 +291,6 @@
 "pref_profile_photo" = "وێنەی لادیمەن";
 "pref_blocked_contacts" = "هەژمارە ئاستەنگکراوەکان";
 "blocked_empty_hint" = "ئەگەر هەژمارێک ئاستەنگ بکەیت، لێرەدا پیشان دەدرێت.";
-// deprecated
-"pref_password_and_account_settings" = "هەژمار و تێپەڕوشە";
 "pref_your_name" = "ناو";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "دەقی واژۆ";
@@ -341,12 +333,6 @@
 "pref_backup_export_explain" = "یەدەک یارمەتیت دەدات تاکوو نەرمامێرەکە لەسەر ئەم ئامێرە یان ئامێرێکی دیکە دەبمەزرێنیتەوە.\n\n یەدەکەکە بریتی دەبێت لە هەموو پەیامەکان و بەردەنگەکان و وتووێژەکان و ڕێکخستنی ئۆتۆکریپتی ئەمسەر-ئەوسەر. پەڕگەی یەدەکەکە لە شوێنێکی قایمدا بپارێزە یان بە زووترین کات بیسڕەوە.";
 "pref_backup_export_start_button" = "دەستپێبکە";
 "pref_backup_written_to_x" = "یەدەک بە سەرکەوتوویی لە \"%1$@\"دا  پاشەکەوت کرا.";
-// deprecated
-"pref_managekeys_export_secret_keys" = "هەناردەکردنی کلیلە نهێنییەکان";
-// deprecated
-"pref_managekeys_export_explain" = "کلیلە نهێنییەکان دەنێریت بۆ \"%1$@\"؟";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "کلیلە نهێنییەکان لە \"%1$@\"دا پاشەکەوت کران.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";
@@ -390,10 +376,6 @@
 "autodel_after_1_week" = "پاش 1 حەوتە";
 "after_5_weeks" = "پاش 5 حەوتە";
 "autodel_after_1_year" = "پاش 1 ساڵ";
-// deprecated
-"autocrypt_send_asm_title" = "هەناردنی پەیامی ڕێکخستنی ئۆتۆکریپت";
-// deprecated
-"autocrypt_prefer_e2ee" = "هەڵبژاردنی شفرەکردنی ئەمسەر-ئەوسەر";
 // system messages
 "systemmsg_subject_for_new_contact" = "پەیام لەلایەن %1$@";
 "systemmsg_failed_sending_to" = "هەناردنی پەیام بۆ %1$@ سەرنەکەوت";
