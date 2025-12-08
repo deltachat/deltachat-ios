@@ -220,8 +220,6 @@
 "open_url_confirmation" = "このリンクを開きますか？";
 // contact list
 "contacts_title" = "連絡先一覧";
-// deprecated
-"contacts_enter_name_or_email" = "名前かメールアドレスを入力";
 "contacts_type_email_above" = "上にメールアドレスを入力してください。";
 // chatlist and chat view
 "chat_archived_chats_title" = "アーカイブしたチャット";
@@ -289,10 +287,6 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
 "login_title" = "ログイン";
-// deprecated
-"login_header" = "自分のメールサーバーにログインする";
-// deprecated
-"login_explain" = "既存のメールアカウントにログインする";
 "login_inbox" = "受信";
 "login_imap_login" = "IMAPログイン名";
 "login_imap_server" = "IMAPサーバー";
@@ -337,8 +331,6 @@
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
 "blocked_empty_hint" = "ブロックされた連絡先がここに表示されます。";
-// deprecated
-"pref_password_and_account_settings" = "パスワードとアカウント";
 "pref_who_can_see_profile_explain" = "アイコン画像や名前は他のユーザーに連絡するとメッセージとともに表示されます。既に送信された情報を削除することができます。";
 "pref_your_name" = "あなたの名前";
 // Label of the Bio/Signature/Status/Motto field
@@ -389,12 +381,6 @@
 "pref_backup_export_explain" = "バックアップは、本デバイスまたは別のデバイスに新たにインストールする際に役立ちます。\n\nこのバックアップには、すべてのメッセージ、連絡先、チャット、およびエンドツーエンドの自動暗号化設定が含まれます。バックアップファイルは安全な場所に保管するか、できるだけ早く削除してください。";
 "pref_backup_export_start_button" = "バックアップを開始する";
 "pref_backup_written_to_x" = "バックアップは%1$@に正常に完了しました。";
-// deprecated
-"pref_managekeys_export_secret_keys" = "秘密鍵のエクスポート";
-// deprecated
-"pref_managekeys_export_explain" = "%1$@に秘密鍵をエクスポートしますか？";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "暗号鍵は%1$@に正常に書き込まれました。";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "背景";
 "pref_background_btn_default" = "デフォルトの画像を使う";
@@ -443,14 +429,6 @@
 "autodel_after_1_week" = "1週間後";
 "after_5_weeks" = "5週間後";
 "autodel_after_1_year" = "1年後";
-// deprecated
-"autocrypt_send_asm_title" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
-// deprecated
-"autocrypt_send_asm_explain_before" = "｢自動暗号化設定用メッセージ｣は安全に一対一暗号化設定を対応するアプリケーションとの間に設定します｡\n \n 受信側は設定時に表示されるパスコードを入力する必要が有ります｡";
-// deprecated
-"autocrypt_send_asm_button" = "自動暗号化設定用ﾒｯｾｰｼﾞを送信する";
-// deprecated
-"autocrypt_prefer_e2ee" = "エンドツーエンド暗号化を好む";
 // system messages
 "systemmsg_subject_for_new_contact" = "%1$@さんからのメッセージ";
 "systemmsg_failed_sending_to" = "%1$@さんへのメッセージ送信に失敗しました。";
@@ -575,8 +553,6 @@
 "name_desktop" = "名前";
 "select_group_image_desktop" = "グループ画像を選択する";
 "export_backup_desktop" = "バックアップをエクスポート";
-// deprecated
-"autocrypt_correct_desktop" = "自動暗号化設定が転送されました";
 "message_detail_sent_desktop" = "送信済み";
 "message_detail_received_desktop" = "届きました";
 "menu.view.developer.open.log.folder" = "ログフォルダを開く";

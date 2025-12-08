@@ -287,8 +287,6 @@
 "menu_save_log" = "Save Log";
 "menu_more_options" = "More Options";
 "menu_learn_spelling" = "Learn Spelling";
-// deprecated
-"menu_chat_audit_log" = "Chat Audit Log";
 "jump_to_message" = "Jump to Message";
 "jump_to_original_message" = "Jump to Original Message";
 "copy_json" = "Copy JSON";
@@ -297,7 +295,7 @@
 "device_talk" = "Device Messages";
 "device_talk_subtitle" = "Locally generated messages";
 "device_talk_explain" = "Messages in this chat are generated on your device to inform about app updates and problems during usage.";
-"device_talk_welcome_message2" = "Get in contact!\n\n🙌 Tap \"QR code\" on the main screen of both devices. Choose \"Scan QR Code\" on one device, and point it at the other\n\n🌍 If not in the same room, scan via video call or share an invite link from \"Scan QR code\"\n\nThen: Enjoy your messenger experience over the largest decentralized network that ever existed: Email. And in contrast to other popular apps, without central control or tracking or selling you, friends, colleagues or family out to large organizations.";
+"device_talk_welcome_message2" = "Get in contact!\n\n🙌 Tap \"QR code\" on the main screen of both devices. Choose \"Scan QR Code\" on one device, and point it at the other\n\n🌍 If not in the same room, scan via video call or share an invite link from \"Scan QR code\"\n\nThen: Enjoy your decentralized messenger experience. In contrast to other popular apps, without central control or tracking or selling you, friends, colleagues or family out to large organizations.";
 "edit_contact" = "Edit Contact";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Pin Chat";
@@ -359,8 +357,6 @@
 "open_url_confirmation" = "Do you want to open this link?";
 // contact list
 "contacts_title" = "Contacts";
-// deprecated
-"contacts_enter_name_or_email" = "Enter name or email address";
 "contacts_type_email_above" = "Type email address above";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archived Chats";
@@ -414,12 +410,6 @@
 "filter_map_on_time" = "Show locations in time frame";
 "show_location_traces" = "Show traces";
 "add_poi" = "Send point of interest";
-// deprecated
-"chat_audit_log_empty_message" = "System messages for this chat appear here";
-// deprecated
-"chat_audit_log_title" = "Chat Audit Log for %1$@";
-// deprecated
-"chat_audit_log_description" = "Shows only system and info messages; useful for finding the last chat actions without scrolling through many messages.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Don\'t ask again for %1$@";
@@ -447,8 +437,6 @@
 "group_self_not_in_group" = "You must be a member of the group to perform this action.";
 "profile_encryption" = "Encryption";
 "profile_shared_chats" = "Chats in Common";
-// deprecated
-"related_chats" = "Related Chats";
 // Separator between the list of actual members and past members
 "past_members" = "Past Members";
 "tab_contact" = "Contact";
@@ -513,7 +501,7 @@
 "sending" = "Sending…";
 "last_msg_sent_successfully" = "Last message sent successfully.";
 "not_supported_by_provider" = "Not supported by your provider.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Messages";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ of %2$@ used";
@@ -522,8 +510,8 @@
 "onboarding_create_instant_account" = "Create New Profile";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "I Already Have a Profile";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "Use Classic Email as Transport";
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+"manual_account_setup_option" = "Use Classic Email as Relay";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Your Profile";
 // The placeholder will be replaced by the default onboarding server
@@ -547,10 +535,6 @@
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
 "login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an account you\'re using in another app.\n\n• Classic email server allow chats without end-to-end encryption marked by a mail icon.";
-// deprecated
-"login_header" = "Log into your Email Account";
-// deprecated
-"login_explain" = "Log in with an existing email account";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -577,15 +561,16 @@
 "proxy_share_link" = "Share Link";
 "proxy_enabled" = "Proxy Enabled";
 "proxy_enabled_hint" = "You are using a proxy. If you\'re having trouble connecting, try a different proxy.";
-// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
-"transports" = "Transports";
-"add_transport" = "Add Transport";
-"remove_transport" = "Remove Transport";
-"edit_transport" = "Edit Transport";
-// shown if a QR code was scanned that can be used as a transport
-"confirm_add_transport" = "Add this transport?";
-"invalid_transport_qr" = "The scanned QR code does not contain a valid transport.";
-"confirm_remove_transport" = "Remove transport \"%1$@\"?\n\nYour contacts can only reach you if you\'ve previously contacted them via another transport.\n\nIf in doubt, remove the transport later.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Relays";
+"add_transport" = "Add Relay";
+"remove_transport" = "Remove Relay";
+"edit_transport" = "Edit Relay";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Add this relay?";
+"invalid_transport_qr" = "The scanned QR code does not contain a valid relay.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_transport" = "Remove relay \"%1$@\"?\n\nYour contacts can only reach you if you\'ve previously contacted them via another relay.\n\nIf in doubt, remove the relay later.";
 "login_certificate_checks" = "Certificate Checks";
 "login_error_mail" = "Please enter a valid email address";
 "login_error_server" = "Please enter a valid server / IP address";
@@ -631,8 +616,6 @@
 "pref_profile_photo" = "Profile Image";
 "pref_blocked_contacts" = "Blocked Contacts";
 "blocked_empty_hint" = "Blocked contacts will appear here.";
-// deprecated
-"pref_password_and_account_settings" = "Password and Account";
 "pref_who_can_see_profile_explain" = "Your profile image, name and bio will be sent together with your messages when communicating with other users.";
 "pref_your_name" = "Your Name";
 // Label of the Bio/Signature/Status/Motto field
@@ -676,10 +659,6 @@
 "pref_server" = "Server";
 "pref_encryption" = "Encryption";
 "pref_manage_keys" = "Manage Keys";
-// deprecated
-"pref_show_system_contacts" = "Read System Address Book";
-// deprecated
-"pref_show_system_contacts_explain" = "Offer to create chats with contacts from the address book.";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat Sounds";
 "pref_view_log" = "View Log";
@@ -695,12 +674,6 @@
 "pref_backup_export_all" = "Export all %1$d profiles";
 "pref_backup_export_start_button" = "Start Backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Export Secret Keys";
-// deprecated
-"pref_managekeys_export_explain" = "Export secret keys to \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Secret keys written successfully to \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Wallpaper";
 "pref_background_btn_default" = "Use Default Image";
@@ -723,10 +696,6 @@
 "pref_experimental_features" = "Experimental Features";
 "pref_experimental_features_explain" = "These features may be unstable and may be changed or removed";
 "pref_on_demand_location_streaming" = "On-demand Location Streaming";
-// deprecated
-"pref_developer_mode" = "Developer Mode";
-// deprecated
-"pref_developer_mode_explain" = "Activates debugging options and can make the app less stable. For developers only.";
 "pref_background_default" = "Default image";
 "pref_background_default_color" = "Default color";
 "pref_background_custom_image" = "Custom image";
@@ -793,16 +762,6 @@
 "autodel_after_1_week" = "After 1 week";
 "after_5_weeks" = "After 5 weeks";
 "autodel_after_1_year" = "After 1 year";
-// deprecated
-"autocrypt_send_asm_title" = "Send Autocrypt Setup Message";
-// deprecated
-"autocrypt_send_asm_explain_before" = "An Autocrypt Setup Message securely shares your end-to-end setup with other Autocrypt-compliant apps.\n\nIf you use Delta Chat on the other device as well, use \"Settings / Add Second Device\" instead.";
-// deprecated
-"autocrypt_send_asm_button" = "Send Autocrypt Setup Message";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Your setup has been sent to yourself. Switch to the other device and open the setup message. You should be asked for a setup code. Enter the following digits:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Prefer End-To-End Encryption";
 // system messages
 "systemmsg_subject_for_new_contact" = "Message from %1$@";
 "systemmsg_failed_sending_to" = "Failed to send message to %1$@.";
@@ -910,7 +869,9 @@
 "withdraw_joinbroadcast_explain" = "This QR code can be scanned by others to join the channel \"%1$@\".\n\nYou can reset it, so that the existing QR code or invite link will no longer work.";
 "withdraw_qr_code" = "Reset QR Code";
 "revive_verifycontact_explain" = "This QR code has been reset and is no longer active.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "This QR code to join group \"%1$@\" has been reset and is no longer active.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_joinbroadcast_explain" = "This QR code to join channel \"%1$@\" has been reset and is no longer active.";
 "revive_qr_code" = "Activate QR Code";
 "qrshow_title" = "QR Invite Code";
@@ -1022,9 +983,6 @@
 "name_desktop" = "Name";
 "select_group_image_desktop" = "Select Group Image";
 "export_backup_desktop" = "Export Backup";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypt setup transferred.";
-"forget_login_confirmation_desktop" = "Delete this profile? Everything will be deleted, including your end-to-end setup, contacts, chats, messages and media. This action cannot be undone.";
 "message_detail_sent_desktop" = "sent";
 "message_detail_received_desktop" = "received";
 "menu.view.developer.open.log.folder" = "Open the Log Folder";

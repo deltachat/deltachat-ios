@@ -270,8 +270,6 @@
 "menu_save_log" = "Uložiť záznam";
 "menu_more_options" = "Ďalšie možnosti";
 "menu_learn_spelling" = "Naučiť sa pravopis";
-// deprecated
-"menu_chat_audit_log" = "Auditovací protokol konverzácie";
 "jump_to_message" = "Prejsť na správu";
 "jump_to_original_message" = "Zobraziť pôvodnú správu";
 "copy_json" = "Kopírovať JSON";
@@ -324,8 +322,6 @@
 "open_url_confirmation" = "Chcete otvoriť tento odkaz?";
 // contact list
 "contacts_title" = "Kontakty";
-// deprecated
-"contacts_enter_name_or_email" = "Zadajte meno alebo e-mailovú adresu";
 "contacts_type_email_above" = "Vyššie zadajte e-mailovú adresu";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archivované konverzácie";
@@ -374,12 +370,6 @@
 "filter_map_on_time" = "Zobraziť polohy v časovom rámci";
 "show_location_traces" = "Zobraziť stopy";
 "add_poi" = "Pošlite zaujímavé miesto";
-// deprecated
-"chat_audit_log_empty_message" = "Tu sa zobrazia systémové správy tejto konverzácie";
-// deprecated
-"chat_audit_log_title" = "Auditovací protokol konverzácie pre %1$@";
-// deprecated
-"chat_audit_log_description" = "Toto zobrazenie zobrazuje iba systémové a informačné správy. Je užitočné na nájdenie posledných akcií konverzácie bez prezerania množstva bežných správ. ";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Nepýtať sa znovu %1$@";
@@ -462,7 +452,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "sending" = "Odosielam...";
 "last_msg_sent_successfully" = "Posledná správa odoslaná úspešne.";
 "not_supported_by_provider" = "Nie je podporovaná vaším poskytovateľom.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Správy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ z %2$@využitých ";
@@ -471,7 +461,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "onboarding_create_instant_account" = "Nový účet";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Existujúci účet";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Použiť bežné e-mailové konto";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Váš účet";
@@ -488,10 +478,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "instant_onboarding_confirm_contact" = "Chcete vytvoriť nový účet a začať konverzáciu s %1$@?";
 "scan_invitation_code" = "Skenovať kód pozvánky";
 "login_title" = "Prihlásiť sa";
-// deprecated
-"login_header" = "Prihláste sa na server";
-// deprecated
-"login_explain" = "Prihláste sa pomocou existujúceho e-mailového účtu";
 "login_inbox" = "Doručená pošta";
 "login_imap_login" = "Prihlasovacie meno IMAP";
 "login_imap_server" = "Server IMAP";
@@ -552,8 +538,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_profile_photo" = "Profilový obrázok";
 "pref_blocked_contacts" = "Blokované kontakty";
 "blocked_empty_hint" = "Ak zablokujete kontakty, zobrazia sa tu.";
-// deprecated
-"pref_password_and_account_settings" = "Heslo a účet";
 "pref_who_can_see_profile_explain" = "Pri komunikácii s ostatnými používateľmi sa vedľa vašich správ zobrazí váš profilový obrázok a meno. Už odoslané informácie nemožno vymazať ani odstrániť.";
 "pref_your_name" = "Vaše meno";
 // Label of the Bio/Signature/Status/Motto field
@@ -609,12 +593,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_backup_export_all" = "Exportovať %1$d účty/účtov";
 "pref_backup_export_start_button" = "Spustiť zálohovanie";
 "pref_backup_written_to_x" = "Záloha bola úspešne zapísaná do priečinka „%1$@“.";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Exportovať tajné kľúče";
-// deprecated
-"pref_managekeys_export_explain" = "Exportovať tajné kľúče do priečinka „%1$@“?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Tajné kľúče boli úspešne zapísané do priečinka „%1$@“.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Pozadie";
 "pref_background_btn_default" = "Použiť predvolený obrázok";
@@ -632,10 +610,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_show_emails_all" = "Všetky";
 "pref_experimental_features" = "Experimentálne vlastnosti";
 "pref_on_demand_location_streaming" = "Vysielanie polohy na požiadanie";
-// deprecated
-"pref_developer_mode" = "Režim pre vývojárov";
-// deprecated
-"pref_developer_mode_explain" = "Zapína voľby pre ladenie a môže spôsobiť nižšiu stabilitu aplikácie. Iba pre vývojárov.";
 "pref_background_default" = "Predvolené pozadie";
 "pref_background_default_color" = "Predvolená farba";
 "pref_background_custom_image" = "Vlastný obrázok";
@@ -697,16 +671,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "autodel_after_1_week" = "Po 1 týždni";
 "after_5_weeks" = "Po 5 týždňoch";
 "autodel_after_1_year" = "Po 1 roku";
-// deprecated
-"autocrypt_send_asm_title" = "Pošlite správu s nastavením autokryptovania";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Správa o nastavení automatického šifrovania bezpečne zdieľa vaše komplexné nastavenie s ostatnými aplikáciami kompatibilnými s automatickým šifrovaním.\n\nNastavenie bude šifrované tu zobrazeným nastavovacím kódom a musí byť zadané na druhom zariadení.";
-// deprecated
-"autocrypt_send_asm_button" = "Pošlite správu s nastavením autokryptovania";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Vaše nastavenie bolo odoslané vám. Prepnite na druhé zariadenie a otvorte správu o nastavení. Mali by ste byť požiadaní o nastavovací kód. Zadajte nasledujúce číslice:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferovať šifrovanie typu end-to-end";
 // system messages
 "systemmsg_subject_for_new_contact" = "Správa od %1$@";
 "systemmsg_failed_sending_to" = "Správu sa nepodarilo odoslať %1$@ .";
@@ -797,6 +761,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "withdraw_verifygroup_explain" = "Tento QR kód môžu naskenovať ostatní, aby sa pripojili ku skupine \"%1$@\".\n\nTu môžete deaktivovať QR kód a znova ho aktivovať opätovným naskenovaním.";
 "withdraw_qr_code" = "Vypnúť QR kód";
 "revive_verifycontact_explain" = "Tento QR kód mohol byť naskenovaný inými, aby vás mohli kontaktovať.\n\nQR kód nie je na tomto zariadení aktívny.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "Tento QR kód mohli naskenovať iní, aby sa pripojili ku skupine „%1$@“.\n\nQR kód nie je na tomto zariadení aktívny.";
 "revive_qr_code" = "Povoliť QR kód.";
 "qrshow_title" = "QR pozývací kód";
@@ -895,9 +860,6 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "name_desktop" = "Názov";
 "select_group_image_desktop" = "Vyberte obrázok skupiny";
 "export_backup_desktop" = "Exportovať zálohu";
-// deprecated
-"autocrypt_correct_desktop" = "Nastavenie automatického šifrovania bolo prenesené.";
-"forget_login_confirmation_desktop" = "Odstrániť tieto prihlasovacie údaje? Odstráni sa všetko vrátane vášho kompletného nastavenia, kontaktov, konverzácií, správ a médií. Túto akciu nie je možné vrátiť späť.";
 "message_detail_sent_desktop" = "odoslané";
 "message_detail_received_desktop" = "prijaté";
 "menu.view.developer.open.log.folder" = "Otvoriť priečinok denníka";

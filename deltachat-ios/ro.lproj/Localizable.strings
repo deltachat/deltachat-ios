@@ -207,8 +207,6 @@
 "menu_save_log" = "Salvați Jurnalul";
 "menu_more_options" = "Mai multe opțiuni";
 "menu_learn_spelling" = "Învățați Ortografia";
-// deprecated
-"menu_chat_audit_log" = "Jurnal de Audit pentru Chat";
 "jump_to_message" = "Sari la Mesaj";
 "copy_json" = " Copiați JSON";
 "replace_draft" = "Înlocuiți proiectul";
@@ -255,8 +253,6 @@
 "open_url_confirmation" = "Doriți să deschideți acest link?";
 // contact list
 "contacts_title" = "Contacte";
-// deprecated
-"contacts_enter_name_or_email" = "Introduceți numele sau adresa de e-mail";
 "contacts_type_email_above" = "Introduceți adresa de e-mail de mai sus";
 // chatlist and chat view
 "chat_archived_chats_title" = "Chat-uri Arhivate";
@@ -301,12 +297,6 @@
 "filter_map_on_time" = "Afișați locațiile în intervalul de timp";
 "show_location_traces" = "Afișați urme";
 "add_poi" = "Trimiteți punctul de interes";
-// deprecated
-"chat_audit_log_empty_message" = "Mesajele de sistem pentru acest chat apar aici";
-// deprecated
-"chat_audit_log_title" = "Jurnal de audit de chat pentru %1$@";
-// deprecated
-"chat_audit_log_description" = "Afișează numai mesajele de sistem și cele informative; este util pentru a găsi ultimele acțiuni de chat fără a derula prin multe mesaje. ";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Nu cereți din nou %1$@";
@@ -385,16 +375,12 @@
 "sending" = "Trimitere…";
 "last_msg_sent_successfully" = "Ultimul mesaj a fost trimis cu succes.";
 "not_supported_by_provider" = "Nu este suportat de furnizorul dumneavoastră.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mesaje";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ folosit";
 "scan_invitation_code" = "Scanați Codul Invitației";
 "login_title" = "Autentificare";
-// deprecated
-"login_header" = "Autentificați-vă în contul dumneavoastră de e-mail";
-// deprecated
-"login_explain" = "Conectați-vă cu un cont de e-mail existent";
 "login_inbox" = "Inbox";
 "login_imap_login" = "Nume de autentificare IMAP";
 "login_imap_server" = "Serverul IMAP";
@@ -442,8 +428,6 @@
 "pref_profile_photo" = "Imagine de profil";
 "pref_blocked_contacts" = "Contacte blocate";
 "blocked_empty_hint" = "Contactele blocate vor apărea aici.";
-// deprecated
-"pref_password_and_account_settings" = "Parolă și cont";
 "pref_who_can_see_profile_explain" = "Imaginea de profil, numele și semnătura dumneavoastră vor fi trimise împreună cu mesajele dumneavoastră atunci când comunicați cu alți utilizatori.";
 "pref_your_name" = "Numele dumneavoastră";
 // Label of the Bio/Signature/Status/Motto field

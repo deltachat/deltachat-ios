@@ -230,8 +230,6 @@
 "menu_save_log" = "Spara logg";
 "menu_more_options" = "Mer alternativ";
 "menu_learn_spelling" = "Lär stavning";
-// deprecated
-"menu_chat_audit_log" = "Granskningslogg av chatt";
 "jump_to_message" = "Hoppa till meddelande";
 "copy_json" = "Kopiera JSON";
 "replace_draft" = "Ersätt utkast";
@@ -280,8 +278,6 @@
 "open_url_confirmation" = "Vill du öppna denna länk?";
 // contact list
 "contacts_title" = "Kontakter";
-// deprecated
-"contacts_enter_name_or_email" = "Ange namn eller e-postadress";
 "contacts_type_email_above" = "Skriv in e-postadressen ovan";
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverade chattar";
@@ -330,12 +326,6 @@
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
 "add_poi" = "Skicka intressant plats";
-// deprecated
-"chat_audit_log_empty_message" = "Systemmeddelanden för denna chatt visas här";
-// deprecated
-"chat_audit_log_title" = "Chattgranskningslogg för %1$@";
-// deprecated
-"chat_audit_log_description" = "Visar endast system- och informationsmeddelanden; användbart för att hitta de senaste chattåtgärderna utan att skrolla igenom många meddelanden.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Fråga inte igen för %1$@";
@@ -361,8 +351,6 @@
 "group_self_not_in_group" = "Du måste vara medlem i gruppen för att utföra denna åtgärd.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delade chattar";
-// deprecated
-"related_chats" = "Relaterade chattar";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galleri";
@@ -423,7 +411,7 @@
 "sending" = "Skickar...";
 "last_msg_sent_successfully" = "Senaste meddelandet skickat felfritt.";
 "not_supported_by_provider" = "Stöds ej av din leverantör.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Meddelanden";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ av %2$@ används";
@@ -432,7 +420,7 @@
 "onboarding_create_instant_account" = "Skapa ny profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Jag har redan en profil";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klassisk e-postinloggning";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Din profil";
@@ -456,10 +444,6 @@
 "welcome_chat_over_email" = "Säker decentraliserad chatt";
 "scan_invitation_code" = "Skanna inbjudningskod";
 "login_title" = "Logga in";
-// deprecated
-"login_header" = "Logga in på din server";
-// deprecated
-"login_explain" = "Logga in med ett befintligt e-postkonto";
 "login_inbox" = "Inkorg";
 "login_imap_login" = "IMAP inloggningsnamn";
 "login_imap_server" = "IMAP server";
@@ -507,8 +491,6 @@
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
 "blocked_empty_hint" = "Blockerade kontakter kommer att visas här.";
-// deprecated
-"pref_password_and_account_settings" = "Lösenord och konto";
 "pref_who_can_see_profile_explain" = "Din profilbild och ditt namn visas tillsammans med dina meddelanden när du kommunicerar med andra användare. Information som redan skickats kan inte tas bort eller flyttas.";
 "pref_your_name" = "Ditt namn";
 // Label of the Bio/Signature/Status/Motto field
@@ -549,10 +531,6 @@
 "pref_server" = "Server";
 "pref_encryption" = "Kryptering";
 "pref_manage_keys" = "Hantera nycklar";
-// deprecated
-"pref_show_system_contacts" = "Läs systemets adressbok";
-// deprecated
-"pref_show_system_contacts_explain" = "Erbjud att skapa chattar med kontakter från adressboken. Vissa leverantörer behöver först konfigureras för totalsträckskryptering.";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
 "pref_view_log" = "Visa logg";
@@ -567,12 +545,6 @@
 "pref_backup_export_all" = "Exportera all %1$d profiler";
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
 "pref_backup_written_to_x" = "Säkerhetskopia korrekt skriven till \"%1$@\".";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Exportera säkerhetsnycklar";
-// deprecated
-"pref_managekeys_export_explain" = "Exportera säkerhetsnycklar till \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Säkerhetsnycklar korrekt skrivna till \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Bakgrund";
 "pref_background_btn_default" = "Använd standardbild";
@@ -590,10 +562,6 @@
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
 "pref_on_demand_location_streaming" = "På-begäran platsströmning";
-// deprecated
-"pref_developer_mode" = "Utvecklarläge";
-// deprecated
-"pref_developer_mode_explain" = "Aktiverar felsökningsalternativ och kan göra appen mindre stabil. Endast för utvecklare.";
 "pref_background_default" = "Standardbakgrund";
 "pref_background_default_color" = "Standardfärg";
 "pref_background_custom_image" = "Anpassad bild";
@@ -658,16 +626,6 @@
 "autodel_after_1_week" = "Efter 1 vecka";
 "after_5_weeks" = "Efter 5 veckor";
 "autodel_after_1_year" = "Efter 1 år";
-// deprecated
-"autocrypt_send_asm_title" = "Skicka Autocrypt inställningsmeddelande";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Ett meddelande för att ställa in Autocrypt, delar den informationen med andra Autocrypt-anpassade program på ett säkert sätt. Informationen krypteras med en kod som visas här och som måste matas in på den mottagande enheten.";
-// deprecated
-"autocrypt_send_asm_button" = "Skicka Autocrypt inställningsmeddelande";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Dina inställningar har skickats till dig själv. Byt till den andra enheten och öppna inställningsmeddelandet. Du kommer att tillfrågas om en inställningskod. Ange följande siffror:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Föredra slutpunkt-till-slutpunkt-kryptering";
 // system messages
 "systemmsg_subject_for_new_contact" = "Meddelande från %1$@";
 "systemmsg_failed_sending_to" = "Kunde inte skicka meddelande till %1$@.";
@@ -764,6 +722,7 @@
 "withdraw_verifygroup_explain" = "Denna QR-kod kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_qr_code" = "Avaktivera QR-kod";
 "revive_verifycontact_explain" = "Den här QR-koden kan skannas av andra för att kontakta dig.\n\nQR-koden är inte aktiv på den här enheten.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "Den här QR-koden kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nQR-koden är inte aktiv på den här enheten.";
 "revive_qr_code" = "Aktivera QR-kod";
 "qrshow_title" = "QR-kod för inbjudan";
@@ -866,9 +825,6 @@
 "name_desktop" = "Namn";
 "select_group_image_desktop" = "Välj en gruppbild";
 "export_backup_desktop" = "Exportera säkerhetskopia";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypt-inställning överförd.";
-"forget_login_confirmation_desktop" = "Ta bort den här inloggningen? Allt kommer att raderas, inklusive din slutpunkt-till-slutpunkt-inställning, dina kontakter, media och meddelanden. Denna åtgärd kan inte ångras.";
 "message_detail_sent_desktop" = "skickat";
 "message_detail_received_desktop" = "mottaget";
 "menu.view.developer.open.log.folder" = "Öppna loggmappen";

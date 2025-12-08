@@ -218,8 +218,6 @@
 "open_url_confirmation" = "Vil du åbne dette link?";
 // contact list
 "contacts_title" = "Kontakter";
-// deprecated
-"contacts_enter_name_or_email" = "Indtast navn eller e-mailadresse";
 "contacts_type_email_above" = "Indtast e-mailadresse ovenover";
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkiverede samtaler";
@@ -288,15 +286,11 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Forbundet";
 "sending" = "Sender...";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Beskeder";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ af %2$@ brugt";
 "login_title" = "Login";
-// deprecated
-"login_header" = "Login til server";
-// deprecated
-"login_explain" = "Login med en eksisterende e-mailkonto";
 "login_inbox" = "Indbakke";
 "login_imap_login" = "IMAP logind navn";
 "login_imap_server" = "IMAP server";
@@ -342,8 +336,6 @@
 "pref_profile_photo" = "Profilbillede";
 "pref_blocked_contacts" = "Blokerede kontakter";
 "blocked_empty_hint" = "Hvis du blokerer kontakter, bliver de vist her.";
-// deprecated
-"pref_password_and_account_settings" = "Adgangskode og konto";
 "pref_who_can_see_profile_explain" = "Profilbillede og navn vises sammen med beskeder, når der kommunikeres med andre brugere. Allerede sendt information kan ikke slettes eller fjernes.";
 "pref_your_name" = "Dit navn";
 // Label of the Bio/Signature/Status/Motto field
@@ -394,12 +386,6 @@
 "pref_backup_export_explain" = "En sikkerhedskopi hjælper til at opsætte en ny installation på denne eller en anden enhed.\n\nSikkerhedskopien indeholder alle beskeder, kontakter og samtaler og end-to-end krypteringsopsætning. Gem sikkerhedskopien et sikkert sted eller slet den så hurtigt som muligt.";
 "pref_backup_export_start_button" = "Start sikkerhedskopiering";
 "pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Eksporter hemmelige nøgler";
-// deprecated
-"pref_managekeys_export_explain" = "Eksporter hemmelige nøgler til \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Hemmelige nøgler skrevet til \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Baggrund";
 "pref_background_btn_default" = "Brug standardbillede";
@@ -453,16 +439,6 @@
 "autodel_after_1_week" = "Efter 1 uge";
 "after_5_weeks" = "Efter 5 uger";
 "autodel_after_1_year" = "Efter 1 år";
-// deprecated
-"autocrypt_send_asm_title" = "Send Autocrypt opsætning besked";
-// deprecated
-"autocrypt_send_asm_explain_before" = "En \"Autocrypt opsætning besked\" deler sikkert end-to-end opsætning med andre Autocrypt kompatible programmer.\n\nOpsætning er krypteret med en kode som er vist her og skal indtastes på den anden enhed.";
-// deprecated
-"autocrypt_send_asm_button" = "Send autocrypt-opsætningsbesked";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Opsætning er sendt til dig selv. Skift til den anden enhed og åben opsætning beskeden. Der skulle blive spurgt til opsætning kode. Indtast følgende cifre i prompt.\n\nNår færdig vil den anden enhed være klar til at bruge Autocrypt.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Foretræk end-to-end kryptering";
 // system messages
 "systemmsg_subject_for_new_contact" = "Besked fra %1$@";
 "systemmsg_failed_sending_to" = "Mislykket forsøg på afsendelse af besked til %1$@.";
@@ -603,9 +579,6 @@
 "name_desktop" = "Navn";
 "select_group_image_desktop" = "Vælg gruppebillede";
 "export_backup_desktop" = "Eksporter sikkerhedskopi";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypt opsætning overført!";
-"forget_login_confirmation_desktop" = "Slet login? Alt vil blive slettet, din end-to-end opsætning, kontakter, samtaler, meddelelser og medier. Denne handling er endelig og kan ikke fortrydes.";
 "message_detail_sent_desktop" = "sendt";
 "message_detail_received_desktop" = "modtaget";
 "menu.view.developer.open.log.folder" = "Åbn log mappe";

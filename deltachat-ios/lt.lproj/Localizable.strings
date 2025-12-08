@@ -215,8 +215,6 @@
 "menu_zoom_out" = "Mažinti";
 "menu_save_log" = "Įrašyti žurnalą";
 "menu_more_options" = "Daugiau parinkčių";
-// deprecated
-"menu_chat_audit_log" = "Pokalbių audito žurnalas";
 "copy_json" = "Kopijuoti JSON";
 "replace_draft" = "Pakeisti juodraštį";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
@@ -267,8 +265,6 @@
 "open_url_confirmation" = "Ar norite atverti šią nuorodą?";
 // contact list
 "contacts_title" = "Adresatai";
-// deprecated
-"contacts_enter_name_or_email" = "Įveskite vardą ar el. pašto adresą";
 "contacts_type_email_above" = "Aukščiau įrašykite el. pašto adresą";
 // chatlist and chat view
 "chat_archived_chats_title" = "Archyvuoti pokalbiai";
@@ -297,12 +293,6 @@
 // webxdc
 // "Start..." button for an app
 "start_app" = "Pradėti…";
-// deprecated
-"chat_audit_log_empty_message" = "Čia atsiras šio pokalbio sisteminės žinutės";
-// deprecated
-"chat_audit_log_title" = "Pokalbio audito žurnalas, skirtas %1$@";
-// deprecated
-"chat_audit_log_description" = "Šiame rodinyje yra rodomi tik sisteminiai ir informaciniai pranešimai. Naudinga, jei norite rasti paskiausius pokalbio veiksmus, be būtinybės slinkti per daugelį įprastų žinučių.";
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ar tikrai norite apsilankyti %1$@?";
@@ -323,8 +313,6 @@
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
 "profile_encryption" = "Šifravimas";
 "profile_shared_chats" = "Bendrinami pokalbiai";
-// deprecated
-"related_chats" = "Susiję pokalbiai";
 "tab_contact" = "Adresatas";
 "tab_group" = "Grupė";
 "tab_gallery" = "Galerija";
@@ -365,7 +353,7 @@
 "connectivity_connected" = "Prisijungta";
 "sending" = "Siunčiama…";
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
@@ -380,10 +368,6 @@
 "instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
-// deprecated
-"login_header" = "Prisijungti prie savo serverio";
-// deprecated
-"login_explain" = "Prisijungti naudojant esamą el. pašto paskyrą";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
 "login_imap_server" = "IMAP serveris";
@@ -437,8 +421,6 @@
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
 "blocked_empty_hint" = "Jei užblokuosite adresatus, jie bus rodomi čia.";
-// deprecated
-"pref_password_and_account_settings" = "Slaptažodis ir paskyra";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
 "pref_your_name" = "Jūsų vardas";
 // Label of the Bio/Signature/Status/Motto field
@@ -493,12 +475,6 @@
 "pref_backup_export_all" = "Eksportuoti visas %1$d paskyras";
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
 "pref_backup_written_to_x" = "Atsarginė kopija sėkmingai įrašyta į %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Eksportuoti slaptus raktus";
-// deprecated
-"pref_managekeys_export_explain" = "Eksportuoti slaptus raktus į \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Slapti raktai sėkmingai įrašyti į \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fonas";
 "pref_background_btn_default" = "Naudoti numatytąjį paveikslą";
@@ -512,10 +488,6 @@
 "pref_show_emails_accepted_contacts" = "Iš priimtų adresatų";
 "pref_show_emails_all" = "Iš visų";
 "pref_experimental_features" = "Eksperimentinės ypatybės";
-// deprecated
-"pref_developer_mode" = "Plėtotojo veiksena";
-// deprecated
-"pref_developer_mode_explain" = "Aktyvuoja derinimo parinktis ir gali paversti programą mažiau stabilią. Tik plėtotojams.";
 "pref_background_default" = "Numatytasis fonas";
 "pref_background_default_color" = "Numatytoji spalva";
 "pref_background_custom_image" = "Tinkintas paveikslas";
@@ -562,16 +534,6 @@
 "autodel_after_1_week" = "Po 1 savaitės";
 "after_5_weeks" = "Po 5 savaičių";
 "autodel_after_1_year" = "Po 1 metų";
-// deprecated
-"autocrypt_send_asm_title" = "Siųsti Autocrypt sąrankos žinutę";
-// deprecated
-"autocrypt_send_asm_explain_before" = "\"Autocrypt sąrankos žinutė\" saugiai bendrina jūsų ištisinę sąranką su kitomis su Autocrypt suderinamomis programomis.\n\nSąranka bus užšifruota sąrankos kodu, kuris yra rodomas čia ir privalės būti įvestas kitame įrenginyje.";
-// deprecated
-"autocrypt_send_asm_button" = "Siųsti Autocrypt sąrankos žinutę";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Jūsų sąranka buvo išsiųsta jums. Persijukite į kitą įrenginį ir atverkite sąrankos žinutę. Jūsų turėtų būti paprašyta sąrankos kodo. Į užklausą įrašykite šiuos skaitmenis.\n\nJums užbaigus, kitas įrenginys bus paruoštas naudoti Autocrypt.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Teikti pirmenybę ištisiniam šifravimui";
 // system messages
 "systemmsg_subject_for_new_contact" = "Žinutė nuo %1$@";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
@@ -710,9 +672,6 @@
 "name_desktop" = "Vardas";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypt sąranka sėkmingai perduota!";
-"forget_login_confirmation_desktop" = "Ištrinti šį prisijungimą? Viskas bus ištrinta, įskaitant jūsų ištisinę sąranką, adresatus, pokalbius, žinutes ir mediją. Šis veiksmas yra galutinis ir negalės būti panaikintas.";
 "message_detail_sent_desktop" = "išsiųsta";
 "message_detail_received_desktop" = "gauta";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";

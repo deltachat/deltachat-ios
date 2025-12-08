@@ -214,8 +214,6 @@
 "ask_remove_from_channel" = "Remover %1$@ do canal?";
 // contact list
 "contacts_title" = "Contactos";
-// deprecated
-"contacts_enter_name_or_email" = "Digite o nome ou endereço de e-mail";
 "contacts_type_email_above" = "Digite o endereço de e-mail acima";
 // chatlist and chat view
 "chat_archived_chats_title" = "chats arquivadas";
@@ -267,8 +265,6 @@
 "connectivity_updating" = "A actualizar…";
 "sending" = "A enviar…";
 "login_title" = "Login";
-// deprecated
-"login_header" = "Iniciar sessão na sua conta de e-mail";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";
 "login_imap_server" = "IMAP servidor";
@@ -340,12 +336,6 @@
 "pref_backup_export_explain" = "Um backup ajuda-o a configurar uma nova instalação neste ou em outro dispositivo. \n\n O backup conterá todas as mensagens, contactos e converas e a configuração de encriptação Mantenha o arquivo de backup em um local seguro ou exclua-o o mais rápido possível.";
 "pref_backup_export_start_button" = "Inicia backup";
 "pref_backup_written_to_x" = "Backup escrito com sucesso em %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Exportar chave secreta";
-// deprecated
-"pref_managekeys_export_explain" = "Exportar chave secreta para \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Chaves secretas escritas com sucesso para \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fundo";
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
@@ -355,16 +345,6 @@
 "pref_show_emails" = "Exibir e-mails comuns";
 "pref_show_emails_no" = "Não, apenas conversas";
 "pref_show_emails_all" = "Tudo";
-// deprecated
-"autocrypt_send_asm_title" = "Enviar mensagem com a definição da encriptação automática";
-// deprecated
-"autocrypt_send_asm_explain_before" = "A \"Mensagem de Configuração Autocrypt\" compartilha com segurança a sua configuração de ponta a ponta com outros aplicativos compatíveis com Autocrypt. \n\nA configuração será encriptada por um código de configuração que é exibido aqui e deve ser digitado no outro dispositivo.";
-// deprecated
-"autocrypt_send_asm_button" = "Enviar mensagem com a definição da encriptação automática";
-// deprecated
-"autocrypt_send_asm_explain_after" = "A sua configuração foi-lhe enviada. Entre no outro dispositivo e abra a mensagem de configuração. Deve ser solicitado a fornecer um código de configuração. Digite os seguintes dígitos no prompt.\n\n Assim que estiver concluido, o outro dispositivo estará pronto para usar o Autocrypt.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferir encriptação ponta a ponta";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
@@ -450,9 +430,6 @@
 "name_desktop" = "Nome";
 "select_group_image_desktop" = "Seleccionar a imagem para o grupo";
 "export_backup_desktop" = "Exportar o backup";
-// deprecated
-"autocrypt_correct_desktop" = "Configuração autocrypt transferida com sucesso!";
-"forget_login_confirmation_desktop" = "Apagar este login? Tudo será apagado, incluindo sua configuração de ponta a ponta, contatos, chats, mensagens e mídia. Esta ação é final e não pode ser revertida.";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recebido";
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";

@@ -287,8 +287,6 @@
 "menu_save_log" = "Salvesta logi";
 "menu_more_options" = "Täiendavad valikud";
 "menu_learn_spelling" = "Õpi õigekirja";
-// deprecated
-"menu_chat_audit_log" = "Vestluse kontroll-logi";
 "jump_to_message" = "Mine sõnumi juurde";
 "jump_to_original_message" = "Mine algse sõnumi juurde";
 "copy_json" = "Kopeeri JSON-vormingus";
@@ -358,8 +356,6 @@
 "open_url_confirmation" = "Kas sa soovid selle lingi avada?";
 // contact list
 "contacts_title" = "Kontaktid";
-// deprecated
-"contacts_enter_name_or_email" = "Sisesta nimi või e-posti aadress";
 "contacts_type_email_above" = "Palun sisesta ülale e-posti aadress";
 // chatlist and chat view
 "chat_archived_chats_title" = "Arhiveeritud vestlused";
@@ -409,12 +405,6 @@
 "enable_realtime" = "Reaalajas toimivad rakendused";
 "enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
 "add_poi" = "Saada huvipunkti teave";
-// deprecated
-"chat_audit_log_empty_message" = "Sellele vestluse süsteemsed teated saavad olema nähtavad siin.";
-// deprecated
-"chat_audit_log_title" = "%1$@ vestluse kontroll-logi";
-// deprecated
-"chat_audit_log_description" = "Näed vaid süsteemi- ja infosõnumeid. Sobib kasutamiseks viimaste tegevuset tuvastamiseks ilma, et peaksid paljusid sõnumeid läbi lappama.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Ära enam %1$@ puhul küsi";
@@ -440,8 +430,6 @@
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";
 "profile_encryption" = "Krüptimine";
 "profile_shared_chats" = "Ühised vestlused";
-// deprecated
-"related_chats" = "Sarnaste osalejatega vestlused";
 // Separator between the list of actual members and past members
 "past_members" = "Varasemad liikmed";
 "tab_contact" = "Kontakt";
@@ -506,7 +494,7 @@
 "sending" = "Saadan…";
 "last_msg_sent_successfully" = "Viimase sõnumi saatmine õnnestus.";
 "not_supported_by_provider" = "Sinu teenusepakkuja ei toeta seda võimalust.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Sõnumid";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Kasutusel %1$@ / %2$@";
@@ -515,7 +503,7 @@
 "onboarding_create_instant_account" = "Loo uus profiil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mul juba on profiil olemas";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Klassikaline e-post alusühendusena";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Sinu profiil";
@@ -539,10 +527,6 @@
 "scan_invitation_code" = "Skaneeri kutsekoodi";
 "login_title" = "Logi sisse";
 "login_advanced_hint" = "See sisselogimine sobib  oskuskasutajatele:\n\n• Ära kasuta kontot, mis juba on kasutusel mõnes muus rakenduses.\n\n• Klassikaline e-posti server võimaldab vestlemist vaid ilma läbiva krüptimiseta ja seda märgistab kirja ikoon.";
-// deprecated
-"login_header" = "Logi sisse oma e-postikontoga";
-// deprecated
-"login_explain" = "Logi sisse olemasoleva e-postikontoga";
 "login_inbox" = "Saabuvad kirjad";
 "login_imap_login" = "IMAP-i kasutajanimi";
 "login_imap_server" = "IMAP-i server";
@@ -569,14 +553,15 @@
 "proxy_share_link" = "Jaga linki";
 "proxy_enabled" = "Proksiserver on kasutusel";
 "proxy_enabled_hint" = "Sa kasutad proksiserverit. Kui võrguühendus ei toimi korralikult, siis proovi teist proksiserverit.";
-// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Alusühendused";
 "add_transport" = "Lisa alusühendus";
 "remove_transport" = "Eemalda alusühendus";
 "edit_transport" = "Muuda alusühendust";
-// shown if a QR code was scanned that can be used as a transport
+// shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust";
+// placeholder will be replaced by a relay server name
 "confirm_remove_transport" = "Kas eemaldad „%1$@“ alusühenduse?\n\nSinu kontaktid saavad sind kätte vaid siis, kui oled selleks kasutanud mõnda muud alusühendust.\n\nKui kahtled, siis eemalda alusühendus hiljem.";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";
@@ -623,8 +608,6 @@
 "pref_profile_photo" = "Profiilipilt";
 "pref_blocked_contacts" = "Blokeeritud kontaktid";
 "blocked_empty_hint" = "Blokeeritud kontaktid saavad olema leitavad siin.";
-// deprecated
-"pref_password_and_account_settings" = "Salasõna ja kasutajakonto";
 "pref_who_can_see_profile_explain" = "Kui suhtled teiste kasutajatega, siis koos sinu sõnumitega edastatakse neile ka sinu tunnuspilt, nimi ja kirjeldus/elulugu.";
 "pref_your_name" = "Sinu nimi";
 // Label of the Bio/Signature/Status/Motto field
@@ -666,10 +649,6 @@
 "pref_server" = "Server";
 "pref_encryption" = "Krüptimine";
 "pref_manage_keys" = "Halda võtmeid";
-// deprecated
-"pref_show_system_contacts" = "Kasuta süsteemi aadressiraamatut";
-// deprecated
-"pref_show_system_contacts_explain" = "Paku võimalust lisada vestlusi süsteemi aadressiraamatus leiduvate kontaktide alusel.";
 "pref_chats" = "Vestlused";
 "pref_in_chat_sounds" = "Helid vestluses";
 "pref_view_log" = "Vaata logi";
@@ -684,12 +663,6 @@
 "pref_backup_export_all" = "Ekspordi kõik %1$d profiili";
 "pref_backup_export_start_button" = "Alusta varundamist";
 "pref_backup_written_to_x" = "Varukoopia tegemine asukohta „%1$@“ õnnestus.";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Ekspordi salavõtmed";
-// deprecated
-"pref_managekeys_export_explain" = "Kas ekspordime salavõtmed siia: %1$@?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Salavõtmete salvestamine asukohta „%1$@“ õnnestus.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Taustapilt";
 "pref_background_btn_default" = "Kasuta vaikimisi pilti";
@@ -707,10 +680,6 @@
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_experimental_features_explain" = "Need funktsionaalsused ei pruugi korralikult toimida ning nad võivad tulevikus muutuda või sootuks olla eemaldatud";
-// deprecated
-"pref_developer_mode" = "Arendaja režiim";
-// deprecated
-"pref_developer_mode_explain" = "Lülitab sisse veaotsingu tarvikud ja see võib rakenduse töökindlust vähendada. Sobib arendajatele.";
 "pref_background_default" = "Vaikimisi pilt";
 "pref_background_default_color" = "Vaikimisi värv";
 "pref_background_custom_image" = "Sinu valitud pilt";
@@ -777,12 +746,6 @@
 "autodel_after_1_week" = "5 nädala järel";
 "after_5_weeks" = "5 nädala järel";
 "autodel_after_1_year" = "5 aasta järel";
-// deprecated
-"autocrypt_send_asm_title" = "Saada Autocrypti seadistussõnum";
-// deprecated
-"autocrypt_send_asm_button" = "Saada Autocrypti seadistussõnum";
-// deprecated
-"autocrypt_prefer_e2ee" = "Eelista läbivat krüptimist";
 // system messages
 "systemmsg_subject_for_new_contact" = "Sõnum kasutajalt %1$@";
 "systemmsg_failed_sending_to" = "Sõnumi saatmine kasutajale %1$@ ei õnnestunud.";
@@ -888,7 +851,9 @@
 "withdraw_joinbroadcast_explain" = "Seda QR-koodi saab kasutada „%1$@“ kanaliga liitumiseks.\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
 "withdraw_qr_code" = "Lähtesta QR-kood";
 "revive_verifycontact_explain" = "See QR-kood on lähtestatud ega pole enam kasutatav.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "See QR-kood, mis oli mõeldud „%1$@“ grupiga liitumiseks, on lähtestatud ega pole enam kasutatav.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_joinbroadcast_explain" = "See QR-kood, mis oli mõeldud „%1$@“ kanaliga liitumiseks, on lähtestatud ega pole enam kasutatav.";
 "revive_qr_code" = "Aktiveeri QR-kood";
 "qrshow_title" = "Kutse QR-koodina";
@@ -1000,9 +965,6 @@
 "name_desktop" = "Nimi";
 "select_group_image_desktop" = "Vali grupi tunnuspilti";
 "export_backup_desktop" = "Ekspordi varukoopia";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypti seadistused on edastatud.";
-"forget_login_confirmation_desktop" = "Kas kustutad selle profiili? Kõik profiiliandmed kaovad sellest seadmest,  sealhulgas läbiva krüptimise seadistus, kontaktid, vestlused, sõnumid ja meediumid. Seda tegevust ei saa tagasi pöörata.";
 "message_detail_sent_desktop" = "saadetud";
 "message_detail_received_desktop" = "vastuvõetud";
 "menu.view.developer.open.log.folder" = "Ava logifailide kaust";

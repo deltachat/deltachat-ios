@@ -334,7 +334,7 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "منپیز وابی";
 "sending" = "هونی افشنه...";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "پیوما";
 "sync_all" = "ورۊ کردن پوی";
 "pref_your_name" = "نوم ایسا";

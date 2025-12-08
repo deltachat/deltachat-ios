@@ -208,8 +208,6 @@
 "menu_save_log" = "Simpan log";
 "menu_more_options" = "Opsi Lainnya";
 "menu_learn_spelling" = "Belajar Ejaan";
-// deprecated
-"menu_chat_audit_log" = "Log Audit Obrolan";
 "jump_to_message" = "Lompat ke Pesan";
 "copy_json" = "Salin JSON";
 "title_share_location" = "Bagikan lokasi kepada seluruh anggota grup";
@@ -251,8 +249,6 @@
 "open_url_confirmation" = "Apakah anda ingin membuka pranala ini?";
 // contact list
 "contacts_title" = "Kontak";
-// deprecated
-"contacts_enter_name_or_email" = "Masukkan nama atau alamat email";
 "contacts_type_email_above" = "Ketik alamat email di atas";
 // chatlist and chat view
 "chat_archived_chats_title" = "Obrolan terarsip";
@@ -308,10 +304,6 @@
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
 "login_title" = "Masuk";
-// deprecated
-"login_header" = "Masuk ke server Anda";
-// deprecated
-"login_explain" = "Masuk dengan akun surel yang ada";
 "login_inbox" = "Surel masuk";
 "login_imap_login" = "Nama login IMAP";
 "login_imap_server" = "Server IMAP";
@@ -352,8 +344,6 @@
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
-// deprecated
-"pref_password_and_account_settings" = "Kata sandi dan akun";
 "pref_who_can_see_profile_explain" = "Foto dan nama profil Anda akan tampak bersama dengan pesan-pesan ketika berkomunikasi dengan pengguna lain. Informasi yang telah dikirimkan tidak dapat dihapus atau dipindah.";
 "pref_your_name" = "Nama Anda";
 // Label of the Bio/Signature/Status/Motto field
@@ -399,12 +389,6 @@
 "pref_backup_export_explain" = "Cadangan membantu Anda untuk membuat instalasi baru di perangkat ini atau perangkat lain.\n\nDalam cadangan terdapat semua pesan, kontak dan obrolan dan pengaturan Autocrypt ujung ke ujung Anda. Simpan berkas cadangan di tempat yang aman atau hapus secepatnya.";
 "pref_backup_export_start_button" = "Mulai Cadangkan";
 "pref_backup_written_to_x" = "Cadangan berhasil ditulis ke \"%1$@\".";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Ekspor kunci rahasia";
-// deprecated
-"pref_managekeys_export_explain" = "Ekspor kunci rahasia ke \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Kunci rahasia berhasil ditulis ke \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
@@ -443,16 +427,6 @@
 "autodel_after_1_week" = "Setelah 1 minggu";
 "after_5_weeks" = "Setelah 5 minggu";
 "autodel_after_1_year" = "Setelah 1 tahun";
-// deprecated
-"autocrypt_send_asm_title" = "Kirim Pengaturan Pesan Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Pengaturan Pesan Autocrypt membagi pengaturan ujung ke ujung Anda secara aman dengan aplikasi Autocrypt-compliant lain.\n\nPengaturan ini akan dienkripsi oleh kode pengaturan yang ditampilkan disini dan harus diketik di perangkat lainnya.";
-// deprecated
-"autocrypt_send_asm_button" = "Kirim Pengaturan Pesan Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Pengaturan Anda sudah dikirim ke Anda sendiri. Lihat pesan pengaturan di perangkat yang lain. Seharusnya Anda akan diminta kode pengaturan. Masukkan angka berikut:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Lebih baik enkripsi ujung ke ujung";
 // system messages
 "systemmsg_subject_for_new_contact" = "Pesan dari %1$@";
 "systemmsg_failed_sending_to" = "Gagal mengirim pesan ke %1$@.";
@@ -548,9 +522,6 @@
 "save_desktop" = "Menyimpan";
 "name_desktop" = "Nama";
 "select_group_image_desktop" = "Pilih gambar grup";
-// deprecated
-"autocrypt_correct_desktop" = "Pengaturan Autocrypt ditransfer.";
-"forget_login_confirmation_desktop" = "Hapus login ini? Semuanya akan dihapus, termasuk pengaturan ujung ke ujung, kontak, obrolan, pesan dan media. Kalau diklik tidak bisa balik lagi.";
 "message_detail_sent_desktop" = "kirim";
 "message_detail_received_desktop" = "diterima";
 "menu.view.developer.open.log.folder" = "Buka folder log";

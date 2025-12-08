@@ -224,8 +224,6 @@
 "menu_save_log" = "Tallenna loki";
 "menu_more_options" = "Lisää asetuksia";
 "menu_learn_spelling" = "Opi tavaus";
-// deprecated
-"menu_chat_audit_log" = "Keskustelun tarkastusloki";
 "jump_to_message" = "Siirry viestiin";
 "copy_json" = "Kopioi JSON";
 "replace_draft" = "Korvaa luonnos";
@@ -274,8 +272,6 @@
 "open_url_confirmation" = "Haluatko avata tämän linkin?";
 // contact list
 "contacts_title" = "Yhteystiedot";
-// deprecated
-"contacts_enter_name_or_email" = "Anna nimi tai sähköpostiosoite";
 "contacts_type_email_above" = "Kirjoita sähköpostiosoite ylle";
 // chatlist and chat view
 "chat_archived_chats_title" = "Arkistoidut keskustelut";
@@ -324,12 +320,6 @@
 "filter_map_on_time" = "Näytä sijainnit aikajanalla";
 "show_location_traces" = "Näytä jäljet";
 "add_poi" = "Lähetä erikseen valittu piste";
-// deprecated
-"chat_audit_log_empty_message" = "Keskustelun järjestelmäviestit näkyvät tässä";
-// deprecated
-"chat_audit_log_title" = "Keskustelun tarkastusloki yhteystiedolle %1$@";
-// deprecated
-"chat_audit_log_description" = "Tässä näytetään vain järjestelmä- ja ohjeviestit. Tämä näkymä helpottaa viimeisimpien tapahtumien löytämistä tavallisten viestien joukosta.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "Älä kysy enää osoitteelle %1$@";
@@ -355,8 +345,6 @@
 "group_self_not_in_group" = "Sinun täytyy olla ryhmän jäsen suorittaaksesi tämän toiminnon.";
 "profile_encryption" = "Salaus";
 "profile_shared_chats" = "Jaetut keskustelut";
-// deprecated
-"related_chats" = "Liittyvät keskustelut";
 "tab_contact" = "Yhteystieto";
 "tab_group" = "Ryhmä";
 "tab_gallery" = "Galleria";
@@ -417,7 +405,7 @@
 "sending" = "Lähetetään";
 "last_msg_sent_successfully" = "Viimeinen viesti lähetetty onnistuneesti.";
 "not_supported_by_provider" = "Ei tuettu palveluntarjoajallasi.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Viestit";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
@@ -426,7 +414,7 @@
 "onboarding_create_instant_account" = "Luo uusi profiili";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Minulla on jo profiili";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Tavanomainen sähköpostikirjautuminen";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profiilisi";
@@ -450,10 +438,6 @@
 "welcome_chat_over_email" = "Turvallinen hajautettu keskustelu";
 "scan_invitation_code" = "Skannaa kutsukoodi";
 "login_title" = "Kirjaudu sisään";
-// deprecated
-"login_header" = "Kirjaudu sähköpostitilillesi";
-// deprecated
-"login_explain" = "Kirjaudu olemassa olevalla sähköpostitilillä";
 "login_inbox" = "Saapuvan postin laatikko";
 "login_imap_login" = "IMAP -kirjautumistunnus";
 "login_imap_server" = "IMAP -palvelin";
@@ -501,8 +485,6 @@
 "pref_profile_photo" = "Profiilikuva";
 "pref_blocked_contacts" = "Estetyt yhteystiedot";
 "blocked_empty_hint" = "Estämäsi yhteystiedot näkyvät tässä";
-// deprecated
-"pref_password_and_account_settings" = "Salasana ja tili";
 "pref_who_can_see_profile_explain" = "Kun kommunikoit muiden käyttäjien kanssa, profiilikuvasi, nimesi ja biosi lähetetään viestiesi ohessa.";
 "pref_your_name" = "Nimesi";
 // Label of the Bio/Signature/Status/Motto field
@@ -543,10 +525,6 @@
 "pref_server" = "Palvelin";
 "pref_encryption" = "Salaus";
 "pref_manage_keys" = "Hallinnoi avaimia";
-// deprecated
-"pref_show_system_contacts" = "Lue laitteen osoitekirja";
-// deprecated
-"pref_show_system_contacts_explain" = "Tarjoa keskustelujen avaamista yhteystietojen perusteella. Jotkin palveluntarjoajat vaativat ensin päästä-päähän salauksen käyttöönottoa. ";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
 "pref_view_log" = "Näytä loki";
@@ -561,12 +539,6 @@
 "pref_backup_export_all" = "Vie kaikki %1$d profiilia";
 "pref_backup_export_start_button" = "Aloita varmuuskopiointi";
 "pref_backup_written_to_x" = "Varmuuskopio kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Vie salaiset avaimet";
-// deprecated
-"pref_managekeys_export_explain" = "Vie salaiset avaimet kohteeseen \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Salaiset avaimet kirjoitettu onnistuneesti kohteeseen \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Taustakuva";
 "pref_background_btn_default" = "Käytä oletuskuvaa";
@@ -584,10 +556,6 @@
 "pref_show_emails_all" = "Kaikki";
 "pref_experimental_features" = "Kokeelliset ominaisuudet";
 "pref_on_demand_location_streaming" = "Tarvittaessa sijainnin jatkuva jakaminen";
-// deprecated
-"pref_developer_mode" = "Kehittäjätila";
-// deprecated
-"pref_developer_mode_explain" = "Kytkee päälle debuggausvaihtoehdot ja saattaa tehdä sovelluksesta epävakaan. Vain kehittäjille.";
 "pref_background_default" = "Oletuskuva";
 "pref_background_default_color" = "Oletusväri";
 "pref_background_custom_image" = "Mukautettu kuva";
@@ -650,16 +618,6 @@
 "autodel_after_1_week" = "1 viikon päästä";
 "after_5_weeks" = "5 viikon päästä";
 "autodel_after_1_year" = "1 vuoden päästä";
-// deprecated
-"autocrypt_send_asm_title" = "Lähetä Autocrypt -käyttöönottoviesti";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Autocrypt -käyttöönottoviesti jakaa turvallisesti päästä-päähän -salauksen asetukset toisten Autocrypt-yhteensopivien sovellusten kanssa.\n\nMäärittely salataan tässä näytettävällä käyttöönottokoodilla, joka on syötettävä toisella laittella.";
-// deprecated
-"autocrypt_send_asm_button" = "Lähetä Autocrypt -käyttöönottoviesti";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Käyttöönottoviesti on lähetetty sinulle itsellesi. Avaa viesti toisella laitteella. Sinulta pyydetään käyttöönottokoodia. Anna seuraavat numerot:";
-// deprecated
-"autocrypt_prefer_e2ee" = "Suosi päästä-päähän -salausta";
 // system messages
 "systemmsg_subject_for_new_contact" = "Viesti lähettäjältä %1$@";
 "systemmsg_failed_sending_to" = "Viestin lähettäminen kohteeseen %1$@ epäonnistui.";
@@ -756,6 +714,7 @@
 "withdraw_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla.";
 "withdraw_qr_code" = "Kytke QR-koodi pois käytöstä";
 "revive_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nQR-koodi ei ole aktiivinen tällä laitteella.";
 "revive_qr_code" = "Aktivoi QR-koodi";
 "qrshow_title" = "QR-kutsukoodi";
@@ -858,9 +817,6 @@
 "name_desktop" = "Nimi";
 "select_group_image_desktop" = "Valitse ryhmän kuva";
 "export_backup_desktop" = "Vie varmuuskopio";
-// deprecated
-"autocrypt_correct_desktop" = "Autocrypt-asetukset siirretty.";
-"forget_login_confirmation_desktop" = "Poista tämä kirjautuminen? Kaikki tiedot poistetaan, mukaan lukien päästä-päähän-salauksen asetukset, yhteystiedot, keskustelut, viestit ja media. Tämä toiminto on peruuttamaton.";
 "message_detail_sent_desktop" = "lähetetty";
 "message_detail_received_desktop" = "vastaanotettu";
 "menu.view.developer.open.log.folder" = "Avaa lokikansio";

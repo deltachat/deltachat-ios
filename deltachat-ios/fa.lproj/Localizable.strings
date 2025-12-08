@@ -284,8 +284,6 @@
 "menu_save_log" = "ذخیره گزارش";
 "menu_more_options" = "گزینه‌های بیشتر";
 "menu_learn_spelling" = "یادگرفتن املا ";
-// deprecated
-"menu_chat_audit_log" = "گزارش بررسی گپ";
 "jump_to_message" = "رفتن به پیام";
 "jump_to_original_message" = "پرش به پیام اصلی";
 "copy_json" = "JSON رونوشت برداری از ";
@@ -346,8 +344,6 @@
 "open_url_confirmation" = "آیا می‌خواهید این لینک را باز کنید؟";
 // contact list
 "contacts_title" = "مخاطبین";
-// deprecated
-"contacts_enter_name_or_email" = "نام یا نشانی رایانامه را وارد کنید";
 "contacts_type_email_above" = "نشانی رایانامه را در بخش بالا وارد کنید";
 // chatlist and chat view
 "chat_archived_chats_title" = "گپ‌های بایگانی شده";
@@ -401,12 +397,6 @@
 "filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
 "show_location_traces" = "نمایش ردپاها";
 "add_poi" = "ارسال نقطه توجه";
-// deprecated
-"chat_audit_log_empty_message" = "پیام‌های سامانه‌ای این گپ اینجا نمایش داده خواهند شد";
-// deprecated
-"chat_audit_log_title" = "گزارش حسابرسی گپ برای %1$@";
-// deprecated
-"chat_audit_log_description" = "فقط سامانه و پیام‌های اطلاع‌رسانی را نشان می‌دهد. برای یافتن آخرین کنش‌های گپ بدون لغزش میان بسیاری پیام مفید است.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "دوباره درمورد %1$@ سوال نشود";
@@ -434,8 +424,6 @@
 "group_self_not_in_group" = "برای این کار باید عضو گروه باشید.";
 "profile_encryption" = "رمزگذاری";
 "profile_shared_chats" = "گپ‌های هم‌رسانده";
-// deprecated
-"related_chats" = "گفتگوهای مرتبط";
 // Separator between the list of actual members and past members
 "past_members" = "عضو‌های پیشین";
 "tab_contact" = "مخاطب";
@@ -501,7 +489,7 @@
 "sending" = "در حال ارسال...";
 "last_msg_sent_successfully" = "آخرین پیام با موفقیت ارسال شد.";
 "not_supported_by_provider" = "ارائه دهنده شما از این پشتیبانی نمی‌کند";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "پیام‌ها";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
@@ -510,7 +498,7 @@
 "onboarding_create_instant_account" = "ایجاد حساب کاربری جدید";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "از قبل یک حساب کاربری دارم";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "ساخت حساب کاربری با حساب رایانامه معمولی";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "نمایه شما";
@@ -534,10 +522,6 @@
 "welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
 "login_title" = "ورود";
-// deprecated
-"login_header" = "به سرور خود وارد شوید";
-// deprecated
-"login_explain" = "ورود با یک رایانامه موجود";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -607,8 +591,6 @@
 "pref_profile_photo" = "تصویر نمایه";
 "pref_blocked_contacts" = "مخاطبین مسدود شده";
 "blocked_empty_hint" = "اگر مخاطبی را مسدود کنید اینجا نمایش داده می‌شود";
-// deprecated
-"pref_password_and_account_settings" = "رمزعبور و حساب کاربری";
 "pref_who_can_see_profile_explain" = "وقتی با دیگر کاربران گپ می‌زنید، تصویر نمایه، نام و امضایتان در کنار پیام‌هایتان فرستاده می‌شوند.";
 "pref_your_name" = "اسم شما";
 // Label of the Bio/Signature/Status/Motto field
@@ -651,8 +633,6 @@
 "pref_server" = "کارساز";
 "pref_encryption" = "رمزگذاری";
 "pref_manage_keys" = "مدیریت کلیدها";
-// deprecated
-"pref_show_system_contacts" = "خواندن دفترچه آدرس دستگاه";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
 "pref_view_log" = "نمایش گزارش";
@@ -667,12 +647,6 @@
 "pref_backup_export_all" = "برون‌ریزی همه%1$d حساب ها";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
 "pref_backup_written_to_x" = "نسخه پشتیبان با موفقیت در\"%1$@\" ذخیره شد.";
-// deprecated
-"pref_managekeys_export_secret_keys" = "صادر کردن کلید خصوصی";
-// deprecated
-"pref_managekeys_export_explain" = "صادر کردن کلیدهای خصوصی به\"%1$@\"؟";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "کلیدهای خصوصی با موفقیت در\"%1$@\" ذخیره شدند. ";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "پس‌زمینه";
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
@@ -690,10 +664,6 @@
 "pref_show_emails_all" = "همه";
 "pref_experimental_features" = "ویژگی‌های آزمایشی";
 "pref_on_demand_location_streaming" = "هم‌رسانی زندهٔ به‌فرمان مکان";
-// deprecated
-"pref_developer_mode" = "حالت برنامه نویسی";
-// deprecated
-"pref_developer_mode_explain" = "تنظیم‌های عیب‌یابی را فعال می‌کند که موجب کاهش پایداری نرم‌افزار می‌شوند.  فقط جهت استفاده توسعه دهندگان";
 "pref_background_default" = "پس‌زمینه پیش‌فرض";
 "pref_background_default_color" = "رنگ پیش‌فرض";
 "pref_background_custom_image" = "تصویر ترجیحی";
@@ -756,16 +726,6 @@
 "autodel_after_1_week" = "بعد از ۱ هفته";
 "after_5_weeks" = "بعد از ۵ هفته";
 "autodel_after_1_year" = "بعد از ۱ سال";
-// deprecated
-"autocrypt_send_asm_title" = "ارسال پیام برپاسازی اتوکریپت";
-// deprecated
-"autocrypt_send_asm_explain_before" = "پیام برپاسازی آتوکریپت تنظیم‌های رمزگذاری سراسری شما را به شکلی امن با دیگر برنامه‌ها به اشتراک می‌گذارد.\n\n تنظیم‌ها با یک کد برپاسازی که در اینجا نمایش داده می‌شود رمزگذاری می‌شوند و باید در دستگاه دیگر تایپ شود. ";
-// deprecated
-"autocrypt_send_asm_button" = "ارسال پیام برپاسازی اتوکریپت";
-// deprecated
-"autocrypt_send_asm_explain_after" = "تنظیم‌های شما برای خودتان ارسال شدند. پیام تنظیم‌ها را در دستگاه دیگر باز کنید. یک کد نصب از شما خواسته می‌شود. این ارقام را وارد کنید";
-// deprecated
-"autocrypt_prefer_e2ee" = "ترجیح رمزگذاری گیرنده به گیرنده";
 // system messages
 "systemmsg_subject_for_new_contact" = "پیام از %1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
@@ -867,6 +827,7 @@
 "withdraw_verifygroup_explain" = "این کد کیوآر می‌تواند توسط دیگران و برای پیوستن به گروه «%1$@» اسکن شود.\n\n شما می‌تواند این کد کیوآر را در اینجا غیرفعال کنید و با اسکن کردن مجدد، آن را فعال نمایید. ";
 "withdraw_qr_code" = "غیرفعال کردن کد کیوآر";
 "revive_verifycontact_explain" = "این کد کیو‌آر بازنشانی شده است و دیگر فعال نیست.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "این کد کیوآر برای پیوستن به گروه «%1$@» بازنشانی شده‌است و دیگر فعال نیست.";
 "revive_qr_code" = "فعال کردن کد کیوآر";
 "qrshow_title" = "کد دعوت کیوآر";
@@ -989,9 +950,6 @@ GNU GPL ورژن ۳
 "name_desktop" = "نام";
 "select_group_image_desktop" = "انتخاب تصویر گروه";
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
-// deprecated
-"autocrypt_correct_desktop" = "برپاسازی اتوکریپت انتقال یافت.";
-"forget_login_confirmation_desktop" = "پاک کردن این حساب؟ همه‌چیز پاک می‌شود که شامل رمزگذاری سراسری، مخاطبین، گپ‌ها، پیام‌ها و رسانه‌ها می‌شود. این عملیات قابل بازگردانی نیست.";
 "message_detail_sent_desktop" = "ارسال شد";
 "message_detail_received_desktop" = "دریافت شد";
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";

@@ -287,8 +287,6 @@
 "menu_save_log" = "Salvar log";
 "menu_more_options" = "Más opciones";
 "menu_learn_spelling" = "Aprender ortografía";
-// deprecated
-"menu_chat_audit_log" = "Registro de auditoría de chat";
 "jump_to_message" = "Saltar al mensaje";
 "jump_to_original_message" = "Saltar al mensaje original";
 "copy_json" = "Copiar JSON";
@@ -359,8 +357,6 @@
 "open_url_confirmation" = "¿Quieres abrir este enlace?";
 // contact list
 "contacts_title" = "Contactos";
-// deprecated
-"contacts_enter_name_or_email" = "Nombre o correo electrónico";
 "contacts_type_email_above" = "Escriba la dirección de correo arriba";
 // chatlist and chat view
 "chat_archived_chats_title" = "Chats archivados";
@@ -414,12 +410,6 @@
 "filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
 "show_location_traces" = "Mostrar trazas";
 "add_poi" = "Enviar punto de interés";
-// deprecated
-"chat_audit_log_empty_message" = "Los mensajes del sistema de este chat aparecerían aquí";
-// deprecated
-"chat_audit_log_title" = "Registro de auditoría de chat para %1$@";
-// deprecated
-"chat_audit_log_description" = "Esta vista solo muestra mensajes de información y del sistema. Útil para encontrar las últimas acciones de chat sin tener que desplazarse por muchos mensajes normales.";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
 "open_external_url_trust_domain" = "No preguntar nuevamente para %1$@";
@@ -447,8 +437,6 @@
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
 "profile_encryption" = "Cifrado";
 "profile_shared_chats" = "Chats en común";
-// deprecated
-"related_chats" = "Chats similares";
 // Separator between the list of actual members and past members
 "past_members" = "Miembros anteriores";
 "tab_contact" = "Contacto";
@@ -513,7 +501,7 @@
 "sending" = "Enviando…";
 "last_msg_sent_successfully" = "El último mensaje fue enviado satisfactoriamente.";
 "not_supported_by_provider" = "No soportado por tu proveedor.";
-// Subtitle in quota context of "Connetivity" view. Should be be plural always, no number is prefixed.
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensajes";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usado";
@@ -522,7 +510,7 @@
 "onboarding_create_instant_account" = "Crear perfil nuevo";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ya tengo un perfil";
-// Stay short here, alternative source string could be "Transport over Classic Email", avoiding maybe the maybe long term "Use". Context: this is Button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
 "manual_account_setup_option" = "Iniciar sesión con correo electrónico";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Tu perfil";
@@ -547,10 +535,6 @@
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
 "login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados:\n\n• No utilice una cuenta que esté usando en otra  app.\n\n• El servidor de correo electrónico clásico permite chats sin cifrado de extremo a extremo, los cuales están marcados por un icono de correo.";
-// deprecated
-"login_header" = "Inicie sesión en su servidor";
-// deprecated
-"login_explain" = "Iniciar sesión con una cuenta de correo existente";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -577,14 +561,15 @@
 "proxy_share_link" = "Compartir enlace";
 "proxy_enabled" = "Proxy activado";
 "proxy_enabled_hint" = "Estás utilizando un proxy. Si tienes problemas para conectarte, prueba con otro proxy.";
-// "Transports", these are the relay servers used, can also be translated as "Transport Servers", if only "Transport" sounds too weird in the destination language
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Transportes";
 "add_transport" = "Añadir transporte";
 "remove_transport" = "Eliminar transporte";
 "edit_transport" = "Editar transporte";
-// shown if a QR code was scanned that can be used as a transport
+// shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "¿Añadir este transporte?";
 "invalid_transport_qr" = "El código QR escaneado no contiene un transporte válido.";
+// placeholder will be replaced by a relay server name
 "confirm_remove_transport" = "¿Eliminar el transporte \"%1$@\"?\nTus contactos solo podrán localizarte si previamente has contactado con ellos mediante otro transporte.\nEn caso de duda, quita el transporte más tarde.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
@@ -631,8 +616,6 @@
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
 "blocked_empty_hint" = "Si bloqueas contactos, se mostrarán aquí.";
-// deprecated
-"pref_password_and_account_settings" = "Contraseña y cuenta";
 "pref_who_can_see_profile_explain" = "La imagen y el nombre de su perfil se mostrarán junto con sus mensajes cuando se comunique con otros usuarios. La información ya enviada no puede ser borrada o eliminada.";
 "pref_your_name" = "Tu nombre";
 // Label of the Bio/Signature/Status/Motto field
@@ -676,10 +659,6 @@
 "pref_server" = "Servidor";
 "pref_encryption" = "Cifrado";
 "pref_manage_keys" = "Administrar claves";
-// deprecated
-"pref_show_system_contacts" = "Leer la libreta de direcciones del sistema";
-// deprecated
-"pref_show_system_contacts_explain" = "Ofrecer crear chats con contactos de la libreta de direcciones. Algunos proveedores necesitan primero una configuración de cifrado de extremo a extremo.";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
 "pref_view_log" = "Ver log";
@@ -695,12 +674,6 @@
 "pref_backup_export_all" = "Exportar todo (%1$d cuentas)";
 "pref_backup_export_start_button" = "Iniciar copia de respaldo";
 "pref_backup_written_to_x" = "Copia de respaldo escrita correctamente en %1$@";
-// deprecated
-"pref_managekeys_export_secret_keys" = "Exportar claves secretas";
-// deprecated
-"pref_managekeys_export_explain" = "¿Exportar claves secretas a \"%1$@\"?";
-// deprecated
-"pref_managekeys_secret_keys_exported_to_x" = "Claves secretas escritas exitosamente a \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imagen por defecto";
@@ -723,10 +696,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Características experimentales";
 "pref_on_demand_location_streaming" = "Transmisión de ubicación bajo demanda";
-// deprecated
-"pref_developer_mode" = "Modo desarrollador";
-// deprecated
-"pref_developer_mode_explain" = "Activa las opciones de depuración y puede hacer que la aplicación sea menos estable. Solo para desarrolladores.";
 "pref_background_default" = "Fondo por defecto";
 "pref_background_default_color" = "Color por defecto";
 "pref_background_custom_image" = "Imagen personalizada";
@@ -792,16 +761,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "autodel_after_1_week" = "Luego de 1 semana";
 "after_5_weeks" = "Luego de 5 semanas";
 "autodel_after_1_year" = "Luego de 1 año";
-// deprecated
-"autocrypt_send_asm_title" = "Enviar Mensaje de Configuración de Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_before" = "Un \"Mensaje de Configuración de Autocrypt\" comparte de forma segura su configuración de extremo a extremo con otras aplicaciones compatibles con Autocrypt.\n\nLa configuración se cifrará mediante un código de configuración que se muestra aquí y debe escribirse en el otro dispositivo.";
-// deprecated
-"autocrypt_send_asm_button" = "Enviar Mensaje de Configuración de Autocrypt";
-// deprecated
-"autocrypt_send_asm_explain_after" = "Se le ha enviado su configuración. Cambie al otro dispositivo y abra el mensaje de configuración. Se le debe solicitar un código de configuración. Escriba los siguientes dígitos:.\n\nUna vez que haya terminado, su otro dispositivo estará listo para usar Autocrypt.";
-// deprecated
-"autocrypt_prefer_e2ee" = "Preferir el cifrado de extremo a extremo";
 // system messages
 "systemmsg_subject_for_new_contact" = "Mensaje de %1$@";
 "systemmsg_failed_sending_to" = "Falla en enviar el mensaje a %1$@.";
@@ -909,7 +868,9 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "withdraw_joinbroadcast_explain" = "Este código QR puede ser escaneado por otros para unirse al canal \"%1$@\".\n\nPuedes restablecerlo, de modo que el código QR existente o el enlace de invitación dejarán de funcionar.";
 "withdraw_qr_code" = "Desactivar código QR";
 "revive_verifycontact_explain" = "Este código QR puede ser escaneado por otros para contactarlo.\n\nEl código QR no está activo en este dispositivo.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nEl código QR no está activo en este dispositivo.";
+// deprecated, use generic revive_verifycontact_explain instead
 "revive_joinbroadcast_explain" = "Este código QR para unirse al canal \"%1$@\" ha sido reiniciado y ya no está activo.";
 "revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código de invitación QR";
@@ -1019,9 +980,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "name_desktop" = "Nombre";
 "select_group_image_desktop" = "Seleccionar imagen de grupo";
 "export_backup_desktop" = "Exportar copia de respaldo";
-// deprecated
-"autocrypt_correct_desktop" = "Configuración de Autocrypt transferida exitosamente!";
-"forget_login_confirmation_desktop" = "¿Borrar esta sesión? Todo se eliminará, incluida la configuración de extremo a extremo, contactos, chats, mensajes y multimedia. Esta acción es definitiva y no puede ser revertida.";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recibido";
 "menu.view.developer.open.log.folder" = "Abrir Carpeta de Logs";
