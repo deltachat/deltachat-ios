@@ -21,6 +21,7 @@
 - Add members to channels by QR codes
 - Channel QR codes can be withdrawn and revived
 - Add storage usage information to "Settings / Advanced / View Log"
+- When deleting a profile, only ask once
 - Fix: Case-insensitive search for non-ASCII chat and contact names
 - Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
