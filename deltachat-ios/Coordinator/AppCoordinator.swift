@@ -417,13 +417,16 @@ class AppCoordinator: NSObject {
             viewController.present(alert, animated: true, completion: nil)
 
         case DC_QR_ACCOUNT, DC_QR_LOGIN:
-            let msg = String.localizedStringWithFormat(String.localized(state == DC_QR_ACCOUNT ? "qraccount_ask_create_and_login_another" : "qrlogin_ask_login_another"), qrParsed.text1 ?? "")
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: String.localized("confirm_add_transport"), message: qrParsed.text1, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                _ = self.dcAccounts.add()
-                appDelegate.reloadDcContext(accountCode: code)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                popTabsToRootViewControllers()
+                showTab(index: settingsTab)
+                guard let root = tabBarController.selectedViewController as? UINavigationController else { return }
+                let advancedViewController = AdvancedViewController(dcAccounts: dcAccounts)
+                let transportViewController = TransportListViewController(dcContext: dcContext, dcAccounts: dcAccounts, continueQrScan: code)
+                root.setViewControllers([root.viewControllers[0], advancedViewController, transportViewController], animated: true)
             }))
             viewController.present(alert, animated: true, completion: nil)
 

@@ -16,7 +16,7 @@ class TransportListViewController: UITableViewController {
     private var qrCodeReader: QrCodeReaderController?
     private var progressAlertHandler: ProgressAlertHandler?
 
-    init(dcContext: DcContext, dcAccounts: DcAccounts) {
+    init(dcContext: DcContext, dcAccounts: DcAccounts, continueQrScan: String? = nil) {
         self.dcContext = dcContext
         self.dcAccounts = dcAccounts
         self.transports = dcContext.listTransports()
@@ -32,6 +32,12 @@ class TransportListViewController: UITableViewController {
         hidesBottomBarWhenPushed = true
 
         title = String.localized("transports")
+
+        if let continueQrScan {
+            DispatchQueue.main.async { [weak self] in
+                self?.addFromQrCode(continueQrScan)
+            }
+        }
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
