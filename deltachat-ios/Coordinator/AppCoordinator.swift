@@ -420,13 +420,15 @@ class AppCoordinator: NSObject {
             let alert = UIAlertController(title: String.localized("confirm_add_transport"), message: qrParsed.text1, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                popTabsToRootViewControllers()
-                showTab(index: settingsTab)
-                guard let root = tabBarController.selectedViewController as? UINavigationController else { return }
-                let advancedViewController = AdvancedViewController(dcAccounts: dcAccounts)
-                let transportViewController = TransportListViewController(dcContext: dcContext, dcAccounts: dcAccounts, continueQrScan: code)
-                root.setViewControllers([root.viewControllers[0], advancedViewController, transportViewController], animated: true)
+                Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
+                    guard let self = self else { return }
+                    popTabsToRootViewControllers()
+                    showTab(index: settingsTab)
+                    guard let root = tabBarController.selectedViewController as? UINavigationController else { return }
+                    let advancedViewController = AdvancedViewController(dcAccounts: dcAccounts)
+                    let transportViewController = TransportListViewController(dcContext: dcContext, dcAccounts: dcAccounts, continueQrScan: code)
+                    root.setViewControllers([root.viewControllers[0], advancedViewController, transportViewController], animated: true)
+                }
             }))
             viewController.present(alert, animated: true, completion: nil)
 
