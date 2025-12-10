@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Scanning a QR code with a relay ask for adding it as additional transport
+- Ask for device owner verification on profile deletion
 
 
 ## v2.33.0
