@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Scanning a QR code with a relay ask for adding it as additional transport
+
+
 ## v2.33.0
 2025-12
 
