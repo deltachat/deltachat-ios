@@ -166,31 +166,32 @@ class ProfileSwitchViewController: UITableViewController {
 
     func deleteAccount(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let accountId = accountIds[indexPath.row]
-        let account = self.dcAccounts.get(id: accountId)
-        let message = "⚠️ " + String.localized(stringID: "delete_account_explain_with_name", parameter: account.displayname ?? account.addr ?? "no addr")
-        let alert = UIAlertController(title: String.localized("delete_account_ask"), message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+        Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
             guard let self else { return }
+            let accountId = accountIds[indexPath.row]
+            let account = dcAccounts.get(id: accountId)
+            let message = "⚠️ " + String.localized(stringID: "delete_account_explain_with_name", parameter: account.displayname ?? account.addr ?? "no addr")
+            let alert = UIAlertController(title: String.localized("delete_account_ask"), message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
+                guard let self else { return }
 
-            appDelegate.locationManager.disableLocationStreamingInAllChats()
-            self.dcAccounts.stopIo()
-            _ = self.dcAccounts.remove(id: accountId)
-            self.dcAccounts.startIo()
-            KeychainManager.deleteAccountSecret(id: accountId)
-            INInteraction.delete(with: "\(accountId)", completion: nil)
-            if self.dcAccounts.getAll().isEmpty {
-                _ = self.dcAccounts.add()
-            } else {
-                let lastSelectedAccountId = UserDefaults.standard.integer(forKey: Constants.Keys.lastSelectedAccountKey)
-                if lastSelectedAccountId != 0 {
-                    _ = self.dcAccounts.select(id: lastSelectedAccountId)
+                appDelegate.locationManager.disableLocationStreamingInAllChats()
+                _ = dcAccounts.remove(id: accountId)
+                KeychainManager.deleteAccountSecret(id: accountId)
+                INInteraction.delete(with: "\(accountId)", completion: nil)
+                if dcAccounts.getAll().isEmpty {
+                    _ = dcAccounts.add()
+                } else {
+                    let lastSelectedAccountId = UserDefaults.standard.integer(forKey: Constants.Keys.lastSelectedAccountKey)
+                    if lastSelectedAccountId != 0 {
+                        _ = dcAccounts.select(id: lastSelectedAccountId)
+                    }
                 }
-            }
-            self.reloadAndExit(appDelegate: appDelegate, previousAccountId: 0)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        self.present(alert, animated: true, completion: nil)
+                reloadAndExit(appDelegate: appDelegate, previousAccountId: 0)
+            }))
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
