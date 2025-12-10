@@ -241,8 +241,8 @@ class BackupTransferViewController: UIViewController {
         case .unknown:
             let addInfo = warnAboutCopiedQrCodeOnAbort ? String.localized("multidevice_abort_will_invalidate_copied_qr") : nil
             let alert = UIAlertController(title: String.localized("multidevice_abort"), message: addInfo, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { _ in
-                self.navigationController?.popViewController(animated: true)
+            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)

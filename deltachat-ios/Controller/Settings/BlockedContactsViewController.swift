@@ -45,14 +45,16 @@ class BlockedContactsViewController: GroupMembersViewController, GroupMemberSele
             let dcContact = dcContext.getContact(id: contactId)
             let title = dcContact.displayName
             let alert = UIAlertController(title: title, message: String.localized("ask_unblock_contact"), preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("menu_unblock_contact"), style: .default, handler: { [weak self] _ in
+                guard let self else { return }
                 self.dcContext.unblockContact(id: contactId)
                 self.contactIds = self.dcContext.getBlockedContacts()
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
                 self.updateEmtpyStateView()
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+                guard let self else { return }
                 self.selectedContactIds = Set(self.contactIds)
                 self.tableView.reloadData()
             }))

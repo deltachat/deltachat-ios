@@ -183,7 +183,7 @@ class InstantOnboardingViewController: UIViewController {
             }
         }
 
-        let manualAccountSetup = UIAlertAction(title: String.localized("manual_account_setup_option"), style: .default) { _ in
+        let manualAccountSetup = UIAlertAction(title: String.localized("manual_account_setup_option"), style: .default) { [weak self] _ in
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
 

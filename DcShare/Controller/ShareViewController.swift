@@ -69,8 +69,8 @@ class ShareViewController: UIViewController {
     func logAndAlert(error: any Error) {
         logger.error(error.localizedDescription)
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { _ in
-            self.extensionContext!.cancelRequest(withError: error)
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
+            self?.extensionContext!.cancelRequest(withError: error)
         })
         present(alert, animated: true)
     }

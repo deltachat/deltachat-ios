@@ -1238,8 +1238,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                                       preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: actionHandler))
 
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: cancelHandler ?? { _ in
-            self.dismiss(animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: cancelHandler ?? { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }
@@ -1336,18 +1336,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let alert = UIAlertController(title: Utils.askDeleteMsgsText(count: ids.count, chat: dcChat), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me"), style: .destructive, handler: { _ in
-            self.dcContext.deleteMessages(msgIds: ids)
+        alert.addAction(UIAlertAction(title: String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me"), style: .destructive, handler: { [weak self] _ in
+            self?.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
         if canDeleteForEveryone {
-            alert.addAction(UIAlertAction(title: String.localized("delete_for_everyone"), style: .destructive, handler: { _ in
-                self.dcContext.sendDeleteRequest(msgIds: ids)
+            alert.addAction(UIAlertAction(title: String.localized("delete_for_everyone"), style: .destructive, handler: { [weak self] _ in
+                self?.dcContext.sendDeleteRequest(msgIds: ids)
                 deleteInUi(ids: ids)
             }))
         }
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
     }
@@ -1512,8 +1512,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func addDurationSelectionAction(to alert: UIAlertController, key: String, duration: Int) {
-        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { _ in
-            self.locationStreamingFor(seconds: duration)
+        let action = UIAlertAction(title: String.localized(key), style: .default, handler: { [weak self] _ in
+            self?.locationStreamingFor(seconds: duration)
         })
         alert.addAction(action)
     }
@@ -2078,7 +2078,8 @@ extension ChatViewController {
               let vcard = vcards.first else { return }
 
         let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), vcard.displayName), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
             if let contactIds = self.dcContext.importVcard(path: file) {
                 logger.info("imported contacts: \(contactIds)")
                 if let contactId = contactIds.first {
@@ -2324,8 +2325,8 @@ extension ChatViewController: BaseMessageCellDelegate {
             // (the latter returns `true` for .webm - which is not wrong as _something_ is shown, even if the video cannot be played)
             if previewError && message.type == DC_MSG_VIDEO {
                 let alert = UIAlertController(title: "To play this video, share to apps as VLC on the following page.", message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { _ in
-                    self.showMediaGalleryFor(message: message)
+                alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .default, handler: { [weak self] _ in
+                    self?.showMediaGalleryFor(message: message)
                 }))
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -2403,7 +2404,8 @@ extension ChatViewController: MediaPickerDelegate {
             // (sendAsFile can be ignored as forced to be only a single file at showFilesLibrary()
             let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { _ in
+            alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { [weak self] _ in
+                guard let self = self else { return }
                 let progressAlertHandler = ProgressAlertHandler()
                 progressAlertHandler.dataSource = self
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
