@@ -3,12 +3,11 @@ import DcCore
 
 class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
-    lazy var isVerifiedGroup: Bool = false
     private var isOutBroadcast: Bool = false
     private let gclFlags: Int32
 
     private lazy var sections: [AddGroupMemberSections] = {
-        if isVerifiedGroup || dcContext.isChatmail {
+        if dcContext.isChatmail {
             return [.memberList]
         } else {
             return [.newContact, .memberList]
@@ -45,7 +44,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chat = nil
         self.gclFlags = DC_GCL_ADD_SELF | (createMode == .createEmail ? DC_GCL_ADDRESS : 0)
         super.init(dcContext: dcContext)
-        isVerifiedGroup = false
         self.isOutBroadcast = createMode == .createBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
@@ -56,7 +54,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chat = dcContext.getChat(chatId: chatId)
         self.gclFlags = DC_GCL_ADD_SELF
         super.init(dcContext: dcContext)
-        isVerifiedGroup = chat?.isProtected ?? false
         isOutBroadcast = chat?.isOutBroadcast ?? false
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
@@ -118,7 +115,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
             tableView.deselectRow(at: indexPath, animated: false)
             showNewContactController()
         case .memberList:
-            didSelectContactCell(at: indexPath, verifiedContactRequired: isVerifiedGroup)
+            didSelectContactCell(at: indexPath, verifiedContactRequired: false)
         }
     }
 

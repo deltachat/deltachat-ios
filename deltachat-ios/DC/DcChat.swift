@@ -86,10 +86,6 @@ public class DcChat {
         return Int(dc_chat_can_send(chatPointer)) != 0
     }
 
-    public var isProtected: Bool {
-        return dc_chat_is_protected(chatPointer) != 0
-    }
-
     public var isMuted: Bool {
         return dc_chat_is_muted(chatPointer) != 0
     }
