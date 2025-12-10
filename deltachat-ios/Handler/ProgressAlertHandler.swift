@@ -87,8 +87,8 @@ class ProgressAlertHandler {
         guard let dataSource else { return assertionFailure("No DataSource") }
 
         let progressAlertController = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-            self.cancelled = true
+        let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+            self?.cancelled = true
             dcContext.stopOngoingProcess()
         })
         progressAlertController.addAction(cancelAction)

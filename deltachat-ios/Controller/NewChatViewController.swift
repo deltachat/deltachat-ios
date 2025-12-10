@@ -360,11 +360,11 @@ extension NewChatViewController {
             let alert = UIAlertController(title: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), dcContact.displayName),
                                           message: nil,
                                           preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                self.showNewChat(contactId: contactId)
+            alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { [weak self] _ in
+                self?.showNewChat(contactId: contactId)
             }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { _ in
-                self.reactivateSearchBarIfNeeded()
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+                self?.reactivateSearchBarIfNeeded()
             }))
             present(alert, animated: true, completion: nil)
         }

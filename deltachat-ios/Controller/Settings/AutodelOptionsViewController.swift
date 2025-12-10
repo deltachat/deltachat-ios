@@ -129,11 +129,11 @@ class AutodelOptionsViewController: UITableViewController {
                 title: String.localized(fromServer ? "autodel_server_title" : "autodel_device_title"),
                 message: msg,
                 preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("autodel_confirm"), style: .destructive, handler: { _ in
+            alert.addAction(UIAlertAction(title: String.localized("autodel_confirm"), style: .destructive, handler: { [weak self] _ in
                 oldSelectedCell?.accessoryType = .none
                 newSelectedCell?.accessoryType = .checkmark
-                self.currVal = newVal
-                self.tableView.reloadData() // needed to update footer
+                self?.currVal = newVal
+                self?.tableView.reloadData() // needed to update footer
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             present(alert, animated: true, completion: nil)
