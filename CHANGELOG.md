@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v2.33.0 Testflight
+## v2.33.0
 2025-12
 
 - Handle additional transports
@@ -22,6 +22,10 @@
 - Channel QR codes can be withdrawn and revived
 - Add storage usage information to "Settings / Advanced / View Log"
 - When deleting a profile, only ask once
+- Use same 'All media' tab order as desktop and android
+- Remove "Watch Sent Folder" preference
+- Update chatmail relay list
+- Added experimental debug calls option
 - Fix: Case-insensitive search for non-ASCII chat and contact names
 - Fix: handle "webm" videos as files as not supported on iOS natively
 - Fix: Hide member count, if not yet known
@@ -33,18 +37,9 @@
 - Fix: Sort system messages to the bottom of the chat
 - Fix: Rounded corners while long-tapping a message bubble
 - Fix app getting stale (set SQLite busy timeout to 1 minute on iOS)
+- Fix: Unify font of lettered avatars
 - Update translations and local help
 - Update core to 2.33.0
-
-
-## v2.22.2 Testflight
-2025-11
-
-- Added experimental debug calls option
-- Use same 'All media' tab order as desktop and android
-- Update chatmail relay list
-- Remove "Watch Sent Folder" preference
-- Fix: Unify font of lettered avatars
 
 
 ## v2.22.1
