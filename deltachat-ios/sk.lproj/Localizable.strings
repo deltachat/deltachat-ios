@@ -461,7 +461,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "onboarding_create_instant_account" = "Nový účet";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Existujúci účet";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Použiť bežné e-mailové konto";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Váš účet";
@@ -599,11 +599,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_background_btn_gallery" = "Vyberte z galérie";
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Konverzácie sa presunú, aby sa predišlo preplneniu doručenej pošty";
 "pref_only_fetch_mvbox_title" = "Prijímať iba z priečinka DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignorovať zvyšné priečinky. Vyžaduje, aby váš server presúvať správy četu do priečinka DeltaChat.";
 "pref_show_emails" = "Zobraziť klasické e-maily";
 "pref_show_emails_no" = "Nie, iba konverzácie";
 "pref_show_emails_accepted_contacts" = "Pre prijaté kontakty";
@@ -761,8 +757,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "withdraw_verifygroup_explain" = "Tento QR kód môžu naskenovať ostatní, aby sa pripojili ku skupine \"%1$@\".\n\nTu môžete deaktivovať QR kód a znova ho aktivovať opätovným naskenovaním.";
 "withdraw_qr_code" = "Vypnúť QR kód";
 "revive_verifycontact_explain" = "Tento QR kód mohol byť naskenovaný inými, aby vás mohli kontaktovať.\n\nQR kód nie je na tomto zariadení aktívny.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Tento QR kód mohli naskenovať iní, aby sa pripojili ku skupine „%1$@“.\n\nQR kód nie je na tomto zariadení aktívny.";
 "revive_qr_code" = "Povoliť QR kód.";
 "qrshow_title" = "QR pozývací kód";
 "qrshow_x_joining" = "%1$@ pripája sa.";
@@ -776,6 +770,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "qrshow_join_contact_hint" = "Naskenujte a vytvorte kontakt s %1$@ .";
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
 "qraccount_ask_create_and_login" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?
 
 Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
@@ -783,7 +778,7 @@ Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prihlásiť sa na \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Prihlásiť sa do „%1$@“?
 
 Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";

@@ -295,7 +295,7 @@
 "device_talk" = "设备消息";
 "device_talk_subtitle" = "本地生成的消息";
 "device_talk_explain" = "此聊天中的消息是由 Delta Chat 应用本地生成的。 它的制作者使用它来通知应用更新和使用过程中出现的问题。";
-"device_talk_welcome_message2" = "取得联系！\n\n🙌 轻按两台设备主屏上的“二维码”。 在其中一台设备上选择“扫描二维码”，并将其对准另一台设备上显示的二维码\n\n🌍 如果双方不在同一个房间内，可以通过视频通话进行扫描，或从“扫描二维码”那里分享一个邀请链接\n\n接下来： 通过有史以来存在的最大去中心化网络：电子邮件来享受收发消息。和其他流行的即时聊天应用相比，DeltaChat 没有中央控制，不跟踪您本人、您的好友、同事或家人，也不售卖你们的数据给大型组织。";
+"device_talk_welcome_message2" = "取得联系！\n\n🙌 在两台设备的主屏幕上点击“二维码”。在一台设备上选择“扫描二维码”，然后将其对准另一台设备。\n\n🌍 如果双方不在同一个房间内，可以通过视频通话进行扫描，或分享“扫描二维码”中的邀请链接。\n\n然后：尽情享受去中心化的即时通讯应用的体验。与其他流行应用不同，我们不会进行中心化控制、追踪或将您、您的朋友、同事或家人的数据出售给大型组织。";
 "edit_contact" = "编辑联系人";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "固定聊天";
@@ -510,8 +510,8 @@
 "onboarding_create_instant_account" = "创建新账号";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "我已有账号";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
-"manual_account_setup_option" = "使用传统电子邮件作为传输";
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
+"manual_account_setup_option" = "使用传统电子邮件作为中继";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "个人资料";
 // The placeholder will be replaced by the default onboarding server
@@ -562,15 +562,15 @@
 "proxy_enabled" = "代理已启用";
 "proxy_enabled_hint" = "您正在使用代理。如果您在连接时遇到问题，请尝试其他代理。";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "传输";
-"add_transport" = "添加传输";
-"remove_transport" = "移除传输";
-"edit_transport" = "编辑传输";
+"transports" = "中继";
+"add_transport" = "添加中继";
+"remove_transport" = "移除中继";
+"edit_transport" = "编辑中继";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "添加此传输？";
-"invalid_transport_qr" = "扫描的二维码不包含有效的传输。";
+"confirm_add_transport" = "添加此中继？";
+"invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "移除传输“%1$@”？\n\n只有您之前通过其他传输联系过您的联系人，他们才能联系到您。\n\n如有疑问，请稍后移除传输。";
+"confirm_remove_transport" = "移除中继“%1$@”？\n\n只有您之前通过其他中继联系过您的联系人，他们才能联系到您。\n\n如有疑问，请稍后移除中继。";
 "login_certificate_checks" = "证书检查";
 "login_error_mail" = "请输入有效的电子邮件地址";
 "login_error_server" = "请输入有效的服务器 / IP 地址";
@@ -684,11 +684,7 @@
 "pref_multidevice_explain" = "将您的消息与其他设备同步。添加第二个设备时自动启用。";
 "pref_multidevice_change_warn" = "在多个设备上使用同一账号时，必须启用多设备模式。仅当您已从所有其他设备中移除此账号后，才能禁用此设置。\n\n在多个设备上使用该账号时禁用多设备模式会导致错过消息和其他问题。";
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
-// deprecated
-"pref_auto_folder_moves_explain" = "移动聊天对话以免弄乱收件箱";
 "pref_only_fetch_mvbox_title" = "只从 DeltaChat 文件夹获取";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "忽略其他文件夹。需要你的服务器将聊天消息移动到 DeltaChat 文件夹。";
 "pref_show_emails" = "显示传统电子邮件";
 "pref_show_emails_no" = "不显示，仅聊天";
 "pref_show_emails_accepted_contacts" = "已接受的联系人";
@@ -869,10 +865,6 @@
 "withdraw_joinbroadcast_explain" = "其他人可以扫描此二维码加入频道“%1$@”。\n\n您可以重置该二维码，使现有二维码或邀请链接失效。";
 "withdraw_qr_code" = "重置二维码";
 "revive_verifycontact_explain" = "此二维码已重置，不再有效。";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "加入群组“%1$@”的二维码已重置，不再有效。";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "加入频道“%1$@”的二维码已重置，不再有效。";
 "revive_qr_code" = "激活二维码";
 "qrshow_title" = "邀请二维码";
 "qrshow_x_joining" = "添加 %1$@。";
@@ -887,13 +879,14 @@
 "qrshow_join_contact_hint" = "扫描即可与 %1$@ 聊天";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
 "qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并登录？";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "在“%1$@”创建新账号并登录？\n\n不会删除您现有的账号。使用“切换账号”在账号之间切换。";
 "set_name_and_avatar_explain" = "设置联系人可以识别的名称，您还可以设置个人资料图片。";
 "please_enter_name" = "请输入名称。";
 "qraccount_qr_code_cannot_be_used" = "扫描的二维码不能用于创建新账号。";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "登录 \"%1$@\"吗？";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "是否登录“%1$@”？\n\n不会删除您现有的账号。使用“切换账号”在账号之间切换。";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ 邀请你加入此群组。\n\n等待 %2$@ 的设备回复…";

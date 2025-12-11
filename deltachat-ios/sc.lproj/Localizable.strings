@@ -336,8 +336,6 @@
 "pref_background_btn_gallery" = "Ischerta dae sa galleria";
 "pref_imap_folder_warn_disable_defaults" = "Si disabìlitas custa opztione assegura·ti chi su serbidore tuo e totu sos àteros clientes siant cunfigurados in sa matessi manera\n\nSi nono sas cosas diant pòdere non funtzionare pro nudda.";
 "pref_auto_folder_moves" = "Tramudòngios automàticos a sa cartella DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Sos arresonos de sas tzarradas benint tramudados pro evitare su prenamentu de sa cartella de intrada";
 "pref_show_emails" = "Ammustra sas lìteras traditzionales";
 "pref_show_emails_no" = "Nono, tzarradas ebbia";
 "pref_show_emails_accepted_contacts" = "Pro sos cuntatos atzetados";

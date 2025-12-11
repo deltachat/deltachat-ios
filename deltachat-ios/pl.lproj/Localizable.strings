@@ -510,7 +510,7 @@
 "onboarding_create_instant_account" = "Utwórz nowy profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mam już profil";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Transport przez klasyczny e-mail";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Twój profil";
@@ -684,11 +684,7 @@
 "pref_multidevice_explain" = "Synchronizuj swoje wiadomości z innymi urządzeniami. Włączane automatycznie po dodaniu drugiego urządzenia";
 "pref_multidevice_change_warn" = "Jeśli używasz tego samego profilu na wielu urządzeniach, należy włączyć tryb wielu urządzeń. Wyłącz to ustawienie tylko wtedy, gdy usuniesz ten profil ze wszystkich pozostałych urządzeń.\n\nWyłączenie trybu wielu urządzeń podczas korzystania z profilu na wielu urządzeniach spowoduje nieodebrane wiadomości i inne problemy.";
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Rozmowy na czacie są przenoszone, aby nie zaśmiecać folderu Skrzynka odbiorcza";
 "pref_only_fetch_mvbox_title" = "Pobieraj tylko z folderu DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Zignoruj inne foldery. Wymaga, aby twój serwer przenosił wiadomości czatu do folderu DeltaChat.";
 "pref_show_emails" = "Pokaż klasyczne e-maile";
 "pref_show_emails_no" = "Nie, tylko czaty";
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
@@ -867,10 +863,6 @@
 "withdraw_joinbroadcast_explain" = "Inni użytkownicy mogą zeskanować ten kod QR, aby dołączyć do kanału „%1$@”.\n\nMożesz go zresetować, aby istniejący kod QR lub link zaproszenia przestał działać.";
 "withdraw_qr_code" = "Dezaktywuj kod QR";
 "revive_verifycontact_explain" = "Ten kod QR mógł być skanowany przez inne osoby w celu skontaktowania się z Tobą.\n\nKod QR nie jest już aktywny na tym urządzeniu.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Ten kod QR mógł być skanowany przez inne osoby, aby dołączyć do grupy „%1$@”.\n\nKod QR nie jest już aktywny na tym urządzeniu.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "Ten kod QR umożliwiający dołączenie do kanału „%1$@” został zresetowany i nie jest już aktywny.";
 "revive_qr_code" = "Aktywuj kod QR";
 "qrshow_title" = "Kod QR zaproszenia";
 "qrshow_x_joining" = "%1$@ dołącza.";
@@ -885,13 +877,14 @@
 "qrshow_join_contact_hint" = "Zeskanuj go w celu skonfigurowania kontaktu z %1$@";
 "qrshow_join_contact_no_connection_toast" = "Brak połączenia z Internetem, nie można przeprowadzić konfiguracji kodu QR.";
 "qraccount_ask_create_and_login" = "Utworzyć nowy adres e-mail „%1$@” i się zalogować?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Utworzyć nowy adres e-mail „%1$@” i się zalogować?\n\nTwoje istniejące konto nie zostanie usunięte. Użyj opcji „Przełącz konto”, aby przełączać się między kontami.";
 "set_name_and_avatar_explain" = "Ustaw nazwę, którą rozpoznają twoje kontakty. Możesz także ustawić zdjęcie profilowe.";
 "please_enter_name" = "Wpisz nazwę.";
 "qraccount_qr_code_cannot_be_used" = "Zeskanowanego kodu QR nie można użyć do założenia nowego konta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Zalogować się do „%1$@”?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Zalogować się do „%1$@”?\n\nTwoje istniejące konto nie zostanie usunięte. Użyj opcji „Przełącz konto”, aby przełączyć się między swoimi kontami.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Użytkownik %1$@ zaprosił cię do dołączenia do tej grupy.\n\nCzekam na odpowiedź urządzenia %2$@…";

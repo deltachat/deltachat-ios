@@ -486,7 +486,7 @@
 "onboarding_create_instant_account" = "Crear novo perfil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Xa teño un perfil";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Acceso clásido con correo";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "O teu perfil";
@@ -633,11 +633,7 @@
 "pref_background_btn_gallery" = "Escoller na galería";
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "As conversas móvense do cartafol de Entrada para evitar saturalo.";
 "pref_only_fetch_mvbox_title" = "Obter só desde cartafol DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignorar outros cartafoles. Require que o teu servidor mova as mensaxes de chat ao cartafol DeltaChat.";
 "pref_show_emails" = "Mostrar correos clásicos";
 "pref_show_emails_no" = "Non, só conversas";
 "pref_show_emails_accepted_contacts" = "Para os contactos aceptados";
@@ -794,8 +790,6 @@
 "withdraw_verifygroup_explain" = "Este código QR permite que outras persoas se unan ao grupo \"%1$@\".\n\nPodes desactivar aquí o código QR e reactivalo volvéndoo a escanear.";
 "withdraw_qr_code" = "Desactivar código QR";
 "revive_verifycontact_explain" = "Este código QR podía ser escaneado por outras persoas para contactar contigo.\n\nO código QR non está activo neste dispositio.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "O código QR podía ser escaneado por outras persoas para unirse ao grupo \"%1$@\".\n\nO código QR non está activo neste dispositivo.";
 "revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código QR de convite";
 "qrshow_x_joining" = "%1$@ uneuse.";
@@ -809,6 +803,7 @@
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e acceder?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
 "set_name_and_avatar_explain" = "Define un nome recoñecíbel polos teus contactos. Tamén podes definir unha imaxe de perfil.";
 "please_enter_name" = "Por favor introduce un nome.";

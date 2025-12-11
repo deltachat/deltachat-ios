@@ -392,8 +392,6 @@
 "pref_background_btn_gallery" = "Vælg fra galleri";
 "pref_imap_folder_warn_disable_defaults" = "Ved deaktivering af denne indstiiling vær sikker på at server og andre klienter er indstillet tilsvarende.\n\nEllers fungerer det måske slet ikke.";
 "pref_auto_folder_moves" = "Flytter automatisk til DeltaChat mappe";
-// deprecated
-"pref_auto_folder_moves_explain" = "Samtaler er flyttet for at undgå rodet indbakke";
 "pref_show_emails" = "Vis klassisk e-mail";
 "pref_show_emails_no" = "Nej, kun samtaler";
 "pref_show_emails_accepted_contacts" = "For godkendte kontakter";
@@ -524,6 +522,7 @@
 "qrshow_join_contact_hint" = "Skan dette for at indstille kontakt med %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ingen internet forbindelse, kan ikke udføre QR kode opsætning.";
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?\n\nDin eksisterende konto bliver ikke slettet. Brug \"Skift konto\" for at skifte imellem dine konti.";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
 "contact_verified" = "%1$@ bekræftet.";

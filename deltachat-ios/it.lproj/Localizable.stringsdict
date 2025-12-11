@@ -197,7 +197,7 @@
 			<key>many</key>
 			<string>%d Selezionati</string>
 			<key>other</key>
-			<string>%d Selezionati</string>
+			<string>%d selezionati</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

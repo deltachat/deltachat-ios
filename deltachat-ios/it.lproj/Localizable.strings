@@ -100,10 +100,10 @@
 "cannot_save_file" = "Impossibile salvare%1$@.";
 "copied_to_clipboard" = "Copiato negli appunti.";
 "contacts_headline" = "Contatti";
-"email_address" = "Indirizzo E-Mail";
+"email_address" = "Indirizzo e-mail";
 "bad_email_address" = "Indirizzo e-mail errato.";
 "password" = "Password";
-"existing_password" = "Password Esistente";
+"existing_password" = "Password esistente";
 "now" = "Ora";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Pericolo";
@@ -117,7 +117,7 @@
 "last_seen_at" = "Ultimo accesso alle %1$@";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = " Ultimo accesso %1$@";
-"last_seen_unknown" = "Ultimo accesso: Sconosciuto";
+"last_seen_unknown" = "Ultimo accesso: sconosciuto";
 // Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
 // Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
@@ -510,7 +510,7 @@
 "onboarding_create_instant_account" = "Crea Nuovo Profilo";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ho Già un Profilo";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Accesso E-Mail Classico";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Il Tuo Profilo";
@@ -562,7 +562,7 @@
 "proxy_enabled" = "Proxy Abilitato";
 "proxy_enabled_hint" = "Stai utilizzando un proxy. Se riscontri problemi di connessione, prova un proxy diverso.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Trasporti";
+"transports" = "Ripetitori";
 "add_transport" = "Aggiungi Trasporto";
 "remove_transport" = "Rimuovi Trasporto";
 "edit_transport" = "Modifica Trasporto";
@@ -684,16 +684,13 @@
 "pref_multidevice_explain" = "Sincronizza i tuoi messaggi con gli altri dispositivi. Abilitazione automatica all\'aggiunta di un secondo dispositivo.";
 "pref_multidevice_change_warn" = "La Modalità Multi-Dispositivo deve essere abilitata quando si utilizza lo stesso profilo su più dispositivi. Disattivare questa impostazione solo se si è rimosso il profilo da tutti gli altri dispositivi.\n\nDisattivare la Modalità Multi-Dispositivo mentre si utilizza il profilo su più dispositivi causerà la perdita di messaggi e altri problemi.";
 "pref_auto_folder_moves" = "Sposta nella Cartella DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Le conversazioni chat vengono spostate per evitare di ingombrare la Posta in arrivo";
 "pref_only_fetch_mvbox_title" = "Recupera dalla Cartella DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignora altre cartelle. Richiede che il tuo server sposti i messaggi delle chat nella cartella DeltaChat.";
 "pref_show_emails" = "Mostra E-mail Classiche";
 "pref_show_emails_no" = "No, solo chat";
 "pref_show_emails_accepted_contacts" = "Per contatti accettati";
 "pref_show_emails_all" = "Sì";
 "pref_experimental_features" = "Caratteristiche Sperimentali";
+"pref_experimental_features_explain" = "Queste funzionalità potrebbero essere instabili e potrebbero essere modificate o rimosse";
 "pref_on_demand_location_streaming" = "Trasmissione Posizione su Richiesta";
 "pref_background_default" = "Sfondo predefinito";
 "pref_background_default_color" = "Colore predefinito";
@@ -719,6 +716,7 @@
 "disable_imap_idle" = "Disabilita IMAP IDLE";
 "disable_imap_idle_explain" = "Non utilizzare l\'estensione IMAP IDLE anche se il server la supporta. L\'abilitazione di questa opzione ritarderà il recupero del messaggio, abilitarla solo a scopo di test.";
 "send_stats_to_devs" = "Invia statistiche agli sviluppatori di Delta Chat";
+"stats_msg_body" = "L\'allegato contiene statistiche di utilizzo anonime, che ci aiutano a migliorare Delta Chat. Grazie!";
 // Emoji picker and categories
 "emoji_search_results" = "Risultati Ricerca";
 "emoji_not_found" = "Nessuna emoji trovata";
@@ -867,10 +865,6 @@
 "withdraw_joinbroadcast_explain" = "Questo codice QR può essere scansionato da altri per unirsi al canale \"%1$@\".\n\nPuoi reimpostarlo, in modo che il codice QR o il link di invito esistente non funzionino più.";
 "withdraw_qr_code" = "Reimposta Codice QR";
 "revive_verifycontact_explain" = "Questo codice QR è stato reimpostato e non è più attivo.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Questo codice QR per unirsi al gruppo \"%1$@\" è stato reimpostato e non è più attivo.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "Questo codice QR per unirsi al canale \"%1$@\" è stato reimpostato e non è più attivo.";
 "revive_qr_code" = "Attiva Codice QR ";
 "qrshow_title" = "Codice QR Invito";
 "qrshow_x_joining" = "%1$@ si unisce.";
@@ -885,16 +879,19 @@
 "qrshow_join_contact_hint" = "Scansionalo per chattare con %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nessuna connessione internet, impossibile effettuare l\'impostazione tramite codice QR.";
 "qraccount_ask_create_and_login" = "Creo un nuovo profilo su \"%1$@\" e accedo qui?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Crea un nuovo profilo su \"%1$@\" e accedi qui?\n\nIl tuo profilo esistente non verrà eliminato. Utilizza la voce \"Cambia Profilo\" per passare da un profilo all\'altro.";
 "set_name_and_avatar_explain" = "Imposta un nome che i tuoi contatti riconosceranno. Puoi anche impostare un\'immagine del profilo.";
 "please_enter_name" = "Per piacere inserisci un nome.";
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo profilo.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Accedere a \"%1$@\"?\n\nIl tuo profilo esistente non verrà cancellato. Usa la voce \"Cambia Profilo\" per passare da un profilo all\'altro.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ ti ha invitato a unirti a questo canale.\n\nIn attesa del dispositivo di %2$@ che risponda…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "secure_join_wait" = "Impostazione della crittografia end-to-end, attendere...";
