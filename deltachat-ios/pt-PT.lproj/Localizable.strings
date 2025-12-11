@@ -340,8 +340,6 @@
 "pref_background" = "Fundo";
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
 "pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
-// deprecated
-"pref_auto_folder_moves_explain" = "As chats de chat são movidas para evitar atravancar da pasta Inbox";
 "pref_show_emails" = "Exibir e-mails comuns";
 "pref_show_emails_no" = "Não, apenas conversas";
 "pref_show_emails_all" = "Tudo";

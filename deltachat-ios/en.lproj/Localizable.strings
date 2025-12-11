@@ -510,7 +510,7 @@
 "onboarding_create_instant_account" = "Create New Profile";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "I Already Have a Profile";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Use Classic Email as Relay";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Your Profile";
@@ -534,7 +534,7 @@
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
-"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an account you\'re using in another app.\n\n• Classic email server allow chats without end-to-end encryption marked by a mail icon.";
+"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an address you\'re using in another app.\n\n• Classic email server allow chats without end-to-end encryption marked by a mail icon.";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -684,11 +684,7 @@
 "pref_multidevice_explain" = "Synchronize your messages with your other devices. Automatically enabled on adding a second device";
 "pref_multidevice_change_warn" = "Multi-Device Mode must be enabled when using the same profile on multiple devices. Only disable this setting if you have removed this profile from all your other devices.\n\nDisabling Multi-Device Mode while using the profile on multiple devices will result in missed messages and other problems.";
 "pref_auto_folder_moves" = "Move automatically to DeltaChat Folder";
-// deprecated
-"pref_auto_folder_moves_explain" = "Chat conversations are moved to avoid cluttering the Inbox";
 "pref_only_fetch_mvbox_title" = "Only Fetch from DeltaChat Folder";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignore other folders. Requires your server to move chat messages to the DeltaChat folder.";
 "pref_show_emails" = "Show Classic Emails";
 "pref_show_emails_no" = "No, chats only";
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
@@ -869,10 +865,6 @@
 "withdraw_joinbroadcast_explain" = "This QR code can be scanned by others to join the channel \"%1$@\".\n\nYou can reset it, so that the existing QR code or invite link will no longer work.";
 "withdraw_qr_code" = "Reset QR Code";
 "revive_verifycontact_explain" = "This QR code has been reset and is no longer active.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "This QR code to join group \"%1$@\" has been reset and is no longer active.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "This QR code to join channel \"%1$@\" has been reset and is no longer active.";
 "revive_qr_code" = "Activate QR Code";
 "qrshow_title" = "QR Invite Code";
 "qrshow_x_joining" = "%1$@ joins.";
@@ -887,13 +879,14 @@
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
 "qraccount_ask_create_and_login" = "Create new profile on \"%1$@\" and log in there?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Create new profile on \"%1$@\" and log in there?\n\nYour existing profile will not be deleted. Use the \"Switch Profile\" item to switch between your profiles.";
 "set_name_and_avatar_explain" = "Set a name that your contacts will recognize. You can also set a profile image.";
 "please_enter_name" = "Please enter a name.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new profile.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Log into \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Log into \"%1$@\"?\n\nYour existing profile will not be deleted. Use the \"Switch Profile\" item to switch between your profiles.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ invited you to join this group.\n\nWaiting for the device of %2$@ to reply…";

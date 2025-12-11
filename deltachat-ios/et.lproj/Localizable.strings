@@ -503,7 +503,7 @@
 "onboarding_create_instant_account" = "Loo uus profiil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mul juba on profiil olemas";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Klassikaline e-post alusühendusena";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Sinu profiil";
@@ -674,8 +674,6 @@
 "pref_multidevice_change_warn" = "Kui kasutad sama profiili mitmes seadmes, siis peab mitme seadme režiimi sisse lülitama. Lülita see seadistus välja vaid siis, kui oled selle profiili eemaldanud kõikidest muudest oma seadmetest.\n\nKui aga lülitad välja siis, kui profiil on kasutusel mitmes seadmes, on tulemuseks kadunud sõnumid ja muud imelikud juhtumised.";
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Eira muid kaustu. See eeldab, et sinu server oskab tõsta vestluste sõnumid DeltaChati kausta.";
 "pref_show_emails" = "Näita klassikalisi e-kirju";
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
@@ -851,10 +849,6 @@
 "withdraw_joinbroadcast_explain" = "Seda QR-koodi saab kasutada „%1$@“ kanaliga liitumiseks.\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
 "withdraw_qr_code" = "Lähtesta QR-kood";
 "revive_verifycontact_explain" = "See QR-kood on lähtestatud ega pole enam kasutatav.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "See QR-kood, mis oli mõeldud „%1$@“ grupiga liitumiseks, on lähtestatud ega pole enam kasutatav.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "See QR-kood, mis oli mõeldud „%1$@“ kanaliga liitumiseks, on lähtestatud ega pole enam kasutatav.";
 "revive_qr_code" = "Aktiveeri QR-kood";
 "qrshow_title" = "Kutse QR-koodina";
 "qrshow_x_joining" = "%1$@ liitus.";
@@ -869,13 +863,14 @@
 "qrshow_join_contact_hint" = "Skaneeri vestlemaks kasutajaga „%1$@“";
 "qrshow_join_contact_no_connection_toast" = "Internetiühendus puudub ja QR-koodil põhinevat seadistamist kasutada ei saa.";
 "qraccount_ask_create_and_login" = "Kas lood uue profiili nimega „%1$@“ ja logid sinna sisse?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Kas soovid lisada uue profiili „%1$@“ serverisse ja sellega sisse logida?\n\nSinu olemasolev profiil jääb alles. Profiile saad vahetada käsuga „Vaheta profiili“.";
 "set_name_and_avatar_explain" = "Vali nimi, mida sinu kontaktid ära tunnevad. Saad ka lisada profiili tunnuspildi.";
 "please_enter_name" = "Palun sisesta nimi.";
 "qraccount_qr_code_cannot_be_used" = "Selle skaneeritud QR-koodi abil ei saa uut profiili kasutusele võtta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Kas logid sisse „%1$@“ profiili?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Kas soovid sisse logid oma kontoga „%1$@“ serveris?\n\nSinu olemasolev profiil jääb alles. Profiile saad vahetada käsuga „Vaheta profiili“.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsus sind liituma selle grupiga.\n\nOotan vastust kasutaja %2$@ seadmest…";

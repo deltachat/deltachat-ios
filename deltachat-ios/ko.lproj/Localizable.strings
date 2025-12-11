@@ -449,11 +449,7 @@
 "pref_background_btn_gallery" = "갤러리에서 선택됨";
 "pref_imap_folder_warn_disable_defaults" = "이 선택사항을 변경할 경우, 서버와 다른 클라이언트가 적절하게 구성되어 있는지 확인하십시오.\n\n그렇지 않으면 상황이 전혀 작동하지 않을 수 있습니다.";
 "pref_auto_folder_moves" = "DeltaChat 폴더로 자동 이동";
-// deprecated
-"pref_auto_folder_moves_explain" = "받은 문서가 복잡해지지 않도록 대화 내용이 이동됩니다.";
 "pref_only_fetch_mvbox_title" = "DeltaChat 폴더에서만 가져오기";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "다른 폴더는 무시합니다. 서버에서 채팅 메시지를 DeltaChat 폴더로 이동해야 합니다.";
 "pref_show_emails_no" = "아뇨, 오직 채팅만";
 "pref_show_emails_accepted_contacts" = "승인된 연락처의 경우";
 "pref_show_emails_all" = "전부";
@@ -586,8 +582,6 @@
 "withdraw_verifygroup_explain" = "이 QR 코드는 다른 사용자가 스캔하여 \"%1$@\" 그룹에 가입할 수 있습니다.\n\n여기서 QR 코드를 비활성화하고 다시 스캔하여 다시 활성화할 수 있습니다.";
 "withdraw_qr_code" = "QR 코드 비활성화";
 "revive_verifycontact_explain" = "이 QR 코드는 다른 사용자가 스캔하여 사용자에게 연락할 수 있습니다.\n\nQR 코드가 이 장치에서 활성화되지 않았습니다.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "이 QR 코드는 다른 사람이 스캔하여 그룹 \"%1$@\"에 가입할 수 있다.\n\nQR 코드가 이 장치에서 활성화되지 않았습니다.";
 "revive_qr_code" = "QR 코드 활성화";
 "qrshow_title" = "QR 초대 코드";
 "qrshow_x_joining" = "%1$@가 가입함.";
@@ -601,11 +595,12 @@
 "qrshow_join_contact_hint" = "%1$@과 채팅을 하려면 스캔하시오";
 "qrshow_join_contact_no_connection_toast" = "인터넷에 연결되어 있지 않아 QR 코드 설정을 수행할 수 없습니다.";
 "qraccount_ask_create_and_login" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?\n\n기존 계정은 삭제되지 않습니다. 계정 전환 항목을 사용하여 계정 간을 전환합니다.";
 "qraccount_qr_code_cannot_be_used" = "스캔한 QR 코드를 사용하여 새 계정을 설정할 수 없습니다.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "\"%1$@\"에 로그인하시겠습니까?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "\"%1$@\"에 로그인하시겠습니까?\n\n기존 계정은 삭제되지 않습니다. 계정 전환 항목을 사용하여 계정 간을 전환합니다.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@이 그룹에 가입하도록 초대했습니다.\n\n%2$@의 장치가 응답하기를 기다리는 중입니다...";

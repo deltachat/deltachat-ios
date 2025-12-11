@@ -394,8 +394,6 @@
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Percakapan dipindahkan untuk menghindari memenuhi kotak masuk";
 "pref_show_emails" = "Tampilkan email klasik";
 "pref_show_emails_no" = "Tidak, hanya obrolan saja";
 "pref_show_emails_accepted_contacts" = "Untuk kontak yang telah diterima";
@@ -471,6 +469,7 @@
 "qrshow_join_contact_hint" = "Pindai ini untuk mengatur kontak dengan%1$@.";
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Buat alamat email baru di\"%1$@\" dan masuk ke sana?\n\nAkun yang sudah ada tidak akan di hapus. Gunakankan item \"Ganti akun\" untuk mengganti akun anda";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
 "contact_verified" = "%1$@diverifikasi.";

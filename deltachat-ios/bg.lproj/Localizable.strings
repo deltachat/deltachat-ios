@@ -414,7 +414,7 @@
 "onboarding_create_instant_account" = "Създаване на нов профил";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Вече имам профил";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Вход в класическа електронна поща";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Вашият профил";
@@ -545,11 +545,7 @@
 "pref_background_btn_gallery" = "Избор от галерията";
 "pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Разговорите са преместени, за да се избегне претрупване на папката \"Входящи\"";
 "pref_only_fetch_mvbox_title" = "Да се извлича само от папката DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Другите папки да не бъдат взимани под внимание. Изисква Вашият сървър да премества чат съобщенията в папката DeltaChat.";
 "pref_show_emails" = "Да се показват класически e-mail съобщения";
 "pref_show_emails_no" = "Не, само чатове";
 "pref_show_emails_accepted_contacts" = "За приетите контакти";
@@ -712,8 +708,6 @@
 "withdraw_verifygroup_explain" = "Чрез сканиране на този QR код други хора могат да се присъединяват към крупата \"%1$@\".\n\nМожете да деактивирате QR кода тук и повторно да го активирате, като го сканирате отново.";
 "withdraw_qr_code" = "Деактивиране на QR кода";
 "revive_verifycontact_explain" = "Чрез сканиране на този QR код други хора могат да се свързват с Вас.\n\nQR кодът не е активен на това устройство.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Този QR код е давал възможност други да се присъединяват към групата \"%1$@\" чрез сканирането му.\n\nQR кодът не е активен на това устройство.";
 "revive_qr_code" = "Активиране на QR кода";
 "qrshow_title" = "QR код за покана";
 "qrshow_x_joining" = "%1$@ се присъединява.";
@@ -727,13 +721,14 @@
 "qrshow_join_contact_hint" = "Сканирайте, за да чатите с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Няма връзка към Интернет, не може да бъде извършена настройка чрез QR код.";
 "qraccount_ask_create_and_login" = "Да бъде ли създаден нов адрес за електронна поща на \"%1$@\" и да бъде ли осъществено влизане там?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Да бъде ли създаден нов адрес за електронна поща в \"%1$@\" и да бъде ли осъществено влизане там?\n\nВашият съществуващ акаунт няма да бъде изтрит. Използвайте опцията \"Превключване към друг акаунт\", за да превключвате между Вашите акаунти.";
 "set_name_and_avatar_explain" = "Задайте име, което Вашите контакти ще разпознават.  Можете също да установите изображение за профил.";
 "please_enter_name" = "Моля, въведете име.";
 "qraccount_qr_code_cannot_be_used" = "Не може да бъде създаден нов акаунт със сканирания QR код.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Желаете ли да влезете в \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Желаете ли да влезете в \"%1$@\"?\n\nСъщестуващият Ви акаунт няма да бъде изтрит. Превключвайте между акаунтите си чрез \"Превключване към друг акаунт\".";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ Ви покани да се присъедините към тази група.\n\nИзчаква се устройството на %2$@ да отговори…";

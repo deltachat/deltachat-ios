@@ -496,11 +496,7 @@
 "pref_background_btn_gallery" = "Изабери из галерије";
 "pref_imap_folder_warn_disable_defaults" = "Ако промените ову опцију, морате проверити да су ваш сервер и ваши други клијенти конфигурисани у складу са тим.\n\nУ супротном апликација можда уопште неће функционисати.";
 "pref_auto_folder_moves" = "Аутоматски премести у DeltaChat директоријум";
-// deprecated
-"pref_auto_folder_moves_explain" = "Ћаскања се померају да би се избегло затрпавање пријемног сандучета";
 "pref_only_fetch_mvbox_title" = "Примај поруке само из DeltaChat директоријума";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Игнориши остале директоријуме. Захтева да ваш сервер премести поруке у DeltaChat директоријум.";
 "pref_show_emails" = "Прикажи обичне поруке е-поште";
 "pref_show_emails_no" = "Не, само ћаскања";
 "pref_show_emails_accepted_contacts" = "За прихваћене контакте";
@@ -646,8 +642,6 @@
 "withdraw_verifygroup_explain" = "Други могу да очитају овај бар-кôд да би приступили групи „%1$@“.\n\nОвде можете да деактивирате бар-кôд и поново га активирате тако што ћете га поново oчитати.";
 "withdraw_qr_code" = "Деактивирај бар-кôд";
 "revive_verifycontact_explain" = "Други могу да очитају овај бар-кôд да би вас контактирали.\n\nОвај бар-кôд није активан на овом уређају.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Други могу да очитају овај бар-кôд да би приступили групи „%1$@“.\n\nОвај бар-кôд није активан на овом уређају.";
 "revive_qr_code" = "Активирај бар-кôд";
 "qrshow_title" = "Бар-кôд за потврду";
 "qrshow_x_joining" = "%1$@ се придружи.";
@@ -661,11 +655,12 @@
 "qrshow_join_contact_hint" = "Очитај да ћаскате са %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нисте повезани на интернет, није могуће подесити бар-кôд.";
 "qraccount_ask_create_and_login" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?\n\nВаш постојећи налог неће бити избрисан. Користите „Промени налог“ да пређете са једног налога на други.";
 "qraccount_qr_code_cannot_be_used" = "Очитани бар-кôд не може бити коришћен да подеси нови налог.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Пријави се у „%1$@“?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Пријави се у „%1$@“? Ваш постојећи налог неће бити избрисан. Користите „Промени налог“ опцију да прелазите са једног на други налог.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@вас је позвао да се придружите групи.\n\nЧекамо да уређај од %2$@одговори...";

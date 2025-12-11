@@ -473,7 +473,7 @@
 "onboarding_create_instant_account" = "創建新帳戶";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "我已經有了一個賬戶";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "經典電子郵件登入";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "你的個人檔案";
@@ -629,11 +629,7 @@
 "pref_background_btn_gallery" = "從相簿中挑選";
 "pref_imap_folder_warn_disable_defaults" = "如果關閉本選項的話，請務必確定你的伺服器和其它客戶端應用程式都使用相同的設定，否則很可能不能運作。";
 "pref_auto_folder_moves" = "自動搬移到 DeltaChat 資料夾";
-// deprecated
-"pref_auto_folder_moves_explain" = "搬移對話以避免塞爆收件匣";
 "pref_only_fetch_mvbox_title" = "僅從 DeltaChat 資料夾中獲取";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "忽略其他資料夾。要求您的伺服器將聊天訊息移動到 DeltaChat 資料夾。";
 "pref_show_emails" = "顯示傳統email";
 "pref_show_emails_no" = "只顯示對話";
 "pref_show_emails_accepted_contacts" = "顯示已接受的聯絡人";
@@ -801,8 +797,6 @@
 "withdraw_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n您可以在此處停用 QR 碼，然後再次掃描以重新啟動它。";
 "withdraw_qr_code" = "停用QR碼";
 "revive_verifycontact_explain" = "此 QR 碼可以被其他人掃描以與您聯絡。\n\n此裝置上的 QR 碼未啟用。";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n此 QR 碼在此裝置上未啟用。";
 "revive_qr_code" = "啟用QR碼";
 "qrshow_title" = "邀請QR碼";
 "qrshow_x_joining" = "%1$@ 加入了。";
@@ -816,13 +810,14 @@
 "qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
 "qrshow_join_contact_no_connection_toast" = "沒有互聯網連接，無法執行QR碼設置。";
 "qraccount_ask_create_and_login" = "在 「%1$@」 上建立賬戶並登入？";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "在「%1$@」上建立新賬戶並登入？\n\n您現有的賬戶不會被刪除。使用「切換賬戶」來在您的賬戶之間切換。";
 "set_name_and_avatar_explain" = "設置聯絡人可以識別的名稱。您還可以設置大頭貼。";
 "please_enter_name" = "請輸入名稱。";
 "qraccount_qr_code_cannot_be_used" = "掃描的 QR 碼不能用於建立新賬戶。";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "登入「%1$@」？";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "登入「%1$@」？\n\n您現有的賬戶不會被刪除。使用「切換賬戶」項在您的賬戶之間切換。";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@邀請您加入此群組。\n\n正在等待%2$@裝置的回覆...";

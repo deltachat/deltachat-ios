@@ -499,11 +499,7 @@
 "pref_background_btn_gallery" = "Selecionar da galeria";
 "pref_imap_folder_warn_disable_defaults" = "Se você mudar esta opção, certifique-se de que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário, funcionalidades podem não funcionar.";
 "pref_auto_folder_moves" = "Mover automaticamente para a pasta DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Conversas serão movidas para evitar desordem na caixa de entrada";
 "pref_only_fetch_mvbox_title" = "Apenas pegar da pasta DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignore outras pastas. Requer que seu servidor mova mensagens de bate-papo para a pasta DeltaChat. ";
 "pref_show_emails" = "Exibir e-mails normais";
 "pref_show_emails_no" = "Não, somente conversas";
 "pref_show_emails_accepted_contacts" = "Para contatos aceitos";
@@ -649,8 +645,6 @@
 "withdraw_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para entrar no grupo \"%1$@\".\n\nVocê pode desativar o código QR aqui e reativá-lo escaneando-o novamente.";
 "withdraw_qr_code" = "Desativar Código QR";
 "revive_verifycontact_explain" = "Este código QR pode ser lido por outras pessoas para entrar em contato com você.\n\nO código QR não está ativo neste dispositivo.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Este código QR pode ser lido por outras pessoas para se juntar ao grupo \"%1$@\".\n\nO código QR não está ativo neste dispositivo.";
 "revive_qr_code" = "Ativar Código QR";
 "qrshow_title" = "Código QR de convite";
 "qrshow_x_joining" = "%1$@ ingressou.";
@@ -664,11 +658,12 @@
 "qrshow_join_contact_hint" = "Escanear para estabelecer contato com %1$@";
 "qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Conectar-se em \"%1$@\"?\n\nSua conta existente não será excluída. Use a opção \"Mudar conta\" para alternar entre suas contas.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@te convidou para entrar neste grupo.\n\nEsperando o dispositivo de %2$@ responder...";

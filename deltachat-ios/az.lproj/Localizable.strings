@@ -275,8 +275,6 @@
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
 "pref_imap_folder_warn_disable_defaults" = "Bu seçimi ləğv etsəniz, serverinizin və digər müştərilərinizin müvafiq olaraq konfiqurasiya olunduğundan əmin olun. \n\nAyrıca şeylər işləməyəcəkdir.";
 "pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";
-// deprecated
-"pref_auto_folder_moves_explain" = "Çat söhbətləri Daxil olanlar qovluğunun yığılmaması üçün taşınır";
 "pref_show_emails" = "Klassik e-poçtları göstər";
 "pref_show_emails_no" = "Xeyir, ancaq çatlar";
 "pref_show_emails_accepted_contacts" = "Qəbul edilən kontaktlar üçün";

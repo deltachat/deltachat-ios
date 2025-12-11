@@ -510,7 +510,7 @@
 "onboarding_create_instant_account" = "Account aanmaken";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ik heb al een account";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Inloggen met eigen e-mailadres";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Mijn profiel";
@@ -684,11 +684,7 @@
 "pref_multidevice_explain" = "Synchroniseer berichten met andere apparaten. Dit wordt automatisch ingeschakeld na het toevoegen van een secundair apparaat.";
 "pref_multidevice_change_warn" = "Let op: deze modus moet op alle apparaten worden ingeschakeld op hetzelfde profiel. Schakel deze instelling alleen uit als je je profiel van alle andere apparaten hebt verwijderd.\n\nDoor deze modus uit te schakelen terwijl het profiel nog gebruikt wordt, gaan er berichten verloren en kunnen er andere problemen ontstaan.";
 "pref_auto_folder_moves" = "Automatisch verplaatsen naar DeltaChat-map";
-// deprecated
-"pref_auto_folder_moves_explain" = "Gesprekken worden verplaatst om je postvak netjes te houden";
 "pref_only_fetch_mvbox_title" = "Alleen DeltaChat-map controleren";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Negeer andere mappen. Hiervoor is vereist dat je server gesprekken kan verplaatsen naar de DeltaChat-map.";
 "pref_show_emails" = "Klassieke e-mails tonen";
 "pref_show_emails_no" = "Nee, alleen gesprekken";
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
@@ -869,10 +865,6 @@
 "withdraw_joinbroadcast_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan het kanaal ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
 "withdraw_qr_code" = "QR-code deactiveren";
 "revive_verifycontact_explain" = "Deze QR-code is gedactiveerd en kan niet meer worden gebruikt.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Deze QR-code voor de groep ‘%1$@’ is gedeactiveerd en kan niet meer worden gebruikt.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_joinbroadcast_explain" = "Deze QR-code voor het kanaal ‘%1$@’ is gedeactiveerd en kan niet meer worden gebruikt.";
 "revive_qr_code" = "QR-code activeren";
 "qrshow_title" = "QR-uitnodigingscode";
 "qrshow_x_joining" = "%1$@ heeft deelgenomen.";
@@ -887,13 +879,14 @@
 "qrshow_join_contact_hint" = "Scan dit om een gesprek te beginnen met %1$@";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 "set_name_and_avatar_explain" = "Kies een naam die herkenbaar is voor je contactpersonen en, desgewenst, een profielfoto.";
 "please_enter_name" = "Voer een naam in.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Wil je inloggen als ‘%1$@’?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";

@@ -455,11 +455,7 @@
 "pref_background_btn_gallery" = "Επιλογή";
 "pref_imap_folder_warn_disable_defaults" = "Εάν αλλάξετε αυτήν την επιλογή, βεβαιωθείτε ότι ο διακομιστής σας και οι άλλοι πελάτες σας έχουν διαμορφωθεί ανάλογα.\n\nΔιαφορετικά, τα πράγματα ενδέχεται να μην λειτουργούν καθόλου.";
 "pref_auto_folder_moves" = "Μετακίνηση αυτόματα στον φάκελο DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Οι συνομιλίες συνομιλίας μετακινούνται για να αποφευχθεί η ακαταστασία των Εισερχομένων";
 "pref_only_fetch_mvbox_title" = "Λήψη μόνο από τον φάκελο DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Αγνοήστε άλλους φακέλους. Απαιτεί τον διακομιστή σας να μετακινήσει μηνύματα συνομιλίας στο φάκελο DeltaChat.";
 "pref_show_emails" = "Εμφάνιση κλασικών E-Mails";
 "pref_show_emails_no" = "Όχι, μόνο συνομιλίες";
 "pref_show_emails_accepted_contacts" = "Για αποδεκτές επαφές";
@@ -603,8 +599,6 @@
 "withdraw_verifygroup_explain" = "Αυτός ο κωδικός QR μπορεί να σαρωθεί από άλλους για να συμμετάσχουν στην ομάδα \"%1$@\".\n\nΜπορείτε να απενεργοποιήσετε τον κωδικό QR εδώ και να τον ξαναενεργοποιήσετε ξανασαρώνοντάς τον.";
 "withdraw_qr_code" = "Απενεργοποίηση του κωδικού QR";
 "revive_verifycontact_explain" = "Αυτός ο κωδικός QR θα μπορούσε να σαρωθεί από άλλους για να επικοινωνήσουν μαζί σας.\n\nΟ κωδικός QR δεν είναι ενεργός σε αυτήν τη συσκευή.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Αυτός ο κωδικός QR θα μπορούσε να σαρωθεί από άλλους για να συμμετάσχουν στην ομάδα \"%1$@\".\n\nΟ κωδικός QR δεν είναι ενεργός σε αυτήν τη συσκευή.";
 "revive_qr_code" = "Ενεργοποίηση του κωδικού QR";
 "qrshow_title" = "Κωδικός Πρόσκλησης QR";
 "qrshow_x_joining" = "%1$@ συνδέθηκε.";
@@ -618,11 +612,12 @@
 "qrshow_join_contact_hint" = "Σάρωση για συνομιλία με %1$@";
 "qrshow_join_contact_no_connection_toast" = "Δεν υπάρχει σύνδεση στο διαδίκτυο, δεν είναι δυνατή η ρύθμιση κωδικού QR.";
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
 "qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Σύνδεση στο \"%1$@\";\n\nΟ υπάρχων λογαριασμός σας δεν θα διαγραφεί. Χρησιμοποιήστε τη λειτουργία \"Εναλλαγή λογαριασμού\" για εναλλαγή μεταξύ των λογαριασμών σας.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ σας προσκάλεσε να συμμετάσχετε σε αυτήν την ομάδα.\n\nΑναμονή για απάντηση από τη συσκευή του %2$@…";

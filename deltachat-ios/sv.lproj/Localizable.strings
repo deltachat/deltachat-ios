@@ -420,7 +420,7 @@
 "onboarding_create_instant_account" = "Skapa ny profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Jag har redan en profil";
-// This is a button and a title, allowing to log in to existing, classic email accounts, setting ports, passwords and so on
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "Klassisk e-postinloggning";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Din profil";
@@ -551,11 +551,7 @@
 "pref_background_btn_gallery" = "Välj från galleriet";
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
-// deprecated
-"pref_auto_folder_moves_explain" = "Chattkonversationer flyttas automatiskt för att undvika att inkorgen belamras";
 "pref_only_fetch_mvbox_title" = "Hämta endast från DeltaChat-mappen";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Ignorera andra mappar. Kräver att din server flyttar chattmeddelanden till DeltaChat-mappen.";
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
 "pref_show_emails_no" = "Nej, bara chattar";
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
@@ -722,8 +718,6 @@
 "withdraw_verifygroup_explain" = "Denna QR-kod kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_qr_code" = "Avaktivera QR-kod";
 "revive_verifycontact_explain" = "Den här QR-koden kan skannas av andra för att kontakta dig.\n\nQR-koden är inte aktiv på den här enheten.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Den här QR-koden kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nQR-koden är inte aktiv på den här enheten.";
 "revive_qr_code" = "Aktivera QR-kod";
 "qrshow_title" = "QR-kod för inbjudan";
 "qrshow_x_joining" = "%1$@ anslutna.";
@@ -737,13 +731,14 @@
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
 "set_name_and_avatar_explain" = "Ange ett namn som dina kontakter kommer att känna igen. Du kan också ange en profilbild.";
 "please_enter_name" = "Ange ett namn.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Vill du logga in på \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Vill du logga in på \"%1$@\"?\n\nDin befintliga profil kommer inte att raderas. Använd alternativet \"Byt profil\" för att växla mellan dina profiler.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ bjöd in dig att gå med i den här gruppen.\n\nVäntar på att enheten hos %2$@ ska svara...";

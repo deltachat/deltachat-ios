@@ -513,11 +513,7 @@
 "pref_background_btn_gallery" = "Chọn từ thư viện";
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
-// deprecated
-"pref_auto_folder_moves_explain" = "Các cuộc trò chuyện được di chuyển để tránh làm lộn xộn Hộp thư đến";
 "pref_only_fetch_mvbox_title" = "Chỉ tìm nạp từ thư mục DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_explain" = "Bỏ qua các thư mục khác. Yêu cầu máy chủ của bạn di chuyển tin nhắn trò chuyện vào thư mục DeltaChat.";
 "pref_show_emails" = "Hiển thị E-mail cổ điển";
 "pref_show_emails_no" = "Không, chỉ trò chuyện";
 "pref_show_emails_accepted_contacts" = "Đối với các liên hệ được chấp nhận";
@@ -670,8 +666,6 @@
 "withdraw_verifygroup_explain" = "Những người khác có thể quét mã QR này để tham gia nhóm \"%1$@\".\n\nBạn có thể tắt mã QR tại đây và kích hoạt lại bằng cách quét lại.";
 "withdraw_qr_code" = "Vô hiệu hóa mã QR";
 "revive_verifycontact_explain" = "Mã QR này có thể được người khác quét để liên hệ với bạn.\n\nMã QR không hoạt động trên thiết bị này.";
-// deprecated, use generic revive_verifycontact_explain instead
-"revive_verifygroup_explain" = "Những người khác có thể quét mã QR này để tham gia nhóm \"%1$@\".\n\nMã QR không hoạt động trên thiết bị này.";
 "revive_qr_code" = "Kích hoạt mã QR";
 "qrshow_title" = "Mã mời QR";
 "qrshow_x_joining" = "%1$@ tham gia.";
@@ -685,11 +679,12 @@
 "qrshow_join_contact_hint" = "Quét để trò chuyện với %1$@";
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
-// the placeholder will be replaced by the address of the profile
+// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Đăng nhập vào \"%1$@\"?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";

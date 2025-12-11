@@ -481,8 +481,6 @@
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
 "pref_imap_folder_warn_disable_defaults" = "Jeigu išjungiate šį parametrą, įsitikinkite, kad jūsų serveris ir kiti klientai yra sukonfigūruoti atitinkamai.\n\nPriešingu atveju, tai gali iš viso neveikti.";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
-// deprecated
-"pref_auto_folder_moves_explain" = "Pokalbiai yra perkeliami, kad nebūtų sujauktas Gautųjų aplankas";
 "pref_show_emails" = "Rodyti klasikinius el. laiškus";
 "pref_show_emails_no" = "Ne, tik pokalbius";
 "pref_show_emails_accepted_contacts" = "Iš priimtų adresatų";

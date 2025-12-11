@@ -422,8 +422,6 @@
 "pref_background_btn_gallery" = "Hautatu galeriatik";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
-// deprecated
-"pref_auto_folder_moves_explain" = "Txat elkarrizketak lekuz aldatzen dira sarrera ontzian enbarazu ez egiteko";
 "pref_show_emails" = "Erakutsi ohiko e-mailak";
 "pref_show_emails_no" = "Ez, txatak besterik ez";
 "pref_show_emails_accepted_contacts" = "Onartutako kontaktuena";
