@@ -4,6 +4,12 @@
 
 - Scanning a QR code with a relay ask for adding it as additional transport
 - Ask for device owner verification on profile deletion
+- Better logging
+- Longer call ringing time
+- Fix: Show relays in connectivity view by their hostname
+- Fix: Synchronize default relay immediately after changing it
+- Fix: Let securejoin succeed even if the chat was deleted in the meantime
+- Update to core 2.34.0
 
 
 ## v2.33.0
