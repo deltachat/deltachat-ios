@@ -716,8 +716,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_DISABLED_BY_OTHER, localizationKey: "ephemeral_timer_disabled_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_SECONDS_BY_YOU, localizationKey: "ephemeral_timer_seconds_by_you")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_SECONDS_BY_OTHER, localizationKey: "ephemeral_timer_seconds_by_other")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_MINUTE_BY_YOU, localizationKey: "ephemeral_timer_1_minute_by_you")
-        dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_MINUTE_BY_OTHER, localizationKey: "ephemeral_timer_1_minute_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_HOUR_BY_YOU, localizationKey: "ephemeral_timer_1_hour_by_you")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_HOUR_BY_OTHER, localizationKey: "ephemeral_timer_1_hour_by_other")
         dcContext.setStockTranslation(id: DC_STR_EPHEMERAL_TIMER_1_DAY_BY_YOU, localizationKey: "ephemeral_timer_1_day_by_you")
