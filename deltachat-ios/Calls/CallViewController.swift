@@ -38,7 +38,7 @@ class CallViewController: UIViewController {
         shadowView.layer.shadowOffset = CGSize(width: 4, height: 4)
         shadowView.layer.shadowOpacity = 0.2
         shadowView.layer.shadowRadius = 5.0
-        shadowView.isHidden = !call.hasVideo
+        shadowView.isHidden = !call.hasVideoInitially
         return shadowView
     }()
     private var remoteVideoTrack: RTCVideoTrack?
@@ -70,9 +70,16 @@ class CallViewController: UIViewController {
         toggleVideoButton.addAction(UIAction { [unowned self, unowned toggleVideoButton] _ in
             toggleVideoButton.toggleState.toggle()
             localVideoTrack?.isEnabled.toggle()
-            flipCameraButton.isHidden = localVideoTrack?.isEnabled != true
+            localVideoContainerView.isHidden.toggle()
+            flipCameraButton.isHidden = !toggleVideoButton.toggleState
+            let transceiver = peerConnection?.transceivers.first { $0.mediaType == .video }
+            transceiver?.sender.track = toggleVideoButton.toggleState ? localVideoTrack : nil
+            if toggleVideoButton.toggleState {
+                localVideoCapturer?.startCapture(facing: .front)
+            } else {
+                localVideoCapturer?.stopCapture()
+            }
         }, for: .touchUpInside)
-        toggleVideoButton.isHidden = !call.hasVideo
         return toggleVideoButton
     }()
 
@@ -117,7 +124,7 @@ class CallViewController: UIViewController {
                 localVideoCapturer?.startCapture(facing: currentlyFacing == .front ? .back : .front)
             }
         }, for: .touchUpInside)
-        flipCameraButton.isHidden = !call.hasVideo
+        flipCameraButton.isHidden = !call.hasVideoInitially
         return flipCameraButton
     }()
 
@@ -238,20 +245,19 @@ class CallViewController: UIViewController {
         localAudioTrack = audioTrack
         peerConnection?.add(audioTrack, streamIds: ["localStream"])
 
-        if call.hasVideo {
-            // Local video
-            let videoSource = factory.videoSource()
-            localVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        // Local video
+        let videoSource = factory.videoSource()
+        localVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
+        let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
+        if call.hasVideoInitially {
             localVideoCapturer?.startCapture(facing: .front)
-            let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
             peerConnection?.add(videoTrack, streamIds: ["localStream"])
-            localVideoTrack = videoTrack
-            localVideoTrack?.add(localVideoView)
-            
-            // Remote video
-            remoteVideoTrack = peerConnection?.transceivers.first { $0.mediaType == .video }?.receiver.track as? RTCVideoTrack
-            remoteVideoTrack?.add(remoteVideoView)
+        } else {
+            peerConnection?.addTransceiver(of: .video)
         }
+        localVideoTrack = videoTrack
+        localVideoTrack?.isEnabled = call.hasVideoInitially
+        localVideoTrack?.add(localVideoView)
     }
 
     @objc private func hangup() {
@@ -342,6 +348,13 @@ extension CallViewController: RTCPeerConnectionDelegate {
                 _ = try? dataChannel.sendData(.init(data: candidate.toJSON(), isBinary: true))
             }
         default: break
+        }
+    }
+    func peerConnection(_ peerConnection: RTCPeerConnection, didStartReceivingOn transceiver: RTCRtpTransceiver) {
+        if transceiver.mediaType == .video, let newTrack = transceiver.receiver.track as? RTCVideoTrack {
+            remoteVideoTrack?.remove(remoteVideoView)
+            remoteVideoTrack = newTrack
+            remoteVideoTrack?.add(remoteVideoView)
         }
     }
 }
