@@ -145,9 +145,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
+        UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
-    
+
+    private lazy var callButton = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
+        UIAction(title: .localized("audio"), image: UIImage(systemName: "phone")) { [unowned self] _ in
+            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: false)
+        },
+        UIAction(title: .localized("video"), image: UIImage(systemName: "video")) { [unowned self] _ in
+            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: true)
+        }
+    ]))
+
     /// When a context menu preview is created through `tableView(_:previewForHighlightingContextMenuWithConfiguration:)`
     /// it is stored here so we can hide it when a user scrolls as the system does not hide
     /// snapshots right away probably assuming it is part of the view hierarchy.
@@ -908,15 +917,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                 if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
                    let dcContact, dcContact.isKeyContact {
-                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
-                        UIAction(title: .localized("audio"), image: UIImage(systemName: "phone")) { [unowned self] _ in
-                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: false)
-                        },
-                        UIAction(title: .localized("video"), image: UIImage(systemName: "video")) { [unowned self] _ in
-                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: true)
-                        }
-                    ]))
-                    rightBarButtonItems.append(button)
+                    rightBarButtonItems.append(callButton)
                 }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
