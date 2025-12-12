@@ -7,7 +7,6 @@ import WebRTC
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic when muted
 // TODO: Integrate with CallKit again
-// TODO: Call button menu (where you choose to start audio/video call) closes when you receive a message
 
 class CallViewController: UIViewController {
     var call: DcCall
