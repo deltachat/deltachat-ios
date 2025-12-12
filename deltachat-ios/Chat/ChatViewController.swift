@@ -910,10 +910,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                    let dcContact, dcContact.isKeyContact {
                     let button = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
                         UIAction(title: .localized("audio"), image: UIImage(systemName: "phone")) { [unowned self] _ in
-                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideo: false)
+                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: false)
                         },
                         UIAction(title: .localized("video"), image: UIImage(systemName: "video")) { [unowned self] _ in
-                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideo: true)
+                            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: true)
                         }
                     ]))
                     rightBarButtonItems.append(button)
