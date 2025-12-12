@@ -224,7 +224,6 @@ class AppCoordinator: NSObject {
         // Switch account if needed
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
            let accountId = parameters["accountId"].flatMap(Int.init) {
-            // TODO: use accountId and chatId to share into chat right away
             if dcAccounts.getSelected().id != accountId {
                 if !dcAccounts.select(id: accountId) { return false }
                 appDelegate.reloadDcContext()
@@ -246,18 +245,16 @@ class AppCoordinator: NSObject {
             }
         }
         
-        // Stage or send messages
+        // Ask for sending messages
         if let chatId = parameters["chatId"].flatMap(Int.init) {
             showChat(chatId: chatId)
-            RelayHelper.shared.setShareMessages(messages: messages)
-            RelayHelper.shared.shareAndFinishRelaying(to: chatId)
         } else {
             showChats()
             let nvc = tabBarController.selectedViewController as? UINavigationController
             nvc?.popToRootViewController(animated: false)
-            RelayHelper.shared.setShareMessages(messages: messages)
         }
-        
+        RelayHelper.shared.setShareMessages(messages: messages)
+
         return true
     }
 
