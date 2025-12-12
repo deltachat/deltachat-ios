@@ -7,7 +7,6 @@ import WebRTC
 // TODO: Avatar instead of remote camera view when there is no camera feed
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic and camera when muted/cam off
-// TODO: Can't receive notifications while in a call (because NotificationService requires main app not running)
 // TODO: Integrate with CallKit again
 // TODO: Call button menu (where you choose to start audio/video call) closes when you receive a message
 
