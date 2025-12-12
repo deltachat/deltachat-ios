@@ -9,6 +9,7 @@ import WebRTC
 // TODO: Actually stop capturing mic and camera when muted/cam off
 // TODO: Can't receive notifications while in a call (because NotificationService requires main app not running)
 // TODO: Integrate with CallKit again
+// TODO: Call button menu (where you choose to start audio/video call) closes when you receive a message
 
 class CallViewController: UIViewController {
     var call: DcCall
