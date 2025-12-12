@@ -558,8 +558,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // The foreground check is necessary as this function is called when in app switcher
-        if appIsInForeground(), notification.request.content.userInfo["answer_call"] == nil {
-            logger.info("Notifications: foreground notification")
+        let isCallNotification = notification.request.content.userInfo["answer_call"] != nil
+        if appIsInForeground() && !isCallNotification && !callManager.isCalling() {
+            logger.info("Notifications: silent foreground notification")
             completionHandler([.badge])
         } else {
             completionHandler([.badge, .banner, .list, .sound])
