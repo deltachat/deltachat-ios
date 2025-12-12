@@ -7,7 +7,8 @@ class PiPFrameProcessor: NSObject, RTCVideoRenderer {
     private let processingQueue = DispatchQueue(label: "chat.delta.rtc.frame_processing", qos: .userInteractive)
     private var nextFrame: RTCVideoFrame?
     private var isProcessing = false
-    
+    private var rotation: RTCVideoRotation = ._0
+
     init(displayLayer: AVSampleBufferDisplayLayer) {
         super.init()
         self.displayLayer = displayLayer
@@ -28,8 +29,13 @@ class PiPFrameProcessor: NSObject, RTCVideoRenderer {
         autoreleasepool {
             if let pixelBuffer = getPixelBuffer(from: frame),
                let sampleBuffer = createSampleBuffer(from: pixelBuffer) {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     displayLayer.enqueue(sampleBuffer)
+                    if rotation != frame.rotation {
+                        rotation = frame.rotation
+                        let angle = CGFloat(rotation.rawValue) * .pi / 180
+                        displayLayer.transform = CATransform3DMakeAffineTransform(.init(rotationAngle: angle))
+                    }
                 }
                 isProcessing = false
                 if nextFrame !== frame {
