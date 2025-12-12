@@ -222,8 +222,7 @@ class CallViewController: UIViewController {
                     CallManager.shared.endCallControllerAndHideUI()
                     return
                 }
-                let mungedSdp = removeVideoRotationSupport(placeCallInfo)
-                try await peerConnection.setRemoteDescription(.init(type: .offer, sdp: mungedSdp))
+                try await peerConnection.setRemoteDescription(.init(type: .offer, sdp: placeCallInfo))
                 let answer = try await peerConnection.answer(for: RTCMediaConstraints.default)
                 try await peerConnection.setLocalDescription(answer)
                 if #available(iOS 15.0, *) {
@@ -259,14 +258,6 @@ class CallViewController: UIViewController {
         localVideoTrack = videoTrack
         localVideoTrack?.isEnabled = call.hasVideoInitially
         localVideoTrack?.add(localVideoView)
-    }
-
-    /// Our custom renderer (PiPFrameProcessor) does not support rotating a received frame,
-    /// so we remove the capability from the sdp
-    private func removeVideoRotationSupport(_ sdp: String) -> String {
-        let regex = try? NSRegularExpression(pattern: "a=extmap.* urn:3gpp:video-orientation\r\n")
-        let all = NSRange(location: 0, length: sdp.count)
-        return regex?.stringByReplacingMatches(in: sdp, range: all, withTemplate: "") ?? sdp
     }
 
     @objc private func hangup() {
