@@ -9,6 +9,7 @@
 - Fix: Show relays in connectivity view by their hostname
 - Fix: Synchronize default relay immediately after changing it
 - Fix: Let securejoin succeed even if the chat was deleted in the meantime
+- Fix: Ask before sharing via a direct-share link
 - Update to core 2.34.0
 
 
