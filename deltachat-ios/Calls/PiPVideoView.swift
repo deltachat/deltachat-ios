@@ -98,7 +98,10 @@ extension PiPVideoView: RTCVideoRenderer {
     
     func renderFrame(_ frame: RTCVideoFrame?) {
         DispatchQueue.main.async { [weak self] in
-            self?.avatarView.isHidden = true
+            guard let self else { return }
+            avatarView.isHidden = true
+            NSObject.cancelPreviousPerformRequests(withTarget: self)
+            perform(#selector(didNotReceiveNewFrame), with: nil, afterDelay: 1.5)
         }
         pipRenderView.frameProcessor?.renderFrame(frame)
     }
@@ -107,14 +110,19 @@ extension PiPVideoView: RTCVideoRenderer {
         guard #available(iOS 15.0, *) else { return }
         pipController?.contentSource?.activeVideoCallContentViewController.preferredContentSize = size
     }
+
+    @objc private func didNotReceiveNewFrame() {
+        pipRenderView.displayLayer?.flushAndRemoveImage()
+        avatarView.isHidden = false
+    }
 }
 
 /// A view that can render an RTCVideoTrack in PiP using AVSampleBufferDisplayLayer.
 /// This is required because MTKViews are not supported in PiP before iOS 18.
 private class PiPVideoRendererView: UIView {
     fileprivate var frameProcessor: PiPFrameProcessor?
-    private var displayLayer: AVSampleBufferDisplayLayer?
-    
+    fileprivate var displayLayer: AVSampleBufferDisplayLayer?
+
     override class var layerClass: AnyClass {
         AVSampleBufferDisplayLayer.self
     }
