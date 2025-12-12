@@ -4,7 +4,6 @@ import WebRTC
 
 // TODO: "Connecting..." and "Ringing..." status messages
 // TODO: Minimize call to PiP when app is opened from a deeplink (or from a notification)
-// TODO: Avatar instead of remote camera view when there is no camera feed
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic when muted
 // TODO: Integrate with CallKit again
