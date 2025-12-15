@@ -55,6 +55,7 @@
   <li><a href="#erweitert">Erweitert</a>
     <ul>
       <li><a href="#experimentelle-features">Experimentelle Features</a></li>
+      <li><a href="#relays">Was sind Relays?</a></li>
       <li><a href="#kann-ich-eine-klassische-e-mail-adresse-mit-delta-chat-verwenden">Kann ich eine klassische E-Mail-Adresse mit Delta Chat verwenden?</a></li>
       <li><a href="#classic-email">Wie kann ich ein Chat-Profil mit einer klassischen E-Mail-Adresse als Relay konfigurieren?</a></li>
       <li><a href="#ich-möchte-meinen-eigenen-server-für-delta-chat-verwalten-gibt-es-empfehlungen">Ich möchte meinen eigenen Server für Delta Chat verwalten. Gibt es Empfehlungen?</a></li>
@@ -230,7 +231,7 @@ bzw. <img style="vertical-align:middle; width:0.8em; margin:1px" src="../mic.png
       </h3>
 
 <p>Ein Profil besteht aus <strong>einem Namen, einem Bild</strong> und einigen zusätzlichen Informationen zum Verschlüsseln von Nachrichten.
-Ein Profil existiert nur auf Ihren Geräten
+Ein Profil existiert nur auf deinen Geräten
 und verwendet den Server nur für den Transport von Nachrichten.</p>
 
 <p>Bei der Installation von Delta Chat wird ein erstes Profil erstellt.</p>
@@ -361,7 +362,7 @@ sei es durch den <a href="#edit">Absender</a>, durch <a href="#delold">Automatis
     <p><strong>Zwei Häkchen</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" /> bedeuten, dass mindestens ein Gerät des Empfängers zurückgemeldet hat, die Nachricht empfangen zu haben.</p>
   </li>
   <li>
-    <p>Lesebestätigungen können deaktiviert werden. D.h. auch wenn Sie nur ein Häkchen sehen, kann die Nachricht gelesen worden sein.</p>
+    <p>Lesebestätigungen können deaktiviert werden. D.h. auch wenn du nur ein Häkchen siehst, kann die Nachricht gelesen worden sein.</p>
   </li>
   <li>
     <p>Umgekehrt bedeuten zwei Häkchen nicht automatisch, dass ein Mensch die Nachricht gelesen oder verstanden hat ;)</p>
@@ -433,7 +434,7 @@ oder auf andere Weise Nachrichten vor dem Löschen speichern, kopieren oder weit
 
 <ul>
   <li>Wenn du Speicherplatz auf deinem Gerät sparen möchtest, kannst du alte Nachrichten automatisch löschen lassen.</li>
-  <li>Hierzu, öffne die “Chats und Medien”-Einstellungen und dort “Alte Nachrichten vom Gerät löschen”. Du kannst einen Zeitraum zwischen “1 Stunde” und “1 Jahr” festlegen; auf diese Weise werden <em>alle</em> Nachrichten von Ihrem Gerät gelöscht, sobald sie älter als angegeben sind.</li>
+  <li>Hierzu, öffne die “Chats und Medien”-Einstellungen und dort “Alte Nachrichten vom Gerät löschen”. Du kannst einen Zeitraum zwischen “1 Stunde” und “1 Jahr” festlegen; auf diese Weise werden <em>alle</em> Nachrichten von deinem Gerät gelöscht, sobald sie älter als angegeben sind.</li>
 </ul>
     
       <h3 id="remove-account">
@@ -444,16 +445,15 @@ oder auf andere Weise Nachrichten vor dem Löschen speichern, kopieren oder weit
         
       </h3>
 
-<p>If you are using more than one chat profile,
-you can remove single ones in the top profile switcher menu (on Android and iOS),
-or in the sidebar with a right click (in the Desktop app).
-Chat profiles are only removed on the device where deletion was triggered. 
-Chat profiles on other devices will continue to fully function.</p>
+<p>Wenn du mehr als ein Chat-Profil verwendest,
+kannst du einzelne Profile über den Avatar oben links (Android/iOS)
+oder über die Seitenleiste (Desktop, Rechtsklick) entfernen.
+Chat-Profile werden nur auf dem Gerät entfernt, auf dem “Löschen” ausgewählt wurde. 
+Chat-Profile auf anderen Geräten funktionieren uneingeschränkt weiter.</p>
 
-<p>If you use a single default chat profile you can simply uninstall the app.
-This will still automatically trigger deletion of all associated address data on the chatmail server.
-For more info, please refer to <a href="https://nine.testrun.org/info.html#account-deletion">nine.testrun.org address-deletion</a> 
-or the respective page from your chosen <a href="https://chatmail.at/relays">3rd party chatmail server</a>.</p>
+<p>Wenn du ein einzelnes Standard-Chat-Profil verwendest, kannst du die App einfach deinstallieren.
+Dadurch werden automatisch alle zugehörigen Daten gelöscht.
+Weitere Informationen findest du auf der Seite des ausgewählten <a href="https://chatmail.at/relays">Relay</a>.</p>
     
       <h2 id="groups">
         
@@ -724,7 +724,7 @@ Einige Android-Hersteller schränken Apps sogar vollständig ein
 und Delta Chat zeigt möglicherweise keine eingehenden Nachrichten an, bis du die App erneut manuell öffnest.</p>
   </li>
   <li>
-    <p>Hintergrundverbindung erzwingen: Dies ist die Ausweichoption wenn die vorherigen Optionen nicht verfügbar sind oder keine „sofortige Zustellung“ erreichen. Die Aktivierung dieser Option führt zu einer permanenten Benachrichtigung auf Ihrem Telefon, die bei neueren Android-Telefonen manchmal „verkleinert“ werden kann.</p>
+    <p>Hintergrundverbindung erzwingen: Dies ist die Ausweichoption wenn die vorherigen Optionen nicht verfügbar sind oder keine „sofortige Zustellung“ erreichen. Die Aktivierung dieser Option führt zu einer permanenten Benachrichtigung auf deinem Telefon, die bei neueren Android-Telefonen manchmal „verkleinert“ werden kann.</p>
   </li>
 </ul>
 
@@ -941,8 +941,45 @@ kannst du unfertige Features ausprobieren, an denen gearbeitet wird.</p>
 
 <p>Die Features können <strong>instabil</strong> sein und <strong>geändert oder entfernt</strong> werden.</p>
 
-<p>You can find more information
-and give feedback in the <a href="https://support.delta.chat">Forum</a>.</p>
+<p>Du findest weitere Informationen im <a href="https://support.delta.chat">Forum</a>, wo du auch Feedback geben kannst.</p>
+    
+      <h3 id="relays">
+        
+        
+          Was sind Relays? <a href="#relays" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>Relays werden verwendet, um Nachrichten vorübergehend zu speichern, falls dein Gerät offline ist.
+Relays sind billige und einfache Server,
+die keine Daten wie Gruppenstatus, deinen Namen oder deinen Avatar speichern –
+all das existiert nur auf deinem Gerät.
+Relays werden von verschiedenen Gruppen und Personen betrieben.</p>
+
+<p>Standardmäßig wird nach der Installation ein Relay <strong>automatisch</strong> hinzugefügt;
+darum musst du dich nicht kümmern.
+Wenn du möchtest,
+kannst du jedoch unter <strong>Einstellungen → Erweitert → Relays</strong> Änderungen vornehmen:</p>
+
+<ul>
+  <li>
+    <p>Du kannst ein Relay <strong>hinzufügen</strong>, indem du einen QR-Code scannst,
+z.B. von <a href="https://chatmail.at/relays">https://chatmail.at/relays</a>.
+Bei mehreren Relays, empfängst du die Nachrichten von allen Relays.</p>
+  </li>
+  <li>
+    <p><strong>Standard</strong> legt das Relay fest, an das deine Chatpartner zukünftig Nachrichten senden.</p>
+  </li>
+  <li>
+    <p>Wenn du ein Relay <strong>entfernst</strong>,
+stelle sicher, dass ein anderes Standard-Relay ausreichend lange verwendet wurde.
+Andernfalls erreichen dich keine Nachrichten von deinen Kontakten.
+Im Zweifelsfall entferne das Relay später.</p>
+  </li>
+</ul>
+
+<p>Weitere Details und zukünftige Möglichkeiten findest du im <a href="https://support.delta.chat">Forum</a>.</p>
     
       <h3 id="kann-ich-eine-klassische-e-mail-adresse-mit-delta-chat-verwenden">
         
@@ -1187,10 +1224,11 @@ die Sicherheitseigenschaften durch das im Sommer 2023 angenommene
         
       </h3>
 
-<p>Yes, we are following efforts like <a href="https://en.wikipedia.org/wiki/Messaging_Layer_Security">MLS</a>
-but adopting them would mean breaking end-to-end encryption interoperability.
-So it would not be a light decision to take 
-and there must be tangible improvements for users.</p>
+<p>Ja, wir verfolgen Ansätze wie <a href="https://en.wikipedia.org/wiki/Messaging_Layer_Security">MLS</a>. 
+Diese zu übernehmen würde aber bedeuten, die Interoperabilität der Ende-zu-Ende-Verschlüsselung 
+mit allen anderen Anwendungen zu zerstören. 
+Die Entscheidung wäre also nicht leicht zu treffen 
+und müsste spürbare Verbesserungen für die Nutzer bringen.</p>
 
 <p>Delta Chat verfolgt einen ganzheitlichen Ansatz bei der “nutzbaren Sicherheit”: 
 Wir arbeiteten mit vielen Aktivistengruppen sowie mit 
@@ -1228,21 +1266,22 @@ so wie in der Autocrypt-Level-1-Spezifikation definiert.</p>
         
       </h3>
 
-<p>If you are sending or receiving email messages without end-to-end encryption (using a classic email server),
-they are still protected from cell or cable companies who can not read or modify your email messages.
-But both your and your recipient’s email providers
-may read, analyze or modify your messages, including any attachments.</p>
+<p>Wenn du E-Mail-Nachrichten ohne Ende-zu-Ende-Verschlüsselung sendest oder empfängst (mit einem klassischen E-Mail-Server),
+sind sie immer noch vor Mobilfunkanbietern oder Kabelnetzbetreibern geschützt, die Ihre E-Mail-Nachrichten nicht lesen oder verändern können.</p>
 
-<p>Delta Chat by default uses strict 
-<a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS encryption</a> 
-which secures connections between your device and your email provider.
-All of Delta Chat’s TLS-handling has been independently <a href="#security-audits">security audited</a>.
-Moreover, the connection between your and the recipient’s email provider
-will typically be transport-encrypted as well.
-If the involved email servers support <a href="https://datatracker.ietf.org/doc/html/rfc8461">MTA-STS</a>
-then transport encryption will be enforced between email providers
-in which case Delta Chat communications will never be exposed in cleartext to the Internet
-even if the message was not end-to-end encrypted.</p>
+<p>Aber sowohl dein E-Mail-Anbieter als auch der E-Mail-Anbieter des Empfängers 
+können Nachrichten, einschließlich aller Anhänge, lesen, analysieren oder verändern.</p>
+
+<p>Delta Chat verwendet standardmäßig strikte 
+<a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS-Verschlüsselung</a>, 
+die die Verbindungen zwischen Ihrem Gerät und Ihrem E-Mail-Anbieter sichert. 
+Die gesamte TLS-Implementierung wurde unabhängig <a href="#security-audits">sicherheitsgeprüft</a>.
+Die Verbindung zwischen Ihrem E-Mail-Providern und dem des Empfängers
+ist in der Regel ebenfalls transportverschlüsselt.
+Wenn die beteiligten E-Mail-Server <a href="https://datatracker.ietf.org/doc/html/rfc8461">MTA-STS</a> unterstützen,
+wird TLS zwischen den E-Mail-Anbietern durchgesetzt. 
+In diesem Fall wird die Delta-Chat-Kommunikation niemals im Klartext ins Internet gelangen
+selbst wenn die Nachricht nicht Ende-zu-Ende-verschlüsselt war.</p>
     
       <h3 id="message-metadata">
         
@@ -1357,7 +1396,7 @@ Wir beabsichtigen, PQC-Unterstützung zum <a href="https://github.com/chatmail/c
 <p>Du kannst den Status der Ende-zu-Ende-Verschlüsselung manuell im Dialog “Verschlüsselung”
 (Android/iOS: Benutzerprofil, Desktop: Rechtsklick auf den Chat eines Benutzers) überprüfen.
 Delta Chat zeigt dort zwei Fingerabdrücke an.
-Wenn die gleichen Fingerabdrücke auf Ihrem eigenen Gerät und auf dem Gerät Ihres Kontakts erscheinen,
+Wenn die gleichen Fingerabdrücke auf deinem eigenen Gerät und auf dem Gerät deines Kontakts erscheinen,
 ist die Verbindung sicher.</p>
     
       <h3 id="importkey">
@@ -1460,10 +1499,10 @@ e.g. you need to grant camera permission if you want to <a href="#howtoe2ee">sca
     <p>Falls nicht verfügbar, verwende den <strong>Mirror</strong> auf <a href="https://deltachat.github.io/deltachat-pages">https://deltachat.github.io/deltachat-pages</a></p>
   </li>
   <li>
-    <p>Öffne einen der folgenden <strong>App-Stores und suchen Sie nach „Delta Chat“:</strong> Google Play Store, F-Droid, Huawei App Gallery, iOS und macOS App Store, Microsoft Store</p>
+    <p>Öffne einen der folgenden <strong>App-Stores und suche nach „Delta Chat“:</strong> Google Play Store, F-Droid, Huawei App Gallery, iOS und macOS App Store, Microsoft Store</p>
   </li>
   <li>
-    <p>Im <strong>Paketmanager</strong> Ihrer Linux-Distribution nachschauen</p>
+    <p>Im <strong>Paketmanager</strong> deiner Linux-Distribution nachschauen</p>
   </li>
   <li>
     <p><strong>Android-APKs</strong> sind auch auf <a href="https://github.com/deltachat/deltachat-android/releases">https://github.com/deltachat/deltachat-android/releases</a> verfügbar.</p>
