@@ -341,7 +341,7 @@
 "ask_leave_group" = "Segur que vols sortir?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "En exportar els adjunts permetreu que altres aplicacions del dispositiu hi puguin accedir.\n\nVoleu continuar?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Bloqueja la gravació";
 // mailing lists
 "mailing_list" = "Llista de correu";
+// deprecated
 "mailing_list_profile_info" = "Els canvis al nom i la imatge de la llista de correu només s\'aplicaran en aquest dispositiu.";
 // webxdc
 // "Start..." button for an app

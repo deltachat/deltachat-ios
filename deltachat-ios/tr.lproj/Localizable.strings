@@ -341,7 +341,7 @@
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "Tüm aygıtlarınızdaki “%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Tüm aygıtlarınızdaki bu ileti silinsin mi?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Kaydı Kilitle";
 // mailing lists
 "mailing_list" = "Posta Listesi";
+// deprecated
 "mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıtta uygulanır.";
 // webxdc
 // "Start..." button for an app

@@ -339,9 +339,9 @@
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
-"ask_delete_named_chat" = "Chat \"%1$@\" von allen Geräten löschen?";
-"ask_delete_message" = "Diese Nachricht von allen Geräten löschen?";
-// Used for the deletion of Device messages
+"ask_delete_named_chat" = "Chat \"%1$@\" löschen?";
+"ask_delete_message" = "Diese Nachricht löschen?";
+// deprecated, use ask_delete_messages
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
 "ask_export_attachment" = "Das Exportieren von Anhängen ermöglicht es allen anderen Anwendungen auf deinem Gerät, auf diese zuzugreifen.\n\nFortfahren? ";
@@ -394,6 +394,7 @@
 "lock_recording" = "Aufnahme arretieren";
 // mailing lists
 "mailing_list" = "Mailingliste";
+// deprecated
 "mailing_list_profile_info" = "Änderungen an Name und Bild der Mailingliste gelten nur für dieses Gerät.";
 // webxdc
 // "Start..." button for an app

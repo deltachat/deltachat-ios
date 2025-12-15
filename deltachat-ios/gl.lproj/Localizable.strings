@@ -318,7 +318,7 @@
 "ask_leave_group" = "Tes a certeza de querer saír?";
 "ask_delete_named_chat" = "Eliminar a conversa \"%1$@\" en todos os teus dispositivos?";
 "ask_delete_message" = "Eliminar esta mensaxe en todos os teus dispositivos?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? Ao exportar anexos outras aplicacións no dispositivo terán acceso a eles.\n\nGardar?";
@@ -370,6 +370,7 @@
 "lock_recording" = "Gravación continua";
 // mailing lists
 "mailing_list" = "Lista de correo";
+// deprecated
 "mailing_list_profile_info" = "Cambios no nome da lista de correo e imaxe só se aplican neste dispositivo.";
 // webxdc
 // "Start..." button for an app

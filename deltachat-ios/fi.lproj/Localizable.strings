@@ -258,7 +258,7 @@
 "share_location_for_two_hours" = "2 tunniksi";
 "share_location_for_six_hours" = "6 tunniksi";
 "file_saved_to" = "Tiedosto tallennettu \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
 "ask_export_attachment" = "Liitteiden vieminen antaa muille laitteen sovelluksille mahdollisuuden lukea niitä.\n\nJatka?";
@@ -306,6 +306,7 @@
 "lock_recording" = "Lukitse äänitys";
 // mailing lists
 "mailing_list" = "Sähköpostilista";
+// deprecated
 "mailing_list_profile_info" = "Muutokset sähköpostilistan nimeen ja kuvaan tallentuvat vain tähän laitteeseen.";
 // webxdc
 // "Start..." button for an app

@@ -308,7 +308,7 @@
 "file_saved_to" = "檔案已儲存至「%1$@」。";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";
@@ -357,6 +357,7 @@
 "lock_recording" = "鎖定錄製";
 // mailing lists
 "mailing_list" = "郵寄列表";
+// deprecated
 "mailing_list_profile_info" = "郵寄列表名稱和圖片的變更僅適用於此裝置。";
 // webxdc
 // "Start..." button for an app

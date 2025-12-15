@@ -231,7 +231,7 @@
 "share_location_for_two_hours" = "2시간 동안";
 "share_location_for_six_hours" = "6시간 동안";
 "file_saved_to" = "파일 \"%1$@\"에 저장됨.";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "%1$@님에게 메시지를 전달할까요?";
 "ask_forward_multiple" = "%1$d 채팅으로 메시지를 전달하시겠습니까?";
 "ask_export_attachment" = "첨부 파일을 내보내면 단말기의 다른 앱에서 해당 첨부 파일에 액세스할 수 있습니다.\n\n계속하시겠습니까?";
@@ -277,6 +277,7 @@
 "attachment_failed_to_load" = "첨부 파일을 불러오지 못했습니다.";
 // mailing lists
 "mailing_list" = "메일 목록";
+// deprecated
 "mailing_list_profile_info" = "메일링 목록 이름 및 이미지의 변경 사항은 이 장치에만 적용됩니다.";
 // webxdc
 // "Start..." button for an app

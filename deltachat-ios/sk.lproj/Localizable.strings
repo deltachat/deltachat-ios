@@ -306,7 +306,7 @@
 "file_saved_to" = "Súbor bol uložený do priečinka %1$@";
 "ask_delete_named_chat" = "Odstrániť konverzáciu \"%1$@\" zo všetkých vašich zariadení?";
 "ask_delete_message" = "Odstrániť túto správu zo všetkých vašich zariadení?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
 "ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";
@@ -356,6 +356,7 @@
 "lock_recording" = "Zamknúť nahrávanie";
 // mailing lists
 "mailing_list" = "Zoznam adries";
+// deprecated
 "mailing_list_profile_info" = "Zmeny v zozname adries a obrázku sa vzťahujú iba na toto zariadenie.";
 // webxdc
 // "Start..." button for an app

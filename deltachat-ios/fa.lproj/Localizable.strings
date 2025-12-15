@@ -326,7 +326,7 @@
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
 "ask_delete_named_chat" = "حذف گفتگوی «%1$@» از همه‌ی دستگاه‌های شما؟";
 "ask_delete_message" = "می‌خواهید این پیام را از همهٔ دستگاه‌هایتان حذف کنید؟";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "پیام‌ها به %1$@ هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";
@@ -381,6 +381,7 @@
 "lock_recording" = "قفل کردن ضبط کردن";
 // mailing lists
 "mailing_list" = "فهرست پستی";
+// deprecated
 "mailing_list_profile_info" = "تغییرات انجام شده روی نام و تصویر فهست پستی فقط در این دستگاه اعمال شود.";
 // webxdc
 // "Start..." button for an app

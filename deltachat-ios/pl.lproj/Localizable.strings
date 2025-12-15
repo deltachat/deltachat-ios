@@ -341,7 +341,7 @@
 "ask_leave_group" = "Na pewno chcesz opuścić?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@” ze wszystkich urządzeń?";
 "ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Zablokuj nagrywanie";
 // mailing lists
 "mailing_list" = "Lista mailingowa";
+// deprecated
 "mailing_list_profile_info" = "Zmiany nazwy i obrazu listy adresowej dotyczą tylko tego urządzenia.";
 // webxdc
 // "Start..." button for an app

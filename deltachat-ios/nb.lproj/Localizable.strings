@@ -341,7 +341,7 @@
 "ask_leave_group" = "Er du sikker på at du vil forlate?";
 "ask_delete_named_chat" = "Slett chatten \"%1$@\" fra alle dine enheter?";
 "ask_delete_message" = "Slett denne meldingen fra alle dine enheter?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Videresend meldinger til %1$@?";
 "ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
 "ask_export_attachment" = "Eksporter vedlegg? Eksport av vedlegg vil gi andre apper på din enhet tilgang til dem\n\nFortsett?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Lås opptak";
 // mailing lists
 "mailing_list" = "E-postliste";
+// deprecated
 "mailing_list_profile_info" = "Endringer av e-postlistens navn og bilde gjelder bare for denne enheten.";
 // webxdc
 // "Start..." button for an app

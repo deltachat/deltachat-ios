@@ -130,6 +130,22 @@
 			<string>%d تا پسند وابی</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>اخۊی %d پیوم پاک بۊ؟</string>
+			<key>other</key>
+			<string>اخۊی %d پیوم پاک بۊ؟</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -141,7 +157,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>êxuy %d payom pāk bu?</string>
+			<string>اخۊی %d پیوم پاک بۊ؟</string>
 			<key>other</key>
 			<string>اخۊی %d پیوم پاک بۊ؟</string>
 		</dict>

@@ -231,7 +231,7 @@
 "share_location_for_two_hours" = "Για 2 ώρες";
 "share_location_for_six_hours" = "Για 6 ώρες";
 "file_saved_to" = "Αποθήκευση στο \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Κοινοποίηση μηνύματος στο %1$@;";
 "ask_forward_multiple" = "Κοινοποίηση μηνύματος σε %1$d συνομιλίες;";
 "ask_export_attachment" = "Η εξαγωγή συνημμένων θα επιτρέψει σε άλλες εφαρμογές της συσκευής σας να έχουν πρόσβαση σε αυτά.\n\nΣυνέχεια;";
@@ -279,6 +279,7 @@
 "lock_recording" = "Κλείδωμα Εγγραφής";
 // mailing lists
 "mailing_list" = "Λίστα Αλληλογραφίας";
+// deprecated
 "mailing_list_profile_info" = "Οι αλλαγές στο όνομα και την εικόνα της λίστας αλληλογραφίας ισχύουν μόνο σε αυτήν τη συσκευή.";
 // webxdc
 // "Start..." button for an app

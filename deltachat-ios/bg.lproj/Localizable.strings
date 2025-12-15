@@ -258,7 +258,7 @@
 "share_location_for_two_hours" = "За 2 часа";
 "share_location_for_six_hours" = "За 6 часа";
 "file_saved_to" = "Файлът е записан в \"%1$@\"";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
 "ask_export_attachment" = "Експортирането на прикачените файлове ще даде възможност други приложения на Вашето устройство да имат достъп до тях.\n\nИскате ли да продължите?";
@@ -306,6 +306,7 @@
 "lock_recording" = "Заключване на записа";
 // mailing lists
 "mailing_list" = "Пощенски списък";
+// deprecated
 "mailing_list_profile_info" = "Промените по имена и изображения на пощенски списъци са приложими само за това устройство.";
 // webxdc
 // "Start..." button for an app

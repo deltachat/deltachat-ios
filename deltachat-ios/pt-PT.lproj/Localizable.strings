@@ -200,7 +200,7 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Reencaminhar mensages para %1$@?";
 "ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? A exportação de anexos permitirá o seu acesso a qualquer outra aplicação no seu dispositivo.\n\nContinuar?";
