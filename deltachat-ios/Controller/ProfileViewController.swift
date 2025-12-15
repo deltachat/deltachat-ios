@@ -615,7 +615,7 @@ class ProfileViewController: UITableViewController {
         guard chat != nil else { return }
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
         if !msgIds.isEmpty {
-            let alert = UIAlertController(title: nil, message: Utils.askDeleteMsgsText(count: msgIds.count), preferredStyle: .safeActionSheet)
+            let alert = UIAlertController(title: nil, message: String.localized(stringID: "ask_delete_messages", parameter: msgIds.count), preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { [weak self] _ in
                 guard let self else { return }
                 dcContext.deleteMessages(msgIds: msgIds)

@@ -1335,7 +1335,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             canDeleteForEveryone = false
         }
 
-        let alert = UIAlertController(title: Utils.askDeleteMsgsText(count: ids.count, chat: dcChat), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me"), style: .destructive, handler: { [weak self] _ in
             self?.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
