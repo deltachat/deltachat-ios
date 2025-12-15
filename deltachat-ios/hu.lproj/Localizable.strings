@@ -341,7 +341,7 @@
 "ask_leave_group" = "Biztosan elhagyja a csatornát?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Felvétel zárolása";
 // mailing lists
 "mailing_list" = "Levelezőlista";
+// deprecated
 "mailing_list_profile_info" = "A levelezőlista nevének és képének módosítása csak ezen az eszközön érvényes.";
 // webxdc
 // "Start..." button for an app

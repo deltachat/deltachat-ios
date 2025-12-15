@@ -341,7 +341,7 @@
 "ask_leave_group" = "是否确定要离开？";
 "ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
 "ask_delete_message" = "是否在所有设备上删除此消息？";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件将允许您设备上的其他应用程序访问这些附件。\n\n是否继续？";
@@ -394,6 +394,7 @@
 "lock_recording" = "锁定录音";
 // mailing lists
 "mailing_list" = "邮件列表";
+// deprecated
 "mailing_list_profile_info" = "邮件列表名称和图像的更改仅适用于此设备。 ";
 // webxdc
 // "Start..." button for an app
@@ -534,7 +535,7 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
-"login_advanced_hint" = "此登录适用于高级用户：\n\n• 请勿使用您在其他应用中已使用的账号。\n\n• 传统电子邮件服务器允许进行未端到端加密的聊天，此类聊天以邮件图标标记。";
+"login_advanced_hint" = "此登录适用于高级用户：\n\n• 请勿使用您在其他应用中已使用的地址。\n\n• 传统电子邮件服务器允许进行未端到端加密的聊天，此类聊天以邮件图标标记。";
 "login_inbox" = "收件箱";
 "login_imap_login" = "IMAP 登录名";
 "login_imap_server" = "IMAP 服务器";

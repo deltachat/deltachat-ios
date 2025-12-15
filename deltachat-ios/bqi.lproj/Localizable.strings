@@ -280,7 +280,7 @@
 "share_location_for_two_hours" = "سی 2 ساعت";
 "share_location_for_six_hours" = "سی 6 ساعت";
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_start_chat_with" = "گوفت وو لوفت وا %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "پاک کردن %1$@ ز جرگه؟";

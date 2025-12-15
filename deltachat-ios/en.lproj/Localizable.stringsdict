@@ -205,9 +205,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d chat on all your devices?</string>
+			<string>Delete %d chat?</string>
 			<key>other</key>
-			<string>Delete %d chats on all your devices?</string>
+			<string>Delete %d chats?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -221,9 +221,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Delete %d message on all your devices?</string>
+			<string>Delete %d message?</string>
 			<key>other</key>
-			<string>Delete %d messages on all your devices?</string>
+			<string>Delete %d messages?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

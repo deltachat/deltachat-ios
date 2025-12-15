@@ -341,7 +341,7 @@
 "ask_leave_group" = "Ви впевнені, що хочете піти?";
 "ask_delete_named_chat" = "Видалити чат \"%1$@\" на всіх ваших пристроях?";
 "ask_delete_message" = "Видалити повідомлення на всіх ваших пристроях?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Переслати повідомлення %1$@?";
 "ask_forward_multiple" = "Переслати повідомлення в %1$d?";
 "ask_export_attachment" = "Якщо експортувати вкладені файли, інші програми на вашому пристрої отримають до них доступ.\n\nПродовжити?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Заблокувати запис";
 // mailing lists
 "mailing_list" = "Список адресатів";
+// deprecated
 "mailing_list_profile_info" = "Зміни в назві списку розсилки та зображенні стосуються лише цього пристрою.";
 // webxdc
 // "Start..." button for an app

@@ -341,7 +341,7 @@
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
 "ask_delete_named_chat" = "Eliminare la chat \"%1$@\" su tutti i tuoi dispositivi?";
 "ask_delete_message" = "Vuoi eliminare questo messaggio da tutti i tuoi dispositivi?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Inoltrare messaggi a %1$@?";
 "ask_forward_multiple" = "Inoltra messaggi a %1$d chat?";
 "ask_export_attachment" = "Esportare allegati permetterà ad ogni altra app sul tuo dispositivo di accedervi.\n\nContinuare?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Blocca Registrazione";
 // mailing lists
 "mailing_list" = "Elenco di Distribuzione";
+// deprecated
 "mailing_list_profile_info" = "Le modifiche al nome e all\'immagine dell\'elenco di distribuzione si applicano solo a questo dispositivo.";
 // webxdc
 // "Start..." button for an app

@@ -268,7 +268,7 @@
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Да ли сте сигурни да желите да напустите?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Да ли желите да проследите поруке %1$@?";
 "ask_forward_multiple" = "Да ли желите да проследим поруке за %1$dћаскања?";
 "ask_export_attachment" = "Извоз прилога ће омогућити другим апликацијама на вашем уређају да им приступе.\n\nДа ли желите ли да наставите?";
@@ -318,6 +318,7 @@
 "lock_recording" = "Закључај снимање";
 // mailing lists
 "mailing_list" = "Списак имејл адреса";
+// deprecated
 "mailing_list_profile_info" = "Промене имена и слике са листе за слање примењују се само на овом уређају.";
 // webxdc
 // "Start..." button for an app

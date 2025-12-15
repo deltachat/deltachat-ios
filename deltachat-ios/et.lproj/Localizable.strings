@@ -295,6 +295,7 @@
 "device_talk" = "Seadme sõnumid";
 "device_talk_subtitle" = "Kohalikus seadmes loodud sõnumid";
 "device_talk_explain" = "Selle vestluse sõnumid on koostatud selles nutiseadmes ja nende abil teavitatakse sind rakenduse uuendustest ja märgatud probleemidest.";
+"device_talk_welcome_message2" = "Asu suhtlema!\n\n🙌 Klõpsa mõlema seadme põhivaates valikut „QR-kood“. Vali ühes seadmes „Skaneeri QR-koodi“ ja suuna ta teisele seadmele\n\n🌍 Kui te pole üheskoos samas kohas, siis skaneeri videokõne vahendusel või edasta „Skaneeri QR-koodi“ valikus leiduv kutselink\n\nSeejärel saadki kasutada meie meeldivat ja hajutatud sõnumilahendust. Suure kontrastina teiste sarnaste populaarsete rakendustega puudub meil keskne kontroll ning keegi ei jälita sind, sinu peret, sõpru ega kolleege ning müü sinu andmeid teistele osapooltele.";
 "edit_contact" = "Muuda kontakti";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Tõsta vestlus esile";
@@ -340,7 +341,7 @@
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
 "ask_delete_named_chat" = "Kas kustutad „%1$@“ vestluse kõikidest oma seadmetest?";
 "ask_delete_message" = "Kas kustutad selle sõnumi kõikidest oma seadmetest?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Kas edastad sõnumi kasutajale %1$@?";
 "ask_forward_multiple" = "Kas edastad sõnumid %1$d vestlusesse?";
 "ask_export_attachment" = "Kui ekspordid manused, siis sinu nutiseadme muud rakendused saavad neile ligi.\n\nKas soovid jätkata?";
@@ -392,6 +393,7 @@
 "lock_recording" = "Jätka salvestamist";
 // mailing lists
 "mailing_list" = "Postiloend";
+// deprecated
 "mailing_list_profile_info" = "Postiloendi nime ja tunnuspildi muudatused kehtivad vaid selles seadmes.";
 // webxdc
 // "Start..." button for an app

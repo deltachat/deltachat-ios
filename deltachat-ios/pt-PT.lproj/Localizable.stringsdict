@@ -110,6 +110,24 @@
 			<string>Enviar %d ficheiros para %s?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Apagar %d mensagem?</string>
+			<key>many</key>
+			<string>Apagar %d mensagens?</string>
+			<key>other</key>
+			<string>Apagar %d mensagens?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages_simple</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

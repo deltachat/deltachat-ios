@@ -249,7 +249,7 @@
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
 "file_saved_to" = "Arquivo salvo em \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
 "ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados por outros aplicativos.\n\nContinuar?";
@@ -297,6 +297,7 @@
 "lock_recording" = "Travar gravação";
 // mailing lists
 "mailing_list" = "Lista de e-mail";
+// deprecated
 "mailing_list_profile_info" = "Alterações ao nome e imagem da lista de e-mails só se aplicam a este dispositivo.";
 // webxdc
 // "Start..." button for an app

@@ -341,7 +341,7 @@
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
 "ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen van al je apparaten?";
 "ask_delete_message" = "Wil je dit bericht verwijderen van al je apparaten?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
@@ -394,6 +394,7 @@
 "lock_recording" = "Opname vergrendelen";
 // mailing lists
 "mailing_list" = "Mailinglijst";
+// deprecated
 "mailing_list_profile_info" = "Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.";
 // webxdc
 // "Start..." button for an app

@@ -236,7 +236,7 @@
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";

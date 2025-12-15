@@ -337,7 +337,7 @@
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
 "ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
 "ask_export_attachment" = "Eksportimi i bashkëngjitjeve do t\’u lejojë aplikacioneve të tjerë në pajisjen tuaj t\’i përdorin ato.\n\nTë vazhdohet?";
@@ -390,6 +390,7 @@
 "lock_recording" = "Kyçe Incizimin";
 // mailing lists
 "mailing_list" = "Listë Postimesh";
+// deprecated
 "mailing_list_profile_info" = "Ndryshime në emër dhe figurë liste postimesh aplikohen vetëm në këtë pajisje.";
 // webxdc
 // "Start..." button for an app

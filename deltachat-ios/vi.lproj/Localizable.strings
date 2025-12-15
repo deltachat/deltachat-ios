@@ -255,7 +255,7 @@
 "share_location_for_two_hours" = "Trong 2 giờ";
 "share_location_for_six_hours" = "Trong 6 giờ";
 "file_saved_to" = "Tệp đã được lưu vào \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";
@@ -303,6 +303,7 @@
 "lock_recording" = "Khóa ghi âm";
 // mailing lists
 "mailing_list" = "Danh sách gửi thư";
+// deprecated
 "mailing_list_profile_info" = "Những thay đổi về tên và hình ảnh danh sách gửi thư chỉ áp dụng trên thiết bị này.";
 // webxdc
 // "Start..." button for an app

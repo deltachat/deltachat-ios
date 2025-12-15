@@ -264,7 +264,7 @@
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
-// Used for the deletion of Device messages
+// deprecated, use ask_delete_messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
@@ -312,6 +312,7 @@
 "lock_recording" = "Lås inspelning";
 // mailing lists
 "mailing_list" = "Mejllista";
+// deprecated
 "mailing_list_profile_info" = "Ändringar av namn och på e-postlistan bild, gäller endast för den här enheten.";
 // webxdc
 // "Start..." button for an app
