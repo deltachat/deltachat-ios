@@ -26,6 +26,7 @@
       <li><a href="#deletei-minha-própria-conta-por-acidente">Deletei minha própria conta por acidente.</a></li>
       <li><a href="#não-quero-mais-receber-as-mensagens-de-um-grupo">Não quero mais receber as mensagens de um grupo.</a></li>
       <li><a href="#cloning-a-group">Cloning a group</a></li>
+      <li><a href="#how-many-members-can-participate-in-a-single-group">How many members can participate in a single group?</a></li>
     </ul>
   </li>
   <li><a href="#webxdc">In-chat apps</a>
@@ -185,7 +186,8 @@ If you add each other to <a href="#groups">groups</a>, end-to-end encryption wil
 <p>As being a private messenger,
 only friends and family you <a href="#howtoe2ee">share your QR code or invite link with</a> can write to you.</p>
 
-<p>Your friends may share your contact with other friends, this appears as a <strong>request</strong>.</p>
+<p>Your friends may share your contact with other friends,
+this appears as <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Request</b></p>
 
 <ul>
   <li>
@@ -303,7 +305,8 @@ they will see it when they view your contact details.</p>
   </li>
   <li>
     <p><strong>Archive chats</strong> if you do not want to see them in your chat list any longer.
-Archived chats remain accessible above the chat list or via search.</p>
+They remain accessible above the chat list or via search
+and are marked by <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Archived</b></p>
   </li>
   <li>
     <p>When an archived chat gets a new message, unless muted, it will <strong>pop out of the archive</strong> and back into your chat list.
@@ -375,22 +378,18 @@ and others will as well not always see that you are “online”.</p>
 <ul>
   <li>
     <p><strong>One tick</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
-means that the message was sent successfully to your provider.</p>
+means that the message was sent successfully to the <a href="#relays">relay</a>.</p>
   </li>
   <li>
     <p><strong>Two ticks</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
-mean that at least one recipient’s device
-reported back to having received the message.</p>
-  </li>
-  <li>
-    <p>Recipients may have disabled read-receipts,
-so even if you see only one tick, the message may have been read.</p>
-  </li>
-  <li>
-    <p>The other way round, two ticks do not automatically mean
-that a human has read or understood the message ;)</p>
+indicate your contact has read the message.</p>
   </li>
 </ul>
+
+<p>In <a href="#groups">groups</a> the second tick means that at least one member has reported back having read the message.</p>
+
+<p>You will only get the second tick if both you and one of the recipients who read the message
+has <strong>Settings → Chats → Read Receipts</strong> enabled.</p>
     
       <h3 id="edit">
         
@@ -605,6 +604,21 @@ or right-click the group in the chat list (Desktop).</p>
 
 <p>The new group is <strong>fully independent</strong> from the original,
 which continues to work as before.</p>
+    
+      <h3 id="how-many-members-can-participate-in-a-single-group">
+        
+        
+          How many members can participate in a single group? <a href="#how-many-members-can-participate-in-a-single-group" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>There is no strict technical limit,
+but more than 150 is not recommended.</p>
+
+<p>As groups get larger, they can become socially unstable and may need a hierarchy -
+where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
+See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
     
       <h2 id="webxdc">
         
@@ -946,22 +960,21 @@ try the <strong>manual transfer</strong> described below</p>
 <p>This method is only recommended if “Add Second Device” as described above does not work.</p>
 
 <ul>
-  <li>On the old device, go to “Settings -&gt; Chats and media -&gt; Export Backup”. Enter your
+  <li>
+    <p>On the old device, go to <strong>Settings → Chats → Export Backup</strong>. Enter your
 screen unlock PIN, pattern, or password. Then you can click on “Start
 Backup”. This saves the backup file to your device. Now you have to transfer
-it to the other device somehow.</li>
-  <li>On the new device, in the “I already have a profile” menu,
-choose “restore from backup”. After import, your conversations, encryption
-keys, and media should be copied to the new device.
-    <ul>
-      <li><strong>If you use iOS:</strong> and you encounter difficulties, maybe
-<a href="https://support.delta.chat/t/import-backup-to-ios/1628">this guide</a> will
-help you.</li>
-    </ul>
+it to the other device somehow.</p>
   </li>
-  <li>You are now synchronized, and can use both devices for sending and receiving
-end-to-end encrypted messages with your communication partners.</li>
+  <li>
+    <p>On the new device, select <strong>I Already Have a Profile → Restore from Backup</strong>.
+If you use iOS and encounter difficulties,
+<a href="https://support.delta.chat/t/import-backup-to-ios/1628">this guide</a> might help you.</p>
+  </li>
 </ul>
+
+<p>You are now synchronized, and can use both devices for sending and receiving
+end-to-end encrypted messages with your communication partners.</p>
     
       <h3 id="existe-algum-plano-para-a-introdução-de-um-cliente-web-para-delta-chat">
         

@@ -26,6 +26,7 @@
       <li><a href="#我不小心删除了我自己">我不小心删除了我自己。</a></li>
       <li><a href="#我不想再收到某个群组中的消息了">我不想再收到某个群组中的消息了。</a></li>
       <li><a href="#cloning-a-group">Cloning a group</a></li>
+      <li><a href="#how-many-members-can-participate-in-a-single-group">How many members can participate in a single group?</a></li>
     </ul>
   </li>
   <li><a href="#webxdc">In-chat apps</a>
@@ -185,7 +186,8 @@ If you add each other to <a href="#groups">groups</a>, end-to-end encryption wil
 <p>As being a private messenger,
 only friends and family you <a href="#howtoe2ee">share your QR code or invite link with</a> can write to you.</p>
 
-<p>Your friends may share your contact with other friends, this appears as a <strong>request</strong>.</p>
+<p>Your friends may share your contact with other friends,
+this appears as <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Request</b></p>
 
 <ul>
   <li>
@@ -375,22 +377,18 @@ and others will as well not always see that you are “online”.</p>
 <ul>
   <li>
     <p><strong>One tick</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
-means that the message was sent successfully to your provider.</p>
+means that the message was sent successfully to the <a href="#relays">relay</a>.</p>
   </li>
   <li>
     <p><strong>Two ticks</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
-mean that at least one recipient’s device
-reported back to having received the message.</p>
-  </li>
-  <li>
-    <p>Recipients may have disabled read-receipts,
-so even if you see only one tick, the message may have been read.</p>
-  </li>
-  <li>
-    <p>The other way round, two ticks do not automatically mean
-that a human has read or understood the message ;)</p>
+indicate your contact has read the message.</p>
   </li>
 </ul>
+
+<p>In <a href="#groups">groups</a> the second tick means that at least one member has reported back having read the message.</p>
+
+<p>You will only get the second tick if both you and one of the recipients who read the message
+has <strong>Settings → Chats → Read Receipts</strong> enabled.</p>
     
       <h3 id="edit">
         
@@ -596,6 +594,21 @@ or right-click the group in the chat list (Desktop).</p>
 
 <p>The new group is <strong>fully independent</strong> from the original,
 which continues to work as before.</p>
+    
+      <h3 id="how-many-members-can-participate-in-a-single-group">
+        
+        
+          How many members can participate in a single group? <a href="#how-many-members-can-participate-in-a-single-group" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>There is no strict technical limit,
+but more than 150 is not recommended.</p>
+
+<p>As groups get larger, they can become socially unstable and may need a hierarchy -
+where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
+See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
     
       <h2 id="webxdc">
         
@@ -934,19 +947,16 @@ Welcome to the power of the interoperable chatmail relay network :)</p>
 <p>仅当上述“添加第二台设备”方法不起作用时，才建议使用此方法。</p>
 
 <ul>
-  <li>在旧设备上，转到“设置 -&gt; 聊天和媒体 -&gt; 导出备份”。 输入你的
-屏幕解锁 PIN 码、图案或密码。 然后你可以点击“开始
-备份”。 这会将备份文件保存到你的设备。 现在你必须
-以某种方式将其传输到另一台设备。</li>
-  <li>在新设备上，在“我已经有一个配置文件”菜单中，
-选择“从备份还原”。 导入后，你的对话、加密
-密钥和媒体应复制到新设备。</li>
-  <li><strong>如果你使用 iOS：</strong> 并且你遇到困难，也许
-<a href="https://support.delta.chat/t/import-backup-to-ios/1628">本指南</a> 将
-帮助你。</li>
-  <li>你现在已同步，并且可以使用两台设备与你的通信伙伴发送和接收
-端到端加密消息。</li>
+  <li>
+    <p>在旧设备上，转到“设置 -&gt; 聊天和媒体 -&gt; 导出备份”。 输入你的 屏幕解锁 PIN 码、图案或密码。 然后你可以点击“开始 备份”。 这会将备份文件保存到你的设备。 现在你必须 以某种方式将其传输到另一台设备。</p>
+  </li>
+  <li>
+    <p>在新设备上，在“我已经有一个配置文件”菜单中，选择“从备份还原”。 导入后，你的对话、加密 密钥和媒体应复制到新设备。
+如果你使用 iOS： 并且你遇到困难，也许 <a href="https://support.delta.chat/t/import-backup-to-ios/1628">本指南</a> 将 帮助你。</p>
+  </li>
 </ul>
+
+<p>你现在已同步，并且可以使用两台设备与你的通信伙伴发送和接收 端到端加密消息。</p>
     
       <h3 id="有推出-delta-chat-web-客户端的计划吗">
         
