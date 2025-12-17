@@ -424,6 +424,7 @@
 "pref_sound" = "Ήχος";
 "pref_silent" = "Σε σίγαση";
 "pref_privacy" = "Ιδιωτικότητα";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Συνομιλίες και Πολυμέσα";
 "pref_system_default" = "Προκαθορισμένο του συστήματος";
 // Translators: as in "opposite of dark"

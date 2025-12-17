@@ -468,6 +468,7 @@
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Conversas e mídia";
 "pref_system_default" = "Padrão do sistema";
 // Translators: as in "opposite of dark"

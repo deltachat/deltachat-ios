@@ -510,6 +510,7 @@
 "pref_sound" = "Ääni";
 "pref_silent" = "Äänetön";
 "pref_privacy" = "Yksityisyys";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Keskustelut ja media";
 "pref_system_default" = "Järjestelmän oletus";
 // Translators: as in "opposite of dark"

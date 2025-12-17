@@ -643,6 +643,7 @@
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
 "pref_privacy" = "Soukromí";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Chaty a multimédia";
 "pref_system_default" = "Podle systému";
 // Translators: as in "opposite of dark"

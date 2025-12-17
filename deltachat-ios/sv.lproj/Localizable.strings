@@ -516,6 +516,7 @@
 "pref_sound" = "Ljud";
 "pref_silent" = "Tyst";
 "pref_privacy" = "Integritet";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Chattar och media";
 "pref_system_default" = "Systemets standardinställning";
 // Translators: as in "opposite of dark"

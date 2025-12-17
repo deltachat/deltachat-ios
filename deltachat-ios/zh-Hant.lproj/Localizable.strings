@@ -593,6 +593,7 @@
 "pref_sound" = "音效";
 "pref_silent" = "靜音";
 "pref_privacy" = "隱私權設定";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "對話和媒體設定";
 "pref_system_default" = "系統預設";
 // Translators: as in "opposite of dark"

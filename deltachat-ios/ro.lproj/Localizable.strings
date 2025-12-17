@@ -453,6 +453,7 @@
 "pref_sound" = "Sunet";
 "pref_silent" = "Silențios";
 "pref_privacy" = "Confidențialitate";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Discuții și mass-media";
 "pref_system_default" = "Sistem implicit";
 // Translators: as in "opposite of dark"

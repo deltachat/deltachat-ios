@@ -480,6 +480,7 @@
 "pref_sound" = "Âm thanh";
 "pref_silent" = "Im lặng";
 "pref_privacy" = "Quyền riêng tư";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Trò chuyện và Phương tiện";
 "pref_system_default" = "Mặc định hệ thống";
 // Translators: as in "opposite of dark"

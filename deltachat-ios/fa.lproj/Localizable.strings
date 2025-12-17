@@ -617,6 +617,7 @@
 "pref_sound" = "صدا";
 "pref_silent" = "سکوت";
 "pref_privacy" = "حریم خصوصی";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "گپ‌ها و رسانه";
 "pref_system_default" = "پیش‌فرض سیستم";
 // Translators: as in "opposite of dark"

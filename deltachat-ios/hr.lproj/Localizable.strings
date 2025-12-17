@@ -155,6 +155,7 @@
 "pref_sound" = "Zvuk";
 "pref_silent" = "Tiho";
 "pref_privacy" = "Privatnost";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Razgovori i media";
 "pref_system_default" = "Sustavno zadano";
 // Translators: as in "opposite of dark"

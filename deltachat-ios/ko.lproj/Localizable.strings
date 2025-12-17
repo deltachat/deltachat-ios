@@ -418,6 +418,7 @@
 "pref_sound" = "알림음";
 "pref_silent" = "무음";
 "pref_privacy" = "개인정보 보호";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "대화 및 미디어";
 "pref_system_default" = "시스템 기본값";
 // Translators: as in "opposite of dark"

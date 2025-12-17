@@ -444,6 +444,7 @@
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Pokalbiai ir medija";
 "pref_system_default" = "Sistemos numatytoji";
 // Translators: as in "opposite of dark"

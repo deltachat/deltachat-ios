@@ -563,6 +563,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
 "pref_privacy" = "Ochrana osobných údajov";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Konverzácie a médiá";
 "pref_system_default" = "Predvolené nastavenie";
 // Translators: as in "opposite of dark"

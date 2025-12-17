@@ -643,6 +643,7 @@
 "pref_sound" = "Sonido";
 "pref_silent" = "Silencio";
 "pref_privacy" = "Privacidad";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Chats y multimedia";
 "pref_system_default" = "Predeterminado del sistema";
 // Translators: as in "opposite of dark"

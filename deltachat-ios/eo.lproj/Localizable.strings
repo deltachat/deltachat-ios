@@ -343,6 +343,7 @@
 "pref_sound" = "Sono";
 "pref_silent" = "Silenta";
 "pref_privacy" = "Privateco";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Interparoloj kaj aŭdvidaĵoj";
 "pref_system_default" = "Sistema defaŭlto";
 // Translators: as in "opposite of dark"
