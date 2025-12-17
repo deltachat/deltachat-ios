@@ -355,6 +355,7 @@
 "pref_sound" = "通知音";
 "pref_silent" = "無音";
 "pref_privacy" = "機密保護";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "チャットと写真･動画･音楽";
 "pref_system_default" = "システム既定";
 // Translators: as in "opposite of dark"

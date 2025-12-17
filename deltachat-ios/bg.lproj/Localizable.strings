@@ -510,6 +510,7 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Без звук";
 "pref_privacy" = "Поверителност";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Чатове и медийни файлове";
 "pref_system_default" = "Подразбиращото се за системата";
 // Translators: as in "opposite of dark"

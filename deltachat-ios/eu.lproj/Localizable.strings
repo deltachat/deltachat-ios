@@ -390,6 +390,7 @@
 "pref_sound" = "Soinua";
 "pref_silent" = "Isila";
 "pref_privacy" = "Pribatutasuna";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Txatak eta multimedia";
 "pref_system_default" = "Sisteman lehenetsia";
 // Translators: as in "opposite of dark"

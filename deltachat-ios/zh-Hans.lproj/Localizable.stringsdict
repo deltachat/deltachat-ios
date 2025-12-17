@@ -181,7 +181,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>是否删除所有设备上的 %d 个聊天？</string>
+			<string>删除 %d 个聊天？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -195,7 +195,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>是否删除所有设备上的 %d 条消息？</string>
+			<string>删除 %d 条消息？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

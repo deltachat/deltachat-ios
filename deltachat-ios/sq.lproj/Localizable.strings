@@ -638,6 +638,7 @@
 "pref_sound" = "Tingull";
 "pref_silent" = "Heshtazi";
 "pref_privacy" = "Privatësi";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Fjalosje dhe Media";
 "pref_system_default" = "Parazgjedhje sistemi";
 // Translators: as in "opposite of dark"

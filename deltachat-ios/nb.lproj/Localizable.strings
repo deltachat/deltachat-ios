@@ -460,6 +460,7 @@
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
 "pref_privacy" = "Personvern";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Chatter og medier";
 "pref_system_default" = "System standard";
 // Translators: as in "opposite of dark"

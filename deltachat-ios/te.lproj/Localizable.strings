@@ -154,6 +154,7 @@
 "pref_sound" = "శబ్ధం";
 "pref_silent" = "మౌనం";
 "pref_privacy" = "గోప్యత";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "ముచ్చట్లు మరియు ప్రసార మాధ్యమం";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "లైటు";

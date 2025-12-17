@@ -244,6 +244,7 @@
 "pref_sound" = "Səs";
 "pref_silent" = "Səssiz";
 "pref_privacy" = "Gizlilik";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Çatlar və faillar";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Açıq";

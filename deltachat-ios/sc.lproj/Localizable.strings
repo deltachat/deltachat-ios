@@ -304,6 +304,7 @@
 "pref_sound" = "Sonu";
 "pref_silent" = "Istuda su sonu";
 "pref_privacy" = "Riservadesa";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Tzarradas e mèdios";
 "pref_system_default" = "Predefinidu de sistema";
 // Translators: as in "opposite of dark"

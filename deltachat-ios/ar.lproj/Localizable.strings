@@ -169,6 +169,7 @@
 "pref_led_color" = "لون ضوء التنبيه LED";
 "pref_sound" = "الصوت";
 "pref_privacy" = "الخصوصية";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "الدردشة والوسائط";
 "pref_system_default" = "افتراضيات النظام";
 // Translators: as in "opposite of dark"

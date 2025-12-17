@@ -205,9 +205,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Tüm aygıtlarınızdaki %d sohbet silinsin mi?</string>
+			<string>%d sohbet silinsin mi?</string>
 			<key>other</key>
-			<string>Tüm aygıtlarınızdaki %d sohbet silinsin mi?</string>
+			<string>%d sohbet silinsin mi?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -221,9 +221,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Tüm aygıtlarınızdaki %d ileti silinsin mi?</string>
+			<string>%d ileti silinsin mi?</string>
 			<key>other</key>
-			<string>Tüm aygıtlarınızdaki %d ileti silinsin mi?</string>
+			<string>%d ileti silinsin mi?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>

@@ -632,6 +632,7 @@
 "pref_sound" = "Hang";
 "pref_silent" = "Csendes";
 "pref_privacy" = "Adatvédelem";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Csevegések és média";
 "pref_system_default" = "Rendszer alapértelmezett";
 // Translators: as in "opposite of dark"

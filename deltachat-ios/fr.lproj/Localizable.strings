@@ -626,6 +626,7 @@
 "pref_sound" = "Son";
 "pref_silent" = "Silencieux";
 "pref_privacy" = "Vie privée";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Discussions et fichiers multimédia";
 "pref_system_default" = "Valeur par défaut du système";
 // Translators: as in "opposite of dark"

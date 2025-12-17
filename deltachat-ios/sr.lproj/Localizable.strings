@@ -465,6 +465,7 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Без звука";
 "pref_privacy" = "Приватност";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Ћаскања и медији";
 "pref_system_default" = "Подразумеване поставке оперативног система";
 // Translators: as in "opposite of dark"

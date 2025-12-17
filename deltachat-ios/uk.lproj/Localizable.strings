@@ -643,6 +643,7 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучний";
 "pref_privacy" = "Конфіденційність";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Чати й медіа";
 "pref_system_default" = "За замовчуванням системи";
 // Translators: as in "opposite of dark"

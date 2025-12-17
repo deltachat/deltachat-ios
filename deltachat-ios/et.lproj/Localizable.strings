@@ -383,6 +383,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Salvesta sõnum";
 "saved_messages" = "Salvestatud sõnumid";
+"saved_messages_explain" = "• Mugavaks ligipääsuks edasta sõnumid siia\n\n• Tee märkmeid või koosta häälmemosid\n\n• Lisa talletamiseks meediafaile";
 // Should match "Saved" from "Saved messages"
 "saved" = "Salvestatud";
 "save_as" = "Salvesta kui";
@@ -406,6 +407,8 @@
 "send_message_to" = "Saada sõnum…";
 "enable_realtime" = "Reaalajas toimivad rakendused";
 "enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
+// map
+"filter_map_on_time" = "Näita asukohti ajavahemike kaupa";
 "add_poi" = "Saada huvipunkti teave";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
@@ -413,6 +416,8 @@
 "puny_code_warning_header" = "Tuvastasin kahtlase lingi";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Kas oled kindel, et soovid avada „%1$@“?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Selles lingis võivad olla petlikult sarnased tähed teistest tähestikest. Kui klõpsad linki „%1$@“, siis tegelikult avaneb „%2$@“. Kui sa midagi sellist ei eeldanud, siis võib olla tegemist ohtliku lingiga.";
 // search
 "search" = "Otsi";
 "search_in_chat" = "Otsi vestlusest";
@@ -621,6 +626,8 @@
 "pref_outgoing_worse" = "Kõige kehvem kvaliteet, aga väikseim maht";
 "pref_vibrate" = "Väristamine";
 "pref_screen_security" = "Ekraani turvalisus";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_screen_security_explain" = "Palu, et operatsioonisüsteem keelaks ekraanitõmmiste tegemise hiljutiste sõnumite loendis ja rakenduse sees, kuid palun arvesta, et see ei pruugi olla alati tagatud";
 "pref_screen_security_please_restart_hint" = "Ekraaniturvalisusega seotud seadistuste kasutamisele võtmiseks palun käivita rakendus uuesti.";
 "pref_notifications" = "Teavitused";
 "pref_mention_notifications" = "Mainimised";
@@ -634,6 +641,7 @@
 "pref_sound" = "Heli";
 "pref_silent" = "Vaikne";
 "pref_privacy" = "Privaatsus";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Vestlused ja meediumid";
 "pref_system_default" = "Süsteemi vaikimisi valik";
 // Translators: as in "opposite of dark"
@@ -660,6 +668,7 @@
 "pref_other" = "Muu";
 "pref_backup" = "Varundus";
 "pref_backup_explain" = "Varunda vestlused välisesse andmeruumi";
+"pref_backup_export_explain" = "Varukoopia abil saad teha uut paigaldust selles või muus nutiseadmes.\n\nVarukoopias sisalduvad kõik sõnumid, kontaktid ja vestlused vastavalt sinu Autocrypti seadistustele. Palun hoia varukoopiat turvalises kohas või kustuta ta niipea, kui võimalik.";
 "pref_backup_export_this" = "Ekspordi see profiil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Ekspordi kõik %1$d profiili";
@@ -677,9 +686,12 @@
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
 "pref_show_emails" = "Näita klassikalisi e-kirju";
+"pref_show_emails_no" = "Ei, vaid vestlustele";
+"pref_show_emails_accepted_contacts" = "Kinnitatud kontaktidele";
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_experimental_features_explain" = "Need funktsionaalsused ei pruugi korralikult toimida ning nad võivad tulevikus muutuda või sootuks olla eemaldatud";
+"pref_on_demand_location_streaming" = "Asukoha jagamine vastavalt tellimisele.";
 "pref_background_default" = "Vaikimisi pilt";
 "pref_background_default_color" = "Vaikimisi värv";
 "pref_background_custom_image" = "Sinu valitud pilt";
@@ -827,6 +839,8 @@
 "invalid_unencrypted_explanation" = "Läbiva krüptimise kasutuselevõtmiseks oarim viis on omavahel kohtuda ning teise osapoole QR-koodi skaneerimisega lisada ta vestlusesse.";
 "learn_more" = "Lisateave";
 "devicemsg_self_deleted" = "Sa kustutasid vestluse nimega „Salvestatud sõnumid“.\n\nℹ️ Kui tahad uuesti kasutada võimalust „Salvestatud sõnumid“, siis lisa vestlus iseendaga.";
+// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+"devicemsg_storage_exceeding" = "⚠️ Sinu poolt teenusepakkuja juures kasutatav andmeruum hakkab täis saama: %1$@%% on juba kasutusel.\n\nKui andmeruum on täis, siis sa ilmselt ei pruugi enam sõnumeid saada.\n\n👉 Palun kontrolli, kas sul on võimalik teenusepakkuja veebiliidesest vanu sõnumeid kustutada või veelgi parem on, kui kasutad automaatse kustutamise võimalust: „Seadistused“ → „Vestlused“ → „Kustuta vanad sõnumid“. Hetkel kasutatavat andmeruumi mahutu saad alati kontrollida siit: „Seadistused“ → „Ühenduvus“.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Sinu seadme kuupäev või kellaaeg tundub olema ebatäpne (%1$@).\n\nPalun seadista kella ⏰🔧 ja taga, et sõnumivahetus, sh selle krüptimine toimib korrektselt.";
 "devicemsg_update_reminder" = "⚠️ Sinu kasutatav Delta Chati versioon võib olla aegunud.\n\nKuna sinu vestluspartnerid ilmselt kasutavad uuemaid versioone, ja sinu oma ei oska uuemaid funktsionaalsusi, siis võib tekkida probleeme 😳\nUuenduste teavet leiad https://get.delta.chat saidist või oma rakendustepoest.";
@@ -1022,6 +1036,8 @@
 // use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
 "add_to_widget" = "Lisa vidinale";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_instant_delivery" = "Kohene kättetoimetamine";
 "pref_background_notifications" = "Kasuta ühendust taustal";
 "pref_background_notifications_explain" = "Eeldab, et akukasutuse optimeerimine on lülitatud välja. Kasuta siis, kui sõnumid pole õigeaegselt näha.";
 "pref_reliable_service" = "Kasuta ühendust taustal";

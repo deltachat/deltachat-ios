@@ -311,6 +311,7 @@
 "pref_sound" = "دەنگ";
 "pref_silent" = "بێدەنگ";
 "pref_privacy" = "پاراستنی تاکەکەسی";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "وتووێژ و ڕەنگاڵەکان";
 "pref_system_default" = "بنەڕەتی سیستەم";
 // Translators: as in "opposite of dark"

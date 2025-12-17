@@ -603,7 +603,7 @@
 "configuration_failed_with_error" = "Konfiguration fehlgeschlagen. Fehler: %1$@";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
-"forward_to" = "Weiterleiten an ...";
+"forward_to" = "Weiterleiten an…";
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d Dateien an \"%2$@\" senden?";
 "ask_send_files_to_selected_chats" = "%1$d Datei(en) an %2$d Chats senden?";
@@ -643,6 +643,7 @@
 "pref_sound" = "Ton";
 "pref_silent" = "Leise";
 "pref_privacy" = "Datenschutz";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Chats und Medien";
 "pref_system_default" = "Systemstandard";
 // Translators: as in "opposite of dark"
@@ -841,7 +842,7 @@
 "learn_more" = "Mehr erfahren";
 "devicemsg_self_deleted" = "Du hast den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um die Funktion \"Gespeicherte Nachrichten\" erneut zu verwenden, erstelle einfach einen Chat mit dir selbst.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Der Speicherplatz deines Anbieters ist bald erschöpft; bereits %1$@%% sind verbraucht.\n\nDu kannst möglicherweise keine Nachrichten mehr empfangen, wenn der Speicherplatz komplett verbraucht ist.\n\n👉 Bitte prüfe, ob du alte Daten im Webinterface des Anbieters löschen kannst, und erwäge, \"Einstellungen / Chats und Medien / Alte Nachrichten löschen\" zu aktivieren. Den aktuellen Speicherverbrauch kannst du jederzeit unter \"Einstellungen / Verbindungsstatus\" überprüfen.";
+"devicemsg_storage_exceeding" = "⚠️ Der Speicherplatz deines Anbieters ist bald erschöpft; bereits %1$@%% sind verbraucht.\n\nDu kannst möglicherweise keine Nachrichten mehr empfangen, wenn der Speicherplatz komplett verbraucht ist.\n\n👉 Bitte prüfe, ob du alte Daten im Webinterface des Anbieters löschen kannst, und erwäge, \"Einstellungen / Chats / Alte Nachrichten löschen\" zu aktivieren. Den aktuellen Speicherverbrauch kannst du jederzeit unter \"Einstellungen / Verbindungsstatus\" überprüfen.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Dein Gerät scheint ein falsches Datum oder eine falsche Uhrzeit (%1$@) zu verwenden.\n\nStelle deine Uhr ⏰🔧 richtig ein, um sicherzustellen, dass deine Nachrichten korrekt empfangen werden.";
 "devicemsg_update_reminder" = "⚠️ Deine Delta-Chat-Version ist möglicherweise veraltet.\n\nDies kann zu Problemen führen, wenn deine Chat-PartnerInnen neuere Versionen verwenden - und dir die neuesten Funktionen fehlen. 😳\nBitte überprüfe https://get.delta.chat oder den App-Store auf Updates.";
@@ -890,12 +891,12 @@
 // deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
 "qrlogin_ask_login_another" = "Bei \"%1$@\" anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Profilen hin- und herschalten.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
+"secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_channel_started" = "%1$@ hat dich zu diesem Kanal eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@...";
+"secure_join_channel_started" = "%1$@ hat dich zu diesem Kanal eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@…";
 // placeholder will be replaced by the name of the inviter.
-"secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden...";
-"secure_join_wait" = "Verbindungsaufbau, bitte warten...";
+"secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden…";
+"secure_join_wait" = "Verbindungsaufbau, bitte warten…";
 "contact_verified" = "%1$@ eingeführt.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Eingeführt von %1$@";

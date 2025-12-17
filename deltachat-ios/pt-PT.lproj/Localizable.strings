@@ -313,6 +313,7 @@
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "chats e mídia";
 "pref_system_default" = "Configuração por omissão";
 // Translators: as in "opposite of dark"

@@ -630,6 +630,7 @@
 "pref_sound" = "So";
 "pref_silent" = "Silenci";
 "pref_privacy" = "Privacitat";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Xats i multimèdia";
 "pref_system_default" = "Per defecte del sistema";
 // Translators: as in "opposite of dark"

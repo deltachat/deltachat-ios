@@ -339,8 +339,8 @@
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
-"ask_delete_named_chat" = "是否删除所有设备上的聊天“%1$@”？";
-"ask_delete_message" = "是否在所有设备上删除此消息？";
+"ask_delete_named_chat" = "删除聊天“%1$@”？";
+"ask_delete_message" = "删除此消息？";
 // deprecated, use ask_delete_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
@@ -490,7 +490,7 @@
 "outgoing_messages" = "消息发送";
 // Headline in the "Connectivity" view. Placeholder will be replaced by a domain
 "storage_on_domain" = "%1$@ 上的存储空间";
-"connectivity" = "连接状态";
+"connectivity" = "连接";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未连接";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
@@ -643,6 +643,7 @@
 "pref_sound" = "声音";
 "pref_silent" = "无声";
 "pref_privacy" = "隐私";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "聊天与媒体";
 "pref_system_default" = "系统默认";
 // Translators: as in "opposite of dark"
@@ -841,7 +842,7 @@
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️邮件服务商提供的存储空间快满了，已使用 %1$@%%。\n\n如果存储空间用光，您可能无法接收消息。\n\n👉请检查是否可以在提供商的网页界面上删除旧数据，或考虑启用“设置/删除旧消息”。您可以在“设置/连接状态”中查看当前的存储使用情况。";
+"devicemsg_storage_exceeding" = "⚠️ 您的服务提供者存储空间即将用完：已使用 %1$@%%。\n\n如果存储空间已满，您可能无法接收消息。\n\n👉 请检查您是否可以在服务提供者的网页界面中删除旧数据，并考虑启用“设置/聊天/删除旧消息”。您可以随时在“设置/连接”中查看当前的存储空间使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟⏰🔧以确保能够正确接收消息。";
 "devicemsg_update_reminder" = "⚠️您的 Delta Chat 版本可能过时了。\n\n这可能会在您的聊天伙伴使用更新的版本时造成问题。并且您缺失了最新功能😳\n请浏览 https://get.delta.chat 或应用商店来获取更新。";
@@ -1007,7 +1008,7 @@
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "停止共享位置";
 "a11y_voice_message_hint_ios" = "录制后，点按两次即可发送。如需舍弃录制内容，请双指滑动。";
-"a11y_connectivity_hint" = "点按两次即可查看连接详情";
+"a11y_connectivity_hint" = "双击即可查看连接详情。";
 "login_error_no_internet_connection" = "无互联网连接，登录失败。";
 "share_account_not_configured" = "账号未配置。";
 "cannot_play_audio_file" = "无法播放音频文件。";

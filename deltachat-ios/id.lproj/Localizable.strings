@@ -366,6 +366,7 @@
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
 "pref_privacy" = "Privasi";
+// deprecated, use pref_chats
 "pref_chats_and_media" = "Obrolan dan media";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Cahaya";
