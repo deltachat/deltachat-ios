@@ -6,11 +6,19 @@
 - Ask for device owner verification on profile deletion
 - Better logging
 - Longer call ringing time
+- Add fallback TURN server for experimental calls
+- Prefill DNS cache
+- Improve error message on adding relays
+- Show relays in message info
+- Set explicit relay limit to 5
+- Fix: Remove sometimes misleading "Please wait..." after QR code scan
+- Fix: Do not set normalized name for existing chats and contacts; it takes too long sometimes
 - Fix: Show relays in connectivity view by their hostname
 - Fix: Synchronize default relay immediately after changing it
 - Fix: Let securejoin succeed even if the chat was deleted in the meantime
 - Fix: Ask before sharing via a direct-share link
-- Update to core 2.34.0
+- Update translations and local help
+- Update to core 2.35.0
 
 
 ## v2.33.0
