@@ -26,6 +26,7 @@
       <li><a href="#usunąłem-się-przez-przypadek">Usunąłem się przez przypadek.</a></li>
       <li><a href="#nie-chcę-już-otrzymywać-wiadomości-od-grupy">Nie chcę już otrzymywać wiadomości od grupy.</a></li>
       <li><a href="#cloning-a-group">Cloning a group</a></li>
+      <li><a href="#how-many-members-can-participate-in-a-single-group">How many members can participate in a single group?</a></li>
     </ul>
   </li>
   <li><a href="#webxdc">In-chat apps</a>
@@ -185,7 +186,8 @@ If you add each other to <a href="#groups">groups</a>, end-to-end encryption wil
 <p>As being a private messenger,
 only friends and family you <a href="#howtoe2ee">share your QR code or invite link with</a> can write to you.</p>
 
-<p>Your friends may share your contact with other friends, this appears as a <strong>request</strong>.</p>
+<p>Your friends may share your contact with other friends,
+this appears as <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Request</b></p>
 
 <ul>
   <li>
@@ -366,22 +368,18 @@ and others will as well not always see that you are “online”.</p>
 <ul>
   <li>
     <p><strong>One tick</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
-means that the message was sent successfully to your provider.</p>
+means that the message was sent successfully to the <a href="#relays">relay</a>.</p>
   </li>
   <li>
     <p><strong>Two ticks</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
-mean that at least one recipient’s device
-reported back to having received the message.</p>
-  </li>
-  <li>
-    <p>Recipients may have disabled read-receipts,
-so even if you see only one tick, the message may have been read.</p>
-  </li>
-  <li>
-    <p>The other way round, two ticks do not automatically mean
-that a human has read or understood the message ;)</p>
+indicate your contact has read the message.</p>
   </li>
 </ul>
+
+<p>In <a href="#groups">groups</a> the second tick means that at least one member has reported back having read the message.</p>
+
+<p>You will only get the second tick if both you and one of the recipients who read the message
+has <strong>Settings → Chats → Read Receipts</strong> enabled.</p>
     
       <h3 id="edit">
         
@@ -581,6 +579,21 @@ or right-click the group in the chat list (Desktop).</p>
 
 <p>The new group is <strong>fully independent</strong> from the original,
 which continues to work as before.</p>
+    
+      <h3 id="how-many-members-can-participate-in-a-single-group">
+        
+        
+          How many members can participate in a single group? <a href="#how-many-members-can-participate-in-a-single-group" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>There is no strict technical limit,
+but more than 150 is not recommended.</p>
+
+<p>As groups get larger, they can become socially unstable and may need a hierarchy -
+where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
+See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
     
       <h2 id="webxdc">
         
@@ -878,14 +891,16 @@ Welcome to the power of the interoperable chatmail relay network :)</p>
 <p>Ta metoda jest zalecana tylko wtedy, gdy opisana powyżej opcja „Dodaj kolejne urządzenie” nie działa.</p>
 
 <ul>
-  <li>Na starym urządzeniu przejdź do „Ustawienia » Czaty i media » Eksport kopii zapasowej”. Wprowadź swój PIN odblokowania ekranu, wzór lub hasło. Następnie możesz nacisnąć „Utwórz kopię”. Spowoduje to zapisanie pliku kopii zapasowej na urządzeniu. Teraz musisz jakoś przenieść go na inne urządzenie.</li>
-  <li>Na nowym urządzeniu, na ekranie logowania, zamiast logować się na swoje konto e-mail, wybierz „Przywróć z kopii zapasowej”. Po zaimportowaniu Twoje rozmowy, klucze szyfrujące i multimedia powinny zostać skopiowane na nowe urządzenie.
-    <ul>
-      <li><strong>Jeśli korzystasz z iOS</strong> i napotykasz trudności, może <a href="https://support.delta.chat/t/import-backup-to-ios/1628">ten poradnik</a> Ci pomoże.</li>
-    </ul>
+  <li>
+    <p>Na starym urządzeniu przejdź do <strong>Ustawienia → Czaty i media → Eksport kopii zapasowej</strong>. Wprowadź swój PIN odblokowania ekranu, wzór lub hasło. Następnie możesz nacisnąć „Utwórz kopię”. Spowoduje to zapisanie pliku kopii zapasowej na urządzeniu. Teraz musisz jakoś przenieść go na inne urządzenie.</p>
   </li>
-  <li>Jesteś teraz zsynchronizowany i możesz używać obu urządzeń do wysyłania i odbierania wiadomości zaszyfrowanych end-to-end w komunikacji ze swoimi partnerami.</li>
+  <li>
+    <p>Na nowym urządzeniu, na ekranie logowania, zamiast logować się na swoje konto e-mail, wybierz <strong>Przywróć z kopii zapasowej</strong>. Po zaimportowaniu Twoje rozmowy, klucze szyfrujące i multimedia powinny zostać skopiowane na nowe urządzenie.
+Jeśli korzystasz z iOS i napotykasz trudności, może <a href="https://support.delta.chat/t/import-backup-to-ios/1628">ten poradnik</a> Ci pomoże.</p>
+  </li>
 </ul>
+
+<p>Jesteś teraz zsynchronizowany i możesz używać obu urządzeń do wysyłania i odbierania wiadomości zaszyfrowanych end-to-end w komunikacji ze swoimi partnerami.</p>
     
       <h3 id="czy-są-jakieś-plany-wprowadzenia-klienta-web-delta-chat">
         

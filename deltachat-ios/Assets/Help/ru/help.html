@@ -26,6 +26,7 @@
       <li><a href="#я-случайно-удалил-самого-себя">Я случайно удалил самого себя.</a></li>
       <li><a href="#я-больше-не-хочу-получать-сообщения-группы">Я больше не хочу получать сообщения группы.</a></li>
       <li><a href="#клонирование-группы">Клонирование группы</a></li>
+      <li><a href="#how-many-members-can-participate-in-a-single-group">How many members can participate in a single group?</a></li>
     </ul>
   </li>
   <li><a href="#webxdc">Встроенные приложения чата</a>
@@ -185,7 +186,7 @@
 <p>Поскольку это приватный мессенджер,
 писать вам могут только друзья и члены семьи, с которыми вы <a href="#howtoe2ee">поделились QR-кодом или ссылкой-приглашением.</a></p>
 
-<p>Ваши друзья могут поделиться вашим контактом с другими друзьями, это отображается как <strong>запрос</strong>.</p>
+<p>Ваши друзья могут поделиться вашим контактом с другими друзьями, это отображается как <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Запрос</b></p>
 
 <p>— Нужно <strong>принять</strong> запрос, прежде чем ответить.</p>
 
@@ -300,8 +301,7 @@
     <p><strong>Отключить уведомления</strong> в чатах необходимо, если вы не хотите получать уведомления от них. Чаты с отключенными уведомлениями остаются на месте, и вы также можете закрепить такой чат.</p>
   </li>
   <li>
-    <p><strong>Отправить в архив</strong> необходимо, если вы не хотите больше видеть их в списке чатов.
-Архивные чаты остаются доступными над списком чатов или через поиск.</p>
+    <p><strong>Отправить в архив</strong> необходимо, если вы не хотите больше видеть их в списке чатов.  Архивные чаты остаются доступными над списком чатов или через поиск.</p>
   </li>
   <li>
     <p>Когда в чат, находящийся в архиве, приходит новое сообщение, если не включена опция <strong>Отключить уведомления</strong>, он <strong>Возвращается из архива</strong> в ваш список чатов.
@@ -371,23 +371,19 @@
 
 <ul>
   <li>
-    <p><strong>Одна галочка</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
-означает, что сообщение было успешно отправлено вашему провайдеру.</p>
+    <p><strong>One tick</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
+means that the message was sent successfully to the <a href="#relays">relay</a>.</p>
   </li>
   <li>
-    <p><strong>Две галочки</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
-означают, что по крайней мере одно устройство получателя
-сообщило об успешном получении сообщения.</p>
-  </li>
-  <li>
-    <p>Получатели могли отключить подтверждения прочтения,
-поэтому даже если вы видите только одну галочку, сообщение могло быть прочитано.</p>
-  </li>
-  <li>
-    <p>И наоборот, две галочки не обязательно означают
-что человек прочитал или понял сообщение ;)</p>
+    <p><strong>Two ticks</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
+indicate your contact has read the message.</p>
   </li>
 </ul>
+
+<p>In <a href="#groups">groups</a> the second tick means that at least one member has reported back having read the message.</p>
+
+<p>You will only get the second tick if both you and one of the recipients who read the message
+has <strong>Settings → Chats → Read Receipts</strong> enabled.</p>
     
       <h3 id="edit">
         
@@ -602,6 +598,21 @@
 
 <p>Новая группа <strong>полностью независима</strong> от исходной,
 которая продолжает работать как прежде.</p>
+    
+      <h3 id="how-many-members-can-participate-in-a-single-group">
+        
+        
+          How many members can participate in a single group? <a href="#how-many-members-can-participate-in-a-single-group" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>There is no strict technical limit,
+but more than 150 is not recommended.</p>
+
+<p>As groups get larger, they can become socially unstable and may need a hierarchy -
+where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
+See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
     
       <h2 id="webxdc">
         
@@ -942,22 +953,21 @@ Push-уведомления автоматически активируются 
 <p>Этот метод рекомендуется использовать только в том случае, если функция “Добавить второе устройство”, описанная выше, не работает.</p>
 
 <ul>
-  <li>На старом устройстве, перейдите в “Настройки -&gt; Чаты и медиафайлы -&gt; Экспорт резервной копии”. Введите свой
-PIN-код разблокировки экрана, графический ключ или пароль. Затем вы можете нажать “Начать
+  <li>
+    <p>На старом устройстве перейдите в <strong>Настройки → Чаты → Экспорт резервной копии</strong>. Введите свой
+PIN-код разблокировки экрана, графический ключ или пароль. Затем нажмите на кнопку “Начать
 резервное копирование”. Это сохранит файл резервной копии на вашем устройстве. Теперь вам нужно передать
-его на другое устройство каким-то образом.</li>
-  <li>На новом устройстве, в меню “У меня уже есть профиль”,
-выберите “Восстановить из резервной копии”. После импорта, ваши чаты, ключи
-шифрования, медиафайлы будут скопированы на новое устройство.
-    <ul>
-      <li><strong>Если вы используете iOS:</strong> и у вас возникли трудности, возможно,
-<a href="https://support.delta.chat/t/import-backup-to-ios/1628">это руководство</a>
-поможет вам.</li>
-    </ul>
+его на другое устройство каким-то образом.</p>
   </li>
-  <li>Теперь вы синхронизированы и можете использовать оба устройства для отправки и получения
- зашифрованных сквозным шифрованием сообщений с вашими собеседниками.</li>
+  <li>
+    <p>На новом устройстве выберите <strong>У меня уже есть профиль → Восстановить из резервной копии</strong>.
+Если вы используете iOS: и у вас возникли трудности,
+возможно, <a href="https://support.delta.chat/t/import-backup-to-ios/1628">это руководство</a> поможет вам.</p>
+  </li>
 </ul>
+
+<p>Теперь вы синхронизированы и можете использовать оба устройства для отправки и получения
+зашифрованных сквозным шифрованием сообщений с вашими собеседниками.</p>
     
       <h3 id="есть-ли-какие-либо-планы-по-внедрению-веб-клиента-delta-chat">
         

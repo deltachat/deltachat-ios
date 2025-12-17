@@ -26,6 +26,7 @@
       <li><a href="#mi-sono-cancellato-per-sbaglio">Mi sono cancellato per sbaglio.</a></li>
       <li><a href="#non-desidero-più-ricevere-i-messaggi-di-un-gruppo">Non desidero più ricevere i messaggi di un gruppo.</a></li>
       <li><a href="#clonazione-di-un-gruppo">Clonazione di un gruppo</a></li>
+      <li><a href="#how-many-members-can-participate-in-a-single-group">How many members can participate in a single group?</a></li>
     </ul>
   </li>
   <li><a href="#webxdc">Apps in chat</a>
@@ -185,7 +186,7 @@ Se vi aggiungete a vicenda a <a href="#groups">gruppi</a>, la crittografia end-t
 <p>Essendo un messenger privato,
 solo gli amici e i familiari con cui <a href="#howtoe2ee">condividi il tuo codice QR o il link di invito</a> possono scriverti.</p>
 
-<p>I tuoi amici potrebbero condividere i tuoi contatti con altri amici; ciò apparirà come una <strong>richiesta</strong>.</p>
+<p>I tuoi amici potrebbero condividere i tuoi contatti con altri amici; ciò apparirà come una <b style="border: 1px solid currentColor; padding: 0 3px; font-size:90%">Richiesta</b></p>
 
 <ul>
   <li>
@@ -304,8 +305,7 @@ lo vedrà quando visualizzerà i tuoi dati di contatto.</p>
     <p><strong>Silenzia chat</strong> se non vuoi ricevere notifiche da queste. Le chat silenziate restano al loro posto e puoi anche fissare una chat silenziata.</p>
   </li>
   <li>
-    <p><strong>Archivia chats</strong> se non vuoi più vederle nel tuo elenco chat.
-Le chat archiviate rimangono accessibili sopra l’elenco delle chat o tramite la ricerca.</p>
+    <p><strong>Archivia chats</strong> se non vuoi più vederle nel tuo elenco chat. Le chat archiviate rimangono accessibili sopra l’elenco delle chat o tramite la ricerca.</p>
   </li>
   <li>
     <p>Quando una chat archiviata riceve un nuovo messaggio, a meno che non sia silenziata, <strong>salterà fuori dall’archivio</strong> e tornerà nell’elenco delle chat.
@@ -377,23 +377,19 @@ e anche gli altri non sempre vedranno che sei “online”.</p>
 
 <ul>
   <li>
-    <p><strong>Un segno di spunta</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
-significa che il messaggio è stato inviato correttamente al tuo fornitore.</p>
+    <p><strong>One tick</strong> <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick1.png" alt="" />
+means that the message was sent successfully to the <a href="#relays">relay</a>.</p>
   </li>
   <li>
-    <p><strong>Due spunte</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
-significa che almeno il dispositivo di un destinatario
-ha segnalato di aver ricevuto il messaggio.</p>
-  </li>
-  <li>
-    <p>I destinatari potrebbero aver disattivato le conferme di lettura,
-quindi anche se vedi solo un segno di spunta, il messaggio potrebbe essere stato letto.</p>
-  </li>
-  <li>
-    <p>Al contrario, due spunte non significano automaticamente
-che un essere umano abbia letto o compreso il messaggio ;)</p>
+    <p><strong>Two ticks</strong>  <img style="vertical-align:middle; width:1.5em; margin:1px" src="../tick2.png" alt="" />
+indicate your contact has read the message.</p>
   </li>
 </ul>
+
+<p>In <a href="#groups">groups</a> the second tick means that at least one member has reported back having read the message.</p>
+
+<p>You will only get the second tick if both you and one of the recipients who read the message
+has <strong>Settings → Chats → Read Receipts</strong> enabled.</p>
     
       <h3 id="edit">
         
@@ -609,6 +605,21 @@ oppure fai clic con il pulsante destro del mouse sul gruppo nell’elenco delle 
 
 <p>Il nuovo gruppo è <strong>completamente indipendente</strong> dall’originale,
 che continua a funzionare come prima.</p>
+    
+      <h3 id="how-many-members-can-participate-in-a-single-group">
+        
+        
+          How many members can participate in a single group? <a href="#how-many-members-can-participate-in-a-single-group" class="anchor"></a>
+        
+        
+      </h3>
+
+<p>There is no strict technical limit,
+but more than 150 is not recommended.</p>
+
+<p>As groups get larger, they can become socially unstable and may need a hierarchy -
+where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
+See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
     
       <h2 id="webxdc">
         
@@ -949,19 +960,16 @@ provate il <strong>trasferimento manuale</strong> descritto di seguito</p>
 <p>Questo metodo è consigliato solo se “Aggiungi Secondo Dispositivo” come descritto sopra non funziona.</p>
 
 <ul>
-  <li>Sul vecchio dispositivo, vai su “Impostazioni -&gt; Chat e Media -&gt; Backup Chat su Memoria Esterna”. Inserisci il tuo
-PIN, sequenza o password di sblocco dello schermo. Quindi puoi fare clic su “Avvia
-Backup”. Questo salva il file di backup sul tuo dispositivo. Ora devi trasferirlo
-in qualche modo all’altro dispositivo.</li>
-  <li>Sul nuovo dispositivo, nella schermata di accesso, invece di accedere al tuo profilo
-e-mail, seleziona “Importa backup”. Dopo l’importazione, le tue conversazioni, la crittografia
-i tasti e i supporti devono essere copiati sul nuovo dispositivo.</li>
-  <li><strong>Se usi iOS:</strong> e incontri difficoltà, forse
-<a href="https://support.delta.chat/t/import-backup-to-ios/1628">questa guida</a>
-Aiutarti.</li>
-  <li>Ora sei sincronizzato e puoi utilizzare entrambi i dispositivi per inviare e ricevere
-messaggi crittografati end-to-end con i tuoi partner di comunicazione.</li>
+  <li>
+    <p>Sul vecchio dispositivo, vai su <strong>Impostazioni → Chat e Media → Backup Chat su Memoria Esterna</strong>. Inserisci il tuo PIN, sequenza o password di sblocco dello schermo. Quindi puoi fare clic su “Avvia Backup”. Questo salva il file di backup sul tuo dispositivo. Ora devi trasferirlo in qualche modo all’altro dispositivo.</p>
+  </li>
+  <li>
+    <p>Sul nuovo dispositivo, nella schermata di accesso, invece di accedere al tuo profilo e-mail, seleziona <strong>Importa backup</strong>. Dopo l’importazione, le tue conversazioni, la crittografia i tasti e i supporti devono essere copiati sul nuovo dispositivo.
+ Se usi iOS: e incontri difficoltà, forse <a href="https://support.delta.chat/t/import-backup-to-ios/1628">questa guida</a> Aiutarti.</p>
+  </li>
 </ul>
+
+<p>Ora sei sincronizzato e puoi utilizzare entrambi i dispositivi per inviare e ricevere messaggi crittografati end-to-end con i tuoi partner di comunicazione.</p>
     
       <h3 id="sono-previsti-piani-per-lintroduzione-di-un-client-web-delta-chat">
         
