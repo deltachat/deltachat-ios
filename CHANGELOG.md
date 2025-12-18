@@ -11,6 +11,7 @@
 - Improve error message on adding relays
 - Show relays in message info
 - Set explicit relay limit to 5
+- Remove deprecated "real-time apps" switch
 - Fix: Remove sometimes misleading "Please wait..." after QR code scan
 - Fix: Do not set normalized name for existing chats and contacts; it takes too long sometimes
 - Fix: Show relays in connectivity view by their hostname

@@ -156,15 +156,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    lazy var realtimeChannelsCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("enable_realtime"),
-            on: dcContext.getConfigBool("webxdc_realtime_enabled"),
-            action: { [weak self] cell in
-                self?.dcContext.setConfigBool("webxdc_realtime_enabled", cell.isOn)
-            })
-    }()
-
     private lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.viewLog.rawValue
@@ -186,19 +177,15 @@ internal final class AdvancedViewController: UITableViewController {
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: String.localized("pref_experimental_features_explain"),
             cells: [broadcastListsCell, callsCell, locationStreamingCell])
-        let miscSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: String.localized("enable_realtime_explain"),
-            cells: [realtimeChannelsCell])
 
         if dcContext.isChatmail {
-            return [viewLogSection, serverSection, experimentalSection, miscSection]
+            return [viewLogSection, serverSection, experimentalSection]
         } else {
             let legacySection = SectionConfigs(
                 headerTitle: "Legacy Options",
                 footerTitle: nil,
                 cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell])
-            return [viewLogSection, serverSection, experimentalSection, miscSection, legacySection]
+            return [viewLogSection, serverSection, experimentalSection, legacySection]
         }
     }()
 
