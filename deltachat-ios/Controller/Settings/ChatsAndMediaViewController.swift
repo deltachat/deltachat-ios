@@ -14,7 +14,8 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         case blockedContacts
         case receiptConfirmation
         case exportBackup
-        case autodel
+        case autodelDevice
+        case autodelServer
         case mediaQuality
         case downloadOnDemand
     }
@@ -43,12 +44,19 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         }
     }
 
-    private lazy var autodelCell: UITableViewCell = {
+    private lazy var autodelDeviceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.autodel.rawValue
-        cell.textLabel?.text = String.localized("delete_old_messages")
+        cell.tag = CellTags.autodelDevice.rawValue
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = autodelSummary()
+        cell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
+        return cell
+    }()
+
+    private lazy var autodelServerCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        cell.tag = CellTags.autodelServer.rawValue
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
         return cell
     }()
 
@@ -102,7 +110,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         let autoDelSection = SectionConfigs(
             headerTitle: String.localized("delete_old_messages"),
             footerTitle: nil,
-            cells: [autodelCell]
+            cells: dcContext.isChatmail ? [autodelDeviceCell] : [autodelDeviceCell, autodelServerCell]
         )
         let exportBackupSection = SectionConfigs(
             headerTitle: nil,
@@ -156,10 +164,18 @@ internal final class ChatsAndMediaViewController: UITableViewController {
 
         switch cellTag {
         case .blockedContacts: showBlockedContacts()
-        case .autodel: showAutodelOptions()
         case .mediaQuality: showMediaQuality()
         case .downloadOnDemand: showDownloadOnDemand()
         case .receiptConfirmation: break
+
+        case .autodelDevice:
+            let controller = AutodelOptionsViewController(dcContext: dcContext, fromServer: false)
+            navigationController?.pushViewController(controller, animated: true)
+
+        case .autodelServer:
+            let controller = AutodelOptionsViewController(dcContext: dcContext, fromServer: true)
+            navigationController?.pushViewController(controller, animated: true)
+
         case .exportBackup:
             Utils.authenticateDeviceOwner(reason: String.localized("pref_backup_explain")) { [weak self] in
                 self?.createBackup()
@@ -172,7 +188,11 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return sections[section].footerTitle
+        if sections[section].cells.last == autodelServerCell && dcContext.getConfigInt("delete_server_after") != 0 {
+            return String.localized("autodel_server_enabled_hint")
+        } else {
+            return sections[section].footerTitle
+        }
     }
 
     // MARK: - actions
@@ -222,10 +242,12 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 
     private func updateCells() {
+        tableView.reloadData() // needed to update footer
         mediaQualityCell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
         downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
             val: dcContext.getConfigInt("download_limit"))
-        autodelCell.detailTextLabel?.text = autodelSummary()
+        autodelDeviceCell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
+        autodelServerCell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
     }
 
     // MARK: - coordinator
@@ -242,10 +264,5 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     private func showBlockedContacts() {
         let blockedContactsController = BlockedContactsViewController(dcContext: dcContext)
         navigationController?.pushViewController(blockedContactsController, animated: true)
-    }
-
-    private func showAutodelOptions() {
-        let settingsAutodelOverviewController = AutodelOverviewViewController(dcContext: dcContext)
-        navigationController?.pushViewController(settingsAutodelOverviewController, animated: true)
     }
 }
