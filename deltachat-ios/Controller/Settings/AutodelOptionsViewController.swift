@@ -71,7 +71,7 @@ class AutodelOptionsViewController: UITableViewController {
         self.fromServer = fromServer
         self.currVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
         super.init(style: .insetGrouped)
-        self.title = String.localized("delete_old_messages")
+        self.title = String.localized(fromServer ? "autodel_server_title" : "autodel_device_title")
         hidesBottomBarWhenPushed = true
     }
 
@@ -147,10 +147,6 @@ class AutodelOptionsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return staticCells[indexPath.row]
-    }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String.localized(fromServer ? "autodel_server_title" : "autodel_device_title")
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
