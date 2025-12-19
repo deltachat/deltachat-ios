@@ -45,18 +45,20 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 
     private lazy var autodelDeviceCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
+        cell.textLabel?.text = String.localized("autodel_device_title")
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
+        cell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
         return cell
     }()
 
     private lazy var autodelServerCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.autodelServer.rawValue
+        cell.textLabel?.text = String.localized("autodel_server_title")
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
+        cell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
         return cell
     }()
 
@@ -246,8 +248,8 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         mediaQualityCell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
         downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
             val: dcContext.getConfigInt("download_limit"))
-        autodelDeviceCell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
-        autodelServerCell.textLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
+        autodelDeviceCell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
+        autodelServerCell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
     }
 
     // MARK: - coordinator
