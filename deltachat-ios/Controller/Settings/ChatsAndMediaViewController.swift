@@ -97,15 +97,19 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_read_receipts_explain"),
-            cells: [blockedContactsCell, mediaQualityCell, downloadOnDemandCell,
-                    autodelCell, receiptConfirmationCell]
+            cells: [blockedContactsCell, mediaQualityCell, downloadOnDemandCell, receiptConfirmationCell]
+        )
+        let autoDelSection = SectionConfigs(
+            headerTitle: String.localized("delete_old_messages"),
+            footerTitle: nil,
+            cells: [autodelCell]
         )
         let exportBackupSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("pref_backup_explain"),
             cells: [exportBackupCell]
         )
-        return [preferencesSection, exportBackupSection]
+        return [preferencesSection, autoDelSection, exportBackupSection]
     }()
 
     init(dcAccounts: DcAccounts) {
