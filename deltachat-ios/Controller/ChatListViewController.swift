@@ -543,7 +543,8 @@ class ChatListViewController: UITableViewController {
             }
             markReadAction.accessibilityLabel = String.localized("mark_as_read_short")
             markReadAction.backgroundColor = UIColor.systemBlue
-            markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: "checkmark.message"), text: String.localized("mark_as_read_short"))
+            let imageName = if #available(iOS 16, *) { "checkmark.message" } else { "checkmark.circle" }
+            markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: imageName), text: String.localized("mark_as_read_short"))
 
             return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
         } else {
