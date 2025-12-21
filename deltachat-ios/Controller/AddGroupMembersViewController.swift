@@ -4,14 +4,7 @@ import DcCore
 class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
     private let gclFlags: Int32
-
-    private lazy var sections: [AddGroupMemberSections] = {
-        if dcContext.isChatmail {
-            return [.memberList]
-        } else {
-            return [.newContact, .memberList]
-        }
-    }()
+    private let sections: [AddGroupMemberSections]
 
     enum AddGroupMemberSections {
         case newContact
@@ -42,6 +35,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     init(dcContext: DcContext, preselected: Set<Int>, createMode: NewGroupController.CreateMode) {
         self.chat = nil
         self.gclFlags = DC_GCL_ADD_SELF | (createMode == .createEmail ? DC_GCL_ADDRESS : 0)
+        self.sections = createMode == .createEmail ? [.newContact, .memberList] : [.memberList]
         super.init(dcContext: dcContext)
         numberOfSections = sections.count
         selectedContactIds = preselected
@@ -51,6 +45,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     init(dcContext: DcContext, chatId: Int) {
         self.chat = dcContext.getChat(chatId: chatId)
         self.gclFlags = DC_GCL_ADD_SELF
+        self.sections = [.memberList]
         super.init(dcContext: dcContext)
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
