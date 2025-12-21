@@ -36,7 +36,9 @@ extension UIViewController {
         if #available(iOS 18, *), let navigationController {
             // Pushing instead of presenting on iOS 18 makes sure it shows navigation
             // and toolbar by default. On iOS 18 this still enables the swipe down to dismiss
-            // gesture and it still animates using previewController(_:transitionViewFor:)
+            // gesture and it still animates using previewController(_:transitionViewFor:).
+            // Note: Do not return `.disabled` in `previewController(_:editingModeFor:)` as this
+            // causes a visual glitch in the navigation bar when pushing.
             navigationController.pushViewController(previewController, animated: animated)
             completion?()
         } else {
