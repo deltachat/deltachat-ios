@@ -4,7 +4,7 @@ import DcCore
 class NewContactController: UITableViewController {
 
     let dcContext: DcContext
-    var createChatOnSave = true
+    let createChatOnSave: Bool
     var prefilledSeachResult: String?
 
     let emailCell = TextFieldCell.makeEmailCell()
@@ -31,8 +31,9 @@ class NewContactController: UITableViewController {
     let cells: [UITableViewCell]
 
     // for creating a new contact
-    init(dcContext: DcContext, searchResult: String? = nil) {
+    init(dcContext: DcContext, createChatOnSave: Bool = true, searchResult: String? = nil) {
         self.dcContext = dcContext
+        self.createChatOnSave = createChatOnSave
         cells = [emailCell, nameCell]
         prefilledSeachResult = searchResult
         super.init(style: .insetGrouped)
