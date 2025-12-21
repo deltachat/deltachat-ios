@@ -3,7 +3,6 @@ import DcCore
 
 class AddGroupMembersViewController: GroupMembersViewController {
     var onMembersSelected: ((Set<Int>) -> Void)?
-    private var isOutBroadcast: Bool = false
     private let gclFlags: Int32
 
     private lazy var sections: [AddGroupMemberSections] = {
@@ -44,7 +43,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chat = nil
         self.gclFlags = DC_GCL_ADD_SELF | (createMode == .createEmail ? DC_GCL_ADDRESS : 0)
         super.init(dcContext: dcContext)
-        self.isOutBroadcast = createMode == .createBroadcast
         numberOfSections = sections.count
         selectedContactIds = preselected
     }
@@ -54,7 +52,6 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.chat = dcContext.getChat(chatId: chatId)
         self.gclFlags = DC_GCL_ADD_SELF
         super.init(dcContext: dcContext)
-        isOutBroadcast = chat?.isOutBroadcast ?? false
         numberOfSections = sections.count
         selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
     }
@@ -66,7 +63,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized(isOutBroadcast ? "add_recipients" : "group_add_members")
+        title = String.localized("group_add_members")
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = cancelButton
         contactIds = loadMemberCandidates()

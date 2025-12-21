@@ -174,7 +174,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No ActionCell") }
             if inviteRows[row] == .addMembers {
                 actionCell.imageView?.image = UIImage(systemName: "plus")
-                actionCell.actionTitle = String.localized(createMode == .createGroup ? "group_add_members" : "add_recipients")
+                actionCell.actionTitle = String.localized("group_add_members")
                 actionCell.actionColor = UIColor.systemBlue
                 actionCell.isUserInteractionEnabled = true
             }
