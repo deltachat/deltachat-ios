@@ -2762,7 +2762,6 @@ extension ChatViewController: ChatContactRequestDelegate {
     }
 }
 
-
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
     override func responds(to aSelector: Selector!) -> Bool {
@@ -2805,8 +2804,8 @@ extension ChatViewController: QLPreviewControllerDelegate {
             // Place the snapshot below the tableView, outside of the screen so the
             // preview controller animates towards where the inputAccessoryView will
             // pop back in from, when firstResponder is returned.
-            snapshot.frame.origin.y = (tableView.superview ?? tableView).frame.maxY
-            tableView.superview?.addSubview(snapshot)
+            snapshot.frame.origin.y = view.frame.maxY
+            view.addSubview(snapshot)
             previewControllerTargetSnapshot?.removeFromSuperview()
             previewControllerTargetSnapshot = snapshot
             return snapshot
