@@ -125,7 +125,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         newContactController.onContactSaved = { [weak self] contactId in
             guard let self else { return }
             self.contactIds = self.loadMemberCandidates()
-            if self.contactIds.contains(contactId) {
+            if !self.selectedContactIds.contains(contactId) {
                 self.selectedContactIds.insert(contactId)
                 self.tableView.reloadData()
             }
