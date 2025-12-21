@@ -88,11 +88,11 @@ class NewContactController: UITableViewController {
         if let onContactSaved = self.onContactSaved {
             onContactSaved(contactId)
         }
+        navigationController?.popViewController(animated: true)
         if createChatOnSave {
             let chatId = dcContext.createChatByContactId(contactId: contactId)
-            showChat(chatId: chatId)
-        } else {
-            navigationController?.popViewController(animated: true)
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.appCoordinator.showChat(chatId: chatId, clearViewControllerStack: true)
         }
     }
 
@@ -116,15 +116,6 @@ class NewContactController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return String.localized("new_classic_contact_explain")
-    }
-
-    // MARK: - coordinator
-    private func showChat(chatId: Int) {
-        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
-            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-            chatlistViewController.backButtonUpdateableDataSource = chatViewController
-            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
-        }
     }
 }
 
