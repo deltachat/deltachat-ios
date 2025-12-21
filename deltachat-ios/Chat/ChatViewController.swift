@@ -206,7 +206,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private var previewControllerTargetSnapshot: UIView?
-    private var previewControllerTargetHiddenOriginal: UIView?
 
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
@@ -2810,9 +2809,7 @@ extension ChatViewController: QLPreviewControllerDelegate {
             previewControllerTargetSnapshot = snapshot
             return snapshot
         } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
-            previewControllerTargetHiddenOriginal?.layer.opacity = 1
-            previewControllerTargetSnapshot?.removeFromSuperview()
-            // Scroll to the message that will be dismissed
+            // Scroll to the message related to the dismissing preview controller
             let indexPath = IndexPath(row: row, section: 0)
             if tableView.indexPathsForVisibleRows?.contains(indexPath) == false {
                 tableView.scrollToRow(at: indexPath, at: .none, animated: false)
@@ -2827,8 +2824,6 @@ extension ChatViewController: QLPreviewControllerDelegate {
     func previewControllerDidDismiss(_ controller: QLPreviewController) {
         previewControllerTargetSnapshot?.removeFromSuperview()
         previewControllerTargetSnapshot = nil
-        previewControllerTargetHiddenOriginal?.layer.opacity = 1
-        previewControllerTargetHiddenOriginal = nil
     }
 
     private func isDraftPreviewItem(_ item: QLPreviewItem) -> Bool {
