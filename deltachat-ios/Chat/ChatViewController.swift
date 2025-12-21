@@ -237,29 +237,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        var shouldDebounceWillShow = false
-        var willShowDebounceTimer: Timer?
-        keyboardManager?.on(event: .didHide) { [weak self] _ in
-            // Debounce when input accessory view was completely hidden because when it comes
-            // back there is a chance that we first need to make ChatViewController firstResponder,
-            // and then the text field. This would cause two scroll view inset updates.
-            shouldDebounceWillShow = shouldDebounceWillShow || !(self?.canBecomeFirstResponder ?? true)
+        var skipWillShow = false
+        keyboardManager?.on(event: .didHide) { notification in
+            // Skip animating willShow when hiding the accessory view, (not when only hiding the
+            // keyboard) because when it comes back there is a chance that we first
+            // need to make ChatViewController firstResponder, and then the text field.
+            // This would cause two scroll view inset updates when not debounced.
+            skipWillShow = skipWillShow || notification.endFrame.minY >= UIScreen.main.bounds.height
         }
-        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+        keyboardManager?.on(event: .didShow) { [weak self, tableView] notification in
             // Don't react to first responder changes in presented view controllers
             guard self?.canBecomeFirstResponder == true else { return }
-            willShowDebounceTimer?.invalidate()
-            if shouldDebounceWillShow {
-                willShowDebounceTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-                    animateTableViewInset(notification: notification, tableView: tableView)
-                }
-            } else {
-                animateTableViewInset(notification: notification, tableView: tableView)
-            }
+            animateTableViewInset(notification: notification, tableView: tableView)
+        }
+        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+            guard self?.canBecomeFirstResponder == true, !skipWillShow else { return }
+            animateTableViewInset(notification: notification, tableView: tableView)
         }
         func animateTableViewInset(notification: KeyboardNotification, tableView: UITableView) {
-            shouldDebounceWillShow = false
-            willShowDebounceTimer = nil
+            skipWillShow = false
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
