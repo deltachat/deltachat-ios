@@ -19,6 +19,7 @@
 - Fix: Synchronize default relay immediately after changing it
 - Fix: Let securejoin succeed even if the chat was deleted in the meantime
 - Fix: Ask before sharing via a direct-share link
+- Fix: Show "Mark Read" icon on iOS 14/15
 - Update translations and local help
 - Update to core 2.35.0
 
