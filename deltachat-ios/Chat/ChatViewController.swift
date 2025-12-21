@@ -142,6 +142,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     /// snapshots right away probably assuming it is part of the view hierarchy.
     private weak var lastContextMenuPreviewSnapshot: UIView?
 
+    /// Hack because implementing the delegate method `previewController(_:editingModeFor)` causes
+    /// visual glitches on iOS 18+ when returning `.disabled` so instead we pretend this method is not implemented when
+    /// edit mode is disabled by returning the result of this closure in `responds(to:)`.
+    private var respondsToPreviewControllerEditingModeSelector: () -> Bool = { false }
+
     private let titleView = ChatTitleView()
 
     private lazy var dcChat: DcChat = {
@@ -2090,15 +2095,9 @@ extension ChatViewController {
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
         let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: msgIds, index: index))
+        respondsToPreviewControllerEditingModeSelector = { false }
         previewController.delegate = self
-        if #available(iOS 18, *) {
-            // Pushing instead of presenting on iOS 18 makes sure it shows navigation
-            // and toolbar by default. On iOS 18 this still enables the swipe down to dismiss
-            // gesture and it still animates using previewController(_:transitionViewFor:)
-            navigationController?.pushViewController(previewController, animated: true)
-        } else {
-            present(previewController, animated: true)
-        }
+        present(previewController, animated: true)
     }
 
     func didTapVcard(msg: DcMsg) {
@@ -2606,10 +2605,9 @@ extension ChatViewController: DraftPreviewDelegate {
                 showWebxdcViewFor(message: draftMessage)
             } else {
                 let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
-                if draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
-                    previewController.setEditing(true, animated: true)
-                    previewController.delegate = self
-                }
+                // Respond to the editing mode selector until previewController deinits
+                respondsToPreviewControllerEditingModeSelector = { [weak pc = previewController] in pc != nil }
+                previewController.delegate = self
                 present(previewController, animated: true)
             }
         }
@@ -2767,11 +2765,19 @@ extension ChatViewController: ChatContactRequestDelegate {
 
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
+    override func responds(to aSelector: Selector!) -> Bool {
+        if aSelector == #selector(previewController(_:editingModeFor:)) {
+            return respondsToPreviewControllerEditingModeSelector()
+        }
+        return super.responds(to: aSelector)
+    }
+
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
         if isDraftPreviewItem(previewItem) {
             return .updateContents
         } else {
-            return .disabled
+            assertionFailure("Should not return .disabled, responds(to:) override should've stopped this from being called")
+            return .disabled // returning this causes visual glitches on iOS 18
         }
     }
 
