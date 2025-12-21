@@ -2818,17 +2818,8 @@ extension ChatViewController: QLPreviewControllerDelegate {
             if tableView.indexPathsForVisibleRows?.contains(indexPath) == false {
                 tableView.scrollToRow(at: indexPath, at: .none, animated: false)
             }
-            if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
-               let snapshot = cell.messageBackgroundContainer.snapshotView(afterScreenUpdates: true) {
-                if cell is ImageTextCell { // hide cell while transitioning
-                    cell.layer.opacity = 0
-                }
-                snapshot.clipsToBounds = true
-                snapshot.frame = cell.convert(cell.messageBackgroundContainer.frame, to: tableView.superview)
-                tableView.superview?.addSubview(snapshot)
-                previewControllerTargetSnapshot = snapshot
-                previewControllerTargetHiddenOriginal = cell
-                return snapshot
+            if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+                return cell.messageBackgroundContainer
             }
         }
         return nil
