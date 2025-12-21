@@ -734,7 +734,7 @@ class ProfileViewController: UITableViewController {
                 guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { return UITableViewCell() }
                 switch manageMembersActions[indexPath.row] {
                 case .addMembers:
-                    actionCell.actionTitle = String.localized(isOutBroadcast ? "add_recipients" : "group_add_members")
+                    actionCell.actionTitle = String.localized("group_add_members")
                     actionCell.imageView?.image = UIImage(systemName: "plus")
                     actionCell.actionColor = UIColor.systemBlue
                 case .qrInvite:
