@@ -474,9 +474,15 @@ und seine <a href="#edit">eigenen Nachrichten von Geräten der Mitglieder lösch
       </h3>
 
 <ul>
-  <li>Wähle <strong>Neuer Chat</strong> und dann <strong>Neue Gruppe</strong> aus dem Menü oben rechts oder über das entsprechende Symbol unter Android/iOS.</li>
-  <li>Wähle auf dem folgenden Bildschirm die <strong>Gruppenmitglieder</strong> aus und klicke auf das Häkchen in der oberen rechten Ecke. Danach kannst du einen <strong>Gruppennamen</strong> und auch einen <strong>Gruppenbild</strong>  festlegen.</li>
-  <li>Sobald du die <strong>erste Nachricht</strong> in die Gruppe schreibst, werden alle Mitglieder über die neue Gruppe informiert und können in der Gruppe antworten (solange du keine Nachricht in die Gruppe schreibst, ist die Gruppe für die Gruppenmitglieder nicht sichtbar).</li>
+  <li>
+    <p>Wähle <strong>Neuer Chat</strong> und dann <strong>Neue Gruppe</strong> aus dem Menü oben rechts oder über das entsprechende Symbol unter Android/iOS.</p>
+  </li>
+  <li>
+    <p>Wähle auf dem folgenden Bildschirm die <strong>Gruppenmitglieder</strong> aus und klicke auf das Häkchen in der oberen rechten Ecke. Danach kannst du einen <strong>Gruppennamen</strong> und auch einen <strong>Gruppenbild</strong>  festlegen.</p>
+  </li>
+  <li>
+    <p>Sobald du die <strong>erste Nachricht</strong> in die Gruppe schreibst, werden alle Mitglieder über die neue Gruppe informiert und können in der Gruppe antworten (solange du keine Nachricht in die Gruppe schreibst, ist die Gruppe für die Gruppenmitglieder nicht sichtbar).</p>
+  </li>
 </ul>
     
       <h3 id="addmembers">
@@ -977,24 +983,23 @@ Im Zweifelsfall entferne das Relay später.</p>
         
       </h3>
 
-<p>Yes, but only if the email address is used exclusively by <a href="https://chatmail.at/clients">chatmail clients</a>.</p>
+<p>Ja, aber nur, wenn die E-Mail-Adresse ausschließlich von <a href="https://chatmail.at/clients">Chatmail-Clients</a> verwendet wird.</p>
 
-<p>It is not supported to share usage of an email address with non-chatmail apps or web-based mailers,
-for the following reasons:</p>
+<p>Die gemeinsame Nutzung einer E-Mail-Adresse mit Nicht-Chatmail-Apps oder webbasierten Mailprogrammen wird aus folgenden Gründen nicht unterstützt:</p>
 
 <ul>
   <li>
-    <p>Non-chatmail apps are largely not accomplishing automatic end-to-end email encryption for their users,
-while chatmail apps and relays pervasively enforce end-to-end encryption and security standards.</p>
+    <p>Nicht-Chatmail-Apps bieten ihren Nutzern größtenteils keine automatische End-to-End-Verschlüsselung,
+während Chatmail-Apps und Relays durchgängig End-to-End-Verschlüsselung und Sicherheitsstandards durchsetzen.</p>
   </li>
   <li>
-    <p>Non-chatmail apps use email servers as a long-term message archive
-while chatmail clients use email servers for ephemeral instant message relay.</p>
+    <p>Nicht-Chatmail-Anwendungen nutzen E-Mail-Server als langfristiges Nachrichtenarchiv,
+während Chatmail-Clients E-Mail-Server für die kurzlebige Weiterleitung von Nachrichten verwenden.</p>
   </li>
   <li>
-    <p>Supporting the full variety of classic email setups
-would require considerable development and maintenance efforts,
-and complicate making chatmail-based messaging more resilient, reliable and fast.</p>
+    <p>Die Unterstützung der gesamten Bandbreite klassischer E-Mail-Konfigurationen
+würde einen erheblichen Entwicklungs- und Wartungsaufwand erfordern
+und Chatmail-basiertes Messaging weniger robust, zuverlässig und schnell machen.</p>
   </li>
 </ul>
     
@@ -1006,17 +1011,15 @@ and complicate making chatmail-based messaging more resilient, reliable and fast
         
       </h3>
 
-<p>First off, <strong>please do not use the same classic email address also from non-chatmail classic email apps</strong>
-unless you are prepared to deal with encrypted messages in the inbox,
-double notifications, accidentally deleted emails or similar annoyances.</p>
+<p>Zunächst einmal, <strong>verwenden bitte nicht dieselbe klassische E-Mail-Adresse auch in anderen klassischen E-Mail-Anwendungen</strong>,
+es sei denn, du bist sind bereit, dich mit verschlüsselten Nachrichten im Posteingang,
+doppelten Benachrichtigungen, versehentlich gelöschten E-Mails oder ähnlichen Ärgernissen auseinanderzusetzen.</p>
 
-<p>You can configure a email address for chatting at <strong>New Profile → Use Other Server → Use Classic Mail as Relay</strong>.
-Note that classic email providers will generally not support <a href="#instant-delivery">Push Notifications</a>
-and have other limitations, see <a href="https://providers.delta.chat">Provider Overview</a>.
-Chatmail uses the default INBOX for relay; ensure the provider setup does too. 
-A chat profile using a classic email address allows to to send and receive unencrypted messages.
-These messages, and the chats they appear in, are marked with an email icon
-<img style="vertical-align:middle; width:1.2em; margin:1px" src="../email-icon.png" alt="email" />.</p>
+<p>Sie können eine E-Mail-Adresse unter <strong>Neues Profil → Anderen Server verwenden → Klassische E-Mail als Relay</strong> konfigurieren.
+Beachten Sie, dass klassische E-Mail-Anbieter in der Regel keine <a href="#instant-delivery">Push-Benachrichtigungen</a> unterstützen
+und andere Einschränkungen haben, siehe <a href="https://providers.delta.chat">Provider-Overview</a>.
+Chatmail verwendet den Standard-INBOX für die Weiterleitung; stellen Sie sicher, dass dies auch bei der Einrichtung Ihres Anbieters der Fall ist. 
+Ein Chat-Profil mit klassischer E-Mail-Adresse, ermöglicht das Senden und Empfangen unverschlüsselter Nachrichten; diese sind mit dem E-Mail-Symbol <img style="vertical-align:middle; width:1.2em; margin:1px" src="../email-icon.png" alt="email" />  gekennzeichnet.</p>
     
       <h3 id="ich-möchte-meinen-eigenen-server-für-delta-chat-verwalten-gibt-es-empfehlungen">
         
@@ -1026,13 +1029,13 @@ These messages, and the chats they appear in, are marked with an email icon
         
       </h3>
 
-<p>Any well behaving email server setup will do fine 
-except if your users’ devices require Google/Apple <a href="#instant-delivery">Push Notifications</a> to work properly.</p>
+<p>Jede gut funktionierende E-Mail-Server-Konfiguration ist geeignet, 
+es sei denn, die Geräte Ihrer Benutzer erfordern Google/Apple <a href="#instant-delivery">Push-Benachrichtigungen</a>, um ordnungsgemäß zu funktionieren.</p>
 
-<p>We generally recommend to <a href="https://chatmail.at/doc/relay/getting_started.html">set up a chatmail relay</a>. 
-<a href="https://chatmail.at">Chatmail</a> is a community-driven project that encompasses both the setup of relays
-and <a href="https://github.com/chatmail/core">core Rust developments</a> 
-that power <a href="https://chatmail.at/clients">chatmail clients</a> of which Delta Chat is the most well known.</p>
+<p>Wir empfehlen generell, <a href="https://chatmail.at/doc/relay/getting_started.html">ein Chatmail-Relay einzurichten</a>. 
+<a href="https://chatmail.at">Chatmail</a> ist ein Community-basiertes Projekt, das sowohl die Einrichtung von Relays
+als auch <a href="https://github.com/chatmail/core">Entwicklungen in Rust</a> 
+für die <a href="https://chatmail.at/clients">Chatmail-Clients</a> umfasst, von denen Delta Chat der bekannteste ist.</p>
     
       <h3 id="statssending">
         
