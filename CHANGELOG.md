@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.35.0 Testflight
+2025-12
 
 - Scanning a QR code with a relay ask for adding it as additional transport
 - Ask for device owner verification on profile deletion
