@@ -13,6 +13,7 @@
 - Set explicit relay limit to 5
 - Remove deprecated "real-time apps" switch
 - Simplify automatic deletion options
+- Fix: Show input-bar after QR scan immediately
 - Fix: Remove sometimes misleading "Please wait..." after QR code scan
 - Fix: Do not set normalized name for existing chats and contacts; it takes too long sometimes
 - Fix: Show relays in connectivity view by their hostname
