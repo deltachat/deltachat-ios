@@ -414,18 +414,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard let self else { return }
 
             dcChat = self.dcContext.getChat(chatId: chatId)
-            if dcChat.canSend {
-                if self.messageInputBar.isHidden {
-                    self.configureUIForWriting()
-                    self.messageInputBar.isHidden = false
-                    self.becomeFirstResponder()
-                }
-            } else if !dcChat.isContactRequest {
-                if !self.messageInputBar.isHidden {
-                    self.messageInputBar.isHidden = true
-                }
-            }
-            self.updateTitle()
+            updateTitle()
+            checkInputBarVisibility()
         }
     }
 
@@ -434,8 +424,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard let self else { return }
 
             dcChat = self.dcContext.getChat(chatId: chatId)
-            self.refreshMessages()
-            self.updateTitle()
+            refreshMessages()
+            updateTitle()
+            checkInputBarVisibility()
+        }
+    }
+
+    private func checkInputBarVisibility() {
+        if dcChat.canSend {
+            if messageInputBar.isHidden {
+                configureUIForWriting()
+                messageInputBar.isHidden = false
+                becomeFirstResponder()
+            }
+        } else if !dcChat.isContactRequest {
+            if !messageInputBar.isHidden {
+                messageInputBar.isHidden = true
+            }
         }
     }
 
