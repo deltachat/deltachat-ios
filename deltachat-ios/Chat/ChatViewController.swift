@@ -515,6 +515,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if navigationController?.visibleViewController == self {
             handleUserVisibility(isVisible: true)
         }
+        // Update the last seen indicator
+        updateTitle()
     }
 
     @objc func applicationWillResignActive(_ notification: NSNotification) {

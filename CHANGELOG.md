@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
+
 ## v2.35.0 Testflight
 2025-12
 
