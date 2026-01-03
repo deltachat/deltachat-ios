@@ -364,7 +364,8 @@ class WebxdcViewController: WebViewViewController {
             return decisionHandler(.allow)
         }
         switch url.scheme?.lowercased() {
-        case INTERNALSCHEMA:
+        case INTERNALSCHEMA,
+            "about" where url.absoluteString == "about:srcdoc":
             decisionHandler(.allow)
         case "mailto":
             openChatFor(url: url)
