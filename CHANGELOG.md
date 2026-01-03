@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
+- Fix: Allow iframe srcdoc in webxdc 
 
 ## v2.35.0 Testflight
 2025-12
