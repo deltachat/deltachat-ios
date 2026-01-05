@@ -118,6 +118,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "آخرین بار دیده‌شده در %1$@";
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -192,8 +194,7 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "مخاطب جدید";
 "menu_new_classic_contact" = "اضافه کردن مخاطب به صورت دستی";
-"new_classic_contact_explain" = "مخاطبینی که دستی اضافه شده‌اند می توانند برای ارسال پیام به حساب ایمیل معمولی
- استفاده شوند و رمزگذاری سراسری برای آن‌ها تضمین نمی‌شود.";
+"new_classic_contact_explain" = "مخاطبینی که دستی اضافه شده‌اند می توانند برای ارسال پیام به حساب رایانامه معمولی استفاده شوند و رمزگذاری سراسری برای آن‌ها تضمین نمی‌شود.";
 "menu_new_chat" = "گپ جدید";
 "menu_new_group" = "گروه جدید";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
@@ -206,9 +207,10 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "کانال جدید";
 // deprecated
-"add_recipients" = "افزودن گیرنده";
+"add_recipients" = "افزودن دنبال‌کننده";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "نام کانال";
+"email" = "رایانامه";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "رایانامه جدید";
 // the "Subject" of an email, use the term common in classic email apps
@@ -266,7 +268,7 @@
 "menu_scroll_to_top" = "رفن تا بالا";
 "menu_help" = "کمک";
 // use the same term for "Apps" as elsewhere
-"what_is_webxdc" = "Webxdc چیست؟";
+"what_is_webxdc" = "مینی برنامه‌ها چیستند؟";
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
 "select_chat" = "انتخاب چت";
@@ -321,11 +323,24 @@
 "share_location_for_two_hours" = "به مدت ۲ ساعت";
 "share_location_for_six_hours" = "به مدت ۶ ساعت";
 "file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "تماس";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "جواب دادن";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "رد کردن";
+"outgoing_call" = "تماس خروجی";
+"incoming_call" = "تماس ورودی";
+"declined_call" = "تماس رد شده";
+"canceled_call" = "تماس لغو شده";
+"missed_call" = "تماس از دست رفته";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@، %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
-"ask_delete_named_chat" = "حذف گفتگوی «%1$@» از همه‌ی دستگاه‌های شما؟";
-"ask_delete_message" = "می‌خواهید این پیام را از همهٔ دستگاه‌هایتان حذف کنید؟";
+"ask_delete_named_chat" = "حذف گپ «%1$@»؟";
+"ask_delete_message" = "حذف این پیام؟";
 // deprecated, use ask_delete_messages
 "ask_forward" = "پیام‌ها به %1$@ هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
@@ -334,8 +349,8 @@
 شما دیگر پیامی به صورت مستقیم از این مخاطب دریافت نخواهید کرد. همچنین گروه‌های ایجاد شده توسط این مخاطب نمایش داده نخواهند شد.\n\n
 با این وجود، گروه‌هایی که این مخاطب در آن حضور دارند نمایش داده خواهد شد.";
 "ask_unblock_contact" = "رفع مسدودیت این مخاطب؟";
-"ask_delete_contacts" = "مخاطبین حذف شوند؟\n\nمخاطبینی که گپ فعال دارند و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
-"ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطبین با گپ فعال و مخاطبینی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
+"ask_delete_contacts" = "مخاطب‌ها حذف شوند؟\n\nمخاطب‌هایی که گپ فعال دارند را نمی‌توان به صورت دائمی حذف کرد. ";
+"ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطب‌ها با گپ فعال و مخاطب‌هایی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
 "ask_start_chat_with" = "گپ زدن با %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "حذف %1$@ از گروه؟";
@@ -359,7 +374,7 @@
 "chat_record_explain" = "برای ضبط پیام صوتی فشار داده و نگهدارید، برای ارسال رها کنید. ";
 "chat_no_chats_yet_title" = "گفتگویی وجود ندارد.\nبرای شروع گفتگو جدید دکمه «+» را فشار دهید.";
 "chat_all_archived" = "تمام گپ‌ها بایگانی شده‌اند. /n برای شروع گپ جدید، «+» را فشار دهید. ";
-"chat_share_with_title" = "اشتراک گذاری با";
+"chat_share_with_title" = "اشتراک گذاری با...";
 "chat_input_placeholder" = "پیام";
 "chat_archived_label" = "بایگانی شد";
 "chat_request_label" = "درخواست";
@@ -368,7 +383,7 @@
 "chat_self_talk_subtitle" = "پیام‌هایی که برای خودم  ارسال کرده‌ام. ";
 "archive_empty_hint" = "اگر گپ‌ها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
-"save_message" = "ذخیره";
+"save_message" = "ذخیره پیام";
 "saved_messages" = "پیام‌های ذخیره شده. ";
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
 // Should match "Saved" from "Saved messages"
@@ -500,7 +515,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "از قبل یک حساب کاربری دارم";
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
-"manual_account_setup_option" = "ساخت حساب کاربری با حساب رایانامه معمولی";
+"manual_account_setup_option" = "استفاده از رایانامه معمولی به عنوان رله";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "نمایه شما";
 // The placeholder will be replaced by the default onboarding server
@@ -554,7 +569,7 @@
 "login_error_required_fields" = "لطفاً یک نشانی رایانامه و گذرواژهٔ معتبر وارد کنید";
 "import_backup_title" = "وارد کردن نسخه پشتیبانی";
 "import_backup_ask" = "نسخه پشتیبانی در\"%1$@\" پیدا شد.\n\n آیا می‌خواهید همه داده‌ها و تنظیم‌ها از آن وارد شود؟";
-"import_backup_no_backup_found" = "نسخه پشتیبانی پیدا نشد.\n\n نسخه پشتیبانی را در\"%1$@\" کپی کرده و دوباره امتحان کنید. در غیر این صورت می‌توانید \"شروع پیام‌رسانی\" را فشار دهید دا فرایند به صورت عادی ادامه یابد. ";
+"import_backup_no_backup_found" = "نسخهٔ پشتیبانی پیدا نشد.\n\n نسخهٔ پشتیبان را در«%1$@» کپی کرده و دوباره امتحان کنید.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "نمی‌توانیم به عنوان «%1$@» وارد شویم. لطفاً درستی نشانی رایانامه و گذرواژه را بررسی کنید. ";
 // TLS certificate checks
@@ -645,6 +660,7 @@
 "pref_backup" = "نسخه پشتیبان";
 "pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
 "pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
+"pref_backup_export_this" = "برون‌ریزی این نمایه";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "برون‌ریزی همه%1$d حساب ها";
 "pref_backup_export_start_button" = "شروع تهیه نسخه پشتیبان";
@@ -654,6 +670,8 @@
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";
 "pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "حالت چند دستگاهی";
 "pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
 "pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
 "pref_show_emails" = "نمایش رایانامه‌های معمولی";
@@ -714,7 +732,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_server_ask" = "آیا می‌خواهید %1$d پیام را اکنون و تمام پیام‌های آیندهٔ «%2$@»  را پاک کنید؟/n/n⚠️ این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در همه پوشه‌های کارساز(سرور) می‌شود/n/n⚠️ اگر می‌خواهید داده‌ها در کارساز باقی بمانند از این قابلیت استفاده نکنید/n/n⚠️ اگر به‌جز دلتاچت از دیگر نرم‌افزارهای رایانامه هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "این شامل رایانامه‌ها، رسانه‌ها و «پیام‌های ذخیره شده» در تمام پوشه‌های کارساز(سرور) می‌شود. اگر می‌خواهید داده‌ها را در کارساز نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای رایانامه به‌جز دلتاچت استفاده می‌کنید از این قابلیت استفاده نکنید.";
+"autodel_server_enabled_hint" = "این شامل رایانامه‌ها، رسانه‌ها و «پیام‌های ذخیره شده» در تمام پوشه‌های کارساز(سرور) می‌شود. اگر می‌خواهید داده‌ها را در کارساز نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای رایانامه به‌جز دلتاچت استفاده می‌کنید هم از این قابلیت استفاده نکنید.";
 "autodel_confirm" = "متوجه هستم، همه پیام‌ها حذف شوند";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "یک بار بعد از بارگیری";
@@ -745,7 +763,12 @@
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "عضو گروه، %1$@، توسط %2$@ حذف شد. ";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
-"member_x_removed" = "عضویت %1$@حذف شد. ";
+"member_x_removed" = "%1$@از گروه حذف شد. ";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "شما گروه را ترک کردید";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "شما کانال را ترک کردید";
+"you_joined_the_channel" = "شما به کانال ملحق شدید";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "ترک گروه توسط %1$@.";
 "group_image_deleted_by_you" = "شما تصویر گروه را حذف کردید.";
@@ -774,6 +797,9 @@
 "ephemeral_timer_1_week_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 هفته تنظیم کرده‌اید.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 هفته تنظیم شد.";
+"ephemeral_timer_1_year_by_you" = "شما تایمر پیام‌های محو شونده را روی ۱ سال تنظیم کردید";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "تایمر پیام‌های محو شونده توسط %1$@ بر روی ۱ سال تنظیم شده‌اند.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ دقیقه تنظیم کردید.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
@@ -790,16 +816,15 @@
 "ephemeral_timer_weeks_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ هفته تنظیم کردید.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ هفته تنظیم شد.";
-"chat_protection_enabled_tap_to_learn_more" = "رمزنگاری سرتاسر پیام ها از این به بعد تضمین می شود. برای اطلاعات بیشتر ضربه بزنید.";
-"chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو اکنون تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهندهٔ رایانامه شما هم نمی‌تواند آن‌ها را بخواند.";
+"chat_unencrypted_explanation" = "پیام‌ها در این گپ از رایانامه معمولی استفاده می‌کنند و به صورت سراسری رمزنگاری نشده‌اند.";
+"chat_protection_enabled_tap_to_learn_more" = "رمزنگاری سراسری پیام‌ها از این به بعد تضمین می شود. برای اطلاعات بیشتر ضربه بزنید.";
+"chat_protection_enabled_explanation" = "رمزنگاری سراسری پیام‌های این گفتگو تضمین می‌شود. رمزنگاری سراسری باعث می‌شود پیام‌هایتان بین شما و مخاطبین شما محرمانه بماند. حتی ارائه‌دهنده‌ها و رله‌ها هم نمی‌توانند آن‌ها را بخوانند.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ به رمزنگاری سراسری نیاز دارد که هنوز برای این گپ پیکره‌بندی نشده است. برای یادگیری بیش‌تر این‌جا بزنید.";
 "invalid_unencrypted_explanation" = "برای برقراری رمزنگاری سراسری، می‌توانید به صورت حضوری با مخاطب‌های خود دیدار کنید و کد کیوآر آن‌ها را برای معرفی اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "هشدار⚠️، میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. 
-اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت.  
-👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخه وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از تنظیم‌ها/اتصال‌ها بررسی کنید. ";
+"devicemsg_storage_exceeding" = " ⚠️ میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت.  👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخهٔ وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از «تنظیم‌ها / اتصال‌ها» بررسی کنید. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@).
 ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";
@@ -816,6 +841,7 @@
 "qrscan_hint_desktop" = "کد کیو‌آر را زیر دوربین بگیرید";
 "qrscan_failed" = "امکان رمزگشایی کد کیوآر وجود ندارد";
 "qrscan_ask_join_group" = "آیا می خواهید به گروه\"%1$@\" ملحق شوید؟";
+"qrscan_ask_join_channel" = "آیا می‌خواهید عضو کانال «%1$@» شوید؟";
 "qrscan_fingerprint_mismatch" = "اثرانگشت اسکن شده با انچه که برای %1$@مشاهده شده بود انطباق ندارد. ";
 "qrscan_no_addr_found" = "این کیوآر حاوی یک شناساگر است. ولی آدرس رایانامه‌ای در آن نیست. \n\n برای یک تأییدیه به روش‌های دیگر لطفا ابتدا یک ارتباط رمزگذاری شده با دریافت کننده برقرار کنید. ";
 "qrscan_contains_text" = "کیوآر کد اسکن شده:\n\n %1$@";
@@ -853,11 +879,12 @@
 در انتظار دستگاه %2$@ برای پاسخگویی...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "کاربر %1$@ پاسخ داد، در انتظار اضافه شدن به گروه...";
-"secure_join_wait" = "در حال برقراری رمزگذاری سراسری تضمین‌شده، لطفا صبر کنید...";
+"secure_join_wait" = "در حال برقراری ارتباط، لطفا صبر کنید...";
 "contact_verified" = "%1$@ تأیید شد.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "احراز هویت شده توسط %1$@";
 "verified_by_you" = "تأیید شده توسط من";
+"verified_by_unknown" = "معرفی شده";
 // deprecated
 "verified_contact_required_explain" = "برای تضمین رمزنگاری سراسری شما تنها می‌توانید مخاطب‌هایی که یک تیک سبز دارند به این گروه اضافه کنید.\n\nمی‌توانید با مخاطب‌هایتان حضوری ملاقات کنید و برای معرفی، کد QR آن‌ها را اسکن کنید.";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
@@ -874,6 +901,7 @@
 "notify_name_only" = "فقط نام";
 "notify_no_name_or_message" = "بدون نام یا پیام";
 "notifications_disabled" = "اعلان‌ها غیرفعال شد";
+"unreliable_bg_notifications" = "فعال‌سازی «اتصال پس‌زمینه اجباری» برای این‌که همیشه اعلان‌ها برسند";
 "new_messages" = "پیام‌های جدید";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "شما پیام‌های جدیدی دارید";
@@ -944,6 +972,8 @@ GNU GPL ورژن ۳
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "حذف";
 "save_desktop" = "ذخیره";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "ذخیره نکردن";
 "name_desktop" = "نام";
 "select_group_image_desktop" = "انتخاب تصویر گروه";
 "export_backup_desktop" = "صادر کردن نسخه پشتیبان";
@@ -995,9 +1025,17 @@ GNU GPL ورژن ۳
 "notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
 "last_check_at" = "بررسی شده در %1$@";
 "system_settings" = "تنظیم‌های سیستم";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "ویرایش نوع، مدال‌ها، پیش‌نمایش و غیره";
 // iOS shortcut widget
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "میانبرها";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "استفاده از «اضافه کردن ابزارک» دلتاچت برای اضافه کردن گزینه‌ها";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "حذف از ابزارک";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "اضافه کردن به ابزارک";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "تحویل آنی";
@@ -1009,3 +1047,5 @@ GNU GPL ورژن ۳
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیم‌های سیستم را نیز بررسی نمایید. ";
+// device messages for updates
+"update_2_0" = "چه خبر هست؟\n\n💯 رمزنگاری سراسری اکنون قابل اعتماد و دائمی هست. قفل‌ها 🔒 دیگر نیستند!\n\n✉️ رایانامه معمولی بدون رمزنگاری سراسری هم‌اکنون با یک نشان حرفی نشان‌گذاری شده‌اند!\n\n🔲 دکمهٔ جدید برای دسترسی سریع به مینی برنامه‌های استفاده شده در چت\n\nلطفا برای مستقل ماندن ما و ادامه دادن بهبود‌ها کمک مالی کنید: %1$@در صورتی که ساکن ایران هستید، رمزارز نیز می‌توانید بفرستید.";
