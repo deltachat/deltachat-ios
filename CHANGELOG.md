@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix: Fixed case where daymarkers could show the wrong date
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
 - Fix: Allow iframe srcdoc in webxdc 
 

@@ -12,7 +12,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     public let chatId: Int
 
     private var dcContext: DcContext
-    private var messageIds: [Int] = []
+    private var messages: [(id: Int, timestamp: TimeInterval)] = []
     private var isVisibleToUser: Bool = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
@@ -345,7 +345,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.tableView.contentInset.top = max(self.inputAccessoryView?.frame.height ?? 0, self.tableView.safeAreaInsets.bottom)
-                if let msgId = self.highlightedMsg, self.messageIds.firstIndex(of: msgId) != nil {
+                if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
                     self.scrollToMessage(msgId: msgId, animated: false)
                     self.highlightedMsg = nil
                 } else {
@@ -535,7 +535,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     /// UITableView methods
     func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageIds.count
+        return messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -545,20 +545,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell as? T ?? { fatalError("WTF?! Wrong Cell, expected \(T.self)") }()
         }
 
-        let id = messageIds[indexPath.row]
+        let id = messages[indexPath.row].id
         if id == DC_MSG_ID_DAYMARKER {
             let cell = dequeueCell(ofType: InfoMessageCell.self)
-            if indexPath.row - 1 >= 0 {
-                var nextMessageId = messageIds[indexPath.row - 1]
-                if nextMessageId == DC_MSG_ID_MARKER1 && indexPath.row - 2 >= 0 {
-                    nextMessageId = messageIds[indexPath.row - 2]
-                }
-                let nextMessage = dcContext.getMessage(id: nextMessageId)
-                let dateString = DateUtils.getDateString(date: nextMessage.sentDate, relativeToCurrentDate: true)
-                cell.update(text: dateString, weight: .bold, isHeader: true)
-            } else {
-                cell.update(text: "ErrDaymarker")
-            }
+            let date = Date(timeIntervalSince1970: messages[indexPath.row].timestamp)
+            let dateString = DateUtils.getDateString(date: date, relativeToCurrentDate: true)
+            cell.update(text: dateString, weight: .bold, isHeader: true)
             return cell
         } else if id == DC_MSG_ID_MARKER1 {
             // unread messages marker
@@ -649,7 +641,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func updateScrollDownButtonVisibility() {
-        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messageIds.isEmpty || isLastMessageVisible()
+        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || isLastMessageVisible()
     }
 
     private func configureContactRequestBar() {
@@ -701,7 +693,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let messageId = messageIds[indexPath.row]
+        let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
         if !canReply(to: message) {
             return nil
@@ -742,7 +734,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func markSeenMessagesInVisibleArea() {
         if isVisibleToUser,
            let indexPaths = tableView.indexPathsForVisibleRows {
-            let visibleMessagesIds = indexPaths.map { UInt32(messageIds[$0.row]) }
+            let visibleMessagesIds = indexPaths.map { UInt32(messages[$0.row].id) }
             if !visibleMessagesIds.isEmpty {
                 DispatchQueue.global().async { [weak self] in
                     self?.dcContext.markSeenMessages(messageIds: visibleMessagesIds)
@@ -760,7 +752,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let selectableCell = tableViewCell as? SelectableCell,
            !(tableView.isEditing &&
              tableViewCell is InfoMessageCell &&
-             messageIds[indexPath.row] <= DC_MSG_ID_LAST_SPECIAL) {
+             messages[indexPath.row].id <= DC_MSG_ID_LAST_SPECIAL) {
             selectableCell.showSelectionBackground(tableView.isEditing)
             return indexPath
         }
@@ -781,7 +773,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         // handle taps outside textTapped(), imageTapped(), avatarTapped(), statusTapped() etc.
-        let messageId = messageIds[indexPath.row]
+        let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
         switch (message.type, message.infoType) {
         case (DC_MSG_FILE, _), (DC_MSG_AUDIO, _), (DC_MSG_VOICE, _):
@@ -919,9 +911,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
-        messageIds = dcContext.getChatMsgs(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
+        messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
         reloadData()
-        showEmptyStateView(messageIds.isEmpty)
+        showEmptyStateView(messages.isEmpty)
     }
 
     private func reloadData() {
@@ -934,14 +926,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func loadMessages() {
         // update message ids
-        var msgIds = dcContext.getChatMsgs(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
+        var msgs = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
-        if freshMsgsCount > 0 && msgIds.count >= freshMsgsCount {
-            let index = msgIds.count - freshMsgsCount
-            msgIds.insert(Int(DC_MSG_ID_MARKER1), at: index)
+        if freshMsgsCount > 0 && msgs.count >= freshMsgsCount {
+            let index = msgs.count - freshMsgsCount
+            msgs.insert((Int(DC_MSG_ID_MARKER1), 0), at: index)
         }
-        self.messageIds = msgIds.reversed()
-        self.showEmptyStateView(self.messageIds.isEmpty)
+        self.messages = msgs.reversed()
+        self.showEmptyStateView(self.messages.isEmpty)
         self.reloadData()
     }
 
@@ -955,7 +947,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     /// Verifies if the last message cell is fully visible
     private func isLastMessageVisible(allowPartialVisibility: Bool = true) -> Bool {
-        guard !messageIds.isEmpty else { return false }
+        guard !messages.isEmpty else { return false }
         // 1 because messageIds is reversed and last message is DC_MSG_ID_LAST_SPECIAL
         let lastIndexPath = IndexPath(item: 1, section: 0)
 
@@ -982,7 +974,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func scrollToLastUnseenMessage(animated: Bool) {
-        if let markerMessageIndex = self.messageIds.firstIndex(of: Int(DC_MSG_ID_MARKER1)) {
+        if let markerMessageIndex = self.messages.firstIndex(where: { $0.id == Int(DC_MSG_ID_MARKER1) }) {
             let indexPath = IndexPath(row: markerMessageIndex, section: 0)
             self.scrollToRow(at: indexPath, animated: animated)
         } else {
@@ -998,7 +990,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ///     - searchString: The text to scroll to inside the message
     private func scrollToMessage(msgId: Int, animated: Bool = true, scrollToText searchString: String? = nil) {
         DispatchQueue.main.async { [weak self] in
-            guard let self, let index = self.messageIds.firstIndex(of: msgId) else { return }
+            guard let self, let index = self.messages.firstIndex(where: { $0.id == msgId }) else { return }
             let indexPath = IndexPath(row: index, section: 0)
 
             if let searchString, !UIAccessibility.isVoiceOverRunning {
@@ -1253,7 +1245,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func onMultipleSaveOrUnsave(doSave: Bool) {
         guard let rows = tableView.indexPathsForSelectedRows else { return }
-        let msgIds = rows.compactMap { messageIds[$0.row] }
+        let msgIds = rows.compactMap { messages[$0.row].id }
         setEditing(isEditing: false)
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self else { return }
@@ -1273,7 +1265,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func onResendActionPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
-            let selectedMsgIds = rows.compactMap { messageIds[$0.row] }
+            let selectedMsgIds = rows.compactMap { messages[$0.row].id }
             dcContext.resendMessages(msgIds: selectedMsgIds)
             setEditing(isEditing: false)
         }
@@ -1771,7 +1763,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let id = messageIds[indexPath.row]
+        let id = messages[indexPath.row].id
         return id != DC_MSG_ID_DAYMARKER && id != DC_MSG_ID_MARKER1
     }
 }
@@ -1779,7 +1771,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension ChatViewController {
 
     func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else { return }
+        guard let messageId = configuration.identifier as? NSString, let index = messages.firstIndex(where: { $0.id == messageId.integerValue }) else { return }
 
         let indexPath = IndexPath(row: index, section: 0)
 
@@ -1793,7 +1785,7 @@ extension ChatViewController {
     }
 
     func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
-        guard let messageId = configuration.identifier as? NSString, let index = messageIds.firstIndex(of: messageId.integerValue) else {
+        guard let messageId = configuration.identifier as? NSString, let index = messages.firstIndex(where: { $0.id == messageId.integerValue }) else {
             debugPrint("booooom")
             return
         }
@@ -1821,7 +1813,7 @@ extension ChatViewController {
 
     private func targetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
-        guard let index = messageIds.firstIndex(of: messageId.integerValue) else { return nil }
+        guard let index = messages.firstIndex(where: { $0.id == messageId.integerValue }) else { return nil }
         // Using superview because tableView is transformed
         guard let superview = tableView.superview else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
@@ -1853,7 +1845,7 @@ extension ChatViewController {
     }
 
     private func appendReactionItems(to menuElements: inout [UIMenuElement], indexPath: IndexPath) {
-        let messageId = messageIds[indexPath.row]
+        let messageId = messages[indexPath.row].id
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
@@ -1920,7 +1912,7 @@ extension ChatViewController {
     }
 
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let messageId = messageIds[indexPath.row]
+        let messageId = messages[indexPath.row].id
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
             return nil
         }
@@ -2047,7 +2039,7 @@ extension ChatViewController: UITableViewDragDelegate {
         // by requiring a context menu to be shown first.
         guard lastContextMenuPreviewSnapshot != nil else { return [] }
         
-        let messageId = messageIds[indexPath.row]
+        let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
 
         if let image = message.image {
@@ -2127,7 +2119,7 @@ extension ChatViewController {
 
     private func canSaveOrUnsaveMultiple() -> (Bool, Bool) { // returns tuple (canSaveOrUnsave, doSave)
         guard let rows = tableView.indexPathsForSelectedRows else { return (false, false) }
-        let msgIds = rows.compactMap { messageIds[$0.row] }
+        let msgIds = rows.compactMap { messages[$0.row].id }
         var doSave = false
         for msgId in msgIds {
             let msg = dcContext.getMessage(id: msgId)
@@ -2142,7 +2134,7 @@ extension ChatViewController {
 
     private func canResend() -> Bool {
         if dcChat.canSend, let rows = tableView.indexPathsForSelectedRows {
-            let msgIds = rows.compactMap { messageIds[$0.row] }
+            let msgIds = rows.compactMap { messages[$0.row].id }
             for msgId in msgIds {
                 if !dcContext.getMessage(id: msgId).isFromCurrentSender {
                     return false
@@ -2234,7 +2226,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func actionButtonTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        let msg = dcContext.getMessage(id: messages[indexPath.row].id)
         if msg.downloadState != DC_DOWNLOAD_DONE {
             dcContext.downloadFullMessage(id: msg.id)
         } else if msg.type == DC_MSG_WEBXDC {
@@ -2249,7 +2241,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         if handleSelection(indexPath: indexPath) { return }
 
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let savedMessage = dcContext.getMessage(id: messageIds[indexPath.row])
+        let savedMessage = dcContext.getMessage(id: messages[indexPath.row].id)
 
         let originalMessageId = savedMessage.originalMessageId
         if originalMessageId != 0 {
@@ -2261,7 +2253,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func quoteTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        let msg = dcContext.getMessage(id: messageIds[indexPath.row])
+        let msg = dcContext.getMessage(id: messages[indexPath.row].id)
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
                 scrollToMessage(msgId: quoteMsg.id)
@@ -2274,7 +2266,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func textTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messages[indexPath.row].id)
         if message.state == DC_STATE_OUT_FAILED {
             info(for: message.id)
         } else if message.type == DC_MSG_VCARD {
@@ -2326,7 +2318,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func imageTapped(indexPath: IndexPath, previewError: Bool) {
         if handleSelection(indexPath: indexPath) { return }
 
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messages[indexPath.row].id)
         if message.type != DC_MSG_STICKER {
             // prefer previewError over QLPreviewController.canPreview().
             // (the latter returns `true` for .webm - which is not wrong as _something_ is shown, even if the video cannot be played)
@@ -2344,12 +2336,12 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func avatarTapped(indexPath: IndexPath) {
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messages[indexPath.row].id)
         navigationController?.pushViewController(ProfileViewController(dcContext, contactId: message.fromContactId), animated: true)
     }
 
     @objc func reactionsTapped(indexPath: IndexPath) {
-        guard let reactions = dcContext.getMessageReactions(messageId: messageIds[indexPath.row]) else { return }
+        guard let reactions = dcContext.getMessageReactions(messageId: messages[indexPath.row].id) else { return }
 
         let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
         reactionsOverview.delegate = self
@@ -2366,7 +2358,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func statusTapped(indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        let message = dcContext.getMessage(id: messageIds[indexPath.row])
+        let message = dcContext.getMessage(id: messages[indexPath.row].id)
         if message.state == DC_STATE_OUT_FAILED {
             info(for: message.id)
         }
@@ -2598,7 +2590,7 @@ extension ChatViewController: DraftPreviewDelegate {
 extension ChatViewController: ChatEditingDelegate {
     func onDeletePressed() {
         if let rows = tableView.indexPathsForSelectedRows {
-            let messageIdsToDelete = rows.compactMap { messageIds[$0.row] }
+            let messageIdsToDelete = rows.compactMap { messages[$0.row].id }
             askToDeleteMessages(ids: messageIdsToDelete)
         }
     }
@@ -2621,7 +2613,7 @@ extension ChatViewController: ChatEditingDelegate {
 
     func onForwardPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
-            let messageIdsToForward = rows.compactMap { messageIds[$0.row] }
+            let messageIdsToForward = rows.compactMap { messages[$0.row].id }
             if !messageIdsToForward.isEmpty {
                 RelayHelper.shared.setForwardMessages(messageIds: messageIdsToForward)
                 self.navigationController?.popToRootViewController(animated: true)
@@ -2635,7 +2627,7 @@ extension ChatViewController: ChatEditingDelegate {
 
     func onCopyPressed() {
         if let rows = tableView.indexPathsForSelectedRows {
-            let ids = rows.compactMap { messageIds[$0.row] }
+            let ids = rows.compactMap { messages[$0.row].id }
             copyTextToClipboard(ids: ids)
             setEditing(isEditing: false)
         }
