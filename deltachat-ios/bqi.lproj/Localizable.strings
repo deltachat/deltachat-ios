@@ -289,13 +289,13 @@
 "contacts_title" = "هومدنگووݩ";
 "chat_please_enter_message" = "ی پیوم بزݩ.";
 "chat_record_slide_to_cancel" = "سی رڌ کردن بکشس.";
-"chat_share_with_title" = "یک رسۊوی وا";
+"chat_share_with_title" = "یک رسۊوی وا...";
 "chat_input_placeholder" = "پیوم";
 "chat_request_label" = "درخاست";
 "chat_no_messages" = "پیومؽ نؽ.";
 "chat_self_talk_subtitle" = "پیومایی ک سی خوم فشنام.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
-"save_message" = "زفت کردن";
+"save_message" = "زفت کردن پیوم";
 "saved_messages" = "پیوما زفت بیڌه";
 // Should match "Saved" from "Saved messages"
 "saved" = "زفت وابی";

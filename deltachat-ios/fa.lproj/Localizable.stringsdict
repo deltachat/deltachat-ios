@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>n_seconds_ext</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d ثانیه</string>
+			<key>other</key>
+			<string>%dثانیه</string>
+		</dict>
+	</dict>
+	<key>n_minutes_ext</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d دقیقه</string>
+			<key>other</key>
+			<string>%d دقیقه</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -127,7 +159,7 @@
 			<key>one</key>
 			<string>%d گیرنده</string>
 			<key>other</key>
-			<string>%d گیرنده‌ </string>
+			<string>%d دنبال‌کننده </string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -175,7 +207,7 @@
 			<key>one</key>
 			<string>آیا می‌خواهید از روی همهٔ دستگاه‌هایتان %d گپ را حذف کنید؟</string>
 			<key>other</key>
-			<string>آیا می‌خواهید از روی همهٔ دستگاه‌هایتان %d گپ را حذف کنید؟</string>
+			<string>آیا می‌خواهید %d گپ را حذف کنید؟</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -191,7 +223,7 @@
 			<key>one</key>
 			<string>آیا می‌خواهید از روی تمام دستگاه‌هایتان %d پیام را حذف کنید؟</string>
 			<key>other</key>
-			<string>آیا می‌خواهید از روی تمام دستگاه‌هایتان %d پیام را حذف کنید؟</string>
+			<string>حذف %dپیام؟</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages_simple</key>
