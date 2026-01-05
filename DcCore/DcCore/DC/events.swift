@@ -168,6 +168,7 @@ public class DcEventHandler {
                 "account_id": Int(accountId),
                 "contact_id": Int(data1),
                 "msg_id": Int(data2),
+                "href": event.data1String,
                 "text": event.data2String
             ])
 
