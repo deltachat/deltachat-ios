@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat yesseqdac takamrat-ik-im akken ad d-yeṭṭfeḍ tiwlafin d tvidyutin yerna ad i uḍummu tingalin QR.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat isra ad tebḍuḍ ideg-inek-inem ɣef wakud i tesremdeḍ ad tebḍuḍ ideg.";
+NSLocationWhenInUseUsageDescription = "Delta Chat yesra tasiregt akken ad yebḍu adig-inek-inem deg wakud i tremdeḍ buṭṭu n wadig.";
+NSMicrophoneUsageDescription = "Delta Chat yesseqdac amikrufun-ik·im i usekles d tuzna n yiznan n taɣect akked d tvidyutin s imesli.";
+NSPhotoLibraryUsageDescription = "Delta Chat ad k-yeǧǧ ad tferneḍ anwa tiwlafin seg temkarḍit-ik-im ara tazneḍ.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat yebɣa ad yessekles tugniwin ɣer temkarḍit-ik-im n tewlafin.";
+NSFaceIDUsageDescription = "Delta cat yezmer ad iseqdec ID n wudem i ummesten n umaɣnu-ik-im adigan, asnulfu n uḥraz akked usebded n yibenk wis sin.";
