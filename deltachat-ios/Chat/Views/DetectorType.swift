@@ -34,9 +34,15 @@ public enum DetectorType: Hashable {
     case custom(NSRegularExpression)
 
     // swiftlint:disable force_try
-    public static var hashtag = DetectorType.custom(try! NSRegularExpression(pattern: "#[a-zA-Z0-9]{4,}", options: []))
-    public static var mention = DetectorType.custom(try! NSRegularExpression(pattern: "@[a-zA-Z0-9]{4,}", options: []))
-    public static var command = DetectorType.custom(try! NSRegularExpression(pattern: "(?<=\\s|^)/[a-zA-Z0-9_\\-.,$+]{2,}(?=\\s|$)", options: []))
+    public static var hashtag = DetectorType.custom(try! NSRegularExpression(pattern: "#[a-zA-Z0-9]{4,}"))
+    public static var mention = DetectorType.custom(try! NSRegularExpression(pattern: "@[a-zA-Z0-9]{4,}"))
+    public static var command = DetectorType.custom(try! NSRegularExpression(pattern: "(?<=\\s|^)/[a-zA-Z0-9_\\-.,$+]{2,}(?=\\s|$)"))
+    /// `geo:` urls work on iOS 16+ but are never matched by `NSTextCheckingResult.CheckingType.link` so we have to use a regex
+    public static var geolink = if #available(iOS 16, *) {
+        DetectorType.custom(try! NSRegularExpression(pattern: "(?<=\\s|^)geo:[^ \\n]+"))
+    } else {
+        DetectorType.custom(try! NSRegularExpression(pattern: "$-")) // unmatchable pattern
+    }
     // swiftlint:enable force_try
 
     internal var textCheckingType: NSTextCheckingResult.CheckingType {

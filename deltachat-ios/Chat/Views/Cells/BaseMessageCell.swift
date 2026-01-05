@@ -100,7 +100,7 @@ public class BaseMessageCell: UITableViewCell {
         view.setContentHuggingPriority(.defaultLow, for: .vertical)
         view.font = UIFont.preferredFont(for: .body, weight: .regular)
         view.delegate = self
-        view.enabledDetectors = [.url, .phoneNumber, .command]
+        view.enabledDetectors = [.url, .phoneNumber, .command, .geolink]
         let attributes = [
             NSAttributedString.Key.foregroundColor: view.tintColor!,
             NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
@@ -109,6 +109,7 @@ public class BaseMessageCell: UITableViewCell {
         view.label.setAttributes(attributes, detector: .url)
         view.label.setAttributes(attributes, detector: .phoneNumber)
         view.label.setAttributes(attributes, detector: .command)
+        view.label.setAttributes(attributes, detector: .geolink)
         view.isUserInteractionEnabled = true
         view.isAccessibilityElement = false
         return view

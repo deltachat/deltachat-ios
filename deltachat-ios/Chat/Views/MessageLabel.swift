@@ -518,6 +518,9 @@ open class MessageLabel: UILabel {
                 handleMention(match)
             case .command:
                 handleCommand(match)
+            case .geolink:
+                guard let url = URL(string: match) else { return false }
+                handleURL(url)
             default:
                 handleCustom(pattern, match: match)
             }
