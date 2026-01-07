@@ -60,6 +60,7 @@ class PiPVideoView: UIView {
         pipRenderView.fillSuperview()
 
         pipController?.delegate = self
+        resetSize()
     }
 
     required init?(coder: NSCoder) {
@@ -87,6 +88,11 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
 }
 
 extension PiPVideoView: RTCVideoRenderer {
+    /// Reset to a square
+    func resetSize() {
+        setSize(CGSize(width: frame.size.width, height: frame.size.width))
+    }
+
     func setSize(_ size: CGSize) {
         pipRenderView.frameProcessor?.setSize(size)
         setPiPPreferredContentSize(size)
@@ -114,6 +120,7 @@ extension PiPVideoView: RTCVideoRenderer {
     @objc private func didNotReceiveNewFrame() {
         pipRenderView.displayLayer?.flushAndRemoveImage()
         avatarView.isHidden = false
+        resetSize()
     }
 }
 
