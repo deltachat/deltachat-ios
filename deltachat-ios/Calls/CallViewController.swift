@@ -206,9 +206,11 @@ class CallViewController: UIViewController {
                     if #available(iOS 15.0, *) {
                         _ = await $gatheredEnoughIce.values.first(where: \.self)
                     }
-                    let sdp = peerConnection.localDescription?.sdp ?? offer.sdp
-                    let dcContext = DcAccounts.shared.get(id: call.contextId)
-                    call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: sdp)
+                    if call.messageId == nil {
+                        let sdp = peerConnection.localDescription?.sdp ?? offer.sdp
+                        let dcContext = DcAccounts.shared.get(id: call.contextId)
+                        call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: sdp, hasVideoInitially: call.hasVideoInitially)
+                    }
                 } catch {
                     logger.error(error.localizedDescription)
                 }
