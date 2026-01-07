@@ -115,6 +115,7 @@ public class InitialsBadge: UIView {
     }
 
     public func setImage(_ image: UIImage?) {
+        guard let image else { return }
         self.imageView.image = image
         self.imageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.imageView.isHidden = false
@@ -147,7 +148,8 @@ public class InitialsBadge: UIView {
 
     // render including shape etc.
     public func asImage() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
+        layoutIfNeeded()
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
         if let context = UIGraphicsGetCurrentContext() {
             layer.render(in: context)
             let image = UIGraphicsGetImageFromCurrentImageContext()

@@ -19,14 +19,15 @@ class PiPVideoView: UIView {
         return pipRenderView
     }()
 
-    private lazy var avatarView: InitialsBadge = {
+    private lazy var avatarView: UIView = {
         let avatarView = InitialsBadge(size: 200)
         avatarView.setName(fromChat.name)
         avatarView.setColor(fromChat.color)
-        if let profileImage = fromChat.profileImage {
-            avatarView.setImage(profileImage)
-        }
-        return avatarView
+        avatarView.setImage(fromChat.profileImage)
+        // Original InitialsBadge does not scale so convert to image
+        let imageView = UIImageView(image: avatarView.asImage())
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
 
     /// - Note: Returns nil on iOS 14
@@ -53,8 +54,13 @@ class PiPVideoView: UIView {
             videoCallSourceViewHeightConstraint,
         ])
 
-        videoCallSourceView.addSubview(avatarView)
+        pipRenderView.addSubview(avatarView)
         avatarView.centerInSuperview()
+        NSLayoutConstraint.activate([
+            avatarView.leftAnchor.constraint(equalTo: pipRenderView.leftAnchor, constant: 20),
+            avatarView.topAnchor.constraint(equalTo: pipRenderView.topAnchor, constant: 20),
+        ], withPriority: .init(UILayoutPriority.required.rawValue - 1))
+        avatarView.widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
 
         videoCallSourceView.addSubview(pipRenderView)
         pipRenderView.fillSuperview()
