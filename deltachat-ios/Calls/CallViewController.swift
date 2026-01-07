@@ -84,8 +84,9 @@ class CallViewController: UIViewController {
     private lazy var startPiPButton: UIButton = {
         let startPiPButton = CallUIToggleButton(imageSystemName: "pip.enter", state: false)
         startPiPButton.addAction(UIAction { [unowned self] _ in
-            guard remoteVideoView.pipController?.isPictureInPictureActive != true else { return }
-            remoteVideoView.pipController?.startPictureInPicture()
+            let pc = remoteVideoView.pipController
+            guard let pc, !pc.isPictureInPictureActive, pc.isPictureInPicturePossible else { return }
+            pc.startPictureInPicture()
             CallWindow.shared?.hideCallUI()
         }, for: .touchUpInside)
         return startPiPButton
