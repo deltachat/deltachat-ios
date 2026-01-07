@@ -85,6 +85,9 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
         videoCallSourceView.addSubview(pipRenderView)
         pipRenderView.fillSuperview()
     }
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: any Error) {
+        CallWindow.shared?.showCallUI()
+    }
 }
 
 extension PiPVideoView: RTCVideoRenderer {
