@@ -96,8 +96,8 @@ class CallViewController: UIViewController {
             hangupButton,
             toggleMicrophoneButton,
             toggleVideoButton,
-            startPiPButton,
-        ])
+            remoteVideoView.pipController != nil ? startPiPButton : nil,
+        ].compactMap(\.self))
         callButtonStackView.axis = .horizontal
         callButtonStackView.spacing = 16
         callButtonStackView.distribution = .fill
