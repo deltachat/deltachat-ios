@@ -2292,7 +2292,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
         } else if message.type == DC_MSG_CALL {
-            CallManager.shared.answerIncomingCall(forMessage: message.id, chatId: message.chatId, contextId: dcContext.id)
+            CallManager.shared.answerIncomingCall(forMessage: message.id, chatId: chatId, contextId: dcContext.id)
         }
     }
 
