@@ -31,6 +31,7 @@ class DocumentGalleryFileCell: UITableViewCell {
     private lazy var title: UILabel = {
         let title = UILabel()
         title.font = UIFont.preferredFont(forTextStyle: .headline)
+        title.lineBreakMode = .byTruncatingMiddle
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
