@@ -2,8 +2,10 @@
 
 ## Unreleased
 
+- Truncate file names in the middle, not at the end; important information are more often at the end
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
 - Fix: Allow iframe srcdoc in webxdc 
+
 
 ## v2.35.0 Testflight
 2025-12
