@@ -7,8 +7,8 @@
 - Fix: Allow iframe srcdoc in webxdc 
 
 
-## v2.35.0 Testflight
-2025-12
+## v2.35.0
+2026-01
 
 - Scanning a QR code with a relay ask for adding it as additional transport
 - Ask for device owner verification on profile deletion
@@ -17,7 +17,7 @@
 - Add fallback TURN server for experimental calls
 - Prefill DNS cache
 - Improve error message on adding relays
-- Show relays in message info
+- Show relays in log
 - Set explicit relay limit to 5
 - Remove deprecated "real-time apps" switch
 - Simplify automatic deletion options
