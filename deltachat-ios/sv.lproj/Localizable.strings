@@ -64,10 +64,6 @@
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
 "show_warning" = "Visa varning";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Visa lösenord";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Dölj lösenord";
 "not_now" = "Inte nu";
 "never" = "Aldrig";
 "one_moment" = "Ett ögonblick...";
@@ -264,7 +260,6 @@
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
@@ -312,8 +307,6 @@
 "lock_recording" = "Lås inspelning";
 // mailing lists
 "mailing_list" = "Mejllista";
-// deprecated
-"mailing_list_profile_info" = "Ändringar av namn och på e-postlistan bild, gäller endast för den här enheten.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Start...";
@@ -398,7 +391,7 @@
 "incoming_messages" = "Inkommande meddelanden";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Utgående meddelanden";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Lagring på %1$@";
 "connectivity" = "Anslutning";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -733,15 +726,11 @@
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
 "qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Vill du skapa en ny e-postadress på \"%1$@\" och logga in där?\n\nDitt befintliga konto kommer inte att tas bort. Använd \"Byt konto\" för att växla mellan dina konton.";
 "set_name_and_avatar_explain" = "Ange ett namn som dina kontakter kommer att känna igen. Du kan också ange en profilbild.";
 "please_enter_name" = "Ange ett namn.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Vill du logga in på \"%1$@\"?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Vill du logga in på \"%1$@\"?\n\nDin befintliga profil kommer inte att raderas. Använd alternativet \"Byt profil\" för att växla mellan dina profiler.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ bjöd in dig att gå med i den här gruppen.\n\nVäntar på att enheten hos %2$@ ska svara...";
 // placeholder will be replaced by the name of the inviter.

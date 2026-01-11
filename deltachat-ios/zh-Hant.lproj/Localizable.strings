@@ -79,10 +79,6 @@
 "always_load_remote_images" = "總是載入遠端圖片";
 "once" = "僅一次";
 "show_warning" = "顯示警告";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "顯示密碼";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "隱藏密碼";
 "not_now" = "現在不要";
 "never" = "永遠不要";
 "one_moment" = "請稍候⋯";
@@ -308,7 +304,6 @@
 "file_saved_to" = "檔案已儲存至「%1$@」。";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
-// deprecated, use ask_delete_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";
@@ -357,8 +352,6 @@
 "lock_recording" = "鎖定錄製";
 // mailing lists
 "mailing_list" = "郵寄列表";
-// deprecated
-"mailing_list_profile_info" = "郵寄列表名稱和圖片的變更僅適用於此裝置。";
 // webxdc
 // "Start..." button for an app
 "start_app" = "開始…";
@@ -451,7 +444,7 @@
 "incoming_messages" = "傳入訊息";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "傳出訊息";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "%1$@上的存儲空間";
 "connectivity" = "連接狀態";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -812,15 +805,11 @@
 "qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
 "qrshow_join_contact_no_connection_toast" = "沒有互聯網連接，無法執行QR碼設置。";
 "qraccount_ask_create_and_login" = "在 「%1$@」 上建立賬戶並登入？";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "在「%1$@」上建立新賬戶並登入？\n\n您現有的賬戶不會被刪除。使用「切換賬戶」來在您的賬戶之間切換。";
 "set_name_and_avatar_explain" = "設置聯絡人可以識別的名稱。您還可以設置大頭貼。";
 "please_enter_name" = "請輸入名稱。";
 "qraccount_qr_code_cannot_be_used" = "掃描的 QR 碼不能用於建立新賬戶。";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "登入「%1$@」？";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "登入「%1$@」？\n\n您現有的賬戶不會被刪除。使用「切換賬戶」項在您的賬戶之間切換。";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@邀請您加入此群組。\n\n正在等待%2$@裝置的回覆...";
 // placeholder will be replaced by the name of the inviter.

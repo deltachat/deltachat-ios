@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Her Zaman Uzak Görselleri Yükle";
 "once" = "Bir kez";
 "show_warning" = "Uyarı Göster";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Parolayı Göster";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Parolayı Gizle";
 "not_now" = "Şimdi değil";
 "never" = "Hiçbir zaman";
 "one_moment" = "Bir dakika…";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "“%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Bu ileti silinsin mi?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
@@ -394,8 +389,6 @@
 "lock_recording" = "Kaydı Kilitle";
 // mailing lists
 "mailing_list" = "Posta Listesi";
-// deprecated
-"mailing_list_profile_info" = "Posta listesi adındaki ve görselindeki değişiklikler yalnızca bu aygıtta uygulanır.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Başlat…";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Gelen İletiler";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Giden İletiler";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "%1$@ Üzerinde Depolama";
 "connectivity" = "Bağlanabilirlik";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -718,7 +711,13 @@
 "disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
 "disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
 "send_stats_to_devs" = "Delta Chat\'in geliştiricilerine istatistikleri gönder";
-"stats_msg_body" = "İlişik, Delta Chat\'i geliştirmemize yardımcı olan belirsiz kullanım istatistikleri içerir. Teşekkür ederiz!";
+"stats_device_message" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?\n\n👉 Buraya dokunun… 👈";
+"stats_confirmation_dialog" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?";
+"stats_thanks" = "Teşekkür ederiz! Gönderimi “Ayarlar -> Gelişmiş”ten her zaman etkisizleştirebilirsiniz.\n\nEk olarak Delta Chat\'in güvenliği üzerine yapılacak bilimsel bir araştırmaya katılmak için 5 dakikanız var mı?";
+"stats_disable_dialog" = "İstatistiklerin gönderimi zaten etkinleştirildi.\n\nOnu etkisizleştirmek istiyor musunuz?";
+"disable" = "Etkisizleştir";
+"stats_keep_sending" = "Gönderimde tut";
+"stats_msg_body" = "İlişik, Delta Chat\'i geliştirmemize yardımcı olan belirsiz kullanım istatistikleri içerir. Daha fazla bilgi için https://delta.chat/help#statssending adresine bakın. Teşekkür ederiz!";
 // Emoji picker and categories
 "emoji_search_results" = "Arama Sonuçları";
 "emoji_not_found" = "Emoji bulunamadı";
@@ -881,15 +880,11 @@
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
 "qraccount_ask_create_and_login" = "“%1$@” üzerinde yeni profil oluşturulsun ve orada giriş yapılsın mı?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "“%1$@” üzerinde yeni profil oluşturulsun ve orada giriş yapılsın mı?\n\nVarolan profiliniz silinmeyecek. Profilleriniz arasında geçiş yapmak için “Profili Değiştir” öğesini kullanın.";
 "set_name_and_avatar_explain" = "Kişilerinizin tanıyacağı bir ad ayarlayın. Bir profil görseli de ayarlayabilirsiniz.";
 "please_enter_name" = "Lütfen bir ad girin.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir profil ayarlamak için kullanılamıyor.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "“%1$@” adresine giriş yapılsın mı?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "“%1$@” adresine giriş yapılsın mı?\n\nVarolan profiliniz silinmeyecek. Profilleriniz arasında geçiş yapmak için “Profili Değiştir” öğesini kullanın.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.

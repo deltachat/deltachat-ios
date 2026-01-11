@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Carrega sempre les imatges remotes";
 "once" = "Una vegada";
 "show_warning" = "Mostra l\'advertiment";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Mostra la contrasenya";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Amaga la contrasenya";
 "not_now" = "Ara no";
 "never" = "Mai";
 "one_moment" = "Espereu...";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Segur que vols sortir?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
 "ask_export_attachment" = "En exportar els adjunts permetreu que altres aplicacions del dispositiu hi puguin accedir.\n\nVoleu continuar?";
@@ -394,8 +389,6 @@
 "lock_recording" = "Bloqueja la gravació";
 // mailing lists
 "mailing_list" = "Llista de correu";
-// deprecated
-"mailing_list_profile_info" = "Els canvis al nom i la imatge de la llista de correu només s\'aplicaran en aquest dispositiu.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Comença...";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Missatges entrants";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Missatges sortints";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Emmagatzematge a %1$@.";
 "connectivity" = "Connectivitat";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -858,15 +851,11 @@
 "qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
 "qrshow_join_contact_no_connection_toast" = "No hi ha connexió a internet, no es pot fer la configuració amb codi QR.";
 "qraccount_ask_create_and_login" = "Voleu crear un perfil nou a «%1$@» i iniciar sessió allà?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Voleu crear un perfil nou a «%1$@» i iniciar-hi sessió?\n\nEl vostre perfil existent no s\'esborrarà. Useu l\'element «Canvia el perfil» per a canviar entre els vostres perfils.";
 "set_name_and_avatar_explain" = "Indiqueu un nom que els vostres contactes puguin reconèixer. També podeu establir una imatge de perfil.";
 "please_enter_name" = "Introduïu un nom";
 "qraccount_qr_code_cannot_be_used" = "El codi QR escanejat no es pot usar per a configurar un perfil nou.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Voleu iniciar sessió a «%1$@»?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Voleu iniciar «%1$@»?\n\nNo s\'esborrarà el perfil existent. Useu l\'element «Canvia el perfil» per a canviar entre els vostres perfils.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ us ha convidat a unir-vos a aquest grup.\n\nS\'està esperant el dispositiu de %2$@ per a respondre...";
 // placeholder will be replaced by the name of the inviter.

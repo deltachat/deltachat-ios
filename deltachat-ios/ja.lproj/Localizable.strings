@@ -51,10 +51,6 @@
 "load_remote_content_ask" = "リモート画像で追跡ができる。\n\nこの設定はフォントや他のコンテツを読み込むことも許可する。無効にしても埋め込まれた画像やキャッシュされた画像を表示されます。\n\nリモート画像を読み込む？";
 "always" = "常に";
 "once" = "一回のみ";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "パスワードを表示する";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "パスワードを非表示する";
 "not_now" = "今はしない";
 "never" = "しない";
 "one_moment" = "お待ち下さい…";

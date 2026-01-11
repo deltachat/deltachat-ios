@@ -62,10 +62,6 @@
 "always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
 "show_warning" = "Rodyti įspėjimą";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Rodyti slaptažodį";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Slėpti slaptažodį";
 "not_now" = "Ne dabar";
 "never" = "Niekada";
 "one_moment" = "Minutėlę…";
@@ -254,7 +250,6 @@
 // the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
 "call_date_and_duration" = "%1$@, %2$@";
 "ask_delete_message" = "Ištrinti šią žinutę visuose jūsų įrenginiuose?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";

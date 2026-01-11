@@ -26,10 +26,6 @@
 "media" = "الوسائط";
 "main_menu" = "القائمة الرئيسية";
 "start_chat" = "ابدأ الدردشة";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "اظهر الكلمة السرية";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "أخفِ الكلمة السرية";
 "not_now" = "ليس الآن";
 "never" = "أبدا";
 "one_moment" = "لحظة…";

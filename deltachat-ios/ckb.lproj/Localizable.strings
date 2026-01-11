@@ -41,10 +41,6 @@
 "show_full_message" = "هەموو پەیامەکە پیشان بدە...";
 "always" = "هەمیشە";
 "once" = "یەکجار";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "تێپەڕوشەکە پیشان بدە";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "تێپەڕوشەکە بشارەوە";
 "not_now" = "ئێستا نا";
 "never" = "قەت";
 "done" = "ئەنجام بوو";

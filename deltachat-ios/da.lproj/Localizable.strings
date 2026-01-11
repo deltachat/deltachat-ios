@@ -48,10 +48,6 @@
 "load_remote_content" = "Hent billeder";
 "always" = "Altid";
 "once" = "En gang";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Vis adgangskode";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Vis ikke adgangskode";
 "not_now" = "Ikke nu";
 "never" = "Aldrig";
 "one_moment" = "Et øjeblik…";
@@ -204,7 +200,6 @@
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
 "file_saved_to" = "Fil gemt til \"%1$@\".";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Videresend beskeder til %1$@?";
 "ask_forward_multiple" = "Videresend beskeder til %1$d samtaler?  ";
 "ask_export_attachment" = "Eksportér vedhæftninger? Eksport af vedhæftninger vil tillade alle programmer på din enhed adgang til dem.\n\nFortsæt?";
@@ -523,8 +518,6 @@
 "qrshow_join_contact_hint" = "Skan dette for at indstille kontakt med %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ingen internet forbindelse, kan ikke udføre QR kode opsætning.";
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?\n\nDin eksisterende konto bliver ikke slettet. Brug \"Skift konto\" for at skifte imellem dine konti.";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
 "contact_verified" = "%1$@ bekræftet.";
 // notifications

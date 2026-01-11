@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Externe afbeeldingen altijd laden";
 "once" = "Eenmalig";
 "show_warning" = "Waarschuwing tonen";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Wachtwoord tonen";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Wachtwoord verbergen";
 "not_now" = "Niet nu";
 "never" = "Nooit";
 "one_moment" = "Even geduld…";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
 "ask_delete_named_chat" = "Wil je ‘%1$@’ verwijderen?";
 "ask_delete_message" = "Wil je dit bericht verwijderen?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Wil je de berichten doorsturen aan %1$@?";
 "ask_forward_multiple" = "Wil je de berichten doorsturen naar %1$d gesprekken?";
 "ask_export_attachment" = "Als je de bijlage exporteert, geef je andere apps op je apparaat toegang om hem uit te lezen.\n\nWil je doorgaan?";
@@ -394,8 +389,6 @@
 "lock_recording" = "Opname vergrendelen";
 // mailing lists
 "mailing_list" = "Mailinglijst";
-// deprecated
-"mailing_list_profile_info" = "Wijzigingen aan de mailinglijstnaam en -afbeelding worden alleen op dit apparaat getoond.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Starten…";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Inkomende berichten";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Uitgaande berichten";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Opslag op %1$@";
 "connectivity" = "Verbindingen";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -718,6 +711,12 @@
 "disable_imap_idle" = "IMAP IDLE uitschakelen";
 "disable_imap_idle_explain" = "Maak geen gebruik van IMAP IDLE, zelfs niet als de server het ondersteunt. Schakel deze optie in om het ophalen van berichten te vertragen. Let op: gebruik deze optie alleen voor testdoeleinden.";
 "send_stats_to_devs" = "Statistieken delen met Delta Chat-ontwikkelaars";
+"stats_device_message" = "Wil je helpen Delta Chat te verbeteren en voor onderzoeksdoeleinden iedere week volledig anonieme, automatische gebruiksstatistieken in te sturen?\n\n👉 Druk dan hier… 👈";
+"stats_confirmation_dialog" = "Wil je helpen Delta Chat te verbeteren en voor onderzoeksdoeleinden iedere week volledig anonieme, automatische gebruiksstatistieken in te sturen?";
+"stats_thanks" = "Hartelijk dank! Je kunt deze instelling te allen tijde aanpassen via ‘Instellingen → Geavanceerd’.\n\nHeb je nog 5 minuutjes om deel te nemen aan een wetenschappelijk onderzoek aangaande beveiliging van Delta Chat?";
+"stats_disable_dialog" = "Het insturen van statistieken is al ingeschakeld.\n\nWil je dit uitschakelen?";
+"disable" = "Uitschakelen";
+"stats_keep_sending" = "Niet uitschakelen";
 "stats_msg_body" = "De bijlage bevat anonieme gebruiksstatistieken die ons helpen Delta Chat te verbeteren. Bij voorbaat dank!";
 // Emoji picker and categories
 "emoji_search_results" = "Zoekresultaten";
@@ -881,15 +880,11 @@
 "qrshow_join_contact_hint" = "Scan dit om een gesprek te beginnen met %1$@";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 "set_name_and_avatar_explain" = "Kies een naam die herkenbaar is voor je contactpersonen en, desgewenst, een profielfoto.";
 "please_enter_name" = "Voer een naam in.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Wil je inloggen als ‘%1$@’?\n\nJe reeds aanwezige account wordt niet verwijderd. Druk op de knop ‘Ander account kiezen’ om tussen accounts te schakelen.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.

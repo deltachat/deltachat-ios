@@ -62,10 +62,6 @@
 "hide" = "Ocultar";
 "activate" = "Activar";
 "always" = "Sempre";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Mostrar palavra-passe";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Ocultar palavra-passe";
 "not_now" = "Agora não";
 "never" = "Nunca";
 "one_moment" = "Um momento...";
@@ -200,7 +196,6 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Reencaminhar mensages para %1$@?";
 "ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? A exportação de anexos permitirá o seu acesso a qualquer outra aplicação no seu dispositivo.\n\nContinuar?";

@@ -194,7 +194,7 @@
 			<string>Azen %d ifuyla-agi ɣer %s?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages</key>
+	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>
@@ -205,12 +205,12 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Kkes %d n yizen?</string>
+			<string>Kkes %d n udiwenni?</string>
 			<key>other</key>
-			<string>Kkes %d n yiznan?</string>
+			<string>Kkes %d n tdiwenniyin?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages_simple</key>
+	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>

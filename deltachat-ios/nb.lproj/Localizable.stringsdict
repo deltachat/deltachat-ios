@@ -226,22 +226,6 @@
 			<string>Slett %d meldinger fra alle dine enheter?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages_simple</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Slett %d melding?</string>
-			<key>other</key>
-			<string>Slett %d meldinger?</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

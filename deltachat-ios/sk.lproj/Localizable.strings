@@ -76,10 +76,6 @@
 "always" = "Vždy";
 "once" = "Raz";
 "show_warning" = "Zobraziť varovanie";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Ukáž heslo";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Skryť heslo";
 "not_now" = "Teraz nie";
 "never" = "Nikdy";
 "one_moment" = "Moment...";
@@ -306,7 +302,6 @@
 "file_saved_to" = "Súbor bol uložený do priečinka %1$@";
 "ask_delete_named_chat" = "Odstrániť konverzáciu \"%1$@\" zo všetkých vašich zariadení?";
 "ask_delete_message" = "Odstrániť túto správu zo všetkých vašich zariadení?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
 "ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";
@@ -356,8 +351,6 @@
 "lock_recording" = "Zamknúť nahrávanie";
 // mailing lists
 "mailing_list" = "Zoznam adries";
-// deprecated
-"mailing_list_profile_info" = "Zmeny v zozname adries a obrázku sa vzťahujú iba na toto zariadenie.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Spustiť...";
@@ -439,7 +432,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "incoming_messages" = "Prichádzajúce Správy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchádzajúce Správy";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Dáta o %1$@";
 "connectivity" = "Pripojenie";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -772,18 +765,10 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "qrshow_join_contact_hint" = "Naskenujte a vytvorte kontakt s %1$@ .";
 "qrshow_join_contact_no_connection_toast" = "Nie je pripojenie na internet, nedá sa nastaviť kód QR.";
 "qraccount_ask_create_and_login" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?
-
-Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
 "please_enter_name" = "Prosím, zadajte meno.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na založenie nového účtu.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prihlásiť sa na \"%1$@\"?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Prihlásiť sa do „%1$@“?
-
-Váš existujúci účet nebude odstránený. Medzi účtami môžete prepínať pomocou „Prepnúť účet“.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pripojili k tejto skupine.\n\nČaká sa na odpoveď zo zariadenia používateľa %2$@...";
 // placeholder will be replaced by the name of the inviter.

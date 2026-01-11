@@ -28,10 +28,6 @@
 "save" = "Spremi";
 "media" = "Medij";
 "main_menu" = "Glavni izbornik";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Prikaži lozinku";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Sakrij lozinku";
 "not_now" = "Ne sada";
 "never" = "Nikada";
 "one_moment" = "Samo trenutak...";

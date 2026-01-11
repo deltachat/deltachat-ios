@@ -66,10 +66,6 @@
 "always_load_remote_images" = "Sempre Carregar Imagens Remotas";
 "once" = "Uma vez";
 "show_warning" = "Mostrar Aviso";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Mostrar senha";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Ocultar senha";
 "not_now" = "Mais tarde";
 "never" = "Nunca";
 "one_moment" = "Um momento...";
@@ -249,7 +245,6 @@
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
 "file_saved_to" = "Arquivo salvo em \"%1$@\".";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
 "ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados por outros aplicativos.\n\nContinuar?";
@@ -297,8 +292,6 @@
 "lock_recording" = "Travar gravação";
 // mailing lists
 "mailing_list" = "Lista de e-mail";
-// deprecated
-"mailing_list_profile_info" = "Alterações ao nome e imagem da lista de e-mails só se aplicam a este dispositivo.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Iniciar...";
@@ -377,7 +370,7 @@
 "incoming_messages" = "Mensagens Recebidas";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensagens Enviadas";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Armazenamento em %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -660,13 +653,9 @@
 "qrshow_join_contact_hint" = "Escanear para estabelecer contato com %1$@";
 "qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Criar novo endereço de e-mail em \"%1$@\"  e entrar nele?\n\n nSua conta existente não será excluída. Use o item \"Trocar conta\" para alternar entre suas contas.";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Conectar-se em \"%1$@\"?\n\nSua conta existente não será excluída. Use a opção \"Mudar conta\" para alternar entre suas contas.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@te convidou para entrar neste grupo.\n\nEsperando o dispositivo de %2$@ responder...";
 // placeholder will be replaced by the name of the inviter.

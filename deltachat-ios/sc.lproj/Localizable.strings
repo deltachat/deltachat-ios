@@ -38,10 +38,6 @@
 "profile" = "Profilu";
 "main_menu" = "Menù printzipale";
 "start_chat" = "Faghe incumintzare una tzarrada";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Ammustra sa crae de intrada";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Cua sa crae de intrada";
 "not_now" = "Como nono";
 "never" = "Mai";
 "one_moment" = "Unu momentu...";

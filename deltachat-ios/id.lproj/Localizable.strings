@@ -58,10 +58,6 @@
 "always" = "Selalu";
 "once" = "Sekali";
 "show_warning" = "Tampilkan Peringatan";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Tunjukkan kata kunci";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Sembunyikan kata kunci";
 "not_now" = "Tidak sekarang";
 "never" = "Tidak pernah";
 "one_moment" = "Sebentar...";
@@ -236,7 +232,6 @@
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";
@@ -470,8 +465,6 @@
 "qrshow_join_contact_hint" = "Pindai ini untuk mengatur kontak dengan%1$@.";
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Buat alamat email baru di\"%1$@\" dan masuk ke sana?\n\nAkun yang sudah ada tidak akan di hapus. Gunakankan item \"Ganti akun\" untuk mengganti akun anda";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
 "contact_verified" = "%1$@diverifikasi.";
 // notifications

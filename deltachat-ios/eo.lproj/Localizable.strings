@@ -73,10 +73,6 @@
 "always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
 "show_warning" = "Afiŝu averton";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Montri pasvorton";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Kaŝi pasvorton";
 "not_now" = "Ne nun";
 "never" = "Neniam";
 "one_moment" = "Unu momenton…";

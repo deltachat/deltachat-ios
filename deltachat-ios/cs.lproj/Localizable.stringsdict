@@ -282,26 +282,6 @@
 			<string>Smazat %d zpráv ze všech vašich zařízení?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages_simple</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Smazat %d zprávu?</string>
-			<key>few</key>
-			<string>Smazat %d zprávy?</string>
-			<key>many</key>
-			<string>Smazat %d zpráv?</string>
-			<key>other</key>
-			<string>Smazat %d zpráv?</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
