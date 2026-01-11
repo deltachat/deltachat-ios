@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Mindig töltse be a távoli képeket";
 "once" = "Azonnal";
 "show_warning" = "Figyelmeztetés megjelenítése";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Jelszó megjelenítése";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Jelszó elrejtése";
 "not_now" = "Most nem";
 "never" = "Soha";
 "one_moment" = "Egy pillanat…";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Biztosan elhagyja a csatornát?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
@@ -394,8 +389,6 @@
 "lock_recording" = "Felvétel zárolása";
 // mailing lists
 "mailing_list" = "Levelezőlista";
-// deprecated
-"mailing_list_profile_info" = "A levelezőlista nevének és képének módosítása csak ezen az eszközön érvényes.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Indítás…";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Beérkező üzenetek";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Kimenő üzenetek";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Tárhely mérete itt: %1$@";
 "connectivity" = "Tárhely";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -861,15 +854,11 @@
 "qrshow_join_contact_hint" = "QR-kód beolvasása a csevegéshez vele: „%1$@”";
 "qrshow_join_contact_no_connection_toast" = "Nincs internetkapcsolat, nem lehet elvégezni a QR-kód beállítását.";
 "qraccount_ask_create_and_login" = "Új profil létrehozása a(z) „%1$@” oldalon és bejelentkezés ott?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Új profil létrehozása a(z) „%1$@” oldalon, és bejelentkezés ott?\n\nA meglévő profilja nem törlődik. A „Profilváltás” elemmel válthat a profiljai között.";
 "set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet a partnerei felismernek. Beállíthat egy profilképet is.";
 "please_enter_name" = "Adjon meg egy nevet.";
 "qraccount_qr_code_cannot_be_used" = "A beolvasott QR-kód nem használható új profil beállítására.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Bejelentkezés ide: „%1$@”?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Bejelentkezés ide: „%1$@”?\n\nA meglévő profilját nem töröljük. A „Profilváltás” elemmel válthat a profiljai között.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ meghívta önt, hogy csatlakozzon ehhez a csoporthoz.\n\n%2$@ eszközére várakozás a válaszhoz…";
 // placeholder will be replaced by the name of the inviter.

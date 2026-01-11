@@ -77,10 +77,6 @@
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
 "show_warning" = "نشووݩ داڌن هوشدار";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "نشووݩ داڌن رزم";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "بؽڌار کردن رزم";
 "not_now" = "سکو ن";
 "never" = "هیچ";
 "one_moment" = "ی دمووݩ...";
@@ -280,7 +276,6 @@
 "share_location_for_two_hours" = "سی 2 ساعت";
 "share_location_for_six_hours" = "سی 6 ساعت";
 "file_saved_to" = "فایل من «%1$@» زفت وابی.";
-// deprecated, use ask_delete_messages
 "ask_start_chat_with" = "گوفت وو لوفت وا %1$@؟";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "پاک کردن %1$@ ز جرگه؟";
@@ -325,7 +320,7 @@
 "tab_map" = "نقشه";
 "media_preview" = "نشووݩ داڌن وارسگر";
 "send_message" = "فشناڌن پیوم";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "زفت کردن من %1$@";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "هونی منپیز ابۊ...";

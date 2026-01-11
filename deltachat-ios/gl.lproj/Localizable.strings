@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Descargar sempre imaxes remotas";
 "once" = "Unha vez";
 "show_warning" = "Mostrar aviso";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Mostrar contrasinal";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Agochar contrasinal";
 "not_now" = "Agora non";
 "never" = "Nunca";
 "one_moment" = "Un momento…";
@@ -318,7 +314,6 @@
 "ask_leave_group" = "Tes a certeza de querer saír?";
 "ask_delete_named_chat" = "Eliminar a conversa \"%1$@\" en todos os teus dispositivos?";
 "ask_delete_message" = "Eliminar esta mensaxe en todos os teus dispositivos?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? Ao exportar anexos outras aplicacións no dispositivo terán acceso a eles.\n\nGardar?";
@@ -370,8 +365,6 @@
 "lock_recording" = "Gravación continua";
 // mailing lists
 "mailing_list" = "Lista de correo";
-// deprecated
-"mailing_list_profile_info" = "Cambios no nome da lista de correo e imaxe só se aplican neste dispositivo.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Comezar...";
@@ -464,7 +457,7 @@
 "incoming_messages" = "Mensaxes entrantes";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensaxes saíntes";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Almacenar en %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -805,8 +798,6 @@
 "qrshow_join_contact_hint" = "Escanea esto para conectar con %1$@-";
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode facer o axuste por código QR";
 "qraccount_ask_create_and_login" = "Crear un novo enderezo de correo en \"%1$@\" e acceder ali?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Crear un novo enderezo de email en \"%1$@\" e acceder?\n\nNon se eliminará a conta actual. Usa \"Cambiar de conta\" para cambiar entre as túas contas.";
 "set_name_and_avatar_explain" = "Define un nome recoñecíbel polos teus contactos. Tamén podes definir unha imaxe de perfil.";
 "please_enter_name" = "Por favor introduce un nome.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";

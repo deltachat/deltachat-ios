@@ -76,10 +76,6 @@
 "always_load_remote_images" = "Kargatu urrutiko irudiak beti";
 "once" = "Behin";
 "show_warning" = "Erakutsi abisua";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Erakutsi pasahitza";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Ezkutatu pasahitza";
 "not_now" = "Orain ez";
 "never" = "Inoiz ez";
 "one_moment" = "Unetxo bat...";

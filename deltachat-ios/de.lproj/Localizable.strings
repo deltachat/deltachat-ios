@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Bilder immer nachladen";
 "once" = "Einmal";
 "show_warning" = "Warnung anzeigen";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Passwort anzeigen";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Passwort verstecken";
 "not_now" = "Nicht jetzt";
 "never" = "Nie";
 "one_moment" = "Einen Moment …";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Diesen Chat verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" löschen?";
 "ask_delete_message" = "Diese Nachricht löschen?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
 "ask_export_attachment" = "Das Exportieren von Anhängen ermöglicht es allen anderen Anwendungen auf deinem Gerät, auf diese zuzugreifen.\n\nFortfahren? ";
@@ -394,8 +389,6 @@
 "lock_recording" = "Aufnahme arretieren";
 // mailing lists
 "mailing_list" = "Mailingliste";
-// deprecated
-"mailing_list_profile_info" = "Änderungen an Name und Bild der Mailingliste gelten nur für dieses Gerät.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Start…";
@@ -472,7 +465,7 @@
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Scannen, um ein zweites Gerät für %1$@ hinzuzufügen";
 "multidevice_receiver_title" = "Als Zweitgerät hinzufügen";
-"multidevice_open_settings_on_other_device" = "Auf dem ersten Gerät, gehe zu \"Einstellungen / Zweitgerät hinzufügen\" und scanne den dort angezeigten Code";
+"multidevice_open_settings_on_other_device" = "Auf dem ersten Gerät, öffne Delta Chat, dann \"Einstellungen / Zweitgerät hinzufügen\" und scanne den dort angezeigten Code";
 "multidevice_receiver_scanning_ask" = "Das Profil vom anderen Gerät auf dieses Gerät kopieren?";
 "multidevice_receiver_needs_update" = "Das Profil, das du importieren möchtest, stammt aus einer neueren Delta-Chat-Version.\n\nUm Fortzufahren, aktualisiere dieses Gerät bitte auf die neueste Version von Delta Chat.";
 "multidevice_abort" = "Einrichtung des Zweitgeräts beenden?";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Eingehende Nachrichten";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Ausgehende Nachrichten";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Speicher auf %1$@";
 "connectivity" = "Verbindungsstatus";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -718,6 +711,12 @@
 "disable_imap_idle" = "IMAP IDLE deaktivieren";
 "disable_imap_idle_explain" = "IMAP IDLE ausschalten, selbst wenn vom Server unterstützt. Die Aktivierung dieser Option verzögert den Abruf von Nachrichten; nur zu Testzwecken aktivieren";
 "send_stats_to_devs" = "Statistik an Delta Chat Entwickler senden";
+"stats_device_message" = "Möchtest du helfen, Delta Chat zu verbessern, indem du wöchentlich anonyme Nutzungsstatistiken sendest?\n\n👉 Hier tippen … 👈";
+"stats_confirmation_dialog" = "Möchtest du helfen, Delta Chat zu verbessern, indem du wöchentlich anonyme Nutzungsstatistiken sendest?";
+"stats_thanks" = "Danke! Du kannst das Senden der Statistik jederzeit unter \"Einstellungen / Erweitert\" ausschalten.\n\nHast du zusätzlich 5 Minuten Zeit, um an einer wissenschaftlichen Studie zur Sicherheit von Delta Chat teilzunehmen?";
+"stats_disable_dialog" = "Das Senden von Statistiken ist bereits eingeschaltet.\n\nMöchtest du es ausschalten?";
+"disable" = "Ausschalten";
+"stats_keep_sending" = "Weiter senden";
 "stats_msg_body" = "Der Anhang enthält anonyme Statistiken, die uns helfen, Delta Chat zu verbessern. Vielen Dank!";
 // Emoji picker and categories
 "emoji_search_results" = "Suchergebnisse";
@@ -881,15 +880,11 @@
 "qrshow_join_contact_hint" = "Scannen für Chat mit %1$@";
 "qrshow_join_contact_no_connection_toast" = "Keine Verbindung zum Internet, Austausch des QR-Codes nicht möglich.";
 "qraccount_ask_create_and_login" = "Profil auf \"%1$@\" erzeugen und dort anmelden?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Profil auf \"%1$@\" erzeugen und dort anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Konten hin- und herschalten.";
 "set_name_and_avatar_explain" = "Lege einen Namen fest, unter dem deine Kontakte dich kennen. Du kannst auch ein Profilbild festlegen.";
 "please_enter_name" = "Bitte gib einen Namen an.";
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues Profil zu erstellen.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Bei \"%1$@\" anmelden?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Bei \"%1$@\" anmelden?\n\nDein bisheriges Profil wird dabei nicht gelöscht. Du kannst mit der Option \"Profil wechseln\" jederzeit zwischen den Profilen hin- und herschalten.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.

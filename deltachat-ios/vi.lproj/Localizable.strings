@@ -63,10 +63,6 @@
 "always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
 "show_warning" = "Hiển thị cảnh báo";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Hiển thị mật khẩu";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Ẩn mật khẩu";
 "not_now" = "Không phải bây giờ";
 "never" = "Không bao giờ";
 "one_moment" = "Một lát…";
@@ -255,7 +251,6 @@
 "share_location_for_two_hours" = "Trong 2 giờ";
 "share_location_for_six_hours" = "Trong 6 giờ";
 "file_saved_to" = "Tệp đã được lưu vào \"%1$@\".";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";
@@ -303,8 +298,6 @@
 "lock_recording" = "Khóa ghi âm";
 // mailing lists
 "mailing_list" = "Danh sách gửi thư";
-// deprecated
-"mailing_list_profile_info" = "Những thay đổi về tên và hình ảnh danh sách gửi thư chỉ áp dụng trên thiết bị này.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Bắt đầu…";
@@ -389,7 +382,7 @@
 "incoming_messages" = "Tin nhắn đến";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Tin nhắn đi";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Lưu trữ trên %1$@";
 "connectivity" = "Kết nối";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -681,13 +674,9 @@
 "qrshow_join_contact_hint" = "Quét để trò chuyện với %1$@";
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Đăng nhập vào \"%1$@\"?\n\nTài khoản hiện tại của bạn sẽ không bị xóa. Sử dụng mục \"Chuyển tài khoản\" để chuyển đổi giữa các tài khoản của bạn.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";
 // placeholder will be replaced by the name of the inviter.

@@ -282,26 +282,6 @@
 			<string>Удалить %d сообщений?</string>
 		</dict>
 	</dict>
-	<key>ask_delete_messages_simple</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>Удалить %d сообщение?</string>
-			<key>few</key>
-			<string>Удалить %d сообщения?</string>
-			<key>many</key>
-			<string>Удалить %d сообщений?</string>
-			<key>other</key>
-			<string>Удалить %d сообщений?</string>
-		</dict>
-	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

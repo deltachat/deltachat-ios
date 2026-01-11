@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Toujours charger les images distantes";
 "once" = "Une fois";
 "show_warning" = "Montrer l\'avertissement";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Afficher le mot de passe";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Masquer le mot de passe";
 "not_now" = "Pas maintenant";
 "never" = "Jamais";
 "one_moment" = "Un instant …";
@@ -209,6 +205,9 @@
 "add_recipients" = "Ajouter des destinataires";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nom du canal";
+"email" = "Courriel";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Nouveau courriel";
 // the "Subject" of an email, use the term common in classic email apps
 "subject" = "Sujet";
 "menu_send" = "Envoyer";
@@ -333,7 +332,6 @@
 "ask_leave_group" = "Êtes-vous sûr de vouloir quitter la discussion ?";
 "ask_delete_named_chat" = "Supprimer la conversation \"%1$@\" de tous vos appareils ?";
 "ask_delete_message" = "Supprimer ce message de tous vos appareils ?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Faire suivre les messages à %1$@ ?";
 "ask_forward_multiple" = "Faire suivre les messages à %1$d discussions ?";
 "ask_export_attachment" = "Exporter une pièce jointe ? L\'exportation des pièces jointes permettra à toute autre application sur votre appareil d\'y accéder. Continuer ?";
@@ -385,8 +383,6 @@
 "lock_recording" = "Maintenir l\'enregistrement";
 // mailing lists
 "mailing_list" = "Liste de diffusion";
-// deprecated
-"mailing_list_profile_info" = "Les changements du nom et de l\'avatar de la liste de diffusion s\'appliquent uniquement sur cet appareil.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Démarrer...";
@@ -479,7 +475,7 @@
 "incoming_messages" = "Messages entrants";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Messages sortants";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Espace de stockage sur %1$@";
 "connectivity" = "Connectivité";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -706,6 +702,12 @@
 "disable_imap_idle" = "Désactiver IMAP IDLE";
 "disable_imap_idle_explain" = "N\'utilisez pas d\'extension IMAP IDLE, même si elle est prise en charge par votre serveur, car elle provoque des retards dans la récupération des messages. Activez cette option uniquement pour effectuer des tests.";
 "send_stats_to_devs" = "Envoyer les statistiques aux développeurs Delta Chat";
+"stats_device_message" = "Voulez-vous aider à améliorer Delta Chat et soutenir notre recherche en envoyant des statistiques d\'utilisation hebdomadaires ?\n\n👉 Touchez ici... 👈";
+"stats_confirmation_dialog" = "Voulez-vous aider à améliorer Delta Chat et soutenir notre recherche en envoyant des statistiques d\'utilisation hebdomadaires ?";
+"stats_thanks" = "Merci ! Vous pouvez toujours désactiver l\'envoi dans \"Paramètres -> Avancé\".\n\nAvez-vous en plus 5 minutes pour participer à une étude scientifique sur la sécurité de Delta Chat ?";
+"stats_disable_dialog" = "L\'envoi de statistiques est déjà activé.\n\nSouhaitez-vous le désactiver ?";
+"disable" = "Désactiver";
+"stats_keep_sending" = "Continuer l\'envoi";
 "stats_msg_body" = "La pièce jointe contient des statistiques d\'usage anonymisés, qui nous aide à améliorer Delta Chat. Merci !";
 // Emoji picker and categories
 "emoji_search_results" = "Résultats de la recherche";
@@ -869,15 +871,11 @@
 "qrshow_join_contact_hint" = "Scanner pour discuter avec %1$@";
 "qrshow_join_contact_no_connection_toast" = "Pas de connexion Internet, ne peut pas effectuer la configuration du QR code.";
 "qraccount_ask_create_and_login" = "Créer une nouvelle adresse de courriel sur « %1$@ » et se connecter ici ?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Créer une nouvelle adresse de courriel sur « %1$@ » et s\'y connecter ?\n\nVotre compte existant ne sera pas supprimé. Utilisez l\'élément de menu « Changer de compte » pour passer d\'un compte à l\'autre.";
 "set_name_and_avatar_explain" = "Choisissez un nom que vos contacts reconnaîtrons. Vous pouvez également définir une image pour votre profile.";
 "please_enter_name" = "Veuillez saisir un nom.";
 "qraccount_qr_code_cannot_be_used" = "Le code QR scanné ne peut pas être utilisé pour ouvrir un nouveau compte.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Se connecter au compte « %1$@ » ?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Se connecter à « %1$@ » ?\n\nVotre compte existant ne sera pas supprimé. Utiliser l\'élément de menu « Changer de compte » pour passer d\'un compte à l\'autre.";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vous a invité à rejoindre ce groupe.\n\nEn attente de la réponse de l’appareil de %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.

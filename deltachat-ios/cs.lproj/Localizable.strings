@@ -79,10 +79,6 @@
 "always_load_remote_images" = "Vždy načítat vzdálené obrázky";
 "once" = "Jednou";
 "show_warning" = "Zobrazovat varování";
-// deprecated, UI must not offer an option to show the password
-"show_password" = "Zobrazit heslo";
-// deprecated, UI must not offer an option to show the password
-"hide_password" = "Skrýt heslo";
 "not_now" = "Teď ne";
 "never" = "Nikdy";
 "one_moment" = "Okamžik...";
@@ -341,7 +337,6 @@
 "ask_leave_group" = "Jste si jistý, že chcete odejít?";
 "ask_delete_named_chat" = "Smazat chat \"%1$@\" ze všech vašich zařízení?";
 "ask_delete_message" = "Smazat tuto zprávu ze všech vašich zařízení?";
-// deprecated, use ask_delete_messages
 "ask_forward" = "Přejete si přeposlat zprávy do chatu %1$@?";
 "ask_forward_multiple" = "Přejete si přeposlat zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložením příloh je zpřístupníte ostatním aplikacím na tomto zařízení.\n\nPřejete si pokračovat?";
@@ -394,8 +389,6 @@
 "lock_recording" = "Uzamknout nahrávání";
 // mailing lists
 "mailing_list" = "E-mailový seznam";
-// deprecated
-"mailing_list_profile_info" = "Změny názvu a obrázku e-mailového seznamu se projeví pouze na tomto zařízení.";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Spustit...";
@@ -488,7 +481,7 @@
 "incoming_messages" = "Příchozí zprávy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchozí zprávy";
-// Headline in the "Connectivity" view. Placeholder will be replaced by a domain
+// deprecated
 "storage_on_domain" = "Úložiště na %1$@";
 "connectivity" = "Připojení";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
@@ -881,15 +874,11 @@
 "qrshow_join_contact_hint" = "Naskenujte k navázání spojení s uživatelem %1$@";
 "qrshow_join_contact_no_connection_toast" = "Žádné připojení k Internetu. Zprovoznění QR kódem nelze provést.";
 "qraccount_ask_create_and_login" = "Přejete si vytvořit nový profil na \"%1$@\" a připojit se k němu?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qraccount_ask_create_and_login_another" = "Přejete si vytvořit nový profil na \"%1$@\" a přihlásit se k němu?\n\nVáš stávající profil nebude smazán. K přepínání mezi profily můžete využít volbu \"Přepnout profil\".";
 "set_name_and_avatar_explain" = "Nastavte si jméno, podle kterého vás ostatní poznají. Můžete si také nastavit profilový obrázek.";
 "please_enter_name" = "Prosím, zadejte jméno.";
 "qraccount_qr_code_cannot_be_used" = "Tento QR kód neumožňuje nastavení nového účtu.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Přejete si přihlásit k \"%1$@\"?";
-// deprecated, use confirm_add_transport when scanning such a QR code from the main scanner
-"qrlogin_ask_login_another" = "Přejete si přihlásit k \"%1$@\"?\n\nVáš stávající profil nebude smazán. K přepínání mezi profily můžete využít volbu \"Přepnout profil\".";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Uživatel %1$@ vás pozval do této skupiny.\n\nČekání na odpověď od zařízení uživatele %2$@...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
