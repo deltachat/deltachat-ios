@@ -13,10 +13,14 @@ class PiPVideoView: UIView {
         videoCallSourceView.heightAnchor.constraint(equalToConstant: frame.height)
     }()
 
-    /// The view that renders in the picture in picture window
-    private lazy var pipRenderView = {
-        let pipRenderView = PiPVideoRendererView(frame: frame)
-        return pipRenderView
+    /// The view that is shown in the picture in picture window
+    private lazy var pipView = UIView()
+
+    /// The view that renders the video
+    /// Note: Do not add subviews as this view may be rotated if the video source was rotated
+    private lazy var renderView = {
+        let renderView = PiPVideoRendererView(frame: frame)
+        return renderView
     }()
 
     private lazy var avatarView: UIView = {
@@ -54,16 +58,18 @@ class PiPVideoView: UIView {
             videoCallSourceViewHeightConstraint,
         ])
 
-        pipRenderView.addSubview(avatarView)
+        pipView.addSubview(renderView)
+        renderView.fillSuperview()
+        pipView.addSubview(avatarView)
         avatarView.centerInSuperview()
         NSLayoutConstraint.activate([
-            avatarView.leftAnchor.constraint(equalTo: pipRenderView.leftAnchor, constant: 20),
-            avatarView.topAnchor.constraint(equalTo: pipRenderView.topAnchor, constant: 20),
+            avatarView.leftAnchor.constraint(equalTo: pipView.leftAnchor, constant: 20),
+            avatarView.topAnchor.constraint(equalTo: pipView.topAnchor, constant: 20),
         ], withPriority: .init(UILayoutPriority.required.rawValue - 1))
         avatarView.widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
 
-        videoCallSourceView.addSubview(pipRenderView)
-        pipRenderView.fillSuperview()
+        videoCallSourceView.addSubview(pipView)
+        pipView.fillSuperview()
 
         pipController?.delegate = self
         resetSize()
@@ -78,18 +84,18 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         guard #available(iOS 15.0, *) else { return }
         let pipVC = pictureInPictureController.contentSource?.activeVideoCallContentViewController
-        pipRenderView.removeFromSuperview()
-        pipVC?.view.addSubview(pipRenderView)
-        pipRenderView.fillSuperview()
+        pipView.removeFromSuperview()
+        pipVC?.view.addSubview(pipView)
+        pipView.fillSuperview()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         CallWindow.shared?.showCallUI()
         completionHandler(true)
     }
     func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        pipRenderView.removeFromSuperview()
-        videoCallSourceView.addSubview(pipRenderView)
-        pipRenderView.fillSuperview()
+        pipView.removeFromSuperview()
+        videoCallSourceView.addSubview(pipView)
+        pipView.fillSuperview()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: any Error) {
         CallWindow.shared?.showCallUI()
@@ -103,7 +109,7 @@ extension PiPVideoView: RTCVideoRenderer {
     }
 
     func setSize(_ size: CGSize) {
-        pipRenderView.frameProcessor?.setSize(size)
+        renderView.frameProcessor?.setSize(size)
         setPiPPreferredContentSize(size)
         DispatchQueue.main.async { [self] in
             videoCallSourceViewHeightConstraint.constant = frame.width / size.width * size.height
@@ -118,7 +124,7 @@ extension PiPVideoView: RTCVideoRenderer {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             perform(#selector(didNotReceiveNewFrame), with: nil, afterDelay: 1.5)
         }
-        pipRenderView.frameProcessor?.renderFrame(frame)
+        renderView.frameProcessor?.renderFrame(frame)
     }
 
     private func setPiPPreferredContentSize(_ size: CGSize) {
@@ -127,7 +133,7 @@ extension PiPVideoView: RTCVideoRenderer {
     }
 
     @objc private func didNotReceiveNewFrame() {
-        pipRenderView.displayLayer?.flushAndRemoveImage()
+        renderView.displayLayer?.flushAndRemoveImage()
         avatarView.isHidden = false
         resetSize()
     }
