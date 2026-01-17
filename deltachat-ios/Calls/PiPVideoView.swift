@@ -96,6 +96,7 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
         pipView.removeFromSuperview()
         videoCallSourceView.addSubview(pipView)
         pipView.fillSuperview()
+        videoCallSourceView.setNeedsLayout()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: any Error) {
         CallWindow.shared?.showCallUI()
