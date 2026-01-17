@@ -7,6 +7,7 @@ import WebRTC
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic when muted
 // TODO: Integrate with CallKit again
+// FIXME: Still doesn't always work when in background
 
 class CallViewController: UIViewController {
     var call: DcCall
@@ -243,18 +244,16 @@ class CallViewController: UIViewController {
         let audioSource = factory.audioSource(with: RTCMediaConstraints.default)
         let audioTrack = factory.audioTrack(with: audioSource, trackId: "localAudioTrack")
         localAudioTrack = audioTrack
-        peerConnection?.add(audioTrack, streamIds: ["localStream"])
+        peerConnection?.add(audioTrack, streamIds: ["localAudioStream"])
 
         // Local video
         let videoSource = factory.videoSource()
         localVideoCapturer = RTCCameraVideoCapturer(delegate: videoSource)
-        let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
         if call.hasVideoInitially {
             localVideoCapturer?.startCapture(facing: .front)
-            peerConnection?.add(videoTrack, streamIds: ["localStream"])
-        } else {
-            peerConnection?.addTransceiver(of: .video)
         }
+        let videoTrack = factory.videoTrack(with: videoSource, trackId: "localVideoTrack")
+        peerConnection?.add(videoTrack, streamIds: ["localStream"])
         localVideoTrack = videoTrack
         localVideoTrack?.isEnabled = call.hasVideoInitially
         localVideoTrack?.add(localVideoView)
