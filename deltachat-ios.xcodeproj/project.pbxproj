@@ -128,8 +128,8 @@
 		641620FE2ECFFA880076CFA3 /* WebRTC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
-		645575692EDF3FF500F46CD3 /* UIStatusBarManager+statusBarTappedNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575682EDF3FF500F46CD3 /* UIStatusBarManager+statusBarTappedNotification.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
+		64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
 		64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */; };
 		64F9EBA02E117CD8007EE3D9 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */; };
@@ -471,8 +471,8 @@
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
-		645575682EDF3FF500F46CD3 /* UIStatusBarManager+statusBarTappedNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStatusBarManager+statusBarTappedNotification.swift"; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+activateWithPriority.swift"; sourceTree = "<group>"; };
 		64D0499F2EC890840093A0A8 /* PiPVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPVideoView.swift; sourceTree = "<group>"; };
 		64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPFrameProcessor.swift; sourceTree = "<group>"; };
 		64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -682,6 +682,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		643B44782E0C2BD900AEE026 /* DcTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = DcTests;
 			sourceTree = "<group>";
 		};
@@ -766,7 +768,6 @@
 				78E45E4321D3F14A00D4B15E /* UIImage+Extension.swift */,
 				305961832346125000C80F33 /* UIEdgeInsets+Extensions.swift */,
 				305961862346125000C80F33 /* NSAttributedString+Extensions.swift */,
-				645575682EDF3FF500F46CD3 /* UIStatusBarManager+statusBarTappedNotification.swift */,
 				305961882346125000C80F33 /* CGRect+Extensions.swift */,
 				3059620D234614E700C80F33 /* DcContact+Extension.swift */,
 				3059620F2346154D00C80F33 /* String+Extension.swift */,
@@ -777,6 +778,7 @@
 				D85DF9772C4A96CB00A01408 /* UserDefaults+Extensions.swift */,
 				D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */,
 				64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */,
+				64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */,
 				D82AD24C2D27E47A009D6026 /* UIApplication+Orientation.swift */,
 				6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */,
 				5F4945AA2D315E7000DCD50A /* UIPasteboard.swift */,
@@ -1586,13 +1588,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1712,6 +1710,7 @@
 				30AAD71B2762869600DE3DC1 /* SelectableCell.swift in Sources */,
 				AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */,
 				AE4AEE3522B1030D000AA495 /* PreviewController.swift in Sources */,
+				64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */,
 				D84AED272B566C0700D753F6 /* ReactionsOverviewTableViewCell.swift in Sources */,
 				7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */,
 				3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */,
@@ -1768,7 +1767,6 @@
 				3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
 				6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */,
-				645575692EDF3FF500F46CD3 /* UIStatusBarManager+statusBarTappedNotification.swift in Sources */,
 				30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */,
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsViewController.swift in Sources */,
