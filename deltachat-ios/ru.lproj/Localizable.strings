@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ ответил(а), ожидаем добавления в группу…";
 "secure_join_wait" = "Устанавливается соединение, пожалуйста, подождите…";
 "contact_verified" = "%1$@ подтверждён.";
+"contact_blocked" = "Вы заблокировали контакт";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Подтверждён: %1$@";
 "verified_by_you" = "Подтверждён: Лично";

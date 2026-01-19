@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ heeft geantwoord en wacht op toelating tot de groep…";
 "secure_join_wait" = "Bezig met opzetten van eind-tot-eindversleuteling…";
 "contact_verified" = "%1$@ is goedgekeurd.";
+"contact_blocked" = "Je hebt deze contactpersoon geblokkeerd";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Geïntroduceerd door %1$@";
 "verified_by_you" = "Geïntroduceerd door mij";

@@ -887,6 +887,7 @@
 "secure_join_replies" = "%1$@ u përgjigj, po pritet që të shtohet te grupi…";
 "secure_join_wait" = "Po vendoset fshehtëzim skaj-më-skaj, ju lutemi, pritni…";
 "contact_verified" = "%1$@ u soll.";
+"contact_blocked" = "E bllokuat kontaktin";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Sjellë nga %1$@";
 "verified_by_you" = "Sjellë nga unë";
