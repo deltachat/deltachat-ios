@@ -45,7 +45,7 @@ class ProfileViewController: UITableViewController {
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast)
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -396,6 +396,8 @@ class ProfileViewController: UITableViewController {
                     // do not show misleading "1 member" in case securejoin has not finished
                     subtitle = nil
                 }
+            } else if isMailinglist {
+                subtitle = chat.getMailinglistAddr()
             } else {
                 subtitle = nil
             }
