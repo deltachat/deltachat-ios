@@ -870,6 +870,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 dcContact = dcContext.getContact(id: chatContactIds[0])
                 if let dcContact, dcContact.isBot {
                     subtitle = String.localized("bot")
+                } else if !dcChat.isEncrypted {
+                    subtitle = dcContact?.email
                 } else {
                     subtitle = nil
                 }
