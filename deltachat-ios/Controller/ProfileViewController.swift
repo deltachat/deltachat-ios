@@ -20,7 +20,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case addr
     }
 
     enum ManageMembersActions {
@@ -77,19 +76,6 @@ class ProfileViewController: UITableViewController {
             }
             cell.textLabel?.text = verifiedInfo
         }
-        return cell
-    }()
-
-    private lazy var addrCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(systemName: "server.rack")
-        if let contact {
-            cell.textLabel?.text = contact.email
-        } else if isMailinglist, let chat {
-            cell.textLabel?.text = chat.getMailinglistAddr()
-        }
-        let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
-        cell.addGestureRecognizer(copyContactGestureRecognizer)
         return cell
     }()
 
@@ -256,12 +242,6 @@ class ProfileViewController: UITableViewController {
 
         if !isSavedMessages && !isDeviceChat, let contact, contact.isVerified {
             actions.append(.verifiedBy)
-        }
-
-        if contact != nil && !isSavedMessages && !isDeviceChat {
-            actions.append(.addr)
-        } else if let chat, isMailinglist, !chat.getMailinglistAddr().isEmpty {
-            actions.append(.addr)
         }
 
         options.append(.media) // add unconditionally, to have a visual anchor
@@ -490,21 +470,6 @@ class ProfileViewController: UITableViewController {
                 previewController.customTitle = contact.displayName
                 navigationController?.pushViewController(previewController, animated: true)
             }
-        }
-    }
-
-    @objc private func showCopyToClipboard() {
-        UIMenuController.shared.menuItems = [
-            UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ProfileViewController.copyToClipboard))
-        ]
-        UIMenuController.shared.showMenu(from: addrCell.textLabel ?? addrCell, rect: addrCell.textLabel?.frame ?? addrCell.frame)
-    }
-
-    @objc private func copyToClipboard() {
-        if let chat, isMailinglist {
-            UIPasteboard.general.string = chat.getMailinglistAddr()
-        } else if let contact {
-            UIPasteboard.general.string = contact.email
         }
     }
 
@@ -764,8 +729,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .addr:
-                return addrCell
             }
         }
     }
@@ -810,8 +773,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .addr:
-                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
