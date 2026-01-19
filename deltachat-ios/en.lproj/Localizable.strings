@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ replied, waiting for being added to the group…";
 "secure_join_wait" = "Establishing connection, please wait…";
 "contact_verified" = "%1$@ introduced.";
+"contact_blocked" = "You blocked the contact";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introduced by %1$@";
 "verified_by_you" = "Introduced by me";

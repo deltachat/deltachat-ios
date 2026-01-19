@@ -231,7 +231,7 @@
 "menu_message_details" = "Nachrichteninfo";
 "menu_copy_to_clipboard" = "In Zwischenablage kopieren";
 "share_invite_link" = "Einladungslink teilen";
-"share_invite_link_explain" = "Teile den Link nur mit Personen, denen du vertrauen. Alle, die diesen Link haben, können einen Chat mit dir starten.";
+"share_invite_link_explain" = "Teile den Link nur mit Personen, denen du vertraust. Alle, die diesen Link haben, können einen Chat mit dir starten.";
 "invite_friends" = "Freunde einladen";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Kontaktiere mich auf Delta Chat:\n%1$@";
@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ antwortet. Warte, zur Gruppe hinzugefügt zu werden…";
 "secure_join_wait" = "Verbindungsaufbau, bitte warten…";
 "contact_verified" = "%1$@ eingeführt.";
+"contact_blocked" = "Du hast den Kontakt blockiert";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Eingeführt von %1$@";
 "verified_by_you" = "Durch mich eingeführt";

@@ -253,13 +253,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Usunąć %d czat ze wszystkich urządzeń?</string>
+			<string>Usunąć %d czat?</string>
 			<key>few</key>
-			<string>Usunąć %d czaty ze wszystkich urządzeń?</string>
+			<string>Usunąć %d czaty?</string>
 			<key>many</key>
-			<string>Usunąć %d czatów ze wszystkich urządzeń?</string>
+			<string>Usunąć %d czatów?</string>
 			<key>other</key>
-			<string>Usunąć %d czatu ze wszystkich urządzeń?</string>
+			<string>Usunąć %d czatu?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -273,13 +273,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Usunąć %d wiadomość ze wszystkich urządzeń?</string>
+			<string>Usunąć %d wiadomość?</string>
 			<key>few</key>
-			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+			<string>Usunąć %d wiadomości?</string>
 			<key>many</key>
-			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+			<string>Usunąć %d wiadomości?</string>
 			<key>other</key>
-			<string>Usunąć %d wiadomości ze wszystkich urządzeń?</string>
+			<string>Usunąć %d wiadomości?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

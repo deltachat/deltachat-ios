@@ -291,7 +291,7 @@
 "device_talk" = "Komunikaty urządzenia";
 "device_talk_subtitle" = "Wiadomości generowane lokalnie";
 "device_talk_explain" = "Wiadomości w tym czacie są generowane lokalnie przez twoją aplikację Delta Chat. Twórcy używają go do informowania o aktualizacjach aplikacji i problemach podczas użytkowania.";
-"device_talk_welcome_message2" = "Skontaktuj się!\n\n🙌 Dotknij „Kod QR” na ekranie głównym obu urządzeń. Wybierz opcję „Zeskanuj kod QR” na jednym urządzeniu i skieruj go na drugie\n\n🌍 Jeśli nie znajdujesz się w tym samym pomieszczeniu, zeskanuj kod podczas rozmowy wideo lub udostępnij link z zaproszeniem w sekcji „Zeskanuj kod QR”\n\nNastępnie: korzystaj z komunikatora za pośrednictwem największej zdecentralizowanej sieci, jaka kiedykolwiek istniała: e-mail. W przeciwieństwie do innych popularnych aplikacji bez centralnej kontroli, śledzenia lub sprzedawania Ciebie, znajomych, współpracowników lub rodziny dużym organizacjom.";
+"device_talk_welcome_message2" = "Skontaktuj się!\n\n🙌 Dotknij „Kod QR” na ekranie głównym obu urządzeń. Wybierz opcję „Zeskanuj kod QR” na jednym urządzeniu i skieruj go na drugie\n\n🌍 Jeśli nie znajdujesz się w tym samym pomieszczeniu, zeskanuj kod podczas rozmowy wideo lub udostępnij link z zaproszeniem w sekcji „Zeskanuj kod QR”\n\nNastępnie: korzystaj ze zdecentralizowanego komunikatora. W przeciwieństwie do innych popularnych aplikacji bez centralnej kontroli, śledzenia lub sprzedawania Ciebie, znajomych, współpracowników lub rodziny dużym organizacjom.";
 "edit_contact" = "Edytuj kontakt";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Przypnij czat";
@@ -335,15 +335,15 @@
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Na pewno chcesz opuścić?";
-"ask_delete_named_chat" = "Usunąć czat „%1$@” ze wszystkich urządzeń?";
-"ask_delete_message" = "Usunąć tę wiadomość ze wszystkich urządzeń?";
+"ask_delete_named_chat" = "Usunąć czat „%1$@”?";
+"ask_delete_message" = "Usunąć tę wiadomość?";
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich wszystkim aplikacjom na urządzeniu.\n\nKontynuować?";
 "ask_block_contact" = "Zablokować ten kontakt? Nie będziesz już odbierać wiadomości od tego kontaktu.";
 "ask_unblock_contact" = "Odblokować ten kontakt? Ponownie będzie można odbierać wiadomości od tego kontaktu.";
-"ask_delete_contacts" = "Usunąć kontakty? Spowoduje to trwałe usunięcie wybranych kontaktów.\n\nKontaktów z trwającymi rozmowami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
-"ask_delete_contact" = "Usunąć trwale kontakt %1$@?\n\nKontaktów z trwającymi czatami i kontaktów z książki adresowej systemu nie można trwale usunąć.";
+"ask_delete_contacts" = "Usunąć kontakty?\n\nKontaktów z trwającymi rozmowami nie można trwale usunąć.";
+"ask_delete_contact" = "Usunąć kontakt %1$@?\n\nKontaktów z trwającymi czatami nie można trwale usunąć.";
 "ask_start_chat_with" = "Rozpocząć czat z %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Usunąć %1$@ z grupy?";
@@ -465,7 +465,7 @@
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Zeskanuj, aby skonfigurować kolejne urządzenie dla %1$@";
 "multidevice_receiver_title" = "Dodaj jako kolejne urządzenie";
-"multidevice_open_settings_on_other_device" = "Na pierwszym urządzeniu przejdź do „Ustawienia » Dodaj kolejne urządzenie” i zeskanuj wyświetlony tam kod";
+"multidevice_open_settings_on_other_device" = "Na pierwszym urządzeniu uruchom Delta Chat, przejdź do „Ustawienia » Dodaj kolejne urządzenie” i zeskanuj wyświetlony tam kod";
 "multidevice_receiver_scanning_ask" = "Skopiować konto z innego urządzenia na to urządzenie?";
 "multidevice_receiver_needs_update" = "Profil, który chcesz zaimportować, pochodzi z nowszej wersji aplikacji Delta Chat.\n\nAby kontynuować konfigurowanie drugiego urządzenia, zaktualizuj to urządzenie do najnowszej wersji aplikacji Delta Chat.";
 "multidevice_abort" = "Przerwać konfigurowanie kolejnego urządzenia?";
@@ -505,7 +505,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Mam już profil";
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
-"manual_account_setup_option" = "Transport przez klasyczny e-mail";
+"manual_account_setup_option" = "Użyj klasycznego e-maila jako przekaźnika";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Twój profil";
 // The placeholder will be replaced by the default onboarding server
@@ -522,13 +522,13 @@
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Tworzy profil, aby rozmawiać z „%1$@”.";
 // Question shown when another user's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_contact" = "Chcesz utworzyć nowy profil i rozpocząć rozmowę z %1$@?";
+"instant_onboarding_confirm_contact" = "Utworzyć nowy profil i rozpocząć rozmowę z %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_group" = "Chcesz utworzyć nowy profil i dołączyć do grupy „%1$@”?";
+"instant_onboarding_confirm_group" = "Utworzyć nowy profil i dołączyć do grupy „%1$@”?";
 "welcome_chat_over_email" = "Bezpieczny zdecentralizowany czat";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "login_title" = "Zaloguj się";
-"login_advanced_hint" = "To logowanie jest przeznaczone dla zaawansowanych użytkowników:\n\n• Nie używaj konta, z którego korzystasz w innej aplikacji.\n\n• Klasyczny serwer pocztowy umożliwia rozmowy bez szyfrowania end-to-end, oznaczone ikoną poczty.";
+"login_advanced_hint" = "To logowanie jest przeznaczone dla zaawansowanych użytkowników:\n\n• Nie używaj adresu, z którego korzystasz w innej aplikacji.\n\n• Klasyczny serwer pocztowy umożliwia rozmowy bez szyfrowania end-to-end, oznaczone ikoną poczty.";
 "login_inbox" = "Skrzynka odbiorcza";
 "login_imap_login" = "Nazwa użytkownika IMAP";
 "login_imap_server" = "Serwer IMAP";
@@ -556,15 +556,15 @@
 "proxy_enabled" = "Włączone proxy";
 "proxy_enabled_hint" = "Używasz serwera proxy. Jeśli masz problemy z połączeniem, spróbuj użyć innego serwera proxy.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Serwery transportowe";
-"add_transport" = "Dodaj serwer transportowy";
-"remove_transport" = "Usuń serwer transportowy";
-"edit_transport" = "Edytuj serwer transportowy";
+"transports" = "Serwery przekaźnikowe";
+"add_transport" = "Dodaj serwer przekaźnikowy";
+"remove_transport" = "Usuń serwer przekaźnikowy";
+"edit_transport" = "Edytuj serwer przekaźnikowy";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "Dodać ten serwer transportowy?";
-"invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer transportowy.";
+"confirm_add_transport" = "Dodać ten serwer przekaźnikowy?";
+"invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer przekaźnikowy.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Usunąć serwer transportowy „%1$@”?\n\nTwoje kontakty mogą się z tobą skontaktować tylko wtedy, gdy kontaktowałeś się z nimi wcześniej za pośrednictwem innego serwera transportowego.\n\nW razie wątpliwości usuń ten serwer transportowy.";
+"confirm_remove_transport" = "Usunąć serwer przekaźnikowy „%1$@”?\n\nTwoje kontakty mogą się z tobą skontaktować tylko wtedy, gdy kontaktowałeś się z nimi wcześniej za pośrednictwem innego serwera przekaźnikowego.\n\nW razie wątpliwości usuń ten serwer przekaźnikowy.";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
 "login_error_mail" = "Podaj ważny adres e-mail";
 "login_error_server" = "Wprowadź poprawny adres serwera / IP";
@@ -685,6 +685,7 @@
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
 "pref_show_emails_all" = "Wszystkie";
 "pref_experimental_features" = "Funkcje eksperymentalne";
+"pref_experimental_features_explain" = "Te funkcje mogą być niestabilne i mogą zostać zmienione lub usunięte";
 "pref_on_demand_location_streaming" = "Przesyłanie strumieniowe lokalizacji na żądanie";
 "pref_background_default" = "Domyślne tło";
 "pref_background_default_color" = "Domyślny kolor";
@@ -710,6 +711,13 @@
 "disable_imap_idle" = "Wyłącz IMAP IDLE";
 "disable_imap_idle_explain" = "Nie używaj rozszerzenia IMAP IDLE, nawet jeśli serwer je obsługuje. Włączenie tej opcji opóźni pobieranie wiadomości, włącz ją tylko na testy.";
 "send_stats_to_devs" = "Wyślij statystyki do programistów Delta Chat";
+"stats_device_message" = "Chcesz pomóc w ulepszeniu Delta Chat i wesprzeć badania, wysyłając co tydzień anonimowe statystyki użytkowania?\n\n👉 Kliknij tutaj… 👈";
+"stats_confirmation_dialog" = "Chcesz pomóc w ulepszeniu Delta Chat i wesprzeć badania, wysyłając co tydzień anonimowe statystyki użytkowania?";
+"stats_thanks" = "Dziękujemy! Zawsze możesz wyłączyć wysyłanie w „Ustawienia » Zaawansowane”.\n\nCzy masz dodatkowo 5 minut na udział w badaniu naukowym dotyczącym bezpieczeństwa Delta Chat?";
+"stats_disable_dialog" = "Wysyłanie statystyk jest już włączone.\n\nChcesz je wyłączyć?";
+"disable" = "Wyłącz";
+"stats_keep_sending" = "Kontynuuj wysyłanie";
+"stats_msg_body" = "Załącznik zawiera anonimowe statystyki użytkowania, które pomagają nam ulepszać Delta Chat. Więcej informacji można znaleźć na: https://delta.chat/help#statssending. Dziękujemy!";
 // Emoji picker and categories
 "emoji_search_results" = "Wyniki wyszukiwania";
 "emoji_not_found" = "Nie znaleziono emoji";
@@ -772,7 +780,7 @@
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Użytkownik %2$@ usunął członka %1$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
-"member_x_removed" = "Usunięto członka %1$@";
+"member_x_removed" = "Usunięto członka %1$@.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Opuszczono grupę";
 // "left" in the meaning of "exited".
@@ -833,7 +841,7 @@
 "learn_more" = "Czytaj więcej";
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Limit pamięci u twojego dostawcy wkrótce zostanie przekroczony, wykorzystano już %1$@%%.\n\nMożesz nie być w stanie otrzymywać wiadomości, gdy pamięć jest pełna.\n\n👉 Sprawdzić, czy możesz usunąć stare dane w interfejsie internetowym dostawcy i rozważyć włączenie opcji \"Ustawienia » Czaty i media » Usuwanie starych wiadomości\". W dowolnym momencie możesz sprawdzić swoje bieżące wykorzystanie pamięci w \"Ustawienia » Łączność\".";
+"devicemsg_storage_exceeding" = "⚠️ Limit pamięci u twojego dostawcy wkrótce zostanie przekroczony, wykorzystano już %1$@%%.\n\nMożesz nie być w stanie otrzymywać wiadomości, gdy pamięć jest pełna.\n\n👉 Sprawdzić, czy możesz usunąć stare dane w interfejsie internetowym dostawcy i rozważyć włączenie opcji \"Ustawienia » Czaty » Usuwanie starych wiadomości\". W dowolnym momencie możesz sprawdzić swoje bieżące wykorzystanie pamięci w \"Ustawienia » Łączność\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Data lub godzina urządzenia wydaje się być niedokładna (%1$@).\n\nDostosuj zegar ⏰🔧, aby upewnić się, że wiadomości są prawidłowo odbierane.";
 "devicemsg_update_reminder" = "⚠️ Twoja wersja Delta Chat może być nieaktualna.\n\nMoże to powodować problemy, ponieważ Twoi partnerzy czatu korzystają z nowszych wersji, a Ty nie masz najnowszych funkcji 😳\nSprawdź aktualizacje na stronie https://get.delta.chat lub w sklepie z aplikacjami.";
