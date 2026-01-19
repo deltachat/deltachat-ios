@@ -44,7 +44,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist)
+        let isBlocked = contact?.isBlocked ?? false
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -364,8 +365,8 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateHeader() {
+        let subtitle: String?
         if let chat {
-            let subtitle: String?
             if isOutBroadcast {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds(dcContext).count)
             } else if isGroup {
@@ -378,6 +379,8 @@ class ProfileViewController: UITableViewController {
                 }
             } else if isMailinglist {
                 subtitle = chat.getMailinglistAddr()
+            } else if let contact, contact.isBlocked {
+                subtitle = String.localized("contact_blocked")
             } else {
                 subtitle = nil
             }
@@ -389,7 +392,13 @@ class ProfileViewController: UITableViewController {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
         } else if let contact {
-            headerCell.updateDetails(title: contact.displayName)
+            if contact.isBlocked {
+                subtitle = String.localized("contact_blocked")
+            } else {
+                subtitle = nil
+            }
+
+            headerCell.updateDetails(title: contact.displayName, subtitle: subtitle)
             if let img = contact.profileImage {
                 headerCell.setImage(img)
             } else {
