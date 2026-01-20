@@ -303,8 +303,8 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(reactionsView)
 
         let reactionsViewConstraints = [
-            messageBackgroundContainer.leadingAnchor.constraint(lessThanOrEqualTo: reactionsView.leadingAnchor, constant: -10),
-            messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: 10),
+            messageBackgroundContainer.leadingAnchor.constraint(equalTo: reactionsView.leadingAnchor, constant: -10),
+            messageBackgroundContainer.trailingAnchor.constraint(greaterThanOrEqualTo: reactionsView.trailingAnchor, constant: 10),
             messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -20)
         ]
 
