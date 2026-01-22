@@ -142,6 +142,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     /// snapshots right away probably assuming it is part of the view hierarchy.
     private weak var lastContextMenuPreviewSnapshot: UIView?
 
+    /// Hack because implementing the delegate method `previewController(_:editingModeFor)` causes
+    /// visual glitches on iOS 18+ when returning `.disabled` so instead we pretend this method is not implemented when
+    /// edit mode is disabled by returning the result of this closure in `responds(to:)`.
+    private var respondsToPreviewControllerEditingModeSelector: () -> Bool = { false }
+
     private let titleView = ChatTitleView()
 
     private lazy var dcChat: DcChat = {
@@ -200,6 +205,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         set { _bag = newValue }
     }
 
+    private var previewControllerTargetSnapshot: UIView?
+
     init(dcContext: DcContext, chatId: Int, highlightedMsg: Int? = nil) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -234,7 +241,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView] notification in
+        var skipWillShow = false
+        keyboardManager?.on(event: .didHide) { notification in
+            // Skip animating willShow when hiding the accessory view, (not when only hiding the
+            // keyboard) because when it comes back there is a chance that we first
+            // need to make ChatViewController firstResponder, and then the text field.
+            // This would cause two scroll view inset updates when not debounced.
+            skipWillShow = skipWillShow || notification.endFrame.minY >= UIScreen.main.bounds.height
+        }
+        keyboardManager?.on(event: .didShow) { [weak self, tableView] notification in
+            // Don't react to first responder changes in presented view controllers
+            guard self?.canBecomeFirstResponder == true else { return }
+            animateTableViewInset(notification: notification, tableView: tableView)
+        }
+        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+            guard self?.canBecomeFirstResponder == true, !skipWillShow else { return }
+            animateTableViewInset(notification: notification, tableView: tableView)
+        }
+        func animateTableViewInset(notification: KeyboardNotification, tableView: UITableView) {
+            skipWillShow = false
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -2075,8 +2100,10 @@ extension ChatViewController {
     func showMediaGalleryFor(message: DcMsg) {
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
-
-        navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
+        let previewController = PreviewController(dcContext: dcContext, type: .multi(msgIds: msgIds, index: index))
+        respondsToPreviewControllerEditingModeSelector = { false }
+        previewController.delegate = self
+        present(previewController, animated: true)
     }
 
     func didTapVcard(msg: DcMsg) {
@@ -2584,11 +2611,10 @@ extension ChatViewController: DraftPreviewDelegate {
                 showWebxdcViewFor(message: draftMessage)
             } else {
                 let previewController = PreviewController(dcContext: dcContext, type: .single(attachmentURL))
-                if draft.viewType == DC_MSG_IMAGE || draft.viewType == DC_MSG_VIDEO {
-                    previewController.setEditing(true, animated: true)
-                    previewController.delegate = self
-                }
-                navigationController?.pushViewController(previewController, animated: true)
+                // Respond to the editing mode selector until previewController deinits
+                respondsToPreviewControllerEditingModeSelector = { [weak pc = previewController] in pc != nil }
+                previewController.delegate = self
+                present(previewController, animated: true)
             }
         }
     }
@@ -2742,19 +2768,75 @@ extension ChatViewController: ChatContactRequestDelegate {
     }
 }
 
-
 // MARK: - QLPreviewControllerDelegate
 extension ChatViewController: QLPreviewControllerDelegate {
+    override func responds(to aSelector: Selector!) -> Bool {
+        if aSelector == #selector(previewController(_:editingModeFor:)) {
+            return respondsToPreviewControllerEditingModeSelector()
+        }
+        return super.responds(to: aSelector)
+    }
+
     func previewController(_ controller: QLPreviewController, editingModeFor previewItem: QLPreviewItem) -> QLPreviewItemEditingMode {
-        return .updateContents
+        if isDraftPreviewItem(previewItem) {
+            return .updateContents
+        } else {
+            assertionFailure("Should not return .disabled, responds(to:) override should've stopped this from being called")
+            return .disabled // returning this causes visual glitches on iOS 18
+        }
     }
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draftArea.reload(draft: self.draft)
+        if isDraftPreviewItem(previewItem) {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.draftArea.reload(draft: self.draft)
+            }
         }
     }
+
+    /// Since iOS 16 we can't just return a frame anymore so we return a view.
+    /// Since tableView is flipped we add a snapshot to the superview which we later remove.
+    func previewController(_ controller: QLPreviewController, transitionViewFor item: any QLPreviewItem) -> UIView? {
+        guard let item = item as? PreviewItem else { return nil }
+
+        if isDraftPreviewItem(item) {
+            let snapshot = UIImageView(image: draftArea.mediaPreview.contentImageView.image)
+            snapshot.layer.opacity = 0
+            snapshot.frame = draftArea.mediaPreview.contentImageView.convert(
+                draftArea.mediaPreview.contentImageView.frame,
+                to: draftArea.mainContentView
+            )
+            // Place the snapshot below the tableView, outside of the screen so the
+            // preview controller animates towards where the inputAccessoryView will
+            // pop back in from, when firstResponder is returned.
+            snapshot.frame.origin.y = view.frame.maxY
+            view.addSubview(snapshot)
+            previewControllerTargetSnapshot?.removeFromSuperview()
+            previewControllerTargetSnapshot = snapshot
+            return snapshot
+        } else if let msgId = item.messageId, let row = messageIds.firstIndex(of: msgId) {
+            // Scroll to the message related to the dismissing preview controller
+            let indexPath = IndexPath(row: row, section: 0)
+            if tableView.indexPathsForVisibleRows?.contains(indexPath) == false {
+                tableView.scrollToRow(at: indexPath, at: .none, animated: false)
+            }
+            if let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell {
+                return cell.messageBackgroundContainer
+            }
+        }
+        return nil
+    }
+
+    func previewControllerDidDismiss(_ controller: QLPreviewController) {
+        previewControllerTargetSnapshot?.removeFromSuperview()
+        previewControllerTargetSnapshot = nil
+    }
+
+    private func isDraftPreviewItem(_ item: QLPreviewItem) -> Bool {
+        item.previewItemURL?.path == draft.attachment && item.previewItemURL != nil
+    }
+
 }
 
 // MARK: - AudioControllerDelegate

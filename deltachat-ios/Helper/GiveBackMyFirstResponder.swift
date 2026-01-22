@@ -1,4 +1,5 @@
 import UIKit
+import QuickLook
 
 /// https://gist.github.com/Amzd/223979ef5a06d98ef17d2d78dbd96e22
 extension UIViewController {
@@ -27,6 +28,25 @@ extension UIViewController {
             documentPicker.returnFirstRespondersOnDismiss()
         }
         present(documentPicker as UIViewController, animated: animated, completion: completion)
+    }
+
+    /// QLPreviewController causes issues when dismissed using the swipe gesture if there was a first responder active when it was presented.
+    /// Issues range from freezing the previous first responder to crashing the app.
+    public func present(_ previewController: QLPreviewController, animated: Bool, completion: (() -> Void)? = nil) {
+        if #available(iOS 18, *), let navigationController {
+            // Pushing instead of presenting on iOS 18 makes sure it shows navigation
+            // and toolbar by default. On iOS 18 this still enables the swipe down to dismiss
+            // gesture and it still animates using previewController(_:transitionViewFor:).
+            // Note: Do not return `.disabled` in `previewController(_:editingModeFor:)` as this
+            // causes a visual glitch in the navigation bar when pushing.
+            navigationController.pushViewController(previewController, animated: animated)
+            completion?()
+        } else {
+            // QLPreviewController can not be used as child because it would not do its custom transitions
+            previewController.returnFirstRespondersOnDismiss()
+            present(previewController as UIViewController, animated: true, completion: completion)
+            previewController.setEditing(true, animated: true)
+        }
     }
 
     /// In iOS 16 and below and iOS 18 the UIImagePickerController does not give back the first responder when search was used.
