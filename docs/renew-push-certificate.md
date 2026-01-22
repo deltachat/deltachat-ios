@@ -27,11 +27,10 @@ These are the steps needed for renewal:
 ## 3. convert to `.p12` [^1]
 
 - create `certificates/YEAR-push-renew-NUMBER/password.txt` containing nothing but a suffciently secure password
-- double click downloaded `aps.cer` file, this opens again the app "KeyChain Access"
-  (if that is not working, open "KeyChain Access", select "login" keychain and then "File / Import Item" and select `aps.cer`)
-- select "Certificates" and then expand the new item (the new one is usally the one expiration date most far in the future)
-- select **both**, "certificate" and "private key" (but not "public key")
-- right click, "Export 2 items"
+- in "Keychain Access", select "login" keychain, "Certificates" tab, then "File / Import Items" and select `aps.cer` (double click may work as well)
+- expand the new item (the new one is usally the one expiration date most far in the future)
+- select "delta-apns"
+- right click, "Export delta-apns"
 - save locally as `certificates/YEAR-push-renew-NUMBER/Certificates.p12`,
   you'll be prompted for a password, enter the one from `password.txt`
 
