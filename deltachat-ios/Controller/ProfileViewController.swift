@@ -20,7 +20,6 @@ class ProfileViewController: UITableViewController {
 
     enum Actions {
         case verifiedBy
-        case addr
     }
 
     enum ManageMembersActions {
@@ -45,7 +44,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast)
+        let isBlocked = contact?.isBlocked ?? false
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked)
         header.onAvatarTap = showEnlargedAvatar
         header.setRecentlySeen(contact?.wasSeenRecently ?? false)
         return header
@@ -77,19 +77,6 @@ class ProfileViewController: UITableViewController {
             }
             cell.textLabel?.text = verifiedInfo
         }
-        return cell
-    }()
-
-    private lazy var addrCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.imageView?.image = UIImage(systemName: "server.rack")
-        if let contact {
-            cell.textLabel?.text = contact.email
-        } else if isMailinglist, let chat {
-            cell.textLabel?.text = chat.getMailinglistAddr()
-        }
-        let copyContactGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(ProfileViewController.showCopyToClipboard))
-        cell.addGestureRecognizer(copyContactGestureRecognizer)
         return cell
     }()
 
@@ -258,12 +245,6 @@ class ProfileViewController: UITableViewController {
             actions.append(.verifiedBy)
         }
 
-        if contact != nil && !isSavedMessages && !isDeviceChat {
-            actions.append(.addr)
-        } else if let chat, isMailinglist, !chat.getMailinglistAddr().isEmpty {
-            actions.append(.addr)
-        }
-
         options.append(.media) // add unconditionally, to have a visual anchor
 
         if let chat {
@@ -384,8 +365,8 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateHeader() {
+        let subtitle: String?
         if let chat {
-            let subtitle: String?
             if isOutBroadcast {
                 subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds(dcContext).count)
             } else if isGroup {
@@ -396,6 +377,10 @@ class ProfileViewController: UITableViewController {
                     // do not show misleading "1 member" in case securejoin has not finished
                     subtitle = nil
                 }
+            } else if isMailinglist {
+                subtitle = chat.getMailinglistAddr()
+            } else if let contact, contact.isBlocked {
+                subtitle = String.localized("contact_blocked")
             } else {
                 subtitle = nil
             }
@@ -407,7 +392,13 @@ class ProfileViewController: UITableViewController {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
         } else if let contact {
-            headerCell.updateDetails(title: contact.displayName)
+            if contact.isBlocked {
+                subtitle = String.localized("contact_blocked")
+            } else {
+                subtitle = nil
+            }
+
+            headerCell.updateDetails(title: contact.displayName, subtitle: subtitle)
             if let img = contact.profileImage {
                 headerCell.setImage(img)
             } else {
@@ -488,21 +479,6 @@ class ProfileViewController: UITableViewController {
                 previewController.customTitle = contact.displayName
                 navigationController?.pushViewController(previewController, animated: true)
             }
-        }
-    }
-
-    @objc private func showCopyToClipboard() {
-        UIMenuController.shared.menuItems = [
-            UIMenuItem(title: String.localized("menu_copy_to_clipboard"), action: #selector(ProfileViewController.copyToClipboard))
-        ]
-        UIMenuController.shared.showMenu(from: addrCell.textLabel ?? addrCell, rect: addrCell.textLabel?.frame ?? addrCell.frame)
-    }
-
-    @objc private func copyToClipboard() {
-        if let chat, isMailinglist {
-            UIPasteboard.general.string = chat.getMailinglistAddr()
-        } else if let contact {
-            UIPasteboard.general.string = contact.email
         }
     }
 
@@ -762,8 +738,6 @@ class ProfileViewController: UITableViewController {
             switch actions[indexPath.row] {
             case .verifiedBy:
                 return verifiedByCell
-            case .addr:
-                return addrCell
             }
         }
     }
@@ -808,8 +782,6 @@ class ProfileViewController: UITableViewController {
                 if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
                     showContactDetail(of: verifierId)
                 }
-            case .addr:
-                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }
