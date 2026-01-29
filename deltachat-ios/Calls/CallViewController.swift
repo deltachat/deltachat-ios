@@ -244,7 +244,7 @@ class CallViewController: UIViewController {
         let audioSource = factory.audioSource(with: RTCMediaConstraints.default)
         let audioTrack = factory.audioTrack(with: audioSource, trackId: "localAudioTrack")
         localAudioTrack = audioTrack
-        peerConnection?.add(audioTrack, streamIds: ["localAudioStream"])
+        peerConnection?.add(audioTrack, streamIds: ["localStream"])
 
         // Local video
         let videoSource = factory.videoSource()
