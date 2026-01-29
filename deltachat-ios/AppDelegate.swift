@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
-    var callManager: CallManager!
+    var callManager: CallManager?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
@@ -125,12 +125,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 dcContext.setConfig("delete_server_after", nil) // reset - let core decide based on bcc_self aka "Multi-Transport Mode"
             }
             // /migration 2025-11-28
-
-            // migration 2026-01-29: the option was removed for chatmail in #2654 which was released in v1.58.1 (2025-04) but users who changed it before that release can not add new relays now without this migration
-            if dcContext.isChatmail, dcContext.showEmails != DC_SHOW_EMAILS_ALL {
-                dcContext.showEmails = Int(DC_SHOW_EMAILS_ALL)
-            }
-            // /migration 2026-01-29
         }
 
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
@@ -312,8 +306,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        if callManager.isCalling() {
-            callManager.endCallControllerAndHideUI()
+        if callManager?.isCalling() == true {
+            callManager?.endCallControllerAndHideUI()
             // We need to block here because otherwise the io will stop
             // before letting the other participant know the call ended.
             // Our implementation of the applicationWillTerminate method
@@ -701,8 +695,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SELF_DELETED_MSG_BODY, localizationKey: "devicemsg_self_deleted")
         dcContext.setStockTranslation(id: DC_STR_FORWARDED, localizationKey: "forwarded")
         dcContext.setStockTranslation(id: DC_STR_QUOTA_EXCEEDING_MSG_BODY, localizationKey: "devicemsg_storage_exceeding")
+        dcContext.setStockTranslation(id: DC_STR_PARTIAL_DOWNLOAD_MSG_BODY, localizationKey: "n_bytes_message")
+        dcContext.setStockTranslation(id: DC_STR_DOWNLOAD_AVAILABILITY, localizationKey: "download_max_available_until")
         dcContext.setStockTranslation(id: DC_STR_INCOMING_MESSAGES, localizationKey: "incoming_messages")
         dcContext.setStockTranslation(id: DC_STR_OUTGOING_MESSAGES, localizationKey: "outgoing_messages")
+//        dcContext.setStockTranslation(id: DC_STR_STORAGE_ON_DOMAIN, localizationKey: "storage_on_domain")
         dcContext.setStockTranslation(id: DC_STR_CONNECTED, localizationKey: "connectivity_connected")
         dcContext.setStockTranslation(id: DC_STR_CONNTECTING, localizationKey: "connectivity_connecting")
         dcContext.setStockTranslation(id: DC_STR_UPDATING, localizationKey: "connectivity_updating")
