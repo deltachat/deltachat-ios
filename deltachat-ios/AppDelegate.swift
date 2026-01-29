@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
-    var callManager: CallManager!
+    var callManager: CallManager?
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
@@ -306,8 +306,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
-        if callManager.isCalling() {
-            callManager.endCallControllerAndHideUI()
+        if callManager?.isCalling() == true {
+            callManager?.endCallControllerAndHideUI()
             // We need to block here because otherwise the io will stop
             // before letting the other participant know the call ended.
             // Our implementation of the applicationWillTerminate method
@@ -699,7 +699,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DOWNLOAD_AVAILABILITY, localizationKey: "download_max_available_until")
         dcContext.setStockTranslation(id: DC_STR_INCOMING_MESSAGES, localizationKey: "incoming_messages")
         dcContext.setStockTranslation(id: DC_STR_OUTGOING_MESSAGES, localizationKey: "outgoing_messages")
-        dcContext.setStockTranslation(id: DC_STR_STORAGE_ON_DOMAIN, localizationKey: "storage_on_domain")
+//        dcContext.setStockTranslation(id: DC_STR_STORAGE_ON_DOMAIN, localizationKey: "storage_on_domain")
         dcContext.setStockTranslation(id: DC_STR_CONNECTED, localizationKey: "connectivity_connected")
         dcContext.setStockTranslation(id: DC_STR_CONNTECTING, localizationKey: "connectivity_connecting")
         dcContext.setStockTranslation(id: DC_STR_UPDATING, localizationKey: "connectivity_updating")
