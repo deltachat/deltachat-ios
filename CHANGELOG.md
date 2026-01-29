@@ -5,6 +5,7 @@
 - Truncate file names in the middle, not at the end; important information are more often at the end
 - More text instead of sender in channel summary
 - Fix: Improve QR codes handshake on special server configurations
+- Fix: Fixed case where daymarkers could show the wrong date
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
 - Fix: Allow iframe srcdoc in webxdc 
 - Update to core 2.37.0

@@ -127,6 +127,18 @@ public class DcContext {
         return ids
     }
 
+    public func getChatMsgsAndTimestamps(chatId: Int, flags: Int32) -> [(Int, TimeInterval)] {
+        let start = CFAbsoluteTimeGetCurrent()
+        let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(flags), 0)
+        let diff = CFAbsoluteTimeGetCurrent() - start
+        let timestamps = (0..<dc_array_get_cnt(cMessageIds)).map {
+            TimeInterval(dc_array_get_timestamp(cMessageIds, $0))
+        }
+        logger.info("⏰ getChatMsgsAndTimestamps: \(diff) s")
+        let ids = DcUtils.copyAndFreeArray(inputArray: cMessageIds)
+        return Array(zip(ids, timestamps))
+    }
+
     public func createContact(name: String?, email: String) -> Int {
         return Int(dc_create_contact(contextPointer, name, email))
     }
