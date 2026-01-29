@@ -107,13 +107,13 @@ public class DcAccounts {
                     } else {
                         dc_accounts_start_io(accountsPointer)
                         NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
-                        sendQueuedCallPayload()
+                        DispatchQueue.main.async(execute: sendQueuedCallPayload)
                     }
                 }
             }
         } else {
             dc_accounts_start_io(accountsPointer)
-            sendQueuedCallPayload()
+            DispatchQueue.main.async(execute: sendQueuedCallPayload)
         }
         /// Post incoming call event that was posted while the app was in background
         func sendQueuedCallPayload() {
