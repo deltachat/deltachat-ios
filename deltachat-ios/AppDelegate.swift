@@ -125,6 +125,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 dcContext.setConfig("delete_server_after", nil) // reset - let core decide based on bcc_self aka "Multi-Transport Mode"
             }
             // /migration 2025-11-28
+
+            // migration 2026-01-29: the option was removed for chatmail in #2654 which was released in v1.58.1 (2025-04) but users who changed it before that release can not add new relays now without this migration
+            if dcContext.isChatmail, dcContext.showEmails != DC_SHOW_EMAILS_ALL {
+                dcContext.showEmails = Int(DC_SHOW_EMAILS_ALL)
+            }
+            // /migration 2026-01-29
         }
 
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
