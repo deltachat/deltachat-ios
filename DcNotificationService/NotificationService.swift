@@ -125,6 +125,14 @@ class NotificationService: UNNotificationServiceExtension {
                         }
                     }
                 }
+            } else if event.id == DC_EVENT_MSGS_NOTICED {
+                let noticedThreadId = "\(event.accountId)-\(event.data1Int)"
+                notifications = notifications.filter { $0.threadIdentifier != noticedThreadId }
+                let nc = UNUserNotificationCenter.current()
+                let deliveredNotificationIds = await nc.deliveredNotifications()
+                    .filter { $0.request.content.threadIdentifier == noticedThreadId }
+                    .map { $0.request.identifier }
+                nc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
             }
         }
 
