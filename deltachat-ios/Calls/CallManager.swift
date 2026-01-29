@@ -2,8 +2,6 @@ import CallKit
 import UserNotifications
 import DcCore
 
-let canVideoCalls = true
-
 enum CallDirection {
     case incoming
     case outgoing
@@ -43,7 +41,7 @@ class CallManager: NSObject {
     override init() {
         voIPPushManager = VoIPPushManager()
         let configuration = CXProviderConfiguration()
-        configuration.supportsVideo = canVideoCalls
+        configuration.supportsVideo = true
         configuration.maximumCallsPerCallGroup = 1
         configuration.supportedHandleTypes = [.generic]
         provider = CXProvider(configuration: configuration)
@@ -71,7 +69,7 @@ class CallManager: NSObject {
             let nameToDisplay = dcChat.name
             let handle = CXHandle(type: .generic, value: nameToDisplay)
             let startCallAction = CXStartCallAction(call: uuid, handle: handle)
-            startCallAction.isVideo = canVideoCalls
+            startCallAction.isVideo = hasVideoInitially
 
             let transaction = CXTransaction(action: startCallAction)
             callController.request(transaction) { [currentCall] error in
@@ -128,7 +126,7 @@ class CallManager: NSObject {
             update.supportsGrouping = false
             update.supportsUngrouping = false
             update.supportsDTMF = false
-            update.hasVideo = canVideoCalls
+            update.hasVideo = hasVideo
 
             provider.reportNewIncomingCall(with: uuid, update: update) { error in
                 if let error {
