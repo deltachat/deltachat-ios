@@ -6,7 +6,6 @@ import WebRTC
 // TODO: Minimize call to PiP when app is opened from a deeplink (or from a notification)
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic when muted
-// TODO: Integrate with CallKit again
 // FIXME: Still doesn't always work when in background
 
 class CallViewController: UIViewController {
