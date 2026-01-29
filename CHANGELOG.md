@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Notifications are now removed when you open their respective chat on a different device
 - Truncate file names in the middle, not at the end; important information are more often at the end
 - More text instead of sender in channel summary
 - Stop showing addresses of no worth in primary profile; they stay available at "Encryption Info"
