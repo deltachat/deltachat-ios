@@ -9,6 +9,7 @@
 - Fix: Fixed case where daymarkers could show the wrong date
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
 - Fix: Allow iframe srcdoc in webxdc 
+- Fix: Reset a previously removed setting that prevented adding new relays
 - Update to core 2.37.0
 
 
