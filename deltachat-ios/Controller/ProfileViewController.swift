@@ -804,7 +804,7 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let chat else { return nil }
         if chat.canSend && chat.isEncrypted && sections[indexPath.section] == .members && !isMemberManagementRow(row: indexPath.row) && getMemberIdFor(indexPath.row) != DC_CONTACT_ID_SELF {
-            let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 let otherContact = dcContext.getContact(id: getMemberIdFor(indexPath.row))
                 let title = String.localizedStringWithFormat(String.localized(isOutBroadcast ? "ask_remove_from_channel" : "ask_remove_members"), otherContact.displayName)
@@ -819,8 +819,7 @@ class ProfileViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
-            deleteAction.accessibilityLabel = String.localized("remove_desktop")
-            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("remove_desktop"))
+            deleteAction.image = UIImage(systemName: "trash")
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         return nil

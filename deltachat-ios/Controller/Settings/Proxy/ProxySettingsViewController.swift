@@ -292,14 +292,14 @@ extension ProxySettingsViewController {
             indexPath.section == ProxySettingsSection.proxies.rawValue
         else { return nil }
 
-        let shareAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+        let shareAction = UIContextualAction(style: .destructive, title: String.localized("menu_share")) { [weak self] _, _, completion in
             DispatchQueue.main.async {
                 self?.shareProxy(at: indexPath)
                 completion(true)
             }
         }
         shareAction.backgroundColor = .systemGreen
-        shareAction.image = Utils.makeImageWithText(image: UIImage(systemName: "square.and.arrow.up"), text: String.localized("menu_share"))
+        shareAction.image = UIImage(systemName: "square.and.arrow.up")
 
         let configuration = UISwipeActionsConfiguration(actions: [shareAction])
         configuration.performsFirstActionWithFullSwipe = true
@@ -314,15 +314,14 @@ extension ProxySettingsViewController {
             indexPath.section == ProxySettingsSection.proxies.rawValue
         else { return nil }
 
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completion in
             DispatchQueue.main.async {
                 self?.deleteProxy(at: indexPath)
                 completion(true)
             }
         }
         deleteAction.backgroundColor = .systemRed
-        deleteAction.accessibilityLabel = String.localized("delete")
-        deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+        deleteAction.image = UIImage(systemName: "trash")
 
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         configuration.performsFirstActionWithFullSwipe = true

@@ -140,19 +140,18 @@ extension TransportListViewController {
         var actions: [UIContextualAction] = []
 
         if !transport.isDefault(dcContext) {
-            let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completion in
                 DispatchQueue.main.async {
                     self?.deleteTransport(at: indexPath)
                     completion(true)
                 }
             }
             deleteAction.backgroundColor = .systemRed
-            deleteAction.accessibilityLabel = String.localized("delete")
-            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+            deleteAction.image = UIImage(systemName: "trash")
             actions.append(deleteAction)
         }
 
-        let editAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completion in
+        let editAction = UIContextualAction(style: .destructive, title: String.localized("global_menu_edit_desktop")) { [weak self] _, _, completion in
             DispatchQueue.main.async {
                 self?.editTransport(at: indexPath)
                 completion(true)
@@ -160,7 +159,7 @@ extension TransportListViewController {
         }
         editAction.backgroundColor = .lightGray
         editAction.accessibilityLabel = String.localized("edit_transport")
-        editAction.image = Utils.makeImageWithText(image: UIImage(systemName: "pencil"), text: String.localized("global_menu_edit_desktop"))
+        editAction.image = UIImage(systemName: "pencil")
         actions.append(editAction)
 
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
