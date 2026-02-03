@@ -208,7 +208,7 @@ class NewChatViewController: UITableViewController {
         if indexPath.section == sectionContacts {
             let contactId = contactIdByRow(indexPath.row)
 
-            let profileAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
+            let profileAction = UIContextualAction(style: .normal, title: String.localized("profile")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 if self.searchController.isActive {
                     self.searchController.dismiss(animated: false) {
@@ -219,18 +219,16 @@ class NewChatViewController: UITableViewController {
                 }
                 completionHandler(true)
             }
-            profileAction.accessibilityLabel = String.localized("profile")
             profileAction.backgroundColor = UIColor.systemBlue
-            profileAction.image = Utils.makeImageWithText(image: UIImage(systemName: "person.crop.circle"), text: String.localized("profile"))
+            profileAction.image = UIImage(systemName: "person.crop.circle")
 
-            let deleteAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completionHandler in
                 guard let self else { return }
                 self.askToDeleteContact(contactId: contactIdByRow(indexPath.row), indexPath: indexPath) {
                     completionHandler(true)
                 }
             }
-            deleteAction.accessibilityLabel = String.localized("delete")
-            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+            deleteAction.image = UIImage(systemName: "trash")
 
             return UISwipeActionsConfiguration(actions: [profileAction, deleteAction])
         } else {

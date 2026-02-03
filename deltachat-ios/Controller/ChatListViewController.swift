@@ -527,24 +527,22 @@ class ChatListViewController: UITableViewController {
 
         let pinned = chat.visibility==DC_CHAT_VISIBILITY_PINNED
         let pinTitle = String.localized(pinned ? "unpin" : "pin")
-        let pinAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
+        let pinAction = UIContextualAction(style: .destructive, title: pinTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.pinChatToggle(chatId: chat.id)
             self?.setEditing(false, animated: true)
             completionHandler(true)
         }
-        pinAction.accessibilityLabel = pinTitle
         pinAction.backgroundColor = UIColor.systemGreen
-        pinAction.image = Utils.makeImageWithText(image: UIImage(systemName: pinned ? "pin.slash" : "pin"), text: pinTitle)
+        pinAction.image = UIImage(systemName: pinned ? "pin.slash" : "pin")
 
         if dcContext.getUnreadMessages(chatId: chatId) > 0 {
-            let markReadAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
+            let markReadAction = UIContextualAction(style: .destructive, title: String.localized("mark_as_read_short")) { [weak self] _, _, completionHandler in
                 self?.dcContext.marknoticedChat(chatId: chatId)
                 completionHandler(true)
             }
-            markReadAction.accessibilityLabel = String.localized("mark_as_read_short")
             markReadAction.backgroundColor = UIColor.systemBlue
             let imageName = if #available(iOS 16, *) { "checkmark.message" } else { "checkmark.circle" }
-            markReadAction.image = Utils.makeImageWithText(image: UIImage(systemName: imageName), text: String.localized("mark_as_read_short"))
+            markReadAction.image = UIImage(systemName: imageName)
 
             return UISwipeActionsConfiguration(actions: [markReadAction, pinAction])
         } else {
@@ -564,17 +562,16 @@ class ChatListViewController: UITableViewController {
 
         let archived = chat.isArchived
         let archiveTitle: String = String.localized(archived ? "unarchive" : "archive")
-        let archiveAction = UIContextualAction(style: .destructive, title: nil) { [weak self] _, _, completionHandler in
+        let archiveAction = UIContextualAction(style: .destructive, title: archiveTitle) { [weak self] _, _, completionHandler in
             self?.viewModel?.archiveChatToggle(chatId: chatId)
             self?.setEditing(false, animated: true)
             completionHandler(true)
         }
-        archiveAction.accessibilityLabel = archiveTitle
         archiveAction.backgroundColor = UIColor.lightGray
-        archiveAction.image = Utils.makeImageWithText(image: UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down"), text: archiveTitle)
+        archiveAction.image = UIImage(systemName: archived ? "tray.and.arrow.up" : "tray.and.arrow.down")
 
         let muteTitle = String.localized(chat.isMuted ? "menu_unmute" : "mute")
-        let muteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
+        let muteAction = UIContextualAction(style: .normal, title: muteTitle) { [weak self] _, _, completionHandler in
             guard let self else { return }
             if chat.isMuted {
                 dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
@@ -587,21 +584,19 @@ class ChatListViewController: UITableViewController {
                 }
             }
         }
-        muteAction.accessibilityLabel = muteTitle
         muteAction.backgroundColor = UIColor.systemOrange
-        muteAction.image = Utils.makeImageWithText(image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"), text: muteTitle)
+        muteAction.image = UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash")
 
         if viewModel.isMessageSearchResult(indexPath: indexPath) {
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
         } else {
-            let deleteAction = UIContextualAction(style: .normal, title: nil) { [weak self] _, _, completionHandler in
+            let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
                 self?.showDeleteChatConfirmationAlert(chatId: chatId) {
                     completionHandler(true)
                 }
             }
-            deleteAction.accessibilityLabel = String.localized("delete")
             deleteAction.backgroundColor = UIColor.systemRed
-            deleteAction.image = Utils.makeImageWithText(image: UIImage(systemName: "trash"), text: String.localized("delete"))
+            deleteAction.image = UIImage(systemName: "trash")
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction, deleteAction])
         }
     }

@@ -56,39 +56,6 @@ struct Utils {
         return window?.safeAreaInsets.bottom ?? 0
     }
 
-    // Puts text below the given image and returns as a new image.
-    // The result is ready to be used with `UIContextualAction.image` -
-    // which shows the title otherwise only for large heightForRowAt (>= 91 in experiments).
-    // If you add an text to an image that way, set `UIContextualAction.title` to `nil` to be safe for cornercases - or if apple changes things -
-    // otherwise, one would see the title twice *drunk* :)
-    static func makeImageWithText(image: UIImage?, text: String) -> UIImage? {
-        guard let image = image?.withTintColor(UIColor.white) else { return nil }
-
-        let maxLen = 11
-        let shortText: String
-        if text.count > maxLen {
-            shortText = text.substring(0, maxLen - 1).trimmingCharacters(in: .whitespacesAndNewlines) + "…"
-        } else {
-            shortText = text
-        }
-
-        let spacing: CGFloat = 4
-        let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 14), .foregroundColor: UIColor.white]
-
-        let textSize = shortText.size(withAttributes: textAttributes)
-        let width = max(image.size.width, textSize.width)
-        let height = image.size.height + spacing + textSize.height
-
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
-        return renderer.image { _ in
-            let imageOrigin = CGPoint(x: (renderer.format.bounds.width - image.size.width) / 2, y: 0)
-            image.draw(at: imageOrigin)
-
-            let textOrigin = CGPoint(x: (renderer.format.bounds.width - textSize.width) / 2, y: image.size.height + spacing)
-            shortText.draw(at: textOrigin, withAttributes: textAttributes)
-        }
-    }
-
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         return context.getSecurejoinQr(chatId: chatId)
     }
