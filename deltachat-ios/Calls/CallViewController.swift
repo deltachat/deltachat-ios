@@ -289,6 +289,7 @@ class CallViewController: UIViewController {
     }
 
     func shareMutedState() {
+        guard mutedStateDataChannel?.readyState == .open else { return }
         _ = try? mutedStateDataChannel?.sendData(.init(data: JSONEncoder().encode(MutedState(
             audioEnabled: toggleMicrophoneButton.toggleState,
             videoEnabled: toggleVideoButton.toggleState
