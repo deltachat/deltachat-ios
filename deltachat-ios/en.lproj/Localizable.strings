@@ -974,8 +974,8 @@
 "name_desktop" = "Name";
 "select_group_image_desktop" = "Select Group Image";
 "export_backup_desktop" = "Export Backup";
-"message_detail_sent_desktop" = "sent";
-"message_detail_received_desktop" = "received";
+"message_detail_sent_desktop" = "Sent";
+"message_detail_received_desktop" = "Received";
 "menu.view.developer.open.log.folder" = "Open the Log Folder";
 "menu.view.developer.open.current.log.file" = "Open Current Logfile";
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";

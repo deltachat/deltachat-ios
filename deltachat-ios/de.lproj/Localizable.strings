@@ -974,8 +974,8 @@
 "name_desktop" = "Name";
 "select_group_image_desktop" = "Gruppenbild auswählen";
 "export_backup_desktop" = "Backup exportieren";
-"message_detail_sent_desktop" = "gesendet";
-"message_detail_received_desktop" = "empfangen";
+"message_detail_sent_desktop" = "Gesendet";
+"message_detail_received_desktop" = "Empfangen";
 "menu.view.developer.open.log.folder" = "Log-Ordner öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 "explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";

@@ -141,6 +141,7 @@
 "video" = "Vidéo";
 "documents" = "Documents";
 "contact" = "Contact";
+"bot" = "Robot";
 "camera" = "Caméra";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Enregistrer";
@@ -160,6 +161,8 @@
 "webxdc_app" = "Appli";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Applis";
+"webxdc_store_url" = "URL du catalogue des apps ";
+"webxdc_store_url_explain" = "Si elle est définit l\'URL sera utilisée à la place de l\'URL par défaut.";
 "webxdc_draft_hint" = "Appuyez \"Envoyer\" pour partager";
 "home" = "Accueil";
 "games" = "Jeux";
@@ -288,7 +291,7 @@
 "device_talk" = "Messages de l\'appareil";
 "device_talk_subtitle" = "Messages générés localement";
 "device_talk_explain" = "Les messages dans cette discussion sont générés localement par votre application Delta Chat. Cela vous permet de recevoir des informations concernant les mises à jour et problèmes rencontrés à l\'utilisation.";
-"device_talk_welcome_message2" = "Gardez contact !\n\n🙌 Cliquez sur « code QR » sur la page d\'accueil des deux appareils. Sélectionnez « Scanner le code QR » sur un des appareils et positionnez les deux appareils l\'un vers l\'autre\n\n🌍 Si vous n\'êtes pas dans la même pièce, vous pouvez scanner le code QR pendant un appel vidéo ou partager un lien d\'invitation à partir de « Scanner le code QR »\n\n Profitez ensuite de votre expérience de messagerie sur le plus grand réseau décentralisé du monde : les emails. Contrairement aux autres applications populaires, tout cela se fait sans contrôle centralisé, suivi ou revente de vos données, celles de vos amis, collègues ou famille à de grandes entreprises.";
+"device_talk_welcome_message2" = "Entrez en contact !\n\n🙌 Cliquez sur « code QR » sur la page d\'accueil des deux appareils. Sélectionnez « Scanner le code QR » sur un des appareils et positionnez les deux appareils l\'un vers l\'autre\n\n🌍 Si vous n\'êtes pas dans la même pièce, vous pouvez scanner le code QR pendant un appel vidéo ou partager un lien d\'invitation à partir de « Scanner le code QR »\n\n Profitez ensuite de votre expérience de messagerie sur le plus grand réseau décentralisé du monde : les emails. Contrairement aux autres applications populaires, tout cela se fait sans contrôle centralisé, suivi ou revente de vos données, celles de vos amis, collègues ou famille à de grandes entreprises.";
 "edit_contact" = "Mettre à jour le contact";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Épingler la discussion";
@@ -304,7 +307,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ajouter à l\'écran d\'accueil";
 "donate" = "Faire un don";
-"donate_device_msg" = "❤️ On dirait que vous aimez bien Delta Chat!\n\nMerci de considérer une donation à Delta Chat afin d\'assurer qu\'il reste libre et gratuit pour tout le monde.\n\nBien que Delta Chat est gratuit à l\'utilisation et un logiciel libre, le développer coûte de l\'argent. Aidez-nous à garder Delta Chat indépendent et le rendre encore plus incroyable dans le future.\n\nhttps://delta.chat/donate";
+"donate_device_msg" = "❤️ On dirait que vous aimez bien Delta Chat!\n\nMerci de considérer une donation à Delta Chat afin d\'assurer qu\'il reste libre et gratuit pour tout le monde.\n\nBien que Delta Chat soit gratuit à l\'utilisation et un logiciel libre, le développer coûte de l\'argent. Aidez-nous à garder Delta Chat indépendant et le rendre encore plus incroyable dans le futur.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Désactiver pour 1 heure";
 "mute_for_eight_hours" = "Désactiver pour 8 heures";
 "mute_for_one_day" = "Désactiver pour 1 jour";
@@ -327,6 +330,8 @@
 "declined_call" = "Appel rejeté";
 "canceled_call" = "Appel annulé";
 "missed_call" = "Appel manqué";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Êtes-vous sûr de vouloir quitter la discussion ?";
@@ -366,6 +371,7 @@
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archivé";
 "chat_request_label" = "Invitation";
+"chat_request_label_explain" = "Inclure les messages d\'invitations dans les compteurs et notifications";
 "chat_no_messages" = "Aucun message.";
 "chat_self_talk_subtitle" = "Messages envoyés à moi-même";
 "archive_empty_hint" = "Les discussions archivées apparaîtront ici.";
@@ -542,7 +548,7 @@
 "proxy_add_url_hint" = "Entrer le lien du proxy ici";
 "proxy_invalid" = "Proxy invalide ou non supporté";
 "proxy_list_header" = "Sauver les proxy";
-"proxy_delete" = "Effacer le proxy";
+"proxy_delete" = "Supprimer le proxy";
 "proxy_delete_explain" = "Voulez-vous vraiment supprimer « %1$@ » ?";
 "proxy_use_proxy_confirm" = "Voulez-vous utilser le proxy \"%1$@\" ?";
 "proxy_share_explain" = "Vos amis peuvent ajouter ce proxy en scannant le code QR.";
@@ -556,6 +562,9 @@
 "edit_transport" = "Modifier le relais";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
+"invalid_transport_qr" = "Le QR code scanné ne renvoie pas vers un relai valide.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_transport" = "Supprimer le relai \"%1$@\"\n\nVos contacts ne peuvent vous contacter que si vous les avez déjà contactés depuis un autre relai.\n\nDans le doute, supprimez le relai plus tard.";
 "login_certificate_checks" = "Vérification du certificat";
 "login_error_mail" = "Entrez une adresse email valide";
 "login_error_server" = "Entre un serveur / adresse IP valide";
@@ -824,7 +833,7 @@
 "ephemeral_timer_weeks_by_you" = "Vous avez réglé le temps d\'affichage des messages éphémères à %1$@ semaines.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Minuterie des messages éphémères réglée à %1$@ semaines par %2$@.";
-"chat_unencrypted_explanation" = "Les messages de cette conversation utilise le mail classique et ne sont pas chiffrés de bout-en-bout.";
+"chat_unencrypted_explanation" = "Les messages de cette conversation utilisent le mail classique et ne sont pas chiffrés de bout-en-bout.";
 "chat_protection_enabled_tap_to_learn_more" = "Les messages sont désormais garantis chiffrés de bout en bout. Appuyer pour en savoir plus.";
 "chat_protection_enabled_explanation" = "Il n\'est pas garanti que tous les messages de cette discussion sont chiffrés de bout en bout.\n\nLe chiffrement de bout en bout assure la confidentialité des messages échangés par les membres d\'une discussion. Même votre fournisseur de courriel ne peut pas les lire. ";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ nécessite un chiffrement de bout en bout qui n\'est pas encore configuré sur cette discussion. Appuyez pour en savoir plus.";
@@ -871,7 +880,7 @@
 "qrshow_join_contact_hint" = "Scanner pour discuter avec %1$@";
 "qrshow_join_contact_no_connection_toast" = "Pas de connexion Internet, ne peut pas effectuer la configuration du QR code.";
 "qraccount_ask_create_and_login" = "Créer une nouvelle adresse de courriel sur « %1$@ » et se connecter ici ?";
-"set_name_and_avatar_explain" = "Choisissez un nom que vos contacts reconnaîtrons. Vous pouvez également définir une image pour votre profile.";
+"set_name_and_avatar_explain" = "Choisissez un nom que vos contacts reconnaîtront. Vous pouvez également définir une image pour votre profil.";
 "please_enter_name" = "Veuillez saisir un nom.";
 "qraccount_qr_code_cannot_be_used" = "Le code QR scanné ne peut pas être utilisé pour ouvrir un nouveau compte.";
 // the placeholder will be replaced by the address of the profile
@@ -884,6 +893,7 @@
 "secure_join_replies" = "%1$@ a répondu, en attente d’être ajouté au groupe…";
 "secure_join_wait" = "Chiffrement de bout en bout en cours d\'établissement, merci de patienter...";
 "contact_verified" = "%1$@ connu.";
+"contact_blocked" = "Vous avez bloqué le contact";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Connu par %1$@";
 "verified_by_you" = "Connu par vous";
@@ -1012,18 +1022,27 @@
 "notifications_avg_hours" = "Toutes les %1$d heures en moyenne";
 "last_check_at" = "Dernièrement vu à %1$@";
 "system_settings" = "Paramètres du système";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Éditer le type, les badges, les prévisualisation et plus encore.";
 // iOS shortcut widget
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "Raccourcis";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Utiliser la fonction \"Ajouter au Widget\" de Delta Chat pour ajouter un élément.";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Retirer du Widget";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Ajouter au Widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Envoi Immédiat";
 "pref_background_notifications" = "Utiliser une connexion en arrière plan";
 "pref_background_notifications_explain" = "Requiert la désactivation des optimisations de battterie, utilisez cette option si les notifications sont en retard.";
 "pref_reliable_service" = "Forcer une connexion en arrière plan";
+"pref_reliable_service_explain" = "Entraîne une notification permanente.";
 "pref_background_notifications_rationale" = "Pour maintenir une connexion à votre serveur de courriel et recevoir les messages en arrière-plan, ignorez l\'optimisation de la batterie à l\'étape suivante.\n\nDelta Chat utilise peu de ressources et prend garde à ne pas vider votre batterie.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Touchez ici pour recevoir des messages pendant que DeltaChat est en arrière-plan.";
 "perm_enable_bg_already_done" = "Vous avez déjà autorisé Delta Chat à recevoir des messages en arrière plan.\n\nSi vous ne les recevez toujours pas en arrière plan, vérifiez les paramètres de votre système.";
 // device messages for updates
-"update_2_0" = "Quoi de neuf?\n\n💯 Le chiffrement de bout-en-bout est maintenant fiable et péreint. 🔒Fini les cadenas !\n\n✉️ Les mails sans chiffrement de bout-en-bout sont maintenant marqués par une icône de mail \n\n😻 Nouvelle fenêtre de profil améliorée pour tous les contactsn\n🔲 Un nouveau button pour l\'accès rapide aux applis utilisés dans une discussion\n\n❤️ Merci de considérer à faire une donation afin que nous restions indépendents et continuons à améliorer Delta Chat: %1$@";
+"update_2_0" = "Quoi de neuf?\n\n💯 Le chiffrement de bout-en-bout est maintenant fiable et pérenne. 🔒Fini les cadenas !\n\n✉️ Les mails sans chiffrement de bout-en-bout sont maintenant marqués par une icône de mail \n\n😻 Nouvelle fenêtre de profil améliorée pour tous les contacts \n\n🔲 Nouveau bouton pour l\'accès rapide aux applis utilisées dans une discussion\n\n❤️ Merci d\'envisager de faire une donation afin que nous restions indépendants et continuions à améliorer Delta Chat: %1$@";

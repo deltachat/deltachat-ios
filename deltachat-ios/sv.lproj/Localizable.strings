@@ -3,6 +3,10 @@
 "ok" = "OK";
 "cancel" = "Avbryt";
 "clear_search" = "Rensa sök";
+// a noun, used on a button, short for "show link"
+"link" = "Länk";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skanna";
 "yes" = "Ja";
 "no" = "Nej";
 "select" = "Välj";
@@ -22,29 +26,40 @@
 "join" = "Anslut";
 "rejoin" = "Återanslut";
 "delete" = "Ta bort";
+"delete_for_me" = "Ta bort för mig";
+"delete_for_everyone" = "Ta bort för alla";
 "info" = "Info";
 "update" = "Uppdatera";
 "emoji" = "Emoji";
 "attachment" = "Bilaga";
+// the placeholder will be replaced by the name of the image or file to attach
+"ask_attach" = "Vill du bifoga \"%1$@\"?";
 "back" = "Tillbaka";
 "close" = "Stäng";
 "close_window" = "Stäng fönster";
 "forward" = "Vidarebefordra";
 "create" = "Skapa";
+"reset" = "Återställ";
 "later" = "Senare";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Skicka igen";
+"edited" = "Redigerad";
+"edit_message" = "Redigera meddelande";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arkivera";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Avarkivera";
 "mute" = "Tyst";
+"muted" = "Tystad";
 "ephemeral_messages" = "Försvinnande meddelanden";
 "ephemeral_messages_hint" = "Dessa inställningar tillämpas för alla deltagare som använder Delta Chat. De kan dock kopiera, spara och vidarebefordra meddelanden eller använda andra e-postklienter.";
 "save" = "Spara";
 "chat" = "Chatt";
 "media" = "Media";
+"apps_and_media" = "Appar & Media";
 "profile" = "Profil";
+"all_profiles" = "Alla profiler";
+"current_profile" = "Aktuell profil";
 "main_menu" = "Huvudmeny";
 "start_chat" = "Starta chatt";
 "show_full_message" = "Visa hela meddelandet...";
@@ -77,6 +92,8 @@
 "no_app_to_handle_data" = "Kan inte hitta någon app som hanterar denna typ av data.";
 "no_browser_installed" = "Ingen webbläsare installerad.";
 "file_not_found" = "Kunde inte hitta %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Kan inte spara %1$@.";
 "copied_to_clipboard" = "Kopierad till urklipp.";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadress";
@@ -97,9 +114,12 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Sågs senast %1$@";
 "last_seen_unknown" = "Sågs senast: Okänt";
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
+// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Markerat:";
 "self" = "Jag";
 "draft" = "Utkast";
 "image" = "Bild";
@@ -133,10 +153,25 @@
 "images_and_videos" = "Bilder och videor";
 "file" = "Arkiv";
 "files" = "Filer";
+"files_attach_hint" = "Skicka originalfiler och okomprimerade bilder";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Välj från Filer";
+"choose_from_gallery" = "Välj från Galleri";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Appar";
+"webxdc_store_url" = "URL till appväljare";
+"webxdc_store_url_explain" = "Om angivet, kommer URL:en att användas som appväljare istället för standardväljare";
+"webxdc_draft_hint" = "Tryck \"Skicka\" för att dela";
+"home" = "Hem";
+"games" = "Spel";
+"tools" = "Verktyg";
+"app_size" = "Storlek";
+"app_date_published" = "Publicerad";
+"add_to_chat" = "Lägg till i chatten";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Bläddra";
 "unknown" = "Okänd";
 "green" = "Grön";
 "red" = "Röd";
@@ -160,9 +195,24 @@
 "new_classic_contact_explain" = "Manuellt tillagda kontakter kan användas för att sms:a till klassisk e-post och är inte garanterat totalsträckskrypterat.";
 "menu_new_chat" = "Ny chatt";
 "menu_new_group" = "Ny grupp";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Chatta med...";
 "clone_chat" = "Klona chatt";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanaler";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Ny kanal";
 // deprecated
 "add_recipients" = "Lägg till mottagare";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanalnamn";
+"email" = "E-post";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Ny e-post";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Ämne";
 "menu_send" = "Skicka";
 "menu_toggle_keyboard" = "Byt emoji-tangentbord";
 "menu_edit_group" = "Redigera grupp";
@@ -172,6 +222,7 @@
 "menu_unarchive_chat" = "Avarkivera chatt";
 "menu_add_attachment" = "Lägg till bilaga";
 "menu_leave_group" = "Lämna grupp";
+"menu_leave_channel" = "Lämna kanalen";
 "menu_delete_chat" = "Ta bort chatt";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Rensa chatt";
@@ -180,6 +231,7 @@
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopiera till urklipp";
 "share_invite_link" = "Dela inbjudningslänk";
+"share_invite_link_explain" = "Vem som helst med den här länken kan se din profil och börja chatta med dig. Dela den bara med personer som du litar på.";
 "invite_friends" = "Bjud in vänner";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Kontakta mig på Delta Chat:\n%1$@";
@@ -197,6 +249,7 @@
 "menu_export_attachment" = "Exportera bilaga";
 "menu_export_attachments" = "Exportera bilaga";
 "menu_all_media" = "All media";
+"all_apps_and_media" = "Alla appar & media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Visa i chatten";
 "show_app_in_chat" = "Visa app i chatt";
@@ -218,6 +271,10 @@
 "select_chat" = "Välj chatt";
 "select_more" = "Välj flera";
 "menu_edit_name" = "Redigera namn";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Ange ett chattnamn som kommer att visas för dig istället för \"%1$@\". Lämnas tomt om du vill använda kontaktens valda namn.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Chattnamn för \"%1$@\"";
 "menu_settings" = "Inställningar";
 "menu_advanced" = "Avancerat";
 "menu_view_profile" = "Visa profil";
@@ -227,6 +284,7 @@
 "menu_more_options" = "Mer alternativ";
 "menu_learn_spelling" = "Lär stavning";
 "jump_to_message" = "Hoppa till meddelande";
+"jump_to_original_message" = "Hoppa till ursprungligt meddelande";
 "copy_json" = "Kopiera JSON";
 "replace_draft" = "Ersätt utkast";
 "title_share_location" = "Dela plats med alla gruppmedlemmar";
@@ -249,6 +307,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Lägg till på hemskärmen";
 "donate" = "Donera";
+"donate_device_msg" = "❤️ Det verkar som att du gillar Delta Chat!\n\nVänligen överväg att donera för att hjälpa till att säkerställa att Delta Chat förblir gratis för alla.\n\nÄven om Delta Chat är gratis att använda och öppen källkod, kostar utvecklingen pengar. Hjälp oss att hålla Delta Chat oberoende och göra det ännu bättre i framtiden.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Tysta 1 timma";
 "mute_for_eight_hours" = "Tysta 8 timmar";
 "mute_for_one_day" = "Tysta 1 dag";
@@ -260,6 +319,24 @@
 "share_location_for_two_hours" = "i 2 timmar";
 "share_location_for_six_hours" = "i 6 timmar";
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Ring upp";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Svara";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Avböj";
+"outgoing_call" = "Utgående samtal";
+"incoming_call" = "Inkommande samtal";
+"declined_call" = "Nekade samtal";
+"canceled_call" = "Avbrutna samtal";
+"missed_call" = "Missade samtal";
+// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
+"call_date_and_duration" = "%1$@, %2$@";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Vill du verkligen lämna?";
+"ask_delete_named_chat" = "Vill du ta bort chatten\"%1$@\"?";
+"ask_delete_message" = "Vill du ta bort detta meddelande?";
 "ask_forward" = "Vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
@@ -270,6 +347,8 @@
 "ask_start_chat_with" = "Chatta med %1$@ ?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Ta bort %1$@ från gruppen?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Vill du ta bort %1$@ från kanalen?";
 "open_url_confirmation" = "Vill du öppna denna länk?";
 // contact list
 "contacts_title" = "Kontakter";
@@ -281,6 +360,8 @@
 "chat_unable_to_record_audio" = "Det går inte att spela in ljud.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Skicka ett meddelande till %1$@.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanaler är ett en-till-många-verktyg för att skicka ut dina meddelanden.";
 "chat_new_group_hint" = "Komponera det första meddelandet, så att andra kan svara inom denna grupp.\n\n• Det är okej om inte alla medlemmar använder Delta Chat.\n\n• Det kan ta en stund innan det första meddelandet levereras.";
 "chat_record_slide_to_cancel" = "Svep för att avbryta";
 "chat_record_explain" = "Tryck och håll ner för att spela in ett röstmeddelande, släpp för att skicka.";
@@ -290,6 +371,7 @@
 "chat_input_placeholder" = "Meddelande";
 "chat_archived_label" = "Arkiverat";
 "chat_request_label" = "Efterfråga";
+"chat_request_label_explain" = "Inkludera förfrågningar i räknare och meddelanden";
 "chat_no_messages" = "Inga meddelanden.";
 "chat_self_talk_subtitle" = "Meddelanden jag skickat till mig själv";
 "archive_empty_hint" = "Arkiverde chattar kommer att visas här.";
@@ -316,6 +398,8 @@
 "send_file_to" = "Skicka \"%1$@\" till...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Skicka meddelande till...";
+"enable_realtime" = "Realtidsappar";
+"enable_realtime_explain" = "Aktivera realtidsanslutningar för appar som är kopplade till chattar. Om detta är aktiverat kan chattpartners kanske få reda på din IP-adress när du startar en app.";
 // map
 "filter_map_on_time" = "Visa platser inom tidsramen";
 "show_location_traces" = "Visa spår";
@@ -334,6 +418,8 @@
 "search_files" = "Sök filer";
 "search_explain" = "Sök efter chattar, kontakter och meddelanden";
 "search_no_result_for_x" = "Inga resultat hittades för \" %1$@ \"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Olästa";
 // create/edit groups, contact/group profile
 "group_name" = "Gruppnamn";
 "group_avatar" = "Gruppbild";
@@ -345,6 +431,8 @@
 "group_self_not_in_group" = "Du måste vara medlem i gruppen för att utföra denna åtgärd.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delade chattar";
+// Separator between the list of actual members and past members
+"past_members" = "Tidigare medlemmar";
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galleri";
@@ -358,6 +446,7 @@
 "tab_audio_empty_hint" = "Ljudfiler och röstmeddelanden delade i denna chatt kommer att visas här.";
 "tab_webxdc_empty_hint" = "Appar delade i denna chatt kommer att visas här.";
 "tab_all_media_empty_hint" = "Media delad i någon chatt kommer att visas här.";
+"all_files_empty_hint" = "Dokument och andra filer som bifogas en chatt visas här.";
 "all_apps_empty_hint" = "Appar som tas emot eller skickas i en chatt visas här.";
 "media_preview" = "Förhandsvisning av media";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
@@ -378,6 +467,7 @@
 "multidevice_receiver_title" = "Lägg till som andra enhet";
 "multidevice_open_settings_on_other_device" = "På den första enheten går du till \"Inställningar / Lägg till en andra enhet\" och skannar koden som visas där";
 "multidevice_receiver_scanning_ask" = "Vill du kopiera profilen från den andra enheten till den här enheten?";
+"multidevice_receiver_needs_update" = "Profilen du vill importera är från en nyare version av Delta Chat. \n\nFör att fortsätta konfigurera den andra enheten måste du uppdatera den här enheten till den senaste versionen av Delta Chat.";
 "multidevice_abort" = "Vill du avbryta konfigurationen av den andra enheten?";
 "multidevice_abort_will_invalidate_copied_qr" = "Detta kommer att ogiltigförklara QR-koden som kopierats till urklipp.";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilen överförd till din andra enhet.";
@@ -438,6 +528,7 @@
 "welcome_chat_over_email" = "Säker decentraliserad chatt";
 "scan_invitation_code" = "Skanna inbjudningskod";
 "login_title" = "Logga in";
+"login_advanced_hint" = "Denna inloggning är för avancerade användare:\n\n- Använd inte en adress som du använder i en annan app.\n\n- Klassisk e-postserver tillåter chattar utan totalsträckskryptering, markerad med en e-postikon.";
 "login_inbox" = "Inkorg";
 "login_imap_login" = "IMAP inloggningsnamn";
 "login_imap_server" = "IMAP server";
@@ -449,6 +540,18 @@
 "login_smtp_server" = "SMTP server";
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP säkerhet";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
+"proxy_settings" = "Proxy";
+"proxy_use_proxy" = "Använd proxy";
+"proxy_add" = "Lägg till proxy";
+"proxy_add_explain" = "Proxytyper som stöds: HTTP(S), SOCKS5 och Shadowsocks.";
+"proxy_add_url_hint" = "Ange proxylänk här";
+"proxy_invalid" = "Ogiltig proxy eller stöd saknas";
+"proxy_list_header" = "Sparade proxyer";
+"proxy_delete" = "Ta bort proxy";
+"proxy_delete_explain" = "Vill du verkligen ta bort \"%1$@\"?";
+"proxy_use_proxy_confirm" = "Vill du använda proxyn \"%1$@\"?";
+"proxy_share_explain" = "Dina vänner kan lägga till denna proxy genom att skanna QR-koden.";
 "login_certificate_checks" = "Certifikatkontroller";
 "login_error_mail" = "Ange en giltig e-postadress";
 "login_error_server" = "Ange en giltig server/IP-adress";

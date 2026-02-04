@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ ha risposto, in attesa di essere aggiunto al gruppo…";
 "secure_join_wait" = "Impostazione della crittografia end-to-end, attendere...";
 "contact_verified" = "%1$@ introdotto.";
+"contact_blocked" = "Hai bloccato il contatto";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introdotto da %1$@";
 "verified_by_you" = "Introdotto da me";
