@@ -9,6 +9,7 @@
 - More text instead of sender in channel summary
 - Stop showing addresses of no worth in primary profile; they stay available at "Encryption Info"
 - Add device message about legacy "Move to Delta Chat Folder"
+- Better experimental calls
 - Fix: Improve QR codes handshake on special server configurations
 - Fix: Fixed case where daymarkers could show the wrong date
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
