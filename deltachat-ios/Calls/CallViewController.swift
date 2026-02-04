@@ -12,6 +12,7 @@ class CallViewController: UIViewController {
     var call: DcCall
     private lazy var factory = RTCPeerConnectionFactory()
     private var peerConnection: RTCPeerConnection?
+    private var mutedStateDataChannel: RTCDataChannel?
     private var iceTricklingDataChannel: RTCDataChannel?
     /// Stores local ICE candidates to be sent to the remote peer when the data channel opens.
     private var iceTricklingBuffer: [RTCIceCandidate] = []
@@ -54,16 +55,17 @@ class CallViewController: UIViewController {
         return hangupButton
     }()
 
-    private lazy var toggleMicrophoneButton: UIButton = {
+    private lazy var toggleMicrophoneButton: CallUIToggleButton = {
         let toggleMicrophoneButton = CallUIToggleButton(imageSystemName: "mic.fill", state: true)
         toggleMicrophoneButton.addAction(UIAction { [unowned self, unowned toggleMicrophoneButton] _ in
             toggleMicrophoneButton.toggleState.toggle()
             localAudioTrack?.isEnabled.toggle()
+            shareMutedState()
         }, for: .touchUpInside)
         return toggleMicrophoneButton
     }()
 
-    private lazy var toggleVideoButton: UIButton = {
+    private lazy var toggleVideoButton: CallUIToggleButton = {
         let toggleVideoButton = CallUIToggleButton(imageSystemName: "video.fill", state: localVideoTrack?.isEnabled == true)
         toggleVideoButton.addAction(UIAction { [unowned self, unowned toggleVideoButton] _ in
             toggleVideoButton.toggleState.toggle()
@@ -77,6 +79,7 @@ class CallViewController: UIViewController {
             } else {
                 localVideoCapturer?.stopCapture()
             }
+            shareMutedState()
         }, for: .touchUpInside)
         return toggleVideoButton
     }()
@@ -155,6 +158,13 @@ class CallViewController: UIViewController {
         iceTricklingDataChannel = peerConnection?.dataChannel(forLabel: "iceTrickling", configuration: iceTricklingConfig)
         iceTricklingDataChannel?.delegate = self
         assert(iceTricklingDataChannel != nil)
+
+        let mutedStateConfig = RTCDataChannelConfiguration()
+        mutedStateConfig.isNegotiated = true
+        mutedStateConfig.channelId = 3
+        mutedStateDataChannel = peerConnection?.dataChannel(forLabel: "mutedState", configuration: mutedStateConfig)
+        mutedStateDataChannel?.delegate = self
+        assert(mutedStateDataChannel != nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleOutgoingCallAcceptedEvent), name: Event.outgoingCallAccepted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -278,6 +288,13 @@ class CallViewController: UIViewController {
         unreadMessageCounter.isHidden = messageCount == 0
     }
 
+    func shareMutedState() {
+        _ = try? mutedStateDataChannel?.sendData(.init(data: JSONEncoder().encode(MutedState(
+            audioEnabled: toggleMicrophoneButton.toggleState,
+            videoEnabled: toggleVideoButton.toggleState
+        )), isBinary: false))
+    }
+
     // MARK: - Notifications
 
     @objc private func handleOutgoingCallAcceptedEvent(_ notification: Notification) {
@@ -331,15 +348,7 @@ extension CallViewController: RTCPeerConnectionDelegate {
         }
     }
     func peerConnection(_ peerConnection: RTCPeerConnection, didRemove candidates: [RTCIceCandidate]) {}
-    func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {
-        switch dataChannel.label {
-        case "iceTrickling":
-            for candidate in iceTricklingBuffer {
-                _ = try? dataChannel.sendData(.init(data: candidate.toJSON(), isBinary: true))
-            }
-        default: break
-        }
-    }
+    func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {}
     func peerConnection(_ peerConnection: RTCPeerConnection, didStartReceivingOn transceiver: RTCRtpTransceiver) {
         if transceiver.mediaType == .video, let newTrack = transceiver.receiver.track as? RTCVideoTrack {
             remoteVideoTrack?.remove(remoteVideoView)
@@ -350,14 +359,35 @@ extension CallViewController: RTCPeerConnectionDelegate {
 }
 
 extension CallViewController: RTCDataChannelDelegate {
-    func dataChannelDidChangeState(_ dataChannel: RTCDataChannel) {}
+    func dataChannelDidChangeState(_ dataChannel: RTCDataChannel) {
+        switch (dataChannel.label, dataChannel.readyState) {
+        case (iceTricklingDataChannel?.label, .open):
+            for candidate in iceTricklingBuffer {
+                _ = try? dataChannel.sendData(.init(data: candidate.toJSON(), isBinary: false))
+            }
+        case (mutedStateDataChannel?.label, .open):
+            DispatchQueue.main.async(execute: shareMutedState)
+        default: break
+        }
+    }
     func dataChannel(_ dataChannel: RTCDataChannel, didReceiveMessageWith buffer: RTCDataBuffer) {
         switch dataChannel.label {
-        case "iceTrickling":
+        case iceTricklingDataChannel?.label:
             if let candidate = try? RTCIceCandidate.fromJSON(buffer.data) {
                 peerConnection?.add(candidate, completionHandler: { _ in })
+            }
+        case mutedStateDataChannel?.label:
+            if let remoteMutedState = try? JSONDecoder().decode(MutedState.self, from: buffer.data) {
+                DispatchQueue.main.async {
+                    self.remoteVideoView.updateVideoEnabled(remoteMutedState.videoEnabled)
+                }
             }
         default: break
         }
     }
+}
+
+struct MutedState: Codable {
+    var audioEnabled: Bool
+    var videoEnabled: Bool
 }

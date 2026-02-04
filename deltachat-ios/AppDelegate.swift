@@ -553,7 +553,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // The foreground check is necessary as this function is called when in app switcher
         let isCallNotification = notification.request.content.userInfo["answer_call"] != nil
-        if appIsInForeground() && !isCallNotification && !callManager.isCalling() {
+        if appIsInForeground() && !isCallNotification && callManager?.isCalling() != true {
             logger.info("Notifications: silent foreground notification")
             completionHandler([.badge])
         } else {

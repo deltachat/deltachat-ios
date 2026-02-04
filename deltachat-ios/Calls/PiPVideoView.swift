@@ -111,20 +111,14 @@ extension PiPVideoView: RTCVideoRenderer {
 
     func setSize(_ size: CGSize) {
         renderView.frameProcessor?.setSize(size)
-        setPiPPreferredContentSize(size)
         DispatchQueue.main.async { [self] in
+            setPiPPreferredContentSize(size)
             videoCallSourceViewHeightConstraint.constant = frame.width / size.width * size.height
             videoCallSourceView.setNeedsLayout()
         }
     }
     
     func renderFrame(_ frame: RTCVideoFrame?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            avatarView.isHidden = true
-            NSObject.cancelPreviousPerformRequests(withTarget: self)
-            perform(#selector(didNotReceiveNewFrame), with: nil, afterDelay: 1.5)
-        }
         renderView.frameProcessor?.renderFrame(frame)
     }
 
@@ -133,10 +127,12 @@ extension PiPVideoView: RTCVideoRenderer {
         pipController?.contentSource?.activeVideoCallContentViewController.preferredContentSize = size
     }
 
-    @objc private func didNotReceiveNewFrame() {
-        renderView.displayLayer?.flushAndRemoveImage()
-        avatarView.isHidden = false
-        resetSize()
+    func updateVideoEnabled(_ videoEnabled: Bool) {
+        avatarView.isHidden = videoEnabled
+        if !videoEnabled {
+            renderView.displayLayer?.flushAndRemoveImage()
+            resetSize()
+        }
     }
 }
 
