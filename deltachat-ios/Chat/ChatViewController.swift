@@ -201,11 +201,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet { reloadInputViews() }
     }
     override var inputAccessoryView: UIView? {
-        get { customInputAccessoryView }
+        get { return nil; customInputAccessoryView }
         set { customInputAccessoryView = newValue }
     }
 
     override var canBecomeFirstResponder: Bool {
+        return false
         if let p = presentedViewController, !p.isBeingDismissed, !(p is UISearchController) {
             // Don't show inputAccessoryView when anything other than searchController is presented
             return false
@@ -283,9 +284,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
-        // Binding to the tableView will enable interactive dismissal
-        keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+        let animateKeyboardChange: KeyboardManager.EventCallback = { [weak self, tableView] notification in
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -304,12 +303,62 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - tableView.safeAreaInsets.bottom
             }
         }
+        // Binding to the tableView will enable interactive dismissal
+        keyboardManager?.bind(to: tableView)
+        keyboardManager?.on(event: .willHide, do: animateKeyboardChange)
+        keyboardManager?.on(event: .willShow, do: animateKeyboardChange)
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
             return
         }
         configureEmptyStateView()
+
+        let toolbar = UIToolbar()
+        toolbar.items = [
+            UIBarButtonItem.fixedSpace(0),
+            UIBarButtonItem(
+                image: UIImage(named: "ic_attach_file_36pt"),
+                menu: UIMenu(children: [
+                    UIDeferredMenuElement.uncached({ [weak self] completion in
+                        completion(self?.clipperButtonMenu().children ?? [])
+                    })
+                ])
+            ).configure {
+                $0.accessibilityLabel = String.localized("menu_add_attachment")
+            },
+            UIBarButtonItem(customView: {
+                messageInputBar.inputTextView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+                return messageInputBar.inputTextView
+            }()).configure {
+                $0.width = UIScreen.main.bounds.width
+                if #available(iOS 26.0, *) {
+                    $0.sharesBackground = false
+                    $0.hidesSharedBackground = true
+                    $0.width = 100
+                }
+            },
+            UIBarButtonItem(
+                image: UIImage(named: "paper_plane"),
+                primaryAction: UIAction(title: String.localized("menu_send"), handler: { [weak self] _ in
+                    print("TODO")
+                })
+            ),
+            UIBarButtonItem.fixedSpace(0),
+        ]
+        toolbar.addInteraction(UIDropInteraction(delegate: dropInteraction))
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(toolbar)
+        if #available(iOS 15.0, *) {
+            let toolbarToSafeArea = toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            toolbarToSafeArea.priority = .defaultLow
+            NSLayoutConstraint.activate([
+                toolbarToSafeArea,
+                toolbar.bottomAnchor.constraint(greaterThanOrEqualTo: view.keyboardLayoutGuide.topAnchor),
+                toolbar.widthAnchor.constraint(equalTo: view.widthAnchor),
+//                toolbar.heightAnchor.constraint(equalToConstant: 120),
+            ])
+        }
 
         if dcChat.canSend {
             configureUIForWriting()
