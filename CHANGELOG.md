@@ -2,16 +2,26 @@
 
 ## Unreleased
 
+- Have preview and notifications of large messages much quicker
+- Improve "Connectivity View"
 - Notifications are now removed when you open their respective chat on a different device
 - Truncate file names in the middle, not at the end; important information are more often at the end
 - More text instead of sender in channel summary
 - Stop showing addresses of no worth in primary profile; they stay available at "Encryption Info"
+- Add device message about legacy "Move to Delta Chat Folder"
 - Fix: Improve QR codes handshake on special server configurations
 - Fix: Fixed case where daymarkers could show the wrong date
 - Fix: Online indicator in the chat navigation bar now updates correctly when returning from background
 - Fix: Allow iframe srcdoc in webxdc 
 - Fix: Reset a previously removed setting that prevented adding new relays
-- Update to core 2.37.0
+- Fix: Do not upscale small images
+- Fix: Restart I/O when there are new transports in a sync message
+- Fix: Disable partial search by contact address, which results in apparently random results as address is not shown
+- Fix: More reliable parsing of relay QR-codes and -links
+- Fix: Prevent possible infinite loop with invalid SMTP row
+- Fix: Sync broadcast subscribers list
+- Update translations and local help
+- Update to core 2.40.0
 
 
 ## v2.35.0
