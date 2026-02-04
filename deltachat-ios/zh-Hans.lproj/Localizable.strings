@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ 已回复，等待被加入群组…";
 "secure_join_wait" = "正在建立连接，请稍候…";
 "contact_verified" = "%1$@ 已验证。";
+"contact_blocked" = "您已屏蔽该联系人";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "验证人 %1$@";
 "verified_by_you" = "由您验证";

@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>n_seconds_ext</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d sekund</string>
+			<key>other</key>
+			<string>%d sekunder</string>
+		</dict>
+	</dict>
+	<key>n_minutes_ext</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minut</string>
+			<key>other</key>
+			<string>%d minuter</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -82,6 +114,22 @@
 			<string>%d meddelanden</string>
 		</dict>
 	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d reaktion</string>
+			<key>other</key>
+			<string>%d reaktioner</string>
+		</dict>
+	</dict>
 	<key>n_members</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -144,6 +192,22 @@
 			<string>Skicka följande fil till %s?</string>
 			<key>other</key>
 			<string>Skicka de följande filerna %d till %s ?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vill du ta bort %d chatt?</string>
+			<key>other</key>
+			<string>Vill du ta bort %d chattar?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

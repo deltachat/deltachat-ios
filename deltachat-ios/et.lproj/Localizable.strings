@@ -893,6 +893,7 @@
 "secure_join_replies" = "%1$@ vastas, ootan gruppi lisamist…";
 "secure_join_wait" = "Panen aluse läbivale krüptimisele…";
 "contact_verified" = "%1$@ lisas vestlusesse.";
+"contact_blocked" = "Sina blokeerisid selle kontakti";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "%1$@ lisas kontakti vestlusesse";
 "verified_by_you" = "Mina lisasin kontakti vestlusesse";

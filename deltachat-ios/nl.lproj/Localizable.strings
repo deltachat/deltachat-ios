@@ -974,8 +974,8 @@
 "name_desktop" = "Naam";
 "select_group_image_desktop" = "Kies een groepsafbeelding";
 "export_backup_desktop" = "Reservekopie exporteren";
-"message_detail_sent_desktop" = "verstuurd";
-"message_detail_received_desktop" = "ontvangen";
+"message_detail_sent_desktop" = "Verstuurd";
+"message_detail_received_desktop" = "Ontvangen";
 "menu.view.developer.open.log.folder" = "Map met logbestanden openen";
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
 "explain_desktop_minimized_disabled_tray_pref" = "Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized";

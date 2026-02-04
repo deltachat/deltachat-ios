@@ -893,6 +893,7 @@
 "secure_join_replies" = "Użytkownik %1$@ odpowiedział, czekając na dodanie do grupy…";
 "secure_join_wait" = "Ustanawiam połączenie, proszę czekać…";
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
+"contact_blocked" = "Zablokowano kontakt";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Kontakt zweryfikowany przez %1$@";
 "verified_by_you" = "Kontakt zweryfikowany przez ciebie";
@@ -973,8 +974,8 @@
 "name_desktop" = "Nazwa";
 "select_group_image_desktop" = "Wybierz obraz grupy";
 "export_backup_desktop" = "Eksport kopii zapasowej";
-"message_detail_sent_desktop" = "wysłane";
-"message_detail_received_desktop" = "odebrane";
+"message_detail_sent_desktop" = "Wysłana";
+"message_detail_received_desktop" = "Odebrana";
 "menu.view.developer.open.log.folder" = "Otwórz folder dziennika";
 "menu.view.developer.open.current.log.file" = "Otwórz bieżący plik dziennika";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikona w zasobniku nie może być wyłączona, ponieważ Delta Chat został uruchomiony z opcją --minimized.";

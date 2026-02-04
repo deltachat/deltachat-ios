@@ -3,6 +3,10 @@
 "ok" = "Gerai";
 "cancel" = "Atsisakyti";
 "clear_search" = "Išvalyti paiešką";
+// a noun, used on a button, short for "show link"
+"link" = "Nuoroda";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Skenuoti";
 "yes" = "Taip";
 "no" = "Ne";
 "on" = "Įjungta";
@@ -45,6 +49,7 @@
 "ephemeral_messages_hint" = "Šie nustatymai taikomi visiems Delta Chat besinaudojantiems dalyviams. Vis dėlto, jie gali kopijuoti, įrašyti ir persiųsti žinutes arba naudoti kitas el. pašto kliento programas.";
 "save" = "Įrašyti";
 "media" = "Medija";
+"apps_and_media" = "Programėlės ir medija";
 "profile" = "Profilis";
 "all_profiles" = "Visi profiliai";
 "current_profile" = "Dabartinis profilis";
@@ -81,7 +86,7 @@
 "email_address" = "El. pašto adresas";
 "bad_email_address" = "Blogas el. pašto adresas.";
 "password" = "Slaptažodis";
-"existing_password" = "Esamas slaptažodis";
+"existing_password" = "Dabartinis slaptažodis";
 "now" = "Dabar";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Dėmesio";
@@ -125,7 +130,7 @@
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Privati programėlė";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Privačios programėlės";
+"webxdc_apps" = "Programėlės";
 "games" = "Žaidimai";
 "app_size" = "Dydis";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -152,8 +157,11 @@
 "menu_new_classic_contact" = "Pridėti adresatą rankiniu būdu";
 "menu_new_chat" = "Naujas pokalbis";
 "menu_new_group" = "Nauja grupė";
+"clone_chat" = "Dubliuoti pokalbį";
 // deprecated
 "add_recipients" = "Pridėti gavėjus";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Naujas el. laiškas";
 // the "Subject" of an email, use the term common in classic email apps
 "subject" = "Tema";
 "menu_send" = "Siųsti";
@@ -172,6 +180,7 @@
 "menu_delete_location" = "Ištrinti šią vietą?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
+"share_invite_link_explain" = "Kiekvienas, turintis šią nuorodą, gali peržiūrėti jūsų profilį ar pradėti su jumis pokalbį. Bendrinkite ją tik su žmonėmis, kuriais pasitikite.";
 "menu_copy_selection_to_clipboard" = "Kopijuoti žymėjimą";
 "menu_copy_link_to_clipboard" = "Kopijuoti nuorodą";
 "menu_copy_text_to_clipboard" = "Kopijuoti tekstą";
@@ -186,6 +195,7 @@
 "menu_export_attachment" = "Eksportuoti priedą";
 "menu_export_attachments" = "Eksportuoti priedus";
 "menu_all_media" = "Visa medija";
+"all_apps_and_media" = "Visos programėlės ir medija";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Rodyti pokalbyje";
 "menu_share" = "Bendrinti";
@@ -200,7 +210,7 @@
 "menu_scroll_to_top" = "Slinkti į viršų";
 "menu_help" = "Žinynas";
 // use the same term for "Apps" as elsewhere
-"what_is_webxdc" = "Kas yra „Webxdc“?";
+"what_is_webxdc" = "Apie programėles";
 "privacy_policy" = "Privatumo politika";
 "menu_select_all" = "Žymėti viską";
 "menu_edit_name" = "Taisyti vardą";
@@ -273,6 +283,7 @@
 "chat_share_with_title" = "Bendrinti su";
 "chat_input_placeholder" = "Žinutė";
 "chat_archived_label" = "Archyvuotas";
+"chat_request_label" = "Užklausa";
 "chat_no_messages" = "Žinučių nėra.";
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
 "archive_empty_hint" = "Jei archyvuosite pokalbius, jie bus rodomi čia.";
@@ -319,7 +330,6 @@
 "tab_image_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti paveikslai.";
 "tab_video_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti vaizdo įrašai.";
 "tab_audio_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti garso įrašų failai ir balso žinutės.";
-"tab_webxdc_empty_hint" = "Čia bus rodomos šiame pokalbyje bendrintos privačios programėlės.";
 "tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
@@ -327,8 +337,15 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Pridėti antrąjį įrenginį";
 "multidevice_same_network_hint" = "Įsitikinkite, kad abu įrenginiai yra prisijungę prie to pačio belaidžio (Wi-Fi) arba laidinio tinklo";
+"multidevice_this_creates_a_qr_code" = "Tai sukuria QR kodą, kurį antrasis įrenginys gali nuskenuoti, kad nukopijuotų profilį.\n\nĮsitikinkite, kad joks pašalinis stebėtojas ar kamera nematys lango, kuris bus parodytas paspaudus mygtuką.";
+"multidevice_install_dc_on_other_device" = "Įsidiekite Delta Chat kitame savo įrenginyje (https://get.delta.chat)";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Paleiskite Delta Chat, bakstelėkite „Aš jau turiu profilį / Pridėti kaip antrąjį įrenginį“ ir nuskenuokite čia rodomą kodą";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
+"multidevice_qr_subtitle" = "Nuskenuokite norėdami nustatyti antrąjį įrenginį, skirtą %1$@";
 "multidevice_receiver_title" = "Pridėti kaip antrąjį įrenginį";
 "multidevice_open_settings_on_other_device" = "Pirmajame įrenginyje pereikite į „Nustatymai / Pridėti antrąjį įrenginį“ ir nuskenuokite ten rodomą kodą";
+"multidevice_abort" = "Nutraukti antrojo įrenginio nustatymą?";
 // Shown beside progress bar, stay short
 "preparing_account" = "Ruošiama paskyra…";
 "troubleshooting" = "Nesklandumų šalinimas";
@@ -337,6 +354,8 @@
 "incoming_messages" = "Gaunamosios žinutės";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Siunčiamosios žinutės";
+// deprecated
+"storage_on_domain" = "Saugykla ties %1$@";
 "connectivity" = "Jungiamumas";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Neprisijungta";
@@ -348,6 +367,7 @@
 "connectivity_connected" = "Prisijungta";
 "sending" = "Siunčiama…";
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
+"not_supported_by_provider" = "Jūsų teikėjas nepalaiko šios ypatybės.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
 // welcome and login
@@ -355,14 +375,21 @@
 "onboarding_create_instant_account" = "Sukurti naują profilį";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Aš jau turiu profilį";
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
+"manual_account_setup_option" = "Naudoti klasikinį el. paštą kaip retransliavimą";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Jūsų profilis";
 // The placeholder will be replaced by the default onboarding server
 "instant_onboarding_agree_default2" = "%1$@ privatumo politika";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Sutinku ir sukurti profilį";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
+"instant_onboarding_other_server" = "Išvardyti retransliavimo serverius";
+"welcome_chat_over_email" = "Saugūs decentralizuoti pokalbiai";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
+"login_advanced_hint" = "Šis prisijungimas skirtas patyrusiems naudotojams:\n\n• Nenaudokite adreso, kurį naudojate kitoje programoje.\n\n• Klasikinis el. pašto serveris leidžia pokalbius be ištisinio šifravimo, pažymėtus voko piktograma.";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
 "login_imap_server" = "IMAP serveris";
@@ -379,10 +406,13 @@
 "proxy_use_proxy" = "Naudoti įgaliotąjį serverį";
 "proxy_add" = "Pridėti įgaliotąjį serverį";
 "proxy_add_explain" = "Palaikomi įgaliotųjų serverių tipai: HTTP(S), SOCKS5 ir Shadowsocks.";
+"proxy_add_url_hint" = "Įveskite čia įgaliotojo serverio nuorodą";
 "proxy_list_header" = "Įrašyti įgaliotieji serveriai";
 "proxy_delete" = "Ištrinti įgaliotąjį serverį";
 "proxy_delete_explain" = "Ar tikrai norite ištrinti „%1$@“?";
 "proxy_use_proxy_confirm" = "Ar norite naudoti įgaliotąjį serverį „%1$@“?";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Retransliavimai";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";
@@ -431,6 +461,8 @@
 "pref_screen_security_explain" = "Prašyti blokuoti ekrano kopijas paskiausiųjų sąraše ir programėlės viduje";
 "pref_screen_security_please_restart_hint" = "Norėdami pritaikyti ekrano saugumo nustatymą, paleiskite programėlę iš naujo.";
 "pref_notifications" = "Pranešimai";
+"pref_mention_notifications" = "Paminėjimai";
+"pref_mention_notifications_explain" = "Grupėse, kuriose išjungti pranešimai, pranešti apie jums adresuotas žinutes, tokias kaip atsakymai ar reakcijos";
 "pref_notifications_show" = "Rodyti";
 "pref_notifications_priority" = "Pirmenybė";
 "pref_notifications_explain" = "Įjungti sistemos pranešimus apie naujas žinutes";
@@ -466,7 +498,8 @@
 "pref_other" = "Kita";
 "pref_backup" = "Atsarginė kopija";
 "pref_backup_explain" = "Padaro atsarginę pokalbių kopiją į išorinę saugyklą";
-"pref_backup_export_explain" = "Atsarginė kopija padeda jums nusistatyti naują diegimą šiame ar kitame įrenginyje.\n\nAtsarginėje kopijoje bus visos žinutės, adresatai ir pokalbiai bei jūsų ištisinė Autocrypt sąranka. Atsarginės kopijos failą laikykite saugioje vietoje arba kaip įmanoma greičiau jį ištrinkite.";
+"pref_backup_export_explain" = "Atsarginė kopija padeda jums nusistatyti naują diegimą šiame ar kitame įrenginyje.\n\nAtsarginėje kopijoje bus visos žinutės, adresatai ir pokalbiai bei jūsų ištisinio perdavimo „Autocrypt“ sąranka. Atsarginės kopijos failą laikykite saugioje vietoje arba kaip įmanoma greičiau jį ištrinkite.";
+"pref_backup_export_this" = "Eksportuoti šį profilį";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksportuoti visas %1$d paskyras";
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
@@ -476,6 +509,8 @@
 "pref_background_btn_default" = "Naudoti numatytąjį paveikslą";
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
 "pref_imap_folder_warn_disable_defaults" = "Jeigu išjungiate šį parametrą, įsitikinkite, kad jūsų serveris ir kiti klientai yra sukonfigūruoti atitinkamai.\n\nPriešingu atveju, tai gali iš viso neveikti.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Kelių įrenginių veiksena";
 "pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
 "pref_show_emails" = "Rodyti klasikinius el. laiškus";
 "pref_show_emails_no" = "Ne, tik pokalbius";
@@ -487,7 +522,7 @@
 "pref_background_custom_image" = "Tinkintas paveikslas";
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
-"auto_download_messages" = "Automatinis žinučių atsisiuntimas";
+"auto_download_messages" = "Automatinis žinučių atsiuntimas";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Iki %1$@";
 "up_to_x_most_worse_quality_images" = "Iki %1$@, iš esmės, blogos kokybės paveikslus";
@@ -495,7 +530,9 @@
 "download_failed" = "Atsiuntimas nepavyko";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ žinutė";
-"profile_image_delete" = "Ištrinti profilio paveikslą";
+"profile_image_select" = "Pasirinkti profilio nuotrauką";
+"select_your_new_profile_image" = "Pasirinkite naują profilio nuotrauką";
+"profile_image_delete" = "Ištrinti profilio nuotrauką";
 "pref_show_tray_icon" = "Rodyti dėklo piktogramą";
 "pref_edit_profile" = "Taisyti profilį";
 "send_stats_to_devs" = "Siųsti statistiką Delta Chat plėtotojams";
@@ -577,6 +614,9 @@
 "ephemeral_timer_weeks_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sav.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
+"chat_unencrypted_explanation" = "Žinutės šiame pokalbyje naudoja klasikinius el. laiškus ir nėra šifruotos ištisinio perdavimo būdu.";
+"chat_protection_enabled_tap_to_learn_more" = "Žinutės yra šifruotos ištisinio perdavimo būdu. Bakstelėkite norėdami sužinoti daugiau.";
+"chat_protection_enabled_explanation" = "Visos žinutės šiame pokalbyje yra šifruotos ištisinio perdavimo būdu.\n\nIštisinis šifravimas išlaiko žinutes tarp jūsų ir jūsų pokalbio partnerių privačias. Netgi serveriai, teikėjai ar retransliavimai negali jų perskaityti.";
 "learn_more" = "Sužinoti daugiau";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
@@ -602,9 +642,10 @@
 "qrshow_join_group_hint" = "Nuskenuokite tai, norėdami prisijungti prie \"%1$@\" grupės.";
 "qrshow_join_contact_title" = "QR pakvietimo kodas";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
-"qrshow_join_contact_hint" = "Nuskenuokite tai, norėdami užmegzti kontaktą su %1$@";
+"qrshow_join_contact_hint" = "Nuskenuokite norėdami pradėti pokalbį su %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
+"set_name_and_avatar_explain" = "Nusistatykite vardą, kurį jūsų adresatai atpažins. Taip pat galite nusistatyti profilio nuotrauką.";
 "please_enter_name" = "Įrašykite vardą.";
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
 // the placeholder will be replaced by the address of the profile
@@ -694,6 +735,7 @@
 "disabled_in_dc" = "Išjungta Delta Chat programėlėje";
 "disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
 "system_settings" = "Sistemos nustatymai";
+"pref_background_notifications" = "Naudoti foninį ryšį";
 "pref_background_notifications_rationale" = "Norėdami palaikyti ryšį su savo el. pašto serveriu ir gauti žinutes fone, kitame žingsnyje nepaisykite akumuliatoriaus optimizavimų (leiskite vykdyti programą fone).\n\nDelta Chat naudoja nedaug išteklių ir rūpinasi, kad neeikvotų jūsų akumuliatoriaus energijos.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
