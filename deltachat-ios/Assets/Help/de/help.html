@@ -1045,31 +1045,31 @@ für die <a href="https://chatmail.at/clients">Chatmail-Clients</a> umfasst, von
         
       </h3>
 
-<p>We would like to improve Delta Chat with your help,
-which is why Delta Chat for Android asks whether you want
-to send anonymous usage statistics.</p>
+<p>Wir möchten Delta Chat mit deiner Hilfe verbessern.
+Deshalb fragt Delta Chat für Android, ob du
+anonyme Nutzungsstatistiken senden möchtest.</p>
 
-<p>You can turn it on and off at
-<strong>Settings → Advanced → Send statistics to Delta Chat’s developers</strong>.</p>
+<p>Du kannst dies unter
+<strong>Einstellungen → Erweitert → Statistik an Delta Chat Entwickler senden</strong> ein- und ausschalten.</p>
 
-<p>When you turn it on,
-weekly statistics will be automatically sent to a bot.</p>
+<p>Wenn eingeschaltet,
+werden wöchentlich Statistiken automatisch an einen Bot gesendet.</p>
 
-<p>We are interested e.g. in statistics like:</p>
+<p>Wir sind beispielsweise an folgenden Statistiken interessiert:</p>
 
 <ul>
   <li>
-    <p>How many contacts are introduced by personally scanning a QR code?</p>
+    <p>Wie viele Kontakte werden durch das persönliche Scannen eines QR-Codes hergestellt?</p>
   </li>
   <li>
-    <p>Which versions of Delta Chat are being used?</p>
+    <p>Welche Versionen von Delta Chat werden verwendet?</p>
   </li>
   <li>
-    <p>What errors occur for users?</p>
+    <p>Welche Fehler treten bei Benutzern auf?</p>
   </li>
 </ul>
 
-<p>We will <em>not</em> collect any personally identifiable information about you.</p>
+<p>Wir werden <em>keinerlei</em> personenbezogene Daten über dich sammeln.</p>
     
       <h3 id="ich-bin-an-technischen-details-interessiert-gibt-es-hierzu-weitere-infos">
         
@@ -1280,14 +1280,14 @@ selbst wenn die Nachricht nicht Ende-zu-Ende-verschlüsselt war.</p>
 speichern Delta-Chat-Apps keine Metadaten über Kontakte oder Gruppen auf Servern. Auch nicht in verschlüsselter Form. 
 Stattdessen werden alle Gruppen-Metadaten durchgängig verschlüsselt und ausschließlich auf den Endgeräten der Nutzer gespeichert.</p>
 
-<p>Servers can therefore only see:</p>
+<p>Server können daher nur das folgende sehen:</p>
 
 <ul>
-  <li>the sender and receiver addresses</li>
-  <li>and the message size.</li>
+  <li>die Absender- und Empfängeradressen</li>
+  <li>und die Größe der Nachricht.</li>
 </ul>
 
-<p>By default, the addresses are randomly generated.</p>
+<p>Standardmäßig werden die Adressen zufällig generiert.</p>
 
 <p>Alle anderen Metadaten zu Nachrichten, Kontakten und Gruppen befinden sich im Ende-zu-Ende-verschlüsselten Teil der Nachrichten.</p>
     
@@ -1299,15 +1299,15 @@ Stattdessen werden alle Gruppen-Metadaten durchgängig verschlüsselt und aussch
         
       </h3>
 
-<p>Both for protecting against metadata-collecting servers 
-as well as against the threat of device seizure
-we recommend to use a <a href="https://chatmail.at/relays">chatmail relay</a>
-to create chat profiles using random addresses for transport. 
-Note that Delta Chat apps on all platforms support multiple profiles
-so you can easily use situation-specific profiles next to your “main” profile
-with the knowledge that all their data, along with all metadata, will be deleted.
-Moreover, if a device is seized then chat contacts using short-lived profiles
-can not be identified easily.</p>
+<p>Sowohl zum Schutz vor Servern, die Metadaten sammeln, 
+als auch als Schutz bei Beschlagnahmung von Geräten
+empfehlen wir die Verwendung eines <a href="https://chatmail.at/relays">Chatmail-Relays</a>,
+um Chat-Profile mit zufälligen Adressen für den Transport zu erstellen. 
+Beachte, dass Delta-Chat-Apps mehrere Profile unterstützen,
+sodass du neben deinem „Hauptprofil” ganz einfach situationsspezifische Profile verwenden kannst,
+mit der Gewissheit, dass alle Daten sowie alle Metadaten gelöscht werden.
+Darüber hinaus können Chat-Kontakte, die kurzlebige Profile verwenden,
+im Falle einer Beschlagnahmung des Geräts nicht ohne Weiteres identifiziert werden.</p>
     
       <h3 id="wer-sieht-meine-ip-adresse">
         
@@ -1350,11 +1350,10 @@ um seine Serverinfrastruktur darüber im Unklaren zu lassen, wer eine Nachricht 
 Dies ist besonders wichtig, weil der Signal-Server die Handynummer jedes Kontos kennt,
 die in der Regel mit einer Passidentität verbunden ist.</p>
 
-<p>Even if <a href="https://chatmail.at/relays">chatmail relays</a> 
-do not ask for any private data (including no phone numbers), 
-it might still be worthwhile to protect relational metadata between addresses. 
-We don’t foresee bigger problems in using random throw-away addresses for sealed sending
-but an implementation has not been agreed as a priority yet.</p>
+<p>Auch wenn <a href="https://chatmail.at/relays">Chatmail-Relays</a> 
+keine privaten Daten (einschließlich Telefonnummern) abfragen, 
+könnte es dennoch sinnvoll sein, Metadaten zwischen Adressen zu schützen. 
+Wir sehen keine größeren Probleme bei der Verwendung von zufälligen Wegwerfadressen für aber eine Umsetzung wurde noch nicht als priorisiert.</p>
     
       <h3 id="pfs">
         
@@ -1366,21 +1365,20 @@ but an implementation has not been agreed as a priority yet.</p>
 
 <p>Nein, noch nicht.</p>
 
-<p>Delta Chat today doesn’t support Perfect Forward Secrecy (PFS).
-This means that if your private decryption key is leaked,
-and someone has collected your prior in-transit messages,
-they will be able to decrypt and read them using the leaked decryption key.
-Note that Forward Secrecy only increases security if you delete messages. 
-Otherwise, someone obtaining your decryption keys
-is typically also able to get all your non-deleted messages
-and doesn’t even need to decrypt any previously collected messages.</p>
+<p>Delta Chat unterstützt derzeit keine Perfect Forward Secrecy (PFS).
+Das bedeutet, dass, wenn Ihr privater Schlüssel offengelegt wird
+und jemand Ihre früheren Nachrichten während der Übertragung gesammelt hat,
+diese mit dem offengelegten Schlüssel entschlüsselt und gelesen werden können.
+Beachten Sie, dass Forward Secrecy die Sicherheit nur erhöht, wenn du Nachrichten löschst. 
+Andernfalls kann jemand, der deinen Schlüssel erhält,
+in der Regel auch alle deine nicht gelöschten Nachrichten abrufen
+und muss zuvor gesammelte Nachrichten nicht einmal entschlüsseln.</p>
 
-<p>We designed a Forward Secrecy approach that withstood 
-initial examination from some cryptographers and implementation experts 
-but is pending a more formal write up 
-to ascertain it reliably works in federated messaging and with multi-device usage,
-before it could be implemented in <a href="https://github.com/chatmail/core">chatmail core</a>,
-which would make it available in all <a href="https://chatmail.at/clients">chatmail clients</a>.</p>
+<p>Wir haben einen Forward-Secrecy-Ansatz entwickelt, der 
+einer ersten Prüfung durch Kryptographen und Implementierungsexperten standgehalten hat. Eine formellere Beschreibung steht noch aus,
+um sicherzustellen, dass er zuverlässig in föderierten Nachrichten und bei der Nutzung mehrerer Geräte funktioniert,
+bevor er in <a href="https://github.com/chatmail/core">chatmail core</a> implementiert werden kann,
+wodurch er in allen <a href="https://chatmail.at/clients">chatmail-Clients</a> verfügbar ist.</p>
     
       <h3 id="pqc">
         
@@ -1420,12 +1418,11 @@ ist die Verbindung sicher.</p>
 
 <p>Nein.</p>
 
-<p>Delta Chat generates secure OpenPGP keys according to the Autocrypt specification 1.1.
-We do not recommend or offer users to perform manual key management.
-We want to ensure that security audits can focus on a few proven cryptographic algorithms
-instead of the full breadth of possible algorithms allowed with OpenPGP.
-If you want to extract your OpenPGP key, there only is an expert method:
-you need to look it up in the “keypairs” SQLite table of a profile backup tar-file.</p>
+<p>Delta Chat generiert sichere OpenPGP-Schlüssel gemäß der Autocrypt-Spezifikation 1.1.
+Wir bieten Benutzern keine manuelle Schlüsselverwaltung an, noch empfehlen diese.
+Wir wollen sicherstellen, dass sich Sicherheitsüberprüfungen auf einige wenige bewährte kryptografische Algorithmen konzentrieren können,
+anstatt auf die gesamte Bandbreite der mit OpenPGP zulässigen Algorithmen.
+Wenn Sie Ihren OpenPGP-Schlüssel extrahieren möchten, gibt es nur eine Methode für Experten: Sie müssen ihn in der SQLite-Tabelle „keypairs” des Backups nachschlagen.</p>
     
       <h3 id="security-audits">
         
