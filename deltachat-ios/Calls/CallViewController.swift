@@ -200,7 +200,7 @@ extension CallViewController: WKScriptMessageHandler {
             guard let payload = message.body as? String else { logger.error("errStartCall: \(message.body)"); return }
             logger.info("startCall: " + payload)
             let dcContext = DcAccounts.shared.get(id: call.contextId)
-            call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: payload)
+            call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: payload, hasVideo: true)
 
         case "acceptCall":
             guard let payload = message.body as? String else { logger.error("errAcceptCall: \(message.body)"); return }
