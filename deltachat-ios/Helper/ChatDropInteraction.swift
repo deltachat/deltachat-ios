@@ -3,7 +3,7 @@ import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
 
-public class ChatDropInteraction {
+public class ChatDropInteraction: NSObject {
 
     public weak var delegate: ChatDropInteractionDelegate?
 
@@ -82,6 +82,20 @@ public class ChatDropInteraction {
             guard !stringItems.isEmpty else { return }
             self?.delegate?.onTextDragAndDropped(text: stringItems[0])
         }
+    }
+}
+
+extension ChatDropInteraction: UIDropInteractionDelegate {
+    public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        return dropInteraction(canHandle: session)
+    }
+
+    public func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        return dropInteraction(sessionDidUpdate: session)
+    }
+
+    public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        dropInteraction(performDrop: session)
     }
 }
 

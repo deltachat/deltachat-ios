@@ -128,6 +128,7 @@
 		641620FE2ECFFA880076CFA3 /* WebRTC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
+		6439F6C02F3267E000DB430D /* FlexibleWidthBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6439F6BF2F3267C200DB430D /* FlexibleWidthBarButtonItem.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
@@ -469,6 +470,7 @@
 		641620FB2ECFCDC70076CFA3 /* CallUIToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallUIToggleButton.swift; sourceTree = "<group>"; };
 		641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRTC+Extensions.swift"; sourceTree = "<group>"; };
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
+		6439F6BF2F3267C200DB430D /* FlexibleWidthBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleWidthBarButtonItem.swift; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 				D84AED252B566BF700D753F6 /* Reactions */,
 				3008CB7524F95B6D00E6A617 /* AudioController.swift */,
 				30FDB6F824D1C1000066C48D /* ChatViewController.swift */,
+				6439F6BF2F3267C200DB430D /* FlexibleWidthBarButtonItem.swift */,
 				3080A00D277DDA1400E74565 /* InputBarAccessoryView */,
 				30FDB6B524D193DD0066C48D /* Views */,
 				303492942565AABC00A523D0 /* DraftModel.swift */,
@@ -1741,6 +1744,7 @@
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
 				B21005DB23383664004C70C5 /* EmailOptionsViewController.swift in Sources */,
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
+				6439F6C02F3267E000DB430D /* FlexibleWidthBarButtonItem.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */,
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
 				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
@@ -2396,7 +2400,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2464,7 +2468,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "deltachat-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
