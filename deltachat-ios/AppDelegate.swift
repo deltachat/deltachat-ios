@@ -699,7 +699,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_DOWNLOAD_AVAILABILITY, localizationKey: "download_max_available_until")
         dcContext.setStockTranslation(id: DC_STR_INCOMING_MESSAGES, localizationKey: "incoming_messages")
         dcContext.setStockTranslation(id: DC_STR_OUTGOING_MESSAGES, localizationKey: "outgoing_messages")
-//        dcContext.setStockTranslation(id: DC_STR_STORAGE_ON_DOMAIN, localizationKey: "storage_on_domain")
         dcContext.setStockTranslation(id: DC_STR_CONNECTED, localizationKey: "connectivity_connected")
         dcContext.setStockTranslation(id: DC_STR_CONNTECTING, localizationKey: "connectivity_connecting")
         dcContext.setStockTranslation(id: DC_STR_UPDATING, localizationKey: "connectivity_updating")
