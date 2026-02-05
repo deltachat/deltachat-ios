@@ -33,6 +33,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
 
+    /// Set additionalSafeAreaInsets on this view controller to cause PiP to avoid that area.
+    /// Specifically this is used to avoid the draft area so you can see what you are typing while in a call
+    private lazy var pipInsetViewController: UIViewController = {
+        let controller = UIViewController()
+        addChild(controller)
+        view.addSubview(controller.view)
+        view.sendSubviewToBack(controller.view)
+        controller.didMove(toParent: self)
+        return controller
+    }()
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -134,9 +145,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
+        UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
-    
+
+    private lazy var callButton = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
+        UIAction(title: .localized("audio"), image: UIImage(systemName: "phone")) { [unowned self] _ in
+            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: false)
+        },
+        UIAction(title: .localized("video"), image: UIImage(systemName: "video")) { [unowned self] _ in
+            CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: true)
+        }
+    ]))
+
     /// When a context menu preview is created through `tableView(_:previewForHighlightingContextMenuWithConfiguration:)`
     /// it is stored here so we can hide it when a user scrolls as the system does not hide
     /// snapshots right away probably assuming it is part of the view hierarchy.
@@ -234,7 +254,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
-        keyboardManager?.on(event: .willShow) { [tableView] notification in
+        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -250,6 +270,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // the bottom of the content to the top of the keyboard.
                     tableView.contentOffset.y -= inset + tableView.contentOffset.y
                 }
+                self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - tableView.safeAreaInsets.bottom
             }
         }
 
@@ -896,8 +917,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
                 if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
                    let dcContact, dcContact.isKeyContact {
-                    let button = UIBarButtonItem(image: UIImage(systemName: "phone"), style: .plain, target: self, action: #selector(callPressed))
-                    rightBarButtonItems.append(button)
+                    rightBarButtonItems.append(callButton)
                 }
             } else {
                 let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
@@ -1199,10 +1219,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @objc private func appsAndMediaPressed() {
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
-    }
-
-    @objc private func callPressed() {
-        CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat)
     }
 
     private func clipperButtonMenu() -> UIMenu {
@@ -2276,7 +2292,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         } else if message.type == DC_MSG_WEBXDC {
             showWebxdcViewFor(message: message)
         } else if message.type == DC_MSG_CALL {
-            CallManager.shared.answerIncomingCall(forMessage: message.id, chatId: message.chatId, contextId: dcContext.id)
+            CallManager.shared.answerIncomingCall(forMessage: message.id, chatId: chatId, contextId: dcContext.id)
         }
     }
 

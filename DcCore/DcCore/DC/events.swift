@@ -168,6 +168,7 @@ public class DcEventHandler {
                 "account_id": Int(accountId),
                 "contact_id": Int(data1),
                 "msg_id": Int(data2),
+                "href": event.data1String,
                 "text": event.data2String
             ])
 
@@ -215,6 +216,7 @@ public class DcEventHandler {
                 "account_id": Int(accountId),
                 "message_id": Int(data1),
                 "place_call_info": event.data2String,
+                "has_video": data2 == 1,
             ])
 
         case DC_EVENT_INCOMING_CALL_ACCEPTED:

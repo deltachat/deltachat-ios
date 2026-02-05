@@ -312,6 +312,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
+        if callManager?.isCalling() == true {
+            callManager?.endCallControllerAndHideUI()
+            // We need to block here because otherwise the io will stop
+            // before letting the other participant know the call ended.
+            // Our implementation of the applicationWillTerminate method
+            // has approximately five seconds to perform any tasks
+            // and return according to the doc so this safely blocks termination.
+            sleep(1)
+        }
         uninstallEventHandler()
         dcAccounts.closeDatabase()
         if let reachability = reachability {
@@ -549,8 +558,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // We don't show foreground notifications in the notification center because they don't get grouped properly
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // The foreground check is necessary as this function is called when in app switcher
-        if appIsInForeground(), notification.request.content.userInfo["answer_call"] == nil {
-            logger.info("Notifications: foreground notification")
+        let isCallNotification = notification.request.content.userInfo["answer_call"] != nil
+        if appIsInForeground() && !isCallNotification && callManager?.isCalling() != true {
+            logger.info("Notifications: silent foreground notification")
             completionHandler([.badge])
         } else {
             completionHandler([.badge, .banner, .list, .sound])
@@ -560,6 +570,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // this method will be called if the user tapped on a notification
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        let chatId = userInfo["chat_id"] as? Int
+        let msgId = userInfo["message_id"] as? Int
         if let accountId = userInfo["account_id"] as? Int {
             let prevAccountId = dcAccounts.getSelected().id
             if accountId != prevAccountId {
@@ -574,11 +586,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if userInfo["open_as_overview"] as? Bool ?? false {
                 appCoordinator.popTabsToRootViewControllers()
                 appCoordinator.showTab(index: appCoordinator.chatsTab)
-            } else if let chatId = userInfo["chat_id"] as? Int, !appCoordinator.isShowingChat(chatId: chatId) {
-                appCoordinator.showChat(chatId: chatId, msgId: userInfo["message_id"] as? Int, animated: false, clearViewControllerStack: true)
+            } else if let chatId, !appCoordinator.isShowingChat(chatId: chatId) {
+                appCoordinator.showChat(chatId: chatId, msgId: msgId, animated: false, clearViewControllerStack: true)
             }
-            if let call = userInfo["answer_call"] as? String, let uuid = UUID(uuidString: call) {
-                CallManager.shared.answerIncomingCall(withUUID: uuid)
+            if userInfo["answer_call"] != nil, let chatId, let msgId {
+                CallManager.shared.answerIncomingCall(forMessage: msgId, chatId: chatId, contextId: accountId)
             }
         }
 

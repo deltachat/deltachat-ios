@@ -85,21 +85,32 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
-                if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
+                let payload: [String: Any] = [
+                    "event_id": Int(DC_EVENT_INCOMING_CALL),
+                    "account_id": event.accountId,
+                    "message_id": event.data1Int,
+                    "place_call_info": event.data2String,
+                    "has_video": event.data2Int == 1,
+                ]
+                if !canUseCallKit {
+                    UserDefaults.shared?.set(payload, forKey: UserDefaults.incomingCallPayloadKey)
+                    let dcContext = dcAccounts.get(id: event.accountId)
+                    let msg = dcContext.getMessage(id: event.data2Int)
+                    let chat = dcContext.getChat(chatId: msg.chatId)
+                    if let content = UNMutableNotificationContent(forIncomingCallMsg: msg, chat: chat, context: dcContext) {
+                        let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
+                        try? await UNUserNotificationCenter.current().add(request)
+                    }
+                } else if #available(iOSApplicationExtension 14.5, *) {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
-                    CXProvider.reportNewIncomingVoIPPushPayload([
-                        "event_id": Int(DC_EVENT_INCOMING_CALL),
-                        "account_id": event.accountId,
-                        "message_id": event.data1Int,
-                        "place_call_info": event.data2String,
-                    ] as [String: Any]) { error in
+                    CXProvider.reportNewIncomingVoIPPushPayload(payload) { error in
                         if let error {
                             UserDefaults.pushToDebugArray("ERR6 " + error.localizedDescription)
                         } else {
                             UserDefaults.pushToDebugArray("OK2")
                         }
                     }
-                } else if #unavailable(iOSApplicationExtension 14.5) {
+                } else {
                     let content = UNMutableNotificationContent()
                     let msg = dcAccounts.get(id: event.accountId).getMessage(id: event.data1Int)
                     content.title = "Incoming Call"
@@ -111,6 +122,7 @@ class NotificationService: UNNotificationServiceExtension {
                 }
             } else if event.id == DC_EVENT_CALL_ENDED || event.id == DC_EVENT_INCOMING_CALL_ACCEPTED {
                 UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
+                UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
                 if #available(iOSApplicationExtension 14.5, *), canUseCallKit {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
                     CXProvider.reportNewIncomingVoIPPushPayload([
@@ -148,7 +160,7 @@ class NotificationService: UNNotificationServiceExtension {
 
         // This silent notification updates the badge number
         let silentNotification = silentNotification()
-        silentNotification.badge = dcAccounts.getFreshMessageCount() as NSNumber
+        silentNotification.badge = dcAccounts.getFreshMessagesCount() as NSNumber
         dcAccounts.closeDatabase()
         if notifications.isEmpty {
             UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
