@@ -388,7 +388,7 @@ extension CallViewController: RTCDataChannelDelegate {
     }
 }
 
-fileprivate struct MutedState: Codable {
+private struct MutedState: Codable {
     var audioEnabled: Bool
     var videoEnabled: Bool
 }
