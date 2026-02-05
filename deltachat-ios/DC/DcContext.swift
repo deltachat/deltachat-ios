@@ -797,7 +797,7 @@ public class DcContext {
     public func iceServers() -> [IceServer] {
         do {
             if let data = try DcAccounts.shared.blockingCall(method: "ice_servers", params: [id as AnyObject]) {
-                var str = try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
+                let str = try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
                 guard let data = str.data(using: .utf8) else { return [] }
                 return try JSONDecoder().decode([IceServer].self, from: data)
             }
