@@ -321,11 +321,15 @@
 "file_saved_to" = "文件已保存到 “%1$@”。";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "呼叫";
+"start_audio_call" = "音频通话";
+"start_video_call" = "视频通话";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "接听";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "去电";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "来电";
 "declined_call" = "已拒接的来电";
 "canceled_call" = "已取消的通话";

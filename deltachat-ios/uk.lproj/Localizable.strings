@@ -325,7 +325,9 @@
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Вихідний дзвінок";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Вхідний дзвінок";
 "declined_call" = "Відхилений дзвінок";
 "canceled_call" = "Скасований дзвінок";

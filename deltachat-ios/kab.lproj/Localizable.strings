@@ -324,7 +324,9 @@
 "answer_call" = "Err";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Agi";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Tiɣri tuffiɣt";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Tiɣri i d-ikecmen";
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";

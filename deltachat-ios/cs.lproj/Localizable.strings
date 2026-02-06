@@ -325,7 +325,9 @@
 "answer_call" = "Zvedni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Pokles";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Odchozí hovor";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Příchozí hovor";
 "declined_call" = "Odmítnutý hovor";
 "canceled_call" = "Zrušený hovor";

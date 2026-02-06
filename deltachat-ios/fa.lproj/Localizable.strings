@@ -327,7 +327,9 @@
 "answer_call" = "جواب دادن";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "رد کردن";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "تماس خروجی";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "تماس ورودی";
 "declined_call" = "تماس رد شده";
 "canceled_call" = "تماس لغو شده";

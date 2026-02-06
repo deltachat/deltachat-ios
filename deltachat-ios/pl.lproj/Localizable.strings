@@ -325,7 +325,9 @@
 "answer_call" = "Odbierz";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Odrzuć";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Połączenie wychodzące";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Połączenie przychodzące";
 "declined_call" = "Połączenie odrzucone";
 "canceled_call" = "Połączenie anulowane";

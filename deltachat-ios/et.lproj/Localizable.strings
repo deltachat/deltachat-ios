@@ -325,7 +325,9 @@
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Väljuv kõne";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Saabuv kõne";
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";
