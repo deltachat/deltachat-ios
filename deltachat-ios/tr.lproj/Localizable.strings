@@ -325,7 +325,9 @@
 "answer_call" = "Yanıtla";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Reddet";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Giden arama";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Gelen arama";
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";

@@ -325,7 +325,9 @@
 "answer_call" = "Contestar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rechazar";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Llamada saliente";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Llamada entrante";
 "declined_call" = "Llamada rechazada";
 "canceled_call" = "Llamada cancelada";

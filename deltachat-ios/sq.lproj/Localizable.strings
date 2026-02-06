@@ -317,11 +317,15 @@
 "file_saved_to" = "Kartela u ruajt te “%1$@”.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Thirreni";
+"start_audio_call" = "Thirrje Me Zë";
+"start_video_call" = "Thirrje Me Video";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Përgjigjuni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Hidhe poshtë";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Thirrje e dërguar";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Thirrje e marrë";
 "declined_call" = "Thirrje e hedhur poshtë";
 "canceled_call" = "Thirrje e anuluar";

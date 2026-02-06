@@ -325,7 +325,9 @@
 "answer_call" = "Fogadás";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Elutasítás";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Kimenő hívás";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Bejövő hívás";
 "declined_call" = "Elutasított hívás";
 "canceled_call" = "Visszavont hívás";

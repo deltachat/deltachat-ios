@@ -325,7 +325,9 @@
 "answer_call" = "Svar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avvis";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Utgående anrop";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Innkommende anrop";
 "declined_call" = "Avvist anrop";
 "canceled_call" = "Avbrutt anrop";

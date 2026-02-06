@@ -56,15 +56,18 @@
 "save" = "Gorde";
 "chat" = "Txata";
 "media" = "Multimedia";
-"profile" = "Profila";
-"all_profiles" = "Profil guztiak";
-"current_profile" = "Oraingo profila";
+"apps_and_media" = "Aplikazioak eta multimedia";
+"profile" = "Kontua";
+"all_profiles" = "Kontu guztiak";
+"current_profile" = "Oraingo kontua";
 "main_menu" = "Menu nagusia";
 "start_chat" = "Hasi txata";
 "show_full_message" = "Erakutsi mezu osoa";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Ezarri denak irakurri gisa";
 "mark_as_read" = "Ezarri irakurri gisa";
+// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Markatu irakurrita";
 // Placeholder text when something is loading
 "loading" = "Kargatzen...";
 "hide" = "Ezkutatu";
@@ -138,6 +141,7 @@
 "video" = "Bideoa";
 "documents" = "Dokumentuak";
 "contact" = "Kontaktua";
+"bot" = "Bot";
 "camera" = "Kamera";
 "switch_camera" = "Aldatu kamera";
 "toggle_fullscreen" = "Aldatu pantaila osoa modua";
@@ -184,6 +188,7 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Kontaktu berria";
 "menu_new_classic_contact" = "Gehitu kontaktua eskuz";
+"new_classic_contact_explain" = "Eskuz gehitutako kontaktuak eposta helbide klasikoetara idazteko erabil daitezke, eta ez da bermatzen muturretik muturrera zifratuta egotea.";
 "menu_new_chat" = "Txat berria";
 "menu_new_group" = "Talde berria";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
@@ -222,28 +227,56 @@
 "menu_message_details" = "Mezuaren xehetasunak";
 "menu_copy_to_clipboard" = "Kopiatu arbelera";
 "share_invite_link" = "Partekatu gonbidapen esteka";
+"share_invite_link_explain" = "Esteka hau duen edonork ikus dezake zure profila eta txat bat hasi zurekin. Partekatu konfiantzazko pertsonekin bakarrik.";
+"invite_friends" = "Gonbidatu lagunak";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Jarri nirekin harremanetan Delta Chat bidez:\n%1$@";
+"menu_copy_selection_to_clipboard" = "Kopiatu hautaketa";
+"menu_copy_link_to_clipboard" = "Kopiatu esteka";
+"menu_copy_text_to_clipboard" = "Kopiatu testua";
+"menu_copy_image_to_clipboard" = "Kopiatu irudia";
+"menu_copy_email_to_clipboard" = "Kopiatu eposta";
+"paste_from_clipboard" = "Kopiatu arbeletik";
 "menu_forward" = "Birbidali mezua";
 "menu_reply" = "Erantzun mezuari";
 "menu_mute" = "Mututu jakinarazpenak";
 "menu_unmute" = "Utzi mututzeari";
 "menu_export_attachment" = "Esportatu eranskina";
+"menu_export_attachments" = "Esportatu eranskinak";
 "menu_all_media" = "Multimedia guztia";
+"all_apps_and_media" = "Aplikazio guztiak eta multimedia";
+// Command to jump to the original message corresponding to a gallery image or document
+"show_in_chat" = "Erakutsi txatean";
+"show_app_in_chat" = "Erakutsi aplikazioa txatean";
 "menu_share" = "Partekatu";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Bloketau";
 "menu_block_contact" = "Blokeatu kontaktuak";
 "menu_unblock_contact" = "Desblokeatu kontaktua";
+"accept" = "Onartu";
 "menu_play" = "Erreproduzitu";
 "menu_pause" = "Pausatu";
 "menu_scroll_to_bottom" = "Korritu behealdera";
 "menu_scroll_to_top" = "Korritu goialdera";
 "menu_help" = "Laguntza";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Aplikazioei buruz";
+"privacy_policy" = "Pribatutasun politika";
 "menu_select_all" = "Hautatu guztiak";
+"select_chat" = "Aukeratu txata";
+"select_more" = "Aukeratu gehiago";
 "menu_edit_name" = "Editatu izena";
 "menu_settings" = "Ezarpenak";
 "menu_advanced" = "Aurreratua";
-"menu_view_profile" = "Ikusi profila";
+"menu_view_profile" = "Ikusi kontua";
 "menu_zoom_in" = "Hurbildu zooma";
 "menu_zoom_out" = "Urrundu zooma";
 "menu_save_log" = "Gorde egunkaria";
+"menu_more_options" = "Aukera gehiago";
+"jump_to_message" = "Joan mezura";
+"jump_to_original_message" = "Joan jatorrizko mezura";
+"copy_json" = "Kopiatu JSON";
+"replace_draft" = "Ordeztu zirriborroa";
 "title_share_location" = "Partekatu kokalekua taldeko kide guztiak";
 "device_talk" = "Gailuaren mezuak";
 "device_talk_subtitle" = "Lokalki sortutako mezuak";
@@ -257,6 +290,12 @@
 "pin" = "Finkatu";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfinkatu";
+"ConversationFragment_quoted_message_not_found" = "Ez da jatorrizko mezua aurkitu";
+"reply_privately" = "Erantzun modu pribatuan";
+"source_code" = "Iturburu kodea";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Gehitu hasierako pantailan";
+"donate" = "Egin dohaintza";
 "mute_for_one_hour" = "Mututu ordubete";
 "mute_for_eight_hours" = "Mututu 8 ordu";
 "mute_for_one_day" = "Mututu egun bat";
@@ -268,6 +307,26 @@
 "share_location_for_two_hours" = "2 orduz";
 "share_location_for_six_hours" = "6 orduz";
 "file_saved_to" = "Fitxategia \"%1$@\" helbidean gordeta";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Deitu";
+"start_audio_call" = "Audio deia";
+"start_video_call" = "Bideo deia";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Erantzun";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Ukatu";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
+"outgoing_call" = "Irteerako deia";
+// deprecated, use incoming_audio_call or incoming_video_call instead
+"incoming_call" = "Sarrerako deia";
+"declined_call" = "Ukatutako deia";
+"canceled_call" = "Bertan behera utzitako deia";
+"missed_call" = "Galdutako deia";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Ziur irten nahi duzula?";
+"ask_delete_named_chat" = "Ezabatu \"%1$@\" txata?";
+"ask_delete_message" = "Ezabatu mezu hau?";
 "ask_forward" = "Birbidali mezuak %1$@ erabiltzaileari?";
 "ask_export_attachment" = "Esportatu eranskina? Eranskinak esportatzeak zure beste gailuko beste aplikazioek atzitzea ahalbidetuko du.\n\nJarraitu?";
 "ask_block_contact" = "Blokeatu kontaktu hau? Ez dituzu kontaktu honen mezu gehiago jasoko.";
@@ -277,6 +336,9 @@
 "ask_start_chat_with" = "Txateatu %1$@ erabiltzailearekin?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Kendu %1$@ taldetik?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Ezabatu %1$@ kanaletik?";
+"open_url_confirmation" = "Esteka hau ireki nahi duzu?";
 // contact list
 "contacts_title" = "Kontaktuak";
 "contacts_type_email_above" = "Idatzi e-mail helbidea goian";
@@ -285,6 +347,8 @@
 "chat_please_enter_message" = "Idatzi mezu bat.";
 "chat_camera_unavailable" = "Kamera ez dago eskuragarri.";
 "chat_unable_to_record_audio" = "Ezin izan da audioa grabatu.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanalak zure mezuak jende askori aldi berean helarazteko tresnak dira.";
 "chat_new_group_hint" = "Idatzi lehen mezua, besteek taldera erantzutea baimenduz\n\n• Ez du axola denek ez badute Delta Chat erabiltzen.\n\n• Lehen mezua bidaltzeko denbora bat behar daiteke.";
 "chat_record_slide_to_cancel" = "Irristatu ezeztatzeko";
 "chat_record_explain" = "Sakatu eta mantendu ahots-mezu bat grabatzeko, askatu bidaltzeko.";
@@ -293,30 +357,63 @@
 "chat_share_with_title" = "Partekatu honekin";
 "chat_input_placeholder" = "Mezua";
 "chat_archived_label" = "Artxibatuta";
+"chat_request_label" = "Eskaera";
+"chat_request_label_explain" = "Sartu eskaerak kontagailuetan eta jakinarazpenetan";
 "chat_no_messages" = "Mezurik ez.";
 "chat_self_talk_subtitle" = "Nire buruari bidalitako mezuak";
+"archive_empty_hint" = "Artxibatutako txatak hemen agertuko dira.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Gorde";
 "saved_messages" = "Gordetako mezuak";
 "saved_messages_explain" = "• Birbidali mezuak hona eskura izateko\n\n• Hartu oharrak edo ahots mezuak\n\n• Gehitu multimedia horietara";
+// Should match "Saved" from "Saved messages"
+"saved" = "Gordeta";
+"save_as" = "Gorde honela";
 "retry_send" = "Saiatu berriro mezua bidaltzen";
+"attachment_failed_to_load" = "Eranskina kargatzean huts egin du";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Blokeatu grabazioa";
+// mailing lists
+"mailing_list" = "Mailin zerrenda";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Hasi...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Onartu txat-eskaera lehenik, mesedez.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Bidali \"%1$@\" honi...";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Bidali mezua honi...";
+"enable_realtime" = "Denbora errealeko aplikazioak";
+"enable_realtime_explain" = "Gaitu denbora errealeko konexioak txatei atxikitako aplikazioentzat. Gaituz gero, baliteke txat-kideek zure IP helbidea ezagutu ahal izatea aplikazio bat abiarazten duzunean.";
 // map
 "filter_map_on_time" = "Erakutsi kokalekuak denbora markoan";
 "show_location_traces" = "Erakutsi lorratzak";
 "add_poi" = "Bidali interesezko puntua";
+"puny_code_warning_header" = "Esteka susmagarria atzeman da";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Ziur zaude %1$@ bisitatu nahi duzula?";
 // search
 "search" = "Bilatu";
+"search_in_chat" = "Bilatu txatetan";
+"search_files" = "Bilatu fitxategiak";
 "search_explain" = "Bilatu txatak, kontaktuak, eta mezuak.";
 "search_no_result_for_x" = "Ez da emaitzarik aurkitu \"%1$@\" bilaketarentzat";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Irakurri gabe";
 // create/edit groups, contact/group profile
 "group_name" = "Taldearen izena";
 "group_avatar" = "Taldearen abatarra";
+"remove_group_image" = "Ezabatu taldearen irudia";
+"change_group_image" = "Aldatu taldearen irudia";
 "group_create_button" = "Sortu taldea";
 "group_please_enter_group_name" = "Idatzi izen bat taldearentzat.";
 "group_add_members" = "Gehitu kideak";
 "group_self_not_in_group" = "Taldeko kidea izan behar zara ekintza hau burutzeko.";
 "profile_encryption" = "Zifratzea";
 "profile_shared_chats" = "Partekatutako txatak";
+// Separator between the list of actual members and past members
+"past_members" = "Kide izandakoak";
 "tab_contact" = "Kontaktua";
 "tab_group" = "Taldea";
 "tab_gallery" = "Galeria";
@@ -325,9 +422,71 @@
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Txat honetan partekatutako irudi eta bideoak agertuko dira hemen";
 "tab_docs_empty_hint" = "Txat honetan partekatutako dokumentuak, musika, eta bestelako fitxategiak agertuko dira hemen";
+"tab_image_empty_hint" = "Txat honi erantsitako irudiak hemen agertuko dira.";
+"tab_video_empty_hint" = "Txat honi erantsitako bideoak hemen agertuko dira.";
+"tab_audio_empty_hint" = "Txat honi erantsitako fitxategiak eta audio mezuak hemen agertuko dira.";
+"tab_webxdc_empty_hint" = "Txat honi erantsitako aplikazioak hemen agertuko dira.";
+"tab_all_media_empty_hint" = "Edozein txati erantsitako multimedia-fitxategiak hemen agertuko dira.";
+"all_files_empty_hint" = "Edozein txati erantsitako dokumentuak eta bestelako fitxategiak hemen agertuko dira.";
+"all_apps_empty_hint" = "Edozein txati erantsitako aplikazioak hemen agertuko dira.";
 "media_preview" = "Multimediaren aurrebista";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Proportzio-sareta";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Lauki-sareta";
 "send_message" = "Bidali mezua";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Gehitu bigarren gailua";
+"multidevice_same_network_hint" = "Ziurtatu gailu biak Wi-Fi edo sare berera konektatuta daudela.";
+"multidevice_receiver_title" = "Gehitu bigarren gailu gisa";
+"multidevice_abort" = "Bertan behera utzi bigarren gailuaren konfigurazioa?";
+"multidevice_abort_will_invalidate_copied_qr" = "Honek arbelean kopiatutako QR kodea baliogabetuko du.";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Kontua zure bigarren gailura transferitu da.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Kontua prestatzen...";
+// Shown beside progress bar, stay short
+"transferring" = "Transferitzen...";
+"troubleshooting" = "Arazoak konpontzea";
+// Connectivity
+// Headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Sarrerako mezuak";
+// Headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Irteerako mezuak";
+"connectivity" = "Konektagarritasuna";
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
+"connectivity_not_connected" = "Konektatu gabe";
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_connecting" = "Konektatzen...";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "Eguneratzen...";
+// Shown in the setting if the app is "Connected"
+"connectivity_connected" = "Konektatuta";
+"sending" = "Bidaltzen...";
+"last_msg_sent_successfully" = "Azken mezua ondo bidali da.";
+"not_supported_by_provider" = "Zure hornitzaileak ez du onartzen.";
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Mezuak";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Sortu kontu berria";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Dagoeneko badut kontu bat";
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
+"manual_account_setup_option" = "Erabili eposta klasikoa errele gisa";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Zure kontua";
+// The placeholder will be replaced by the default onboarding server
+"instant_onboarding_agree_default2" = "%1$@-(r)en pribatutasun-politika";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Ados eta sortu kontua";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Erabili beste zerbitzari bat";
+"instant_onboarding_other_server" = "Zerrendatu txatmail zerbitzariak";
+"welcome_chat_over_email" = "Txat deszentralizatu segurua";
+"scan_invitation_code" = "Eskaneatu gonbidapen kodea";
 "login_title" = "Hasi saioa";
+"login_advanced_hint" = "Saio-hasiera hau erabiltzaile aurreratuentzat da:\n\n• Ez erabili beste aplikazio batean erabiltzen ari zaren helbiderik.\n\n• Posta elektronikoko zerbitzari klasikoak txatak baimentzen ditu, muturretik muturrera zifratu gabe, posta-ikono batek markatuta.";
 "login_inbox" = "Sarrera ontzia";
 "login_imap_login" = "IMAP erabiltzaile-izena";
 "login_imap_server" = "IMAP zerbitzaria";
@@ -339,6 +498,26 @@
 "login_smtp_server" = "SMTP zerbitzaria";
 "login_smtp_port" = "SMTP ataka";
 "login_smtp_security" = "SMTP segurtasuna";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
+"proxy_settings" = "Proxy-a";
+"proxy_use_proxy" = "Erabili proxy-a";
+"proxy_add" = "Gehitu proxy-a";
+"proxy_add_url_hint" = "Sartu proxy-aren esteka hemen";
+"proxy_invalid" = "Proxy baliogabea edo ez-bateragarria";
+"proxy_list_header" = "Gordetako proxy-ak";
+"proxy_delete" = "Ezabatu proxy-a";
+"proxy_share_explain" = "Zure lagunek QR kodea eskaneatuta gehitu dezakete proxy hau.";
+"proxy_share_link" = "Partekatu esteka";
+"proxy_enabled" = "Proxy-a gaituta";
+"proxy_enabled_hint" = "Proxy bat erabiltzen ari zara. Konektatzeko arazoak badituzu, probatu beste proxy bat.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Erreleak";
+"add_transport" = "Gehitu errelea";
+"remove_transport" = "Ezabatu errelea";
+"edit_transport" = "Editatu errelea";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Gehitu errelea?";
+"invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
@@ -353,8 +532,17 @@
 "accept_invalid_certificates" = "Onartu ziurtagiri baliogabeak";
 "switch_account" = "Aldatu kontua";
 "add_account" = "Gehitu kontua";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Kontuaren etiketa";
+"profile_tag_hint" = "Adib. Lana, Familia";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Mugitu gora";
 "delete_account" = "Ezabatu kontua";
 "delete_account_ask" = "Ziur al zaude zure kontuaren datuak ezabatu nahi dituzula?";
+"unconfigured_account" = "Konfiguratu gabeko kontua";
+"unconfigured_account_hint" = "Ireki kontua konfiguratzeko.";
+"try_connect_now" = "Saiatu orain konektatzen";
+"sync_all" = "Sinkronizatu guztiak";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Birbidali honi …";
@@ -365,6 +553,7 @@
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
+"blocked_empty_hint" = "Blokeatutako kontaktuak hemen agertuko dira.";
 "pref_who_can_see_profile_explain" = "Zure profileko argazkia eta izena zure mezuekin batera erakutsiko dira beste erabiltzaileekin komunikatzen zarenean. Informazioa behin bidalita ezin da ezabatu edo kendu.";
 "pref_your_name" = "Zure izena";
 // Label of the Bio/Signature/Status/Motto field
@@ -380,8 +569,12 @@
 "pref_screen_security_explain" = "Eskatu pantaila-argazkiak blokeatzea azkenak zerrendan eta aplikazio barruan.";
 "pref_screen_security_please_restart_hint" = "Pantailaren segurtasun ezarpenak aplikatzeko berrabiarazi aplikazioa.";
 "pref_notifications" = "Jakinarazpenak";
+"pref_mention_notifications" = "Aipamenak";
 "pref_notifications_show" = "Erakutsi";
 "pref_notifications_priority" = "Lehentasuna";
+"pref_notifications_explain" = "Gaitu sistemaren jakinarazpenak mezu berrientzat";
+"pref_show_notification_content" = "Erakutsi mezuaren edukia jakinarazpenean";
+"pref_show_notification_content_explain" = "Erakutsi bidaltzailea eta mezuaren lehen hitza jakinarazpenetan";
 "pref_led_color" = "LED kolorea";
 "pref_sound" = "Soinua";
 "pref_silent" = "Isila";
@@ -395,11 +588,14 @@
 "pref_appearance" = "Itxura";
 "pref_theme" = "Azala";
 "pref_language" = "Hizkuntza";
+"pref_use_system_ui_font" = "Erabili sistemaren letra-mota";
 "pref_incognito_keyboard" = "Teklatu pribatua";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Eskatu teklatuari pertsonalizatutako ikasketa desgaitzea";
 "pref_read_receipts" = "Irakurragiriak";
 "pref_read_receipts_explain" = "Irakurragiriak desgaituta badaude, ezin izango dituzu besteen irakurragiriak ikusi.";
+"pref_server" = "Zerbitzaria";
+"pref_encryption" = "Zifratua";
 "pref_manage_keys" = "Kudeatu gakoak";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat bitarteko soinuak";
@@ -411,6 +607,7 @@
 "pref_backup" = "Babeskopia";
 "pref_backup_explain" = "Egin txaten babes-kopia kanpo biltegian";
 "pref_backup_export_explain" = "Babes-kopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabes-kopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babes-kopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
+"pref_backup_export_this" = "Esportatu kontu hau";
 "pref_backup_export_start_button" = "Hasi babes-kopia";
 "pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -418,6 +615,8 @@
 "pref_background_btn_default" = "Erabili lehenetsitako irudia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Gailu anitzeko modua";
 "pref_auto_folder_moves" = "Automatikoki mugitzen du DeltaChat karpetara";
 "pref_show_emails" = "Erakutsi ohiko e-mailak";
 "pref_show_emails_no" = "Ez, txatak besterik ez";
@@ -429,6 +628,34 @@
 "pref_background_default_color" = "Lehenetsitako kolorea";
 "pref_background_custom_image" = "Irudi pertsonalizatua";
 "pref_background_custom_color" = "Kolore pertsonalizatua";
+"export_aborted" = "Esportazioa bertan behera geratu da.";
+"download_failed" = "Deskargak huts egin du";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
+"n_bytes_message" = "%1$@ mezu";
+"select_profile" = "Aukeratu kontua";
+"profile_image_select" = "Aukeratu abatarra";
+"select_your_new_profile_image" = "Aukeratu zure abatar berria";
+"profile_image_delete" = "Ezabatu abatarra";
+"pref_edit_profile" = "Editatu kontua";
+"disable_imap_idle" = "Desgaitu IMAP IDLE";
+"send_stats_to_devs" = "Bidali estatistikak Delta Chat-eko garatzaileei";
+"disable" = "Desgaitu";
+// Emoji picker and categories
+"emoji_search_results" = "Bilatu emaitzak";
+"emoji_recent" = "Azkenaldian erabiliak";
+"emoji_people" = "Pertsonak eta gorputza";
+"emoji_nature" = "Animaliak eta natura";
+"emoji_foods" = "Janaria eta edaria";
+"emoji_places" = "Bidaiak eta lekuak";
+"emoji_objects" = "Objetuak";
+"emoji_symbols" = "Sinboloak";
+"emoji_flags" = "Banderak";
+// Reactions
+"reactions" = "Erreakzioak";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Erreakzionatu";
+// automatically delete message
+"delete_old_messages" = "Ezabatu mezu zaharrak";
 "autodel_device_title" = "Ezabatu mezuak gailutik";
 "autodel_server_title" = "Ezabatu mezuak zerbitzaritik";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
@@ -436,9 +663,11 @@
 "autodel_confirm" = "Ulertzen dut, ezabatu mezuk guzti hauek";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Berehala";
+"after_5_minutes" = "5 minutu pasatutakoan";
 "autodel_after_1_hour" = "Ordubete eta gero";
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
+"after_5_weeks" = "5 aste pasatutakoan";
 "autodel_after_1_year" = "Urtebete eta gero";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
@@ -455,19 +684,29 @@
 "remove_member_by_you" = "Nik: %1$@ kidea kenduta";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@(e)k: %1$@ kidea kenduta";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Taldetik atera zara";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Kanaletik atera zara.";
+"you_joined_the_channel" = "Kanalera batu zara.";
 "group_image_deleted_by_you" = "Nik: Taldearen irudia ezabatuta";
 // %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "%1$@(e)k: Taldearen irudia ezabatuta";
+"chat_protection_enabled_tap_to_learn_more" = "Mezuak muturretik muturrera zifratuta daude. Sakatu gehiago jakiteko.";
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
+"enter_system_secret_to_continue" = "Desblokeatu jarraitzeko";
 // qr code stuff
 "qr_code" = "QR kodea";
 "qrscan_title" = "Eskaneatu QR kodea";
 "qrscan_hint" = "Kokatu zure kamera QR kodearen gainean";
 "qrscan_ask_join_group" = "\"%1$@\" taldera elkartu nahi duzu?";
+"qrscan_ask_join_channel" = "\"%1$@\" kanalera batu nahi duzu?";
 "qrscan_fingerprint_mismatch" = "Eskaneatutako hatz-marka eta %1$@ erabiltzaileari ikusitako azken hatz-marka ez datoz bat.";
 "qrscan_no_addr_found" = "QR kode honek hatz-marka bat du baina ez e-mail helbidea.\n\nBandaz kanpoko egiaztaketa baterako, ezarri zifratutako konexio bat hartzailearekin aurretik.";
 "qrscan_contains_text" = "Eskaneatutako QR kodearen testua:\n\n%1$@";
 "qrscan_contains_url" = "Eskaneatutako QR kodearen URL-a:\n\n%1$@";
 "qrscan_fingerprint_label" = "Hatz-marka";
+"revive_qr_code" = "Aktibatu QR kodea";
 "qrshow_title" = "QR gonbidapen-kodea";
 "qrshow_x_joining" = "%1$@ elkartu da.";
 "qrshow_x_verified" = "%1$@ egiaztatuta.";
@@ -475,13 +714,17 @@
 "qrshow_join_group_title" = "QR gonbidapen-kodea";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Eskaneatu hau \"%1$@\" taldera elkartzeko.";
+"qrshow_join_channel_hint" = "Eskaneatu \"%1$@\" kanalera batzeko";
 "qrshow_join_contact_title" = "QR gonbidapen-kodea";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
+"please_enter_name" = "Mesedez, sartu izen bat.";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
+"secure_join_wait" = "Konexioa ezartzen, itxaron mesedez...";
 "contact_verified" = "%1$@ egiaztatuta.";
+"contact_blocked" = "Kontaktua blokeatu duzu";
 // notifications
 "notify_reply_button" = "Erantzun";
 "notify_new_message" = "Mezu berria";
@@ -491,6 +734,10 @@
 "notify_name_and_message" = "Izena eta mezua";
 "notify_name_only" = "Izena besterik ez";
 "notify_no_name_or_message" = "Izenik edo mezurik ez";
+"notifications_disabled" = "Jakinarazpenak desgaituta";
+"new_messages" = "Mezu berriak";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Mezu berriak dituzu";
 // permissions
 "perm_required_title" = "Baimena behar da";
 "perm_continue" = "Jarraitu";
@@ -499,6 +746,13 @@
 "perm_explain_access_to_mic_denied" = "Delta Chat-ek mikrofonoa erabiltzeko baimena behar du ahots-mezuak bidali ahal izateko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpenetara, hautatu \"Baimenak\" eta gaitu \"Mikrofonoa\".";
 "perm_explain_access_to_storage_denied" = "Delta Chat-ek biltegiratze baimena behar du argazkiak, bideoak edo audioa erantsi edo esportatzeko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Biltegiratzea\"";
 "perm_explain_access_to_location_denied" = "Delta Chat-ek kokaleku aatzitzeko baimena behar du kokalekua eransteko, baina behin betiko ukatu zaio. Joan aplikazioaren ezarpen menura, hautatu \"baimenak\", eta gaitu \"Kokalekua\".";
+"ImageEditorHud_add_text" = "Gehitu testua";
+"ImageEditorHud_crop" = "Ezabatu";
+"ImageEditorHud_flip" = "Irauli";
+"ImageEditorHud_rotate" = "Biratu";
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Hau Delta Chat Desktop aplikazio ofiziala da.";
+"about_licensed_under_desktop" = "Software honek GNU GPL 3 bertsioaren lizentziapean dago eta iturburu-kodea GitHub-en dago eskuragarri.";
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";
@@ -514,8 +768,12 @@
 "global_menu_view_developer_desktop" = "Garatzailea";
 "global_menu_view_developer_tools_desktop" = "Garatzaile-tresnak";
 "global_menu_help_desktop" = "Laguntza";
+"delta_chat_homepage" = "Delta Chat-en hasiera orria";
+"contribute" = "Lagundu";
 "global_menu_help_report_desktop" = "Eman arazo baten berri";
 "global_menu_help_about_desktop" = "Delta Chat-i buruz";
+"global_menu_file_open_desktop" = "Ireki Delta Chat";
+"global_menu_minimize_to_tray" = "Txikitu";
 "no_chat_selected_suggestion_desktop" = "Hautatu txat bat edo sortu txat berri bat";
 "write_message_desktop" = "Idatzi mezu bat";
 "encryption_info_title_desktop" = "Zifratzeari buruzko informazioa";
@@ -531,6 +789,10 @@
 "message_detail_received_desktop" = "jasota";
 "menu.view.developer.open.log.folder" = "Ireki egunkarien karpeta";
 "menu.view.developer.open.current.log.file" = "Ireki uneko egunkari-fitxategia";
+"no_spellcheck_suggestions_found" = "Ez dago ortografia-iradokizunik.";
+"show_window" = "Erakutsi leihoa";
+"switch_between_chats" = "Aldatu txaten artean";
+"force_refresh_network" = "Behartu sarea eguneratzera";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Bidalketa-egoera: Errorea";
 "a11y_delivery_status_sending" = "Bidalketa-egoera: Bidaltzen";
@@ -540,7 +802,25 @@
 "a11y_delivery_status_invalid" = "Bidalketa-egoera baliogabea";
 "a11y_message_context_menu_btn_label" = "Mezu-ekintzak";
 "a11y_background_preview_label" = "Atzealdearen aurrebista";
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Utzi kokapena partekatzeari";
+"a11y_connectivity_hint" = "Klik bikoitza konexio xehetasunak ikusteko.";
+"login_error_no_internet_connection" = "Ez dago Internet konexiorik, saio-hasierak huts egin du.";
+"share_account_not_configured" = "Kontua ez dago konfiguratuta";
+"cannot_play_audio_file" = "Ezin da audio-fitxategia erreproduzitu.";
+"open_settings" = "Ireki ezarpenak";
+// iOS device contact alert
+"import_device_contacts" = "Inportatu gailuko kontaktuak";
+// iOS notification settings
+"disabled_in_dc" = "Desgaitu Delta Chat-en";
+"disabled_in_system_settings" = "Desgaitu sistemaren ezarpenetan";
+"system_settings" = "Sistemaren ezarpenak";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Lasterbideak";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_instant_delivery" = "Berehalako bidalketa";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Sakatu hemen mezuak jasotzeko Delta Chat bigarren planoan dagoenean.";
 "perm_enable_bg_already_done" = "Dagoeneko baimendu diozu Delta Chat aplikazioari bigarren planoan mezuak jasotzea,\n\nOraindik ere mezuak heltzen ez badira, egiaztatu ere zure sistemaren ezarpenak.";

@@ -325,7 +325,9 @@
 "answer_call" = "Svara";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avböj";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Utgående samtal";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Inkommande samtal";
 "declined_call" = "Nekade samtal";
 "canceled_call" = "Avbrutna samtal";

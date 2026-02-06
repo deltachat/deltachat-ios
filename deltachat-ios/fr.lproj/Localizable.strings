@@ -325,7 +325,9 @@
 "answer_call" = "Décrocher";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Raccrocher";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Appel sortant";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Appel entrant";
 "declined_call" = "Appel rejeté";
 "canceled_call" = "Appel annulé";

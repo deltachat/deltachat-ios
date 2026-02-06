@@ -321,12 +321,20 @@
 "file_saved_to" = "Datei gespeichert unter \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Anrufen";
+"start_audio_call" = "Sprachanruf";
+"start_video_call" = "Videoanruf";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Annehmen";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ablehnen";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Ausgehender Anruf";
+"outgoing_audio_call" = "Ausgehender Sprachanruf";
+"outgoing_video_call" = "Ausgehender Videoanruf";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Eingehender Anruf";
+"incoming_audio_call" = "Eingehender Sprachanruf";
+"incoming_video_call" = "Eingehender Videoanruf";
 "declined_call" = "Abgelehnter Anruf";
 "canceled_call" = "Abgebrochener Anruf";
 "missed_call" = "Verpasster Anruf";

@@ -321,11 +321,15 @@
 "file_saved_to" = "Het bestand is opgeslagen in ‘%1$@’.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Bellen";
+"start_audio_call" = "Audiogesprek";
+"start_video_call" = "Videogesprek";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Aanvaarden";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Weigeren";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Uitgaande oproep";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Inkomende oproep";
 "declined_call" = "Geweigerde oproep";
 "canceled_call" = "Afgebroken oproep";

@@ -325,7 +325,9 @@
 "answer_call" = "Respon";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rebutja";
+// deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Trucada sortint";
+// deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Trucada entrant";
 "declined_call" = "Trucada rebutjada";
 "canceled_call" = "Trucada cancel·lada";
