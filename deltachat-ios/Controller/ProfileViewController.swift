@@ -13,7 +13,7 @@ class ProfileViewController: UITableViewController {
     }
 
     enum Options {
-        case bio
+        case description
         case media
         case startChat
     }
@@ -51,10 +51,10 @@ class ProfileViewController: UITableViewController {
         return header
     }()
 
-    private lazy var statusCell: MultilineLabelCell = {
+    private lazy var descriptionCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
         cell.multilineDelegate = self
-        cell.setText(text: isSavedMessages ? String.localized("saved_messages_explain") : (contact?.status ?? ""))
+        cell.setText(text: getDescription())
         return cell
     }()
 
@@ -232,13 +232,27 @@ class ProfileViewController: UITableViewController {
 
     // MARK: - update
 
+    private func getDescription() -> String {
+        let text: String
+        if isSavedMessages {
+            text = String.localized("saved_messages_explain")
+        } else if let contact {
+            text = contact.status
+        } else if let chat {
+            text = dcContext.getChatDescription(chatId: chat.id)
+        } else {
+            text = ""
+        }
+        return text
+    }
+
     private func updateOptions() {
         options = []
         actions = []
         manageMembersActions = []
 
-        if isSavedMessages || !(contact?.status.isEmpty ?? true) {
-            options.append(.bio)
+        if !getDescription().isEmpty {
+            options.append(.description)
         }
 
         if !isSavedMessages && !isDeviceChat, let contact, contact.isVerified {
@@ -698,8 +712,8 @@ class ProfileViewController: UITableViewController {
         switch sections[indexPath.section] {
         case .options:
             switch options[indexPath.row] {
-            case .bio:
-                return statusCell
+            case .description:
+                return descriptionCell
             case .media:
                 return mediaCell
             case .startChat:
@@ -746,7 +760,7 @@ class ProfileViewController: UITableViewController {
         switch sections[indexPath.section] {
         case .options:
             switch options[indexPath.row] {
-            case .bio:
+            case .description:
                 break
             case .media:
                 tableView.deselectRow(at: indexPath, animated: true)
