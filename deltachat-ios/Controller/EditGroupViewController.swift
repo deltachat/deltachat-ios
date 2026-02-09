@@ -31,7 +31,10 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }()
 
     private lazy var descriptionCell: MultilineTextFieldCell = {
-        let cell = MultilineTextFieldCell(description: String.localized("description"), multilineText: dcContext.getChatDescription(chatId: chat.id), placeholder: String.localized("description"))
+        let cell = MultilineTextFieldCell(description: String.localized("description"),
+                                          multilineText: dcContext.getChatDescription(chatId: chat.id),
+                                          placeholder: String.localized("description"),
+                                          lineCount: 6)
         cell.onTextFieldChange = self.descriptionEdited(_:)
         return cell
     }()
