@@ -54,7 +54,6 @@ class ProfileViewController: UITableViewController {
     private lazy var descriptionCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
         cell.multilineDelegate = self
-        cell.setText(text: getDescription())
         return cell
     }()
 
@@ -251,7 +250,9 @@ class ProfileViewController: UITableViewController {
         actions = []
         manageMembersActions = []
 
-        if !getDescription().isEmpty {
+        let description = getDescription()
+        if !description.isEmpty {
+            descriptionCell.setText(text: description)
             options.append(.description)
         }
 
