@@ -23,6 +23,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     enum DetailsRows {
         case name
         case avatar
+        case description
     }
     private let detailsRows: [DetailsRows]
 
@@ -66,13 +67,18 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
+    private lazy var descriptionCell: MultilineTextFieldCell = {
+        let cell = MultilineTextFieldCell(description: String.localized("description"), multilineText: "", placeholder: String.localized("description"))
+        return cell
+    }()
+
     init(dcContext: DcContext, createMode: CreateMode, templateChatId: Int? = nil) {
         self.createMode = createMode
         self.dcContext = dcContext
         if createMode == .createEmail {
             self.detailsRows = [.name]
         } else {
-            self.detailsRows = [.name, .avatar]
+            self.detailsRows = [.name, .avatar, .description]
         }
         self.inviteRows = [.addMembers]
         if createMode == .createBroadcast {
@@ -107,6 +113,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         }
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
+            descriptionCell.textField.text = dcContext.getChatDescription(chatId: templateChat.id)
             if let image = templateChat.profileImage {
                 avatarSelectionCell.setAvatar(image: image)
                 changeGroupImage = image
@@ -152,6 +159,8 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: groupChatId)
         }
 
+        dcContext.setChatDescription(chatId: groupChatId, descr: descriptionCell.textField.text)
+
         showGroupChat(chatId: Int(groupChatId))
     }
 
@@ -165,10 +174,10 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
         switch sections[indexPath.section] {
         case .details:
-            if detailsRows[row] == .avatar {
-                return avatarSelectionCell
-            } else {
-                return groupNameCell
+            switch detailsRows[row] {
+            case .name: return groupNameCell
+            case .avatar: return avatarSelectionCell
+            case .description: return descriptionCell
             }
         case .invite:
             guard let actionCell = tableView.dequeueReusableCell(withIdentifier: ActionCell.reuseIdentifier, for: indexPath) as? ActionCell else { fatalError("No ActionCell") }
