@@ -61,7 +61,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
     lazy var avatarSelectionCell: AvatarSelectionCell = {
         let cell = AvatarSelectionCell(image: nil)
-        cell.hintLabel.text = String.localized(createMode == .createGroup ? "group_avatar" : "image")
+        cell.hintLabel.text = String.localized("image")
         cell.onAvatarTapped = onAvatarTapped
         return cell
     }()
@@ -108,7 +108,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if let templateChat = self.templateChat {
             groupNameCell.textField.text = templateChat.name
             if let image = templateChat.profileImage {
-                avatarSelectionCell = AvatarSelectionCell(image: image)
+                avatarSelectionCell.setAvatar(image: image)
                 changeGroupImage = image
             }
         }

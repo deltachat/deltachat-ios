@@ -46,7 +46,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
         self.editRows = [.name, .avatar]
         super.init(style: .insetGrouped)
-        self.avatarSelectionCell.hintLabel.text = String.localized(chat.isOutBroadcast ? "image" : "group_avatar")
+        self.avatarSelectionCell.hintLabel.text = String.localized("image")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
         title = String.localized(chat.isOutBroadcast ? "global_menu_edit_desktop" : "menu_edit_group")
     }
