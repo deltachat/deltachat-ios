@@ -321,14 +321,20 @@
 "file_saved_to" = "Dosya “%1$@” üzerine kaydedildi.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Ara";
+"start_audio_call" = "Sesli Arama";
+"start_video_call" = "Görüntülü Arama";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Yanıtla";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Reddet";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Giden arama";
+"outgoing_audio_call" = "Giden sesli arama";
+"outgoing_video_call" = "Giden görüntülü arama";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Gelen arama";
+"incoming_audio_call" = "Gelen sesli arama";
+"incoming_video_call" = "Gelen görüntülü arama";
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";
 "missed_call" = "Yanıtlanmayan arama";
@@ -976,8 +982,8 @@
 "name_desktop" = "Ad";
 "select_group_image_desktop" = "Grup Görseli Seç";
 "export_backup_desktop" = "Yedeği Dışa Aktar";
-"message_detail_sent_desktop" = "gönderilme";
-"message_detail_received_desktop" = "alınma";
+"message_detail_sent_desktop" = "Gönderilme";
+"message_detail_received_desktop" = "Alınma";
 "menu.view.developer.open.log.folder" = "Günlük Klasörünü Aç";
 "menu.view.developer.open.current.log.file" = "Şu Anki Günlük Dosyasını Aç";
 "explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";

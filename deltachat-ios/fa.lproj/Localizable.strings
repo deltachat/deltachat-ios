@@ -323,14 +323,20 @@
 "file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "تماس";
+"start_audio_call" = "تماس صوتی";
+"start_video_call" = "تماس تصویری";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "جواب دادن";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "رد کردن";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "تماس خروجی";
+"outgoing_audio_call" = "تماس صوتی خروجی";
+"outgoing_video_call" = "تماس تصویری خروجی";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "تماس ورودی";
+"incoming_audio_call" = "تماس صوتی ورودی";
+"incoming_video_call" = "تماس تصویری ورودی";
 "declined_call" = "تماس رد شده";
 "canceled_call" = "تماس لغو شده";
 "missed_call" = "تماس از دست رفته";

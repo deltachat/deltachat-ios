@@ -329,8 +329,12 @@
 "end_call" = "Weigeren";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Uitgaande oproep";
+"outgoing_audio_call" = "Uitgaand audiogesprek";
+"outgoing_video_call" = "Uitgaand videogesprek";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Inkomende oproep";
+"incoming_audio_call" = "Inkomend audiogesprek";
+"incoming_video_call" = "Inkomend videogesprek";
 "declined_call" = "Geweigerde oproep";
 "canceled_call" = "Afgebroken oproep";
 "missed_call" = "Gemiste oproep";

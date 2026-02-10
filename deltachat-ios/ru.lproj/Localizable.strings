@@ -321,14 +321,20 @@
 "file_saved_to" = "Файл сохранён в \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Позвонить";
+"start_audio_call" = "Аудиозвонок";
+"start_video_call" = "Видеозвонок";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Ответить";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Отклонить";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Исходящий звонок";
+"outgoing_audio_call" = "Исходящий аудиозвонок";
+"outgoing_video_call" = "Исходящий видеозвонок";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Входящий звонок";
+"incoming_audio_call" = "Входящий аудиозвонок";
+"incoming_video_call" = "Входящий видеозвонок";
 "declined_call" = "Отклонённый звонок";
 "canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";

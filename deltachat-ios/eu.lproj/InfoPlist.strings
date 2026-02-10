@@ -1,3 +1,7 @@
 NSCameraUsageDescription = "Kamera atzitzeko baimena emateak argazkiak eta bideoak ateratzea ahalbidetzen dizu.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat-ek zure kokapena partekatzeko baimena behar du, kokapena partekatzea aktibatuta duzun denbora-tartean.";
+NSLocationWhenInUseUsageDescription = "Delta Chat-ek zure kokapena partekatzeko baimena behar du, kokapena partekatzea aktibatuta duzun denbora-tartean.";
 NSMicrophoneUsageDescription = "Mikrofonoa  atzitzeko baimena emateak audioa grabatzea ahalbidetzen dizu.";
 NSPhotoLibraryUsageDescription = "Argazkien bilduma atzitzeko baimena emateak bertatik argazkiak igotzea ahalbidetzen dizu.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat-ek zure argazki galerian irudiak gorde nahi ditu.";
+NSFaceIDUsageDescription = "Delta Chat-ek Face ID erabil dezake zure tokiko profila, babeskopien sorkuntza eta bigarren gailu baten konfigurazioa babesteko.";

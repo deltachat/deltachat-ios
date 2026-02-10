@@ -178,6 +178,22 @@
 			<string>%d hautatu dira</string>
 		</dict>
 	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Bidali hurrengo fitxategia %s-(e)ra?</string>
+			<key>other</key>
+			<string>Bidali hurrengo %d fitxategiak %s(e)ra?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_chat</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
