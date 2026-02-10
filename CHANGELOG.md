@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.42.0 Testflight
+2026-02
 
 - Have preview and notifications of large messages much quicker
 - Improve "Connectivity View"
@@ -23,7 +24,7 @@
 - Fix: Prevent possible infinite loop with invalid SMTP row
 - Fix: Sync broadcast subscribers list
 - Update translations and local help
-- Update to core 2.41.0
+- Update to core 2.42.0
 
 
 ## v2.35.0
