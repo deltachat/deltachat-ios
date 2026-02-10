@@ -321,14 +321,20 @@
 "file_saved_to" = "Archivo guardado en \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Llamar";
+"start_audio_call" = "Llamada";
+"start_video_call" = "Videollamada";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Contestar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rechazar";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Llamada saliente";
+"outgoing_audio_call" = "Llamada saliente";
+"outgoing_video_call" = "Videollamada saliente";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Llamada entrante";
+"incoming_audio_call" = "Llamada entrante";
+"incoming_video_call" = "Videollamada entrante";
 "declined_call" = "Llamada rechazada";
 "canceled_call" = "Llamada cancelada";
 "missed_call" = "Llamada perdida";
@@ -688,6 +694,7 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "pref_show_emails_accepted_contacts" = "Para contactos aceptados";
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Características experimentales";
+"pref_experimental_features_explain" = "Estas funciones pueden ser inestables y pueden ser modificadas o eliminadas";
 "pref_on_demand_location_streaming" = "Transmisión de ubicación bajo demanda";
 "pref_background_default" = "Fondo por defecto";
 "pref_background_default_color" = "Color por defecto";
@@ -713,6 +720,13 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "disable_imap_idle" = "Deshabilitar IMAP IDLE";
 "disable_imap_idle_explain" = "No utilizar la extensión IMAP IDLE aunque el servidor la admita. Habilitar esta opción retrasará el recibo de mensajes, actívala solo para pruebas.";
 "send_stats_to_devs" = "Enviar estadísticas a los desarrolladores  de Delta Chat";
+"stats_device_message" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?\n\n👉 Pulsa aquí… 👈";
+"stats_confirmation_dialog" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?";
+"stats_thanks" = "¡Gracias! Siempre puedes desactivar el envío en \"Configuración -> Avanzado\".\n\n¿Tienes 5 minutos adicionales para participar en un estudio científico sobre la seguridad de Delta Chat?";
+"stats_disable_dialog" = "El envío de estadísticas ya está habilitado.\n\n¿Quieres deshabilitarlo?";
+"disable" = "Desactivar";
+"stats_keep_sending" = "Seguir enviando";
+"stats_msg_body" = "El archivo adjunto contiene estadísticas de uso anónimas que nos ayudan a mejorar Delta Chat. Consulta https://delta.chat/help#statssending para más información. ¡Gracias!";
 // Emoji picker and categories
 "emoji_search_results" = "Resultados de la búsqueda";
 "emoji_not_found" = "No se encontraron emojis";
@@ -882,10 +896,13 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "qrlogin_ask_login" = "¿Iniciar sesión en \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ te invitó a unirte a este grupo.\n\nEsperando que el dispositivo de %2$@ responda…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ te invitó a unirte a este canal.\n\nEsperando que el dispositivo de %2$@ responda…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ respondió, esperando ser agregado al grupo…";
 "secure_join_wait" = "Estableciendo cifrado de extremo a extremo garantizado, por favor, espere...";
 "contact_verified" = "%1$@ verificado.";
+"contact_blocked" = "Contacto bloqueado";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Verificado por %1$@";
 "verified_by_you" = "Verificado por ti";

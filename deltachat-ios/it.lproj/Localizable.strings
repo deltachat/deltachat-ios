@@ -329,8 +329,12 @@
 "end_call" = "Rifiuta";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Chiamata in uscita";
+"outgoing_audio_call" = "Chiamata in uscita";
+"outgoing_video_call" = "Videochiamata in uscita";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Chiamata in arrivo";
+"incoming_audio_call" = "Chiamata in arrivo";
+"incoming_video_call" = "Videochiamata in arrivo";
 "declined_call" = "Chiamata rifiutata";
 "canceled_call" = "Chiamata annullata";
 "missed_call" = "Chiamata persa";

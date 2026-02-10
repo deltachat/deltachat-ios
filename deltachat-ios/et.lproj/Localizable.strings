@@ -321,14 +321,20 @@
 "file_saved_to" = "Fail on salvestatud: „%1$@“.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Helista";
+"start_audio_call" = "Häälkõne";
+"start_video_call" = "Videokõne";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Väljuv kõne";
+"outgoing_audio_call" = "Väljuv häälkõne";
+"outgoing_video_call" = "Väljuv videokõne";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Saabuv kõne";
+"incoming_audio_call" = "Saabuv häälkõne";
+"incoming_video_call" = "Saabuv videokõne";
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";

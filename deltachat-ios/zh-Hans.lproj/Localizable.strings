@@ -329,8 +329,12 @@
 "end_call" = "拒接";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "去电";
+"outgoing_audio_call" = "音频通话去电";
+"outgoing_video_call" = "视频通话去电";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "来电";
+"incoming_audio_call" = "音频通话来电";
+"incoming_video_call" = "视频通话来电";
 "declined_call" = "已拒接的来电";
 "canceled_call" = "已取消的通话";
 "missed_call" = "未接来电";
