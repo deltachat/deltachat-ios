@@ -28,7 +28,7 @@
 "delete" = "Видалити";
 "delete_for_me" = "Видалити для мене";
 "delete_for_everyone" = "Видалити для всіх";
-"info" = "Відомості";
+"info" = "Інформація";
 "update" = "Оновити";
 "emoji" = "Емодзі";
 "attachment" = "Вкладення";
@@ -325,14 +325,20 @@
 "file_saved_to" = "Файл збережено до \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Дзвонити";
+"start_audio_call" = "Аудіовиклик";
+"start_video_call" = "Відеовиклик";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Вихідний дзвінок";
+"outgoing_audio_call" = "Вихідний аудіовиклик";
+"outgoing_video_call" = "Вихідний відеовиклик";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Вхідний дзвінок";
+"incoming_audio_call" = "Вхідний аудіовиклик";
+"incoming_video_call" = "Вхідний відеовиклик";
 "declined_call" = "Відхилений дзвінок";
 "canceled_call" = "Скасований дзвінок";
 "missed_call" = "Пропущений дзвінок";
@@ -428,12 +434,12 @@
 "search_unread" = "Непрочитане";
 // create/edit groups, contact/group profile
 "group_name" = "Назва групи";
-"group_avatar" = "Емблема групи";
-"remove_group_image" = "Видалить емблему групи";
-"change_group_image" = "Ізміни́ть емблему групи";
+"group_avatar" = "Зображення групи";
+"remove_group_image" = "Видалити зображення групи";
+"change_group_image" = "Змінити зображення групи";
 "group_create_button" = "Створити групу";
 "group_please_enter_group_name" = "Уведіть назву групі.";
-"group_add_members" = "Додати учасництво";
+"group_add_members" = "Додати учасників";
 "group_self_not_in_group" = "Потрібно участвувати в групі, щоби виконати цю дію.";
 "profile_encryption" = "Шифрування";
 "profile_shared_chats" = "Спільні з вами чати";
@@ -979,7 +985,7 @@
 "save_desktop" = "Зберегти";
 // Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
 "unsave" = "Відмінити збереження";
-"name_desktop" = "Імʼя";
+"name_desktop" = "Ім\'я";
 "select_group_image_desktop" = "Вибрати емблему групи";
 "export_backup_desktop" = "Експорт резервної копії";
 "message_detail_sent_desktop" = "Надіслано";
