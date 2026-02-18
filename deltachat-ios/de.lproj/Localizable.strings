@@ -49,7 +49,9 @@
 "archive" = "Archivieren";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Dearchivieren";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Stumm";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
 "ephemeral_messages_hint" = "Gilt für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können kopiert, gespeichert oder weitergeleitet werden.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Um Sticker hinzuzufügen, tippe auf \"Sticker-Ordner öffnen\", erstelle einen Unterordner für dein Sticker-Paket und ziehe Bild- und Sticker-Dateien dorthin.";
 "open_sticker_folder" = "Sticker-Ordner öffnen";
 "images" = "Bilder";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Sprachnachricht";
 "forwarded" = "Weitergeleitet";
@@ -168,6 +171,7 @@
 "games" = "Spiele";
 "tools" = "Tools";
 "app_size" = "Größe";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Veröffentlicht";
 "add_to_chat" = "Zum Chat hinzufügen";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "Mein Name";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signatur";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter-Taste sendet";
 "pref_enter_sends_explain" = "Durch Drücken der Eingabetaste werden Textnachrichten gesendet.";
 "pref_outgoing_media_quality" = "Medienqualität beim Senden";
@@ -710,6 +715,7 @@
 "n_bytes_message" = "%1$@ Nachricht";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Download max. verfügbar bis %1$@";
+// deprecated
 "select_profile" = "Profil auswählen";
 "profile_image_select" = "Profilbild auswählen";
 "select_your_new_profile_image" = "Wählen dein Profilbild aus";

@@ -49,7 +49,9 @@
 "archive" = "归档";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "取消归档";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "静音";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "已静音";
 "ephemeral_messages" = "消息定时销毁";
 "ephemeral_messages_hint" = "适用于此聊天的所有成员；他们仍然可以复制、保存和转发消息。";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "要添加贴纸，请点按“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
 "open_sticker_folder" = "打开贴纸文件夹";
 "images" = "图片";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "音频";
 "voice_message" = "语音消息";
 "forwarded" = "转发了";
@@ -168,6 +171,7 @@
 "games" = "游戏";
 "tools" = "工具";
 "app_size" = "大小";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "已发布";
 "add_to_chat" = "添加到聊天";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "您的名称";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "签名档";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter 键发送";
 "pref_enter_sends_explain" = "按 Enter 键发送文本消息";
 "pref_outgoing_media_quality" = "发出媒体质量";
@@ -710,6 +715,7 @@
 "n_bytes_message" = "%1$@ 消息";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "下载最晚于 %1$@ 前可用";
+// deprecated
 "select_profile" = "选择账号";
 "profile_image_select" = "选择个人资料图片";
 "select_your_new_profile_image" = "选择新的个人资料图片";

@@ -49,7 +49,9 @@
 "archive" = "بایگۊوی";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "و در زیڌن ز بایگۊوی";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "بؽ دونگ";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "بؽ دونگ";
 "ephemeral_messages" = "پیوما بؽڌارکۊنی";
 "ephemeral_messages_hint" = "یو ری پوی منتورا ای گوفت وو لوفت، ٱر دلتا چت ن و کار بگرن ائمال ابۊ. ولی هنی ترن پیوما ن لف گیری، زفت وو فوروارد کونن.";
@@ -128,6 +130,7 @@
 "add_stickers_instructions" = "سی ٱووردن برچسب ری «گۊشیڌن دوبلگه برچسب» بزنین، ی لم دوبلگه ای سی کتن برچسب خوتووݩ وورکل کۊنین وو برچسبا ن و اوچو بکشین";
 "open_sticker_folder" = "گۊشیڌن دوبلگه استیکر";
 "images" = "شؽواتا";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "دونگ";
 "voice_message" = "پیوم دونگ";
 "forwarded" = "فوروارد وابیڌه";
@@ -164,6 +167,7 @@
 "games" = "بازی یل";
 "tools" = "ٱوزار";
 "app_size" = "هندا";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "تیجنیڌن";
 "add_to_chat" = "ٱووردن و گوفت وو لوفت";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"

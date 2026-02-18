@@ -49,7 +49,9 @@
 "archive" = "Arşivle";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Arşivleme";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Sessize Al";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Sessize alındı";
 "ephemeral_messages" = "Kaybolan İletiler";
 "ephemeral_messages_hint" = "Bu sohbetin tüm üyelerine uygulanır; onlar hâlâ iletileri kopyalayabilir, kaydedebilir ve iletebilir.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Çıkartmalar eklemek için “Çıkartma Klasörünü Aç”a dokunun, çıkartma paketiniz için bir alt klasör oluşturun ve görseli ve çıkartma dosyalarını oraya sürükleyin";
 "open_sticker_folder" = "Çıkartma Klasörünü Aç";
 "images" = "Görseller";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Ses";
 "voice_message" = "Sesli İleti";
 "forwarded" = "İletildi";
@@ -168,6 +171,7 @@
 "games" = "Oyunlar";
 "tools" = "Araçlar";
 "app_size" = "Boyut";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Yayımlanma";
 "add_to_chat" = "Sohbete Ekle";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "Adınız";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Biyografi";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter Tuşu Göndersin";
 "pref_enter_sends_explain" = "Enter tuşuna basma, metin iletileri gönderecek";
 "pref_outgoing_media_quality" = "Giden Ortam Kalitesi";
@@ -710,6 +715,7 @@
 "n_bytes_message" = "%1$@ ileti";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "İndirme en fazla %1$@ zamanına kadar kullanılabilir";
+// deprecated
 "select_profile" = "Profil Seç";
 "profile_image_select" = "Profil Görseli Seç";
 "select_your_new_profile_image" = "Yeni profil görselinizi seçin";

@@ -33,6 +33,7 @@
 "archive" = "アーカイブ";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "元に戻す";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "ミュート";
 "ephemeral_messages" = "消えるメッセージ";
 "ephemeral_messages_hint" = "この設定は、Delta Chatの利用する参加者に適用されます。ただし、参加者はメッセージをコピーしたり、保存したり、転送したり、他のアプリを利用したりすることができます。";
@@ -88,6 +89,7 @@
 "reply_noun" = "返信";
 "gif" = "Gif";
 "images" = "画像";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "音楽";
 "voice_message" = "音声メッセージ";
 "forwarded" = "転送された";
@@ -331,6 +333,7 @@
 "pref_your_name" = "あなたの名前";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "署名";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "エンターキーで送信";
 "pref_enter_sends_explain" = "エンターキーを押すとテキストメッセージが送信されます";
 "pref_outgoing_media_quality" = "送信する画像や映像の画質";

@@ -24,6 +24,7 @@
 "archive" = "காப்பகத்தை";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "மீட்டெடுக்கலாம்";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "ஓசையற்ற";
 "ephemeral_messages" = "காணாமல் போகும் செய்திகள்";
 "save" = "சேமி";
@@ -56,6 +57,7 @@
 "image" = "படம்";
 "gif" = "GIF";
 "images" = "புகைப்படங்கள்";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "ஒலி";
 "voice_message" = "குரல் செய்தி";
 "forwarded_message" = "மேல அனுப்பப்பட்ட சேதி";
@@ -146,6 +148,7 @@
 "pref_profile_info_headline" = "உங்கள் சுயவிவரத் தகவல்";
 "pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
 "pref_your_name" = "எனது பெயர்";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "\"enter\" மூலம் அனுப்பவும்";
 "pref_vibrate" = "அதிர்வு உண்டாக்கு";
 "pref_screen_security" = "திரை பாதுகாப்பு";

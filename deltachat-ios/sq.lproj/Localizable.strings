@@ -48,7 +48,9 @@
 "archive" = "Arkivoje";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Çarkivoje";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Heshtoje";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Heshtuar";
 "ephemeral_messages" = "Mesazhe Që Zhduken";
 "ephemeral_messages_hint" = "Këto rregullime zbatohen mbi krejt pjesëmarrësit që përdorin Delta Chat-in. Sidoqoftë, ata mund të kopjojnë, ruajnë dhe përcjellin mesazhe ose të përdorin klientë të tjerë email-i.";
@@ -131,6 +133,7 @@
 "add_stickers_instructions" = "Që të shtoni ngjitës, prekni “Hap Dosje Ngjitësish”, krijoni një nëndosje për paketën e ngjitësit tuaj dhe tërhiqni në të figurë dhe kartela ngjitësi";
 "open_sticker_folder" = "Hap Dosje Ngjitësish";
 "images" = "Figura";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Mesazh Zanor";
 "forwarded" = "Përcjellë";
@@ -613,6 +616,7 @@
 "pref_your_name" = "Emri Juaj";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Jetëshkrim";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tasti Enter Dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
 "pref_outgoing_media_quality" = "Cilësi Mediash Në Dalje";
@@ -700,6 +704,7 @@
 "n_bytes_message" = "Mesazh %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Shkarko maksimumin e mundshëm deri më %1$@";
+// deprecated
 "select_profile" = "Përzgjidhni Profil";
 "profile_image_select" = "Përzgjidhni Figurë Profili";
 "select_your_new_profile_image" = "Përzgjidhni figurën tuaj të re të profilit";

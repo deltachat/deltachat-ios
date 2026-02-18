@@ -49,7 +49,9 @@
 "archive" = "Artxibatu";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Berreskuratu artxibotik";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Isilarazi";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Isilarazia";
 "ephemeral_messages" = "Mezuen desagerpena";
 "ephemeral_messages_hint" = "Txat honetako kide guztiei aplikatzen zaie; mezuak kopiatu, gorde eta birbidali ahal izango dituzte oraindik ere.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Stickerretara gehitzeko, klik egin \"Ireki sticker karpeta\"  aukeran, sortu azpikarpeta bat zure sticker multzoarentzat eta arrastatu irudi eta sticker fitxategiak bertara.";
 "open_sticker_folder" = "Ireki sticker karpeta";
 "images" = "Irudiak";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audioa";
 "voice_message" = "Ahots-mezua";
 "forwarded" = "Birbidalia";
@@ -168,6 +171,7 @@
 "games" = "Jokoak";
 "tools" = "Tresnak";
 "app_size" = "Tamaina";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Argitaratua";
 "add_to_chat" = "Gehitu txatera";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -466,7 +470,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Gehitu bigarren gailua";
 "multidevice_same_network_hint" = "Ziurtatu gailu biak Wi-Fi edo sare berera konektatuta daudela.";
-"multidevice_this_creates_a_qr_code" = "Honek QR kode bat sortuko du, bigarren gailuak eskaneatu eta profila kopiatu dezan.\n\nZiurtatu nahi ez duzun begiralerik edo kamerarik ezin duela ondorengo pantaila ikusi.";
+"multidevice_this_creates_a_qr_code" = "Honek QR kode bat sortuko du, bigarren gailuak eskaneatu eta profila kopiatu dezan.\n\nZiurtatu zuk nahi ez duzun inork ez ezein kamerak ezin duela ondorengo pantaila ikusi.";
 "multidevice_install_dc_on_other_device" = "Instalatu Delta Chat zure beste gailuan (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Abiarazi Delta Chat, sakatu “Badut profil bat / Gehitu bigarren gailu gisa” eta eskaneatu hemen agertzen den kodea.";
@@ -491,7 +495,7 @@
 "outgoing_messages" = "Irteerako mezuak";
 // deprecated
 "storage_on_domain" = "%1$@(e)ko biltegiratzea";
-"connectivity" = "Konektagarritasuna";
+"connectivity" = "Konexioa";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Konektatu gabe";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
@@ -506,7 +510,7 @@
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mezuak";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
-"part_of_total_used" = "%2$@(e)tik %1$@ erabilita";
+"part_of_total_used" = "%2$@etik %1$@ erabilita";
 // welcome and login
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Sortu kontu berria";
@@ -549,19 +553,19 @@
 "login_smtp_port" = "SMTP ataka";
 "login_smtp_security" = "SMTP segurtasuna";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
-"proxy_settings" = "Proxy-a";
-"proxy_use_proxy" = "Erabili proxy-a";
-"proxy_add" = "Gehitu proxy-a";
+"proxy_settings" = "Proxya";
+"proxy_use_proxy" = "Erabili proxya";
+"proxy_add" = "Gehitu proxya";
 "proxy_add_explain" = "Onartutako proxy motak: HTTP(S), SOCKS5 eta Shadowsocks.";
-"proxy_add_url_hint" = "Sartu proxy-aren esteka hemen";
+"proxy_add_url_hint" = "Sartu proxyaren esteka hemen";
 "proxy_invalid" = "Proxy baliogabea edo ez-bateragarria";
-"proxy_list_header" = "Gordetako proxy-ak";
-"proxy_delete" = "Ezabatu proxy-a";
+"proxy_list_header" = "Gordetako proxyak";
+"proxy_delete" = "Ezabatu proxya";
 "proxy_delete_explain" = "Ziur zaude \"%1$@\" ezabatu nahi duzula?";
 "proxy_use_proxy_confirm" = "\"%1$@\" proxia erabili nahi duzu?";
 "proxy_share_explain" = "Zure lagunek QR kodea eskaneatuta gehitu dezakete proxy hau.";
 "proxy_share_link" = "Partekatu esteka";
-"proxy_enabled" = "Proxy-a gaituta";
+"proxy_enabled" = "Proxya gaitu da";
 "proxy_enabled_hint" = "Proxy bat erabiltzen ari zara. Konektatzeko arazoak badituzu, probatu beste proxy bat.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Erreleak";
@@ -578,9 +582,9 @@
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
 "login_error_port" = "Sartu baliozko ataka bat  (1–65535)";
 "login_error_required_fields" = "Sartu baliozko e-mail helbidea eta pasahitza";
-"import_backup_title" = "Inportatu babes-kopia";
-"import_backup_ask" = "Babes-kopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
-"import_backup_no_backup_found" = "Ez da babes-kopiarik aurkitu.\n\nKopiatu babes-kopia \"%1$@\" karpetan eta saiatu berriro.";
+"import_backup_title" = "Inportatu babeskopia";
+"import_backup_ask" = "Babeskopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
+"import_backup_no_backup_found" = "Ez da babeskopiarik aurkitu.\n\nKopiatu babeskopia \"%1$@\" karpetan eta saiatu berriro.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";
 // TLS certificate checks
@@ -622,19 +626,20 @@
 "pref_your_name" = "Zure izena";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Sinaduraren testua";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter teklarekin bidali";
 "pref_enter_sends_explain" = "Enter tekla sakatzeak mezua bidaliko du";
 "pref_outgoing_media_quality" = "Bidalitako multimediaren kalitatea";
 "pref_outgoing_balanced" = "Orekatua";
 "pref_outgoing_worse" = "Kalitate txarragoa, tamaina txikia";
 "pref_vibrate" = "Bibratu";
-"pref_screen_security" = "Pantaila segurtasuna";
+"pref_screen_security" = "Pantaila-segurtasuna";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
-"pref_screen_security_explain" = "Eskatu pantaila-argazkiak blokeatzea azkenak zerrendan eta aplikazio barruan.";
-"pref_screen_security_please_restart_hint" = "Pantailaren segurtasun ezarpenak aplikatzeko berrabiarazi aplikazioa.";
+"pref_screen_security_explain" = "Eskatu pantaila-argazkiak blokeatzea azkenen zerrendan eta aplikazio barruan.";
+"pref_screen_security_please_restart_hint" = "Pantailaren segurtasun-ezarpenak aplikatzeko berrabiarazi aplikazioa.";
 "pref_notifications" = "Jakinarazpenak";
 "pref_mention_notifications" = "Aipamenak";
-"pref_mention_notifications_explain" = "Mutututako taldeetan, jakinarazi zuretzat diren mezuak, hala nola erantzunak edo erreakzioak";
+"pref_mention_notifications_explain" = "Mutututako taldeetan, jaso zuretzat diren mezuen jakinarazpenak, hala nola erantzunak edo erreakzioak";
 "pref_notifications_show" = "Erakutsi";
 "pref_notifications_priority" = "Lehentasuna";
 "pref_notifications_explain" = "Gaitu sistemaren jakinarazpenak mezu berrientzat";
@@ -663,23 +668,23 @@
 "pref_encryption" = "Zifratua";
 "pref_manage_keys" = "Kudeatu gakoak";
 "pref_chats" = "Txatak";
-"pref_in_chat_sounds" = "Txat bitarteko soinuak";
+"pref_in_chat_sounds" = "Txat barruko soinuak";
 "pref_view_log" = "Ikusi egunkaria";
 "pref_saved_log" = "Egunkaria deskargen karpetan gorde da";
 "pref_save_log_failed" = "Huts egin du egunkaria gordetzean";
 "pref_log_header" = "Egunkaria";
 "pref_other" = "Bestelakoa";
 "pref_backup" = "Babeskopia";
-"pref_backup_explain" = "Egin txaten babes-kopia kanpo biltegian";
-"pref_backup_export_explain" = "Babes-kopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabes-kopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babes-kopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
+"pref_backup_explain" = "Egin txaten babeskopia kanpo biltegian";
+"pref_backup_export_explain" = "Babeskopia batek instalazio berri bat ezartzen laguntzen dizu, bai gailu honetan zein beste batean.\n\nBabeskopiak mezu guztiak, kontaktuak eta txatak, eta zure Autocrypt ezarpena daramatza. Gorde babeskopiaren fitxategia toki seguruan edo ezabatu ahalik eta lasterren.";
 "pref_backup_export_this" = "Esportatu kontu hau";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Esportatu %1$d kontu guztiak";
-"pref_backup_export_start_button" = "Hasi babes-kopia";
-"pref_backup_written_to_x" = "Babes-kopia ongi idatzi da hemen: %1$@";
+"pref_backup_export_start_button" = "Hasi babeskopia";
+"pref_backup_written_to_x" = "Babeskopia ongi idatzi da hemen: %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Atzealdea";
-"pref_background_btn_default" = "Erabili lehenetsitako irudia";
+"pref_background_btn_default" = "Erabili irudi lehenetsia";
 "pref_background_btn_gallery" = "Hautatu galeriatik";
 "pref_imap_folder_warn_disable_defaults" = "Aukera hau desaktibatuz gero, egiaztatu zure zerbitzaria eta beste bezeroen konfigurazioa bat datorrela.\n\nBestela agian gauzak ez dabiltza.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
@@ -693,23 +698,24 @@
 "pref_show_emails_accepted_contacts" = "Onartutako kontaktuena";
 "pref_show_emails_all" = "Denak";
 "pref_experimental_features" = "Ezaugarri esperimentalak";
-"pref_experimental_features_explain" = "Ezaugarri hauek ezegonkorrak izan daitezke eta aldatu edo kendu egin daitezke.";
+"pref_experimental_features_explain" = "Baliteke ezaugarri hauek ezegonkorrak izatea eta gerora aldatzea edo kentzea.";
 "pref_on_demand_location_streaming" = "Eskaripeko kokapena zuzenean partekatzea";
-"pref_background_default" = "Lehenetsitako atzealdea";
-"pref_background_default_color" = "Lehenetsitako kolorea";
+"pref_background_default" = "Atzealde lehenetsia";
+"pref_background_default_color" = "Kolore lehenetsia";
 "pref_background_custom_image" = "Irudi pertsonalizatua";
 "pref_background_custom_color" = "Kolore pertsonalizatua";
 "export_aborted" = "Esportazioa bertan behera geratu da.";
 "auto_download_messages" = "Deskargatu mezuak automatikoki";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
-"up_to_x" = "%1$@(e)ra arte";
-"up_to_x_most_worse_quality_images" = "%1$@(e)ra arte, kalitate txarreneko irudiak";
-"up_to_x_most_balanced_quality_images" = "%1$@(e)ra arte, kalitate orekatueneko irudiak";
+"up_to_x" = "%1$@ arte";
+"up_to_x_most_worse_quality_images" = "%1$@ arte: kalitate txarreneko irudiak";
+"up_to_x_most_balanced_quality_images" = "%1$@ arte: kalitate orekatueneko irudiak";
 "download_failed" = "Deskargak huts egin du";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
 "n_bytes_message" = "%1$@ mezu";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Deskargatu eskuragarri dagoen gehienezkoa %1$@ arte";
+// deprecated
 "select_profile" = "Aukeratu kontua";
 "profile_image_select" = "Aukeratu abatarra";
 "select_your_new_profile_image" = "Aukeratu zure abatar berria";
@@ -761,11 +767,11 @@
 "autodel_confirm" = "Ulertzen dut, ezabatu mezuk guzti hauek";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Berehala";
-"after_5_minutes" = "5 minutu pasatutakoan";
+"after_5_minutes" = "5 minutu eta gero";
 "autodel_after_1_hour" = "Ordubete eta gero";
 "autodel_after_1_day" = "Egun bat eta gero";
 "autodel_after_1_week" = "Aste bat eta gero";
-"after_5_weeks" = "5 aste pasatutakoan";
+"after_5_weeks" = "5 aste eta gero";
 "autodel_after_1_year" = "Urtebete eta gero";
 // system messages
 "systemmsg_subject_for_new_contact" = "%1$@(r)en mezua";
@@ -778,11 +784,11 @@
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@(e)k: Taldearen irudia aldatuta";
 // %1$s will be replaced by name of the contact added to the group
-"member_x_added" = "%1$@ kidea gehituta.";
+"member_x_added" = "%1$@ kidea gehitu da.";
 // %1$s will be replaced by name of the contact added to the group
-"add_member_by_you" = "Nik: %1$@ kidea gehituta";
+"add_member_by_you" = "Nik: %1$@ kidea gehitu dut";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
-"add_member_by_other" = "%2$@(e)k: %1$@ kidea gehituta";
+"add_member_by_other" = "%2$@(e)k: %1$@ kidea gehitu du";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Nik: %1$@ kidea kenduta";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
@@ -981,7 +987,7 @@
 "unsave" = "Gorde gabe utzi";
 "name_desktop" = "Izena";
 "select_group_image_desktop" = "Hautatu taldearen irudia";
-"export_backup_desktop" = "Esportatu babes-kopia";
+"export_backup_desktop" = "Esportatu babeskopia";
 "message_detail_sent_desktop" = "bidalita";
 "message_detail_received_desktop" = "jasota";
 "menu.view.developer.open.log.folder" = "Ireki egunkarien karpeta";
@@ -1045,7 +1051,7 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Berehalako bidalketa";
 "pref_background_notifications" = "Erabili atzeko planoko konexioa";
-"pref_background_notifications_explain" = "Bateriaren optimizazioak alde batera uztea eskatzen du, erabili jakinarazpenak garaiz iristen ez badira.";
+"pref_background_notifications_explain" = "Bateriaren optimizazioa alde batera utziko du. Erabili hau jakinarazpenak garaiz iristen ez badira.";
 "pref_reliable_service" = "Behartu atzeko planoko konexioa";
 "pref_reliable_service_explain" = "Jakinarazpen iraunkorra sortzen du";
 "pref_background_notifications_rationale" = "Konexioari eutsi eta mezuak atzeko planoan jasotzeko, baztertu bateriaren optimizazioak hurrengo urratsean.\n\nDelta Chat-ek baliabide gutxi erabiltzen ditu eta kontu handiz jokatzen du bateria ez agortzeko.";

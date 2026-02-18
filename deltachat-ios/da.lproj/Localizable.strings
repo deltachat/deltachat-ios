@@ -33,6 +33,7 @@
 "archive" = "Arkivér";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Fortryd arkivering";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Udsæt";
 "ephemeral_messages" = "Beskeder med tidsudløb";
 "ephemeral_messages_hint" = "Disse indstillinger gælder for alle deltagere der bruger Delta Chat. De kan dog kopiere, gemme og videresende beskeder eller bruge andre e-mail klienter. ";
@@ -87,6 +88,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Klistermærker";
 "images" = "Billeder";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Lyd";
 "voice_message" = "Tale besked";
 "forwarded" = "Videresendt";
@@ -335,6 +337,7 @@
 "pref_your_name" = "Dit navn";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Underskrift tekst";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter tast sender";
 "pref_enter_sends_explain" = "Tryk på enter tast vil sende tekst beskeden";
 "pref_outgoing_media_quality" = "Udgående medie kvalitet";

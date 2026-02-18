@@ -38,6 +38,7 @@
 "archive" = "Архивиране";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Деархивиране";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Изключване на звука";
 "ephemeral_messages" = "Изчезващи съобщения";
 "ephemeral_messages_hint" = "Приложимо за всички членове на този чат, ако използват Delta Chat; в противен случай те пак могат да копират, записват и препращат съобщения или да използват други клиенти за електронна поща.";
@@ -111,6 +112,7 @@
 "add_stickers_instructions" = "За да добавите стикери, натиснете върху \"Отваряне на папка Стикери\", създайте подпапка за Вашия пакет от стикери и дърпайте файлове със стикери и изображения тук";
 "open_sticker_folder" = "Отваряне на папка Стикери";
 "images" = "Изображения";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Аудио";
 "voice_message" = "Гласово съобщение";
 "forwarded" = "Препратено";
@@ -483,6 +485,7 @@
 "pref_your_name" = "Вашето име";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Текст на подписа";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Клавишът Enter изпраща";
 "pref_enter_sends_explain" = "Натискането на клавиша Enter ще изпраща текстовите съобщения";
 "pref_outgoing_media_quality" = "Качество на изходящата медия";

@@ -19,6 +19,7 @@
 "back" = "العودة";
 "close" = "إغلاق";
 "forward" = "إعادة توجيه";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "حجب المكرفون.";
 "ephemeral_messages" = "الرسائل المُختفية";
 "save" = "حفظ";
@@ -53,6 +54,7 @@
 "image" = "صورة";
 "gif" = "صورة GIF";
 "images" = "الصور";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "الصوت";
 "voice_message" = "رسالة صوتية";
 "video" = "فيديو";
@@ -157,6 +159,7 @@
 "pref_your_name" = "اسمك";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "التوقيع";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "مفتاح الدخول يقوم بالإرسا";
 "pref_vibrate" = "إهتز";
 "pref_screen_security" = "تأمين الشاشة";

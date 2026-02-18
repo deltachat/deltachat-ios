@@ -49,7 +49,9 @@
 "archive" = "Arhiveeri";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Tõsta arhiivist välja";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Summuta";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Summutatud";
 "ephemeral_messages" = "Isekustuvad sõnumid";
 "ephemeral_messages_hint" = "Kehtib kõikidele selles vestluses osalejatele - aga siiski saavad nad sõnumeid kopeerida, salvestada ja edastada.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Kleepsude lisamiseks klõpsi valikut „Ava kleepsude kaust“, loo oma kleepsupaki jaoks sinna alamkaust ning lohista pildi- ja kleepsufailid sinna";
 "open_sticker_folder" = "Ava kleepsude kaust";
 "images" = "Pildid";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Heli";
 "voice_message" = "Hääsõnum";
 "forwarded" = "Edastatud";
@@ -168,6 +171,7 @@
 "games" = "Mängud";
 "tools" = "Tarvikud";
 "app_size" = "Suurus";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Avaldatud";
 "add_to_chat" = "Lisa vestlusele";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "Sinu nimi";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Elulugu/allkiri/moto";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Sisestusklahv saadab sõnumi";
 "pref_enter_sends_explain" = "Sisestusklahvi vajutamisega saadad sõnumi ära";
 "pref_outgoing_media_quality" = "Saadetava meediumi kvaliteet";
@@ -710,6 +715,7 @@
 "n_bytes_message" = "Sõnum suurusega %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Allalaadimise ülempiir on saadaval kuni %1$@";
+// deprecated
 "select_profile" = "Vali profiil";
 "profile_image_select" = "Vali profiilipilt";
 "select_your_new_profile_image" = "Vali oma uus profiilipilt";

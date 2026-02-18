@@ -49,7 +49,9 @@
 "archive" = "Arkivera";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Avarkivera";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Tyst";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Tystad";
 "ephemeral_messages" = "Försvinnande meddelanden";
 "ephemeral_messages_hint" = "Dessa inställningar tillämpas för alla deltagare som använder Delta Chat. De kan dock kopiera, spara och vidarebefordra meddelanden eller använda andra e-postklienter.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "För att lägga till dekaler trycker du på \"Öppna dekalmapp\", skapar en undermapp för ditt dekalpaket och drar bild- och dekalfiler dit.";
 "open_sticker_folder" = "Öppna dekalmapp";
 "images" = "Bilder";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Ljud";
 "voice_message" = "Röstmeddelande";
 "forwarded" = "Vidarebefodrat";
@@ -168,6 +171,7 @@
 "games" = "Spel";
 "tools" = "Verktyg";
 "app_size" = "Storlek";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Publicerad";
 "add_to_chat" = "Lägg till i chatten";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -594,6 +598,7 @@
 "pref_your_name" = "Ditt namn";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signaturtext";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Returtangenten skickar";
 "pref_enter_sends_explain" = "Tryck på returtangenten för att skicka textmeddelanden";
 "pref_outgoing_media_quality" = "Utgående ljudkvalitet";

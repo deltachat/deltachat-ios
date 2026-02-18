@@ -29,6 +29,7 @@
 "archive" = "Archìvia";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Riprìstina";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Boga su sonu";
 "ephemeral_messages" = "Messàgios chi isparessent";
 "ephemeral_messages_hint" = "Custas impostatziones s\'àplicant a totu sos partetzipantes chi impreant Delta Chat. Nointames custu podent copiare, sarvare e torrare a imbiare messàgios o impreare àteros clientes de posta eletrònica.";
@@ -75,6 +76,7 @@
 "reply_noun" = "Risponde";
 "gif" = "Gif";
 "images" = "Immàgines";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Àudio";
 "voice_message" = "Messàgiu sonoru";
 "forwarded_message" = "Messàgiu inoltradu";
@@ -281,6 +283,7 @@
 "pref_your_name" = "Su nùmene tuo";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Firma";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Imbia cun \"Imbiu\"";
 "pref_enter_sends_explain" = "Incarchende sa tecla Imbiu as a imbiare sos messàgios";
 "pref_outgoing_media_quality" = "Calidade de sos documentos multimediales in essida";

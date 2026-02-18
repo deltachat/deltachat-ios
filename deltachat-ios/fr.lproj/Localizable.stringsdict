@@ -175,11 +175,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d destinataire</string>
+			<string>%d abonné⋅e</string>
 			<key>many</key>
-			<string>%d destinataires</string>
+			<string>%d abonné⋅es</string>
 			<key>other</key>
-			<string>%d destinataires</string>
+			<string>%d abonné⋅es</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -247,11 +247,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Effacer %d message ici et sur le serveur ?</string>
+			<string>Supprimer %d message ?</string>
 			<key>many</key>
-			<string>Effacer %d messages ici et sur le serveur ?</string>
+			<string>Supprimer %d messages ?</string>
 			<key>other</key>
-			<string>Effacer %d messages ici et sur le serveur  ?</string>
+			<string>Supprimer %d messages ?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

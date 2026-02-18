@@ -43,7 +43,9 @@
 "archive" = "Arĥivi";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Malarĥivi";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Muta sciigoj";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Silentigita";
 "ephemeral_messages" = "Memviŝontaj mesaĝoj";
 "ephemeral_messages_hint" = "Aplikebla al ĉiuj anoj de tiu ĉi babilejo kiuj uzas Delta Chat; ili ankoraŭ povas kopii, konservi kaj plusendi mesaĝojn, kaj uzi aliajn retpoŝtajn klientojn.";
@@ -122,6 +124,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Glumarko";
 "images" = "Bildoj";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Sonaĵo";
 "voice_message" = "Voĉmesaĝo";
 "forwarded" = "Plusendita";
@@ -326,6 +329,7 @@
 "pref_profile_photo" = "Profilbildo";
 "pref_blocked_contacts" = "Blokitaj kontaktoj";
 "pref_your_name" = "Via nomo";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "La Eniga klavo kaŭzas sendon";
 "pref_enter_sends_explain" = "Premado de la Eniga klavo sendos mesaĝojn";
 "pref_vibrate" = "Vibrado";
