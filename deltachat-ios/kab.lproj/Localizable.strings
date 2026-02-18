@@ -49,7 +49,9 @@
 "archive" = "Aɣbaṛ ";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Kkes aɣbaṛ";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Sgugem";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Yettwasgugmen ";
 "ephemeral_messages" = "Iznan ur nettdum ara";
 "ephemeral_messages_hint" = "Ad isnes akk imttekkiyen n udiwenni-a; mazal zemren ad nɣelen, ad ḥerzen, neɣ ad sniflen awelleh n yiznan.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Akken ad ternuḍ tamenṭaḍt, sit ɣef \" ldi akaram n tmenṭaḍt \", snulfu-d akaram anaddaw i ukemmus-ik·im n tmenṭaḍt, zuɣer tugna akked ifuyla n tmenṭaḍt din";
 "open_sticker_folder" = "Ldi akaran n tmenṭaḍt";
 "images" = "Tugniwin";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Ameslaw";
 "voice_message" = "Izen n taɣect";
 "forwarded" = "Yettuwelleh";
@@ -168,6 +171,7 @@
 "games" = "Uraren";
 "tools" = "Ifecka";
 "app_size" = "Tiddi";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Yeffeɣ-d";
 "add_to_chat" = "Rnu ɣer udiwenni usrid";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -320,14 +324,20 @@
 "file_saved_to" = "Afaylu yettwasekles ɣer \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Siwel";
+"start_audio_call" = "Asiwel n umeslaw";
+"start_video_call" = "Asiwel n tvidyut";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Err";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Agi";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Tiɣri tuffiɣt";
+"outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
+"outgoing_video_call" = "Asiwel n uvidyu uffiɣ";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Tiɣri i d-ikecmen";
+"incoming_audio_call" = "Asiwel n umeslaw ukcim";
+"incoming_video_call" = "Asiwel n uvidyu ukcim";
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";
 "missed_call" = "Tiɣri ittwazeglen";
@@ -615,6 +625,7 @@
 "pref_your_name" = "Isem-ik·im";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Tameddurt";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Kcem tisura i umazan";
 "pref_enter_sends_explain" = "Asiti ɣef tanast Kcem ad yazen aḍris n yiznan";
 "pref_outgoing_media_quality" = "Taɣara n umidya";
@@ -703,6 +714,7 @@
 "n_bytes_message" = "Izen %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Sader-d afellay i yellan alamma d %1$@";
+// deprecated
 "select_profile" = "Fren amaɣnu";
 "profile_image_select" = "Fren tugna n umaɣnu";
 "select_your_new_profile_image" = "Fren tugna-ik·im tamaynut n umaɣnu";
@@ -894,6 +906,7 @@
 "secure_join_replies" = "%1$@ yerra-d, rǧu i tmerna-as ɣer ugraw...";
 "secure_join_wait" = "Asbeddi n tuqqna, ttxil-k·m rǧu...";
 "contact_verified" = "%1$@ ittwasenked.";
+"contact_blocked" = "Tesweḥleḍ anermis";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Yettwasenked sɣur %1$@";
 "verified_by_you" = "Yettwasenked sɣur nekk";

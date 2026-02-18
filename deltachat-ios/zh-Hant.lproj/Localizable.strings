@@ -49,7 +49,9 @@
 "archive" = "封存";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "取消封存";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "靜音";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "勿擾";
 "ephemeral_messages" = "自動銷毀訊息";
 "ephemeral_messages_hint" = "這些設定將會套用在所有使用 Delta Chat 的聊天成員上。但他們依然可以複製、儲存和轉發訊息，或使用其他的電子郵件客戶端。";
@@ -130,6 +132,7 @@
 "add_stickers_instructions" = "要添加貼圖，請點擊「打開貼圖資料夾」 ，為您的貼圖包創建一個子資料夾，然後將圖像和貼圖檔拖拽到那裡";
 "open_sticker_folder" = "開啟貼圖資料夾";
 "images" = "圖片";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "音訊";
 "voice_message" = "語音訊息";
 "forwarded" = "已轉發";
@@ -166,6 +169,7 @@
 "games" = "游戲";
 "tools" = "工具";
 "app_size" = "尺寸大小";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "已發佈";
 "add_to_chat" = "添加到聊天";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -564,6 +568,7 @@
 "pref_your_name" = "你的名字";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "簽名檔";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "換行鍵送出訊息";
 "pref_enter_sends_explain" = "按下換行鍵就送出訊息";
 "pref_outgoing_media_quality" = "傳送的媒體品質";
@@ -646,6 +651,7 @@
 "n_bytes_message" = "%1$@ 訊息";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "下載有效期至%1$@";
+// deprecated
 "select_profile" = "選擇賬戶";
 "profile_image_select" = "選擇大頭貼";
 "select_your_new_profile_image" = "選擇新的大頭貼";

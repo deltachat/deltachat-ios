@@ -49,7 +49,9 @@
 "archive" = "Archiválás";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Archiválás visszavonása";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Némítás";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Némított";
 "ephemeral_messages" = "Eltűnő üzenetek";
 "ephemeral_messages_hint" = "A csevegés összes tagjára vonatkozik; az üzeneteket továbbra is másolhatják, menthetik és továbbíthatják.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "A matricák hozzáadásához koppintson a „Matricamappa megnyitása” lehetőségre, hozzon létre egy almappát a matricacsomagnak, és húzza oda a kép- és matricafájlokat.";
 "open_sticker_folder" = "Matricamappa megnyitása";
 "images" = "Képek";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Hang";
 "voice_message" = "Hangüzenet";
 "forwarded" = "Továbbított";
@@ -168,6 +171,7 @@
 "games" = "Játékok";
 "tools" = "Eszközök";
 "app_size" = "Méret";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Közzétéve";
 "add_to_chat" = "Hozzáadás csevegéshez";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -605,6 +609,7 @@
 "pref_your_name" = "Név";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Névjegy";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Küldés „Enterrel”";
 "pref_enter_sends_explain" = "Az „Enter” billentyű megnyomásával szöveges üzeneteket küldhet";
 "pref_outgoing_media_quality" = "Kimenő média minősége";
@@ -688,6 +693,7 @@
 "n_bytes_message" = "%1$@ üzenet";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Letöltés maximum ennyi ideig visszamenőleg: %1$@ ";
+// deprecated
 "select_profile" = "Profil kiválasztása";
 "profile_image_select" = "Profilkép kiválasztása";
 "select_your_new_profile_image" = "Válassza ki az új profilképet";

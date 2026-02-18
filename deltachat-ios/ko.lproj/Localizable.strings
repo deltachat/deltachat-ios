@@ -35,6 +35,7 @@
 "archive" = "아카이브";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "보관 취소";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "음소거";
 "ephemeral_messages" = "사라지는 메시지";
 "ephemeral_messages_hint" = "Delta Chat을 사용하는 경우 이 대화의 모든 구성원에게 적용되며, 메시지를 복사, 저장 및 회송하거나 다른 전자우편 클라이언트를 사용할 수 있습니다.";
@@ -97,6 +98,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "스티커";
 "images" = "이미지";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "오디오";
 "voice_message" = "음성 메시지";
 "forwarded" = "전달됨";
@@ -392,6 +394,7 @@
 "pref_your_name" = "내 이름";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "서명 텍스트";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "엔터키로 메시지 전송";
 "pref_enter_sends_explain" = "Enter 키를 누르면 문자 메시지가 전송됩니다.";
 "pref_outgoing_media_quality" = "발신 미디어 품질";

@@ -49,7 +49,9 @@
 "archive" = "بایگانی";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "خروج از بایگانی";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "سکوت";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "بی‌صدا";
 "ephemeral_messages" = "پیام‌های ناپدید شونده";
 "ephemeral_messages_hint" = "شامل همه کسانی که در این گفتگو حضور دارند می‌شود. آن‌ها همچنان می‌توانند پیام‌ها را هدایت و ذخیره کرده یا از آن‌ها رونوشت بگیرند. ";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "برای اضافه کردن برچسب روی «بازکردن پوشهٔ برچسب» بزنید، یک زیرپوشه برای دستهٔ برچسب خود درست کنید و برچسب‌ها را به آن‌جا بکشید";
 "open_sticker_folder" = "بازکردن پوشه استیکر";
 "images" = "تصاویر";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "صدا";
 "voice_message" = "پیام صوتی";
 "forwarded" = "هدایت";
@@ -168,6 +171,7 @@
 "games" = "بازی‌ها";
 "tools" = "ابزار";
 "app_size" = "اندازه";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "انتشار";
 "add_to_chat" = "افزودن به گفتگو";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -627,6 +631,7 @@
 "pref_your_name" = "اسم شما";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "متن امضا";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "ورود کلیدهای ارسال";
 "pref_enter_sends_explain" = "فشاردادن کلید اینتر پیام‌ها را ارسال می‌کند";
 "pref_outgoing_media_quality" = "کیفیت رسانه خروجی";
@@ -715,6 +720,7 @@
 "n_bytes_message" = "پیام %1$@ ";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "سقف دانلود تا %1$@ فعال خواهد بود";
+// deprecated
 "select_profile" = "انتخاب نمایه";
 "profile_image_select" = "انتخاب تصویر نمایه";
 "select_your_new_profile_image" = "تصویر نمایهٔ جدیدتان را برگزینید";

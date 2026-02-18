@@ -38,6 +38,7 @@
 "archive" = "Lưu trữ";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Hủy lưu trữ";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Tắt tiếng";
 "ephemeral_messages" = "Tin nhắn biến mất";
 "ephemeral_messages_hint" = "Áp dụng cho tất cả thành viên của cuộc trò chuyện này nếu họ sử dụng Delta Chat; họ vẫn có thể sao chép, lưu và chuyển tiếp thư hoặc sử dụng các ứng dụng e-mail khác.";
@@ -111,6 +112,7 @@
 "add_stickers_instructions" = "Để thêm nhãn dán, hãy nhấn vào \"Mở thư mục nhãn dán\", tạo thư mục con cho gói nhãn dán của bạn rồi kéo tệp hình ảnh và nhãn dán vào đó";
 "open_sticker_folder" = "Mở thư mục nhãn dán";
 "images" = "Hình ảnh";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Âm thanh";
 "voice_message" = "Tin nhắn thoại";
 "forwarded" = "Đã chuyển tiếp";
@@ -453,6 +455,7 @@
 "pref_your_name" = "Tên của bạn";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Văn bản chữ ký";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Nhập khóa gửi";
 "pref_enter_sends_explain" = "Nhấn phím Enter sẽ gửi tin nhắn văn bản";
 "pref_outgoing_media_quality" = "Chất lượng phương tiện truyền thông đi";

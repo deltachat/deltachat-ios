@@ -24,6 +24,7 @@
 "archive" = "ఆర్కైవ్";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "ఆర్కైవ్ రద్దు";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "నిశబ్ధం";
 "ephemeral_messages" = "అదృశ్యమవుతున్న సందేశాలు";
 "save" = "భద్రపరుచు";
@@ -56,6 +57,7 @@
 "image" = "చిత్రం";
 "gif" = "Gif";
 "images" = "చిత్రాలు";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "ఆడియో";
 "voice_message" = "మాట సందేశం";
 "forwarded_message" = "ఫార్వర్డ్ చేయబడిన సందేసం";
@@ -142,6 +144,7 @@
 "pref_profile_photo" = "రూపచిత్రం";
 "pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
 "pref_your_name" = "మీ పేరు";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "\"ఎంటర్\" నొక్కితే పంపు";
 "pref_vibrate" = "వైబ్రేషన్";
 "pref_screen_security" = "స్క్రీన్ భద్రత";

@@ -49,7 +49,9 @@
 "archive" = "Archivovat";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Vyjmout z archivu";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Ztlumit";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Ztlumeno";
 "ephemeral_messages" = "Mizející zprávy";
 "ephemeral_messages_hint" = "Volba platí pro všechny členy tohoto chatu, kteří používají Delta Chat; stále ale mohou kopírovat, ukládat a přeposílat zprávy nebo používat jiné e-mailové klienty, které tuto volbu nerespektují.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Přejete-li si přidat nálepky, klepněte na „Otevřít složku nálepek“, vytvořte podsložku pro balíček nálepek a přetáhněte do ní soubory obrázků a nálepek";
 "open_sticker_folder" = "Otevřít složku nálepek";
 "images" = "Obrázky";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Zvukové záznamy";
 "voice_message" = "Hlasová zpráva";
 "forwarded" = "Přeposlané";
@@ -168,6 +171,7 @@
 "games" = "Hry";
 "tools" = "Nástroje";
 "app_size" = "Velikost";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Zveřejněno";
 "add_to_chat" = "Přidat do chatu";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -616,6 +620,7 @@
 "pref_your_name" = "Vaše jméno";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Bio";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter odesílá";
 "pref_enter_sends_explain" = "Stisk klávesy Enter odešle zprávu";
 "pref_outgoing_media_quality" = "Kvalita odesílaných multimédií";
@@ -704,6 +709,7 @@
 "n_bytes_message" = "%1$@ zpráva";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Stahovat dostupné maximum do %1$@";
+// deprecated
 "select_profile" = "Vyberte profil";
 "profile_image_select" = "Vybrat profilový obrázek";
 "select_your_new_profile_image" = "Vyberte si svůj nový profilový obrázek";

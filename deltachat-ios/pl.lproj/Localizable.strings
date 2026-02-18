@@ -49,7 +49,9 @@
 "archive" = "Archiwizuj";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Przywróć z archiwum";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Wyłącz powiadomienia";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Wyciszony";
 "ephemeral_messages" = "Znikające wiadomości";
 "ephemeral_messages_hint" = "Dotyczy wszystkich członków tego czatu. Nadal mogą kopiować, zapisywać i przesyłać wiadomości.";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Aby dodać naklejki, dotknij „Otwórz folder naklejek”, utwórz podfolder dla swojego pakietu naklejek i przeciągnij do niego pliki obrazów i naklejek";
 "open_sticker_folder" = "Otwórz folder naklejek";
 "images" = "Obrazy";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Wiadomość głosowa";
 "forwarded" = "Przekazana";
@@ -168,6 +171,7 @@
 "games" = "Gry";
 "tools" = "Narzędzia";
 "app_size" = "Rozmiar";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Opublikowany";
 "add_to_chat" = "Dodaj do czatu";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "Twoja nazwa";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Tekst podpisu";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter wysyła";
 "pref_enter_sends_explain" = "Naciśnięcie Enter wysyła wiadomości tekstowe";
 "pref_outgoing_media_quality" = "Jakość mediów wychodzących";
@@ -710,6 +715,7 @@
 "n_bytes_message" = "Wiadomość %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maksymalna ilość do pobrania dostępna do %1$@";
+// deprecated
 "select_profile" = "Wybierz profil";
 "profile_image_select" = "Wybierz zdjęcie profilowe";
 "select_your_new_profile_image" = "Wybierz nowe zdjęcie profilowe";

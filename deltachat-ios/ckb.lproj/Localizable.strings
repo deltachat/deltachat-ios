@@ -29,6 +29,7 @@
 "archive" = "ئەرشیڤ کردن";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "دەرهێنان لە ئەرشیڤ";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "بێدەنگ کردن";
 "ephemeral_messages" = "ئەو پەیامانەی بزر دەبن";
 "ephemeral_messages_hint" = "ئەم ڕێکخستنانە بۆ هەموو بەکارهێنەرانی دێڵتا چات دەبن. ئەگەرچی ئەوان دەتوانن پەیامەکان کۆپی بکەن، پاشەکەوتیان بکەن و بڵاویان بکەنەوە یان لە پۆستێکی ئەلیکترۆنی دیکە کەڵک بگرن.";
@@ -77,6 +78,7 @@
 "reply_noun" = "وەڵام دانەوە";
 "gif" = "گیف";
 "images" = "وێنەکان";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "دەنگ";
 "voice_message" = "پەیامی دەنگی";
 "forwarded_message" = "پەیامی هاوبەشکراو";
@@ -290,6 +292,7 @@
 "pref_your_name" = "ناو";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "دەقی واژۆ";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "کلیلی \"ئینتەر\" بنێرێت";
 "pref_enter_sends_explain" = "دەستنان بە کلیلی \"ئینتەر\"دا، پەیامەکان دەنێرێت.";
 "pref_outgoing_media_quality" = "چۆنێتی ڕەنگاڵە هەناردنییەکان";

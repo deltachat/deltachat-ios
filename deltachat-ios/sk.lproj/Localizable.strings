@@ -48,6 +48,7 @@
 "archive" = "Archivovať";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Zrušiť archiváciu";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Stíšiť";
 "ephemeral_messages" = "Miznúce správy";
 "ephemeral_messages_hint" = "Tieto nastavenia platia pre všetkých účastníkov používajúcich Delta Chat. Môžu však kopírovať, ukladať a preposielať správy alebo používať iných e-mailových klientov.";
@@ -127,6 +128,7 @@
 "add_stickers_instructions" = "Pre pridanie nálepiek, ťuknite na \"Otvoriť priečinok s nálepkami\", vytvorte priečinok pre svoju sadu nálepiek a prekopírujte doň nálepky";
 "open_sticker_folder" = "Otvoriť priečinok s nálepkami";
 "images" = "Snímky";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Zvuk";
 "voice_message" = "Hlasová správa";
 "forwarded" = "Preposlané";
@@ -536,6 +538,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_your_name" = "Vaše meno";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Text v podpise";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Zadajte odoslanie kľúča";
 "pref_enter_sends_explain" = "Textové správy sa odošlú po stlačení Enteru";
 "pref_outgoing_media_quality" = "Kvalita odchádzajúcich médií";
@@ -616,6 +619,7 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "n_bytes_message" = "%1$@ správa";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maximálny počet stiahnutí k dispozícii do %1$@";
+// deprecated
 "select_profile" = "Vybrať účet";
 "profile_image_select" = "Vyberte profilový obrázok";
 "select_your_new_profile_image" = "Vyberte svoj nový profilový obrázok";

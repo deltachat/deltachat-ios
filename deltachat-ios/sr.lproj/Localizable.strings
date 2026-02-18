@@ -41,7 +41,9 @@
 "archive" = "Архивирај";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Деархивирај";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Утишај";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Утишано";
 "ephemeral_messages" = "Нестајуће поруке";
 "ephemeral_messages_hint" = "Односи се на све чланове овог ћаскања ако користе Delta Chat; и даље могу да копирају, сниме и прослеђују поруке или да користе друге клијенте за е-пошту.";
@@ -116,6 +118,7 @@
 "sticker" = "Налепница";
 "add_to_sticker_collection" = "Додај у колекцију налепница";
 "images" = "Слике";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Звук";
 "voice_message" = "Гласовна порука";
 "forwarded" = "Прослеђено";
@@ -144,6 +147,7 @@
 "games" = "Игре";
 "tools" = "Алати";
 "app_size" = "Величина";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Објављено";
 "unknown" = "Непознато";
 "green" = "Зелена";
@@ -438,6 +442,7 @@
 "pref_your_name" = "Ваше име";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Текст потписа";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Шаљи ЕНТЕР тастером";
 "pref_enter_sends_explain" = "Притиском на ЕНТЕР тастер тексутале поруке ће бити послате";
 "pref_outgoing_media_quality" = "Квалитет медија за слање";

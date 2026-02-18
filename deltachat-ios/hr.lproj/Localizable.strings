@@ -23,6 +23,7 @@
 "archive" = "Arhiviraj";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Dearhiviraj";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Prigušiti";
 "ephemeral_messages" = "Nestajuće poruke";
 "save" = "Spremi";
@@ -138,6 +139,7 @@
 "pref_profile_photo" = "Profilna slika";
 "pref_blocked_contacts" = "Blokirani kontakti";
 "pref_your_name" = "Vaše ime";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter šalje poruku";
 "pref_enter_sends_explain" = "Pritisak na Enter će poslati tekst poruku";
 "pref_vibrate" = "Vibracija";

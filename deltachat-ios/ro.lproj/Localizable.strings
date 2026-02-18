@@ -35,6 +35,7 @@
 "archive" = "Arhivare";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Dezarhivare";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Silențios";
 "ephemeral_messages" = "Mesaje dispărute";
 "ephemeral_messages_hint" = "Se aplică tuturor membrilor acestui chat dacă folosesc Delta Chat; aceștia pot în continuare să copieze, să salveze și să redirecționeze mesajele sau să utilizeze alți clienți de e-mail.";
@@ -103,6 +104,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Abțibild";
 "images" = "Imagini";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Mesaj vocal";
 "forwarded" = "Redirecționat";
@@ -426,6 +428,7 @@
 "pref_your_name" = "Numele dumneavoastră";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Semnătură Text";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tasta Enter trimite";
 "pref_enter_sends_explain" = "Apăsarea tastei Enter va trimite mesaje text";
 "pref_outgoing_media_quality" = "Calitatea Mediilor de Ieșire";

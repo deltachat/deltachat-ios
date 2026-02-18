@@ -49,7 +49,9 @@
 "archive" = "Archivar";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Des-archivar";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Silenciar";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Silenciar";
 "ephemeral_messages" = "Desaparición de mensajes";
 "ephemeral_messages_hint" = "Estos ajustes se aplican a todos los participantes que usan Delta Chat. Sin embargo, pueden copiar, guardar y reenviar mensajes o usar otros clientes de correo";
@@ -132,6 +134,7 @@
 "add_stickers_instructions" = "Para añadir stickers, toca en \"Abrir carpeta de stickers\", crea una subcarpeta para tu colección de stickers y copia imágenes y stickers allí";
 "open_sticker_folder" = "Abrir la carpeta de stickers";
 "images" = "Imágenes";
+// a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Mensaje de voz";
 "forwarded" = "Reenviado";
@@ -168,6 +171,7 @@
 "games" = "Juegos";
 "tools" = "Herramientas";
 "app_size" = "Tamaño";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
 "app_date_published" = "Publicado";
 "add_to_chat" = "Agregar al chat";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
@@ -622,6 +626,7 @@
 "pref_your_name" = "Tu nombre";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Texto de firma";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tecla Intro envía";
 "pref_enter_sends_explain" = "La tecla Intro enviará tu mensaje";
 "pref_outgoing_media_quality" = "Calidad de multimedia saliente";
@@ -711,6 +716,7 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "n_bytes_message" = "Mensaje de %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Descarga disponible hasta %1$@";
+// deprecated
 "select_profile" = "Seleccionar perfil";
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
