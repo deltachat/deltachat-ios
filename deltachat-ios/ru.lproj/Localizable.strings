@@ -612,7 +612,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Отправить %1$d файла(ов) в \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Отправить %1$d файл(ов) в %2$d чата(ов)?";
-"videos_sent_without_recoding" = "(Видеофайлы отправляются в исходном виде, без сжатия. Чтобы отправить видео в более компактном виде, прикрепите их отдельно)";
+"videos_sent_without_recoding" = "(Отправка нескольких видео приведет к их отправке в исходном виде, что может потребовать значительного объема данных. Чтобы уменьшить размер файлов и сэкономить трафик, отправляйте каждое видео в отдельном сообщении.)";
 "share_text_multiple_chats" = "Отправить текст в %1$d чата(ов)?\n\n\"%2$@\"";
 "share_abort" = "Общий доступ прерван из-за отсутствия необходимых разрешений.";
 // preferences
