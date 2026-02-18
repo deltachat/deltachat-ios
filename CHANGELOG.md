@@ -1,5 +1,12 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix webxdc realtime channels
+- Update translations and local help
+- Update to core 2.43.0
+
+
 ## v2.42.0 Testflight
 2026-02
 
