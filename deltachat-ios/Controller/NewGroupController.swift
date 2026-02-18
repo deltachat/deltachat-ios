@@ -68,7 +68,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }()
 
     private lazy var descriptionCell: MultilineTextFieldCell = {
-        let cell = MultilineTextFieldCell(description: String.localized("description"), multilineText: "", placeholder: String.localized("description"))
+        let cell = MultilineTextFieldCell(description: String.localized("chat_description"), multilineText: "", placeholder: String.localized("chat_description"))
         return cell
     }()
 
