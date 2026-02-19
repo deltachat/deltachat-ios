@@ -33,25 +33,32 @@ class CallManager: NSObject {
     static let shared = CallManager()
 
     private let voIPPushManager: VoIPPushManager
-    private let provider: CXProvider
-    private let callController: CXCallController
-    private let callObserver: CXCallObserver
+    private let provider: CXProvider?
+    private let callController: CXCallController?
+    private let callObserver: CXCallObserver?
     private var currentCall: DcCall?
 
     override init() {
         voIPPushManager = VoIPPushManager()
-        let configuration = CXProviderConfiguration()
-        configuration.supportsVideo = true
-        configuration.maximumCallsPerCallGroup = 1
-        configuration.supportedHandleTypes = [.generic]
-        provider = CXProvider(configuration: configuration)
-        callController = CXCallController()
-        callObserver = CXCallObserver()
+        if canUseCallKit {
+            let configuration = CXProviderConfiguration()
+            configuration.supportsVideo = true
+            configuration.maximumCallsPerCallGroup = 1
+            configuration.supportedHandleTypes = [.generic]
+            provider = CXProvider(configuration: configuration)
+            callController = CXCallController()
+            callObserver = CXCallObserver()
+        } else {
+            provider = nil
+            callController = nil
+            callObserver = nil
+        }
 
         super.init()
 
-        provider.setDelegate(self, queue: nil)
-        callObserver.setDelegate(self, queue: nil)
+        provider?.setDelegate(self, queue: nil)
+        callObserver?.setDelegate(self, queue: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallAcceptedEvent(_:)), name: Event.incomingCallAccepted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleCallEndedEvent(_:)), name: Event.callEnded, object: nil)
@@ -72,7 +79,7 @@ class CallManager: NSObject {
             startCallAction.isVideo = hasVideoInitially
 
             let transaction = CXTransaction(action: startCallAction)
-            callController.request(transaction) { [currentCall] error in
+            callController?.request(transaction) { [currentCall] error in
                 if let error {
                     logger.error("☎️ failed to start call: \(error.localizedDescription)")
                 } else if let currentCall {
@@ -128,7 +135,7 @@ class CallManager: NSObject {
             update.supportsDTMF = false
             update.hasVideo = hasVideo
 
-            provider.reportNewIncomingCall(with: uuid, update: update) { error in
+            provider?.reportNewIncomingCall(with: uuid, update: update) { error in
                 if let error {
                     logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
                 }
@@ -216,7 +223,7 @@ class CallManager: NSObject {
             let transaction = CXTransaction(action: endCallAction)
 
             // requesting CXEndCallAction will result in provider(CXEndCallAction) being called below, which results in dcContext.endCall() for valid objects
-            callController.request(transaction) { error in
+            callController?.request(transaction) { error in
                 if let error {
                     logger.info("☎️ error ending call: \(error.localizedDescription)")
                 } else {
@@ -231,7 +238,7 @@ class CallManager: NSObject {
     }
 
     func isCalling() -> Bool {
-        if canUseCallKit {
+        if canUseCallKit, let callObserver {
             for call in callObserver.calls {
                 if !call.hasEnded {
                     return true
