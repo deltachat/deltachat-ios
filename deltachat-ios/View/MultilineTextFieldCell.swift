@@ -3,12 +3,14 @@ import UIKit
 
 class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
 
+    private let lineCount: Int
+
     private lazy var textFieldHeightConstraint: NSLayoutConstraint = {
-        return textField.constraintHeightTo(fourLinesHeight)
+        return textField.constraintHeightTo(calcHeight())
     }()
 
-    private var fourLinesHeight: CGFloat {
-        return UIFont.preferredFont(forTextStyle: .body).pointSize * 4
+    private func calcHeight() -> CGFloat {
+        return UIFont.preferredFont(forTextStyle: .body).lineHeight * (CGFloat(lineCount) + 0.2 /* some overhead for padding etc. */ )
     }
 
     var onTextFieldChange: ((_: UITextView) -> Void)?    // set this from outside to get notified about textfield changes
@@ -41,7 +43,8 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         return placeholderLabel
     }()
 
-    init(description: String, multilineText: String?, placeholder: String) {
+    init(description: String, multilineText: String?, placeholder: String, lineCount: Int = 3) {
+        self.lineCount = lineCount
         super.init(style: .value1, reuseIdentifier: nil)
         self.descriptionField.text = "\(description):"
         self.textField.text = multilineText
@@ -104,7 +107,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if previousTraitCollection?.preferredContentSizeCategory !=
             traitCollection.preferredContentSizeCategory {
-            textFieldHeightConstraint.constant = fourLinesHeight
+            textFieldHeightConstraint.constant = calcHeight()
         }
     }
 }

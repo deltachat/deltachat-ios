@@ -328,8 +328,12 @@
 "end_call" = "Hidhe poshtë";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Thirrje e dërguar";
+"outgoing_audio_call" = "Thirrje audio e dërguar";
+"outgoing_video_call" = "Thirrje video e dërguar";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Thirrje e marrë";
+"incoming_audio_call" = "Thirrje audio e marrë";
+"incoming_video_call" = "Thirrje video e marrë";
 "declined_call" = "Thirrje e hedhur poshtë";
 "canceled_call" = "Thirrje e anuluar";
 "missed_call" = "Thirrje e humbur";

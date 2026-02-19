@@ -117,6 +117,25 @@ public class DcContext {
         }
     }
 
+    public func setChatDescription(chatId: Int, descr: String) {
+        do {
+            try DcAccounts.shared.blockingCall(method: "set_chat_description", params: [id as AnyObject, chatId as AnyObject, descr as AnyObject])
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+    }
+
+    public func getChatDescription(chatId: Int) -> String {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "get_chat_description", params: [id as AnyObject, chatId as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return ""
+    }
+
     public func getChatMsgs(chatId: Int, flags: Int32) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
         let cMessageIds = dc_get_chat_msgs(contextPointer, UInt32(chatId), UInt32(flags), 0)

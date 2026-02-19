@@ -9,8 +9,9 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     private var deleteGroupImage: Bool = false
 
     enum EditRows {
-         case name
-         case avatar
+        case name
+        case avatar
+        case description
     }
     private let editRows: [EditRows]
 
@@ -29,6 +30,15 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         return cell
     }()
 
+    private lazy var descriptionCell: MultilineTextFieldCell = {
+        let cell = MultilineTextFieldCell(description: String.localized("chat_description"),
+                                          multilineText: dcContext.getChatDescription(chatId: chat.id),
+                                          placeholder: String.localized("chat_description"),
+                                          lineCount: 6)
+        cell.onTextFieldChange = self.descriptionEdited(_:)
+        return cell
+    }()
+
     lazy var doneButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveContactButtonPressed))
         button.isEnabled = false
@@ -44,9 +54,9 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
         self.dcContext = dcContext
         self.chat = chat
         self.avatarSelectionCell = AvatarSelectionCell(image: chat.profileImage)
-        self.editRows = [.name, .avatar]
+        self.editRows = [.name, .avatar, .description]
         super.init(style: .insetGrouped)
-        self.avatarSelectionCell.hintLabel.text = String.localized(chat.isOutBroadcast ? "image" : "group_avatar")
+        self.avatarSelectionCell.hintLabel.text = String.localized("image")
         self.avatarSelectionCell.onAvatarTapped = onAvatarTapped
         title = String.localized(chat.isOutBroadcast ? "global_menu_edit_desktop" : "menu_edit_group")
     }
@@ -63,10 +73,10 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if editRows[indexPath.row] == .avatar {
-            return avatarSelectionCell
-        } else {
-            return groupNameCell
+        switch editRows[indexPath.row] {
+        case .name: return groupNameCell
+        case .avatar: return avatarSelectionCell
+        case .description: return descriptionCell
         }
     }
 
@@ -82,6 +92,7 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
             AvatarHelper.saveChatAvatar(dcContext: dcContext, image: nil, for: chat.id)
         }
         _ = dcContext.setChatName(chatId: chat.id, name: newName ?? "")
+        dcContext.setChatDescription(chatId: chat.id, descr: descriptionCell.textField.text)
         navigationController?.popViewController(animated: true)
     }
 
@@ -90,6 +101,10 @@ class EditGroupViewController: UITableViewController, MediaPickerDelegate {
     }
 
     private func groupNameEdited(_ textField: UITextField) {
+        doneButton.isEnabled = true
+    }
+
+    private func descriptionEdited(_ textField: UITextView) {
         doneButton.isEnabled = true
     }
 

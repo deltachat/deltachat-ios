@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add tab bar icon bounce animation on tap
+- Add Group and Channel descriptions
 - Fix webxdc realtime channels
 - Update translations and local help
 - Update to core 2.43.0
