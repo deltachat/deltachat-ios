@@ -610,10 +610,50 @@ extension AppCoordinator: UITabBarControllerDelegate {
             }
         }
 
+        // animate only on re-tap (same tab) — UIKit won't interfere here
+        if viewController == tabBarController.selectedViewController {
+            if let viewControllers = tabBarController.viewControllers,
+               let index = viewControllers.firstIndex(of: viewController) {
+                animateTabBarItem(at: index, in: tabBarController.tabBar)
+            }
+        }
+
         return true
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         appStateRestorer.tabBarController(tabBarController, didSelect: viewController)
+
+        // animate on tab switch — by this point UIKit has finished updating selection state
+        if let viewControllers = tabBarController.viewControllers,
+           let index = viewControllers.firstIndex(of: viewController) {
+            animateTabBarItem(at: index, in: tabBarController.tabBar)
+        }
+    }
+
+    private func animateTabBarItem(at index: Int, in tabBar: UITabBar) {
+        let tabBarButtons = tabBar.subviews
+            .filter { String(describing: type(of: $0)).contains("UITabBarButton") }
+            .sorted { $0.frame.minX < $1.frame.minX }
+        guard index < tabBarButtons.count,
+              let iconView = findFirstImageView(in: tabBarButtons[index]) else { return }
+
+        let bounce = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounce.values = [1.0, 0.9, 1.08, 1.0]
+        bounce.keyTimes = [0, 0.35, 0.7, 1.0]
+        bounce.duration = 0.4
+        iconView.layer.add(bounce, forKey: "tabBounce")
+    }
+
+    private func findFirstImageView(in view: UIView) -> UIImageView? {
+        for subview in view.subviews {
+            if let imageView = subview as? UIImageView {
+                return imageView
+            }
+            if let imageView = findFirstImageView(in: subview) {
+                return imageView
+            }
+        }
+        return nil
     }
 }
