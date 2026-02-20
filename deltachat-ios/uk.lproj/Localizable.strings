@@ -121,7 +121,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-"selected_colon" = "Вибрано:";
+"selected_colon" = "Обрано:";
 "self" = "Я";
 "draft" = "Чернетка";
 "image" = "Зображення";
@@ -220,7 +220,7 @@
 "menu_send" = "Послати";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
 "menu_edit_group" = "Редагувати групу";
-"menu_group_name_and_image" = "Назва й емблема групи";
+"menu_group_name_and_image" = "Назва групи та зображення";
 "menu_show_global_map" = "Показати всі місця";
 "menu_archive_chat" = "Архівувати чат";
 "menu_unarchive_chat" = "Розархівувати чат";
@@ -612,7 +612,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Послати %1$d файл·и·ів у «%2$@»?";
 "ask_send_files_to_selected_chats" = "Послати %1$d файл·и·ів у %2$d чати?";
-"videos_sent_without_recoding" = "(Відеозаписи надішлються ориґінальними, обсяжними файлами. Щоби надіслати відео меншими файлами, прикріпіть їх окремо)";
+"videos_sent_without_recoding" = "(При надсиланні декількох відео, вони будуть надіслані у незмінному вигляді, що може бути проблемою через великий розмір файлів. Щоб зменшити їх розмір та заощадити дані, Ви можете надсилати кожне відео окремим повідомленням)";
 "share_text_multiple_chats" = "Надіслати це́й текст у %1$d чат·и·ів?\n\n«%2$@»";
 "share_abort" = "Надсилання обірване через відсутність дозволів.";
 // preferences
@@ -626,6 +626,7 @@
 "pref_your_name" = "Ваше ім\'я";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Текст підпису";
+"chat_description" = "Опис";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Відправляти клявішею   Enter";
 "pref_enter_sends_explain" = "Натискаючи клявішу   Enter відправлятимете текстові повідомлення";
@@ -780,9 +781,12 @@
 "group_name_changed_by_you" = "Ви змінили назву групи з \"%1$@\" на \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ змінив (-ла) назву групи з \"%1$@\" на \"%2$@\".";
-"group_image_changed_by_you" = "Ви змінили емблему групи.";
+"group_image_changed_by_you" = "Зображення групи змінено.";
 // %1$s will be replaced by name of the contact who did the action
-"group_image_changed_by_other" = "Емблему групи %1$@ міняє.";
+"group_image_changed_by_other" = "%1$@ змінює зображення групи.";
+"chat_description_changed_by_you" = "Опис чату змінено";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "%1$@ змінює опис чату.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Додано учасника %1$@.";
 // %1$s will be replaced by name of the contact added to the group
@@ -802,9 +806,9 @@
 "you_joined_the_channel" = "Ви приєдналися до каналу.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ залишив (-ла) групу.";
-"group_image_deleted_by_you" = "Ви видалили емблему групи.";
+"group_image_deleted_by_you" = "Зображення групи видалено.";
 // %1$s will be replaced by name of the contact
-"group_image_deleted_by_other" = "Емблему групи видаляє %1$@.";
+"group_image_deleted_by_other" = "%1$@ видаляє зображення групи.";
 "location_enabled_by_you" = "Ви увімкнули стримінг геоданих.";
 // %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ увімкнув (-ла) стримінг геоданих.";
@@ -986,7 +990,7 @@
 // Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
 "unsave" = "Відмінити збереження";
 "name_desktop" = "Ім\'я";
-"select_group_image_desktop" = "Вибрати емблему групи";
+"select_group_image_desktop" = "Оберіть зображення групи";
 "export_backup_desktop" = "Експорт резервної копії";
 "message_detail_sent_desktop" = "Надіслано";
 "message_detail_received_desktop" = "Отримано";

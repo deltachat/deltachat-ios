@@ -620,6 +620,7 @@
 "pref_your_name" = "Emri Juaj";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Jetëshkrim";
+"chat_description" = "Përshkrim";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tasti Enter Dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
@@ -776,6 +777,9 @@
 "group_image_changed_by_you" = "Ndryshuat figurën e grupit";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Figura e grupit u ndryshua nga %1$@.";
+"chat_description_changed_by_you" = "Ndryshuat përshkrimin e fjalosjes.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Përshkrimi i fjalosjes u ndryshua nga %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "U shtua anëtar %1$@.";
 // %1$s will be replaced by name of the contact added to the group

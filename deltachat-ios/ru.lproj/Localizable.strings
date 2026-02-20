@@ -626,6 +626,7 @@
 "pref_your_name" = "Ваше имя";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "О себе";
+"chat_description" = "Описание";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Отправка по Enter";
 "pref_enter_sends_explain" = "Нажатие клавиши Enter отправит текстовые сообщения";
@@ -783,6 +784,9 @@
 "group_image_changed_by_you" = "Вы изменили изображение группы.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ меняет изображение группы.";
+"chat_description_changed_by_you" = "Вы изменили описание чата.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Описание чата изменено пользователем %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Добавлен участник %1$@.";
 // %1$s will be replaced by name of the contact added to the group
