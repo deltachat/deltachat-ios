@@ -632,6 +632,8 @@ extension AppCoordinator: UITabBarControllerDelegate {
     }
 
     private func animateTabBarItem(at index: Int, in tabBar: UITabBar) {
+        guard !UIAccessibility.isReduceMotionEnabled else { return }
+
         let tabBarButtons = tabBar.subviews
             .filter { String(describing: type(of: $0)).contains("UITabBarButton") }
             .sorted { $0.frame.minX < $1.frame.minX }
