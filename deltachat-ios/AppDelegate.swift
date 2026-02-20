@@ -13,7 +13,6 @@ let logger = getDcLogger()
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     private let dcAccounts = DcAccounts.shared
     var appCoordinator: AppCoordinator!
-    var relayHelper: RelayHelper!
     var locationManager: LocationManager!
     var notificationManager: NotificationManager!
     var callManager: CallManager?
@@ -144,7 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window.backgroundColor = UIColor.systemBackground
         callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
-        relayHelper = RelayHelper.setup(dcAccounts.getSelected())
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
@@ -617,8 +615,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setStockTranslations()
         locationManager.reloadDcContext()
         notificationManager.reloadDcContext()
-        RelayHelper.shared.finishRelaying()
-        _ = RelayHelper.setup(dcAccounts.getSelected())
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {
