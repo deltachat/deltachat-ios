@@ -2,7 +2,7 @@ import Foundation
 import DcCore
 
 enum RelayData {
-    case forwardMessages(ids: [Int])
+    case forwardMessages(srcContextId: Int, ids: [Int])
     case forwardMessage(text: String?, fileData: Data?, fileName: String?)
     case forwardVCard(Data)
     case mailto(address: String, draft: String?)
@@ -11,27 +11,12 @@ enum RelayData {
 
 class RelayHelper {
     static var shared: RelayHelper = RelayHelper()
-    private static var dcContext: DcContext?
-
     var dialogTitle: String = ""
-
     var data: RelayData? {
         didSet {
             NotificationCenter.default.post(name: Event.relayHelperDidChange, object: nil)
         }
     }
-
-    private init() {
-        guard RelayHelper.dcContext != nil else {
-            fatalError("Error - you must call RelayHelper.setup() before accessing RelayHelper.shared")
-        }
-    }
-
-    class func setup(_ dcContext: DcContext) -> RelayHelper {
-        RelayHelper.dcContext = dcContext
-        return shared
-    }
-
 
     // forwarding messages
 
@@ -50,7 +35,7 @@ class RelayHelper {
     func setForwardMessages(messageIds: [Int]) {
         finishRelaying()
         self.dialogTitle = String.localized("forward_to")
-        self.data = .forwardMessages(ids: messageIds)
+        self.data = .forwardMessages(srcContextId: DcAccounts.shared.getSelected().id, ids: messageIds)
     }
     
     func setShareMessages(messages: [DcMsg]) {
@@ -71,7 +56,8 @@ class RelayHelper {
     }
     
     func shareAndFinishRelaying(to chatId: Int) {
-        if case .share(let messages) = data, let dcContext = RelayHelper.dcContext {
+        if case .share(let messages) = data {
+            let dcContext = DcAccounts.shared.getSelected()
             for msg in messages {
                 dcContext.sendMessage(chatId: chatId, message: msg)
             }
@@ -87,18 +73,25 @@ class RelayHelper {
     }
 
     func forwardIdsAndFinishRelaying(to chatId: Int) {
-        if case .forwardMessages(let messageIds) = data, let dcContext = RelayHelper.dcContext {
-            if dcContext.getChat(chatId: chatId).isSelfTalk {
-                for id in messageIds {
-                    let curr = dcContext.getMessage(id: id)
-                    if curr.canSave && curr.savedMessageId == 0 && curr.chatId != chatId {
-                        dcContext.saveMessages(with: [curr.id])
-                    } else {
-                        dcContext.forwardMessages(with: [curr.id], to: chatId)
-                    }
-                }
+        if case .forwardMessages(let srcContextId, let messageIds) = data {
+            let srcContext = DcAccounts.shared.get(id: srcContextId)
+            let dcContext = DcAccounts.shared.getSelected()
+
+            if srcContext.id != dcContext.id {
+                // TODO
             } else {
-                dcContext.forwardMessages(with: messageIds, to: chatId)
+                if dcContext.getChat(chatId: chatId).isSelfTalk {
+                    for id in messageIds {
+                        let curr = dcContext.getMessage(id: id)
+                        if curr.canSave && curr.savedMessageId == 0 && curr.chatId != chatId {
+                            dcContext.saveMessages(with: [curr.id])
+                        } else {
+                            dcContext.forwardMessages(with: [curr.id], to: chatId)
+                        }
+                    }
+                } else {
+                    dcContext.forwardMessages(with: messageIds, to: chatId)
+                }
             }
         }
         finishRelaying()

@@ -377,8 +377,11 @@ class ChatListViewController: UITableViewController {
             RelayHelper.shared.finishRelaying()
             updateTitle()
             refreshInBg()
-            if case .forwardMessages(ids: let forwardIds) = data, let returnToMsgId = forwardIds.first {
-                showChat(chatId: dcContext.getMessage(id: returnToMsgId).chatId, highlightedMsg: returnToMsgId)
+            if case .forwardMessages(let srcContextId, let ids) = data, let returnToMsgId = ids.first {
+                let dcContext = DcAccounts.shared.getSelected()
+                if dcContext.id == srcContextId {
+                    showChat(chatId: dcContext.getMessage(id: returnToMsgId).chatId, highlightedMsg: returnToMsgId)
+                }
             }
         }
     }
