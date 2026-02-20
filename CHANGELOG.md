@@ -3,6 +3,7 @@
 ## v2.43.0 Testflight
 2026-02
 
+- Add tab bar icon bounce animation on tap
 - Add Group and Channel descriptions
 - Fix webxdc realtime channels
 - Update translations and local help
