@@ -213,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d вибрано</string>
+			<string>%d обрано</string>
 			<key>few</key>
-			<string>%d вибрано</string>
+			<string>%d обрано</string>
 			<key>many</key>
-			<string>%d вибрано</string>
+			<string>%d обрано</string>
 			<key>other</key>
-			<string>%d вибрано</string>
+			<string>%d обрано</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

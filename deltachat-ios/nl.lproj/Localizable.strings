@@ -626,6 +626,7 @@
 "pref_your_name" = "Je naam";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Handtekeningtekst";
+"chat_description" = "Beschrijving";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Versturen met enter";
 "pref_enter_sends_explain" = "Druk op de entertoets om tekstberichten te versturen";
@@ -783,6 +784,9 @@
 "group_image_changed_by_you" = "Je hebt de groepsfoto gewijzigd.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "De groepsfoto is gewijzigd door %1$@.";
+"chat_description_changed_by_you" = "Je hebt de gespreksbeschrijving aangepast.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "De gespreksbeschrijving is aangepast door %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "‘%1$@’ is toegevoegd.";
 // %1$s will be replaced by name of the contact added to the group
