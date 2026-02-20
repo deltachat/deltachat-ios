@@ -78,7 +78,7 @@ class RelayHelper {
             let dcContext = DcAccounts.shared.getSelected()
 
             if srcContext.id != dcContext.id {
-                // TODO
+                srcContext.forwardMessagesToAccount(messageIds: messageIds, destContextId: dcContext.id, destChatId: chatId)
             } else {
                 if dcContext.getChat(chatId: chatId).isSelfTalk {
                     for id in messageIds {

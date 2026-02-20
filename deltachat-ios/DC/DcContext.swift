@@ -541,6 +541,13 @@ public class DcContext {
         return nil
     }
 
+    public func forwardMessagesToAccount(messageIds: [Int], destContextId: Int, destChatId: Int) {
+        do {
+            try DcAccounts.shared.blockingCall(method: "forward_messages_to_account", params: [id as AnyObject, messageIds as AnyObject, destContextId as AnyObject, destChatId as AnyObject])
+        } catch {
+            logger.error("cannot forward messages: \(error)")
+        }
+    }
 
     public func deleteMessage(msgId: Int) {
         dc_delete_msgs(contextPointer, [UInt32(msgId)], 1)
