@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
 
 
