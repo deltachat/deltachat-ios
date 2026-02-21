@@ -13,9 +13,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private var dcContext: DcContext
     private var messages: [(id: Int, timestamp: TimeInterval)] = []
+    private var messageStableKeys: [String] = []
     private var isVisibleToUser: Bool = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
+    private var pendingInsertedMessageKeys = Set<String>()
+    private var isApplyingAnimatedRowUpdates = false
+    private var refreshMessagesAfterAnimatedUpdate = false
+    private let maxAnimatedRowChanges = 16
 
     private lazy var draft: DraftModel = {
         return DraftModel(dcContext: dcContext, chatId: chatId)
@@ -201,6 +206,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var keyboardManager: KeyboardManager? = KeyboardManager()
 
     private var highlightedMsg: Int?
+
+    private typealias ChatMessageRow = (id: Int, timestamp: TimeInterval)
+
+    private struct RowDiff {
+        let inserted: [IndexPath]
+        let deleted: [IndexPath]
+        let hasMoves: Bool
+        let insertedKeys: Set<String>
+    }
 
     private lazy var mediaPicker: MediaPicker? = {
         let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
@@ -640,6 +654,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.row < messageStableKeys.count else { return }
+        let stableKey = messageStableKeys[indexPath.row]
+        guard pendingInsertedMessageKeys.contains(stableKey) else { return }
+
+        pendingInsertedMessageKeys.remove(stableKey)
+        cell.contentView.transform = .identity
+        cell.contentView.alpha = 0
+        UIView.animate(withDuration: 0.2,
+                       delay: 0,
+                       options: [.curveEaseOut, .allowUserInteraction, .beginFromCurrentState]) {
+            cell.contentView.alpha = 1
+        }
+    }
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         lastContextMenuPreviewSnapshot?.removeFromSuperview()
     }
@@ -663,6 +692,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func updateScrollDownButtonVisibility() {
         messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || isLastMessageVisible()
+    }
+
+    private func applyPostRefreshVisibleStateUpdates() {
+        updateScrollDownButtonVisibility()
+        markSeenMessagesInVisibleArea()
     }
 
     private func configureContactRequestBar() {
@@ -933,17 +967,73 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
-        messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
-        reloadData()
-        showEmptyStateView(messages.isEmpty)
+        guard !isApplyingAnimatedRowUpdates else {
+            refreshMessagesAfterAnimatedUpdate = true
+            return
+        }
+
+        let newMessages = Array(dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed())
+        let newStableKeys = stableKeys(for: newMessages)
+        let diff = diffRows(oldKeys: messageStableKeys, newKeys: newStableKeys)
+        let shouldAnimate = shouldAnimateRowChanges(diff: diff)
+
+        messages = newMessages
+        messageStableKeys = newStableKeys
+
+        if shouldAnimate {
+            pendingInsertedMessageKeys = diff.insertedKeys
+            isApplyingAnimatedRowUpdates = true
+            tableView.performBatchUpdates {
+                if !diff.deleted.isEmpty {
+                    tableView.deleteRows(at: diff.deleted, with: .fade)
+                }
+                if !diff.inserted.isEmpty {
+                    tableView.insertRows(at: diff.inserted, with: .top)
+                }
+            } completion: { [weak self] _ in
+                guard let self else { return }
+                self.isApplyingAnimatedRowUpdates = false
+                self.reloadVisibleRowsWithoutAnimation()
+                self.pendingInsertedMessageKeys.removeAll()
+                self.showEmptyStateView(self.messages.isEmpty)
+                if self.refreshMessagesAfterAnimatedUpdate {
+                    self.refreshMessagesAfterAnimatedUpdate = false
+                    self.refreshMessages()
+                }
+                self.applyPostRefreshVisibleStateUpdates()
+            }
+        } else {
+            reloadData()
+            showEmptyStateView(messages.isEmpty)
+        }
     }
 
     private func reloadData() {
+        pendingInsertedMessageKeys.removeAll()
         let selectedRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
         selectedRows?.forEach({ (selectedRow) in
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
+    }
+
+    private func reloadVisibleRowsWithoutAnimation() {
+        guard let visibleRows = tableView.indexPathsForVisibleRows else { return }
+
+        let rowsToReload = visibleRows.filter { indexPath in
+            guard indexPath.section == 0,
+                  indexPath.row >= 0,
+                  indexPath.row < messageStableKeys.count else {
+                return false
+            }
+
+            return !pendingInsertedMessageKeys.contains(messageStableKeys[indexPath.row])
+        }
+
+        guard !rowsToReload.isEmpty else { return }
+        UIView.performWithoutAnimation {
+            tableView.reloadRows(at: rowsToReload, with: .none)
+        }
     }
 
     private func loadMessages() {
@@ -955,8 +1045,75 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             msgs.insert((Int(DC_MSG_ID_MARKER1), 0), at: index)
         }
         self.messages = msgs.reversed()
+        self.messageStableKeys = stableKeys(for: self.messages)
         self.showEmptyStateView(self.messages.isEmpty)
         self.reloadData()
+    }
+
+    private func stableKeys(for rows: [ChatMessageRow]) -> [String] {
+        var occurrencesByBaseKey = [String: Int]()
+        return rows.map { row in
+            let baseKey: String
+            if row.id > Int(DC_MSG_ID_LAST_SPECIAL) {
+                baseKey = "m:\(row.id)"
+            } else {
+                baseKey = "s:\(row.id):\(Int64(row.timestamp))"
+            }
+
+            let occurrence = occurrencesByBaseKey[baseKey, default: 0]
+            occurrencesByBaseKey[baseKey] = occurrence + 1
+            return "\(baseKey):\(occurrence)"
+        }
+    }
+
+    private func diffRows(oldKeys: [String], newKeys: [String]) -> RowDiff {
+        let difference = newKeys.difference(from: oldKeys).inferringMoves()
+        var inserted = [IndexPath]()
+        var deleted = [IndexPath]()
+        var hasMoves = false
+        var insertedKeys = Set<String>()
+
+        for change in difference {
+            switch change {
+            case let .insert(offset, element, associatedWith):
+                inserted.append(IndexPath(row: offset, section: 0))
+                insertedKeys.insert(element)
+                if associatedWith != nil {
+                    hasMoves = true
+                }
+            case let .remove(offset, _, associatedWith):
+                deleted.append(IndexPath(row: offset, section: 0))
+                if associatedWith != nil {
+                    hasMoves = true
+                }
+            }
+        }
+
+        inserted.sort { $0.row < $1.row }
+        deleted.sort { $0.row > $1.row }
+        return RowDiff(inserted: inserted, deleted: deleted, hasMoves: hasMoves, insertedKeys: insertedKeys)
+    }
+
+    private func shouldAnimateRowChanges(diff: RowDiff) -> Bool {
+        let changedRowsCount = diff.inserted.count + diff.deleted.count
+        guard changedRowsCount > 0 else {
+            return false
+        }
+
+        guard !diff.hasMoves else {
+            return false
+        }
+
+        guard isVisibleToUser,
+              view.window != nil,
+              !tableView.isEditing,
+              !searchController.isActive,
+              !contextMenuVisible,
+              !UIAccessibility.isReduceMotionEnabled else {
+            return false
+        }
+
+        return changedRowsCount <= maxAnimatedRowChanges
     }
 
     private func canReply(to message: DcMsg) -> Bool {
