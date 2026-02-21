@@ -4,6 +4,7 @@
 
 - Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
+- Add animated insert/delete transitions for chat messages
 
 
 ## v2.43.0 Testflight
