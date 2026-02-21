@@ -7,7 +7,7 @@ public class ContactCardView: UIView {
     private var imageHeightConstraint: NSLayoutConstraint?
 
     private lazy var contactStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [profileImageView, profileDetailsStackView])
+        let stackView = UIStackView(arrangedSubviews: [profileImageView, nameLabel])
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 8
@@ -21,28 +21,12 @@ public class ContactCardView: UIView {
         return imageView
     }()
 
-    private lazy var profileDetailsStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, addressLabel])
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
         label.lineBreakMode = .byCharWrapping
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        isAccessibilityElement = false
-        return label
-    }()
-
-    private lazy var addressLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.font = UIFont.preferredFont(forTextStyle: .caption2)
         isAccessibilityElement = false
         return label
     }()
@@ -73,20 +57,10 @@ public class ContactCardView: UIView {
         }
 
         nameLabel.text = vcard.displayName
-        addressLabel.text = vcard.addr
     }
 
     public func configureAccessibilityLabel() -> String {
-        var accessibilityFileTitle = ""
-        var accessiblityFileSubtitle = ""
-        if let fileTitleText = nameLabel.text {
-            accessibilityFileTitle = fileTitleText
-        }
-        if let subtitleText = addressLabel.text {
-            accessiblityFileSubtitle = subtitleText
-        }
-
-        return "\(accessibilityFileTitle), \(accessiblityFileSubtitle)"
+        return nameLabel.text ?? ""
     }
 
     public func prepareForReuse() {
