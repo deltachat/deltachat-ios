@@ -26,7 +26,6 @@
 //
 
 import UIKit
-import DcCore
 
 /// A powerful InputAccessoryView ideal for messaging applications
 open class InputBarAccessoryView: UIView {
@@ -623,10 +622,6 @@ open class InputBarAccessoryView: UIView {
     }
 
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        if !scrollDownButton.isHidden && scrollDownButton.point(inside: convert(point, to: scrollDownButton), with: event) {
-            return true
-        }
-
         guard frameInsets.left != 0 || frameInsets.right != 0 else {
             return super.point(inside: point, with: event)
         }
@@ -889,7 +884,6 @@ open class InputBarAccessoryView: UIView {
                 invalidateIntrinsicContentSize()
             }
         }
-        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
     }
     
     /// Invalidates the intrinsicContentSize
@@ -979,19 +973,9 @@ open class InputBarAccessoryView: UIView {
     }
 
     // MARK: - Drafts - Customization
-    public func configure(draft: DraftModel) {
-        hasDraft = !draft.isEditing && draft.attachment != nil
-        hasQuote = !draft.isEditing && draft.quoteText != nil
-        leftStackView.isHidden = draft.isEditing
-        rightStackView.isHidden = draft.isEditing
-        maxTextViewHeight = calculateMaxTextViewHeight()
-    }
+    open func configure(draft: DraftModel) {}
 
-    public func cancel() {
-        hasDraft = false
-        hasQuote = false
-        maxTextViewHeight = calculateMaxTextViewHeight()
-    }
+    open func cancel() {}
 
     @objc func onScrollDownPressed() {
         if let callback = onScrollDownButtonPressed {
@@ -1007,23 +991,8 @@ open class InputBarAccessoryView: UIView {
             scrollDownButton.constraintHeightTo(40),
             scrollDownButton.constraintWidthTo(40)
         ])
-        scrollDownButton.backgroundColor = DcColors.defaultBackgroundColor
         scrollDownButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        scrollDownButton.layer.cornerRadius = 20
-        scrollDownButton.layer.borderColor = DcColors.colorDisabled.cgColor
-        scrollDownButton.layer.borderWidth = 1
-        scrollDownButton.layer.masksToBounds = true
         scrollDownButton.accessibilityLabel = String.localized("menu_scroll_to_bottom")
-    }
-
-    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if !scrollDownButton.isHidden {
-            let scrollButtonViewPoint = self.scrollDownButton.convert(point, from: self)
-            if let view = scrollDownButton.hitTest(scrollButtonViewPoint, with: event) {
-                return view
-            }
-        }
-        return super.hitTest(point, with: event)
     }
 
 }

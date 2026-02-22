@@ -4,10 +4,88 @@ import MobileCoreServices
 
 public class ChatInputTextView: InputTextView {
 
+    enum MaterialBackgroundMode {
+        case none
+        case liquid(tintColor: UIColor?, interactive: Bool)
+        case blur(UIBlurEffect.Style)
+    }
+
     public weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
+
+    private lazy var materialBackgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        view.isHidden = true
+        view.clipsToBounds = true
+        return view
+    }()
+
+    private lazy var materialEffectView: UIVisualEffectView = {
+        let view = UIVisualEffectView(effect: nil)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        view.clipsToBounds = true
+        return view
+    }()
+
     private lazy var dropInteraction: ChatDropInteraction = {
         return ChatDropInteraction()
     }()
+
+    open override func setup() {
+        super.setup()
+        setupMaterialBackground()
+    }
+
+    private func setupMaterialBackground() {
+        insertSubview(materialBackgroundView, at: 0)
+        pinMaterialBackgroundToViewport()
+        materialBackgroundView.addSubview(materialEffectView)
+        materialEffectView.fillSuperview()
+    }
+
+    private func pinMaterialBackgroundToViewport() {
+        NSLayoutConstraint.activate([
+            materialBackgroundView.leadingAnchor.constraint(equalTo: frameLayoutGuide.leadingAnchor),
+            materialBackgroundView.trailingAnchor.constraint(equalTo: frameLayoutGuide.trailingAnchor),
+            materialBackgroundView.topAnchor.constraint(equalTo: frameLayoutGuide.topAnchor),
+            materialBackgroundView.bottomAnchor.constraint(equalTo: frameLayoutGuide.bottomAnchor)
+        ])
+    }
+
+    func applyMaterialBackground(mode: MaterialBackgroundMode) {
+        switch mode {
+        case .none:
+            materialEffectView.effect = nil
+            materialBackgroundView.isHidden = true
+        case .blur(let style):
+            materialEffectView.effect = UIBlurEffect(style: style)
+            materialBackgroundView.isHidden = false
+        case .liquid(let tintColor, let interactive):
+            if #available(iOS 26.0, *) {
+                let effect = UIGlassEffect(style: .regular)
+                effect.isInteractive = interactive
+                effect.tintColor = tintColor
+                materialEffectView.effect = effect
+                materialBackgroundView.isHidden = false
+            } else {
+                materialEffectView.effect = UIBlurEffect(style: .systemThinMaterial)
+                materialBackgroundView.isHidden = false
+            }
+        }
+    }
+
+    func setMaterialCornerRadius(_ radius: CGFloat) {
+        materialBackgroundView.layer.cornerRadius = radius
+        materialBackgroundView.layer.masksToBounds = true
+        materialEffectView.layer.cornerRadius = radius
+        materialEffectView.layer.masksToBounds = true
+        if #available(iOS 13.0, *) {
+            materialBackgroundView.layer.cornerCurve = .continuous
+            materialEffectView.layer.cornerCurve = .continuous
+        }
+    }
 
     public func setDropInteractionDelegate(delegate: ChatDropInteractionDelegate) {
         dropInteraction.delegate = delegate

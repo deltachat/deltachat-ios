@@ -4,6 +4,7 @@
 
 - Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
+- Refactor the chat message composer to use iOS 26 Liquid Glass with an approximate glass fallback on iOS 14+
 
 
 ## v2.43.0 Testflight

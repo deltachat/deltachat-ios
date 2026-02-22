@@ -66,6 +66,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // scrollview when views are added to maintaining scroll position from the bottom
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
 
+        if #available(iOS 26.0, *) {
+                  // The iOS 26 scroll-edge fade is rendered in non-inverted coordinates.
+                  // For our inverted chat table this produces a visually wrong overlay, so disable it.
+                  tableView.topEdgeEffect.isHidden = true
+                  tableView.bottomEdgeEffect.isHidden = true
+                  tableView.leftEdgeEffect.isHidden = true
+                  tableView.rightEdgeEffect.isHidden = true
+        }
+        
         // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.automaticallyAdjustsScrollIndicatorInsets = false
@@ -119,7 +128,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    let messageInputBar = InputBarAccessoryView()
+    let messageInputBar = ChatInputBarAccessoryView()
 
     private lazy var draftArea: DraftArea = {
         let view = DraftArea()
@@ -380,7 +389,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
-        reloadInputViews()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
@@ -389,7 +397,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         handleUserVisibility(isVisible: true)
-        messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -666,8 +673,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func configureContactRequestBar() {
-        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-
         let bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
@@ -680,6 +685,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageInputBar.onScrollDownButtonPressed = { [weak self] in
             self?.scrollToBottom()
         }
+        messageInputBar.applyNonComposerMode()
         inputAccessoryView = messageInputBar
     }
 
@@ -690,22 +696,29 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
             messageInputBar.setStackViewItems([], forStack: .top, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
+            messageInputBar.applyNonComposerMode()
             return
         }
 
         draftArea.configure(draft: draft)
+        var shouldApplyComposerMode = false
         if draft.isEditing {
             inputAccessoryView = editingBar
             messageInputBar.inputTextView.resignFirstResponder()
+            messageInputBar.applyNonComposerMode()
         } else {
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: draft.sendEditRequestFor == nil ? 40 : 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
             messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
             inputAccessoryView = messageInputBar
+            shouldApplyComposerMode = true
         }
 
         messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
+        if shouldApplyComposerMode {
+            messageInputBar.applyComposerMode()
+        }
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -829,7 +842,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
+        super.traitCollectionDidChange(previousTraitCollection)
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
@@ -1117,16 +1130,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageInputBar.inputTextView.tintColor = DcColors.primary
         messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
         messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
-        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
-        messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
         messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
         messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
-        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
-        messageInputBar.inputTextView.layer.borderWidth = 1.0
-        messageInputBar.inputTextView.layer.cornerRadius = 13.0
-        messageInputBar.inputTextView.layer.masksToBounds = true
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.imagePasteDelegate = self
@@ -1135,11 +1142,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
         messageInputBar.isTranslucent = true
+        messageInputBar.applyComposerMode()
+        messageInputBar.updateSendEnabled(messageInputBar.sendButton.isEnabled)
     }
 
     private func evaluateInputBar(draft: DraftModel) {
         messageInputBar.sendButton.isEnabled = draft.canSend()
         messageInputBar.sendButton.accessibilityTraits = draft.canSend() ? .button : .notEnabled
+        messageInputBar.updateSendEnabled(draft.canSend())
     }
 
     private func configureInputBarItems() {
@@ -1151,9 +1161,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageInputBar.sendButton.accessibilityLabel = String.localized("menu_send")
         messageInputBar.sendButton.accessibilityTraits = .button
         messageInputBar.sendButton.title = nil
-        messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
-        messageInputBar.sendButton.layer.cornerRadius = 20
-        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 6, bottom: 0, right: 6)
         // this adds a padding between textinputfield and send button
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
@@ -1169,10 +1177,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 $0.setSize(CGSize(width: 40, height: 40), animated: false)
                 $0.accessibilityLabel = String.localized("menu_add_attachment")
                 $0.accessibilityTraits = .button
-            }.onSelected {
-                $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
-            }.onDeselected {
-                $0.tintColor = DcColors.primary
             }
         attachButton.showsMenuAsPrimaryAction = true
         attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
@@ -1183,17 +1187,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let leftItems = [attachButton]
 
         messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
-
-        // This just adds some more flare
-        messageInputBar.sendButton
-            .onEnabled { item in
-                UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = DcColors.primary
-                })}
-            .onDisabled { item in
-                UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = DcColors.colorDisabled
-                })}
+        messageInputBar.bindComposerAttachButton(attachButton)
     }
 
     @objc private func chatProfilePressed() {
