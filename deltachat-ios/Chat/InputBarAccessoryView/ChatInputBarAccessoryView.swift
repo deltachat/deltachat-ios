@@ -249,12 +249,12 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
     private func composerShadowFadeColors() -> [CGColor] {
         let top = UIColor.clear.cgColor
         let middle = UIColor.themeColor(
-            light: UIColor(white: 0.0, alpha: 0.3),
-            dark: UIColor(white: 0.0, alpha: 0.6)
+            light: UIColor(white: 0.0, alpha: 0.5),
+            dark: UIColor(white: 0.0, alpha: 0.7)
         ).cgColor
         let bottom = UIColor.themeColor(
-            light: UIColor(white: 0.0, alpha: 0.6),
-            dark: UIColor(white: 0.0, alpha: 0.8)
+            light: UIColor(white: 0.0, alpha: 0.8),
+            dark: UIColor(white: 0.0, alpha: 1)
         ).cgColor
         return [top, middle, bottom]
     }
