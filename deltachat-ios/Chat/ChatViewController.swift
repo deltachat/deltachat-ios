@@ -701,7 +701,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
             messageInputBar.setLeftStackViewWidthConstant(to: draft.sendEditRequestFor == nil ? 40 : 0, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
-            messageInputBar.padding = UIEdgeInsets(top: 6, left: 12, bottom: 0, right: 12)
+            messageInputBar.padding = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
             inputAccessoryView = messageInputBar
             shouldApplyComposerMode = true
         }
@@ -1123,8 +1123,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
         messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
         messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
-        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
-        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
+        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 16)
+        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 16)
         messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         configureInputBarItems()
         messageInputBar.inputTextView.imagePasteDelegate = self
@@ -1156,7 +1156,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // this adds a padding between textinputfield and send button
         messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
-        messageInputBar.padding = UIEdgeInsets(top: 6, left: 12, bottom: 0, right: 12)
+        messageInputBar.padding = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
         messageInputBar.shouldManageSendButtonEnabledState = false
 
         let attachButton = InputBarButtonItem()
