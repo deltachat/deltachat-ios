@@ -22,6 +22,7 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
 
     private let composerBlurEffect = UIBlurEffect(style: .systemChromeMaterial)
     private let legacyBlurEffect = UIBlurEffect(style: .systemMaterial)
+    private let composerShadowFadeLayer = CAGradientLayer()
 
     private let attachIcon = UIImage(named: "ic_attach_file_36pt")?
         .withRenderingMode(.alwaysTemplate)
@@ -99,6 +100,13 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
         styleTextViewForComposer(inputTextView)
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if composerShadowFadeLayer.superlayer != nil {
+            composerShadowFadeLayer.frame = backgroundView.bounds
+        }
+    }
+
     override func configure(draft: DraftModel) {
         hasDraft = !draft.isEditing && draft.attachment != nil
         hasQuote = !draft.isEditing && draft.quoteText != nil
@@ -154,13 +162,14 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
             if #available(iOS 26.0, *) {
                 applyEffectStateIfNeeded(.composerLiquid)
                 backgroundView.backgroundColor = .clear
+                applyComposerShadowFade()
             } else {
                 applyEffectStateIfNeeded(.composerBlur)
                 backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
             }
             topStackView.backgroundColor = UIColor.themeColor(
-                light: UIColor(white: 1.0, alpha: 0.10),
-                dark: UIColor(white: 0.16, alpha: 0.16)
+                light: UIColor(white: 1.0, alpha: 0.18),
+                dark: UIColor(white: 0.22, alpha: 0.22)
             )
             topStackView.layer.cornerRadius = 14
             topStackView.layer.masksToBounds = true
@@ -177,6 +186,7 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
             separatorLine.backgroundColor = DcColors.colorDisabled
             applyEffectStateIfNeeded(.legacyBlur)
             backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
+            removeComposerShadowFade()
             topStackView.backgroundColor = .clear
             topStackView.layer.cornerRadius = 0
             topStackView.layer.masksToBounds = false
@@ -212,6 +222,35 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
         UIView.performWithoutAnimation {
             blurView.effect = effect
         }
+    }
+
+
+    private func applyComposerShadowFade() {
+        if composerShadowFadeLayer.superlayer !== backgroundView.layer {
+            backgroundView.layer.insertSublayer(composerShadowFadeLayer, at: 0)
+        }
+        composerShadowFadeLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        composerShadowFadeLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        composerShadowFadeLayer.locations = [0.0, 0.55, 1.0]
+        composerShadowFadeLayer.colors = composerShadowFadeColors()
+        composerShadowFadeLayer.frame = backgroundView.bounds
+    }
+
+    private func removeComposerShadowFade() {
+        composerShadowFadeLayer.removeFromSuperlayer()
+    }
+
+    private func composerShadowFadeColors() -> [CGColor] {
+        let top = UIColor.clear.cgColor
+        let middle = UIColor.themeColor(
+            light: UIColor(white: 0.0, alpha: 0.3),
+            dark: UIColor(white: 0.0, alpha: 0.6)
+        ).cgColor
+        let bottom = UIColor.themeColor(
+            light: UIColor(white: 0.0, alpha: 0.6),
+            dark: UIColor(white: 0.0, alpha: 0.8)
+        ).cgColor
+        return [top, middle, bottom]
     }
 
     private func shouldReapplyAppearance(
