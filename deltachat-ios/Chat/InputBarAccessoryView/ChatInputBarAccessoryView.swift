@@ -224,6 +224,12 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
         }
     }
 
+    private func composerFrostedButtonColor() -> UIColor {
+        UIColor.themeColor(
+            light: UIColor(white: 1.0, alpha: 0.46),
+            dark: UIColor(white: 0.15, alpha: 0.3)
+        )
+    }
 
     private func applyComposerShadowFade() {
         if composerShadowFadeLayer.superlayer !== backgroundView.layer {
@@ -352,7 +358,7 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
             setConfiguration(configuration, on: attachButton)
             attachButton.setImage(attachIcon, for: .normal)
             attachButton.tintColor = .label
-            attachButton.backgroundColor = .clear
+            attachButton.backgroundColor = composerFrostedButtonColor()
             attachButton.layer.borderWidth = 0
         } else {
             clearConfiguration(attachButton)
@@ -406,7 +412,7 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
             configuration.cornerStyle = .capsule
             configuration.baseForegroundColor = DcColors.defaultInverseColor
             setConfiguration(configuration, on: button)
-            button.backgroundColor = .clear
+            button.backgroundColor = composerFrostedButtonColor()
             button.layer.borderWidth = 0
         } else {
             clearConfiguration(button)
@@ -474,7 +480,7 @@ final class ChatInputBarAccessoryView: InputBarAccessoryView {
                     self.setConfiguration(configuration, on: sendButton)
                     sendButton.setImage(fallbackImage, for: .normal)
                     sendButton.tintColor = .secondaryLabel
-                    sendButton.backgroundColor = .clear
+                    sendButton.backgroundColor = self.composerFrostedButtonColor()
                 }
                 sendButton.layer.borderWidth = 0
             } else {

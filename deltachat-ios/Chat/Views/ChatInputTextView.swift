@@ -29,6 +29,14 @@ public class ChatInputTextView: InputTextView {
         return view
     }()
 
+    private lazy var materialOverlayView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        view.isHidden = true
+        return view
+    }()
+
     private lazy var dropInteraction: ChatDropInteraction = {
         return ChatDropInteraction()
     }()
@@ -43,6 +51,8 @@ public class ChatInputTextView: InputTextView {
         pinMaterialBackgroundToViewport()
         materialBackgroundView.addSubview(materialEffectView)
         materialEffectView.fillSuperview()
+        materialBackgroundView.addSubview(materialOverlayView)
+        materialOverlayView.fillSuperview()
     }
 
     private func pinMaterialBackgroundToViewport() {
@@ -64,7 +74,7 @@ public class ChatInputTextView: InputTextView {
             materialBackgroundView.isHidden = false
         case .liquid(let tintColor, let interactive):
             if #available(iOS 26.0, *) {
-                let effect = UIGlassEffect(style: .regular)
+                let effect = UIGlassEffect(style: .clear)
                 effect.isInteractive = interactive
                 effect.tintColor = tintColor
                 materialEffectView.effect = effect
@@ -72,6 +82,29 @@ public class ChatInputTextView: InputTextView {
             } else {
                 materialEffectView.effect = UIBlurEffect(style: .systemThinMaterial)
                 materialBackgroundView.isHidden = false
+            }
+        }
+        applyMaterialOverlay(mode: mode)
+    }
+
+    private func applyMaterialOverlay(mode: MaterialBackgroundMode) {
+        switch mode {
+        case .none:
+            materialOverlayView.isHidden = true
+            materialOverlayView.backgroundColor = .clear
+        case .blur:
+            materialOverlayView.isHidden = false
+            materialOverlayView.backgroundColor = UIColor { traitCollection in
+                traitCollection.userInterfaceStyle == .dark
+                    ? UIColor(white: 1.0, alpha: 0.09)
+                    : UIColor(white: 1.0, alpha: 0.12)
+            }
+        case .liquid:
+            materialOverlayView.isHidden = false
+            materialOverlayView.backgroundColor = UIColor { traitCollection in
+                traitCollection.userInterfaceStyle == .dark
+                    ? UIColor(white: 0.15, alpha: 0.7) 
+                    : UIColor(white: 1.0, alpha: 0.75)
             }
         }
     }
