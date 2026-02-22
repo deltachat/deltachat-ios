@@ -65,15 +65,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // this flips the default behavior of maintaining scroll position from the top of the
         // scrollview when views are added to maintaining scroll position from the bottom
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-
-        if #available(iOS 26.0, *) {
-                  // The iOS 26 scroll-edge fade is rendered in non-inverted coordinates.
-                  // For our inverted chat table this produces a visually wrong overlay, so disable it.
-                  tableView.topEdgeEffect.isHidden = true
-                  tableView.bottomEdgeEffect.isHidden = true
-                  tableView.leftEdgeEffect.isHidden = true
-                  tableView.rightEdgeEffect.isHidden = true
-        }
         
         // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
         tableView.contentInsetAdjustmentBehavior = .never
