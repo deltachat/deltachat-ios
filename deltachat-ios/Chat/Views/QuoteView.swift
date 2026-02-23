@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 
 public class QuoteView: UIView {
-    public lazy var citeBar: UIView = {
+    private lazy var citeBar: UIView = {
         let view = UIView()
         view.backgroundColor = DcColors.unknownSender
         view.clipsToBounds = true
@@ -22,7 +22,7 @@ public class QuoteView: UIView {
         return view
     }()
 
-    public lazy var senderTitle: UILabel = {
+    private lazy var senderTitle: UILabel = {
         let view = UILabel()
         view.font = UIFont.preferredFont(for: .caption1, weight: .semibold)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,20 +78,18 @@ public class QuoteView: UIView {
         imageWidthConstraint?.isActive = true
     }
 
-    public func configureAccessibilityLabel() -> String {
-        var accessibilitySenderTitle = ""
-        var accessibilityQuoteText = ""
-        var accessibilityQuoteImageText = ""
-        if let senderTiteText = senderTitle.text {
-            accessibilitySenderTitle = "\(senderTiteText), "
-        }
-        if let quoteText = quote.text {
-            accessibilityQuoteText = "\(quoteText), "
-        }
-        if imagePreview.image != nil {
-            accessibilityQuoteImageText = "\(String.localized("image")), "
-        }
-        return "\(accessibilitySenderTitle), \(accessibilityQuoteText), \(accessibilityQuoteImageText)"
+    public func configureAccessibilityLabel() -> String? {
+        let components: [String?] = [
+            senderTitle.text,
+            quote.text,
+            imagePreview.image != nil ? String.localized("image") : nil
+        ]
+
+        let result = components.compactMap { $0 } // removes nils
+                               .filter { !$0.isEmpty } // removes empty strings
+                               .joined(separator: ", ")
+
+        return result.isEmpty ? nil : result
     }
 
     public func prepareForReuse() {
@@ -102,6 +100,14 @@ public class QuoteView: UIView {
         citeBar.backgroundColor = DcColors.unknownSender
         imagePreview.image = nil
         imageWidthConstraint?.constant = 0
+    }
+
+    public func setSenderTitle(_ title: String?, color: UIColor) {
+        let title = title?.isEmpty == true ? nil : title
+
+        senderTitle.text = title
+        senderTitle.textColor = color
+        citeBar.backgroundColor = color
     }
 
     public func setImagePreview(_ image: UIImage?) {

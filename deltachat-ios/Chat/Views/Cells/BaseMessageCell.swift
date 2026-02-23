@@ -515,14 +515,10 @@ public class BaseMessageCell: UITableViewCell {
                 quoteView.setImagePreview(quoteImage)
                 quoteView.setRoundedCorners(isWebxdc)
                 if quoteMsg.isForwarded {
-                    quoteView.senderTitle.text = String.localized("forwarded_message")
-                    quoteView.senderTitle.textColor = DcColors.unknownSender
-                    quoteView.citeBar.backgroundColor = DcColors.unknownSender
+                    quoteView.setSenderTitle(String.localized("forwarded_message"), color: DcColors.unknownSender)
                 } else {
                     let contact = dcContext.getContact(id: quoteMsg.fromContactId)
-                    quoteView.senderTitle.text = quoteMsg.getSenderName(contact, markOverride: true)
-                    quoteView.senderTitle.textColor = contact.color
-                    quoteView.citeBar.backgroundColor = contact.color
+                    quoteView.setSenderTitle(quoteMsg.getSenderName(contact, markOverride: true), color: contact.color)
                 }
 
             }
@@ -601,8 +597,8 @@ public class BaseMessageCell: UITableViewCell {
         if let messageLabelText = messageLabel.text {
             messageLabelAccessibilityString = "\(messageLabelText), "
         }
-        if let senderTitle = quoteView.senderTitle.text, let quote = quoteView.quote.text {
-            quoteAccessibilityString = "\(senderTitle), \(quote), \(String.localized("reply_noun")), "
+        if let quote = quoteView.configureAccessibilityLabel() {
+            quoteAccessibilityString = "\(quote), \(String.localized("reply_noun")), "
         }
         if let a11yDcType {
             additionalAccessibilityString = "\(a11yDcType), "

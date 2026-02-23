@@ -27,11 +27,9 @@ public class QuotePreview: DraftPreview {
 
     override public func configure(draft: DraftModel) {
         if !draft.isEditing, let sendEditRequestFor = draft.sendEditRequestFor {
-            quoteView.senderTitle.text = String.localized("edit_message")
-            quoteView.senderTitle.textColor = DcColors.unknownSender
+            quoteView.setSenderTitle(String.localized("edit_message"), color: DcColors.unknownSender)
             quoteView.quote.text = draft.dcContext.getMessage(id: sendEditRequestFor).text
             quoteView.setImagePreview(nil)
-            quoteView.citeBar.backgroundColor = DcColors.unknownSender
             isHidden = false
         } else if !draft.isEditing,
            let quoteText = draft.quoteText {
@@ -44,15 +42,10 @@ public class QuotePreview: DraftPreview {
                 quoteView.setImagePreview(quoteImage)
                 quoteView.setRoundedCorners(isWebxdc)
                 if quoteMessage.isForwarded {
-                    quoteView.senderTitle.text = String.localized("forwarded_message")
-                    quoteView.senderTitle.textColor = DcColors.unknownSender
-                    quoteView.citeBar.backgroundColor = DcColors.unknownSender
+                    quoteView.setSenderTitle(String.localized("forwarded_message"), color: DcColors.unknownSender)
                 } else {
                     let contact = draft.dcContext.getContact(id: quoteMessage.fromContactId)
-                    quoteView.senderTitle.text = quoteMessage.getSenderName(contact, markOverride: true)
-                    quoteView.senderTitle.textColor = contact.color
-                    quoteView.citeBar.backgroundColor = contact.color
-
+                    quoteView.setSenderTitle(quoteMessage.getSenderName(contact, markOverride: true), color: contact.color)
                 }
             }
             accessibilityLabel = quoteView.configureAccessibilityLabel()
