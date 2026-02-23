@@ -6,6 +6,7 @@
 - Add tab bar icon bounce animation on tap
 - Fix: remove meaningless address from vCard
 - Fix: No more UI ghosting on cell swipe
+- VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 
 
 ## v2.43.0 Testflight
