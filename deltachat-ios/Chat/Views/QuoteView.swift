@@ -61,7 +61,6 @@ public class QuoteView: UIView {
             imagePreview.constraintAlignTrailingTo(self, paddingTrailing: 16),
             imagePreview.constraintHeightTo(36),
             imagePreview.constraintCenterYTo(citeBar),
-            imagePreview.constraintAlignTopMaxTo(self),
             senderTitle.constraintAlignTopTo(self),
             senderTitle.constraintAlignLeadingTo(self, paddingLeading: 28),
             senderTitle.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
