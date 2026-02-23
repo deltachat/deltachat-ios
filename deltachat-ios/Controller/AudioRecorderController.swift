@@ -228,7 +228,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func didEnterBackgroundNotification() {
-        cancelAction()
+        if UIAccessibility.isVoiceOverRunning {
+            // Cancel the recording session because otherwise when the VoiceOver user returns
+            // to the app, the VoiceOver will stay silent.
+            cancelAction()
+        }
     }
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
