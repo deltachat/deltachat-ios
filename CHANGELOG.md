@@ -39,6 +39,7 @@
 - Fix: More reliable parsing of relay QR-codes and -links
 - Fix: Prevent possible infinite loop with invalid SMTP row
 - Fix: Sync broadcast subscribers list
+- Fix: No more UI ghosting on cell swipe
 - Update translations and local help
 - Update to core 2.42.0
 

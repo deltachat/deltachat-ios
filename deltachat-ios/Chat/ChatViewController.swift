@@ -736,6 +736,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return configuration
     }
 
+    /// Cell swipe action started
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        lastContextMenuPreviewSnapshot?.removeFromSuperview()
+    }
+
     func replyToMessage(_ msgId: Int) {
         let message = dcContext.getMessage(id: msgId)
         self.draft.setQuote(quotedMsg: message)
