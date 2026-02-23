@@ -125,8 +125,8 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
         wasIdleTimerDisabled = UIApplication.shared.isIdleTimerDisabled
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didBecomeActiveNotification),
-                                               name: UIApplication.didBecomeActiveNotification,
+                                               selector: #selector(didEnterBackgroundNotification),
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
         validateMicrophoneAccess()
     }
@@ -142,9 +142,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         super.viewWillDisappear(animated)
 
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        audioRecorder?.delegate = nil
         audioRecorder?.stop()
-        audioRecorder = nil
         stopUpdatingMeter()
         UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
     }
@@ -219,7 +217,6 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         } catch {
             logger.error("Cannot cancel action: \(error)")
         }
-        dismiss(animated: true, completion: nil)
     }
 
     @objc func doneAction() {
@@ -228,11 +225,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         if let delegate = self.delegate {
             delegate.didFinishAudioAtPath(path: recordingFilePath)
         }
-        dismiss(animated: true, completion: nil)
     }
 
-    @objc func didBecomeActiveNotification() {
-        validateMicrophoneAccess()
+    @objc func didEnterBackgroundNotification() {
+        cancelAction()
     }
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -249,6 +245,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         } catch {
             logger.error("Error in audioRecorderDidFinishRecording: \(error)")
         }
+        dismiss(animated: true, completion: nil)
     }
 
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
