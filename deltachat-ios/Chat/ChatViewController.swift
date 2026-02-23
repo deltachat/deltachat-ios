@@ -2514,13 +2514,6 @@ extension ChatViewController: MediaPickerDelegate {
         sendVoiceMessage(url: url)
     }
 
-    func onVoiceMessageRecorderClosed() {
-        if UIAccessibility.isVoiceOverRunning {
-            _ = try? AVAudioSession.sharedInstance().setCategory(.playback)
-            UIAccessibility.post(notification: .announcement, argument: nil)
-        }
-    }
-
     func onDocumentSelected(url: NSURL) {
         stageDocument(url: url)
     }

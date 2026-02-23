@@ -15,7 +15,6 @@ protocol MediaPickerDelegate: AnyObject {
 
     // onVoiceMessageRecorded*() are called in response to showVoiceRecorder()
     func onVoiceMessageRecorded(url: NSURL)
-    func onVoiceMessageRecorderClosed()
 
     // onDocumentSelected() us called in response to showDocumentLibrary()
     func onDocumentSelected(url: NSURL)
@@ -28,7 +27,6 @@ extension MediaPickerDelegate {
     func onVideoSelected(url: NSURL) { }
     func onMediaSelected(mediaPicker: MediaPicker, itemProviders: [NSItemProvider], sendAsFile: Bool) {}
     func onVoiceMessageRecorded(url: NSURL) { }
-    func onVoiceMessageRecorderClosed() { }
     func onDocumentSelected(url: NSURL) { }
 }
 
@@ -208,7 +206,6 @@ extension MediaPicker: AudioRecorderControllerDelegate {
     }
 
     func didClose() {
-        self.delegate?.onVoiceMessageRecorderClosed()
         accountRecorderTransitionDelegate = nil
     }
 }
