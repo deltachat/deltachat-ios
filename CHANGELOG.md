@@ -5,6 +5,7 @@
 - Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
 - Fix: remove meaningless address from vCard
+- Fix: No more UI ghosting on cell swipe
 
 
 ## v2.43.0 Testflight
@@ -39,7 +40,6 @@
 - Fix: More reliable parsing of relay QR-codes and -links
 - Fix: Prevent possible infinite loop with invalid SMTP row
 - Fix: Sync broadcast subscribers list
-- Fix: No more UI ghosting on cell swipe
 - Update translations and local help
 - Update to core 2.42.0
 
