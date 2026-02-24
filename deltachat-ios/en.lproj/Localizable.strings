@@ -1015,7 +1015,6 @@
 "a11y_delivery_status_draft" = "Delivery status: Draft";
 "a11y_delivery_status_delivered" = "Delivery status: Delivered";
 "a11y_delivery_status_read" = "Delivery status: Read";
-"a11y_message_view_count" = "%1$d views";
 "a11y_delivery_status_invalid" = "Invalid delivery status";
 "a11y_message_context_menu_btn_label" = "Message actions";
 "a11y_background_preview_label" = "Wallpaper preview";
