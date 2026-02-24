@@ -7,6 +7,7 @@
 - Fix: remove meaningless address from vCard
 - Fix: No more UI ghosting on cell swipe
 - VoiceOver: Voice messages now no longer silence the VoiceOver permanently
+- Display message views count for channel owners
 
 
 ## v2.43.0 Testflight
