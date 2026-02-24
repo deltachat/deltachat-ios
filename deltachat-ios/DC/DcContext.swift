@@ -476,6 +476,17 @@ public class DcContext {
         return swiftString
     }
 
+    public func getMessageReadReceiptCount(messageId: Int) -> Int {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "get_message_read_receipt_count", params: [id as AnyObject, messageId as AnyObject]) {
+                return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return 0
+    }
+
     public func getMessageReactions(messageId: Int) -> DcReactions? {
         do {
             if let data = try DcAccounts.shared.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {

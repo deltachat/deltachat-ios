@@ -388,6 +388,9 @@ public class BaseMessageCell: UITableViewCell {
     // update classes inheriting BaseMessageCell first before calling super.update(...)
     func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
+        let dcChat = dcContext.getChat(chatId: msg.chatId)
+        let shouldShowViewCount = msg.isFromCurrentSender && dcChat.isOutBroadcast
+        let viewCount = shouldShowViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             let topLabelTextColor: UIColor
@@ -495,7 +498,7 @@ public class BaseMessageCell: UITableViewCell {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
 
-            statusView.update(message: msg, tintColor: tintColor)
+            statusView.update(message: msg, tintColor: tintColor, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount)
             let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 guard let self else { return }
 
@@ -588,6 +591,9 @@ public class BaseMessageCell: UITableViewCell {
         guard let dcContextId, let dcMsgId else { return }
         let dcContext = DcAccounts.shared.get(id: dcContextId)
         let msg = dcContext.getMessage(id: dcMsgId)
+        let dcChat = dcContext.getChat(chatId: msg.chatId)
+        let shouldShowViewCount = msg.isFromCurrentSender && dcChat.isOutBroadcast
+        let viewCount = shouldShowViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
         let reactions = dcContext.getMessageReactions(messageId: msg.id)
 
         var topLabelAccessibilityString = ""
@@ -620,7 +626,7 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: msg))" +
+            "\(StatusView.getAccessibilityString(message: msg, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
             "\(reactionsString) "
     }
 
