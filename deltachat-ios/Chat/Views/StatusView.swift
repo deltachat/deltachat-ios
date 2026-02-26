@@ -8,8 +8,12 @@ public class StatusView: UIView {
     private let editedLabel: UILabel
     private let envelopeView: UIImageView
     private let locationView: UIImageView
+    private let viewsIconView: UIImageView
+    private let viewsCountLabel: UILabel
     private let stateView: UIImageView
     private let savedView: UIImageView
+    private let defaultSpacing: CGFloat = 4
+    private let viewsSectionLeadingSpacing: CGFloat = 10
 
     override init(frame: CGRect) {
 
@@ -26,14 +30,20 @@ public class StatusView: UIView {
         envelopeView.translatesAutoresizingMaskIntoConstraints = false
         locationView = UIImageView()
         locationView.translatesAutoresizingMaskIntoConstraints = false
+        viewsIconView = UIImageView()
+        viewsIconView.translatesAutoresizingMaskIntoConstraints = false
+        viewsCountLabel = UILabel()
+        viewsCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        viewsCountLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
         stateView = UIImageView()
         stateView.translatesAutoresizingMaskIntoConstraints = false
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, viewsIconView, viewsCountLabel, stateView])
         contentStackView.alignment = .center
-        contentStackView.spacing = 4
+        contentStackView.spacing = defaultSpacing
+        contentStackView.setCustomSpacing(2, after: viewsIconView)
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
 
         super.init(frame: frame)
@@ -61,6 +71,9 @@ public class StatusView: UIView {
             locationView.widthAnchor.constraint(equalToConstant: 10),
             locationView.heightAnchor.constraint(equalToConstant: 14),
 
+            viewsIconView.widthAnchor.constraint(equalToConstant: 14),
+            viewsIconView.heightAnchor.constraint(equalToConstant: 10),
+
             stateView.widthAnchor.constraint(equalToConstant: 20),
             stateView.heightAnchor.constraint(equalToConstant: 20),
 
@@ -77,11 +90,14 @@ public class StatusView: UIView {
         editedLabel.isHidden = true
         envelopeView.isHidden = true
         locationView.isHidden = true
+        viewsIconView.isHidden = true
+        viewsCountLabel.isHidden = true
+        viewsCountLabel.text = nil
         savedView.isHidden = true
         stateView.isHidden = true
     }
 
-    public func update(message: DcMsg, tintColor: UIColor) {
+    public func update(message: DcMsg, tintColor: UIColor, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) {
         dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
         editedLabel.isHidden = !message.isEdited
@@ -100,6 +116,19 @@ public class StatusView: UIView {
         } else {
             locationView.isHidden = true
         }
+
+        if let viewCount {
+            viewsIconView.image = UIImage(systemName: "eye")?.maskWithColor(color: tintColor)
+            viewsIconView.isHidden = false
+            viewsCountLabel.text = "\(viewCount)"
+            viewsCountLabel.textColor = tintColor
+            viewsCountLabel.isHidden = false
+        } else {
+            viewsIconView.isHidden = true
+            viewsCountLabel.isHidden = true
+            viewsCountLabel.text = nil
+        }
+        updateViewsSectionSpacing(hasLocation: message.hasLocation, showViewCount: viewCount != nil)
 
         if message.savedMessageId != 0 || message.originalMessageId != 0 {
             savedView.image = UIImage(systemName: "bookmark.fill")?.maskWithColor(color: tintColor)
@@ -121,9 +150,9 @@ public class StatusView: UIView {
         case DC_DOWNLOAD_IN_PROGRESS, DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
             stateView.image = UIImage(named: "ic_hourglass_empty_white_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_DELIVERED:
-            stateView.image = UIImage(named: "ic_done_36pt")?.maskWithColor(color: tintColor)
+            stateView.image = showOnlyPendingAndError ? nil : UIImage(named: "ic_done_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_MDN_RCVD:
-            stateView.image = UIImage(named: "ic_done_all_36pt")?.maskWithColor(color: tintColor)
+            stateView.image = showOnlyPendingAndError ? nil : UIImage(named: "ic_done_all_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_FAILED:
             stateView.image = UIImage(named: "ic_error_36pt")
         default:
@@ -132,20 +161,41 @@ public class StatusView: UIView {
         stateView.isHidden = stateView.image == nil
     }
 
-    public static func getAccessibilityString(message: DcMsg) -> String {
+    public static func getAccessibilityString(message: DcMsg, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
         let state: String
         switch Int32(message.state) {
         case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
             state = String.localized("a11y_delivery_status_sending")
         case DC_STATE_OUT_DELIVERED:
-            state = String.localized("a11y_delivery_status_delivered")
+            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
         case DC_STATE_OUT_MDN_RCVD:
-            state = String.localized("a11y_delivery_status_read")
+            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_read")
         case DC_STATE_OUT_FAILED:
             state = String.localized("a11y_delivery_status_error")
         default:
             state = ""
         }
-        return "\(message.formattedSentDate()), \(state)\(message.showEnvelope() ? (", " + String.localized("email")) : "")"
+        let stateString = state.isEmpty ? "" : ", \(state)"
+        let viewsCountString: String
+        if let viewCount {
+            let viewsWord = viewCount == 1 ? "view" : "views"
+            viewsCountString = ", \(viewCount) \(viewsWord)"
+        } else {
+            viewsCountString = ""
+        }
+        let envelopeString = message.showEnvelope() ? (", " + String.localized("email")) : ""
+        return "\(message.formattedSentDate())\(stateString)\(viewsCountString)\(envelopeString)"
+    }
+
+    private func updateViewsSectionSpacing(hasLocation: Bool, showViewCount: Bool) {
+        contentStackView.setCustomSpacing(defaultSpacing, after: dateLabel)
+        contentStackView.setCustomSpacing(defaultSpacing, after: locationView)
+        if showViewCount {
+            if hasLocation {
+                contentStackView.setCustomSpacing(viewsSectionLeadingSpacing, after: locationView)
+            } else {
+                contentStackView.setCustomSpacing(viewsSectionLeadingSpacing, after: dateLabel)
+            }
+        }
     }
 }
