@@ -9,19 +9,11 @@
 - VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 
 
-## v2.43.0 Testflight
-2026-02
-
-- Add Group and Channel descriptions
-- Fix webxdc realtime channels
-- Update translations and local help
-- Update to core 2.43.0
-
-
-## v2.42.0 Testflight
+## v2.43.0
 2026-02
 
 - Have preview and notifications of large messages much quicker
+- Add Group and Channel descriptions
 - Improve "Connectivity View"
 - Notifications are now removed when you open their respective chat on a different device
 - Truncate file names in the middle, not at the end; important information are more often at the end
@@ -42,7 +34,7 @@
 - Fix: Prevent possible infinite loop with invalid SMTP row
 - Fix: Sync broadcast subscribers list
 - Update translations and local help
-- Update to core 2.42.0
+- Update to core 2.43.0
 
 
 ## v2.35.0
