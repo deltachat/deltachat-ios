@@ -4,3 +4,4 @@ NSLocationWhenInUseUsageDescription = "Delta Chat behöver tillstånd för att d
 NSMicrophoneUsageDescription = "Delta Chat använder din mikrofon för att spela in och skicka röstmeddelanden, och filmer med ljud.";
 NSPhotoLibraryUsageDescription = "Delta Chat låter dig välja vilka bilder från ditt galleri som du vill skicka.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat vill spara bilder i ditt fotogalleri.";
+NSFaceIDUsageDescription = "Delta Chat kan använda Face ID för att skydda din lokala profil, skapa säkerhetskopior och konfigurera en andra enhet.";

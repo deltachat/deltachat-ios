@@ -173,13 +173,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d участвує</string>
+			<string>%d учасник</string>
 			<key>few</key>
-			<string>%d участвують</string>
+			<string>%d учасників</string>
 			<key>many</key>
-			<string>%d участвують</string>
+			<string>%d учасників</string>
 			<key>other</key>
-			<string>%d участвують</string>
+			<string>%d учасників</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>

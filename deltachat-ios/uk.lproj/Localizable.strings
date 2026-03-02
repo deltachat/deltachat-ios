@@ -9,7 +9,7 @@
 "scan" = "Сканувати";
 "yes" = "Так";
 "no" = "Ні";
-"select" = "Вибрати";
+"select" = "Обрати";
 "on" = "Увімкнено";
 "off" = "Вимкнено";
 "def" = "За замовчуванням";
@@ -269,7 +269,7 @@
 "menu_scroll_to_top" = "Прокрутити на початок";
 "menu_help" = "Допомога";
 // use the same term for "Apps" as elsewhere
-"what_is_webxdc" = "Про додатки";
+"what_is_webxdc" = "Про застосунки";
 "privacy_policy" = "Політика конфіденційності";
 "menu_select_all" = "Вибрати все";
 "select_chat" = "Оберіть чат";
@@ -291,7 +291,7 @@
 "jump_to_original_message" = "Перейти до оригінального повідомлення";
 "copy_json" = "Копіювати JSON";
 "replace_draft" = "Замінити чернетку";
-"title_share_location" = "Ділитися геоданими з усіма членами групи";
+"title_share_location" = "Поділитися місцеперебуванням з усіма учасниками групи";
 "device_talk" = "Повідомлення пристрою";
 "device_talk_subtitle" = "Локально згенеровані повідомлення";
 "device_talk_explain" = "Повідомлення у цьому чаті згенеровані на вашому пристрої для інформування про оновлення та проблеми при використанні.";
@@ -440,7 +440,7 @@
 "group_create_button" = "Створити групу";
 "group_please_enter_group_name" = "Уведіть назву групі.";
 "group_add_members" = "Додати учасників";
-"group_self_not_in_group" = "Потрібно участвувати в групі, щоби виконати цю дію.";
+"group_self_not_in_group" = "Лише учасник групи має змогу виконати цю дію.";
 "profile_encryption" = "Шифрування";
 "profile_shared_chats" = "Спільні з вами чати";
 // Separator between the list of actual members and past members
@@ -855,7 +855,7 @@
 "chat_protection_enabled_tap_to_learn_more" = "Відтепер повідомлення гарантовано будуть мати наскрізне шифрування. Торкніться, щоб дізнатися більше.";
 "chat_protection_enabled_explanation" = "Тепер гарантовано, що всі повідомлення в цьому чаті наскрізь зашифровані.\n\nНаскрізне шифрування зберігає конфіденційність повідомлень між вами і вашими партнерами по чату. Навіть сервери, провайдери або ретранслятори не можуть їх прочитати.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ вимагає наскрізного шифрування, яке ще не налаштоване для цього чату. Натисніть, щоб дізнатися більше.";
-"invalid_unencrypted_explanation" = "Для налагодження наскрізного шифрування можна зустрітись із контактною особою та відсканувати баркод із її пристрою, щоби представити її.";
+"invalid_unencrypted_explanation" = "Щоб встановити наскрізне шифрування, Ви можете зустрітися з контактами особисто та відсканувати їх QR-код.";
 "learn_more" = "Дізнатися більше";
 "devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
@@ -885,15 +885,15 @@
 "withdraw_qr_code" = "Скинути QR-код";
 "revive_verifycontact_explain" = "Цей QR-код було скинуто і він більше не активний.";
 "revive_qr_code" = "Активувати QR-код";
-"qrshow_title" = "Баркод із запрошенням";
+"qrshow_title" = "QR-код запрошення";
 "qrshow_x_joining" = "%1$@ приєднався(-лася).";
 "qrshow_x_verified" = "%1$@ представлено.";
 "qrshow_x_has_joined_group" = "%1$@ приєднався(-лася) до групи.";
-"qrshow_join_group_title" = "Баркод із запрошенням";
+"qrshow_join_group_title" = "QR-код запрошення";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Відскануйте код, щоб приєднатися до групи \"%1$@\".";
 "qrshow_join_channel_hint" = "Відскануйте щоб приєднатися до каналу \"%1$@\"";
-"qrshow_join_contact_title" = "Запрошувальний баркод";
+"qrshow_join_contact_title" = "QR-код запрошення";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Відскануйте код, щоб спілкуватись з %1$@";
 "qrshow_join_contact_no_connection_toast" = "Відсутнє інтернет з\'єднання, не вдалося налаштувати QR-код.";

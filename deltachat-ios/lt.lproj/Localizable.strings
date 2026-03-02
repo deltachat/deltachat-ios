@@ -337,6 +337,8 @@
 "chat_please_enter_message" = "Įveskite žinutę.";
 "chat_camera_unavailable" = "Kamera neprieinama.";
 "chat_unable_to_record_audio" = "Nepavyko įrašyti garso.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Siųsti žinutę naudotojui %1$@.";
 "chat_new_group_hint" = "Rašykite pirmąją žinutę, taip leisdami kitiems atsakyti šioje grupėje..\n\n• Nieko tokio, jei ne visi dalyviai naudoja Delta Chat.\n\n• Pirmosios žinutės pristatymas gali šiek tiek užtrukti.";
 "chat_record_slide_to_cancel" = "Perbraukite, norėdami atsisakyti";
 "chat_record_explain" = "Bakstelėkite ir laikykite, norėdami įrašyti balso žinutę. Atleiskite, norėdami išsiųsti";
@@ -352,7 +354,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Įrašyti";
 "saved_messages" = "Įrašytos žinutės";
-"saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsaugoti";
+"saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsisaugoti";
 // Should match "Saved" from "Saved messages"
 "saved" = "Įrašyta";
 "save_as" = "Įrašyti kaip";
@@ -387,6 +389,8 @@
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
 "profile_encryption" = "Šifravimas";
 "profile_shared_chats" = "Bendrinami pokalbiai";
+// Separator between the list of actual members and past members
+"past_members" = "Ankstesni dalyviai";
 "tab_contact" = "Adresatas";
 "tab_group" = "Grupė";
 "tab_gallery" = "Galerija";
@@ -549,6 +553,7 @@
 "pref_your_name" = "Jūsų vardas";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Parašo tekstas";
+"chat_description" = "Aprašas";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Įvedimo (Enter) klavišas išsiunčia";
 "pref_enter_sends_explain" = "Paspaudus įvedimo (Enter) klavišą, bus išsiunčiamos tekstinės žinutės";
@@ -741,8 +746,10 @@
 "chat_protection_enabled_explanation" = "Visos žinutės šiame pokalbyje yra šifruotos ištisinio perdavimo būdu.\n\nIštisinis šifravimas išlaiko žinutes tarp jūsų ir jūsų pokalbio partnerių privačias. Netgi serveriai, teikėjai ar retransliavimai negali jų perskaityti.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ reikalauja ištisinio šifravimo, kuris kol kas nėra nustatytas šiam pokalbiui. Bakstelėkite norėdami sužinoti daugiau.";
 "learn_more" = "Sužinoti daugiau";
+"devicemsg_self_deleted" = "Jūs ištrynėte „Įrašytų žinučių“ pokalbį.\n\nℹ️ Norėdami vėl naudotis „Įrašytų žinučių“ ypatybe, sukurkite naują pokalbį su savimi.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Atrodo, kad jūsų įrenginyje yra nustatyta netiksli data ar laikas (%1$@).\n\nSuderinkite savo laikrodį ⏰🔧 kad užtikrintumėte, jog žinutės bus gaunamos teisingai.";
+"devicemsg_update_reminder" = "⚠️ Gali būti, kad jūsų Delta Chat versija yra pasenusi.\n\nTai gali sukelti problemų, nes jūsų pokalbių partneriai naudoja naujesnę versiją ir jūs netenkate galimybės naudotis naujausiomis ypatybėmis 😳\nPatikrinkite, ar yra atnaujinimų, apsilankę adresu https://get.delta.chat arba atvėrę programėlių parduotuvę.";
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Atrakinkite, norėdami tęsti";
 // qr code stuff
@@ -776,6 +783,10 @@
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "%1$@ pakvietė jus prisijungti prie šios grupės.\n\nLaukiama, kol atsakys naudotojo %2$@ įrenginys…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ pakvietė jus prisijungti prie šio kanalo.\n\nLaukiama, kol atsakys naudotojo %2$@ įrenginys…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ atsakė, laukiama, kol būsite pridėti į grupę…";
 "secure_join_wait" = "Užmezgiamas ryšys, palaukite…";
@@ -839,8 +850,8 @@
 "name_desktop" = "Vardas";
 "select_group_image_desktop" = "Pasirinkti grupės paveikslą";
 "export_backup_desktop" = "Eksportuoti atsarginę kopiją";
-"message_detail_sent_desktop" = "išsiųsta";
-"message_detail_received_desktop" = "gauta";
+"message_detail_sent_desktop" = "Išsiųsta";
+"message_detail_received_desktop" = "Gauta";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
 "explain_desktop_minimized_disabled_tray_pref" = "Dėklo piktograma negali būti išjungta, nes Delta Chat buvo paleista naudojant --minimized parinktį.";
@@ -869,8 +880,13 @@
 "disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
 "notifications_avg_minutes" = "Vidutiniškai kas %1$d min.";
 "notifications_avg_hours" = "Vidutiniškai kas %1$d val.";
+"last_check_at" = "Tikrinta %1$@";
 "system_settings" = "Sistemos nustatymai";
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_instant_delivery" = "Greitas pristatymas";
 "pref_background_notifications" = "Naudoti foninį ryšį";
+"pref_reliable_service" = "Priverstinai naudoti foninį ryšį";
+"pref_reliable_service_explain" = "Rodo pastovų pranešimą";
 "pref_background_notifications_rationale" = "Norėdami palaikyti ryšį su savo el. pašto serveriu ir gauti žinutes fone, kitame žingsnyje nepaisykite akumuliatoriaus optimizavimų (leiskite vykdyti programą fone).\n\nDelta Chat naudoja nedaug išteklių ir rūpinasi, kad neeikvotų jūsų akumuliatoriaus energijos.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";

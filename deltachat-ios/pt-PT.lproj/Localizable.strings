@@ -5,6 +5,8 @@
 "clear_search" = "Limpar Pesquisa";
 // a noun, used on a button, short for "show link"
 "link" = "Ligação";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Escanear";
 "yes" = "Sim";
 "no" = "Não";
 "select" = "Seleccionar";
