@@ -46,7 +46,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         contentImageView.addGestureRecognizer(gestureRecognizer)
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
         messageLabel.text = msg.text
         let hasEmptyText = msg.text?.isEmpty ?? true
         bottomCompactView = msg.type != DC_MSG_STICKER && !msg.hasHtml && hasEmptyText
@@ -93,6 +93,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,
+                     showViewCount: showViewCount,
                      searchText: searchText,
                      highlight: highlight)
     }
