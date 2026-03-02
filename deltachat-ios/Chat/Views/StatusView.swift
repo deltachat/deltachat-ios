@@ -178,8 +178,7 @@ public class StatusView: UIView {
         let stateString = state.isEmpty ? "" : ", \(state)"
         let viewsCountString: String
         if let viewCount {
-            let viewsWord = viewCount == 1 ? "view" : "views"
-            viewsCountString = ", \(viewCount) \(viewsWord)"
+            viewsCountString = ", " + String.localized(stringID: "n_views", parameter: Int(viewCount))
         } else {
             viewsCountString = ""
         }
