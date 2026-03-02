@@ -212,6 +212,7 @@
 "add_recipients" = "Empfänger hinzufügen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Name des Kanals";
+// The number of times a message is shown in channels, may be used for alt-text or a11y
 "email" = "E-Mail";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Neue E-Mail";

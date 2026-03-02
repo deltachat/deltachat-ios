@@ -626,6 +626,7 @@
 "pref_your_name" = "Zure izena";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Sinaduraren testua";
+"chat_description" = "Deskribapena";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter teklarekin bidali";
 "pref_enter_sends_explain" = "Enter tekla sakatzeak mezua bidaliko du";
@@ -749,9 +750,9 @@
 // Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
 "react" = "Erreakzionatu";
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
-"reaction_by_you" = "%1$@ erreakzionatu zenion \"%2$@\"(e)ri.";
+"reaction_by_you" = "%1$@ adierazi diozu \"%2$@\"(e)ri.";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@(e)k %2$@ erreakzionatu zion \"%3$@\"(e)ri";
+"reaction_by_other" = "%1$@(e)k %2$@ adierazi dio \"%3$@\"(e)ri";
 // automatically delete message
 "delete_old_messages" = "Ezabatu mezu zaharrak";
 "autodel_device_title" = "Ezabatu mezuak gailutik";
@@ -777,20 +778,23 @@
 "systemmsg_subject_for_new_contact" = "%1$@(r)en mezua";
 "systemmsg_failed_sending_to" = "Huts egin du %1$@(r)i mezua bidaltzean.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "Nik: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
+"group_name_changed_by_you" = "Taldearen izena aldatu duzu, \"%1$@\" izatetik \"%2$@\" izatera.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@(e)k: Taldearen izena \"%1$@\" izatetik \"%2$@\" izatera aldatu da";
-"group_image_changed_by_you" = "Nik: Taldearen irudia aldatuta";
+"group_name_changed_by_other" = "%3$@(e)k taldearen izena aldatu du, \"%1$@\" izatetik \"%2$@\" izatera.";
+"group_image_changed_by_you" = "Taldearen irudia aldatu duzu.";
 // %1$s will be replaced by name of the contact who did the action
-"group_image_changed_by_other" = "%1$@(e)k: Taldearen irudia aldatuta";
+"group_image_changed_by_other" = "%1$@(e)k taldearen irudia aldatu du";
+"chat_description_changed_by_you" = "Txaten deskribapena aldatu duzu.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "%1$@(e)k txataren deskribapena aldatu du";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ kidea gehitu da.";
 // %1$s will be replaced by name of the contact added to the group
-"add_member_by_you" = "Nik: %1$@ kidea gehitu dut";
+"add_member_by_you" = "%1$@ kidea gehitu duzu.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@(e)k: %1$@ kidea gehitu du";
 // %1$s will be replaced by name of the contact removed from the group
-"remove_member_by_you" = "Nik: %1$@ kidea kenduta";
+"remove_member_by_you" = "%1$@ kidea kendu duzu.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@(e)k: %1$@ kidea kenduta";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
@@ -802,9 +806,9 @@
 "you_joined_the_channel" = "Kanalera batu zara.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@(e)k taldea utzi du.";
-"group_image_deleted_by_you" = "Nik: Taldearen irudia ezabatuta";
+"group_image_deleted_by_you" = "Taldearen irudia ezabatu duzu.";
 // %1$s will be replaced by name of the contact
-"group_image_deleted_by_other" = "%1$@(e)k: Taldearen irudia ezabatuta";
+"group_image_deleted_by_other" = "%1$@(e)k taldearen irudia ezabatu du.";
 "location_enabled_by_you" = "Kokapena zuzenean partekatzea aktibatu duzu.";
 // %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@(e)k kokapena zuzenean partekatzea aktibatu du.";

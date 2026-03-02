@@ -325,14 +325,20 @@
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Ring upp";
+"start_audio_call" = "Ljudsamtal";
+"start_video_call" = "Videosamtal";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Svara";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avböj";
 // deprecated, use outgoing_audio_call or outgoing_video_call instead
 "outgoing_call" = "Utgående samtal";
+"outgoing_audio_call" = "Utgående ljudsamtal";
+"outgoing_video_call" = "Utgående videosamtal";
 // deprecated, use incoming_audio_call or incoming_video_call instead
 "incoming_call" = "Inkommande samtal";
+"incoming_audio_call" = "Inkommande ljudsamtal";
+"incoming_video_call" = "Inkommande videosamtal";
 "declined_call" = "Nekade samtal";
 "canceled_call" = "Avbrutna samtal";
 "missed_call" = "Missade samtal";
@@ -558,6 +564,19 @@
 "proxy_delete_explain" = "Vill du verkligen ta bort \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Vill du använda proxyn \"%1$@\"?";
 "proxy_share_explain" = "Dina vänner kan lägga till denna proxy genom att skanna QR-koden.";
+"proxy_share_link" = "Dela länk";
+"proxy_enabled" = "Proxy aktiverad";
+"proxy_enabled_hint" = "Du använder en proxy. Prova med en annan proxy om du har problem att ansluta.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Reläer";
+"add_transport" = "Lägg till relä";
+"remove_transport" = "Ta bort relä";
+"edit_transport" = "Redigera relä";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Vill du lägga till detta relä?";
+"invalid_transport_qr" = "Den skannade QR-koden innehåller inget giltigt relä.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_transport" = "Vill du ta bort relä \"%1$@\"?\n\nDina kontakter kan endast nå dig om du tidigare har kontaktat dem via annat relä.\n\nTa bort reläet senare, om du är osäker.";
 "login_certificate_checks" = "Certifikatkontroller";
 "login_error_mail" = "Ange en giltig e-postadress";
 "login_error_server" = "Ange en giltig server/IP-adress";
@@ -572,6 +591,12 @@
 "accept_invalid_certificates" = "Acceptera ogiltiga certifikat";
 "switch_account" = "Byt konto";
 "add_account" = "Lägg till konto";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Profiletikett";
+"profile_tag_hint" = "T.ex. Arbete, Familj";
+"profile_tag_explain" = "Ange en etikett som bara är synlig för dig och som hjälper dig att skilja mellan dina profiler.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Flytta högst upp";
 "delete_account" = "Ta bort konto";
 "delete_account_ask" = "Är du säker på att du vill ta bort din kontodata?";
 "delete_account_explain_with_name" = "Alla profildata för \"%1$@\" på den här enheten kommer att raderas, inklusive dina inställningar för totalsträckskryptering, kontakter, chattar, meddelanden och media. Denna åtgärd kan inte ångras.";
@@ -584,7 +609,10 @@
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Vidarebefordra till...";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Vill du skicka %1$d filer till \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Vill du skicka %1$d fil(er) till %2$d chattar?";
+"videos_sent_without_recoding" = "(Om du skickar flera videor skickas de i befintligt skick, vilket kan vara stort. Om du vill göra dem mindre och spara data kan du skicka varje video i ett eget meddelande)";
 "share_text_multiple_chats" = "Vill du skicka denna text till %1$d chattar?\n\n\"%2$@\"";
 "share_abort" = "Delningen avbröts på grund av saknad behörighet.";
 // preferences
@@ -598,6 +626,7 @@
 "pref_your_name" = "Ditt namn";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signaturtext";
+"chat_description" = "Beskrivning";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Returtangenten skickar";
 "pref_enter_sends_explain" = "Tryck på returtangenten för att skicka textmeddelanden";
@@ -610,6 +639,8 @@
 "pref_screen_security_explain" = "Blockera skärmklipp i tidigare-listan samt inuti programmet";
 "pref_screen_security_please_restart_hint" = "Starta om programmet för att tillämpa skärmsäkerhetsinställningarna";
 "pref_notifications" = "Avisering";
+"pref_mention_notifications" = "Omnämnanden";
+"pref_mention_notifications_explain" = "Avisera meddelanden som riktas till dig, i tystade grupper, såsom svar eller reaktioner";
 "pref_notifications_show" = "Visa";
 "pref_notifications_priority" = "Prioritet";
 "pref_notifications_explain" = "Aktivera systemavisering för nya meddelanden";
@@ -628,6 +659,7 @@
 "pref_appearance" = "Utseende";
 "pref_theme" = "Tema";
 "pref_language" = "Språk";
+"pref_use_system_ui_font" = "Använd systemets teckensnitt";
 "pref_incognito_keyboard" = "Inkognito-tangentbord";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_incognito_keyboard_explain" = "Begär att tangentbordet stänger av personlig inlärning";
@@ -646,6 +678,7 @@
 "pref_backup" = "Säkerhetskopiering";
 "pref_backup_explain" = "Säkerhetskopiera chattar till extern lagring";
 "pref_backup_export_explain" = "En säkerhetskopia hjälper dig att ställa in en ny installation på denna eller någon annan enhet.\n\nSäkerhetskopian innehåller alla meddelanden, kontakter och chattar, liksom din autokrypterade slutpunkt-till-slutpunkt-inställning. Förvara säkerhetskopian på ett säkert ställe eller ta bort den så fort som möjligt.";
+"pref_backup_export_this" = "Exportera denna profil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportera all %1$d profiler";
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
@@ -655,6 +688,10 @@
 "pref_background_btn_default" = "Använd standardbild";
 "pref_background_btn_gallery" = "Välj från galleriet";
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Flerenhetsläge";
+"pref_multidevice_explain" = "Synkronisera dina meddelanden med dina andra enheter. Aktiveras automatiskt när du lägger till en andra enhet";
+"pref_multidevice_change_warn" = "Flerenhetsläge måste vara aktiverat när du använder samma profil på flera enheter. Inaktivera endast den här inställningen om du har tagit bort profilen från alla andra enheter.\n\nInaktiverar du flerenhetsläget när du använder profilen på flera enheter kommer du att missa meddelanden och få andra problem.";
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
 "pref_only_fetch_mvbox_title" = "Hämta endast från DeltaChat-mappen";
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
@@ -662,6 +699,7 @@
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
+"pref_experimental_features_explain" = "Dessa funktioner kan vara instabila och kan ändras eller tas bort";
 "pref_on_demand_location_streaming" = "På-begäran platsströmning";
 "pref_background_default" = "Standardbakgrund";
 "pref_background_default_color" = "Standardfärg";
@@ -678,6 +716,8 @@
 "n_bytes_message" = "%1$@ meddelande";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Ladda ner max tillgängligt till %1$@";
+// deprecated
+"select_profile" = "Välj profil";
 "profile_image_select" = "Välj profilbild";
 "select_your_new_profile_image" = "Välj din nya profilbild";
 "profile_image_delete" = "Ta bort profilbild";
@@ -686,6 +726,13 @@
 "disable_imap_idle" = "Avaktivera IMAP IDLE";
 "disable_imap_idle_explain" = "Använd inte IMAP IDLE-tillägget även om servern stöder det. Om du aktiverar det här alternativet kommer hämtningen av meddelanden att fördröjas, aktivera det endast för testning.";
 "send_stats_to_devs" = "Skicka statistik till Delta Chats utvecklare";
+"stats_device_message" = "Vill du hjälpa till att förbättra Delta Chat och stödja efterforskning genom att skicka anonym användningsstatistik varje vecka? \n\n👉 Tryck här ... 👈";
+"stats_confirmation_dialog" = "Vill du hjälpa till att förbättra Delta Chat och stödja efterforskning genom att skicka anonym användningsstatistik varje vecka?";
+"stats_thanks" = "Tack så mycket! Du kan alltid inaktivera sändningen under \"Inställningar -> Avancerat\".\n\nHar du dessutom 5 minuter på dig att delta i en vetenskaplig studie om säkerheten i Delta Chat?";
+"stats_disable_dialog" = "Skickande av statistik är redan aktiverat.\n\nVill du inaktivera det?";
+"disable" = "Avaktivera";
+"stats_keep_sending" = "Fortsätt skicka";
+"stats_msg_body" = "Bilagan innehåller anonym användningsstatistik, som hjälper oss att förbättra Delta Chat. Se https://delta.chat/help#statssending för mer information. Tack!";
 // Emoji picker and categories
 "emoji_search_results" = "Sökresultat";
 "emoji_not_found" = "Inga emoji hittades";
@@ -737,6 +784,9 @@
 "group_image_changed_by_you" = "Gruppbilden ändrades av mig.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppbilden ändrades av %1$@.";
+"chat_description_changed_by_you" = "Du har ändrat chattbeskrivningen.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Chattbeskrivningen ändrades av %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Medlemmen %1$@ lades till.";
 // %1$s will be replaced by name of the contact added to the group
@@ -749,6 +799,11 @@
 "remove_member_by_other" = "Medlemmen %1$@ togs bort av %2$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Medlemmen %1$@ togs bort.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Du lämnade gruppen.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Du lämnade kanalen.";
+"you_joined_the_channel" = "Du anslöt till kanalen.";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "Gruppen lämnades av %1$@.";
 "group_image_deleted_by_you" = "Gruppbilden togs bort av mig.";
@@ -777,6 +832,9 @@
 "ephemeral_timer_1_week_by_you" = "Du satte tiduret för meddelandeborttagning till 1 vecka.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Tiduret för meddelandeborttagning är satt till 1 vecka av %1$@.";
+"ephemeral_timer_1_year_by_you" = "Du satte tiduret för meddelandeborttagning till 1 år.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "Tiduret för meddelandeborttagning är satt till 1 år av %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ minuter.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
@@ -793,6 +851,7 @@
 "ephemeral_timer_weeks_by_you" = "Du satte tiduret för meddelandeborttagning till %1$@ veckor.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ veckor av %2$@.";
+"chat_unencrypted_explanation" = "Meddelanden i denna chatt använder klassisk e-post och är inte totalsträckskrypterade.";
 "chat_protection_enabled_tap_to_learn_more" = "Meddelanden är garanterat totalsträckskrypterade från och med nu. Tryck för att få veta mer.";
 "chat_protection_enabled_explanation" = "Det är nu garanterat att alla meddelanden i den här chatten är totalsträckskrypterade.\n\nTotalsträckskryptering håller meddelanden privata mellan dig och dina chattpartners. Inte ens din e-postleverantör kan läsa dem.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ kräver totalsträckskryptering som inte är kofigurerad för den här chatten ännu. Tryck för att lära dig mer.";
@@ -814,6 +873,7 @@
 "qrscan_hint_desktop" = "Flytta QR-koden till kameran";
 "qrscan_failed" = "QR-koden kunde inte avkodas";
 "qrscan_ask_join_group" = "Vill du ansluta till gruppen \"%1$@\"?";
+"qrscan_ask_join_channel" = "Vill du ansluta till kanalen \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "Det skannade fingeravtrycket stämmer inte med senast sedda för %1$@.";
 "qrscan_no_addr_found" = "QR-koden innehåller ett fingeravtryck men ingen e-postadress.\n\nUpprätta först en krypterad anslutning till mottagaren, för en utanför-bandet-verifiering.";
 "qrscan_contains_text" = "Skannad QR-kod-text:\n\n%1$@";
@@ -821,6 +881,7 @@
 "qrscan_fingerprint_label" = "Fingeravtryck";
 "withdraw_verifycontact_explain" = "Denna QR-kod kan skannas av andra för att kontakta dig.\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_verifygroup_explain" = "Denna QR-kod kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
+"withdraw_joinbroadcast_explain" = "Denna QR-kod kan skannas av andra för att ansluta till kanalen \"%1$@\".\n\nDu kan återställa den, så att den befintliga QR-koden eller inbjudningslänken inte längre fungerar.";
 "withdraw_qr_code" = "Avaktivera QR-kod";
 "revive_verifycontact_explain" = "Den här QR-koden kan skannas av andra för att kontakta dig.\n\nQR-koden är inte aktiv på den här enheten.";
 "revive_qr_code" = "Aktivera QR-kod";
@@ -831,6 +892,7 @@
 "qrshow_join_group_title" = "QR-kod för inbjudan";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "Skanna det här för att ansluta till gruppen \"%1$@\".";
+"qrshow_join_channel_hint" = "Skanna det här för att ansluta till kanalen \"%1$@\".";
 "qrshow_join_contact_title" = "QR-kod för inbjudan";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
@@ -843,13 +905,17 @@
 "qrlogin_ask_login" = "Vill du logga in på \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ bjöd in dig att gå med i den här gruppen.\n\nVäntar på att enheten hos %2$@ ska svara...";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@ bjöd in dig att ansluta till den här kanalen.\n\nVäntar på att enheten hos %2$@ ska svara...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ svarade och väntar på att bli tillagd i gruppen...";
 "secure_join_wait" = "Upprättar garanterad totalsträckskryptering, vänligen vänta...";
 "contact_verified" = "%1$@ verifierad.";
+"contact_blocked" = "Du blockerade kontakten";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Introducerad av %1$@";
 "verified_by_you" = "Introducerad av mig";
+"verified_by_unknown" = "Introducerad";
 // deprecated
 "verified_contact_required_explain" = "För att garantera totalsträckskryptering  kan du bara lägga till kontakter med en grön bock i den här gruppen.\n\nDu kan träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
 "mailto_dialog_header_select_chat" = "Välj chatt för att skicka meddelandet till";
@@ -866,6 +932,7 @@
 "notify_name_only" = "Endast namn";
 "notify_no_name_or_message" = "Inget namn eller meddelande";
 "notifications_disabled" = "Avisering avaktiverad";
+"unreliable_bg_notifications" = "Aktivera \"Tvinga bakgrundsanslutning\" för tillförlitliga meddelanden";
 "new_messages" = "Nya meddelanden";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Du har nya meddelanden";
@@ -906,6 +973,8 @@
 "global_menu_view_developer_desktop" = "Utvecklare";
 "global_menu_view_developer_tools_desktop" = "Utvecklingsverktyg";
 "global_menu_help_desktop" = "Hjälp";
+"delta_chat_homepage" = "Delta Chats webbplats";
+"contribute" = "Bidra";
 "global_menu_help_report_desktop" = "Rapportera ett ärende";
 "global_menu_help_about_desktop" = "Om Delta Chat";
 "global_menu_file_open_desktop" = "Öppna Delta Chat";
@@ -918,6 +987,8 @@
 "timestamp_format_m_desktop" = "MMM D";
 "remove_desktop" = "Ta bort";
 "save_desktop" = "Save";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Spara inte";
 "name_desktop" = "Namn";
 "select_group_image_desktop" = "Välj en gruppbild";
 "export_backup_desktop" = "Exportera säkerhetskopia";
@@ -968,6 +1039,18 @@
 "notifications_avg_minutes" = "I genomsnitt var %1$d minut";
 "notifications_avg_hours" = "I genomsnitt var %1$d:e timma";
 "last_check_at" = "Kontrollerad %1$@";
+"system_settings" = "Systeminställningar";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Redigera typ, märken, förhandsgranskning och mer";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Genvägar";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Använd Delta Chats \"Lägg till i widget\" för att lägga till objekt";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Ta bort från widget";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Lägg till i widget";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Omedelbar leverans";
@@ -979,3 +1062,5 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Tryck här för att ta emot meddelanden medan Delta Chat är i bakgrunden.";
 "perm_enable_bg_already_done" = "Du har redan gett Delta Chatt tillstånd att ta emot meddelanden i bakgrunden.\n\nKontrollera dina systeminställningar också, om det fortfarande inte kommer några meddelanden i bakgrunden.";
+// device messages for updates
+"update_2_0" = "Vad är nytt?\n\n💯 Totalsträckskryptering är pålitlig och för alltid nu. Hänglås 🔒 är borta!\n\n✉️ Klassisk e-post utan Totalsträckskryptering är markerad med en bokstavssymbol\n\n😻 Ny förbättrad profilskärm för alla dina kontakter\n\n🔲 Ny knapp för snabb åtkomst till appar som används i en chatt\n\n❤️ Vänligen donera för att hjälpa oss att förbli oberoende och fortsätta att göra förbättringar: %1$@";
