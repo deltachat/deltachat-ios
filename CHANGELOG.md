@@ -8,6 +8,9 @@
 - Fix: No more UI ghosting on cell swipe
 - VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 - Display message views count for channel owners
+- Improve mini-app summaries
+- Update translations and local help
+- Update core to 2.44.0
 
 
 ## v2.43.0
