@@ -29,7 +29,7 @@ public class ContactCardCell: BaseMessageCell, ReusableCell {
         contactView.prepareForReuse()
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String? = nil, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
         if let text = msg.text, !text.isEmpty {
             messageLabel.text = text
             spacerHeight?.isActive = true
@@ -44,6 +44,7 @@ public class ContactCardCell: BaseMessageCell, ReusableCell {
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,
+                     showViewCount: showViewCount,
                      searchText: searchText,
                      highlight: highlight)
     }

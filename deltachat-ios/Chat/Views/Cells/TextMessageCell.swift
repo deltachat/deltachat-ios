@@ -13,7 +13,7 @@ class TextMessageCell: BaseMessageCell, ReusableCell {
         messageLabel.paddingTrailing = 12
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
         if msg.type == DC_MSG_CALL {
             msg.text = "📞 " + (msg.text ?? "")
         }
@@ -25,6 +25,7 @@ class TextMessageCell: BaseMessageCell, ReusableCell {
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,
+                     showViewCount: showViewCount,
                      searchText: searchText,
                      highlight: highlight)
     }

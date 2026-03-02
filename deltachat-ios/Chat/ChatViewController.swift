@@ -634,6 +634,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName,
+                    showViewCount: dcChat.isOutBroadcast && message.isFromCurrentSender,
                     searchText: searchController.searchBar.text,
                     highlight: !searchMessageIds.isEmpty && message.id == searchMessageIds[searchResultIndex])
 

@@ -386,11 +386,8 @@ public class BaseMessageCell: UITableViewCell {
      }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, searchText: String?, highlight: Bool) {
+    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
-        let dcChat = dcContext.getChat(chatId: msg.chatId)
-        let shouldShowViewCount = msg.isFromCurrentSender && dcChat.isOutBroadcast
-        let viewCount = shouldShowViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
             let topLabelTextColor: UIColor
@@ -498,7 +495,8 @@ public class BaseMessageCell: UITableViewCell {
                 tintColor = DcColors.incomingMessageSecondaryTextColor
             }
 
-            statusView.update(message: msg, tintColor: tintColor, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount)
+            let viewCount = showViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
+            statusView.update(message: msg, tintColor: tintColor, showOnlyPendingAndError: showViewCount, viewCount: viewCount)
             let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 guard let self else { return }
 
