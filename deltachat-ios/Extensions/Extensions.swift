@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import Foundation
 import CommonCrypto
 
@@ -93,6 +94,12 @@ extension UIFont {
         let font = UIFont.systemFont(ofSize: desc.pointSize, weight: weight)
         let metrics = UIFontMetrics(forTextStyle: style)
         return metrics.scaledFont(for: font)
+    }
+}
+
+extension Font {
+    static func preferredFont(for style: UIFont.TextStyle, weight: UIFont.Weight) -> Font {
+        Font(UIFont.preferredFont(for: style, weight: weight))
     }
 }
 
