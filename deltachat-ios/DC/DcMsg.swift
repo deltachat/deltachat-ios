@@ -98,7 +98,7 @@ public class DcMsg {
             return swiftString
         }
         set {
-            if let newValue = newValue {
+            if let newValue = newValue, !newValue.isEmpty {
                 dc_msg_set_text(messagePointer, newValue.cString(using: .utf8))
             } else {
                 dc_msg_set_text(messagePointer, nil)
