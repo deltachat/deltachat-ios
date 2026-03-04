@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improve QR code visibility and use the new backup QR generation path
 - Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
 - Fix: remove meaningless address from vCard
