@@ -70,21 +70,31 @@ public struct DcUtils {
         return "application/octet-stream"
     }
 
+    public static var thumbnailCache = URLCache()
+
     public static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
-		guard let url = url else {
-			return nil
-		}
-		do {
-			let asset = AVURLAsset(url: url)
-			let imageGenerator = AVAssetImageGenerator(asset: asset)
-			imageGenerator.appliesPreferredTrackTransform = true
-			let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-			return UIImage(cgImage: cgImage)
-		} catch {
-			print(error.localizedDescription)
-			return nil
-		}
-	}
+        guard let url = url else { return nil }
+        do {
+            let request = URLRequest(url: url)
+            if let cachedResponse = thumbnailCache.cachedResponse(for: request),
+               let image = UIImage(data: cachedResponse.data) {
+                return image
+            }
+            let asset = AVURLAsset(url: url)
+            let imageGenerator = AVAssetImageGenerator(asset: asset)
+            imageGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
+			let image = UIImage(cgImage: cgImage)
+            if let data = image.pngData(), let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil) {
+                let cachedResponse = CachedURLResponse(response: response, data: data)
+                thumbnailCache.storeCachedResponse(cachedResponse, for: request)
+            }
+            return image
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 
 	public static func thumbnailFromPdf(withUrl url: URL, pageNumber: Int = 1, width: CGFloat = 240) -> UIImage? {
 		guard let pdf = CGPDFDocument(url as CFURL),
