@@ -26,6 +26,7 @@ class QrViewController: UIViewController {
             let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
             qrContentView.image = getQrImage(svg: svg)
             qrContentView.accessibilityHint = newValue
+            updateBrightness()
         }
     }
     private let chatId: Int
@@ -126,6 +127,22 @@ class QrViewController: UIViewController {
     }
 
     // MARK: - lifecycle
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateBrightness()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ScreenBrightnessOverrideManager.shared.setActive(false, for: self)
+    }
+
+    private func updateBrightness() {
+        guard isViewLoaded, view.window != nil else { return }
+
+        ScreenBrightnessOverrideManager.shared.setActive(qrContentView.image != nil, for: self)
+    }
+
     func getQrImage(svg: String?) -> UIImage? {
         guard let svg else { return nil }
 

@@ -12,6 +12,161 @@ extension URL {
         }
     }
 }
+
+final class ScreenBrightnessOverrideManager: NSObject {
+    static let shared = ScreenBrightnessOverrideManager()
+
+    private struct Claim {
+        weak var owner: AnyObject?
+    }
+
+    private var claims = [Claim]()
+    private var originalBrightness: CGFloat?
+    private var pendingProgrammaticBrightness: CGFloat?
+
+    private override init() {
+        super.init()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(restoreBrightnessForLifecycleChange(_:)),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applyBrightnessForLifecycleChange(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleScreenBrightnessDidChangeNotification(_:)),
+            name: UIScreen.brightnessDidChangeNotification,
+            object: UIScreen.main
+        )
+    }
+
+    func setActive(_ isActive: Bool, for owner: AnyObject) {
+        performOnMainQueue { [weak self] in
+            guard let self else { return }
+
+            self.removeClaim(for: owner)
+
+            if isActive {
+                self.claims.append(Claim(owner: owner))
+            }
+
+            if self.claims.isEmpty {
+                self.restoreBrightnessIfNeeded()
+            } else if UIApplication.shared.applicationState == .active {
+                self.applyCurrentBrightnessIfNeeded()
+            }
+        }
+    }
+
+    private func applyCurrentBrightnessIfNeeded() {
+        removeReleasedClaims()
+
+        guard !claims.isEmpty else {
+            restoreBrightnessIfNeeded()
+            return
+        }
+
+        if originalBrightness == nil {
+            originalBrightness = UIScreen.main.brightness
+        }
+
+        if !brightnessesMatch(UIScreen.main.brightness, 1.0) {
+            setBrightness(1.0)
+        }
+    }
+
+    private func restoreBrightnessIfNeeded() {
+        guard let originalBrightness else { return }
+
+        if !brightnessesMatch(UIScreen.main.brightness, originalBrightness) {
+            setBrightness(originalBrightness)
+        }
+
+        self.originalBrightness = nil
+    }
+
+    private func handleScreenBrightnessDidChange() {
+        removeReleasedClaims()
+
+        let currentBrightness = UIScreen.main.brightness
+
+        if let pendingProgrammaticBrightness,
+           brightnessesMatch(currentBrightness, pendingProgrammaticBrightness) {
+            self.pendingProgrammaticBrightness = nil
+            return
+        }
+
+        guard !claims.isEmpty else { return }
+
+        originalBrightness = currentBrightness
+        guard UIApplication.shared.applicationState == .active else { return }
+        applyCurrentBrightnessIfNeeded()
+    }
+
+    private func setBrightness(_ brightness: CGFloat) {
+        let clampedBrightness = min(max(brightness, 0), 1)
+
+        pendingProgrammaticBrightness = clampedBrightness
+        UIScreen.main.brightness = clampedBrightness
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self,
+                  let pendingProgrammaticBrightness = self.pendingProgrammaticBrightness,
+                  self.brightnessesMatch(pendingProgrammaticBrightness, clampedBrightness) else { return }
+
+            self.pendingProgrammaticBrightness = nil
+        }
+    }
+
+    private func removeClaim(for owner: AnyObject) {
+        claims.removeAll { claim in
+            guard let claimOwner = claim.owner else { return true }
+            return claimOwner === owner
+        }
+    }
+
+    private func removeReleasedClaims() {
+        claims.removeAll { $0.owner == nil }
+    }
+
+    private func performOnMainQueue(_ work: @escaping () -> Void) {
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
+
+    @objc private func restoreBrightnessForLifecycleChange(_ notification: Notification) {
+        performOnMainQueue { [weak self] in
+            self?.restoreBrightnessIfNeeded()
+        }
+    }
+
+    @objc private func applyBrightnessForLifecycleChange(_ notification: Notification) {
+        performOnMainQueue { [weak self] in
+            self?.applyCurrentBrightnessIfNeeded()
+        }
+    }
+
+    @objc private func handleScreenBrightnessDidChangeNotification(_ notification: Notification) {
+        performOnMainQueue { [weak self] in
+            self?.handleScreenBrightnessDidChange()
+        }
+    }
+
+    private func brightnessesMatch(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+        abs(lhs - rhs) < 0.0001
+    }
+}
+
 struct Utils {
     public static let inviteDomain = "i.delta.chat"
 
