@@ -58,7 +58,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .interactive
         tableView.allowsMultipleSelectionDuringEditing = true
 
         // Transform the tableView to maintain scroll position from bottom when views are added
@@ -74,6 +73,32 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             .store(in: &bag)
 
         return tableView
+    }()
+
+    /// The height of the toolbar. This differs from `toolbar.frame.height` as this excludes the keyboard height.
+    /// This is useful because keyboard avoidance happens inside the SwiftUI view so it is hard to find the actual height of the toolbar.
+    /// This is cached because you can't calculate it during keyboard willShow/willHide using view.keyboardLayoutGuide.layoutFrame.height
+    private var toolbarHeight: CGFloat = 0 {
+        didSet {
+            guard toolbarHeight != oldValue else { return }
+            setTableViewContentInset()
+        }
+    }
+
+    private lazy var toolbar: UIView = {
+        let host = UIHostingController(rootView: InputBarView(
+            draft: self.draft,
+            chatViewController: self,
+            updateIntrinsicContentSize: { [weak self] _ in
+                self?.toolbar.invalidateIntrinsicContentSize()
+            })
+        )
+        host.view.backgroundColor = .clear
+        addChild(host)
+        view.addSubview(host.view)
+        host.didMove(toParent: self)
+        host.view.addInteraction(UIDropInteraction(delegate: dropInteraction))
+        return host.view
     }()
 
     private lazy var searchController: UISearchController = {
@@ -246,6 +271,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.fillSuperview()
+        if #available(iOS 26.0, *) {
+            tableView.topEdgeEffect.isHidden = true
+            tableView.bottomEdgeEffect.isHidden = true
+        }
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
@@ -258,7 +287,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
-            let inset = max(intersection.height, tableView.safeAreaInsets.bottom)
+            let toolbarHeight = self?.toolbarHeight ?? 0
+            let inset = max(intersection.height + toolbarHeight, tableView.safeAreaInsets.bottom + toolbarHeight)
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
             guard tableView.contentInset.top != inset else { return }
@@ -273,6 +303,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         // Binding to the tableView will enable interactive dismissal
+        // This doesn't work as good without an accessory view but
+        // keyboardLayoutGuide.keyboardDismissPadding does not play
+        // nicely with scrollable textview inside the dismiss padding area
         keyboardManager?.bind(to: tableView)
         keyboardManager?.on(event: .willHide, do: animateKeyboardChange)
         keyboardManager?.on(event: .willShow, do: animateKeyboardChange)
@@ -283,51 +316,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         configureEmptyStateView()
 
-        let toolbar = UIToolbar()
-        toolbar.items = [
-            UIBarButtonItem.fixedSpace(0),
-            UIBarButtonItem(
-                image: UIImage(named: "ic_attach_file_36pt"),
-                menu: UIMenu(children: [
-                    UIDeferredMenuElement.uncached({ [weak self] completion in
-                        completion(self?.clipperButtonMenu().children ?? [])
-                    })
-                ])
-            ).configure {
-                $0.accessibilityLabel = String.localized("menu_add_attachment")
-            },
-            UIBarButtonItem(customView: {
-                messageInputBar.inputTextView.widthAnchor.constraint(equalToConstant: 250).isActive = true
-                return messageInputBar.inputTextView
-            }()).configure {
-                $0.width = UIScreen.main.bounds.width
-                if #available(iOS 26.0, *) {
-                    $0.sharesBackground = false
-                    $0.hidesSharedBackground = true
-                    $0.width = 100
-                }
-            },
-            UIBarButtonItem(
-                image: UIImage(named: "paper_plane"),
-                primaryAction: UIAction(title: String.localized("menu_send"), handler: { [weak self] _ in
-                    print("TODO")
-                })
-            ),
-            UIBarButtonItem.fixedSpace(0),
-        ]
-        toolbar.addInteraction(UIDropInteraction(delegate: dropInteraction))
         toolbar.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(toolbar)
-        if #available(iOS 15.0, *) {
-            let toolbarToSafeArea = toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-            toolbarToSafeArea.priority = .defaultLow
-            NSLayoutConstraint.activate([
-                toolbarToSafeArea,
-                toolbar.bottomAnchor.constraint(greaterThanOrEqualTo: view.keyboardLayoutGuide.topAnchor),
-                toolbar.widthAnchor.constraint(equalTo: view.widthAnchor),
-//                toolbar.heightAnchor.constraint(equalToConstant: 120),
-            ])
-        }
+        NSLayoutConstraint.activate([
+            toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toolbar.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+        // Without this a long draft message doesn't correctly grow the text view on load
+        toolbar.layoutIfNeeded()
 
         if dcChat.canSend {
             configureUIForWriting()
@@ -414,7 +409,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isInitialViewWillAppear {
             becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.contentInset.top = max(self.inputAccessoryView?.frame.height ?? 0, self.tableView.safeAreaInsets.bottom)
                 if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
                     self.scrollToMessage(msgId: msgId, animated: false)
                     self.highlightedMsg = nil
@@ -455,10 +449,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         audioController.stopAnyOngoingPlaying()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        toolbarHeight = toolbar.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+    }
+
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        // Manually set the safe area because tableView is flipped
-        tableView.contentInset.bottom = tableView.safeAreaInsets.top
+        setTableViewContentInset()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -466,6 +464,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if parent == nil {
             // going back to previous screen
             draft.save(context: dcContext)
+        }
+    }
+
+    func setTableViewContentInset() {
+        // Manually set the safe area because tableView is flipped
+        tableView.contentInset.bottom = tableView.safeAreaInsets.top
+
+        if tableView.contentInset.top != toolbar.frame.height {
+            if tableView.contentOffset.y == -tableView.contentInset.top {
+                tableView.contentOffset.y = -toolbar.frame.height
+            }
+            tableView.contentInset.top = toolbar.frame.height
         }
     }
 
@@ -1232,7 +1242,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         attachButton.showsMenuAsPrimaryAction = true
         attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
         attachButton.addAction(UIAction { [weak attachButton, weak self] _ in
-            attachButton?.menu = self?.clipperButtonMenu()
+//            attachButton?.menu = self?.clipperButtonMenu()
         }, for: .menuActionTriggered)
 
         let leftItems = [attachButton]
@@ -1276,32 +1286,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
-    private func clipperButtonMenu() -> UIMenu {
-        var actions = [UIMenuElement]()
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping (ChatViewController) -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { [unowned self] _ in handler(self) })
-        }
-
-        actions.append(UIMenu(options: [.displayInline], children: [
-            action("camera", "camera", { $0.showCameraViewController() }),
-            action("gallery", "photo.on.rectangle", { $0.showPhotoVideoLibrary() })
-        ]))
-
-        actions.append(action("file", "doc", { $0.showFilesLibrary() }))
-        actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
-        actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-            actions.append(action(
-                isLocationStreaming ? "stop_sharing_location" : "location",
-                isLocationStreaming ? "location.slash" : "location",
-                attributes: isLocationStreaming ? .destructive : [],
-                { $0.locationStreamingButtonPressed() }
-            ))
-        }
-        actions.append(action("contact", "person.crop.circle", { $0.showContactList() }))
-
-        return UIMenu(children: actions)
+    var isLocationStreaming: Bool {
+        dcContext.isSendingLocationsToChat(chatId: chatId)
     }
 
     private func confirmationAlert(title: String, message: String? = nil, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
@@ -1475,15 +1461,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func showFilesLibrary() {
+    func showFilesLibrary() {
         mediaPicker?.showFilesLibrary()
     }
 
-    private func showVoiceMessageRecorder() {
+    func showVoiceMessageRecorder() {
         mediaPicker?.showVoiceRecorder()
     }
 
-    private func showCameraViewController() {
+    func showCameraViewController() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             self.mediaPicker?.showCamera()
         } else {
@@ -1514,7 +1500,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func showPhotoVideoLibrary() {
+    func showPhotoVideoLibrary() {
         mediaPicker?.showGallery()
     }
 
@@ -1541,7 +1527,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.present(alert, animated: true, completion: nil)
     }
 
-    private func showAppPicker() {
+    func showAppPicker() {
         let appPicker = AppPickerViewController(context: dcContext)
         appPicker.delegate = self
         let navigationController = UINavigationController(rootViewController: appPicker)
@@ -1553,7 +1539,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(navigationController, animated: true)
     }
 
-    private func showContactList() {
+    func showContactList() {
         let contactList = SendContactViewController(dcContext: dcContext)
         contactList.delegate = self
 
@@ -1567,7 +1553,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(navigationController, animated: true)
     }
 
-    private func locationStreamingButtonPressed() {
+    func locationStreamingButtonPressed() {
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
@@ -1722,6 +1708,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    // TODO: Remove
     private func sendAttachmentMessage(viewType: Int32, filePath: String, fileName: String? = nil, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath, fileName: fileName)
@@ -2571,6 +2558,7 @@ extension ChatViewController: MediaPickerDelegate {
 }
 
 // MARK: - MessageInputBarDelegate
+// TODO: Remove
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
@@ -2909,4 +2897,243 @@ extension ChatViewController: AppPickerViewControllerDelegate {
         focusInputTextView()
         FileHelper.deleteFileAsync(atPath: url.relativePath)
     }
+}
+
+
+import SwiftUI
+
+var isLiquidGlassEnabled: Bool = if #available(iOS 26.0, *) { true } else { false }
+
+struct InputBarView: View {
+    @StateObject var draft: DraftModel
+    @FocusState private var textEditorFocus: Bool
+    weak var chatViewController: ChatViewController?
+    var updateIntrinsicContentSize: (Any) -> Void
+
+    var buttonSize: CGFloat {
+        isLiquidGlassEnabled ? 54 : 40
+    }
+
+    var body: some View {
+        VStack {
+            if draft.quoteText != nil {
+                HStack {
+                    QuoteViewSwiftUI(quoteText: draft.quoteText, quoteMessage: draft.quoteMessage, dcContext: draft.dcContext)
+                    Button(String.localized("cancel"), systemImage: "xmark") {
+                        draft.setQuote(quotedMsg: nil)
+                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                }.modifier(glassEffect)
+            }
+            if draft.attachment != nil {
+                HStack {
+                    Image(uiImage: <#T##UIImage#>)
+                    Button(String.localized("cancel"), systemImage: "xmark") {
+                        draft.setQuote(quotedMsg: nil)
+                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                }.modifier(glassEffect)
+            }
+            HStack(alignment: .bottom) {
+                UncachedMenu(content: { clipperMenu }, label: {
+                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(4)
+                }).frame(height: buttonSize)
+                TextEditor(text: $draft.text)
+                    .focused($textEditorFocus)
+                    .overlay(alignment: .leading) {
+                        if draft.text.isEmpty && !textEditorFocus {
+                            Text(String.localized("chat_input_placeholder"))
+                                .foregroundColor(Color(uiColor: DcColors.placeholderColor))
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .modifier(glassEffect)
+                    .onTapGesture {
+                        textEditorFocus = true
+                    }
+                    .frame(maxHeight: 150)
+                Button(action: {
+                    draft.send()
+                }, label: {
+                    Image("paper_plane", label: Text(String.localized("menu_send")))
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(4)
+                })
+                .frame(height: buttonSize)
+                .disabled(!draft.canSend())
+            }
+        }
+        .padding()
+        .onChange(of: draft.text, perform: updateIntrinsicContentSize)
+        .onChange(of: draft.quoteMessage?.id, perform: updateIntrinsicContentSize)
+        .modifier { view in
+            if #available(iOS 26.0, *) {
+                view.buttonBorderShape(.circle)
+                    .buttonStyle(.glass)
+            } else {
+                view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
+            }
+        }
+    }
+
+    @ViewBuilder var clipperMenu: some View {
+        Button(String.localized("camera"), systemImage: "camera") {
+            chatViewController?.showCameraViewController()
+        }
+        Button(String.localized("gallery"), systemImage: "photo.on.rectangle") {
+            chatViewController?.showPhotoVideoLibrary()
+        }
+        Divider()
+        Button(String.localized("file"), systemImage: "doc") {
+            chatViewController?.showFilesLibrary()
+        }
+        Button(String.localized("webxdc_app"), systemImage: "square.grid.2x2") {
+            chatViewController?.showAppPicker()
+        }
+        Button(String.localized("voice_message"), systemImage: "mic") {
+            chatViewController?.showVoiceMessageRecorder()
+        }
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            let isLocationStreaming = chatViewController?.isLocationStreaming ?? false
+            Button(
+                String.localized(isLocationStreaming ? "stop_sharing_location" : "location"),
+                systemImage: isLocationStreaming ? "location.slash" : "location"
+            ) {
+                chatViewController?.locationStreamingButtonPressed()
+            }
+        }
+        Button(String.localized("contact"), systemImage: "person.crop.circle") {
+            chatViewController?.showContactList()
+        }
+    }
+
+    @ViewBuilder func glassEffect<V: View>(view: V) -> some View {
+        if #available(iOS 26.0, *) {
+            view.transparentScrolling()
+                .padding(8)
+                .padding(.horizontal, 10)
+                .glassEffect(.regular, in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
+        } else {
+            view
+        }
+    }
+}
+
+struct QuoteViewSwiftUI: View {
+    var quoteText: String?
+    var quoteMessage: DcMsg?
+    var dcContext: DcContext
+
+    @State private var size: CGSize = .zero
+
+    var body: some View {
+        if let quoteText {
+            let quoteContact = quoteMessage.flatMap { dcContext.getContact(id: $0.fromContactId) }
+            let color = Color(uiColor: quoteContact?.color ?? DcColors.unknownSender)
+            HStack {
+                VStack(alignment: .leading) {
+                    if quoteMessage?.isForwarded == true {
+                        Text(String.localized("forwarded_message"))
+                            .foregroundColor(color)
+                            .font(.init(UIFont.preferredFont(for: .caption1, weight: .semibold)))
+                    } else if let quoteMessage, let quoteContact {
+                        Text(quoteMessage.getSenderName(quoteContact, markOverride: true))
+                            .foregroundColor(color)
+                            .font(.preferredFont(for: .caption1, weight: .semibold))
+                    }
+                    Text(quoteText)
+                        .font(.preferredFont(for: .subheadline, weight: .regular))
+                        .lineLimit(3)
+                }
+                .padding(.leading)
+                .calculated(size: $size)
+                Spacer()
+                let isWebxdc = quoteMessage?.type == DC_MSG_WEBXDC
+                if let quoteImage = isWebxdc ? quoteMessage?.getWebxdcPreviewImage() : quoteMessage?.image {
+                    Image(uiImage: quoteImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: size.height)
+                }
+            }
+            .overlay(alignment: .leading) {
+                Capsule(style: .circular)
+                    .fill(color)
+                    .frame(width: 3)
+            }
+        }
+    }
+}
+
+public extension View {
+    /// Modify a view with a `ViewBuilder` closure.
+    ///
+    /// This represents a streamlining of the
+    /// [`modifier`](https://developer.apple.com/documentation/swiftui/view/modifier(_:))
+    /// \+ [`ViewModifier`](https://developer.apple.com/documentation/swiftui/viewmodifier)
+    /// pattern.
+    /// - Note: Do not use this with variables that change at runtime
+    func modifier<ModifiedContent: View>(
+        @ViewBuilder _ body: (_ content: Self) -> ModifiedContent
+    ) -> ModifiedContent {
+        body(self)
+    }
+}
+
+/// Similar to UIKit's UIDeferredMenuElement.uncached this reloads the menu before it is shown
+struct UncachedMenu<Content: View, Label: View>: View {
+    var content: () -> Content
+    var label: () -> Label
+    @State private var menuId = UUID()
+
+    var body: some View {
+        Menu(content: { content().id(menuId) }, label: label)
+            .simultaneousGesture(DragGesture(minimumDistance: 0).onChanged(reloadMenu))
+    }
+
+    func reloadMenu(_: DragGesture.Value) {
+        menuId = UUID()
+    }
+}
+
+public extension View {
+    func transparentScrolling() -> some View {
+        if #available(iOS 16.0, *) {
+            return scrollContentBackground(.hidden)
+        } else {
+            return onAppear {
+                // TODO: Check if other textviews set their backgroundColor otherwise this will modify them
+                UITextView.appearance().backgroundColor = .clear
+            }
+        }
+    }
+}
+
+extension View {
+    public func calculated(size: Binding<CGSize>) -> some View {
+        self.modifier(CalculatedSizePreferenceModifier(size: size))
+    }
+}
+
+private struct CalculatedSizePreferenceModifier: ViewModifier {
+    @Binding var size: CGSize
+
+    func body(content: Content) -> some View {
+        content
+            .background(GeometryReader { geometry in
+                Color.clear.preference(key: CalculatedSizePreferenceKey.self, value: geometry.size)
+            })
+            .onPreferenceChange(CalculatedSizePreferenceKey.self) {
+                size = $0
+            }
+    }
+}
+
+private struct CalculatedSizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
