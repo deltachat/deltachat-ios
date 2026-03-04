@@ -2957,9 +2957,9 @@ struct InputBarView: View {
             }
             if draft.attachment != nil {
                 HStack {
-                    Image(uiImage: <#T##UIImage#>)
+//                    Image(uiImage: <#T##UIImage#>)
                     Button(String.localized("cancel"), systemImage: "xmark") {
-                        draft.setQuote(quotedMsg: nil)
+                        draft.clearAttachment()
                     }.layoutPriority(-1).labelStyle(.iconOnly)
                 }.modifier(glassEffect)
             }
