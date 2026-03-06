@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImageSVGKitPlugin
 
-class QrViewController: UIViewController {
+class QrViewController: UIViewController, ScreenBrightnessOverrideSupporting {
 
     private let dcContext: DcContext
 
@@ -21,12 +21,16 @@ class QrViewController: UIViewController {
     var contentTopAnchor: NSLayoutConstraint?
     var contentBottomAnchor: NSLayoutConstraint?
 
+    var shouldEnableScreenBrightnessOverride: Bool {
+        qrContentView.image != nil
+    }
+
     var qrCodeHint: String {
         willSet {
             let svg = dcContext.getSecurejoinQrSVG(chatId: chatId)
             qrContentView.image = getQrImage(svg: svg)
             qrContentView.accessibilityHint = newValue
-            updateBrightness()
+            updateScreenBrightnessOverride()
         }
     }
     private let chatId: Int
@@ -129,18 +133,12 @@ class QrViewController: UIViewController {
     // MARK: - lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateBrightness()
+        updateScreenBrightnessOverride()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        ScreenBrightnessOverrideManager.shared.setActive(false, for: self)
-    }
-
-    private func updateBrightness() {
-        guard isViewLoaded, view.window != nil else { return }
-
-        ScreenBrightnessOverrideManager.shared.setActive(qrContentView.image != nil, for: self)
+        disableScreenBrightnessOverride()
     }
 
     func getQrImage(svg: String?) -> UIImage? {
