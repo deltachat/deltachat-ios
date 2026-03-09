@@ -151,8 +151,6 @@
 "import_backup_title" = "استيراد نسخة احتياطية";
 "delete_account" = "حذف الحساب";
 // preferences
-"pref_using_custom" = "استخدام التخصيص: %1$@";
-"pref_using_default" = "مستخدم كافتراضي: %1$@";
 "pref_profile_info_headline" = "معلومات ملفك التعريفي";
 "pref_profile_photo" = "صورة الملف التعريفي";
 "pref_blocked_contacts" = "المراسلون المحبوسون";
@@ -168,8 +166,6 @@
 "pref_led_color" = "لون ضوء التنبيه LED";
 "pref_sound" = "الصوت";
 "pref_privacy" = "الخصوصية";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "الدردشة والوسائط";
 "pref_system_default" = "افتراضيات النظام";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "فاتح";

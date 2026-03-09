@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Utoljára látta: %1$@";
 "last_seen_unknown" = "Utoljára látta: - (ismeretlen)";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Csatornák";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Új csatorna";
-// deprecated
-"add_recipients" = "Címzettek hozzáadása";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Csatorna neve";
 "email" = "E-mail";
@@ -329,15 +325,9 @@
 "answer_call" = "Fogadás";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Elutasítás";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Kimenő hívás";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Bejövő hívás";
 "declined_call" = "Elutasított hívás";
 "canceled_call" = "Visszavont hívás";
 "missed_call" = "Nem fogadott hívás";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Biztosan elhagyja a csatornát?";
@@ -487,8 +477,6 @@
 "incoming_messages" = "Beérkező üzenetek";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Kimenő üzenetek";
-// deprecated
-"storage_on_domain" = "Tárhely mérete itt: %1$@";
 "connectivity" = "Tárhely";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nem kapcsolódott";
@@ -599,8 +587,6 @@
 "share_text_multiple_chats" = "Megosztja ezt a szöveget a vele való csevegésben: %1$d?\n\n„%2$@”";
 "share_abort" = "A megosztás megszakadt a hiányzó engedélyek miatt.";
 // preferences
-"pref_using_custom" = "Egyéni használata: %1$@";
-"pref_using_default" = "Alapértelmezett használata: %1$@";
 "pref_profile_info_headline" = "Profiladatok";
 "pref_profile_photo" = "Profilkép";
 "pref_blocked_contacts" = "Letiltott névjegyek";
@@ -632,8 +618,6 @@
 "pref_sound" = "Hang";
 "pref_silent" = "Csendes";
 "pref_privacy" = "Adatvédelem";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Csevegések és média";
 "pref_system_default" = "Rendszer alapértelmezett";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Világos";
@@ -693,8 +677,6 @@
 "n_bytes_message" = "%1$@ üzenet";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Letöltés maximum ennyi ideig visszamenőleg: %1$@ ";
-// deprecated
-"select_profile" = "Profil kiválasztása";
 "profile_image_select" = "Profilkép kiválasztása";
 "select_your_new_profile_image" = "Válassza ki az új profilképet";
 "profile_image_delete" = "Profilkép törlése";
@@ -786,10 +768,6 @@
 "ephemeral_timer_seconds_by_you" = "Ön az eltűnő üzenetek időzítőjét %1$@ másodpercre állította be.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ az eltűnő üzenetek időzítőjét %1$@ másodpercre állította be.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Ön az eltűnő üzenetek időzítőjét 1 percre állította be.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ az eltűnő üzenetek időzítőjét 1 percre állította be.";
 "ephemeral_timer_1_hour_by_you" = "Ön az eltűnő üzenetek időzítőjét 1 órára állította be.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ az eltűnő üzenetek időzítőjét 1 órára állította be.";
@@ -877,8 +855,6 @@
 "verified_by" = "%1$@ által bemutatva";
 "verified_by_you" = "Ön által bemutatva";
 "verified_by_unknown" = "Bemutatva";
-// deprecated
-"verified_contact_required_explain" = "A végpontok közötti titkosítás garantálása érdekében csak zöld jelöléssel rendelkező névjegyeket adhat hozzá ehhez a csoporthoz.\n\n Személyesen is találkozhat a partnereivel és beolvashatja a QR-kódjukat, hogy bemutassa őket.";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Már létezik egy piszkozat a következő szöveggel: %1$@, biztosan le akarja cserélni?";

@@ -158,8 +158,6 @@
 "menu_new_contact" = "Novo contato";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
-// deprecated
-"add_recipients" = "Adicionar Destinatários";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
 "menu_edit_group" = "Modificar grupo";
@@ -372,8 +370,6 @@
 "incoming_messages" = "Mensagens Recebidas";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensagens Enviadas";
-// deprecated
-"storage_on_domain" = "Armazenamento em %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Não conectado";
@@ -433,8 +429,6 @@
 "share_text_multiple_chats" = "Enviar este texto para %1$d conversas?\n\n\"%2$@\"";
 "share_abort" = "Compartilhamento abortado devido a falta de permissões.";
 // preferences
-"pref_using_custom" = "Usando personalização: %1$@";
-"pref_using_default" = "Usando padrão: %1$@";
 "pref_profile_info_headline" = "Informações do seu perfil";
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Contatos bloqueados";
@@ -464,8 +458,6 @@
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Conversas e mídia";
 "pref_system_default" = "Padrão do sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
@@ -590,10 +582,6 @@
 "ephemeral_timer_seconds_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para %1$@ segundos";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Temporizador de desaparecimento de mensagens definido a %1$@ s por %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para 1 minuto.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 minuto por %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para 1 hora.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 hora por %1$@.";

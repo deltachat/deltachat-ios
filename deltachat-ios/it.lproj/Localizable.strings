@@ -116,8 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = " Ultimo accesso %1$@";
 "last_seen_unknown" = "Ultimo accesso: sconosciuto";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Meno di 1 minuto";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +209,9 @@
 "channels" = "Canali";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nuovo Canale";
-// deprecated
-"add_recipients" = "Aggiungi Destinatari";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nome Canale";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-Mail";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nuova E-Mail";
@@ -331,19 +331,13 @@
 "answer_call" = "Rispondi";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rifiuta";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Chiamata in uscita";
 "outgoing_audio_call" = "Chiamata in uscita";
 "outgoing_video_call" = "Videochiamata in uscita";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Chiamata in arrivo";
 "incoming_audio_call" = "Chiamata in arrivo";
 "incoming_video_call" = "Videochiamata in arrivo";
 "declined_call" = "Chiamata rifiutata";
 "canceled_call" = "Chiamata annullata";
 "missed_call" = "Chiamata persa";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
@@ -493,8 +487,6 @@
 "incoming_messages" = "Messaggi in Arrivo";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Messaggi in Uscita";
-// deprecated
-"storage_on_domain" = "Spazio su %1$@";
 "connectivity" = "Connettività";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Non connesso";
@@ -616,8 +608,6 @@
 "share_text_multiple_chats" = "Invia questo testo a %1$d chat?\n\n\"%2$@\"";
 "share_abort" = "Condivisione annullata per permessi mancanti.";
 // preferences
-"pref_using_custom" = "Personalizzazione in uso: %1$@";
-"pref_using_default" = "Usa predefinito: %1$@";
 "pref_profile_info_headline" = "Il tuo Profilo";
 "pref_profile_photo" = "Immagine Profilo";
 "pref_blocked_contacts" = "Contatti Bloccati";
@@ -641,6 +631,10 @@
 "pref_notifications" = "Notifiche";
 "pref_mention_notifications" = "Menzioni";
 "pref_mention_notifications_explain" = "Nei gruppi silenziati notifica i messaggi indirizzati a te, come risposte o reazioni";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Chiamate";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Mostra la schermata delle chiamate in arrivo";
 "pref_notifications_show" = "Mostra";
 "pref_notifications_priority" = "Priorità";
 "pref_notifications_explain" = "Abilita le notifiche di sistema per i nuovi messaggi";
@@ -650,8 +644,6 @@
 "pref_sound" = "Suono";
 "pref_silent" = "Silenzia";
 "pref_privacy" = "Riservatezza";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Chat e Media";
 "pref_system_default" = "Predefinito di sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Chiaro";
@@ -716,8 +708,6 @@
 "n_bytes_message" = "%1$@ messaggio";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Scaricamento disponibile massimo fino a %1$@";
-// deprecated
-"select_profile" = "Seleziona il Profilo";
 "profile_image_select" = "Seleziona Immagine Profilo";
 "select_your_new_profile_image" = "Seleziona la tua nuova immagine profilo";
 "profile_image_delete" = "Elimina Immagine Profilo";
@@ -819,10 +809,6 @@
 "ephemeral_timer_seconds_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ secondi";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Timer messaggi a scomparsa impostato su %1$@ secondi da %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 minuto.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Timer messaggi a scomparsa impostato su 1 minuto da %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Hai impostato il timer dei messaggi a scomparsa su 1 ora.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Timer messaggi a scomparsa impostato su 1 ora da %1$@.";
@@ -916,8 +902,6 @@
 "verified_by" = "Introdotto da %1$@";
 "verified_by_you" = "Introdotto da me";
 "verified_by_unknown" = "Introdotto";
-// deprecated
-"verified_contact_required_explain" = "Per garantire la crittografia end-to-end, puoi aggiungere a questo gruppo solo i contatti con un segno di spunta verde.\n\nPuoi incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
 "mailto_dialog_header_select_chat" = "Seleziona la chat a cui inviare il messaggio";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";

@@ -140,6 +140,7 @@
 "tab_group" = "సమూహము";
 "tab_gallery" = "గ్యాలరీ";
 "media_preview" = "మీడియా పూర్వప్రదర్శన";
+// preferences
 "pref_profile_info_headline" = "మీ రూప సమాచారం";
 "pref_profile_photo" = "రూపచిత్రం";
 "pref_blocked_contacts" = "నిరోధించిన పరిచయాలు";
@@ -157,8 +158,6 @@
 "pref_sound" = "శబ్ధం";
 "pref_silent" = "మౌనం";
 "pref_privacy" = "గోప్యత";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "ముచ్చట్లు మరియు ప్రసార మాధ్యమం";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "లైటు";
 "pref_dark_theme" = "గుప్తమైన";

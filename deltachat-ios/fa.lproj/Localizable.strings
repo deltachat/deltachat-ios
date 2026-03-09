@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "آخرین بار دیده‌شده در %1$@";
 "last_seen_unknown" = "آخرین زمان مشاهده: نامشخص";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "کانال‌ها";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "کانال جدید";
-// deprecated
-"add_recipients" = "افزودن دنبال‌کننده";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "نام کانال";
 "email" = "رایانامه";
@@ -333,19 +329,13 @@
 "answer_call" = "جواب دادن";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "رد کردن";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "تماس خروجی";
 "outgoing_audio_call" = "تماس صوتی خروجی";
 "outgoing_video_call" = "تماس تصویری خروجی";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "تماس ورودی";
 "incoming_audio_call" = "تماس صوتی ورودی";
 "incoming_video_call" = "تماس تصویری ورودی";
 "declined_call" = "تماس رد شده";
 "canceled_call" = "تماس لغو شده";
 "missed_call" = "تماس از دست رفته";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@، %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
@@ -498,8 +488,6 @@
 "incoming_messages" = "پیام‌های ورودی";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "پیام‌های خروجی";
-// deprecated
-"storage_on_domain" = "ذخیره کردن در %1$@";
 "connectivity" = "اتصال‌ها";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "متصل نیست";
@@ -621,8 +609,6 @@
 "share_text_multiple_chats" = "ارسال این متن به %1$d گپ؟n/n/«%2$@»";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
 // preferences
-"pref_using_custom" = "استفاده از ترجیحی: %1$@";
-"pref_using_default" = "استفاده از پیش‌فرض: %1$@";
 "pref_profile_info_headline" = "اطلاعات نمایهٔ شما";
 "pref_profile_photo" = "تصویر نمایه";
 "pref_blocked_contacts" = "مخاطبین مسدود شده";
@@ -654,8 +640,6 @@
 "pref_sound" = "صدا";
 "pref_silent" = "سکوت";
 "pref_privacy" = "حریم خصوصی";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "گپ‌ها و رسانه";
 "pref_system_default" = "پیش‌فرض سیستم";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "روشن";
@@ -720,8 +704,6 @@
 "n_bytes_message" = "پیام %1$@ ";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "سقف دانلود تا %1$@ فعال خواهد بود";
-// deprecated
-"select_profile" = "انتخاب نمایه";
 "profile_image_select" = "انتخاب تصویر نمایه";
 "select_your_new_profile_image" = "تصویر نمایهٔ جدیدتان را برگزینید";
 "profile_image_delete" = "حذف تصویر نمایه";
@@ -820,10 +802,6 @@
 "ephemeral_timer_seconds_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی %1$@ ثانیه تنظیم کردید";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %2$@ روی %1$@ ثانیه تنظیم شد.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 دقیقه تنظیم کرده‌اید.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 دقیقه تنظیم شد.";
 "ephemeral_timer_1_hour_by_you" = "زمان‌سنج ناپدید شدن پیام‌ها را روی 1 ساعت تنظیم کرده‌اید.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "زمان‌سنج ناپدید شدن پیام‌ها توسط %1$@ روی 1 ساعت تنظیم شد.";
@@ -921,8 +899,6 @@
 "verified_by" = "احراز هویت شده توسط %1$@";
 "verified_by_you" = "تأیید شده توسط من";
 "verified_by_unknown" = "معرفی شده";
-// deprecated
-"verified_contact_required_explain" = "برای تضمین رمزنگاری سراسری شما تنها می‌توانید مخاطب‌هایی که یک تیک سبز دارند به این گروه اضافه کنید.\n\nمی‌توانید با مخاطب‌هایتان حضوری ملاقات کنید و برای معرفی، کد QR آن‌ها را اسکن کنید.";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ هم‌اکنون هم یک پیام پیش‌نویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";

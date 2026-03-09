@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Останній раз бачили %1$@";
 "last_seen_unknown" = "Останній раз бачили: Невідомо.";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Канали";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Новий Канал";
-// deprecated
-"add_recipients" = "Додати одержувачів";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Назва Каналу";
 "email" = "E-Mail";
@@ -331,19 +327,13 @@
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Вихідний дзвінок";
 "outgoing_audio_call" = "Вихідний аудіовиклик";
 "outgoing_video_call" = "Вихідний відеовиклик";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Вхідний дзвінок";
 "incoming_audio_call" = "Вхідний аудіовиклик";
 "incoming_video_call" = "Вхідний відеовиклик";
 "declined_call" = "Відхилений дзвінок";
 "canceled_call" = "Скасований дзвінок";
 "missed_call" = "Пропущений дзвінок";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ви впевнені, що хочете піти?";
@@ -493,8 +483,6 @@
 "incoming_messages" = "Вхідні повідомлення";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Вихідні повідомлення";
-// deprecated
-"storage_on_domain" = "Сховище на %1$@";
 "connectivity" = "Підключення";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Не з\'єднано";
@@ -616,8 +604,6 @@
 "share_text_multiple_chats" = "Надіслати це́й текст у %1$d чат·и·ів?\n\n«%2$@»";
 "share_abort" = "Надсилання обірване через відсутність дозволів.";
 // preferences
-"pref_using_custom" = "Використовувати персоналізовано: %1$@";
-"pref_using_default" = "Використовувати за замовчуванням: %1$@";
 "pref_profile_info_headline" = "Ваш профіль";
 "pref_profile_photo" = "Зображення профілю";
 "pref_blocked_contacts" = "Заблоковані контакти";
@@ -650,8 +636,6 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучний";
 "pref_privacy" = "Конфіденційність";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Чати й медіа";
 "pref_system_default" = "За замовчуванням системи";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Світла";
@@ -716,8 +700,6 @@
 "n_bytes_message" = "Повідомлення розміром %1$@\'";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Доступний для завантаження максимум до %1$@";
-// deprecated
-"select_profile" = "Вибрати Профіль";
 "profile_image_select" = "Вибрати зображення профілю";
 "select_your_new_profile_image" = "Вибрати ваше нове зображення профілю";
 "profile_image_delete" = "Видалити зображення профілю";
@@ -819,10 +801,6 @@
 "ephemeral_timer_seconds_by_you" = "Ви встановили таймер зникнення повідомлень на %1$@ сек.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ встановив (-ла) таймер повідомлень, що зникають на %1$@ сек.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Ви встановили таймер зникнення повідомлень на 1 хвилину.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ встановив (-ла) таймер зникнення повідомлень на 1 хвилину.";
 "ephemeral_timer_1_hour_by_you" = "Ви встановили таймер зникнення повідомлень на 1 годину.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ встановив (-ла) таймер зникнення повідомлень на 1 годину.";
@@ -916,8 +894,6 @@
 "verified_by" = "Представни·ця: %1$@";
 "verified_by_you" = "Представлено мною";
 "verified_by_unknown" = "Представлено";
-// deprecated
-"verified_contact_required_explain" = "Аби наскрізне шифрування лишалося ґарантованим, у цю групу можна додавати лише контактних осіб із зеленою галочкою.\n\nМожна зустрітись із контактною особою та відсканувати баркод із її пристрою, щоби представити її.";
 "mailto_dialog_header_select_chat" = "Виберіть чат, куди потрібно надіслати повідомлення";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ уже містить чернетку повідомлення, бажаєте її замінити?";

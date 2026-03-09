@@ -143,8 +143,6 @@
 "menu_new_contact" = "대화상대 추가";
 "menu_new_chat" = "채팅 시작";
 "menu_new_group" = "새 그룹";
-// deprecated
-"add_recipients" = "수신자 추가";
 "menu_send" = "보내기";
 "menu_toggle_keyboard" = "이모티콘 키보드 전환";
 "menu_edit_group" = "그룹 편집";
@@ -325,8 +323,6 @@
 "incoming_messages" = "수신 메시지";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "발신 메시지";
-// deprecated
-"storage_on_domain" = "%1$@에 저장됨";
 "connectivity" = "연결";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "연결되지 않음";
@@ -384,8 +380,6 @@
 "share_text_multiple_chats" = "\"%2$@\"를 %1$d 채팅에 보내시겠습니까?";
 "share_abort" = "권한이 없어 공유가 중단되었습니다.";
 // preferences
-"pref_using_custom" = "사용자 정의 사용: %1$@";
-"pref_using_default" = "기본값 사용: %1$@";
 "pref_profile_info_headline" = "내 프로필";
 "pref_profile_photo" = "프로필 사진";
 "pref_blocked_contacts" = "차단 목록";
@@ -414,8 +408,6 @@
 "pref_sound" = "알림음";
 "pref_silent" = "무음";
 "pref_privacy" = "개인정보 보호";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "대화 및 미디어";
 "pref_system_default" = "시스템 기본값";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "밝게";
@@ -527,10 +519,6 @@
 "ephemeral_timer_seconds_by_you" = "사라지는 메시지 타이머를 %1$@초로 설정함.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@가 사라지는 메시지 타이머를 %1$@초로 설정함.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "사라지는 메시지 타이머를 1분으로 설정함.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@가 사라지는 메시지 타이머를 1분으로 설정함.";
 "ephemeral_timer_1_hour_by_you" = "사라지는 메시지 타이머를 1시간으로 설정함.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@가 사라지는 메시지 타이머를 1시간으로 설정함.";

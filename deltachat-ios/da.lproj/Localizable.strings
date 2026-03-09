@@ -327,8 +327,6 @@
 "share_text_multiple_chats" = "Send denne tekst til %1$d samtaler?\n\n\"%2$@\"";
 "share_abort" = "Deling afbrudt på grund af manglende tilladelser.";
 // preferences
-"pref_using_custom" = "Bruger tilpasset: %1$@";
-"pref_using_default" = "Bruger standard: %1$@";
 "pref_profile_info_headline" = "Profil information";
 "pref_profile_photo" = "Profilbillede";
 "pref_blocked_contacts" = "Blokerede kontakter";
@@ -358,8 +356,6 @@
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
 "pref_privacy" = "Privatliv";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Samtaler og medie";
 "pref_system_default" = "Systemstandard";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Lys";
@@ -466,10 +462,6 @@
 "ephemeral_timer_seconds_by_you" = "Tidsudløb for beskeder sat til %1$@ s af mig.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Tidsudløb for beskeder sat til %1$@ s af %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Tidsudløb for beskeder sat til 1 minut af mig.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Tidsudløb for beskeder sat til 1 minut af %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Tidsudløb for beskeder sat til 1 time af mig.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Tidsudløb for beskeder sat til 1 time af %1$@.";

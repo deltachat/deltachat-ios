@@ -161,8 +161,6 @@
 "menu_new_chat" = "Нов чат";
 "menu_new_group" = "Нова група";
 "clone_chat" = "Клониране на чат";
-// deprecated
-"add_recipients" = "Добавяне на получатели";
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";
 "menu_edit_group" = "Редактиране на група";
@@ -387,8 +385,6 @@
 "incoming_messages" = "Входящи съобщения";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Изходящи съобщения";
-// deprecated
-"storage_on_domain" = "Съхранение върху %1$@";
 "connectivity" = "Свързаност";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Не сте свързани";
@@ -475,8 +471,6 @@
 "share_text_multiple_chats" = "Да бъде ли изпратен този текст към %1$d чата?\n\n\"%2$@\"";
 "share_abort" = "Споделянето е прекъснато поради липсващи позволения.";
 // preferences
-"pref_using_custom" = "Използва се дефинирано от Вас: %1$@";
-"pref_using_default" = "Използва се подразбиращо се: %1$@";
 "pref_profile_info_headline" = "Информация от Вашия профил";
 "pref_profile_photo" = "Изображение на профила";
 "pref_blocked_contacts" = "Блокирани контакти";
@@ -506,8 +500,6 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Без звук";
 "pref_privacy" = "Поверителност";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Чатове и медийни файлове";
 "pref_system_default" = "Подразбиращото се за системата";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Светъл";
@@ -647,10 +639,6 @@
 "ephemeral_timer_seconds_by_you" = "Установихте таймера на изчезващите съобщения на %1$@";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Таймерът на изчезващите съобщение е установен на %1$@сек. от %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Установихте таймера на изчезващите съобщения на 1 минута.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Таймерът на изчезващите съобщения е установен на 1 минута от %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Установихте таймера на изчезващите съобщения на 1 час.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Таймерът на изчезващите съобщения е установен на 1 час от %1$@.";
@@ -733,8 +721,6 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Проверен от%1$@";
 "verified_by_you" = "Представен от мен";
-// deprecated
-"verified_contact_required_explain" = "За да се гарантира криптирането от край до край, можете да добавяте в тази група само контакти, отбелязани със зелена отметка.\n\nБихте могли да се срещнете с лицата, с които желаете да контактувате, лично и да сканирате техните QR кодове, за да ги въведете.";
 "mailto_dialog_header_select_chat" = "Изберете чат, към който да бъде пратено съобщението";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ вече има съобщение чернова, искате ли да го замените?";

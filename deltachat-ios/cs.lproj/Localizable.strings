@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Naposledy viděni %1$@";
 "last_seen_unknown" = "Naposledy viděno: Neznámý";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Kanály";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nový kanál";
-// deprecated
-"add_recipients" = "Přidat příjemce";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Název kanálu";
 "email" = "E-mail";
@@ -329,15 +325,9 @@
 "answer_call" = "Zvedni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Pokles";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Odchozí hovor";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Příchozí hovor";
 "declined_call" = "Odmítnutý hovor";
 "canceled_call" = "Zrušený hovor";
 "missed_call" = "Zmeškaný hovor";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jste si jistý, že chcete odejít?";
@@ -487,8 +477,6 @@
 "incoming_messages" = "Příchozí zprávy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchozí zprávy";
-// deprecated
-"storage_on_domain" = "Úložiště na %1$@";
 "connectivity" = "Připojení";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nepřipojeno";
@@ -610,8 +598,6 @@
 "share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno kvůli chybějícím oprávnění.";
 // preferences
-"pref_using_custom" = "Nastaven vlastní: %1$@";
-"pref_using_default" = "Nastaven výchozí: %1$@";
 "pref_profile_info_headline" = "Přehled účtu";
 "pref_profile_photo" = "Profilový obrázek";
 "pref_blocked_contacts" = "Blokované kontakty";
@@ -643,8 +629,6 @@
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
 "pref_privacy" = "Soukromí";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Chaty a multimédia";
 "pref_system_default" = "Podle systému";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Světlý";
@@ -709,8 +693,6 @@
 "n_bytes_message" = "%1$@ zpráva";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Stahovat dostupné maximum do %1$@";
-// deprecated
-"select_profile" = "Vyberte profil";
 "profile_image_select" = "Vybrat profilový obrázek";
 "select_your_new_profile_image" = "Vyberte si svůj nový profilový obrázek";
 "profile_image_delete" = "Smazat profilový obrázek";
@@ -803,10 +785,6 @@
 "ephemeral_timer_seconds_by_you" = "Nastavili jste časovač mizejících zpráv na %1$@ sekund.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Uživatel %2$@ nastavil časovač mizejících zpráv na %1$@ sekund.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Nastavili jste časovač mizejících zpráv na 1 minutu.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Uživatel %1$@ změnil časovač mizejících zpráv na 1 minutu.";
 "ephemeral_timer_1_hour_by_you" = "Nastavili jste časovač mizejících zpráv na 1 hodinu.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Uživatel %1$@ změnil časovač mizejících zpráv na 1 hodinu.";
@@ -899,8 +877,6 @@
 "verified_by" = "Ověřeni uživatelem %1$@.";
 "verified_by_you" = "Ověřeni mnou";
 "verified_by_unknown" = "Představeno";
-// deprecated
-"verified_contact_required_explain" = "Aby mohlo být garantováno koncové šifrování, můžete do této skupiny přidávat pouze uživatele se zeleným zaškrtávátkem.\n\nSe svými kontakty se můžete setkat osobně a naskenovat jejich QR kód, abyste je ověřili.";
 "mailto_dialog_header_select_chat" = "Vyberte chat, do kterého chcete zprávu poslat";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ již obsahuje rozepsanou zprávu, přejete si ji přepsat?";

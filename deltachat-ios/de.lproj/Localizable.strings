@@ -116,8 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Zuletzt gesehen %1$@";
 "last_seen_unknown" = "Zuletzt gesehen: Unbekannt";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Weniger als 1 Minute";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,11 +209,9 @@
 "channels" = "Kanäle";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Neuer Kanal";
-// deprecated
-"add_recipients" = "Empfänger hinzufügen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Name des Kanals";
-// The number of times a message is shown in channels, may be used for alt-text or a11y
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-Mail";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Neue E-Mail";
@@ -332,19 +331,13 @@
 "answer_call" = "Annehmen";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ablehnen";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Ausgehender Anruf";
 "outgoing_audio_call" = "Ausgehender Sprachanruf";
 "outgoing_video_call" = "Ausgehender Videoanruf";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Eingehender Anruf";
 "incoming_audio_call" = "Eingehender Sprachanruf";
 "incoming_video_call" = "Eingehender Videoanruf";
 "declined_call" = "Abgelehnter Anruf";
 "canceled_call" = "Abgebrochener Anruf";
 "missed_call" = "Verpasster Anruf";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
@@ -494,8 +487,6 @@
 "incoming_messages" = "Eingehende Nachrichten";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Ausgehende Nachrichten";
-// deprecated
-"storage_on_domain" = "Speicher auf %1$@";
 "connectivity" = "Verbindungsstatus";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nicht verbunden";
@@ -617,8 +608,6 @@
 "share_text_multiple_chats" = "Den folgenden Text an %1$d Chats senden?\n\n\"%2$@\"";
 "share_abort" = "Teilen aufgrund fehlender Berechtigungen abgebrochen.";
 // preferences
-"pref_using_custom" = "Benutzerdefiniert verwenden: %1$@";
-"pref_using_default" = "Standard verwenden: %1$@";
 "pref_profile_info_headline" = "Mein Profil";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockierte Kontakte";
@@ -632,6 +621,7 @@
 "pref_enter_sends" = "Enter-Taste sendet";
 "pref_enter_sends_explain" = "Durch Drücken der Eingabetaste werden Textnachrichten gesendet.";
 "pref_outgoing_media_quality" = "Medienqualität beim Senden";
+"pref_outgoing_media_quality_hint" = "Um Originalqualität zu senden, hänge Medien als „Datei“ an. Dies verbraucht deutlich mehr Datenvolumen für dich und die Empfänger.";
 "pref_outgoing_balanced" = "Ausgewogen";
 "pref_outgoing_worse" = "Schlechte Qualität, kleine Dateien";
 "pref_vibrate" = "Vibrieren";
@@ -642,6 +632,10 @@
 "pref_notifications" = "Benachrichtigungen";
 "pref_mention_notifications" = "Erwähnungen";
 "pref_mention_notifications_explain" = "In stummgeschalteten Gruppen, über an dich gerichtete Nachrichten, wie Antworten oder Reaktionen, benachrichtigen";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Anrufe";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Anrufbildschirm bei eingehenden Anrufen";
 "pref_notifications_show" = "Anzeigen";
 "pref_notifications_priority" = "Priorität";
 "pref_notifications_explain" = "System-Benachrichtigungen bei neuen Nachrichten aktivieren";
@@ -651,8 +645,6 @@
 "pref_sound" = "Ton";
 "pref_silent" = "Leise";
 "pref_privacy" = "Datenschutz";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Chats und Medien";
 "pref_system_default" = "Systemstandard";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Hell";
@@ -717,8 +709,6 @@
 "n_bytes_message" = "%1$@ Nachricht";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Download max. verfügbar bis %1$@";
-// deprecated
-"select_profile" = "Profil auswählen";
 "profile_image_select" = "Profilbild auswählen";
 "select_your_new_profile_image" = "Wählen dein Profilbild aus";
 "profile_image_delete" = "Profilbild löschen";
@@ -820,10 +810,6 @@
 "ephemeral_timer_seconds_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Sekunden gesetzt von %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Minute gesetzt.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 MInute gesetzt von %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Du hast die Ablaufzeit verschwindender Nachrichten auf 1 Stunde gesetzt.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Ablaufzeit verschwindender Nachrichten auf 1 Stunde gesetzt von %1$@.";
@@ -917,8 +903,6 @@
 "verified_by" = "Eingeführt von %1$@";
 "verified_by_you" = "Durch mich eingeführt";
 "verified_by_unknown" = "Eingeführt";
-// deprecated
-"verified_contact_required_explain" = "Um Ende-zu-Ende-Verschlüsselung zu gewährleisten, können nur Kontakte mit grünem Häkchen zu dieser Gruppe hinzugefügt werden.\n\nDu kannst Kontakte persönlich treffen und ihren QR-Code scannen, um sie einzuführen.";
 "mailto_dialog_header_select_chat" = "Wähle den Chat, an den die Nachricht gesendet werden soll";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ hat bereits einen Entwurf. Möchtest du diesen ersetzen?";

@@ -159,8 +159,6 @@
 "menu_new_chat" = "Trò chuyện mới";
 "menu_new_group" = "Nhóm mới";
 "clone_chat" = "Sao chép cuộc trò chuyện";
-// deprecated
-"add_recipients" = "Thêm người nhận";
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";
 "menu_edit_group" = "Chỉnh sửa nhóm";
@@ -384,8 +382,6 @@
 "incoming_messages" = "Tin nhắn đến";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Tin nhắn đi";
-// deprecated
-"storage_on_domain" = "Lưu trữ trên %1$@";
 "connectivity" = "Kết nối";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Không được kết nối";
@@ -445,8 +441,6 @@
 "share_text_multiple_chats" = "Gửi văn bản này tới %1$d cuộc trò chuyện?\n\n\"%2$@\"";
 "share_abort" = "Chia sẻ bị hủy do thiếu quyền.";
 // preferences
-"pref_using_custom" = "Sử dụng tùy chỉnh: %1$@";
-"pref_using_default" = "Sử dụng mặc định: %1$@";
 "pref_profile_info_headline" = "Thông tin hồ sơ của bạn";
 "pref_profile_photo" = "Ảnh hồ sơ";
 "pref_blocked_contacts" = "Liên hệ bị chặn";
@@ -476,8 +470,6 @@
 "pref_sound" = "Âm thanh";
 "pref_silent" = "Im lặng";
 "pref_privacy" = "Quyền riêng tư";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Trò chuyện và Phương tiện";
 "pref_system_default" = "Mặc định hệ thống";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Ánh sáng";
@@ -608,10 +600,6 @@
 "ephemeral_timer_seconds_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành %1$@ giây";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Bộ hẹn giờ tin nhắn biến mất được %2$@ đặt thành %1$@ giây.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành 1 phút.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 phút.";
 "ephemeral_timer_1_hour_by_you" = "Bạn đặt bộ hẹn giờ cho tin nhắn biến mất thành 1 giờ.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Bộ hẹn giờ cho tin nhắn biến mất được %1$@ đặt thành 1 giờ.";
@@ -688,8 +676,6 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Được giới thiệu bởi %1$@";
 "verified_by_you" = "Được tôi giới thiệu";
-// deprecated
-"verified_contact_required_explain" = "Để đảm bảo mã hóa hai đầu, bạn chỉ có thể thêm những người liên hệ có dấu kiểm màu xanh lục vào nhóm này.\n\nBạn có thể gặp trực tiếp những người liên hệ và quét Mã QR của họ để giới thiệu họ.";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ đã có tin nhắn nháp, bạn có muốn thay thế nó không?";

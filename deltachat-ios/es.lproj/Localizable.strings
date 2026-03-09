@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Visto por última vez: %1$@";
 "last_seen_unknown" = "Visto por última vez: Desconocido";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Canales";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nuevo canal";
-// deprecated
-"add_recipients" = "Agregar destinatarios";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nombre del canal";
 "email" = "Correo electrónico";
@@ -331,19 +327,13 @@
 "answer_call" = "Contestar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rechazar";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Llamada saliente";
 "outgoing_audio_call" = "Llamada saliente";
 "outgoing_video_call" = "Videollamada saliente";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Llamada entrante";
 "incoming_audio_call" = "Llamada entrante";
 "incoming_video_call" = "Videollamada entrante";
 "declined_call" = "Llamada rechazada";
 "canceled_call" = "Llamada cancelada";
 "missed_call" = "Llamada perdida";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "¿Seguro que quieres abandonar este canal?";
@@ -493,8 +483,6 @@
 "incoming_messages" = "Mensajes entrantes";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensajes salientes";
-// deprecated
-"storage_on_domain" = "Almacenamiento en %1$@";
 "connectivity" = "Conectividad";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Desconectado";
@@ -616,8 +604,6 @@
 "share_text_multiple_chats" = "¿Enviar este texto  a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences
-"pref_using_custom" = "Usando valor personalizado: %1$@";
-"pref_using_default" = "Usando valor por defecto: %1$@";
 "pref_profile_info_headline" = "Información de perfil";
 "pref_profile_photo" = "Foto de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
@@ -649,8 +635,6 @@
 "pref_sound" = "Sonido";
 "pref_silent" = "Silencio";
 "pref_privacy" = "Privacidad";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Chats y multimedia";
 "pref_system_default" = "Predeterminado del sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
@@ -716,8 +700,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "n_bytes_message" = "Mensaje de %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Descarga disponible hasta %1$@";
-// deprecated
-"select_profile" = "Seleccionar perfil";
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
 "profile_image_delete" = "Borrar imagen de perfil";
@@ -816,10 +798,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "ephemeral_timer_seconds_by_you" = "Estableciste el temporizador de la desaparición de mensajes en %1$@ segundos";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Temporizador de la desaparición de mensajes establecido en %1$@ segundos por %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Estableciste el temporizador de la desaparición de mensajes en 1 minuto.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Temporizador de la desaparición de mensajes establecido en 1 minuto por %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Estableciste el temporizador de la desaparición de mensajes en 1 hora.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Temporizador de la desaparición de mensajes establecido en 1 hora por %1$@.";
@@ -913,8 +891,6 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "verified_by" = "Verificado por %1$@";
 "verified_by_you" = "Verificado por ti";
 "verified_by_unknown" = "Introducido";
-// deprecated
-"verified_contact_required_explain" = "Para garantizar el cifrado de extremo a extremo, solo puedes añadir contactos con una marca de verificación verde";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ya tiene un mensaje borrador, ¿quieres reemplazarlo?";

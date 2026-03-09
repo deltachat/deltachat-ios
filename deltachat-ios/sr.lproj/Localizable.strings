@@ -170,8 +170,6 @@
 "menu_new_contact" = "Нови контакт";
 "menu_new_chat" = "Ново ћаскање";
 "menu_new_group" = "Нова група";
-// deprecated
-"add_recipients" = "Додај примаоце";
 "menu_send" = "Пошаљи";
 "menu_toggle_keyboard" = "Емоџи тастатура";
 "menu_edit_group" = "Уреди групу";
@@ -371,8 +369,6 @@
 "incoming_messages" = "Долазеће поруке";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Одлазеће поруке";
-// deprecated
-"storage_on_domain" = "Складиштење на %1$@";
 "connectivity" = "Повезаност";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Нисте повезани";
@@ -432,8 +428,6 @@
 "share_text_multiple_chats" = "Пошаљи овај текст %1$dиз ћаскања?\n\n„%2$@“";
 "share_abort" = "Дељење прекинуто због неодговарајуће дозволе.";
 // preferences
-"pref_using_custom" = "Користи поручен: %1$@";
-"pref_using_default" = "Користи уобичајено: %1$@";
 "pref_profile_info_headline" = "Подаци вашег профила";
 "pref_profile_photo" = "Слика профила";
 "pref_blocked_contacts" = "Блокирани контакти";
@@ -463,8 +457,6 @@
 "pref_sound" = "Звук";
 "pref_silent" = "Без звука";
 "pref_privacy" = "Приватност";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Ћаскања и медији";
 "pref_system_default" = "Подразумеване поставке оперативног система";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Светла";
@@ -589,10 +581,6 @@
 "ephemeral_timer_seconds_by_you" = "Ви сте подесили хронометар за нестајуће поруке на %1$@ секунде";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ секунде.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 минут.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ је подесио хронометар за нестајуће поруке на 1 минут.";
 "ephemeral_timer_1_hour_by_you" = "Ви сте подесили хронометар за нестајуће поруке на 1 сат.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@је подесио хронометар за нестајуће поруке на 1 сат.";

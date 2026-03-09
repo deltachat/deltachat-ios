@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Laatst gezien: %1$@";
 "last_seen_unknown" = "Laatst gezien: onbekend";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +206,9 @@
 "channels" = "Kanalen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nieuw kanaal";
-// deprecated
-"add_recipients" = "Ontvangers toevoegen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanaalnaam";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-mail";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nieuwe e-mail";
@@ -331,19 +328,13 @@
 "answer_call" = "Aanvaarden";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Weigeren";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Uitgaande oproep";
 "outgoing_audio_call" = "Uitgaand audiogesprek";
 "outgoing_video_call" = "Uitgaand videogesprek";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Inkomende oproep";
 "incoming_audio_call" = "Inkomend audiogesprek";
 "incoming_video_call" = "Inkomend videogesprek";
 "declined_call" = "Geweigerde oproep";
 "canceled_call" = "Afgebroken oproep";
 "missed_call" = "Gemiste oproep";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@ %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
@@ -493,8 +484,6 @@
 "incoming_messages" = "Inkomende berichten";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Uitgaande berichten";
-// deprecated
-"storage_on_domain" = "Opslag op %1$@";
 "connectivity" = "Verbindingen";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Niet verbonden";
@@ -616,8 +605,6 @@
 "share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n“%2$@”";
 "share_abort" = "Het delen is afgebroken wegens ontbrekende rechten.";
 // preferences
-"pref_using_custom" = "Aangepast wordt gebruikt: %1$@";
-"pref_using_default" = "Standaard wordt gebruikt: %1$@";
 "pref_profile_info_headline" = "Mijn profiel";
 "pref_profile_photo" = "Profielfoto";
 "pref_blocked_contacts" = "Geblokkeerde contactpersonen";
@@ -650,8 +637,6 @@
 "pref_sound" = "Geluid";
 "pref_silent" = "Stil";
 "pref_privacy" = "Privacy";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Gesprekken en media";
 "pref_system_default" = "Systeemstandaard";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Licht";
@@ -716,8 +701,6 @@
 "n_bytes_message" = "%1$@ bericht";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maximaal downloaden tot en met een aantal van %1$@";
-// deprecated
-"select_profile" = "Kies een profiel";
 "profile_image_select" = "Profielfoto kiezen";
 "select_your_new_profile_image" = "Kies een nieuwe profielfoto";
 "profile_image_delete" = "Profielfoto verwijderen";
@@ -819,10 +802,6 @@
 "ephemeral_timer_seconds_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op %1$@ sec.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ sec.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 minuut.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 minuut.";
 "ephemeral_timer_1_hour_by_you" = "Je hebt de tijdklok van verdwijnende berichten ingesteld op 1 uur.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "De tijdklok van verdwijnende berichten is door %1$@ ingesteld op 1 uur.";
@@ -916,8 +895,6 @@
 "verified_by" = "Geïntroduceerd door %1$@";
 "verified_by_you" = "Geïntroduceerd door mij";
 "verified_by_unknown" = "Geïntroduceerd";
-// deprecated
-"verified_contact_required_explain" = "Om de eind-tot-eindversleuteling te garanderen, kun je alleen contactpersonen met een groen vinkje toevoegen aan deze groep.\n\nVan niet-goedgekeurde contactpersonen kun je de QR-code scannen om ze goed te keuren.";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";

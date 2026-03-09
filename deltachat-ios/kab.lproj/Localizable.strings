@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "yettwaẓer i tikkelt taneggarut %1$@";
 "last_seen_unknown" = "yettwaẓer i tikkelt taneggarut: Arussin";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Ibuda";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Abadu amaynut";
-// deprecated
-"add_recipients" = "Rni imeltaɣen";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Isen n ubadu";
 "email" = "Imayl";
@@ -330,19 +326,13 @@
 "answer_call" = "Err";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Agi";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Tiɣri tuffiɣt";
 "outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
 "outgoing_video_call" = "Asiwel n uvidyu uffiɣ";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Tiɣri i d-ikecmen";
 "incoming_audio_call" = "Asiwel n umeslaw ukcim";
 "incoming_video_call" = "Asiwel n uvidyu ukcim";
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";
 "missed_call" = "Tiɣri ittwazeglen";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Tetḥeqqeḍ tebɣiḍ ad truḥeḍ? ";
@@ -492,8 +482,6 @@
 "incoming_messages" = "Iznan ukcimen";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Iznan uffiɣen";
-// deprecated
-"storage_on_domain" = "Aḥraz deg %1$@";
 "connectivity" = "Tuqqna";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Ur yeqqin ara";
@@ -615,8 +603,6 @@
 "share_text_multiple_chats" = "Azen aḍris-a ɣer %1$d idwenniyin?\n\n\"%2$@\"";
 "share_abort" = "Beṭṭu ur yedda ara ɣef sebba n tsirag ixuṣṣen.";
 // preferences
-"pref_using_custom" = " Aseqdec asagen: %1$@";
-"pref_using_default" = "Aseqdec amezwer: %1$@";
 "pref_profile_info_headline" = "Amaɣnu-inek·inem";
 "pref_profile_photo" = "Tugna n umaɣnu";
 "pref_blocked_contacts" = "Inermisen yettusweḥlen";
@@ -649,8 +635,6 @@
 "pref_sound" = "Imesli";
 "pref_silent" = "Asusam";
 "pref_privacy" = "Tabaḍnit";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Idiwenniyen d Umidya";
 "pref_system_default" = "Anagraw amezwer";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Aceɛlal ";
@@ -715,8 +699,6 @@
 "n_bytes_message" = "Izen %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Sader-d afellay i yellan alamma d %1$@";
-// deprecated
-"select_profile" = "Fren amaɣnu";
 "profile_image_select" = "Fren tugna n umaɣnu";
 "select_your_new_profile_image" = "Fren tugna-ik·im tamaynut n umaɣnu";
 "profile_image_delete" = "Kkes tugna n umaɣnu";
@@ -818,10 +800,6 @@
 "ephemeral_timer_seconds_by_you" = "Tesbedḍeḍ amkud n yiznan ur nettdum ara ɣer %1$@ n tesdatin";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Amkud n yiznan ur nettdum ara yettwasbed ar %1$@ n tesdatin sɣur %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Tesbeddeḍ amkud n yiznan ur nettdum ara ɣer 1 n tesdat.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Amkud n yiznan ur nettdum ara yettwasbed ar 1 n tesdat sɣur %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Tesbeddeḍ amkud n yiznan ue nettdum ara ɣer 1 n usrag.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Amkud n yiznan ur nettdum ara yettwasbed ar 1 n usrag sɣur %1$@.";
@@ -915,8 +893,6 @@
 "verified_by" = "Yettwasenked sɣur %1$@";
 "verified_by_you" = "Yettwasenked sɣur nekk";
 "verified_by_unknown" = "Yettwasenked";
-// deprecated
-"verified_contact_required_explain" = "Akken ad tḍemneḍ awgelhan n yixef ɣer yixef, tzemreḍ kan ad ternuḍ inermisen s tecreḍt n usenqed tadalt i ugraw-a.\n\nTzemreḍ ad temlileḍ inermisen s timmad-nsen u ad tesḍummeḍ tangalt-nsen QR akken ad ten-senkdeḍ.";
 "mailto_dialog_header_select_chat" = "Fren adiwenni i tuzna n yizen ɣer";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ɣur-s yakkan izen n urewway, tebɣiḍ ad t-tbeddleḍ?";

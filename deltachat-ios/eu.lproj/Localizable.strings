@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Azken aldiz begiratua %1$@";
 "last_seen_unknown" = "Azken aldiz begiratzea: ezezaguna";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Kanalak";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Kanal berria";
-// deprecated
-"add_recipients" = "Gehitu harpidedunak";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalaren izena";
 "email" = "Posta elektronikoa";
@@ -331,19 +327,13 @@
 "answer_call" = "Erantzun";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ukatu";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Irteerako deia";
 "outgoing_audio_call" = "Irteerako audio deia";
 "outgoing_video_call" = "Irteerako bideo deia";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Sarrerako deia";
 "incoming_audio_call" = "Sarrerako audio deia";
 "incoming_video_call" = "Sarrerako bideo deia";
 "declined_call" = "Ukatutako deia";
 "canceled_call" = "Bertan behera utzitako deia";
 "missed_call" = "Galdutako deia";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ziur irten nahi duzula?";
@@ -493,8 +483,6 @@
 "incoming_messages" = "Sarrerako mezuak";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Irteerako mezuak";
-// deprecated
-"storage_on_domain" = "%1$@(e)ko biltegiratzea";
 "connectivity" = "Konexioa";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Konektatu gabe";
@@ -616,8 +604,6 @@
 "share_text_multiple_chats" = "Bidali testua hau %1$d txatetara?\n\n\"%2$@\"";
 "share_abort" = "Partekatzea eten da baimenak falta direlako.";
 // preferences
-"pref_using_custom" = "Pertsonalizatua erabiltzen: %1$@";
-"pref_using_default" = "Lehenetsia erabiltzen: %1$@";
 "pref_profile_info_headline" = "Zure profileko informazioa";
 "pref_profile_photo" = "Profileko argazkia";
 "pref_blocked_contacts" = "Blokeatutako kontaktuak";
@@ -650,8 +636,6 @@
 "pref_sound" = "Soinua";
 "pref_silent" = "Isila";
 "pref_privacy" = "Pribatutasuna";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Txatak eta multimedia";
 "pref_system_default" = "Sisteman lehenetsia";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Argia";
@@ -716,8 +700,6 @@
 "n_bytes_message" = "%1$@ mezu";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Deskargatu eskuragarri dagoen gehienezkoa %1$@ arte";
-// deprecated
-"select_profile" = "Aukeratu kontua";
 "profile_image_select" = "Aukeratu abatarra";
 "select_your_new_profile_image" = "Aukeratu zure abatar berria";
 "profile_image_delete" = "Ezabatu abatarra";
@@ -819,10 +801,6 @@
 "ephemeral_timer_seconds_by_you" = "Mezuen desagerpen-denbora %1$@ segundotan ezarri duzu.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@(e)k mezuen desagerpen-denbora %1$@ segundotan ezarri du.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Mezuen desagerpen-denbora 1 minutakoa dela ezarri duzu.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@(e)k mezuen desagerpen-denbora 1 minutukoa dela ezarri du.";
 "ephemeral_timer_1_hour_by_you" = "Mezuen desagerpen-denbora 1 ordukoa dela ezarri duzu.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@(e)k mezuen desagerpen-denbora 1 ordukoa dela ezarri du.";
@@ -916,8 +894,6 @@
 "verified_by" = "%1$@(e)k egiaztatuta";
 "verified_by_you" = "Nik egiaztatuta";
 "verified_by_unknown" = "Egiaztatuta";
-// deprecated
-"verified_contact_required_explain" = "Muturretik muturrera zifratzea bermatzeko, marka berdea duten kontaktuak soilik gehitu ditzakezu talde honetara.\n\nKontaktuekin aurrez aurre elkartu zaitezke eta haien QR kodea eskaneatu dezakezu elkar egiaztatzeko.";
 "mailto_dialog_header_select_chat" = "Aukeratu txat bat mezua bidaltzeko";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@(e)k zirriborro bat du dagoeneko, ordezkatu nahi duzu?";

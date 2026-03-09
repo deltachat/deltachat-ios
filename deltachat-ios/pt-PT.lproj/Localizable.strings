@@ -289,8 +289,6 @@
 "forward_to" = "Reencaminhar ...";
 "ask_send_files_to_selected_chats" = "Enviar %1$d arquivo(s) para %2$d conversas?";
 // preferences
-"pref_using_custom" = "Utilizando personalizado %1$@";
-"pref_using_default" = "Utilizando padrão: %1$@";
 "pref_profile_info_headline" = "O seu perfil";
 "pref_profile_photo" = "Foto do perfil";
 "pref_blocked_contacts" = "Bloquear contactos";
@@ -313,8 +311,6 @@
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
 "pref_privacy" = "Privacidade";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "chats e mídia";
 "pref_system_default" = "Configuração por omissão";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Luz";
