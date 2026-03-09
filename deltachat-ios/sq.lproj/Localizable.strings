@@ -115,8 +115,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Parë së fundi %1$@";
 "last_seen_unknown" = "Parë së fundi më: S’dihet";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Më pak se 1 minutë";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -168,6 +169,8 @@
 "games" = "Lojëra";
 "tools" = "Mjete";
 "app_size" = "Madhësi";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
+"app_date_published" = "Botuar më";
 "add_to_chat" = "Shtoje te Fjalosje";
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Shfletoni";
@@ -203,10 +206,9 @@
 "channels" = "Kanale";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Kanal i Ri";
-// deprecated
-"add_recipients" = "Shtoni Marrës";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Emër Kanali";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "Email";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Email i Ri";
@@ -326,19 +328,13 @@
 "answer_call" = "Përgjigjuni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Hidhe poshtë";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Thirrje e dërguar";
 "outgoing_audio_call" = "Thirrje audio e dërguar";
 "outgoing_video_call" = "Thirrje video e dërguar";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Thirrje e marrë";
 "incoming_audio_call" = "Thirrje audio e marrë";
 "incoming_video_call" = "Thirrje video e marrë";
 "declined_call" = "Thirrje e hedhur poshtë";
 "canceled_call" = "Thirrje e anuluar";
 "missed_call" = "Thirrje e humbur";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
@@ -487,8 +483,6 @@
 "incoming_messages" = "Mesazhe të Marrë";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mesazhe të Dërguar";
-// deprecated
-"storage_on_domain" = "Depozitim në %1$@";
 "connectivity" = "Aftësi lidhjeje";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "I palidhur";
@@ -610,8 +604,6 @@
 "share_text_multiple_chats" = "Të dërgohet ky tekst te %1$d fjalosje?\n\n“%2$@”";
 "share_abort" = "Ndarja me të tjerë dështoi ngaqë mungojnë leje.";
 // preferences
-"pref_using_custom" = "Po përdoret vetjak: %1$@";
-"pref_using_default" = "Po përdoret parazgjedhje: %1$@";
 "pref_profile_info_headline" = "Profili Juaj";
 "pref_profile_photo" = "Foto Profili";
 "pref_blocked_contacts" = "Kontakte të Bllokuar";
@@ -635,6 +627,10 @@
 "pref_notifications" = "Njoftime";
 "pref_mention_notifications" = "Përmendje";
 "pref_mention_notifications_explain" = "Në grupe të heshtuar, njofto për mesazhe drejtuar jush, si përgjigjet, apo reagimet";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Thirrje";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Shfaq skenë thirrjeje për thirrje ardhëse";
 "pref_notifications_show" = "Shfaqi";
 "pref_notifications_priority" = "Përparësi";
 "pref_notifications_explain" = "Aktivizoni njoftime sistemi për mesazhe të reja";
@@ -644,8 +640,6 @@
 "pref_sound" = "Tingull";
 "pref_silent" = "Heshtazi";
 "pref_privacy" = "Privatësi";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Fjalosje dhe Media";
 "pref_system_default" = "Parazgjedhje sistemi";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "E çelët";
@@ -709,8 +703,6 @@
 "n_bytes_message" = "Mesazh %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Shkarko maksimumin e mundshëm deri më %1$@";
-// deprecated
-"select_profile" = "Përzgjidhni Profil";
 "profile_image_select" = "Përzgjidhni Figurë Profili";
 "select_your_new_profile_image" = "Përzgjidhni figurën tuaj të re të profilit";
 "profile_image_delete" = "Fshini Figurën e Profilit";
@@ -812,10 +804,6 @@
 "ephemeral_timer_seconds_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në %1$@ sekonda";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ sekonda nga %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 minutë.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 minutë nga %1$@.";
 "ephemeral_timer_1_hour_by_you" = "E vutë kohëmatësin e zhdukjes së mesazheve në 1 orë.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në 1 orë nga %1$@.";
@@ -909,8 +897,6 @@
 "verified_by" = "Sjellë nga %1$@";
 "verified_by_you" = "Sjellë nga unë";
 "verified_by_unknown" = "Sjellë nga";
-// deprecated
-"verified_contact_required_explain" = "Që të garantohet fshehtëzim skaj-më-skaj, mund të shtoni në këtë grup vetëm kontakte me shenjën e gjelbër të verifikimit.\n\nMund të takoheni drejtpërsëdrejti me kontakte të paverifikuar dhe të skanoni kodin e tyre QR për t’i verifikuar ata.";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ përmban tashmë një skicë mesazhi, doni të zëvendësohet?";

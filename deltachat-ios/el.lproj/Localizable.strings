@@ -143,8 +143,6 @@
 "menu_new_contact" = "Νέα Επαφή";
 "menu_new_chat" = "Νέα Συνομιλία";
 "menu_new_group" = "Νέα ομάδα";
-// deprecated
-"add_recipients" = "Προσθήκη Παραλήπτη";
 "menu_send" = "Αποστολή";
 "menu_toggle_keyboard" = "Εναλλαγή πληκτρολογίου emoji";
 "menu_edit_group" = "Επεξεργασία ομάδας";
@@ -328,8 +326,6 @@
 "incoming_messages" = "Εισερχόμενα Μηνύματα";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Εξερχόμενα Μηνύματα";
-// deprecated
-"storage_on_domain" = "Αποθήκευση στο %1$@";
 "connectivity" = "Συνδεσιμότητα";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Μη συνδεδεμένο";
@@ -389,8 +385,6 @@
 "share_text_multiple_chats" = "Αποστολή αυτού του κειμένου σε %1$d συνομιλίες;\n\n\"%2$@\"";
 "share_abort" = "Η κοινή χρήση ματαιώθηκε λόγω έλλειψης αδειών.";
 // preferences
-"pref_using_custom" = "Χρήση προσαρμοσμένου: %1$@";
-"pref_using_default" = "Χρήση προεπιλογής: %1$@";
 "pref_profile_info_headline" = "Πληροφορίες Προφίλ";
 "pref_profile_photo" = "Εικόνα Προφίλ";
 "pref_blocked_contacts" = "Αποκλεισμένες Επαφές";
@@ -420,8 +414,6 @@
 "pref_sound" = "Ήχος";
 "pref_silent" = "Σε σίγαση";
 "pref_privacy" = "Ιδιωτικότητα";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Συνομιλίες και Πολυμέσα";
 "pref_system_default" = "Προκαθορισμένο του συστήματος";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Φωτεινό";
@@ -544,10 +536,6 @@
 "ephemeral_timer_seconds_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ δευτερόλεπτα.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 λεπτό.";
 "ephemeral_timer_1_hour_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 ώρα.";

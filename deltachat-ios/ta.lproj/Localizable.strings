@@ -145,6 +145,7 @@
 "login_smtp_password" = "SMTP க்கான கடவுச்சொல்";
 "login_smtp_server" = "SMTP க்கான சேவகன்";
 "login_smtp_port" = "SMTP போர்ட்";
+// preferences
 "pref_profile_info_headline" = "உங்கள் சுயவிவரத் தகவல்";
 "pref_blocked_contacts" = "தடுக்கபட்ட தொடர்புகள்";
 "pref_your_name" = "எனது பெயர்";
@@ -161,8 +162,6 @@
 "pref_sound" = "ஓசை";
 "pref_silent" = "அமைதி";
 "pref_privacy" = "தனியுரிமை";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "அரட்டைகள் மற்றும் ஊடகங்கள்";
 "pref_system_default" = "கருவி இயல்புநிலை";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "வெளிச்சமிக்க";

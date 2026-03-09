@@ -150,8 +150,6 @@
 "menu_new_contact" = "Kontak baru";
 "menu_new_chat" = "Obrolan baru";
 "menu_new_group" = "Grup baru";
-// deprecated
-"add_recipients" = "Tambahkan Penerima";
 "menu_send" = "Terkirim";
 "menu_toggle_keyboard" = "Tekan tombol emoji keyboard";
 "menu_edit_group" = "Edit grup";
@@ -336,8 +334,6 @@
 "forward_to" = "Diteruskan ke…";
 "share_abort" = "Pembagian dibatalkan karena tidak ada izin.";
 // preferences
-"pref_using_custom" = "Menggunakan custom: %1$@";
-"pref_using_default" = "Menggunakan default: %1$@";
 "pref_profile_info_headline" = "Info profil Anda";
 "pref_profile_photo" = "Gambar profil";
 "pref_blocked_contacts" = "Kontak yang diblokir";
@@ -364,8 +360,6 @@
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
 "pref_privacy" = "Privasi";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Obrolan dan media";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Cahaya";
 "pref_dark_theme" = "Gelap";

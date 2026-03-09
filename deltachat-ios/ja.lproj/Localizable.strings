@@ -323,8 +323,6 @@
 "share_text_multiple_chats" = "%2$@を%1$d個のチャットに送りますか。";
 "share_abort" = "権限エラー：共有が一時中断されました。";
 // preferences
-"pref_using_custom" = "カスタムを使う：%1$@";
-"pref_using_default" = "デフォルトを使う：%1$@";
 "pref_profile_info_headline" = "ユーザープロファイル";
 "pref_profile_photo" = "アイコン画像";
 "pref_blocked_contacts" = "ブロックされた人";
@@ -354,8 +352,6 @@
 "pref_sound" = "通知音";
 "pref_silent" = "無音";
 "pref_privacy" = "機密保護";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "チャットと写真･動画･音楽";
 "pref_system_default" = "システム既定";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "白";
@@ -457,10 +453,6 @@
 "ephemeral_timer_seconds_by_you" = "自分から消えるメッセージを%1$@秒にしました。";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@から消えるメッセージを%1$@秒にしました。";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "自分から消えるメッセージを1分にしました。";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@から消えるメッセージを1分にしました。";
 "ephemeral_timer_1_hour_by_you" = "自分から消えるメッセージを1時間にしました。";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@から消えるメッセージを1時間にしました。";

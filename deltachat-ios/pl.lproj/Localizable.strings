@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Ostatnio widziano %1$@";
 "last_seen_unknown" = "Ostatnio widziano: nie wiadomo";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Kanały";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nowy kanał";
-// deprecated
-"add_recipients" = "Dodaj subskrybentów";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nazwa kanału";
 "email" = "E-mail";
@@ -331,19 +327,13 @@
 "answer_call" = "Odbierz";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Odrzuć";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Połączenie wychodzące";
 "outgoing_audio_call" = "Wychodzące połączenie audio";
 "outgoing_video_call" = "Wychodzące połączenie wideo";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Połączenie przychodzące";
 "incoming_audio_call" = "Przychodzące połączenie audio";
 "incoming_video_call" = "Przychodzące połączenie wideo";
 "declined_call" = "Połączenie odrzucone";
 "canceled_call" = "Połączenie anulowane";
 "missed_call" = "Połączenie anulowane";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Na pewno chcesz opuścić?";
@@ -493,8 +483,6 @@
 "incoming_messages" = "Wiadomości przychodzące";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Wiadomości wychodzące";
-// deprecated
-"storage_on_domain" = "Zajętość skrzynki %1$@";
 "connectivity" = "Łączność";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nie połączony";
@@ -616,8 +604,6 @@
 "share_text_multiple_chats" = "Wysłać ten tekst do %1$d czatów?\n\n\"%2$@\"";
 "share_abort" = "Udostępnianie zostało przerwane z powodu brakujących uprawnień.";
 // preferences
-"pref_using_custom" = "Używanie niestandardowe: %1$@";
-"pref_using_default" = "Użyj domyślne: %1$@";
 "pref_profile_info_headline" = "Twój profil";
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
@@ -649,8 +635,6 @@
 "pref_sound" = "Dźwięk";
 "pref_silent" = "Cichy";
 "pref_privacy" = "Prywatność";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Czaty i media";
 "pref_system_default" = "Domyślny systemu";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Jasny";
@@ -715,8 +699,6 @@
 "n_bytes_message" = "Wiadomość %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maksymalna ilość do pobrania dostępna do %1$@";
-// deprecated
-"select_profile" = "Wybierz profil";
 "profile_image_select" = "Wybierz zdjęcie profilowe";
 "select_your_new_profile_image" = "Wybierz nowe zdjęcie profilowe";
 "profile_image_delete" = "Usuń zdjęcie profilowe";
@@ -815,10 +797,6 @@
 "ephemeral_timer_seconds_by_you" = "Ustawiono zegar znikających wiadomości na %1$@ s.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Użytkownik %2$@ ustawił zegar znikających wiadomości na %1$@ s.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Ustawiono zegar znikających wiadomości na 1 minutę.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Użytkownik %1$@ ustawił zegar znikających wiadomości na 1 minutę.";
 "ephemeral_timer_1_hour_by_you" = "Ustawiono zegar znikających wiadomości na 1 godzinę.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Użytkownik %1$@ ustawił zegar znikających wiadomości na 1 godzinę.";
@@ -912,8 +890,6 @@
 "verified_by" = "Kontakt zweryfikowany przez %1$@";
 "verified_by_you" = "Kontakt zweryfikowany przez ciebie";
 "verified_by_unknown" = "Zweryfikowano";
-// deprecated
-"verified_contact_required_explain" = "Aby zagwarantować szyfrowanie end-to-end, do tej grupy możesz dodawać wyłącznie kontakty oznaczone zielonym znacznikiem wyboru.\n\nMożesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, aby je zweryfikować.";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";

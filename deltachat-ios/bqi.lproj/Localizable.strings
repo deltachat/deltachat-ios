@@ -324,8 +324,6 @@
 "tab_map" = "نقشه";
 "media_preview" = "نشووݩ داڌن وارسگر";
 "send_message" = "فشناڌن پیوم";
-// deprecated
-"storage_on_domain" = "زفت کردن من %1$@";
 // Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_connecting" = "هونی منپیز ابۊ...";
 // Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)

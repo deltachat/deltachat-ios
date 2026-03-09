@@ -26,7 +26,7 @@
 "join" = "Uneix-te";
 "rejoin" = "Torna a unir-te";
 "delete" = "Esborra";
-"delete_for_me" = "Elimina per a mi";
+"delete_for_me" = "Esborra per a mi";
 "delete_for_everyone" = "Esborra per a tothom";
 "info" = "Info";
 "update" = "Actualitza";
@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Vist per darrer cop: %1$@";
 "last_seen_unknown" = "Vist per darrer cop: desconegut";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +206,9 @@
 "channels" = "Canals";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nou Canal";
-// deprecated
-"add_recipients" = "Afegeix destinataris";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nom del Canal";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "Correu electrònic";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nou correu electrònic";
@@ -331,19 +328,13 @@
 "answer_call" = "Respon";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rebutja";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Trucada sortint";
 "outgoing_audio_call" = "Trucada de veu sortint";
 "outgoing_video_call" = "Videotrucada sortint";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Trucada entrant";
 "incoming_audio_call" = "Trucada de veu entrant";
 "incoming_video_call" = "Videotrucada entrant";
 "declined_call" = "Trucada rebutjada";
 "canceled_call" = "Trucada cancel·lada";
 "missed_call" = "Trucada perduda";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Segur que vols sortir?";
@@ -405,7 +396,7 @@
 // "Start..." button for an app
 "start_app" = "Comença...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
-"accept_request_first" = "Si us plau accepteu primer el requeriment del xat.";
+"accept_request_first" = "Si us plau accepteu primer la sol·licitud del xat.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Envia \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
@@ -493,8 +484,6 @@
 "incoming_messages" = "Missatges entrants";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Missatges sortints";
-// deprecated
-"storage_on_domain" = "Emmagatzematge a %1$@.";
 "connectivity" = "Connectivitat";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Desconnectat";
@@ -540,7 +529,7 @@
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
-"login_advanced_hint" = "Aquest inici de sessió és per a usuaris avançats:\n\n• No feu servir una adreça que utilitzeu a una altra app.\n\n• Les adreces de correu tradicional admeten xats sense xifratge d\'extrem a extrem, indicades amb una icona de correu.";
+"login_advanced_hint" = "Aquest inici de sessió és per a usuaris avançats:\n\n• No feu servir una adreça que utilitzeu a una altra app.\n\n• Les adreces de correu tradicional admeten xats sense xifrar d\'extrem a extrem, indicades amb una icona de correu.";
 "login_inbox" = "Safata d\'entrada";
 "login_imap_login" = "Nom d\'identificació IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -567,6 +556,16 @@
 "proxy_share_link" = "Comparteix l\'enllaç";
 "proxy_enabled" = "Servidor intermediari activat";
 "proxy_enabled_hint" = "Esteu fent servir un servidor intermediari. Si teniu problemes per a connectar-vos, proveu un servidor intermediari diferent.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Relés";
+"add_transport" = "Afegir Relé";
+"remove_transport" = "Elimina Relé";
+"edit_transport" = "Edita Relé";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Afegeix aquest relé?";
+"invalid_transport_qr" = "El codi QR escanejat no conté un relé vàlid.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_transport" = "Eliminar relé \"%1$@\"?\n\nEls teus contactes només poden contactar amb tu si ja els has contactat prèviament a través d\'un altre relé.\n\nSi dubtes, elimina el relé més tard.";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
@@ -579,17 +578,17 @@
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accepta certificats no vàlids";
-"switch_account" = "Canvia el perfil";
-"add_account" = "Afegeix un compte";
+"switch_account" = "Canvia de perfil";
+"add_account" = "Afegeix un perfil";
 // for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
-"profile_tag" = "Etiqueta de Perfil";
+"profile_tag" = "Etiqueta del Perfil";
 "profile_tag_hint" = "p.ex. treball, família";
-"profile_tag_explain" = "Configureu una etiqueta visible només per a vosaltres; ajudant-vos a diferir entre els vostres perfils.";
+"profile_tag_explain" = "Configureu una etiqueta visible només per a vosaltres; ajudant-vos a diferenciar entre els vostres perfils.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Desplaçat a l\'inici";
 "delete_account" = "Esborra el perfil";
 "delete_account_ask" = "Esteu segur de voler esborrar les dades del vostre perfil?";
-"delete_account_explain_with_name" = "S\'esborraran totes les dades del perfil «%1$@» en aquest dispositiu, incloent-hi la configuració de xifratge d\'extrem a extrem, contactes, xats, missatges i contingut multimèdia. Aquesta acció no es pot desfer.";
+"delete_account_explain_with_name" = "S\'esborraran totes les dades del perfil «%1$@» en aquest dispositiu, incloent-hi la configuració de xifrat d\'extrem a extrem, contactes, xats, missatges i contingut multimèdia. Aquesta acció no es pot desfer.";
 "unconfigured_account" = "Perfil sense configurar";
 "unconfigured_account_hint" = "Obriu el per perfil per a configurar-lo.";
 "try_connect_now" = "Prova de connectar-hi ara";
@@ -606,8 +605,6 @@
 "share_text_multiple_chats" = "Voleu enviar aquest text a %1$d xats?\n\n«%2$@»";
 "share_abort" = "S\'ha avortat la compartició per falta de permisos.";
 // preferences
-"pref_using_custom" = "Ús personalitzat: %1$@";
-"pref_using_default" = "Ús per defecte: %1$@";
 "pref_profile_info_headline" = "El vostre perfil";
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
@@ -616,6 +613,7 @@
 "pref_your_name" = "El vostre nom";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signatura";
+"chat_description" = "Descripció";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "La tecla «Retorn» envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla «Retorn»";
@@ -639,8 +637,6 @@
 "pref_sound" = "So";
 "pref_silent" = "Silenci";
 "pref_privacy" = "Privacitat";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Xats i multimèdia";
 "pref_system_default" = "Per defecte del sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Clar";
@@ -680,7 +676,7 @@
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Mode multidispositiu";
 "pref_multidevice_explain" = "Sincronitza els vostres missatges amb els vostres altres dispositius. Activat automàticament quan s\'afegeix un segon dispositiu.";
-"pref_multidevice_change_warn" = "El mode multidispositiu ha d\'estar habilitat quan feu servir el mateix compte des de diferents perfils. Només desactiveu aquesta opció si heu suprimit aquest perfil de tots els vostres altres dispositius.\n\nDesactivar aquesta opció mentre es fa servir en el mateix perfil en múltiples dispositius farà que es perdin missatges i hi hagi altres problemes.";
+"pref_multidevice_change_warn" = "El mode multidispositiu ha d\'estar habilitat quan feu servir el mateix perfil des de diferents dispositius. Desactiva aquesta opció només si has esborrat aquest perfil de tots els altres dispositius.\n\nDesactivar aquesta opció mentre es fa servir el mateix perfil en múltiples dispositius farà que es perdin missatges i hi hagi altres problemes.";
 "pref_auto_folder_moves" = "Moure automàticament a la carpeta de Delta Chat";
 "pref_only_fetch_mvbox_title" = "Agafa només de la carpeta de DeltaChat";
 "pref_show_emails" = "Mostra els correus clàssics";
@@ -705,8 +701,6 @@
 "n_bytes_message" = "%1$@ missatge";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Baixa el màxim disponible fins a %1$@";
-// deprecated
-"select_profile" = "Trieu Perfil";
 "profile_image_select" = "Trieu la imatge de perfil";
 "select_your_new_profile_image" = "Trieu la imatge nova de perfil";
 "profile_image_delete" = "Esborra la imatge del perfil";
@@ -773,6 +767,9 @@
 "group_image_changed_by_you" = "Heu canviat la imatge de grup.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imatge de grup canviada per %1$@.";
+"chat_description_changed_by_you" = "Has modificat la descripció del xat.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Descripció del xat modificada per %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "S\'ha afegit el membre %1$@.";
 // %1$s will be replaced by name of the contact added to the group
@@ -805,10 +802,6 @@
 "ephemeral_timer_seconds_by_you" = "Heu definit el temporitzador dels missatges efímers a %1$@ segons.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ segons.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 segon.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1  minut.";
 "ephemeral_timer_1_hour_by_you" = "Heu definit el temporitzador dels missatges fonedissos a 1 hora.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ ha definit el temporitzador dels missatges efímers a 1 hora.";
@@ -865,7 +858,7 @@
 "qrscan_contains_text" = "Text del codi QR escanejat:\n\n%1$@";
 "qrscan_contains_url" = "URL del codi QR escanejat:\n\n%1$@";
 "qrscan_fingerprint_label" = "Empremta";
-"withdraw_verifycontact_explain" = "Altres persones que vulguin contactar amb vós poden escanejar aquest codi QR.\n\nPodeu reinicialitzar-lo, de manera que el codi QR o enllaç actual existent ja no servirà.";
+"withdraw_verifycontact_explain" = "Altres persones que vulguin contactar amb vós poden escanejar aquest codi QR.\n\nPodeu reinicialitzar-lo, de manera que el codi QR o enllaç d\'invitació existent ja no servirà.";
 "withdraw_verifygroup_explain" = "Altres poden escanejar aquest codi QR per a unir-se al grup «%1$@».\n\nPodeu reinicialitzar-lo, de manera que el codi QR existent, o l\'enllaç d\'invitació, deixarà de funcionar.";
 "withdraw_joinbroadcast_explain" = "Altres poden escanejar aquest codi QR per a unir-se al canal «%1$@».\n\nPodeu reinicialitzar-lo, de manera que el codi QR existent, o l\'enllaç d\'invitació, deixarà de funcionar.";
 "withdraw_qr_code" = "Reinicialitza el codi QR";
@@ -873,7 +866,7 @@
 "revive_qr_code" = "Activa el codi QR";
 "qrshow_title" = "Codi QR d\'invitació";
 "qrshow_x_joining" = "%1$@ s\'uneix.";
-"qrshow_x_verified" = "%1$@ verificat.";
+"qrshow_x_verified" = "%1$@ afegit.";
 "qrshow_x_has_joined_group" = "%1$@ s\'ha unit al grup.";
 "qrshow_join_group_title" = "Codi QR d\'invitació";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -896,14 +889,12 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ha respost, espereu per a ser afegit al grup...";
 "secure_join_wait" = "S\'està establint el xifratge d\'extrem a extrem garantit, espereu...";
-"contact_verified" = "%1$@ verificat.";
+"contact_verified" = "%1$@ afegit.";
 "contact_blocked" = "Heu blocat el contacte";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "Afegit per %1$@";
 "verified_by_you" = "Afegit per mi";
 "verified_by_unknown" = "Afegit";
-// deprecated
-"verified_contact_required_explain" = "Per a garantir el xifrat extrem a extrem, només podeu afegir a aquest grup contactes que tinguin la marca verda.\n\nPodeu trobar-vos en persona amb els contactes per a escanejar els seus codis QR i poder-los afegir. ";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ja té un missatge d\'esborrany, voleu substituir-lo?";
@@ -1049,4 +1040,4 @@
 "perm_enable_bg_reminder_title" = "Prem aquí per rebre missatges mentre Delta Chat és en segon pla.";
 "perm_enable_bg_already_done" = "Ja heu autoritzat Delta Chat a rebre missatges en segon pla.\n\nSi encara no us arriben els missatge, reviseu els paràmetres de sistema.";
 // device messages for updates
-"update_2_0" = "Què hi ha de nou?\n\n💯 L’encriptació de punta a punta és fiable i permanent. Els candaus 🔒 han desaparegut!\n\n✉️ El correu electrònic clàssic sense encriptació de punta a punta es mostra amb el símbol d\'un sobre.\n\n😻 Nova pantalla de perfil millorada per a tots els teus contactes.\n\n🔲 Nou botó per accedir ràpidament a les aplicacions utilitzades als xats.\n\n❤️ Si us plau, fes una donació per ajudar-nos a continuar independents i seguir aportant millores: %1$@";
+"update_2_0" = "Què hi ha de nou?\n\n💯 El xifrat d\'extrem a extrem és fiable i permanent. Els candaus 🔒 han desaparegut!\n\n✉️ El correu electrònic clàssic sense xifrar d\'extrem a extrem es mostra amb el símbol d\'un sobre.\n\n😻 Nova pantalla de perfil millorada per a tots els teus contactes.\n\n🔲 Nou botó per accedir ràpidament a les aplicacions utilitzades als xats.\n\n❤️ Si us plau, fes una donació per ajudar-nos a continuar independents i seguir aportant millores: %1$@";

@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>n_seconds_ext</key>
+	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>
@@ -13,33 +13,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d секунда</string>
+			<string>Длительность: %d минута</string>
 			<key>few</key>
-			<string>%d секунды</string>
+			<string>Длительность: %d минуты</string>
 			<key>many</key>
-			<string>%d секунд</string>
+			<string>Длительность: %d минут</string>
 			<key>other</key>
-			<string>%d секунд</string>
-		</dict>
-	</dict>
-	<key>n_minutes_ext</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d минута</string>
-			<key>few</key>
-			<string>%d минуты</string>
-			<key>many</key>
-			<string>%d минут</string>
-			<key>other</key>
-			<string>%d минут</string>
+			<string>Длительность: %d минут</string>
 		</dict>
 	</dict>
 	<key>n_minutes</key>
@@ -220,6 +200,26 @@
 			<string>%d выбрано</string>
 			<key>other</key>
 			<string>%d выбрано</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d просмотр</string>
+			<key>few</key>
+			<string>%d просмотра</string>
+			<key>many</key>
+			<string>%d просмотров</string>
+			<key>other</key>
+			<string>%d просмотров</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

@@ -116,8 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Son görülme %1$@";
 "last_seen_unknown" = "Son görülme: Bilinmeyen";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "1 dakikadan az";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +209,9 @@
 "channels" = "Kanallar";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Yeni Kanal";
-// deprecated
-"add_recipients" = "Aboneleri Ekle";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanal Adı";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-Posta";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Yeni E-Posta";
@@ -331,19 +331,13 @@
 "answer_call" = "Yanıtla";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Reddet";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Giden arama";
 "outgoing_audio_call" = "Giden sesli arama";
 "outgoing_video_call" = "Giden görüntülü arama";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Gelen arama";
 "incoming_audio_call" = "Gelen sesli arama";
 "incoming_video_call" = "Gelen görüntülü arama";
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";
 "missed_call" = "Yanıtlanmayan arama";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
@@ -493,8 +487,6 @@
 "incoming_messages" = "Gelen İletiler";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Giden İletiler";
-// deprecated
-"storage_on_domain" = "%1$@ Üzerinde Depolama";
 "connectivity" = "Bağlanabilirlik";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Bağlı değil";
@@ -612,12 +604,10 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d dosya “%2$@” sohbetine gönderilsin mi?";
 "ask_send_files_to_selected_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?";
-"videos_sent_without_recoding" = "(Videolar özgün, büyük dosyalar olarak gönderilir. Videoları daha küçük dosyalar olarak göndermek için onları ayrı ayrı iliştirin)";
+"videos_sent_without_recoding" = "(Çoklu video göndermek, onları olduğu gibi gönderecektir ve bu da büyük boyutlara yol açabilir. Boyutlarını küçültmek ve veri tasarrufu sağlamak için her videoyu kendi iletisinde gönderebilirsiniz.)";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n“%2$@”";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";
 // preferences
-"pref_using_custom" = "Özel kullanılıyor: %1$@";
-"pref_using_default" = "Varsayılan kullanılıyor: %1$@";
 "pref_profile_info_headline" = "Profiliniz";
 "pref_profile_photo" = "Profil Görseli";
 "pref_blocked_contacts" = "Engellenen Kişiler";
@@ -626,6 +616,7 @@
 "pref_your_name" = "Adınız";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Biyografi";
+"chat_description" = "Açıklama";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter Tuşu Göndersin";
 "pref_enter_sends_explain" = "Enter tuşuna basma, metin iletileri gönderecek";
@@ -640,6 +631,10 @@
 "pref_notifications" = "Bildirimler";
 "pref_mention_notifications" = "Anmalar";
 "pref_mention_notifications_explain" = "Sessize alınan gruplarda, yanıtlar ya da tepkiler gibi size yönlendirilen iletileri bildirin";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Aramalar";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Gelen aramalarda arama ekranını göster";
 "pref_notifications_show" = "Göster";
 "pref_notifications_priority" = "Öncelik";
 "pref_notifications_explain" = "Yeni iletiler için sistem bildirimlerini etkinleştir";
@@ -649,8 +644,6 @@
 "pref_sound" = "Ses";
 "pref_silent" = "Sessiz";
 "pref_privacy" = "Gizlilik";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Sohbetler ve Ortamlar";
 "pref_system_default" = "Sistem varsayılanı";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Açık";
@@ -715,8 +708,6 @@
 "n_bytes_message" = "%1$@ ileti";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "İndirme en fazla %1$@ zamanına kadar kullanılabilir";
-// deprecated
-"select_profile" = "Profil Seç";
 "profile_image_select" = "Profil Görseli Seç";
 "select_your_new_profile_image" = "Yeni profil görselinizi seçin";
 "profile_image_delete" = "Profil Görselini Sil";
@@ -783,6 +774,9 @@
 "group_image_changed_by_you" = "Grup görselini değiştirdiniz.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ tarafından grup görseli değiştirildi.";
+"chat_description_changed_by_you" = "Sohbet açıklamasını değiştirdiniz.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "%1$@ tarafından sohbet açıklaması değiştirildi.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ üyesi eklendi.";
 // %1$s will be replaced by name of the contact added to the group
@@ -815,10 +809,6 @@
 "ephemeral_timer_seconds_by_you" = "Kaybolan iletiler zamanlayıcısını %1$@ saniye olarak ayarladınız.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ saniye olarak ayarlandı.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Kaybolan iletiler zamanlayıcısını 1 dakika olarak ayarladınız.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 dakika olarak ayarlandı.";
 "ephemeral_timer_1_hour_by_you" = "Kaybolan iletiler zamanlayıcısını 1 saat olarak ayarladınız.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ tarafından kaybolan iletiler zamanlayıcısı 1 saat olarak ayarlandı.";
@@ -912,8 +902,6 @@
 "verified_by" = "%1$@ tarafından tanıtıldı";
 "verified_by_you" = "Benim tarafımdan tanıtıldı";
 "verified_by_unknown" = "Tanıtıldı";
-// deprecated
-"verified_contact_required_explain" = "Uçtan uca şifrelemeyi güvencelemek için bu gruba yalnızca yeşil bir onay imi olan kişileri ekleyebilirsiniz.\n\nDoğrulanmayan kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "mailto_dialog_header_select_chat" = "İletiyi göndermek için sohbet seçin";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";

@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Sågs senast %1$@";
 "last_seen_unknown" = "Sågs senast: Okänt";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,8 +206,6 @@
 "channels" = "Kanaler";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Ny kanal";
-// deprecated
-"add_recipients" = "Lägg till mottagare";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalnamn";
 "email" = "E-post";
@@ -331,19 +327,13 @@
 "answer_call" = "Svara";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avböj";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Utgående samtal";
 "outgoing_audio_call" = "Utgående ljudsamtal";
 "outgoing_video_call" = "Utgående videosamtal";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Inkommande samtal";
 "incoming_audio_call" = "Inkommande ljudsamtal";
 "incoming_video_call" = "Inkommande videosamtal";
 "declined_call" = "Nekade samtal";
 "canceled_call" = "Avbrutna samtal";
 "missed_call" = "Missade samtal";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Vill du verkligen lämna?";
@@ -493,8 +483,6 @@
 "incoming_messages" = "Inkommande meddelanden";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Utgående meddelanden";
-// deprecated
-"storage_on_domain" = "Lagring på %1$@";
 "connectivity" = "Anslutning";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Inte ansluten";
@@ -616,8 +604,6 @@
 "share_text_multiple_chats" = "Vill du skicka denna text till %1$d chattar?\n\n\"%2$@\"";
 "share_abort" = "Delningen avbröts på grund av saknad behörighet.";
 // preferences
-"pref_using_custom" = "Använder anpassat: %1$@";
-"pref_using_default" = "Använder standard: %1$@";
 "pref_profile_info_headline" = "Din profilinformation";
 "pref_profile_photo" = "Profilbild";
 "pref_blocked_contacts" = "Blockerade kontakter";
@@ -650,8 +636,6 @@
 "pref_sound" = "Ljud";
 "pref_silent" = "Tyst";
 "pref_privacy" = "Integritet";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Chattar och media";
 "pref_system_default" = "Systemets standardinställning";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Ljust";
@@ -716,8 +700,6 @@
 "n_bytes_message" = "%1$@ meddelande";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Ladda ner max tillgängligt till %1$@";
-// deprecated
-"select_profile" = "Välj profil";
 "profile_image_select" = "Välj profilbild";
 "select_your_new_profile_image" = "Välj din nya profilbild";
 "profile_image_delete" = "Ta bort profilbild";
@@ -819,10 +801,6 @@
 "ephemeral_timer_seconds_by_you" = "Tiduret för meddelandeborttagning är satt till %1$@ s av mig.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Tiduret för meddelandeborttagning är satt till %1$@ s av %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Tiduret för meddelandeborttagning är satt till 1 minut av mig.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Tiduret för meddelandeborttagning är satt till 1 minut av %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Tiduret för meddelandeborttagning är satt till 1 timma av mig.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Tiduret för meddelandeborttagning är satt till 1 timma av %1$@.";
@@ -916,8 +894,6 @@
 "verified_by" = "Introducerad av %1$@";
 "verified_by_you" = "Introducerad av mig";
 "verified_by_unknown" = "Introducerad";
-// deprecated
-"verified_contact_required_explain" = "För att garantera totalsträckskryptering  kan du bara lägga till kontakter med en grön bock i den här gruppen.\n\nDu kan träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
 "mailto_dialog_header_select_chat" = "Välj chatt för att skicka meddelandet till";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ redan har ett utkast till meddelande, vill du ersätta det?";

@@ -200,8 +200,6 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
-// deprecated
-"add_recipients" = "新增對象";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";
 "menu_edit_group" = "編輯群組";
@@ -448,8 +446,6 @@
 "incoming_messages" = "傳入訊息";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "傳出訊息";
-// deprecated
-"storage_on_domain" = "%1$@上的存儲空間";
 "connectivity" = "連接狀態";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未連接";
@@ -558,8 +554,6 @@
 "share_text_multiple_chats" = "將此文本發送到%1$d個聊天？\n\n 「%2$@」";
 "share_abort" = "共享失敗。權限不足。";
 // preferences
-"pref_using_custom" = "使用自訂值: %1$@";
-"pref_using_default" = "使用預設值: %1$@";
 "pref_profile_info_headline" = "你的個人資料";
 "pref_profile_photo" = "大頭照";
 "pref_blocked_contacts" = "已封鎖的聯絡人";
@@ -591,8 +585,6 @@
 "pref_sound" = "音效";
 "pref_silent" = "靜音";
 "pref_privacy" = "隱私權設定";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "對話和媒體設定";
 "pref_system_default" = "系統預設";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "亮色";
@@ -651,8 +643,6 @@
 "n_bytes_message" = "%1$@ 訊息";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "下載有效期至%1$@";
-// deprecated
-"select_profile" = "選擇賬戶";
 "profile_image_select" = "選擇大頭貼";
 "select_your_new_profile_image" = "選擇新的大頭貼";
 "profile_image_delete" = "刪除大頭貼";
@@ -739,10 +729,6 @@
 "ephemeral_timer_seconds_by_you" = "您將自動刪除訊息計時器設置為%1$@秒";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@設置自動刪除訊息計時器為%1$@秒。";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "您將自動刪除訊息計時器設置為 1 分鐘。";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@將自動刪除訊息計時器設置為 1 分鐘。";
 "ephemeral_timer_1_hour_by_you" = "您將自動刪除訊息計時器設置為 1 小時。";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@將自動刪除訊息計時器設置為 1 分鐘。";
@@ -825,8 +811,6 @@
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "由%1$@介紹";
 "verified_by_you" = "由我介紹";
-// deprecated
-"verified_contact_required_explain" = "為了保證端到端加密，您只能將帶有綠色驗證標識的聯絡人添加到此群組。\n\n您可以當面掃描聯絡人的QR碼以介紹他們。";
 "mailto_dialog_header_select_chat" = "選擇要將消息發送到的聊天";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@已有草稿消息，是否要替換它？";

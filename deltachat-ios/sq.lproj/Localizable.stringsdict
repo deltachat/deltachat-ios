@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>n_seconds_ext</key>
+	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@localized_format_key@</string>
@@ -13,25 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d sekondë</string>
+			<string>Kohëzgjatja %d minutë</string>
 			<key>other</key>
-			<string>%d sekonda</string>
-		</dict>
-	</dict>
-	<key>n_minutes_ext</key>
-	<dict>
-		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@localized_format_key@</string>
-		<key>localized_format_key</key>
-		<dict>
-			<key>NSStringFormatSpecTypeKey</key>
-			<string>NSStringPluralRuleType</string>
-			<key>NSStringFormatValueTypeKey</key>
-			<string>d</string>
-			<key>one</key>
-			<string>%d minutë</string>
-			<key>other</key>
-			<string>%d minuta</string>
+			<string>Kohëzgjatja %d minuta</string>
 		</dict>
 	</dict>
 	<key>n_minutes</key>
@@ -176,6 +160,22 @@
 			<string>%d e Përzgjedhur</string>
 			<key>other</key>
 			<string>%d të Përzgjedhur</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d parje</string>
+			<key>other</key>
+			<string>%d parje</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

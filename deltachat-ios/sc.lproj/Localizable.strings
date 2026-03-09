@@ -273,8 +273,6 @@
 "share_text_multiple_chats" = "Cheres inviare custu testu a %1$d tzarradas?\n\n\"%2$@\"";
 "share_abort" = "Cumpartzidura annullada pro permissos chi mancant.";
 // preferences
-"pref_using_custom" = "Personalizatziones impreadas: %1$@";
-"pref_using_default" = "Predefinidos impreados: %1$@";
 "pref_profile_info_headline" = "Sas informatziones de profilu tuas";
 "pref_profile_photo" = "Fotografia de profilu";
 "pref_blocked_contacts" = "Cuntatos blocados";
@@ -303,8 +301,6 @@
 "pref_sound" = "Sonu";
 "pref_silent" = "Istuda su sonu";
 "pref_privacy" = "Riservadesa";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Tzarradas e mèdios";
 "pref_system_default" = "Predefinidu de sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Craru";

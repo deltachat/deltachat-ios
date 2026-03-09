@@ -116,8 +116,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Viimati nähtud: %1$@";
 "last_seen_unknown" = "Viimati nähtud: pole teada";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +206,9 @@
 "channels" = "Kanalid";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Uus kanal";
-// deprecated
-"add_recipients" = "Lisa saajaid";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanali nimi";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-post";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Uus e-kiri";
@@ -331,19 +328,13 @@
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Väljuv kõne";
 "outgoing_audio_call" = "Väljuv häälkõne";
 "outgoing_video_call" = "Väljuv videokõne";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Saabuv kõne";
 "incoming_audio_call" = "Saabuv häälkõne";
 "incoming_video_call" = "Saabuv videokõne";
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
@@ -493,8 +484,6 @@
 "incoming_messages" = "Saabuvad sõnumid";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Väljuvad sõnumid";
-// deprecated
-"storage_on_domain" = "Andmeruum domeenis %1$@";
 "connectivity" = "Ühenduvus";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Pole ühendatud";
@@ -616,8 +605,6 @@
 "share_text_multiple_chats" = "Kas saadad selle teksti %1$d vestlusesse?\n\n„%2$@“";
 "share_abort" = "Puuduvate õiguste tõttu on jagamine katkestatud.";
 // preferences
-"pref_using_custom" = "Kasutan kohandatud väärtust: %1$@";
-"pref_using_default" = "Kasutan vaikimisi väärtust: %1$@";
 "pref_profile_info_headline" = "Sinu profiil";
 "pref_profile_photo" = "Profiilipilt";
 "pref_blocked_contacts" = "Blokeeritud kontaktid";
@@ -650,8 +637,6 @@
 "pref_sound" = "Heli";
 "pref_silent" = "Vaikne";
 "pref_privacy" = "Privaatsus";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Vestlused ja meediumid";
 "pref_system_default" = "Süsteemi vaikimisi valik";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Hele kujundus";
@@ -716,8 +701,6 @@
 "n_bytes_message" = "Sõnum suurusega %1$@";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Allalaadimise ülempiir on saadaval kuni %1$@";
-// deprecated
-"select_profile" = "Vali profiil";
 "profile_image_select" = "Vali profiilipilt";
 "select_your_new_profile_image" = "Vali oma uus profiilipilt";
 "profile_image_delete" = "Kustuta profiilipilt";
@@ -819,10 +802,6 @@
 "ephemeral_timer_seconds_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ sekundit.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 minuti.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 minuti.";
 "ephemeral_timer_1_hour_by_you" = "Sa määrasid isekustuvate sõnumite kehtivuseks 1 tunni.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ määras isekustuvate sõnumite kehtivuseks 1 tunni.";
@@ -916,8 +895,6 @@
 "verified_by" = "%1$@ lisas kontakti vestlusesse";
 "verified_by_you" = "Mina lisasin kontakti vestlusesse";
 "verified_by_unknown" = "Vestlusesse lisatud";
-// deprecated
-"verified_contact_required_explain" = "Selleks, et läbiv krüptimine toimiks garanteeritult, sa võid sellesse vestlusesse lisada vaid rohelise linnukesega kontakte.\n\nParim viis on omavahel kohtuda ning teise osapoole QR-koodi skaneerimisega lisada ta vestlusesse.";
 "mailto_dialog_header_select_chat" = "Vali vestlus, kuhu soovid sõnumi saata";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Vestluses „%1$@“ juba on üks sõnumi kavand, kas sa soovid selle asendada?";

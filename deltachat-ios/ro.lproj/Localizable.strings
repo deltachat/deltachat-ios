@@ -149,8 +149,6 @@
 "menu_new_contact" = "Contact Nou";
 "menu_new_chat" = "Chat Nou";
 "menu_new_group" = "Grup Nou";
-// deprecated
-"add_recipients" = "Adăugați Destinatari";
 "menu_send" = "Trimiteți";
 "menu_toggle_keyboard" = "Comutați Tastatura Emoji";
 "menu_edit_group" = "Editați grupul";
@@ -357,8 +355,6 @@
 "incoming_messages" = "Mesaje primite";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mesaje de ieșire";
-// deprecated
-"storage_on_domain" = "Depozitarea pe %1$@";
 "connectivity" = "Conectivitate";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nu este conectat";
@@ -418,8 +414,6 @@
 "share_text_multiple_chats" = "Trimiteți acest text la %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Partajarea a fost întreruptă din cauza permisiunilor lipsă.";
 // preferences
-"pref_using_custom" = "Folosind o comandă personalizată: %1$@";
-"pref_using_default" = "Utilizarea implicită: %1$@";
 "pref_profile_info_headline" = "Informații despre profilul dumneavoastră";
 "pref_profile_photo" = "Imagine de profil";
 "pref_blocked_contacts" = "Contacte blocate";
@@ -449,8 +443,6 @@
 "pref_sound" = "Sunet";
 "pref_silent" = "Silențios";
 "pref_privacy" = "Confidențialitate";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Discuții și mass-media";
 "pref_system_default" = "Sistem implicit";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Lumină";

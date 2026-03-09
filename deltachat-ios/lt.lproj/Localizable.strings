@@ -104,8 +104,6 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Adresatas paskutinį kartą matytas %1$@";
 "last_seen_unknown" = "Adresatas paskutinį kartą matytas: Nežinoma";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Aš";
@@ -187,8 +185,6 @@
 "channels" = "Kanalai";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Naujas kanalas";
-// deprecated
-"add_recipients" = "Pridėti gavėjus";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalo pavadinimas";
 "email" = "El. paštas";
@@ -303,17 +299,11 @@
 "answer_call" = "Atsiliepti";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Atmesti";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "Išsiunčiamasis skambutis";
 "outgoing_audio_call" = "Išsiunčiamasis garso skambutis";
 "outgoing_video_call" = "Išsiunčiamasis vaizdo skambutis";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "Gaunamasis skambutis";
 "incoming_audio_call" = "Gaunamasis garso skambutis";
 "incoming_video_call" = "Gaunamasis vaizdo skambutis";
 "missed_call" = "Praleistas skambutis";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@, %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ar tikrai norite išeiti?";
@@ -432,8 +422,6 @@
 "incoming_messages" = "Gaunamosios žinutės";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Išsiunčiamosios žinutės";
-// deprecated
-"storage_on_domain" = "Saugykla ties %1$@";
 "connectivity" = "Jungiamumas";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Neprisijungta";
@@ -545,6 +533,7 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Kam persiųsti …";
 "share_abort" = "Bendrinimas nutrauktas dėl trūkstamų leidimų.";
+// preferences
 "pref_profile_info_headline" = "Jūsų profilis";
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
@@ -576,8 +565,6 @@
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
 "pref_privacy" = "Privatumas";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Pokalbiai ir medija";
 "pref_system_default" = "Sistemos numatytoji";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Šviesus";
@@ -690,6 +677,9 @@
 "group_image_changed_by_you" = "Jūs pakeitėte grupės paveikslą.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ pakeitė grupės paveikslą.";
+"chat_description_changed_by_you" = "Jūs pakeitėte pokalbio aprašą.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "%1$@ pakeitė pokalbio aprašą.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Dalyvis %1$@ pašalintas.";
 // "left" in the meaning of "exited".
@@ -709,10 +699,6 @@
 "ephemeral_timer_seconds_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į %1$@ sek.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sek.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 minutę.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 minutę. ";
 "ephemeral_timer_1_hour_by_you" = "Jūs nustatėte išnykstančių žinučių laikmatį į 1 valandą.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ nustatė išnykstančių žinučių laikmatį į 1 valandą.";
@@ -819,6 +805,8 @@
 "ImageEditorHud_crop" = "Apkirpti";
 "ImageEditorHud_flip" = "Apversti";
 "ImageEditorHud_rotate" = "Pasukti";
+// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
+"about_offical_app_desktop" = "Tai yra oficiali Delta Chat programa, skirta darbalaukio aplinkai.";
 "about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";

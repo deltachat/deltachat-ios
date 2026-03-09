@@ -220,8 +220,6 @@
 "forward_to" = "İrəli ...";
 "share_abort" = "İcazə olmadığına görə göndərmə kəsildi";
 // preferences
-"pref_using_custom" = ":Xüsusi istifadə %1$@";
-"pref_using_default" = "Varsayılan istifadə: %1$@";
 "pref_profile_info_headline" = "Profil məlumatınız";
 "pref_profile_photo" = "Profil şəkili";
 "pref_blocked_contacts" = "Bloklanmış kontaktlar";
@@ -247,8 +245,6 @@
 "pref_sound" = "Səs";
 "pref_silent" = "Səssiz";
 "pref_privacy" = "Gizlilik";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Çatlar və faillar";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Açıq";
 "pref_dark_theme" = "Tünd";

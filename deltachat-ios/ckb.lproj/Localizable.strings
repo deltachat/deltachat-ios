@@ -283,8 +283,6 @@
 "forward_to" = "هەناردن بۆ...";
 "share_text_multiple_chats" = "ئەم دەقە دەنێریت بۆ %1$d وتووێژ؟n\n\"%2$@\"";
 // preferences
-"pref_using_custom" = "بەکارهێنانی دڵخواز: %1$@";
-"pref_using_default" = "بەکارهێنانی بنەڕەتی: %1$@";
 "pref_profile_info_headline" = "زانیارییەکانی پرۆفایلەکەت";
 "pref_profile_photo" = "وێنەی لادیمەن";
 "pref_blocked_contacts" = "هەژمارە ئاستەنگکراوەکان";
@@ -310,8 +308,6 @@
 "pref_sound" = "دەنگ";
 "pref_silent" = "بێدەنگ";
 "pref_privacy" = "پاراستنی تاکەکەسی";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "وتووێژ و ڕەنگاڵەکان";
 "pref_system_default" = "بنەڕەتی سیستەم";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "ڕووناک";

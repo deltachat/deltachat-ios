@@ -200,8 +200,6 @@
 "channels" = "Canles";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nova Canle";
-// deprecated
-"add_recipients" = "Engadir correspondentes";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nome da Canle";
 "email" = "Email";
@@ -461,8 +459,6 @@
 "incoming_messages" = "Mensaxes entrantes";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Mensaxes saíntes";
-// deprecated
-"storage_on_domain" = "Almacenar en %1$@";
 "connectivity" = "Conectividade";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Non conectado";
@@ -563,8 +559,6 @@
 "share_text_multiple_chats" = "Enviar este texto a %1$d conversas?\n\n\"%2$@\"";
 "share_abort" = "Cancelouse a compartición debido a falta de permisos.";
 // preferences
-"pref_using_custom" = "Utilizar personalizado: %1$@";
-"pref_using_default" = "Utilizando por omisión: %1$@";
 "pref_profile_info_headline" = "Info do teu perfil";
 "pref_profile_photo" = "Imaxe de perfil";
 "pref_blocked_contacts" = "Contactos bloqueados";
@@ -596,8 +590,6 @@
 "pref_sound" = "Son";
 "pref_silent" = "Mudo";
 "pref_privacy" = "Intimidade";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Conversas e medios";
 "pref_system_default" = "Por omsión no sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
@@ -655,8 +647,6 @@
 "n_bytes_message" = "%1$@ mensaxe";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Descarga o máximo dispoñible ata %1$@";
-// deprecated
-"select_profile" = "Seleccionar Perfil";
 "profile_image_select" = "Elixe imaxe de perfil";
 "select_your_new_profile_image" = "Elixe a túa nova imaxe de perfil";
 "profile_image_delete" = "Elimina a imaxe de perfil";
@@ -735,10 +725,6 @@
 "ephemeral_timer_seconds_by_you" = "Estableceches que as mensaxes desaparezan en  %1$@ s";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "O temporizador de desaparición de mensaxes establecido en %1$@ segundos por %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Puxeches en 1 minuto o temporizador de desaparición de mensaxes.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Temporizador de desaparición de mensaxes definido en 1 minuto por %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 hora.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Temporizador de desaparición de mensaxes definido en 1 hora por %1$@.";
@@ -816,8 +802,6 @@
 "verified_by" = "Introducido/a por %1$@";
 "verified_by_you" = "Introducido/a por min";
 "verified_by_unknown" = "Introducido/a";
-// deprecated
-"verified_contact_required_explain" = "Para garantir cifrado extremo-a-extremo, só podes adicionar contactos com un visto verde a este grupo.\n\nPodes encontrarche con contactos en persoa e escanear os seus códigos QR para os introducir.";
 "mailto_dialog_header_select_chat" = "Elexir chat ao que enviar a mensaxe";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ xa ten un borrador, queres susbstituílo?";

@@ -116,8 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "最后上线 %1$@";
 "last_seen_unknown" = "最后上线：未知";
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N seconds".
-// Shown in call duration. Avoid abbreviations, prefer full words ex. "N minutes".
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "不到 1 分钟";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -208,10 +209,9 @@
 "channels" = "频道";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "新建频道";
-// deprecated
-"add_recipients" = "添加订阅者";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "频道名称";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "邮件";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "新建邮件";
@@ -331,19 +331,13 @@
 "answer_call" = "接听";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
-// deprecated, use outgoing_audio_call or outgoing_video_call instead
-"outgoing_call" = "去电";
 "outgoing_audio_call" = "音频通话去电";
 "outgoing_video_call" = "视频通话去电";
-// deprecated, use incoming_audio_call or incoming_video_call instead
-"incoming_call" = "来电";
 "incoming_audio_call" = "音频通话来电";
 "incoming_video_call" = "视频通话来电";
 "declined_call" = "已拒接的来电";
 "canceled_call" = "已取消的通话";
 "missed_call" = "未接来电";
-// the first placeholder will be replaced by a date, the second placeholder by duration, example: "Thu, 08:12 pm, 2 minutes"
-"call_date_and_duration" = "%1$@ %2$@";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
@@ -493,8 +487,6 @@
 "incoming_messages" = "消息接收";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "消息发送";
-// deprecated
-"storage_on_domain" = "%1$@ 上的存储空间";
 "connectivity" = "连接";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "未连接";
@@ -616,8 +608,6 @@
 "share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
 // preferences
-"pref_using_custom" = "使用自定义值： %1$@";
-"pref_using_default" = "使用默认值： %1$@";
 "pref_profile_info_headline" = "您的个人资料";
 "pref_profile_photo" = "个人资料图片";
 "pref_blocked_contacts" = "已屏蔽的联系人";
@@ -641,6 +631,10 @@
 "pref_notifications" = "通知";
 "pref_mention_notifications" = "提及";
 "pref_mention_notifications_explain" = "在静音群中，通知直接与你相关的消息，比如回复或回应";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "通话";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "来电时显示通话屏幕";
 "pref_notifications_show" = "显示";
 "pref_notifications_priority" = "优先级";
 "pref_notifications_explain" = "为新消息启用系统通知";
@@ -650,8 +644,6 @@
 "pref_sound" = "声音";
 "pref_silent" = "无声";
 "pref_privacy" = "隐私";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "聊天与媒体";
 "pref_system_default" = "系统默认";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "明亮";
@@ -716,8 +708,6 @@
 "n_bytes_message" = "%1$@ 消息";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "下载最晚于 %1$@ 前可用";
-// deprecated
-"select_profile" = "选择账号";
 "profile_image_select" = "选择个人资料图片";
 "select_your_new_profile_image" = "选择新的个人资料图片";
 "profile_image_delete" = "删除个人资料图片";
@@ -819,10 +809,6 @@
 "ephemeral_timer_seconds_by_you" = "你将消息定时销毁计时器设置为 %1$@ 秒";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "%2$@ 将消息定时销毁计时器设为 %1$@ 秒";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "你将消息定时销毁计时器设为 1 分钟";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "%1$@ 将消息定时销毁计时器设为 1 分钟";
 "ephemeral_timer_1_hour_by_you" = "你将消息定时销毁计时器设为 1 小时";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "%1$@ 将消息定时销毁计时器设为 1 小时";
@@ -916,8 +902,6 @@
 "verified_by" = "验证人 %1$@";
 "verified_by_you" = "由您验证";
 "verified_by_unknown" = "已验证";
-// deprecated
-"verified_contact_required_explain" = "要确保端到端加密，你只能将带有绿色验证标识的联系人到此群中。\n\n你可以亲自和未验证联系人线下碰面并扫描联系人二维码来验证。";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ 已经有一条草稿消息，是否要替换？";

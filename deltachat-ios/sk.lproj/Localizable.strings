@@ -190,8 +190,6 @@
 "channels" = "Kanály";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "new_channel" = "Nový kanál";
-// deprecated
-"add_recipients" = "Pridať Príjemcov";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Názov kanálu";
 "email" = "E-mail";
@@ -434,8 +432,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "incoming_messages" = "Prichádzajúce Správy";
 // Headline for the "Outbox" eg. in the "Connectivity" view
 "outgoing_messages" = "Odchádzajúce Správy";
-// deprecated
-"storage_on_domain" = "Dáta o %1$@";
 "connectivity" = "Pripojenie";
 // Shown in the title bar if the app is "Not connected"; prefer short strings.
 "connectivity_not_connected" = "Nepripojené";
@@ -528,8 +524,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "share_text_multiple_chats" = "Odoslať tento text d %1$d konverzácií?\n\n \"%2$@\"";
 "share_abort" = "Zdieľanie bolo prerušené z dôvodu chýbajúcich povolení.";
 // preferences
-"pref_using_custom" = "Používa sa vlastné: %1$@";
-"pref_using_default" = "Používa sa predvolené nastavenie: %1$@";
 "pref_profile_info_headline" = "Informácie o vašom účte";
 "pref_profile_photo" = "Profilový obrázok";
 "pref_blocked_contacts" = "Blokované kontakty";
@@ -559,8 +553,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
 "pref_privacy" = "Ochrana osobných údajov";
-// deprecated, use pref_chats
-"pref_chats_and_media" = "Konverzácie a médiá";
 "pref_system_default" = "Predvolené nastavenie";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Svetlo";
@@ -619,8 +611,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "n_bytes_message" = "%1$@ správa";
 // %1$s will be replaced by human-readable date and time
 "download_max_available_until" = "Maximálny počet stiahnutí k dispozícii do %1$@";
-// deprecated
-"select_profile" = "Vybrať účet";
 "profile_image_select" = "Vyberte profilový obrázok";
 "select_your_new_profile_image" = "Vyberte svoj nový profilový obrázok";
 "profile_image_delete" = "Odstrániť profilový obrázok";
@@ -701,10 +691,6 @@ Ak chcete pokračovať, aktualizujte toto zariadenie na najnovšiu verziu Delta 
 "ephemeral_timer_seconds_by_you" = "Časovač zmiznutia správ nastavený na %1$@ s mnou.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "Časovač zmiznutia správ nastavený na %1$@ s od %2$@.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_you" = "Časovač zmiznutia správ bol nastavený na 1 minútu mnou.";
-// deprecated, usage needs to be removed in core
-"ephemeral_timer_1_minute_by_other" = "Časovač zmiznutia správ bol nastavený na 1 minútu od %1$@.";
 "ephemeral_timer_1_hour_by_you" = "Časovač zmiznutia správ bol nastavený na 1 hodinu mnou.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Časovač zmiznutia správ bol nastavený na 1 hodinu od %1$@.";
