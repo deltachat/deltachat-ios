@@ -61,4 +61,8 @@ class MediaQualityViewController: UITableViewController {
         }
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return String.localized("pref_outgoing_media_quality_hint")
+    }
 }
