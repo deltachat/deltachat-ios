@@ -321,15 +321,21 @@
 "file_saved_to" = "Fitxategia \"%1$@\" helbidean gordeta";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Deitu";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Audio deia";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Bideo deia";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Erantzun";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ukatu";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Irteerako audio deia";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Irteerako bideo deia";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Sarrerako audio deia";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Sarrerako bideo deia";
 "declined_call" = "Ukatutako deia";
 "canceled_call" = "Bertan behera utzitako deia";

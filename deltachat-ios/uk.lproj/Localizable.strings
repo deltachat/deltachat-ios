@@ -321,15 +321,21 @@
 "file_saved_to" = "Файл збережено до \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Дзвонити";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Аудіовиклик";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Відеовиклик";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Вихідний аудіовиклик";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Вихідний відеовиклик";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Вхідний аудіовиклик";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Вхідний відеовиклик";
 "declined_call" = "Відхилений дзвінок";
 "canceled_call" = "Скасований дзвінок";

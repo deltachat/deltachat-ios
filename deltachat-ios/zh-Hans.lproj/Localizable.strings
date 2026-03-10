@@ -325,15 +325,21 @@
 "file_saved_to" = "文件已保存到 “%1$@”。";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "呼叫";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "音频通话";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "视频通话";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "接听";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "音频通话去电";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "视频通话去电";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "音频通话来电";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "视频通话来电";
 "declined_call" = "已拒接的来电";
 "canceled_call" = "已取消的通话";
@@ -621,6 +627,7 @@
 "pref_enter_sends" = "Enter 键发送";
 "pref_enter_sends_explain" = "按 Enter 键发送文本消息";
 "pref_outgoing_media_quality" = "发出媒体质量";
+"pref_outgoing_media_quality_hint" = "如需发送原始质量的媒体，请将媒体以“文件”形式附加。此方式会消耗您和接收者更多的数据使用量。";
 "pref_outgoing_balanced" = "平衡";
 "pref_outgoing_worse" = "体积小，但质量更差";
 "pref_vibrate" = "振动";

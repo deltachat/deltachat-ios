@@ -321,15 +321,21 @@
 "file_saved_to" = "Filen är sparad i \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Ring upp";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Ljudsamtal";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Videosamtal";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Svara";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avböj";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Utgående ljudsamtal";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Utgående videosamtal";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Inkommande ljudsamtal";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Inkommande videosamtal";
 "declined_call" = "Nekade samtal";
 "canceled_call" = "Avbrutna samtal";

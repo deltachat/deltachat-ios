@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "Zu Sticker-Sammlung hinzufügen";
 "add_stickers_instructions" = "Um Sticker hinzuzufügen, tippe auf \"Sticker-Ordner öffnen\", erstelle einen Unterordner für dein Sticker-Paket und ziehe Bild- und Sticker-Dateien dorthin.";
 "open_sticker_folder" = "Sticker-Ordner öffnen";
+"ask_add_sticker_to_collection" = "Sticker zur Sammlung hinzufügen?";
+"ask_delete_sticker" = "Sticker löschen?";
+"sticker_picker_empty_hint" = "Sticker zum Hinzufügen antippen";
 "images" = "Bilder";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -167,7 +170,7 @@
 "webxdc_apps" = "Apps";
 "webxdc_store_url" = "App-Picker-URL";
 "webxdc_store_url_explain" = "Wenn gesetzt, wird diese URL als App-Picker anstelle der Voreinstellung verwendet.";
-"webxdc_draft_hint" = "Zum Teilen auf \"Senden\" klicken";
+"webxdc_draft_hint" = "Zum Teilen auf \"Senden\" tippen";
 "home" = "Start";
 "games" = "Spiele";
 "tools" = "Tools";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "Dateien anhängen";
 "menu_leave_group" = "Gruppe verlassen";
 "menu_leave_channel" = "Kanal verlassen";
+"menu_leave_and_delete" = "Verlassen & für mich löschen";
 "menu_delete_chat" = "Chat löschen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Chat leeren";
@@ -325,15 +329,25 @@
 "file_saved_to" = "Datei gespeichert unter \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Anrufen";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Sprachanruf";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Videoanruf";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Annehmen";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ablehnen";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Sprachanruf";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videoanruf";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Ausgehender Sprachanruf";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Ausgehender Videoanruf";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Eingehender Sprachanruf";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Eingehender Videoanruf";
 "declined_call" = "Abgelehnter Anruf";
 "canceled_call" = "Abgebrochener Anruf";

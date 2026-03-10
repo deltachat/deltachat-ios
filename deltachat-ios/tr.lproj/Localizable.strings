@@ -325,15 +325,21 @@
 "file_saved_to" = "Dosya “%1$@” üzerine kaydedildi.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Ara";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Sesli Arama";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Görüntülü Arama";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Yanıtla";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Reddet";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Giden sesli arama";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Giden görüntülü arama";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Gelen sesli arama";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Gelen görüntülü arama";
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";

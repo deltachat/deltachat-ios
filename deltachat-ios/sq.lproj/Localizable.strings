@@ -322,15 +322,21 @@
 "file_saved_to" = "Kartela u ruajt te “%1$@”.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Thirreni";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Thirrje Me Zë";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Thirrje Me Video";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Përgjigjuni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Hidhe poshtë";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Thirrje audio e dërguar";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Thirrje video e dërguar";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Thirrje audio e marrë";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Thirrje video e marrë";
 "declined_call" = "Thirrje e hedhur poshtë";
 "canceled_call" = "Thirrje e anuluar";
@@ -617,6 +623,7 @@
 "pref_enter_sends" = "Tasti Enter Dërgon";
 "pref_enter_sends_explain" = "Shtypja e tastit Enter do të dërgojë mesazhe tekst";
 "pref_outgoing_media_quality" = "Cilësi Mediash Në Dalje";
+"pref_outgoing_media_quality_hint" = "Që të dërgohet në cilësinë origjinale, bashkëngjiteni median si një “Kartelë”. Kjo përdor në mënyrë domethënëse më tepër të dhëna për ju dhe marrësit tuaj.";
 "pref_outgoing_balanced" = "E baraspeshuar";
 "pref_outgoing_worse" = "Cilësia më e ulët, madhësi e vogël";
 "pref_vibrate" = "Dridhu";

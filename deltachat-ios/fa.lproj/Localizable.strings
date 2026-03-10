@@ -323,15 +323,21 @@
 "file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "تماس";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "تماس صوتی";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "تماس تصویری";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "جواب دادن";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "رد کردن";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "تماس صوتی خروجی";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "تماس تصویری خروجی";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "تماس صوتی ورودی";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "تماس تصویری ورودی";
 "declined_call" = "تماس رد شده";
 "canceled_call" = "تماس لغو شده";

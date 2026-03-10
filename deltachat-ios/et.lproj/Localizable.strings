@@ -322,15 +322,21 @@
 "file_saved_to" = "Fail on salvestatud: „%1$@“.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Helista";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Häälkõne";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Videokõne";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Väljuv häälkõne";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Väljuv videokõne";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Saabuv häälkõne";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Saabuv videokõne";
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";

@@ -325,15 +325,21 @@
 "file_saved_to" = "File salvato su \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Chiama";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Chiamata Audio";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Chiamata Video";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Rispondi";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rifiuta";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Chiamata in uscita";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Videochiamata in uscita";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Chiamata in arrivo";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Videochiamata in arrivo";
 "declined_call" = "Chiamata rifiutata";
 "canceled_call" = "Chiamata annullata";

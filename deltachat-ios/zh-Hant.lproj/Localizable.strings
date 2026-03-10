@@ -116,6 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "最後上線時間：%1$@";
 "last_seen_unknown" = "最後上線時間：未知";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "少於 1 分鐘";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -200,6 +203,20 @@
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "與……聊天";
 "clone_chat" = "克隆聊天";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "頻道";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "頻道";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "新頻道";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "頻道名稱";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
+"email" = "郵件";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "新郵件";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "主題";
 "menu_send" = "送出";
 "menu_toggle_keyboard" = "切換表情符號鍵盤";
 "menu_edit_group" = "編輯群組";
@@ -209,6 +226,7 @@
 "menu_unarchive_chat" = "對話解除封存";
 "menu_add_attachment" = "新增附件";
 "menu_leave_group" = "退出群組";
+"menu_leave_channel" = "離開頻道";
 "menu_delete_chat" = "刪除對話";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清除對話";
@@ -293,6 +311,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "新增至主畫面";
 "donate" = "捐贈";
+"donate_device_msg" = "❤️ 您似乎很喜歡 Delta Chat！\n\n請考慮捐款以幫助Delta Chat確保對每個人保持免費。/n/n雖然 Delta Chat 可以免費使用並且是開源的，但開發需要資金。幫助我們保持 Delta Chat 的獨立性，並在未來讓它更棒。\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "靜音1小時";
 "mute_for_eight_hours" = "靜音8小時";
 "mute_for_one_day" = "靜音1天";
@@ -304,6 +323,30 @@
 "share_location_for_two_hours" = "2小時";
 "share_location_for_six_hours" = "6小時";
 "file_saved_to" = "檔案已儲存至「%1$@」。";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "通話";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
+"start_audio_call" = "音訊通話";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
+"start_video_call" = "視訊通話";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "接聽";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "拒接";
+// deprecated, use "Audio call" instead
+"outgoing_audio_call" = "撥出音訊通話";
+// deprecated, use "Video call" instead
+"outgoing_video_call" = "撥出視訊通話";
+// deprecated, use "Audio call" instead
+"incoming_audio_call" = "撥入音訊通話";
+// deprecated, use "Video call" instead
+"incoming_video_call" = "撥出視訊通話";
+"declined_call" = "已拒接來電";
+"canceled_call" = "已取消通話";
+"missed_call" = "未接來電";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "確定要離開？";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
 "ask_forward" = "轉發訊息給%1$@？";
@@ -316,6 +359,8 @@
 "ask_start_chat_with" = "要和%1$@開始對話嗎？";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "要把%1$@移出群組嗎？";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "將%1$@從頻道中移除？";
 "open_url_confirmation" = "你想開啟此連結嗎？";
 // contact list
 "contacts_title" = "聯絡人清單";
@@ -327,6 +372,8 @@
 "chat_unable_to_record_audio" = "無法錄音";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "向 %1$@ 傳送訊息。";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "頻道是一種用於一對多廣播訊息的工具。";
 "chat_new_group_hint" = "只有在你傳送第一條訊息後，其他人才會看到此群組。";
 "chat_record_slide_to_cancel" = "滑動以取消";
 "chat_record_explain" = "按住錄音，放開後傳送";
@@ -491,6 +538,7 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "掃描邀請碼";
 "login_title" = "登入";
+"login_advanced_hint" = "此登入適用於進階使用者：\n\n• 不要使用你在其他應用程式中使用的位址。\n\n• 傳統的電子郵件伺服器允許未使用端對端加密的聊天，並以郵件圖示標示。";
 "login_inbox" = "收件匣";
 "login_imap_login" = "IMAP 帳號";
 "login_imap_server" = "IMAP 伺服器";
@@ -505,7 +553,7 @@
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
 "proxy_settings" = "代理伺服器";
 "proxy_use_proxy" = "使用代理伺服器";
-"proxy_add" = "添加代理伺服器";
+"proxy_add" = "新增代理伺服器";
 "proxy_add_explain" = "支援的代理伺服器類型：HTTP（S）、SOCKS5 和 Shadowsocks。";
 "proxy_add_url_hint" = "在此處輸入代理伺服器連結";
 "proxy_invalid" = "代理伺服器無效或不受支援";
@@ -515,6 +563,18 @@
 "proxy_use_proxy_confirm" = "是否要使用代理 「%1$@」？";
 "proxy_share_explain" = "您的朋友可以通過掃描QR碼來添加此代理。";
 "proxy_share_link" = "分享連結";
+"proxy_enabled" = "已啓用代理伺服器連接";
+"proxy_enabled_hint" = "你正在使用代理伺服器連接。如果你在連線時遇到問題，請嘗試其他代理伺服器。";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "中繼伺服器";
+"add_transport" = "新增中繼伺服器";
+"remove_transport" = "移除中繼伺服器";
+"edit_transport" = "編輯中繼伺服器";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "新增這個中繼伺服器？";
+"invalid_transport_qr" = "掃描的 QR 碼不包含有效的中繼伺服器。";
+// placeholder will be replaced by a relay server name
+"confirm_remove_transport" = "是否移除中繼伺服器“%1$@”？\n\n移除后您的聯絡人只有之前通過其他中繼伺服器聯絡過您，他們才可以繼續聯絡您。\n\n如有疑問，請稍後移除中繼伺服器。";
 "login_certificate_checks" = "憑證檢查";
 "login_error_mail" = "請輸入有效的電子郵件位址";
 "login_error_server" = "請輸入有效的伺服器／IP 位址";
@@ -562,10 +622,12 @@
 "pref_your_name" = "你的名字";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "簽名檔";
+"chat_description" = "描述";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "換行鍵送出訊息";
 "pref_enter_sends_explain" = "按下換行鍵就送出訊息";
 "pref_outgoing_media_quality" = "傳送的媒體品質";
+"pref_outgoing_media_quality_hint" = "若要傳送原始品質的媒體，請將媒體作為「檔案」附加。這會消耗你和收件人大量的數據使用量。";
 "pref_outgoing_balanced" = "普通";
 "pref_outgoing_worse" = "低品質";
 "pref_vibrate" = "振動";
@@ -576,6 +638,10 @@
 "pref_notifications" = "通知設定";
 "pref_mention_notifications" = "提到";
 "pref_mention_notifications_explain" = "在勿擾的群組中，通知傳送給您的訊息，例如回復或回應";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "通話";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "來電時顯示通話畫面";
 "pref_notifications_show" = "顯示通知";
 "pref_notifications_priority" = "通知優先權";
 "pref_notifications_explain" = "為新訊息啟用系統通知";
@@ -611,6 +677,7 @@
 "pref_backup" = "備份";
 "pref_backup_explain" = "將備份另存至外部儲存媒體";
 "pref_backup_export_explain" = "備份可以讓你把設定及對話紀錄轉移到這台或其它裝置上。\n\n備份內容包括所有的訊息、聯絡人、對話、端到端AutoCrypt設定。請務必將備份檔存放在安全的地方，並在轉移後儘快刪除。";
+"pref_backup_export_this" = "匯出此賬戶";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "匯出全部%1$d個賬戶";
 "pref_backup_export_start_button" = "開始備份";
@@ -620,6 +687,10 @@
 "pref_background_btn_default" = "使用預設圖案";
 "pref_background_btn_gallery" = "從相簿中挑選";
 "pref_imap_folder_warn_disable_defaults" = "如果關閉本選項的話，請務必確定你的伺服器和其它客戶端應用程式都使用相同的設定，否則很可能不能運作。";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "多裝置模式";
+"pref_multidevice_explain" = "將您的訊息與其他裝置同步。新增第二個裝置時自動啟用";
+"pref_multidevice_change_warn" = "在多個裝置上使用同一的帳戶時，必須啟用多裝置模式。只有在您已從所有其他設備移除此帳戶後，才可以禁用此設定。\n\n在多個裝置上使用該帳戶時禁用多裝置模式將導致漏接訊息及其他問題。";
 "pref_auto_folder_moves" = "自動搬移到 DeltaChat 資料夾";
 "pref_only_fetch_mvbox_title" = "僅從 DeltaChat 資料夾中獲取";
 "pref_show_emails" = "顯示傳統email";
@@ -627,6 +698,7 @@
 "pref_show_emails_accepted_contacts" = "顯示已接受的聯絡人";
 "pref_show_emails_all" = "所有郵件";
 "pref_experimental_features" = "實驗性功能";
+"pref_experimental_features_explain" = "這些功能可能不穩定，並且可能會被更改或移除";
 "pref_on_demand_location_streaming" = "按需要位置串流";
 "pref_background_default" = "預設圖片";
 "pref_background_default_color" = "預設顏色";
@@ -651,6 +723,8 @@
 "disable_imap_idle" = "禁用 IMAP IDLE";
 "disable_imap_idle_explain" = "即使伺服器支援 IMAP IDLE 擴展，也不要使用它。啟用此選項會延遲訊息檢索，僅對測試啟用此選項。";
 "send_stats_to_devs" = "將統計數據發送給 Delta Chat 的開發人員";
+"stats_device_message" = "你想透過每週傳送匿名使用統計數據來幫助改進 Delta Chat 並支持研究嗎？\n\n👉 點擊這裡… 👈";
+"stats_confirmation_dialog" = "你想透過每週寄送匿名使用統計資料來幫助改善 Delta Chat 並支持研究嗎？";
 // Emoji picker and categories
 "emoji_search_results" = "搜尋結果";
 "emoji_not_found" = "找不到表情符號";
@@ -938,11 +1012,11 @@
 // use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
 "shortcuts_widget_title" = "捷徑";
 // use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
-"shortcuts_widget_description" = "使用 Delta Chat 的“添加到小工具”添加項目";
+"shortcuts_widget_description" = "使用 Delta Chat 的“新增到小工具”添加項目";
 // use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
 "remove_from_widget" = "從小工具中移除";
 // use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
-"add_to_widget" = "添加到小工具";
+"add_to_widget" = "新增到小工具";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "即時傳送";
