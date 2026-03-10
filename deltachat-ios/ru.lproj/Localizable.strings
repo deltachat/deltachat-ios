@@ -325,15 +325,21 @@
 "file_saved_to" = "Файл сохранён в \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Позвонить";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Аудиозвонок";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Видеозвонок";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Ответить";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Отклонить";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Исходящий аудиозвонок";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Исходящий видеозвонок";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Входящий аудиозвонок";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Входящий видеозвонок";
 "declined_call" = "Отклонённый звонок";
 "canceled_call" = "Отменённый звонок";
@@ -621,6 +627,7 @@
 "pref_enter_sends" = "Отправка по Enter";
 "pref_enter_sends_explain" = "Нажатие клавиши Enter отправит текстовые сообщения";
 "pref_outgoing_media_quality" = "Качество отправляемых медиафайлов";
+"pref_outgoing_media_quality_hint" = "Чтобы отправить файлы в оригинальном качестве, прикрепляйте их как \"Файл\". Это потребует больше трафика для вас и ваших получателей.";
 "pref_outgoing_balanced" = "Сбалансированное";
 "pref_outgoing_worse" = "Низкое качество, малый размер";
 "pref_vibrate" = "Вибрация";

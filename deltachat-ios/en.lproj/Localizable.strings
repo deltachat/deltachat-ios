@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "Add to Sticker Collection";
 "add_stickers_instructions" = "To add stickers, tap \"Open Sticker Folder\", create a subfolder for your sticker pack, and drag image and sticker files there";
 "open_sticker_folder" = "Open Sticker Folder";
+"ask_add_sticker_to_collection" = "Add this sticker to your collection?";
+"ask_delete_sticker" = "Delete this sticker?";
+"sticker_picker_empty_hint" = "Tap a sticker to add it here.";
 "images" = "Images";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "Add Attachment";
 "menu_leave_group" = "Leave Group";
 "menu_leave_channel" = "Leave Channel";
+"menu_leave_and_delete" = "Leave & Delete for Me";
 "menu_delete_chat" = "Delete Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Clear Chat";
@@ -325,15 +329,25 @@
 "file_saved_to" = "File saved to \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Call";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Audio Call";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Video Call";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Answer";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Decline";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Audio call";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Video call";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Outgoing audio call";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Outgoing video call";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Incoming audio call";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Incoming video call";
 "declined_call" = "Declined call";
 "canceled_call" = "Canceled call";

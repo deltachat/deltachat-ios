@@ -116,6 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Laatst gezien: %1$@";
 "last_seen_unknown" = "Laatst gezien: onbekend";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Minder dan een minuut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -131,6 +134,9 @@
 "add_to_sticker_collection" = "Toevoegen aan stickerverzameling";
 "add_stickers_instructions" = "Stickers toevoegen kan als volgt: druk op ‘Stickermap openen’, maak een onderliggende map aan voor je pakket en plaats afbeeldings- en stickerbestanden in de map.";
 "open_sticker_folder" = "Stickermap openen";
+"ask_add_sticker_to_collection" = "Wil je deze sticker toevoegen aan je verzameling?";
+"ask_delete_sticker" = "Wil je deze sticker verwijderen?";
+"sticker_picker_empty_hint" = "Druk op een sticker om die hier toe te voegen.";
 "images" = "Afbeeldingen";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -322,15 +328,25 @@
 "file_saved_to" = "Het bestand is opgeslagen in ‘%1$@’.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Bellen";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Audiogesprek";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Videogesprek";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Aanvaarden";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Weigeren";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Audiogesprek";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videogesprek";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Uitgaand audiogesprek";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Uitgaand videogesprek";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Inkomend audiogesprek";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Inkomend videogesprek";
 "declined_call" = "Geweigerde oproep";
 "canceled_call" = "Afgebroken oproep";
@@ -618,6 +634,7 @@
 "pref_enter_sends" = "Versturen met enter";
 "pref_enter_sends_explain" = "Druk op de entertoets om tekstberichten te versturen";
 "pref_outgoing_media_quality" = "Kwaliteit van verstuurde media";
+"pref_outgoing_media_quality_hint" = "Als je de oorspronkelijke kwaliteit wilt behouden, verstuur het dan als bestand. De huidige methode verbruikt meer data bij zowel jou als de ontvangers.";
 "pref_outgoing_balanced" = "Normaal";
 "pref_outgoing_worse" = "Lagere kwaliteit, kleinere bestanden";
 "pref_vibrate" = "Trillen";
@@ -628,6 +645,10 @@
 "pref_notifications" = "Meldingen";
 "pref_mention_notifications" = "Vermeldingen";
 "pref_mention_notifications_explain" = "Toon berichten gericht aan jou in genegeerde groepen";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Oproepen";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Belscherm tonen bij inkomende oproepen";
 "pref_notifications_show" = "Tonen";
 "pref_notifications_priority" = "Prioriteit";
 "pref_notifications_explain" = "Systeemmeldingen tonen bij nieuwe berichten";

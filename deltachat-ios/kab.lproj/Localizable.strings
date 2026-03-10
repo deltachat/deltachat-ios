@@ -320,15 +320,21 @@
 "file_saved_to" = "Afaylu yettwasekles ɣer \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Siwel";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Asiwel n umeslaw";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Asiwel n tvidyut";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Err";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Agi";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Asiwel n uvidyu uffiɣ";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Asiwel n umeslaw ukcim";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Asiwel n uvidyu ukcim";
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";

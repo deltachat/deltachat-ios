@@ -322,15 +322,21 @@
 "file_saved_to" = "El fitxer s\'ha desat a «%1$@».";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Truca";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Trucada de veu";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Videotrucada";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Respon";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rebutja";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Trucada de veu sortint";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Videotrucada sortint";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Trucada de veu entrant";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Videotrucada entrant";
 "declined_call" = "Trucada rebutjada";
 "canceled_call" = "Trucada cancel·lada";

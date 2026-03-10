@@ -293,15 +293,21 @@
 "file_saved_to" = "Failas įrašytas į „%1$@“.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Skambinti";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
 "start_audio_call" = "Garso skambutis";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
 "start_video_call" = "Vaizdo skambutis";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Atsiliepti";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Atmesti";
+// deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Išsiunčiamasis garso skambutis";
+// deprecated, use "Video call" instead
 "outgoing_video_call" = "Išsiunčiamasis vaizdo skambutis";
+// deprecated, use "Audio call" instead
 "incoming_audio_call" = "Gaunamasis garso skambutis";
+// deprecated, use "Video call" instead
 "incoming_video_call" = "Gaunamasis vaizdo skambutis";
 "missed_call" = "Praleistas skambutis";
 // get confirmations
