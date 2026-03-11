@@ -10,6 +10,7 @@
 - VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 - Display message views count for channel owners
 - Improve mini-app summaries
+- Show the group description when tapping its info message
 - Update translations and local help
 - Update core to 2.44.0
 
