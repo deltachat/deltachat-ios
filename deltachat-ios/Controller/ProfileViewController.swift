@@ -344,20 +344,18 @@ class ProfileViewController: UITableViewController {
                     moreOptions.append(action("clone_chat", image, showCloneChatController))
                 }
 
-                let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                 let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+                moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
+
+                let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                 if isGroup && chat.canSend && chat.isEncrypted {
                     moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], { [weak self] in
                         self?.showLeaveAlert("menu_leave_group")
                     }))
-                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 } else if isInBroadcast {
                     moreOptions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], { [weak self] in
                         self?.showLeaveAlert("menu_leave_channel")
                     }))
-                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
-                } else {
-                    moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
                 }
 
                 moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
