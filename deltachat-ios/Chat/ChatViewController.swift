@@ -819,6 +819,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             showProtectionEnabledDialog()
         case (_, DC_INFO_INVALID_UNENCRYPTED_MAIL):
             showInvalidUnencryptedDialog()
+        case (_, DC_INFO_GROUP_DESCRIPTION_CHANGED):
+            navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
         default:
             if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
