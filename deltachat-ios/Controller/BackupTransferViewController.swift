@@ -3,7 +3,7 @@ import UIKit
 import DcCore
 import SDWebImageSVGKitPlugin
 
-class BackupTransferViewController: UIViewController {
+class BackupTransferViewController: UIViewController, ScreenBrightnessOverrideSupporting {
 
     public enum TranferState {
         case unknown
@@ -34,6 +34,10 @@ class BackupTransferViewController: UIViewController {
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
+
+    var shouldEnableScreenBrightnessOverride: Bool {
+        !qrContentView.isHidden && qrContentView.image != nil && transferState == TranferState.unknown
+    }
 
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
@@ -100,7 +104,7 @@ class BackupTransferViewController: UIViewController {
                     }
                     return
                 }
-                let image = self.getQrImage(svg: self.dcBackupProvider?.getQrSvg())
+                let image = self.getQrImage(qrPayload: self.dcBackupProvider?.getQr())
                 self.qrContentView.image = image
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
@@ -109,12 +113,23 @@ class BackupTransferViewController: UIViewController {
                                  + "\n\n➋ " + String.localized("multidevice_install_dc_on_other_device")
                                  + "\n\n➌ " + String.localized("multidevice_tap_scan_on_other_device")
                 self.updateMenuItems()
+                self.updateScreenBrightnessOverride()
                 DispatchQueue.global(qos: .userInitiated).async { [weak self] in
                     guard let self else { return }
                     self.dcBackupProvider?.wait()
                 }
             }
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateScreenBrightnessOverride()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disableScreenBrightnessOverride()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -176,6 +191,8 @@ class BackupTransferViewController: UIViewController {
                 self.qrContentView.isHidden = true
                 updateMenuItems()
             }
+
+            self.updateScreenBrightnessOverride()
         }
     }
 
@@ -214,9 +231,9 @@ class BackupTransferViewController: UIViewController {
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
-    
-    private func getQrImage(svg: String?) -> UIImage? {
-        guard let svg else { return nil }
+
+    private func getQrImage(qrPayload: String?) -> UIImage? {
+        guard let qrPayload, !qrPayload.isEmpty, let svg = dcContext.createQRSVG(for: qrPayload) else { return nil }
 
         let svgData = svg.data(using: .utf8)
         return SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])

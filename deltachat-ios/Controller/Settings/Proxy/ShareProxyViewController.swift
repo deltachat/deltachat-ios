@@ -2,7 +2,7 @@ import UIKit
 import DcCore
 import SDWebImageSVGKitPlugin
 
-class ShareProxyViewController: UIViewController {
+class ShareProxyViewController: UIViewController, ScreenBrightnessOverrideSupporting {
     private let dcContext: DcContext
 
     private let contentStackView: UIStackView
@@ -16,6 +16,10 @@ class ShareProxyViewController: UIViewController {
     var verticalCenterConstraint: NSLayoutConstraint?
     var contentTopAnchor: NSLayoutConstraint?
     var contentBottomAnchor: NSLayoutConstraint?
+
+    var shouldEnableScreenBrightnessOverride: Bool {
+        qrContentView.image != nil
+    }
 
     init(dcContext: DcContext, proxyUrlString: String) {
         self.dcContext = dcContext
@@ -112,6 +116,16 @@ class ShareProxyViewController: UIViewController {
     }
 
     // MARK: - lifecycle
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateScreenBrightnessOverride()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disableScreenBrightnessOverride()
+    }
+
     func getQrImage(svg: String?) -> UIImage? {
         guard let svg else { return nil }
 

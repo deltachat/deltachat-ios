@@ -3,6 +3,8 @@ import UIKit
 import DcCore
 import LocalAuthentication
 
+private var screenBrightnessOverrideManagerClaimObserverKey: UInt8 = 0
+
 extension URL {
     var isDeltaChatInvitation: Bool {
         if let host, host == Utils.inviteDomain {
@@ -12,6 +14,210 @@ extension URL {
         }
     }
 }
+
+protocol ScreenBrightnessOverrideSupporting: AnyObject {
+    var shouldEnableScreenBrightnessOverride: Bool { get }
+}
+
+extension ScreenBrightnessOverrideSupporting where Self: UIViewController {
+    func updateScreenBrightnessOverride() {
+        guard isViewLoaded, view.window != nil else { return }
+
+        ScreenBrightnessOverrideManager.shared.setOverrideEnabled(shouldEnableScreenBrightnessOverride, for: self)
+    }
+
+    func disableScreenBrightnessOverride() {
+        ScreenBrightnessOverrideManager.shared.setOverrideEnabled(false, for: self)
+    }
+}
+
+final class ScreenBrightnessOverrideManager: NSObject {
+    static let shared = ScreenBrightnessOverrideManager()
+
+    private enum Constants {
+        static let maxBrightness: CGFloat = 1.0
+        static let brightnessEpsilon: CGFloat = 0.0001
+    }
+
+    private final class ClaimDeinitObserver: NSObject {
+        private let onDeinit: () -> Void
+
+        init(onDeinit: @escaping () -> Void) {
+            self.onDeinit = onDeinit
+            super.init()
+        }
+
+        deinit {
+            onDeinit()
+        }
+    }
+
+    private struct Claim {
+        weak var owner: AnyObject?
+    }
+
+    private var claims = [Claim]()
+    private var originalBrightness: CGFloat?
+    private var pendingProgrammaticBrightness: CGFloat?
+
+    private override init() {
+        super.init()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(restoreBrightnessForLifecycleChange(_:)),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applyBrightnessForLifecycleChange(_:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleScreenBrightnessDidChangeNotification(_:)),
+            name: UIScreen.brightnessDidChangeNotification,
+            object: UIScreen.main
+        )
+    }
+
+    // MARK: - Public API
+
+    func setOverrideEnabled(_ isEnabled: Bool, for owner: AnyObject) {
+        performOnMainThread { [weak self] in
+            guard let self else { return }
+
+            self.removeClaim(for: owner)
+
+            if isEnabled {
+                self.installClaimDeinitObserver(for: owner)
+                self.claims.append(Claim(owner: owner))
+            }
+
+            self.reconcileBrightnessOverrideIfNeeded()
+        }
+    }
+
+    // MARK: - Brightness state
+
+    private func applyOverrideIfNeeded() {
+        if originalBrightness == nil {
+            originalBrightness = UIScreen.main.brightness
+        }
+
+        if !brightnessesMatch(UIScreen.main.brightness, Constants.maxBrightness) {
+            setBrightness(Constants.maxBrightness)
+        }
+    }
+
+    private func restoreOriginalBrightnessIfNeeded() {
+        guard let originalBrightness else { return }
+
+        if !brightnessesMatch(UIScreen.main.brightness, originalBrightness) {
+            setBrightness(originalBrightness)
+        }
+
+        self.originalBrightness = nil
+    }
+
+    private func handleScreenBrightnessDidChange() {
+        removeReleasedClaims()
+
+        let currentBrightness = UIScreen.main.brightness
+
+        if let pendingProgrammaticBrightness,
+           brightnessesMatch(currentBrightness, pendingProgrammaticBrightness) {
+            self.pendingProgrammaticBrightness = nil
+            return
+        }
+
+        guard !claims.isEmpty else { return }
+
+        originalBrightness = currentBrightness
+        reconcileBrightnessOverrideIfNeeded()
+    }
+
+    private func setBrightness(_ brightness: CGFloat) {
+        let clampedBrightness = min(max(brightness, 0), 1)
+
+        // Keep the pending value until the corresponding system notification arrives.
+        pendingProgrammaticBrightness = clampedBrightness
+        UIScreen.main.brightness = clampedBrightness
+    }
+
+    private func removeClaim(for owner: AnyObject) {
+        claims.removeAll { claim in
+            guard let claimOwner = claim.owner else { return true }
+            return claimOwner === owner
+        }
+    }
+
+    private func removeReleasedClaims() {
+        claims.removeAll { $0.owner == nil }
+    }
+
+    private func reconcileBrightnessOverrideIfNeeded() {
+        removeReleasedClaims()
+
+        guard !claims.isEmpty else {
+            restoreOriginalBrightnessIfNeeded()
+            return
+        }
+
+        guard UIApplication.shared.applicationState == .active else { return }
+        applyOverrideIfNeeded()
+    }
+
+    // MARK: - Claims
+
+    private func installClaimDeinitObserver(for owner: AnyObject) {
+        guard objc_getAssociatedObject(owner, &screenBrightnessOverrideManagerClaimObserverKey) == nil else { return }
+
+        let observer = ClaimDeinitObserver { [weak self] in
+            self?.performOnMainThread { [weak self] in
+                self?.reconcileBrightnessOverrideIfNeeded()
+            }
+        }
+        objc_setAssociatedObject(owner, &screenBrightnessOverrideManagerClaimObserverKey, observer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+
+    // MARK: - Threading
+
+    private func performOnMainThread(_ work: @escaping () -> Void) {
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
+
+    // MARK: - Notifications
+
+    @objc private func restoreBrightnessForLifecycleChange(_ notification: Notification) {
+        performOnMainThread { [weak self] in
+            self?.restoreOriginalBrightnessIfNeeded()
+        }
+    }
+
+    @objc private func applyBrightnessForLifecycleChange(_ notification: Notification) {
+        performOnMainThread { [weak self] in
+            self?.reconcileBrightnessOverrideIfNeeded()
+        }
+    }
+
+    @objc private func handleScreenBrightnessDidChangeNotification(_ notification: Notification) {
+        performOnMainThread { [weak self] in
+            self?.handleScreenBrightnessDidChange()
+        }
+    }
+
+    private func brightnessesMatch(_ lhs: CGFloat, _ rhs: CGFloat) -> Bool {
+        abs(lhs - rhs) < Constants.brightnessEpsilon
+    }
+}
+
 struct Utils {
     public static let inviteDomain = "i.delta.chat"
 
