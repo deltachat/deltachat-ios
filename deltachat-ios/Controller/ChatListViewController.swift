@@ -594,7 +594,7 @@ class ChatListViewController: UITableViewController {
             return UISwipeActionsConfiguration(actions: [archiveAction, muteAction])
         } else {
             let deleteAction = UIContextualAction(style: .normal, title: String.localized("delete")) { [weak self] _, _, completionHandler in
-                self?.showDeleteChatConfirmationAlert(chatId: chatId) {
+                self?.showDeleteSingleChatConfirmationAlert(chatId: chatId) {
                     completionHandler(true)
                 }
             }
@@ -869,14 +869,19 @@ class ChatListViewController: UITableViewController {
     }
 
     // MARK: - alerts
-    private func showDeleteChatConfirmationAlert(chatId: Int, didDelete: (() -> Void)? = nil) {
-        let alert = UIAlertController(
-            title: nil,
-            message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name),
-            preferredStyle: .safeActionSheet
-        )
-        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
-            self?.animateChatDeletion(chatId: chatId)
+    private func showDeleteSingleChatConfirmationAlert(chatId: Int, didDelete: (() -> Void)? = nil) {
+        let dcChat = dcContext.getChat(chatId: chatId)
+        let button = dcChat.shallLeaveBeforeDelete(dcContext) ? "menu_leave_and_delete" : "delete_for_me"
+
+        let alert = UIAlertController(title: nil, message: .localizedStringWithFormat(.localized("ask_delete_named_chat"), dcChat.name), preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: .localized(button), style: .destructive, handler: { [weak self] _ in
+            guard let self, let viewModel else { return }
+
+            viewModel.leaveDeleteReferencesAndChat(chatId: chatId)
+            if viewModel.searchActive {
+                viewModel.refreshData()
+                viewModel.updateSearchResults(for: searchController)
+            }
             didDelete?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -901,7 +906,7 @@ class ChatListViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
-            viewModel.deleteReferencesAndChats(indexPaths: self.tableView.indexPathsForSelectedRows)
+            viewModel.leaveDeleteReferencesAndChats(indexPaths: self.tableView.indexPathsForSelectedRows)
             self.setLongTapEditing(false)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -935,16 +940,6 @@ class ChatListViewController: UITableViewController {
     private func askToChatWith(contactId: Int) {
         let dcContact = dcContext.getContact(id: contactId)
         askToChatWith(address: dcContact.displayName, contactId: contactId)
-    }
-
-    private func animateChatDeletion(chatId: Int) {
-        guard let viewModel = viewModel else { return }
-
-        viewModel.deleteReferencesAndChat(chatId: chatId)
-        if viewModel.searchActive {
-            viewModel.refreshData()
-            viewModel.updateSearchResults(for: searchController)
-        }
     }
 
     // MARK: - coordinator

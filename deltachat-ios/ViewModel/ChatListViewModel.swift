@@ -212,15 +212,18 @@ class ChatListViewModel: NSObject {
         return nil
     }
 
-    func deleteReferencesAndChat(chatId: Int) {
-        dcContext.deleteReferencesAndChat(chatId: chatId)
-    }
-
-    func deleteReferencesAndChats(indexPaths: [IndexPath]?) {
+    func leaveDeleteReferencesAndChats(indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
-            dcContext.deleteReferencesAndChat(chatId: chatId)
+            leaveDeleteReferencesAndChat(chatId: chatId)
         }
+    }
+
+    func leaveDeleteReferencesAndChat(chatId: Int) {
+        if dcContext.getChat(chatId: chatId).shallLeaveBeforeDelete(dcContext) {
+            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
+        }
+        dcContext.deleteReferencesAndChat(chatId: chatId)
     }
 
     func archiveChatsToggle(indexPaths: [IndexPath]?) {
