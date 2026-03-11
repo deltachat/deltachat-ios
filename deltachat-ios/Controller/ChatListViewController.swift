@@ -876,7 +876,7 @@ class ChatListViewController: UITableViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
-            self?.animateChatDeletion(chatId: chatId, animated: true)
+            self?.animateChatDeletion(chatId: chatId)
             didDelete?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -937,22 +937,14 @@ class ChatListViewController: UITableViewController {
         askToChatWith(address: dcContact.displayName, contactId: contactId)
     }
 
-    private func animateChatDeletion(chatId: Int, animated: Bool) {
+    private func animateChatDeletion(chatId: Int) {
         guard let viewModel = viewModel else { return }
-        if !animated {
-            viewModel.deleteReferencesAndChat(chatId: chatId)
-            refreshInBg()
-            return
-        }
-
-        if viewModel.searchActive {
-            viewModel.deleteReferencesAndChat(chatId: chatId)
-            viewModel.refreshData()
-            viewModel.updateSearchResults(for: searchController)
-            return
-        }
 
         viewModel.deleteReferencesAndChat(chatId: chatId)
+        if viewModel.searchActive {
+            viewModel.refreshData()
+            viewModel.updateSearchResults(for: searchController)
+        }
     }
 
     // MARK: - coordinator
