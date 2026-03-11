@@ -212,10 +212,14 @@ class ChatListViewModel: NSObject {
         return nil
     }
 
+    func deleteReferencesAndChat(chatId: Int) {
+        dcContext.deleteReferencesAndChat(chatId: chatId)
+    }
+
     func deleteReferencesAndChats(indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
-            deleteReferencesAndChat(chatId: chatId)
+            dcContext.deleteReferencesAndChat(chatId: chatId)
         }
     }
 
@@ -247,15 +251,6 @@ class ChatListViewModel: NSObject {
             dcContext.marknoticedChat(chatId: chatId)
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
         }
-    }
-
-    func deleteReferencesAndChat(chatId: Int) {
-        dcContext.deleteChat(chatId: chatId)
-        if #available(iOS 17.0, *) {
-            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
-        }
-        NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
-        INInteraction.delete(with: ["\(dcContext.id).\(chatId)"])
     }
 
     func archiveChatToggle(chatId: Int) {
@@ -492,5 +487,16 @@ extension ChatListViewModel: UISearchResultsUpdating {
                 self?.inBgSearch = false
             }
         }
+    }
+}
+
+extension DcContext {
+    func deleteReferencesAndChat(chatId: Int) {
+        deleteChat(chatId: chatId)
+        if #available(iOS 17.0, *) {
+            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: id, chatId: chatId)
+        }
+        NotificationManager.removeNotificationsForChat(dcContext: self, chatId: chatId)
+        INInteraction.delete(with: ["\(id).\(chatId)"])
     }
 }

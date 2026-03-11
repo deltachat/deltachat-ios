@@ -1331,11 +1331,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         confirmationAlert(title: title, actionTitle: String.localized("delete"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
             guard let self else { return }
-            // TODO: use deleteReferencesAndChat
-            self.dcContext.deleteChat(chatId: self.chatId)
-            if #available(iOS 17.0, *) {
-                UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
-            }
+            self.dcContext.deleteReferencesAndChat(chatId: self.chatId)
             self.navigationController?.popViewController(animated: true)
         })
     }
