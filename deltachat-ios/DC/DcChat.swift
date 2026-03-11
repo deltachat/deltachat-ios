@@ -54,6 +54,15 @@ public class DcChat {
         return type != DC_CHAT_TYPE_SINGLE
     }
 
+    public func shallLeaveBeforeDelete(_ dcContext: DcContext) -> Bool {
+      if isInBroadcast {
+          return getContactIds(dcContext).contains(Int(DC_CONTACT_ID_SELF))
+      } else if isMultiUser && isEncrypted && canSend && !isOutBroadcast {
+        return true
+      }
+      return false
+    }
+
     public var isMailinglist: Bool {
         return type == DC_CHAT_TYPE_MAILINGLIST
     }

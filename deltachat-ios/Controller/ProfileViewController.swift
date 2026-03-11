@@ -347,18 +347,15 @@ class ProfileViewController: UITableViewController {
                 let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
 
-                let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
-                if isGroup && chat.canSend && chat.isEncrypted {
-                    moreOptions.append(action("menu_leave_group", leaveImage, attributes: [.destructive], { [weak self] in
-                        self?.showLeaveAlert("menu_leave_group")
+                if chat.shallLeaveBeforeDelete(dcContext) {
+                    let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
+                    let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
+                    moreOptions.append(action(leaveText, leaveImage, attributes: [.destructive], { [weak self] in
+                        self?.showLeaveAlert(leaveText)
                     }))
-                } else if isInBroadcast {
-                    moreOptions.append(action("menu_leave_channel", leaveImage, attributes: [.destructive], { [weak self] in
-                        self?.showLeaveAlert("menu_leave_channel")
-                    }))
+                } else {
+                    moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
                 }
-
-                moreOptions.append(action("menu_delete_chat", "trash", attributes: [.destructive], showDeleteConfirmationAlert))
             }
 
             if !moreOptions.isEmpty {
@@ -596,6 +593,12 @@ class ProfileViewController: UITableViewController {
             guard let self else { return }
             _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
         }))
+        alert.addAction(UIAlertAction(title: String.localized("menu_leave_and_delete"), style: .destructive, handler: { [weak self] _ in
+            guard let self else { return }
+            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
+            dcContext.deleteReferencesAndChat(chatId: chatId)
+            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
+        }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         present(alert, animated: true, completion: nil)
     }
@@ -621,7 +624,7 @@ class ProfileViewController: UITableViewController {
     private func showDeleteConfirmationAlert() {
         guard let chat else { return }
         let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             dcContext.deleteReferencesAndChat(chatId: chatId)
             navigationController?.popViewControllers(viewsToPop: 2, animated: true)
