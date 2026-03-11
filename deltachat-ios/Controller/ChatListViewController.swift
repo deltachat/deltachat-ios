@@ -909,8 +909,10 @@ class ChatListViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: alertButton, style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
-            viewModel.leaveDeleteReferencesAndChats(indexPaths: self.tableView.indexPathsForSelectedRows)
-            self.setLongTapEditing(false)
+            for chatId in chatIds {
+                viewModel.leaveDeleteReferencesAndChat(chatId: chatId)
+            }
+            setLongTapEditing(false)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
