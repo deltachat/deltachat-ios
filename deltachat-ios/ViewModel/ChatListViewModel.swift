@@ -212,10 +212,10 @@ class ChatListViewModel: NSObject {
         return nil
     }
 
-    func deleteChats(indexPaths: [IndexPath]?) {
+    func deleteReferencesAndChats(indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
-            deleteChat(chatId: chatId)
+            deleteReferencesAndChat(chatId: chatId)
         }
     }
 
@@ -249,7 +249,7 @@ class ChatListViewModel: NSObject {
         }
     }
 
-    func deleteChat(chatId: Int) {
+    func deleteReferencesAndChat(chatId: Int) {
         dcContext.deleteChat(chatId: chatId)
         if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)

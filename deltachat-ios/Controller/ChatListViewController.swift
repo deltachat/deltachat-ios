@@ -876,7 +876,7 @@ class ChatListViewController: UITableViewController {
             preferredStyle: .safeActionSheet
         )
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
-            self?.deleteChat(chatId: chatId, animated: true)
+            self?.animateChatDeletion(chatId: chatId, animated: true)
             didDelete?()
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -901,7 +901,7 @@ class ChatListViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
-            viewModel.deleteChats(indexPaths: self.tableView.indexPathsForSelectedRows)
+            viewModel.deleteReferencesAndChats(indexPaths: self.tableView.indexPathsForSelectedRows)
             self.setLongTapEditing(false)
         }))
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
@@ -937,22 +937,22 @@ class ChatListViewController: UITableViewController {
         askToChatWith(address: dcContact.displayName, contactId: contactId)
     }
 
-    private func deleteChat(chatId: Int, animated: Bool) {
+    private func animateChatDeletion(chatId: Int, animated: Bool) {
         guard let viewModel = viewModel else { return }
         if !animated {
-            viewModel.deleteChat(chatId: chatId)
+            viewModel.deleteReferencesAndChat(chatId: chatId)
             refreshInBg()
             return
         }
 
         if viewModel.searchActive {
-            viewModel.deleteChat(chatId: chatId)
+            viewModel.deleteReferencesAndChat(chatId: chatId)
             viewModel.refreshData()
             viewModel.updateSearchResults(for: searchController)
             return
         }
 
-        viewModel.deleteChat(chatId: chatId)
+        viewModel.deleteReferencesAndChat(chatId: chatId)
     }
 
     // MARK: - coordinator

@@ -625,6 +625,7 @@ class ProfileViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("menu_delete_chat"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
+            // TODO: use deleteReferencesAndChat
             dcContext.deleteChat(chatId: chatId)
             NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
             if #available(iOS 17.0, *) {
