@@ -889,22 +889,25 @@ class ChatListViewController: UITableViewController {
     }
 
     private func showDeleteMultipleChatConfirmationAlert() {
-        let selectedCount = tableView.indexPathsForSelectedRows?.count ?? 0
-        if selectedCount == 0 {
-            return
-        }
+        guard let chatIds = viewModel?.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows), !chatIds.isEmpty else { return }
 
         let message: String
-        if selectedCount == 1,
-           let chatIds = viewModel?.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows),
-           let chatId = chatIds.first {
-            message = String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name)
+        if chatIds.count == 1, let chatId = chatIds.first {
+            message = .localizedStringWithFormat(.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name)
         } else {
-            message = String.localized(stringID: "ask_delete_chat", parameter: selectedCount)
+            message = .localized(stringID: "ask_delete_chat", parameter: chatIds.count)
+        }
+
+        var alertButton = String.localized("delete_for_me")
+        for chatId in chatIds {
+            if dcContext.getChat(chatId: chatId).shallLeaveBeforeDelete(dcContext) {
+                alertButton = .localized("menu_leave_and_delete")
+                break
+            }
         }
 
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: alertButton, style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
             viewModel.leaveDeleteReferencesAndChats(indexPaths: self.tableView.indexPathsForSelectedRows)
             self.setLongTapEditing(false)
