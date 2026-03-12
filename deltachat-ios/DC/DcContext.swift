@@ -349,8 +349,8 @@ public class DcContext {
         dc_marknoticed_chat(self.contextPointer, UInt32(chatId))
     }
 
-    public func markunnoticedChat(chatId: Int) {
-        // dc_marknoticed_chat(self.contextPointer, UInt32(chatId))
+    public func markfreshChat(chatId: Int) {
+        dc_markfresh_chat(self.contextPointer, UInt32(chatId))
     }
 
     public func getSecurejoinQr(chatId: Int) -> String? {
