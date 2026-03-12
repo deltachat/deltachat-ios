@@ -388,7 +388,7 @@ class ChatListViewController: UITableViewController {
 
     @objc func markReadPressed() {
         if isEditing {
-            viewModel?.markUnreadSelectedChats(in: tableView.indexPathsForSelectedRows)
+            viewModel?.markReadSelectedChats(in: tableView.indexPathsForSelectedRows)
             setLongTapEditing(false)
         } else if isArchive {
             dcContext.marknoticedChat(chatId: Int(DC_CHAT_ID_ARCHIVED_LINK))

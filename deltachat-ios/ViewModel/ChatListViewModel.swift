@@ -241,7 +241,7 @@ class ChatListViewModel: NSObject {
         }
     }
 
-    func markUnreadSelectedChats(in indexPaths: [IndexPath]?) {
+    func markReadSelectedChats(in indexPaths: [IndexPath]?) {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
             dcContext.marknoticedChat(chatId: chatId)
