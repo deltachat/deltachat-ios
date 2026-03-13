@@ -116,6 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Viimati nähtud: %1$@";
 "last_seen_unknown" = "Viimati nähtud: pole teada";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "alla ühe minuti";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -131,6 +134,9 @@
 "add_to_sticker_collection" = "Lisa kleepsude kogumikku";
 "add_stickers_instructions" = "Kleepsude lisamiseks klõpsi valikut „Ava kleepsude kaust“, loo oma kleepsupaki jaoks sinna alamkaust ning lohista pildi- ja kleepsufailid sinna";
 "open_sticker_folder" = "Ava kleepsude kaust";
+"ask_add_sticker_to_collection" = "Kas lisad selle kleepsu oma kogumikku?";
+"ask_delete_sticker" = "Kas kustutad selle kleepsu?";
+"sticker_picker_empty_hint" = "Klõpsa kleepsu lisamiseks siia.";
 "images" = "Pildid";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Heli";
@@ -224,6 +230,7 @@
 "menu_add_attachment" = "Lisa manus";
 "menu_leave_group" = "Lahku grupist";
 "menu_leave_channel" = "Lahku kanalist";
+"menu_leave_and_delete" = "Lahku ja kustuta minu jaoks";
 "menu_delete_chat" = "Kustuta vestlus";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Eemalda vestluse sisu";
@@ -330,6 +337,10 @@
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Häälkõne";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videokõne";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Väljuv häälkõne";
 // deprecated, use "Video call" instead
@@ -624,6 +635,7 @@
 "pref_enter_sends" = "Sisestusklahv saadab sõnumi";
 "pref_enter_sends_explain" = "Sisestusklahvi vajutamisega saadad sõnumi ära";
 "pref_outgoing_media_quality" = "Saadetava meediumi kvaliteet";
+"pref_outgoing_media_quality_hint" = "Saatmaks algse kvaliteediga, palun vali manuse tüübiks „Fail“ ning arvesta, et nii sinu kui saaja puhul kasutatakse suuremat andmemahtu.";
 "pref_outgoing_balanced" = "Tasakaalustatud";
 "pref_outgoing_worse" = "Kõige kehvem kvaliteet, aga väikseim maht";
 "pref_vibrate" = "Väristamine";
@@ -634,6 +646,10 @@
 "pref_notifications" = "Teavitused";
 "pref_mention_notifications" = "Mainimised";
 "pref_mention_notifications_explain" = "Summutatud gruppides teavita sinule suunatud sõnumitest, milleks võivad olla vastused või reageerimised";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Kõned";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Saabuvate kõnede puhul näita kõvaadet";
 "pref_notifications_show" = "Näita";
 "pref_notifications_priority" = "Prioriteet";
 "pref_notifications_explain" = "Kasuta uute sõnumite puhul süsteemi teavitusi";

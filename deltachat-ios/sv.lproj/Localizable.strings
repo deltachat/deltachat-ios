@@ -76,7 +76,7 @@
 "activate" = "Aktivera";
 "load_remote_content" = "Läs in fjärrbilder";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Fjärrbilder kan användas för att spåra dig.\n\nInställningen att fonter och annat innehåll laddas in. Även om inställningen är inaktiverad kan eventuellt inbäddade eller cachade fjärrbilder visas.\n\nLadda in fjärrbilder?";
+"load_remote_content_ask" = "Fjärrbilder kan användas för att spåra dig.\n\nInställningen att fonter och annat innehåll laddas in. Även om inställningen är inaktiverad kan eventuellt inbäddade eller cachade fjärrbilder visas.\n\nVill du läsa in fjärrbilder?";
 "always" = "Alltid";
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
@@ -116,6 +116,9 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Sågs senast %1$@";
 "last_seen_unknown" = "Sågs senast: Okänt";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Mindre än 1 minut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
@@ -131,6 +134,9 @@
 "add_to_sticker_collection" = "Lägg till i dekalsamling";
 "add_stickers_instructions" = "För att lägga till dekaler trycker du på \"Öppna dekalmapp\", skapar en undermapp för ditt dekalpaket och drar bild- och dekalfiler dit.";
 "open_sticker_folder" = "Öppna dekalmapp";
+"ask_add_sticker_to_collection" = "Vill du lägga till denna dekal till din samling?";
+"ask_delete_sticker" = "Vill du ta bort denna dekal?";
+"sticker_picker_empty_hint" = "Tryck på en dekal för att lägga till den här.";
 "images" = "Bilder";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Ljud";
@@ -208,6 +214,7 @@
 "new_channel" = "Ny kanal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalnamn";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-post";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Ny e-post";
@@ -223,11 +230,12 @@
 "menu_add_attachment" = "Lägg till bilaga";
 "menu_leave_group" = "Lämna grupp";
 "menu_leave_channel" = "Lämna kanalen";
+"menu_leave_and_delete" = "Lämna & ta bort för mig";
 "menu_delete_chat" = "Ta bort chatt";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Rensa chatt";
 "delete_contact" = "Ta bort kontakt";
-"menu_delete_location" = "Ta bort denna plats?";
+"menu_delete_location" = "Vill du ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopiera till urklipp";
 "share_invite_link" = "Dela inbjudningslänk";
@@ -329,6 +337,10 @@
 "answer_call" = "Svara";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avböj";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Ljudsamtal";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videosamtal";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Utgående ljudsamtal";
 // deprecated, use "Video call" instead
@@ -345,16 +357,16 @@
 "ask_leave_group" = "Vill du verkligen lämna?";
 "ask_delete_named_chat" = "Vill du ta bort chatten\"%1$@\"?";
 "ask_delete_message" = "Vill du ta bort detta meddelande?";
-"ask_forward" = "Vidarebefordra meddelanden till %1$@?";
+"ask_forward" = "Vill du vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
-"ask_export_attachment" = "Exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
-"ask_block_contact" = "Blockera den här kontakten? Du kommer inte att få fler meddelanden från den här kontakten.";
-"ask_unblock_contact" = "Avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
-"ask_delete_contacts" = "Ta bort kontakter? Detta kommer att ta bort de valda kontakterna permanent.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent.";
-"ask_delete_contact" = "Ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
-"ask_start_chat_with" = "Chatta med %1$@ ?";
+"ask_export_attachment" = "Vill du exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
+"ask_block_contact" = "Vill du blockera den här kontakten? Du kommer inte att få fler meddelanden från den här kontakten.";
+"ask_unblock_contact" = "Vill du avblockera den här kontakten? Du kommer återigen att kunna ta emot meddelanden från den här kontakten.";
+"ask_delete_contacts" = "Vill du ta bort kontakter? Detta kommer att ta bort de valda kontakterna permanent.\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent.";
+"ask_delete_contact" = "Vill du ta bort kontakten %1$@?\n\nKontakter med pågående chattar och kontakter från systemets adressbok kan inte tas bort permanent. ";
+"ask_start_chat_with" = "Vill du chatta med %1$@?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "Ta bort %1$@ från gruppen?";
+"ask_remove_members" = "Vill du ta bort %1$@ från gruppen?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Vill du ta bort %1$@ från kanalen?";
 "open_url_confirmation" = "Vill du öppna denna länk?";
@@ -623,6 +635,7 @@
 "pref_enter_sends" = "Returtangenten skickar";
 "pref_enter_sends_explain" = "Tryck på returtangenten för att skicka textmeddelanden";
 "pref_outgoing_media_quality" = "Utgående ljudkvalitet";
+"pref_outgoing_media_quality_hint" = "För att skicka originalkvalitet skall du bifoga media som en \"fil\". Detta använder betydligt mer data för dig och dina mottagare.";
 "pref_outgoing_balanced" = "Balanserad";
 "pref_outgoing_worse" = "Sämre kvalitet, mindre storlek";
 "pref_vibrate" = "Vibrera";
@@ -633,6 +646,10 @@
 "pref_notifications" = "Avisering";
 "pref_mention_notifications" = "Omnämnanden";
 "pref_mention_notifications_explain" = "Avisera meddelanden som riktas till dig, i tystade grupper, såsom svar eller reaktioner";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Samtal";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Visa samtalsskärm vid inkommande samtal";
 "pref_notifications_show" = "Visa";
 "pref_notifications_priority" = "Prioritet";
 "pref_notifications_explain" = "Aktivera systemavisering för nya meddelanden";
@@ -881,7 +898,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
-"qraccount_ask_create_and_login" = "Skapa ny e-postadress på \"%1$@\" och logga in där?";
+"qraccount_ask_create_and_login" = "Vill du skapa ny profil på \"%1$@\" och logga in där?";
 "set_name_and_avatar_explain" = "Ange ett namn som dina kontakter kommer att känna igen. Du kan också ange en profilbild.";
 "please_enter_name" = "Ange ett namn.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
@@ -902,7 +919,7 @@
 "verified_by_unknown" = "Introducerad";
 "mailto_dialog_header_select_chat" = "Välj chatt för att skicka meddelandet till";
 // first placeholder is the name of the chat
-"confirm_replace_draft" = "%1$@ redan har ett utkast till meddelande, vill du ersätta det?";
+"confirm_replace_draft" = "%1$@ har redan ett utkast till meddelande, vill du ersätta det?";
 "mailto_link_could_not_be_decoded" = "mailto-länken kunde inte avkodas: %1$@";
 // notifications
 "notify_reply_button" = "Svara";
