@@ -33,7 +33,7 @@ public class FileTextCell: BaseMessageCell, ReusableCell {
         fileView.prepareForReuse()
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, callInfo: DcContext.CallInfo?, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
         if let text = msg.text, !text.isEmpty {
             messageLabel.text = text
             spacerHeight?.isActive = true
@@ -45,6 +45,7 @@ public class FileTextCell: BaseMessageCell, ReusableCell {
         a11yDcType = "\(String.localized("document")), \(fileView.configureAccessibilityLabel())"
         super.update(dcContext: dcContext,
                      msg: msg,
+                     callInfo: callInfo,
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,

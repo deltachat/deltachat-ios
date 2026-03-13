@@ -25,6 +25,10 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
     private var actionBtnZeroHeightConstraint: NSLayoutConstraint?
     private var actionBtnTrailingConstraint: NSLayoutConstraint?
+    private var statusViewLeadingConstraint: NSLayoutConstraint?
+    private var statusViewLeadingMaxConstraint: NSLayoutConstraint?
+    private var statusViewTrailingConstraint: NSLayoutConstraint?
+    private var statusViewTrailingMaxConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
         get {
@@ -198,6 +202,7 @@ public class BaseMessageCell: UITableViewCell {
     private var showSelectionBackground: Bool
     private var timer: Timer?
 
+    private(set) var currentCallInfo: DcContext.CallInfo?
     private var dcContextId: Int?
     private var dcMsgId: Int?
     var a11yDcType: String?
@@ -244,16 +249,21 @@ public class BaseMessageCell: UITableViewCell {
             topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
             messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
             actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
-            statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
             statusView.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
             statusView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
             gotoOriginalButton.constraintCenterYTo(messageBackgroundContainer),
         ])
 
-        gotoOriginalLeftConstraint = gotoOriginalButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: -(gotoOriginalWidth+8))
+        statusViewLeadingConstraint = statusView.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8)
+        statusViewLeadingMaxConstraint = statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8)
+        statusViewTrailingConstraint = statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)
+        statusViewTrailingMaxConstraint = statusView.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8)
+        statusViewLeadingMaxConstraint?.isActive = true
+        statusViewTrailingConstraint?.isActive = true
+
+        gotoOriginalLeftConstraint = gotoOriginalButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: -(gotoOriginalWidth + 8))
         gotoOriginalLeftConstraint?.isActive = false
-        gotoOriginalRightConstraint = gotoOriginalButton.constraintToTrailingOf(contentView, paddingLeading: -(gotoOriginalWidth+8))
+        gotoOriginalRightConstraint = gotoOriginalButton.constraintToTrailingOf(contentView, paddingLeading: -(gotoOriginalWidth + 8))
         gotoOriginalRightConstraint?.isActive = false
 
         leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
@@ -302,14 +312,11 @@ public class BaseMessageCell: UITableViewCell {
 
         contentView.addSubview(reactionsView)
 
-        let reactionsViewConstraints = [
+        NSLayoutConstraint.activate([
             messageBackgroundContainer.leadingAnchor.constraint(lessThanOrEqualTo: reactionsView.leadingAnchor, constant: -10),
             messageBackgroundContainer.trailingAnchor.constraint(equalTo: reactionsView.trailingAnchor, constant: 10),
             messageBackgroundContainer.bottomAnchor.constraint(equalTo: reactionsView.bottomAnchor, constant: -20)
-        ]
-
-        NSLayoutConstraint.activate(reactionsViewConstraints)
-
+        ])
     }
 
     @objc
@@ -386,7 +393,8 @@ public class BaseMessageCell: UITableViewCell {
      }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
+    // swiftlint:disable:next function_parameter_count
+    func update(dcContext: DcContext, msg: DcMsg, callInfo: DcContext.CallInfo?, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
@@ -485,25 +493,24 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
 
+        timer?.invalidate()
+        timer = nil
+        currentCallInfo = msg.type == DC_MSG_CALL ? callInfo : nil
         if !msg.isInfo {
-            var tintColor: UIColor
-            if showBottomLabelBackground {
-                tintColor = DcColors.coreDark05
-            } else if msg.isFromCurrentSender {
-                tintColor = DcColors.checkmarkGreen
-            } else {
-                tintColor = DcColors.incomingMessageSecondaryTextColor
-            }
-
+            let tintColor = statusTintColor(for: msg)
             let viewCount = showViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
-            statusView.update(message: msg, tintColor: tintColor, showOnlyPendingAndError: showViewCount, viewCount: viewCount)
-            let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-                guard let self else { return }
-
-                self.statusView.dateLabel.text = msg.formattedSentDate()
+            statusView.update(message: msg,
+                              callInfo: currentCallInfo,
+                              tintColor: tintColor,
+                              showOnlyPendingAndError: showViewCount,
+                              viewCount: viewCount)
+            updateStatusViewAlignment(for: msg)
+            if msg.type != DC_MSG_CALL {
+                timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+                    guard let self else { return }
+                    self.statusView.dateLabel.text = StatusView.statusDateText(message: msg, callInfo: nil)
+                }
             }
-
-            self.timer = timer
         }
 
         if let quoteText = msg.quoteText {
@@ -545,6 +552,24 @@ public class BaseMessageCell: UITableViewCell {
 
         self.dcContextId = dcContext.id
         self.dcMsgId = msg.id
+    }
+
+    private func updateStatusViewAlignment(for msg: DcMsg) {
+        let shouldAlignLeft = msg.type == DC_MSG_CALL
+        statusViewLeadingConstraint?.isActive = shouldAlignLeft
+        statusViewTrailingMaxConstraint?.isActive = shouldAlignLeft
+        statusViewLeadingMaxConstraint?.isActive = !shouldAlignLeft
+        statusViewTrailingConstraint?.isActive = !shouldAlignLeft
+    }
+
+    private func statusTintColor(for msg: DcMsg) -> UIColor {
+        if showBottomLabelBackground {
+            return DcColors.coreDark05
+        }
+        if msg.isFromCurrentSender {
+            return DcColors.checkmarkGreen
+        }
+        return DcColors.incomingMessageSecondaryTextColor
     }
 
     private func getFormattedText(messageText: String?, searchText: String?, highlight: Bool) -> NSAttributedString? {
@@ -624,16 +649,16 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: msg, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
+            "\(StatusView.getAccessibilityString(message: msg, callInfo: currentCallInfo, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
             "\(reactionsString) "
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
         var backgroundColor: UIColor
         if isTransparent {
-            backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)
+            backgroundColor = UIColor(alpha: 0, red: 0, green: 0, blue: 0)
         } else if message.isFromCurrentSender {
-            backgroundColor =  DcColors.messagePrimaryColor
+            backgroundColor = DcColors.messagePrimaryColor
         } else {
             backgroundColor = DcColors.messageSecondaryColor
         }
@@ -671,6 +696,7 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView.prepareForReuse()
         timer?.invalidate()
         timer = nil
+        currentCallInfo = nil
         dcContextId = nil
         dcMsgId = nil
     }

@@ -50,6 +50,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
+        tableView.register(CallMessageCell.self, forCellReuseIdentifier: CallMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
@@ -598,6 +599,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = dequeueCell(ofType: ImageTextCell.self)
 
+        case DC_MSG_CALL:
+            cell = dequeueCell(ofType: CallMessageCell.self)
+
         case DC_MSG_FILE:
             cell = dequeueCell(ofType: FileTextCell.self)
 
@@ -629,8 +633,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.baseDelegate = self
         cell.showSelectionBackground(tableView.isEditing)
+        let callInfo = message.type == DC_MSG_CALL ? dcContext.fetchCallInfo(msgId: message.id) : nil
         cell.update(dcContext: dcContext,
                     msg: message,
+                    callInfo: callInfo,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName,

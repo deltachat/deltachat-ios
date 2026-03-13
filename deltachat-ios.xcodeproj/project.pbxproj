@@ -119,6 +119,7 @@
 		30F4E2942859213400ACA0D8 /* ChatListEditingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F4E2932859213300ACA0D8 /* ChatListEditingBar.swift */; };
 		30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F8817524DA97DA0023780E /* BackgroundContainer.swift */; };
 		30FDB70524D1C1000066C48D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB6F824D1C1000066C48D /* ChatViewController.swift */; };
+		30FDB70624D1C1010066C48D /* CallMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB70424D1C1010066C48D /* CallMessageCell.swift */; };
 		30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB71E24D8170E0066C48D /* TextMessageCell.swift */; };
 		30FDB72124D838240066C48D /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FDB72024D838240066C48D /* BaseMessageCell.swift */; };
 		5F153E9A2CC38BAA00871ABE /* GiveBackMyFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F153E992CC38BAA00871ABE /* GiveBackMyFirstResponder.swift */; };
@@ -460,6 +461,7 @@
 		30F4E2932859213300ACA0D8 /* ChatListEditingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListEditingBar.swift; sourceTree = "<group>"; };
 		30F8817524DA97DA0023780E /* BackgroundContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundContainer.swift; sourceTree = "<group>"; };
 		30FDB6F824D1C1000066C48D /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		30FDB70424D1C1010066C48D /* CallMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMessageCell.swift; sourceTree = "<group>"; };
 		30FDB71E24D8170E0066C48D /* TextMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageCell.swift; sourceTree = "<group>"; };
 		30FDB72024D838240066C48D /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
 		5299B7A064591DDEE0678CD6 /* Pods-DcShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DcShare.debug.xcconfig"; path = "Target Support Files/Pods-DcShare/Pods-DcShare.debug.xcconfig"; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 		30FDB6B624D193DD0066C48D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				30FDB70424D1C1010066C48D /* CallMessageCell.swift */,
 				30FDB71E24D8170E0066C48D /* TextMessageCell.swift */,
 				5F785F6D2CB9344F003FFFB9 /* ReusableCellProtocol.swift */,
 				30FDB72024D838240066C48D /* BaseMessageCell.swift */,
@@ -1821,6 +1824,7 @@
 				303492A5257546B400A523D0 /* DraftPreview.swift in Sources */,
 				305961D02346125100C80F33 /* NSAttributedString+Extensions.swift in Sources */,
 				21D6C941260623F500D0755A /* NotificationManager.swift in Sources */,
+				30FDB70624D1C1010066C48D /* CallMessageCell.swift in Sources */,
 				3080A023277DE09900E74565 /* SeparatorLine.swift in Sources */,
 				D85DF9802C5250E200A01408 /* ProgressAlertHandler.swift in Sources */,
 				302B84C72396770B001C261F /* RelayHelper.swift in Sources */,
