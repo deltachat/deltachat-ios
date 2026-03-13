@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improve call bubbles ui
 - Allow to switch profile when sharing or forwarding
 - Add tab bar icon bounce animation on tap
 - Explain at "Settings / Chats / Outgoing Media Quality" how to send original quality
