@@ -25,10 +25,8 @@ public class BaseMessageCell: UITableViewCell {
     private var mainContentViewTrailingConstraint: NSLayoutConstraint?
     private var actionBtnZeroHeightConstraint: NSLayoutConstraint?
     private var actionBtnTrailingConstraint: NSLayoutConstraint?
-    private var statusViewLeadingConstraint: NSLayoutConstraint?
     private var statusViewLeadingMaxConstraint: NSLayoutConstraint?
     private var statusViewTrailingConstraint: NSLayoutConstraint?
-    private var statusViewTrailingMaxConstraint: NSLayoutConstraint?
 
     public var mainContentViewHorizontalPadding: CGFloat {
         get {
@@ -254,10 +252,8 @@ public class BaseMessageCell: UITableViewCell {
             gotoOriginalButton.constraintCenterYTo(messageBackgroundContainer),
         ])
 
-        statusViewLeadingConstraint = statusView.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8)
         statusViewLeadingMaxConstraint = statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8)
         statusViewTrailingConstraint = statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8)
-        statusViewTrailingMaxConstraint = statusView.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8)
         statusViewLeadingMaxConstraint?.isActive = true
         statusViewTrailingConstraint?.isActive = true
 
@@ -504,12 +500,9 @@ public class BaseMessageCell: UITableViewCell {
                               tintColor: tintColor,
                               showOnlyPendingAndError: showViewCount,
                               viewCount: viewCount)
-            updateStatusViewAlignment(for: msg)
-            if msg.type != DC_MSG_CALL {
-                timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
-                    guard let self else { return }
-                    self.statusView.dateLabel.text = StatusView.statusDateText(message: msg, callInfo: nil)
-                }
+            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+                guard let self else { return }
+                self.statusView.dateLabel.text = StatusView.statusDateText(message: msg, callInfo: self.currentCallInfo)
             }
         }
 
@@ -552,14 +545,6 @@ public class BaseMessageCell: UITableViewCell {
 
         self.dcContextId = dcContext.id
         self.dcMsgId = msg.id
-    }
-
-    private func updateStatusViewAlignment(for msg: DcMsg) {
-        let shouldAlignLeft = msg.type == DC_MSG_CALL
-        statusViewLeadingConstraint?.isActive = shouldAlignLeft
-        statusViewTrailingMaxConstraint?.isActive = shouldAlignLeft
-        statusViewLeadingMaxConstraint?.isActive = !shouldAlignLeft
-        statusViewTrailingConstraint?.isActive = !shouldAlignLeft
     }
 
     private func statusTintColor(for msg: DcMsg) -> UIColor {

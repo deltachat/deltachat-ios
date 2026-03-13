@@ -5,14 +5,30 @@ import UIKit
 class CallMessageCell: BaseMessageCell, ReusableCell {
     static let reuseIdentifier = "CallMessageCell"
 
-    private let defaultTextPadding: CGFloat = 12
+    private let callTextTrailingPadding: CGFloat = 76
     private let callIconSize: CGFloat = 28
-    private let callIconTrailingPadding: CGFloat = 10
-    private let callIconTextPadding: CGFloat = 16
+    private let callIconLeadingPadding: CGFloat = 8
+    private let callIconTextPadding: CGFloat = 4
     private var callTitleFont: UIFont { UIFont.preferredFont(for: .callout, weight: .semibold) }
+    private var callDurationFont: UIFont { UIFont.preferredFont(for: .caption1, weight: .regular) }
     private lazy var callTitleMinHeightConstraint = messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
-    private lazy var statusViewTrailingToCallIconConstraint = statusView.trailingAnchor.constraint(lessThanOrEqualTo: callIconButton.leadingAnchor, constant: -callIconTextPadding)
-    private let callTextBlockLayoutGuide = UILayoutGuide()
+
+    private var callTextLeadingPadding: CGFloat {
+        callIconLeadingPadding + callIconSize + callIconTextPadding
+    }
+
+    private lazy var durationLabel: PaddingTextView = {
+        let view = PaddingTextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        view.font = callDurationFont
+        view.textColor = DcColors.incomingMessageSecondaryTextColor
+        view.numberOfLines = 1
+        view.label.lineBreakMode = .byTruncatingTail
+        view.isAccessibilityElement = false
+        view.isHidden = true
+        return view
+    }()
 
     private lazy var callIconButton: UIButton = {
         let button = UIButton(type: .system)
@@ -34,21 +50,21 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        durationLabel.text = nil
+        durationLabel.isHidden = true
         updateCallLayout(isVideoCall: false)
     }
 
     override func setupSubviews() {
         super.setupSubviews()
         mainContentView.addArrangedSubview(messageLabel)
+        mainContentView.addArrangedSubview(durationLabel)
+        mainContentView.setCustomSpacing(2, after: messageLabel)
         messageBackgroundContainer.addSubview(callIconButton)
-        messageBackgroundContainer.addLayoutGuide(callTextBlockLayoutGuide)
         NSLayoutConstraint.activate([
             callTitleMinHeightConstraint,
-            callIconButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: callIconTrailingPadding),
-            callIconButton.centerYAnchor.constraint(equalTo: callTextBlockLayoutGuide.centerYAnchor),
-            statusViewTrailingToCallIconConstraint,
-            callTextBlockLayoutGuide.topAnchor.constraint(equalTo: mainContentView.topAnchor),
-            callTextBlockLayoutGuide.bottomAnchor.constraint(equalTo: statusView.bottomAnchor)
+            callIconButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: callIconLeadingPadding),
+            callIconButton.centerYAnchor.constraint(equalTo: mainContentView.centerYAnchor)
         ])
         messageLabel.numberOfLines = 1
         messageLabel.label.lineBreakMode = .byTruncatingTail
@@ -69,12 +85,15 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
                      searchText: searchText,
                      highlight: highlight)
 
+        durationLabel.textColor = durationTintColor(for: msg)
         applyCallTitle(message: msg, searchText: searchText, highlight: highlight)
     }
 
     private func updateCallLayout(isVideoCall: Bool) {
-        messageLabel.paddingLeading = defaultTextPadding
-        messageLabel.paddingTrailing = callIconSize + callIconTrailingPadding + callIconTextPadding
+        messageLabel.paddingLeading = callTextLeadingPadding
+        messageLabel.paddingTrailing = callTextTrailingPadding
+        durationLabel.paddingLeading = callTextLeadingPadding
+        durationLabel.paddingTrailing = callTextTrailingPadding
         callTitleMinHeightConstraint.constant = ceil(callTitleFont.lineHeight) + messageLabel.paddingTop + messageLabel.paddingBottom
         Self.configureCallIconButton(callIconButton, isVideoCall: isVideoCall)
     }
@@ -87,9 +106,13 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
     private func applyCallTitle(message: DcMsg, searchText: String?, highlight: Bool) {
         guard let title = StatusView.callDisplayTitle(message: message, callInfo: currentCallInfo), !title.isEmpty else {
             messageLabel.attributedText = nil
+            durationLabel.text = nil
+            durationLabel.isHidden = true
             return
         }
         messageLabel.attributedText = formattedCallText(text: title, searchText: searchText, highlight: highlight)
+        durationLabel.text = StatusView.callDurationText(callInfo: currentCallInfo)
+        durationLabel.isHidden = durationLabel.text == nil
     }
 
     private func formattedCallText(text: String, searchText: String?, highlight: Bool) -> NSAttributedString {
@@ -108,5 +131,15 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
             }
         }
         return attributedText
+    }
+
+    private func durationTintColor(for message: DcMsg) -> UIColor {
+        if showBottomLabelBackground {
+            return DcColors.coreDark05
+        }
+        if message.isFromCurrentSender {
+            return DcColors.checkmarkGreen
+        }
+        return DcColors.incomingMessageSecondaryTextColor
     }
 }
