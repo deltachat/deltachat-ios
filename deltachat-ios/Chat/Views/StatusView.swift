@@ -6,7 +6,6 @@ public class StatusView: UIView {
     private let contentStackView: UIStackView
     let dateLabel: UILabel
     private let editedLabel: UILabel
-    private let callDirectionView: UIImageView
     private let envelopeView: UIImageView
     private let locationView: UIImageView
     private let viewsIconView: UIImageView
@@ -15,22 +14,6 @@ public class StatusView: UIView {
     private let savedView: UIImageView
     private let defaultSpacing: CGFloat = 4
     private let viewsSectionLeadingSpacing: CGFloat = 10
-
-    private lazy var callDirectionSymbolConfiguration = UIImage.SymbolConfiguration(
-        pointSize: max(6, UIFont.preferredFont(for: .caption2, weight: .regular).pointSize - 4),
-        weight: .regular
-    )
-
-    private static let durationFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .short
-        formatter.maximumUnitCount = 2
-        formatter.allowedUnits = [.hour, .minute, .second]
-        return formatter
-    }()
-
-    private static let incomingCallDirectionSymbol = UIImage(systemName: "arrow.down.left")
-    private static let outgoingCallDirectionSymbol = UIImage(systemName: "arrow.up.right")
 
     override init(frame: CGRect) {
 
@@ -42,14 +25,6 @@ public class StatusView: UIView {
         editedLabel.text = String.localized("edited")
         editedLabel.translatesAutoresizingMaskIntoConstraints = false
         editedLabel.font = UIFont.preferredFont(for: .caption1, weight: .regular)
-
-        callDirectionView = UIImageView()
-        callDirectionView.translatesAutoresizingMaskIntoConstraints = false
-        callDirectionView.contentMode = .scaleAspectFit
-        callDirectionView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        callDirectionView.setContentCompressionResistancePriority(.required, for: .vertical)
-        callDirectionView.setContentHuggingPriority(.required, for: .horizontal)
-        callDirectionView.setContentHuggingPriority(.required, for: .vertical)
 
         envelopeView = UIImageView()
         envelopeView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +40,7 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, callDirectionView, dateLabel, locationView, viewsIconView, viewsCountLabel, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, viewsIconView, viewsCountLabel, stateView])
         contentStackView.alignment = .center
         contentStackView.spacing = defaultSpacing
         contentStackView.setCustomSpacing(2, after: viewsIconView)
@@ -88,9 +63,6 @@ public class StatusView: UIView {
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 5),
             bottomAnchor.constraint(equalTo: contentStackView.bottomAnchor),
-
-            callDirectionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 12),
-            callDirectionView.heightAnchor.constraint(greaterThanOrEqualToConstant: 12),
 
             envelopeView.widthAnchor.constraint(equalToConstant: 14),
             envelopeView.heightAnchor.constraint(equalToConstant: 10),
@@ -119,8 +91,6 @@ public class StatusView: UIView {
         viewsCountLabel.isHidden = true
         viewsCountLabel.text = nil
         savedView.isHidden = true
-        callDirectionView.image = nil
-        callDirectionView.isHidden = true
         stateView.isHidden = true
     }
 
@@ -133,7 +103,6 @@ public class StatusView: UIView {
         dateLabel.textColor = tintColor
         editedLabel.isHidden = !message.isEdited
         editedLabel.textColor = tintColor
-        updateCallDirectionView(message: message, callInfo: callInfo, tintColor: tintColor)
 
         if message.showEnvelope() {
             envelopeView.image = UIImage(systemName: "envelope")?.maskWithColor(color: tintColor)
@@ -169,12 +138,6 @@ public class StatusView: UIView {
             savedView.isHidden = true
         }
 
-        if message.type == DC_MSG_CALL {
-            stateView.image = nil
-            stateView.isHidden = true
-            return
-        }
-
         let state: Int
         if message.downloadState == DC_DOWNLOAD_IN_PROGRESS {
             state = Int(DC_DOWNLOAD_IN_PROGRESS)
@@ -199,23 +162,19 @@ public class StatusView: UIView {
         stateView.isHidden = stateView.image == nil
     }
 
-    static func statusDateText(message: DcMsg, callInfo: DcContext.CallInfo?) -> String {
-        if message.type != DC_MSG_CALL {
-            return message.formattedSentDate()
-        }
-
-        let sentDateText = DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(message.timestamp))
-        guard let durationText = callDurationText(callInfo: callInfo) else {
-            return sentDateText
-        }
-        return "\(sentDateText), \(durationText)"
+    static func statusDateText(message: DcMsg, callInfo _: DcContext.CallInfo?) -> String {
+        return message.formattedSentDate()
     }
 
-    private static func callDurationText(callInfo: DcContext.CallInfo?) -> String? {
+    static func callDurationText(callInfo: DcContext.CallInfo?) -> String? {
         guard let durationSeconds = callDurationSeconds(state: callInfo?.state) else {
             return nil
         }
-        return durationFormatter.string(from: TimeInterval(max(0, durationSeconds)))
+        let durationMinutes = max(0, durationSeconds) / 60
+        if durationMinutes == 0 {
+            return String.localized("call_duration_less_than_a_minute")
+        }
+        return String.localized(stringID: "call_duration_minutes", parameter: durationMinutes)
     }
 
     private static func callDurationSeconds(state: DcContext.CallInfoState?) -> Int? {
@@ -230,40 +189,6 @@ public class StatusView: UIView {
             return duration
         case .alerting, .active, .missed, .declined, .canceled:
             return nil
-        }
-    }
-
-    private func updateCallDirectionView(message: DcMsg, callInfo: DcContext.CallInfo?, tintColor: UIColor) {
-        guard message.type == DC_MSG_CALL else {
-            callDirectionView.image = nil
-            callDirectionView.isHidden = true
-            return
-        }
-
-        let symbol = message.isFromCurrentSender ? Self.outgoingCallDirectionSymbol : Self.incomingCallDirectionSymbol
-        guard let symbolImage = symbol?.withConfiguration(callDirectionSymbolConfiguration) else {
-            callDirectionView.image = nil
-            callDirectionView.isHidden = true
-            return
-        }
-
-        callDirectionView.image = symbolImage.withRenderingMode(.alwaysTemplate)
-        callDirectionView.tintColor = callDirectionTintColor(callInfo: callInfo, defaultTintColor: tintColor)
-        callDirectionView.isHidden = false
-    }
-
-    private func callDirectionTintColor(callInfo: DcContext.CallInfo?, defaultTintColor: UIColor) -> UIColor {
-        guard let state = callInfo?.state else {
-            return defaultTintColor
-        }
-
-        switch state {
-        case .missed, .declined, .canceled:
-            return .systemRed
-        case .alerting, .active:
-            return defaultTintColor
-        case .completed, .unknown:
-            return DcColors.checkmarkGreen
         }
     }
 
@@ -295,23 +220,7 @@ public class StatusView: UIView {
     }
 
     public static func getAccessibilityString(message: DcMsg, callInfo: DcContext.CallInfo? = nil, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
-        if message.type == DC_MSG_CALL {
-            return statusDateText(message: message, callInfo: callInfo)
-        }
-
-        let state: String
-        switch Int32(message.state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
-            state = String.localized("a11y_delivery_status_sending")
-        case DC_STATE_OUT_DELIVERED:
-            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
-        case DC_STATE_OUT_MDN_RCVD:
-            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_read")
-        case DC_STATE_OUT_FAILED:
-            state = String.localized("a11y_delivery_status_error")
-        default:
-            state = ""
-        }
+        let state = deliveryStatusAccessibilityText(message: message, showOnlyPendingAndError: showOnlyPendingAndError)
         let stateString = state.isEmpty ? "" : ", \(state)"
         let viewsCountString: String
         if let viewCount {
@@ -320,7 +229,26 @@ public class StatusView: UIView {
             viewsCountString = ""
         }
         let envelopeString = message.showEnvelope() ? (", " + String.localized("email")) : ""
-        return "\(message.formattedSentDate())\(stateString)\(viewsCountString)\(envelopeString)"
+        if message.type == DC_MSG_CALL {
+            let durationString = callDurationText(callInfo: callInfo).map { "\($0), " } ?? ""
+            return "\(durationString)\(statusDateText(message: message, callInfo: callInfo))\(stateString)\(viewsCountString)\(envelopeString)"
+        }
+        return "\(statusDateText(message: message, callInfo: callInfo))\(stateString)\(viewsCountString)\(envelopeString)"
+    }
+
+    private static func deliveryStatusAccessibilityText(message: DcMsg, showOnlyPendingAndError: Bool) -> String {
+        switch Int32(message.state) {
+        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            return String.localized("a11y_delivery_status_sending")
+        case DC_STATE_OUT_DELIVERED:
+            return showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            return showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_read")
+        case DC_STATE_OUT_FAILED:
+            return String.localized("a11y_delivery_status_error")
+        default:
+            return ""
+        }
     }
 
     private func updateViewsSectionSpacing(hasLocation: Bool, showViewCount: Bool) {
