@@ -760,7 +760,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         action.backgroundColor = .systemGray.withAlphaComponent(0.0) // nil or .clear do not result in transparence
         action.accessibilityLabel = String.localized("notify_reply_button")
         let configuration = UISwipeActionsConfiguration(actions: [action])
-        // we perform the reply action on open in performFirstActionOnOpeningLeadingSwipeActionsPanGestureRecognizer
+        // we perform the reply action on open in performReplyOnOpeningSwipeActionsGestureRecognizer
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
