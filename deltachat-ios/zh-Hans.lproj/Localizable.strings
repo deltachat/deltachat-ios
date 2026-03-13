@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "添加到贴纸收藏集";
 "add_stickers_instructions" = "要添加贴纸，请点按“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
 "open_sticker_folder" = "打开贴纸文件夹";
+"ask_add_sticker_to_collection" = "将此贴纸添加到您的收藏集？";
+"ask_delete_sticker" = "删除此贴纸？";
+"sticker_picker_empty_hint" = "点按贴纸即可将其添加到此处。";
 "images" = "图片";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "音频";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "添加附件";
 "menu_leave_group" = "离开群组";
 "menu_leave_channel" = "离开频道";
+"menu_leave_and_delete" = "离开并为我删除";
 "menu_delete_chat" = "删除聊天";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清空聊天记录";
@@ -333,6 +337,10 @@
 "answer_call" = "接听";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "音频通话";
+// Used in call bubbles, summaries, notifications
+"video_call" = "视频通话";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "音频通话去电";
 // deprecated, use "Video call" instead

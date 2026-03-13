@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "新增至貼圖集";
 "add_stickers_instructions" = "要添加貼圖，請點擊「打開貼圖資料夾」 ，為您的貼圖包創建一個子資料夾，然後將圖像和貼圖檔拖拽到那裡";
 "open_sticker_folder" = "開啟貼圖資料夾";
+"ask_add_sticker_to_collection" = "將這個貼圖加入你的收藏嗎？";
+"ask_delete_sticker" = "移除這個貼圖？";
+"sticker_picker_empty_hint" = "點擊貼圖以將其添加到這裡。";
 "images" = "圖片";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "音訊";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "新增附件";
 "menu_leave_group" = "退出群組";
 "menu_leave_channel" = "離開頻道";
+"menu_leave_and_delete" = "離開并爲我刪除";
 "menu_delete_chat" = "刪除對話";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "清除對話";
@@ -333,6 +337,10 @@
 "answer_call" = "接聽";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "音訊通話";
+// Used in call bubbles, summaries, notifications
+"video_call" = "視訊通話";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "撥出音訊通話";
 // deprecated, use "Video call" instead
@@ -725,6 +733,11 @@
 "send_stats_to_devs" = "將統計數據發送給 Delta Chat 的開發人員";
 "stats_device_message" = "你想透過每週傳送匿名使用統計數據來幫助改進 Delta Chat 並支持研究嗎？\n\n👉 點擊這裡… 👈";
 "stats_confirmation_dialog" = "你想透過每週寄送匿名使用統計資料來幫助改善 Delta Chat 並支持研究嗎？";
+"stats_thanks" = "謝謝你！你可以隨時在「設定 -> 進階」中關閉傳送。\n\n是否愿意用 5 分鐘的時間參加Delta Chat 的安全性科學研究嗎？";
+"stats_disable_dialog" = "統計數據的傳送已啟用。\n\n你想要停用它嗎？";
+"disable" = "禁用";
+"stats_keep_sending" = "繼續傳送";
+"stats_msg_body" = "附件包含匿名使用統計數據，這有助於我們改進 Delta Chat。更多資訊請參見 https://delta.chat/help#statssending 。謝謝！";
 // Emoji picker and categories
 "emoji_search_results" = "搜尋結果";
 "emoji_not_found" = "找不到表情符號";
@@ -776,6 +789,9 @@
 "group_image_changed_by_you" = "我已更改群組圖片。";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@已更改群組圖片。";
+"chat_description_changed_by_you" = "你更改了聊天描述。";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "聊天描述已被%1$@更改。";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "已新增成員 %1$@。";
 // %1$s will be replaced by name of the contact added to the group
@@ -788,6 +804,11 @@
 "remove_member_by_other" = "%2$@已移除成員 %1$@";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "已移除成員 %1$@";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "你已離開該群組。";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "你已離開該頻道。";
+"you_joined_the_channel" = "你已加入該頻道。";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ 退出了群組。";
 "group_image_deleted_by_you" = "我已刪除群組圖片。";
@@ -812,6 +833,9 @@
 "ephemeral_timer_1_week_by_you" = "您將自動刪除訊息計時器設置為 1週。";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "%1$@將自動刪除訊息計時器設置為 1週。";
+"ephemeral_timer_1_year_by_you" = "您將自動刪除訊息計時器設置為 1年。";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "%1$@將自動刪除訊息計時器設置為 1年。";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "您將自動刪除訊息計時器設置為%1$@分鐘。";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
@@ -828,6 +852,7 @@
 "ephemeral_timer_weeks_by_you" = "您將自動刪除訊息計時器設置為%1$@週。";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@將自動刪除訊息計時器設置為%1$@週。";
+"chat_unencrypted_explanation" = "此聊天中的訊息使用傳統電子郵件，並未進行端對端加密。";
 "chat_protection_enabled_tap_to_learn_more" = "從現在開始，保證消息進行端到端加密。輕觸以瞭解更多資訊。";
 "chat_protection_enabled_explanation" = "現在可以保證此聊天中的所有消息都是端到端加密的。\n\n端到端加密使您和您的聊天夥伴之間的消息保持私密。甚至您的電子郵件供應商也無法讀取它們。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@需要端到端加密，但尚未為此聊天設置。輕觸以瞭解更多資訊。";
@@ -849,6 +874,7 @@
 "qrscan_hint_desktop" = "將 QR 碼移動到相機";
 "qrscan_failed" = "QR 碼無法識別";
 "qrscan_ask_join_group" = "你要參加群組 「%1$@」嗎?";
+"qrscan_ask_join_channel" = "是否加入頻道“%1$@”？";
 "qrscan_fingerprint_mismatch" = "掃描的指紋與的最後一次看到%1$@的指紋不匹配。";
 "qrscan_no_addr_found" = "此 QR 碼包含指紋，但不包含電子郵件位址。\n\n要進行帶外驗證，請先與收件者建立加密連接。";
 "qrscan_contains_text" = "掃描的 QR 碼文本：\n\n%1$@";
@@ -856,6 +882,7 @@
 "qrscan_fingerprint_label" = "指紋";
 "withdraw_verifycontact_explain" = "其他人可以掃描此QR碼與您聯絡。您可以在此處停用QR碼，然後再次掃描以重新啟動它。";
 "withdraw_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n您可以在此處停用 QR 碼，然後再次掃描以重新啟動它。";
+"withdraw_joinbroadcast_explain" = "其他人可以掃描這個 QR 碼以加入此頻道“%1$@”。\n\n您可以重置它，這樣現有的 QR 碼或邀請連結將不再有效。";
 "withdraw_qr_code" = "停用QR碼";
 "revive_verifycontact_explain" = "此 QR 碼可以被其他人掃描以與您聯絡。\n\n此裝置上的 QR 碼未啟用。";
 "revive_qr_code" = "啟用QR碼";
@@ -866,6 +893,7 @@
 "qrshow_join_group_title" = "邀請QR碼";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
 "qrshow_join_group_hint" = "掃描加入群組「%1$@」";
+"qrshow_join_channel_hint" = "掃描以加入頻道“%1$@”";
 "qrshow_join_contact_title" = "QR 圖碼邀請碼";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
@@ -878,13 +906,17 @@
 "qrlogin_ask_login" = "登入「%1$@」？";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@邀請您加入此群組。\n\n正在等待%2$@裝置的回覆...";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "%1$@邀請你加入這個頻道。\n\n正在等待%2$@的裝置的回應…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@已回覆，等待被添加到群組中...";
 "secure_join_wait" = "正在建立有保證的端到端加密，請稍候...";
 "contact_verified" = "%1$@已介紹。";
+"contact_blocked" = "你已封鎖該聯絡人";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 "verified_by" = "由%1$@介紹";
 "verified_by_you" = "由我介紹";
+"verified_by_unknown" = "已驗證";
 "mailto_dialog_header_select_chat" = "選擇要將消息發送到的聊天";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@已有草稿消息，是否要替換它？";
@@ -899,6 +931,7 @@
 "notify_name_only" = "僅名稱";
 "notify_no_name_or_message" = "沒有名稱或訊息";
 "notifications_disabled" = "通知已停用";
+"unreliable_bg_notifications" = "啟用「強制背景連線」以確保完成通知。";
 "new_messages" = "新訊息";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "你有新訊息";
@@ -1028,3 +1061,6 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
+// device messages for updates
+"update_2_0" = "新版變化？
+💯 端對端加密現在可靠且永久有效。鎖頭圖標🔒已經消失！\n\n✉️ 沒有端對端加密的傳統電子郵件會以信件符號✉️標示\n\n😻 為你的所有聯絡人提供全新增強的個人資料頁面\n\n🔲 新按鈕可快速存取聊天中使用的應用程式\n\n❤️ 請捐款以幫助我們保持獨立並持續提供改進：%1$@";

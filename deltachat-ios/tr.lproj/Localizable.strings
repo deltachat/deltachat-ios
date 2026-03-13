@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "Çıkartma Toplamasına Ekle";
 "add_stickers_instructions" = "Çıkartmalar eklemek için “Çıkartma Klasörünü Aç”a dokunun, çıkartma paketiniz için bir alt klasör oluşturun ve görseli ve çıkartma dosyalarını oraya sürükleyin";
 "open_sticker_folder" = "Çıkartma Klasörünü Aç";
+"ask_add_sticker_to_collection" = "Bu çıkartma, koleksiyonunuza eklensin mi?";
+"ask_delete_sticker" = "Bu çıkartma silinsin mi?";
+"sticker_picker_empty_hint" = "Buraya eklemek için bir çıkartmaya dokunun.";
 "images" = "Görseller";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Ses";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "İlişik Ekle";
 "menu_leave_group" = "Gruptan Ayrıl";
 "menu_leave_channel" = "Kanaldan Ayrıl";
+"menu_leave_and_delete" = "Ayrıl ve Benim için Sil";
 "menu_delete_chat" = "Sohbeti Sil";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
@@ -333,6 +337,10 @@
 "answer_call" = "Yanıtla";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Reddet";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Sesli arama";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Görüntülü arama";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Giden sesli arama";
 // deprecated, use "Video call" instead
@@ -627,6 +635,7 @@
 "pref_enter_sends" = "Enter Tuşu Göndersin";
 "pref_enter_sends_explain" = "Enter tuşuna basma, metin iletileri gönderecek";
 "pref_outgoing_media_quality" = "Giden Ortam Kalitesi";
+"pref_outgoing_media_quality_hint" = "Özgün kalitede göndermek için ortamı “Dosya” olarak iliştirin. Bu, siz ve alıcılarınız için önemli ölçüde daha fazla veri kullanır.";
 "pref_outgoing_balanced" = "Dengeli";
 "pref_outgoing_worse" = "Daha kötü kalite, küçük boyut";
 "pref_vibrate" = "Titret";

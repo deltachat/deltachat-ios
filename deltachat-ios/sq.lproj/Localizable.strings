@@ -133,6 +133,9 @@
 "add_to_sticker_collection" = "Shtoje te Koleksion Ngjitësish";
 "add_stickers_instructions" = "Që të shtoni ngjitës, prekni “Hap Dosje Ngjitësish”, krijoni një nëndosje për paketën e ngjitësit tuaj dhe tërhiqni në të figurë dhe kartela ngjitësi";
 "open_sticker_folder" = "Hap Dosje Ngjitësish";
+"ask_add_sticker_to_collection" = "Të shtohet ky ngjitës te koleksioni juaj?";
+"ask_delete_sticker" = "Të fshihet ky ngjitës?";
+"sticker_picker_empty_hint" = "Prekni një ngjitës që të shtohet këtu.";
 "images" = "Figura";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -224,6 +227,7 @@
 "menu_add_attachment" = "Shtoni Bashkëngjitje";
 "menu_leave_group" = "Braktiseni Grupin";
 "menu_leave_channel" = "Braktise Kanalin";
+"menu_leave_and_delete" = "Dil & Fshiji për Mua";
 "menu_delete_chat" = "Fshije Fjalosjen";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Spastroje Fjalosjen";
@@ -330,6 +334,10 @@
 "answer_call" = "Përgjigjuni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Hidhe poshtë";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Thirrje audio";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Thirrje video";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Thirrje audio e dërguar";
 // deprecated, use "Video call" instead
