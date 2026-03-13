@@ -140,7 +140,7 @@ extension TransportListViewController {
         var actions: [UIContextualAction] = []
 
         if !transport.isDefault(dcContext) {
-            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("delete")) { [weak self] _, _, completion in
+            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
                 DispatchQueue.main.async {
                     self?.deleteTransport(at: indexPath)
                     completion(true)
@@ -180,7 +180,7 @@ extension TransportListViewController {
 
                 children.append(UIAction.menuAction(localizationKey: "edit_transport", systemImageName: "pencil", with: indexPath, action: editTransport))
                 if !transport.isDefault(dcContext) {
-                    children.append(UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
+                    children.append(UIAction.menuAction(localizationKey: "remove_transport", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
                 }
 
                 return UIMenu(children: children)
