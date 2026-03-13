@@ -144,7 +144,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     /// it if the cell was considered "swiped" by the system (aka when the leading actions stay open).
     /// This means the required swipe distance to activate the reply is just the distance to open the leading swipe action
     /// instead of the much further "performsFirstActionWithFullSwipe".
-    /// This also prevents issues stemming from the tableview being in editing state while sipe actions are open by just instantly closing the actions.
+    /// This also prevents issues stemming from the tableview being in editing state while swipe actions are open by just instantly closing the actions.
     private lazy var performReplyOnOpeningSwipeActionsGestureRecognizer: UIPanGestureRecognizer = {
         let panGestureRecognizer = UIPanGestureRecognizer()
         panGestureRecognizer.publisher(for: \.state, options: .new)
