@@ -140,6 +140,35 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return false
     }
 
+    /// This is used to detect when a user finished swiping on a cell and then trigger the reply action for
+    /// it if the cell was considered "swiped" by the system (aka when the leading actions stay open).
+    /// This means the required swipe distance to activate the reply is just the distance to open the leading swipe action
+    /// instead of the much further "performsFirstActionWithFullSwipe".
+    /// This also prevents issues stemming from the tableview being in editing state while sipe actions are open by just instantly closing the actions.
+    private lazy var performReplyOnOpeningSwipeActionsGestureRecognizer: UIPanGestureRecognizer = {
+        let panGestureRecognizer = UIPanGestureRecognizer()
+        panGestureRecognizer.publisher(for: \.state, options: .new)
+            .filter { $0 == .ended }
+            .sink { [weak self] _ in
+                // Wait one runloop for the configurationState.isSwiped to be updated
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    if let swipedCell = tableView.visibleCells.first(where: \.configurationState.isSwiped),
+                       let indexPath = tableView.indexPath(for: swipedCell) {
+                        tableView.setEditing(false, animated: true)
+                        let messageId = messages[indexPath.row].id
+                        let message = dcContext.getMessage(id: messageId)
+                        guard canReply(to: message) else { return }
+                        replyToMessage(messageId)
+                    }
+                }
+            }
+            .store(in: &bag)
+        panGestureRecognizer.cancelsTouchesInView = false
+        panGestureRecognizer.delegate = self
+        return panGestureRecognizer
+    }()
+
     private lazy var navBarTap: UITapGestureRecognizer = {
         UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
     }()
@@ -245,6 +274,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.fillSuperview()
+
+        view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
@@ -721,11 +752,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             return nil
         }
 
-        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completionHandler) in
-            self?.replyToMessage(messageId)
-            completionHandler(true)
-        }
-
+        let action = UIContextualAction(style: .normal, title: nil) { (_, _, _) in }
         action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
             .sd_tintedImage(with: DcColors.defaultInverseColor)?
             .sd_flippedImage(withHorizontal: false, vertical: true)
@@ -733,7 +760,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         action.backgroundColor = .systemGray.withAlphaComponent(0.0) // nil or .clear do not result in transparence
         action.accessibilityLabel = String.localized("notify_reply_button")
         let configuration = UISwipeActionsConfiguration(actions: [action])
-
+        // we perform the reply action on open in performFirstActionOnOpeningLeadingSwipeActionsPanGestureRecognizer
+        configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
 
@@ -2861,5 +2889,11 @@ extension ChatViewController: AppPickerViewControllerDelegate {
         configureDraftArea(draft: draft)
         focusInputTextView()
         FileHelper.deleteFileAsync(atPath: url.relativePath)
+    }
+}
+
+extension ChatViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return gestureRecognizer == performReplyOnOpeningSwipeActionsGestureRecognizer
     }
 }
