@@ -826,6 +826,66 @@ public class DcContext {
         dc_end_call(contextPointer, UInt32(msgId))
     }
 
+    public struct CallInfo: Decodable {
+        public let sdpOffer: String?
+        public let hasVideo: Bool
+        public let state: CallInfoState
+    }
+
+    public enum CallInfoState: Decodable {
+        case alerting
+        case active
+        case completed(duration: Int)
+        case missed
+        case declined
+        case canceled
+        case unknown(kind: String, duration: Int?)
+
+        private enum CodingKeys: String, CodingKey {
+            case kind
+            case duration
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let kind = try container.decode(String.self, forKey: .kind)
+            let duration = try container.decodeIfPresent(Int.self, forKey: .duration)
+
+            switch kind {
+            case "Alerting":
+                self = .alerting
+            case "Active":
+                self = .active
+            case "Completed":
+                if let duration {
+                    self = .completed(duration: duration)
+                } else {
+                    self = .unknown(kind: kind, duration: duration)
+                }
+            case "Missed":
+                self = .missed
+            case "Declined":
+                self = .declined
+            case "Canceled":
+                self = .canceled
+            default:
+                self = .unknown(kind: kind, duration: duration)
+            }
+        }
+    }
+
+    public func fetchCallInfo(msgId: Int) -> CallInfo? {
+        do {
+            guard let data = try DcAccounts.shared.blockingCall(method: "call_info", params: [id as AnyObject, msgId as AnyObject]) else {
+                return nil
+            }
+            return try JSONDecoder().decode(JsonrpcResult<CallInfo?>.self, from: data).result
+        } catch {
+            logger.error(error.localizedDescription)
+            return nil
+        }
+    }
+
     public struct IceServer: Decodable {
         public var urls: [String]
         public var username: String?

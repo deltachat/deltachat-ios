@@ -12,9 +12,10 @@ public class WebxdcCell: FileTextCell {
         spacerWidth?.isActive = true
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, callInfo: DcContext.CallInfo?, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
         super.update(dcContext: dcContext,
                      msg: msg,
+                     callInfo: callInfo,
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,
