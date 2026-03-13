@@ -213,7 +213,7 @@ class ChatListViewModel: NSObject {
     }
 
     func leaveAndDeleteReferencesAndChat(chatId: Int) {
-        if dcContext.getChat(chatId: chatId).shallLeaveBeforeDelete(dcContext) {
+        if dcContext.getChat(chatId: chatId).mustLeaveBeforeDelete(dcContext) {
             _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
         }
         dcContext.deleteReferencesAndChat(chatId: chatId)

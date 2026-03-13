@@ -347,7 +347,7 @@ class ProfileViewController: UITableViewController {
                 let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
 
-                if chat.shallLeaveBeforeDelete(dcContext) {
+                if chat.mustLeaveBeforeDelete(dcContext) {
                     let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                     let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
                     moreOptions.append(action(leaveText, leaveImage, attributes: [.destructive], { [weak self] in

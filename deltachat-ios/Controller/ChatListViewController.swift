@@ -871,13 +871,13 @@ class ChatListViewController: UITableViewController {
     // MARK: - alerts
     private func showDeleteSingleChatConfirmationAlert(chatId: Int, didDelete: (() -> Void)? = nil) {
         let dcChat = dcContext.getChat(chatId: chatId)
-        let button = dcChat.shallLeaveBeforeDelete(dcContext) ? "menu_leave_and_delete" : "delete_for_me"
+        let button = dcChat.mustLeaveBeforeDelete(dcContext) ? "menu_leave_and_delete" : "delete_for_me"
 
         let alert = UIAlertController(title: nil, message: .localizedStringWithFormat(.localized("ask_delete_named_chat"), dcChat.name), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: .localized(button), style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel else { return }
 
-            viewModel.leaveDeleteReferencesAndChat(chatId: chatId)
+            viewModel.leaveAndDeleteReferencesAndChat(chatId: chatId)
             if viewModel.searchActive {
                 viewModel.refreshData()
                 viewModel.updateSearchResults(for: searchController)
@@ -900,7 +900,7 @@ class ChatListViewController: UITableViewController {
 
         var alertButton = String.localized("delete_for_me")
         for chatId in chatIds {
-            if dcContext.getChat(chatId: chatId).shallLeaveBeforeDelete(dcContext) {
+            if dcContext.getChat(chatId: chatId).mustLeaveBeforeDelete(dcContext) {
                 alertButton = .localized("menu_leave_and_delete")
                 break
             }
@@ -910,7 +910,7 @@ class ChatListViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: alertButton, style: .destructive, handler: { [weak self] _ in
             guard let self, let viewModel = self.viewModel else { return }
             for chatId in chatIds {
-                viewModel.leaveDeleteReferencesAndChat(chatId: chatId)
+                viewModel.leaveAndDeleteReferencesAndChat(chatId: chatId)
             }
             setLongTapEditing(false)
         }))
