@@ -33,6 +33,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
 
+    private var wasInteractiveContentPopGestureRecognizerEnabled: Bool?
+
     /// Set additionalSafeAreaInsets on this view controller to cause PiP to avoid that area.
     /// Specifically this is used to avoid the draft area so you can see what you are typing while in a call
     private lazy var pipInsetViewController: UIViewController = {
@@ -464,6 +466,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         handleUserVisibility(isVisible: true)
         messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
+        if #available(iOS 26.0, *) {
+            wasInteractiveContentPopGestureRecognizerEnabled = navigationController?
+                .interactiveContentPopGestureRecognizer?.isEnabled
+            // This new pop gesture happens when you swipe in the middle of the screen which
+            // can happen accidentally when trying to swipe to select text in the input bar
+            // so we disable it in the chat view.
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = false
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -478,6 +488,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
+        if #available(iOS 26.0, *), let previousValue = wasInteractiveContentPopGestureRecognizerEnabled {
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = previousValue
+        }
     }
 
     override func viewDidLayoutSubviews() {
