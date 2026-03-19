@@ -7,14 +7,17 @@
 - Add tab bar icon bounce animation on tap
 - Explain at "Settings / Chats / Outgoing Media Quality" how to send original quality
 - Leave groups and channels before deletion
-- Fix: remove meaningless address from vCard
-- Fix: No more UI ghosting on cell swipe
+- Support GIF stickers
 - VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 - Display message views count for channel owners
 - Improve mini-app summaries
 - Show the group description when tapping its info message
+- Fix: remove meaningless address from vCard
+- Fix: No more UI ghosting on cell swipe
+- Fix: Calls are now marked as read when you accept or decline a call
+- Fix: More reliable "Add Second Device" QR code joining
 - Update translations and local help
-- Update core to 2.44.0
+- Update core to 2.46.0
 
 
 ## v2.43.0
