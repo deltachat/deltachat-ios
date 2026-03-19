@@ -28,4 +28,8 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileSystemSynchronizedGroup
+      location = "group:ci_scripts"
+      name = "ci_scripts">
+   </FileSystemSynchronizedGroup>
 </Workspace>
