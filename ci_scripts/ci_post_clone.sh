@@ -9,6 +9,7 @@ brew install -q rustup
 # Make sure the correct rust version is installed
 rustup toolchain install `cat rust-toolchain`
 rustup default $(cat rust-toolchain)
+source $HOME/.cargo/env
 
 # Install [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation)
 cargo install cargo-lipo
