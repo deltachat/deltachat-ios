@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euxo pipefail
+
 # Go to the project folder
 cd ..
 
@@ -12,7 +14,7 @@ rustup default $(cat rust-toolchain)
 source $HOME/.cargo/env
 
 # Install [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation)
-cargo install cargo-lipo
+rustup run cargo install cargo-lipo
 
 # Note: CocoaPods is pre-installed on Xcode Cloud
 
