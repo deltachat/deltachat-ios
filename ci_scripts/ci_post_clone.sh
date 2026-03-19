@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install [rustup](https://rustup.rs)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+brew install rustup
 
 # Install [cargo-lipo](https://github.com/TimNN/cargo-lipo#installation)
 cargo install cargo-lipo
