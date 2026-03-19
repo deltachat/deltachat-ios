@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Go to the project folder
+cd ..
+
 # Install [rustup](https://rustup.rs)
 brew install rustup
 
