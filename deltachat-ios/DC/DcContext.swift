@@ -584,15 +584,6 @@ public class DcContext {
         dc_send_text_msg(contextPointer, UInt32(id), message)
     }
 
-    public func initiateKeyTransfer() -> String? {
-        if let cString = dc_initiate_key_transfer(self.contextPointer) {
-            let swiftString = String(cString: cString)
-            dc_str_unref(cString)
-            return swiftString
-        }
-        return nil
-    }
-
     public func listTransports() -> [DcEnteredLoginParam] {
         do {
             if let data = try DcAccounts.shared.blockingCall(method: "list_transports", params: [id as AnyObject]) {
