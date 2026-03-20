@@ -505,8 +505,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Pridėti šį retransliavimą?";
 "invalid_transport_qr" = "Nuskenuotame QR kode nėra tinkamo retransliavimo.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Šalinti retransliavimą „%1$@“?\n\nJūsų adresatai galės su jumis susisiekti tik tuo atveju, jei anksčiau buvote su jais susisiekę per kitą retransliavimą.\n\nJei abejojate, pašalinkite retransliavimą vėliau.";
 "login_certificate_checks" = "Liudijimų patikrinimai";
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
 "login_error_server" = "Įveskite teisingą serverį / IP adresą";

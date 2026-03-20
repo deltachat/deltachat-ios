@@ -325,7 +325,7 @@
 "ask_delete_contact" = "Eliminar contacto %1$@?\n\nOs contactos con conversas activas e os contactos da libreta de enderezos do sistema non se poden eliminar de xeito definitivo.";
 "ask_start_chat_with" = "Conversa con %1$@?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "Eliminar  %1$@ do grupo?";
+"ask_remove_members" = "Eliminar %1$@ do grupo?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Eliminar %1$@ da canle?";
 "open_url_confirmation" = "Queres abrir esta ligazón?";
@@ -722,7 +722,7 @@
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Temporizador da eliminación de mensaxes descativado por %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
-"ephemeral_timer_seconds_by_you" = "Estableceches que as mensaxes desaparezan en  %1$@ s";
+"ephemeral_timer_seconds_by_you" = "Estableceches que as mensaxes desaparezan en %1$@ s";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_seconds_by_other" = "O temporizador de desaparición de mensaxes establecido en %1$@ segundos por %2$@.";
 "ephemeral_timer_1_hour_by_you" = "Definiches o temporizador de desaparición de mensaxes en 1 hora.";

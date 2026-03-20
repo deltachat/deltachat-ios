@@ -569,8 +569,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Додати цей транспортний сервер?";
 "invalid_transport_qr" = "Відсканований QR-код не містить дійсного транспортного сервера.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Видаліть транспортний сервер \"%1$@\"?\n\nВаш контакти можуть зв\'язатися з вами, тільки якщо ви раніше зв\'язалися з ними через інший транспортний сервер.\n\nЯкщо ви сумніваєтеся, видаліть транспортний сервер пізніше.";
 "login_certificate_checks" = "Перевірки сертифікатів";
 "login_error_mail" = "Вкажіть дійсну адресу електронної пошти";
 "login_error_server" = "Вкажіть дійсний сервер / IP-адресу";

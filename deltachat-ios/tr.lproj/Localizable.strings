@@ -581,8 +581,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Bu aktarıcı eklensin mi?";
 "invalid_transport_qr" = "Taranan QR kodu, geçerli bir aktarıcı içermiyor.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "“%1$@” aktarıcısı kaldırılsın mı?\n\nKişileriniz yalnızca onlara önceden ulaştığınız başka bir aktarıcı üzerinden size ulaşabilir.\n\nKuşkuluysanız aktarıcıyı daha sonra kaldırın.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";

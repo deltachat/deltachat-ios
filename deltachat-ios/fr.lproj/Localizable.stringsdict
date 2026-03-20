@@ -267,9 +267,9 @@
 			<key>one</key>
 			<string>%d discussion désarchivée</string>
 			<key>many</key>
-			<string>%d  discussions désarchivées</string>
+			<string>%d discussions désarchivées</string>
 			<key>other</key>
-			<string>%d  discussions désarchivées</string>
+			<string>%d discussions désarchivées</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

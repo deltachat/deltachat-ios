@@ -427,7 +427,7 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Jeni i sigurt se doni të vizitohet %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Kjo lidhje mund të jetë duke shfaqur keq shenja, duke përdorur të ngjashme prej alfabetesh të tjerë. Ndjekja e lidhjes së  quajtur %1$@ do të shpjerë te %2$@, çka është normale për shenja alfabetesh jo latinë. Nëse s’prisnit shenja të tilla, kjo lidhje mund të jetë e dëmshme";
+"puny_code_warning_description" = "Kjo lidhje mund të jetë duke shfaqur keq shenja, duke përdorur të ngjashme prej alfabetesh të tjerë. Ndjekja e lidhjes së quajtur %1$@ do të shpjerë te %2$@, çka është normale për shenja alfabetesh jo latinë. Nëse s’prisnit shenja të tilla, kjo lidhje mund të jetë e dëmshme";
 // search
 "search" = "Kërko";
 "search_in_chat" = "Kërko në Fjalosje";
@@ -577,8 +577,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Të shtohet kjo rele?";
 "invalid_transport_qr" = "Kodi QR i skanuar s’përmban një rele të vlefshme.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Të hiqet releja “%1$@”?\n\nKontaktet tuaja munden t’ju kapin vetëm nëse jeni lidhur me ta më herët përmes një releje tjetër.\n\n\n\nNëse jeni në mëdyshje, hiqeni relenë më vonë.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";

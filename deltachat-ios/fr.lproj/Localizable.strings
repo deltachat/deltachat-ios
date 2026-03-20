@@ -570,8 +570,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
 "invalid_transport_qr" = "Le code QR scanné ne renvoie pas vers un relais valide.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Supprimer le relais « %1$@ » ?\n\nVos contacts ne pourront vous contacter que si vous les avez déjà contactés via un autre relais.\n\nEn cas de doute, supprimez le relais plus tard.";
 "login_certificate_checks" = "Vérification du certificat";
 "login_error_mail" = "Entrez une adresse courriel valide";
 "login_error_server" = "Entre un serveur / adresse IP valide";
@@ -767,9 +765,9 @@
 "systemmsg_subject_for_new_contact" = "Message de %1$@";
 "systemmsg_failed_sending_to" = "Échec de l\'envoi du message à %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "Nom du groupe modifié de « %1$@ »  en « %2$@ »  par vous.";
+"group_name_changed_by_you" = "Nom du groupe modifié de « %1$@ » en « %2$@ » par vous.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "Nom de groupe modifié de « %1$@ »  en « %2$@ »  par %3$@.";
+"group_name_changed_by_other" = "Nom de groupe modifié de « %1$@ » en « %2$@ » par %3$@.";
 "group_image_changed_by_you" = "Image du groupe modifié par vous.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Image de groupe modifiée par %1$@.";
@@ -859,7 +857,7 @@
 "qrscan_failed" = "Le code QR n\'a pas pu être décodé";
 "qrscan_ask_join_group" = "Voulez-vous rejoindre le groupe \"%1$@\" ?";
 "qrscan_ask_join_channel" = "Voulez-vous rejoindre le canal \"%1$@\" ?";
-"qrscan_fingerprint_mismatch" = "L\'empreinte digitale numérisée ne correspond pas à la dernière empreinte digitale vue depuis  %1$@";
+"qrscan_fingerprint_mismatch" = "L\'empreinte digitale numérisée ne correspond pas à la dernière empreinte digitale vue depuis %1$@";
 "qrscan_no_addr_found" = "Ce code QR contient une empreinte numérique mais pas d\'adresse de courriel.\n\nPour une vérification externe, veuillez d\'abord établir une connexion chiffrée avec le destinataire.";
 "qrscan_contains_text" = "Texte du QR code numérisé:\n\n%1$@";
 "qrscan_contains_url" = "Url du QR code numérisé :\n\n%1$@";

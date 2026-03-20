@@ -129,7 +129,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Stickerra";
 "add_to_sticker_collection" = "Gehitu Sticker bildumara";
-"add_stickers_instructions" = "Stickerretara gehitzeko, klik egin \"Ireki sticker karpeta\"  aukeran, sortu azpikarpeta bat zure sticker multzoarentzat eta arrastatu irudi eta sticker fitxategiak bertara.";
+"add_stickers_instructions" = "Stickerretara gehitzeko, klik egin \"Ireki sticker karpeta\" aukeran, sortu azpikarpeta bat zure sticker multzoarentzat eta arrastatu irudi eta sticker fitxategiak bertara.";
 "open_sticker_folder" = "Ireki sticker karpeta";
 "images" = "Irudiak";
 // a noun, used for "Music" and other "Audio" files
@@ -569,15 +569,13 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "\"%1$@\" errelea kendu?\n\nZure kontaktuak soilik jar daitezke zurekin harremanetan aurretik beste errele baten bidez haiekin harremanetan jarri bazara.\n\nZalantzarik baduzu, kendu errelea geroago.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
-"login_error_port" = "Sartu baliozko ataka bat  (1–65535)";
+"login_error_port" = "Sartu baliozko ataka bat (1–65535)";
 "login_error_required_fields" = "Sartu baliozko e-mail helbidea eta pasahitza";
 "import_backup_title" = "Inportatu babeskopia";
-"import_backup_ask" = "Babeskopia aurkitu da:  \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
+"import_backup_ask" = "Babeskopia aurkitu da: \"%1$@\".\n\nInportatu nahi duzu eta bertako datu eta ezarpenak erabili?";
 "import_backup_no_backup_found" = "Ez da babeskopiarik aurkitu.\n\nKopiatu babeskopia \"%1$@\" karpetan eta saiatu berriro.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Ezin da \"%1$@\" bezala saioa hasi. Egiaztatu E-mail helbidea eta pasahitza zuzenak diren.";

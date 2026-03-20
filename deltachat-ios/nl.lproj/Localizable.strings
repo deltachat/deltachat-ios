@@ -54,7 +54,7 @@
 // Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Genegeerd";
 "ephemeral_messages" = "Verdwijnende berichten";
-"ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers die Delta Chat gebruiken. Ze kunnen echter wél berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
+"ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers. Ze kunnen berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
 "save" = "Opslaan";
 "chat" = "Gesprek";
 "media" = "Media";
@@ -123,6 +123,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Gekozen:";
+"selected" = "Gekozen";
 "self" = "Ik";
 "draft" = "Concept";
 "image" = "Afbeelding";
@@ -341,6 +342,12 @@
 "audio_call" = "Audiogesprek";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Videogesprek";
+"call_initializing" = "Bezig met alles opzetten…";
+"call_incoming" = "Inkomende oproep";
+"call_ringing" = "Bezig met oproep…";
+"call_reconnecting" = "Bezig met herverbinden…";
+"call_ended" = "Gesprek beëindigd";
+"call_failed" = "Gesprek mislukt";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Uitgaand audiogesprek";
 // deprecated, use "Video call" instead
@@ -363,7 +370,7 @@
 "ask_block_contact" = "Wil je deze contactpersoon blokkeren? Hij/zij kan je geen berichten meer sturen.";
 "ask_unblock_contact" = "Wil je deze contactpersoon deblokkeren? Hij/zij kan je wederom berichten sturen.";
 "ask_delete_contacts" = "Wil je de geselecteerde contactpersonen permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
-"ask_delete_contact" = "Wil je de contactpersoon %1$@ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
+"ask_delete_contact" = "Wil je ‘%1$@’ permanent verwijderen?\n\nPersonen met actieve gesprekken en personen afkomstig uit je adresboek kunnen niet permanent worden verwijderd.";
 "ask_start_chat_with" = "Wil je een gesprek voeren met %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Wil je %1$@ verwijderen uit de groep?";
@@ -578,11 +585,16 @@
 "add_transport" = "Server toevoegen";
 "remove_transport" = "Server verwijderen";
 "edit_transport" = "Server bewerken";
+"used_for_sending" = "Wordt gebruikt voor versturen";
+"hide_from_contacts" = "Verbergen op contactpersonenlijst";
+"hidden_from_contacts" = "Verborgen op contactpersonenlijst";
+// Hint for the list of relays
+"transport_list_hint" = "Berichten worden op alle relays ontvangen.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Wil je deze server toevoegen?";
 "invalid_transport_qr" = "De gescande QR-code bevat geen geldige overdrachtsserver.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Weet je zeker dat je de overdrachtsserver ‘%1$@’ wilt verwijderen?\n\nJe contactpersonen kunnen dan alleen nog contact met je opnemen als je ze al eerder bericht hebt via een andere server.\n\nStel bij twijfel het verwijderen uit.";
+"confirm_remove_or_hide_transport_x" = "Wil je ‘%1$@’ verwijderen?\n\nContactpersonen die deze relay niet kennen, kunnen je zo niet bereiken.\n\nBij twijfel verbergen in plaats van verwijderen.";
 "login_certificate_checks" = "Certificaatcontrole";
 "login_error_mail" = "Voer een geldig e-mailadres in";
 "login_error_server" = "Voer een geldig(e) ip-adres/server in";

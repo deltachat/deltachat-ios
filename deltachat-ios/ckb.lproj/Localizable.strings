@@ -328,7 +328,7 @@
 "pref_backup_explain" = "یەدەک گرتن لە وتووێژەکان و دانانی لەسەر بیرگەی دەرەکی";
 "pref_backup_export_explain" = "یەدەک یارمەتیت دەدات تاکوو نەرمامێرەکە لەسەر ئەم ئامێرە یان ئامێرێکی دیکە دەبمەزرێنیتەوە.\n\n یەدەکەکە بریتی دەبێت لە هەموو پەیامەکان و بەردەنگەکان و وتووێژەکان و ڕێکخستنی ئۆتۆکریپتی ئەمسەر-ئەوسەر. پەڕگەی یەدەکەکە لە شوێنێکی قایمدا بپارێزە یان بە زووترین کات بیسڕەوە.";
 "pref_backup_export_start_button" = "دەستپێبکە";
-"pref_backup_written_to_x" = "یەدەک بە سەرکەوتوویی لە \"%1$@\"دا  پاشەکەوت کرا.";
+"pref_backup_written_to_x" = "یەدەک بە سەرکەوتوویی لە \"%1$@\"دا پاشەکەوت کرا.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";

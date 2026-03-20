@@ -234,8 +234,7 @@
 "share_invite_link_explain" = "هرکس با استفاده از این پیوند می‌تواند نمایهٔ شما را ببییند و یک گپ را با شما شروع کند. این را تنها به کسانی که اعتماد دارید بدهید.";
 "invite_friends" = "دعوت دوستان";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
-"invite_friends_text" = "تماس گرفتن با من در دلتاچت:\n
-%1$@";
+"invite_friends_text" = "تماس گرفتن با من در دلتاچت:\n %1$@";
 "menu_copy_selection_to_clipboard" = "رونوشت برداری از انتخاب شده";
 "menu_copy_link_to_clipboard" = "رونوشت برداری از لینک";
 "menu_copy_text_to_clipboard" = "رونوشت گرفتن از متن";
@@ -290,10 +289,9 @@
 "replace_draft" = "جایگزین کردن پیش‌نویس";
 "title_share_location" = "اشتراک موقعیت مکانی با همه اعضای گروه";
 "device_talk" = "پیام‌های دستگاه";
-"device_talk_subtitle" = "پیام‌های  داخلی";
+"device_talk_subtitle" = "پیام‌های داخلی";
 "device_talk_explain" = "پیام‌ها در این گپ به صورت داخلی و توسط نرم‌افزار دلتاچت تولید شده‌اند. سازنده‌ها از این محل برای اعلان به روز‌رسانی‌ها و مشکلات پیش آمده حین کار استفاده می‌کنند. ";
-"device_talk_welcome_message2" = "مکالمه برقرار کنید!\n\n
-روی «کد کیوآر» در صفحهٔ اصلی هر دو دستگاه بزنید. روی یکی از دستگاه‌ها «اسکن کد کیوآر» را انتخاب کنید و با آن روی دستگاه دیگر بگیرید\n\nاگر در یک مکان نیستید، از طریق تماس تصویری اسکن کنید یا این‌که یک پیوند دعوت از «اسکن کد کیوآر» به اشتراک بگذارید.\n\n.سپس از تجربه کردن پیام‌رسان بر روی بزرگ‌ترین شبکهٔ نامتمرکزی که تا به حال وجود داشته یعنی رایانامه لذت ببرید. در مقایسه با دیگر پیام‌رسان‌های محبوب، دلتاچت هیچ کنترل مرکزی‌ای ندارد.  شما، دوست‌هایتان، همکارهایتان یا خانواده‌هایتان را ردیابی نمی‌کند یا این‌که داده‌هایتان را به سازمان‌های بزرگ نمی‌فروشد.";
+"device_talk_welcome_message2" = "مکالمه برقرار کنید!\n\n روی «کد کیوآر» در صفحهٔ اصلی هر دو دستگاه بزنید. روی یکی از دستگاه‌ها «اسکن کد کیوآر» را انتخاب کنید و با آن روی دستگاه دیگر بگیرید\n\nاگر در یک مکان نیستید، از طریق تماس تصویری اسکن کنید یا این‌که یک پیوند دعوت از «اسکن کد کیوآر» به اشتراک بگذارید.\n\n.سپس از تجربه کردن پیام‌رسان بر روی بزرگ‌ترین شبکهٔ نامتمرکزی که تا به حال وجود داشته یعنی رایانامه لذت ببرید. در مقایسه با دیگر پیام‌رسان‌های محبوب، دلتاچت هیچ کنترل مرکزی‌ای ندارد. شما، دوست‌هایتان، همکارهایتان یا خانواده‌هایتان را ردیابی نمی‌کند یا این‌که داده‌هایتان را به سازمان‌های بزرگ نمی‌فروشد.";
 "edit_contact" = "ویرایش مخاطب";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "سنجاق کردن گپ";
@@ -320,7 +318,7 @@
 "share_location_for_one_hour" = "به مدت ۱ ساعت";
 "share_location_for_two_hours" = "به مدت ۲ ساعت";
 "share_location_for_six_hours" = "به مدت ۶ ساعت";
-"file_saved_to" = "پرونده  در «%1$@» ذخیره شد.";
+"file_saved_to" = "پرونده در «%1$@» ذخیره شد.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "تماس";
 // Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
@@ -350,9 +348,7 @@
 "ask_forward" = "پیام‌ها به %1$@ هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";
-"ask_block_contact" = "مخاطب مسدود شود؟\n\n
-شما دیگر پیامی به صورت مستقیم از این مخاطب دریافت نخواهید کرد. همچنین گروه‌های ایجاد شده توسط این مخاطب نمایش داده نخواهند شد.\n\n
-با این وجود، گروه‌هایی که این مخاطب در آن حضور دارند نمایش داده خواهد شد.";
+"ask_block_contact" = "مخاطب مسدود شود؟\n\n شما دیگر پیامی به صورت مستقیم از این مخاطب دریافت نخواهید کرد. همچنین گروه‌های ایجاد شده توسط این مخاطب نمایش داده نخواهند شد.\n\n با این وجود، گروه‌هایی که این مخاطب در آن حضور دارند نمایش داده خواهد شد.";
 "ask_unblock_contact" = "رفع مسدودیت این مخاطب؟";
 "ask_delete_contacts" = "مخاطب‌ها حذف شوند؟\n\nمخاطب‌هایی که گپ فعال دارند را نمی‌توان به صورت دائمی حذف کرد. ";
 "ask_delete_contact" = "حذف مخاطب %1$@؟ \n\nمخاطب‌ها با گپ فعال و مخاطب‌هایی که در دفتر تلفن سامانه هستند را نمی‌توان به صورت دائمی حذف کرد. ";
@@ -385,7 +381,7 @@
 "chat_request_label" = "درخواست";
 "chat_request_label_explain" = "حساب کردن درخواست‌ها در شمارنده‌ها و اعلان‌ها";
 "chat_no_messages" = "پیامی نیست. ";
-"chat_self_talk_subtitle" = "پیام‌هایی که برای خودم  ارسال کرده‌ام. ";
+"chat_self_talk_subtitle" = "پیام‌هایی که برای خودم ارسال کرده‌ام. ";
 "archive_empty_hint" = "اگر گپ‌ها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "ذخیره پیام";
@@ -479,8 +475,7 @@
 "multidevice_receiver_title" = "افزودن به عنوان دستگاه دوم";
 "multidevice_open_settings_on_other_device" = "در دستگاه اول، به \"تنظیم‌ها / افزودن دستگاه دوم\" بروید و کد نشان داده شده در آنجا را اسکن کنید";
 "multidevice_receiver_scanning_ask" = "از حساب دستگاه دیگر رونوشتی برای این دستگاه گرفته شود؟";
-"multidevice_receiver_needs_update" = "نمایه‌ای که می‌خواهید وارد کنید از یک نسخهٔ جدید‌تر دلتاچت است.\n\n
-برای پیکره‌بندی یک دستگاه دوم، لطفا این دستگاه را به جدیدترین نسخهٔ دلتاچت بروزرسانی کنید.";
+"multidevice_receiver_needs_update" = "نمایه‌ای که می‌خواهید وارد کنید از یک نسخهٔ جدید‌تر دلتاچت است.\n\n برای پیکره‌بندی یک دستگاه دوم، لطفا این دستگاه را به جدیدترین نسخهٔ دلتاچت بروزرسانی کنید.";
 "multidevice_abort" = "راه اندازی دستگاه دوم لغو شود؟";
 "multidevice_abort_will_invalidate_copied_qr" = "این کار رمزینهٔ پاس رونوشت شده در تخته‌گیره را باطل می کند.";
 "multidevice_transfer_done_devicemsg" = "ℹ️ حساب به دستگاه دوم شما منتقل شد.";
@@ -574,8 +569,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "اضافه کردن این رله؟";
 "invalid_transport_qr" = "کیو‌آر کد اسکن شده دارای یک رلهٔ معتبر نیست.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "حذف کردن رلهٔ «%1$@»؟\n\n مخاطب‌های شما تنها در صورتی می‌توانند با شما ارتباط برقرار کنند که قبلا از طریق یک رلهٔ دیگر با آن‌ها تماس داشته‌اید.\n\n در صورت تردید، این رله را بعدا حذف کنید.";
 "login_certificate_checks" = "بررسی‌های گواهینامه";
 "login_error_mail" = "لطفاً یک نشانی رایانامهٔ معتبر وارد کنید";
 "login_error_server" = "لطفا یک کارساز / نشانی آی‌پی صحیح وارد کنید";
@@ -671,7 +664,7 @@
 "pref_other" = "دیگر";
 "pref_backup" = "نسخه پشتیبان";
 "pref_backup_explain" = "تهیهٔ پشتیبان از گپ‌ها در ذخیره‌گاه خارجی";
-"pref_backup_export_explain" = "تهیهٔ پشتیبان به شما  کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
+"pref_backup_export_explain" = "تهیهٔ پشتیبان به شما کمک می‌کند روی این دستگاه یا دستگاه دیگر نرم‌افزار را دوباره نصب کنید.\n\nپشتیبان حاوی تمام پیام‌ها، مخاطبین، گپ‌ها و برپاسازی اتوکریپت سرتاسر شما خواهد بود. پروندهٔ پشتیبانی را در یک جای امن نگه دارید و در اسرع وقت آن را پاک کنید.";
 "pref_backup_export_this" = "برون‌ریزی این نمایه";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "برون‌ریزی همه%1$d حساب ها";
@@ -730,8 +723,8 @@
 "emoji_not_found" = "شکلکی پیدا نشد";
 "emoji_recent" = "اخیرا استفاده شده";
 "emoji_people" = "افراد و بدن";
-"emoji_nature" = "حیوانات و  طبیعت";
-"emoji_foods" = "غذا و  نوشیدنی";
+"emoji_nature" = "حیوانات و طبیعت";
+"emoji_foods" = "غذا و نوشیدنی";
 "emoji_activity" = "فعالیت";
 "emoji_places" = "مسافرت و مکان‌ها";
 "emoji_objects" = "اشیاء";
@@ -750,9 +743,9 @@
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";
 "autodel_server_title" = "پاک کردن پیام‌ها از سرور";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_device_ask" = "آیا می‌خواهید %1$d پیام جدید و دریافت شده را در زمان%2$@ در آینده پاک کنید؟\n\n• این شامل همه رسانه‌ها هم می‌شود\n\n•  پیام‌ها جدای از اینکه دیده شده باشند یا نه پاک می‌شوند. \"پیام های ذخیره شده\" شامل این پاک کردن محلی نمی‌شوند. ";
+"autodel_device_ask" = "آیا می‌خواهید %1$d پیام جدید و دریافت شده را در زمان%2$@ در آینده پاک کنید؟\n\n• این شامل همه رسانه‌ها هم می‌شود\n\n• پیام‌ها جدای از اینکه دیده شده باشند یا نه پاک می‌شوند. \"پیام های ذخیره شده\" شامل این پاک کردن محلی نمی‌شوند. ";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "آیا می‌خواهید %1$d پیام را اکنون و تمام پیام‌های آیندهٔ «%2$@»  را پاک کنید؟/n/n⚠️ این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در همه پوشه‌های کارساز(سرور) می‌شود/n/n⚠️ اگر می‌خواهید داده‌ها در کارساز باقی بمانند از این قابلیت استفاده نکنید/n/n⚠️ اگر به‌جز دلتاچت از دیگر نرم‌افزارهای رایانامه هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
+"autodel_server_ask" = "آیا می‌خواهید %1$d پیام را اکنون و تمام پیام‌های آیندهٔ «%2$@» را پاک کنید؟/n/n⚠️ این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در همه پوشه‌های کارساز(سرور) می‌شود/n/n⚠️ اگر می‌خواهید داده‌ها در کارساز باقی بمانند از این قابلیت استفاده نکنید/n/n⚠️ اگر به‌جز دلتاچت از دیگر نرم‌افزارهای رایانامه هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "این شامل رایانامه‌ها، رسانه‌ها و «پیام‌های ذخیره شده» در تمام پوشه‌های کارساز(سرور) می‌شود. اگر می‌خواهید داده‌ها را در کارساز نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای رایانامه به‌جز دلتاچت استفاده می‌کنید هم از این قابلیت استفاده نکنید.";
 "autodel_server_warn_multi_device_title" = "فعال‌سازی حذف بلافاصله";
@@ -762,7 +755,7 @@
 "autodel_at_once" = "یک بار بعد از بارگیری";
 "after_5_minutes" = "بعد از ۵ دقیقه";
 "autodel_after_1_hour" = "بعد از ۱ ساعت";
-"autodel_after_1_day" = "بعد از ۱  روز";
+"autodel_after_1_day" = "بعد از ۱ روز";
 "autodel_after_1_week" = "بعد از ۱ هفته";
 "after_5_weeks" = "بعد از ۵ هفته";
 "autodel_after_1_year" = "بعد از ۱ سال";
@@ -770,7 +763,7 @@
 "systemmsg_subject_for_new_contact" = "پیام از %1$@";
 "systemmsg_failed_sending_to" = "ارسال ناموفق پیام به %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "شما نام گروه را از «%1$@» به «%2$@»  تغییر دادید. ";
+"group_name_changed_by_you" = "شما نام گروه را از «%1$@» به «%2$@» تغییر دادید. ";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "نام گروه توسط %3$@ از «%1$@» به «%2$@ » تغییر کرد. ";
 "group_image_changed_by_you" = "شما تصویر گروه را تغییر دادید. ";
@@ -844,13 +837,10 @@
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = " ⚠️ میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت.  👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخهٔ وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از «تنظیم‌ها / اتصال‌ها» بررسی کنید. ";
+"devicemsg_storage_exceeding" = " ⚠️ میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت. 👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخهٔ وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از «تنظیم‌ها / اتصال‌ها» بررسی کنید. ";
 // %1%s will be replaced by date and time in some human-readable format
-"devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@).
-ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";
-"devicemsg_update_reminder" = "هشدار⚠️ ممکن است نسخه دلتاچت مورد استفاده قدیمی شده باشد. 
-این موضوع ممکن است مشکلاتی ایجاد کند چون مخاطبین شما از نسخه‌های جدیدتر استفاده می‌کنند. همچنین قابلیت‌های جدید را هم از دست می‌دهید😳
-لطفا برای دریافت نسخه جدید به app store یا https://get.delta.chat مراجعه کنید. ";
+"devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@). ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";
+"devicemsg_update_reminder" = "هشدار⚠️ ممکن است نسخه دلتاچت مورد استفاده قدیمی شده باشد. این موضوع ممکن است مشکلاتی ایجاد کند چون مخاطبین شما از نسخه‌های جدیدتر استفاده می‌کنند. همچنین قابلیت‌های جدید را هم از دست می‌دهید😳 لطفا برای دریافت نسخه جدید به app store یا https://get.delta.chat مراجعه کنید. ";
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "برای ادامه، لطفا رمز تعیین شده توسط سیستم خود را وارد کنید";
 // qr code stuff
@@ -892,8 +882,7 @@
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "کاربر %1$@ شما را دعوت کرده است تا عضو این گروه شوید.
-در انتظار دستگاه %2$@ برای پاسخگویی...";
+"secure_join_started" = "کاربر %1$@ شما را دعوت کرده است تا عضو این گروه شوید. در انتظار دستگاه %2$@ برای پاسخگویی...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_channel_started" = "%1$@شما را به این کانال دعوت کرده است.\n\n منتظر دستگاه %2$@ برای پاسخ‌دادن هستیم...";
 // placeholder will be replaced by the name of the inviter.
@@ -927,40 +916,24 @@
 // permissions
 "perm_required_title" = "مجوز لازم است";
 "perm_continue" = "ادامه";
-"perm_explain_access_to_camera_denied" = "برای گرفتن فیلم و عکس به
- app settings 
-بروید و 
-\"Permissions\"  
-را انتخاب کرده و 
-\"Camera\" 
-را فعال کنید.  ";
+"perm_explain_access_to_camera_denied" = "برای گرفتن فیلم و عکس به app settings بروید و \"Permissions\" را انتخاب کرده و \"Camera\" را فعال کنید. ";
 // give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
-"perm_explain_access_to_mic_denied" = "برای ارسال پیام صوتی به تنظیم‌های نرم‌افزار یا سیستم رفته و پس از انتخاب «دسترسی‌ها» یا «اجازه‌ها»
- گزینه «میکروفن»
- را فعال نمایید. ";
+"perm_explain_access_to_mic_denied" = "برای ارسال پیام صوتی به تنظیم‌های نرم‌افزار یا سیستم رفته و پس از انتخاب «دسترسی‌ها» یا «اجازه‌ها» گزینه «میکروفن» را فعال نمایید. ";
 "perm_explain_access_to_storage_denied" = "برای دریافت یا ارسال پرونده به تنظیم‌های برنامه بروید، «اجازه‌ها» را برگزینید و «ذخیره‌گاه» را به کار بیندازید.";
-"perm_explain_access_to_location_denied" = "برای افزودن موقعیت مکانی به تنظیم‌های نرم‌افزار رفته و از 
-«دسترسی‌ها» 
-گزینه
-«موقعیت مکانی» 
-را فعال نمایید.";
+"perm_explain_access_to_location_denied" = "برای افزودن موقعیت مکانی به تنظیم‌های نرم‌افزار رفته و از «دسترسی‌ها» گزینه «موقعیت مکانی» را فعال نمایید.";
 "perm_explain_access_to_notifications_denied" = "برای دریافت اعلان‌ها به «تنظیمات دستگاه > برنامه‌ها > دلتاچت» بروید و «اعلان‌ها» را فعال کنید.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "هر کجا مایلید شروع به رسم کردن کنید تا مات شود.";
 "ImageEditorHud_add_text" = "افزودن متن";
 "ImageEditorHud_blur" = "مات کردن";
 "ImageEditorHud_brush_marker" = "قلم‌ علامت گذاری";
-"ImageEditorHud_brush_highlight" = "قلم  هایلایت";
+"ImageEditorHud_brush_highlight" = "قلم هایلایت";
 "ImageEditorHud_crop" = "بریدن";
 "ImageEditorHud_flip" = "برعکس کردن";
 "ImageEditorHud_rotate" = "چرخاندن";
 // strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
 "about_offical_app_desktop" = "این نرم‌افزار رسمی دلتاچت در محیط رایانه است.";
-"about_licensed_under_desktop" = "این نرم افزار تحت مجوز 
-GNU GPL ورژن ۳
- منتشر شده و کد منبع در
- GitHub
- در دسترس است.";
+"about_licensed_under_desktop" = "این نرم افزار تحت مجوز GNU GPL ورژن ۳ منتشر شده و کد منبع در GitHub در دسترس است.";
 "welcome_desktop" = "به دلتاچت خوش‌آمدید";
 "global_menu_preferences_language_desktop" = "زبان";
 "global_menu_file_desktop" = "پرونده";

@@ -123,6 +123,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "已選擇：";
+"selected" = "已选择";
 "self" = "我";
 "draft" = "草稿";
 "image" = "圖片";
@@ -341,6 +342,12 @@
 "audio_call" = "音訊通話";
 // Used in call bubbles, summaries, notifications
 "video_call" = "視訊通話";
+"call_initializing" = "正在初始化…";
+"call_incoming" = "来电";
+"call_ringing" = "正在响铃…";
+"call_reconnecting" = "正在重新连接…";
+"call_ended" = "通话结束";
+"call_failed" = "通话失败";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "撥出音訊通話";
 // deprecated, use "Video call" instead
@@ -578,11 +585,16 @@
 "add_transport" = "新增中繼伺服器";
 "remove_transport" = "移除中繼伺服器";
 "edit_transport" = "編輯中繼伺服器";
+"used_for_sending" = "用于发送";
+"hide_from_contacts" = "对联系人隐藏";
+"hidden_from_contacts" = "已对联系人隐藏";
+// Hint for the list of relays
+"transport_list_hint" = "在所有中继上均已收到消息。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "新增這個中繼伺服器？";
 "invalid_transport_qr" = "掃描的 QR 碼不包含有效的中繼伺服器。";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "是否移除中繼伺服器“%1$@”？\n\n移除后您的聯絡人只有之前通過其他中繼伺服器聯絡過您，他們才可以繼續聯絡您。\n\n如有疑問，請稍後移除中繼伺服器。";
+"confirm_remove_or_hide_transport_x" = "移除中继“%1$@”？\n\n仅知道此中继的联系人可能无法联系到您，直到您再次发送消息。\n\n如有疑问，请将其隐藏而非移除。";
 "login_certificate_checks" = "憑證檢查";
 "login_error_mail" = "請輸入有效的電子郵件位址";
 "login_error_server" = "請輸入有效的伺服器／IP 位址";
@@ -1062,5 +1074,4 @@
 "perm_enable_bg_reminder_title" = "點擊此處可在 Delta Chat 處於後台時接收訊息。";
 "perm_enable_bg_already_done" = "您已經允許 Delta Chat 在後台接收訊息。\n\n如果消息仍未在後台到達，請同時檢查您的系統設定。";
 // device messages for updates
-"update_2_0" = "新版變化？
-💯 端對端加密現在可靠且永久有效。鎖頭圖標🔒已經消失！\n\n✉️ 沒有端對端加密的傳統電子郵件會以信件符號✉️標示\n\n😻 為你的所有聯絡人提供全新增強的個人資料頁面\n\n🔲 新按鈕可快速存取聊天中使用的應用程式\n\n❤️ 請捐款以幫助我們保持獨立並持續提供改進：%1$@";
+"update_2_0" = "新版變化？ 💯 端對端加密現在可靠且永久有效。鎖頭圖標🔒已經消失！\n\n✉️ 沒有端對端加密的傳統電子郵件會以信件符號✉️標示\n\n😻 為你的所有聯絡人提供全新增強的個人資料頁面\n\n🔲 新按鈕可快速存取聊天中使用的應用程式\n\n❤️ 請捐款以幫助我們保持獨立並持續提供改進：%1$@";

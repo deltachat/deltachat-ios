@@ -377,7 +377,7 @@
 "saved_messages_explain" = "• Üzenetek továbbítása az egyszerű hozzáférés érdekében\n\n• Jegyzetek vagy hangjegyzetek készítése\n\n• Médiaanyagok mellékelése a mentéshez";
 // Should match "Saved" from "Saved messages"
 "saved" = "Mentett";
-"save_as" = "Mentés  mint";
+"save_as" = "Mentés mint";
 "retry_send" = "Üzenet újraküldése";
 "cannot_display_unsuported_file_type" = "Ezt a fájltípust nem lehet megjeleníteni: %1$@";
 "attachment_failed_to_load" = "Nem sikerült betölteni a mellékletet";
@@ -570,7 +570,7 @@
 "move_to_top" = "Feljebb mozgatás";
 "delete_account" = "Profil törlése";
 "delete_account_ask" = "Biztosan törölni szeretné a profiladatait?";
-"delete_account_explain_with_name" = "A(z) „%1$@” nevű profilhoz tartozó mindet adat ezen az eszközön törölve lesz,  beleértve a végpontok közötti titkosítás beállításait, a névjegyeket, a csevegéseket, az üzeneteket és a médiát. Ez a művelet nem vonható vissza. ";
+"delete_account_explain_with_name" = "A(z) „%1$@” nevű profilhoz tartozó mindet adat ezen az eszközön törölve lesz, beleértve a végpontok közötti titkosítás beállításait, a névjegyeket, a csevegéseket, az üzeneteket és a médiát. Ez a művelet nem vonható vissza. ";
 "unconfigured_account" = "Konfigurálatlan profil";
 "unconfigured_account_hint" = "Nyissa meg a profilt a konfiguráláshoz.";
 "try_connect_now" = "Próbáljon meg most kapcsolódni";

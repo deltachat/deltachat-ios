@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "Добавить в коллекцию стикеров";
 "add_stickers_instructions" = "Для добавления стикеров, нажмите \"Открыть папку стикеров\", создайте подпапку для набора ваших стикеров и перетащите туда изображения и файлы стикеров";
 "open_sticker_folder" = "Открыть папку стикеров";
+"ask_add_sticker_to_collection" = "Добавить этот стикер в коллекцию?";
+"ask_delete_sticker" = "Удалить этот стикер?";
+"sticker_picker_empty_hint" = "Нажмите на стикер, чтобы добавить его сюда.";
 "images" = "Изображения";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Аудио";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "Добавить вложение";
 "menu_leave_group" = "Покинуть группу";
 "menu_leave_channel" = "Покинуть канал";
+"menu_leave_and_delete" = "Покинуть и удалить для меня";
 "menu_delete_chat" = "Удалить чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистить чат";
@@ -333,6 +337,11 @@
 "answer_call" = "Ответить";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Отклонить";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Аудиозвонок";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Видеозвонок";
+"call_incoming" = "Входящий звонок";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Исходящий аудиозвонок";
 // deprecated, use "Video call" instead
@@ -573,8 +582,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Удалить транспорт \"%1$@\"?\n\nВаши контакты смогут связаться с вами, только если вы ранее связывались с ними через другой релей.\n\nЕсли сомневаетесь, удалите релей позже.";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Введите корректный адрес электронной почты";
 "login_error_server" = "Введите корректный адрес сервера / IP-адрес";

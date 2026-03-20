@@ -447,7 +447,7 @@
 "qrscan_title" = "Pindah kode QR";
 "qrscan_hint" = "Pegang kamera Anda di atas kode QR.";
 "qrscan_ask_join_group" = "Apakah anda ingin bergabung dengan grup \"%1$@\"?";
-"qrscan_contains_text" = "Kode QR yang dipindai  text:\n\n%1$@";
+"qrscan_contains_text" = "Kode QR yang dipindai text:\n\n%1$@";
 "qrscan_contains_url" = "Kode QR yang dipindai URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Sidik jari";
 "qrshow_title" = "Kode undangan QR";
