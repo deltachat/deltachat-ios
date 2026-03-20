@@ -116,10 +116,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "yettwaẓer i tikkelt taneggarut %1$@";
 "last_seen_unknown" = "yettwaẓer i tikkelt taneggarut: Arussin";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Ddaw n 1 n tesdat";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-"selected_colon" = "Yettwafren:";
+"selected_colon" = "Yettwafran:";
+"selected" = "Yettwafren";
 "self" = "Nekk";
 "draft" = "Arewway";
 "image" = "Tugna";
@@ -131,6 +135,9 @@
 "add_to_sticker_collection" = "Rnu ɣer tegrumma n tamenṭaḍt";
 "add_stickers_instructions" = "Akken ad ternuḍ tamenṭaḍt, sit ɣef \" ldi akaram n tmenṭaḍt \", snulfu-d akaram anaddaw i ukemmus-ik·im n tmenṭaḍt, zuɣer tugna akked ifuyla n tmenṭaḍt din";
 "open_sticker_folder" = "Ldi akaran n tmenṭaḍt";
+"ask_add_sticker_to_collection" = "Arni ticṛeṭ-agi n tesfift ɣer tegrumma-inek·inem?";
+"ask_delete_sticker" = "Kkes ticṛet-agi n tesfift?";
+"sticker_picker_empty_hint" = "Tekki ɣer ticṛet n tesfift akken ad t-id-ternuḍ ɣer da.";
 "images" = "Tugniwin";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Ameslaw";
@@ -208,6 +215,7 @@
 "new_channel" = "Abadu amaynut";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Isen n ubadu";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "Imayl";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Imayl amaynut";
@@ -328,6 +336,14 @@
 "answer_call" = "Err";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Agi";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Asiwel ameslaw";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Asiwel s tvidyut";
+"call_initializing" = "Awennez...";
+"call_incoming" = "Asiwel ukcim";
+"call_ringing" = "Aṭenṭen...";
+"call_reconnecting" = "Tulsa n tuqqna...";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
 // deprecated, use "Video call" instead
