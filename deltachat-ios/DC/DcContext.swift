@@ -595,6 +595,17 @@ public class DcContext {
         return []
     }
 
+    public func listTransportsEx() -> [DcTransportListEntry] {
+        do {
+            if let data = try DcAccounts.shared.blockingCall(method: "list_transports_ex", params: [id as AnyObject]) {
+                return try JSONDecoder().decode(DcTransportListEntryResult.self, from: data).result
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return []
+    }
+
     public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
         let res = try DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
         return res != nil
@@ -603,6 +614,10 @@ public class DcContext {
     public func addTransportFromQr(qrCode: String) throws -> Bool {
         let res = try DcAccounts.shared.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
         return res != nil
+    }
+
+    public func setTransportUnpublished(addr: String, unpublished: Bool) throws {
+        try DcAccounts.shared.blockingCall(method: "set_transport_unpublished", params: [id as AnyObject, addr as AnyObject, unpublished as AnyObject])
     }
 
     public func deleteTransport(addr: String) throws {
