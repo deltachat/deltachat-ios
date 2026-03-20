@@ -52,7 +52,7 @@ class TransportListViewController: UITableViewController {
     private func setDefaultTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
         dcContext.setConfig("configured_addr", transport.param.addr)
-        tableView.reloadData()
+        reloadTransports()
     }
 
     private func editTransport(at indexPath: IndexPath) {
@@ -71,12 +71,21 @@ class TransportListViewController: UITableViewController {
         guard let transport = transports.get(at: indexPath.row) else { return }
 
         let parts = transport.param.addr.components(separatedBy: "@")
-        let text = String.localized(stringID: "confirm_remove_transport", parameter: parts.last ?? transport.param.addr)
+        let text = String.localized(stringID: "confirm_remove_or_hide_transport_x", parameter: parts.last ?? transport.param.addr)
         let alert = UIAlertController(title: text, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("hide_from_contacts"), style: .default, handler: { [weak self] _ in
+            guard let self else { return }
+            do {
+                try self.dcContext.setTransportUnpublished(addr: transport.param.addr, unpublished: true)
+            } catch {
+                logAndAlert(error: error.localizedDescription)
+            }
+            reloadTransports()
+        }))
         alert.addAction(UIAlertAction(title: String.localized("remove_transport"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             do {
-                _ = try self.dcContext.deleteTransport(addr: transport.param.addr)
+                try self.dcContext.deleteTransport(addr: transport.param.addr)
             } catch {
                 logAndAlert(error: error.localizedDescription)
             }
