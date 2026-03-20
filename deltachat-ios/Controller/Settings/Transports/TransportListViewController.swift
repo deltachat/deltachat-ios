@@ -111,13 +111,29 @@ extension TransportListViewController {
             let parts = transport.param.addr.components(separatedBy: "@")
 
             cell.textLabel?.text = parts.last ?? transport.param.addr
-            cell.detailTextLabel?.text = (parts.first ?? "") + (isDefault ? (" · " + String.localized("def")) : "")
+
+            var details = (parts.first ?? "")
+            if isDefault {
+                details += " · " + String.localized("used_for_sending")
+            }
+            if transport.isUnpublished {
+                details += " · " + String.localized("hidden_from_contacts")
+            }
+            cell.detailTextLabel?.text = details
+
             cell.accessoryType = isDefault ? .checkmark : .none
 
             return cell
         } else {
             return addTransportCell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == TransportSection.transports.rawValue {
+            return String.localized("transport_list_hint")
+        }
+        return nil
     }
 }
 
