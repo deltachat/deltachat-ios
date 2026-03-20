@@ -581,8 +581,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Vill du lägga till detta relä?";
 "invalid_transport_qr" = "Den skannade QR-koden innehåller inget giltigt relä.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Vill du ta bort relä \"%1$@\"?\n\nDina kontakter kan endast nå dig om du tidigare har kontaktat dem via annat relä.\n\nTa bort reläet senare, om du är osäker.";
 "login_certificate_checks" = "Certifikatkontroller";
 "login_error_mail" = "Ange en giltig e-postadress";
 "login_error_server" = "Ange en giltig server/IP-adress";

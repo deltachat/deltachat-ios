@@ -557,8 +557,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Přidat toto vysílání?";
 "invalid_transport_qr" = "Naskenovaný kód QR neobsahuje platné vysílání.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Odstranit vysílání \"%1$@\"? \n\n Vaše kontakty se s vámi spojí pouze tehdy, pokud jste je předtím kontaktovali prostřednictvím jiného vysílání. \n\n Pokud máte pochybnosti, odstraňte spojení později.";
 "login_certificate_checks" = "Kontroly certifikátu";
 "login_error_mail" = "Prosím, zadejte platnou e-mailovou adresu";
 "login_error_server" = "Prosím, zadejte platný server / IP adresu";

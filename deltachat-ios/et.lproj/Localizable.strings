@@ -546,7 +546,7 @@
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
 "login_title" = "Logi sisse";
-"login_advanced_hint" = "See sisselogimine sobib  oskuskasutajatele:\n\n• Ära kasuta kontot, mis juba on kasutusel mõnes muus rakenduses.\n\n• Klassikaline e-posti server võimaldab vestlemist vaid ilma läbiva krüptimiseta ja seda märgistab kirja ikoon.";
+"login_advanced_hint" = "See sisselogimine sobib oskuskasutajatele:\n\n• Ära kasuta kontot, mis juba on kasutusel mõnes muus rakenduses.\n\n• Klassikaline e-posti server võimaldab vestlemist vaid ilma läbiva krüptimiseta ja seda märgistab kirja ikoon.";
 "login_inbox" = "Saabuvad kirjad";
 "login_imap_login" = "IMAP-i kasutajanimi";
 "login_imap_server" = "IMAP-i server";
@@ -581,8 +581,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Kas eemaldad „%1$@“ alusühenduse?\n\nSinu kontaktid saavad sind kätte vaid siis, kui oled selleks kasutanud mõnda muud alusühendust.\n\nKui kahtled, siis eemalda alusühendus hiljem.";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";
 "login_error_server" = "Palun sisesta korrektne serveri täisnimi või ip-aadress";

@@ -568,8 +568,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Rnu amsiweḍ-agi?";
 "invalid_transport_qr" = "Tangalt QR ittusemḍen ur tesɛi ara amsiweḍ ameɣtu";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Kkes amsiweḍ \"%1$@\"?\n\nInermisen-ik·im ur zmiren ara ad k·im-id-awḍen ala ma tnermseḍ-ten yakan s umsiweḍ-nniḍen.\n\nMa yella ccekk, kkes amsiweḍ ticki.";
 "login_certificate_checks" = "Asenqed n uselkin";
 "login_error_mail" = "Ma ulac aɣilif, sekcem tansa imayl tameɣtut";
 "login_error_server" = "Ma ulac aɣilif, sekcem aqeddac ameɣtu / tansa IP.";
@@ -604,7 +602,7 @@
 "forward_to" = "Welleh ɣer...";
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Azen %1$d ifuyla ɣer \"%2$@\"?";
-"ask_send_files_to_selected_chats" = "Azen %1$d afaylu(ifuyla) ɣer %2$d  idiwenniyen?";
+"ask_send_files_to_selected_chats" = "Azen %1$d afaylu(ifuyla) ɣer %2$d idiwenniyen?";
 "videos_sent_without_recoding" = "(Tividyutin ttwaznent d akken d ifuyla meqqren. Akken ad tazneḍ tividyutin d ifuyla meẓẓiyen, qqen-itent yal yiwet i yiman-is)";
 "share_text_multiple_chats" = "Azen aḍris-a ɣer %1$d idwenniyin?\n\n\"%2$@\"";
 "share_abort" = "Beṭṭu ur yedda ara ɣef sebba n tsirag ixuṣṣen.";
@@ -749,7 +747,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_server_ask" = "Tebɣiḍ ad tekkseḍ %1$d n iznan tura akk d yiznan imaynuten \"%2$@\" ɣer zdat?\n\n⚠️ Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac\n\n⚠️ Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac.  Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
+"autodel_server_enabled_hint" = "Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac. Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
 "autodel_server_warn_multi_device_title" = "Rmed tukksa n dindin";
 "autodel_server_warn_multi_device" = "Ma tremdeḍ tukksa n dindin ur tezmireḍ ara ad tesqedceḍ aṭas n yibenkan deg umaɣnu-a. ";
 "autodel_confirm" = "Fehmeɣ, kkes akk iznan-agi";
@@ -926,7 +924,7 @@
 "perm_explain_access_to_mic_denied" = "Akken ad tazneḍ iznan n umeslaw, ddu ɣer iɣewwaṛen n unagraw neɣ n usnas, fren \" tisirag \" neɣ \" tabaḍnit & taɣellist \", syin rmed \"Amikrufun\".";
 "perm_explain_access_to_storage_denied" = "Akken ad tremseḍ neɣ ad tazneḍ ifuyla, ddu ɣer iɣewwaṛen n usnas, fren \" tisirag \", sakin rmed \" takatut \".";
 "perm_explain_access_to_location_denied" = "Akken ad teqqneḍ adig, ddu ɣer iɣewwaṛen n usnas, fren \" tisirag \", sakin rmed \" adig \". ";
-"perm_explain_access_to_notifications_denied" = "Akken ad d-remseḍ ilɣa,  ddu ɣer \"Iɣewwaṛen n Unagraw / Isnas / Delta Chat\" akken ad tremdeḍ \"Ilɣa\".";
+"perm_explain_access_to_notifications_denied" = "Akken ad d-remseḍ ilɣa, ddu ɣer \"Iɣewwaṛen n Unagraw / Isnas / Delta Chat\" akken ad tremdeḍ \"Ilɣa\".";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Suneɣ-d anda tebɣiḍ i wakken ad tesluɣeḍ";
 "ImageEditorHud_add_text" = "Rnu aḍris";

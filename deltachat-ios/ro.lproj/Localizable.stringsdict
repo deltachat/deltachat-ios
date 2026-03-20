@@ -195,7 +195,7 @@
 			<key>one</key>
 			<string>%d chat arhivat</string>
 			<key>few</key>
-			<string>%d  chat-uri arhivate</string>
+			<string>%d chat-uri arhivate</string>
 			<key>other</key>
 			<string>%d de chat-uri arhivate</string>
 		</dict>

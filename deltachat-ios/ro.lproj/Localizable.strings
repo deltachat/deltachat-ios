@@ -244,7 +244,7 @@
 "ask_delete_contact" = "Ștergerea contactului %1$@?\n\nContacts cu discuții în curs sau din agenda de adrese a sistemului nu pot fi șterse definitiv.";
 "ask_start_chat_with" = "Chat cu %1$@?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "Scoateți  %1$@ din grup?";
+"ask_remove_members" = "Scoateți %1$@ din grup?";
 "open_url_confirmation" = "Doriți să deschideți acest link?";
 // contact list
 "contacts_title" = "Contacte";
@@ -296,7 +296,7 @@
 "open_external_url_trust_domain" = "Nu cereți din nou %1$@";
 "puny_code_warning_header" = "Link suspect detectat";
 // placeholder contains the hostname converted to ascii
-"puny_code_warning_question" = "Ești sigur că vrei să vizitezi  %1$@?";
+"puny_code_warning_question" = "Ești sigur că vrei să vizitezi %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
 "puny_code_warning_description" = "Acest link poate denatura caracterele cu caractere asemănătoare din diferite alfabete. Urmând linkul etichetat %1$@ va duce la %2$@ ceea ce este normal pentru caracterele non-latine. Dacă nu v-ați așteptat la astfel de caractere, acest link ar putea fi dăunător.";
 // search

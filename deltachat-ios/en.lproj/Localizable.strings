@@ -123,6 +123,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Selected:";
+"selected" = "Selected";
 "self" = "Me";
 "draft" = "Draft";
 "image" = "Image";
@@ -341,6 +342,12 @@
 "audio_call" = "Audio call";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Video call";
+"call_initializing" = "Initializing…";
+"call_incoming" = "Incoming call";
+"call_ringing" = "Ringing…";
+"call_reconnecting" = "Reconnecting…";
+"call_ended" = "Call ended";
+"call_failed" = "Call failed";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Outgoing audio call";
 // deprecated, use "Video call" instead
@@ -578,11 +585,16 @@
 "add_transport" = "Add Relay";
 "remove_transport" = "Remove Relay";
 "edit_transport" = "Edit Relay";
+"used_for_sending" = "Used for sending";
+"hide_from_contacts" = "Hide from Contacts";
+"hidden_from_contacts" = "Hidden from contacts";
+// Hint for the list of relays
+"transport_list_hint" = "Messages are received on all relays.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Add this relay?";
 "invalid_transport_qr" = "The scanned QR code does not contain a valid relay.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Remove relay \"%1$@\"?\n\nYour contacts can only reach you if you\'ve previously contacted them via another relay.\n\nIf in doubt, remove the relay later.";
+"confirm_remove_or_hide_transport_x" = "Remove relay \"%1$@\"?\n\nContacts who only know this relay may not reach you until you message them again.\n\nIf in doubt, hide it rather than removing it.";
 "login_certificate_checks" = "Certificate Checks";
 "login_error_mail" = "Please enter a valid email address";
 "login_error_server" = "Please enter a valid server / IP address";

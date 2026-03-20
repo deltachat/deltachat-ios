@@ -304,7 +304,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Сачувај";
 "saved_messages" = "Сачуване поруке";
-"saved_messages_explain" = "• Проследи поруке овде за лакши приступ\n\n• Направите текстуалне или звучне белешке\n\n• Приложите медиј  да би га снимили";
+"saved_messages_explain" = "• Проследи поруке овде за лакши приступ\n\n• Направите текстуалне или звучне белешке\n\n• Приложите медиј да би га снимили";
 // Should match "Saved" from "Saved messages"
 "saved" = "Снимљено";
 "save_as" = "Сними као";
@@ -414,7 +414,7 @@
 "add_account" = "Додај налог";
 "delete_account" = "Избриши налог";
 "delete_account_ask" = "Да ли сте сигурни да желите да избришете све податке са вашег налога?";
-"delete_account_explain_with_name" = "Сви подаци о налогу за „%1$@“ на овом уређају ће бити избрисани, укључујући подешавања  с-краја-на-крај шифровања, контакте, ћаскања, поруке и медије. Ако се ова радња изврши, она се касније не може поништити.";
+"delete_account_explain_with_name" = "Сви подаци о налогу за „%1$@“ на овом уређају ће бити избрисани, укључујући подешавања с-краја-на-крај шифровања, контакте, ћаскања, поруке и медије. Ако се ова радња изврши, она се касније не може поништити.";
 "unconfigured_account" = "Налог није конфигурисан";
 "unconfigured_account_hint" = "Отворите налог да би сте га конфигурисали.";
 "try_connect_now" = "Пробај да се повежеш сада";

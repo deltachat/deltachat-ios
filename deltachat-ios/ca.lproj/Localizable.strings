@@ -116,10 +116,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Vist per darrer cop: %1$@";
 "last_seen_unknown" = "Vist per darrer cop: desconegut";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Menys d\'1 minut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Seleccionat:";
+"selected" = "Seleccionat";
 "self" = "Jo";
 "draft" = "Esborrany";
 "image" = "Imatge";
@@ -131,6 +135,9 @@
 "add_to_sticker_collection" = "Afegeix a la col·lecció d\'adhesius";
 "add_stickers_instructions" = "Per a afegir adhesius: premeu \"Obre la carpeta d\'adhesius\", creeu una subcarpeta per a la vostra col·lecció d\'adhesius i arrossegueu-hi la imatge i els fitxers d\'adhesius.";
 "open_sticker_folder" = "Obre la carpeta d\'adhesius";
+"ask_add_sticker_to_collection" = "Afegir l\'adhesiu a la col·lecció?";
+"ask_delete_sticker" = "Esborrar l\'adhesiu?";
+"sticker_picker_empty_hint" = "Prem un adhesiu per afegir-lo aquí.";
 "images" = "Imatges";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Àudio";
@@ -224,6 +231,7 @@
 "menu_add_attachment" = "Afegeix un adjunt";
 "menu_leave_group" = "Deixa el grup";
 "menu_leave_channel" = "Sortir del Canal";
+"menu_leave_and_delete" = "Sortir i esborrar per a mi";
 "menu_delete_chat" = "Esborra el xat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Buida el xat";
@@ -275,7 +283,7 @@
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Indiqueu un sobrenom que se us mostrarà en comptes de «%1$@». Deixeu-ho buit per a usar el nom triat pel contacte.";
 // The placeholder will be replaced by the name the contact gave themself
-"edit_name_placeholder" = "Sobrenom per a  «%1$@»";
+"edit_name_placeholder" = "Sobrenom per a «%1$@»";
 "menu_settings" = "Preferències";
 "menu_advanced" = "Avançat";
 "menu_view_profile" = "Veure el perfil";
@@ -292,7 +300,7 @@
 "device_talk" = "Missatges del dispositiu";
 "device_talk_subtitle" = "Missatges generats localment";
 "device_talk_explain" = "Els missatges d\'aquest xat són generats en el vostre dispositiu per a informar-vos sobre actualitzacions de l\'aplicació o de problemes durant el seu ús.";
-"device_talk_welcome_message2" = "Esteu en contacte!\n\n🙌 Toqueu «Codi QR» en la finestra principal d\'ambdós dispositius. Trieu «Escaneja codi QR» en un dispositiu, i apunteu cap a l\'altre\n\n🌍 Si no esteu en la mateixa sala, podeu escanejar o compartir un enllaç d\'invitació des de «Escaneja codi QR»\n\nDesprés: gaudiu de l\'experiència de missatgeria sobre la xarxa descentralitzada més gran que ha existit mai: el correu electrònic. I, en contrast amb altres aplicacions populars, sense control central, seguiment ni comercialització de vós, amics, col·legues o familiars amb grans organitzacions.";
+"device_talk_welcome_message2" = "Esteu en contacte!\n\n🙌 Prem «Codi QR» a la finestra principal d\'ambdós dispositius. Tria «Escaneja codi QR» en un dispositiu, i apunta cap a l\'altre\n\n🌍 Si no esteu a la mateixa sala, podeu escanejar o compartir un enllaç d\'invitació des de \"Escaneja codi QR\"\n\nLlavors: gaudiu de l\'experiència de missatgeria sobre la xarxa descentralitzada més gran que ha existit mai: el correu electrònic. I, en comparació amb altres aplicacions populars, sense control central, sense seguiment ni tampóc comercialització per part de grans companyies de tu i els teus amics, col·legues o familiars.";
 "edit_contact" = "Edita el contacte";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Fixa el xat";
@@ -330,6 +338,16 @@
 "answer_call" = "Respon";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rebutja";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Trucada de veu";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Video trucada";
+"call_initializing" = "Inicialitzant...";
+"call_incoming" = "Et truquen";
+"call_ringing" = "Trucant...";
+"call_reconnecting" = "Reconnectant...";
+"call_ended" = "Trucada finalitzada";
+"call_failed" = "Trucada fallida";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Trucada de veu sortint";
 // deprecated, use "Video call" instead
@@ -470,7 +488,7 @@
 "multidevice_this_creates_a_qr_code" = "Això crea un codi QR que es pot escanejar en un segon dispositiu per a copiar el perfil.";
 "multidevice_install_dc_on_other_device" = "Instal·leu Delta Chat en el vostre altre dispositiu (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
-"multidevice_tap_scan_on_other_device" = "Inicieu Delta Chat, toqueu  «Ja tinc un perfil / Afegeix un segon dispositiu» i escanegeu el codi que es mostra aquí.";
+"multidevice_tap_scan_on_other_device" = "Inicieu Delta Chat, toqueu «Ja tinc un perfil / Afegeix un segon dispositiu» i escanegeu el codi que es mostra aquí.";
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Escanegeu-lo per configurar un segon dispositiu per a %1$@";
 "multidevice_receiver_title" = "Afegeix com a segon dispositiu";
@@ -567,15 +585,20 @@
 "add_transport" = "Afegir Relé";
 "remove_transport" = "Elimina Relé";
 "edit_transport" = "Edita Relé";
+"used_for_sending" = "Utilitzat per enviar";
+"hide_from_contacts" = "Amagar als contactes";
+"hidden_from_contacts" = "Amagat als contactes";
+// Hint for the list of relays
+"transport_list_hint" = "Missatges rebuts en tots els relés";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Afegeix aquest relé?";
 "invalid_transport_qr" = "El codi QR escanejat no conté un relé vàlid.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Eliminar relé \"%1$@\"?\n\nEls teus contactes només poden contactar amb tu si ja els has contactat prèviament a través d\'un altre relé.\n\nSi dubtes, elimina el relé més tard.";
+"confirm_remove_or_hide_transport_x" = "Esborrar el relé \"%1$@\"?\n\nEls contactes que només coneixen aquest relé no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
-"login_error_port" = "Si us plau poseu un  port vàlid (1-65535)";
+"login_error_port" = "Si us plau poseu un port vàlid (1-65535)";
 "login_error_required_fields" = "Si us plau poseu una adreça i contrasenya vàlids";
 "import_backup_title" = "Importa una còpia de seguretat";
 "import_backup_ask" = "S\'ha trobat una còpia de seguretat a \"%1$@\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
@@ -615,7 +638,7 @@
 "pref_profile_photo" = "Fotografia de perfil";
 "pref_blocked_contacts" = "Contactes bloquejats";
 "blocked_empty_hint" = "Els contactes blocats apareixeran aquí.";
-"pref_who_can_see_profile_explain" = "La vostra imatge de perfil, nom i biografia s\'enviaran amb juntament els missatges que escriviu quant us comuniqueu amb altres usuaris.";
+"pref_who_can_see_profile_explain" = "La vostra imatge de perfil, nom i signatura s\'enviaran juntament amb els missatges que escriviu quant us comuniqueu amb altres usuaris.";
 "pref_your_name" = "El vostre nom";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Signatura";
@@ -624,6 +647,7 @@
 "pref_enter_sends" = "La tecla «Retorn» envia";
 "pref_enter_sends_explain" = "Els missatges s\'enviaran prement la tecla «Retorn»";
 "pref_outgoing_media_quality" = "Qualitat del contingut multimèdia sortint";
+"pref_outgoing_media_quality_hint" = "Per enviar sense comprimir, adjunta-ho com a \"Fitxer\". Això consumeix més dades, tant les teves, com les dels destinataris.";
 "pref_outgoing_balanced" = "Balancejat";
 "pref_outgoing_worse" = "Pitjor qualitat, mida petita";
 "pref_vibrate" = "Vibració";
@@ -634,6 +658,10 @@
 "pref_notifications" = "Notificacions";
 "pref_mention_notifications" = "Mencions";
 "pref_mention_notifications_explain" = "En els grups silenciats, notifica els missatges dirigits a vós, com ara respostes i reaccions";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Trucades";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Mostrar la pantalla de trucada quan reps una trucada";
 "pref_notifications_show" = "Mostra";
 "pref_notifications_priority" = "Prioritat";
 "pref_notifications_explain" = "Habilita les notificacions del sistema per als missatges nous";
@@ -767,7 +795,7 @@
 "systemmsg_subject_for_new_contact" = "Missatge de %1$@";
 "systemmsg_failed_sending_to" = "No s\'ha pogut enviar el missatge a %1$@.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "Heu canviat el nom del grup de «%1$@»  a «%2$@».";
+"group_name_changed_by_you" = "Heu canviat el nom del grup de «%1$@» a «%2$@».";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per %3$@.";
 "group_image_changed_by_you" = "Heu canviat la imatge de grup.";

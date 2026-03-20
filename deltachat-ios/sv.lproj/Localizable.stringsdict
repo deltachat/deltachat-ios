@@ -191,7 +191,7 @@
 			<key>one</key>
 			<string>Skicka följande fil till %s?</string>
 			<key>other</key>
-			<string>Vill du skicka följande %d filer  till %s ?</string>
+			<string>Vill du skicka följande %d filer till %s ?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

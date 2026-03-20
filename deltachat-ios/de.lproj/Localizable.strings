@@ -123,6 +123,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Ausgewählt:";
+"selected" = "Ausgewählt";
 "self" = "Ich";
 "draft" = "Entwurf";
 "image" = "Bild";
@@ -341,6 +342,12 @@
 "audio_call" = "Sprachanruf";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Videoanruf";
+"call_initializing" = "Initialisieren…";
+"call_incoming" = "Eingehender Anruf";
+"call_ringing" = "Klingeln…";
+"call_reconnecting" = "Wiederverbinden…";
+"call_ended" = "Anruf beendet";
+"call_failed" = "Anruf fehlgeschlagen";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Ausgehender Sprachanruf";
 // deprecated, use "Video call" instead
@@ -578,11 +585,16 @@
 "add_transport" = "Relay hinzufügen";
 "remove_transport" = "Relay entfernen";
 "edit_transport" = "Relay bearbeiten";
+"used_for_sending" = "Zum Senden verwendet";
+"hide_from_contacts" = "Vor Kontakten verstecken";
+"hidden_from_contacts" = "Vor Kontakten versteckt";
+// Hint for the list of relays
+"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Relay hinzufügen?";
 "invalid_transport_qr" = "Der gescannte QR-Code enthält keine gültiges Relay.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Relay \"%1$@\" entfernen?\n\nDeine Kontakte können dich nur erreichen, wenn du sie zuvor über einen anderes Relay erreicht hast.\n\nIm Zweifel, entferne den Relay später.";
+"confirm_remove_or_hide_transport_x" = "Relay \"%1$@\" entfernen?\n\nKontakte, die nur dieses Relay kennen, erreichen dich möglicherweise erst wieder, wenn du ihnen erneut eine Nachricht schickst.\n\nIm Zweifelsfall, verstecke das Relay anstelle es zu löschen.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
 "login_error_mail" = "Bitte eine gültige E-Mail-Adresse eingeben";
 "login_error_server" = "Bitte eine gültige Server/IP-Adresse eingeben";
@@ -737,7 +749,7 @@
 "stats_disable_dialog" = "Das Senden von Statistiken ist bereits eingeschaltet.\n\nMöchtest du es ausschalten?";
 "disable" = "Ausschalten";
 "stats_keep_sending" = "Weiter senden";
-"stats_msg_body" = "Der Anhang enthält anonyme Statistiken, die uns helfen, Delta Chat zu verbessern. Vielen Dank!";
+"stats_msg_body" = "Der Anhang enthält anonyme Statistiken, die uns helfen, Delta Chat zu verbessern. Vielen Dank! Für weitere Infos, siehe https://delta.chat/help#statssending ";
 // Emoji picker and categories
 "emoji_search_results" = "Suchergebnisse";
 "emoji_not_found" = "Keine Emoji gefunden";

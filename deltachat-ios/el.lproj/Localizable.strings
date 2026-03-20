@@ -38,7 +38,7 @@
 // Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Σίγαση";
 "ephemeral_messages" = "Μηνύματα που εξαφανίζονται";
-"ephemeral_messages_hint" = "Ισχύει για όλα τα μέλη της συνομιλίας αν χρησιμοποιούν Delta Chat: έχουν την δυνατότητα αντιγραφής, αποθήκευσης, και κοινοποίησης μηνυμάτων ή χρήση άλλων  e-mail πελατών.";
+"ephemeral_messages_hint" = "Ισχύει για όλα τα μέλη της συνομιλίας αν χρησιμοποιούν Delta Chat: έχουν την δυνατότητα αντιγραφής, αποθήκευσης, και κοινοποίησης μηνυμάτων ή χρήση άλλων e-mail πελατών.";
 "save" = "Αποθήκευση";
 "chat" = "Συνομιλία";
 "media" = "Πολυμέσα";
@@ -546,7 +546,7 @@
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Ο/Η %1$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε 1 εβδομάδα.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
-"ephemeral_timer_minutes_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@  λεπτά.";
+"ephemeral_timer_minutes_by_you" = "Όρισες το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ λεπτά.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Ο/Η %2$@ όρισε το χρόνο εξαφάνισης των μηνυμάτων σε %1$@ λεπτά.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to

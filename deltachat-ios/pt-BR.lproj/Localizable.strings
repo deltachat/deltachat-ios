@@ -307,12 +307,12 @@
 "add_poi" = "Enviar ponto de interesse";
 // punycode warning / labeled links
 // placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Não perguntar de novo por  %1$@";
+"open_external_url_trust_domain" = "Não perguntar de novo por %1$@";
 "puny_code_warning_header" = "Link suspeito detectado";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Tem certeza que deseja visitar %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Você clicou em um link que pode estar representando maliciosamente letras de aparência semelhante com o uso de alfabetos diferentes. Seguir o link rotulado como %1$@  levará a %2$@, o que é normal para caracteres não latinos. Se você não esperava esses caracteres, este link pode ser prejudicial";
+"puny_code_warning_description" = "Você clicou em um link que pode estar representando maliciosamente letras de aparência semelhante com o uso de alfabetos diferentes. Seguir o link rotulado como %1$@ levará a %2$@, o que é normal para caracteres não latinos. Se você não esperava esses caracteres, este link pode ser prejudicial";
 // search
 "search" = "Procurar";
 "search_explain" = "Procurar conversas, contatos e mensagens";
@@ -535,7 +535,7 @@
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Você quer apagar %1$d mensagens agora e todas as mensagens recém-obtidas \"%2$@\" no futuro?\n\n• Isso inclui todas as mídias\n\n• As mensagens serão excluídas independentemente de serem sido vistas ou não\n\n• \"Mensagens salvas\" serão ignoradas da exclusão local";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "Você quer apagar %1$d  mensagens agora e todas as mensagens recém-obtidas \"%2$@\" no futuro?\n\n⚠️ Isso inclui e-mails, mídia e \"Mensagens salvas\" em todas as pastas do servidor\n\n⚠️ Não use esta função se quiser manter os dados no servidor\n\n⚠️ Não use esta função se estiver usando outros clientes de e-mail além do Delta Chat";
+"autodel_server_ask" = "Você quer apagar %1$d mensagens agora e todas as mensagens recém-obtidas \"%2$@\" no futuro?\n\n⚠️ Isso inclui e-mails, mídia e \"Mensagens salvas\" em todas as pastas do servidor\n\n⚠️ Não use esta função se quiser manter os dados no servidor\n\n⚠️ Não use esta função se estiver usando outros clientes de e-mail além do Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
 "autodel_server_enabled_hint" = "Isso inclui e-mails, mídia e \"Mensagens salvas\" em todas as pastas do servidor. Não use esta função se quiser manter os dados no servidor ou se estiver usando outros clientes de e-mail além do Delta Chat.";
 "autodel_confirm" = "Eu entendo, apague todas essas mensagens";
@@ -587,7 +587,7 @@
 "ephemeral_timer_1_hour_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 hora por %1$@.";
 "ephemeral_timer_1_day_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para 1 dia.";
 // %1$s will be replaced by name of the contact
-"ephemeral_timer_1_day_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 dia por  %1$@.";
+"ephemeral_timer_1_day_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 dia por %1$@.";
 "ephemeral_timer_1_week_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para 1 semana.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Temporizador de desaparecimento de mensagens definido para 1 semana por %1$@.";
@@ -596,7 +596,7 @@
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ minutos por %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
-"ephemeral_timer_hours_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para  %1$@ horas.";
+"ephemeral_timer_hours_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para %1$@ horas.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ horas por %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
@@ -604,7 +604,7 @@
 // %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_days_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ dias por %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
-"ephemeral_timer_weeks_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para  %1$@ semanas.";
+"ephemeral_timer_weeks_by_you" = "Você definiu o temporizador de desaparecimento de mensagens para %1$@ semanas.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Você excluiu o bate-papo \"Mensagens salvas\".\n\nℹ️ Para usar o recurso \"Mensagens salvas\" novamente, crie um novo bate-papo com você mesmo. ";

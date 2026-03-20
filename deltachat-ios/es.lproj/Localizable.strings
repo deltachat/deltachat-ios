@@ -116,10 +116,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Visto por última vez: %1$@";
 "last_seen_unknown" = "Visto por última vez: Desconocido";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Menos de 1 minuto";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Seleccionado:";
+"selected" = "Seleccionado";
 "self" = "Yo";
 "draft" = "Borrador";
 "image" = "Imagen";
@@ -131,6 +135,9 @@
 "add_to_sticker_collection" = "Añadir a la colección de stickers";
 "add_stickers_instructions" = "Para añadir stickers, toca en \"Abrir carpeta de stickers\", crea una subcarpeta para tu colección de stickers y copia imágenes y stickers allí";
 "open_sticker_folder" = "Abrir la carpeta de stickers";
+"ask_add_sticker_to_collection" = "¿Añadir este sticker a tu colección?";
+"ask_delete_sticker" = "¿Eliminar este sticker?";
+"sticker_picker_empty_hint" = "Toca un sticker para añadirlo aquí.";
 "images" = "Imágenes";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -194,7 +201,7 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nuevo contacto";
 "menu_new_classic_contact" = "Añadir contacto manualmente";
-"new_classic_contact_explain" = "Los contactos añadidos manualmente se pueden utilizar para enviar mensajes  a contactos que usan clientes de correo electrónico clásico y no se garantiza que estén cifrados de extremo a extremo.";
+"new_classic_contact_explain" = "Los contactos añadidos manualmente se pueden utilizar para enviar mensajes a contactos que usan clientes de correo electrónico clásico y no se garantiza que estén cifrados de extremo a extremo.";
 "menu_new_chat" = "Nuevo chat";
 "menu_new_group" = "Nuevo grupo";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
@@ -208,6 +215,7 @@
 "new_channel" = "Nuevo canal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nombre del canal";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "Correo electrónico";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Nuevo correo electrónico";
@@ -223,6 +231,7 @@
 "menu_add_attachment" = "Añadir adjunto";
 "menu_leave_group" = "Abandonar grupo";
 "menu_leave_channel" = "Abandonar canal";
+"menu_leave_and_delete" = "Abandonar y eliminar";
 "menu_delete_chat" = "Eliminar chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vaciar chat";
@@ -329,6 +338,16 @@
 "answer_call" = "Contestar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rechazar";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Llamada";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videollamada";
+"call_initializing" = "Inicializando…";
+"call_incoming" = "Llamada entrante";
+"call_ringing" = "Sonando…";
+"call_reconnecting" = "Reconectando…";
+"call_ended" = "Finalizó la llamada";
+"call_failed" = "La llamada falló";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Llamada saliente";
 // deprecated, use "Video call" instead
@@ -534,7 +553,7 @@
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
-"login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados:\n\n• No utilice una cuenta que esté usando en otra  app.\n\n• El servidor de correo electrónico clásico permite chats sin cifrado de extremo a extremo, los cuales están marcados por un icono de correo.";
+"login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados:\n\n• No utilice una cuenta que esté usando en otra app.\n\n• El servidor de correo electrónico clásico permite chats sin cifrado de extremo a extremo, los cuales están marcados por un icono de correo.";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -566,11 +585,16 @@
 "add_transport" = "Añadir transporte";
 "remove_transport" = "Eliminar transporte";
 "edit_transport" = "Editar transporte";
+"used_for_sending" = "Usado para enviar";
+"hide_from_contacts" = "Ocultar de los contactos";
+"hidden_from_contacts" = "Ocultado de los contactos";
+// Hint for the list of relays
+"transport_list_hint" = "Los mensajes se reciben en todos los relays.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "¿Añadir este transporte?";
 "invalid_transport_qr" = "El código QR escaneado no contiene un transporte válido.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "¿Eliminar el transporte \"%1$@\"?\nTus contactos solo podrán localizarte si previamente has contactado con ellos mediante otro transporte.\nEn caso de duda, quita el transporte más tarde.";
+"confirm_remove_or_hide_transport_x" = "¿Eliminar el relay \"%1$@\"?\n\nLos contactos que solo conocen este relay podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
@@ -607,7 +631,7 @@
 "ask_send_files_to_chat" = "¿Enviar %1$d archivos a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
 "videos_sent_without_recoding" = "(Los videos se enviarán en su tamaño original. Para enviar videos como archivos más pequeños, adjúntelos por separado)";
-"share_text_multiple_chats" = "¿Enviar este texto  a %1$d chats?\n\n\"%2$@\"";
+"share_text_multiple_chats" = "¿Enviar este texto a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences
 "pref_profile_info_headline" = "Información de perfil";
@@ -618,10 +642,12 @@
 "pref_your_name" = "Tu nombre";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Texto de firma";
+"chat_description" = "Descripción";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tecla Intro envía";
 "pref_enter_sends_explain" = "La tecla Intro enviará tu mensaje";
 "pref_outgoing_media_quality" = "Calidad de multimedia saliente";
+"pref_outgoing_media_quality_hint" = "Para enviar imágenes con calidad original, adjúntalas como \"Archivo\". Esto consume muchos más datos tanto para ti como para los destinatarios.";
 "pref_outgoing_balanced" = "Balanceada";
 "pref_outgoing_worse" = "Peor calidad, tamaño pequeño";
 "pref_vibrate" = "Vibrar";
@@ -632,6 +658,10 @@
 "pref_notifications" = "Notificaciones ";
 "pref_mention_notifications" = "Menciones";
 "pref_mention_notifications_explain" = "En los grupos silenciados, notifica los mensajes dirigidos a ti, como respuestas o reacciones";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Llamadas";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Mostrar la pantalla de llamada para las llamadas entrantes";
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridad";
 "pref_notifications_explain" = "Habilitar las notificaciones del sistema para nuevos mensajes";
@@ -680,8 +710,7 @@
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Modo multidispositivo";
 "pref_multidevice_explain" = "Sincroniza tus mensajes con tus otros dispositivos. Se activa automáticamente al añadir un segundo dispositivo";
-"pref_multidevice_change_warn" = "El modo multidispositivo debe estar activado cuando usas el mismo perfil en varios dispositivos.
-Desactiva este ajuste solo si has eliminado este perfil de todos tus demás dispositivos.\n\nSi desactivas el modo multidispositivo mientras usas el perfil en varios dispositivos, se perderán mensajes y se producirán otros problemas.";
+"pref_multidevice_change_warn" = "El modo multidispositivo debe estar activado cuando usas el mismo perfil en varios dispositivos. Desactiva este ajuste solo si has eliminado este perfil de todos tus demás dispositivos.\n\nSi desactivas el modo multidispositivo mientras usas el perfil en varios dispositivos, se perderán mensajes y se producirán otros problemas.";
 "pref_auto_folder_moves" = "Mover automáticamente a la carpeta DeltaChat";
 "pref_only_fetch_mvbox_title" = "Solo obtener de la carpeta DeltaChat";
 "pref_show_emails" = "Mostrar correos clásicos";
@@ -713,7 +742,7 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "pref_edit_profile" = "Editar perfil";
 "disable_imap_idle" = "Deshabilitar IMAP IDLE";
 "disable_imap_idle_explain" = "No utilizar la extensión IMAP IDLE aunque el servidor la admita. Habilitar esta opción retrasará el recibo de mensajes, actívala solo para pruebas.";
-"send_stats_to_devs" = "Enviar estadísticas a los desarrolladores  de Delta Chat";
+"send_stats_to_devs" = "Enviar estadísticas a los desarrolladores de Delta Chat";
 "stats_device_message" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?\n\n👉 Pulsa aquí… 👈";
 "stats_confirmation_dialog" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?";
 "stats_thanks" = "¡Gracias! Siempre puedes desactivar el envío en \"Configuración -> Avanzado\".\n\n¿Tienes 5 minutos adicionales para participar en un estudio científico sobre la seguridad de Delta Chat?";
@@ -748,9 +777,9 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "¿Desea borrar %1$d mensajes ahora y todos los mensajes recientemente alcanzados \"%2$@\" en el futuro?\n\n• Esto incluye toda la multimedia\n\n• Los mensajes serán eliminados siendo vistos o no\n\n• \"Mensajes guardados\" serán saltados de este proceso local";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\"  al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
+"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\" al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
 // shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
-"autodel_server_enabled_hint" = "Esto incluye correos, multimedia  y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo además de Delta Chat";
+"autodel_server_enabled_hint" = "Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo además de Delta Chat";
 "autodel_server_warn_multi_device_title" = "Activar la eliminación inmediata";
 "autodel_server_warn_multi_device" = "Si habilita la eliminación inmediata, no podrá utilizar varios dispositivos en este perfil.";
 "autodel_confirm" = "Comprendo, borrar todos estos mensajes";
@@ -772,6 +801,9 @@ Desactiva este ajuste solo si has eliminado este perfil de todos tus demás disp
 "group_image_changed_by_you" = "Cambiaste la imagen del grupo.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imagen del grupo cambiada por %1$@.";
+"chat_description_changed_by_you" = "Cambiaste la descripción del chat.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Descripción del chat modificada por %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Miembro %1$@ añadido.";
 // %1$s will be replaced by name of the contact added to the group

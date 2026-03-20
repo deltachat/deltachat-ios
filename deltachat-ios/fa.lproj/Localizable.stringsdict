@@ -143,7 +143,7 @@
 			<key>one</key>
 			<string>تعداد %d انتخاب شده است</string>
 			<key>other</key>
-			<string>تعداد  %dانتخاب شده است</string>
+			<string>تعداد %dانتخاب شده است</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

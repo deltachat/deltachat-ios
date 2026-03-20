@@ -247,7 +247,7 @@
 // search
 "search" = "Søg";
 "search_explain" = "Søg efter samtaler, kontakter og beskeder";
-"search_no_result_for_x" = "Ingen resultater fundet for  \"%1$@\"";
+"search_no_result_for_x" = "Ingen resultater fundet for \"%1$@\"";
 // create/edit groups, contact/group profile
 "group_name" = "Gruppenavn";
 "group_avatar" = "Gruppeikon";
@@ -308,7 +308,7 @@
 "import_backup_ask" = "Sikkerhedskopi fundet hos \"%1$@\".\n\nVil du Importere og bruge al data og opsætning fra den?";
 "import_backup_no_backup_found" = "Ingen sikkerhedskopi fundet.\n\nKopier sikkerhedskopi til \"%1$@\" og prøv igen.";
 // %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Kan ikke logge ind som  \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
+"login_error_cannot_login" = "Kan ikke logge ind som \"%1$@\". Kontroller om e-mailadresse og adgangskode er korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptér ugyldige certifikater";
 "switch_account" = "Skift konto";

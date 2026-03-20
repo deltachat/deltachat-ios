@@ -134,6 +134,9 @@
 "add_to_sticker_collection" = "Aggiungi alla Raccolta Adesivi";
 "add_stickers_instructions" = "Per aggiungere adesivi, tocca \"Apri Cartella Adesivi\", crea una sottocartella per il tuo pacchetto di adesivi e trascina lì i file di immagini e adesivi";
 "open_sticker_folder" = "Apri Cartella Adesivi";
+"ask_add_sticker_to_collection" = "Aggiungere questo adesivo alla tua collezione?";
+"ask_delete_sticker" = "Eliminare questo adesivo?";
+"sticker_picker_empty_hint" = "Tocca un adesivo per aggiungerlo qui.";
 "images" = "Immagini";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -227,6 +230,7 @@
 "menu_add_attachment" = "Aggiungi Allegato";
 "menu_leave_group" = "Abbandona Gruppo";
 "menu_leave_channel" = "Abbandona Canale";
+"menu_leave_and_delete" = "Lascia & Cancella per Me";
 "menu_delete_chat" = "Elimina Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Cancella Messaggi";
@@ -333,6 +337,10 @@
 "answer_call" = "Rispondi";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rifiuta";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Chiamata audio";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videochiamata";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Chiamata in uscita";
 // deprecated, use "Video call" instead
@@ -573,8 +581,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Aggiungere questo trasporto?";
 "invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Rimuovere il trasporto \"%1$@\"?\n\nI tuoi contatti potranno contattarti solo se li hai contattati in precedenza tramite un altro mezzo di trasporto.\n\nIn caso di dubbio, rimuovi il mezzo di trasporto in un secondo momento.";
 "login_certificate_checks" = "Controlli Certificato";
 "login_error_mail" = "Per piacere Inserisci un indirizzo e-mail valido";
 "login_error_server" = "Per piacere inserisci un server / indirizzo IP valido";
@@ -832,7 +838,7 @@
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_minutes_by_other" = "Timer messaggi a scomparsa impostato su %1$@ minuti da %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
-"ephemeral_timer_hours_by_you" = "Hai impostato il timer dei messaggi a scomparsa su  %1$@ ore.";
+"ephemeral_timer_hours_by_you" = "Hai impostato il timer dei messaggi a scomparsa su %1$@ ore.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_hours_by_other" = "Timer messaggi a scomparsa impostato su %1$@ ore da %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
@@ -932,7 +938,7 @@
 "perm_continue" = "Continua";
 "perm_explain_access_to_camera_denied" = "Per scattare foto o registrare video, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Fotocamera\".";
 // give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
-"perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai nelle impostazioni di sistema o dell\'app, seleziona \"Autorizzazioni\" o \"Privacy  & Sicurezza\" e abilita \"Microfono\".";
+"perm_explain_access_to_mic_denied" = "Per inviare messaggi audio, vai nelle impostazioni di sistema o dell\'app, seleziona \"Autorizzazioni\" o \"Privacy & Sicurezza\" e abilita \"Microfono\".";
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare file, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Per allegare una posizione, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
 "perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni di Sistema / App / Delta Chat\" e attiva \"Notifiche\".";

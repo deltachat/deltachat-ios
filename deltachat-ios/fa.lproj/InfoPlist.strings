@@ -1,5 +1,5 @@
 NSCameraUsageDescription = "دلتاچت برای گرفتن و ارسال عکس و فیلم و برای اسکن کردن کیوآر کد از دوربین شما استفاده می‌کند. ";
-NSLocationAlwaysAndWhenInUseUsageDescription = "دلتاچت برای  هم‌رسانی مکان شما در زمانی که آن به کار انداخته‌اید، به مجوز نیاز دارد. ";
+NSLocationAlwaysAndWhenInUseUsageDescription = "دلتاچت برای هم‌رسانی مکان شما در زمانی که آن به کار انداخته‌اید، به مجوز نیاز دارد. ";
 NSLocationWhenInUseUsageDescription = "دلتاچت برای اشتراک موقعیت مکانی شما در زمانی که اشتراک موقعیت مکانی را فعال کرده‌ باشید به مجوز نیاز دارد. ";
 NSMicrophoneUsageDescription = "دلتاچت از میکروفون برای ذخیره و ارسال پیام صوتی یا فیلم دارای صدا استفاده می‌کند.";
 NSPhotoLibraryUsageDescription = "دلتاچت به شما اجازه می دهد تصویر موردنظر برای ارسال را انتخاب کنید.";

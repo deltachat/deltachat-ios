@@ -569,8 +569,6 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Dodać ten serwer przekaźnikowy?";
 "invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer przekaźnikowy.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_transport" = "Usunąć serwer przekaźnikowy „%1$@”?\n\nTwoje kontakty mogą się z tobą skontaktować tylko wtedy, gdy kontaktowałeś się z nimi wcześniej za pośrednictwem innego serwera przekaźnikowego.\n\nW razie wątpliwości usuń ten serwer przekaźnikowy.";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
 "login_error_mail" = "Podaj ważny adres e-mail";
 "login_error_server" = "Wprowadź poprawny adres serwera / IP";
@@ -578,7 +576,7 @@
 "login_error_required_fields" = "Podaj ważny adres e-mail i hasło";
 "import_backup_title" = "Przywróć z kopii zapasowej";
 "import_backup_ask" = "Delta Chat znalazł kopię zapasową w katalogu „%1$@.\n\nCzy chcesz zaimportować i używać wszystkich danych i ustawień z tej kopii zapasowej?";
-"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@”  i spróbuj ponownie.";
+"import_backup_no_backup_found" = "Nie znaleziono kopii zapasowej.\n\nSkopiuj kopię zapasową do katalogu „%1$@” i spróbuj ponownie.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nie można się zalogować jako „%1$@. Sprawdź, czy adres i hasło są poprawne.";
 // TLS certificate checks
@@ -666,7 +664,7 @@
 "pref_other" = "Inne";
 "pref_backup" = "Kopia zapasowa";
 "pref_backup_explain" = "Wykonaj kopię zapasową czatów na pamięci zewnętrznej";
-"pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację  funkcji automatycznego szyfrowania typu end-to-end. Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
+"pref_backup_export_explain" = "Kopia zapasowa pomaga skonfigurować nową instalację na tym lub na innym urządzeniu.\n\nKopia zapasowa będzie zawierała wszystkie wiadomości, kontakty i czaty oraz pełną konfigurację funkcji automatycznego szyfrowania typu end-to-end. Przechowuj plik kopii zapasowej w bezpiecznym miejscu lub usuń go jak najszybciej.";
 "pref_backup_export_this" = "Eksportuj ten profil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksportuj wszystkie profile (%1$d)";
