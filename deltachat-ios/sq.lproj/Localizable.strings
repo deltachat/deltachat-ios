@@ -338,6 +338,12 @@
 "audio_call" = "Thirrje audio";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Thirrje video";
+"call_initializing" = "Po gatitet…";
+"call_incoming" = "Thirrje ardhëse";
+"call_ringing" = "Po bie zilja…";
+"call_reconnecting" = "Po rilidhet";
+"call_ended" = "Thirrja përfundoi";
+"call_failed" = "Thirrja dështoi";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Thirrje audio e dërguar";
 // deprecated, use "Video call" instead
@@ -574,9 +580,16 @@
 "add_transport" = "Shtoni Rele";
 "remove_transport" = "Hiqni Rele";
 "edit_transport" = "Përpunoni Rele";
+"used_for_sending" = "E përdorur për dërgim";
+"hide_from_contacts" = "Fshihe prej Kontaktesh";
+"hidden_from_contacts" = "Fshehur prej kontakteve";
+// Hint for the list of relays
+"transport_list_hint" = "Mesazhet merren në krejt reletë.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Të shtohet kjo rele?";
 "invalid_transport_qr" = "Kodi QR i skanuar s’përmban një rele të vlefshme.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Të hiqet releja “%1$@”?\n\nKontaktet që njohin vetëm këtë rele mund të mos ju\nkapin dot, deri sa t’u dërgoni sërish mesazh.\n\nNëse s’jeni të sigurt, fshiheni, në vend se ta hiqni.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";
 "login_error_server" = "Ju lutemi, jepni një shërbyes / adresë IP të vlefshme";
