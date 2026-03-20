@@ -69,7 +69,11 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
     xml.write("</plist>\n")
 
 
-def normalize_text(text: str) -> str:
+def normalize_text(original: str) -> str:
+    text = re.sub(r"[ \t]*[\r\n]+[ \t]*", " ", original) # real newlines -> space
+    #if text != original:
+    #   logging.warning(f"Superfluous lineend detected: {original}")
+
     text = re.sub(r"([^\\])(\")", r"\1\\\2", text)  # escape double quotes
     text = text.replace("&quot;", r"\"")
     text = text.replace("&lt;", "<")
