@@ -4,6 +4,7 @@
 
 - Increase reply swipe sensitivity
 - Allow to switch profile when sharing or forwarding
+- Allow to hide a relay from contacts instead of removing, allowing smoother relay changes
 - Add tab bar icon bounce animation on tap
 - Explain at "Settings / Chats / Outgoing Media Quality" how to send original quality
 - Leave groups and channels before deletion
