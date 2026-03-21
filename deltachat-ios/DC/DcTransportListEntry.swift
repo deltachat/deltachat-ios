@@ -5,6 +5,4 @@ public struct DcTransportListEntry: Decodable {
     public let param: DcEnteredLoginParam
 }
 
-struct DcTransportListEntryResult: Decodable {
-    let result: [DcTransportListEntry]
-}
+typealias DcTransportListEntryResult = JsonrpcResult<[DcTransportListEntry]>
