@@ -72,7 +72,7 @@ class TransportListViewController: UITableViewController {
 
         let parts = transport.param.addr.components(separatedBy: "@")
         let text = String.localized(stringID: "confirm_remove_or_hide_transport_x", parameter: parts.last ?? transport.param.addr)
-        let alert = UIAlertController(title: text, message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: nil, message: text, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("hide_from_contacts"), style: .default, handler: { [weak self] _ in
             guard let self else { return }
             do {
