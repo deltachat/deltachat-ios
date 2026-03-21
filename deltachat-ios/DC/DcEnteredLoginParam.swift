@@ -27,7 +27,3 @@ public struct DcEnteredLoginParam: Codable {
         return false
     }
 }
-
-struct DcEnteredLoginParamResult: Decodable {
-    let result: [DcEnteredLoginParam]
-}

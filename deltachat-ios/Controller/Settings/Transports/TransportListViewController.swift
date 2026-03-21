@@ -10,7 +10,7 @@ class TransportListViewController: UITableViewController {
     let dcContext: DcContext
     let dcAccounts: DcAccounts
 
-    var transports: [DcEnteredLoginParam]
+    var transports: [DcTransportListEntry]
 
     let addTransportCell: ActionCell
     private var qrCodeReader: QrCodeReaderController?
@@ -19,7 +19,7 @@ class TransportListViewController: UITableViewController {
     init(dcContext: DcContext, dcAccounts: DcAccounts, continueQrScan: String? = nil) {
         self.dcContext = dcContext
         self.dcAccounts = dcAccounts
-        self.transports = dcContext.listTransports()
+        self.transports = dcContext.listTransportsEx()
 
         addTransportCell = ActionCell()
         addTransportCell.actionTitle = String.localized("add_transport")
@@ -43,7 +43,7 @@ class TransportListViewController: UITableViewController {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     private func reloadTransports() {
-        transports = dcContext.listTransports()
+        transports = dcContext.listTransportsEx()
         tableView.reloadData()
     }
 
@@ -51,13 +51,13 @@ class TransportListViewController: UITableViewController {
 
     private func setDefaultTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
-        dcContext.setConfig("configured_addr", transport.addr)
-        tableView.reloadData()
+        dcContext.setConfig("configured_addr", transport.param.addr)
+        reloadTransports()
     }
 
     private func editTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
-        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.addr), animated: true)
+        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.param.addr), animated: true)
     }
 
     private func addTransport() {
@@ -70,13 +70,22 @@ class TransportListViewController: UITableViewController {
     private func deleteTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
 
-        let parts = transport.addr.components(separatedBy: "@")
-        let text = String.localized(stringID: "confirm_remove_transport", parameter: parts.last ?? transport.addr)
+        let parts = transport.param.addr.components(separatedBy: "@")
+        let text = String.localized(stringID: "confirm_remove_or_hide_transport_x", parameter: parts.last ?? transport.param.addr)
         let alert = UIAlertController(title: text, message: nil, preferredStyle: .safeActionSheet)
+        alert.addAction(UIAlertAction(title: String.localized("hide_from_contacts"), style: .default, handler: { [weak self] _ in
+            guard let self else { return }
+            do {
+                try self.dcContext.setTransportUnpublished(addr: transport.param.addr, unpublished: true)
+            } catch {
+                logAndAlert(error: error.localizedDescription)
+            }
+            reloadTransports()
+        }))
         alert.addAction(UIAlertAction(title: String.localized("remove_transport"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             do {
-                _ = try self.dcContext.deleteTransport(addr: transport.addr)
+                try self.dcContext.deleteTransport(addr: transport.param.addr)
             } catch {
                 logAndAlert(error: error.localizedDescription)
             }
@@ -107,17 +116,33 @@ extension TransportListViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TransportCell.reuseIdentifier, for: indexPath) as? TransportCell else { fatalError() }
 
             let transport = transports[indexPath.row]
-            let isDefault = transport.isDefault(dcContext)
-            let parts = transport.addr.components(separatedBy: "@")
+            let isDefault = transport.param.isDefault(dcContext)
+            let parts = transport.param.addr.components(separatedBy: "@")
 
-            cell.textLabel?.text = parts.last ?? transport.addr
-            cell.detailTextLabel?.text = (parts.first ?? "") + (isDefault ? (" · " + String.localized("def")) : "")
+            cell.textLabel?.text = parts.last ?? transport.param.addr
+
+            var details = (parts.first ?? "")
+            if isDefault {
+                details += " · " + String.localized("used_for_sending")
+            }
+            if transport.isUnpublished {
+                details += " · " + String.localized("hidden_from_contacts")
+            }
+            cell.detailTextLabel?.text = details
+
             cell.accessoryType = isDefault ? .checkmark : .none
 
             return cell
         } else {
             return addTransportCell
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == TransportSection.transports.rawValue {
+            return String.localized("transport_list_hint")
+        }
+        return nil
     }
 }
 
@@ -139,7 +164,7 @@ extension TransportListViewController {
         guard let transport = transports.get(at: indexPath.row) else { return nil }
         var actions: [UIContextualAction] = []
 
-        if !transport.isDefault(dcContext) {
+        if !transport.param.isDefault(dcContext) {
             let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
                 DispatchQueue.main.async {
                     self?.deleteTransport(at: indexPath)
@@ -163,7 +188,7 @@ extension TransportListViewController {
         actions.append(editAction)
 
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
-        actionsConfiguration.performsFirstActionWithFullSwipe = !transport.isDefault(dcContext)
+        actionsConfiguration.performsFirstActionWithFullSwipe = !transport.param.isDefault(dcContext)
         return actionsConfiguration
     }
 
@@ -179,7 +204,7 @@ extension TransportListViewController {
                 var children: [UIMenuElement] = []
 
                 children.append(UIAction.menuAction(localizationKey: "edit_transport", systemImageName: "pencil", with: indexPath, action: editTransport))
-                if !transport.isDefault(dcContext) {
+                if !transport.param.isDefault(dcContext) {
                     children.append(UIAction.menuAction(localizationKey: "remove_transport", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
                 }
 
