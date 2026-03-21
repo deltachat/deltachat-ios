@@ -70,6 +70,8 @@
 "mark_as_read" = "Gelesen";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelesen";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Ungelesen";
 // Placeholder text when something is loading
 "loading" = "Wird geladen…";
 "hide" = "Verstecken";
@@ -359,6 +361,7 @@
 "declined_call" = "Abgelehnter Anruf";
 "canceled_call" = "Abgebrochener Anruf";
 "missed_call" = "Verpasster Anruf";
+"already_in_call" = "Bereits im Anruf";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";

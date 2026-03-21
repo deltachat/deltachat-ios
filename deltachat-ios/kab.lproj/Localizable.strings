@@ -344,6 +344,8 @@
 "call_incoming" = "Asiwel ukcim";
 "call_ringing" = "Aṭenṭen...";
 "call_reconnecting" = "Tulsa n tuqqna...";
+"call_ended" = "Yekfa usiwel";
+"call_failed" = "Asiwel ur yeddi ara";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
 // deprecated, use "Video call" instead
@@ -526,7 +528,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ɣur-i yakan amaɣnu";
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
-"manual_account_setup_option" = "Seqdec imayl aklasiki am Umsiweḍ";
+"manual_account_setup_option" = "Seqdec imayl aklasiki am Umedwel ";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Amaɣnu-ik·im";
 // The placeholder will be replaced by the default onboarding server
@@ -577,13 +579,20 @@
 "proxy_enabled" = "Apṛuksi yermed";
 "proxy_enabled_hint" = "Aql-ik·im tesseqdaced apṛuksi. Ma tesɛiḍ ugur deg tuqqna, ɛreḍ apṛuksi-nniḍen.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Imsawaḍen";
-"add_transport" = "Rnu amsiweḍ";
-"remove_transport" = "Kkes amsiweḍ";
-"edit_transport" = "Ẓreg amsiweḍ";
+"transports" = "Imedwal";
+"add_transport" = "Rnu amedwel";
+"remove_transport" = "Kkes amedwel";
+"edit_transport" = "Ẓreg amedwel";
+"used_for_sending" = "Yettwaseqdec i tuzzna";
+"hide_from_contacts" = "Ffer-it ɣef inermisen";
+"hidden_from_contacts" = "Uffir ɣef inermisen";
+// Hint for the list of relays
+"transport_list_hint" = "Iznan ttwaremsen ɣef meṛṛa imedwal";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "Rnu amsiweḍ-agi?";
-"invalid_transport_qr" = "Tangalt QR ittusemḍen ur tesɛi ara amsiweḍ ameɣtu";
+"confirm_add_transport" = "Rnu amedwel-agi?";
+"invalid_transport_qr" = "Tangalt QR ittusemḍen ur tesɛi ara amedwel ameɣtu";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Kkes amedwel \"%1$@\"?\n\nInermasen i yessnen kan amedwel-a, ahat ur d-ttawḍen ara ɣur-k·m alarma tuzneḍ-asen izen tikkelt nniḍen.\n\nMa yella ccek, ffer-it axir n tukksa-ines.";
 "login_certificate_checks" = "Asenqed n uselkin";
 "login_error_mail" = "Ma ulac aɣilif, sekcem tansa imayl tameɣtut";
 "login_error_server" = "Ma ulac aɣilif, sekcem aqeddac ameɣtu / tansa IP.";
@@ -646,6 +655,10 @@
 "pref_notifications" = "Ilɣa";
 "pref_mention_notifications" = "Tibdarin";
 "pref_mention_notifications_explain" = "Deg igrawen igugmen, iznan n telɣut rzuḍ ɣer-k·m, am tririyin neɣ tiririyin n tigawt";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Isawalen";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Sken agdil n usiwel ɣef yisawalen inekcamen";
 "pref_notifications_show" = "Sken";
 "pref_notifications_priority" = "Tazwart";
 "pref_notifications_explain" = "Rmed ilɣa n unagraw i yiznan imaynuten";
