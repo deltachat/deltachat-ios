@@ -1,19 +1,21 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.46.0 Testflight
+2026-03
 
-- In the chat list, swipe a read chat to the right to mark it "unread"
-- Increase reply swipe sensitivity
-- Allow to switch profile when sharing or forwarding
+- Increase resilience of multi-relay usage: if on relay goes down, messages are still received in the others
 - Allow to hide a relay from contacts instead of removing, allowing smoother relay changes
-- Add tab bar icon bounce animation on tap
-- Explain at "Settings / Chats / Outgoing Media Quality" how to send original quality
+- In the chat list, swipe a read chat to the right to mark it "unread"
+- Allow to switch profile when sharing or forwarding
 - Leave groups and channels before deletion
 - Support GIF stickers
-- VoiceOver: Voice messages now no longer silence the VoiceOver permanently
 - Display message views count for channel owners
-- Improve mini-app summaries
+- Increase reply swipe sensitivity
 - Show the group description when tapping its info message
+- Add tab bar icon bounce animation on tap
+- Explain at "Settings / Chats / Outgoing Media Quality" how to send original quality
+- Improve mini-app summaries
+- Fix: Voice messages now no longer silence the VoiceOver permanently
 - Fix: remove meaningless address from vCard
 - Fix: No more UI ghosting on cell swipe
 - Fix: Calls are now marked as read when you accept or decline a call
