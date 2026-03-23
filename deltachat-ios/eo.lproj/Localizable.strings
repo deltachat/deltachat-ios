@@ -26,8 +26,6 @@
 "update" = "Ĝisdatigi";
 "emoji" = "Emoji";
 "attachment" = "Aldonaĵo";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Ĉu alkroĉi \"%1$@\"?";
 "back" = "Reen";
 "close" = "Fermi";
 "close_window" = "Fermi fenestron";
@@ -224,7 +222,6 @@
 "menu_more_options" = "Pli da ebloj";
 "menu_learn_spelling" = "Lernu la ortografion";
 "jump_to_message" = "Iru al mesaĝo";
-"copy_json" = "Kopiu JSON";
 "title_share_location" = "Konigi lokon al ĉiuj grupanoj";
 "device_talk" = "Aparataj mesaĝoj";
 "device_talk_subtitle" = "Loke generitaj mesaĝoj";
@@ -273,8 +270,6 @@
 "save_message" = "Konservi";
 "saved_messages" = "Konservitaj mesaĝoj";
 "retry_send" = "Reprovi sendi mesaĝon";
-"show_location_traces" = "Montri spurojn";
-"add_poi" = "Sendi punkton de intereso";
 // search
 "search" = "Serĉi";
 "search_explain" = "Serĉi babilojn, kontaktojn, kaj mesaĝojn";

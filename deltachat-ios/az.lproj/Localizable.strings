@@ -168,10 +168,6 @@
 "save_message" = "Saxla";
 "saved_messages" = "Saxlanılmış mesajlar";
 "retry_send" = "Mesaji yenidən göndərməyə cəht et";
-// map
-"filter_map_on_time" = "Vaxt məhdudiyyəti ilə yerləşmə yerləri göstərin";
-"show_location_traces" = "İzləri göstərmək";
-"add_poi" = "Maraq nöqtəsini göndərin";
 // search
 "search" = "Axtarış";
 "search_explain" = "Çatlar, kontaktlar və mesajlar axtar";

@@ -14,7 +14,6 @@
 "off" = "Sens";
 "def" = "Amezwer";
 "default_value" = "Amezwer (%1$@)";
-"default_value_as_above" = "Amezwer (Am wakken yella s ufella)";
 "custom" = "Admawan";
 "none" = "Ulac";
 "automatic" = "Awurman";
@@ -32,8 +31,6 @@
 "update" = "Leqqem";
 "emoji" = "Imujit";
 "attachment" = "Amedday";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Qqen \"%1$@\"?";
 "back" = "Uɣal";
 "close" = "Mdel";
 "close_window" = "Mdel asfaylu";
@@ -292,8 +289,6 @@
 "menu_more_options" = "Ugar n tnefrunin";
 "menu_learn_spelling" = "Lmed taɣdirawt";
 "jump_to_message" = "Neggez ɣer yizen";
-"jump_to_original_message" = "Neggez ɣer yizen aneṣli";
-"copy_json" = "Nɣel JSON";
 "replace_draft" = "Semselsi arewway";
 "title_share_location" = "Bḍu adeg akked iɛeggalen n ugraw meṛṛa";
 "device_talk" = "Iznan n yibenk";
@@ -423,15 +418,7 @@
 "send_file_to" = "Azen \"%1$@\" ɣer...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Azen izen i...";
-"enable_realtime" = "Isnasen n wakud ilaw";
-"enable_realtime_explain" = "Rmed tuqqna n walud tilawt i yisnasen icudden ɣer idiwenniyen. Ma yella yermed, imttekkiyen n udiwenni zemren ad d-afen tansa-ik·im IP ticki tebdiḍ asnas.";
-// map
-"filter_map_on_time" = "Sken-d imeḍqan deg ukatar n wakud";
-"show_location_traces" = "Ssken lǧeṛṛat";
-"add_poi" = "Azen tanqiḍt n lebɣi";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ur steqsay ara tikkelt nniḍen ɣef %1$@";
 "puny_code_warning_header" = "yettwaf-d useɣwen yettwacukken ";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Tebɣiḍ ad terzuḍ %1$@?";
@@ -737,8 +724,6 @@
 "profile_image_delete" = "Kkes tugna n umaɣnu";
 "pref_show_tray_icon" = "Sken Tignit n ufaggag n waddad";
 "pref_edit_profile" = "Ẓreg amaɣnu";
-"disable_imap_idle" = "Sens IMAP IDLE";
-"disable_imap_idle_explain" = "Ur seqdac ara asiɣzef IMAP IDLE xas yella uqeddac isefrak-it. Asireg uɣewwaṛ-agi ad yerr izen iɛeṭṭel akken ad d-yuɣal, rmed-it kan i usekyed. ";
 "send_stats_to_devs" = "Azen tidaddanin i yineflayen n DeltaChat";
 "stats_device_message" = "Tebɣiḍ ad tεawneḍ deg usnerni n Delta Chat u ad tεawneḍ anadi s tuzna n tesnaddadin n useqdec udrigen?\n\n👉 Tekki da... 👈";
 "stats_confirmation_dialog" = "Tebɣiḍ ad tεawneḍ deg usnerni n Delta Chat u ad tεawneḍ anadi s tuzna n tesnaddadin n useqdec udrigen?";
@@ -963,9 +948,6 @@
 "ImageEditorHud_crop" = "Nǧer";
 "ImageEditorHud_flip" = "Bren";
 "ImageEditorHud_rotate" = "Zzi";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "D wa ay d asnas unṣib n tnarit n Delta Chat.";
-"about_licensed_under_desktop" = "Aseɣẓan-a yettwasireg s lqem GNU GPL 3 akked tengalt n uɣbalu yellan di GitHub. ";
 "welcome_desktop" = "Ansuf yis-k-m ɣer Delta Chat";
 "global_menu_preferences_language_desktop" = "Tutlayt";
 "global_menu_file_desktop" = "Afaylu";
@@ -1005,6 +987,7 @@
 "menu.view.developer.open.log.folder" = "Ldi akaram n uɣmis";
 "menu.view.developer.open.current.log.file" = "Ldi afaylu n uɣmis amiran";
 "explain_desktop_minimized_disabled_tray_pref" = "Tignit n tfeggagt n tmahilin ur tezmir ara ad tsens mi ara d-yebdu Delta Chat s --Uɣewwaṛ adday.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Ulac isumar n teɣdirawt yettwafen.";
 "show_window" = "Sken asfaylu";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

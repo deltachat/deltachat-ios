@@ -9,7 +9,6 @@
 "off" = "ناچالاک";
 "def" = "بنەڕەتی";
 "default_value" = "بنەڕەتی (%1$@)";
-"default_value_as_above" = "بنەڕەتی (وەکوو سەرەوە)";
 "custom" = "دڵخواز";
 "none" = "هیچیان";
 "automatic" = "خۆکار";
@@ -223,9 +222,6 @@
 "attachment_failed_to_load" = "پێوەلکاوەکە دانەگیرا";
 // mailing lists
 "mailing_list" = "لیستەی ئیمەیلەکان";
-// map
-"filter_map_on_time" = "شوێنەکان لە نێو چوارچێوەی کاتدا پیشان بدرێت؟";
-"show_location_traces" = "پیشاندانی شوێنپێ";
 // search
 "search" = "گەڕان";
 "search_explain" = "بگەڕە بۆ وتووێژەکان و بەردەنگەکان و پەیامەکان";
@@ -418,8 +414,6 @@
 "perm_explain_access_to_mic_denied" = "بۆ هەناردنی پەیامی دەنگی، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"مایک\" چالاک بکەوە.";
 "perm_explain_access_to_storage_denied" = "بۆ هەناردن و وەرگرتنی پەڕگەکان، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"بیرگە\" چالاک بکەوە.";
 "perm_explain_access_to_location_denied" = "بۆ لکاندنی شوێنێک، بچۆ بەشی ڕێکخستنەکانی نەرمامێرەکە، لە بەشی \"ڕێگەپێدان\"دا، \"شوێن\" چالاک بکەوە.";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "ئەمە نەرمامێری فەرمی دێڵتا چاتە بۆ کۆمپووتەری ڕوومێز.";
 "welcome_desktop" = "بەخێر بێن بۆ دێڵتا چات";
 "global_menu_preferences_language_desktop" = "زمان";
 "global_menu_file_desktop" = "پەڕگە";

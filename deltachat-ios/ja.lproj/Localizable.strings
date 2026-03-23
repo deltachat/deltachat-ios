@@ -10,7 +10,6 @@
 "off" = "切";
 "def" = "標準";
 "default_value" = "初期値（%1$@）";
-"default_value_as_above" = "初期値（同上）";
 "custom" = "カスタム";
 "none" = "無し";
 "automatic" = "自動";
@@ -178,7 +177,6 @@
 "menu_zoom_out" = "縮小";
 "menu_save_log" = "ログ保存";
 "jump_to_message" = "メッセージへ移動";
-"copy_json" = "JSONをコピー";
 "title_share_location" = "現在地を全員に公開する";
 "device_talk" = "デバイスのメッセージ";
 "device_talk_subtitle" = "ローカルで生成されたメッセージ";
@@ -247,8 +245,7 @@
 "lock_recording" = "ずっと録音";
 // mailing lists
 "mailing_list" = "メーリングリスト";
-"show_location_traces" = "トレースを表示する";
-"add_poi" = "指定位置を送る";
+// punycode warning / labeled links
 "puny_code_warning_header" = "疑わしいリンクが検出された";
 // search
 "search" = "検索";

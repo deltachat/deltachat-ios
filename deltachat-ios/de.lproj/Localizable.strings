@@ -14,7 +14,6 @@
 "off" = "Aus";
 "def" = "Standard";
 "default_value" = "Standard (%1$@)";
-"default_value_as_above" = "Standard (siehe oben)";
 "custom" = "Benutzerdefiniert";
 "none" = "Keine";
 "automatic" = "Automatisch";
@@ -32,8 +31,6 @@
 "update" = "Aktualisieren";
 "emoji" = "Emoji";
 "attachment" = "Anhang";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "\"%1$@\" anhängen?";
 "back" = "Zurück";
 "close" = "Schließen";
 "close_window" = "Fenster schließen";
@@ -295,8 +292,6 @@
 "menu_more_options" = "Mehr Optionen";
 "menu_learn_spelling" = "Schreibweise lernen";
 "jump_to_message" = "Zur Nachricht springen";
-"jump_to_original_message" = "Zur Originalnachricht springen";
-"copy_json" = "JSON kopieren";
 "replace_draft" = "Entwurf ersetzen";
 "title_share_location" = "Standort mit allen Gruppenmitgliedern teilen";
 "device_talk" = "Systemnachrichten";
@@ -428,15 +423,7 @@
 "send_file_to" = "Sende \"%1$@\" an…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Nachricht senden an…";
-"enable_realtime" = "Echtzeit-Apps";
-"enable_realtime_explain" = "Aktiviert Echtzeitverbindungen für an Chats angehängte Apps. Wenn aktiviert, können Chat-Partner möglicherweise deine IP-Adresse ermitteln, wenn du eine App startest.";
-// map
-"filter_map_on_time" = "Standorte im Zeitrahmen anzeigen";
-"show_location_traces" = "Spuren anzeigen";
-"add_poi" = "Sende eine Ortsmarkierung. ";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Nicht noch einmal nach %1$@ fragen";
 "puny_code_warning_header" = "Verdächtiger Link erkannt";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Bist du sicher, dass du %1$@ besuchen möchten?";
@@ -743,8 +730,6 @@
 "profile_image_delete" = "Profilbild löschen";
 "pref_show_tray_icon" = "Benachrichtigungssymbol anzeigen";
 "pref_edit_profile" = "Profil bearbeiten";
-"disable_imap_idle" = "IMAP IDLE deaktivieren";
-"disable_imap_idle_explain" = "IMAP IDLE ausschalten, selbst wenn vom Server unterstützt. Die Aktivierung dieser Option verzögert den Abruf von Nachrichten; nur zu Testzwecken aktivieren";
 "send_stats_to_devs" = "Statistik an Delta Chat Entwickler senden";
 "stats_device_message" = "Möchtest du helfen, Delta Chat zu verbessern, indem du wöchentlich anonyme Nutzungsstatistiken sendest?\n\n👉 Hier tippen … 👈";
 "stats_confirmation_dialog" = "Möchtest du helfen, Delta Chat zu verbessern, indem du wöchentlich anonyme Nutzungsstatistiken sendest?";
@@ -969,9 +954,6 @@
 "ImageEditorHud_crop" = "Zuschneiden";
 "ImageEditorHud_flip" = "Spiegeln";
 "ImageEditorHud_rotate" = "Drehen";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Dies ist die offizielle Delta Chat Desktop App.";
-"about_licensed_under_desktop" = "Dieses Programm ist lizenziert unter der GNU GPL version 3 und der Quellcode ist auf Github verfügbar.";
 "welcome_desktop" = "Willkommen bei Delta Chat";
 "global_menu_preferences_language_desktop" = "Sprache";
 "global_menu_file_desktop" = "Datei";
@@ -1011,6 +993,7 @@
 "menu.view.developer.open.log.folder" = "Log-Ordner öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 "explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";
 "show_window" = "Fenster anzeigen";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

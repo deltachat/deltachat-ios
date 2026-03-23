@@ -9,7 +9,6 @@
 "off" = "Istudadu";
 "def" = "Predefinidu";
 "default_value" = "Predefinidu (%1$@)";
-"default_value_as_above" = "Predefinidu (comente in subra)";
 "custom" = "Personalizadu";
 "none" = "Perunu";
 "automatic" = "Automàticu";
@@ -206,10 +205,6 @@
 "saved" = "Sarvadu";
 "retry_send" = "Torra a proare a imbiare su messàgiu";
 "cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
-// map
-"filter_map_on_time" = "Ammustra sas positziones in su tempus";
-"show_location_traces" = "Ammustra sas rastas";
-"add_poi" = "Imbia puntu de interesse";
 // search
 "search" = "Chirca";
 "search_explain" = "Chirca in sas tzarradas, sos cuntatos e sos messàgios";

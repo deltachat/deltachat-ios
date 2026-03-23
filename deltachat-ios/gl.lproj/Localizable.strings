@@ -14,7 +14,6 @@
 "off" = "Off";
 "def" = "Por omisión";
 "default_value" = "Por omisión (%1$@)";
-"default_value_as_above" = "Por omisión (igual que arriba)";
 "custom" = "Personalizado";
 "none" = "Ningún";
 "automatic" = "Automático";
@@ -32,8 +31,6 @@
 "update" = "Actualizar";
 "emoji" = "Emoji";
 "attachment" = "Anexo";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Anexar \"%1$@\"?";
 "back" = "Atrás";
 "close" = "Pechar";
 "close_window" = "Fechar xanalela";
@@ -278,8 +275,6 @@
 "menu_more_options" = "Máis opcións";
 "menu_learn_spelling" = "Aprender palabras";
 "jump_to_message" = "Ir á mensaxe";
-"jump_to_original_message" = "Ir á mensaxe orixinal";
-"copy_json" = "Copiar JSON";
 "replace_draft" = "Substituír borrador";
 "title_share_location" = "Compartir localización cos membros do grupo";
 "device_talk" = "Mensaxes do dispositivo";
@@ -376,15 +371,7 @@
 "send_file_to" = "Enviar \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Enviar mensaxe a…";
-"enable_realtime" = "Apps en tempo real";
-"enable_realtime_explain" = "Activar conexións en tempo real para apps compartidas nas conversas. Se está activo as persoas da conversa poderían coñecer o teu enderezo IP cando inicias unha app.";
-// map
-"filter_map_on_time" = "Mostrar localizacións no marco temporal";
-"show_location_traces" = "Mostrar trazas";
-"add_poi" = "Enviar punto de interese";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Non solicitar de novo para %1$@";
 "puny_code_warning_header" = "Detectada ligazón sospeitosa";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Tes a certeza de querer visitar %1$@?";
@@ -838,9 +825,6 @@
 "ImageEditorHud_crop" = "Recortar";
 "ImageEditorHud_flip" = "Voltear";
 "ImageEditorHud_rotate" = "Rotar";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Esta é a app oficial de Escritorio para Delta Chat";
-"about_licensed_under_desktop" = "Este software está baixo licenza GNU GPL versión 3 e o código fonte está dispoñible en GitHub.";
 "welcome_desktop" = "Benvida a Delta Chat";
 "global_menu_preferences_language_desktop" = "Idioma";
 "global_menu_file_desktop" = "Ficheiro";
@@ -878,6 +862,7 @@
 "menu.view.developer.open.log.folder" = "Abrir cartafol do rexistro";
 "menu.view.developer.open.current.log.file" = "Abrir ficheiro actual do rexistro";
 "explain_desktop_minimized_disabled_tray_pref" = "A icona da bandexa do sistema non se pode desactivar porque Delta Chat iniciouse coa opción --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Non se atopan suxestións de escrita.";
 "show_window" = "Mostrar xanela";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

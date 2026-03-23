@@ -14,7 +14,6 @@
 "off" = "Off";
 "def" = "Default";
 "default_value" = "Default (%1$@)";
-"default_value_as_above" = "Default (same as above)";
 "custom" = "Custom";
 "none" = "None";
 "automatic" = "Automatic";
@@ -32,8 +31,6 @@
 "update" = "Update";
 "emoji" = "Emoji";
 "attachment" = "Attachment";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Attach \"%1$@\"?";
 "back" = "Back";
 "close" = "Close";
 "close_window" = "Close Window";
@@ -295,8 +292,6 @@
 "menu_more_options" = "More Options";
 "menu_learn_spelling" = "Learn Spelling";
 "jump_to_message" = "Jump to Message";
-"jump_to_original_message" = "Jump to Original Message";
-"copy_json" = "Copy JSON";
 "replace_draft" = "Replace Draft";
 "title_share_location" = "Share location with all group members";
 "device_talk" = "Device Messages";
@@ -428,15 +423,7 @@
 "send_file_to" = "Send \"%1$@\" to…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Send Message to…";
-"enable_realtime" = "Real-Time Apps";
-"enable_realtime_explain" = "Enable real-time connections for apps attached to chats. If enabled, chat partners may be able to discover your IP address when you start an app.";
-// map
-"filter_map_on_time" = "Show locations in time frame";
-"show_location_traces" = "Show traces";
-"add_poi" = "Send point of interest";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Don\'t ask again for %1$@";
 "puny_code_warning_header" = "Suspicious link detected";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Are you sure you want to visit %1$@?";
@@ -743,8 +730,6 @@
 "profile_image_delete" = "Delete Profile Image";
 "pref_show_tray_icon" = "Show Tray Icon";
 "pref_edit_profile" = "Edit Profile";
-"disable_imap_idle" = "Disable IMAP IDLE";
-"disable_imap_idle_explain" = "Do not use IMAP IDLE extension even if the server supports it. Enabling this option will delay message retrieval, enable it only for testing.";
 "send_stats_to_devs" = "Send statistics to Delta Chat\'s developers";
 "stats_device_message" = "Do you want to help improve Delta Chat and support research by sending weekly anonymous usage statistics?\n\n👉 Tap here… 👈";
 "stats_confirmation_dialog" = "Do you want to help improve Delta Chat and support research by sending weekly anonymous usage statistics?";
@@ -868,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Disappearing messages timer set to %1$@ weeks by %2$@.";
 "chat_unencrypted_explanation" = "Messages in this chat use classic email and are not end-to-end encrypted.";
+"messages_are_e2ee" = "Messages are end-to-end encrypted.";
 "chat_protection_enabled_tap_to_learn_more" = "Messages are end-to-end encrypted. Tap to learn more.";
 "chat_protection_enabled_explanation" = "All messages in this chat are end-to-end encrypted.\n\nEnd-to-end encryption keeps messages private between you and your chat partners. Not even servers, providers or relays can read them.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requires end-to-end encryption which is not setup for this chat yet. Tap to learn more.";
@@ -969,9 +955,6 @@
 "ImageEditorHud_crop" = "Crop";
 "ImageEditorHud_flip" = "Flip";
 "ImageEditorHud_rotate" = "Rotate";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "This is the official Delta Chat Desktop app.";
-"about_licensed_under_desktop" = "This software is licensed under GNU GPL version 3 and the source code is available on GitHub.";
 "welcome_desktop" = "Welcome to Delta Chat";
 "global_menu_preferences_language_desktop" = "Language";
 "global_menu_file_desktop" = "File";
@@ -1011,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Open the Log Folder";
 "menu.view.developer.open.current.log.file" = "Open Current Logfile";
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "No spelling suggestions found.";
 "show_window" = "Show Window";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

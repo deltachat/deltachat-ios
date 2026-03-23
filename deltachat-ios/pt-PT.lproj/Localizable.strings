@@ -14,7 +14,6 @@
 "off" = "Desligado";
 "def" = "Padrão";
 "default_value" = "Padrão (%1$@)";
-"default_value_as_above" = "Padrão (igual acima)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
 "automatic" = "Automático";
@@ -31,8 +30,6 @@
 "update" = "Actualizar";
 "emoji" = "Emoji";
 "attachment" = "Anexo";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Anexar \"%1$@\"?";
 "close" = "Fechar";
 "close_window" = "Fechar Janela";
 "forward" = "Reencaminhar";
@@ -189,7 +186,6 @@
 "menu_settings" = "Definições";
 "menu_advanced" = "Avançado";
 "menu_view_profile" = "Ver perfil";
-"copy_json" = "Copiar JSON";
 "mute_for_one_hour" = "Calado por 1 hora";
 "mute_for_eight_hours" = "Calado por 8 horas";
 "mute_for_one_day" = "Calado por 1 dia";

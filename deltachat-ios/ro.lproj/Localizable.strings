@@ -10,7 +10,6 @@
 "off" = "Închideți";
 "def" = "Implicit";
 "default_value" = "Implicit (%1$@)";
-"default_value_as_above" = "Implicit (la fel ca mai sus)";
 "custom" = "Personalizat";
 "none" = "Nici unul";
 "automatic" = "Automat";
@@ -204,7 +203,6 @@
 "menu_more_options" = "Mai multe opțiuni";
 "menu_learn_spelling" = "Învățați Ortografia";
 "jump_to_message" = "Sari la Mesaj";
-"copy_json" = " Copiați JSON";
 "replace_draft" = "Înlocuiți proiectul";
 "title_share_location" = "Partajați locația cu toți membrii grupului";
 "device_talk" = "Mesajele Dispozitivului";
@@ -287,13 +285,7 @@
 "start_app" = "Start…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Vă rugăm să acceptați mai întâi cererea de chat.";
-// map
-"filter_map_on_time" = "Afișați locațiile în intervalul de timp";
-"show_location_traces" = "Afișați urme";
-"add_poi" = "Trimiteți punctul de interes";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Nu cereți din nou %1$@";
 "puny_code_warning_header" = "Link suspect detectat";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ești sigur că vrei să vizitezi %1$@?";

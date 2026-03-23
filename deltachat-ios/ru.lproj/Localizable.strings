@@ -14,7 +14,6 @@
 "off" = "Выкл.";
 "def" = "По умолчанию";
 "default_value" = "По умолчанию (%1$@)";
-"default_value_as_above" = "По умолчанию (так же, как выше)";
 "custom" = "Персональная настройка";
 "none" = "Не задано";
 "automatic" = "Автоматически";
@@ -32,8 +31,6 @@
 "update" = "Обновить";
 "emoji" = "Эмодзи";
 "attachment" = "Вложение";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Прикрепить \"%1$@\"?";
 "back" = "Назад";
 "close" = "Закрыть";
 "close_window" = "Закрыть окно";
@@ -292,8 +289,6 @@
 "menu_more_options" = "Дополнительно";
 "menu_learn_spelling" = "Запоминать правописание";
 "jump_to_message" = "Перейти к сообщению";
-"jump_to_original_message" = "Перейти к исходному сообщению";
-"copy_json" = "Копировать JSON";
 "replace_draft" = "Заменить черновик";
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
 "device_talk" = "Сообщения устройства";
@@ -419,15 +414,7 @@
 "send_file_to" = "Отправить \"%1$@\" …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Отправить сообщение…";
-"enable_realtime" = "Приложения реального времени";
-"enable_realtime_explain" = "Включить соединения в реальном времени для приложений, которыми вы делитесь в чатах. Если этот параметр включен, собеседники по чату смогут узнать ваш IP-адрес при запуске приложения.";
-// map
-"filter_map_on_time" = "Показать местоположения с интервалом времени";
-"show_location_traces" = "Показывать маршруты";
-"add_poi" = "Поделиться точкой на карте";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Больше не спрашивать %1$@";
 "puny_code_warning_header" = "Обнаружена подозрительная ссылка";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Вы уверены, что хотите посетить %1$@?";
@@ -727,8 +714,6 @@
 "profile_image_delete" = "Удалить изображение профиля";
 "pref_show_tray_icon" = "Показать значок в системном трее";
 "pref_edit_profile" = "Редактировать профиль";
-"disable_imap_idle" = "Отключить IMAP IDLE";
-"disable_imap_idle_explain" = "Не используйте расширение IMAP IDLE даже если сервер поддерживает его. Включение этой опции замедлит получение сообщений, включайте только для тестирования.";
 "send_stats_to_devs" = "Отправить статистику разработчикам Delta Chat";
 "stats_device_message" = "Хотите помочь улучшить Delta Chat и поддержать исследования, отправляя еженедельную анонимную статистику использования?\n\n👉 Нажмите здесь...👈";
 "stats_confirmation_dialog" = "Хотите помочь улучшить Delta Chat и поддержать исследования, отправляя еженедельную анонимную статистику использования?";
@@ -953,9 +938,6 @@
 "ImageEditorHud_crop" = "Обрезать";
 "ImageEditorHud_flip" = "Отразить";
 "ImageEditorHud_rotate" = "Вращать";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Это официальное приложение Delta Chat для ПК.";
-"about_licensed_under_desktop" = "Это программное обеспечение выпущено под лицензией GNU GPL 3 версии, исходный код доступен на GitHub.";
 "welcome_desktop" = "Добро пожаловать в Delta Chat";
 "global_menu_preferences_language_desktop" = "Выбор языка";
 "global_menu_file_desktop" = "Файл";
@@ -995,6 +977,7 @@
 "menu.view.developer.open.log.folder" = "Открыть папку журналов";
 "menu.view.developer.open.current.log.file" = "Открыть текущий файл журнала";
 "explain_desktop_minimized_disabled_tray_pref" = "Значок в системном трее нельзя отключить, поскольку Delta Chat был запущен с параметром --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Не найдены варианты исправления орфографии.";
 "show_window" = "Показать окно";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

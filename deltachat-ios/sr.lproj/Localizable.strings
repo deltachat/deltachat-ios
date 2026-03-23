@@ -10,7 +10,6 @@
 "off" = "Искључено";
 "def" = "Подразумевано";
 "default_value" = "Задато (%1$@)";
-"default_value_as_above" = "Задато (исто као изнад)";
 "custom" = "Посебно";
 "none" = "Ништа";
 "automatic" = "Аутоматски";
@@ -226,7 +225,6 @@
 "menu_more_options" = "Више опција";
 "menu_learn_spelling" = "Научи правопис";
 "jump_to_message" = "Иди на поруку";
-"copy_json" = "Копирај JSON";
 "replace_draft" = "Замени нацрт";
 "title_share_location" = "Подели положај са свим члановима групе";
 "device_talk" = "Поруке уређаја";
@@ -320,13 +318,7 @@
 "start_app" = "Покретање...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Прво прихватите захтев за ћаскање.";
-// map
-"filter_map_on_time" = "Прикажи положаје у временском периоду?";
-"show_location_traces" = "Прикажи трагове";
-"add_poi" = "Пошаљи интересантно место";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Не питај поново за %1$@";
 "puny_code_warning_header" = "Детектован је сумњив линк";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Јесте ли сигурни да желите да приступите %1$@?";
@@ -683,9 +675,6 @@
 "ImageEditorHud_crop" = "Одрежи";
 "ImageEditorHud_flip" = "Окрени";
 "ImageEditorHud_rotate" = "Обрни";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Ово је званична Delta Chat апликација за рачунар.";
-"about_licensed_under_desktop" = "Овај програм је лиценциран под ГНУ ГПЛ верзија 3 лиценцом и изворни код је доступан на Гитхабу.";
 "welcome_desktop" = "Добродошли у Delta Chat.";
 "global_menu_preferences_language_desktop" = "Језик";
 "global_menu_file_desktop" = "Фајл";
@@ -721,6 +710,7 @@
 "menu.view.developer.open.log.folder" = "Отвори директоријум где се налазе дневници";
 "menu.view.developer.open.current.log.file" = "Отвори тренутни дневник";
 "explain_desktop_minimized_disabled_tray_pref" = "Иконица на системској касети не може да се онемогући јер је Delta Chat покренут са --minimized опцијом.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Нема предлога за исправке правописа.";
 "show_window" = "Прикажи прозор";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

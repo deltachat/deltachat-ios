@@ -14,7 +14,6 @@
 "off" = "关";
 "def" = "默认";
 "default_value" = "默认值（%1$@）";
-"default_value_as_above" = "默认值（与上面相同）";
 "custom" = "自定义";
 "none" = "无";
 "automatic" = "自动";
@@ -32,8 +31,6 @@
 "update" = "更新";
 "emoji" = "表情符号";
 "attachment" = "附件";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "附加“%1$@”？";
 "back" = "返回";
 "close" = "关闭";
 "close_window" = "关闭窗口";
@@ -70,6 +67,8 @@
 "mark_as_read" = "标记为已读";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "已读";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "未读";
 // Placeholder text when something is loading
 "loading" = "加载中…";
 "hide" = "隐藏";
@@ -293,8 +292,6 @@
 "menu_more_options" = "更多选项";
 "menu_learn_spelling" = "学习拼写";
 "jump_to_message" = "跳转到消息";
-"jump_to_original_message" = "跳转到原始消息";
-"copy_json" = "复制 JSON";
 "replace_draft" = "替换草稿";
 "title_share_location" = "与所有群组成员共享位置";
 "device_talk" = "设备消息";
@@ -359,6 +356,7 @@
 "declined_call" = "已拒接来电";
 "canceled_call" = "已取消通话";
 "missed_call" = "未接来电";
+"already_in_call" = "已在通话中";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
@@ -425,15 +423,7 @@
 "send_file_to" = "发送“%1$@\"到...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "发送消息到...";
-"enable_realtime" = "实时应用";
-"enable_realtime_explain" = "为聊天中附加的应用启用实时连接。如果启用，聊天对象可能会在您启动应用时发现您的 IP 地址。";
-// map
-"filter_map_on_time" = "显示时间范围内的位置";
-"show_location_traces" = "显示轨迹";
-"add_poi" = "发送兴趣点";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "不再询问 %1$@";
 "puny_code_warning_header" = "检测到可疑链接";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "是否确定要访问 %1$@？";
@@ -740,8 +730,6 @@
 "profile_image_delete" = "删除个人资料图片";
 "pref_show_tray_icon" = "显示托盘图标";
 "pref_edit_profile" = "编辑个人资料";
-"disable_imap_idle" = "禁用 IMAP IDLE";
-"disable_imap_idle_explain" = "即便服务器支持，也不要使用 IMAP IDLE 扩展。启用后会造成消息获取延迟，请仅出于测试目的启用该功能。";
 "send_stats_to_devs" = "发送统计数据给 Delta Chat 开发者";
 "stats_device_message" = "您是否愿意通过每周发送匿名使用统计数据来帮助改进 Delta Chat 并支持相关研究？\n\n👉 点击此处… 👈";
 "stats_confirmation_dialog" = "您是否愿意通过每周发送匿名使用统计数据来帮助改进 Delta Chat 并支持相关研究？";
@@ -865,8 +853,9 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ 将消息定时销毁计时器设为 %1$@ 周";
 "chat_unencrypted_explanation" = "此聊天中的消息使用传统电子邮件，未进行端到端加密。";
+"messages_are_e2ee" = "消息是端到端加密的。";
 "chat_protection_enabled_tap_to_learn_more" = "消息是端到端加密的。点按即可了解详情。";
-"chat_protection_enabled_explanation" = "此聊天中的所有消息都经过端到端加密。\n\n端到端加密可确保您与聊天对象之间的消息保持私密。即使是服务器、提供者或中继也无法读取。";
+"chat_protection_enabled_explanation" = "此聊天中的所有消息都是端到端加密的。\n\n端到端加密可确保您与聊天对象之间的消息保持私密。即使是服务器、提供者或中继也无法读取。";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ 需要端到端加密，但此聊天尚未设置。点按即可了解详情。";
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以亲自和联系人碰面并扫描联系人的二维码。";
 "learn_more" = "了解更多";
@@ -966,9 +955,6 @@
 "ImageEditorHud_crop" = "裁剪";
 "ImageEditorHud_flip" = "翻转";
 "ImageEditorHud_rotate" = "旋转";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "这是 Delta Chat 官方桌面应用。";
-"about_licensed_under_desktop" = "本软件在 GNU GPL 版本 3 下获得授权，其源代码可从 GitHub 获得。";
 "welcome_desktop" = "欢迎使用 Delta Chat";
 "global_menu_preferences_language_desktop" = "语言";
 "global_menu_file_desktop" = "文件";
@@ -1008,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "打开日志文件夹";
 "menu.view.developer.open.current.log.file" = "打开当前日志文件";
 "explain_desktop_minimized_disabled_tray_pref" = "在 Delta Chat 带 --minimized 参数启动时，无法禁用托盘图标。";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "未找到拼写建议";
 "show_window" = "显示窗口";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

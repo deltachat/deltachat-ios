@@ -14,7 +14,6 @@
 "off" = "Uit";
 "def" = "Standaard";
 "default_value" = "Standaard (%1$@)";
-"default_value_as_above" = "Standaard (zoals hierboven)";
 "custom" = "Aangepast";
 "none" = "Geen";
 "automatic" = "Automatisch";
@@ -32,8 +31,6 @@
 "update" = "Bijwerken";
 "emoji" = "Emoji";
 "attachment" = "Bijlage";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Wil je ‘%1$@’ bijvoegen?";
 "back" = "Terug";
 "close" = "Sluiten";
 "close_window" = "Venster sluiten";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Markeren als gelezen";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelezen";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Ongelezen";
 // Placeholder text when something is loading
 "loading" = "Bezig met laden…";
 "hide" = "Verbergen";
@@ -293,8 +292,6 @@
 "menu_more_options" = "Meer opties";
 "menu_learn_spelling" = "Spelling leren";
 "jump_to_message" = "Ga naar bericht";
-"jump_to_original_message" = "Ga naar oorspronkelijk bericht";
-"copy_json" = "Json-gegevens kopiëren";
 "replace_draft" = "Concept vervangen";
 "title_share_location" = "Locatie delen met alle groepsleden";
 "device_talk" = "Berichten op apparaat";
@@ -359,6 +356,7 @@
 "declined_call" = "Geweigerde oproep";
 "canceled_call" = "Afgebroken oproep";
 "missed_call" = "Gemiste oproep";
+"already_in_call" = "Reeds in gesprek";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
@@ -425,15 +423,7 @@
 "send_file_to" = "“%1$@” versturen naar…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Bericht versturen naar…";
-"enable_realtime" = "Real-timeapps";
-"enable_realtime_explain" = "Laat apps een real-timeverbinding gebruiken in gedeelde gesprekken. Let op: gesprekspartners kunnen hierdoor mogelijk je ip-adres zien.";
-// map
-"filter_map_on_time" = "Locaties tonen in tijdsbeeld";
-"show_location_traces" = "Sporen tonen";
-"add_poi" = "Afspraaklocatie versturen";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Niet meer vragen bij %1$@";
 "puny_code_warning_header" = "Verdachte link aangetroffen";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Weet je zeker dat je %1$@ wilt openen?";
@@ -740,8 +730,6 @@
 "profile_image_delete" = "Profielfoto verwijderen";
 "pref_show_tray_icon" = "Systeemvakpictogram tonen";
 "pref_edit_profile" = "Profiel bewerken";
-"disable_imap_idle" = "IMAP IDLE uitschakelen";
-"disable_imap_idle_explain" = "Maak geen gebruik van IMAP IDLE, zelfs niet als de server het ondersteunt. Schakel deze optie in om het ophalen van berichten te vertragen. Let op: gebruik deze optie alleen voor testdoeleinden.";
 "send_stats_to_devs" = "Statistieken delen met Delta Chat-ontwikkelaars";
 "stats_device_message" = "Wil je helpen Delta Chat te verbeteren en voor onderzoeksdoeleinden iedere week volledig anonieme, automatische gebruiksstatistieken in te sturen?\n\n👉 Druk dan hier… 👈";
 "stats_confirmation_dialog" = "Wil je helpen Delta Chat te verbeteren en voor onderzoeksdoeleinden iedere week volledig anonieme, automatische gebruiksstatistieken in te sturen?";
@@ -865,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "De tijdklok van verdwijnende berichten is door %2$@ ingesteld op %1$@ weken.";
 "chat_unencrypted_explanation" = "Berichten in dit gesprek maken gebruik van traditionele e-mailcommunicatie - eind-tot-endversleuteling is daarom niet gegarandeerd.";
+"messages_are_e2ee" = "Berichten zijn van eind-tot-eindversleuteling voorzien.";
 "chat_protection_enabled_tap_to_learn_more" = "Berichten zijn gegarandeerd van eind-tot-eindversleuteling voorzien. Druk hier voor meer informatie.";
 "chat_protection_enabled_explanation" = "Alle berichten in dit gesprek zijn gegarandeerd van eind-tot-eindversleuteling voorzien.\n\nMet behulp van deze versleuteling blijven berichten tussen jou en je gesprekspartners geheim - zelfs je e-mailprovider kan ze niet uitlezen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ Voor %1$@ is eind-tot-eindversleuteling vereist, maar dit is nog niet ingesteld in het huidige gesprek. Druk voor meer informatie.";
@@ -966,9 +955,6 @@
 "ImageEditorHud_crop" = "Bijsnijden";
 "ImageEditorHud_flip" = "Spiegelen";
 "ImageEditorHud_rotate" = "Draaien";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Dit is de officiële Delta Chat-computerapp.";
-"about_licensed_under_desktop" = "Deze software is vrijgegeven onder de GNU GPL versie 3 en de broncode is beschikbaar op GitHub.";
 "welcome_desktop" = "Welkom bij Delta Chat";
 "global_menu_preferences_language_desktop" = "Taal";
 "global_menu_file_desktop" = "Bestand";
@@ -1008,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Map met logbestanden openen";
 "menu.view.developer.open.current.log.file" = "Huidig logbestand openen";
 "explain_desktop_minimized_disabled_tray_pref" = "Het systeemvakpictogram is uitgeschakeld omdat Delta Chat is gestart met de optie --minimized";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
 "show_window" = "Venster tonen";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

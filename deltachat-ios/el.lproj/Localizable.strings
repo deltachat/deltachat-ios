@@ -10,7 +10,6 @@
 "off" = "Απενεργοποιημένο";
 "def" = "Προεπιλογή";
 "default_value" = "Προεπιλογή(%1$@)";
-"default_value_as_above" = "Προκαθορισμένο (Ίδιο με το παραπάνω)";
 "custom" = "Προσαρμογή";
 "none" = "Κανένα";
 "automatic" = "Αυτόματα";
@@ -196,7 +195,6 @@
 "menu_more_options" = "Περισσότερες Επιλογές";
 "menu_learn_spelling" = "Μάθε Ορθογραφία";
 "jump_to_message" = "Μετακίνηση στη Συνομιλία";
-"copy_json" = "Αντιγραφή JSON";
 "replace_draft" = "Αντικατάσταση Σχεδίου";
 "title_share_location" = "Διαμοιρασμός τοποθεσίας με όλα τα μέλη της ομάδας";
 "device_talk" = "Μηνύματα Συσκευής";
@@ -279,13 +277,7 @@
 "start_app" = "Εκκίνηση…";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Αποδεχτείτε πρώτα το αίτημα συνομιλίας.";
-// map
-"filter_map_on_time" = "Εμφάνιση τοποθεσιών σε χρονικό πλαίσιο";
-"show_location_traces" = "Εμφάνιση ιχνών";
-"add_poi" = "Αποστολή σημείου ενδιαφέροντος";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Μην ξαναρωτήθω για %1$@";
 "puny_code_warning_header" = "Εντοπίστηκε ύποπτος σύνδεσμος";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Είστε σίγουροι ότι θέλετε να επισκεφθείτε %1$@;";
@@ -636,9 +628,6 @@
 "ImageEditorHud_crop" = "Περικοπή";
 "ImageEditorHud_flip" = "Εναλλαγή";
 "ImageEditorHud_rotate" = "Περιστροφή";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Αυτή είναι η επίσημη εφαρμογή Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Αυτό το λογισμικό έχει άδεια χρήσης σύμφωνα με την GNU GPL έκδοση 3 και ο πηγαίος κώδικας είναι διαθέσιμος στο GitHub.";
 "welcome_desktop" = "Καλώς ήρθατε στο Delta Chat";
 "global_menu_preferences_language_desktop" = "Γλώσσα";
 "global_menu_file_desktop" = "Αρχείο";
@@ -674,6 +663,7 @@
 "menu.view.developer.open.log.folder" = "Άνοιγμα του φακέλου καταγραφής";
 "menu.view.developer.open.current.log.file" = "Άνοιγμα του τρέχον αρχείου καταγραφής";
 "explain_desktop_minimized_disabled_tray_pref" = "Το εικονίδιο του δίσκου δεν μπορεί να απενεργοποιηθεί καθώς το Delta Chat ξεκίνησε με την επιλογή --ελαχιστοποιημένη.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Δεν βρέθηκαν προτάσεις ορθογραφίας.";
 "show_window" = "Εμφάνιση παραθύρου";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

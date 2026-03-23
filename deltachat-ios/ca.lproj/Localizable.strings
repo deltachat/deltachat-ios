@@ -14,7 +14,6 @@
 "off" = "Desactivat";
 "def" = "Per defecte";
 "default_value" = "Per defecte (%1$@)";
-"default_value_as_above" = "Per defecte (igual que a dalt)";
 "custom" = "Personalitzat";
 "none" = "Cap";
 "automatic" = "Automàtic";
@@ -32,8 +31,6 @@
 "update" = "Actualitza";
 "emoji" = "Emojis";
 "attachment" = "Adjunt";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Voleu adjuntar \"%1$@\"?";
 "back" = "Enrere";
 "close" = "Tanca";
 "close_window" = "Tanca la finestra";
@@ -101,7 +98,7 @@
 "email_address" = "Adreça de correu electrònic";
 "bad_email_address" = "Adreça de correu electrònic errònia.";
 "password" = "Contrasenya";
-"existing_password" = "Ja existeix aquesta contrasenya";
+"existing_password" = "Contrasenya existent";
 "now" = "Ara";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Perill";
@@ -293,8 +290,6 @@
 "menu_more_options" = "Més opcions";
 "menu_learn_spelling" = "Aprèn l\'ortografia";
 "jump_to_message" = "Ves al missatge";
-"jump_to_original_message" = "Vés al Missatge Original";
-"copy_json" = "Copia el JSON";
 "replace_draft" = "Substitueix l\'esborrany";
 "title_share_location" = "Comparteix la ubicació amb tots els membres del grup";
 "device_talk" = "Missatges del dispositiu";
@@ -425,15 +420,7 @@
 "send_file_to" = "Envia \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Envia el missatge a...";
-"enable_realtime" = "Aplicacions en temps real";
-"enable_realtime_explain" = "Activa connexions en temps real per a aplicacions compartides als xats. Si està activada, els companys de xat poden descobrir la vostra IP en iniciar una aplicació.";
-// map
-"filter_map_on_time" = "Mostra les ubicacions al llarg del temps";
-"show_location_traces" = "Mostra el rastre";
-"add_poi" = "Envia el punt d\'interès";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "No em tornis a demanar per %1$@";
 "puny_code_warning_header" = "S\'ha detectat un enllaç sospitós";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Esteu segur de voler visitar %1$@?";
@@ -581,20 +568,20 @@
 "proxy_enabled" = "Servidor intermediari activat";
 "proxy_enabled_hint" = "Esteu fent servir un servidor intermediari. Si teniu problemes per a connectar-vos, proveu un servidor intermediari diferent.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Relés";
-"add_transport" = "Afegir Relé";
-"remove_transport" = "Elimina Relé";
-"edit_transport" = "Edita Relé";
+"transports" = "Retransmissors";
+"add_transport" = "Afegir Retransmissor";
+"remove_transport" = "Elimina Retransmissors";
+"edit_transport" = "Edita Retransmissor";
 "used_for_sending" = "Utilitzat per enviar";
 "hide_from_contacts" = "Amagar als contactes";
 "hidden_from_contacts" = "Amagat als contactes";
 // Hint for the list of relays
-"transport_list_hint" = "Missatges rebuts en tots els relés";
+"transport_list_hint" = "Missatges rebuts en tots els retransmissors";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "Afegeix aquest relé?";
-"invalid_transport_qr" = "El codi QR escanejat no conté un relé vàlid.";
+"confirm_add_transport" = "Afegir aquest retransmissor?";
+"invalid_transport_qr" = "El codi QR escanejat no conté un retransmissor vàlid.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_or_hide_transport_x" = "Esborrar el relé \"%1$@\"?\n\nEls contactes que només coneixen aquest relé no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
+"confirm_remove_or_hide_transport_x" = "Esborrar el retransmissor \"%1$@\"?\n\nEls contactes que només coneixen aquest retransmissor no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";
 "login_error_server" = "Si us plau poseu un servidor / adreça IP vàlida";
@@ -740,8 +727,6 @@
 "profile_image_delete" = "Esborra la imatge del perfil";
 "pref_show_tray_icon" = "Mostra la icona de la safata";
 "pref_edit_profile" = "Edita el perfil";
-"disable_imap_idle" = "Desactiva IMAP IDLE";
-"disable_imap_idle_explain" = "No usis l\'extensió IMAP IDLE encara que el servidor la permeti. Activar aquesta opció endarreria l\'obtenció de missatges, activeu-ho només per a proves.";
 "send_stats_to_devs" = "Envia estadístiques als desenvolupadors del Delta Chat";
 "stats_device_message" = "Voleu ajudar a millorar Delta Chat i donar suport a la recerca enviant estadístiques d\'ús anònimes setmanalment?\n\n👉 Feu clic aquí… 👈";
 "stats_confirmation_dialog" = "Voleu ajudar a millorar Delta Chat i donar suport a la recerca enviant estadístiques d\'ús anònimes setmanalment?";
@@ -866,7 +851,7 @@
 "ephemeral_timer_weeks_by_other" = "%2$@ ha definit el temporitzador dels missatges efímers a %1$@ setmanes.";
 "chat_unencrypted_explanation" = "Els missatges en aquest xat fan servir el correu electrònic tradicional i no estan xifrats d\'extrem a extrem.";
 "chat_protection_enabled_tap_to_learn_more" = "Us garantim que a partir d\'ara els missatges són xifrats d\'extrem a extrem. Toqueu per a obtenir més informació.";
-"chat_protection_enabled_explanation" = "Ara es garanteix que tots els missatges d\'aquest xat són xifrats d\'extrem a extrem.\n\nEl xifratge d\'extrem a extrem manté privats els missatges entre vós i els companys de xat. Ni tan sols el vostre proveïdor de correu electrònic pot llegir-los.";
+"chat_protection_enabled_explanation" = "Tots els missatges en aquest xat estan xifrats d\'extrem a extrem. El xifrat d\'extrem a extrem manté els missatges privats entre tu i els destinataris. Ni tan sols els servidors, els proveïdors o els retransmissors els poden llegir.";
 "invalid_unencrypted_tap_to_learn_more" = "%1$@requereix xifratge d\'extrem a extrem, que encara no s\'ha configurat per a aquest xat. Toqueu per a obtenir més informació.";
 "invalid_unencrypted_explanation" = "Per a establir xifratge d\'extrem a extrem, heu de trobar-vos amb els contactes en persona i escanejar el seu codi QR per a poder afegir-los.";
 "learn_more" = "Més informació";
@@ -966,9 +951,6 @@
 "ImageEditorHud_crop" = "Retalla";
 "ImageEditorHud_flip" = "Capgira";
 "ImageEditorHud_rotate" = "Gira";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Aquesta és l\'aplicació d\'escriptori oficial de Delta Chat.";
-"about_licensed_under_desktop" = "Aquest programari és llicenciat amb la llicència GNU GPL versió 3 i el codi font és disponible a GitHub";
 "welcome_desktop" = "Us donem la benvinguda al Delta Chat";
 "global_menu_preferences_language_desktop" = "Trieu l\'idioma...";
 "global_menu_file_desktop" = "Arxiva";
@@ -1008,6 +990,7 @@
 "menu.view.developer.open.log.folder" = "Obre la carpeta de registre";
 "menu.view.developer.open.current.log.file" = "Obre el fitxer de registre actual";
 "explain_desktop_minimized_disabled_tray_pref" = "La icona de la safata no es pot desactivar perquè Delta Chat s\'ha iniciat amb l\'opció --minimized";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "No s\'ha trobat cap suggeriment ortogràfic.";
 "show_window" = "Mostra la finestra";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

@@ -14,7 +14,6 @@
 "off" = "Desligado";
 "def" = "Padrão";
 "default_value" = "Padrão (%1$@)";
-"default_value_as_above" = "Padrão (igual acima)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
 "automatic" = "Automático";
@@ -214,7 +213,6 @@
 "menu_more_options" = "Mais opções";
 "menu_learn_spelling" = "Aprender ortografia";
 "jump_to_message" = "Pular para a mensagem";
-"copy_json" = "Copiar JSON";
 "replace_draft" = "Substituir rascunho ";
 "title_share_location" = "Compartilhar localização com o grupo";
 "device_talk" = "Mensagens desse aparelho";
@@ -301,13 +299,7 @@
 "send_file_to" = "Enviar \"%1$@\" para…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Enviar Mensagem para…";
-// map
-"filter_map_on_time" = "Exibir localização no tempo.";
-"show_location_traces" = "Exibir pegadas";
-"add_poi" = "Enviar ponto de interesse";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Não perguntar de novo por %1$@";
 "puny_code_warning_header" = "Link suspeito detectado";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Tem certeza que deseja visitar %1$@?";
@@ -684,9 +676,6 @@
 "ImageEditorHud_crop" = "Cortar";
 "ImageEditorHud_flip" = "Girar";
 "ImageEditorHud_rotate" = "Rodar";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Este é o aplicativo oficial Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Este software é licenciado sob a GNU GPL versão 3 e o código-fonte está disponível no GitHub.";
 "welcome_desktop" = "Boas-vindas ao Delta Chat.";
 "global_menu_preferences_language_desktop" = "Escolher língua...";
 "global_menu_file_desktop" = "Arquivo";
@@ -722,6 +711,7 @@
 "menu.view.developer.open.log.folder" = "Abrir pasta de relatórios";
 "menu.view.developer.open.current.log.file" = "Abrir relatório atual";
 "explain_desktop_minimized_disabled_tray_pref" = "O ícone da bandeja não pode ser desativado porque o Delta Chat foi iniciado com a opção --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nenhuma sugestão de ortografia encontrada.";
 "show_window" = "Mostrar Janela";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

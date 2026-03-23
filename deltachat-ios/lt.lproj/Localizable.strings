@@ -13,7 +13,6 @@
 "off" = "Išjungta";
 "def" = "Pagal numatymą";
 "default_value" = "Numatytasis (%1$@)";
-"default_value_as_above" = "Numatytasis (toks pats kaip aukščiau)";
 "custom" = "Tinkintas";
 "none" = "Nėra";
 "automatic" = "Automatinis";
@@ -31,8 +30,6 @@
 "update" = "Atnaujinti";
 "emoji" = "Šypsniukas";
 "attachment" = "Priedas";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Pridėti „%1$@“?";
 "back" = "Atgal";
 "close" = "Užverti";
 "close_window" = "Užverti langą";
@@ -259,8 +256,6 @@
 "menu_save_log" = "Įrašyti žurnalą";
 "menu_more_options" = "Daugiau parinkčių";
 "jump_to_message" = "Peršokti į žinutę";
-"jump_to_original_message" = "Peršokti į pradinę žinutę";
-"copy_json" = "Kopijuoti JSON";
 "replace_draft" = "Pakeisti juodraštį";
 "title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
 "device_talk" = "Įrenginio žinutės";
@@ -362,7 +357,7 @@
 // webxdc
 // "Start..." button for an app
 "start_app" = "Pradėti…";
-"enable_realtime" = "Tikralaikės programėlės";
+// punycode warning / labeled links
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ar tikrai norite apsilankyti %1$@?";
@@ -633,7 +628,6 @@
 "profile_image_delete" = "Ištrinti profilio nuotrauką";
 "pref_show_tray_icon" = "Rodyti dėklo piktogramą";
 "pref_edit_profile" = "Taisyti profilį";
-"disable_imap_idle" = "Išjungti IMAP IDLE";
 "send_stats_to_devs" = "Siųsti statistiką Delta Chat plėtotojams";
 "stats_device_message" = "Ar norite padėti tobulinti Delta Chat ir pagelbėti tyrimams, kas savaitę siunčiant anoniminę statistiką apie naudojimąsi Delta Chat?\n\n👉 Bakstelėkite čia… 👈";
 "stats_confirmation_dialog" = "Ar norite padėti tobulinti Delta Chat ir pagelbėti tyrimams, kas savaitę siunčiant anoniminę statistiką apie naudojimąsi Delta Chat?";
@@ -809,9 +803,6 @@
 "ImageEditorHud_crop" = "Apkirpti";
 "ImageEditorHud_flip" = "Apversti";
 "ImageEditorHud_rotate" = "Pasukti";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Tai yra oficiali Delta Chat programa, skirta darbalaukio aplinkai.";
-"about_licensed_under_desktop" = "Ši programinė įranga yra licencijuota pagal GNU GPL versiją 3, o pirminis kodas yra prieinamas „GitHub“ internetinėje svetainėje.";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
 "global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
 "global_menu_file_desktop" = "Failas";
@@ -847,6 +838,7 @@
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
 "explain_desktop_minimized_disabled_tray_pref" = "Dėklo piktograma negali būti išjungta, nes Delta Chat buvo paleista naudojant --minimized parinktį.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
 "show_window" = "Rodyti langą";
 "switch_between_chats" = "Perjungti tarp pokalbių";
