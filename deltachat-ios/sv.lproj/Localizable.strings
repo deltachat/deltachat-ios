@@ -14,7 +14,6 @@
 "off" = "Av";
 "def" = "Standard";
 "default_value" = "Standard (%1$@)";
-"default_value_as_above" = "Standard (samma som ovan)";
 "custom" = "Anpassat";
 "none" = "Ingen";
 "automatic" = "Automatiskt";
@@ -32,8 +31,6 @@
 "update" = "Uppdatera";
 "emoji" = "Emoji";
 "attachment" = "Bilaga";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Vill du bifoga \"%1$@\"?";
 "back" = "Tillbaka";
 "close" = "Stäng";
 "close_window" = "Stäng fönster";
@@ -292,8 +289,6 @@
 "menu_more_options" = "Mer alternativ";
 "menu_learn_spelling" = "Lär stavning";
 "jump_to_message" = "Hoppa till meddelande";
-"jump_to_original_message" = "Hoppa till ursprungligt meddelande";
-"copy_json" = "Kopiera JSON";
 "replace_draft" = "Ersätt utkast";
 "title_share_location" = "Dela plats med alla gruppmedlemmar";
 "device_talk" = "Enhetsmeddelanden";
@@ -418,15 +413,7 @@
 "send_file_to" = "Skicka \"%1$@\" till...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Skicka meddelande till...";
-"enable_realtime" = "Realtidsappar";
-"enable_realtime_explain" = "Aktivera realtidsanslutningar för appar som är kopplade till chattar. Om detta är aktiverat kan chattpartners kanske få reda på din IP-adress när du startar en app.";
-// map
-"filter_map_on_time" = "Visa platser inom tidsramen";
-"show_location_traces" = "Visa spår";
-"add_poi" = "Skicka intressant plats";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Fråga inte igen för %1$@";
 "puny_code_warning_header" = "Misstänkt länk identifierad";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Är du säker på att du vill besöka %1$@?";
@@ -726,8 +713,6 @@
 "profile_image_delete" = "Ta bort profilbild";
 "pref_show_tray_icon" = "Visa systemfältsikon";
 "pref_edit_profile" = "Redigera profil";
-"disable_imap_idle" = "Avaktivera IMAP IDLE";
-"disable_imap_idle_explain" = "Använd inte IMAP IDLE-tillägget även om servern stöder det. Om du aktiverar det här alternativet kommer hämtningen av meddelanden att fördröjas, aktivera det endast för testning.";
 "send_stats_to_devs" = "Skicka statistik till Delta Chats utvecklare";
 "stats_device_message" = "Vill du hjälpa till att förbättra Delta Chat och stödja efterforskning genom att skicka anonym användningsstatistik varje vecka? \n\n👉 Tryck här ... 👈";
 "stats_confirmation_dialog" = "Vill du hjälpa till att förbättra Delta Chat och stödja efterforskning genom att skicka anonym användningsstatistik varje vecka?";
@@ -952,9 +937,6 @@
 "ImageEditorHud_crop" = "Beskär";
 "ImageEditorHud_flip" = "Vänd";
 "ImageEditorHud_rotate" = "Rotera";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Detta är den officiella Delta Chat skrivbordsappen.";
-"about_licensed_under_desktop" = "Denna programvara är licensierad enligt GNU GPL version 3 och källkoden finns tillgänglig på GitHub.";
 "welcome_desktop" = "Välkommen till Delta Chat";
 "global_menu_preferences_language_desktop" = "Språk";
 "global_menu_file_desktop" = "Arkiv";
@@ -994,6 +976,7 @@
 "menu.view.developer.open.log.folder" = "Öppna loggmappen";
 "menu.view.developer.open.current.log.file" = "Öppna aktuell loggfil";
 "explain_desktop_minimized_disabled_tray_pref" = "Systemfältsikonen kan inte inaktiveras eftersom Delta Chat startades med alternativet --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Inga stavningsförslag hittades.";
 "show_window" = "Visa fönster";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

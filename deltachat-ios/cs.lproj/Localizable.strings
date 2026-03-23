@@ -14,7 +14,6 @@
 "off" = "Vypnuto";
 "def" = "Výchozí";
 "default_value" = "Výchozí (%1$@)";
-"default_value_as_above" = "Výchozí (jako výše)";
 "custom" = "Vlastní";
 "none" = "Žádný";
 "automatic" = "Automaticky";
@@ -32,8 +31,6 @@
 "update" = "Aktualizovat";
 "emoji" = "Emoji";
 "attachment" = "Příloha";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Připojit \"%1$@\"?";
 "back" = "Zpět";
 "close" = "Zavřít";
 "close_window" = "Zavřít okno";
@@ -284,8 +281,6 @@
 "menu_more_options" = "Další možnosti";
 "menu_learn_spelling" = "Naučte se pravopis";
 "jump_to_message" = "Přejít na zprávu";
-"jump_to_original_message" = "Přejít na původní zprávu";
-"copy_json" = "Kopírovat JSON";
 "replace_draft" = "Nahradit rozepsanou zprávu";
 "title_share_location" = "Sdílet polohu se všemi členy skupiny";
 "device_talk" = "Zprávy v zařízení";
@@ -394,15 +389,7 @@
 "send_file_to" = "Odeslat \"%1$@\"...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Odeslat zprávu...";
-"enable_realtime" = "Real-time aplikace";
-"enable_realtime_explain" = "Umožnit aplikacím sdíleným v chatech, aby navazovaly spojení v reálném čase. Tato volba umožní vašim kontaktům zjistit vaši IP adresu, když nějakou aplikaci spustíte.";
-// map
-"filter_map_on_time" = "Zobrazit polohy v časovém úseku";
-"show_location_traces" = "Zobrazit trasy";
-"add_poi" = "Odeslat bod zájmu";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "U %1$@ se již znovu neptat";
 "puny_code_warning_header" = "Byl nalezen podezřelý odkaz";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Opravdu si přejete navštívit stránku %1$@?";
@@ -696,8 +683,6 @@
 "profile_image_delete" = "Smazat profilový obrázek";
 "pref_show_tray_icon" = "Zobrazit ikonu v oznamovací oblasti";
 "pref_edit_profile" = "Upravit profil";
-"disable_imap_idle" = "Zakázat IMAP IDLE";
-"disable_imap_idle_explain" = "Nepoužívat rozšíření IMAP IDLE ani když jej server podporuje. Zapnutí této volby zvýší prodlevu při získávání zpráv, použijte ji jen pro testování.";
 "send_stats_to_devs" = "Odeslat statistiky vývojářům Delta Chatu";
 "stats_msg_body" = "Příloha obsahuje anonymní statistiky používání, které nám pomáhají zlepšovat službu Delta Chat. Děkujeme vám!";
 // Emoji picker and categories
@@ -912,9 +897,6 @@
 "ImageEditorHud_crop" = "Ořez";
 "ImageEditorHud_flip" = "Zrcadlení";
 "ImageEditorHud_rotate" = "Otočení";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Toto je oficiální aplikace Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Tento software je distribuován pod licencí GNU GPL verze 3 a jeho zdrojový kód je k dispozici na GitHubu.";
 "welcome_desktop" = "Vítejte v aplikaci Delta Chat";
 "global_menu_preferences_language_desktop" = "Jazyk";
 "global_menu_file_desktop" = "Soubor";
@@ -954,6 +936,7 @@
 "menu.view.developer.open.log.folder" = "Otevřít složku protokolu";
 "menu.view.developer.open.current.log.file" = "Otevřít stávající soubor s protokolem";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu na panelu nelze deaktivovat, protože Delta Chat byl spuštěn s volbou --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Žádné pravopisné návrhy.";
 "show_window" = "Zobrazit okno";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

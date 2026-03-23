@@ -10,7 +10,6 @@
 "off" = "꺼짐";
 "def" = "기본값";
 "default_value" = "기본 (%1$@)";
-"default_value_as_above" = "기본 (위와 동일함)";
 "custom" = "커스텀";
 "none" = "없음";
 "automatic" = "자동";
@@ -196,7 +195,6 @@
 "menu_more_options" = "더 많은 옵션";
 "menu_learn_spelling" = "맞춤법 배우기";
 "jump_to_message" = "메시지로 이동";
-"copy_json" = "JSON 복사";
 "replace_draft" = "초안 대체";
 "title_share_location" = "그룹 구성원과 위치 공유하기";
 "device_talk" = "기기 메시지";
@@ -277,13 +275,7 @@
 "start_app" = "시작...";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "채팅 요청을 먼저 수락하십시오.";
-// map
-"filter_map_on_time" = "시간 범위 내 위치 표시";
-"show_location_traces" = "기록 보기";
-"add_poi" = "관심 지점 전송";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "%1$@에 대해 다시 묻지 마시오";
 "puny_code_warning_header" = "의심되는 링크가 탐지됨";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "정말 %1$@에 방문하시겠습니까?";
@@ -619,9 +611,6 @@
 "ImageEditorHud_crop" = "자르기";
 "ImageEditorHud_flip" = "뒤집기";
 "ImageEditorHud_rotate" = "돌리기";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "이것은 Delta Chat 데스크톱 공식 앱입니다.";
-"about_licensed_under_desktop" = "이 소프트웨어는 GNU GPL 버전 3에 따라 라이센스가 부여되며 소스 코드는 GitHub에서 사용할 수 있습니다.";
 "welcome_desktop" = "Delta Chat에 오신 것을 환영합니다.";
 "global_menu_preferences_language_desktop" = "언어";
 "global_menu_file_desktop" = "파일";
@@ -654,6 +643,7 @@
 "message_detail_received_desktop" = "받음";
 "menu.view.developer.open.log.folder" = "로그 폴더 열기";
 "menu.view.developer.open.current.log.file" = "현재 로그 파일 열기";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "맞춤법 제안을 찾을 수 없습니다.";
 "show_window" = "창 보이기";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

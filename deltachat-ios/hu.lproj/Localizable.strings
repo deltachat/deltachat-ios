@@ -14,7 +14,6 @@
 "off" = "Kikapcsolva";
 "def" = "Alapértelmezett";
 "default_value" = "Alapértelmezett (%1$@)";
-"default_value_as_above" = "Alapértelmezett (ugyanaz, mint fentebb)";
 "custom" = "Egyéni";
 "none" = "Semmi";
 "automatic" = "Automatikus";
@@ -32,8 +31,6 @@
 "update" = "Frissítés";
 "emoji" = "Emodzsi";
 "attachment" = "Melléklet";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Mellékeli a következőt: „%1$@”?";
 "back" = "Vissza";
 "close" = "Bezárás";
 "close_window" = "Ablak bezárása";
@@ -284,8 +281,6 @@
 "menu_more_options" = "További beállítások";
 "menu_learn_spelling" = "Helyesírás tanulása";
 "jump_to_message" = "Ugrás az üzenetre";
-"jump_to_original_message" = "Ugrás az eredeti üzenetre";
-"copy_json" = "JSON másolása";
 "replace_draft" = "Piszkozat cseréje";
 "title_share_location" = "Hely megosztása a csoport összes tagjával";
 "device_talk" = "Eszközüzenetek";
@@ -394,15 +389,7 @@
 "send_file_to" = "„%1$@” küldése…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Üzenet küldése…";
-"enable_realtime" = "Valós idejű alkalmazások";
-"enable_realtime_explain" = "Valós idejű kapcsolatok engedélyezése a csevegésekhez mellékelt alkalmazások számára. Ha engedélyezve van, a csevegési partnerei képesek lehetnek felfedezni az Ön IP-címét, amikor elindít egy alkalmazást.";
-// map
-"filter_map_on_time" = "Helyek megjelenítése időkeretben";
-"show_location_traces" = "Nyomvonalak megjelenítése";
-"add_poi" = "Érdekes hely megosztása";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ne kérdezzen rá újra a következőre: %1$@";
 "puny_code_warning_header" = "Gyanús hivatkozás észlelve";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Biztosan meglátogatja a következőt: %1$@?";
@@ -682,8 +669,6 @@
 "profile_image_delete" = "Profilkép törlése";
 "pref_show_tray_icon" = "Tálcaikon megjelenítése";
 "pref_edit_profile" = "Profil szerkesztése";
-"disable_imap_idle" = "IMAP IDLE letiltása";
-"disable_imap_idle_explain" = "Ne használja az IMAP IDLE kiterjesztést, még akkor sem, ha a kiszolgáló támogatja azt. A beállítás engedélyezése késlelteti az üzenetek lekérdezését, csak tesztelés céljából engedélyezze.";
 "send_stats_to_devs" = "Statisztikák küldése a Delta Chat fejlesztőinek";
 // Emoji picker and categories
 "emoji_search_results" = "Keresési eredmények";
@@ -892,9 +877,6 @@
 "ImageEditorHud_crop" = "Kivágás";
 "ImageEditorHud_flip" = "Tükrözés";
 "ImageEditorHud_rotate" = "Forgatás";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Ez a hivatalos Delta Chat Desktop alkalmazás.";
-"about_licensed_under_desktop" = "Ez a szoftver a GNU GPLv3 licenc alatt áll és a forráskód elérhető a GitHubon.";
 "welcome_desktop" = "Üdvözöljük a Delta Chatben!";
 "global_menu_preferences_language_desktop" = "Válasszon nyelvet…";
 "global_menu_file_desktop" = "Fájl";
@@ -934,6 +916,7 @@
 "menu.view.developer.open.log.folder" = "Naplófájlok mappájának megnyitása";
 "menu.view.developer.open.current.log.file" = "Jelenlegi naplófájl megnyitása";
 "explain_desktop_minimized_disabled_tray_pref" = "A tálca ikonja nem kapcsolható ki, mivel a Delta Chat a --minimized kapcsolóval indult.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nem találhatók helyesírási javaslatok.";
 "show_window" = "Ablak megjelenítése";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

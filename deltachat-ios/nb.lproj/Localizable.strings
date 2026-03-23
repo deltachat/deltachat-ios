@@ -14,7 +14,6 @@
 "off" = "Av";
 "def" = "Forvalg";
 "default_value" = "Standardverdi (%1$@)";
-"default_value_as_above" = "Standardverdi (som over)";
 "custom" = "Egendefinert";
 "none" = "Ingen";
 "automatic" = "Automatisk";
@@ -32,8 +31,6 @@
 "update" = "Oppdater";
 "emoji" = "Emoji";
 "attachment" = "Vedlegg";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Legg ved \"%1$@\"?";
 "back" = "Forrige";
 "close" = "Lukk";
 "close_window" = "Lukk vindu";
@@ -284,8 +281,6 @@
 "menu_more_options" = "Flere valg";
 "menu_learn_spelling" = "Lær staving";
 "jump_to_message" = "Gå til melding";
-"jump_to_original_message" = "Gå til opprinnelig melding";
-"copy_json" = "Kopien JSON";
 "replace_draft" = "Erstatt kladd";
 "title_share_location" = "Del posisjon med alle gruppemedlemmer";
 "device_talk" = "Enhetsmeldinger";
@@ -394,12 +389,6 @@
 "send_file_to" = "Send \"%1$@\" til…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Send melding til…";
-"enable_realtime" = "Sanntidsapper";
-"enable_realtime_explain" = "Slå på sanntidstilkoblinger for apper tilknyttet chatter. Når det er slått på kan chattepartnere se din IP-adresse når du starter en app.";
-// map
-"filter_map_on_time" = "Vis plasseringer innenfor tidsramme";
-"show_location_traces" = "Vis bevegelsesspor";
-"add_poi" = "Send interessepunkt";
 // search
 "search" = "Søk";
 // create/edit groups, contact/group profile

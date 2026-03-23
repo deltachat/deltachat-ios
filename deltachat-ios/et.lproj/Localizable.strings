@@ -14,7 +14,6 @@
 "off" = "Väljas";
 "def" = "Vaikimisi";
 "default_value" = "Vaikimisi (%1$@)";
-"default_value_as_above" = "Vaikimisi (sama, kui ülal)";
 "custom" = "Kohandatud";
 "none" = "Puudub";
 "automatic" = "Automaatne";
@@ -32,8 +31,6 @@
 "update" = "Uuenda";
 "emoji" = "Emoji";
 "attachment" = "Manus";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Kas lisame manusena: „%1$@“?";
 "back" = "Tagasi";
 "close" = "Sulge";
 "close_window" = "Sulge aken";
@@ -292,8 +289,6 @@
 "menu_more_options" = "Täiendavad valikud";
 "menu_learn_spelling" = "Õpi õigekirja";
 "jump_to_message" = "Mine sõnumi juurde";
-"jump_to_original_message" = "Mine algse sõnumi juurde";
-"copy_json" = "Kopeeri JSON-vormingus";
 "replace_draft" = "Asenda kavand";
 "title_share_location" = "Jaga asukohta kõikide grupi liikmetega";
 "device_talk" = "Seadme sõnumid";
@@ -418,15 +413,7 @@
 "send_file_to" = "Saada „%1$@“ fail kasutajale…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Saada sõnum…";
-"enable_realtime" = "Reaalajas toimivad rakendused";
-"enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
-// map
-"filter_map_on_time" = "Näita asukohti ajavahemike kaupa";
-"show_location_traces" = "Näita asukohti kaardil";
-"add_poi" = "Saada huvipunkti teave";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ära enam %1$@ puhul küsi";
 "puny_code_warning_header" = "Tuvastasin kahtlase lingi";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Kas oled kindel, et soovid avada „%1$@“?";
@@ -726,8 +713,6 @@
 "profile_image_delete" = "Kustuta profiilipilt";
 "pref_show_tray_icon" = "Näita süsteemisalve ikooni";
 "pref_edit_profile" = "Muuda profiili";
-"disable_imap_idle" = "Lülita IMAP IDLE välja";
-"disable_imap_idle_explain" = "Ära kasuta IMAP IDLE meetodit, seda isegi siis, kui server seda toetab. Sisselülitamisel tekib sõnumite laadimisel viivitusi. Kasuta seda vaid testimiseks.";
 "send_stats_to_devs" = "Saada statistikat Delta Chati kasutajatele";
 "stats_device_message" = "Kas sa tahad aidata Delta Chati paremaks muuta? Siis luba rakendusel kord nädalas saata anonüümset statistikat kasutuse kohta.\n\n👉 Klõpsa siia… 👈";
 "stats_confirmation_dialog" = "Kas sa tahad aidata Delta Chati paremaks muuta? Siis luba rakendusel kord nädalas saata anonüümset statistikat kasutuse kohta.";
@@ -952,9 +937,6 @@
 "ImageEditorHud_crop" = "Kadreeri";
 "ImageEditorHud_flip" = "Pööra teistpidi";
 "ImageEditorHud_rotate" = "Pööra";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "See on Delta Chati ametlik töölauarakendus.";
-"about_licensed_under_desktop" = "See tarkvara on litsentseeritud GNU GPL versiooni 3 alusel ning rakenduse lähtekood on saadaval GitHubis.";
 "welcome_desktop" = "Tere tulemast, see on Delta Chat";
 "global_menu_preferences_language_desktop" = "Keel";
 "global_menu_file_desktop" = "Fail";
@@ -994,6 +976,7 @@
 "menu.view.developer.open.log.folder" = "Ava logifailide kaust";
 "menu.view.developer.open.current.log.file" = "Ava praegune logifail";
 "explain_desktop_minimized_disabled_tray_pref" = "Kuna Delta Chat juba käivitati --minimized argumendiga, siis süsteemisalve ikooni ei saa välja lülitada.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Õigekirjasoovitusi ei leidu.";
 "show_window" = "Näita akent";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

@@ -14,7 +14,6 @@
 "off" = "Ez";
 "def" = "Lehenetsia";
 "default_value" = "Lehenetsia (%1$@)";
-"default_value_as_above" = "Lehenetsia (aurreko bera)";
 "custom" = "Pertsonalizatua";
 "none" = "Bat ere ez";
 "automatic" = "Automatikoa";
@@ -32,8 +31,6 @@
 "update" = "Eguneratu";
 "emoji" = "Emojia";
 "attachment" = "Eranskina";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Erantsi \"%1$@\"?";
 "back" = "Atzera";
 "close" = "Itxi";
 "close_window" = "Leihoa itxi";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Ezarri irakurri gisa";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Markatu irakurrita";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Irakurri gabe";
 // Placeholder text when something is loading
 "loading" = "Kargatzen...";
 "hide" = "Ezkutatu";
@@ -116,10 +115,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Azken aldiz begiratua %1$@";
 "last_seen_unknown" = "Azken aldiz begiratzea: ezezaguna";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Minutu 1 baino gutxiago";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Hautaketa:";
+"selected" = "Hautatua";
 "self" = "Ni";
 "draft" = "Zirriborroa";
 "image" = "Irudia";
@@ -131,6 +134,9 @@
 "add_to_sticker_collection" = "Gehitu Sticker bildumara";
 "add_stickers_instructions" = "Stickerretara gehitzeko, klik egin \"Ireki sticker karpeta\" aukeran, sortu azpikarpeta bat zure sticker multzoarentzat eta arrastatu irudi eta sticker fitxategiak bertara.";
 "open_sticker_folder" = "Ireki sticker karpeta";
+"ask_add_sticker_to_collection" = "Gehitu eranskailu hau zure bildumara?";
+"ask_delete_sticker" = "Ezabatu eranskailu hau?";
+"sticker_picker_empty_hint" = "Sakatu eranskailu bat hemen gehitzeko";
 "images" = "Irudiak";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audioa";
@@ -208,6 +214,7 @@
 "new_channel" = "Kanal berria";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalaren izena";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "Posta elektronikoa";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Posta elektroniko berria";
@@ -221,8 +228,9 @@
 "menu_archive_chat" = "Artxibatu txata";
 "menu_unarchive_chat" = "Berreskuratu txata artxibotik";
 "menu_add_attachment" = "Gehitu eranskina";
-"menu_leave_group" = "Atera taldetik";
+"menu_leave_group" = "Utzi taldea";
 "menu_leave_channel" = "Utzi kanala";
+"menu_leave_and_delete" = "Utzi eta ezabatu niretzat";
 "menu_delete_chat" = "Ezabatu txata";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Garbitu txata";
@@ -284,8 +292,6 @@
 "menu_more_options" = "Aukera gehiago";
 "menu_learn_spelling" = "Ikasi ortografia";
 "jump_to_message" = "Joan mezura";
-"jump_to_original_message" = "Joan jatorrizko mezura";
-"copy_json" = "Kopiatu JSON";
 "replace_draft" = "Ordeztu zirriborroa";
 "title_share_location" = "Partekatu kokalekua taldeko kide guztiak";
 "device_talk" = "Gailuaren mezuak";
@@ -329,6 +335,16 @@
 "answer_call" = "Erantzun";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ukatu";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Audio deia";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Bideo deia";
+"call_initializing" = "Abiarazten…";
+"call_incoming" = "Sarrerako deia";
+"call_ringing" = "Jotzen...";
+"call_reconnecting" = "Berriz konektatzen...";
+"call_ended" = "Deia amaitu da";
+"call_failed" = "Deiak huts egin du";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Irteerako audio deia";
 // deprecated, use "Video call" instead
@@ -340,6 +356,7 @@
 "declined_call" = "Ukatutako deia";
 "canceled_call" = "Bertan behera utzitako deia";
 "missed_call" = "Galdutako deia";
+"already_in_call" = "Dei batean dagoeneko";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ziur irten nahi duzula?";
@@ -406,15 +423,7 @@
 "send_file_to" = "Bidali \"%1$@\" honi...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Bidali mezua honi...";
-"enable_realtime" = "Denbora errealeko aplikazioak";
-"enable_realtime_explain" = "Gaitu denbora errealeko konexioak txatei atxikitako aplikazioentzat. Gaituz gero, baliteke txat-kideek zure IP helbidea ezagutu ahal izatea aplikazio bat abiarazten duzunean.";
-// map
-"filter_map_on_time" = "Erakutsi kokalekuak denbora markoan";
-"show_location_traces" = "Erakutsi lorratzak";
-"add_poi" = "Bidali interesezko puntua";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ez galdetu berriro honengatik: %1$@";
 "puny_code_warning_header" = "Esteka susmagarria atzeman da";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Ziur zaude %1$@ bisitatu nahi duzula?";
@@ -566,9 +575,16 @@
 "add_transport" = "Gehitu errelea";
 "remove_transport" = "Ezabatu errelea";
 "edit_transport" = "Editatu errelea";
+"used_for_sending" = "Bidaltzeko erabilita";
+"hide_from_contacts" = "Ezkutatu kontaktuetatik";
+"hidden_from_contacts" = "Kontaktuetatik ezkutatuta";
+// Hint for the list of relays
+"transport_list_hint" = "Mezuak errele guztietan jasotzen dira";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Ezabatu \"%1$@\" errelea?\n\nErrele hau bakarrik ezagutzen duten kontaktuak ezin izango dira zurekin harremanetan jarri zuk mezu bat berriro bidali arte.\n\nZalantzarik baduzu, hobe da ezkutatzea ezabatzea baino.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";
 "login_error_server" = "Sartu baliozko zerbitzari / IP helbide bat";
@@ -621,6 +637,7 @@
 "pref_enter_sends" = "Enter teklarekin bidali";
 "pref_enter_sends_explain" = "Enter tekla sakatzeak mezua bidaliko du";
 "pref_outgoing_media_quality" = "Bidalitako multimediaren kalitatea";
+"pref_outgoing_media_quality_hint" = "Jatorrizko kalitatean bidaltzeko, erantsi multimedia \"Fitxategi\" gisa. Honek datu askoz gehiago kontsumitzen du zuretzat eta jasotzaileentzat.";
 "pref_outgoing_balanced" = "Orekatua";
 "pref_outgoing_worse" = "Kalitate txarragoa, tamaina txikia";
 "pref_vibrate" = "Bibratu";
@@ -631,6 +648,10 @@
 "pref_notifications" = "Jakinarazpenak";
 "pref_mention_notifications" = "Aipamenak";
 "pref_mention_notifications_explain" = "Mutututako taldeetan, jaso zuretzat diren mezuen jakinarazpenak, hala nola erantzunak edo erreakzioak";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Deiak";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Erakutsi dei-pantaila deiak jasotzean";
 "pref_notifications_show" = "Erakutsi";
 "pref_notifications_priority" = "Lehentasuna";
 "pref_notifications_explain" = "Gaitu sistemaren jakinarazpenak mezu berrientzat";
@@ -709,8 +730,6 @@
 "profile_image_delete" = "Ezabatu abatarra";
 "pref_show_tray_icon" = "Erakutsi sistema-erretilu ikonoa";
 "pref_edit_profile" = "Editatu kontua";
-"disable_imap_idle" = "Desgaitu IMAP IDLE";
-"disable_imap_idle_explain" = "Ez erabili IMAP IDLE luzapena, zerbitzariak onartzen badu ere. Aukera hau gaitzeak mezuen berreskuratzea atzeratuko du, gaitu ezazu probak egiteko soilik.";
 "send_stats_to_devs" = "Bidali estatistikak Delta Chat-eko garatzaileei";
 "stats_device_message" = "Delta Chat hobetzen lagundu eta ikerketa babestu nahi duzu astero erabilera-estatistika anonimoak bidalita?\n\n👉 Sakatu hemen… 👈";
 "stats_confirmation_dialog" = "Delta Chat hobetzen lagundu eta ikerketa babestu nahi duzu astero erabilera-estatistika anonimoak bidalita?";
@@ -834,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@(e)k mezuen desagerpen-denbora %1$@ astekoa dela ezarri du.";
 "chat_unencrypted_explanation" = "Txat honetako mezuek ohiko eposta helbidea erabiltzen dute eta ez daude muturretik muturrera zifratuta.";
+"messages_are_e2ee" = "Mezuak muturretik muturrera zifratuta daude.";
 "chat_protection_enabled_tap_to_learn_more" = "Mezuak muturretik muturrera zifratuta daude. Sakatu gehiago jakiteko.";
 "chat_protection_enabled_explanation" = "Txat honetako mezu guztiak muturretik muturrera zifratuta daude.\n\nMuturretik muturrera zifratzeak mezuak pribatu mantentzen ditu zure eta zure txat kideen artean. Zerbitzariek, hornitzaileek edo erreleek ere ezin dituzte irakurri.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@(e)k muturretik muturrera zifratzea behar du, eta txat honetan oraindik ez dago konfiguratuta. Sakatu gehiago jakiteko.";
@@ -935,9 +955,6 @@
 "ImageEditorHud_crop" = "Ezabatu";
 "ImageEditorHud_flip" = "Irauli";
 "ImageEditorHud_rotate" = "Biratu";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Hau Delta Chat Desktop aplikazio ofiziala da.";
-"about_licensed_under_desktop" = "Software honek GNU GPL 3 bertsioaren lizentziapean dago eta iturburu-kodea GitHub-en dago eskuragarri.";
 "welcome_desktop" = "Ongi etorri Delta Chat-era";
 "global_menu_preferences_language_desktop" = "Hautatu hizkuntza...";
 "global_menu_file_desktop" = "Fitxategia";
@@ -977,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Ireki egunkarien karpeta";
 "menu.view.developer.open.current.log.file" = "Ireki uneko egunkari-fitxategia";
 "explain_desktop_minimized_disabled_tray_pref" = "Erretiluko ikonoa ezin da desgaitu, Delta Chat --minimized aukerarekin abiarazi baita.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Ez dago ortografia-iradokizunik.";
 "show_window" = "Erakutsi leihoa";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

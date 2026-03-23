@@ -14,7 +14,6 @@
 "off" = "Off";
 "def" = "Parazgjedhje";
 "default_value" = "Parazgjedhje (%1$@)";
-"default_value_as_above" = "Parazgjedhje (njësoj me sa më sipër)";
 "custom" = "Vetjake";
 "none" = "Asnjë";
 "automatic" = "Automatike";
@@ -32,8 +31,6 @@
 "update" = "Përditësoje";
 "emoji" = "Emoji";
 "attachment" = "Bashkëngjitje";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Të bashkëngjitet “%1$@”?";
 "back" = "Mbrapsht";
 "close" = "Mbylle";
 "close_window" = "Mbylle Dritaren";
@@ -69,6 +66,8 @@
 "mark_as_read" = "Vëri Shenjë Si të Lexuar";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Të lexuar";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "I palexuar";
 // Placeholder text when something is loading
 "loading" = "Po ngarkohet…";
 "hide" = "Fshihe";
@@ -289,8 +288,6 @@
 "menu_more_options" = "Më Tepër Mundësi";
 "menu_learn_spelling" = "Mëso Drejtshkrim";
 "jump_to_message" = "Hidhu te Mesazh";
-"jump_to_original_message" = "Hidhu te Mesazhi Origjinal";
-"copy_json" = "Kopjo JSON";
 "replace_draft" = "Zëvendëso Skicë";
 "title_share_location" = "Tregojua vendndodhjen krejt anëtarëve të grupit";
 "device_talk" = "Mesazhe Pajisjeje";
@@ -355,6 +352,7 @@
 "declined_call" = "Thirrje e hedhur poshtë";
 "canceled_call" = "Thirrje e anuluar";
 "missed_call" = "Thirrje e humbur";
+"already_in_call" = "Tashmë në një thirrje";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
@@ -421,14 +419,7 @@
 "send_file_to" = "Dërgoni “%1$@” për …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Dërgoni Mesazh për…";
-"enable_realtime_explain" = "Aktivizoni lidhje aty për aty për aplikacione të përbashkët në fjalosje. Në u aktivizoftë, partnerë fjalosjeje mund të jenë në gjendje të zbulojnë adresën tuaj IP, kur nisni një aplikacion.";
-// map
-"filter_map_on_time" = "Shfaq vendndodhje në rrjedhë kohore";
-"show_location_traces" = "Shfaq gjurmë";
-"add_poi" = "Dërgo pikë interesi";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Mos pyet sërish për %1$@";
 "puny_code_warning_header" = "U pikas lidhje e dyshimtë";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Jeni i sigurt se doni të vizitohet %1$@?";
@@ -734,8 +725,6 @@
 "profile_image_delete" = "Fshini Figurën e Profilit";
 "pref_show_tray_icon" = "Shfaq Ikonë Paneli";
 "pref_edit_profile" = "Përpunoni Profil";
-"disable_imap_idle" = "Çaktivizo IMAP IDLE";
-"disable_imap_idle_explain" = "Mos e përdor zgjerimin IMAP IDLE, edhe kur shërbyesi e mbulon. Aktivizimi i kësaj mundësie do të vonojë marrjen e mesazheve, aktivizojeni vetëm për testime.";
 "send_stats_to_devs" = "Dërgojuni zhvilluesve të Delta Chat-it statistika";
 "stats_device_message" = "Doni të ndihmoni të përmirësohet Delta Chat-i dhe të mbështetni kërkimin duke dërguar statistika javore anonime përdorimi?\n\n👉 Prekni këtu… 👈";
 "stats_confirmation_dialog" = "Doni të ndihmoni të përmirësohet Delta Chat-i dhe të mbështetni kërkimin duke dërguar statistika javore anonime përdorimi?";
@@ -859,6 +848,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Kohëmatësi i zhdukjes së mesazheve u vu në %1$@ javë nga %2$@.";
 "chat_unencrypted_explanation" = "Mesazhet në këtë fjalosje përdorin email klasik dhe s’janë të fshehtëzuar skaj-më-skaj.";
+"messages_are_e2ee" = "Mesazhet janë të fshehtëzuara skaj-më-skaj";
 "chat_protection_enabled_tap_to_learn_more" = "Mesazhet fshehtëzohen skaj-më-skaj. Prekeni, që të mësoni më tepër.";
 "chat_protection_enabled_explanation" = "Krejt mesazhet në këtë fjalosje janë të fshehtëzuar skaj-më-skaj.\n\nFshehtëzimi skaj-më-skaj i mban private mesazhet mes jush dhe partnerëve tuaj të fjalosjes. Ato s’mund t’i lexojnë as shërbyesit, shërbime apo reletë.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ lyp fshehtëzim, i cili s’është ujdisur ende për këtë fjalosje. Që të mësoni më tepër, prekeni.";
@@ -960,9 +950,6 @@
 "ImageEditorHud_crop" = "Qethe";
 "ImageEditorHud_flip" = "Ktheje në anë tjetër";
 "ImageEditorHud_rotate" = "Rrotulloje";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Ky është aplikacioni zyrtar Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Ky program licencohet sipas GNU GPL version 3 dhe kodi burim mund të kihet që prej GitHub-i.";
 "welcome_desktop" = "Mirë se vini në Delta Chat";
 "global_menu_preferences_language_desktop" = "Gjuhë";
 "global_menu_file_desktop" = "Kartelë";
@@ -1002,6 +989,7 @@
 "menu.view.developer.open.log.folder" = "Hap Dosje Regjistrash";
 "menu.view.developer.open.current.log.file" = "Hap Kartelën Regjistër të Tanishme";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikona e panelit s’mund të çaktivizohet, ngaqë Delta Chat qe nisur me mundësinë --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "S’u gjetën sugjerimi drejtshkrimi.";
 "show_window" = "Shfaq Dritare";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

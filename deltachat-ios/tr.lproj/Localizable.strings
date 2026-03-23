@@ -14,7 +14,6 @@
 "off" = "Kapalı";
 "def" = "Varsayılan";
 "default_value" = "Varsayılan (%1$@)";
-"default_value_as_above" = "Varsayılan (yukarıdakinin aynısı)";
 "custom" = "Özel";
 "none" = "Yok";
 "automatic" = "Otomatik";
@@ -32,8 +31,6 @@
 "update" = "Güncelleştir";
 "emoji" = "Emoji";
 "attachment" = "İlişik";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "“%1$@” iliştirilsin mi?";
 "back" = "Geri";
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
@@ -292,8 +289,6 @@
 "menu_more_options" = "Daha Fazla Seçenek";
 "menu_learn_spelling" = "Yazımı Öğrenin";
 "jump_to_message" = "İletiye Atla";
-"jump_to_original_message" = "Özgün İletiye Atla";
-"copy_json" = "JSON kopyala";
 "replace_draft" = "Taslağı Değiştir";
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt İletileri";
@@ -418,15 +413,7 @@
 "send_file_to" = "“%1$@” dosyasını gönder…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
-"enable_realtime" = "Gerçek Zamanlı Uygulamalar";
-"enable_realtime_explain" = "Sohbetlere iliştirilen uygulamalar için gerçek zamanlı bağlantıları etkinleştirin. Etkinleştirilirse, bir uygulamayı başlattığınızda sohbet ortakları IP adresinizi keşfedebilir.";
-// map
-"filter_map_on_time" = "Konumları zaman çerçevesinde göster";
-"show_location_traces" = "İzleri göster";
-"add_poi" = "İlgi çekici noktayı gönder";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "%1$@ için yeniden sorma";
 "puny_code_warning_header" = "Kuşkulu bağlantı algılandı";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
@@ -726,8 +713,6 @@
 "profile_image_delete" = "Profil Görselini Sil";
 "pref_show_tray_icon" = "Tepsi Simgesi Göster";
 "pref_edit_profile" = "Profili Düzenle";
-"disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
-"disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
 "send_stats_to_devs" = "Delta Chat\'in geliştiricilerine istatistikleri gönder";
 "stats_device_message" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?\n\n👉 Buraya dokunun… 👈";
 "stats_confirmation_dialog" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?";
@@ -952,9 +937,6 @@
 "ImageEditorHud_crop" = "Kırp";
 "ImageEditorHud_flip" = "Çevir";
 "ImageEditorHud_rotate" = "Döndür";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
-"about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "global_menu_preferences_language_desktop" = "Dil";
 "global_menu_file_desktop" = "Dosya";
@@ -994,6 +976,7 @@
 "menu.view.developer.open.log.folder" = "Günlük Klasörünü Aç";
 "menu.view.developer.open.current.log.file" = "Şu Anki Günlük Dosyasını Aç";
 "explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
