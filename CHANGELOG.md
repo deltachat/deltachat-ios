@@ -1,5 +1,14 @@
 # Delta Chat iOS Changelog
 
+## v2.47.0 Testflight
+2026-03
+
+- Fix infinite loop in case a folder is missing on the relay
+- Fix downloading full attachments if the message is already downloaded
+- Fix downloading full attachments if the message was deleted
+- Fix: Make newlines work in chat descriptions
+
+
 ## v2.46.0 Testflight
 2026-03
 
