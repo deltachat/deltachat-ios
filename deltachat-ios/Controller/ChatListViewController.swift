@@ -228,6 +228,8 @@ class ChatListViewController: UITableViewController {
                 viewModel.updateSearchResults(for: self.searchController)
             }
 
+            let changedChatId = notification.userInfo?["chat_id"] as? Int
+            self.updateNextScreensBackButton(accountId: self.dcContext.id, chatId: changedChatId)
             self.refreshInBg()
         }
     }

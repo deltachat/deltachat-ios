@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: in-chat unread counter on the back button was not always updated after marking chats as unread.
+
 ## v2.46.0 Testflight
 2026-03
 
