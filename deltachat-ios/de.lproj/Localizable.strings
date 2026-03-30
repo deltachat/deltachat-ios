@@ -579,7 +579,7 @@
 "hide_from_contacts" = "Vor Kontakten verstecken";
 "hidden_from_contacts" = "Vor Kontakten versteckt";
 // Hint for the list of relays
-"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen";
+"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen.\n\n⚠️ Wenn Sie hier Änderungen vornehmen, stellen Sie sicher, dass auf allen Ihren Geräten mindestens Version 2.47.0 installiert ist. Andernfalls könnten auf älteren Versionen Nachrichten verloren gehen.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Relay hinzufügen?";
 "invalid_transport_qr" = "Der gescannte QR-Code enthält keine gültiges Relay.";
@@ -853,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Ablaufzeit verschwindender Nachrichten auf %1$@ Wochen gesetzt von %2$@.";
 "chat_unencrypted_explanation" = "Dieser Chat verwendet klassische E-Mails und ist nicht Ende-zu-Ende-verschlüsselt.";
+"messages_are_e2ee" = "Nachrichten sind Ende-zu-Ende-verschlüsselt.";
 "chat_protection_enabled_tap_to_learn_more" = "Nachrichten sind Ende-zu-Ende-verschlüsselt. Tippen, um mehr zu erfahren.";
 "chat_protection_enabled_explanation" = "Alle Nachrichten in diesem Chat sind Ende-zu-Ende verschlüsselt.\n\nDurch die Ende-zu-Ende-Verschlüsselung bleiben die Nachrichten zwischen dir und deinen Chat-Partnern privat. Nicht einmal Server, Provider oder Relays können sie lesen.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ verlangt eine Ende-zu-Ende-Verschlüsselung, die für diesen Chat noch nicht hergestellt wurde. Tippen, um mehr zu erfahren.";

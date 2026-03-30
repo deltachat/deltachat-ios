@@ -67,6 +67,8 @@
 "mark_as_read" = "Creḍ am akken yettwaɣra";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Creḍ yettwaɣra";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Ur ittwaɣṛi ara";
 // Placeholder text when something is loading
 "loading" = " Asali...";
 "hide" = "Ffer";
@@ -352,6 +354,7 @@
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";
 "missed_call" = "Tiɣri ittwazeglen";
+"already_in_call" = "Aqli deg usiwel yakan";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Tetḥeqqeḍ tebɣiḍ ad truḥeḍ? ";
@@ -573,8 +576,6 @@
 "used_for_sending" = "Yettwaseqdec i tuzzna";
 "hide_from_contacts" = "Ffer-it ɣef inermisen";
 "hidden_from_contacts" = "Uffir ɣef inermisen";
-// Hint for the list of relays
-"transport_list_hint" = "Iznan ttwaremsen ɣef meṛṛa imedwal";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Rnu amedwel-agi?";
 "invalid_transport_qr" = "Tangalt QR ittusemḍen ur tesɛi ara amedwel ameɣtu";
@@ -632,6 +633,7 @@
 "pref_enter_sends" = "Kcem tisura i umazan";
 "pref_enter_sends_explain" = "Asiti ɣef tanast Kcem ad yazen aḍris n yiznan";
 "pref_outgoing_media_quality" = "Taɣara n umidya";
+"pref_outgoing_media_quality_hint" = "Akken ad tazneḍ afaylu s taɣara-ines taɣbalut, mudd-d amidya s wudem n \"Afaylu\". Ayagi ad iseqdac ugar n yisefka i kečč akked  iɣerwaḍen-ik·im.";
 "pref_outgoing_balanced" = "Imnekni";
 "pref_outgoing_worse" = "Taɣara n diri, tiddi tameẓyant";
 "pref_vibrate" = "Argagi";
@@ -847,6 +849,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Amkud n yiznan ur nettdum ara yettwasbed ar %1$@ n yimalas sɣur %2$@.";
 "chat_unencrypted_explanation" = "Iznan deg udiwenni-a sseqdacen imayl aklasiki, ur ttwawgelhen ara seg yixef ɣer yixef.";
+"messages_are_e2ee" = "Iznan tteddun s wudem n uwgelhen seg yixef ɣer yixef.";
 "chat_protection_enabled_tap_to_learn_more" = "Iznan ttwawgelhen seg yixef ɣer yixef. Sit akken ad tissineḍ ugar.";
 "chat_protection_enabled_explanation" = "Iznan akk yellan deg udiwenni-a ttwawgelhen seg yixef ɣer yixef.\n\nAwgelhen n yixef ɣer yixef yettaǧǧa iznan d usligen gar-ak·am d yecriken n udiwenni. Ula d iqeddacen, isaǧǧawen neɣ imsawaḍen ur zemren ad ten-ɣren.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️%1$@ Yesra awgelhen n yixef ɣer yixef ur nelli ara yakan i udiwenni-a. Sit akken ad tissineḍ ugar.";

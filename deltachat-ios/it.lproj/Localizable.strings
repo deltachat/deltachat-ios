@@ -67,6 +67,8 @@
 "mark_as_read" = "Segna come Letto";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Segna Letto";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Non Letto";
 // Placeholder text when something is loading
 "loading" = "Caricamento…";
 "hide" = "Nascondi";
@@ -120,6 +122,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Selezionato:";
+"selected" = "Selezionato";
 "self" = "Io";
 "draft" = "Bozza";
 "image" = "Immagine";
@@ -336,6 +339,12 @@
 "audio_call" = "Chiamata audio";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Videochiamata";
+"call_initializing" = "Inizializzazione...";
+"call_incoming" = "Chiamata in arrivo";
+"call_ringing" = "Squilla…";
+"call_reconnecting" = "Riconnessione…";
+"call_ended" = "Chiamata terminata";
+"call_failed" = "Chiamata non riuscita";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Chiamata in uscita";
 // deprecated, use "Video call" instead
@@ -347,6 +356,7 @@
 "declined_call" = "Chiamata rifiutata";
 "canceled_call" = "Chiamata annullata";
 "missed_call" = "Chiamata persa";
+"already_in_call" = "Già in chiamata";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
@@ -565,9 +575,16 @@
 "add_transport" = "Aggiungi Trasporto";
 "remove_transport" = "Rimuovi Trasporto";
 "edit_transport" = "Modifica Trasporto";
+"used_for_sending" = "Utilizzato per l\'invio";
+"hide_from_contacts" = "Nascondi dai Contatti";
+"hidden_from_contacts" = "Nascosto dai contatti";
+// Hint for the list of relays
+"transport_list_hint" = "I messaggi vengono ricevuti su tutti i ripetitori.\n\n⚠️ Se modifichi qualcosa qui, assicurati che tutti i tuoi dispositivi abbiano almeno la versione 2.47.0. Altrimenti i dispositivi più vecchi potrebbero non ricevere i messaggi.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Aggiungere questo trasporto?";
 "invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Rimuovo ripetitore \"%1$@\"?\n\nI contatti che conoscono solo questo relay potrebbero non raggiungerti finché non invierai loro un altro messaggio. In caso di dubbio, nascondilo invece di rimuoverlo.";
 "login_certificate_checks" = "Controlli Certificato";
 "login_error_mail" = "Per piacere Inserisci un indirizzo e-mail valido";
 "login_error_server" = "Per piacere inserisci un server / indirizzo IP valido";
@@ -620,6 +637,7 @@
 "pref_enter_sends" = "Spedisci con Invio";
 "pref_enter_sends_explain" = "Premendo il tasto Invio invierà i messaggi";
 "pref_outgoing_media_quality" = "Qualità Media in Uscita";
+"pref_outgoing_media_quality_hint" = "Per inviare contenuti in qualità originale, allega i file multimediali come \"File\". Questo comporta un consumo di dati significativamente maggiore sia per te che per i destinatari.";
 "pref_outgoing_balanced" = "Bilanciata";
 "pref_outgoing_worse" = "Qualità peggiore, dimensione ridotta";
 "pref_vibrate" = "Vibra";
@@ -835,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Timer messaggi a scomparsa impostato su %1$@ settimane da %2$@.";
 "chat_unencrypted_explanation" = "I messaggi in questa chat utilizzano l\' e-mail classica e non sono crittografati end-to-end.";
+"messages_are_e2ee" = "I messaggi sono crittografati end-to-end.";
 "chat_protection_enabled_tap_to_learn_more" = "I messaggi sono crittografati end-to-end. Tocca per saperne di più.";
 "chat_protection_enabled_explanation" = "Tutti i messaggi in questa chat sono crittografati end-to-end. La crittografia end-to-end mantiene privati i messaggi tra te e i tuoi interlocutori. Nemmeno servers, providers o relays possono leggerli.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ richiede la crittografia end-to-end che non è ancora configurata per questa chat. Tocca per saperne di più.";

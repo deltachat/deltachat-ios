@@ -520,7 +520,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ya tengo un perfil";
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
-"manual_account_setup_option" = "Iniciar sesión con correo electrónico";
+"manual_account_setup_option" = "Usar correo electrónico como Retransmisor";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Tu perfil";
 // The placeholder will be replaced by the default onboarding server
@@ -571,20 +571,20 @@
 "proxy_enabled" = "Proxy activado";
 "proxy_enabled_hint" = "Estás utilizando un proxy. Si tienes problemas para conectarte, prueba con otro proxy.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Transportes";
-"add_transport" = "Añadir transporte";
-"remove_transport" = "Eliminar transporte";
-"edit_transport" = "Editar transporte";
+"transports" = "Retransmisores";
+"add_transport" = "Añadir Retransmisor";
+"remove_transport" = "Eliminar Retransmisor";
+"edit_transport" = "Editar Retransmisor";
 "used_for_sending" = "Usado para enviar";
 "hide_from_contacts" = "Ocultar de los contactos";
 "hidden_from_contacts" = "Ocultado de los contactos";
 // Hint for the list of relays
-"transport_list_hint" = "Los mensajes se reciben en todos los relays.";
+"transport_list_hint" = "Los mensajes se reciben en todos los retransmisores.\n\n⚠️ Si cambias algo aquí, asegúrese de que todos sus dispositivos ejecutan al menos la versión 2.47.0. De lo contrario, los dispositivos más antiguos pueden perder algunos mensajes.";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "¿Añadir este transporte?";
-"invalid_transport_qr" = "El código QR escaneado no contiene un transporte válido.";
+"confirm_add_transport" = "¿Añadir este retransmisor?";
+"invalid_transport_qr" = "El código QR escaneado no contiene un retransmisor válido.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_or_hide_transport_x" = "¿Eliminar el relay \"%1$@\"?\n\nLos contactos que solo conocen este relay podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
+"confirm_remove_or_hide_transport_x" = "¿Eliminar el retransmisor \"%1$@\"?\n\nLos contactos que solo conocen este retransmisor podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
@@ -853,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de la desaparición de mensajes establecido en %1$@ semanas por %2$@.";
 "chat_unencrypted_explanation" = "Los mensajes en este chat usan el correo electrónico clásico y no están cifrados de extremo a extremo.";
+"messages_are_e2ee" = "Los mensajes están cifrados de extremo a extremo.";
 "chat_protection_enabled_tap_to_learn_more" = "A partir de ahora se garantiza que los mensajes están cifrados de extremo a extremo . Toca para obtener más información.";
 "chat_protection_enabled_explanation" = "Ahora se garantiza que todos los mensajes en este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus compañeros de chat. Ni siquiera tu proveedor de correo electrónico puede leerlos.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
