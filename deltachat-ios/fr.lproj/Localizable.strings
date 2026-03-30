@@ -578,8 +578,6 @@
 "used_for_sending" = "Utilisé pour les envois";
 "hide_from_contacts" = "Masquer pour les contacts";
 "hidden_from_contacts" = "Masqué pour les contacts";
-// Hint for the list of relays
-"transport_list_hint" = "Les messages sont reçus sur tous les relais.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
 "invalid_transport_qr" = "Le code QR scanné ne renvoie pas vers un relais valide.";

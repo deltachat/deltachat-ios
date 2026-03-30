@@ -67,6 +67,8 @@
 "mark_as_read" = "Märgi loetuks";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Märgi loetuks";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Märgi mitteloetuks";
 // Placeholder text when something is loading
 "loading" = "Laadimisel…";
 "hide" = "Peida";
@@ -120,6 +122,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Valitud:";
+"selected" = "Valitud";
 "self" = "Mina";
 "draft" = "Kavand";
 "image" = "Polt";
@@ -336,6 +339,12 @@
 "audio_call" = "Häälkõne";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Videokõne";
+"call_initializing" = "Valmendan…";
+"call_incoming" = "Saabuv kõne";
+"call_ringing" = "Heliseb…";
+"call_reconnecting" = "Ühendan uuesti…";
+"call_ended" = "Kõne on lõppenud";
+"call_failed" = "Kõne ühendamine ei õnnestunud";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Väljuv häälkõne";
 // deprecated, use "Video call" instead
@@ -347,6 +356,7 @@
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";
+"already_in_call" = "Kõne  juba on pooleli";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
@@ -565,9 +575,14 @@
 "add_transport" = "Lisa alusühendus";
 "remove_transport" = "Eemalda alusühendus";
 "edit_transport" = "Muuda alusühendust";
+"used_for_sending" = "Kasutatud saatmiseks";
+"hide_from_contacts" = "Peida kontaktidest";
+"hidden_from_contacts" = "Peidetud kontaktidest";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "Kas lisad selle alusühenduse?";
-"invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust";
+"confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
+"invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?\n\nKui mõni kontakt teab vaid seda ühendusviisi, siis ta ei pruugi sind kätte saada enne, kui oled talle uuesti kirjutanud.\n\nKui kahtled, siis eemakdamise asemel pigem peida see alusühendus (edastusserver).";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";
 "login_error_server" = "Palun sisesta korrektne serveri täisnimi või ip-aadress";
@@ -836,6 +851,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
 "chat_unencrypted_explanation" = "Sõnumid siin vestluses kasutavad klassikalist e-postiliidestust ja pole läbivalt krüptitud.";
+"messages_are_e2ee" = "Sõnumid on läbivalt krüptitud.";
 "chat_protection_enabled_tap_to_learn_more" = "Sõnumid on läbivalt krüptitud. Lisateabe ligemiseks klõpsi.";
 "chat_protection_enabled_explanation" = "Kõik selle vestluse sõnumid on läbivalt krüptitud.\n\nSee tagab, et sõnumid on loetavad vaid sinu ja vestluse teis(t)e osapool(t)e poolt. Ei teenusepakkujad, serverihaldajad, ega põrgatajad ei saa neid sõnumeid lugeda.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ eeldab läbiva krüptimise kasutamist, aga see pole veel antud vestluse jaoks seadistatud. Lisateabe ligemiseks klõpsi.";

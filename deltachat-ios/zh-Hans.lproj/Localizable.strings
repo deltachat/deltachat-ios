@@ -578,8 +578,6 @@
 "used_for_sending" = "用于发送";
 "hide_from_contacts" = "对联系人隐藏";
 "hidden_from_contacts" = "已对联系人隐藏";
-// Hint for the list of relays
-"transport_list_hint" = "在所有中继上均已收到消息。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "添加此中继？";
 "invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
