@@ -1,5 +1,15 @@
 # Delta Chat iOS Changelog
 
+## v2.48.0 Testflight
+2026-03
+
+- Improve logging
+- Fix reordering problems introduced in 2.46.0
+- Fix resending of larger messages
+- Fix chats not marked as read sometime on other devices
+- Fix importing backups created by 1.86.0
+
+
 ## v2.47.0 Testflight
 2026-03
 
