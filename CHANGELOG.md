@@ -3,6 +3,7 @@
 ## v2.48.0 Testflight
 2026-03
 
+- Add a warning about updating all devices to "Settings / Advanced / Relays"
 - Improve logging
 - Fix reordering problems introduced in 2.46.0
 - Fix resending of larger messages
