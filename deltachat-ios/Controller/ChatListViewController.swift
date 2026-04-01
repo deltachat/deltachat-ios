@@ -93,7 +93,7 @@ class ChatListViewController: UITableViewController {
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self else { return }
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
-            self.viewModel?.onChatListUpdate = self.handleChatListUpdate
+            self.viewModel?.onChatListUpdate = { [weak self] in self?.handleChatListUpdate() }
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
                 if !isArchive {
