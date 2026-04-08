@@ -83,6 +83,13 @@ class NotificationService: UNNotificationServiceExtension {
                 if let content = UNMutableNotificationContent(forWebxdcNotification: event.data2String, msg: msg, chat: chat, context: dcContext) {
                     notifications.append(content)
                 }
+            } else if event.id == DC_EVENT_CALL_MISSED {
+                let dcContext = dcAccounts.get(id: event.accountId)
+                let chat = dcContext.getChat(chatId: event.data2Int)
+                let msg = dcContext.getMessage(id: event.data1Int)
+                if let content = UNMutableNotificationContent(forMissedCallMsg: msg, chat: chat, context: dcContext) {
+                    notifications.append(content)
+                }
             } else if event.id == DC_EVENT_INCOMING_CALL {
                 UserDefaults.pushToDebugArray("☎️")
                 let payload: [String: Any] = [
