@@ -578,6 +578,8 @@
 "used_for_sending" = "用于发送";
 "hide_from_contacts" = "对联系人隐藏";
 "hidden_from_contacts" = "已对联系人隐藏";
+// Hint for the list of relays
+"transport_list_hint" = "在所有中继上均已收到消息。\n\n⚠️ 如果您在此处进行任何更改，请确保所有设备至少运行 2.47.0 版本。否则，较旧的设备可能会错过消息。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "添加此中继？";
 "invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
@@ -719,10 +721,6 @@
 "up_to_x_most_worse_quality_images" = "%1$@ 以下，最差的图像质量";
 "up_to_x_most_balanced_quality_images" = "%1$@ 以下，均衡的图像质量";
 "download_failed" = "下载失败";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "%1$@ 消息";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "下载最晚于 %1$@ 前可用";
 "profile_image_select" = "选择个人资料图片";
 "select_your_new_profile_image" = "选择新的个人资料图片";
 "profile_image_delete" = "删除个人资料图片";

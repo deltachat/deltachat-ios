@@ -721,10 +721,6 @@
 "up_to_x_most_worse_quality_images" = "Hasta %1$@, la mayoría de imágenes de peor calidad";
 "up_to_x_most_balanced_quality_images" = "Hasta %1$@, la mayoría de imágenes de calidad balanceada";
 "download_failed" = "Descarga fallida";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "Mensaje de %1$@";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "Descarga disponible hasta %1$@";
 "profile_image_select" = "Seleccionar imagen de perfil";
 "select_your_new_profile_image" = "Seleccionar tu nueva imagen de perfil";
 "profile_image_delete" = "Borrar imagen de perfil";

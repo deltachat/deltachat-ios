@@ -545,10 +545,6 @@
 "up_to_x_most_worse_quality_images" = "До %1$@, повечето от които изображения с по-лошо качество";
 "up_to_x_most_balanced_quality_images" = "До %1$@, повечето от които изображения с балансирано качество";
 "download_failed" = "Неуспешно сваляне";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "%1$@ съобщение";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "Сваляне на максимално наличното до %1$@";
 "profile_image_select" = "Избор на изображение за профила";
 "select_your_new_profile_image" = "Изберете новото изображение за профила си";
 "profile_image_delete" = "Изтриване на изображението на профила";
