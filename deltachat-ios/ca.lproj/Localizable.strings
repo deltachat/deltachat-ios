@@ -721,10 +721,6 @@
 "up_to_x_most_worse_quality_images" = "Fins a %1$@, les imatges de pitjor qualitat";
 "up_to_x_most_balanced_quality_images" = "Fins a %1$@, imatges de qualitat la majoria de vegades.";
 "download_failed" = "La baixada ha fallat";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "%1$@ missatge";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "Baixa el màxim disponible fins a %1$@";
 "profile_image_select" = "Trieu la imatge de perfil";
 "select_your_new_profile_image" = "Trieu la imatge nova de perfil";
 "profile_image_delete" = "Esborra la imatge del perfil";

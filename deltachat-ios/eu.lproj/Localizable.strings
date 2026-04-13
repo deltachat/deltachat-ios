@@ -111,7 +111,7 @@
 "last_week" = "Azken astea";
 "last_month" = "Azken hilabetea";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
-"last_seen_at" = "%1$@-n ikusi da azken";
+"last_seen_at" = "Azken aldiz begiratua: %1$@";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Azken aldiz begiratua %1$@";
 "last_seen_unknown" = "Azken aldiz begiratzea: ezezaguna";
@@ -578,6 +578,8 @@
 "used_for_sending" = "Bidaltzeko erabilita";
 "hide_from_contacts" = "Ezkutatu kontaktuetatik";
 "hidden_from_contacts" = "Kontaktuetatik ezkutatuta";
+// Hint for the list of relays
+"transport_list_hint" = "Mezuak errele guztietan jasotzen dira.\n\n⚠️ Hemen zerbait aldatzen baduzu, ziurtatu zure gailu guztiek gutxienez 2.47.0 bertsioa dutela. Bestela, gailu zaharragoek mezuak gal ditzakete.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
@@ -719,10 +721,6 @@
 "up_to_x_most_worse_quality_images" = "%1$@ arte: kalitate txarreneko irudiak";
 "up_to_x_most_balanced_quality_images" = "%1$@ arte: kalitate orekatueneko irudiak";
 "download_failed" = "Deskargak huts egin du";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "%1$@ mezu";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "Deskargatu eskuragarri dagoen gehienezkoa %1$@ arte";
 "profile_image_select" = "Aukeratu abatarra";
 "select_your_new_profile_image" = "Aukeratu zure abatar berria";
 "profile_image_delete" = "Ezabatu abatarra";

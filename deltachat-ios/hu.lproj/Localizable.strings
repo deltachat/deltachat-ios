@@ -660,10 +660,6 @@
 "up_to_x_most_worse_quality_images" = "Legfeljebb %1$@, leginkább rosszabb minőségű kép";
 "up_to_x_most_balanced_quality_images" = "Legfeljebb %1$@, leginkább kiegyensúlyozatabb minőségű kép";
 "download_failed" = "Sikertelen letöltés";
-// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB. Resulting string eg. "1 MiB message"
-"n_bytes_message" = "%1$@ üzenet";
-// %1$s will be replaced by human-readable date and time
-"download_max_available_until" = "Letöltés maximum ennyi ideig visszamenőleg: %1$@ ";
 "profile_image_select" = "Profilkép kiválasztása";
 "select_your_new_profile_image" = "Válassza ki az új profilképet";
 "profile_image_delete" = "Profilkép törlése";
