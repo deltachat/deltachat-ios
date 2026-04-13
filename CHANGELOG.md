@@ -1,8 +1,21 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.49.0 Testflight
+2026-04
 
+- Fix: Mark a message as delivered only after it has been fully sent out
+- Fix: Do not create 1:1 chat on second device when scanning a QR code
+- Fix: Do not URL-encode proxy hostnames
+- Fix sometimes missing assigning of webxdc updates to webxdc instance
+- Fix: Let search also return hidden contacts if search value is an email address
+- Fix: Make informational messages stick to the top of the chat
+- Fix sometimes wrong detection of self-messages
+- Fix sometimes wrong orientaton of images
 - Fix: in-chat unread counter on the back button was not always updated after marking chats as unread
+- Fix memory leak when opening chatlist and chat frequently
+- Fix: Ignore messages about group name change from non-member
+- Update translations and local help
+- Update core to 2.49.0
 
 
 ## v2.48.0
