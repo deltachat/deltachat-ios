@@ -2,7 +2,27 @@
 
 ## Unreleased
 
-- Fix: in-chat unread counter on the back button was not always updated after marking chats as unread.
+- Fix: in-chat unread counter on the back button was not always updated after marking chats as unread
+
+## v2.48.0 Testflight
+2026-03
+
+- Add a warning about updating all devices to "Settings / Advanced / Relays"
+- Improve logging
+- Fix reordering problems introduced in 2.46.0
+- Fix resending of larger messages
+- Fix chats not marked as read sometime on other devices
+- Fix importing backups created by 1.86.0
+
+
+## v2.47.0 Testflight
+2026-03
+
+- Fix infinite loop in case a folder is missing on the relay
+- Fix downloading full attachments if the message is already downloaded
+- Fix downloading full attachments if the message was deleted
+- Fix: Make newlines work in chat descriptions
+
 
 ## v2.46.0 Testflight
 2026-03

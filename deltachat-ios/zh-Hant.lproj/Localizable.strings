@@ -14,7 +14,6 @@
 "off" = "關閉";
 "def" = "預設";
 "default_value" = "預設 (%1$@)";
-"default_value_as_above" = "預設 (同上)";
 "custom" = "自訂";
 "none" = "無";
 "automatic" = "自動";
@@ -32,8 +31,6 @@
 "update" = "更新";
 "emoji" = "表情符號";
 "attachment" = "附件";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "附加“%1$@”？";
 "back" = "返回";
 "close" = "關閉";
 "close_window" = "關閉視窗";
@@ -293,8 +290,6 @@
 "menu_more_options" = "更多選項";
 "menu_learn_spelling" = "學習拼寫";
 "jump_to_message" = "移動至訊息";
-"jump_to_original_message" = "跳轉到原始訊息";
-"copy_json" = "複製 JSON 內容";
 "replace_draft" = "取代草稿";
 "title_share_location" = "分享所在地給所有群組成員";
 "device_talk" = "裝置訊息";
@@ -425,15 +420,7 @@
 "send_file_to" = "傳送「%1$@」至…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "傳送訊息至…";
-"enable_realtime" = "即時應用程式";
-"enable_realtime_explain" = "為聊天中共用的應用程式啟用即時連接。如果啟用，聊天夥伴或許能夠在您啟動應用程式時發現您的IP位址。";
-// map
-"filter_map_on_time" = "顯示指定時間內的所在地";
-"show_location_traces" = "顯示移動足跡";
-"add_poi" = "傳送興趣點";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "不在詢問%1$@";
 "puny_code_warning_header" = "檢測到可疑連結";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "您確定要訪問%1$@嗎 ？";
@@ -588,8 +575,6 @@
 "used_for_sending" = "用于发送";
 "hide_from_contacts" = "对联系人隐藏";
 "hidden_from_contacts" = "已对联系人隐藏";
-// Hint for the list of relays
-"transport_list_hint" = "在所有中继上均已收到消息。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "新增這個中繼伺服器？";
 "invalid_transport_qr" = "掃描的 QR 碼不包含有效的中繼伺服器。";
@@ -740,8 +725,6 @@
 "profile_image_delete" = "刪除大頭貼";
 "pref_show_tray_icon" = "顯示托盤圖示";
 "pref_edit_profile" = "編輯個人檔案";
-"disable_imap_idle" = "禁用 IMAP IDLE";
-"disable_imap_idle_explain" = "即使伺服器支援 IMAP IDLE 擴展，也不要使用它。啟用此選項會延遲訊息檢索，僅對測試啟用此選項。";
 "send_stats_to_devs" = "將統計數據發送給 Delta Chat 的開發人員";
 "stats_device_message" = "你想透過每週傳送匿名使用統計數據來幫助改進 Delta Chat 並支持研究嗎？\n\n👉 點擊這裡… 👈";
 "stats_confirmation_dialog" = "你想透過每週寄送匿名使用統計資料來幫助改善 Delta Chat 並支持研究嗎？";
@@ -966,9 +949,6 @@
 "ImageEditorHud_crop" = "裁切";
 "ImageEditorHud_flip" = "翻轉";
 "ImageEditorHud_rotate" = "旋轉";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "這是 Delta Chat 官方桌面應用程式。";
-"about_licensed_under_desktop" = "該軟體根據 GNU GPL 第 3 版獲得許可，原始程式碼可在 GitHub 上找到。";
 "welcome_desktop" = "歡迎來到 Delta Chat";
 "global_menu_preferences_language_desktop" = "語言";
 "global_menu_file_desktop" = "檔案";
@@ -1008,6 +988,7 @@
 "menu.view.developer.open.log.folder" = "打開日誌資料夾";
 "menu.view.developer.open.current.log.file" = "打開當前日誌文件";
 "explain_desktop_minimized_disabled_tray_pref" = "無法禁用托盤圖示，因為 Delta Chat 是使用 --minimized 選項啟動的。";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "未找到拼寫建議。";
 "show_window" = "顯示視窗";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

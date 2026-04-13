@@ -14,7 +14,6 @@
 "off" = "خاموش";
 "def" = "پیش‌فرض";
 "default_value" = "پیش‌فرض (%1$@)";
-"default_value_as_above" = "پیش‌فرض (مانند بالا)";
 "custom" = "سفارشی";
 "none" = "هیچ‌کدام";
 "automatic" = "خودکار";
@@ -32,8 +31,6 @@
 "update" = "به‌‌روزرسانی";
 "emoji" = "شکلک";
 "attachment" = "پیوست";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "پیوست کردن «%1$@»؟";
 "back" = "بازگشت";
 "close" = "بستن";
 "close_window" = "بستن پنجره";
@@ -284,8 +281,6 @@
 "menu_more_options" = "گزینه‌های بیشتر";
 "menu_learn_spelling" = "یادگرفتن املا ";
 "jump_to_message" = "رفتن به پیام";
-"jump_to_original_message" = "پرش به پیام اصلی";
-"copy_json" = "JSON رونوشت برداری از ";
 "replace_draft" = "جایگزین کردن پیش‌نویس";
 "title_share_location" = "اشتراک موقعیت مکانی با همه اعضای گروه";
 "device_talk" = "پیام‌های دستگاه";
@@ -406,15 +401,7 @@
 "send_file_to" = "ارسال \"%1$@\" به...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "ارسال پیام به...";
-"enable_realtime" = "برنامه‌های بلادرنگ";
-"enable_realtime_explain" = "فعال‌سازی اتصال‌های بلادرنگ برای برنامه‌های به اشتراک گذاشته‌شده در گپ‌ها. در صورت فعال‌سازی، زمانی که برنامه را باز می‌کنید، دیگر اعضای گپ ممکن است بتوانند نشانی اینترنتی شما را شناسایی کنند.";
-// map
-"filter_map_on_time" = "نمایش موقعیت‌های مکانی در چارچوب زمان";
-"show_location_traces" = "نمایش ردپاها";
-"add_poi" = "ارسال نقطه توجه";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "دوباره درمورد %1$@ سوال نشود";
 "puny_code_warning_header" = "لینک مشکوک شناسایی شد";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "مطمئن هستید می‌خواهید به %1$@ مراجعه کنید؟";
@@ -708,8 +695,6 @@
 "profile_image_delete" = "حذف تصویر نمایه";
 "pref_show_tray_icon" = "نمایش نمادک در زیر صفحه";
 "pref_edit_profile" = "ویرایش نمایه";
-"disable_imap_idle" = "غیر فعال‌سازی IMAP IDLE";
-"disable_imap_idle_explain" = "استفاده نکردن از افزونهٔ IMAP IDLE حتی در صورتی که ارائه‌دهنده از آن پشتیبانی می‌کند. فعال‌سازی این گزینه باعث می‌شوند دریافت پیام‌ها به تاخیر بیوفتد. تنها برای آزمایش آن را فعال کنید.";
 "send_stats_to_devs" = "ارسال آمار برای توسعه‌دهندگان دلتاچت";
 "stats_device_message" = "آیا می‌خواهید با فرستادن آمار استفادهٔ هفتگی به بهبود دلتاچت کمک کنید؟ 👈این‌جا را بزنید...👉";
 "stats_confirmation_dialog" = "می‌خواهید با فرستادن گزارش‌های ناشناس استفادهٔ هفتگی به بهبود دلتاچت کمک کنید؟";
@@ -931,9 +916,6 @@
 "ImageEditorHud_crop" = "بریدن";
 "ImageEditorHud_flip" = "برعکس کردن";
 "ImageEditorHud_rotate" = "چرخاندن";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "این نرم‌افزار رسمی دلتاچت در محیط رایانه است.";
-"about_licensed_under_desktop" = "این نرم افزار تحت مجوز GNU GPL ورژن ۳ منتشر شده و کد منبع در GitHub در دسترس است.";
 "welcome_desktop" = "به دلتاچت خوش‌آمدید";
 "global_menu_preferences_language_desktop" = "زبان";
 "global_menu_file_desktop" = "پرونده";
@@ -973,6 +955,7 @@
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
 "menu.view.developer.open.current.log.file" = "پوشه گزارش فعلی را باز کن";
 "explain_desktop_minimized_disabled_tray_pref" = "چون دلتاچت با تنظیم‌ها --زیرصفحه شروع به کار کرده است نمی‌توان نمادک زیر صفحه را غیر فعال کرد. ";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "هیچ پیشنهادی برای املا پیدا نشد";
 "show_window" = "نمایش پنجره";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

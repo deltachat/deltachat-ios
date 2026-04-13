@@ -14,7 +14,6 @@
 "off" = "Väljas";
 "def" = "Vaikimisi";
 "default_value" = "Vaikimisi (%1$@)";
-"default_value_as_above" = "Vaikimisi (sama, kui ülal)";
 "custom" = "Kohandatud";
 "none" = "Puudub";
 "automatic" = "Automaatne";
@@ -32,8 +31,6 @@
 "update" = "Uuenda";
 "emoji" = "Emoji";
 "attachment" = "Manus";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Kas lisame manusena: „%1$@“?";
 "back" = "Tagasi";
 "close" = "Sulge";
 "close_window" = "Sulge aken";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Märgi loetuks";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Märgi loetuks";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Märgi mitteloetuks";
 // Placeholder text when something is loading
 "loading" = "Laadimisel…";
 "hide" = "Peida";
@@ -123,6 +122,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Valitud:";
+"selected" = "Valitud";
 "self" = "Mina";
 "draft" = "Kavand";
 "image" = "Polt";
@@ -292,8 +292,6 @@
 "menu_more_options" = "Täiendavad valikud";
 "menu_learn_spelling" = "Õpi õigekirja";
 "jump_to_message" = "Mine sõnumi juurde";
-"jump_to_original_message" = "Mine algse sõnumi juurde";
-"copy_json" = "Kopeeri JSON-vormingus";
 "replace_draft" = "Asenda kavand";
 "title_share_location" = "Jaga asukohta kõikide grupi liikmetega";
 "device_talk" = "Seadme sõnumid";
@@ -341,6 +339,12 @@
 "audio_call" = "Häälkõne";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Videokõne";
+"call_initializing" = "Valmendan…";
+"call_incoming" = "Saabuv kõne";
+"call_ringing" = "Heliseb…";
+"call_reconnecting" = "Ühendan uuesti…";
+"call_ended" = "Kõne on lõppenud";
+"call_failed" = "Kõne ühendamine ei õnnestunud";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Väljuv häälkõne";
 // deprecated, use "Video call" instead
@@ -352,6 +356,7 @@
 "declined_call" = "Keeldutud kõne";
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";
+"already_in_call" = "Kõne  juba on pooleli";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
@@ -418,15 +423,7 @@
 "send_file_to" = "Saada „%1$@“ fail kasutajale…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Saada sõnum…";
-"enable_realtime" = "Reaalajas toimivad rakendused";
-"enable_realtime_explain" = "Vestlustega seotud rakendused võivad kasutada reaalajas ühendusi. Kui valik on kasutusel, siis vestluste osapooltel on võimalik peale rakenduse käivitamist tuvastada sinu IP-aadress.";
-// map
-"filter_map_on_time" = "Näita asukohti ajavahemike kaupa";
-"show_location_traces" = "Näita asukohti kaardil";
-"add_poi" = "Saada huvipunkti teave";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ära enam %1$@ puhul küsi";
 "puny_code_warning_header" = "Tuvastasin kahtlase lingi";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Kas oled kindel, et soovid avada „%1$@“?";
@@ -578,9 +575,14 @@
 "add_transport" = "Lisa alusühendus";
 "remove_transport" = "Eemalda alusühendus";
 "edit_transport" = "Muuda alusühendust";
+"used_for_sending" = "Kasutatud saatmiseks";
+"hide_from_contacts" = "Peida kontaktidest";
+"hidden_from_contacts" = "Peidetud kontaktidest";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "Kas lisad selle alusühenduse?";
-"invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust";
+"confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
+"invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?\n\nKui mõni kontakt teab vaid seda ühendusviisi, siis ta ei pruugi sind kätte saada enne, kui oled talle uuesti kirjutanud.\n\nKui kahtled, siis eemakdamise asemel pigem peida see alusühendus (edastusserver).";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";
 "login_error_server" = "Palun sisesta korrektne serveri täisnimi või ip-aadress";
@@ -726,8 +728,6 @@
 "profile_image_delete" = "Kustuta profiilipilt";
 "pref_show_tray_icon" = "Näita süsteemisalve ikooni";
 "pref_edit_profile" = "Muuda profiili";
-"disable_imap_idle" = "Lülita IMAP IDLE välja";
-"disable_imap_idle_explain" = "Ära kasuta IMAP IDLE meetodit, seda isegi siis, kui server seda toetab. Sisselülitamisel tekib sõnumite laadimisel viivitusi. Kasuta seda vaid testimiseks.";
 "send_stats_to_devs" = "Saada statistikat Delta Chati kasutajatele";
 "stats_device_message" = "Kas sa tahad aidata Delta Chati paremaks muuta? Siis luba rakendusel kord nädalas saata anonüümset statistikat kasutuse kohta.\n\n👉 Klõpsa siia… 👈";
 "stats_confirmation_dialog" = "Kas sa tahad aidata Delta Chati paremaks muuta? Siis luba rakendusel kord nädalas saata anonüümset statistikat kasutuse kohta.";
@@ -851,6 +851,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ määras isekustuvate sõnumite kehtivuseks %1$@ nädalat.";
 "chat_unencrypted_explanation" = "Sõnumid siin vestluses kasutavad klassikalist e-postiliidestust ja pole läbivalt krüptitud.";
+"messages_are_e2ee" = "Sõnumid on läbivalt krüptitud.";
 "chat_protection_enabled_tap_to_learn_more" = "Sõnumid on läbivalt krüptitud. Lisateabe ligemiseks klõpsi.";
 "chat_protection_enabled_explanation" = "Kõik selle vestluse sõnumid on läbivalt krüptitud.\n\nSee tagab, et sõnumid on loetavad vaid sinu ja vestluse teis(t)e osapool(t)e poolt. Ei teenusepakkujad, serverihaldajad, ega põrgatajad ei saa neid sõnumeid lugeda.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ eeldab läbiva krüptimise kasutamist, aga see pole veel antud vestluse jaoks seadistatud. Lisateabe ligemiseks klõpsi.";
@@ -952,9 +953,6 @@
 "ImageEditorHud_crop" = "Kadreeri";
 "ImageEditorHud_flip" = "Pööra teistpidi";
 "ImageEditorHud_rotate" = "Pööra";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "See on Delta Chati ametlik töölauarakendus.";
-"about_licensed_under_desktop" = "See tarkvara on litsentseeritud GNU GPL versiooni 3 alusel ning rakenduse lähtekood on saadaval GitHubis.";
 "welcome_desktop" = "Tere tulemast, see on Delta Chat";
 "global_menu_preferences_language_desktop" = "Keel";
 "global_menu_file_desktop" = "Fail";
@@ -994,6 +992,7 @@
 "menu.view.developer.open.log.folder" = "Ava logifailide kaust";
 "menu.view.developer.open.current.log.file" = "Ava praegune logifail";
 "explain_desktop_minimized_disabled_tray_pref" = "Kuna Delta Chat juba käivitati --minimized argumendiga, siis süsteemisalve ikooni ei saa välja lülitada.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Õigekirjasoovitusi ei leidu.";
 "show_window" = "Näita akent";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

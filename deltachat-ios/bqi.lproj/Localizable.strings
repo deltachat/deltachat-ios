@@ -14,7 +14,6 @@
 "off" = "کۊر";
 "def" = "پؽش فرز";
 "default_value" = "پؽش فرز (%1$@)";
-"default_value_as_above" = "پؽش فرز (جۊر روء)";
 "custom" = "سفارشی";
 "none" = "هیچکویکی";
 "automatic" = "خوتکار";
@@ -32,8 +31,6 @@
 "update" = "ورۊ کردن";
 "emoji" = "ایموجی";
 "attachment" = "پیوست";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "«%1$@» پیوست بۊ؟";
 "back" = "وورگشتن";
 "close" = "بستن";
 "close_window" = "بستن نیمدری";
@@ -306,7 +303,6 @@
 "send_file_to" = "فشناڌن \"%1$@\" و...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "فشناڌن پیوم و...";
-"show_location_traces" = "نشووݩ داڌن جا پا";
 // search
 "search" = "پیتینیڌن";
 // create/edit groups, contact/group profile

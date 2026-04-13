@@ -14,7 +14,6 @@
 "off" = "Désactivé";
 "def" = "Par défaut";
 "default_value" = "Par défaut (%1$@)";
-"default_value_as_above" = "Par défaut (comme ci-dessus)";
 "custom" = "Personalisé";
 "none" = "Aucun";
 "automatic" = "Automatique";
@@ -32,8 +31,6 @@
 "update" = "Mise à jour";
 "emoji" = "Émoji";
 "attachment" = "Pièce jointe";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Joindre \"%1$@\" ?";
 "back" = "Retour";
 "close" = "Fermer";
 "close_window" = "Fermer la fenêtre";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Marquer comme lu";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Marquer comme lu";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Non lus";
 // Placeholder text when something is loading
 "loading" = "Chargement...";
 "hide" = "Cacher";
@@ -116,10 +115,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Dernière activité %1$@";
 "last_seen_unknown" = "Vu·e pour la dernière fois : inconnu";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Durée : moins de 1 minute";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Sélection :";
+"selected" = "Sélectionné";
 "self" = "Moi";
 "draft" = "Brouillon";
 "image" = "Image";
@@ -129,8 +132,11 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Vignette";
 "add_to_sticker_collection" = "Ajouter à la collection de vignettes";
-"add_stickers_instructions" = "Pour ajouter des vignettes, appuyez sur \"Ouvrir le dossier Vignettes\", créez un sous-dossier pour votre paquet de vignettes et faites-y glisser vos fichiers image ou vignette ";
+"add_stickers_instructions" = "Pour ajouter des vignettes, appuyez sur « Ouvrir le dossier Vignettes », créez un sous-dossier pour votre paquet de vignettes et faites-y glisser vos fichiers image ou vignette ";
 "open_sticker_folder" = "Ouvrir le dossier Vignettes";
+"ask_add_sticker_to_collection" = "Ajouter cette vignette à votre collection ?";
+"ask_delete_sticker" = "Supprimer cette vignette ?";
+"sticker_picker_empty_hint" = "Touchez une vignette pour l\'ajouter ici";
 "images" = "Images";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
@@ -224,6 +230,7 @@
 "menu_add_attachment" = "Ajouter une pièce jointe";
 "menu_leave_group" = "Quitter le groupe";
 "menu_leave_channel" = "Quitter le canal";
+"menu_leave_and_delete" = "Quitter et supprimer pour moi";
 "menu_delete_chat" = "Supprimer la discussion";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vider la discussion";
@@ -242,7 +249,7 @@
 "menu_copy_image_to_clipboard" = "Copier l\'image";
 "menu_copy_email_to_clipboard" = "Copier l\'adresse courriel";
 "paste_from_clipboard" = "Coller depuis le presse-papiers";
-"ask_copy_unopenable_link_to_clipboard" = "Le lien \"%1$d\" ne peut pas être ouvert dans le navigateur, souhaitez-vous le copier dans le presse-papier à la place ?";
+"ask_copy_unopenable_link_to_clipboard" = "Le lien « %1$d » ne peut pas être ouvert dans le navigateur, souhaitez-vous le copier dans le presse-papier à la place ?";
 "menu_forward" = "Faire suivre le message";
 "menu_reply" = "Répondre au message";
 "menu_mute" = "Mettre en sourdine";
@@ -285,8 +292,6 @@
 "menu_more_options" = "Plus d\'options";
 "menu_learn_spelling" = "Ajouter au dictionnaire";
 "jump_to_message" = "Aller au message";
-"jump_to_original_message" = "Aller au message original";
-"copy_json" = "Copier le JSON";
 "replace_draft" = "Remplacer le brouillon";
 "title_share_location" = "Partager la position avec tous les membres du groupe";
 "device_talk" = "Messages de l\'appareil";
@@ -308,7 +313,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Ajouter à l\'écran d\'accueil";
 "donate" = "Faire un don";
-"donate_device_msg" = "❤️ On dirait que vous aimez bien Delta Chat !\n\nNous vous serions reconnaissants d\'envisager de nous faire un don pour aider Delta Chat à rester libre et gratuit pour tout le monde.\n\nBien que Delta Chat soit gratuit et open source, son développement coûte de l\'argent. Aidez-nous à garder Delta Chat indépendant et à le rendre encore plus génial à l\'avenir.\n\nhttps://delta.chat/fr/donate";
+"donate_device_msg" = "❤️ On dirait que Delta Chat vous plaît !\n\nNous vous serions reconnaissants d\'envisager de nous faire un don pour aider Delta Chat à rester libre et gratuit pour tout le monde.\n\nBien que Delta Chat soit gratuit et open source, son développement coûte de l\'argent. Aidez-nous à garder Delta Chat indépendant et à le rendre encore plus génial à l\'avenir.\n\nhttps://delta.chat/fr/donate";
 "mute_for_one_hour" = "Sourdine pendant 1 heure";
 "mute_for_eight_hours" = "Sourdine pendant 8 heures";
 "mute_for_one_day" = "Sourdine pendant 1 jour";
@@ -330,6 +335,16 @@
 "answer_call" = "Décrocher";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Refuser";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Appel audio";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Appel vidéo";
+"call_initializing" = "Initialisation en cours";
+"call_incoming" = "Appel entrant";
+"call_ringing" = "Sonnerie en cours";
+"call_reconnecting" = "Reconnexion en cours";
+"call_ended" = "Appel terminé";
+"call_failed" = "L\'appel a échoué";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Appel audio sortant";
 // deprecated, use "Video call" instead
@@ -341,6 +356,7 @@
 "declined_call" = "Appel refusé";
 "canceled_call" = "Appel annulé";
 "missed_call" = "Appel manqué";
+"already_in_call" = "Déjà en appel";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Voulez-vous vraiment quitter la discussion ?";
@@ -387,7 +403,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Enregistrer le message";
 "saved_messages" = "Messages enregistrés";
-"saved_messages_explain" = "• Transférez les messages ici pour les retrouver facilement\n\n• Prenez des notes ou enregistrez des vocaux\n\n• Ajoutez des fichiers multimédias en pièces jointes pour les sauvegarder";
+"saved_messages_explain" = "• Transférez les messages ici pour les retrouver facilement\n\n• Prenez des notes ou enregistrez des vocaux\n\n• Ajoutez des fichiers multimédias en pièces jointes pour les enregistrer";
 // Should match "Saved" from "Saved messages"
 "saved" = "Enregistrés";
 "save_as" = "Enregistrer sous";
@@ -407,15 +423,7 @@
 "send_file_to" = "Envoyer \"%1$@\" à";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Envoyer un message à";
-"enable_realtime" = "Applications en temps réel";
-"enable_realtime_explain" = "Activez les connexions en temps réel pour les applications rattachées à vos discussions. Il est alors possible que vos interlocuteurs aient accès à votre adresse IP lorsque vous lancerez une appli. ";
-// map
-"filter_map_on_time" = "Afficher les positions pour une période";
-"show_location_traces" = "Afficher les traces";
-"add_poi" = "Afficher les points d\'intérêt";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Ne pas demander à nouveau pour %1$@";
 "puny_code_warning_header" = "Lien suspect détecté";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Voulez-vous vraiment visiter %1$@ ?";
@@ -535,7 +543,7 @@
 "welcome_chat_over_email" = "Messagerie décentralisée sécurisée";
 "scan_invitation_code" = "Scanner le code d\'invitation";
 "login_title" = "Connexion";
-"login_advanced_hint" = "Ce type de connexion est réservé aux utilisateurs avancés.\n\n• N\'utilisez pas une adresse déjà employée dans une autre appli.\n\n• Les serveurs de courriel classiques permettent les discussions non chiffrées de bout en bout, lesquelles sont représentées par une icône enveloppe.";
+"login_advanced_hint" = "Ce type de connexion est réservé aux utilisateurs avancés.\n\n• N\'utilisez pas une adresse déjà employée dans une autre appli.\n\n• Les serveurs de courriel classiques autorisent les discussions non chiffrées de bout en bout, lesquelles sont représentées par une icône enveloppe.";
 "login_inbox" = "Boîte de réception";
 "login_imap_login" = "Utilisateur IMAP";
 "login_imap_server" = "Serveur IMAP";
@@ -567,9 +575,14 @@
 "add_transport" = "Ajouter un relais";
 "remove_transport" = "Supprimer un relais";
 "edit_transport" = "Modifier le relais";
+"used_for_sending" = "Utilisé pour les envois";
+"hide_from_contacts" = "Masquer pour les contacts";
+"hidden_from_contacts" = "Masqué pour les contacts";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
 "invalid_transport_qr" = "Le code QR scanné ne renvoie pas vers un relais valide.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Supprimer le relai %1$@ ? Les contacts qui connaissent uniquement ce relai risquent de ne plus pouvoir vous joindre jusqu\'à ce que vous leur envoyiez un nouveau message. En cas de doute, mieux vaut le masquer que le supprimer.";
 "login_certificate_checks" = "Vérification du certificat";
 "login_error_mail" = "Entrez une adresse courriel valide";
 "login_error_server" = "Entre un serveur / adresse IP valide";
@@ -622,6 +635,7 @@
 "pref_enter_sends" = "Touche Entrée pour envoyer";
 "pref_enter_sends_explain" = "Appuyez sur la touche Entrée pour envoyer des messages texte";
 "pref_outgoing_media_quality" = "Qualité du média en sortie";
+"pref_outgoing_media_quality_hint" = "Pour envoyer un fichier multimédia dans sa qualité d\'origine, joignez-le au message en tant que « Fichier ». Cette méthode utilise beaucoup plus de données, aussi bien pour vous que pour vos destinataires.";
 "pref_outgoing_balanced" = "Équilibré";
 "pref_outgoing_worse" = "Qualité la plus basse, taille réduite";
 "pref_vibrate" = "Vibrer";
@@ -632,6 +646,10 @@
 "pref_notifications" = "Notifications";
 "pref_mention_notifications" = "Mentions";
 "pref_mention_notifications_explain" = "Dans les groupes mis en sourdine, notifier les messages qui vous sont adressés, tels que les réponses ou les réactions";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Appels";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Afficher l\'écran d\'appel pour tous les appels entrants";
 "pref_notifications_show" = "Afficher";
 "pref_notifications_priority" = "Priorité";
 "pref_notifications_explain" = "Activer les notifications système pour les nouveaux messages";
@@ -680,7 +698,7 @@
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Mode appareils multiples";
 "pref_multidevice_explain" = "Synchronise vos messages avec vos autres appareils. Activé automatiquement lorsque vous ajoutez un deuxième appareil";
-"pref_multidevice_change_warn" = "Le mode appareils multiples doit être activé quand vous utilisez le même profil sur plusieurs appareils. Désactivez cette option seulement si vous avez supprimé ce profil de vos autres appareils.\n\nDésactiver le mode alors que vous utilisez un profil sur plusieurs appareils causera un certain nombre de problèmes, dont des messages perdus.";
+"pref_multidevice_change_warn" = "Le mode appareils multiples doit être activé quand vous utilisez le même profil sur plusieurs appareils. Désactivez cette option seulement si vous avez supprimé ce profil de tous vos autres appareils.\n\nDésactiver ce mode alors que vous utilisez un profil sur plusieurs appareils causera un certain nombre de problèmes, dont des messages perdus.";
 "pref_auto_folder_moves" = "Déplacer automatiquement vers le dossier DeltaChat";
 "pref_only_fetch_mvbox_title" = "Ne consulter que le dossier DeltaChat";
 "pref_show_emails" = "Voir les courriels classiques";
@@ -710,12 +728,10 @@
 "profile_image_delete" = "Supprimer l\'image de profil";
 "pref_show_tray_icon" = "Afficher l\'icône dans la zone de notifications";
 "pref_edit_profile" = "Modifier le profil";
-"disable_imap_idle" = "Désactiver IMAP IDLE";
-"disable_imap_idle_explain" = "N\'utilisez pas d\'extension IMAP IDLE, même si elle est prise en charge par votre serveur, car elle provoque des retards dans la récupération des messages. Activez cette option uniquement pour effectuer des tests.";
 "send_stats_to_devs" = "Envoyer les statistiques aux développeurs de Delta Chat";
 "stats_device_message" = "Voulez-vous participer à l\'amélioration de Delta Chat et soutenir nos recherches en envoyant des statistiques d\'utilisation hebdomadaires de manière anonyme ?\n\n👉 Appuyez ici… 👈";
 "stats_confirmation_dialog" = "Voulez-vous participer à l\'amélioration de Delta Chat et soutenir nos recherches en envoyant des statistiques d\'utilisation hebdomadaires de manière anonyme ?";
-"stats_thanks" = "Merci ! Vous pouvez toujours désactiver l\'envoi dans \"Paramètres -> Avancé\".\n\nAuriez-vous 5 minutes de plus pour participer à une étude scientifique sur la sécurité de Delta Chat ?";
+"stats_thanks" = "Merci ! Vous pouvez toujours désactiver l\'envoi dans « Paramètres -> Avancé ».\n\nAuriez-vous 5 minutes de plus pour participer à une étude scientifique sur la sécurité de Delta Chat ?";
 "stats_disable_dialog" = "L\'envoi de statistiques est déjà activé.\n\nSouhaitez-vous le désactiver ?";
 "disable" = "Désactiver";
 "stats_keep_sending" = "Maintenir l\'envoi de statistiques";
@@ -835,6 +851,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Délai avant disparition des messages éphémères défini à %1$@ semaines par %2$@.";
 "chat_unencrypted_explanation" = "Les messages de cette discussion utilisent le courriel classique et ne sont pas chiffrés de bout en bout.";
+"messages_are_e2ee" = "Les messages sont chiffrés de bout en bout.";
 "chat_protection_enabled_tap_to_learn_more" = "Les messages sont chiffrés de bout en bout. Toucher pour en savoir plus.";
 "chat_protection_enabled_explanation" = "Tous les messages de cette discussion sont chiffrés de bout-en-bout.\n\nLe chiffrement de bout-en-bout garantit la confidentialité des messages échangés par les membres d\'une discussion. Même les serveurs, les fournisseurs de courriel et les relais ne peuvent pas les lire. ";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ nécessite un chiffrement de bout en bout qui n\'est pas encore configuré sur cette discussion. Appuyez pour en savoir plus.";
@@ -936,9 +953,6 @@
 "ImageEditorHud_crop" = "Rogner";
 "ImageEditorHud_flip" = "Tourner";
 "ImageEditorHud_rotate" = "Pivoter";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Ceci est l\'application de bureau Delta Chat officielle.";
-"about_licensed_under_desktop" = "Ce logiciel est sous licence GNU GPL version 3 et le code source est disponible sur GitHub.";
 "welcome_desktop" = "Bienvenue sur Delta Chat";
 "global_menu_preferences_language_desktop" = "Choisissez la langue...";
 "global_menu_file_desktop" = "Fichier";
@@ -978,6 +992,7 @@
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
 "menu.view.developer.open.current.log.file" = "Ouvrir le fichier Journal courant";
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icône système ne peut pas être enlevé car Delta Chat a été démarré avec l\'option --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Aucune propositions de correction trouvées.";
 "show_window" = "Afficher la fenêtre";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

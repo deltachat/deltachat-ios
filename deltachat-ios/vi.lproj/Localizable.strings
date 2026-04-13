@@ -10,7 +10,6 @@
 "off" = "Tắt";
 "def" = "Mặc định";
 "default_value" = "Mặc định (%1$@)";
-"default_value_as_above" = "Mặc định (giống như trên)";
 "custom" = "Tùy chỉnh";
 "none" = "Không";
 "automatic" = "Tự động";
@@ -219,7 +218,6 @@
 "menu_more_options" = "Tùy chọn khác";
 "menu_learn_spelling" = "Học đánh vần";
 "jump_to_message" = "Chuyển tới tin nhắn";
-"copy_json" = "Sao chép JSON";
 "replace_draft" = "Thay thế bản nháp";
 "title_share_location" = "Chia sẻ vị trí với tất cả thành viên nhóm";
 "device_talk" = "Tin nhắn thiết bị";
@@ -307,13 +305,7 @@
 "send_file_to" = "Gửi \"%1$@\" tới…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Gửi tin nhắn tới…";
-// map
-"filter_map_on_time" = "Hiển thị vị trí trong khung thời gian";
-"show_location_traces" = "Hiển thị dấu vết";
-"add_poi" = "Gửi điểm ưa thích";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Đừng hỏi lại %1$@";
 "puny_code_warning_header" = "Đã phát hiện liên kết đáng ngờ";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Bạn có chắc chắn muốn ghé thăm %1$@ không?";
@@ -530,8 +522,6 @@
 "profile_image_delete" = "Xóa ảnh hồ sơ";
 "pref_show_tray_icon" = "Hiển thị biểu tượng khay";
 "pref_edit_profile" = "Chỉnh sửa hồ sơ";
-"disable_imap_idle" = "Tắt IMAP IDLE";
-"disable_imap_idle_explain" = "Không sử dụng tiện ích mở rộng IMAP IDLE ngay cả khi máy chủ hỗ trợ nó. Bật tùy chọn này sẽ trì hoãn việc truy xuất tin nhắn, chỉ bật nó để kiểm tra.";
 // Emoji picker and categories
 "emoji_search_results" = "Kết quả tìm kiếm";
 "emoji_not_found" = "Không tìm thấy emoji nào";
@@ -710,9 +700,6 @@
 "ImageEditorHud_crop" = "Cắt";
 "ImageEditorHud_flip" = "Lật";
 "ImageEditorHud_rotate" = "Xoay";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Đây là ứng dụng Delta Chat Desktop chính thức.";
-"about_licensed_under_desktop" = "Phần mềm này được cấp phép theo GNU GPL phiên bản 3 và mã nguồn có sẵn trên GitHub.";
 "welcome_desktop" = "Chào mừng đến với Delta Chat";
 "global_menu_preferences_language_desktop" = "Ngôn ngữ";
 "global_menu_file_desktop" = "Tập tin";
@@ -748,6 +735,7 @@
 "menu.view.developer.open.log.folder" = "Mở thư mục nhật ký";
 "menu.view.developer.open.current.log.file" = "Mở tệp nhật ký hiện tại";
 "explain_desktop_minimized_disabled_tray_pref" = "Không thể tắt biểu tượng khay vì Delta Chat đã được bắt đầu bằng tùy chọn --giảm-thiểu.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Không tìm thấy gợi ý chính tả.";
 "show_window" = "Hiển thị cửa sổ";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

@@ -14,7 +14,6 @@
 "off" = "Выкл.";
 "def" = "По умолчанию";
 "default_value" = "По умолчанию (%1$@)";
-"default_value_as_above" = "По умолчанию (так же, как выше)";
 "custom" = "Персональная настройка";
 "none" = "Не задано";
 "automatic" = "Автоматически";
@@ -32,8 +31,6 @@
 "update" = "Обновить";
 "emoji" = "Эмодзи";
 "attachment" = "Вложение";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Прикрепить \"%1$@\"?";
 "back" = "Назад";
 "close" = "Закрыть";
 "close_window" = "Закрыть окно";
@@ -70,13 +67,15 @@
 "mark_as_read" = "Отметить как прочитанное";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Прочитано";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Не прочитано";
 // Placeholder text when something is loading
 "loading" = "Загрузка…";
 "hide" = "Скрыть";
 "activate" = "Активировать";
 "load_remote_content" = "Загрузка изображений из внешних источников";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Изображения, размещенные на внешних источниках, могут быть использованы для слежки за вами.\n\nЭта настройка также позволяет загружать шрифты и другое содержимое. Если она отключена, вы сможете видеть встроенные или кешированные изображения.\n\nРазрешить загрузку из внешних источников?";
+"load_remote_content_ask" = "Изображения, размещенные на внешних источниках, могут быть использованы для слежки за вами.\n\nЭта настройка также позволяет загружать шрифты и другой контент. Если она отключена, вы сможете видеть встроенные или кешированные изображения.\n\nРазрешить загрузку из внешних источников?";
 "always" = "Всегда";
 "always_load_remote_images" = "Всегда загружать изображения из внешних источников";
 "once" = "Только сейчас";
@@ -123,6 +122,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Выбрано:";
+"selected" = "Выбрано";
 "self" = "Я";
 "draft" = "Черновик";
 "image" = "Изображение";
@@ -132,7 +132,7 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Стикер";
 "add_to_sticker_collection" = "Добавить в коллекцию стикеров";
-"add_stickers_instructions" = "Для добавления стикеров, нажмите \"Открыть папку стикеров\", создайте подпапку для набора ваших стикеров и перетащите туда изображения и файлы стикеров";
+"add_stickers_instructions" = "Для добавления стикеров, нажмите \"Открыть папку стикеров\", создайте в ней подпапку для вашего набора стикеров и перетащите туда файлы изображений и стикеров";
 "open_sticker_folder" = "Открыть папку стикеров";
 "ask_add_sticker_to_collection" = "Добавить этот стикер в коллекцию?";
 "ask_delete_sticker" = "Удалить этот стикер?";
@@ -292,14 +292,12 @@
 "menu_more_options" = "Дополнительно";
 "menu_learn_spelling" = "Запоминать правописание";
 "jump_to_message" = "Перейти к сообщению";
-"jump_to_original_message" = "Перейти к исходному сообщению";
-"copy_json" = "Копировать JSON";
 "replace_draft" = "Заменить черновик";
 "title_share_location" = "Делиться местоположением со всеми участниками группы";
 "device_talk" = "Сообщения устройства";
 "device_talk_subtitle" = "Сообщения, созданные устройством";
-"device_talk_explain" = "Сообщения в этом чате создаются локально на вашем устройстве для уведомления о обновлениях и проблемах при использовании приложения.";
-"device_talk_welcome_message2" = "Оставайтесь на связи!\n\n🙌 Нажмите \"QR-код\" на главном экране обоих устройств. Выберите \"Сканировать QR-код\" на одном устройстве и покажите его на другом.\n\n🌍 Если вы не находитесь в одном помещении, отсканируйте код с помощью видеозвонка или поделитесь ссылкой-приглашением из раздела \"Сканировать QR-код\"\n\nЗатем: Наслаждайтесь децентрализованным мессенджером. В отличие от других популярных приложений, он работает без центрального управления, отслеживания и продажи ваших данных, а также данных ваших друзей, коллег или семьи крупным организациям.";
+"device_talk_explain" = "Сообщения в этом чате генерируются локально на вашем устройстве чтобы информировать об обновлениях и проблемах при использовании приложения.";
+"device_talk_welcome_message2" = "Оставайтесь на связи!\n\n🙌 Нажмите \"QR-код\" на главном экране обоих устройств. На одном устройстве выберите \"Сканировать QR-код\" и направьте камеру на другое устройство.\n\n🌍 Если устройства находятся в разных местах, отсканируйте код с помощью видеозвонка или поделитесь ссылкой-приглашением из раздела \"Сканировать QR-код\"\n\nЗатем: Наслаждайтесь децентрализованным мессенджером. В отличие от других популярных приложений, он не имеет центра управления и не отслеживает ваши действия, а также не продаёт данные о вас, ваших друзьях, коллегах или членах семьи крупным организациям.";
 "edit_contact" = "Редактировать контакт";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Закрепить чат";
@@ -315,7 +313,7 @@
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Добавить на главный экран";
 "donate" = "Пожертвовать";
-"donate_device_msg" = "❤️ Кажется, вам нравится Delta Chat!\n\nРассмотрите возможность сделать пожертвование, чтобы Delta Chat и дальше оставался бесплатным для всех пользователей.\n\nDelta Chat — это бесплатное приложение с открытым исходным кодом, но его разработка требует денег. Поддержите нас, чтобы сохранить независимость Delta Chat и сделать его ещё более крутым в будущем.\n\nhttps://delta.chat/donate";
+"donate_device_msg" = "❤️ Кажется, вам нравится Delta Chat!\n\nРассмотрите возможность сделать пожертвование, чтобы помочь нам сохранить Delta Chat бесплатным для всех пользователей.\n\nХотя использование Delta Chat бесплатно и исходный код открыт, разработка требует финансовых затрат. Помогите нам сохранить независимость Delta Chat и сделать его еще лучше в будущем.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "На 1 час";
 "mute_for_eight_hours" = "На 8 часов";
 "mute_for_one_day" = "На 1 день";
@@ -341,7 +339,12 @@
 "audio_call" = "Аудиозвонок";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Видеозвонок";
+"call_initializing" = "Инициализация...";
 "call_incoming" = "Входящий звонок";
+"call_ringing" = "Звонок...";
+"call_reconnecting" = "Переподключение...";
+"call_ended" = "Звонок завершен";
+"call_failed" = "Звонок не удался";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Исходящий аудиозвонок";
 // deprecated, use "Video call" instead
@@ -353,6 +356,7 @@
 "declined_call" = "Отклонённый звонок";
 "canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";
+"already_in_call" = "Вызов уже идёт";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы действительно хотите выйти?";
@@ -360,11 +364,11 @@
 "ask_delete_message" = "Удалить это сообщение?";
 "ask_forward" = "Переслать сообщения для %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
-"ask_export_attachment" = "Экспорт вложений позволит любому приложению на вашем устройстве получить к ним доступ.\n\nПродолжить?";
-"ask_block_contact" = "Заблокировать этот контакт?\n\nЗаблокированные контакты не будут показаны в личных сообщениях или группах, созданных ими.\n\nВ других группах сообщения заблокированных контактов будут по-прежнему доступны.";
+"ask_export_attachment" = "Экспорт вложений позволит другим приложениям на вашем устройстве получить к ним доступ.\n\nПродолжить?";
+"ask_block_contact" = "Заблокировать этот контакт?\n\nЗаблокированные контакты не будут показаны в личных сообщениях или группах, созданных ими.\n\nВ других группах сообщения заблокированных контактов, по-прежнему будут видны.";
 "ask_unblock_contact" = "Разблокировать этот контакт?";
-"ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов не могут быть удалены навсегда.";
-"ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов не могут быть удалены навсегда.";
+"ask_delete_contacts" = "Удалить контакты?\n\nКонтакты из действующих чатов нельзя удалить безвозвратно.";
+"ask_delete_contact" = "Удалить контакт %1$@?\n\nКонтакты из действующих чатов нельзя удалить безвозвратно.";
 "ask_start_chat_with" = "Создать чат с %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Удалить %1$@ из группы?";
@@ -399,7 +403,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Сохранить сообщение";
 "saved_messages" = "Сохранённые сообщения";
-"saved_messages_explain" = "• Пересылайте сообщения сюда для быстрого доступа\n\n• Создайте текстовые или голосовые заметки\n\n• Прикрепляйте медиафайлы, чтобы сохранить их";
+"saved_messages_explain" = "• Пересылайте сообщения сюда для быстрого доступа\n\n• Делайте заметки или записывайте голосовые сообщения\n\n• Прикрепляйте медиафайлы, чтобы сохранить их";
 // Should match "Saved" from "Saved messages"
 "saved" = "Сохранено";
 "save_as" = "Сохранить как…";
@@ -419,20 +423,12 @@
 "send_file_to" = "Отправить \"%1$@\" …";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Отправить сообщение…";
-"enable_realtime" = "Приложения реального времени";
-"enable_realtime_explain" = "Включить соединения в реальном времени для приложений, которыми вы делитесь в чатах. Если этот параметр включен, собеседники по чату смогут узнать ваш IP-адрес при запуске приложения.";
-// map
-"filter_map_on_time" = "Показать местоположения с интервалом времени";
-"show_location_traces" = "Показывать маршруты";
-"add_poi" = "Поделиться точкой на карте";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Больше не спрашивать %1$@";
 "puny_code_warning_header" = "Обнаружена подозрительная ссылка";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Вы уверены, что хотите посетить %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Эта ссылка может искажать символы, представляя их похожими на символы из других алфавитов. Переход по ссылке отмеченной %1$@ приведет к %2$@, что является нормальным для нелатинских символов. Если вы не ожидали увидеть такие символы, эта ссылка может быть опасной.";
+"puny_code_warning_description" = "Эта ссылка может искажать символы, заменяя их похожими символами из других алфавитов. Переход по ссылке отмеченной %1$@ приведет к %2$@, что является нормальным для нелатинских символов. Если вы не ожидали увидеть такие символы, эта ссылка может быть опасной.";
 // search
 "search" = "Поиск";
 "search_in_chat" = "Поиск в чате";
@@ -479,7 +475,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Добавить второе устройство";
 "multidevice_same_network_hint" = "Убедитесь, что оба устройства подключены к одной и той же локальной или Wi-Fi сети.";
-"multidevice_this_creates_a_qr_code" = "Это позволяет создать QR-код, который можно отсканировать на втором устройстве, чтобы скопировать профиль.\n\nУбедитесь, что посторонние люди или камера не видят следующий экран.";
+"multidevice_this_creates_a_qr_code" = "Это позволяет создать QR-код, который можно отсканировать на втором устройстве, чтобы скопировать профиль.\n\nУбедитесь, что посторонние лица или камеры не могут видеть следующий экран.";
 "multidevice_install_dc_on_other_device" = "Установите Delta Chat на другом устройстве (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "Запустите Delta Chat, выберите \"У меня уже есть профиль / Добавить как второе устройство\" и отсканируйте код, показанный здесь";
@@ -573,15 +569,22 @@
 "proxy_share_explain" = "Ваши друзья могут добавить этот прокси, отсканировав QR-код.";
 "proxy_share_link" = "Поделиться ссылкой";
 "proxy_enabled" = "Прокси включен";
-"proxy_enabled_hint" = "Вы используете прокси. При проблемах с подключением, попробуйте другой прокси.";
+"proxy_enabled_hint" = "Вы используете прокси. При проблемах с подключением, попробуйте использовать другой прокси-сервер.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Релеи";
 "add_transport" = "Добавить релей";
 "remove_transport" = "Удалить релей";
 "edit_transport" = "Редактировать релей";
+"used_for_sending" = "Используется для отправки";
+"hide_from_contacts" = "Скрыть из контактов";
+"hidden_from_contacts" = "Скрыт из контактов";
+// Hint for the list of relays
+"transport_list_hint" = "Сообщения поступают на все релеи.\n\n⚠️ Если вы что-либо измените здесь, убедитесь, что все ваши устройства работают как минимум на версии 2.47.0. В противном случае старые устройства могут пропускать сообщения.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Удалить релей \"%1$@\"?\n\nКонтакты, знающие только этот релей, могут потерять связь с вами, пока вы не напишете им снова.\n\nЕсли сомневаетесь, лучше скрыть его, а не удалять.";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Введите корректный адрес электронной почты";
 "login_error_server" = "Введите корректный адрес сервера / IP-адрес";
@@ -727,8 +730,6 @@
 "profile_image_delete" = "Удалить изображение профиля";
 "pref_show_tray_icon" = "Показать значок в системном трее";
 "pref_edit_profile" = "Редактировать профиль";
-"disable_imap_idle" = "Отключить IMAP IDLE";
-"disable_imap_idle_explain" = "Не используйте расширение IMAP IDLE даже если сервер поддерживает его. Включение этой опции замедлит получение сообщений, включайте только для тестирования.";
 "send_stats_to_devs" = "Отправить статистику разработчикам Delta Chat";
 "stats_device_message" = "Хотите помочь улучшить Delta Chat и поддержать исследования, отправляя еженедельную анонимную статистику использования?\n\n👉 Нажмите здесь...👈";
 "stats_confirmation_dialog" = "Хотите помочь улучшить Delta Chat и поддержать исследования, отправляя еженедельную анонимную статистику использования?";
@@ -852,17 +853,18 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ включает автоудаление сообщений через %1$@ недель.";
 "chat_unencrypted_explanation" = "Сообщения в этом чате используют обычную электронную почту и не зашифрованы сквозным шифрованием.";
+"messages_are_e2ee" = "Сообщения защищены сквозным шифрованием.";
 "chat_protection_enabled_tap_to_learn_more" = "Сообщения защищены сквозным шифрованием. Нажмите, чтобы узнать больше.";
 "chat_protection_enabled_explanation" = "Все сообщения в этом чате зашифрованы сквозным шифрованием.\n\nСквозное шифрование обеспечивает конфиденциальность переписки между вами и вашими собеседниками. Ни серверы, ни провайдеры, ни релеи не смогут прочитать сообщения.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ требуется сквозное шифрование, которое ещё не настроено для данного чата. Нажмите, чтобы узнать больше.";
 "invalid_unencrypted_explanation" = "Чтобы установить сквозное шифрование, вы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";
 "learn_more" = "Узнать больше";
-"devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с самим собой.";
+"devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с собой.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Хранилище вашего провайдера почти заполнено: %1$@%% уже использовано.\n\nЕсли хранилище полностью заполнено, вы не сможете получать сообщения.\n\n👉 Проверьте, можно ли удалить старые данные в веб-интерфейсе провайдера, и подумайте об включении \"Настройки / Чаты / Удалить старые сообщения\". Текущее использование хранилища можно проверить в любое время в разделе \"Настройки / Соединение\".";
+"devicemsg_storage_exceeding" = "⚠️ Место на сервере вашего провайдера скоро закончится, уже использовано: %1$@%%.\n\nЕсли место на сервере будет полностью заполнено, вы не сможете получать сообщения.\n\n👉 Проверьте, можно ли удалить старые данные через веб-интерфейс вашего провайдера, и подумайте о включении опции \"Настройки / Чаты / Удалить старые сообщения\". Вы всегда можете проверить текущее использование места на сервере в разделе \"Настройки / Соединение\".";
 // %1%s will be replaced by date and time in some human-readable format
-"devicemsg_bad_time" = "⚠️ Вероятно, дата или время на вашем устройстве неточные (%1$@).\n\nУстановите правильное время ⏰🔧 чтобы обеспечить правильное получение сообщений.";
-"devicemsg_update_reminder" = "⚠️ Вероятно, ваша версия Delta Chat устарела.\n\nЭто может привести к проблемам, поскольку ваши собеседники используют более новые версии, а вы не имеете доступа к последним функциям 😳\nПроверьте https://get.delta.chat или магазин приложений на наличие обновлений.";
+"devicemsg_bad_time" = "⚠️ Вероятно, дата или время на вашем устройстве установлены неверно (%1$@).\n\nНастройте часы ⏰🔧 чтобы ваши сообщения доставлялись правильно.";
+"devicemsg_update_reminder" = "⚠️ Вероятно, ваша версия Delta Chat устарела.\n\nЭто может вызвать проблемы, поскольку ваши собеседники используют более новые версии, а у вас нет доступа к последним функциям. 😳\nПожалуйста, проверьте наличие обновлений на сайте https://get.delta.chat или в магазине приложений.";
 // Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
 "enter_system_secret_to_continue" = "Разблокируйте для продолжения";
 // qr code stuff
@@ -875,12 +877,12 @@
 "qrscan_ask_join_group" = "Вы хотите присоединиться к группе \"%1$@\"?";
 "qrscan_ask_join_channel" = "Вы хотите присоединиться к каналу \"%1$@\"?";
 "qrscan_fingerprint_mismatch" = "Отсканированный отпечаток не совпадает с последним известным отпечатком %1$@.";
-"qrscan_no_addr_found" = "QR-код содержит отпечаток ключа, но не содержит адрес электронной почты.\n\nДля проверки подлинности с использованием альтернативного канала связи следует сначала установить с получателем защищённое соединение.";
+"qrscan_no_addr_found" = "Этот QR-код содержит отпечаток ключа, но не содержит адрес.\n\nДля проверки подлинности с использованием альтернативного канала связи следует сначала установить с получателем защищённое соединение.";
 "qrscan_contains_text" = "Текст из QR-кода:\n\n%1$@";
 "qrscan_contains_url" = "URL из QR-кода:\n\n%1$@";
 "qrscan_fingerprint_label" = "Отпечаток";
-"withdraw_verifycontact_explain" = "Этот QR-код могут сканировать другие люди, чтобы связаться с вами.\n\nВы можете сбросить его, чтобы существующий QR-код или ссылка-приглашение больше не работали.";
-"withdraw_verifygroup_explain" = "Этот QR-код могут сканировать другие люди, чтобы присоединиться к группе \"%1$@\".\n\nВы можете сбросить его, чтобы существующий QR-код или ссылка-приглашение больше не работали.";
+"withdraw_verifycontact_explain" = "Этот QR-код можно отсканировать, чтобы связаться с вами.\n\nВы можете сбросить его и тогда существующий QR-код или ссылка-приглашение перестанут работать";
+"withdraw_verifygroup_explain" = "Этот QR-код можно отсканировать, чтобы присоединиться к группе \"%1$@\".\n\nВы можете сбросить его и тогда существующий QR-код или ссылка-приглашение перестанут работать";
 "withdraw_joinbroadcast_explain" = "Этот QR-код могут сканировать другие пользователи для присоединения к каналу \"%1$@\".\n\nВы можете сбросить его, чтобы существующий QR-код или пригласительная ссылка перестали работать.";
 "withdraw_qr_code" = "Сбросить QR-код";
 "revive_verifycontact_explain" = "Этот QR-код был сброшен и больше не работает.";
@@ -904,9 +906,9 @@
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Авторизоваться в \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_started" = "%1$@ приглашает вас в группу.\n\nОжидаем ответ от %2$@…";
+"secure_join_started" = "%1$@ приглашает вас присоединиться к этой группе.\n\nОжидаем ответа от устройства %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
-"secure_join_channel_started" = "%1$@ приглашает вас присоединиться к этому каналу.\n\nОжидаем ответа устройства %2$@…";
+"secure_join_channel_started" = "%1$@ приглашает вас присоединиться к этому каналу.\n\nОжидаем ответа от устройства %2$@...";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ ответил(а), ожидаем добавления в группу…";
 "secure_join_wait" = "Устанавливается соединение, пожалуйста, подождите…";
@@ -953,9 +955,6 @@
 "ImageEditorHud_crop" = "Обрезать";
 "ImageEditorHud_flip" = "Отразить";
 "ImageEditorHud_rotate" = "Вращать";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Это официальное приложение Delta Chat для ПК.";
-"about_licensed_under_desktop" = "Это программное обеспечение выпущено под лицензией GNU GPL 3 версии, исходный код доступен на GitHub.";
 "welcome_desktop" = "Добро пожаловать в Delta Chat";
 "global_menu_preferences_language_desktop" = "Выбор языка";
 "global_menu_file_desktop" = "Файл";
@@ -995,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Открыть папку журналов";
 "menu.view.developer.open.current.log.file" = "Открыть текущий файл журнала";
 "explain_desktop_minimized_disabled_tray_pref" = "Значок в системном трее нельзя отключить, поскольку Delta Chat был запущен с параметром --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Не найдены варианты исправления орфографии.";
 "show_window" = "Показать окно";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
@@ -1053,12 +1053,12 @@
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Мгновенная доставка";
 "pref_background_notifications" = "Использовать соединение в фоновом режиме";
-"pref_background_notifications_explain" = "Требуется отключение оптимизации батареи, используйте, если уведомления не приходят вовремя.";
+"pref_background_notifications_explain" = "Требуется отключение оптимизации батареи, используйте, если уведомления приходят с задержкой";
 "pref_reliable_service" = "Принудительное соединение в фоновом режиме";
 "pref_reliable_service_explain" = "Активирует постоянное уведомление";
 "pref_background_notifications_rationale" = "Чтобы поддерживать соединение с сервером электронной почты и получать сообщения в фоновом режиме, отключите оптимизацию батареи на следующем шаге.\n\nDelta Chat расходует мало ресурсов и бережно относится к вашей батарее.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
-"perm_enable_bg_already_done" = "Вы уже разрешили Delta Chat получать сообщения в фоновом режиме.\n\nЕсли сообщения не приходят в фоновом режиме, проверьте также системные настройки.";
+"perm_enable_bg_already_done" = "Вы уже разрешили Delta Chat получать сообщения в фоновом режиме.\n\nЕсли сообщения все равно не приходят в фоновом режиме, также проверьте настройки вашей системы.";
 // device messages for updates
 "update_2_0" = "Что нового?\n\n💯 Сквозное шифрование стало постоянной и надёжной функцией. 🔒 Замков больше нет!\n\n✉️ Обычные письма без сквозного шифрования помечены значком конверта\n\n😻 Обновлённый экран профиля для всех контактов\n\n🔲 Новая кнопка быстрого доступа к приложениям, используемым в чате\n\n❤️ Поддержите нас финансово, чтобы мы сохранили независимость и продолжали вносить улучшения: %1$@";

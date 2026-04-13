@@ -10,7 +10,6 @@
 "off" = "Изключено";
 "def" = "По подразбиране";
 "default_value" = "По подразбиране (%1$@)";
-"default_value_as_above" = "По подразбиране (същото като по-горе)";
 "custom" = "Дефиниран от потребителя";
 "none" = "Без";
 "automatic" = "Автоматично";
@@ -221,7 +220,6 @@
 "menu_more_options" = "Още опции";
 "menu_learn_spelling" = "Запомняне на правописа";
 "jump_to_message" = "Към съобщение";
-"copy_json" = "Копиране на JSON";
 "replace_draft" = "Замяна на чернова";
 "title_share_location" = "Местоположението да се споделя с всички членове на групата";
 "device_talk" = "Съобщения в устройството";
@@ -310,13 +308,7 @@
 "send_file_to" = "Изпращане на \"%1$@\" до";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Изпращане на съобщение до…";
-// map
-"filter_map_on_time" = "Показване на местоположенията във времева рамка";
-"show_location_traces" = "Показване на съобщенията за проследяване";
-"add_poi" = "Изпращане на място, представляващо интерес";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Да не се пита повече за %1$@";
 "puny_code_warning_header" = "Открита е подозрителна връзка";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Сигурни ли сте, че искате да посетите %1$@?";
@@ -562,8 +554,6 @@
 "profile_image_delete" = "Изтриване на изображението на профила";
 "pref_show_tray_icon" = "Показване на иконата в System Tray";
 "pref_edit_profile" = "Редактиране на профил";
-"disable_imap_idle" = "Деактивиране на IMAP IDLE";
-"disable_imap_idle_explain" = "Да не се използва разширението IMAP IDLE дори ако сървърът го поддържа. Ако тази опция бъде разрешена, извличането на съобщенията ще бъде забавено. Разрешете я само за тестване.";
 "send_stats_to_devs" = "Да се изпраща статистика към разработчиците на Delta Chat";
 // Emoji picker and categories
 "emoji_search_results" = "Резултати от търсенето";
@@ -757,9 +747,6 @@
 "ImageEditorHud_crop" = "Изрязване";
 "ImageEditorHud_flip" = "Обръщане";
 "ImageEditorHud_rotate" = "Завъртане";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Това е официалното настолно приложение Delta Chat.";
-"about_licensed_under_desktop" = "Този софтуер е лицензиран под GNU GPL версия 3. Изходният код е наличен в GitHub.";
 "welcome_desktop" = "Добре дошли в Delta Chat";
 "global_menu_preferences_language_desktop" = "Език";
 "global_menu_file_desktop" = "Файл";
@@ -795,6 +782,7 @@
 "menu.view.developer.open.log.folder" = "Отваряне на папката \"Дневник\"";
 "menu.view.developer.open.current.log.file" = "Отваряне на текущия файл на дневника";
 "explain_desktop_minimized_disabled_tray_pref" = "Показването на икона в системната лента не може да бъде забранено, тъй като Delta Chat е стартиран с опцията --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Няма открити предложения за правопис.";
 "show_window" = "Показване на прозореца";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

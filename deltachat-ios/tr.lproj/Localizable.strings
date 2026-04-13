@@ -14,7 +14,6 @@
 "off" = "Kapalı";
 "def" = "Varsayılan";
 "default_value" = "Varsayılan (%1$@)";
-"default_value_as_above" = "Varsayılan (yukarıdakinin aynısı)";
 "custom" = "Özel";
 "none" = "Yok";
 "automatic" = "Otomatik";
@@ -32,8 +31,6 @@
 "update" = "Güncelleştir";
 "emoji" = "Emoji";
 "attachment" = "İlişik";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "“%1$@” iliştirilsin mi?";
 "back" = "Geri";
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Okundu Olarak İmle";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Okundu İmi";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Okunmayan";
 // Placeholder text when something is loading
 "loading" = "Yükleniyor…";
 "hide" = "Gizle";
@@ -123,6 +122,7 @@
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Seçilen:";
+"selected" = "Seçilen";
 "self" = "Ben";
 "draft" = "Taslak";
 "image" = "Görsel";
@@ -292,8 +292,6 @@
 "menu_more_options" = "Daha Fazla Seçenek";
 "menu_learn_spelling" = "Yazımı Öğrenin";
 "jump_to_message" = "İletiye Atla";
-"jump_to_original_message" = "Özgün İletiye Atla";
-"copy_json" = "JSON kopyala";
 "replace_draft" = "Taslağı Değiştir";
 "title_share_location" = "Tüm grup üyeleriyle konum paylaş";
 "device_talk" = "Aygıt İletileri";
@@ -341,6 +339,12 @@
 "audio_call" = "Sesli arama";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Görüntülü arama";
+"call_initializing" = "Başlatılıyor…";
+"call_incoming" = "Gelen arama";
+"call_ringing" = "Çalıyor…";
+"call_reconnecting" = "Yeniden bağlanıyor…";
+"call_ended" = "Arama sonlandırıldı";
+"call_failed" = "Arama başarısız";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Giden sesli arama";
 // deprecated, use "Video call" instead
@@ -352,6 +356,7 @@
 "declined_call" = "Reddedilen arama";
 "canceled_call" = "İptal edilen arama";
 "missed_call" = "Yanıtlanmayan arama";
+"already_in_call" = "Zaten bir aramada";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
@@ -418,15 +423,7 @@
 "send_file_to" = "“%1$@” dosyasını gönder…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "İletiyi gönder…";
-"enable_realtime" = "Gerçek Zamanlı Uygulamalar";
-"enable_realtime_explain" = "Sohbetlere iliştirilen uygulamalar için gerçek zamanlı bağlantıları etkinleştirin. Etkinleştirilirse, bir uygulamayı başlattığınızda sohbet ortakları IP adresinizi keşfedebilir.";
-// map
-"filter_map_on_time" = "Konumları zaman çerçevesinde göster";
-"show_location_traces" = "İzleri göster";
-"add_poi" = "İlgi çekici noktayı gönder";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "%1$@ için yeniden sorma";
 "puny_code_warning_header" = "Kuşkulu bağlantı algılandı";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "%1$@ bağlantısını ziyaret etmek istediğinizden emin misiniz?";
@@ -578,9 +575,16 @@
 "add_transport" = "Aktarıcı Ekle";
 "remove_transport" = "Aktarıcıyı Kaldır";
 "edit_transport" = "Aktarıcıyı Düzenle";
+"used_for_sending" = "Gönderim için kullanıldı";
+"hide_from_contacts" = "Kişilerden Gizle";
+"hidden_from_contacts" = "Kişilerden gizlendi";
+// Hint for the list of relays
+"transport_list_hint" = "İletiler tüm aktarıcılardan alınır.\n\n⚠️ Burada herhangi bir şeyi değiştirirseniz, tüm aygıtlarınızın en azından 2.47.0 sürümünü çalıştırdığından emin olun. Yoksa daha eski aygıtlar iletileri kaçırabilir.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Bu aktarıcı eklensin mi?";
 "invalid_transport_qr" = "Taranan QR kodu, geçerli bir aktarıcı içermiyor.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "“%1$@” aktarıcısı kaldırılsın mı?\n\nYalnızca bu aktarıcıyı bilen kişiler, onlara yeniden ileti gönderene kadar size ulaşamayabilir.\n\nKuşkuluysanız, onu kaldırmak yerine gizleyin.";
 "login_certificate_checks" = "Sertifika Denetimleri";
 "login_error_mail" = "Lütfen geçerli bir e-posta adresi girin";
 "login_error_server" = "Lütfen geçerli bir sunucu / IP adresi girin";
@@ -726,8 +730,6 @@
 "profile_image_delete" = "Profil Görselini Sil";
 "pref_show_tray_icon" = "Tepsi Simgesi Göster";
 "pref_edit_profile" = "Profili Düzenle";
-"disable_imap_idle" = "IMAP IDLE\'ı Etkisizleştir";
-"disable_imap_idle_explain" = "Sunucu desteklese bile IMAP IDLE uzantısını kullanmayın. Bu seçeneği etkinleştirmek ileti getirmeyi geciktirecek; yalnızca sınama için etkinleştirin.";
 "send_stats_to_devs" = "Delta Chat\'in geliştiricilerine istatistikleri gönder";
 "stats_device_message" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?\n\n👉 Buraya dokunun… 👈";
 "stats_confirmation_dialog" = "Haftalık belirsiz kullanım istatistiklerini göndererek Delta Chat\'i geliştirmeye yardımcı olmak ve araştırmaları desteklemek istiyor musunuz?";
@@ -851,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ tarafından kaybolan iletiler zamanlayıcısı %1$@ hafta olarak ayarlandı.";
 "chat_unencrypted_explanation" = "Bu sohbetteki iletiler klasik e-posta kullanıyor ve uçtan uca şifreli değil.";
+"messages_are_e2ee" = "İletiler uçtan uca şifrelidir.";
 "chat_protection_enabled_tap_to_learn_more" = "İletiler uçtan uca şifreleniyor. Daha fazlasını öğrenmek için dokunun.";
 "chat_protection_enabled_explanation" = "Bu sohbetteki tüm iletiler uçtan uca şifreleniyor.\n\nUçtan uca şifreleme, iletilerinizi sizin ve sohbet ortaklarınızın arasında özel tutar. Sunucular, sağlayıcılar ya da aktarıcılar bile onları okuyamaz.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@, bu sohbet için henüz ayarlanmayan uçtan uca şifrelemeyi gerektirir. Daha fazlasını öğrenmek için dokunun.";
@@ -952,9 +955,6 @@
 "ImageEditorHud_crop" = "Kırp";
 "ImageEditorHud_flip" = "Çevir";
 "ImageEditorHud_rotate" = "Döndür";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Bu, resmî Delta Chat Masaüstü uygulamasıdır.";
-"about_licensed_under_desktop" = "Bu yazılım, GNU GPL sürüm 3 altında lisanslıdır ve kaynak kodu GitHub\'da kullanılabilir.";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "global_menu_preferences_language_desktop" = "Dil";
 "global_menu_file_desktop" = "Dosya";
@@ -994,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Günlük Klasörünü Aç";
 "menu.view.developer.open.current.log.file" = "Şu Anki Günlük Dosyasını Aç";
 "explain_desktop_minimized_disabled_tray_pref" = "Delta Chat --minimized seçeneğiyle başlatıldığından tepsi simgesi etkisizleştirilemez.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

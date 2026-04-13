@@ -14,7 +14,6 @@
 "off" = "Desactivado";
 "def" = "Por defecto";
 "default_value" = "Por defecto (%1$@)";
-"default_value_as_above" = "Por defecto (igual que el superior)";
 "custom" = "Personalizado";
 "none" = "Ninguno";
 "automatic" = "Automático";
@@ -32,8 +31,6 @@
 "update" = "Actualización";
 "emoji" = "Emoji";
 "attachment" = "Adjunto";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "¿Adjunta \"%1$@\"?";
 "back" = "Atrás";
 "close" = "Cerrar";
 "close_window" = "Cerrar ventana";
@@ -70,6 +67,8 @@
 "mark_as_read" = "Marcar como leído";
 // Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Leído";
+// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "No leído";
 // Placeholder text when something is loading
 "loading" = "Cargando…";
 "hide" = "Ocultar";
@@ -293,8 +292,6 @@
 "menu_more_options" = "Más opciones";
 "menu_learn_spelling" = "Aprender ortografía";
 "jump_to_message" = "Saltar al mensaje";
-"jump_to_original_message" = "Saltar al mensaje original";
-"copy_json" = "Copiar JSON";
 "replace_draft" = "Reemplazar borrador";
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
 "device_talk" = "Mensajes del dispositivo";
@@ -359,6 +356,7 @@
 "declined_call" = "Llamada rechazada";
 "canceled_call" = "Llamada cancelada";
 "missed_call" = "Llamada perdida";
+"already_in_call" = "Ya estás en una llamada";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "¿Seguro que quieres abandonar este canal?";
@@ -425,15 +423,7 @@
 "send_file_to" = "Enviar \"%1$@\" a…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Enviar mensaje a…";
-"enable_realtime" = "Aplicaciones en tiempo real";
-"enable_realtime_explain" = "Habilite las conexiones en tiempo real para las aplicaciones compartidas en los chats. Si esta opción está habilitada, los participantes del chat podrán descubrir su dirección IP cuando inicie una aplicación.";
-// map
-"filter_map_on_time" = "Mostrar ubicaciones en el marco de tiempo";
-"show_location_traces" = "Mostrar trazas";
-"add_poi" = "Enviar punto de interés";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "No preguntar nuevamente para %1$@";
 "puny_code_warning_header" = "Enlace sospechoso detectado";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "¿Estás seguro de que quieres visitar %1$@?";
@@ -530,7 +520,7 @@
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
 "onboarding_alternative_logins" = "Ya tengo un perfil";
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
-"manual_account_setup_option" = "Iniciar sesión con correo electrónico";
+"manual_account_setup_option" = "Usar correo electrónico como Retransmisor";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Tu perfil";
 // The placeholder will be replaced by the default onboarding server
@@ -581,20 +571,20 @@
 "proxy_enabled" = "Proxy activado";
 "proxy_enabled_hint" = "Estás utilizando un proxy. Si tienes problemas para conectarte, prueba con otro proxy.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
-"transports" = "Transportes";
-"add_transport" = "Añadir transporte";
-"remove_transport" = "Eliminar transporte";
-"edit_transport" = "Editar transporte";
+"transports" = "Retransmisores";
+"add_transport" = "Añadir Retransmisor";
+"remove_transport" = "Eliminar Retransmisor";
+"edit_transport" = "Editar Retransmisor";
 "used_for_sending" = "Usado para enviar";
 "hide_from_contacts" = "Ocultar de los contactos";
 "hidden_from_contacts" = "Ocultado de los contactos";
 // Hint for the list of relays
-"transport_list_hint" = "Los mensajes se reciben en todos los relays.";
+"transport_list_hint" = "Los mensajes se reciben en todos los retransmisores.\n\n⚠️ Si cambias algo aquí, asegúrese de que todos sus dispositivos ejecutan al menos la versión 2.47.0. De lo contrario, los dispositivos más antiguos pueden perder algunos mensajes.";
 // shown if a QR code was scanned that can be used as a relay
-"confirm_add_transport" = "¿Añadir este transporte?";
-"invalid_transport_qr" = "El código QR escaneado no contiene un transporte válido.";
+"confirm_add_transport" = "¿Añadir este retransmisor?";
+"invalid_transport_qr" = "El código QR escaneado no contiene un retransmisor válido.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_or_hide_transport_x" = "¿Eliminar el relay \"%1$@\"?\n\nLos contactos que solo conocen este relay podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
+"confirm_remove_or_hide_transport_x" = "¿Eliminar el retransmisor \"%1$@\"?\n\nLos contactos que solo conocen este retransmisor podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
 "login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
@@ -740,8 +730,6 @@
 "profile_image_delete" = "Borrar imagen de perfil";
 "pref_show_tray_icon" = "Mostrar icono de bandeja";
 "pref_edit_profile" = "Editar perfil";
-"disable_imap_idle" = "Deshabilitar IMAP IDLE";
-"disable_imap_idle_explain" = "No utilizar la extensión IMAP IDLE aunque el servidor la admita. Habilitar esta opción retrasará el recibo de mensajes, actívala solo para pruebas.";
 "send_stats_to_devs" = "Enviar estadísticas a los desarrolladores de Delta Chat";
 "stats_device_message" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?\n\n👉 Pulsa aquí… 👈";
 "stats_confirmation_dialog" = "¿Quieres ayudar a mejorar Delta Chat y apoyar la investigación enviando estadísticas de uso anónimas semanales?";
@@ -865,6 +853,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de la desaparición de mensajes establecido en %1$@ semanas por %2$@.";
 "chat_unencrypted_explanation" = "Los mensajes en este chat usan el correo electrónico clásico y no están cifrados de extremo a extremo.";
+"messages_are_e2ee" = "Los mensajes están cifrados de extremo a extremo.";
 "chat_protection_enabled_tap_to_learn_more" = "A partir de ahora se garantiza que los mensajes están cifrados de extremo a extremo . Toca para obtener más información.";
 "chat_protection_enabled_explanation" = "Ahora se garantiza que todos los mensajes en este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus compañeros de chat. Ni siquiera tu proveedor de correo electrónico puede leerlos.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
@@ -966,9 +955,6 @@
 "ImageEditorHud_crop" = "Recortar";
 "ImageEditorHud_flip" = "Voltear";
 "ImageEditorHud_rotate" = "Rotar";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Esta es la aplicación oficial de Delta Chat para escritorio.";
-"about_licensed_under_desktop" = "Este programa está licenciado bajo GNU GPL versión 3 y el código está disponible en GitHub.";
 "welcome_desktop" = "Bienvenido a Delta Chat";
 "global_menu_preferences_language_desktop" = "Idioma";
 "global_menu_file_desktop" = "Archivo";
@@ -1008,6 +994,7 @@
 "menu.view.developer.open.log.folder" = "Abrir Carpeta de Logs";
 "menu.view.developer.open.current.log.file" = "Abrir Archivo de Logs Actual";
 "explain_desktop_minimized_disabled_tray_pref" = "El icono de la bandeja no se puede desactivar ya que Delta Chat se inició con la opción --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "No se encontraron sugerencias ortográficas.";
 "show_window" = "Mostrar ventana";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

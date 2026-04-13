@@ -10,7 +10,6 @@
 "off" = "Pois";
 "def" = "Oletus";
 "default_value" = "Oletus (%1$@)";
-"default_value_as_above" = "Oletus (sama kuin yllä)";
 "custom" = "Mukautettu";
 "none" = "Ei mitään";
 "automatic" = "Automaattinen";
@@ -221,7 +220,6 @@
 "menu_more_options" = "Lisää asetuksia";
 "menu_learn_spelling" = "Opi tavaus";
 "jump_to_message" = "Siirry viestiin";
-"copy_json" = "Kopioi JSON";
 "replace_draft" = "Korvaa luonnos";
 "title_share_location" = "Jaa sijainti kaikille ryhmän jäsenille";
 "device_talk" = "Laitteen viestit";
@@ -310,13 +308,7 @@
 "send_file_to" = "Lähetä \"%1$@\" kohteeseen...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Lähetä viesti kohteeseen...";
-// map
-"filter_map_on_time" = "Näytä sijainnit aikajanalla";
-"show_location_traces" = "Näytä jäljet";
-"add_poi" = "Lähetä erikseen valittu piste";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Älä kysy enää osoitteelle %1$@";
 "puny_code_warning_header" = "Epäilyttävä linkki havaittu";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Haluatko varmasti vierailla osoitteessa %1$@?";
@@ -562,8 +554,6 @@
 "profile_image_delete" = "Poista profiilikuva";
 "pref_show_tray_icon" = "Näytä työkalupalkin kuvake";
 "pref_edit_profile" = "Muokkaa profiilia";
-"disable_imap_idle" = "Poista IMAP IDLE käytöstä";
-"disable_imap_idle_explain" = "Älä käytä IMAP IDLE -laajennusta vaikka palvelin tukisi sitä. Toiminnon käyttöönotto hidastaa viestien hakua, käytä vain testaamiseen.";
 "send_stats_to_devs" = "Lähetä tilastotietoja Delta Chatin kehittäjille";
 // Emoji picker and categories
 "emoji_search_results" = "Hakutulokset";
@@ -759,9 +749,6 @@
 "ImageEditorHud_crop" = "Rajaa";
 "ImageEditorHud_flip" = "Käännä";
 "ImageEditorHud_rotate" = "Pyöritä";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Tämä on virallinen Delta Chat -työpöytäsovellus.";
-"about_licensed_under_desktop" = "Tämä ohjelmisto on GNU GPL v3 -lisensoitu, ja lähdekoodi on saatavilla GitHubissa.";
 "welcome_desktop" = "Tervetuloa Delta Chatiin";
 "global_menu_preferences_language_desktop" = "Kieli";
 "global_menu_file_desktop" = "Tiedosto";
@@ -797,6 +784,7 @@
 "menu.view.developer.open.log.folder" = "Avaa lokikansio";
 "menu.view.developer.open.current.log.file" = "Avaa nykyinen lokitiedosto";
 "explain_desktop_minimized_disabled_tray_pref" = "Työkalupalkin kuvaketta ei voida poistaa, koska Delta Chat käynnistettiin \"Käynnistä pienennettynä\" -valinnalla.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Oikeinkirjoitusehdotusta ei löydy.";
 "show_window" = "Näytä ikkuna";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

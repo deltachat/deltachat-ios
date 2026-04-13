@@ -14,7 +14,6 @@
 "off" = "Vypnúť";
 "def" = "Štandardné nastavenie";
 "default_value" = "Štandardné nastavenie (%1$@)";
-"default_value_as_above" = "Predvolené (rovnaké ako vyššie)";
 "custom" = "Vlastný";
 "none" = "Nie je";
 "automatic" = "Automatický";
@@ -32,8 +31,6 @@
 "update" = "Aktualizovať";
 "emoji" = "Smajlíci";
 "attachment" = "Príloha";
-// the placeholder will be replaced by the name of the image or file to attach
-"ask_attach" = "Priložiť „%1$@“?";
 "back" = "Späť";
 "close" = "Zatvoriť";
 "close_window" = "Zavrieť okno";
@@ -266,8 +263,6 @@
 "menu_more_options" = "Ďalšie možnosti";
 "menu_learn_spelling" = "Naučiť sa pravopis";
 "jump_to_message" = "Prejsť na správu";
-"jump_to_original_message" = "Zobraziť pôvodnú správu";
-"copy_json" = "Kopírovať JSON";
 "replace_draft" = "Nahradiť koncept";
 "title_share_location" = "Zdieľať polohu so všetkými členmi skupiny";
 "device_talk" = "Správy zariadenia";
@@ -359,13 +354,7 @@
 "send_file_to" = "Poslať \"%1$@\"...";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Poslať správu...";
-// map
-"filter_map_on_time" = "Zobraziť polohy v časovom rámci";
-"show_location_traces" = "Zobraziť stopy";
-"add_poi" = "Pošlite zaujímavé miesto";
 // punycode warning / labeled links
-// placeholder is domain/hostname that should be trusted
-"open_external_url_trust_domain" = "Nepýtať sa znovu %1$@";
 "puny_code_warning_header" = "Zistené podozrivé prepojenie";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Naozaj chcete navštíviť %1$@?";
@@ -795,9 +784,6 @@
 "ImageEditorHud_crop" = "Orezať";
 "ImageEditorHud_flip" = "Preklopiť";
 "ImageEditorHud_rotate" = "Otočiť";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Toto je oficiálna aplikácia Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Tento softvér je licencovaný pod GNU GPL verzie 3 a zdrojový kód je k dispozícii na GitHub-e.";
 "welcome_desktop" = "Víta vás Delta Chat";
 "global_menu_preferences_language_desktop" = "Jazyk";
 "global_menu_file_desktop" = "Súbor";
@@ -834,6 +820,7 @@
 "menu.view.developer.open.log.folder" = "Otvoriť priečinok denníka";
 "menu.view.developer.open.current.log.file" = "Otvoriť aktuálny súbor protokolu";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu v systémovej lište nie je možné vypnúť, pretože Delta Chat bol spustený s prepínačom --minimized.";
+// deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Neboli nájdené žiadne návrhy opravy preklepov.";
 "show_window" = "Zobraziť okno";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

@@ -10,7 +10,6 @@
 "off" = "Mati";
 "def" = "Default";
 "default_value" = "Default (%1$@)";
-"default_value_as_above" = "Default (sama seperti di atas)";
 "custom" = "Menurut pesanan";
 "none" = "Tidak ada";
 "automatic" = "Otomatis";
@@ -205,7 +204,6 @@
 "menu_more_options" = "Opsi Lainnya";
 "menu_learn_spelling" = "Belajar Ejaan";
 "jump_to_message" = "Lompat ke Pesan";
-"copy_json" = "Salin JSON";
 "title_share_location" = "Bagikan lokasi kepada seluruh anggota grup";
 "device_talk" = "Pesan perangkat";
 "device_talk_subtitle" = "Pesan-pesan buatan lokal";
@@ -269,10 +267,6 @@
 "retry_send" = "Coba lagi mengirim pesan";
 "cannot_display_unsuported_file_type" = "Tidak dapat menampilkan tipe berkas ini: %1$@";
 "attachment_failed_to_load" = "Gagal memuat lampiran";
-// map
-"filter_map_on_time" = "Tunjukkan lokasi dalam jangka waktu";
-"show_location_traces" = "Tunjukkan jejak";
-"add_poi" = "Kirim titik menarik";
 // search
 "search" = "Cari";
 "search_explain" = "Mencari obrolan, kontak dan pesan";
@@ -483,9 +477,6 @@
 "perm_explain_access_to_location_denied" = "Untuk melampirkan lokasi, lihat pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Lokasi\".";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Gambar di mana saja untuk diburamkan";
-// strings introduced on desktop. we want to share strings between the os, in general, please do not add generic strings here
-"about_offical_app_desktop" = "Ini adalah aplikasi resmi Delta Chat Desktop.";
-"about_licensed_under_desktop" = "Perangkat lunak ini berlisensi di bawah GNU GPL versi 3 dan kode sumber tersedia di GitHub.";
 "welcome_desktop" = "Selamat Datang di Delta Chat";
 "global_menu_preferences_language_desktop" = "Bahasa";
 "global_menu_file_desktop" = "Berkas";
