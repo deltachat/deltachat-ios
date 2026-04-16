@@ -4,6 +4,11 @@ import Network
 
 class ConnectivityViewController: WebViewViewController {
 
+    private lazy var moreButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "ellipsis.circle")
+        return UIBarButtonItem(image: image, menu: moreButtonMenu())
+    }()
+
     override init(dcContext: DcContext) {
         super.init(dcContext: dcContext)
 
@@ -22,6 +27,7 @@ class ConnectivityViewController: WebViewViewController {
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
+        navigationItem.rightBarButtonItems = [moreButton]
     }
     
     // called everytime the view will appear
@@ -34,6 +40,18 @@ class ConnectivityViewController: WebViewViewController {
         guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
 
         loadHtml()
+    }
+
+    private func moreButtonMenu() -> UIMenu {
+        let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+        let actions = [
+            UIAction(title: String.localized("clear_all_relay_storage"), image: UIImage(systemName: clearImage)) { [weak self] _ in
+                guard let self else { return }
+                dcContext.clearAllRelayStorage()
+                loadHtml()
+            },
+        ]
+        return UIMenu(children: actions)
     }
 
     private func loadHtml() {

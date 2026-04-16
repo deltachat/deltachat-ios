@@ -853,4 +853,12 @@ public class DcContext {
         }
         return "ErrUsageReport"
     }
+
+    public func clearAllRelayStorage() {
+        do {
+            try DcAccounts.shared.blockingCall(method: "clear_all_relay_storage", params: [id as AnyObject])
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+    }
 }
