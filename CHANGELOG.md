@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Add option to clear all storage to connectivity view
+
+
 ## v2.49.0 Testflight
 2026-04
 
