@@ -285,6 +285,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Binding to the tableView will enable interactive dismissal
         keyboardManager?.bind(to: tableView)
+        tableView.keyboardDismissMode = .onDrag
         keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
