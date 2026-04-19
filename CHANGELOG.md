@@ -1,6 +1,11 @@
 # Delta Chat iOS Changelog
 
-## v2.49.0 Testflight
+## Unreleased
+
+- Fix: do not crash when swiping keyboard down
+
+
+## v2.49.0
 2026-04
 
 - Fix: Mark a message as delivered only after it has been fully sent out
