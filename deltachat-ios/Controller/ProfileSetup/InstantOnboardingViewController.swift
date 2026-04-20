@@ -301,6 +301,7 @@ class InstantOnboardingViewController: UIViewController {
             appDelegate.registerForNotifications()
             appDelegate.reloadDcContext()
             appDelegate.prepopulateWidget()
+            appDelegate.handleAppClipInviteLink()
         }
     }
 
