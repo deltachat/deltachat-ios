@@ -17,6 +17,7 @@ internal final class AdvancedViewController: UITableViewController {
         case viewLog
         case transportSettings
         case proxySettings
+        case appPickerUrl
     }
 
     private var dcContext: DcContext
@@ -156,6 +157,14 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
+    private lazy var appPickerCell: UITableViewCell = {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.tag = CellTags.appPickerUrl.rawValue
+        cell.textLabel?.text = String.localized("webxdc_store_url")
+        cell.detailTextLabel?.text = UserDefaults.getAppPickerUrlString()
+        return cell
+    }()
+
     private lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.viewLog.rawValue
@@ -176,7 +185,7 @@ internal final class AdvancedViewController: UITableViewController {
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: String.localized("pref_experimental_features_explain"),
-            cells: [broadcastListsCell, callsCell, locationStreamingCell])
+            cells: [broadcastListsCell, callsCell, locationStreamingCell, appPickerCell])
 
         if dcContext.isChatmail {
             return [viewLogSection, serverSection, experimentalSection]
@@ -242,6 +251,10 @@ internal final class AdvancedViewController: UITableViewController {
             }
         case .proxySettings:
             showProxySettings()
+
+        case .appPickerUrl:
+            editAppPickerUrl()
+
         case .defaultTagValue: break
         }
     }
@@ -282,6 +295,26 @@ internal final class AdvancedViewController: UITableViewController {
     private func showProxySettings() {
         let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(proxySettingsController, animated: true)
+    }
+
+    private func editAppPickerUrl() {
+        let alert = UIAlertController(title: String.localized("webxdc_store_url"), message: String.localized("webxdc_store_url_explain"), preferredStyle: .alert)
+        alert.addTextField { textfield in
+            textfield.placeholder = UserDefaults.defaultAppPickerUrlString
+            textfield.text = UserDefaults.getAppPickerUrlString()
+        }
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
+            guard let self, let textfield = alert.textFields?.first else { return }
+            guard let appPickerUrl = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
+            if appPickerUrl.isEmpty {
+                UserDefaults.setAppPickerUrlString(UserDefaults.defaultAppPickerUrlString)
+            } else {
+                UserDefaults.setAppPickerUrlString(appPickerUrl)
+            }
+            appPickerCell.detailTextLabel?.text = UserDefaults.getAppPickerUrlString()
+        })
+        present(alert, animated: true)
     }
 
     private func presentError(message: String) {
