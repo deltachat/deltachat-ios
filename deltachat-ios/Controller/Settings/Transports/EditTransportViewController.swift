@@ -461,6 +461,8 @@ class EditTransportViewController: UITableViewController {
         } else {
             navigationController?.popViewController(animated: true)
         }
+        
+        appDelegate.handleAppClipInviteLink()
     }
 
     private func resignFirstResponderOnAllCells() {
