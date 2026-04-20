@@ -306,6 +306,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.setMainIoRunning()
         applicationInForeground = true
         NotificationManager.updateBadgeCounters()
+        if dcAccounts.getSelected().isConfigured() {
+            // This supports the case that app clips stay installed and
+            // keep handling i.delta.chat links instead of the main app which
+            // shouldn't happen but would be pretty bad so better safe than sorry
+            handleAppClipInviteLink()
+        }
     }
 
     func applicationWillResignActive(_: UIApplication) {
