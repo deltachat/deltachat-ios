@@ -7,6 +7,8 @@ public extension UserDefaults {
     static var mainIoRunningKey = "mainIoRunning"
     static var nseFetchingKey = "nseFetching"
     static var incomingCallPayloadKey = "incomingCallPayload"
+    static var appPickerUrl = "appPickerUrl"
+    static var defaultAppPickerUrlString = "https://webxdc.org/apps/"
 
     static var shared: UserDefaults? {
         return UserDefaults(suiteName: "group.chat.delta.ios")
@@ -53,5 +55,17 @@ public extension UserDefaults {
         }
         slidingValues.append(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Date().timeIntervalSince1970) + "|" + value)
         shared.set(slidingValues, forKey: debugArrayKey)
+    }
+
+    static func getAppPickerUrlString() -> String {
+        if let url = UserDefaults.standard.string(forKey: appPickerUrl) {
+            return url
+        } else {
+            return defaultAppPickerUrlString
+        }
+    }
+
+    static func setAppPickerUrlString(_ url: String) {
+        UserDefaults.standard.set(url, forKey: appPickerUrl)
     }
 }
