@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Configurable app store url
 - Fix: do not crash when swiping keyboard down
 
 
