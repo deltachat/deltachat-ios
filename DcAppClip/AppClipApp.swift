@@ -1,7 +1,7 @@
 import SwiftUI
 
 
-let appDeeplinkUrl = URL(string: "delta.chat.deeplink://")!
+let appDeeplinkUrl = URL(string: "chat.delta.deeplink://")!
 let appstoreUrl = URL(string: "https://apps.apple.com/app/delta-chat/id1459523234")!
 
 @main
