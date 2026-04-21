@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Czas trwania %d minuta</string>
+			<key>few</key>
+			<string>Czas trwania %d minuty</string>
+			<key>many</key>
+			<string>Czas trwania %d minut</string>
+			<key>other</key>
+			<string>Czas trwania %d minuty</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -180,6 +200,26 @@
 			<string>Wybrano %d</string>
 			<key>other</key>
 			<string>Wybrano %d</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d wyświetlenie</string>
+			<key>few</key>
+			<string>%d wyświetlenia</string>
+			<key>many</key>
+			<string>%d wyświetleń</string>
+			<key>other</key>
+			<string>%d wyświetlenia</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

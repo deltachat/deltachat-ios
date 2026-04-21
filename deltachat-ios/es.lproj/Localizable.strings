@@ -365,7 +365,7 @@
 "ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";
 "ask_export_attachment" = "Los adjuntos exportados serán accesibles desde cualquier otra aplicación en su dispositivo. ¿Continuar?";
-"ask_block_contact" = "¿Bloquear este contacto? Ya no recibirás mensajes de este contacto.";
+"ask_block_contact" = "¿Bloquear este contacto? Ya no recibirás mensajes ni se mostrarán grupos creados por contactos bloqueados. En otros grupos con contactos bloqueados seguirás viendo sus mensajes.";
 "ask_unblock_contact" = "¿Desbloquear este contacto? Una vez más podrá recibir mensajes de este contacto.";
 "ask_delete_contacts" = "¿Eliminar contactos?\n\nContactos con un chat en curso y contactos de la libreta de direcciones del sistema no pueden ser eliminados de forma permanente.";
 "ask_delete_contact" = "¿Eliminar contacto %1$@?\n\nContactos con chats en curso o de la libreta de direcciones del sistema no pueden ser eliminados.";
