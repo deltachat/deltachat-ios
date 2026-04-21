@@ -188,10 +188,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if dcAccounts.getSelected().isConfigured() {
             registerForNotifications()
             prepopulateWidget()
+            handleAppClipInviteLink()
         }
 
         launchOptions = nil
         appFullyInitialized = true
+    }
+
+    /// Forward an invite link stored by DcAppClip before the app was installed to the QR handler.
+    func handleAppClipInviteLink() {
+        guard dcAccounts.getSelected().isConfigured() else { return }
+        let inviteLinkKey = "appClipInviteLink"
+        guard let inviteLink = UserDefaults.shared?.string(forKey: inviteLinkKey) else { return }
+        UserDefaults.shared?.removeObject(forKey: inviteLinkKey)
+        appCoordinator.handleQRCode(inviteLink)
     }
 
     func application(_ application: UIApplication,
@@ -296,6 +306,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.setMainIoRunning()
         applicationInForeground = true
         NotificationManager.updateBadgeCounters()
+        if dcAccounts.getSelected().isConfigured() {
+            // This supports the case that app clips stay installed and
+            // keep handling i.delta.chat links instead of the main app which
+            // shouldn't happen but would be pretty bad so better safe than sorry
+            handleAppClipInviteLink()
+        }
     }
 
     func applicationWillResignActive(_: UIApplication) {

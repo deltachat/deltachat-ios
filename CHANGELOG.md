@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Configurable app store url
+- Added an App Clip to handle invite links before the user has installed the full app
 - Fix: do not crash when swiping keyboard down
 
 
