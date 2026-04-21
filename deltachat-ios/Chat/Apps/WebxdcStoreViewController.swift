@@ -15,7 +15,11 @@ class WebxdcStoreViewController: UIViewController {
     init() {
         webView = WKWebView(frame: .zero)
         webView.translatesAutoresizingMaskIntoConstraints = false
+
         appPickerUrl = URL(string: UserDefaults.getAppPickerUrlString())
+        if let appPickerUrl {
+            webView.load(URLRequest(url: appPickerUrl))
+        }
 
         super.init(nibName: nil, bundle: nil)
 
@@ -36,14 +40,6 @@ class WebxdcStoreViewController: UIViewController {
         ]
 
         NSLayoutConstraint.activate(constraints)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.async { [weak self] in
-            guard let self, let appPickerUrl else { return }
-            webView.load(URLRequest(url: appPickerUrl))
-        }
     }
 }
 
