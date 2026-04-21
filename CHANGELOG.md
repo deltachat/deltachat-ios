@@ -1,10 +1,12 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.49.1
 
-- Configurable app store url
+- Configurable app picker url
 - Added an App Clip to handle invite links before the user has installed the full app
 - Fix: do not crash when swiping keyboard down
+- Update translations and local help
+- Usign core 2.49.0
 
 
 ## v2.49.0
