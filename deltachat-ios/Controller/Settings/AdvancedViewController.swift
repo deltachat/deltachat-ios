@@ -301,14 +301,14 @@ internal final class AdvancedViewController: UITableViewController {
         let alert = UIAlertController(title: String.localized("webxdc_store_url"), message: String.localized("webxdc_store_url_explain"), preferredStyle: .alert)
         alert.addTextField { textfield in
             textfield.placeholder = UserDefaults.defaultAppPickerUrlString
-            textfield.text = UserDefaults.getAppPickerUrlString()
+            textfield.text = UserDefaults.getAppPickerUrlString() == UserDefaults.defaultAppPickerUrlString ? nil : UserDefaults.getAppPickerUrlString()
         }
         alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
         alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default) { [weak self] _ in
             guard let self, let textfield = alert.textFields?.first else { return }
             guard let appPickerUrl = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
             if appPickerUrl.isEmpty {
-                UserDefaults.setAppPickerUrlString(UserDefaults.defaultAppPickerUrlString)
+                UserDefaults.setAppPickerUrlString(nil)
             } else {
                 UserDefaults.setAppPickerUrlString(appPickerUrl)
             }
