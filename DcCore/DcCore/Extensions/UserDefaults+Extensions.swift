@@ -58,11 +58,7 @@ public extension UserDefaults {
     }
 
     static func getAppPickerUrlString() -> String {
-        if let url = UserDefaults.standard.string(forKey: appPickerUrl) {
-            return url
-        } else {
-            return defaultAppPickerUrlString
-        }
+        UserDefaults.standard.string(forKey: appPickerUrl) ?? defaultAppPickerUrlString
     }
 
     static func setAppPickerUrlString(_ url: String) {
