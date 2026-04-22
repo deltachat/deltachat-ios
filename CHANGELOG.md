@@ -3,7 +3,7 @@
 ## v2.49.1
 
 - Configurable app picker url
-- Added an App Clip to handle invite links before the user has installed the full app
+- When tapping an invite link, after app installation, offer corresponding chat
 - Fix: do not crash when swiping keyboard down
 - Update translations and local help
 - Usign core 2.49.0
