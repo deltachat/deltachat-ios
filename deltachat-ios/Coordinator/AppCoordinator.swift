@@ -343,7 +343,8 @@ class AppCoordinator: NSObject {
         case DC_QR_ASK_VERIFYCONTACT:
             let name = dcContext.getContact(id: qrParsed.id).displayName
             joinSecureJoin(
-                alertMessage: String.localizedStringWithFormat(String.localized("ask_start_chat_with"), name),
+                alertMessage: .localizedStringWithFormat(.localized("ask_start_chat_with"), name),
+                positiveButton: .localized("ok"),
                 code: code,
                 viewController: viewController,
                 dcContext: dcContext
@@ -352,7 +353,8 @@ class AppCoordinator: NSObject {
         case DC_QR_ASK_VERIFYGROUP:
             let groupName = qrParsed.text1 ?? "ErrGroupName"
             joinSecureJoin(
-                alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_group"), groupName),
+                alertMessage: .localizedStringWithFormat(.localized("qrscan_ask_join_group"), groupName),
+                positiveButton: .localized("join_group"),
                 code: code,
                 viewController: viewController,
                 dcContext: dcContext
@@ -361,7 +363,8 @@ class AppCoordinator: NSObject {
         case DC_QR_ASK_VERIFYBROADCAST:
             let broadcastName = qrParsed.text1 ?? "ErrBroadcastName"
             joinSecureJoin(
-                alertMessage: String.localizedStringWithFormat(String.localized("qrscan_ask_join_channel"), broadcastName),
+                alertMessage: .localizedStringWithFormat(.localized("qrscan_ask_join_channel"), broadcastName),
+                positiveButton: .localized("join_channel"),
                 code: code,
                 viewController: viewController,
                 dcContext: dcContext
@@ -487,12 +490,12 @@ class AppCoordinator: NSObject {
         }
     }
 
-    private func joinSecureJoin(alertMessage: String, code: String, viewController: UIViewController, dcContext: DcContext) {
+    private func joinSecureJoin(alertMessage: String, positiveButton: String, code: String, viewController: UIViewController, dcContext: DcContext) {
         let alert = UIAlertController(title: alertMessage,
                                       message: nil,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: positiveButton, style: .default, handler: { [weak self] _ in
             let chatId = dcContext.joinSecurejoin(qrCode: code)
             if chatId != 0 {
                 self?.showChat(chatId: chatId)
