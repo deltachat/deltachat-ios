@@ -64,8 +64,9 @@
 "show_full_message" = "顯示完整訊息⋯";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "全部標記為已讀";
+// Used as an menu entry or button
 "mark_as_read" = "標記為已讀";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "已讀";
 // Placeholder text when something is loading
 "loading" = "載入中⋯";
@@ -130,7 +131,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "貼圖";
 "add_to_sticker_collection" = "新增至貼圖集";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "要添加貼圖，請點擊「打開貼圖資料夾」 ，為您的貼圖包創建一個子資料夾，然後將圖像和貼圖檔拖拽到那裡";
+// deprecated
 "open_sticker_folder" = "開啟貼圖資料夾";
 "ask_add_sticker_to_collection" = "將這個貼圖加入你的收藏嗎？";
 "ask_delete_sticker" = "移除這個貼圖？";
@@ -440,6 +443,7 @@
 "remove_group_image" = "移除群組圖片";
 "change_group_image" = "變更群組圖片";
 "group_create_button" = "建立群組";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "請輸入群組的名稱";
 "group_add_members" = "新增成員";
 "group_self_not_in_group" = "你必須先加入群組，才能執行本功能。";

@@ -291,6 +291,7 @@
 "remove_group_image" = "그룹 이미지 제거";
 "change_group_image" = "그룹 이미지 변경";
 "group_create_button" = "그룹 만들기";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "그룹 이름을 입력하시오";
 "group_add_members" = "대화상대 추가";
 "group_self_not_in_group" = "실행을 위해선 그룹의 멤버가 되어야 합니다.";

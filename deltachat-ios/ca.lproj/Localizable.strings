@@ -64,10 +64,11 @@
 "show_full_message" = "Mostra el missatge sencer...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marca-ho tot com a llegit";
+// Used as an menu entry or button
 "mark_as_read" = "Marca-ho com a llegit";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Llegit";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "No llegit";
 // Placeholder text when something is loading
 "loading" = "S\'està carregant...";
@@ -132,7 +133,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Adhesiu";
 "add_to_sticker_collection" = "Afegeix a la col·lecció d\'adhesius";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Per a afegir adhesius: premeu \"Obre la carpeta d\'adhesius\", creeu una subcarpeta per a la vostra col·lecció d\'adhesius i arrossegueu-hi la imatge i els fitxers d\'adhesius.";
+// deprecated
 "open_sticker_folder" = "Obre la carpeta d\'adhesius";
 "ask_add_sticker_to_collection" = "Afegir l\'adhesiu a la col·lecció?";
 "ask_delete_sticker" = "Esborrar l\'adhesiu?";
@@ -443,6 +446,7 @@
 "remove_group_image" = "Elimina la imatge del grup";
 "change_group_image" = "Canvia la imatge del grup";
 "group_create_button" = "Crea el grup";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Si us plau, poseu nom al grup.";
 "group_add_members" = "Afegiu-hi membres";
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";

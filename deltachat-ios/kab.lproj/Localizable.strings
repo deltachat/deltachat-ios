@@ -64,10 +64,11 @@
 "show_full_message" = "Sken izen ummid...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Creḍ akken ma llan amzun ttwaɣran";
+// Used as an menu entry or button
 "mark_as_read" = "Creḍ am akken yettwaɣra";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Creḍ yettwaɣra";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Ur ittwaɣṛi ara";
 // Placeholder text when something is loading
 "loading" = " Asali...";
@@ -132,7 +133,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Tamenṭaḍt";
 "add_to_sticker_collection" = "Rnu ɣer tegrumma n tamenṭaḍt";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Akken ad ternuḍ tamenṭaḍt, sit ɣef \" ldi akaram n tmenṭaḍt \", snulfu-d akaram anaddaw i ukemmus-ik·im n tmenṭaḍt, zuɣer tugna akked ifuyla n tmenṭaḍt din";
+// deprecated
 "open_sticker_folder" = "Ldi akaran n tmenṭaḍt";
 "ask_add_sticker_to_collection" = "Arni ticṛeṭ-agi n tesfift ɣer tegrumma-inek·inem?";
 "ask_delete_sticker" = "Kkes ticṛet-agi n tesfift?";
@@ -441,6 +444,7 @@
 "remove_group_image" = "Kkes tugna n unagraw";
 "change_group_image" = "Beddel tugna n ugraw";
 "group_create_button" = "Rnu agraw";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Ma ulac aɣilif, sekcem isem n ugraw.";
 "group_add_members" = "Rnu imttekkiyen";
 "group_self_not_in_group" = "Issefk ad tiliḍ d aɛeggal deg ugraw akken ad tgeḍ tigawt-a.";

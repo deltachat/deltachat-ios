@@ -48,7 +48,7 @@
 "show_full_message" = "Tampilkan semua pesan...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Tandai Semua sebagai Telah Dibaca";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Baca";
 // Placeholder text when something is loading
 "loading" = "Memuat...";
@@ -277,6 +277,7 @@
 "remove_group_image" = "Hapus gambar grup";
 "change_group_image" = "Ubah gambar grup";
 "group_create_button" = "Buat grup";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Silakan masukkan nama untuk grup.";
 "group_add_members" = "Tambah anggota";
 "group_self_not_in_group" = "Anda harus menjadi anggota grup untuk melakukan tindakan ini.";

@@ -64,10 +64,11 @@
 "show_full_message" = "Näita sõnumit täismahus…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Märgi kõik loetuks";
+// Used as an menu entry or button
 "mark_as_read" = "Märgi loetuks";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Märgi loetuks";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Märgi mitteloetuks";
 // Placeholder text when something is loading
 "loading" = "Laadimisel…";
@@ -132,7 +133,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Kleeps";
 "add_to_sticker_collection" = "Lisa kleepsude kogumikku";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Kleepsude lisamiseks klõpsi valikut „Ava kleepsude kaust“, loo oma kleepsupaki jaoks sinna alamkaust ning lohista pildi- ja kleepsufailid sinna";
+// deprecated
 "open_sticker_folder" = "Ava kleepsude kaust";
 "ask_add_sticker_to_collection" = "Kas lisad selle kleepsu oma kogumikku?";
 "ask_delete_sticker" = "Kas kustutad selle kleepsu?";
@@ -443,6 +446,7 @@
 "remove_group_image" = "Eemalda grupi tunnuspilti";
 "change_group_image" = "Muuda grupi tunnuspilti";
 "group_create_button" = "Loo grupp";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Palun sisesta grupi nimi.";
 "group_add_members" = "Lisa liikmeid";
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";

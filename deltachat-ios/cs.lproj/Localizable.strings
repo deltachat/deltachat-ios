@@ -64,8 +64,9 @@
 "show_full_message" = "Zobrazit celou zprávu…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Označit vše jako přečtené";
+// Used as an menu entry or button
 "mark_as_read" = "Označit jako přečtené";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Přečteno";
 // Placeholder text when something is loading
 "loading" = "Načítání...";
@@ -126,7 +127,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Nálepka";
 "add_to_sticker_collection" = "Přidat do sbírky nálepek";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Přejete-li si přidat nálepky, klepněte na „Otevřít složku nálepek“, vytvořte podsložku pro balíček nálepek a přetáhněte do ní soubory obrázků a nálepek";
+// deprecated
 "open_sticker_folder" = "Otevřít složku nálepek";
 "images" = "Obrázky";
 // a noun, used for "Music" and other "Audio" files
@@ -409,6 +412,7 @@
 "remove_group_image" = "Odstranit obrázek skupiny";
 "change_group_image" = "Změnit obrázek skupiny";
 "group_create_button" = "Vytvořit skupinu";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Prosím, vložte název pro tuto skupinu.";
 "group_add_members" = "Přidat členy";
 "group_self_not_in_group" = "Pro tuto akci je nutné být členem této skupiny.";

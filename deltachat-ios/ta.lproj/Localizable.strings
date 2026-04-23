@@ -134,6 +134,7 @@
 "search" = "தேடு";
 // create/edit groups, contact/group profile
 "group_name" = "குழுவின் பெயர்";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "குழுவிற்கு ஒரு பெயரை சூட்டவும்";
 "group_add_members" = "உறுப்பினர்களை சேர்க்க";
 "profile_encryption" = "மறைகுறியாக்கம்";

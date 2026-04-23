@@ -64,9 +64,12 @@
 "show_full_message" = "Показати повне повідомлення...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Позначити все як прочитане";
+// Used as an menu entry or button
 "mark_as_read" = "Позначити як прочитане";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Позначити прочитаним";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Непрочитане";
 // Placeholder text when something is loading
 "loading" = "Завантаження...";
 "hide" = "Приховати";
@@ -113,10 +116,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Останній раз бачили %1$@";
 "last_seen_unknown" = "Останній раз бачили: Невідомо.";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Менше 1 хвилини";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Обрано:";
+"selected" = "Вибране";
 "self" = "Я";
 "draft" = "Чернетка";
 "image" = "Зображення";
@@ -126,8 +133,13 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Стікер";
 "add_to_sticker_collection" = "Додати до колекції стікерів";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Аби додати стікери, торкніться \"Відкрити директорію наклейок\", створіть субдерикторію для вашого стікерпаку та перетягніть туди зображення і файли стікерів";
+// deprecated
 "open_sticker_folder" = "Відкрити директорію наклейок";
+"ask_add_sticker_to_collection" = "Додати цю наліпку до своєї колекції?";
+"ask_delete_sticker" = "Видалити цю наліпку?";
+"sticker_picker_empty_hint" = "Натисніть наліпку, щоб додати її сюди.";
 "images" = "Зображення";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Аудіо";
@@ -191,7 +203,7 @@
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Новий контакт";
 "menu_new_classic_contact" = "Додати контакт вручну";
-"new_classic_contact_explain" = "Контакти, додані вручну, можна використовувати для надсилання тексту на класичну електронну пошту, але вони не гарантовано зашифровані наскрізним шифруванням.";
+"new_classic_contact_explain" = "Контакти, додані вручну, можуть бути використані для надсилання повідомлень на звичайну електронну пошту, і для них не гарантується наскрізне шифрування.";
 "menu_new_chat" = "Новий чат";
 "menu_new_group" = "Нова група";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
@@ -205,6 +217,7 @@
 "new_channel" = "Новий Канал";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Назва Каналу";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-Mail";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Новий E-Mail";
@@ -220,6 +233,7 @@
 "menu_add_attachment" = "Додати вкладення";
 "menu_leave_group" = "Залишити групу";
 "menu_leave_channel" = "Покинути Канал";
+"menu_leave_and_delete" = "Залишити і видалити для мене";
 "menu_delete_chat" = "Видалити чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистити чат";
@@ -324,6 +338,16 @@
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Аудіовиклик";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Відеовиклик";
+"call_initializing" = "Ініціалізація...";
+"call_incoming" = "Вхідний виклик";
+"call_ringing" = "Дзвінок...";
+"call_reconnecting" = "Перепідключення...";
+"call_ended" = "Дзвінок завершено";
+"call_failed" = "Дзвінок не відбувся";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Вихідний аудіовиклик";
 // deprecated, use "Video call" instead
@@ -335,6 +359,7 @@
 "declined_call" = "Відхилений дзвінок";
 "canceled_call" = "Скасований дзвінок";
 "missed_call" = "Пропущений дзвінок";
+"already_in_call" = "Вже на зв\'язку";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ви впевнені, що хочете піти?";
@@ -421,6 +446,7 @@
 "remove_group_image" = "Видалити зображення групи";
 "change_group_image" = "Змінити зображення групи";
 "group_create_button" = "Створити групу";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Уведіть назву групі.";
 "group_add_members" = "Додати учасників";
 "group_self_not_in_group" = "Лише учасник групи має змогу виконати цю дію.";
@@ -553,9 +579,16 @@
 "add_transport" = "Додати транспортний сервер";
 "remove_transport" = "Видалити транспортний сервер";
 "edit_transport" = "Редагувати транспортний сервер";
+"used_for_sending" = "Використовується для відправки";
+"hide_from_contacts" = "Приховати від контактів";
+"hidden_from_contacts" = "Приховано від контактів";
+// Hint for the list of relays
+"transport_list_hint" = "Повідомлення приймаються на всіх relay-серверах.\n\n⚠️ Якщо ви щось змінюєте тут, переконайтеся, що всі ваші пристрої працюють принаймні з версією 2.47.0. Інакше старіші пристрої можуть пропустити повідомлення.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Додати цей транспортний сервер?";
 "invalid_transport_qr" = "Відсканований QR-код не містить дійсного транспортного сервера.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Видалити relay-сервер \"%1$@\"?\n\nКонтакти, які знають тільки цей relay-сервер, можуть не зв\'язатися з вами, поки ви не напишете їм знову.\n\nЯкщо ви сумніваєтеся, сховайте його, а не видаляйте.";
 "login_certificate_checks" = "Перевірки сертифікатів";
 "login_error_mail" = "Вкажіть дійсну адресу електронної пошти";
 "login_error_server" = "Вкажіть дійсний сервер / IP-адресу";
@@ -591,7 +624,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Послати %1$d файл·и·ів у «%2$@»?";
 "ask_send_files_to_selected_chats" = "Послати %1$d файл·и·ів у %2$d чати?";
-"videos_sent_without_recoding" = "(При надсиланні декількох відео, вони будуть надіслані у незмінному вигляді, що може бути проблемою через великий розмір файлів. Щоб зменшити їх розмір та заощадити дані, Ви можете надсилати кожне відео окремим повідомленням)";
+"videos_sent_without_recoding" = "(Надсилання кількох відео одночасно залишить їх у вихідному розмірі, що може призвести до великого обсягу даних. Щоб зменшити їхній розмір і заощадити трафік, ви можете надсилати кожне відео окремим повідомленням)";
 "share_text_multiple_chats" = "Надіслати це́й текст у %1$d чат·и·ів?\n\n«%2$@»";
 "share_abort" = "Надсилання обірване через відсутність дозволів.";
 // preferences
@@ -608,6 +641,7 @@
 "pref_enter_sends" = "Відправляти клявішею   Enter";
 "pref_enter_sends_explain" = "Натискаючи клявішу   Enter відправлятимете текстові повідомлення";
 "pref_outgoing_media_quality" = "Якість вихідних медіа файлів";
+"pref_outgoing_media_quality_hint" = "Щоб надіслати в оригінальній якості, прикріпіть медіа як \"Файл\". При цьому використовується значно більше даних для вас і ваших одержувачів.";
 "pref_outgoing_balanced" = "Збалансована якість";
 "pref_outgoing_worse" = "Гірша якість, менший розмір";
 "pref_vibrate" = "Вібрація";
@@ -618,6 +652,10 @@
 "pref_notifications" = "Сповіщення";
 "pref_mention_notifications" = "Згадки";
 "pref_mention_notifications_explain" = "У приглушених групах сповіщати про повідомлення, адресовані вам, наприклад, відповіді або реакції";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Виклики";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Показувати екран виклику під час вхідних дзвінків";
 "pref_notifications_show" = "Показати";
 "pref_notifications_priority" = "Пріоритет";
 "pref_notifications_explain" = "Увімкнути системні сповіщення для нових повідомлень";
@@ -751,7 +789,7 @@
 "group_image_changed_by_you" = "Зображення групи змінено.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ змінює зображення групи.";
-"chat_description_changed_by_you" = "Опис чату змінено";
+"chat_description_changed_by_you" = "Ви змінили опис чату";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "%1$@ змінює опис чату.";
 // %1$s will be replaced by name of the contact added to the group
@@ -815,14 +853,15 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ встановив (-ла) таймер зникнення повідомлень на %1$@ тижнів.";
 "chat_unencrypted_explanation" = "Повідомлення в цьому чаті використовують класичну електронну пошту і не мають наскрізного шифрування.";
+"messages_are_e2ee" = "Повідомлення наскрізно зашифровані.";
 "chat_protection_enabled_tap_to_learn_more" = "Відтепер повідомлення гарантовано будуть мати наскрізне шифрування. Торкніться, щоб дізнатися більше.";
-"chat_protection_enabled_explanation" = "Тепер гарантовано, що всі повідомлення в цьому чаті наскрізь зашифровані.\n\nНаскрізне шифрування зберігає конфіденційність повідомлень між вами і вашими партнерами по чату. Навіть сервери, провайдери або ретранслятори не можуть їх прочитати.";
+"chat_protection_enabled_explanation" = "Всі повідомлення в цьому чат наскрізь зашифровані.\n\nНаскрізне шифрування зберігає повідомлення конфіденційними між вами та вашими співрозмовинками. Навіть сервери, провайдери або ретранслятори не можуть їх прочитати.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ вимагає наскрізного шифрування, яке ще не налаштоване для цього чату. Натисніть, щоб дізнатися більше.";
 "invalid_unencrypted_explanation" = "Щоб встановити наскрізне шифрування, Ви можете зустрітися з контактами особисто та відсканувати їх QR-код.";
 "learn_more" = "Дізнатися більше";
 "devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";
 // %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
-"devicemsg_storage_exceeding" = "⚠️ Сховище вашого провайдера електронної пошти майже заповнено, уже використовується %1$@%%.\n\nМожливо, Ви не зможете отримувати повідомлення, коли сховище буде заповнене.\n\n👉 Перевірте, чи можна видалити старі дані у веб-інтерфейсі провайдера та ввімкніть \"Налаштування / Видалити старі повідомлення\". Ви можете будь-коли перевірити своє поточне використання сховища в \"Налаштування / Зʼєднання\". ";
+"devicemsg_storage_exceeding" = "⚠️ Сховище вашого провайдера електронної пошти майже заповнено, уже використовується %1$@%%.\n\nМожливо, Ви не зможете отримувати повідомлення, коли сховище буде заповнене.\n\n👉 Перевірте, чи можна видалити старі дані у веб-інтерфейсі провайдера та ввімкніть \"Налаштування / Чати / Видалити старі повідомлення\". Ви можете будь-коли перевірити своє поточне використання сховища в \"Налаштування / Зʼєднання\". ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Дата й час на вашому пристрої видаються неточними (%1$@).\n\nНалаштуйте свій годинник ⏰🔧 для правильного отримання повідомлень.";
 "devicemsg_update_reminder" = "⚠️ Ваша версія Delta Chat може бути застарілою.\n\nЦе може спричинити проблеми, оскільки Ваші співрозмовники в чаті використовують новіші версії, а Вам не вистачає найновіших функцій 😳 \nПеревірте оновлення на https://get.delta.chat або в магазині додатків. ";
@@ -901,11 +940,11 @@
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
-"perm_explain_access_to_camera_denied" = "Для зйомки фотографій або відео додатку потрібен дозвіл на використання камери, але зараз його не надано. Для надання дозволу перейдіть у системне меню налаштувань, у розділі \"Додатки\" знайдіть Delta Chat і надайте доступ до камери.";
+"perm_explain_access_to_camera_denied" = "Щоб робити фотографії або знімати відео, перейдіть до налаштувань програми оберіть \"Дозволи\" та увімкніть \"Камера\".";
 // give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
-"perm_explain_access_to_mic_denied" = "Щоб надсилати аудіоповідомлення, перейдіть до налаштувань системи або програми, виберіть \"Дозволи\" або \"Конфіденційність і Безпека\" та увімкніть \"Мікрофон\".";
+"perm_explain_access_to_mic_denied" = "Щоб надіслати аудіо повідомлення, перейдіть до налаштувань системи або програми, оберіть \"Дозволи\" або \"Конфіденційність & Безпека\" та увімкніть \"Мікрофон\".";
 "perm_explain_access_to_storage_denied" = "Для збереження або передавання фотографій перейдіть до налаштувань додатку, оберіть \"Дозволи\" та ввімкніть \"Сховище\"";
-"perm_explain_access_to_location_denied" = "Щоб передати місцезнаходження, додатку потрібен доступ до геоданих пристрою, але зараз його не надано. Для надання доступу перейдіть у системне меню налаштувань, у розділі \"Додатки\" знайдіть Delta Chat, оберіть \"Дозволи\" і надайте доступ до місцезнаходження пристрою.";
+"perm_explain_access_to_location_denied" = "Щоб прикріпити місцеперебування, перейдіть до налаштувань програми, оберіть \"Дозволи\" та увімкніть \"місцеперебування\".";
 "perm_explain_access_to_notifications_denied" = "Щоб отримувати сповіщення зайдіть у \"Налаштування системи / Застосунки / Delta Chat\" і увімкніть \"Сповіщення\"";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Малюйте будь-де для розмиття";

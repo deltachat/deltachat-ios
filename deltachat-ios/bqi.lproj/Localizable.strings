@@ -64,8 +64,9 @@
 "show_full_message" = "نشووݩ داڌن پیوم کامل...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "پوی ن خونده بیڌه بزݩ";
+// Used as an menu entry or button
 "mark_as_read" = "نشووه ناڌن و عونوان خونده وابیڌه";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "علامت و عونوان خونده بیڌه";
 // Placeholder text when something is loading
 "loading" = "هونی بار اونه...";
@@ -124,7 +125,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "add_to_sticker_collection" = "ٱووردن و مجمۊعه استیکر";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "سی ٱووردن برچسب ری «گۊشیڌن دوبلگه برچسب» بزنین، ی لم دوبلگه ای سی کتن برچسب خوتووݩ وورکل کۊنین وو برچسبا ن و اوچو بکشین";
+// deprecated
 "open_sticker_folder" = "گۊشیڌن دوبلگه استیکر";
 "images" = "شؽواتا";
 // a noun, used for "Music" and other "Audio" files

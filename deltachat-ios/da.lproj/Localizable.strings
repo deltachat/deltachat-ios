@@ -248,6 +248,7 @@
 "remove_group_image" = "Fjern gruppeikon";
 "change_group_image" = "Ændre gruppeikon";
 "group_create_button" = "Oprette gruppe";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Indtast et navn til gruppen.";
 "group_add_members" = "Tilføj medlemmer";
 "group_self_not_in_group" = "Man skal være medlem af gruppen for at udføre denne handling.";
