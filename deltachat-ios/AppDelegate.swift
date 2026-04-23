@@ -784,6 +784,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_CHANNEL_QR_DESC, localizationKey: "qrshow_join_channel_hint")
         dcContext.setStockTranslation(id: DC_STR_MSG_YOU_JOINED_CHANNEL, localizationKey: "you_joined_the_channel")
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_CHANNEL_STARTED, localizationKey: "secure_join_channel_started")
+        dcContext.setStockTranslation(id: DC_STR_CHANNEL_NAME_CHANGED, localizationKey: "channel_name_changed")
+        dcContext.setStockTranslation(id: DC_STR_CHANNEL_IMAGE_CHANGED, localizationKey: "channel_image_changed")
         dcContext.setStockTranslation(id: DC_STR_STATS_MSG_BODY, localizationKey: "stats_msg_body")
         dcContext.setStockTranslation(id: DC_STR_PROXY_ENABLED, localizationKey: "proxy_enabled")
         dcContext.setStockTranslation(id: DC_STR_PROXY_ENABLED_DESCRIPTION, localizationKey: "proxy_enabled_hint")
