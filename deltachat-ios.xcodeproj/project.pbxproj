@@ -130,6 +130,7 @@
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		648BA1872F9510FA007B1FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
+		648BA1CF2F9A320E007B1FDE /* DcAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = DCA000022CF72AA0009AF551 /* DcAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
 		64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */; };
@@ -267,6 +268,13 @@
 			remoteGlobalIDString = 7A9FB13F1FB061E2001FEA36;
 			remoteInfo = "deltachat-ios";
 		};
+		648BA1D02F9A320E007B1FDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCA000012CF72AA0009AF551;
+			remoteInfo = DcAppClip;
+		};
 		B2D0E4972B93A4B200791949 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
@@ -280,13 +288,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = D878C4FA2CF72AA0009AF551;
 			remoteInfo = MostRecentWebXDCWidgetExtension;
-		};
-		DCA0000A2CF72AA1009AF551 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DCA000012CF72AA0009AF551;
-			remoteInfo = DcAppClip;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -313,6 +314,17 @@
 				30E8F21A2447285600CE2C90 /* Delta Chat.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		648BA1C42F9A3181007B1FDE /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				648BA1CF2F9A320E007B1FDE /* DcAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DCA0000C2CF72AA1009AF551 /* Embed App Clips */ = {
@@ -1381,6 +1393,7 @@
 				30E8F21B2447285600CE2C90 /* Embed Foundation Extensions */,
 				DCA0000C2CF72AA1009AF551 /* Embed App Clips */,
 				4B4E98320BAB08A6811633E4 /* [CP] Embed Pods Frameworks */,
+				648BA1C42F9A3181007B1FDE /* Embed App Clips */,
 			);
 			buildRules = (
 			);
@@ -1388,7 +1401,7 @@
 				30E8F2192447285600CE2C90 /* PBXTargetDependency */,
 				B2D0E4982B93A4B200791949 /* PBXTargetDependency */,
 				D878C50B2CF72AA1009AF551 /* PBXTargetDependency */,
-				DCA0000B2CF72AA1009AF551 /* PBXTargetDependency */,
+				648BA1D12F9A320E007B1FDE /* PBXTargetDependency */,
 			);
 			name = "deltachat-ios";
 			productName = "deltachat-ios";
@@ -1459,7 +1472,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1640;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 1640;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
@@ -2006,6 +2019,11 @@
 			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
 			targetProxy = 643B447B2E0C2BD900AEE026 /* PBXContainerItemProxy */;
 		};
+		648BA1D12F9A320E007B1FDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DCA000012CF72AA0009AF551 /* DcAppClip */;
+			targetProxy = 648BA1D02F9A320E007B1FDE /* PBXContainerItemProxy */;
+		};
 		B2D0E4982B93A4B200791949 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B2D0E4912B93A4B200791949 /* DcNotificationService */;
@@ -2015,11 +2033,6 @@
 			isa = PBXTargetDependency;
 			target = D878C4FA2CF72AA0009AF551 /* DcWidget */;
 			targetProxy = D878C50A2CF72AA1009AF551 /* PBXContainerItemProxy */;
-		};
-		DCA0000B2CF72AA1009AF551 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DCA000012CF72AA0009AF551 /* DcAppClip */;
-			targetProxy = DCA0000A2CF72AA1009AF551 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
