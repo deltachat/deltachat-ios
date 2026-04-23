@@ -1,6 +1,6 @@
 # Delta Chat iOS Changelog
 
-## v2.49.1
+## v2.49.2
 
 - Configurable app picker url
 - When tapping an invite link, after app installation, offer corresponding chat
