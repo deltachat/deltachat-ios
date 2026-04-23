@@ -23,6 +23,8 @@
 "downloading" = "Bezig met downloaden…";
 "open_attachment" = "Bijlage openen";
 "join" = "Deelnemen";
+"join_group" = "Deelnemen aan groep";
+"join_channel" = "Deelnemen aan kanaal";
 "rejoin" = "Opnieuw deelnemen";
 "delete" = "Verwijderen";
 "delete_for_me" = "Verwijderen voor mij";
@@ -64,10 +66,13 @@
 "show_full_message" = "Volledig bericht tonen…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Alles markeren als gelezen";
+// Used as an menu entry or button
 "mark_as_read" = "Markeren als gelezen";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelezen";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used as an menu entry or button
+"mark_as_unread" = "Markeren als ongelezen";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Ongelezen";
 // Placeholder text when something is loading
 "loading" = "Bezig met laden…";
@@ -88,6 +93,7 @@
 "offline" = "Offline";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Volgende";
+"warning" = "Waarschuwing";
 "error" = "Fout";
 "error_x" = "Fout: %1$@";
 "no_app_to_handle_data" = "Er is geen app die deze inhoud kan openen.";
@@ -132,7 +138,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "add_to_sticker_collection" = "Toevoegen aan stickerverzameling";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Stickers toevoegen kan als volgt: druk op ‘Stickermap openen’, maak een onderliggende map aan voor je pakket en plaats afbeeldings- en stickerbestanden in de map.";
+// deprecated
 "open_sticker_folder" = "Stickermap openen";
 "ask_add_sticker_to_collection" = "Wil je deze sticker toevoegen aan je verzameling?";
 "ask_delete_sticker" = "Wil je deze sticker verwijderen?";
@@ -357,6 +365,8 @@
 "canceled_call" = "Afgebroken oproep";
 "missed_call" = "Gemiste oproep";
 "already_in_call" = "Reeds in gesprek";
+"call_answered_elsewhere" = "Er is opgenomen op een ander apparaat";
+"call_requires_mic_permission" = "Microfoontoegang is vereist om te kunnen bellen";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Weet je zeker dat je dit kanaal wilt verlaten?";
@@ -432,8 +442,11 @@
 // search
 "search" = "Zoeken";
 "search_in_chat" = "Gesprek doorzoeken";
+// Placeholder will be replaced by the chat name
+"search_in" = "‘%1$@’ doorzoeken";
 "search_files" = "Bestanden doorzoeken";
 "search_explain" = "Zoek naar gesprekken, contactpersonen en berichten";
+"search_result_for_x" = "Zoekresultaten voor “%1$@”";
 "search_no_result_for_x" = "Er zijn geen resultaten voor “%1$@”";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Ongelezen";
@@ -443,7 +456,9 @@
 "remove_group_image" = "Groepsfoto verwijderen";
 "change_group_image" = "Groepsfoto wijzigen";
 "group_create_button" = "Groep aanmaken";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Geef de groep een naam.";
+"please_enter_chat_name" = "Voer een naam in.";
 "group_add_members" = "Deelnemers toevoegen";
 "group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
 "profile_encryption" = "Versleuteling";
@@ -674,6 +689,8 @@
 "pref_incognito_keyboard_explain" = "Verzoek het toetsenbord om geen persoonlijke woorden op te nemen";
 "pref_read_receipts" = "Leesbevestigingen";
 "pref_read_receipts_explain" = "Als je leesbevestigingen uitschakelt, zie je geen leesbevestigingen van anderen.";
+// Title above a list of contacts who read a message
+"read_by" = "Gelezen door";
 "pref_server" = "Server";
 "pref_encryption" = "Versleuteling";
 "pref_manage_keys" = "Sleutels beheren";
@@ -782,9 +799,12 @@
 "group_name_changed_by_you" = "Je hebt de groepsnaam gewijzigd. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "De groepsnaam is gewijzigd door %3$@. Oude naam: “%1$@” - Nieuwe naam: “%2$@”";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "De kanaalnaam is gewijzigd van ‘%1$@’ in ‘%2$@’.";
 "group_image_changed_by_you" = "Je hebt de groepsfoto gewijzigd.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "De groepsfoto is gewijzigd door %1$@.";
+"channel_image_changed" = "De kanaalafbeelding is gewijzigd.";
 "chat_description_changed_by_you" = "Je hebt de gespreksbeschrijving aangepast.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "De gespreksbeschrijving is aangepast door %1$@.";
@@ -918,6 +938,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ bevat al een concept. Wil je dit vervangen?";
 "mailto_link_could_not_be_decoded" = "De mailto-link kan niet worden ontcijferd: %1$@";
+"remove_quote" = "Citaat verwijderen";
+"remove_attachment" = "Bijlage verwijderen";
 // notifications
 "notify_reply_button" = "Beantwoorden";
 "notify_new_message" = "Nieuw bericht";
@@ -933,6 +955,11 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Je hebt nieuwe berichten";
 "n_messages_in_m_chats" = "%1$d berichten in %2$d gesprekken";
+// location streaming
+"location_streaming_channel_desc" = "Kanaal voor locatie delen op verzoek";
+"location_streaming_notification_title" = "Locatiedeling";
+"location_streaming_notification_text" = "Je deelt op dit moment je locatie";
+"location_rationale" = "Om je locatie live te kunnen blijven doorgeven aan andere deelnemers, is locatietoegang vereist.\n\nHiervoor is het ook nodig om je locatie op de achtergrond door te geven.";
 // permissions
 "perm_required_title" = "Recht vereist";
 "perm_continue" = "Doorgaan";
@@ -972,6 +999,7 @@
 "global_menu_help_about_desktop" = "Over Delta Chat";
 "global_menu_file_open_desktop" = "Delta Chat openen";
 "global_menu_minimize_to_tray" = "Minimaliseren";
+"no_account_selected" = "Kies een profiel of maak een nieuw profiel aan";
 "no_chat_selected_suggestion_desktop" = "Kies een gesprek of begin een gesprek";
 "write_message_desktop" = "Schrijf een bericht";
 "encryption_info_title_desktop" = "Versleutelingsinformatie";
@@ -993,8 +1021,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Geen suggesties gevonden.";
 "show_window" = "Venster tonen";
+"data_found_other_installation_message" = "Profielen uit een andere Delta Chat-installatie zijn niet beschikbaar, daar ze allen gebruikmaken van eigen opslaglocaties.\n\nWil je tóch bestaande profielen gebruiken, volg dan deze stappen:\n1. Sluit de app af\n2. Open de andere Delta Chat-installatie en herinstalleer deze zonodig vanaf %1$@\n3. Maak een reservekopie van ieder profiel via ‘Instellingen → Gesprekken’\n4. Herstart deze versie\n5. Herstel de gesprekken door te kiezen voor ‘Ik heb al een profiel’\n\nWil je doorgaan zonder bestaande profielen?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Sneltoetsen";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Navigatie";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Berichtinvoer";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Gekozen bericht";
 "switch_between_chats" = "Wisselen van gesprek";
 "scroll_messages" = "Scrollen door berichten";
 // command to put the cursor to the search input field

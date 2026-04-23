@@ -74,6 +74,7 @@
 "undo" = "Atšaukti";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Kitas";
+"warning" = "Įspėjimas";
 "error" = "Klaida";
 "error_x" = "Klaida: %1$@";
 "no_app_to_handle_data" = "Nepavyksta rasti programėlės, kuri apdorotų šį duomenų tipą.";
@@ -112,8 +113,13 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Lipdukas";
 "add_to_sticker_collection" = "Pridėti į lipdukų rinkinį";
-"add_stickers_instructions" = "Norėdami pridėti lipdukų, bakstelėkite „Atverti lipdukų aplanką“, sukurkite savo lipdukų paketui poaplankį ir tempkite į jį paveikslų ir lipdukų failus";
+// deprecated, use sticker_picker_empty_hint instead
+"add_stickers_instructions" = "Norėdami pridėti lipdukų, bakstelėkite „Atverti lipdukų aplanką“, sukurkite savo lipdukų paketui poaplankį ir tempkite į jį paveikslų bei lipdukų failus";
+// deprecated
 "open_sticker_folder" = "Atverti lipdukų aplanką";
+"ask_add_sticker_to_collection" = "Pridėti šį lipduką į jūsų rinkinį?";
+"ask_delete_sticker" = "Ištrinti šį lipduką?";
+"sticker_picker_empty_hint" = "Spustelėkite ant lipduko norėdami jį čia pridėti.";
 "images" = "Paveikslai";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Garso įrašai";
@@ -199,6 +205,7 @@
 "menu_add_attachment" = "Pridėti priedą";
 "menu_leave_group" = "Išeiti iš grupės";
 "menu_leave_channel" = "Išeiti iš kanalo";
+"menu_leave_and_delete" = "Išeiti ir ištrinti man";
 "menu_delete_chat" = "Ištrinti pokalbį";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
@@ -296,6 +303,16 @@
 "answer_call" = "Atsiliepti";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Atmesti";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Garso skambutis";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Vaizdo skambutis";
+"call_initializing" = "Inicijuojama…";
+"call_incoming" = "Gaunamasis skambutis";
+"call_ringing" = "Skambinama…";
+"call_reconnecting" = "Jungiamasi iš naujo…";
+"call_ended" = "Skambutis baigtas";
+"call_failed" = "Skambutis patyrė nesėkmę";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "Išsiunčiamasis garso skambutis";
 // deprecated, use "Video call" instead
@@ -305,6 +322,7 @@
 // deprecated, use "Video call" instead
 "incoming_video_call" = "Gaunamasis vaizdo skambutis";
 "missed_call" = "Praleistas skambutis";
+"call_answered_elsewhere" = "Atsiliepta kitame įrenginyje";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ar tikrai norite išeiti?";
@@ -375,7 +393,9 @@
 "remove_group_image" = "Šalinti grupės paveikslą";
 "change_group_image" = "Keisti grupės paveikslą";
 "group_create_button" = "Sukurti grupę";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Įveskite grupės pavadinimą.";
+"please_enter_chat_name" = "Įrašykite pavadinimą.";
 "group_add_members" = "Pridėti dalyvius";
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
 "profile_encryption" = "Šifravimas";

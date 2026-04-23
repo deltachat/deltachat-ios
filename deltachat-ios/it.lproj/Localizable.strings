@@ -23,6 +23,8 @@
 "downloading" = "Scarico…";
 "open_attachment" = "Apri Allegato";
 "join" = "Partecipa";
+"join_group" = "Unisciti al Gruppo";
+"join_channel" = "Unisciti al Canale";
 "rejoin" = "Ripartecipa";
 "delete" = "Elimina";
 "delete_for_me" = "Cancella per Me";
@@ -64,10 +66,13 @@
 "show_full_message" = "Mostra Messaggio Completo…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Segna Tutti come Letti";
+// Used as an menu entry or button
 "mark_as_read" = "Segna come Letto";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Segna Letto";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used as an menu entry or button
+"mark_as_unread" = "Segna Non Letto";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Non Letto";
 // Placeholder text when something is loading
 "loading" = "Caricamento…";
@@ -88,6 +93,7 @@
 "offline" = "Non in linea";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Avanti";
+"warning" = "Attenzione";
 "error" = "Errore";
 "error_x" = "Errore: %1$@";
 "no_app_to_handle_data" = "Non ho trovato un\'app per gestire questo tipo di dati.";
@@ -132,7 +138,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Adesivo";
 "add_to_sticker_collection" = "Aggiungi alla Raccolta Adesivi";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Per aggiungere adesivi, tocca \"Apri Cartella Adesivi\", crea una sottocartella per il tuo pacchetto di adesivi e trascina lì i file di immagini e adesivi";
+// deprecated
 "open_sticker_folder" = "Apri Cartella Adesivi";
 "ask_add_sticker_to_collection" = "Aggiungere questo adesivo alla tua collezione?";
 "ask_delete_sticker" = "Eliminare questo adesivo?";
@@ -357,6 +365,8 @@
 "canceled_call" = "Chiamata annullata";
 "missed_call" = "Chiamata persa";
 "already_in_call" = "Già in chiamata";
+"call_answered_elsewhere" = "Chiamata risposta su un altro dispositivo";
+"call_requires_mic_permission" = "Per le chiamate è necessaria l\'autorizzazione per l\'utilizzo del microfono.";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
@@ -443,6 +453,7 @@
 "remove_group_image" = "Rimuovi Immagine Gruppo";
 "change_group_image" = "Cambia Immagine Gruppo";
 "group_create_button" = "Crea Gruppo";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Per piacere inserisci un nome per il gruppo.";
 "group_add_members" = "Aggiungi Membri";
 "group_self_not_in_group" = "Devi essere un membro del gruppo per fare questa azione.";

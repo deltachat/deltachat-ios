@@ -132,6 +132,7 @@
 "search" = "వెతుకు";
 // create/edit groups, contact/group profile
 "group_name" = "సమూహం పేరు";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "సమూహానికి పేరు పెట్టు";
 "group_add_members" = "సభ్యుడిని జత చేయి";
 "profile_encryption" = "ఎన్క్రిప్షన్";

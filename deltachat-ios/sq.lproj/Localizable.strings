@@ -23,6 +23,8 @@
 "downloading" = "Po shkarkohet…";
 "open_attachment" = "Hap Bashkëngjitjen";
 "join" = "Hyni";
+"join_group" = "Bëhuni Pjesë e Grupit";
+"join_channel" = "Ejani në Kanal";
 "rejoin" = "Rihyni";
 "delete" = "Fshije";
 "delete_for_me" = "Fshije për Mua";
@@ -63,10 +65,11 @@
 "show_full_message" = "Shfaq Mesazhin e Plotë…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Vëru Shenjë të Tërave Si të Lexuar";
+// Used as an menu entry or button
 "mark_as_read" = "Vëri Shenjë Si të Lexuar";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Të lexuar";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "I palexuar";
 // Placeholder text when something is loading
 "loading" = "Po ngarkohet…";
@@ -87,6 +90,7 @@
 "offline" = "Jo në linjë";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Pasuesja";
+"warning" = "Kujdes";
 "error" = "Gabim";
 "error_x" = "Gabim: %1$@";
 "no_app_to_handle_data" = "S\’gjendet dot një aplikacion për trajtimin e këtij lloji të dhënash.";
@@ -130,7 +134,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Ngjitës";
 "add_to_sticker_collection" = "Shtoje te Koleksion Ngjitësish";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Që të shtoni ngjitës, prekni “Hap Dosje Ngjitësish”, krijoni një nëndosje për paketën e ngjitësit tuaj dhe tërhiqni në të figurë dhe kartela ngjitësi";
+// deprecated
 "open_sticker_folder" = "Hap Dosje Ngjitësish";
 "ask_add_sticker_to_collection" = "Të shtohet ky ngjitës te koleksioni juaj?";
 "ask_delete_sticker" = "Të fshihet ky ngjitës?";
@@ -353,6 +359,8 @@
 "canceled_call" = "Thirrje e anuluar";
 "missed_call" = "Thirrje e humbur";
 "already_in_call" = "Tashmë në një thirrje";
+"call_answered_elsewhere" = "Thirrje që ka marrë përgjigje në pajisje tjetër";
+"call_requires_mic_permission" = "Leja mbi mikrofonin është e domosdoshme për thirrje";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
@@ -428,8 +436,11 @@
 // search
 "search" = "Kërko";
 "search_in_chat" = "Kërko në Fjalosje";
+// Placeholder will be replaced by the chat name
+"search_in" = "Kërko në %1$@";
 "search_files" = "Kërko në Kartela";
 "search_explain" = "Kërkoni për fjalosje, kontakte dhe mesazhe.";
+"search_result_for_x" = "Përfundim për “%1$@";
 "search_no_result_for_x" = "S\’u gjetën përfundime për “%1$@”";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Të palexuar";
@@ -439,7 +450,9 @@
 "remove_group_image" = "Hiqe Figurën e Grupit";
 "change_group_image" = "Ndryshoni Figurë Grupi";
 "group_create_button" = "Krijoni Grup";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Ju lutemi, jepni një emër për grupin.";
+"please_enter_chat_name" = "Ju lutemi, jepni një emër.";
 "group_add_members" = "Shtoni Anëtarë";
 "group_self_not_in_group" = "Që të kryeni këtë veprim, duhet të jeni anëtar i grupit.";
 "profile_encryption" = "Fshehtëzim";
@@ -670,6 +683,8 @@
 "pref_incognito_keyboard_explain" = "Kërkoji tastierës të çaktivizojë nxënie të personalizuar";
 "pref_read_receipts" = "Dëftesa Leximi";
 "pref_read_receipts_explain" = "Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi prej të tjerësh.";
+// Title above a list of contacts who read a message
+"read_by" = "Lexuar nga";
 "pref_server" = "Shërbyes";
 "pref_encryption" = "Fshehtëzim";
 "pref_manage_keys" = "Administroni Kyçe";
@@ -777,9 +792,12 @@
 "group_name_changed_by_you" = "E ndryshuat emrin e grupit nga “%1$@” në “%2$@”.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Emri i grupit u ndryshua nga “%1$@” në “%2$@” nga %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Emri i kanalit ndryshoi nga “%1$@%2$@.";
 "group_image_changed_by_you" = "Ndryshuat figurën e grupit";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Figura e grupit u ndryshua nga %1$@.";
+"channel_image_changed" = "Ndryshoi figura e kanalit";
 "chat_description_changed_by_you" = "Ndryshuat përshkrimin e fjalosjes.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Përshkrimi i fjalosjes u ndryshua nga %1$@.";
@@ -913,6 +931,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ përmban tashmë një skicë mesazhi, doni të zëvendësohet?";
 "mailto_link_could_not_be_decoded" = "s’u shkodua dot lidhje mailto: %1$@";
+"remove_quote" = "Hiqe citimin";
+"remove_attachment" = "Hiqe bashkëngjitjen";
 // notifications
 "notify_reply_button" = "Përgjigjuni";
 "notify_new_message" = "Mesazh i ri";
@@ -928,6 +948,7 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Keni mesazhe të rinj";
 "n_messages_in_m_chats" = "%1$d mesazhe në %2$d fjalosje";
+"location_streaming_notification_text" = "Po tregoni vendndodhjen tuaj";
 // permissions
 "perm_required_title" = "Lypset leje";
 "perm_continue" = "Vazhdo";
@@ -967,6 +988,7 @@
 "global_menu_help_about_desktop" = "Rreth Delta Chat-it";
 "global_menu_file_open_desktop" = "Hap Delta Chat-in";
 "global_menu_minimize_to_tray" = "Minimizoje";
+"no_account_selected" = "Përzgjidhni një profil, ose krijoni një profil të ri";
 "no_chat_selected_suggestion_desktop" = "Përzgjidhni një fjalosje ose krijoni një të tillë të re";
 "write_message_desktop" = "Shkruani një mesazh";
 "encryption_info_title_desktop" = "Hollësi Fshehtëzimi";
@@ -990,6 +1012,12 @@
 "show_window" = "Shfaq Dritare";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Kombinim tastesh";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Lëvizje";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Dhënie Mesazhi";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Përzgjedhje Mesazhi";
 "switch_between_chats" = "Kaloni nga një Fjalosje në tjetrën";
 "scroll_messages" = "Rrëshqitni nëpër Mesazhe";
 // command to put the cursor to the search input field

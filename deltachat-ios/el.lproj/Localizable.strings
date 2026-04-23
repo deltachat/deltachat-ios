@@ -293,6 +293,7 @@
 "remove_group_image" = "Αφαίρεση φωτογραφίας ομάδας;";
 "change_group_image" = "Αλλαγή Εικόνας Ομάδας";
 "group_create_button" = "Δημιουργία ομάδας";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Εισάγετε ένα όνομα για αυτή την ομάδα.";
 "group_add_members" = "Προσθήκη μελών";
 "group_self_not_in_group" = "Πρέπει να είστε μέλος της ομάδας για να εκτελέσετε αυτήν την ενέργεια.";

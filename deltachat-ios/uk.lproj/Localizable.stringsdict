@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Тривалістю %d хвилина</string>
+			<key>few</key>
+			<string>Тривалістю %d хвилини</string>
+			<key>many</key>
+			<string>Тривалістю %d хвилин</string>
+			<key>other</key>
+			<string>Тривалістю %d хвилин</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -180,6 +200,26 @@
 			<string>%d обрано</string>
 			<key>other</key>
 			<string>%d обрано</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d перегляд</string>
+			<key>few</key>
+			<string>%d перегляди</string>
+			<key>many</key>
+			<string>%d переглядів</string>
+			<key>other</key>
+			<string>%d переглядів</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>

@@ -232,6 +232,7 @@
 "remove_group_image" = "سڕینەوەی وێنەی کۆڕ";
 "change_group_image" = "گۆڕینی ناوی کۆڕ";
 "group_create_button" = "کۆڕێک درووست بکە";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "تکایە ناوێک بنووسە بۆ کۆڕەکە.";
 "group_add_members" = "ئەندام زیاد بکە";
 "group_self_not_in_group" = "بۆ ئەم کردارە دەبێت ئەندامی کۆڕەکە بیت.";

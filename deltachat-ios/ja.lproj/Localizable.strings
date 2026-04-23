@@ -257,6 +257,7 @@
 "remove_group_image" = "アイコン画像の削除";
 "change_group_image" = "グループ画像の編集";
 "group_create_button" = "グループ作成";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "グループ名を入力して下さい";
 "group_add_members" = "メンバーを追加";
 "group_self_not_in_group" = "グループのメンバーしかが実行されないアクションです。";

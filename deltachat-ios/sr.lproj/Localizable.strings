@@ -56,8 +56,9 @@
 "show_full_message" = "Прикажи поруку у њеној целости...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Означи све као прочитано";
+// Used as an menu entry or button
 "mark_as_read" = "Означи као прочитано";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Прочитано";
 // Placeholder text when something is loading
 "loading" = "Учитавање...";
@@ -336,6 +337,7 @@
 "remove_group_image" = "Уклони слику групе";
 "change_group_image" = "Промени слику групе";
 "group_create_button" = "Направи групу";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Унесите назив групе";
 "group_add_members" = "Додајте чланове";
 "group_self_not_in_group" = "Морате бити члан групе да бисте извршили ову радњу.";

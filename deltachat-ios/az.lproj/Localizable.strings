@@ -176,6 +176,7 @@
 "group_name" = "Qrup adı";
 "group_avatar" = "Qrupun şəkili";
 "group_create_button" = "Qrup yarat";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Xahiş edirik qrup üçün bir ad daxil et.";
 "group_add_members" = "Üzv elavə et";
 "group_self_not_in_group" = "Bunu etmək üçün qrupun üzvü olmalısan.";

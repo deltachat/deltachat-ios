@@ -64,8 +64,9 @@
 "show_full_message" = "نمایش پیام کامل...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "همه را خوانده شده بزن";
+// Used as an menu entry or button
 "mark_as_read" = "علامت زدن به عنوان خوانده شده";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "علامت زدن به عنوان خوانده شده";
 // Placeholder text when something is loading
 "loading" = "در حال بارگیری...";
@@ -126,7 +127,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "add_to_sticker_collection" = "افزودن به مجموعه استیکر";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "برای اضافه کردن برچسب روی «بازکردن پوشهٔ برچسب» بزنید، یک زیرپوشه برای دستهٔ برچسب خود درست کنید و برچسب‌ها را به آن‌جا بکشید";
+// deprecated
 "open_sticker_folder" = "بازکردن پوشه استیکر";
 "images" = "تصاویر";
 // a noun, used for "Music" and other "Audio" files
@@ -421,6 +424,7 @@
 "remove_group_image" = "حذف تصویر گروه";
 "change_group_image" = "حذف تصویر گروه";
 "group_create_button" = "ایجاد گروه";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "لطفا نامی برای گروه وارد کنید. ";
 "group_add_members" = "افزودن اعضا";
 "group_self_not_in_group" = "برای این کار باید عضو گروه باشید.";

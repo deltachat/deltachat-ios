@@ -23,6 +23,8 @@
 "downloading" = "Herunterladen…";
 "open_attachment" = "Anhang öffnen";
 "join" = "Teilnehmen";
+"join_group" = "Gruppe beitreten";
+"join_channel" = "Kanal beitreten";
 "rejoin" = "Öffnen";
 "delete" = "Löschen";
 "delete_for_me" = "Für mich löschen";
@@ -64,10 +66,13 @@
 "show_full_message" = "Ganze Nachricht anzeigen…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Alles Gelesen";
+// Used as an menu entry or button
 "mark_as_read" = "Gelesen";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Gelesen";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used as an menu entry or button
+"mark_as_unread" = "Ungelesen";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Ungelesen";
 // Placeholder text when something is loading
 "loading" = "Wird geladen…";
@@ -88,6 +93,7 @@
 "offline" = "Offline";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Weiter";
+"warning" = "Warnung";
 "error" = "Fehler";
 "error_x" = "Fehler: %1$@";
 "no_app_to_handle_data" = "Keine passende App zum Öffnen dieses Dateityps gefunden";
@@ -132,7 +138,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "add_to_sticker_collection" = "Zu Sticker-Sammlung hinzufügen";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Um Sticker hinzuzufügen, tippe auf \"Sticker-Ordner öffnen\", erstelle einen Unterordner für dein Sticker-Paket und ziehe Bild- und Sticker-Dateien dorthin.";
+// deprecated
 "open_sticker_folder" = "Sticker-Ordner öffnen";
 "ask_add_sticker_to_collection" = "Sticker zur Sammlung hinzufügen?";
 "ask_delete_sticker" = "Sticker löschen?";
@@ -357,6 +365,8 @@
 "canceled_call" = "Abgebrochener Anruf";
 "missed_call" = "Verpasster Anruf";
 "already_in_call" = "Bereits im Anruf";
+"call_answered_elsewhere" = "Anruf auf einem anderen Gerät beantwortet";
+"call_requires_mic_permission" = "Mikrofonzugriff für Anrufe erforderlich";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
@@ -432,8 +442,11 @@
 // search
 "search" = "Suchen";
 "search_in_chat" = "Im Chat suchen";
+// Placeholder will be replaced by the chat name
+"search_in" = "In \"%1$@\" suchen";
 "search_files" = "Dateien suchen";
 "search_explain" = "Suche nach Chats, Kontakten und Nachrichten";
+"search_result_for_x" = "Ergebnis für \"%1$@\"";
 "search_no_result_for_x" = "Keine Ergebnisse für \"%1$@\" gefunden.";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Ungelesen";
@@ -443,7 +456,9 @@
 "remove_group_image" = "Gruppenbild löschen";
 "change_group_image" = "Gruppenbild ändern";
 "group_create_button" = "Gruppe erstellen";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Bitte einen Gruppennamen eingeben.";
+"please_enter_chat_name" = "Bitte einen Namen eingeben.";
 "group_add_members" = "Mitglied hinzufügen";
 "group_self_not_in_group" = "Du must ein Mitglied der Gruppe sein, um diese Aktion durchführen zu können.";
 "profile_encryption" = "Verschlüsselung";
@@ -674,6 +689,8 @@
 "pref_incognito_keyboard_explain" = "Deaktivierung des personalisierten Lernens der Tastatur anfordern.";
 "pref_read_receipts" = "Lesebestätigungen";
 "pref_read_receipts_explain" = "Wenn Lesebestätigungen ausgeschaltet sind, werden auch keine Lesebestätigungen von anderen angezeigt. ";
+// Title above a list of contacts who read a message
+"read_by" = "Gelesen von";
 "pref_server" = "Server";
 "pref_encryption" = "Verschlüsselung";
 "pref_manage_keys" = "Schlüssel verwalten";
@@ -782,9 +799,12 @@
 "group_name_changed_by_you" = "Du hast den Gruppennamen von \"%1$@\" zu \"%2$@\" geändert.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Gruppenname geändert von \"%1$@\" zu \"%2$@\" von %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Kanalname geändert von \"%1$@\" zu \"%2$@\".";
 "group_image_changed_by_you" = "Du hast das Gruppenbild geändert.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Gruppenbild geändert von %1$@.";
+"channel_image_changed" = "Kanalbild geändert.";
 "chat_description_changed_by_you" = "Du hast die Chat-Beschreibung geändert.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Chat-Beschreibung geändert von %1$@.";
@@ -918,6 +938,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ hat bereits einen Entwurf. Möchtest du diesen ersetzen?";
 "mailto_link_could_not_be_decoded" = "Mailto-Link konnte nicht dekodiert werden: %1$@";
+"remove_quote" = "Zitat entfernen";
+"remove_attachment" = "Anhang entfernen";
 // notifications
 "notify_reply_button" = "Antworten";
 "notify_new_message" = "Neue Nachricht";
@@ -933,6 +955,11 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Du hast neue Nachrichten";
 "n_messages_in_m_chats" = "%1$d Nachrichten in %2$d Chats";
+// location streaming
+"location_streaming_channel_desc" = "Kanal für Standortübertragung";
+"location_streaming_notification_title" = "Standardübertragung";
+"location_streaming_notification_text" = "Du teilst deinen Standort";
+"location_rationale" = "Damit du deinen aktuellen Standort teilen kannst, musst du Delta Chat die Nutzung deiner Standortdaten erlauben.\n\nDamit die Standortanzeige nahtlos funktioniert, werden Standortdaten auch dann verwendet, wenn die App geschlossen ist oder nicht genutzt wird.";
 // permissions
 "perm_required_title" = "Berechtigung erforderlich";
 "perm_continue" = "Weiter";
@@ -972,6 +999,7 @@
 "global_menu_help_about_desktop" = "Über Delta Chat";
 "global_menu_file_open_desktop" = "Delta Chat öffnen";
 "global_menu_minimize_to_tray" = "Minimieren";
+"no_account_selected" = "Profil auswählen oder ein neues Profil erstellen";
 "no_chat_selected_suggestion_desktop" = "Chat auswählen oder neuen Chat erstellen.";
 "write_message_desktop" = "Nachricht schreiben";
 "encryption_info_title_desktop" = "Verschlüsselungsinformationen";
@@ -993,8 +1021,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Keine Rechtschreibvorschläge gefunden.";
 "show_window" = "Fenster anzeigen";
+"data_found_other_installation_message" = "Auf deine Profile aus einer anderen Delta-Chat-Installation kann nicht zugegriffen werden – verschiedene Installationen speichern deine Daten an unterschiedlichen Orten.\n\nSo behältst du bestehende Profile bei:\n1. Beende das Programm jetzt\n2. Öffne die andere Delta-Chat-Version; bei Bedarf installiere es erneut von %1$@\n3. Sichere jedes Profil unter „Einstellungen/Chats“\n4. Starte diese Version neu\n5. Stellen die Backups über „Ich habe bereits ein Profil“ wieder her\n\nOhne deine bisherigen Profile fortfahren?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tastaturbelegung";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Navigieren";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Nachrichteneingabe";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Ausgewählte Nachricht";
 "switch_between_chats" = "Chats durchschalten";
 "scroll_messages" = "Nachrichten scrollen";
 // command to put the cursor to the search input field

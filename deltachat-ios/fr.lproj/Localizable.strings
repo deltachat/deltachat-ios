@@ -64,10 +64,11 @@
 "show_full_message" = "Montrer le message complet...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marquer tout comme lu";
+// Used as an menu entry or button
 "mark_as_read" = "Marquer comme lu";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Marquer comme lu";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Non lus";
 // Placeholder text when something is loading
 "loading" = "Chargement...";
@@ -132,7 +133,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Vignette";
 "add_to_sticker_collection" = "Ajouter à la collection de vignettes";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "Pour ajouter des vignettes, appuyez sur « Ouvrir le dossier Vignettes », créez un sous-dossier pour votre paquet de vignettes et faites-y glisser vos fichiers image ou vignette ";
+// deprecated
 "open_sticker_folder" = "Ouvrir le dossier Vignettes";
 "ask_add_sticker_to_collection" = "Ajouter cette vignette à votre collection ?";
 "ask_delete_sticker" = "Supprimer cette vignette ?";
@@ -443,6 +446,7 @@
 "remove_group_image" = "Retirer l\'image du groupe";
 "change_group_image" = "Changer l\'image du groupe";
 "group_create_button" = "Créer un groupe";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Entrez un nom pour le groupe.";
 "group_add_members" = "Ajouter des participants";
 "group_self_not_in_group" = "Vous devez être membre du groupe pour effectuer cette action.";

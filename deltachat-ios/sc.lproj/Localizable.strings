@@ -215,6 +215,7 @@
 "remove_group_image" = "Boga s\'immàgine de su grupu";
 "change_group_image" = "Càmbia s\'immàgine de su grupu";
 "group_create_button" = "Crea unu grupu";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Inserta unu nùmene pro su grupu.";
 "group_add_members" = "Annanghe mambros";
 "group_self_not_in_group" = "Depes èssre unu membru de su grupu pro fàghere cust\'atzione.";

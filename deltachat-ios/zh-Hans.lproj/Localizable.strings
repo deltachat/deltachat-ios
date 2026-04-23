@@ -23,6 +23,8 @@
 "downloading" = "下载中…";
 "open_attachment" = "打开附件";
 "join" = "加入";
+"join_group" = "加入群组";
+"join_channel" = "加入频道";
 "rejoin" = "重新加入";
 "delete" = "删除";
 "delete_for_me" = "为我删除";
@@ -64,10 +66,13 @@
 "show_full_message" = "显示完整消息…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "将所有标记为已读";
+// Used as an menu entry or button
 "mark_as_read" = "标记为已读";
-// Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "已读";
-// Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+// Used as an menu entry or button
+"mark_as_unread" = "标记为未读";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "未读";
 // Placeholder text when something is loading
 "loading" = "加载中…";
@@ -88,6 +93,7 @@
 "offline" = "离线";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "下一步";
+"warning" = "警告";
 "error" = "错误";
 "error_x" = "错误：%1$@";
 "no_app_to_handle_data" = "找不到用于处理此类数据的应用。";
@@ -132,7 +138,9 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "贴纸";
 "add_to_sticker_collection" = "添加到贴纸收藏集";
+// deprecated, use sticker_picker_empty_hint instead
 "add_stickers_instructions" = "要添加贴纸，请点按“打开贴纸文件夹”，为贴纸包创建一个子文件夹，然后将图片和贴纸文件拖动到那里";
+// deprecated
 "open_sticker_folder" = "打开贴纸文件夹";
 "ask_add_sticker_to_collection" = "将此贴纸添加到您的收藏集？";
 "ask_delete_sticker" = "删除此贴纸？";
@@ -357,6 +365,8 @@
 "canceled_call" = "已取消通话";
 "missed_call" = "未接来电";
 "already_in_call" = "已在通话中";
+"call_answered_elsewhere" = "通话已在其他设备上接听";
+"call_requires_mic_permission" = "通话需要麦克风权限";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
@@ -432,8 +442,11 @@
 // search
 "search" = "搜索";
 "search_in_chat" = "搜索聊天";
+// Placeholder will be replaced by the chat name
+"search_in" = "在 %1$@ 中搜索";
 "search_files" = "搜索文件";
 "search_explain" = "搜索聊天、联系人和消息";
+"search_result_for_x" = "“%1$@”的结果";
 "search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "未读";
@@ -443,7 +456,9 @@
 "remove_group_image" = "移除群组图像";
 "change_group_image" = "更改群组图像";
 "group_create_button" = "创建群组";
+// deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "请输入群组名称。";
+"please_enter_chat_name" = "请输入名称。";
 "group_add_members" = "添加成员";
 "group_self_not_in_group" = "为了执行此操作，您必须是群组成员。";
 "profile_encryption" = "加密";
@@ -674,6 +689,8 @@
 "pref_incognito_keyboard_explain" = "请求输入法禁用个性化学习";
 "pref_read_receipts" = "已读回执";
 "pref_read_receipts_explain" = "禁用已读回执后，您将无法看到其他人的已读回执。";
+// Title above a list of contacts who read a message
+"read_by" = "已读";
 "pref_server" = "服务器";
 "pref_encryption" = "加密";
 "pref_manage_keys" = "管理密钥";
@@ -782,9 +799,12 @@
 "group_name_changed_by_you" = "你已将群组名称从“%1$@”更改为“%2$@”";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@已将群组名称从“%1$@”更改为“%2$@”";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "频道名称已从“%1$@”更改为“%2$@”。";
 "group_image_changed_by_you" = "你更改了群组图像";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ 更改了群组图像";
+"channel_image_changed" = "频道图像已更改。";
 "chat_description_changed_by_you" = "您更改了聊天描述。";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "聊天描述已由 %1$@ 更改。";
@@ -918,6 +938,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ 已经有一条草稿消息，是否要替换？";
 "mailto_link_could_not_be_decoded" = "无法解码 mailto 链接：%1$@";
+"remove_quote" = "移除引用";
+"remove_attachment" = "移除附件";
 // notifications
 "notify_reply_button" = "回复";
 "notify_new_message" = "新消息";
@@ -933,6 +955,11 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "你有新消息";
 "n_messages_in_m_chats" = "%1$d 条消息，位于 %2$d 个聊天内";
+// location streaming
+"location_streaming_channel_desc" = "按需位置流频道";
+"location_streaming_notification_title" = "位置流";
+"location_streaming_notification_text" = "您正在共享您的位置";
+"location_rationale" = "要与聊天成员共享您的实时位置，请允许 Delta Chat 使用您的位置数据。\n\n为了确保实时位置无缝工作，即使应用已关闭或未使用，也会使用位置数据。";
 // permissions
 "perm_required_title" = "需要权限";
 "perm_continue" = "继续";
@@ -972,6 +999,7 @@
 "global_menu_help_about_desktop" = "关于 Delta Chat";
 "global_menu_file_open_desktop" = "打开 Delta Chat";
 "global_menu_minimize_to_tray" = "最小化";
+"no_account_selected" = "选择配置文件或创建新配置文件";
 "no_chat_selected_suggestion_desktop" = "选择聊天或创建新聊天";
 "write_message_desktop" = "输入消息…";
 "encryption_info_title_desktop" = "加密信息";
@@ -993,8 +1021,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "未找到拼写建议";
 "show_window" = "显示窗口";
+"data_found_other_installation_message" = "您无法访问其他 Delta Chat 安装中的配置文件 - 不同安装的数据存储在不同的位置。\n\n要保留现有配置文件：\n1. 立即退出\n2. 打开其他 Delta Chat - 如果需要，请从 %1$@ 重新安装\n3. 在“设置/聊天”中备份每个配置文件\n4. 重新启动此版本\n5. 使用“我已有账号”恢复备份\n\n不使用之前的配置文件继续吗？";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "按键绑定";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "导航";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "消息输入";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "已选消息";
 "switch_between_chats" = "在不同聊天间切换";
 "scroll_messages" = "滚动消息";
 // command to put the cursor to the search input field
