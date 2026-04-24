@@ -292,6 +292,9 @@ class WebxdcViewController: WebViewViewController {
         super.willMove(toParent: parent)
         let willBeRemoved = parent == nil
         navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
+        if #available(iOS 26.0, *) {
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = willBeRemoved
+        }
     }
 
     func refreshWebxdcInfo() {
