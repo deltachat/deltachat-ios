@@ -16,6 +16,7 @@ public class NotificationManager {
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingReaction(_:)), name: Event.incomingReaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingWebxdcNotify(_:)), name: Event.incomingWebxdcNotify, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCallMissedEvent), name: Event.callMissed, object: nil)
     }
 
     deinit {
@@ -160,6 +161,23 @@ public class NotificationManager {
             }
 
             UIApplication.shared.endBackgroundTask(backgroundTask) // this line must be reached to balance call to `beginBackgroundTask` above
+        }
+    }
+
+    @objc private func handleCallMissedEvent(_ notification: Notification) {
+        DispatchQueue.global().async { [weak self] in
+            guard let self,
+                  let ui = notification.userInfo,
+                  let accountId = ui["account_id"] as? Int,
+                  let msgId = ui["message_id"] as? Int
+            else { return }
+            let eventContext = dcAccounts.get(id: accountId)
+            let dcMsg = eventContext.getMessage(id: msgId)
+            let dcChat = eventContext.getChat(chatId: dcMsg.chatId)
+            if let content = UNMutableNotificationContent(forMissedCallMsg: dcMsg, chat: dcChat, context: eventContext) {
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            }
         }
     }
 }

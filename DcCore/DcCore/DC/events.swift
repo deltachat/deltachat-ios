@@ -32,7 +32,8 @@ public enum Event {
     public static let incomingCallAccepted = Notification.Name(rawValue: "incomingCallAccepted")
     public static let outgoingCallAccepted = Notification.Name(rawValue: "outgoingCallAccepted")
     public static let callEnded = Notification.Name(rawValue: "callEnded")
-    
+    public static let callMissed = Notification.Name(rawValue: "callMissed")
+
     public static let relayHelperDidChange = Notification.Name(rawValue: "relayHelperDidChange")
 }
 
@@ -239,6 +240,14 @@ public class DcEventHandler {
             NotificationCenter.default.post(name: Event.callEnded, object: nil, userInfo: [
                 "account_id": Int(accountId),
                 "message_id": Int(data1),
+            ])
+
+        case DC_EVENT_CALL_MISSED:
+            logger.info("☎️ DC_EVENT_CALL_MISSED(\(accountId),\(data1))")
+            NotificationCenter.default.post(name: Event.callMissed, object: nil, userInfo: [
+                "account_id": Int(accountId),
+                "message_id": Int(data1),
+                "chat_id": Int(data2),
             ])
 
         default:
