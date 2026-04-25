@@ -84,12 +84,14 @@ class CallManager: NSObject {
                     logger.error("☎️ failed to start call: \(error.localizedDescription)")
                 } else if let currentCall {
                     logger.info("☎️ call started to \(nameToDisplay)")
+                    AudioController.stopBackgroundPlayback()
                     DispatchQueue.main.async {
                         CallWindow.shared?.showCallUI(for: currentCall)
                     }
                 }
             }
         } else if let currentCall {
+            AudioController.stopBackgroundPlayback()
             DispatchQueue.main.async {
                 CallWindow.shared?.showCallUI(for: currentCall)
             }
@@ -141,6 +143,7 @@ class CallManager: NSObject {
                 }
             }
         }
+        AudioController.stopBackgroundPlayback()
     }
 
     @objc private func handleIncomingCallAcceptedEvent(_ notification: Notification) {
