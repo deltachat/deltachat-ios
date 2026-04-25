@@ -1,5 +1,6 @@
 import UIKit
 import AVFoundation
+import MediaPlayer
 import DcCore
 
 /// The `PlayerState` indicates the current audio controller state
@@ -23,11 +24,23 @@ public protocol AudioControllerDelegate: AnyObject {
 /// and also creates and manage an `AVAudioPlayer` states, play, pause and stop.
 open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDelegate {
 
+    private enum AudioPlaybackError: Error {
+        case missingFileURL
+        case playFailed
+    }
+
+    private static var backgroundPlaybackController: AudioController?
+    private static var remoteCommandsConfigured = false
+
     open weak var delegate: AudioControllerDelegate?
 
     lazy var audioSession: AVAudioSession = {
         let audioSession = AVAudioSession.sharedInstance()
-        _ = try? audioSession.setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker])
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker])
+        } catch {
+            logger.warning("setting audio session category failed: \(error.localizedDescription)")
+        }
         return audioSession
     }()
 
@@ -50,6 +63,9 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     /// The `Timer` that update playing progress
     internal var progressTimer: Timer?
 
+    private var lastNowPlayingInfoUpdate = Date.distantPast
+    private var playingArtwork: MPMediaItemArtwork?
+
     // MARK: - Init Methods
 
     public init(dcContext: DcContext, chatId: Int, delegate: AudioControllerDelegate? = nil) {
@@ -62,6 +78,10 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                                                selector: #selector(audioRouteChanged),
                                                name: AVAudioSession.routeChangeNotification,
                                                object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appWillTerminate),
+                                               name: UIApplication.willTerminateNotification,
+                                               object: nil)
     }
 
     deinit {
@@ -69,6 +89,19 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     // MARK: - Methods
+
+    static func stopBackgroundPlayback() {
+        performOnMainAndWait {
+            backgroundPlaybackController?.stopAnyOngoingPlaying()
+        }
+    }
+
+    static func stopBackgroundPlayback(forContextId contextId: Int) {
+        performOnMainAndWait {
+            guard let controller = backgroundPlaybackController, controller.dcContext.id == contextId else { return }
+            controller.stopAnyOngoingPlaying()
+        }
+    }
 
     /// - Parameters:
     ///   - cell: The `NewAudioMessageCell` that needs to be configure.
@@ -78,17 +111,19 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     ///   This protocol method is called by MessageKit every time an audio cell needs to be configure
     func update(_ cell: AudioMessageCell, with messageId: Int) {
         cell.delegate = self
-        if playingMessage?.id == messageId, let player = audioPlayer {
-            playingCell = cell
+        if let activeController = AudioController.backgroundPlaybackController,
+           activeController.isPlayingMessage(messageId: messageId, contextId: dcContext.id),
+           let player = activeController.audioPlayer {
+            activeController.playingCell = cell
             cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-            cell.audioPlayerView.showPlayLayout((player.isPlaying == true) ? true : false)
+            cell.audioPlayerView.showPlayLayout(player.isPlaying)
             cell.audioPlayerView.setDuration(duration: player.currentTime)
         }
     }
     
     public func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void) {
         let message = dcContext.getMessage(id: messageId)
-        if playingMessage?.id == messageId {
+        if AudioController.backgroundPlaybackController?.isPlayingMessage(messageId: messageId, contextId: dcContext.id) == true {
             // irgnore messages that are currently playing or recently paused
             return
         }
@@ -122,24 +157,36 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     public func playButtonTapped(cell: AudioMessageCell, messageId: Int) {
-            let message = dcContext.getMessage(id: messageId)
-            guard state != .stopped else {
-                // There is no audio sound playing - prepare to start playing for given audio message
-                playSound(for: message, in: cell)
+        let message = dcContext.getMessage(id: messageId)
+        if let activeController = AudioController.backgroundPlaybackController, activeController !== self {
+            if activeController.isPlayingMessage(messageId: message.id, contextId: dcContext.id) {
+                activeController.playingCell = cell
+                if activeController.state == .playing {
+                    activeController.pauseSound(in: cell)
+                } else {
+                    activeController.resumeSound()
+                }
                 return
             }
-            if playingMessage?.messageId == message.messageId {
-                // tap occur in the current cell that is playing audio sound
-                if state == .playing {
-                    pauseSound(in: cell)
-                } else {
-                    resumeSound()
-                }
+            AudioController.stopBackgroundPlayback()
+        }
+        guard state != .stopped else {
+            // There is no audio sound playing - prepare to start playing for given audio message
+            playSound(for: message, in: cell)
+            return
+        }
+        if isPlayingMessage(messageId: message.id, contextId: dcContext.id) {
+            // tap occur in the current cell that is playing audio sound
+            if state == .playing {
+                pauseSound(in: cell)
             } else {
-                // tap occur in a difference cell that the one is currently playing sound. First stop currently playing and start the sound for given message
-                stopAnyOngoingPlaying()
-                playSound(for: message, in: cell)
+                resumeSound()
             }
+        } else {
+            // tap occur in a difference cell that the one is currently playing sound. First stop currently playing and start the sound for given message
+            stopAnyOngoingPlaying()
+            playSound(for: message, in: cell)
+        }
     }
 
     /// Used to start play audio sound
@@ -148,21 +195,34 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     ///   - message: The `DcMsg` that contain the audio item to be played.
     ///   - audioCell: The `NewAudioMessageCell` that needs to be updated while audio is playing.
     open func playSound(for message: DcMsg, in audioCell: AudioMessageCell) {
-        if message.type == DC_MSG_AUDIO || message.type == DC_MSG_VOICE {
-            _ = try? audioSession.setActive(true)
+        guard message.type == DC_MSG_AUDIO || message.type == DC_MSG_VOICE else { return }
+        if let activeController = AudioController.backgroundPlaybackController, activeController !== self {
+            AudioController.stopBackgroundPlayback()
+        }
+        do {
+            guard let fileUrl = message.fileURL else { throw AudioPlaybackError.missingFileURL }
+            let player = try AVAudioPlayer(contentsOf: fileUrl)
+            try audioSession.setActive(true)
+            audioPlayer = player
             playingCell = audioCell
             playingMessage = message
-            if let fileUrl = message.fileURL, let player = try? AVAudioPlayer(contentsOf: fileUrl) {
-                audioPlayer = player
-                audioPlayer?.prepareToPlay()
-                audioPlayer?.delegate = self
-                audioPlayer?.play()
-                state = .playing
-                audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
-                startProgressTimer()
-            } else {
-                delegate?.onAudioPlayFailed()
+            loadArtwork(for: message)
+            AudioController.backgroundPlaybackController = self
+            AudioController.configureRemoteCommands()
+            player.prepareToPlay()
+            player.delegate = self
+            state = .playing
+            guard player.play() else {
+                state = .stopped
+                throw AudioPlaybackError.playFailed
             }
+            audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
+            updateNowPlayingInfo()
+            startProgressTimer()
+        } catch {
+            logger.warning("playing audio message \(message.id) failed: \(error.localizedDescription)")
+            stopAnyOngoingPlaying()
+            delegate?.onAudioPlayFailed()
         }
     }
 
@@ -171,63 +231,184 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     /// - Parameters:
     ///   - message: The `MessageType` that contain the audio item to be pause.
     ///   - audioCell: The `AudioMessageCell` that needs to be updated by the pause action.
-    open func pauseSound(in audioCell: AudioMessageCell) {
-        audioPlayer?.pause()
+    open func pauseSound(in audioCell: AudioMessageCell? = nil) {
+        guard let player = audioPlayer else { return }
+        player.pause()
         state = .pause
-        audioCell.audioPlayerView.showPlayLayout(false) // show play button on audio cell
+        (audioCell ?? playingCell)?.audioPlayerView.showPlayLayout(false) // show play button on audio cell
+        updateNowPlayingInfo()
         progressTimer?.invalidate()
     }
 
     /// Stops any ongoing audio playing if exists
     open func stopAnyOngoingPlaying() {
-        // If the audio player is nil then we don't need to go through the stopping logic
         guard let player = audioPlayer else { return }
+        let duration = player.duration
         player.stop()
         state = .stopped
         if let cell = playingCell {
             cell.audioPlayerView.setProgress(0.0)
             cell.audioPlayerView.showPlayLayout(false)
-            cell.audioPlayerView.setDuration(duration: player.duration)
+            cell.audioPlayerView.setDuration(duration: duration)
         }
         progressTimer?.invalidate()
         progressTimer = nil
         audioPlayer = nil
         playingMessage = nil
         playingCell = nil
-        try? audioSession.setActive(false)
+        playingArtwork = nil
+        lastNowPlayingInfoUpdate = .distantPast
+        if AudioController.backgroundPlaybackController === self {
+            AudioController.backgroundPlaybackController = nil
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+        }
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            logger.warning("deactivating audio session failed: \(error.localizedDescription)")
+        }
     }
 
     /// Resume a currently pause audio sound
     open func resumeSound() {
-        guard let player = audioPlayer, let cell = playingCell else {
+        guard let player = audioPlayer else {
             stopAnyOngoingPlaying()
             return
         }
         player.prepareToPlay()
-        player.play()
+        guard player.play() else {
+            logger.warning("resuming audio playback failed")
+            stopAnyOngoingPlaying()
+            delegate?.onAudioPlayFailed()
+            return
+        }
         state = .playing
+        updateNowPlayingInfo()
         startProgressTimer()
-        cell.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
+        playingCell?.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
     }
 
     // MARK: - Fire Methods
     @objc private func didFireProgressTimer(_ timer: Timer) {
-        guard let player = audioPlayer, let cell = playingCell else {
+        guard let player = audioPlayer else {
             return
         }
-        cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-        cell.audioPlayerView.setDuration(duration: player.currentTime)
+        playingCell?.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
+        playingCell?.audioPlayerView.setDuration(duration: player.currentTime)
+        updateNowPlayingInfoIfNeeded()
     }
 
     // MARK: - Private Methods
     private func startProgressTimer() {
         progressTimer?.invalidate()
         progressTimer = nil
-        progressTimer = Timer.scheduledTimer(timeInterval: 0.1,
-                                             target: self,
-                                             selector: #selector(AudioController.didFireProgressTimer(_:)),
-                                             userInfo: nil,
-                                             repeats: true)
+        let timer = Timer(timeInterval: 0.1,
+                          target: self,
+                          selector: #selector(AudioController.didFireProgressTimer(_:)),
+                          userInfo: nil,
+                          repeats: true)
+        progressTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
+    }
+
+    private func isPlayingMessage(messageId: Int, contextId: Int) -> Bool {
+        return dcContext.id == contextId && playingMessage?.id == messageId
+    }
+
+    private func updateNowPlayingInfoIfNeeded() {
+        guard Date().timeIntervalSince(lastNowPlayingInfoUpdate) >= 1 else { return }
+        updateNowPlayingInfo()
+    }
+
+    private func loadArtwork(for message: DcMsg) {
+        playingArtwork = nil
+        let contact = dcContext.getContact(id: message.fromContactId)
+        guard let imageURL = contact.profileImageURL else {
+            playingArtwork = nil
+            return
+        }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self, messageId = message.id, contextId = self.dcContext.id] in
+            guard let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) else { return }
+            let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+            DispatchQueue.main.async {
+                guard let self,
+                      self.isPlayingMessage(messageId: messageId, contextId: contextId) else { return }
+                self.playingArtwork = artwork
+                self.updateNowPlayingInfo()
+            }
+        }
+    }
+
+    private static func configureRemoteCommands() {
+        guard !remoteCommandsConfigured else { return }
+        remoteCommandsConfigured = true
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.addTarget { _ in
+            return enqueueRemoteCommand { $0.resumeSound() }
+        }
+        commandCenter.pauseCommand.addTarget { _ in
+            return enqueueRemoteCommand { $0.pauseSound() }
+        }
+        commandCenter.togglePlayPauseCommand.addTarget { _ in
+            return enqueueRemoteCommand { controller in
+                if controller.state == .playing {
+                    controller.pauseSound()
+                } else {
+                    controller.resumeSound()
+                }
+            }
+        }
+        commandCenter.stopCommand.addTarget { _ in
+            return enqueueRemoteCommand { $0.stopAnyOngoingPlaying() }
+        }
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.addTarget { event in
+            guard let event = event as? MPChangePlaybackPositionCommandEvent else { return .noActionableNowPlayingItem }
+            return enqueueRemoteCommand { controller in
+                guard let player = controller.audioPlayer else { return }
+                player.currentTime = event.positionTime
+                controller.updateNowPlayingInfo()
+            }
+        }
+    }
+
+    private static func enqueueRemoteCommand(_ action: @escaping (AudioController) -> Void) -> MPRemoteCommandHandlerStatus {
+        guard let controller = backgroundPlaybackController else { return .noActionableNowPlayingItem }
+        DispatchQueue.main.async { [weak controller] in
+            guard let controller,
+                  backgroundPlaybackController === controller else { return }
+            action(controller)
+        }
+        return .success
+    }
+
+    private static func performOnMainAndWait(_ action: () -> Void) {
+        if Thread.isMainThread {
+            action()
+        } else {
+            DispatchQueue.main.sync(execute: action)
+        }
+    }
+
+    private func updateNowPlayingInfo() {
+        guard let player = audioPlayer, let message = playingMessage else { return }
+        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
+        if let text = message.text, !text.isEmpty {
+            nowPlayingInfo[MPMediaItemPropertyTitle] = text
+        } else {
+            nowPlayingInfo[MPMediaItemPropertyTitle] = String.localized(message.type == DC_MSG_VOICE ? "voice_message" : "audio")
+        }
+        nowPlayingInfo[MPMediaItemPropertyArtist] = chat.name
+        if let playingArtwork {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = playingArtwork
+        } else {
+            nowPlayingInfo.removeValue(forKey: MPMediaItemPropertyArtwork)
+        }
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? 1.0 : 0.0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        lastNowPlayingInfoUpdate = Date()
     }
 
     // MARK: - AVAudioPlayerDelegate
@@ -239,15 +420,19 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         stopAnyOngoingPlaying()
     }
 
+    @objc private func appWillTerminate() {
+        guard AudioController.backgroundPlaybackController === self else { return }
+        stopAnyOngoingPlaying()
+    }
+
     // MARK: - AVAudioSession.routeChangeNotification handler
     @objc func audioRouteChanged(note: Notification) {
-      if let userInfo = note.userInfo {
-        if let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int {
-            if reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue {
+        if let userInfo = note.userInfo,
+           let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int,
+           reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue,
+           AudioController.backgroundPlaybackController === self {
             // headphones plugged out
-            resumeSound()
-          }
+            pauseSound()
         }
-      }
     }
 }
