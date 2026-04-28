@@ -2,6 +2,8 @@ name: CI
 on:
   push:
 
+permissions: {}
+
 jobs:
   build:
     runs-on: macos-15
@@ -10,6 +12,7 @@ jobs:
         with:
           submodules: true
           show-progress: false
+          persist-credentials: false
       - run: sudo xcode-select --switch /Applications/Xcode_26.1.app/Contents/Developer
       - run: cargo install cargo-lipo
       - run: pod install
