@@ -84,6 +84,7 @@
 "always" = "Immer";
 "always_load_remote_images" = "Bilder immer nachladen";
 "once" = "Einmal";
+// deprecated
 "show_warning" = "Warnung anzeigen";
 "not_now" = "Nicht jetzt";
 "never" = "Nie";
@@ -327,11 +328,13 @@
 "mute_for_one_day" = "Stumm für 1 Tag";
 "mute_for_seven_days" = "Stumm für 7 Tage";
 "mute_forever" = "Stumm für immer";
+// deprecated
 "share_location_for_5_minutes" = "für 5 Minuten";
 "share_location_for_30_minutes" = "für 30 Minuten";
 "share_location_for_one_hour" = "für 1 Stunde";
 "share_location_for_two_hours" = "für 2 Stunden";
 "share_location_for_six_hours" = "für 6 Stunden";
+"share_location_for_24_hours" = "für 24 Stunden";
 "file_saved_to" = "Datei gespeichert unter \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Anrufen";
@@ -367,6 +370,10 @@
 "already_in_call" = "Bereits im Anruf";
 "call_answered_elsewhere" = "Anruf auf einem anderen Gerät beantwortet";
 "call_requires_mic_permission" = "Mikrofonzugriff für Anrufe erforderlich";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Anruf mit %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "%1$@ anrufen…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
@@ -652,9 +659,9 @@
 "pref_enter_sends" = "Enter-Taste sendet";
 "pref_enter_sends_explain" = "Durch Drücken der Eingabetaste werden Textnachrichten gesendet.";
 "pref_outgoing_media_quality" = "Medienqualität beim Senden";
-"pref_outgoing_media_quality_hint" = "Um Originalqualität zu senden, hänge Medien als „Datei“ an. Dies verbraucht deutlich mehr Datenvolumen für dich und die Empfänger.";
+"pref_outgoing_media_quality_hint" = "Um Originalqualität zu senden, hänge Medien als „Datei“ an. Dies verbraucht deutlich mehr Daten für dich und die Empfänger.";
 "pref_outgoing_balanced" = "Ausgewogen";
-"pref_outgoing_worse" = "Schlechte Qualität, kleine Dateien";
+"pref_outgoing_worse" = "Schlechte Qualität, Daten sparen";
 "pref_vibrate" = "Vibrieren";
 "pref_screen_security" = "Bildschirmsicherheit";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
@@ -876,7 +883,7 @@
 "invalid_unencrypted_explanation" = "Um eine Ende-zu-Ende-Verschlüsselung herzustellen, kannst du Kontakte persönlich treffen und ihren QR-Code scannen.";
 "learn_more" = "Mehr erfahren";
 "devicemsg_self_deleted" = "Du hast den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um die Funktion \"Gespeicherte Nachrichten\" erneut zu verwenden, erstelle einfach einen Chat mit dir selbst.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Der Speicherplatz deines Anbieters ist bald erschöpft; bereits %1$@%% sind verbraucht.\n\nDu kannst möglicherweise keine Nachrichten mehr empfangen, wenn der Speicherplatz komplett verbraucht ist.\n\n👉 Bitte prüfe, ob du alte Daten im Webinterface des Anbieters löschen kannst, und erwäge, \"Einstellungen / Chats / Alte Nachrichten löschen\" zu aktivieren. Den aktuellen Speicherverbrauch kannst du jederzeit unter \"Einstellungen / Verbindungsstatus\" überprüfen.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Dein Gerät scheint ein falsches Datum oder eine falsche Uhrzeit (%1$@) zu verwenden.\n\nStelle deine Uhr ⏰🔧 richtig ein, um sicherzustellen, dass deine Nachrichten korrekt empfangen werden.";

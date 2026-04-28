@@ -70,6 +70,7 @@
 "always" = "Увек";
 "always_load_remote_images" = "Увек учитај слике са сервера";
 "once" = "Само једном";
+// deprecated
 "show_warning" = "Прикажи упозорење";
 "not_now" = "Не сада";
 "never" = "Никад";
@@ -250,6 +251,7 @@
 "mute_for_one_day" = "Утишај на 1 дан";
 "mute_for_seven_days" = "Утишај на 7 дана";
 "mute_forever" = "Утишај заувек";
+// deprecated
 "share_location_for_5_minutes" = "на 5 минута";
 "share_location_for_30_minutes" = "За 30 минута";
 "share_location_for_one_hour" = "За 1 сат";
@@ -597,7 +599,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ је подесио хронометар за нестајуће поруке на %1$@ недеље.";
 "devicemsg_self_deleted" = "Обрисали сте ћаскање „Сачуване поруке“.\n\nℹ️ Ако желите да користите „Сачуване поруке“ могућност поново, направите ново ћаскање са самим собом.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Складишни простор вашег имејл провајдера ће ускоро да понестане: %1$@%% већ се користи.\n\nМожда нећете моћи да примате поруке ако је складиште пунo.\n\n👉 Проверите да ли можете да избришете старе податке у веб интерфејсу провајдера и размислите да омогућите „Подешавања / Избриши старе поруке“ опцију. Можете да проверите тренутну употребу меморијског простора у било ком тренутку у „Подешавања / Повезивање“.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Изгледа да датум или време на вашем уређају нису тачни (%1$@).\n\nПодесите сат ⏰🔧 да бисте били сигурни да ће ваше поруке бити правилно примљене.";

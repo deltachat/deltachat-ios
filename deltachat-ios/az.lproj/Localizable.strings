@@ -133,6 +133,7 @@
 "mute_for_one_day" = "1 günlük söndür";
 "mute_for_seven_days" = "7 günlük söndür";
 "mute_forever" = "Həmişə səssiz";
+// deprecated
 "share_location_for_5_minutes" = "5 dəqiqə üçün";
 "share_location_for_30_minutes" = "30 qəqiqə üçün";
 "share_location_for_one_hour" = "1 saat üçün";

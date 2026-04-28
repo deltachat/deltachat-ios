@@ -23,6 +23,8 @@
 "downloading" = "Загрузка…";
 "open_attachment" = "Открыть вложение";
 "join" = "Присоединиться";
+"join_group" = "Вступить в группу";
+"join_channel" = "Присоединиться к каналу";
 "rejoin" = "Присоединиться снова";
 "delete" = "Удалить";
 "delete_for_me" = "Удалить для меня";
@@ -68,6 +70,8 @@
 "mark_as_read" = "Отметить как прочитанное";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Прочитано";
+// Used as an menu entry or button
+"mark_as_unread" = "Отметить как непрочитанное";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Не прочитано";
 // Placeholder text when something is loading
@@ -80,6 +84,7 @@
 "always" = "Всегда";
 "always_load_remote_images" = "Всегда загружать изображения из внешних источников";
 "once" = "Только сейчас";
+// deprecated
 "show_warning" = "Показать предупреждение";
 "not_now" = "Не сейчас";
 "never" = "Никогда";
@@ -89,6 +94,7 @@
 "offline" = "Не в сети";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Далее";
+"warning" = "Предупреждение";
 "error" = "Ошибка";
 "error_x" = "Ошибка: %1$@";
 "no_app_to_handle_data" = "Не удалось найти приложение для обработки этого типа данных.";
@@ -322,6 +328,7 @@
 "mute_for_one_day" = "На 1 день";
 "mute_for_seven_days" = "На 7 дней";
 "mute_forever" = "Постоянно";
+// deprecated
 "share_location_for_5_minutes" = "5 минут";
 "share_location_for_30_minutes" = "30 минут";
 "share_location_for_one_hour" = "1 час";
@@ -360,6 +367,8 @@
 "canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";
 "already_in_call" = "Вызов уже идёт";
+"call_answered_elsewhere" = "Звонок отвечен на другом устройстве";
+"call_requires_mic_permission" = "Для совершения звонков требуется разрешение на использование микрофона";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы действительно хотите выйти?";
@@ -435,8 +444,11 @@
 // search
 "search" = "Поиск";
 "search_in_chat" = "Поиск в чате";
+// Placeholder will be replaced by the chat name
+"search_in" = "Поиск в %1$@";
 "search_files" = "Поиск файлов";
 "search_explain" = "Поиск чатов, контактов и сообщений";
+"search_result_for_x" = "Результат по запросу \"%1$@\"";
 "search_no_result_for_x" = "Ничего не найдено по запросу \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Не прочитано";
@@ -448,6 +460,7 @@
 "group_create_button" = "Создать группу";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Введите название группы";
+"please_enter_chat_name" = "Пожалуйста, введите имя.";
 "group_add_members" = "Добавить участников";
 "group_self_not_in_group" = "Вы должны быть участником группы, чтобы выполнить это действие.";
 "profile_encryption" = "Шифрование";
@@ -678,6 +691,8 @@
 "pref_incognito_keyboard_explain" = "Запрос клавиатуре на отключение персонализированного обучения";
 "pref_read_receipts" = "Уведомления о прочтении";
 "pref_read_receipts_explain" = "Если уведомления о прочтении отключены, вы не будете видеть подтверждения прочтения сообщений другими пользователями.";
+// Title above a list of contacts who read a message
+"read_by" = "Прочитано";
 "pref_server" = "Сервер";
 "pref_encryption" = "Шифрование";
 "pref_manage_keys" = "Управление ключами";
@@ -786,9 +801,12 @@
 "group_name_changed_by_you" = "Вы изменили название группы с \"%1$@\" на \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ меняет название группы с \"%1$@\" на \"%2$@\".";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Название канала изменено с \"%1$@\" на \"%2$@\".";
 "group_image_changed_by_you" = "Вы изменили изображение группы.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ меняет изображение группы.";
+"channel_image_changed" = "Изображение канала изменено.";
 "chat_description_changed_by_you" = "Вы изменили описание чата.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Описание чата изменено пользователем %1$@.";
@@ -860,7 +878,7 @@
 "invalid_unencrypted_explanation" = "Чтобы установить сквозное шифрование, вы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";
 "learn_more" = "Узнать больше";
 "devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с собой.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Место на сервере вашего провайдера скоро закончится, уже использовано: %1$@%%.\n\nЕсли место на сервере будет полностью заполнено, вы не сможете получать сообщения.\n\n👉 Проверьте, можно ли удалить старые данные через веб-интерфейс вашего провайдера, и подумайте о включении опции \"Настройки / Чаты / Удалить старые сообщения\". Вы всегда можете проверить текущее использование места на сервере в разделе \"Настройки / Соединение\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Вероятно, дата или время на вашем устройстве установлены неверно (%1$@).\n\nНастройте часы ⏰🔧 чтобы ваши сообщения доставлялись правильно.";
@@ -922,6 +940,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ уже имеет черновик, вы хотите его заменить?";
 "mailto_link_could_not_be_decoded" = "ссылка mailto не может быть обработана: %1$@";
+"remove_quote" = "Удалить цитату";
+"remove_attachment" = "Удалить вложение";
 // notifications
 "notify_reply_button" = "Ответить";
 "notify_new_message" = "Новое сообщение";
@@ -937,6 +957,11 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Есть новые сообщения";
 "n_messages_in_m_chats" = "%1$d сообщений в %2$d чатах";
+// location streaming
+"location_streaming_channel_desc" = "Канал для потоковой передачи местоположения по запросу";
+"location_streaming_notification_title" = "Потоковая передача местоположения";
+"location_streaming_notification_text" = "Вы делитесь своим местоположением";
+"location_rationale" = "Чтобы поделиться своим местоположением в реальном времени с участниками чата, разрешите Delta Chat использовать данные о вашем местоположении.\n\nДля обеспечения бесперебойной работы функции передачи геопозиции данные используются даже тогда, когда приложение закрыто или не активно.";
 // permissions
 "perm_required_title" = "Требуется разрешение";
 "perm_continue" = "Продолжить";
@@ -976,7 +1001,8 @@
 "global_menu_help_about_desktop" = "О Delta Chat";
 "global_menu_file_open_desktop" = "Открыть Delta Chat";
 "global_menu_minimize_to_tray" = "Свернуть";
-"no_chat_selected_suggestion_desktop" = "Выберите чат или создайте новый";
+"no_account_selected" = "Выберите или создайте новый профиль";
+"no_chat_selected_suggestion_desktop" = "Выберите или создайте новый чат";
 "write_message_desktop" = "Напишите сообщение";
 "encryption_info_title_desktop" = "Информация о шифровании";
 "delete_message_desktop" = "Удалить сообщение";
@@ -997,8 +1023,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Не найдены варианты исправления орфографии.";
 "show_window" = "Показать окно";
+"data_found_other_installation_message" = "Профили из другой установки Delta Chat недоступны - разные экземпляры приложения хранят данные в отдельных папках.\n\nЧтобы сохранить существующие профили:\n1. Выйдите сейчас.\n2. Откройте другую установку Delta Chat - если потребуется, переустановите её из %1$@\n3. Создайте резервные копии каждого профиля в разделе \"Настройки/Чаты\"\n4. Запустите текущую версию приложения\n5. Восстановите данные из резервных копий, выбрав \"У меня уже есть профиль\"\n\nПродолжить без предыдущих профилей?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Горячие клавиши";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Навигация";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Поле ввода сообщения";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Выбранное сообщение";
 "switch_between_chats" = "Переключение между чатами";
 "scroll_messages" = "Прокрутка сообщений";
 // command to put the cursor to the search input field

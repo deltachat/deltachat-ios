@@ -62,6 +62,7 @@
 "always" = "Luôn luôn";
 "always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
+// deprecated
 "show_warning" = "Hiển thị cảnh báo";
 "not_now" = "Không phải bây giờ";
 "never" = "Không bao giờ";
@@ -245,6 +246,7 @@
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
 "mute_forever" = "Tắt tiếng vĩnh viễn";
+// deprecated
 "share_location_for_5_minutes" = "Trong 5 phút";
 "share_location_for_30_minutes" = "Trong 30 phút";
 "share_location_for_one_hour" = "Trong 1 giờ";
@@ -618,7 +620,7 @@
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
 "learn_more" = "Tìm hiểu thêm";
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Bộ nhớ nhà cung cấp của bạn sắp hết: %1$@%% đã được sử dụng.\n\nBạn có thể không nhận được tin nhắn nếu bộ nhớ đầy.\n\n 👉 Vui lòng kiểm tra xem bạn có thể xóa không dữ liệu cũ trong giao diện web của nhà cung cấp và cân nhắc bật \"Cài đặt / Xóa tin nhắn cũ\". Bạn có thể kiểm tra mức sử dụng bộ nhớ hiện tại của mình bất kỳ lúc nào tại \"Cài đặt / Kết nối\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Ngày hoặc giờ trên thiết bị của bạn có vẻ không chính xác (%1$@).\n\nĐiều chỉnh đồng hồ của bạn ⏰🔧 để đảm bảo tin nhắn của bạn được nhận chính xác.";

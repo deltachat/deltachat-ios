@@ -78,6 +78,7 @@
 "always" = "Alltid";
 "always_load_remote_images" = "Last alltid eksterne bilder";
 "once" = "Én gang";
+// deprecated
 "show_warning" = "Vis advarsel";
 "not_now" = "Ikke nå";
 "never" = "Aldri";
@@ -311,6 +312,7 @@
 "mute_for_one_day" = "Demp i 1 dag";
 "mute_for_seven_days" = "Demp i 7 dager";
 "mute_forever" = "Alltid dempet";
+// deprecated
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";

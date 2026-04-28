@@ -78,6 +78,7 @@
 "always" = "Vždy";
 "always_load_remote_images" = "Vždy načítat vzdálené obrázky";
 "once" = "Jednou";
+// deprecated
 "show_warning" = "Zobrazovat varování";
 "not_now" = "Teď ne";
 "never" = "Nikdy";
@@ -311,6 +312,7 @@
 "mute_for_one_day" = "Ztlumit na 1 den";
 "mute_for_seven_days" = "Ztlumit na 7 dní";
 "mute_forever" = "Ztlumit navždy";
+// deprecated
 "share_location_for_5_minutes" = "Na 5 minut";
 "share_location_for_30_minutes" = "Na 30 minut";
 "share_location_for_one_hour" = "Na 1 hodinu";
@@ -803,7 +805,7 @@
 "invalid_unencrypted_explanation" = "Pro navázání koncově šifrovaného spojení se můžete se svými kontakty setkat osobně a naskenovat jejich QR kódy.";
 "learn_more" = "Další informace";
 "devicemsg_self_deleted" = "Smazali jste chat „Uložené zprávy“.\n\nℹ️ Chcete-li znovu použít funkci „Uložené zprávy“, založte nový chat sami se sebou.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Úložiště u vašeho poskytovatele je téměř vyčerpané: %1$@ %% je již využito.\n\nPokud se úložiště zaplní, nebudete moci přijímat zprávy.\n\n👉 Zkuste smazat stará data ve webovém prostředí poskytovatele a zvažte povolení volby \"Nastavení / Chaty a multimédia / Mazat staré zprávy\". Aktuální využití úložiště můžete kdykoliv zkontrolovat v \"Nastavení / Připojení\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Datum a čas na vašem zařízení se zdají být nepřesné (%1$@).\n\nUpravte si čas ⏰🔧, abyste mohli přijímat své zprávy.";

@@ -57,6 +57,7 @@
 "load_remote_content" = "Memuat Gambar Jarak Jauh";
 "always" = "Selalu";
 "once" = "Sekali";
+// deprecated
 "show_warning" = "Tampilkan Peringatan";
 "not_now" = "Tidak sekarang";
 "never" = "Tidak pernah";
@@ -224,6 +225,7 @@
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
 "mute_forever" = "Diamkan seterusnya";
+// deprecated
 "share_location_for_5_minutes" = "untuk 5 menit";
 "share_location_for_30_minutes" = "untuk 30 menit";
 "share_location_for_one_hour" = "untuk 1 jam";

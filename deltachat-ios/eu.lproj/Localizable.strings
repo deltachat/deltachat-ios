@@ -80,6 +80,7 @@
 "always" = "Beti";
 "always_load_remote_images" = "Kargatu urrutiko irudiak beti";
 "once" = "Behin";
+// deprecated
 "show_warning" = "Erakutsi abisua";
 "not_now" = "Orain ez";
 "never" = "Inoiz ez";
@@ -322,6 +323,7 @@
 "mute_for_one_day" = "Mututu egun bat";
 "mute_for_seven_days" = "Mututu 7 egun";
 "mute_forever" = "Mututu betirako";
+// deprecated
 "share_location_for_5_minutes" = "5 minutuz";
 "share_location_for_30_minutes" = "30 minutuz";
 "share_location_for_one_hour" = "Ordu 1";
@@ -860,7 +862,7 @@
 "invalid_unencrypted_explanation" = "Muturretik muturrera zifratzeko, kontaktuekin aurrez aurre elkartu zaitezke eta haien QR kodea eskaneatu dezakezu elkar egiaztatzeko.";
 "learn_more" = "Ikasi gehiago";
 "devicemsg_self_deleted" = "\"Gordetako mezuak\" txata ezabatu duzu.\n\nℹ️ \"Gordetako mezuak\" funtzioa berriro erabiltzeko, sortu txat berri bat zure buruarekin.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Zure hornitzailearen biltegiratzea agortzear dago: %%-tik %1$@ erabili dituzu dagoeneko.\n\nLitekeena da mezuak jaso ezin izatea biltegiratzea beteta badago.\n\n👉 Mesedez, egiaztatu datu zaharrak hornitzailearen web-interfazean ezaba ditzakezun eta kontuan hartu \"Ezarpenak / Txatak / Ezabatu mezu zaharrak\" aukera aktibatzea. Zure uneko biltegiratze-erabilera edozein unetan egiaztatu dezakezu \"Ezarpenak / Konektibitatea\" atalean.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Zure gailuko data edo ordua okerra dela dirudi (%1$@).\n\nEgokitu zure erlojua ⏰🔧 zure mezuak zuzen jasotzen direla ziurtatzeko.";

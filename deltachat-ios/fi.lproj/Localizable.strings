@@ -62,6 +62,7 @@
 "always" = "Aina";
 "always_load_remote_images" = "Lataa aina kuvat verkosta";
 "once" = "Kerran";
+// deprecated
 "show_warning" = "Näytä varoitus";
 "not_now" = "Ei nyt";
 "never" = "Ei koskaan";
@@ -248,6 +249,7 @@
 "mute_for_one_day" = "Mykistä 1 päiväksi";
 "mute_for_seven_days" = "Mykistä 7 päiväksi";
 "mute_forever" = "Mykistä ikuisesti";
+// deprecated
 "share_location_for_5_minutes" = "5 minuutiksi";
 "share_location_for_30_minutes" = "30 minuutiksi";
 "share_location_for_one_hour" = "1 tunniksi";
@@ -661,7 +663,7 @@
 "invalid_unencrypted_explanation" = "Päästä-päähän salauksen saat käyttöön tapaamalla yhteystietosi ja skannaamalla hänen QR -koodinsa.";
 "learn_more" = "Lue lisää";
 "devicemsg_self_deleted" = "Poistit \"Tallennetut viestit\" -keskustelun.\n\nℹ️ Aloita uusi keskustelu itsesi kanssa, niin voit jälleen käyttää \"Tallennetut viestit\" -ominaisuutta.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Palveluntarjoajasi tallennuskiintiö ylitetään pian, käytössä on jo %1$@ / %%.\n\nEt välttämättä enää voi vastaanottaa viestejäsi, kun 100 %% on käytössä.\n\n👉 Kokeile poistaa viestejä palveluntarjoajasi internetkäyttöliittymästä. Kannattaa myös ehkä kytkeä päälle \"Asetukset / Poista vanhat viestit\". Voit tarkistaa tämän hetkisen tallennustilan käytön \"Asetukset / Yhteys\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Laitteesi päivämäärä tai aika vaikuttaa olevan väärässä (%1$@).\n\nAseta kellonaika ⏰🔧 varmistaaksesi, että viestin vastaanottaminen onnistuu.";

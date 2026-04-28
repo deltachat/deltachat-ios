@@ -80,6 +80,7 @@
 "always" = "Siempre";
 "always_load_remote_images" = "Cargar siempre imágenes remotas";
 "once" = "Una vez";
+// deprecated
 "show_warning" = "Mostrar advertencia";
 "not_now" = "Ahora no";
 "never" = "Nunca";
@@ -322,6 +323,7 @@
 "mute_for_one_day" = "Silenciar por 1 día";
 "mute_for_seven_days" = "Silenciar por 7 días";
 "mute_forever" = "Silenciar por siempre";
+// deprecated
 "share_location_for_5_minutes" = "Por 5 minutos ";
 "share_location_for_30_minutes" = "Por 30 minutos";
 "share_location_for_one_hour" = "Por 1 hora";
@@ -860,7 +862,7 @@
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";
 "learn_more" = "Aprender más";
 "devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ El almacenamiento de tu proveedor está por excederse, ya tienes %1$@%% en uso.\n\nQuizás no puedas recibir mensajes cuando el almacenamiento esté al 100%% de uso.\n\n👉 Por favor chequea si puedes eliminar los datos antiguos en la página web del proveedor y considera habilitar \"Ajustes / Eliminar mensajes antiguos\". Puedes chequear tu almacenamiento actual en cualquier momento en \"Ajustes / Conectividad\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Fecha y hora de tu dispositivo parecen ser inexactas (%1$@).\n\nAjusta tu reloj ⏰🔧 para asegurarte que los mensajes sean recibidos correctamente.";

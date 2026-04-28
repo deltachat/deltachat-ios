@@ -80,6 +80,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Carrega sempre les imatges remotes";
 "once" = "Una vegada";
+// deprecated
 "show_warning" = "Mostra l\'advertiment";
 "not_now" = "Ara no";
 "never" = "Mai";
@@ -322,6 +323,7 @@
 "mute_for_one_day" = "Silencia 1 dia";
 "mute_for_seven_days" = "Silencia 7 dies";
 "mute_forever" = "Sempre silenciat";
+// deprecated
 "share_location_for_5_minutes" = "Durant 5 minuts";
 "share_location_for_30_minutes" = "Durant 30 minuts";
 "share_location_for_one_hour" = "Durant 1 hora";
@@ -860,7 +862,7 @@
 "invalid_unencrypted_explanation" = "Per a establir xifratge d\'extrem a extrem, heu de trobar-vos amb els contactes en persona i escanejar el seu codi QR per a afegir-los.";
 "learn_more" = "Més informació";
 "devicemsg_self_deleted" = "Heu esborrat el xat «Missatges desats».\n\nℹ️ Per a usar altre cop la funcionalitat de «Missatges desats», creeu un xat nou amb vós mateix.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Esteu a punt de quedar-vos sense espai d\'emmagatzematge al vostre proveïdor: ja esteu utilitzant %1$@%% .\n\nPodríeu deixar de rebre missatges si s\'emplena.\n\n👉 Reviseu a la interfície web del proveïdor si podeu esborrar dades antigues i considereu habilitar \"Preferències / Xats i multimèdia / Esborra els missatges antics\". Podeu veure sempre el nivell d\'ocupació a \"Preferències / Connectivitat\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ La data o l\'hora del vostre dispositiu no semblen correctes (%1$@).\n\nAdjusteu el rellotge ⏰🔧 per a assegurar que els missatges es reben correctament.";

@@ -81,6 +81,7 @@
 "always" = "Përherë";
 "always_load_remote_images" = "Ngarko Përherë Figura të Largëta";
 "once" = "Vetëm një herë";
+// deprecated
 "show_warning" = "Shfaq Sinjalizim";
 "not_now" = "Jo tani";
 "never" = "Kurrë";
@@ -321,6 +322,7 @@
 "mute_for_one_day" = "Heshtoji për 1 ditë";
 "mute_for_seven_days" = "Heshtoji për 7 ditë";
 "mute_forever" = "Heshtoje përgjithmonë";
+// deprecated
 "share_location_for_5_minutes" = "Për 5 minuta";
 "share_location_for_30_minutes" = "Për 30 minuta";
 "share_location_for_one_hour" = "Për 1 orë";
@@ -869,7 +871,7 @@
 "invalid_unencrypted_explanation" = "Për të vendosur fshehtëzim skaj-më-skaj, mund të takoheni personalisht me kontaktet dhe të skanoni kodin e tyre QR, për t’i pranuar.";
 "learn_more" = "Mësoni Më Tepër";
 "devicemsg_self_deleted" = "Fshitë fjalosjen “Mesazhe të ruajtur”.\n\nℹ️ Që të përdorni sërish veçorinë “Mesazhe të ruajtur”, krijoni një fjalosje të re me veten tuaj.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Po mbaron depozita e shërbimit tuaj: përdoren tashmë %1$@%%.\n\nNëse depozita është plot, mund të mos jeni në gjendje të merrni mesazhe.\n\n👉 Ju lutemi, shihni se mos mund të fshini të dhëna të vjetra që nga ndërfaqja web e furnizuesit të shërbimit dhe shihni mundësinë të aktivizoni “Rregullime / Fjalosje dje Media / Fshi Mesazhe të Vjetër”. Se sa depozitë është aktualisht e përdorur mund ta kontrolloni kurdo, që nga \"Rregullime / Lidhje\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Data ose koha në pajisjen tuaj duket të jetë e pasaktë (%1$@).\n\nRregulloni sahatin tuaj ⏰🔧 që të garantohet se mesazhet tuaj merren saktë.";
@@ -949,6 +951,7 @@
 "new_messages_body" = "Keni mesazhe të rinj";
 "n_messages_in_m_chats" = "%1$d mesazhe në %2$d fjalosje";
 "location_streaming_notification_text" = "Po tregoni vendndodhjen tuaj";
+"location_rationale" = "Që të jepni vendndodhjen aty për aty për anëtarë të fjalosjes, lejojeni Delta Chat-in të përdorë të dhëna të vendndodhjes suaj.\n\nPër ta bërë vendndodhjen e atypëratyshme të funksionojë rrjedhshëm, përdoren të dhëna edhe kur aplikacioni është i mbyllur, ose jo në përdorim.";
 // permissions
 "perm_required_title" = "Lypset leje";
 "perm_continue" = "Vazhdo";
@@ -1010,6 +1013,7 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "S’u gjetën sugjerimi drejtshkrimi.";
 "show_window" = "Shfaq Dritare";
+"data_found_other_installation_message" = "Profilet tuaja nga instalim tjetër i Delta Chat-it s’mund të përdoren - instalime të ndryshme i depozitojnë të dhënat e veta në vendndodhje të ndryshme:\n1. Mbylle tani\n2. Hap Delta Chat-in tjetër - në u dashtë, riinstaloje nga %1$@\n3. Kopjeruaje secilin profil te “Rregullime/Fjalosje”4. Rinis këtë version\n5. Riktheni kopjeruajtje duke përdorur “Kam tashmë një profil”\n\nTë vazhdohet pa profilet tuaj të mëparshëm?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Kombinim tastesh";
 // subtitle in the "keybindings" dialog

@@ -197,6 +197,7 @@
 "mute_for_one_day" = "24時間停止する";
 "mute_for_seven_days" = "7日間停止する";
 "mute_forever" = "無効";
+// deprecated
 "share_location_for_5_minutes" = "5分間";
 "share_location_for_30_minutes" = "30分間";
 "share_location_for_one_hour" = "1時間";

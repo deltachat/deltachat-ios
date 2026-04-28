@@ -84,6 +84,7 @@
 "always" = "Always";
 "always_load_remote_images" = "Always Load Remote Images";
 "once" = "Once";
+// deprecated
 "show_warning" = "Show Warning";
 "not_now" = "Not now";
 "never" = "Never";
@@ -327,11 +328,13 @@
 "mute_for_one_day" = "Mute for 1 day";
 "mute_for_seven_days" = "Mute for 7 days";
 "mute_forever" = "Mute forever";
+// deprecated
 "share_location_for_5_minutes" = "For 5 minutes";
 "share_location_for_30_minutes" = "For 30 minutes";
 "share_location_for_one_hour" = "For 1 hour";
 "share_location_for_two_hours" = "For 2 hours";
 "share_location_for_six_hours" = "For 6 hours";
+"share_location_for_24_hours" = "For 24 hours";
 "file_saved_to" = "File saved to \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Call";
@@ -367,6 +370,10 @@
 "already_in_call" = "Already in a call";
 "call_answered_elsewhere" = "Call answered on another device";
 "call_requires_mic_permission" = "Microphone permission is required for calls";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Call with %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Calling %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Are you sure you want to leave?";
@@ -654,7 +661,7 @@
 "pref_outgoing_media_quality" = "Outgoing Media Quality";
 "pref_outgoing_media_quality_hint" = "To send original quality, attach media as a \"File\". This uses significantly more data for you and your recipients.";
 "pref_outgoing_balanced" = "Balanced";
-"pref_outgoing_worse" = "Worse quality, small size";
+"pref_outgoing_worse" = "Worse quality, save data";
 "pref_vibrate" = "Vibrate";
 "pref_screen_security" = "Screen Security";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
@@ -876,7 +883,7 @@
 "invalid_unencrypted_explanation" = "To establish end-to-end-encryption, you may meet contacts in person and scan their QR Code to introduce them.";
 "learn_more" = "Learn More";
 "devicemsg_self_deleted" = "You deleted the \"Saved messages\" chat.\n\nℹ️ To use the \"Saved messages\" feature again, create a new chat with yourself.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Your provider\'s storage is about to run out: %1$@%% are already used.\n\nYou may not be able to receive messages if storage is full.\n\n👉 Please check if you can delete old data in the provider\'s web interface and consider enabling \"Settings / Chats / Delete Old Messages\". You can check your current storage usage anytime at \"Settings / Connectivity\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Date or time on your device seems to be inaccurate (%1$@).\n\nAdjust your clock ⏰🔧 to ensure your messages are received correctly.";

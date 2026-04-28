@@ -84,6 +84,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Carica Sempre Immagini Remote";
 "once" = "Una Volta";
+// deprecated
 "show_warning" = "Mostra Avviso";
 "not_now" = "Non ora";
 "never" = "Mai";
@@ -327,6 +328,7 @@
 "mute_for_one_day" = "Silenzia per 1 giorno";
 "mute_for_seven_days" = "Silenzia per 7 giorni";
 "mute_forever" = "Silenzia per sempre";
+// deprecated
 "share_location_for_5_minutes" = "Per 5 minuti";
 "share_location_for_30_minutes" = "Per 30 minuti";
 "share_location_for_one_hour" = "Per 1 ora";
@@ -442,8 +444,11 @@
 // search
 "search" = "Cerca";
 "search_in_chat" = "Cerca nella Chat";
+// Placeholder will be replaced by the chat name
+"search_in" = "Cerca in %1$@";
 "search_files" = "Cerca File";
 "search_explain" = "Cerca chat, contatti e messaggi";
+"search_result_for_x" = "Risultato per \"%1$@\"";
 "search_no_result_for_x" = "Nessun risultato trovato per \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Non Letto";
@@ -455,6 +460,7 @@
 "group_create_button" = "Crea Gruppo";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Per piacere inserisci un nome per il gruppo.";
+"please_enter_chat_name" = "Inserisci un nome.";
 "group_add_members" = "Aggiungi Membri";
 "group_self_not_in_group" = "Devi essere un membro del gruppo per fare questa azione.";
 "profile_encryption" = "Crittografia";
@@ -685,6 +691,8 @@
 "pref_incognito_keyboard_explain" = "Richiedi alla tastiera di disattivare l\'apprendimento personalizzato";
 "pref_read_receipts" = "Ricevute di Lettura";
 "pref_read_receipts_explain" = "Se le conferme di lettura sono disattivate, non potrai vedere le conferme di lettura degli altri.";
+// Title above a list of contacts who read a message
+"read_by" = "Letto da";
 "pref_server" = "Server";
 "pref_encryption" = "Crittografia";
 "pref_manage_keys" = "Gestisci Chiavi";
@@ -793,9 +801,12 @@
 "group_name_changed_by_you" = "Hai cambiato il nome del gruppo da \"%1$@\" a \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nome gruppo cambiato da \"%1$@\" a \"%2$@\" da %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Il nome del canale è cambiato da \"%1$@\" a \"%2$@\".";
 "group_image_changed_by_you" = "Hai cambiato l\'immagine del gruppo.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Immagine del gruppo cambiata da %1$@.";
+"channel_image_changed" = "Immagine canale cambiata.";
 "chat_description_changed_by_you" = "Hai cambiato la descrizione della chat.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Descrizione della chat modificata da %1$@.";
@@ -867,7 +878,7 @@
 "invalid_unencrypted_explanation" = "Per stabilire la crittografia end-to-end, potresti incontrare i contatti di persona e scansionare il loro Codice QR per verificarli.";
 "learn_more" = "Per Saperne di Più";
 "devicemsg_self_deleted" = "Hai eliminato la chat \"Messaggi salvati\".\n\nℹ️ Per utilizzare nuovamente la funzione \"Messaggi salvati\", crea una nuova chat con te stesso.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Lo spazio di archiviazione del tuo fornitore sta per esaurirsi:%1$@%% sono già utilizzati.\n\nPotresti non essere in grado di ricevere messaggi se lo spazio di archiviazione è pieno.\n\n👉 Per piacere controlla se puoi eliminare i vecchi dati nell\'interfaccia web del fornitore e considera di abilitare \"Impostazioni / Chat e Media / Elimina Vecchi Messaggi\". Puoi controllare l\'utilizzo attuale dello spazio di archiviazione in qualsiasi momento in \"Impostazioni / Connettività\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ La data o l\'ora del tuo dispositivo sembrano essere imprecise (%1$@).\n\nRegola l\'orologio ⏰🔧 per assicurarti che i tuoi messaggi vengano ricevuti correttamente.";
@@ -929,6 +940,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ha già una bozza di messaggio, vuoi sostituirla?";
 "mailto_link_could_not_be_decoded" = "Il collegamento mailto non può essere decodificato: %1$@";
+"remove_quote" = "Rimuovi citazione";
+"remove_attachment" = "Rimuovi allegato";
 // notifications
 "notify_reply_button" = "Rispondi";
 "notify_new_message" = "Nuovo messaggio";
@@ -944,6 +957,11 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Hai nuovi messaggi";
 "n_messages_in_m_chats" = "%1$d messaggi in %2$d chat";
+// location streaming
+"location_streaming_channel_desc" = "Canale Trasmissione della Posizione su Richiesta";
+"location_streaming_notification_title" = "Trasmissione Posizione";
+"location_streaming_notification_text" = "Stai condividendo la tua posizione";
+"location_rationale" = "Per condividere la tua posizione in tempo reale con i membri della chat, consenti a Delta Chat di utilizzare i tuoi dati di geolocalizzazione.\n\nPer garantire il funzionamento continuo della geolocalizzazione in tempo reale, i dati di geolocalizzazione vengono utilizzati anche quando l\'app è chiusa o non in uso.";
 // permissions
 "perm_required_title" = "Autorizzazione richiesta";
 "perm_continue" = "Continua";
@@ -983,6 +1001,7 @@
 "global_menu_help_about_desktop" = "Informazioni Delta Chat";
 "global_menu_file_open_desktop" = "Apri Delta Chat";
 "global_menu_minimize_to_tray" = "Minimizza";
+"no_account_selected" = "Seleziona un profilo o creane uno nuovo";
 "no_chat_selected_suggestion_desktop" = "Seleziona una chat o crea una nuova chat";
 "write_message_desktop" = "Scrivi un messaggio";
 "encryption_info_title_desktop" = "Informazioni Cifratura";
@@ -1004,8 +1023,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nessun suggerimento ortografico trovato.";
 "show_window" = "Mostra Finestra";
+"data_found_other_installation_message" = "I profili di un\'altra installazione di Delta Chat non sono accessibili: le diverse installazioni memorizzano i dati in posizioni separate.\n\nPer mantenere i profili esistenti:\n1. Esci ora\n2. Apri l\'altro Delta Chat; se necessario, reinstallalo da %1$@\n3. Esegui il backup di ciascun profilo in \"Impostazioni/Chat\"\n4. Riavvia questa versione\n5. Ripristina i backup utilizzando \"Ho già un profilo\"\n\nContinuare senza i profili precedenti?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Associazioni tasti";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Navigazione";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Scrivi Messaggio";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Messaggio Selezionato";
 "switch_between_chats" = "Passa da una Chat all\'altra";
 "scroll_messages" = "Scorri Messaggi";
 // command to put the cursor to the search input field

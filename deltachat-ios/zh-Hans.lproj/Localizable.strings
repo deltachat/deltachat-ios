@@ -84,6 +84,7 @@
 "always" = "总是";
 "always_load_remote_images" = "始终加载远程图像";
 "once" = "仅一次";
+// deprecated
 "show_warning" = "显示警告";
 "not_now" = "现在不";
 "never" = "从不";
@@ -327,6 +328,7 @@
 "mute_for_one_day" = "静音 1 天";
 "mute_for_seven_days" = "静音 7 天";
 "mute_forever" = "永久静音";
+// deprecated
 "share_location_for_5_minutes" = "5 分钟";
 "share_location_for_30_minutes" = "30 分钟";
 "share_location_for_one_hour" = "1 小时";
@@ -876,7 +878,7 @@
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以亲自和联系人碰面并扫描联系人的二维码。";
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️ 要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ 您的服务提供者存储空间即将用完：已使用 %1$@%%。\n\n如果存储空间已满，您可能无法接收消息。\n\n👉 请检查您是否可以在服务提供者的网页界面中删除旧数据，并考虑启用“设置/聊天/删除旧消息”。您可以随时在“设置/连接”中查看当前的存储空间使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟 ⏰🔧 以确保能够正确接收消息。";

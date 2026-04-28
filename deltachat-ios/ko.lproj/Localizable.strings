@@ -219,6 +219,7 @@
 "mute_for_one_day" = "1일 동안 알림 끄기";
 "mute_for_seven_days" = "7일 동안 알림 끄기";
 "mute_forever" = "영구히 음소거";
+// deprecated
 "share_location_for_5_minutes" = "5분 동안";
 "share_location_for_30_minutes" = "30분 동안";
 "share_location_for_one_hour" = "1시간 동안";
@@ -534,7 +535,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@가 사라지는 메시지 타이머를 %1$@주로 설정함.";
 "devicemsg_self_deleted" = "저장된 메시지 대화를 삭제했습니다.\n\nℹ️\"저장된 메시지\" 기능을 다시 사용하려면 자신과의 대화를 새로 만드십시오.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ 공급자의 저장공간이 곧 고갈될 예정입니다. %1$@%%가 이미 사용 중입니다.\n\n저장공간이 가득 찬 경우 메시지를 수신하지 못할 수 있습니다.\n\n👉 공급자의 웹 인터페이스에서 이전 데이터를 삭제할 수 있는지 확인하고 \"설정 / 이전 메시지 삭제\"를 활성화하는 것을 고려하십시오. \"설정/연결\"에서 언제든지 현재 저장공간 사용량을 확인할 수 있습니다.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 장치의 날짜 또는 시간이 정확하지 않은 것 같습니다(%1$@).\n\n메시지가 올바르게 수신되도록 시계 ⏰🔧를 조정하세요.";

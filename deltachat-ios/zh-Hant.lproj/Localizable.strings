@@ -78,6 +78,7 @@
 "always" = "永遠";
 "always_load_remote_images" = "總是載入遠端圖片";
 "once" = "僅一次";
+// deprecated
 "show_warning" = "顯示警告";
 "not_now" = "現在不要";
 "never" = "永遠不要";
@@ -320,6 +321,7 @@
 "mute_for_one_day" = "靜音1天";
 "mute_for_seven_days" = "靜音7天";
 "mute_forever" = "永遠靜音";
+// deprecated
 "share_location_for_5_minutes" = "5分鐘";
 "share_location_for_30_minutes" = "30分鐘";
 "share_location_for_one_hour" = "1小時";
@@ -854,7 +856,7 @@
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以當面掃描聯絡人的QR碼。";
 "learn_more" = "瞭解更多";
 "devicemsg_self_deleted" = "您刪除了「已保存的訊息」聊天。\n\nℹ️要再次使用「已保存的訊息」功能，請與自己創建新聊天。";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ 您的供應商的存儲空間即將用完：已使用%1$@%%。\n\n如果存儲空間已滿，您可能無法接收訊息。\n\n👉請檢查您是否可以在提供商的網頁介面中刪除舊數據，並考慮啟用「設定/聊天和媒體/刪除舊訊息」。您可以隨時在「設定/連接」 中檢查您目前的儲存使用方式。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 您裝置上的日期或時間似乎不準確 （%1$@）。\n\n調整您的時鐘⏰🔧以確保您的訊息被正確接收。";

@@ -78,6 +78,7 @@
 "always" = "همیشه";
 "always_load_remote_images" = "تصاویر با منبع بیرونی همیشه بارگیری شوند";
 "once" = "همین یک بار";
+// deprecated
 "show_warning" = "نمایش هشدار";
 "not_now" = "اکنون نه";
 "never" = "هرگز";
@@ -311,6 +312,7 @@
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
 "mute_for_seven_days" = "ساکت کردن به مدت۷ روز";
 "mute_forever" = "ساکت کردن دائمی";
+// deprecated
 "share_location_for_5_minutes" = "به مدت ۵ دقیقه";
 "share_location_for_30_minutes" = "به مدت ۳۰ دقیقه";
 "share_location_for_one_hour" = "به مدت ۱ ساعت";
@@ -821,7 +823,7 @@
 "invalid_unencrypted_explanation" = "برای برقراری رمزنگاری سراسری، می‌توانید به صورت حضوری با مخاطب‌های خود دیدار کنید و کد کیوآر آن‌ها را برای معرفی اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = " ⚠️ میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت. 👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخهٔ وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از «تنظیم‌ها / اتصال‌ها» بررسی کنید. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@). ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";

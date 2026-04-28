@@ -73,6 +73,7 @@
 "always" = "Ĉiam";
 "always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
+// deprecated
 "show_warning" = "Afiŝu averton";
 "not_now" = "Ne nun";
 "never" = "Neniam";
@@ -241,6 +242,7 @@
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
 "mute_forever" = "Silentigi por ĉiam";
+// deprecated
 "share_location_for_5_minutes" = "por 5 minutoj";
 "share_location_for_30_minutes" = "por 30 minutoj";
 "share_location_for_one_hour" = "por 1 horo";

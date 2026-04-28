@@ -78,6 +78,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Descargar sempre imaxes remotas";
 "once" = "Unha vez";
+// deprecated
 "show_warning" = "Mostrar aviso";
 "not_now" = "Agora non";
 "never" = "Nunca";
@@ -303,6 +304,7 @@
 "mute_for_one_day" = "Acalar durante 1 día";
 "mute_for_seven_days" = "Acalar durante 7 días";
 "mute_forever" = "Acalar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "durante 5 min.";
 "share_location_for_30_minutes" = "durante 30 min.";
 "share_location_for_one_hour" = "durante 1 hora";
@@ -741,7 +743,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ A almacenaxe do teu provedor vaise esgotar, xa utilizaches %1$@ %%.\n\nPode que non recibas mensaxes cando a almacenaxe chegue a 100%% utilizado.\n\n👉 Mira se podes eliminar datos antigos na interface web do teu provedor e pensa se debes activar \"Axustes / Eliminar Mensaxes Antigas\". Podes ver a almacenaxe actual utilizada en \"Axustes / Conectividade\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ A hora ou data no teu dispositivo poderían ser incorrectas (%1$@).\n\nAxusta o reloxio ⏰🔧 para asegurar que as túas mensaxes son recibidas correctamente.";

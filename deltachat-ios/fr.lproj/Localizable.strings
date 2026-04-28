@@ -80,6 +80,7 @@
 "always" = "Toujours";
 "always_load_remote_images" = "Toujours charger les images distantes";
 "once" = "Une fois";
+// deprecated
 "show_warning" = "Montrer l\'avertissement";
 "not_now" = "Pas maintenant";
 "never" = "Jamais";
@@ -322,6 +323,7 @@
 "mute_for_one_day" = "Sourdine pendant 1 jour";
 "mute_for_seven_days" = "Sourdine pendant 7 jours";
 "mute_forever" = "Toujours en sourdine";
+// deprecated
 "share_location_for_5_minutes" = "pour 5 minutes";
 "share_location_for_30_minutes" = "pour 30 minutes";
 "share_location_for_one_hour" = "pour 1 heure";
@@ -858,7 +860,7 @@
 "invalid_unencrypted_explanation" = "Pour mettre en place le chiffrement de bout en bout, vous pouvez rencontrer vos contacts en personne et scanner leur code QR pour les ajouter à votre liste de contacts connus.";
 "learn_more" = "En savoir plus";
 "devicemsg_self_deleted" = "Vous avez supprimé la discussion « Messages enregistrés ».\n\nℹ️ Pour utiliser la fonctionnalité « Messages enregistrés » à nouveau, commencez une nouvelle discussion avec vous-même.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Bientôt plus d\'espace de stockage chez votre fournisseur : %1$@%% utilisés.\n\nQuand il sera plein, vous ne pourrez probablement plus recevoir de messages.\n\n👉 Vérifiez si vous pouvez supprimer des éléments anciens directement via l\'interface web de votre fournisseur, et envisagez d\'activer l\'option « Paramètres/ Discussions/ Supprimer les anciens messages ». Vous pouvez vérifier à tout moment le volume utilisé dans votre espace de stockage depuis « Paramètres/ Connectivité ».";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ L\'heure ou la date de votre appareil semble erronée (%1$@).\n\nRéglez votre horloge ⏰🔧 pour que vos messages soient bien reçus.";

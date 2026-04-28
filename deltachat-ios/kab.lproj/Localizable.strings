@@ -80,6 +80,7 @@
 "always" = "Dima";
 "always_load_remote_images" = "Sali-d yal tikelt tugniwin n unmeggag";
 "once" = "Tikkelt";
+// deprecated
 "show_warning" = "Sken ulɣu";
 "not_now" = "Mačči tura";
 "never" = "Werǧin";
@@ -320,6 +321,7 @@
 "mute_for_one_day" = "Sgugem i 1 wass";
 "mute_for_seven_days" = "Sgugem i 7 wussan";
 "mute_forever" = "Sgugem i lebda";
+// deprecated
 "share_location_for_5_minutes" = "I 5 n tisdatin";
 "share_location_for_30_minutes" = "I 30 n tisdatin";
 "share_location_for_one_hour" = "I 1 usrag";
@@ -856,7 +858,7 @@
 "invalid_unencrypted_explanation" = "Akken ad tesbeddeḍ awgelhen n yixef ɣer yixef, tzemreḍ ad temlileḍ inermisen s timmad-nsen u ad ḍummeḍ tangalt-nsen QR akken ad ten-id-tesmendeḍ.";
 "learn_more" = "Issin ugar";
 "devicemsg_self_deleted" = "Tekkseḍ adiwenni n \" iznan yettwakelsen \".\n\nℹ️ Akken ad tesqedceḍ tamahilt \" iznan yettwakelsen \", rnu adiwenni amaynut akked yiman-ik·im. ";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️Asaǧǧaw-ik·im n usekles qrib ad yaččar: %1$@%% yettwaseqdec yakan.\n\nAhat ur tezmireḍ ara ad d-remseḍ iznan ma yella asekles yeččur.\n\n 👉 Ttxil-k·m senqed ma yella tzemreḍ ad tekkseḍ isefka iqburen deg ugrudem n web n isaǧǧawen syin rmed \"Iɣewwaṛen / Idiwenniyen / Kkes iznan iqbuṛen\". Tzemreḍ ad tesneqdeḍ aseqdec n usekles-inek·inem amiran deg \"Iɣewwaṛen / tuqqna\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Azemz neɣ akud deg yibenk-ik·im yettban-d ur iṣeḥḥa ara (%1$@).\n\nṢeggem tamasragt-ik·im ⏰🔧Akken ad neḍmen d akken iznan-ik·im ad ttwaremsen akken iwata. ";

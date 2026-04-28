@@ -78,6 +78,7 @@
 "always" = "Mindig";
 "always_load_remote_images" = "Mindig töltse be a távoli képeket";
 "once" = "Azonnal";
+// deprecated
 "show_warning" = "Figyelmeztetés megjelenítése";
 "not_now" = "Most nem";
 "never" = "Soha";
@@ -311,6 +312,7 @@
 "mute_for_one_day" = "Némítás 1 napra";
 "mute_for_seven_days" = "Némítás 7 napra";
 "mute_forever" = "Némítás örökre";
+// deprecated
 "share_location_for_5_minutes" = "5 percre";
 "share_location_for_30_minutes" = "30 percre";
 "share_location_for_one_hour" = "1 órára";
@@ -787,7 +789,7 @@
 "invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat a partnereivel, és a QR-kódjukat beolvasva bemutathatja őket.";
 "learn_more" = "Tudjon meg többet";
 "devicemsg_self_deleted" = "Ön törölte a „Mentett üzenetek” csevegést.\n\nℹ️ A „Mentett üzenetek” funkció újbóli használatához hozzon létre egy új csevegést önmagával.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Az e-mail-szolgáltatójától kapott tárhelye hamarosan megtelik: %1$@%% már felhasználásra került.\n\n\nElképzelhető, hogy nem tud üzeneteket fogadni, ha a tárhelye megtelt.\n\n👉 Ellenőrizze, hogy a szolgáltatója webes felületén tudja-e törölni a DeltaChat-mappából az üzeneteket, és fontolja meg a „Beállítások / Csevegések és média / Üzenetek törlése a kiszolgálóról” engedélyezését. Az aktuális tárhelyhasználatot bármikor ellenőrizheti a „Beállítások / Tárhely” menüpontban.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Az eszközén lévő dátum vagy idő pontatlannak tűnik (%1$@).\n\nJavítsa meg az órát ⏰🔧 az üzenetek helyes fogadásának biztosítása érdekében.";

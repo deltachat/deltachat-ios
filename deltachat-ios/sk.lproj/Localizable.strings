@@ -74,6 +74,7 @@
 "load_remote_content_ask" = "Na sledovanie vás možno použiť obrázky nadiaľku.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď je vypnutá, stále sa vám môžu zobrazovať vložené alebo uložené obrázky.\n\nNačítať vzdialené obrázky?";
 "always" = "Vždy";
 "once" = "Raz";
+// deprecated
 "show_warning" = "Zobraziť varovanie";
 "not_now" = "Teraz nie";
 "never" = "Nikdy";
@@ -291,6 +292,7 @@
 "mute_for_one_day" = "Stíšiť na 1 deň";
 "mute_for_seven_days" = "Stíšiť na 7 dní";
 "mute_forever" = "Stlmiť navždy";
+// deprecated
 "share_location_for_5_minutes" = "po dobu 5 minút";
 "share_location_for_30_minutes" = "po dobu 30 minút";
 "share_location_for_one_hour" = "po dobu 1 hodiny";
@@ -705,7 +707,7 @@
 "chat_protection_enabled_tap_to_learn_more" = "Správy sú šifrované. Ťuknite pre viac informácií.";
 "learn_more" = "Zistiť viac";
 "devicemsg_self_deleted" = "Odstránili ste konverzáciu \"Uložené správy\".\n\nℹ️ Aby ste využili funkciu \"Uložené správy\" znova, vytvorte novú konverzáciu so sebou.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Úložisko vašeho poskytovateľa čoskoro prekročí limit, už%1$@%% sú využité.\n\n Je možné, že nebudete môcť prijímať správy, ak bude úložisko 100 %% využité.\n\n👉 Prosím skontrolujte, či môžete vo webovom rozhraní poskytovateľa vymazať staré údaje, a zvážte aktiváciu „Nastavenia / Odstrániť Staré Správy“. Aktuálne využitie úložiska si môžete kedykoľvek skontrolovať v časti „Nastavenia / Pripojenie“. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "Zdá sa, že dátum alebo čas vášho zariadenia je nepresný (%1$@).\n\nUpravte si hodiny ⏰🔧, aby ste zaistili správne prijímanie správ. ";

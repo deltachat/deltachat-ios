@@ -80,6 +80,7 @@
 "always" = "Zawsze";
 "always_load_remote_images" = "Zawsze wczytuj zdalne obrazy";
 "once" = "Jeden raz";
+// deprecated
 "show_warning" = "Pokaż ostrzeżenie";
 "not_now" = "Nie teraz";
 "never" = "Nigdy";
@@ -322,6 +323,7 @@
 "mute_for_one_day" = "Wyłącz na 1 dzień";
 "mute_for_seven_days" = "Wyłącz na 7 dni";
 "mute_forever" = "Wyłącz na zawsze";
+// deprecated
 "share_location_for_5_minutes" = "na 5 minut";
 "share_location_for_30_minutes" = "na 30 mninut";
 "share_location_for_one_hour" = "na 1 godzinę";
@@ -632,10 +634,10 @@
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "blocked_empty_hint" = "Zablokowane kontakty, zostaną pokazane tutaj.";
-"pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe, nazwa i biografia będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
+"pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe, nazwa i biografia zostaną wysłane razem z wiadomościami, podczas komunikacji z innymi użytkownikami.";
 "pref_your_name" = "Twoja nazwa";
 // Label of the Bio/Signature/Status/Motto field
-"pref_default_status_label" = "Tekst podpisu";
+"pref_default_status_label" = "Biografia";
 "chat_description" = "Opis";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter wysyła";
@@ -860,7 +862,7 @@
 "invalid_unencrypted_explanation" = "Aby ustanowić szyfrowanie end-to-end, możesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, żeby ich zweryfikować.";
 "learn_more" = "Czytaj więcej";
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Limit pamięci u twojego dostawcy wkrótce zostanie przekroczony, wykorzystano już %1$@%%.\n\nMożesz nie być w stanie otrzymywać wiadomości, gdy pamięć jest pełna.\n\n👉 Sprawdzić, czy możesz usunąć stare dane w interfejsie internetowym dostawcy i rozważyć włączenie opcji \"Ustawienia » Czaty » Usuwanie starych wiadomości\". W dowolnym momencie możesz sprawdzić swoje bieżące wykorzystanie pamięci w \"Ustawienia » Łączność\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Data lub godzina urządzenia wydaje się być niedokładna (%1$@).\n\nDostosuj zegar ⏰🔧, aby upewnić się, że wiadomości są prawidłowo odbierane.";
@@ -922,6 +924,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";
 "mailto_link_could_not_be_decoded" = "link mailto nie mógł zostać odszyfrowany: %1$@";
+"remove_attachment" = "Usuń załącznik";
 // notifications
 "notify_reply_button" = "Odpowiedz";
 "notify_new_message" = "Nowa wiadomość";

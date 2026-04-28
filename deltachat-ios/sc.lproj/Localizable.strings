@@ -162,6 +162,7 @@
 "mute_for_one_day" = "A sa muda pro 1 die";
 "mute_for_seven_days" = "A sa muda pro 7 dies";
 "mute_forever" = "A sa muda pro semper";
+// deprecated
 "share_location_for_5_minutes" = "pro 5 minutos";
 "share_location_for_30_minutes" = "pro 30 minutos";
 "share_location_for_one_hour" = "pro 1 ora";

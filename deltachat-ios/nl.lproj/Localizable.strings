@@ -84,6 +84,7 @@
 "always" = "Altijd";
 "always_load_remote_images" = "Externe afbeeldingen altijd laden";
 "once" = "Eenmalig";
+// deprecated
 "show_warning" = "Waarschuwing tonen";
 "not_now" = "Niet nu";
 "never" = "Nooit";
@@ -327,6 +328,7 @@
 "mute_for_one_day" = "1 dag lang uitschakelen";
 "mute_for_seven_days" = "7 dagen lang uitschakelen";
 "mute_forever" = "Permanent uitschakelen";
+// deprecated
 "share_location_for_5_minutes" = "5 minuten lang";
 "share_location_for_30_minutes" = "30 minuten lang";
 "share_location_for_one_hour" = "1 uur lang";
@@ -876,7 +878,7 @@
 "invalid_unencrypted_explanation" = "Spreek met elkaar af en scan elkaars QR-code om eind-tot-eindversleuteling op te zetten.";
 "learn_more" = "Meer informatie";
 "devicemsg_self_deleted" = "Je hebt het gesprek ‘Bewaarde berichten’ verwijderd.\n\nℹ️ Als je weer gebruik wilt maken van deze functie, begin dan een nieuw gesprek met jezelf.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ De opslagruimte die je provider biedt is bijna overschreden. Momenteel heb je %1$@%% ervan in gebruik.\n\nAls je geen ruimte meer hebt, kun je mogelijk geen berichten meer ontvangen.\n\n👉 Kijk of je oude gegevens kunt verwijderen in de webclient van je provider. Overweeg ook ‘Instellingen → Oude berichten verwijderen’ in te schakelen. Je kunt je huidige gebruik te allen tijde bekijken via ‘Instellingen → Verbindingen’.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ De datum en tijd van je apparaat lijken niet te kloppen (%1$@).\n\nVerzet je klok ⏰🔧 om er zeker van te zijn dat je berichten kunt ontvangen.";

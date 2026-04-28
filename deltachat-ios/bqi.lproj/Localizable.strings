@@ -76,6 +76,7 @@
 "always" = "همیشه";
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
+// deprecated
 "show_warning" = "نشووݩ داڌن هوشدار";
 "not_now" = "سکو ن";
 "never" = "هیچ";
@@ -274,6 +275,7 @@
 "mute_for_one_day" = "بؽ دونگ کردن سی 1 رۊ";
 "mute_for_seven_days" = "بؽ دونگ کردن سی 7 رۊ";
 "mute_forever" = "بؽ دونگ کردن سی همیشه";
+// deprecated
 "share_location_for_5_minutes" = "سی 5 دؽقه";
 "share_location_for_30_minutes" = "سی 30 دؽقه";
 "share_location_for_one_hour" = "سی 1 ساعت";

@@ -66,6 +66,7 @@
 "always" = "Visada";
 "always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
+// deprecated
 "show_warning" = "Rodyti įspėjimą";
 "not_now" = "Ne dabar";
 "never" = "Niekada";
@@ -287,6 +288,7 @@
 "mute_for_one_day" = "Išjungti 1 dienai";
 "mute_for_seven_days" = "Išjungti 7 dienoms";
 "mute_forever" = "Išjungti visam laikui";
+// deprecated
 "share_location_for_5_minutes" = "5 minutėms";
 "share_location_for_30_minutes" = "30 minučių";
 "share_location_for_one_hour" = "1 valandai";

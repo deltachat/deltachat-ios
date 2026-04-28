@@ -176,6 +176,7 @@
 "mute_for_one_day" = "بێدەنگ کردن بۆ ماوەی 1 ڕۆژ";
 "mute_for_seven_days" = "بێدەنگ کردن بۆ ماوەی 7 ڕۆژ";
 "mute_forever" = "بێدەنگ کردن بۆ هەمیشە";
+// deprecated
 "share_location_for_5_minutes" = "بۆ ماوەی 5 خولەک";
 "share_location_for_30_minutes" = "بۆ ماوەی 30 خولەک";
 "share_location_for_one_hour" = "بۆ ماوەی 1 کاتژمێر";

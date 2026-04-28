@@ -194,6 +194,7 @@
 "mute_for_one_day" = "Dæmp i 1 dag";
 "mute_for_seven_days" = "Dæmp i 7 dage";
 "mute_forever" = "Stille for altid";
+// deprecated
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";

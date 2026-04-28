@@ -192,6 +192,7 @@
 "mute_for_one_day" = "Calado por 1 dia";
 "mute_for_seven_days" = "Calado por 7 dias";
 "mute_forever" = "Silenciar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "por 5 min";
 "share_location_for_30_minutes" = "por 30 min";
 "share_location_for_one_hour" = "por 1 hora";

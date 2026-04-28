@@ -78,6 +78,7 @@
 "always" = "Alltid";
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
+// deprecated
 "show_warning" = "Visa varning";
 "not_now" = "Inte nu";
 "never" = "Aldrig";
@@ -319,6 +320,7 @@
 "mute_for_one_day" = "Tysta 1 dag";
 "mute_for_seven_days" = "Tysta 7 dagar";
 "mute_forever" = "Tysta för evigt";
+// deprecated
 "share_location_for_5_minutes" = "i 5 minuter";
 "share_location_for_30_minutes" = "i 30 minuter";
 "share_location_for_one_hour" = "i 1 timma";
@@ -842,7 +844,7 @@
 "invalid_unencrypted_explanation" = "För att skapa totalsträckskryptering kan du träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
 "learn_more" = "Lär dig mer";
 "devicemsg_self_deleted" = "Du har tagit bort chatten \"Sparade meddelanden\".\n\nℹ️ Om du vill använda funktionen \"Sparade meddelanden\" igen skapar du en ny chatt med dig själv.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Din leverantörs lagringsutrymme är snart slut: %1$@%% är redan använt.\n\nDu kanske inte kan ta emot meddelanden om lagringsutrymmet är fullt.\n\n👉 Kontrollera om du kan radera gammal data i leverantörens webbgränssnitt och överväg att aktivera \"Inställningar / Chattar och media / Ta bort gamla meddelanden\". Du kan kontrollera din aktuella lagringsanvändning när som helst under \"Inställningar / Anslutning\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Datum eller tid på din enhet verkar vara felaktigt (%1$@).\n\nJustera din klocka ⏰🔧 för att säkerställa att dina meddelanden tas emot korrekt.";

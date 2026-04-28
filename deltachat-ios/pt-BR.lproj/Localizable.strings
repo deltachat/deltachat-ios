@@ -65,6 +65,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Sempre Carregar Imagens Remotas";
 "once" = "Uma vez";
+// deprecated
 "show_warning" = "Mostrar Aviso";
 "not_now" = "Mais tarde";
 "never" = "Nunca";
@@ -237,6 +238,7 @@
 "mute_for_one_day" = "Silenciar por 1 dia";
 "mute_for_seven_days" = "Silenciar por 7 dias";
 "mute_forever" = "Silenciar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "por 5 minutos";
 "share_location_for_30_minutes" = "por 30 minutos";
 "share_location_for_one_hour" = "por 1 hora";
@@ -597,7 +599,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Você excluiu o bate-papo \"Mensagens salvas\".\n\nℹ️ Para usar o recurso \"Mensagens salvas\" novamente, crie um novo bate-papo com você mesmo. ";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ O armazenamento em seu provedor está prestes a terminar, %1$@%% já foram utilizados\n\nVocê pode não conseguir receber mensagens quando o armazenamento estiver 100 %% utilizado.\n\n👉 Verifique se você pode excluir dados antigos através da interface da web do provedor e considere habilitar \"Configurações / Excluir Mensagens Antigas\". Você pode verificar o uso de armazenamento atual a qualquer momento em \"Configurações / Conectividade\". ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ A data ou hora do seu dispositivo parecem imprecisas (%1$@).\n\nAjuste o relógio ⏰🔧 para garantir que suas mensagens sejam recebidas corretamente.";

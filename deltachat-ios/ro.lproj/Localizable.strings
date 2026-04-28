@@ -59,6 +59,7 @@
 "always" = "Întotdeauna";
 "always_load_remote_images" = "Încărcați întotdeauna imagini la distanță";
 "once" = "Odată ce";
+// deprecated
 "show_warning" = "Afișați avertismentul";
 "not_now" = "Nu acum";
 "never" = "Niciodata";
@@ -227,6 +228,7 @@
 "mute_for_one_day" = "Silențios pentru 1 zi";
 "mute_for_seven_days" = "Silențios timp de 7 zile";
 "mute_forever" = "Silențios pentru totdeauna";
+// deprecated
 "share_location_for_5_minutes" = "Timp de 5 minute";
 "share_location_for_30_minutes" = "Timp de 30 de minute";
 "share_location_for_one_hour" = "Timp de 1 oră";
