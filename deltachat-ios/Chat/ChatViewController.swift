@@ -2964,6 +2964,7 @@ struct InputBarView: View {
             if draft.quoteText != nil {
                 HStack {
                     QuoteViewSwiftUI(quoteText: draft.quoteText, quoteMessage: draft.quoteMessage, dcContext: draft.dcContext)
+                        .padding(.horizontal, 10)
                     Button(String.localized("cancel"), systemImage: "xmark") {
                         draft.setQuote(quotedMsg: nil)
                     }.layoutPriority(-1).labelStyle(.iconOnly)
