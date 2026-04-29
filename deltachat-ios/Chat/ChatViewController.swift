@@ -1,4 +1,5 @@
 import MapKit
+import SDWebImageSwiftUI
 import MCEmojiPicker
 import QuickLook
 import UIKit
@@ -2957,24 +2958,30 @@ struct InputBarView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 8) {
             if draft.quoteText != nil {
                 HStack {
                     QuoteViewSwiftUI(quoteText: draft.quoteText, quoteMessage: draft.quoteMessage, dcContext: draft.dcContext)
                     Button(String.localized("cancel"), systemImage: "xmark") {
                         draft.setQuote(quotedMsg: nil)
                     }.layoutPriority(-1).labelStyle(.iconOnly)
-                }.modifier(glassEffect)
+                }.modifier { glassEffect(view: $0, interactive: false) }
             }
             if draft.attachment != nil {
                 HStack {
-//                    Image(uiImage: <#T##UIImage#>)
+                    WebImage(url: draft.draftMsg?.fileURL)
+                        .placeholder { ProgressView() }
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+                    Spacer()
                     Button(String.localized("cancel"), systemImage: "xmark") {
                         draft.clearAttachment()
                     }.layoutPriority(-1).labelStyle(.iconOnly)
-                }.modifier(glassEffect)
+                }.modifier { glassEffect(view: $0, interactive: false) }
             }
-            HStack(alignment: .bottom) {
+            HStack(alignment: .bottom, spacing: 4) {
                 UncachedMenu(content: { clipperMenu }, label: {
                     Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
                         .renderingMode(.template)
@@ -2991,11 +2998,12 @@ struct InputBarView: View {
                                 .accessibilityHidden(true)
                         }
                     }
-                    .modifier(glassEffect)
+                    .padding(.horizontal, 10)
+                    .modifier { glassEffect(view: $0, interactive: true) }
+                    .frame(maxHeight: 150)
                     .onTapGesture {
                         textEditorFocus = true
                     }
-                    .frame(maxHeight: 150)
                 Button(action: {
                     draft.send()
                 }, label: {
@@ -3009,13 +3017,16 @@ struct InputBarView: View {
                 .disabled(!draft.canSend())
             }
         }
-        .padding()
+        .padding(10)
         .onChange(of: draft.text, perform: updateIntrinsicContentSize)
         .onChange(of: draft.quoteMessage?.id, perform: updateIntrinsicContentSize)
+        .onChange(of: draft.attachment, perform: updateIntrinsicContentSize)
         .modifier { view in
             if #available(iOS 26.0, *) {
-                view.buttonBorderShape(.circle)
-                    .buttonStyle(.glass)
+                GlassEffectContainer(spacing: 8) {
+                    view.buttonBorderShape(.circle)
+                        .buttonStyle(.glass)
+                }
             } else {
                 view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
             }
@@ -3055,12 +3066,11 @@ struct InputBarView: View {
         }
     }
 
-    @ViewBuilder func glassEffect<V: View>(view: V) -> some View {
+    @ViewBuilder func glassEffect<V: View>(view: V, interactive: Bool) -> some View {
         if #available(iOS 26.0, *) {
             view.transparentScrolling()
                 .padding(8)
-                .padding(.horizontal, 10)
-                .glassEffect(.regular, in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
+                .glassEffect(.regular.interactive(interactive), in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
         } else {
             view
         }
