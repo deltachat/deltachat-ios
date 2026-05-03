@@ -149,6 +149,8 @@ class CallManager: NSObject {
               let msgId = ui["message_id"] as? Int else { return }
 
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            OutgoingRingbackPlayer.shared.stop()
+
             if !currentCall.callAcceptedHere {
                 logger.info("☎️ incoming call accepted on other device")
                 let uuid = currentCall.uuid
@@ -167,6 +169,8 @@ class CallManager: NSObject {
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int else { return }
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
+            OutgoingRingbackPlayer.shared.stop()
+
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCallController(uuid: currentCall.uuid)
 
@@ -200,6 +204,8 @@ class CallManager: NSObject {
     }
 
     func endCallControllerAndHideUI() {
+        OutgoingRingbackPlayer.shared.stop()
+
         guard let currentCall else { return }
 
         endCallController(uuid: currentCall.uuid)

@@ -176,6 +176,9 @@ class CallViewController: UIViewController {
     }
 
     deinit {
+        if call.direction == .outgoing {
+            OutgoingRingbackPlayer.shared.stop()
+        }
         peerConnection?.close()
     }
 
@@ -222,6 +225,7 @@ class CallViewController: UIViewController {
                         let sdp = peerConnection.localDescription?.sdp ?? offer.sdp
                         let dcContext = DcAccounts.shared.get(id: call.contextId)
                         call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: sdp, hasVideoInitially: call.hasVideoInitially)
+                        OutgoingRingbackPlayer.shared.startOutgoingRingback()
                     }
                 } catch {
                     logger.error(error.localizedDescription)
@@ -270,6 +274,7 @@ class CallViewController: UIViewController {
     }
 
     @objc private func hangup() {
+        OutgoingRingbackPlayer.shared.stop()
         CallManager.shared.endCallControllerAndHideUI()
     }
 
@@ -306,6 +311,7 @@ class CallViewController: UIViewController {
               accountId == call.contextId && msgId == call.messageId,
               let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
+        OutgoingRingbackPlayer.shared.stop()
         peerConnection?.setRemoteDescription(.init(type: .answer, sdp: acceptCallInfo)) { _ in }
     }
 
