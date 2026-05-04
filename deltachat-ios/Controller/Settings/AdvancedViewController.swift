@@ -73,37 +73,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    lazy var mvboxMoveCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_auto_folder_moves"),
-            on: dcContext.getConfigBool("mvbox_move"),
-            action: { cell in
-                self.dcContext.setConfigBool("mvbox_move", cell.isOn)
-        })
-    }()
-
-    lazy var onlyFetchMvboxCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("pref_only_fetch_mvbox_title"),
-            on: dcContext.getConfigBool("only_fetch_mvbox"),
-            action: { cell in
-                if cell.isOn {
-                    let alert = UIAlertController(title: String.localized("pref_only_fetch_mvbox_title"),
-                        message: String.localized("pref_imap_folder_warn_disable_defaults"),
-                        preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("perm_continue"), style: .destructive, handler: { [weak self] _ in
-                        self?.dcContext.setConfigBool("only_fetch_mvbox", true)
-                    }))
-                    alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
-                        cell.uiSwitch.setOn(false, animated: true)
-                    }))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
-                } else {
-                    self.dcContext.setConfigBool("only_fetch_mvbox", false)
-                }
-        })
-    }()
-
     lazy var broadcastListsCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("channels"),
@@ -193,7 +162,7 @@ internal final class AdvancedViewController: UITableViewController {
             let legacySection = SectionConfigs(
                 headerTitle: "Legacy Options",
                 footerTitle: nil,
-                cells: [showEmailsCell, mvboxMoveCell, onlyFetchMvboxCell])
+                cells: [showEmailsCell])
             return [viewLogSection, serverSection, experimentalSection, legacySection]
         }
     }()
