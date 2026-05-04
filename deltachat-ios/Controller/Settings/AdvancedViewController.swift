@@ -63,41 +63,6 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
-    lazy var broadcastListsCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: String.localized("channels"),
-            on: UserDefaults.standard.bool(forKey: "broadcast_lists"),
-            action: { cell in
-                UserDefaults.standard.set(cell.isOn, forKey: "broadcast_lists")
-                if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for trying out experimental 🧪 \"Channels\"!",
-                        message: "You can now create new \"Channels\" from the \"New Chat\" dialog\n\n"
-                               + "If you want to quit the experimental feature, you can disable it at \"Settings / Advanced\".",
-                        preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
-                }
-        })
-    }()
-
-    lazy var callsCell: SwitchCell = {
-        return SwitchCell(
-            textLabel: "Debug Calls",
-            on: UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
-            action: { cell in
-                UserDefaults.standard.set(cell.isOn, forKey: "pref_calls_enabled")
-                if cell.isOn {
-                    let alert = UIAlertController(title: "Thanks for helping to debug 🧪 \"Calls\"!",
-                        message: "You can now debug calls using the phone-icon in one-to-one-chats\n\n"
-                               + "The experiment is about making decentralised calls work and reliable at all, not about options or UI. "
-                               + "We're happy about focused feedback at support.delta.chat",
-                        preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-                    self.navigationController?.present(alert, animated: true, completion: nil)
-                }
-        })
-    }()
-
     lazy var locationStreamingCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_on_demand_location_streaming"),
@@ -144,7 +109,7 @@ internal final class AdvancedViewController: UITableViewController {
         let experimentalSection = SectionConfigs(
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: String.localized("pref_experimental_features_explain"),
-            cells: [broadcastListsCell, callsCell, locationStreamingCell, appPickerCell])
+            cells: [locationStreamingCell, appPickerCell])
 
         return [viewLogSection, serverSection, experimentalSection]
     }()

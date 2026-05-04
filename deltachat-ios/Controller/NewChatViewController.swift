@@ -62,11 +62,7 @@ class NewChatViewController: UITableViewController {
         self.contactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF)
 
         var newOptions: [NewOption]
-        if UserDefaults.standard.bool(forKey: "broadcast_lists") {
-            newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
-        } else {
-            newOptions = [.scanQRCode, .newGroup]
-        }
+        newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
         if self.dcContext.isChatmail == false {
             newOptions.append(.newEmail)
         }
