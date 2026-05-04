@@ -34,16 +34,6 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         return cell
     }()
 
-    func autodelSummary() -> String {
-        let delDeviceAfter = dcContext.getConfigInt("delete_device_after")
-        let delServerAfter = dcContext.isChatmail ? 0 : dcContext.getConfigInt("delete_server_after")
-        if delDeviceAfter==0 && delServerAfter==0 {
-            return String.localized("never")
-        } else {
-            return String.localized("on")
-        }
-    }
-
     private lazy var autodelDeviceCell: UITableViewCell = {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.tag = CellTags.autodelDevice.rawValue
