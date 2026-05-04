@@ -15,7 +15,6 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         case receiptConfirmation
         case exportBackup
         case autodelDevice
-        case autodelServer
         case mediaQuality
         case downloadOnDemand
     }
@@ -39,16 +38,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         cell.tag = CellTags.autodelDevice.rawValue
         cell.textLabel?.text = String.localized("autodel_device_title")
         cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
-        return cell
-    }()
-
-    private lazy var autodelServerCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.tag = CellTags.autodelServer.rawValue
-        cell.textLabel?.text = String.localized("autodel_server_title")
-        cell.accessoryType = .disclosureIndicator
-        cell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
+        cell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext)
         return cell
     }()
 
@@ -102,7 +92,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         let autoDelSection = SectionConfigs(
             headerTitle: String.localized("delete_old_messages"),
             footerTitle: nil,
-            cells: dcContext.isChatmail ? [autodelDeviceCell] : [autodelDeviceCell, autodelServerCell]
+            cells: [autodelDeviceCell]
         )
         let exportBackupSection = SectionConfigs(
             headerTitle: nil,
@@ -161,11 +151,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         case .receiptConfirmation: break
 
         case .autodelDevice:
-            let controller = AutodelOptionsViewController(dcContext: dcContext, fromServer: false)
-            navigationController?.pushViewController(controller, animated: true)
-
-        case .autodelServer:
-            let controller = AutodelOptionsViewController(dcContext: dcContext, fromServer: true)
+            let controller = AutodelOptionsViewController(dcContext: dcContext)
             navigationController?.pushViewController(controller, animated: true)
 
         case .exportBackup:
@@ -180,11 +166,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section].cells.last == autodelServerCell && dcContext.getConfigInt("delete_server_after") != 0 {
-            return String.localized("autodel_server_enabled_hint")
-        } else {
-            return sections[section].footerTitle
-        }
+        return sections[section].footerTitle
     }
 
     // MARK: - actions
@@ -238,8 +220,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
         mediaQualityCell.detailTextLabel?.text = MediaQualityViewController.getValString(val: dcContext.getConfigInt("media_quality"))
         downloadOnDemandCell.detailTextLabel?.text = DownloadOnDemandViewController.getValString(
             val: dcContext.getConfigInt("download_limit"))
-        autodelDeviceCell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: false)
-        autodelServerCell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext, fromServer: true)
+        autodelDeviceCell.detailTextLabel?.text = AutodelOptionsViewController.getSummary(dcContext)
     }
 
     // MARK: - coordinator
