@@ -1269,7 +1269,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         ]))
 
         actions.append(action("file", "doc", { $0.showFilesLibrary() }))
-        actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        if !dcChat.isOutBroadcast {
+            actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        }
+
         actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
