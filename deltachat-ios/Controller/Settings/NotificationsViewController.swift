@@ -52,6 +52,15 @@ internal final class NotificationsViewController: UITableViewController {
         })
     }()
 
+    private lazy var callsCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_calls"),
+            on: dcContext.getConfigInt("who_can_call_me") == 1,
+            action: { [weak self] cell in
+                self?.dcContext.setConfigInt("who_can_call_me", cell.isOn ? 1 : 2 /* sic! 2=Nobody */)
+        })
+    }()
+
     private lazy var systemSettingsCell: ActionCell = {
         let cell = ActionCell()
         cell.tag = CellTags.systemSettings.rawValue
@@ -70,12 +79,17 @@ internal final class NotificationsViewController: UITableViewController {
             footerTitle: String.localized("pref_mention_notifications_explain"),
             cells: [mentionsCell]
         )
+        let callsSection = SectionConfigs(
+            headerTitle: nil,
+            footerTitle: String.localized("pref_calls_explain"),
+            cells: [callsCell]
+        )
         let systemSettingsSection = SectionConfigs(
             headerTitle: nil,
             footerTitle: String.localized("system_settings_notify_explain_ios"),
             cells: [systemSettingsCell]
         )
-        return [notificationsSection, mentionsSection, systemSettingsSection]
+        return [notificationsSection, mentionsSection, callsSection, systemSettingsSection]
     }()
 
     init(dcAccounts: DcAccounts) {
