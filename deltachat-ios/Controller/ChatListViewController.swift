@@ -738,7 +738,7 @@ class ChatListViewController: UITableViewController {
 
     @objc private func accountButtonTapped() {
         let viewController = ProfileSwitchViewController(dcAccounts: dcAccounts)
-        viewController.onUnreadStateChanged = { [weak self] in
+        viewController.onUnreadIndicatorsChanged = { [weak self] in
             self?.refreshUnreadIndicators()
         }
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)

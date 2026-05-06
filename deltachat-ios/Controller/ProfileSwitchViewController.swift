@@ -5,9 +5,10 @@ import DcCore
 class ProfileSwitchViewController: UITableViewController {
 
     private let dcAccounts: DcAccounts
-    var onUnreadStateChanged: (() -> Void)?
     private let accountSection = 0
     private let addSection = 1
+
+    var onUnreadIndicatorsChanged: (() -> Void)?
 
     private lazy var accountIds: [Int] = {
         return dcAccounts.getAllSorted()
@@ -125,7 +126,7 @@ class ProfileSwitchViewController: UITableViewController {
             dcContext.marknoticedAllChats()
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
-                self.onUnreadStateChanged?()
+                self.onUnreadIndicatorsChanged?()
                 NotificationManager.removeNotificationsForAccount(accountId: accountId)
                 if let row = accountIds.firstIndex(of: accountId) {
                     tableView.reloadRows(at: [IndexPath(row: row, section: accountSection)], with: .none)
