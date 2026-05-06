@@ -5,6 +5,7 @@ import DcCore
 class ProfileSwitchViewController: UITableViewController {
 
     private let dcAccounts: DcAccounts
+    var onUnreadStateChanged: (() -> Void)?
     private let accountSection = 0
     private let addSection = 1
 
@@ -92,6 +93,7 @@ class ProfileSwitchViewController: UITableViewController {
         let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
         let muteTitle = dcContext.isMuted() ? "menu_unmute" : "menu_mute"
         let muteImage = dcContext.isMuted() ? "speaker.wave.2" : "speaker.slash"
+        let checkmarkImage = if #available(iOS 16, *) { "checkmark.message" } else { "checkmark.circle" }
 
         return UIContextMenuConfiguration(
             identifier: nil,
@@ -102,6 +104,7 @@ class ProfileSwitchViewController: UITableViewController {
                     UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, with: indexPath, action: toggleMute),
                     UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", with: indexPath, action: setProfileTag),
                     UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", with: indexPath, action: moveToTop),
+                    UIAction.menuAction(localizationKey: "mark_all_as_read", systemImageName: checkmarkImage, with: indexPath, action: markAllAsRead),
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteAccount),
                 ]
                 return UIMenu(children: children)
@@ -113,6 +116,22 @@ class ProfileSwitchViewController: UITableViewController {
         let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
         dcContext.setMuted(!dcContext.isMuted())
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+
+    func markAllAsRead(at indexPath: IndexPath) {
+        let accountId = accountIds[indexPath.row]
+        let dcContext = dcAccounts.get(id: accountId)
+        DispatchQueue.global().async { [weak self] in
+            dcContext.marknoticedAllChats()
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.onUnreadStateChanged?()
+                NotificationManager.removeNotificationsForAccount(accountId: accountId)
+                if let row = accountIds.firstIndex(of: accountId) {
+                    tableView.reloadRows(at: [IndexPath(row: row, section: accountSection)], with: .none)
+                }
+            }
+        }
     }
 
     func setProfileTag(at indexPath: IndexPath) {
