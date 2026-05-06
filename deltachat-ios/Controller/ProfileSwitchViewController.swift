@@ -128,8 +128,9 @@ class ProfileSwitchViewController: UITableViewController {
                 guard let self else { return }
                 self.onUnreadIndicatorsChanged?()
                 NotificationManager.removeNotificationsForAccount(accountId: accountId)
-                if let row = accountIds.firstIndex(of: accountId) {
-                    tableView.reloadRows(at: [IndexPath(row: row, section: accountSection)], with: .none)
+                if let row = accountIds.firstIndex(of: accountId),
+                   let cell = tableView.cellForRow(at: IndexPath(row: row, section: accountSection)) as? AccountCell {
+                    cell.refreshUnreadState(dcContext: dcContext)
                 }
             }
         }
@@ -263,6 +264,7 @@ class AccountCell: UITableViewCell {
 
     private var selectedAccount: Int?
     private var accountId: Int?
+    private var accountTitle: String = ""
 
     private lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
@@ -336,26 +338,17 @@ class AccountCell: UITableViewCell {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
+        accountTitle = dcContext.displayname ?? dcContext.addr ?? ""
+
         let encrypted = dcContext.isDatabaseEncrypted() ? "⚠️ " : ""
-        let title = dcContext.displayname ?? dcContext.addr ?? ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountAvatar.setColor(contact.color)
-        accountAvatar.setName(title)
+        accountAvatar.setName(accountTitle)
         if let image = contact.profileImage {
             accountAvatar.setImage(image)
         }
 
-        let unreadMessages = dcContext.getFreshMessagesCount()
-        accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
-
-        mutedIndicator.isHidden = !dcContext.isMuted()
-
-        accountName.text = encrypted + title
-        if unreadMessages > 0 {
-            accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
-        } else {
-            accountName.accessibilityLabel = title
-        }
+        refreshUnreadState(dcContext: dcContext)
 
         let connectivityString = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: "")
         if let label = dcContext.getConfig("private_tag") {
@@ -372,13 +365,30 @@ class AccountCell: UITableViewCell {
             tagLabel.isHidden = true
         }
 
+        accountName.text = encrypted + accountTitle
         accessoryType = selectedAccount == accountId ? .checkmark : .none
+    }
+
+    func refreshUnreadState(dcContext: DcContext) {
+        let unreadMessages = dcContext.getFreshMessagesCount()
+        accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
+
+        if unreadMessages > 0 {
+            accountName.accessibilityLabel = "\(accountTitle): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
+        } else {
+            accountName.accessibilityLabel = accountTitle
+        }
+
+        mutedIndicator.isHidden = !dcContext.isMuted()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         accountAvatar.reset()
         accountName.text = nil
+        accountName.accessibilityLabel = nil
+        mutedIndicator.isHidden = true
+        accountTitle = ""
         accountId = -1
     }
 }
