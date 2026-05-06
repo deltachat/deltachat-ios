@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add "Mark All as Read" to the profile switcher context menu
 - "Calls" and "Channels" are available by default and are no longer experimental
 - Resend the last 10 messages to new broadcast channel member
 - Enable PQC (Post-Quantum Cryptography) support. We do not generate PQC keys yet, this step is needed for forward compatibility
