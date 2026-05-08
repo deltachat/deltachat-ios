@@ -215,10 +215,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     ]))
 
-    /// When a context menu preview is created through `tableView(_:previewForHighlightingContextMenuWithConfiguration:)`
-    /// it is stored here so we can hide it when a user scrolls as the system does not hide
-    /// snapshots right away probably assuming it is part of the view hierarchy.
-    private weak var lastContextMenuPreviewSnapshot: UIView?
+    /// Context menu previews are shown in this layer which is behind the input bar.
+    /// We can hide previews when a user scrolls by removing this views subvieww.
+    /// This is needed because the system does not always hide snapshots right
+    /// away, probably assuming it is part of the view hierarchy.
+    private var contextMenuPreviewContainer = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        return view
+    }()
 
     private let titleView = ChatTitleView()
 
@@ -312,6 +317,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.topEdgeEffect.isHidden = true
             tableView.bottomEdgeEffect.isHidden = true
         }
+        view.addSubview(contextMenuPreviewContainer)
+        contextMenuPreviewContainer.fillSuperview()
 
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
@@ -322,16 +329,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         definesPresentationContext = true
 
         let animateKeyboardChange: KeyboardManager.EventCallback = { [weak self, tableView] notification in
+            guard let self, !contextMenuVisible else { return }
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
-            let toolbarHeight = self?.toolbarHeight ?? 0
+            let toolbarHeight = toolbarHeight
             let inset = max(intersection.height + toolbarHeight, tableView.safeAreaInsets.bottom + toolbarHeight)
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
             guard tableView.contentInset.top != inset else { return }
-            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
+            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) { [weak self] in
                 tableView.contentInset.top = inset
                 if tableView.contentOffset.y < 30 {
                     // If user is less than 30 away from the bottom, we scroll
@@ -346,8 +354,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // keyboardLayoutGuide.keyboardDismissPadding does not play
         // nicely with scrollable textview inside the dismiss padding area
         keyboardManager?.bind(to: tableView)
+        tableView.keyboardDismissMode = .onDrag
         keyboardManager?.on(event: .willHide, do: animateKeyboardChange)
         keyboardManager?.on(event: .willShow, do: animateKeyboardChange)
+        keyboardManager?.on(event: .didHide, do: animateKeyboardChange)
+        keyboardManager?.on(event: .didShow, do: animateKeyboardChange)
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -765,7 +776,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastContextMenuPreviewSnapshot?.removeFromSuperview()
+        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -859,7 +870,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     /// Cell swipe action started
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        lastContextMenuPreviewSnapshot?.removeFromSuperview()
+        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func replyToMessage(_ msgId: Int) {
@@ -1932,8 +1943,6 @@ extension ChatViewController {
     private func targetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messages.firstIndex(where: { $0.id == messageId.integerValue }) else { return nil }
-        // Using superview because tableView is transformed
-        guard let superview = tableView.superview else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
 
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
@@ -1941,8 +1950,8 @@ extension ChatViewController {
 
         let messageFrame = cell.messageBackgroundContainer.frame
         let messageCenter = CGPoint(x: messageFrame.midX, y: messageFrame.midY)
-        let messageCenterInSuper = cell.convert(messageCenter, to: superview)
-        let previewTarget = UIPreviewTarget(container: superview, center: messageCenterInSuper)
+        let messageCenterInSuper = cell.convert(messageCenter, to: tableView)
+        let previewTarget = UIPreviewTarget(container: tableView, center: messageCenterInSuper, transform: CGAffineTransform(scaleX: 1, y: -1))
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
@@ -1954,12 +1963,8 @@ extension ChatViewController {
                                 byRoundingCorners: rectCorners,
                                 cornerRadii: CGSize(width: radius, height: radius))
         parameters.visiblePath = path
-        
-        let preview = UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
-        
-        self.lastContextMenuPreviewSnapshot = messageSnapshotView
-        
-        return preview
+
+        return UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
     }
 
     private func appendReactionItems(to menuElements: inout [UIMenuElement], messageId: Int) {
@@ -2153,9 +2158,11 @@ extension ChatViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard !tableView.isEditing else { return [] }
         // Prevent the drag preview from an showing upside down preview
-        // by requiring a context menu to be shown first.
-        guard lastContextMenuPreviewSnapshot != nil else { return [] }
-        
+        // by requiring a context menu to be shown first. On iOS 26 this can
+        // mean the first longtap after a successful drag session doesn't do
+        // anything but that is a bug on iOS side.
+        guard !contextMenuPreviewContainer.subviews.isEmpty else { return [] }
+
         let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
 
@@ -2970,7 +2977,7 @@ struct InputBarView: View {
     @StateObject var draft: DraftModel
     @FocusState private var textEditorFocus: Bool
     weak var chatViewController: ChatViewController?
-    var updateIntrinsicContentSize: (Any) -> Void
+    var updateIntrinsicContentSize: () -> Void
 
     var buttonSize: CGFloat {
         isLiquidGlassEnabled ? 54 : 40
@@ -2989,8 +2996,9 @@ struct InputBarView: View {
             }
             if draft.attachment != nil {
                 HStack {
+                    // TODO: Support attachments other than images
                     WebImage(url: draft.draftMsg?.fileURL)
-                        .placeholder { ProgressView() }
+                        .placeholder { ProgressView().padding() }
                         .resizable()
                         .scaledToFit()
                         .frame(height: 100)
@@ -3038,9 +3046,9 @@ struct InputBarView: View {
             }
         }
         .padding(10)
-        .onChange(of: draft.text, perform: updateIntrinsicContentSize)
-        .onChange(of: draft.quoteMessage?.id, perform: updateIntrinsicContentSize)
-        .onChange(of: draft.attachment, perform: updateIntrinsicContentSize)
+        .onChange(of: draft.text, perform: _updateIntrinsicContentSize)
+        .onChange(of: draft.quoteMessage?.id, perform: _updateIntrinsicContentSize)
+        .onChange(of: draft.attachment, perform: _updateIntrinsicContentSize)
         .modifier { view in
             if #available(iOS 26.0, *) {
                 GlassEffectContainer(spacing: 8) {
@@ -3093,6 +3101,14 @@ struct InputBarView: View {
                 .glassEffect(.regular.interactive(interactive), in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
         } else {
             view
+        }
+    }
+
+    private func _updateIntrinsicContentSize(_: Any) {
+        if Thread.isMainThread {
+            updateIntrinsicContentSize()
+        } else {
+            DispatchQueue.main.async(execute: updateIntrinsicContentSize)
         }
     }
 }
