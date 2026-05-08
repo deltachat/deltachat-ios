@@ -3021,6 +3021,7 @@ struct InputBarView: View {
                 }).frame(height: buttonSize)
                 TextEditor(text: $draft.text)
                     .focused($textEditorFocus)
+                    .scrollNeverDismissesKeyboard_iOS16()
                     .overlay(alignment: .leading) {
                         if draft.text.isEmpty && !textEditorFocus {
                             Text(String.localized("chat_input_placeholder"))
@@ -3199,6 +3200,14 @@ public extension View {
                 // TODO: Check if other textviews set their backgroundColor otherwise this will modify them
                 UITextView.appearance().backgroundColor = .clear
             }
+        }
+    }
+
+    func scrollNeverDismissesKeyboard_iOS16() -> some View {
+        if #available(iOS 16.0, *) {
+            return scrollDismissesKeyboard(.never)
+        } else {
+            return self
         }
     }
 }
