@@ -13,7 +13,6 @@ class EditTransportViewController: UITableViewController {
     private let tagSmtpSecurityCell = 11
     private let tagCertCheckCell = 12
     private let tagViewLogCell = 15
-    private let tagProxyCell = 16
 
     private let tagTextFieldEmail = 100
     private let tagTextFieldPassword = 200
@@ -44,7 +43,6 @@ class EditTransportViewController: UITableViewController {
         smtpServerCell,
         smtpPortCell,
         certCheckCell,
-        proxyCell,
         viewLogCell
     ]
     private let editAddr: String?
@@ -213,14 +211,6 @@ class EditTransportViewController: UITableViewController {
         return cell
     }()
 
-    lazy var proxyCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.textLabel?.text = String.localized("proxy_settings")
-        cell.tag = tagProxyCell
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
     lazy var viewLogCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("pref_view_log")
@@ -300,7 +290,6 @@ class EditTransportViewController: UITableViewController {
         imapSecurityCell.detailTextLabel?.text = SecuritySettingsViewController.valueToName(value: imapSecurityValue.value)
         smtpSecurityCell.detailTextLabel?.text = SecuritySettingsViewController.valueToName(value: smtpSecurityValue.value)
         certCheckCell.detailTextLabel?.text = CertificateCheckViewController.valueToName(value: certValue)
-        proxyCell.detailTextLabel?.text = dcContext.isProxyEnabled ? String.localized("on") : nil
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -353,8 +342,6 @@ class EditTransportViewController: UITableViewController {
         case tagViewLogCell:
             tableView.deselectRow(at: indexPath, animated: false)
             showLogViewController()
-        case tagProxyCell:
-            showProxySettings()
         default:
             break
         }
@@ -501,11 +488,6 @@ class EditTransportViewController: UITableViewController {
     }
 
     // MARK: - coordinator
-
-    private func showProxySettings() {
-        let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
-        navigationController?.pushViewController(proxySettingsController, animated: true)
-    }
 
     private func showLogViewController() {
         let controller = LogViewController(dcContext: dcContext)
