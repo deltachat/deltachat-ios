@@ -47,11 +47,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return controller
     }()
 
+    private lazy var tableViewContainer: UIView = UIView()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundView = backgroundContainer
+        tableView.backgroundColor = .clear
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
@@ -301,7 +302,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
+        view.addSubview(backgroundContainer)
+        backgroundContainer.fillSuperview()
+        view.addSubview(tableViewContainer)
+        tableViewContainer.fillSuperview()
+        tableViewContainer.addSubview(tableView)
         tableView.fillSuperview()
         if #available(iOS 26.0, *) {
             tableView.topEdgeEffect.isHidden = true
@@ -502,6 +507,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
+
+        if #available(iOS 26, *) {
+            // Custom tableView.topEdgeEffect
+            let mask = CAGradientLayer()
+            mask.frame = view.frame
+            mask.colors = [
+                UIColor(white: 1, alpha: 0).cgColor,
+                UIColor(white: 1, alpha: 0.3).cgColor,
+                UIColor(white: 1, alpha: 1).cgColor,
+            ]
+            mask.startPoint = CGPoint(x: 0.5, y: 0)
+            mask.endPoint = CGPoint(x: 0.5, y: view.safeAreaInsets.top / view.frame.height)
+            tableViewContainer.layer.mask = mask
+        }
     }
 
     override func didMove(toParent parent: UIViewController?) {
