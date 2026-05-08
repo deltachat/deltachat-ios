@@ -93,7 +93,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let host = UIHostingController(rootView: InputBarView(
             draft: self.draft,
             chatViewController: self,
-            updateIntrinsicContentSize: { [weak self] _ in
+            updateIntrinsicContentSize: { [weak self] in
                 self?.toolbar.invalidateIntrinsicContentSize()
             })
         )
