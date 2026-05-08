@@ -430,10 +430,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
         #if DEBUG
             let notifyToken = "sandbox:" + tokenParts.joined()
+            logger.debug("Notifications: Token: \(notifyToken)")
         #else
             let notifyToken = tokenParts.joined()
         #endif
-        logger.info("Notifications: Token: \(notifyToken)")
+        logger.info("Notifications: Registered")
         self.notifyToken = notifyToken
         dcAccounts.setPushToken(token: notifyToken)
         if dcAccounts.isFreshlyAdded(id: dcAccounts.getSelected().id) {
@@ -460,7 +461,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // (see https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
     // (at some point it would be nice if we get a clear signal from the core)
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        logger.info("➡️ Notifications: didReceiveRemoteNotification \(userInfo)")
+        logger.info("➡️ Notifications: didReceiveRemoteNotification")
         UserDefaults.pushToDebugArray("📡")
         performFetch(completionHandler: completionHandler)
     }
