@@ -21,30 +21,10 @@ class AutodelOptionsViewController: UITableViewController {
         ]
     }()
 
-    private static func autodelServerOptions(_ dcContext: DcContext) -> [Options] {
-        if dcContext.isChatmail {
-            return [
-                Options(value: 0, descr: "automatic"),
-                Options(value: 1, descr: "autodel_at_once"),
-            ]
-        } else {
-            return [
-                Options(value: 0, descr: "never"),
-                Options(value: 1, descr: "autodel_at_once"),
-                Options(value: 60 * 60, descr: "autodel_after_1_hour"),
-                Options(value: 24 * 60 * 60, descr: "autodel_after_1_day"),
-                Options(value: 7 * 24 * 60 * 60, descr: "autodel_after_1_week"),
-                Options(value: 5 * 7 * 24 * 60 * 60, descr: "after_5_weeks"),
-                Options(value: 365 * 24 * 60 * 60, descr: "autodel_after_1_year"),
-            ]
-        }
-    }
-
     private lazy var autodelOptions: [Options] = {
-        return fromServer ? AutodelOptionsViewController.autodelServerOptions(dcContext) : AutodelOptionsViewController.autodelDeviceOptions
+        return AutodelOptionsViewController.autodelDeviceOptions
     }()
 
-    var fromServer: Bool
     var currVal: Int
 
     private var cancelButton: UIBarButtonItem {
@@ -66,12 +46,11 @@ class AutodelOptionsViewController: UITableViewController {
         })
     }
 
-    init(dcContext: DcContext, fromServer: Bool) {
+    init(dcContext: DcContext) {
         self.dcContext = dcContext
-        self.fromServer = fromServer
-        self.currVal = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
+        self.currVal = dcContext.getConfigInt("delete_device_after")
         super.init(style: .insetGrouped)
-        self.title = String.localized(fromServer ? "autodel_server_title" : "autodel_device_title")
+        self.title = String.localized("autodel_device_title")
         hidesBottomBarWhenPushed = true
     }
 
@@ -85,9 +64,9 @@ class AutodelOptionsViewController: UITableViewController {
         navigationItem.rightBarButtonItem = okButton
     }
 
-    static public func getSummary(_ dcContext: DcContext, fromServer: Bool) -> String {
-        let val = dcContext.getConfigInt(fromServer ? "delete_server_after" :  "delete_device_after")
-        let options = fromServer ? AutodelOptionsViewController.autodelServerOptions(dcContext) : AutodelOptionsViewController.autodelDeviceOptions
+    static public func getSummary(_ dcContext: DcContext) -> String {
+        let val = dcContext.getConfigInt("delete_device_after")
+        let options = AutodelOptionsViewController.autodelDeviceOptions
         for option in options {
             if option.value == val {
                 return String.localized(option.descr)
@@ -122,11 +101,11 @@ class AutodelOptionsViewController: UITableViewController {
         let newVal = self.autodelOptions[indexPath.row].value
 
         if newVal != currVal && newVal != 0 {
-            let delCount = dcContext.estimateDeletionCnt(fromServer: fromServer, timeout: newVal)
+            let delCount = dcContext.estimateDeletionCnt(fromServer: false, timeout: newVal)
             let newDescr = String.localized(self.autodelOptions[indexPath.row].descr)
-            let msg = String.localizedStringWithFormat(String.localized(fromServer ? "autodel_server_ask" : "autodel_device_ask"), delCount, newDescr)
+            let msg = String.localizedStringWithFormat(String.localized("autodel_device_ask"), delCount, newDescr)
             let alert = UIAlertController(
-                title: String.localized(fromServer ? "autodel_server_title" : "autodel_device_title"),
+                title: String.localized("autodel_device_title"),
                 message: msg,
                 preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("autodel_confirm"), style: .destructive, handler: { [weak self] _ in
@@ -149,13 +128,6 @@ class AutodelOptionsViewController: UITableViewController {
         return staticCells[indexPath.row]
     }
 
-    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        if fromServer && currVal != 0 {
-            return String.localized("autodel_server_enabled_hint")
-        }
-        return nil
-    }
-
     // MARK: - actions
 
     @objc private func cancelButtonPressed() {
@@ -163,7 +135,7 @@ class AutodelOptionsViewController: UITableViewController {
     }
 
     @objc private func okButtonPressed() {
-        dcContext.setConfigInt(fromServer ? "delete_server_after" :  "delete_device_after", currVal)
+        dcContext.setConfigInt("delete_device_after", currVal)
         navigationController?.popViewController(animated: true)
     }
 }

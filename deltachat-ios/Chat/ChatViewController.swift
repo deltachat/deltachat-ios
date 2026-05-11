@@ -952,8 +952,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)
 
-                if !dcChat.isMultiUser && dcChat.canSend && UserDefaults.standard.bool(forKey: "pref_calls_enabled"),
-                   let dcContact, dcContact.isKeyContact {
+                if !dcChat.isMultiUser && dcChat.canSend, let dcContact, dcContact.isKeyContact {
                     rightBarButtonItems.append(callButton)
                 }
             } else {
@@ -1270,7 +1269,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         ]))
 
         actions.append(action("file", "doc", { $0.showFilesLibrary() }))
-        actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        if !dcChat.isOutBroadcast {
+            actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
+        }
+
         actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)

@@ -118,18 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // migration 2025-12-18: the option was removed, reverting to default
             dcContext.setConfigInt("webxdc_realtime_enabled", 1)
             // /migration 2025-12-18
-
-            // migration 2025-11-28: needed until core starts ignoring "delete_server_after" for chatmail or drops the setting at all
-            if dcContext.isChatmail {
-                dcContext.setConfig("delete_server_after", nil) // reset - let core decide based on bcc_self aka "Multi-Transport Mode"
-            }
-            // /migration 2025-11-28
-
-            // migration 2026-01-29: the option was removed for chatmail in #2654 which was released in v1.58.1 (2025-04) but users who changed it before that release can not add new relays now without this migration
-            if dcContext.isChatmail, dcContext.showEmails != DC_SHOW_EMAILS_ALL {
-                dcContext.showEmails = Int(DC_SHOW_EMAILS_ALL)
-            }
-            // /migration 2026-01-29
         }
 
         if dcAccounts.getAll().isEmpty, dcAccounts.add() == 0 {
@@ -716,7 +704,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_REPLY_NOUN, localizationKey: "reply_noun")
         dcContext.setStockTranslation(id: DC_STR_SELF_DELETED_MSG_BODY, localizationKey: "devicemsg_self_deleted")
         dcContext.setStockTranslation(id: DC_STR_FORWARDED, localizationKey: "forwarded")
-        dcContext.setStockTranslation(id: DC_STR_QUOTA_EXCEEDING_MSG_BODY, localizationKey: "devicemsg_storage_exceeding")
         dcContext.setStockTranslation(id: DC_STR_INCOMING_MESSAGES, localizationKey: "incoming_messages")
         dcContext.setStockTranslation(id: DC_STR_OUTGOING_MESSAGES, localizationKey: "outgoing_messages")
         dcContext.setStockTranslation(id: DC_STR_CONNECTED, localizationKey: "connectivity_connected")

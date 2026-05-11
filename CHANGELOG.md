@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- "Calls" and "Channels" are available by default and are no longer experimental
+- Remove legacy option that are useful for unsupported shared usage only
+
+
 ## v2.49.2
 
 - Configurable app picker url

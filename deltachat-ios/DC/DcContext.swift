@@ -781,12 +781,6 @@ public class DcContext {
         set { setConfigBool("mdns_enabled", newValue) }
     }
 
-    public var showEmails: Int {
-        // one of DC_SHOW_EMAILS_*
-        get { return getConfigInt("show_emails") }
-        set { setConfigInt("show_emails", newValue) }
-    }
-
     public var isChatmail: Bool {
         return getConfigInt("is_chatmail") == 1
     }
