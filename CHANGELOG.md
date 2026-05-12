@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Add outgoing ringing sound and call status
+
+
 ## v2.52.0
 2026-06
 
