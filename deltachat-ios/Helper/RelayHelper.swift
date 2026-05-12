@@ -97,6 +97,13 @@ class RelayHelper {
         finishRelaying()
     }
 
+    func forwardIdsCount() -> Int {
+        if case .forwardMessages(_, let messageIds) = data {
+            return messageIds.count
+        }
+        return 0
+    }
+
     func finishRelaying() {
         dialogTitle = ""
         data = nil
