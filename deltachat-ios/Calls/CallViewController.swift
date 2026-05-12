@@ -2,13 +2,29 @@ import DcCore
 import UIKit
 import WebRTC
 
-// TODO: "Connecting..." and "Ringing..." status messages
 // TODO: Minimize call to PiP when app is opened from a deeplink (or from a notification)
 // TODO: Fix missed call logic: if the missed call was from me dont send notification
 // TODO: Actually stop capturing mic when muted
 // FIXME: Still doesn't always work when in background
 
 class CallViewController: UIViewController {
+    private enum CallStatus: Equatable {
+        case connecting
+        case ringing
+        case accepted
+
+        var text: String {
+            switch self {
+            case .connecting:
+                String.localized("connectivity_connecting")
+            case .ringing:
+                String.localized("call_ringing")
+            case .accepted:
+                ""
+            }
+        }
+    }
+
     var call: DcCall
     private lazy var factory = RTCPeerConnectionFactory()
     private var peerConnection: RTCPeerConnection?
@@ -47,6 +63,28 @@ class CallViewController: UIViewController {
         let dcChat = dcContext.getChat(chatId: call.chatId)
         return PiPVideoView(fromChat: dcChat, frame: view.frame)
     }()
+
+    private lazy var callStatusLabel: EmptyStateLabel = {
+        let label = EmptyStateLabel()
+        label.isHidden = true
+        label.isUserInteractionEnabled = false
+        label.isAccessibilityElement = true
+        label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.textColor = .white
+        label.backgroundColor = UIColor.black.withAlphaComponent(0.45)
+        label.layer.cornerRadius = 18
+        label.layer.masksToBounds = true
+        label.paddingTop = 10
+        label.paddingBottom = 10
+        label.paddingLeading = 18
+        label.paddingTrailing = 18
+        label.accessibilityTraits = .staticText
+        return label
+    }()
+
+    private var currentCallStatus: CallStatus? {
+        didSet { updateCallStatusView() }
+    }
 
     private lazy var hangupButton: UIButton = {
         let hangupButton = CallUIToggleButton(imageSystemName: "phone.down.fill", state: false)
@@ -189,6 +227,13 @@ class CallViewController: UIViewController {
         configureAudioSession()
 
         view.backgroundColor = .black
+        view.addSubview(callStatusLabel)
+        NSLayoutConstraint.activate([
+            callStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            callStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            callStatusLabel.leadingAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            callStatusLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+        ])
         view.addSubview(remoteVideoView)
         remoteVideoView.fillSuperview()
         localVideoContainerView.addSubview(localVideoView)
@@ -210,6 +255,11 @@ class CallViewController: UIViewController {
         unreadMessageCounter.alignTrailingToAnchor(startPiPButton.trailingAnchor)
         unreadMessageCounter.alignTopToAnchor(startPiPButton.topAnchor)
         setUnreadMessageCount(DcAccounts.shared.getFreshMessagesCount())
+        view.bringSubviewToFront(callStatusLabel)
+
+        if call.direction == .outgoing {
+            updateCallStatus(.connecting)
+        }
 
         Task {
             guard let peerConnection else { return }
@@ -225,9 +275,10 @@ class CallViewController: UIViewController {
                         let sdp = peerConnection.localDescription?.sdp ?? offer.sdp
                         let dcContext = DcAccounts.shared.get(id: call.contextId)
                         call.messageId = dcContext.placeOutgoingCall(chatId: call.chatId, placeCallInfo: sdp, hasVideoInitially: call.hasVideoInitially)
-                        OutgoingRingbackPlayer.shared.startOutgoingRingback()
+                        updateCallStatus(.ringing)
                     }
                 } catch {
+                    updateCallStatus(nil)
                     logger.error(error.localizedDescription)
                 }
             case .incoming:
@@ -274,7 +325,7 @@ class CallViewController: UIViewController {
     }
 
     @objc private func hangup() {
-        OutgoingRingbackPlayer.shared.stop()
+        updateCallStatus(nil)
         CallManager.shared.endCallControllerAndHideUI()
     }
 
@@ -311,7 +362,7 @@ class CallViewController: UIViewController {
               accountId == call.contextId && msgId == call.messageId,
               let acceptCallInfo = ui["accept_call_info"] as? String else { return }
 
-        OutgoingRingbackPlayer.shared.stop()
+        updateCallStatus(.accepted)
         peerConnection?.setRemoteDescription(.init(type: .answer, sdp: acceptCallInfo)) { _ in }
     }
 
@@ -320,6 +371,50 @@ class CallViewController: UIViewController {
         CallWindow.shared?.showCallUI()
         if remoteVideoView.pipController?.isPictureInPictureActive == true {
             remoteVideoView.pipController?.stopPictureInPicture()
+        }
+    }
+
+    private func updateCallStatus(_ status: CallStatus?) {
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateCallStatus(status)
+            }
+            return
+        }
+
+        if currentCallStatus == .accepted, status != nil {
+            return
+        }
+
+        currentCallStatus = status
+    }
+
+    private func updateCallStatusView() {
+        guard isViewLoaded else { return }
+
+        guard let currentCallStatus else {
+            callStatusLabel.isHidden = true
+            callStatusLabel.accessibilityLabel = nil
+            OutgoingRingbackPlayer.shared.stop()
+            return
+        }
+
+        switch currentCallStatus {
+        case .connecting:
+            callStatusLabel.text = currentCallStatus.text
+            callStatusLabel.accessibilityLabel = currentCallStatus.text
+            callStatusLabel.isHidden = false
+            OutgoingRingbackPlayer.shared.stop()
+        case .ringing:
+            callStatusLabel.text = currentCallStatus.text
+            callStatusLabel.accessibilityLabel = currentCallStatus.text
+            callStatusLabel.isHidden = false
+            OutgoingRingbackPlayer.shared.startOutgoingRingback(after: 0)
+        case .accepted:
+            callStatusLabel.text = nil
+            callStatusLabel.accessibilityLabel = nil
+            callStatusLabel.isHidden = true
+            OutgoingRingbackPlayer.shared.stop()
         }
     }
 }
