@@ -57,7 +57,9 @@
 "media" = "وارسگر";
 "apps_and_media" = "برنومه یل وو وارسگرا";
 "profile" = "پوروفایل";
+// deprecated
 "all_profiles" = "پوی پوروفایلا";
+// deprecated
 "current_profile" = "پوروفایل هیم سکویی";
 "main_menu" = "نومگه ٱسلی";
 "start_chat" = "ناڌن پا گوفت وو لوفت";
@@ -76,6 +78,7 @@
 "always" = "همیشه";
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
+// deprecated
 "show_warning" = "نشووݩ داڌن هوشدار";
 "not_now" = "سکو ن";
 "never" = "هیچ";
@@ -144,6 +147,7 @@
 "camera" = "شؽواتگر";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "گرؽڌن";
+// Switch eg. from front to back camera
 "switch_camera" = "آلشت شؽواتگر";
 "toggle_fullscreen" = "آلشت وزیت پوی بلگه";
 "location" = "جاگه";
@@ -274,6 +278,7 @@
 "mute_for_one_day" = "بؽ دونگ کردن سی 1 رۊ";
 "mute_for_seven_days" = "بؽ دونگ کردن سی 7 رۊ";
 "mute_forever" = "بؽ دونگ کردن سی همیشه";
+// deprecated
 "share_location_for_5_minutes" = "سی 5 دؽقه";
 "share_location_for_30_minutes" = "سی 30 دؽقه";
 "share_location_for_one_hour" = "سی 1 ساعت";
@@ -343,6 +348,7 @@
 "pref_chats" = "گوفت وو لوفتا";
 "pref_log_header" = "گوزارش";
 "pref_background_btn_gallery" = "پسند ز شؽوات مال";
+// deprecated
 "pref_show_emails_all" = "پوی";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "تا سقف %1$@";
@@ -356,6 +362,7 @@
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیوما قڌیمی";
 "autodel_device_title" = "پاک کردن پیوما ز دسگا";
+// deprecated
 "autodel_server_title" = "پاک کردن پیوما ز سرور";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "ی کرت دیندا دانلود";

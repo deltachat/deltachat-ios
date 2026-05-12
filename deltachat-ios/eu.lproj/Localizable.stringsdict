@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Bidali hurrengo fitxategia %s-(e)ra?</string>
+			<string>Bidali hurrengo fitxategia %2$@-(e)ra?</string>
 			<key>other</key>
-			<string>Bidali hurrengo %d fitxategiak %s(e)ra?</string>
+			<string>Bidali hurrengo %d fitxategiak %2$@(e)ra?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Да бъде ли изпратен следният файл на%s?</string>
+			<string>Да бъде ли изпратен следният файл на %2$@?</string>
 			<key>other</key>
-			<string>Да бъдат ли изпратени следните %d файлове на %s?</string>
+			<string>Да бъдат ли изпратени следните %d файлове на %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

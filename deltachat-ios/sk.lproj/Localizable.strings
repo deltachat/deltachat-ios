@@ -54,7 +54,9 @@
 "media" = "Médiá";
 "apps_and_media" = "Aplikácie a médiá";
 "profile" = "Účet";
+// deprecated
 "all_profiles" = "Všetky účty";
+// deprecated
 "current_profile" = "Aktuálny účet";
 "main_menu" = "Hlavné menu";
 "start_chat" = "Začať konverzáciu";
@@ -74,6 +76,7 @@
 "load_remote_content_ask" = "Na sledovanie vás možno použiť obrázky nadiaľku.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď je vypnutá, stále sa vám môžu zobrazovať vložené alebo uložené obrázky.\n\nNačítať vzdialené obrázky?";
 "always" = "Vždy";
 "once" = "Raz";
+// deprecated
 "show_warning" = "Zobraziť varovanie";
 "not_now" = "Teraz nie";
 "never" = "Nikdy";
@@ -142,6 +145,7 @@
 "camera" = "Fotoaparát";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Zachytiť";
+// Switch eg. from front to back camera
 "switch_camera" = "Prepnúť fotoaparát";
 "toggle_fullscreen" = "Prepnúť režim zobrazenia na celú obrazovku";
 "location" = "Poloha";
@@ -291,6 +295,7 @@
 "mute_for_one_day" = "Stíšiť na 1 deň";
 "mute_for_seven_days" = "Stíšiť na 7 dní";
 "mute_forever" = "Stlmiť navždy";
+// deprecated
 "share_location_for_5_minutes" = "po dobu 5 minút";
 "share_location_for_30_minutes" = "po dobu 30 minút";
 "share_location_for_one_hour" = "po dobu 1 hodiny";
@@ -299,6 +304,7 @@
 "file_saved_to" = "Súbor bol uložený do priečinka %1$@";
 "ask_delete_named_chat" = "Odstrániť konverzáciu \"%1$@\" zo všetkých vašich zariadení?";
 "ask_delete_message" = "Odstrániť túto správu zo všetkých vašich zariadení?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Preposielať správy na %1$@?";
 "ask_forward_multiple" = "Preposielať správy do %1$d konverzácií?";
 "ask_export_attachment" = "Exportovať prílohu? Exportovanie príloh umožní prístup k nim všetkým ďalším aplikáciám na vašom zariadení.\n\nChcete pokračovať?";
@@ -538,6 +544,7 @@
 "pref_notifications_priority" = "Priorita";
 "pref_notifications_explain" = "Povoliť systémové upozornenia na nové správy";
 "pref_show_notification_content" = "Zobraziť obsah správy v upozornení";
+// deprecated
 "pref_show_notification_content_explain" = "V oznámeniach sa zobrazuje odosielateľ a prvé slová správy";
 "pref_led_color" = "Farba LED";
 "pref_sound" = "Zvuk";
@@ -577,12 +584,19 @@
 "pref_background" = "Pozadie";
 "pref_background_btn_default" = "Použiť predvolený obrázok";
 "pref_background_btn_gallery" = "Vyberte z galérie";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Ak túto možnosť zakážete, uistite sa, že váš server a ostatní klienti sú zodpovedajúcim spôsobom nakonfigurovaní.\n\nV opačnom prípade nemusí fungovať vôbec.";
+// deprecated
 "pref_auto_folder_moves" = "Automaticky presúvať do priečinka DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Prijímať iba z priečinka DeltaChat";
+// deprecated
 "pref_show_emails" = "Zobraziť klasické e-maily";
+// deprecated
 "pref_show_emails_no" = "Nie, iba konverzácie";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Pre prijaté kontakty";
+// deprecated
 "pref_show_emails_all" = "Všetky";
 "pref_experimental_features" = "Experimentálne vlastnosti";
 "pref_on_demand_location_streaming" = "Vysielanie polohy na požiadanie";
@@ -626,12 +640,13 @@
 // automatically delete message
 "delete_old_messages" = "Odstraňovať staré správy";
 "autodel_device_title" = "Odstráňte správy zo zariadenia";
+// deprecated
 "autodel_server_title" = "Odstraňovať správy zo servera";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Chcete odstrániť %1$d správy a všetky novo načítané správy %2$@ v budúcnosti?\n\n• Zahŕňa to všetky médiá\n\n• Správy budú odstránené bez ohľadu na to, či boli alebo neboli videné\n\n• „Uložené správy \"bude preskočené z lokálneho mazania";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Chcete odstrániť %1$d správy a všetky novo načítané správy %2$@ v budúcnosti?\n\n⚠️ Zahŕňa to e-maily, médiá a uložené správy vo všetkých priečinkoch servera\n\n⚠️ Túto funkciu nepoužívajte, ak chcete uchovanie údajov na serveri\n\n⚠️ Túto funkciu nepoužívajte, ak okrem Delta Chatu používate aj iných e-mailových klientov";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Patria sem e-maily, médiá a „Uložené správy“ vo všetkých priečinkoch servera. Túto funkciu nepoužívajte, ak chcete uchovať údaje na serveri alebo ak okrem Delta Chatu používate aj iných e-mailových klientov.";
 "autodel_confirm" = "Rozumiem, vymazať všetky tieto správy";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -705,7 +720,7 @@
 "chat_protection_enabled_tap_to_learn_more" = "Správy sú šifrované. Ťuknite pre viac informácií.";
 "learn_more" = "Zistiť viac";
 "devicemsg_self_deleted" = "Odstránili ste konverzáciu \"Uložené správy\".\n\nℹ️ Aby ste využili funkciu \"Uložené správy\" znova, vytvorte novú konverzáciu so sebou.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Úložisko vašeho poskytovateľa čoskoro prekročí limit, už%1$@%% sú využité.\n\n Je možné, že nebudete môcť prijímať správy, ak bude úložisko 100 %% využité.\n\n👉 Prosím skontrolujte, či môžete vo webovom rozhraní poskytovateľa vymazať staré údaje, a zvážte aktiváciu „Nastavenia / Odstrániť Staré Správy“. Aktuálne využitie úložiska si môžete kedykoľvek skontrolovať v časti „Nastavenia / Pripojenie“. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "Zdá sa, že dátum alebo čas vášho zariadenia je nepresný (%1$@).\n\nUpravte si hodiny ⏰🔧, aby ste zaistili správne prijímanie správ. ";

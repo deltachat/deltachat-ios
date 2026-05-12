@@ -23,6 +23,8 @@
 "downloading" = "Allalaadimisel…";
 "open_attachment" = "Ava manus";
 "join" = "Liitu";
+"join_group" = "Liitu grupiga";
+"join_channel" = "Liitu kanaliga";
 "rejoin" = "Liitu uuesti";
 "delete" = "Kustuta";
 "delete_for_me" = "Kustuta minu jaoks";
@@ -57,7 +59,9 @@
 "media" = "Meedia";
 "apps_and_media" = "Rakendused ja meedia";
 "profile" = "Profiil";
+// deprecated
 "all_profiles" = "Kõik profiilid";
+// deprecated
 "current_profile" = "Praegune profiil";
 "main_menu" = "Põhimenüü";
 "start_chat" = "Alusta vestlust";
@@ -68,6 +72,8 @@
 "mark_as_read" = "Märgi loetuks";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Märgi loetuks";
+// Used as an menu entry or button
+"mark_as_unread" = "Märgi mitteloetuks";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Märgi mitteloetuks";
 // Placeholder text when something is loading
@@ -80,6 +86,7 @@
 "always" = "Alati";
 "always_load_remote_images" = "Alati laadi kaugseadmes asuvaid pilte";
 "once" = "Vaid see kord";
+// deprecated
 "show_warning" = "Näita hoiatust";
 "not_now" = "Mitte praegu";
 "never" = "Mitte kunagi";
@@ -89,6 +96,7 @@
 "offline" = "Pole võrgus";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Järgmine";
+"warning" = "Hoiatus";
 "error" = "Viga";
 "error_x" = "Viga: %1$@";
 "no_app_to_handle_data" = "Ei leidu rakendust, mis oskaks sellist tüüpi andmeid kasutada.";
@@ -155,7 +163,10 @@
 "camera" = "Kaamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Salvesta pilt või video";
+// Switch eg. from front to back camera
 "switch_camera" = "Vaheta kaamerat";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Lülita kaamera sisse/välja";
 "toggle_fullscreen" = "Lülita täisekraanivaate sisse/välja";
 "location" = "Asukoht";
 "locations" = "Asukohad";
@@ -322,11 +333,13 @@
 "mute_for_one_day" = "Summuta üheks päevaks";
 "mute_for_seven_days" = "Summuta seitsmeks päevaks";
 "mute_forever" = "Summuta alatiseks";
+// deprecated
 "share_location_for_5_minutes" = "Kestusega 5 minutit";
 "share_location_for_30_minutes" = "Kestusega 30 minutit";
 "share_location_for_one_hour" = "Kestusega 1 tund";
 "share_location_for_two_hours" = "Kestusega 2 tundi";
 "share_location_for_six_hours" = "Kestusega 6 tundi";
+"share_location_for_24_hours" = "Kestusega 24 tundi";
 "file_saved_to" = "Fail on salvestatud: „%1$@“.";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Helista";
@@ -338,6 +351,8 @@
 "answer_call" = "Vasta";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Keeldu";
+// the action to end a call
+"end_call2" = "Lõpeta kõne";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Häälkõne";
 // Used in call bubbles, summaries, notifications
@@ -360,11 +375,20 @@
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";
 "already_in_call" = "Kõne  juba on pooleli";
+"call_answered_elsewhere" = "Kõne on vastatud muus seadmes";
+"call_requires_camera_permission" = "Videokõnede tegemiseks peab rakendusel olema õigus kasutada kaamerat";
+"call_requires_mic_permission" = "Helistamiseks peab rakendusel olema õigus kasutada mikrofoni";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Kõne kasutajaga %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Helistan kasutajale %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Kas oled kindel, et soovid lahkuda?";
 "ask_delete_named_chat" = "Kas kustutad „%1$@“ vestluse kõikidest oma seadmetest?";
 "ask_delete_message" = "Kas kustutad selle sõnumi kõikidest oma seadmetest?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
+// deprecated, use ask_forward_messages
 "ask_forward" = "Kas edastad sõnumi kasutajale %1$@?";
 "ask_forward_multiple" = "Kas edastad sõnumid %1$d vestlusesse?";
 "ask_export_attachment" = "Kui ekspordid manused, siis sinu nutiseadme muud rakendused saavad neile ligi.\n\nKas soovid jätkata?";
@@ -435,8 +459,11 @@
 // search
 "search" = "Otsi";
 "search_in_chat" = "Otsi vestlusest";
+// Placeholder will be replaced by the chat name
+"search_in" = "Otsi vestlusest „%1$@“";
 "search_files" = "Otsi failidest";
 "search_explain" = "Otsi vestlusi, kontakte või sõnumeid";
+"search_result_for_x" = "Otsingutulemused märksõnale „%1$@“";
 "search_no_result_for_x" = "„%1$@“ otsingul pole tulemusi";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Lugemata";
@@ -448,6 +475,7 @@
 "group_create_button" = "Loo grupp";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Palun sisesta grupi nimi.";
+"please_enter_chat_name" = "Palun sisesta nimi";
 "group_add_members" = "Lisa liikmeid";
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";
 "profile_encryption" = "Krüptimine";
@@ -583,7 +611,7 @@
 "hide_from_contacts" = "Peida kontaktidest";
 "hidden_from_contacts" = "Peidetud kontaktidest";
 // Hint for the list of relays
-"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\n\n⚠️ Kui muudad siin midagi, siis palun kontrolli, et kõikides sinu seadmetes on kasutusel vähemalt versioon 2.47.0. Vastasel juhul võivad vanema tarkvaraga seadmetes jääta sõnumid saabumata.";
+"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\n\n⚠️ Kui muudad siin midagi, siis palun kontrolli, et kõikides sinu seadmetes on kasutusel vähemalt versioon 2.47.0. Vastasel juhul võivad vanema tarkvaraga seadmetes jääda sõnumid saabumata.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
@@ -660,6 +688,7 @@
 "pref_notifications_priority" = "Prioriteet";
 "pref_notifications_explain" = "Kasuta uute sõnumite puhul süsteemi teavitusi";
 "pref_show_notification_content" = "Näita teavituses sõnumi sisu";
+// deprecated
 "pref_show_notification_content_explain" = "Näitab teavituses sõnumi saatjat ja esimesi sõnu";
 "pref_led_color" = "LED-värv";
 "pref_sound" = "Heli";
@@ -678,6 +707,8 @@
 "pref_incognito_keyboard_explain" = "Palu, et operatsioonisüsteem ei jätaks meelde klahvistikust sisestatud (aga see ei pruugi alati toimida)";
 "pref_read_receipts" = "Lugemisteatised";
 "pref_read_receipts_explain" = "Kui sinu lugemisteatised on lülitatud välja, siis ka sina ei näe teiste lugemisteatisi.";
+// Title above a list of contacts who read a message
+"read_by" = "Seda on lugenud";
 "pref_server" = "Server";
 "pref_encryption" = "Krüptimine";
 "pref_manage_keys" = "Halda võtmeid";
@@ -700,16 +731,23 @@
 "pref_background" = "Taustapilt";
 "pref_background_btn_default" = "Kasuta vaikimisi pilti";
 "pref_background_btn_gallery" = "Vali galeriist";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Kui sa seda eelistust muudad, siis palun kontrolli, et server ja muud kliendid on vastavalt seadistatud.\n\nVastasel juhul võib minna nii, et mitte miski ei toimi.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Mitme seadme tugi";
 "pref_multidevice_explain" = "Sünkrooni oma sõnumid oma muude seadmetega. Teise seadme lisamisel lülitatakse automaatselt sisse.";
 "pref_multidevice_change_warn" = "Kui kasutad sama profiili mitmes seadmes, siis peab mitme seadme režiimi sisse lülitama. Lülita see seadistus välja vaid siis, kui oled selle profiili eemaldanud kõikidest muudest oma seadmetest.\n\nKui aga lülitad välja siis, kui profiil on kasutusel mitmes seadmes, on tulemuseks kadunud sõnumid ja muud imelikud juhtumised.";
+// deprecated
 "pref_auto_folder_moves" = "Tõsta automaatselt DeltaChati kausta";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Laadi vaid DeltaChati kasutast";
+// deprecated
 "pref_show_emails" = "Näita klassikalisi e-kirju";
+// deprecated
 "pref_show_emails_no" = "Ei, vaid vestlustele";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Kinnitatud kontaktidele";
+// deprecated
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_experimental_features_explain" = "Need funktsionaalsused ei pruugi korralikult toimida ning nad võivad tulevikus muutuda või sootuks olla eemaldatud";
@@ -761,14 +799,17 @@
 // automatically delete message
 "delete_old_messages" = "Kustuta vanad sõnumid";
 "autodel_device_title" = "Kustuta sõnumid seadmest";
+// deprecated
 "autodel_server_title" = "Kustuta sõnumid serverist";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Kas soovid kustutada %1$d sõnumit kohe ja kõik uued sõnumid ajavahemikus „%2$@“\n\n• Sealhulgas saavad olema kõik meediafailid\n\n• Sõnumid saavad kustutatud sõltumata sellest, kas oled neid näinud või mitte\n\n• „Salvestatud sõnumid“ ei kuulu kohalikus seadmes kustutamisele";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Kas soovid kustutada %1$d sõnumit kohe ja kõik uued sõnumid ajavahemikus „%2$@“\n\n⚠️ Sealhulgas e-kirjad, meediafailid ja „Salvestatud sõnumid“ kõikides serveri kasutades.\n\n⚠️ Ära kasuta seda võimalust, kui tahad andmeid hoida serveris või pruugid ka klassikalisi e-posti kliente";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Sealhulgas e-kirjad, meediafailid ja „Salvestatud sõnumid“ kõikides serveri kasutades. Ära kasuta seda võimalust, kui tahad andmeid hoida serveris või pruugid ka klassikalisi e-posti kliente";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Lülita kohene kustutamine sisse";
+// deprecated
 "autodel_server_warn_multi_device" = "Kui lülitad kohese kustutamise sisse, siis sa ei saa selles profiilis kasutada mitut seadet.";
 "autodel_confirm" = "Ma saan aru, kustuta kõik need sõnumid";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -786,9 +827,12 @@
 "group_name_changed_by_you" = "Sa muutsid grupi nime: „%1$@“ → „%2$@“.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ muutis grupi nime: „%1$@“ → „%2$@“.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Kanali nimi on muutunud: „%1$@“ → „%2$@“.";
 "group_image_changed_by_you" = "Sina muutsid grupi tunnuspilti.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ muutis grupi tunnuspilti.";
+"channel_image_changed" = "Kanali pilt on muutunud";
 "chat_description_changed_by_you" = "Sa muutsid vestluse kirjeldust.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "%1$@ muutis vestluse kirjeldust.";
@@ -860,7 +904,7 @@
 "invalid_unencrypted_explanation" = "Läbiva krüptimise kasutuselevõtmiseks oarim viis on omavahel kohtuda ning teise osapoole QR-koodi skaneerimisega lisada ta vestlusesse.";
 "learn_more" = "Lisateave";
 "devicemsg_self_deleted" = "Sa kustutasid vestluse nimega „Salvestatud sõnumid“.\n\nℹ️ Kui tahad uuesti kasutada võimalust „Salvestatud sõnumid“, siis lisa vestlus iseendaga.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Sinu poolt teenusepakkuja juures kasutatav andmeruum hakkab täis saama: %1$@%% on juba kasutusel.\n\nKui andmeruum on täis, siis sa ilmselt ei pruugi enam sõnumeid saada.\n\n👉 Palun kontrolli, kas sul on võimalik teenusepakkuja veebiliidesest vanu sõnumeid kustutada või veelgi parem on, kui kasutad automaatse kustutamise võimalust: „Seadistused“ → „Vestlused“ → „Kustuta vanad sõnumid“. Hetkel kasutatavat andmeruumi mahutu saad alati kontrollida siit: „Seadistused“ → „Ühenduvus“.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Sinu seadme kuupäev või kellaaeg tundub olema ebatäpne (%1$@).\n\nPalun seadista kella ⏰🔧 ja taga, et sõnumivahetus, sh selle krüptimine toimib korrektselt.";
@@ -922,6 +966,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Vestluses „%1$@“ juba on üks sõnumi kavand, kas sa soovid selle asendada?";
 "mailto_link_could_not_be_decoded" = "mailto lingi dekodeerimine ei õnnestunud: %1$@";
+"remove_quote" = "Eemalda tsiteerimine";
+"remove_attachment" = "Eemalda manus";
 // notifications
 "notify_reply_button" = "Vasta";
 "notify_new_message" = "Uus sõnum";
@@ -937,6 +983,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Sulle on uusi sõnumeid";
 "n_messages_in_m_chats" = "%1$d sõnumit %2$d-s vestluses";
+// location streaming
+"location_streaming_notification_text" = "Sa jada oma asukohta teistega";
+"location_rationale" = "Jagamaks reaalajas oma asukohta teiste vestluse liikmetega, palun luba Delta Chatil kasutada sinu asukohaandmeid.\n\nEt asukoha edastamine toimiks sujuvalt, on asukohaandmed kasutusel ka siis, kui rakendus on suletud või pole kasutusel.";
 // permissions
 "perm_required_title" = "Õigused on vajalikud";
 "perm_continue" = "Jätka";
@@ -976,6 +1025,7 @@
 "global_menu_help_about_desktop" = "Rakenduse teave: Delta Chat";
 "global_menu_file_open_desktop" = "Ava Delta Chat";
 "global_menu_minimize_to_tray" = "Minimeeri";
+"no_account_selected" = "Vali olemasolev profiil või loo uus profiil";
 "no_chat_selected_suggestion_desktop" = "Vali olemasolev vestlus või liitu uuega";
 "write_message_desktop" = "Koosta sõnum";
 "encryption_info_title_desktop" = "Krüptimise teave";
@@ -997,8 +1047,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Õigekirjasoovitusi ei leidu.";
 "show_window" = "Näita akent";
+"data_found_other_installation_message" = "Sinu profiilid teisest Delta Chati paigaldusest ei ole kättesaadavad -erinevad paigaldused salvestavad oma andmed eraldi kohtadesse.\n\nOlemasolevate profiilide säilitamiseks:\n1. Sulge rakendus\n2. Ava teine Delta Chat - vajadusel paigalda see uuesti siit:%1$@\n3. Tee igast profiilist varukoopia menüüs „Seadistused/Vestlused“\n4. Käivita see versioon uuesti\n5. Taasta varukoopiad valikust „Mul juba on profiil olemas“\n\nVõi jätkad ilma oma varasemate profiilideta?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Klahvide seosed";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Liikumine rakenduses";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Sõnumi sisestus";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Valitud sõnum";
 "switch_between_chats" = "Vaheta vestlusi";
 "scroll_messages" = "Keri sõnumeid";
 // command to put the cursor to the search input field
@@ -1017,6 +1074,8 @@
 "a11y_message_context_menu_btn_label" = "Tegevused sõnumiga";
 "a11y_background_preview_label" = "Taustapildi eelvaade";
 "a11y_disappearing_messages_activated" = "Isekustuvad sõnumid on kasutusel";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Ava %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Lõpeta asukoha jagamine";
 "a11y_voice_message_hint_ios" = "Peale salvestamist saad topeltpuudutusega saata. Salvestisest saad loobuda hõõrudes kahe sõrmega.";

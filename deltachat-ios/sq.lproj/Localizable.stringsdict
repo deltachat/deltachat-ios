@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Të dërgohet kartela vijuese te %s?</string>
+			<string>Të dërgohet kartela vijuese te %2$@?</string>
 			<key>other</key>
-			<string>Të dërgohen %d kartelat vijuese te %s?</string>
+			<string>Të dërgohen %d kartelat vijuese te %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

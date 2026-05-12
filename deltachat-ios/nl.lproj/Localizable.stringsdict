@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Wil je het volgende bestand versturen aan %s?</string>
+			<string>Wil je het volgende bestand versturen aan %2$@?</string>
 			<key>other</key>
-			<string>Wil je de volgende %d bestanden versturen aan %s?</string>
+			<string>Wil je de volgende %d bestanden versturen aan %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

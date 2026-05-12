@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Enviar o seguinte ficheiro a %s?</string>
+			<string>Enviar o seguinte ficheiro a %2$@?</string>
 			<key>other</key>
-			<string>Enviar os seguintes %d ficheiros a %s?</string>
+			<string>Enviar os seguintes %d ficheiros a %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

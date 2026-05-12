@@ -14,7 +14,7 @@
 "off" = "Выкл.";
 "def" = "По умолчанию";
 "default_value" = "По умолчанию (%1$@)";
-"custom" = "Персональная настройка";
+"custom" = "Свой вариант";
 "none" = "Не задано";
 "automatic" = "Автоматически";
 "strict" = "Строгий";
@@ -23,6 +23,8 @@
 "downloading" = "Загрузка…";
 "open_attachment" = "Открыть вложение";
 "join" = "Присоединиться";
+"join_group" = "Вступить в группу";
+"join_channel" = "Присоединиться к каналу";
 "rejoin" = "Присоединиться снова";
 "delete" = "Удалить";
 "delete_for_me" = "Удалить для меня";
@@ -51,13 +53,15 @@
 // Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Беззвучный";
 "ephemeral_messages" = "Исчезающие сообщения";
-"ephemeral_messages_hint" = "Применяется ко всем участникам этого чата, но они по-прежнему могут копировать, сохранять и пересылать сообщения.";
+"ephemeral_messages_hint" = "Настройка распространяется на всех участников; однако сообщения всё ещё можно копировать, сохранять и пересылать";
 "save" = "Сохранить";
 "chat" = "Чат";
 "media" = "Медиафайлы";
 "apps_and_media" = "Приложения и медиафайлы";
 "profile" = "Профиль";
+// deprecated
 "all_profiles" = "Все профили";
+// deprecated
 "current_profile" = "Текущий профиль";
 "main_menu" = "Главное меню";
 "start_chat" = "Начать чат";
@@ -68,6 +72,8 @@
 "mark_as_read" = "Отметить как прочитанное";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Прочитано";
+// Used as an menu entry or button
+"mark_as_unread" = "Отметить как непрочитанное";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Не прочитано";
 // Placeholder text when something is loading
@@ -80,6 +86,7 @@
 "always" = "Всегда";
 "always_load_remote_images" = "Всегда загружать изображения из внешних источников";
 "once" = "Только сейчас";
+// deprecated
 "show_warning" = "Показать предупреждение";
 "not_now" = "Не сейчас";
 "never" = "Никогда";
@@ -89,6 +96,7 @@
 "offline" = "Не в сети";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Далее";
+"warning" = "Предупреждение";
 "error" = "Ошибка";
 "error_x" = "Ошибка: %1$@";
 "no_app_to_handle_data" = "Не удалось найти приложение для обработки этого типа данных.";
@@ -154,7 +162,8 @@
 "bot" = "Бот";
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
-"capture" = "Захват";
+"capture" = "Снять";
+// Switch eg. from front to back camera
 "switch_camera" = "Переключить камеру";
 "toggle_fullscreen" = "Полноэкранный режим";
 "location" = "Местоположение";
@@ -300,7 +309,7 @@
 "device_talk" = "Сообщения устройства";
 "device_talk_subtitle" = "Сообщения, созданные устройством";
 "device_talk_explain" = "Сообщения в этом чате генерируются локально на вашем устройстве чтобы информировать об обновлениях и проблемах при использовании приложения.";
-"device_talk_welcome_message2" = "Оставайтесь на связи!\n\n🙌 Нажмите \"QR-код\" на главном экране обоих устройств. На одном устройстве выберите \"Сканировать QR-код\" и направьте камеру на другое устройство.\n\n🌍 Если устройства находятся в разных местах, отсканируйте код с помощью видеозвонка или поделитесь ссылкой-приглашением из раздела \"Сканировать QR-код\"\n\nЗатем: Наслаждайтесь децентрализованным мессенджером. В отличие от других популярных приложений, он не имеет центра управления и не отслеживает ваши действия, а также не продаёт данные о вас, ваших друзьях, коллегах или членах семьи крупным организациям.";
+"device_talk_welcome_message2" = "Оставайтесь на связи!\n\n🙌 Нажмите \"QR-код\" на главном экране обоих устройств. На одном устройстве выберите \"Сканировать QR-код\" и направьте камеру на другое устройство.\n\n🌍 Если устройства находятся в разных местах, отсканируйте код с помощью видеозвонка или поделитесь ссылкой-приглашением из раздела \"Сканировать QR-код\"\n\nЗатем: Пользуйтесь преимуществами децентрализованного мессенджера. В отличие от других популярных приложений, он не имеет центрального узла управления, не следит за вами и не продает ваши данные, данные о ваших друзьях, коллегах или членах семьи крупным организациям.";
 "edit_contact" = "Редактировать контакт";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Закрепить чат";
@@ -322,11 +331,13 @@
 "mute_for_one_day" = "На 1 день";
 "mute_for_seven_days" = "На 7 дней";
 "mute_forever" = "Постоянно";
+// deprecated
 "share_location_for_5_minutes" = "5 минут";
 "share_location_for_30_minutes" = "30 минут";
 "share_location_for_one_hour" = "1 час";
 "share_location_for_two_hours" = "2 часа";
 "share_location_for_six_hours" = "6 часов";
+"share_location_for_24_hours" = "В течение 24 часов";
 "file_saved_to" = "Файл сохранён в \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Позвонить";
@@ -360,12 +371,19 @@
 "canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";
 "already_in_call" = "Вызов уже идёт";
+"call_answered_elsewhere" = "Звонок отвечен на другом устройстве";
+"call_requires_mic_permission" = "Для совершения звонков требуется разрешение на использование микрофона";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Звонок от %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Вызов %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы действительно хотите выйти?";
 "ask_delete_named_chat" = "Удалить чат \"%1$@\"?";
 "ask_delete_message" = "Удалить это сообщение?";
-"ask_forward" = "Переслать сообщения для %1$@?";
+// deprecated, use ask_forward_messages
+"ask_forward" = "Переслать сообщения %1$@?";
 "ask_forward_multiple" = "Переслать сообщения в %1$d чата(ов)?";
 "ask_export_attachment" = "Экспорт вложений позволит другим приложениям на вашем устройстве получить к ним доступ.\n\nПродолжить?";
 "ask_block_contact" = "Заблокировать этот контакт?\n\nЗаблокированные контакты не будут показаны в личных сообщениях или группах, созданных ими.\n\nВ других группах сообщения заблокированных контактов, по-прежнему будут видны.";
@@ -431,12 +449,15 @@
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Вы уверены, что хотите посетить %1$@?";
 // this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
-"puny_code_warning_description" = "Эта ссылка может искажать символы, заменяя их похожими символами из других алфавитов. Переход по ссылке отмеченной %1$@ приведет к %2$@, что является нормальным для нелатинских символов. Если вы не ожидали увидеть такие символы, эта ссылка может быть опасной.";
+"puny_code_warning_description" = "Эта ссылка может использовать визуально похожие символы из разных алфавитов. Переход по ссылке отмеченной %1$@ приведет к %2$@, что является нормальным для нелатинских символов. Если вы не ожидали увидеть такие символы, эта ссылка может быть опасной.";
 // search
 "search" = "Поиск";
 "search_in_chat" = "Поиск в чате";
+// Placeholder will be replaced by the chat name
+"search_in" = "Поиск в %1$@";
 "search_files" = "Поиск файлов";
 "search_explain" = "Поиск чатов, контактов и сообщений";
+"search_result_for_x" = "Результат по запросу \"%1$@\"";
 "search_no_result_for_x" = "Ничего не найдено по запросу \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Не прочитано";
@@ -448,6 +469,7 @@
 "group_create_button" = "Создать группу";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Введите название группы";
+"please_enter_chat_name" = "Пожалуйста, введите имя.";
 "group_add_members" = "Добавить участников";
 "group_self_not_in_group" = "Вы должны быть участником группы, чтобы выполнить это действие.";
 "profile_encryption" = "Шифрование";
@@ -614,7 +636,7 @@
 "delete_account_explain_with_name" = "Все данные профиля \"%1$@\" на этом устройстве будут безвозвратно удалены, включая настройки сквозного шифрования, контакты, чаты, сообщения и медиафайлы. Это действие не может быть отменено.";
 "unconfigured_account" = "Не настроенный профиль";
 "unconfigured_account_hint" = "Откройте профиль чтобы настроить его.";
-"try_connect_now" = "Попробуйте подключиться сейчас";
+"try_connect_now" = "Попробовать подключиться сейчас";
 "sync_all" = "Синхронизировать все";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Ошибка конфигурации. Ошибка: %1$@";
@@ -643,7 +665,7 @@
 "pref_outgoing_media_quality" = "Качество отправляемых медиафайлов";
 "pref_outgoing_media_quality_hint" = "Чтобы отправить файлы в исходном качестве, прикрепляйте их как \"Файл\". Это потребует больше трафика для вас и ваших получателей.";
 "pref_outgoing_balanced" = "Сбалансированное";
-"pref_outgoing_worse" = "Низкое качество, малый размер";
+"pref_outgoing_worse" = "Низкое качество, экономия данных";
 "pref_vibrate" = "Вибрация";
 "pref_screen_security" = "Безопасность экрана";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
@@ -655,11 +677,12 @@
 // Title for the "Calls" notification setting. This is a plural noun, not a verb.
 "pref_calls" = "Звонки";
 // Details about what the "Calls" notification setting does
-"pref_calls_explain" = "Показывать экран входящего вызова";
+"pref_calls_explain" = "Показывать экран вызова для принятых контактов";
 "pref_notifications_show" = "Показывать";
 "pref_notifications_priority" = "Приоритет";
 "pref_notifications_explain" = "Включить системные уведомления для новых сообщений";
 "pref_show_notification_content" = "Показывать содержимое сообщения в уведомлении";
+// deprecated
 "pref_show_notification_content_explain" = "Показать отправителя и текст сообщения в уведомлениях";
 "pref_led_color" = "Цвет светодиода ";
 "pref_sound" = "Звук";
@@ -678,6 +701,8 @@
 "pref_incognito_keyboard_explain" = "Запрос клавиатуре на отключение персонализированного обучения";
 "pref_read_receipts" = "Уведомления о прочтении";
 "pref_read_receipts_explain" = "Если уведомления о прочтении отключены, вы не будете видеть подтверждения прочтения сообщений другими пользователями.";
+// Title above a list of contacts who read a message
+"read_by" = "Прочитано";
 "pref_server" = "Сервер";
 "pref_encryption" = "Шифрование";
 "pref_manage_keys" = "Управление ключами";
@@ -700,20 +725,27 @@
 "pref_background" = "Обои для чатов";
 "pref_background_btn_default" = "Использовать изображение по умолчанию";
 "pref_background_btn_gallery" = "Выбрать из галереи";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Если вы измените этот параметр, убедитесь, что ваш сервер и другие клиенты настроены соответствующим образом.\n\nВ противном случае, всё может перестать работать.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Режим нескольких устройств";
 "pref_multidevice_explain" = "Синхронизируйте свои сообщения с другими устройствами. Функция включается автоматически при добавлении второго устройства";
 "pref_multidevice_change_warn" = "Режим нескольких устройств должен быть включен, если вы используете один и тот же профиль на нескольких устройствах. Отключайте эту настройку, только если вы удалили этот профиль со всех остальных устройств.\n\nОтключение режима нескольких устройств при использовании профиля на нескольких устройствах приведет к потере сообщений и возникновению других проблем.";
+// deprecated
 "pref_auto_folder_moves" = "Автоперемещение в папку DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Загружать только из папки DeltaChat";
+// deprecated
 "pref_show_emails" = "Показывать обычную почту";
+// deprecated
 "pref_show_emails_no" = "Нет, только чаты";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Для принятых контактов";
+// deprecated
 "pref_show_emails_all" = "Все";
 "pref_experimental_features" = "Экспериментальные функции";
 "pref_experimental_features_explain" = "Эти функции могут быть нестабильными и могут быть изменены или удалены";
-"pref_on_demand_location_streaming" = "Трансляция местоположения по запросу";
+"pref_on_demand_location_streaming" = "Трансляция местоположения";
 "pref_background_default" = "Изображение по умолчанию";
 "pref_background_default_color" = "Цвет по умолчанию";
 "pref_background_custom_image" = "Персональное изображение";
@@ -761,14 +793,17 @@
 // automatically delete message
 "delete_old_messages" = "Удалить старые сообщения";
 "autodel_device_title" = "Удалять сообщения с устройства";
+// deprecated
 "autodel_server_title" = "Удалять сообщения с сервера";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые сообщения \"%2$@\" в дальнейшем?\n\n• Это действие затронет все медиафайлы\n\n• Сообщения будут удалены, независимо от того, были ли они прочитаны или нет.\n\n• \"Сохранённые сообщения\" не будут удалены с устройства";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Вы хотите удалить %1$d сообщений сейчас и все новые сообщения \"%2$@\" в дальнейшем?\n\n⚠️ Это относится ко всем электронным письмам, медиафайлам и \"Сохранённым сообщениям\" во всех папках на сервере.\n\n⚠️ Не используйте эту функцию, если хотите сохранить данные на сервере или если вы используете обычные клиенты электронной почты";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Это относится ко всем электронным письмам, медиафайлам и \"Сохранённым сообщениям\" во всех папках на сервере. Не используйте эту функцию, если хотите сохранить данные на сервере или если вы используете обычные клиенты электронной почты";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Включить удаление без запроса";
+// deprecated
 "autodel_server_warn_multi_device" = "Если включить удаление без запроса, вы не сможете использовать этот профиль на нескольких устройствах.";
 "autodel_confirm" = "Я понимаю, удалить все эти сообщения";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -786,9 +821,12 @@
 "group_name_changed_by_you" = "Вы изменили название группы с \"%1$@\" на \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ меняет название группы с \"%1$@\" на \"%2$@\".";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Название канала изменено с \"%1$@\" на \"%2$@\".";
 "group_image_changed_by_you" = "Вы изменили изображение группы.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ меняет изображение группы.";
+"channel_image_changed" = "Изображение канала изменено.";
 "chat_description_changed_by_you" = "Вы изменили описание чата.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Описание чата изменено пользователем %1$@.";
@@ -860,7 +898,7 @@
 "invalid_unencrypted_explanation" = "Чтобы установить сквозное шифрование, вы можете встретиться с контактами лично и отсканировать их QR-код, чтобы подтвердить их личность.";
 "learn_more" = "Узнать больше";
 "devicemsg_self_deleted" = "Вы удалили чат \"Сохраненные сообщения\".\n\nℹ️ Чтобы снова использовать функцию \"Сохраненные сообщения\", создайте новый чат с собой.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Место на сервере вашего провайдера скоро закончится, уже использовано: %1$@%%.\n\nЕсли место на сервере будет полностью заполнено, вы не сможете получать сообщения.\n\n👉 Проверьте, можно ли удалить старые данные через веб-интерфейс вашего провайдера, и подумайте о включении опции \"Настройки / Чаты / Удалить старые сообщения\". Вы всегда можете проверить текущее использование места на сервере в разделе \"Настройки / Соединение\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Вероятно, дата или время на вашем устройстве установлены неверно (%1$@).\n\nНастройте часы ⏰🔧 чтобы ваши сообщения доставлялись правильно.";
@@ -922,6 +960,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ уже имеет черновик, вы хотите его заменить?";
 "mailto_link_could_not_be_decoded" = "ссылка mailto не может быть обработана: %1$@";
+"remove_quote" = "Удалить цитату";
+"remove_attachment" = "Удалить вложение";
 // notifications
 "notify_reply_button" = "Ответить";
 "notify_new_message" = "Новое сообщение";
@@ -937,6 +977,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Есть новые сообщения";
 "n_messages_in_m_chats" = "%1$d сообщений в %2$d чатах";
+// location streaming
+"location_streaming_notification_text" = "Вы делитесь своим местоположением";
+"location_rationale" = "Чтобы поделиться своим местоположением в реальном времени с участниками чата, разрешите Delta Chat использовать данные о вашем местоположении.\n\nДля обеспечения бесперебойной работы функции передачи геопозиции данные используются даже тогда, когда приложение закрыто или не активно.";
 // permissions
 "perm_required_title" = "Требуется разрешение";
 "perm_continue" = "Продолжить";
@@ -976,7 +1019,8 @@
 "global_menu_help_about_desktop" = "О Delta Chat";
 "global_menu_file_open_desktop" = "Открыть Delta Chat";
 "global_menu_minimize_to_tray" = "Свернуть";
-"no_chat_selected_suggestion_desktop" = "Выберите чат или создайте новый";
+"no_account_selected" = "Выберите или создайте новый профиль";
+"no_chat_selected_suggestion_desktop" = "Выберите или создайте новый чат";
 "write_message_desktop" = "Напишите сообщение";
 "encryption_info_title_desktop" = "Информация о шифровании";
 "delete_message_desktop" = "Удалить сообщение";
@@ -997,8 +1041,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Не найдены варианты исправления орфографии.";
 "show_window" = "Показать окно";
+"data_found_other_installation_message" = "Профили из другой установки Delta Chat недоступны - разные экземпляры приложения хранят данные в отдельных папках.\n\nЧтобы сохранить существующие профили:\n1. Выйдите сейчас.\n2. Откройте другую установку Delta Chat - если потребуется, переустановите её из %1$@\n3. Создайте резервные копии каждого профиля в разделе \"Настройки/Чаты\"\n4. Запустите текущую версию приложения\n5. Восстановите данные из резервных копий, выбрав \"У меня уже есть профиль\"\n\nПродолжить без предыдущих профилей?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Горячие клавиши";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Навигация";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Поле ввода сообщения";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Выбранное сообщение";
 "switch_between_chats" = "Переключение между чатами";
 "scroll_messages" = "Прокрутка сообщений";
 // command to put the cursor to the search input field
@@ -1017,6 +1068,8 @@
 "a11y_message_context_menu_btn_label" = "Действия с сообщением";
 "a11y_background_preview_label" = "Предпросмотр";
 "a11y_disappearing_messages_activated" = "Исчезающие сообщения включены";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Открыть %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Прекратить делиться местоположением";
 "a11y_voice_message_hint_ios" = "После записи дважды нажмите, чтобы отправить. Чтобы отменить запись, проведите двумя пальцами.";

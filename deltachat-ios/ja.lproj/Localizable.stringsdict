@@ -97,7 +97,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%sさんに%dつのファイルを送る？</string>
+			<string>%2$@さんに%dつのファイルを送る？</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

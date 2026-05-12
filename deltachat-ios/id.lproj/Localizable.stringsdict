@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Kirimkan yang berikut ini %d berkas ke %s?</string>
+			<string>Kirimkan yang berikut ini %d berkas ke %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

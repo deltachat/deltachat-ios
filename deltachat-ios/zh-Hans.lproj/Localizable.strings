@@ -59,7 +59,9 @@
 "media" = "媒体";
 "apps_and_media" = "应用和媒体";
 "profile" = "账号";
+// deprecated
 "all_profiles" = "所有账号";
+// deprecated
 "current_profile" = "当前账号";
 "main_menu" = "主菜单";
 "start_chat" = "开始聊天";
@@ -84,6 +86,7 @@
 "always" = "总是";
 "always_load_remote_images" = "始终加载远程图像";
 "once" = "仅一次";
+// deprecated
 "show_warning" = "显示警告";
 "not_now" = "现在不";
 "never" = "从不";
@@ -160,6 +163,7 @@
 "camera" = "相机";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "捕获";
+// Switch eg. from front to back camera
 "switch_camera" = "切换摄像头";
 "toggle_fullscreen" = "切换全屏模式";
 "location" = "位置";
@@ -327,11 +331,13 @@
 "mute_for_one_day" = "静音 1 天";
 "mute_for_seven_days" = "静音 7 天";
 "mute_forever" = "永久静音";
+// deprecated
 "share_location_for_5_minutes" = "5 分钟";
 "share_location_for_30_minutes" = "30 分钟";
 "share_location_for_one_hour" = "1 小时";
 "share_location_for_two_hours" = "2 小时";
 "share_location_for_six_hours" = "6 小时";
+"share_location_for_24_hours" = "24 小时";
 "file_saved_to" = "文件已保存到 “%1$@”。";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "呼叫";
@@ -367,11 +373,16 @@
 "already_in_call" = "已在通话中";
 "call_answered_elsewhere" = "通话已在其他设备上接听";
 "call_requires_mic_permission" = "通话需要麦克风权限";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "与 %1$@ 的通话";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "正在呼叫 %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "是否确定要离开？";
 "ask_delete_named_chat" = "删除聊天“%1$@”？";
 "ask_delete_message" = "删除此消息？";
+// deprecated, use ask_forward_messages
 "ask_forward" = "将消息转发给 %1$@？";
 "ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件将允许您设备上的其他应用访问这些附件。\n\n是否继续？";
@@ -654,7 +665,7 @@
 "pref_outgoing_media_quality" = "发出媒体质量";
 "pref_outgoing_media_quality_hint" = "如需发送原始质量的媒体，请将媒体以“文件”形式附加。此方式会消耗您和接收者更多的数据使用量。";
 "pref_outgoing_balanced" = "平衡";
-"pref_outgoing_worse" = "体积小，但质量更差";
+"pref_outgoing_worse" = "质量较差，节省数据";
 "pref_vibrate" = "振动";
 "pref_screen_security" = "屏幕安全";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
@@ -666,11 +677,12 @@
 // Title for the "Calls" notification setting. This is a plural noun, not a verb.
 "pref_calls" = "通话";
 // Details about what the "Calls" notification setting does
-"pref_calls_explain" = "来电时显示通话屏幕";
+"pref_calls_explain" = "显示已接听联系人的通话屏幕";
 "pref_notifications_show" = "显示";
 "pref_notifications_priority" = "优先级";
 "pref_notifications_explain" = "为新消息启用系统通知";
 "pref_show_notification_content" = "在通知中显示消息内容";
+// deprecated
 "pref_show_notification_content_explain" = "在通知中显示发送者和消息开头部分";
 "pref_led_color" = "LED 颜色";
 "pref_sound" = "声音";
@@ -713,20 +725,27 @@
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用默认图像";
 "pref_background_btn_gallery" = "从图库中选择";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "若要更改此选项，请您务必调整服务器以及其他客户端的相应设置。\n\n否则软件可能无法正常工作。";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "多设备模式";
 "pref_multidevice_explain" = "将您的消息与其他设备同步。添加第二台设备时自动启用";
 "pref_multidevice_change_warn" = "在多个设备上使用同一账号时，必须启用多设备模式。仅当您已从所有其他设备中移除此账号后，才能禁用此设置。\n\n在多个设备上使用该账号时禁用多设备模式会导致错过消息和其他问题。";
+// deprecated
 "pref_auto_folder_moves" = "自动移动至 DeltaChat 文件夹";
+// deprecated
 "pref_only_fetch_mvbox_title" = "只从 DeltaChat 文件夹获取";
+// deprecated
 "pref_show_emails" = "显示传统电子邮件";
+// deprecated
 "pref_show_emails_no" = "不显示，仅聊天";
+// deprecated
 "pref_show_emails_accepted_contacts" = "已接受的联系人";
+// deprecated
 "pref_show_emails_all" = "全部";
 "pref_experimental_features" = "实验性功能";
 "pref_experimental_features_explain" = "这些功能可能不稳定，可能会更改或移除";
-"pref_on_demand_location_streaming" = "按需位置流";
+"pref_on_demand_location_streaming" = "位置流";
 "pref_background_default" = "默认背景";
 "pref_background_default_color" = "默认颜色";
 "pref_background_custom_image" = "自定义图像";
@@ -774,14 +793,17 @@
 // automatically delete message
 "delete_old_messages" = "删除旧消息";
 "autodel_device_title" = "从设备删除消息";
+// deprecated
 "autodel_server_title" = "从服务器删除消息";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到 %2$@ 删除它们？\n\n• 这包括所有媒体文件\n\n• 无论消息是否被浏览过，它们都将被删除\n\n• 在本地删除中，“保存的消息”将被跳过";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "您是否要立即删除 %1$d 条消息，并在之后于消息收到 %2$@ 删除它们？\n\n⚠️ 这包括服务器所有文件夹中的电子邮件、媒体和“保存的消息”\n\n⚠️ 如果您想在服务器上保留数据或使用传统电子邮件客户端，请勿使用此功能";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "这包括所有服务器文件夹中的电子邮件、媒体和“保存的消息”。如果您想在服务器上保留数据，或者也使用传统电子邮件客户端，请勿使用此功能";
+// deprecated
 "autodel_server_warn_multi_device_title" = "开启一次性删除";
+// deprecated
 "autodel_server_warn_multi_device" = "如果您启用一次删除，则无法在此配置文件中使用多台设备。";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -876,7 +898,7 @@
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以亲自和联系人碰面并扫描联系人的二维码。";
 "learn_more" = "了解更多";
 "devicemsg_self_deleted" = "您已删除“保存的消息”聊天。\n\nℹ️ 要再次使用“保存的消息”功能，请创建一个与自己的新聊天。";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ 您的服务提供者存储空间即将用完：已使用 %1$@%%。\n\n如果存储空间已满，您可能无法接收消息。\n\n👉 请检查您是否可以在服务提供者的网页界面中删除旧数据，并考虑启用“设置/聊天/删除旧消息”。您可以随时在“设置/连接”中查看当前的存储空间使用情况。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 设备的日期或时间似乎不准确 （%1$@）。\n\n请调整时钟 ⏰🔧 以确保能够正确接收消息。";
@@ -956,8 +978,6 @@
 "new_messages_body" = "你有新消息";
 "n_messages_in_m_chats" = "%1$d 条消息，位于 %2$d 个聊天内";
 // location streaming
-"location_streaming_channel_desc" = "按需位置流频道";
-"location_streaming_notification_title" = "位置流";
 "location_streaming_notification_text" = "您正在共享您的位置";
 "location_rationale" = "要与聊天成员共享您的实时位置，请允许 Delta Chat 使用您的位置数据。\n\n为了确保实时位置无缝工作，即使应用已关闭或未使用，也会使用位置数据。";
 // permissions
@@ -1048,6 +1068,8 @@
 "a11y_message_context_menu_btn_label" = "消息操作";
 "a11y_background_preview_label" = "背景预览";
 "a11y_disappearing_messages_activated" = "消息定时销毁已激活";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "打开 %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "停止共享位置";
 "a11y_voice_message_hint_ios" = "录制后，点按两次即可发送。如需舍弃录制内容，请双指滑动。";

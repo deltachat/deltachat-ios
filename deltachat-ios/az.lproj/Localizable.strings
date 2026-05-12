@@ -133,11 +133,13 @@
 "mute_for_one_day" = "1 günlük söndür";
 "mute_for_seven_days" = "7 günlük söndür";
 "mute_forever" = "Həmişə səssiz";
+// deprecated
 "share_location_for_5_minutes" = "5 dəqiqə üçün";
 "share_location_for_30_minutes" = "30 qəqiqə üçün";
 "share_location_for_one_hour" = "1 saat üçün";
 "share_location_for_two_hours" = "2 saat üçün ";
 "share_location_for_six_hours" = "6 saat üçün";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Mesajları yönləndirin %1$@ə-?";
 "ask_export_attachment" = "Faylı ixrac etmək? Faylların ixracı cihazınızdakı hər hansı digər tətbiqlərə daxil olmağa imkan verəcəkdir. \n\n Razısan?";
 "ask_block_contact" = "Bu kontaktı bloklamaq? Bu kontaktdan artıq mesaj qəbul etməyəcəksiniz.";
@@ -270,11 +272,17 @@
 "pref_background" = "Fon";
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Bu seçimi ləğv etsəniz, serverinizin və digər müştərilərinizin müvafiq olaraq konfiqurasiya olunduğundan əmin olun. \n\nAyrıca şeylər işləməyəcəkdir.";
+// deprecated
 "pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";
+// deprecated
 "pref_show_emails" = "Klassik e-poçtları göstər";
+// deprecated
 "pref_show_emails_no" = "Xeyir, ancaq çatlar";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Qəbul edilən kontaktlar üçün";
+// deprecated
 "pref_show_emails_all" = "Hamısı";
 "pref_background_default" = "Özünəməxsus arxa fon";
 "pref_background_default_color" = "Özünəməxsus rəng";

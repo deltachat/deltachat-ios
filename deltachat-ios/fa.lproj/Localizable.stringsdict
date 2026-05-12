@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>ارسال این پرونده به %s؟</string>
+			<string>ارسال این پرونده به %2$@؟</string>
 			<key>other</key>
-			<string>ارسال این %d پرونده به %s؟</string>
+			<string>ارسال این %d پرونده به %2$@؟</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

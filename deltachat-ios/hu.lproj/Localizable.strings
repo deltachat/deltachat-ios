@@ -57,7 +57,9 @@
 "media" = "Média";
 "apps_and_media" = "Alkalmazások & média";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Összes profil";
+// deprecated
 "current_profile" = "Jelenlegi profil";
 "main_menu" = "Főmenü";
 "start_chat" = "Csevegés indítása";
@@ -78,6 +80,7 @@
 "always" = "Mindig";
 "always_load_remote_images" = "Mindig töltse be a távoli képeket";
 "once" = "Azonnal";
+// deprecated
 "show_warning" = "Figyelmeztetés megjelenítése";
 "not_now" = "Most nem";
 "never" = "Soha";
@@ -146,6 +149,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Rögzítés";
+// Switch eg. from front to back camera
 "switch_camera" = "Kameraváltás";
 "toggle_fullscreen" = "Váltás teljes képernyős módra";
 "location" = "Hely";
@@ -311,6 +315,7 @@
 "mute_for_one_day" = "Némítás 1 napra";
 "mute_for_seven_days" = "Némítás 7 napra";
 "mute_forever" = "Némítás örökre";
+// deprecated
 "share_location_for_5_minutes" = "5 percre";
 "share_location_for_30_minutes" = "30 percre";
 "share_location_for_one_hour" = "1 órára";
@@ -331,6 +336,7 @@
 "ask_leave_group" = "Biztosan elhagyja a csatornát?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
@@ -604,6 +610,7 @@
 "pref_notifications_priority" = "Prioritás";
 "pref_notifications_explain" = "Rendszerértesítések engedélyezése az új üzenetekről";
 "pref_show_notification_content" = "Üzenet tartalmának megjelenítése az értesítésben";
+// deprecated
 "pref_show_notification_content_explain" = "Az értesítésekben megjelenik az üzenet feladója és első szavai";
 "pref_led_color" = "Értesítésjelző-fény színe";
 "pref_sound" = "Hang";
@@ -644,12 +651,19 @@
 "pref_background" = "Háttérkép";
 "pref_background_btn_default" = "Alapértelemezett kép használata";
 "pref_background_btn_gallery" = "Kiválasztás a galériából";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Ha megváltoztatja ezt a beállítást, győződjön meg arról, hogy a kiszolgálója és a többi kliense is ennek megfelelően van beállítva.\n\nMáskülönben előfordulhat, hogy a dolgok egyáltalán nem fognak működni.";
+// deprecated
 "pref_auto_folder_moves" = "Automatikus áthelyezés a DeltaChat nevű mappába";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Csak a DeltaChat nevű mappából történjen lekérdezés";
+// deprecated
 "pref_show_emails" = "Klasszikus e-mailek megjelenítése";
+// deprecated
 "pref_show_emails_no" = "Nem, csak csevegések";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Elfogadott partnerek számára";
+// deprecated
 "pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
 "pref_on_demand_location_streaming" = "On-Demand folyamatos helymegosztás";
@@ -693,14 +707,17 @@
 // automatically delete message
 "delete_old_messages" = "Régi üzenetek törlése";
 "autodel_device_title" = "Üzenetek törlése az eszközről a letöltést követően";
+// deprecated
 "autodel_server_title" = "Üzenetek törlése a kiszolgálóról a letöltést követően";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Szeretné törölni a %1$d üzenetet most és az összes újonnan érkező üzenetet a jövőben ekkor: „%2$@”?\n\n• Ez magában foglalja az összes médiát is\n\n• Az üzenetek törlésre kerülnek, akár látták őket, akár nem\n\n• A „Mentett üzenetek” nem kerülnek törlésre a helyi törlésből.";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Biztosan törölni szeretne %1$d üzenetet most, és a jövőben minden újonnan lekérdezett „%2$@” üzenetet?\n\n⚠️ Ez magába foglalja az e-maileket, a médiatartalmakat és a „Mentett üzeneteket” az összes kiszolgálómappában.\n\n⚠️ Ne használja ezt a funkciót, ha meg akarja tartani az adatokat a kiszolgálón, vagy ha klasszikus e-mail-klienseket is használ.";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Ez magába foglalja az e-maileket, a médiatartalmakat és a „Mentett üzeneteket” az összes kiszolgálómappában. Ne használja ezt a funkciót, ha meg akarja tartani az adatokat a kiszolgálón, vagy ha klasszikus e-mail-klienseket is használ.";
+// deprecated
 "autodel_server_warn_multi_device_title" = "A „Törlés a letöltés után azonnal” bekapcsolása";
+// deprecated
 "autodel_server_warn_multi_device" = "Ha a „Törlés a letöltés után azonnal” engedélyezve van, akkor nem használhatja ezt a profilt több eszközről.";
 "autodel_confirm" = "Értem, törölje ezeket az üzeneteket";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -787,7 +804,7 @@
 "invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat a partnereivel, és a QR-kódjukat beolvasva bemutathatja őket.";
 "learn_more" = "Tudjon meg többet";
 "devicemsg_self_deleted" = "Ön törölte a „Mentett üzenetek” csevegést.\n\nℹ️ A „Mentett üzenetek” funkció újbóli használatához hozzon létre egy új csevegést önmagával.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Az e-mail-szolgáltatójától kapott tárhelye hamarosan megtelik: %1$@%% már felhasználásra került.\n\n\nElképzelhető, hogy nem tud üzeneteket fogadni, ha a tárhelye megtelt.\n\n👉 Ellenőrizze, hogy a szolgáltatója webes felületén tudja-e törölni a DeltaChat-mappából az üzeneteket, és fontolja meg a „Beállítások / Csevegések és média / Üzenetek törlése a kiszolgálóról” engedélyezését. Az aktuális tárhelyhasználatot bármikor ellenőrizheti a „Beállítások / Tárhely” menüpontban.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Az eszközén lévő dátum vagy idő pontatlannak tűnik (%1$@).\n\nJavítsa meg az órát ⏰🔧 az üzenetek helyes fogadásának biztosítása érdekében.";

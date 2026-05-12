@@ -116,6 +116,7 @@
 "mute_for_eight_hours" = "8 గంటలు నిశబ్దంగా ఉంచు";
 "mute_for_one_day" = "1 రోజు నిశబ్దంగా ఉంచు";
 "mute_for_seven_days" = "7 రోజులు నిశబ్దంగా ఉంచు";
+// deprecated, use ask_forward_messages
 "ask_forward" = "సందేశాలు %1$@ ఫార్వర్డ్ చేయాలా?";
 "ask_block_contact" = "మీరు ఈ పరిచయాన్ని రద్దుచేయాలని నిర్ణయించుకున్నారా?";
 // contact list

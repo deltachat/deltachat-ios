@@ -23,6 +23,8 @@
 "downloading" = "Pobieranie…";
 "open_attachment" = "Otwórz załącznik";
 "join" = "Dołącz";
+"join_group" = "Dołącz do grupy";
+"join_channel" = "Dołącz do kanału";
 "rejoin" = "Dołącz ponownie";
 "delete" = "Usuń";
 "delete_for_me" = "Usuń u mnie";
@@ -57,7 +59,9 @@
 "media" = "Multimedia";
 "apps_and_media" = "Aplikacje i multimedia";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Wszystkie profile";
+// deprecated
 "current_profile" = "Aktualny profil";
 "main_menu" = "Menu główne";
 "start_chat" = "Rozpocznij czat";
@@ -68,6 +72,8 @@
 "mark_as_read" = "Oznacz jako przeczytane";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Przeczytane";
+// Used as an menu entry or button
+"mark_as_unread" = "Oznacz jako nieprzeczytane";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Nieprzeczytane";
 // Placeholder text when something is loading
@@ -80,6 +86,7 @@
 "always" = "Zawsze";
 "always_load_remote_images" = "Zawsze wczytuj zdalne obrazy";
 "once" = "Jeden raz";
+// deprecated
 "show_warning" = "Pokaż ostrzeżenie";
 "not_now" = "Nie teraz";
 "never" = "Nigdy";
@@ -89,6 +96,7 @@
 "offline" = "Offline";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Dalej";
+"warning" = "Ostrzeżenie";
 "error" = "Błąd";
 "error_x" = "Błąd: %1$@";
 "no_app_to_handle_data" = "Nie można znaleźć aplikacji do obsługi tego typu danych.";
@@ -155,6 +163,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Zrób to";
+// Switch eg. from front to back camera
 "switch_camera" = "Przełącz kamerę";
 "toggle_fullscreen" = "Przełącz na tryb pełnoekranowy";
 "location" = "Lokalizacja";
@@ -322,11 +331,13 @@
 "mute_for_one_day" = "Wyłącz na 1 dzień";
 "mute_for_seven_days" = "Wyłącz na 7 dni";
 "mute_forever" = "Wyłącz na zawsze";
+// deprecated
 "share_location_for_5_minutes" = "na 5 minut";
 "share_location_for_30_minutes" = "na 30 mninut";
 "share_location_for_one_hour" = "na 1 godzinę";
 "share_location_for_two_hours" = "na 2 godziny";
 "share_location_for_six_hours" = "na 6 godzin";
+"share_location_for_24_hours" = "na 24 godziny";
 "file_saved_to" = "Plik zapisany w „%1$@";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Zadzwoń";
@@ -360,11 +371,18 @@
 "canceled_call" = "Połączenie anulowane";
 "missed_call" = "Połączenie anulowane";
 "already_in_call" = "Już w trakcie rozmowy";
+"call_answered_elsewhere" = "Połączenie odebrane na innym urządzeniu";
+"call_requires_mic_permission" = "Do połączeń wymagane jest zezwolenie na korzystanie z mikrofonu";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Rozmowa z %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Dzwonię do %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Na pewno chcesz opuścić?";
 "ask_delete_named_chat" = "Usunąć czat „%1$@”?";
 "ask_delete_message" = "Usunąć tę wiadomość?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Przekazać wiadomości do użytkownika %1$@?";
 "ask_forward_multiple" = "Przekazać wiadomości do %1$d czatów?";
 "ask_export_attachment" = "Eksportować załącznik? Eksportowanie załączników umożliwi dostęp do nich innym aplikacjom na urządzeniu.\n\nKontynuować?";
@@ -435,8 +453,11 @@
 // search
 "search" = "Szukaj";
 "search_in_chat" = "Wyszukaj w czacie";
+// Placeholder will be replaced by the chat name
+"search_in" = "Wyszukaj w %1$@";
 "search_files" = "Szukaj plików";
 "search_explain" = "Wyszukaj czaty, kontakty i wiadomości";
+"search_result_for_x" = "Wynik dla „%1$@”";
 "search_no_result_for_x" = "Nie znaleziono wyników dla „%1$@";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Nieprzeczytane";
@@ -448,6 +469,7 @@
 "group_create_button" = "Utwórz grupę";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Podaj nazwę dla grupy";
+"please_enter_chat_name" = "Wpisz nazwę.";
 "group_add_members" = "Dodaj członków";
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
 "profile_encryption" = "Szyfrowanie";
@@ -632,10 +654,10 @@
 "pref_profile_photo" = "Zdjęcie profilowe";
 "pref_blocked_contacts" = "Zablokowane kontakty";
 "blocked_empty_hint" = "Zablokowane kontakty, zostaną pokazane tutaj.";
-"pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe, nazwa i biografia będą wyświetlane wraz z wiadomościami podczas komunikacji z innymi użytkownikami. Już wysłanych informacji nie można skasować ani usunąć.";
+"pref_who_can_see_profile_explain" = "Twoje zdjęcie profilowe, nazwa i biografia zostaną wysłane razem z wiadomościami, podczas komunikacji z innymi użytkownikami.";
 "pref_your_name" = "Twoja nazwa";
 // Label of the Bio/Signature/Status/Motto field
-"pref_default_status_label" = "Tekst podpisu";
+"pref_default_status_label" = "Biografia";
 "chat_description" = "Opis";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter wysyła";
@@ -660,6 +682,7 @@
 "pref_notifications_priority" = "Priorytet";
 "pref_notifications_explain" = "Włącz powiadomienia systemowe o nowych wiadomościach";
 "pref_show_notification_content" = "Pokaż treść wiadomości w powiadomieniu";
+// deprecated
 "pref_show_notification_content_explain" = "Pokaż nadawcę i pierwsze słowa wiadomości w powiadomieniach";
 "pref_led_color" = "Kolor LED-a";
 "pref_sound" = "Dźwięk";
@@ -678,6 +701,8 @@
 "pref_incognito_keyboard_explain" = "Poproś klawiaturę o wyłączenie spersonalizowanej nauki";
 "pref_read_receipts" = "Potwierdzenie odczytu";
 "pref_read_receipts_explain" = "Jeśli potwierdzenia odczytu zostaną wyłączone, nie będzie można zobaczyć potwierdzeń odczytu od innych osób.";
+// Title above a list of contacts who read a message
+"read_by" = "Przeczytana przez";
 "pref_server" = "Serwer";
 "pref_encryption" = "Szyfrowanie";
 "pref_manage_keys" = "Zarządzaj prywatnymi kluczami";
@@ -700,20 +725,27 @@
 "pref_background" = "Tło";
 "pref_background_btn_default" = "Użyj domyślnego obrazu";
 "pref_background_btn_gallery" = "Wybierz z galerii";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Jeśli zmienisz tę opcję, upewnij się, że twój serwer i inni klienci są odpowiednio skonfigurowani.\n\nW przeciwnym razie wszystko może w ogóle nie działać.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Tryb wielu urządzeń";
 "pref_multidevice_explain" = "Synchronizuj swoje wiadomości z innymi swoimi urządzeniami. Włączane automatycznie po dodaniu drugiego urządzenia";
 "pref_multidevice_change_warn" = "Tryb wielu urządzeń musi być włączony podczas korzystania z tego samego profilu na wielu urządzeniach. Wyłącz to ustawienie tylko wtedy, gdy usuniesz ten profil ze wszystkich pozostałych urządzeń.\n\nWyłączenie trybu wielu urządzeń podczas korzystania z profilu na wielu urządzeniach spowoduje pominięcie wiadomości i inne problemy.";
+// deprecated
 "pref_auto_folder_moves" = "Automatyczne przenoszenie do folderu DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Pobieraj tylko z folderu DeltaChat";
+// deprecated
 "pref_show_emails" = "Pokaż klasyczne e-maile";
+// deprecated
 "pref_show_emails_no" = "Nie, tylko czaty";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Dla zaakceptowanych kontaktów";
+// deprecated
 "pref_show_emails_all" = "Wszystkie";
 "pref_experimental_features" = "Funkcje eksperymentalne";
 "pref_experimental_features_explain" = "Te funkcje mogą być niestabilne i mogą zostać zmienione lub usunięte";
-"pref_on_demand_location_streaming" = "Przesyłanie strumieniowe lokalizacji na żądanie";
+"pref_on_demand_location_streaming" = "Strumieniowanie lokalizacji";
 "pref_background_default" = "Domyślne tło";
 "pref_background_default_color" = "Domyślny kolor";
 "pref_background_custom_image" = "Własny obraz";
@@ -761,14 +793,17 @@
 // automatically delete message
 "delete_old_messages" = "Usuwanie starych wiadomości";
 "autodel_device_title" = "Usuń wiadomości z urządzenia";
+// deprecated
 "autodel_server_title" = "Usuń wiadomości z serwera";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n• Obejmuje to wszystkie multimedia\n\n• Wiadomości zostaną usunięte niezależnie od tego, czy były widoczne, czy nie\n\n• „Zapisane wiadomości” zostaną pominięte podczas lokalnego usuwania";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Czy chcesz teraz usunąć %1$d wiadomości i wszystkie nowo pobrane wiadomości w przyszłości „%2$@”?\n\n⚠️ Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze.\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze\n\n⚠️ Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub korzystasz także z klasycznych klientów poczty e-mail";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Obejmuje to e-maile, multimedia i „Zapisane wiadomości” we wszystkich folderach na serwerze. Nie używaj tej funkcji, jeśli chcesz zachować dane na serwerze lub jeśli używasz klasycznych klientów poczty e-mail";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Włącz natychmiastowe usuwanie";
+// deprecated
 "autodel_server_warn_multi_device" = "Jeśli włączysz natychmiastowe usuwanie, nie będzie można używać wielu urządzeń w tym profilu.";
 "autodel_confirm" = "Rozumiem, usuń te wszystkie wiadomości";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -786,9 +821,12 @@
 "group_name_changed_by_you" = "Zmieniono nazwę grupy z „%1$@“ na „%2$@“.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nazwa grupy zmieniona z „%1$@“ na „%2$@“ przez %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Zmieniono nazwę kanału z „%1$@” na „%2$@”.";
 "group_image_changed_by_you" = "Zmieniono obraz grupy.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Obraz grupy zmieniony przez %1$@.";
+"channel_image_changed" = "Zmieniono obraz kanału.";
 "chat_description_changed_by_you" = "Zmieniono opis czatu.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Opis czatu zmieniony przez %1$@.";
@@ -860,7 +898,7 @@
 "invalid_unencrypted_explanation" = "Aby ustanowić szyfrowanie end-to-end, możesz spotkać się z kontaktami osobiście i zeskanować ich kod QR, żeby ich zweryfikować.";
 "learn_more" = "Czytaj więcej";
 "devicemsg_self_deleted" = "Usunięto czat „Zapisane wiadomości”.\n\nℹ️ Aby ponownie użyć funkcji „Zapisane wiadomości”, utwórz nowy czat ze sobą.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Limit pamięci u twojego dostawcy wkrótce zostanie przekroczony, wykorzystano już %1$@%%.\n\nMożesz nie być w stanie otrzymywać wiadomości, gdy pamięć jest pełna.\n\n👉 Sprawdzić, czy możesz usunąć stare dane w interfejsie internetowym dostawcy i rozważyć włączenie opcji \"Ustawienia » Czaty » Usuwanie starych wiadomości\". W dowolnym momencie możesz sprawdzić swoje bieżące wykorzystanie pamięci w \"Ustawienia » Łączność\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Data lub godzina urządzenia wydaje się być niedokładna (%1$@).\n\nDostosuj zegar ⏰🔧, aby upewnić się, że wiadomości są prawidłowo odbierane.";
@@ -922,6 +960,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Na czacie %1$@ jest już wersja robocza wiadomości, czy chcesz ją zastąpić?";
 "mailto_link_could_not_be_decoded" = "link mailto nie mógł zostać odszyfrowany: %1$@";
+"remove_quote" = "Usuń cytat";
+"remove_attachment" = "Usuń załącznik";
 // notifications
 "notify_reply_button" = "Odpowiedz";
 "notify_new_message" = "Nowa wiadomość";
@@ -937,6 +977,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Masz nowe wiadomości";
 "n_messages_in_m_chats" = "%1$d wiadomości w %2$d czatach";
+// location streaming
+"location_streaming_notification_text" = "Udostępniasz swoją lokalizację";
+"location_rationale" = "Aby udostępnić swoją lokalizację na żywo członkom czatu, zezwól aplikacji Delta Chat na korzystanie z danych o twojej lokalizacji.\n\nAby funkcja lokalizacji na żywo działała bez przerw, dane o lokalizacji są używane nawet wtedy, gdy aplikacja jest zamknięta lub nieużywana.";
 // permissions
 "perm_required_title" = "Wymagane zezwolenie";
 "perm_continue" = "Kontynuuj";
@@ -976,6 +1019,7 @@
 "global_menu_help_about_desktop" = "O Delta Chat";
 "global_menu_file_open_desktop" = "Otwórz Delta Chat";
 "global_menu_minimize_to_tray" = "Minimalizuj";
+"no_account_selected" = "Wybierz profil lub utwórz nowy profil";
 "no_chat_selected_suggestion_desktop" = "Wybierz czat lub utwórz nowy czat";
 "write_message_desktop" = "Napisz wiadomość";
 "encryption_info_title_desktop" = "Informacje o szyfrowaniu";
@@ -997,8 +1041,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nie znaleziono propozycji pisowni.";
 "show_window" = "Pokaż okno";
+"data_found_other_installation_message" = "Twoje profile z innej instalacji Delta Chat nie są dostępne – różne instalacje przechowują swoje dane w oddzielnych lokalizacjach.\n\nAby zachować istniejące profile:\n1. Zamknij teraz.\n2. Otwórz inny Delta Chat – w razie potrzeby zainstaluj go ponownie z %1$@\n3. Utwórz kopię zapasową każdego profilu w „Ustawienia/Czaty”.\n4. Uruchom ponownie tę wersję.\n5. Przywróć kopie zapasowe, naciskając „Mam już profil”.\n\nCzy kontynuować bez poprzednich profili?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Przypisanie klawiszy";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Nawigacja";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Wprowadzanie wiadomości";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Zaznaczona wiadomość";
 "switch_between_chats" = "Przełącz się między czatami";
 "scroll_messages" = "Przewiń wiadomości";
 // command to put the cursor to the search input field
@@ -1017,6 +1068,8 @@
 "a11y_message_context_menu_btn_label" = "Działania na wiadomości";
 "a11y_background_preview_label" = "Podgląd tła";
 "a11y_disappearing_messages_activated" = "Aktywowano znikające wiadomości";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Otwórz %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Zatrzymaj udostępnianie lokalizacji";
 "a11y_voice_message_hint_ios" = "Po nagraniu dotknij dwukrotnie, aby wysłać. Aby odrzucić nagranie, przeciągnij dwoma palcami.";

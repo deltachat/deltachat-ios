@@ -157,11 +157,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Trimiteți următorul fișier la %s?</string>
+			<string>Trimiteți următorul fișier la %2$@?</string>
 			<key>few</key>
-			<string>Trimiteți următoarele %d fișiere la %s?</string>
+			<string>Trimiteți următoarele %d fișiere la %2$@?</string>
 			<key>other</key>
-			<string>Trimiteți următoarele %d de fișiere la %s?</string>
+			<string>Trimiteți următoarele %d de fișiere la %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

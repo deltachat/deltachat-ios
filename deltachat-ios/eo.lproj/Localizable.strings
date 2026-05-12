@@ -52,7 +52,9 @@
 "media" = "Aŭdovidaĵoj";
 "apps_and_media" = "Apoj kaj vidaĵoj";
 "profile" = "Profilo";
+// deprecated
 "all_profiles" = "Ĉiuj profiloj";
+// deprecated
 "current_profile" = "Aktuala profilo";
 "main_menu" = "Ĉefa menuo";
 "start_chat" = "Komenci Babiladon";
@@ -73,6 +75,7 @@
 "always" = "Ĉiam";
 "always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
+// deprecated
 "show_warning" = "Afiŝu averton";
 "not_now" = "Ne nun";
 "never" = "Neniam";
@@ -134,6 +137,7 @@
 "camera" = "Fotilo";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kapti";
+// Switch eg. from front to back camera
 "switch_camera" = "Elektu alian kameraon";
 "toggle_fullscreen" = "Baskulu el/al la plena ekrano";
 "location" = "Loko";
@@ -241,12 +245,14 @@
 "mute_for_one_day" = "Silentigi por 1 tago";
 "mute_for_seven_days" = "Silentigi por 7 tagoj";
 "mute_forever" = "Silentigi por ĉiam";
+// deprecated
 "share_location_for_5_minutes" = "por 5 minutoj";
 "share_location_for_30_minutes" = "por 30 minutoj";
 "share_location_for_one_hour" = "por 1 horo";
 "share_location_for_two_hours" = "por 2 horoj";
 "share_location_for_six_hours" = "por 6 horoj";
 "file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Plusendi mesaĝojn al %1$@?";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // %1$s is replaced by a comma-separated list of names
@@ -364,6 +370,7 @@
 "pref_background" = "Fono";
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
+// deprecated
 "pref_show_emails_all" = "Ĉiuj";
 // notifications
 "notify_reply_button" = "Respondi";

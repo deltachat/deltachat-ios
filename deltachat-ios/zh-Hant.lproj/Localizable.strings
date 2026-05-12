@@ -57,7 +57,9 @@
 "media" = "多媒體";
 "apps_and_media" = "應用程式和媒體";
 "profile" = "賬戶";
+// deprecated
 "all_profiles" = "所有賬戶";
+// deprecated
 "current_profile" = "當前賬戶";
 "main_menu" = "主選單";
 "start_chat" = "開始聊天";
@@ -78,6 +80,7 @@
 "always" = "永遠";
 "always_load_remote_images" = "總是載入遠端圖片";
 "once" = "僅一次";
+// deprecated
 "show_warning" = "顯示警告";
 "not_now" = "現在不要";
 "never" = "永遠不要";
@@ -153,6 +156,7 @@
 "camera" = "相機";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "拍攝";
+// Switch eg. from front to back camera
 "switch_camera" = "切換相機";
 "toggle_fullscreen" = "切換全螢幕模式";
 "location" = "地點";
@@ -320,6 +324,7 @@
 "mute_for_one_day" = "靜音1天";
 "mute_for_seven_days" = "靜音7天";
 "mute_forever" = "永遠靜音";
+// deprecated
 "share_location_for_5_minutes" = "5分鐘";
 "share_location_for_30_minutes" = "30分鐘";
 "share_location_for_one_hour" = "1小時";
@@ -362,6 +367,7 @@
 "ask_leave_group" = "確定要離開？";
 "ask_delete_named_chat" = "刪除您所有設備上的“%1$@”聊天 ？";
 "ask_delete_message" = "在您的所有裝置上刪除此訊息？";
+// deprecated, use ask_forward_messages
 "ask_forward" = "轉發訊息給%1$@？";
 "ask_forward_multiple" = "轉發訊息到%1$d個聊天？";
 "ask_export_attachment" = "要匯出附件嗎？匯出的附件可以用裝置上的其它應用程式打開。\n\n要繼續嗎？";
@@ -655,6 +661,7 @@
 "pref_notifications_priority" = "通知優先權";
 "pref_notifications_explain" = "為新訊息啟用系統通知";
 "pref_show_notification_content" = "在通知中顯示訊息內容";
+// deprecated
 "pref_show_notification_content_explain" = "顯示通知中訊息的寄件人和開頭部分";
 "pref_led_color" = "LED顏色";
 "pref_sound" = "音效";
@@ -695,16 +702,23 @@
 "pref_background" = "背景";
 "pref_background_btn_default" = "使用預設圖案";
 "pref_background_btn_gallery" = "從相簿中挑選";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "如果關閉本選項的話，請務必確定你的伺服器和其它客戶端應用程式都使用相同的設定，否則很可能不能運作。";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "多裝置模式";
 "pref_multidevice_explain" = "將您的訊息與其他裝置同步。新增第二個裝置時自動啟用";
 "pref_multidevice_change_warn" = "在多個裝置上使用同一的帳戶時，必須啟用多裝置模式。只有在您已從所有其他設備移除此帳戶後，才可以禁用此設定。\n\n在多個裝置上使用該帳戶時禁用多裝置模式將導致漏接訊息及其他問題。";
+// deprecated
 "pref_auto_folder_moves" = "自動搬移到 DeltaChat 資料夾";
+// deprecated
 "pref_only_fetch_mvbox_title" = "僅從 DeltaChat 資料夾中獲取";
+// deprecated
 "pref_show_emails" = "顯示傳統email";
+// deprecated
 "pref_show_emails_no" = "只顯示對話";
+// deprecated
 "pref_show_emails_accepted_contacts" = "顯示已接受的聯絡人";
+// deprecated
 "pref_show_emails_all" = "所有郵件";
 "pref_experimental_features" = "實驗性功能";
 "pref_experimental_features_explain" = "這些功能可能不穩定，並且可能會被更改或移除";
@@ -756,14 +770,17 @@
 // automatically delete message
 "delete_old_messages" = "刪除舊訊息";
 "autodel_device_title" = "從裝置中刪除訊息";
+// deprecated
 "autodel_server_title" = "從伺服器中刪除訊息";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "您是否要立即刪除%1$d條消息，之後在收到消息「%2$@」后刪除它們？ \n\n⚠️ 這包括伺服器所有媒體\n\n•這包括所有媒體\n\n• 無論消息是否被看到都將被刪除\n\n• “已保存的郵件”將不會被本地刪除";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "您是否要立即刪除%1$d條訊息，之後在訊息收到「%2$@」后刪除它們？ \n\n⚠️ 這包括伺服器所有資料夾中的電子郵件、媒體和“保存的消息”\n\n⚠️ 如果您想在伺服器上保留數據，請不要使用此功能\n\n⚠️ 如果您正在使用 Delta Chat 之外的電子郵件用戶端，請不要使用此功能";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "這包括所有伺服器資料夾中的電子郵件、媒體和「保存的訊息」。如果您想將數據保留在伺服器上，或者您正在使用 Delta Chat 以外的其他電子郵件用戶端，請不要使用此功能。";
+// deprecated
 "autodel_server_warn_multi_device_title" = "啟用一次性刪除";
+// deprecated
 "autodel_server_warn_multi_device" = "如果啟用一次性刪除，則您無法使用多個裝置登入該賬戶。";
 "autodel_confirm" = "我已知曉，刪除所有這些消息";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -854,7 +871,7 @@
 "invalid_unencrypted_explanation" = "要建立端到端加密，您可以當面掃描聯絡人的QR碼。";
 "learn_more" = "瞭解更多";
 "devicemsg_self_deleted" = "您刪除了「已保存的訊息」聊天。\n\nℹ️要再次使用「已保存的訊息」功能，請與自己創建新聊天。";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ 您的供應商的存儲空間即將用完：已使用%1$@%%。\n\n如果存儲空間已滿，您可能無法接收訊息。\n\n👉請檢查您是否可以在提供商的網頁介面中刪除舊數據，並考慮啟用「設定/聊天和媒體/刪除舊訊息」。您可以隨時在「設定/連接」 中檢查您目前的儲存使用方式。";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 您裝置上的日期或時間似乎不準確 （%1$@）。\n\n調整您的時鐘⏰🔧以確保您的訊息被正確接收。";

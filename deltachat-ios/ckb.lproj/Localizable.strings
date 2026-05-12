@@ -176,12 +176,14 @@
 "mute_for_one_day" = "بێدەنگ کردن بۆ ماوەی 1 ڕۆژ";
 "mute_for_seven_days" = "بێدەنگ کردن بۆ ماوەی 7 ڕۆژ";
 "mute_forever" = "بێدەنگ کردن بۆ هەمیشە";
+// deprecated
 "share_location_for_5_minutes" = "بۆ ماوەی 5 خولەک";
 "share_location_for_30_minutes" = "بۆ ماوەی 30 خولەک";
 "share_location_for_one_hour" = "بۆ ماوەی 1 کاتژمێر";
 "share_location_for_two_hours" = "بۆ ماوەی 2 کاتژمێر";
 "share_location_for_six_hours" = "بۆ ماوەی 6 کاتژمێر";
 "file_saved_to" = "پەڕگەکە پاشەکەوت کرا لە \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "ئەو پەیامانە دەنێریت بۆ %1$@؟";
 "ask_forward_multiple" = "ئەو پەیامانە دەنێریت بۆ نێو %1$dوتووێژ؟";
 "ask_export_attachment" = "پێوەلکاوەکە هەناردە دەکەیت؟ هەناردەکردنی پێوەلکاوەکان وادەکات نەرمامێرەکانی دیکەی سەر مۆبایلەکەت بتوانن دەستیان بەو بەڵگە هەناردەکراوە بگات.\n\n بەردەوام دەبیت؟";
@@ -300,6 +302,7 @@
 "pref_notifications_priority" = "پێشترێتی";
 "pref_notifications_explain" = "وریاکەرەوەکانی سیستەم بۆ پەیامە نوێکان چالاک بکە";
 "pref_show_notification_content" = "دەقی پەیامەکە لەنێو وریاکەرەوەکاندا پیشان بدە";
+// deprecated
 "pref_show_notification_content_explain" = "ناوی پەیامنێرەکە و وشە سەرەتاییەکانی دەقی پەیامەکە لەناو وریاکەرەوەکەدا پیشان بدە";
 "pref_led_color" = "ڕەنگی چرای LED";
 "pref_sound" = "دەنگ";
@@ -330,10 +333,15 @@
 "pref_background" = "پشتخان";
 "pref_background_btn_default" = "بەکارهێنانی وێنەی بنەڕەتی";
 "pref_background_btn_gallery" = "هەڵبژاردن لە پیشانگا";
+// deprecated
 "pref_auto_folder_moves" = "هەناردنی خۆکار بۆ بوخچەی دێڵتاچات";
+// deprecated
 "pref_show_emails" = "پیشاندانی ئیمەیلە کلاسیکەکان";
+// deprecated
 "pref_show_emails_no" = "نا، بەس چاتەکان";
+// deprecated
 "pref_show_emails_accepted_contacts" = "بۆ بەردەنگە پەسندکراوەکان";
+// deprecated
 "pref_show_emails_all" = "هەموو";
 "pref_experimental_features" = "ئەو تایبەتمەندییانەی بۆ تاقی کردنەوەن";
 "pref_background_default" = "پشتخانی بنەڕەتی";
@@ -359,6 +367,7 @@
 // automatically delete message
 "delete_old_messages" = "سڕینەوەی پەیامە کۆنەکان";
 "autodel_device_title" = "سڕینەوەی پەیامەکان لەسەر مۆبایەلەکت";
+// deprecated
 "autodel_server_title" = "سڕینەوەی پەیامەکان لەسەر سێرڤەر";
 "autodel_confirm" = "تێگەیشتم، هەموو ئەم پەیامانە بسڕەوە";
 // "At once" in the meaning of "Immediately", without any intervening time.

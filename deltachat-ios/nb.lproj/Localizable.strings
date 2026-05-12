@@ -23,6 +23,8 @@
 "downloading" = "Laster ned...";
 "open_attachment" = "Åpne vedlegg";
 "join" = "Bli med";
+"join_group" = "Bli med i gruppe";
+"join_channel" = "Bli med i kanal";
 "rejoin" = "Bli med igjen";
 "delete" = "Slett";
 "delete_for_me" = "Slett for meg";
@@ -57,7 +59,9 @@
 "media" = "Media";
 "apps_and_media" = "Apper & Media";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Alle profiler";
+// deprecated
 "current_profile" = "Gjeldende profil";
 "main_menu" = "Hovedmeny";
 "start_chat" = "Start chat";
@@ -68,6 +72,10 @@
 "mark_as_read" = "Merk som lest";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Lest";
+// Used as an menu entry or button
+"mark_as_unread" = "Merk som ulest";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Ulest";
 // Placeholder text when something is loading
 "loading" = "Laster...";
 "hide" = "Skjul";
@@ -78,6 +86,7 @@
 "always" = "Alltid";
 "always_load_remote_images" = "Last alltid eksterne bilder";
 "once" = "Én gang";
+// deprecated
 "show_warning" = "Vis advarsel";
 "not_now" = "Ikke nå";
 "never" = "Aldri";
@@ -87,6 +96,7 @@
 "offline" = "Avlogget";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Neste";
+"warning" = "Advarsel";
 "error" = "Feil";
 "error_x" = "Feil: %1$@";
 "no_app_to_handle_data" = "Kan ikke finne en app som kan handtere denne typen data.";
@@ -114,10 +124,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Sist sett %1$@";
 "last_seen_unknown" = "Sist sett: uvisst";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Mindre enn 1 minutt";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
 "selected_colon" = "Valgt:";
+"selected" = "Valgt";
 "self" = "Meg";
 "draft" = "Kladd";
 "image" = "Bilde";
@@ -131,6 +145,9 @@
 "add_stickers_instructions" = "For å legge til merker, trykk på \"Åpne merkemappe\", lag en undermappe for merkepakken, og dra bilder og merkefiler dit";
 // deprecated
 "open_sticker_folder" = "Åpne merkemappe";
+"ask_add_sticker_to_collection" = "Legg dette merket til samlingen din?";
+"ask_delete_sticker" = "Slett dette merket?";
+"sticker_picker_empty_hint" = "Trykk på et merke for å legge det til her.";
 "images" = "Bilder";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Lyd";
@@ -146,6 +163,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Ta opp";
+// Switch eg. from front to back camera
 "switch_camera" = "Bytt kamera";
 "toggle_fullscreen" = "Vis fullskjerm";
 "location" = "Posisjon";
@@ -208,6 +226,7 @@
 "new_channel" = "Ny kanal";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalnavn";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "E-post";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Ny e-post";
@@ -223,6 +242,7 @@
 "menu_add_attachment" = "Legg ved filer";
 "menu_leave_group" = "Forlat gruppe";
 "menu_leave_channel" = "Forlat kanal";
+"menu_leave_and_delete" = "Forlat & slett for meg";
 "menu_delete_chat" = "Slett chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tøm chat";
@@ -311,26 +331,58 @@
 "mute_for_one_day" = "Demp i 1 dag";
 "mute_for_seven_days" = "Demp i 7 dager";
 "mute_forever" = "Alltid dempet";
+// deprecated
 "share_location_for_5_minutes" = "i 5 minutter";
 "share_location_for_30_minutes" = "i 30 minutter";
 "share_location_for_one_hour" = "i 1 time";
 "share_location_for_two_hours" = "i 2 timer";
 "share_location_for_six_hours" = "i 6 timer";
+"share_location_for_24_hours" = "i 24 timer";
 "file_saved_to" = "Lagre fil til \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Ring";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
+"start_audio_call" = "Lydsamtale";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
+"start_video_call" = "Videosamtale";
 // the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
 "answer_call" = "Svar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Avvis";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Lydsamtale";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videosamtale";
+"call_initializing" = "Initialiserer...";
+"call_incoming" = "Inkommende samtale";
+"call_ringing" = "Ringer...";
+"call_reconnecting" = "Gjenoppretter forbindelsen...";
+"call_ended" = "Samtale avsluttet";
+"call_failed" = "Samtale feilet";
+// deprecated, use "Audio call" instead
+"outgoing_audio_call" = "Utgående lydsamtale";
+// deprecated, use "Video call" instead
+"outgoing_video_call" = "Utgående videosamtale";
+// deprecated, use "Audio call" instead
+"incoming_audio_call" = "Inkommende lydsamtale";
+// deprecated, use "Video call" instead
+"incoming_video_call" = "Inkommende videosamtale";
 "declined_call" = "Avvist anrop";
 "canceled_call" = "Avbrutt anrop";
 "missed_call" = "Ubesvart anrop";
+"already_in_call" = "Allerede i en samtale";
+"call_answered_elsewhere" = "Samtale besvart på en annen enhet";
+"call_requires_mic_permission" = "Mikrofontillatelse er nødvendig for samtaler";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Samtale med %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Ringer %1$@...";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Er du sikker på at du vil forlate?";
 "ask_delete_named_chat" = "Slett chatten \"%1$@\" fra alle dine enheter?";
 "ask_delete_message" = "Slett denne meldingen fra alle dine enheter?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Videresend meldinger til %1$@?";
 "ask_forward_multiple" = "Videresend meldinger til %1$d chatter?";
 "ask_export_attachment" = "Eksporter vedlegg? Eksport av vedlegg vil gi andre apper på din enhet tilgang til dem\n\nFortsett?";
@@ -392,19 +444,61 @@
 "send_file_to" = "Send \"%1$@\" til…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
 "send_message_to" = "Send melding til…";
+// punycode warning / labeled links
+"puny_code_warning_header" = "Mistenkelig lenke oppdaget";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Er du sikker på at du vil besøke %1$@?";
 // search
 "search" = "Søk";
+"search_in_chat" = "Søk i chat";
+// Placeholder will be replaced by the chat name
+"search_in" = "Søk i %1$@ ";
+"search_files" = "Søk i filer";
+"search_explain" = "Søk etter chatter, kontakter, og meldinger";
+"search_result_for_x" = "Resultat for \"%1$@\"";
+"search_no_result_for_x" = "Ingen resultater funnet for \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Ulest";
 // create/edit groups, contact/group profile
 "group_name" = "Gruppenavn";
+"group_avatar" = "Gruppebilde";
+"remove_group_image" = "Fjern gruppebilde";
+"change_group_image" = "Endre gruppebilde";
 "group_create_button" = "Lag gruppe";
+// deprecated, use please_enter_chat_name
+"group_please_enter_group_name" = "Skriv inn et navn på gruppen.";
+"please_enter_chat_name" = "Skriv inn et navn.";
 "group_add_members" = "Legg til medlem";
+"group_self_not_in_group" = "Du må være medlem av gruppen for å utføre denne handlingen.";
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delte chatter";
+// Separator between the list of actual members and past members
+"past_members" = "Tidligere medlemmer";
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";
 "tab_docs" = "Dokumenter";
+"tab_links" = "Lenker";
+"tab_map" = "Kart";
+"tab_gallery_empty_hint" = "Bilder og videor tilknyttet denne chatten vil vises her.";
+"tab_docs_empty_hint" = "Dokumenter og andre filer tilknyttet denne chatten vil vises her.";
+"tab_image_empty_hint" = "Bilder tilknyttet denne chatten vil vises her.";
+"tab_video_empty_hint" = "Videoer tilknyttet denne chatten vil vises her.";
+"tab_audio_empty_hint" = "Lydfiler og talebeskjeder tilknyttet denne chatten vil vises her.";
+"tab_webxdc_empty_hint" = "Apper tilknyttet denne chatten vil vises her.";
+"tab_all_media_empty_hint" = "Media tilknyttet denne chatten vil vises her.";
+"all_files_empty_hint" = "Dokumenter og andre filer tilknyttet alle chatter vil vises her.";
+"all_apps_empty_hint" = "Apper tilknyttet alle chatter vil vises her.";
 "media_preview" = "Forhåndsvisning av medier";
+// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+"aspect_ratio_grid" = "Rutenett for størrelsesforhold";
+// option to show images in the gallery as square (instead of using correct width/height)
+"square_grid" = "Kvadratisk rutenett";
+"send_message" = "Send melding";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Legg til annen enhet";
+"multidevice_same_network_hint" = "Sørg for at begge enhetene er tilkoblet samme Wi-Fi eller nettverk";
 "login_title" = "Logg inn";
 "login_inbox" = "Innboks";
 "login_imap_login" = "IMAP-innloggingsnavn";

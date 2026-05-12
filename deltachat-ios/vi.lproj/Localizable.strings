@@ -62,6 +62,7 @@
 "always" = "Luôn luôn";
 "always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
+// deprecated
 "show_warning" = "Hiển thị cảnh báo";
 "not_now" = "Không phải bây giờ";
 "never" = "Không bao giờ";
@@ -126,6 +127,7 @@
 "camera" = "Máy ảnh";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Chụp";
+// Switch eg. from front to back camera
 "switch_camera" = "Chuyển đổi máy ảnh";
 "toggle_fullscreen" = "Chuyển đổi Chế độ toàn màn hình";
 "location" = "Vị trí";
@@ -245,12 +247,14 @@
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
 "mute_forever" = "Tắt tiếng vĩnh viễn";
+// deprecated
 "share_location_for_5_minutes" = "Trong 5 phút";
 "share_location_for_30_minutes" = "Trong 30 phút";
 "share_location_for_one_hour" = "Trong 1 giờ";
 "share_location_for_two_hours" = "Trong 2 giờ";
 "share_location_for_six_hours" = "Trong 6 giờ";
 "file_saved_to" = "Tệp đã được lưu vào \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";
@@ -460,6 +464,7 @@
 "pref_notifications_priority" = "Ưu tiên";
 "pref_notifications_explain" = "Bật thông báo hệ thống cho tin nhắn mới";
 "pref_show_notification_content" = "Hiển thị nội dung tin nhắn trong thông báo";
+// deprecated
 "pref_show_notification_content_explain" = "Hiển thị người gửi và từ đầu tiên của tin nhắn trong thông báo";
 "pref_led_color" = "Màu LED";
 "pref_sound" = "Âm thanh";
@@ -496,12 +501,19 @@
 "pref_background" = "Hình nền";
 "pref_background_btn_default" = "Sử dụng hình ảnh mặc định";
 "pref_background_btn_gallery" = "Chọn từ thư viện";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
+// deprecated
 "pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Chỉ tìm nạp từ thư mục DeltaChat";
+// deprecated
 "pref_show_emails" = "Hiển thị E-mail cổ điển";
+// deprecated
 "pref_show_emails_no" = "Không, chỉ trò chuyện";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Đối với các liên hệ được chấp nhận";
+// deprecated
 "pref_show_emails_all" = "Tất cả";
 "pref_experimental_features" = "Tính năng thử nghiệm";
 "pref_on_demand_location_streaming" = "Truyền phát vị trí theo yêu cầu";
@@ -538,12 +550,13 @@
 // automatically delete message
 "delete_old_messages" = "Xóa tin nhắn cũ";
 "autodel_device_title" = "Xóa tin nhắn khỏi thiết bị";
+// deprecated
 "autodel_server_title" = "Xóa tin nhắn khỏi máy chủ";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Bạn có muốn xóa %1$d tin nhắn ngay bây giờ và tất cả các tin nhắn mới được tìm nạp \"%2$@\" trong tương lai không?\n\n• Điều này bao gồm tất cả phương tiện\n\n• Tin nhắn sẽ bị xóa dù chúng có được nhìn thấy hay không\n\n• \"Tin nhắn đã lưu\" sẽ bị bỏ qua khỏi quá trình xóa cục bộ";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Bạn có muốn xóa %1$d tin nhắn ngay bây giờ và tất cả các tin nhắn mới được tìm nạp \"%2$@\" trong tương lai không?\n\n⚠️ Điều này bao gồm e-mail, phương tiện và \"Tin nhắn đã lưu\" trong tất cả máy chủ thư mục\n\n⚠️ Không sử dụng chức năng này nếu bạn muốn giữ dữ liệu trên máy chủ\n\n⚠️ Không sử dụng chức năng này nếu bạn đang sử dụng các ứng dụng e-mail khác ngoài Delta Chat";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Điều này bao gồm e-mail, phương tiện và \"Tin nhắn đã lưu\" trong tất cả các thư mục máy chủ. Không sử dụng chức năng này nếu bạn muốn giữ dữ liệu trên máy chủ hoặc nếu bạn đang sử dụng các ứng dụng e-mail khác ngoài Delta Chat.";
 "autodel_confirm" = "Tôi hiểu, hãy xóa tất cả những tin nhắn này";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -618,7 +631,7 @@
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
 "learn_more" = "Tìm hiểu thêm";
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Bộ nhớ nhà cung cấp của bạn sắp hết: %1$@%% đã được sử dụng.\n\nBạn có thể không nhận được tin nhắn nếu bộ nhớ đầy.\n\n 👉 Vui lòng kiểm tra xem bạn có thể xóa không dữ liệu cũ trong giao diện web của nhà cung cấp và cân nhắc bật \"Cài đặt / Xóa tin nhắn cũ\". Bạn có thể kiểm tra mức sử dụng bộ nhớ hiện tại của mình bất kỳ lúc nào tại \"Cài đặt / Kết nối\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Ngày hoặc giờ trên thiết bị của bạn có vẻ không chính xác (%1$@).\n\nĐiều chỉnh đồng hồ của bạn ⏰🔧 để đảm bảo tin nhắn của bạn được nhận chính xác.";

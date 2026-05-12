@@ -62,6 +62,7 @@
 "always" = "Винаги";
 "always_load_remote_images" = "Винаги да се зареждат отдалечените изображения";
 "once" = "Веднъж";
+// deprecated
 "show_warning" = "Показване на предупреждение";
 "not_now" = "Не сега";
 "never" = "Никога";
@@ -126,6 +127,7 @@
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Заснемане";
+// Switch eg. from front to back camera
 "switch_camera" = "Превключване на камерата";
 "toggle_fullscreen" = "Включване/изключване на пълноекранния режим";
 "location" = "Местоположение";
@@ -248,12 +250,14 @@
 "mute_for_one_day" = "Спиране на звука за 1 ден";
 "mute_for_seven_days" = "Спиране на звука за 7 дни";
 "mute_forever" = "Спиране на звука за постоянно";
+// deprecated
 "share_location_for_5_minutes" = "За 5 минути";
 "share_location_for_30_minutes" = "За 30 минути";
 "share_location_for_one_hour" = "За 1 час";
 "share_location_for_two_hours" = "За 2 часа";
 "share_location_for_six_hours" = "За 6 часа";
 "file_saved_to" = "Файлът е записан в \"%1$@\"";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
 "ask_export_attachment" = "Експортирането на прикачените файлове ще даде възможност други приложения на Вашето устройство да имат достъп до тях.\n\nИскате ли да продължите?";
@@ -490,6 +494,7 @@
 "pref_notifications_priority" = "Приоритет";
 "pref_notifications_explain" = "Да бъдат разрешени системните уведомления за нови съобщения";
 "pref_show_notification_content" = "Да се показва в уведомлението съдържанието на съобщението";
+// deprecated
 "pref_show_notification_content_explain" = "Да се показва в уведомлението подателят и първите думи на съобщението";
 "pref_led_color" = "Цвят на LED светлината";
 "pref_sound" = "Звук";
@@ -528,12 +533,19 @@
 "pref_background" = "Фон";
 "pref_background_btn_default" = "Да се използва подразбиращото се изображение";
 "pref_background_btn_gallery" = "Избор от галерията";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
+// deprecated
 "pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Да се извлича само от папката DeltaChat";
+// deprecated
 "pref_show_emails" = "Да се показват класически e-mail съобщения";
+// deprecated
 "pref_show_emails_no" = "Не, само чатове";
+// deprecated
 "pref_show_emails_accepted_contacts" = "За приетите контакти";
+// deprecated
 "pref_show_emails_all" = "Всички";
 "pref_experimental_features" = "Експериментални възможности";
 "pref_on_demand_location_streaming" = "Поточно излъчване на местоположението при поискване";
@@ -577,12 +589,13 @@
 // automatically delete message
 "delete_old_messages" = "Изтриване на старите съобщения";
 "autodel_device_title" = "Изтриване на съобщенията от устройството";
+// deprecated
 "autodel_server_title" = "Изтриване на съобщенията от сървъра";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Искате ли да изтриете %1$d съобщения сега, както и всички съобщения \"%2$@\", които ще бъдат изтегляни в бъдеще?\n\n• Това включва всички медийни файлове\n\n• Съобщенията ще бъдат изтрити, независимо от това дали са видени или не\n\n• Съобщенията от \"Запазени съобщения\" няма да бъдат изтривани локално";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Искате ли да изтриете %1$d съобщения сега и всички съобщения \"%2$@\", които ще бъдат изтегляни в бъдеще?\n\n⚠️ Това включва електронна поща, медийни файлове и съобщенията от \"Записани съобщения\" във всички папки на сървъра\n\n⚠️ Не ползвайте тази функция, ако искате да запазите данните на сървъра\n\n⚠️ Не ползвайте тази функция, ако работите с други клиенти за електронна поща освен Delta Chat";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Това включва електронна поща, медийни файлове и \"Запазени съобщения\" във всички папки на сървъра. Не ползвайте тази функция, ако искате да запазите данните на сървъра или ако работите с други клиенти за електронна поща освен Delta Chat.";
 "autodel_confirm" = "Разбирам. Всички тези съобщения да бъдат изтрити";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -659,7 +672,7 @@
 "invalid_unencrypted_explanation" = "За да установите криптиране от край до край, бихте могли да се срещате с лицата, с които желаете да контактувате, лично и да сканирате техните QR кодове, за да ги въведете.";
 "learn_more" = "Научете повече";
 "devicemsg_self_deleted" = "Изтрихте чата \"Запазени съобщения\".\n\nℹ️ За да използвате възможността \"Запазени съобщения\" отново, създайте нов чат със себе си.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Мястото за съхранение, предоставено от Вашия доставчик, скоро ще бъде изчерпано:%1$@%% вече са използвани.\n\nМоже да нямате възможност да получавате съобщения, ако мястото за съхранение е заето напълно.\n\n👉 Моля, проверете дали не бихте могли да изтриете стари данни през уеб интерфейса на доставчика и обмислете дали да не включите \"Настройки / Изтриване на старите съобщения\". Можете по всяко време да проверите текущо използваното място за съхранение в \"Настройки / Свързаност\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Изглежда датата и часът на Вашето устройство са неточни (%1$@).\n\nНастройте часовника ⏰🔧, за да имате сигурност, че Вашите съобщения се получават правилно.";

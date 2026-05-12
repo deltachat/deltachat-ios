@@ -48,7 +48,9 @@
 "save" = "Guardar";
 "chat" = "Conversa";
 "profile" = "Perfil";
+// deprecated
 "all_profiles" = "Todos os Perfis";
+// deprecated
 "current_profile" = "Perfil Actual";
 "main_menu" = "Menu Principal";
 "show_full_message" = "Mostrar mensagem completa...";
@@ -192,11 +194,13 @@
 "mute_for_one_day" = "Calado por 1 dia";
 "mute_for_seven_days" = "Calado por 7 dias";
 "mute_forever" = "Silenciar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "por 5 min";
 "share_location_for_30_minutes" = "por 30 min";
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Reencaminhar mensages para %1$@?";
 "ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? A exportação de anexos permitirá o seu acesso a qualquer outra aplicação no seu dispositivo.\n\nContinuar?";
@@ -333,10 +337,15 @@
 "pref_backup_written_to_x" = "Backup escrito com sucesso em %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fundo";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
+// deprecated
 "pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
+// deprecated
 "pref_show_emails" = "Exibir e-mails comuns";
+// deprecated
 "pref_show_emails_no" = "Não, apenas conversas";
+// deprecated
 "pref_show_emails_all" = "Tudo";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";

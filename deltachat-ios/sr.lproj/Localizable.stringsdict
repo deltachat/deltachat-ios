@@ -157,11 +157,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Пошаљи датотеку %s?</string>
+			<string>Пошаљи датотеку %2$@?</string>
 			<key>few</key>
-			<string>Пошаљи %d датотеке %s?</string>
+			<string>Пошаљи %d датотеке %2$@?</string>
 			<key>other</key>
-			<string>Пошаљи %d датотеке %s?</string>
+			<string>Пошаљи %d датотеке %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

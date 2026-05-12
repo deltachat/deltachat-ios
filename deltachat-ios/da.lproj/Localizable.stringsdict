@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Send den følgende fil til 2%s?</string>
+			<string>Send den følgende fil til %2$@?</string>
 			<key>other</key>
-			<string>Send de følgende %d filer til %s?</string>
+			<string>Send de følgende %d filer til %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
