@@ -61,8 +61,9 @@ def generate_stringsdict(plurals: list, xml: TextIO) -> None:
         for quantity in ["zero", "one", "two", "few", "many", "other"]:
             item = elem.find(f'item[@quantity="{quantity}"]')
             if item is not None:
+                text = normalize_plurals_text(item.text)
                 xml.write(f"\t\t\t<key>{quantity}</key>\n")
-                xml.write(f"\t\t\t<string>{item.text}</string>\n")
+                xml.write(f"\t\t\t<string>{text}</string>\n")
         xml.write("\t\t</dict>\n")
         xml.write("\t</dict>\n")
     xml.write("</dict>\n")
@@ -82,6 +83,15 @@ def normalize_text(original: str) -> str:
     text = text.replace("$s", "$@")
     return text.replace("%s", "%1$@")
 
+def normalize_plurals_text(original: str) -> str:
+    text = re.sub(r"[ \t]*[\r\n]+[ \t]*", " ", original) # real newlines -> space
+    if text != original:
+        logging.warning(f"Superfluous plurals lineend detected: {original}")
+
+    # plurals is in an html context, no need for entitiy conversion
+    text = text.replace("$s", "$@")
+    text = text.replace("%1$d", "%d") # "d" hard-referenced as <key>NSStringFormatValueTypeKey</key><string>d</string>
+    return text.replace("%s", "%2$@") # non-indexed string is the second parameter
 
 def get_resources(paths: list[Path]):
     for path in paths:
