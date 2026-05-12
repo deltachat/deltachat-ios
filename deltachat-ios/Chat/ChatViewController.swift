@@ -1407,7 +1407,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
         confirmationAlert(
-            title: String.localizedStringWithFormat(String.localized("ask_forward"), chat.name),
+            title: String.localized(stringID: "ask_forward_messages", parameter: RelayHelper.shared.forwardIdsCount(), chat.name),
             actionTitle: String.localized("forward"),
             actionHandler: { [weak self] _ in
                 guard let self else { return }
