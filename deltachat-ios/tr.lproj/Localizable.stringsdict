@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Aşağıdaki dosya %s kişisine gönderilsin mi?</string>
+			<string>Aşağıdaki dosya %2$@ kişisine gönderilsin mi?</string>
 			<key>other</key>
-			<string>Aşağıdaki %d dosya %s kişisine gönderilsin mi?</string>
+			<string>Aşağıdaki %d dosya %2$@ kişisine gönderilsin mi?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

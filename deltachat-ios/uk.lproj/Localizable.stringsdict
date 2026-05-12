@@ -233,13 +233,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Надіслати цей файл → %s?</string>
+			<string>Надіслати цей файл → %2$@?</string>
 			<key>few</key>
-			<string>Надіслати ці %d файли → %s?</string>
+			<string>Надіслати ці %d файли → %2$@?</string>
 			<key>many</key>
-			<string>Надіслати ці %d файлів → %s?</string>
+			<string>Надіслати ці %d файлів → %2$@?</string>
 			<key>other</key>
-			<string>Надіслати ці %d файлів → %s?</string>
+			<string>Надіслати ці %d файлів → %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

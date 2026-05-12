@@ -157,11 +157,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Enviar o seguinte arquivo para %s?</string>
+			<string>Enviar o seguinte arquivo para %2$@?</string>
 			<key>many</key>
-			<string>Enviar os seguintes arquivos %d para %s?</string>
+			<string>Enviar os seguintes arquivos %d para %2$@?</string>
 			<key>other</key>
-			<string>Enviar os seguintes arquivos %d para %s?</string>
+			<string>Enviar os seguintes arquivos %d para %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

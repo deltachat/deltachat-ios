@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minutové trvání</string>
+			<key>few</key>
+			<string>%d minut trvání</string>
+			<key>many</key>
+			<string>%d minut trvání</string>
+			<key>other</key>
+			<string>%d minut trvání</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -193,13 +213,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odeslat následující soubor do chatu %s?</string>
+			<string>Odeslat následující soubor do chatu %2$@?</string>
 			<key>few</key>
-			<string>Odeslat následující %d soubory do chatu %s?</string>
+			<string>Odeslat následující %d soubory do chatu %2$@?</string>
 			<key>many</key>
-			<string>Odeslat následujících %d souborů do chatu %s?</string>
+			<string>Odeslat následujících %d souborů do chatu %2$@?</string>
 			<key>other</key>
-			<string>Odeslat následujících %d souborů do chatu %s?</string>
+			<string>Odeslat následujících %d souborů do chatu %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

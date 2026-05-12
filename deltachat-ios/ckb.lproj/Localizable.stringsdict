@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>ئەم پەڕگەیە دەنێریت بۆ %s؟</string>
+			<string>ئەم پەڕگەیە دەنێریت بۆ %2$@؟</string>
 			<key>other</key>
-			<string>ئەم %d پەڕگەیە دەنێریت بۆ %s؟</string>
+			<string>ئەم %d پەڕگەیە دەنێریت بۆ %2$@؟</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

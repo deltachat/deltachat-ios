@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Lähetä seuraava tiedosto yhteystiedolle%s?</string>
+			<string>Lähetä seuraava tiedosto yhteystiedolle %2$@?</string>
 			<key>other</key>
-			<string>Lähetä seuraavat %dtiedostot yhteystiedolle%s?</string>
+			<string>Lähetä seuraavat %d tiedostot yhteystiedolle %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

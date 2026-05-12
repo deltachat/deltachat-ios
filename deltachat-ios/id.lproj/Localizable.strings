@@ -57,6 +57,7 @@
 "load_remote_content" = "Memuat Gambar Jarak Jauh";
 "always" = "Selalu";
 "once" = "Sekali";
+// deprecated
 "show_warning" = "Tampilkan Peringatan";
 "not_now" = "Tidak sekarang";
 "never" = "Tidak pernah";
@@ -116,6 +117,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Tangkap";
+// Switch eg. from front to back camera
 "switch_camera" = "Ganti kamera";
 "toggle_fullscreen" = "Beralih ke Mode Layar Penuh";
 "location" = "Lokasi";
@@ -224,12 +226,14 @@
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
 "mute_forever" = "Diamkan seterusnya";
+// deprecated
 "share_location_for_5_minutes" = "untuk 5 menit";
 "share_location_for_30_minutes" = "untuk 30 menit";
 "share_location_for_one_hour" = "untuk 1 jam";
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";
@@ -350,6 +354,7 @@
 "pref_notifications" = "Notifikasi";
 "pref_notifications_show" = "Menunjukkan";
 "pref_notifications_priority" = "Prioritas";
+// deprecated
 "pref_show_notification_content_explain" = "Tampilkan pengirim dan kata-kata awal dari pesan di dalam notifikasi";
 "pref_led_color" = "Warna LED";
 "pref_sound" = "Suara";
@@ -381,10 +386,15 @@
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
+// deprecated
 "pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
+// deprecated
 "pref_show_emails" = "Tampilkan email klasik";
+// deprecated
 "pref_show_emails_no" = "Tidak, hanya obrolan saja";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Untuk kontak yang telah diterima";
+// deprecated
 "pref_show_emails_all" = "Semua";
 "pref_experimental_features" = "Fitur yang masih bersifat eksperimen";
 "pref_background_default" = "Latar belakang default";
@@ -403,6 +413,7 @@
 // automatically delete message
 "delete_old_messages" = "Hapus pesan-pesan lama";
 "autodel_device_title" = "Hapus pesarn dari perangkat";
+// deprecated
 "autodel_server_title" = "Hapus pesan dari server";
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
 // "At once" in the meaning of "Immediately", without any intervening time.

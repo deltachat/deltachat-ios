@@ -57,7 +57,9 @@
 "media" = "Media";
 "apps_and_media" = "Appar & Media";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Alla profiler";
+// deprecated
 "current_profile" = "Aktuell profil";
 "main_menu" = "Huvudmeny";
 "start_chat" = "Starta chatt";
@@ -78,6 +80,7 @@
 "always" = "Alltid";
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
+// deprecated
 "show_warning" = "Visa varning";
 "not_now" = "Inte nu";
 "never" = "Aldrig";
@@ -152,6 +155,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Fånga";
+// Switch eg. from front to back camera
 "switch_camera" = "Växla kamera";
 "toggle_fullscreen" = "Växla fullskärm";
 "location" = "Plats";
@@ -319,6 +323,7 @@
 "mute_for_one_day" = "Tysta 1 dag";
 "mute_for_seven_days" = "Tysta 7 dagar";
 "mute_forever" = "Tysta för evigt";
+// deprecated
 "share_location_for_5_minutes" = "i 5 minuter";
 "share_location_for_30_minutes" = "i 30 minuter";
 "share_location_for_one_hour" = "i 1 timma";
@@ -355,6 +360,7 @@
 "ask_leave_group" = "Vill du verkligen lämna?";
 "ask_delete_named_chat" = "Vill du ta bort chatten\"%1$@\"?";
 "ask_delete_message" = "Vill du ta bort detta meddelande?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Vill du vidarebefordra meddelanden till %1$@?";
 "ask_forward_multiple" = "Vill du vidarebefordra meddelanden till %1$d chattar?";
 "ask_export_attachment" = "Vill du exportera bilagor? Exporterade bilagor tillåter andra appar på din enhet att komma åt dem.\n\nVill du fortsätta?";
@@ -643,6 +649,7 @@
 "pref_notifications_priority" = "Prioritet";
 "pref_notifications_explain" = "Aktivera systemavisering för nya meddelanden";
 "pref_show_notification_content" = "Visa meddelandeinnehåll i avisering";
+// deprecated
 "pref_show_notification_content_explain" = "Visar avsändare och de första orden i meddelandet, i aviseringen.";
 "pref_led_color" = "Färg på ljusindikator";
 "pref_sound" = "Ljud";
@@ -683,16 +690,23 @@
 "pref_background" = "Bakgrund";
 "pref_background_btn_default" = "Använd standardbild";
 "pref_background_btn_gallery" = "Välj från galleriet";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Om du inaktiverar det här alternativet, tillse att servern och dina andra klienter är konfigurerade i enlighet med detta.\n\nAnnars kanske saker och ting inte fungerar alls.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Flerenhetsläge";
 "pref_multidevice_explain" = "Synkronisera dina meddelanden med dina andra enheter. Aktiveras automatiskt när du lägger till en andra enhet";
 "pref_multidevice_change_warn" = "Flerenhetsläge måste vara aktiverat när du använder samma profil på flera enheter. Inaktivera endast den här inställningen om du har tagit bort profilen från alla andra enheter.\n\nInaktiverar du flerenhetsläget när du använder profilen på flera enheter kommer du att missa meddelanden och få andra problem.";
+// deprecated
 "pref_auto_folder_moves" = "Flyttas automatiskt till DeltaChat-mappen";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Hämta endast från DeltaChat-mappen";
+// deprecated
 "pref_show_emails" = "Visa vanliga e-postmeddelanden";
+// deprecated
 "pref_show_emails_no" = "Nej, bara chattar";
+// deprecated
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
+// deprecated
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
 "pref_experimental_features_explain" = "Dessa funktioner kan vara instabila och kan ändras eller tas bort";
@@ -744,14 +758,17 @@
 // automatically delete message
 "delete_old_messages" = "Ta bort gamla meddelanden";
 "autodel_device_title" = "Ta bort meddelanden från enheten";
+// deprecated
 "autodel_server_title" = "Ta bort meddelanden från servern";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Vill du ta bort %1$d meddelanden nu och alla kommande meddelanden \"%2$@\" i framtiden?\n\n• Detta inkluderar all mediafiler.\n\n• Meddelanden kommer att tas bort oavsett om de har lästs eller inte.\n\n• \"Sparade meddelanden\" undantas från lokal borttagning.";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Vill du ta bort %1$d meddelanden nu och alla nyligen hämtade meddelanden \"%2$@\" i framtiden?\n\n⚠️ Detta inkluderar e-post, media och \"Sparade meddelanden\" i alla servermappar\n\n⚠️ Använd inte den här funktionen om du vill behålla data på servern\n\n⚠️ Använd inte den här funktionen om du använder andra e-postklienter än Delta Chat";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Detta inkluderar e-post, media och \"Sparade meddelanden\" i alla servermappar. Använd inte den här funktionen om du vill spara data på servern eller om du använder andra e-postklienter än Delta Chat.";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Slå på direktborttagning";
+// deprecated
 "autodel_server_warn_multi_device" = "Om du aktiverar direktborttagning kan du inte använda flera enheter på den här profilen.";
 "autodel_confirm" = "Jag förstår! Ta bort alla dessa meddelanden.";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -842,7 +859,7 @@
 "invalid_unencrypted_explanation" = "För att skapa totalsträckskryptering kan du träffa kontakter personligen och skanna deras QR-kod för att introducera dem.";
 "learn_more" = "Lär dig mer";
 "devicemsg_self_deleted" = "Du har tagit bort chatten \"Sparade meddelanden\".\n\nℹ️ Om du vill använda funktionen \"Sparade meddelanden\" igen skapar du en ny chatt med dig själv.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Din leverantörs lagringsutrymme är snart slut: %1$@%% är redan använt.\n\nDu kanske inte kan ta emot meddelanden om lagringsutrymmet är fullt.\n\n👉 Kontrollera om du kan radera gammal data i leverantörens webbgränssnitt och överväg att aktivera \"Inställningar / Chattar och media / Ta bort gamla meddelanden\". Du kan kontrollera din aktuella lagringsanvändning när som helst under \"Inställningar / Anslutning\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Datum eller tid på din enhet verkar vara felaktigt (%1$@).\n\nJustera din klocka ⏰🔧 för att säkerställa att dina meddelanden tas emot korrekt.";

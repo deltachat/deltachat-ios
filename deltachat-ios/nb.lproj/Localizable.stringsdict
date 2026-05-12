@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minutters varighet</string>
+			<key>other</key>
+			<string>%d minutters varighet</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -146,6 +162,22 @@
 			<string>%d valgte</string>
 		</dict>
 	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d utsikt</string>
+			<key>other</key>
+			<string>%d visninger</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -157,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Sende følgende fil til %s?</string>
+			<string>Sende følgende fil til %2$@?</string>
 			<key>other</key>
-			<string>Sende de følgende %d filene til %s?</string>
+			<string>Sende de følgende %d filene til %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

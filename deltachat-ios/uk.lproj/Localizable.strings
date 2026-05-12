@@ -57,7 +57,9 @@
 "media" = "Медіа";
 "apps_and_media" = "Додатки й медіа";
 "profile" = "Профіль";
+// deprecated
 "all_profiles" = "Усі профілі";
+// deprecated
 "current_profile" = "Поточний Профіль";
 "main_menu" = "Головне меню";
 "start_chat" = "Почати розмову";
@@ -80,6 +82,7 @@
 "always" = "Завжди";
 "always_load_remote_images" = "Завжди завантажувати віддалені зображення";
 "once" = "Один раз";
+// deprecated
 "show_warning" = "Показати попередження";
 "not_now" = "Не зараз";
 "never" = "Ніколи";
@@ -155,6 +158,7 @@
 "camera" = "Камера";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Захопити";
+// Switch eg. from front to back camera
 "switch_camera" = "Перемкнути камеру";
 "toggle_fullscreen" = "Перейти в повноекранний режим";
 "location" = "Розташування";
@@ -322,6 +326,7 @@
 "mute_for_one_day" = "Вимкнути сповіщення на добу";
 "mute_for_seven_days" = "Вимкнути сповіщення на 7 днів";
 "mute_forever" = "Вимкнути сповіщення назавжди";
+// deprecated
 "share_location_for_5_minutes" = "на 5 хвилин";
 "share_location_for_30_minutes" = "на 30 хвилин";
 "share_location_for_one_hour" = "на 1 годину";
@@ -365,6 +370,7 @@
 "ask_leave_group" = "Ви впевнені, що хочете піти?";
 "ask_delete_named_chat" = "Видалити чат \"%1$@\" на всіх ваших пристроях?";
 "ask_delete_message" = "Видалити це повідомлення?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Переслати повідомлення %1$@?";
 "ask_forward_multiple" = "Переслати повідомлення в %1$d?";
 "ask_export_attachment" = "Якщо експортувати вкладені файли, інші програми на вашому пристрої отримають до них доступ.\n\nПродовжити?";
@@ -660,6 +666,7 @@
 "pref_notifications_priority" = "Пріоритет";
 "pref_notifications_explain" = "Увімкнути системні сповіщення для нових повідомлень";
 "pref_show_notification_content" = "Відображати вміст повідомлення у сповіщенні";
+// deprecated
 "pref_show_notification_content_explain" = "Відображає відправника та перші слова повідомлення в сповіщеннях";
 "pref_led_color" = "Колір світлодіоду";
 "pref_sound" = "Звук";
@@ -700,16 +707,23 @@
 "pref_background" = "Фон";
 "pref_background_btn_default" = "Використовувати тло за замовчуванням";
 "pref_background_btn_gallery" = "Вибрати з галереї";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Якщо ви змінюєте цей параметр, переконайтеся, що Ваш сервер та інші Ваші клієнти налаштовані відповідним чином.\n\nІнакше щось може взагалі не працювати.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Режим роботи з декількома пристроями";
 "pref_multidevice_explain" = "Синхронізуйте свої повідомлення з іншими пристроями. Автоматично вмикається після додавання іншими пристроями";
 "pref_multidevice_change_warn" = "Режим декількох пристроїв має бути увімкнений, якщо ви використовуєте один і той самий профіль на декількох пристроях. Вимикайте цей параметр, лише якщо ви видалили цей профіль з усіх інших пристроїв.\n\nВимкнення режиму декількох пристроїв під час використання профілю на декількох пристроях призведе до пропусків повідомлення та інших проблем.";
+// deprecated
 "pref_auto_folder_moves" = "Автоматично пересувати до папки DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Збирати лише з теки DeltaChat.";
+// deprecated
 "pref_show_emails" = "Показувати звичайну пошту";
+// deprecated
 "pref_show_emails_no" = "Ні, лише чати";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Для прийнятих контактів";
+// deprecated
 "pref_show_emails_all" = "Всі";
 "pref_experimental_features" = "Експериментальні функції";
 "pref_experimental_features_explain" = "Ці функції можуть бути нестабільними і можуть бути змінені або видалені";
@@ -761,14 +775,17 @@
 // automatically delete message
 "delete_old_messages" = "Видалити старі повідомлення";
 "autodel_device_title" = "Видалити повідомлення з пристрою";
+// deprecated
 "autodel_server_title" = "Видалити повідомлення з сервера";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Ви хочете видалити %1$d повідомлень зараз і всі нові повідомлення \"%2$@\" у майбутньому?\n\n- Це включає всі медіа\n\n- Повідомлення буде видалено незалежно від того, чи були вони переглянуті чи ні\n\n- \"Збережені повідомлення\" буде пропущено при локальному видаленні";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Ви хочете видалити %1$d повідмолень зараз і всі нові повідомлення \"%2$@\" в майбутньому?\n\n⚠️ Сюди входять електронні листи, медіа та \"Збережені повідомлення\" у всіх теках сервера\n\n⚠️ Не використовуйте цю функцію, якщо ви хочете зберегти дані на сервері або якщо ви також використовуєте класичні поштові клієнти";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Сюди входять електронні листи, медіафайли та \"Збережені повідомлення\" у всіх папках сервера. Не використовуйте цю функцію, якщо ви хочете зберігати дані на сервері або якщо ви використовуєте класичні поштові клієнти";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Увімкнути одномоментне видалення";
+// deprecated
 "autodel_server_warn_multi_device" = "Якщо ви ввімкнули одномоментне видалення, ви не зможете використовувати кілька пристроїв у цьому профілі.";
 "autodel_confirm" = "Я розумію, видалити всі ці повідомлення";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -860,7 +877,7 @@
 "invalid_unencrypted_explanation" = "Щоб встановити наскрізне шифрування, Ви можете зустрітися з контактами особисто та відсканувати їх QR-код.";
 "learn_more" = "Дізнатися більше";
 "devicemsg_self_deleted" = "Ви видалили чат \"Збережені повідомлення\".\n\nℹ️ Аби використовувати функцію \"Збережені повідомлення\" знову, створіть новий чат самі із собою.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Сховище вашого провайдера електронної пошти майже заповнено, уже використовується %1$@%%.\n\nМожливо, Ви не зможете отримувати повідомлення, коли сховище буде заповнене.\n\n👉 Перевірте, чи можна видалити старі дані у веб-інтерфейсі провайдера та ввімкніть \"Налаштування / Чати / Видалити старі повідомлення\". Ви можете будь-коли перевірити своє поточне використання сховища в \"Налаштування / Зʼєднання\". ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Дата й час на вашому пристрої видаються неточними (%1$@).\n\nНалаштуйте свій годинник ⏰🔧 для правильного отримання повідомлень.";

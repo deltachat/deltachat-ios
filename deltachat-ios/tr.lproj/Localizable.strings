@@ -23,6 +23,8 @@
 "downloading" = "İndiriliyor…";
 "open_attachment" = "İlişiği Aç";
 "join" = "Katıl";
+"join_group" = "Gruba Katıl";
+"join_channel" = "Kanala Katıl";
 "rejoin" = "Yeniden Katıl";
 "delete" = "Sil";
 "delete_for_me" = "Benim için Sil";
@@ -57,7 +59,9 @@
 "media" = "Ortam";
 "apps_and_media" = "Uygulamalar ve Ortamlar";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Tüm Profiller";
+// deprecated
 "current_profile" = "Şu Anki Profil";
 "main_menu" = "Ana Menü";
 "start_chat" = "Sohbet Başlat";
@@ -68,6 +72,8 @@
 "mark_as_read" = "Okundu Olarak İmle";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Okundu İmi";
+// Used as an menu entry or button
+"mark_as_unread" = "Okunmadı Olarak İmle";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Okunmayan";
 // Placeholder text when something is loading
@@ -80,6 +86,7 @@
 "always" = "Her zaman";
 "always_load_remote_images" = "Her Zaman Uzak Görselleri Yükle";
 "once" = "Bir kez";
+// deprecated
 "show_warning" = "Uyarı Göster";
 "not_now" = "Şimdi değil";
 "never" = "Hiçbir zaman";
@@ -89,6 +96,7 @@
 "offline" = "Çevrimdışı";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Sonraki";
+"warning" = "Uyarı";
 "error" = "Hata";
 "error_x" = "Hata: %1$@";
 "no_app_to_handle_data" = "Bu veri türünü işleyen bir uygulama bulunamıyor.";
@@ -155,6 +163,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Yakala";
+// Switch eg. from front to back camera
 "switch_camera" = "Kamerayı Değiştir";
 "toggle_fullscreen" = "Tam Ekran Moduna Geç";
 "location" = "Konum";
@@ -322,6 +331,7 @@
 "mute_for_one_day" = "1 günlüğüne sessize al";
 "mute_for_seven_days" = "7 günlüğüne sessize al";
 "mute_forever" = "Sonsuza dek sessize al";
+// deprecated
 "share_location_for_5_minutes" = "5 dakikalığına";
 "share_location_for_30_minutes" = "30 dakikalığına";
 "share_location_for_one_hour" = "1 saatliğine";
@@ -360,11 +370,14 @@
 "canceled_call" = "İptal edilen arama";
 "missed_call" = "Yanıtlanmayan arama";
 "already_in_call" = "Zaten bir aramada";
+"call_answered_elsewhere" = "Arama başka bir aygıtta yanıtlandı";
+"call_requires_mic_permission" = "Mikrofon izni aramalar için gereklidir";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ayrılmak istediğinizden emin misiniz?";
 "ask_delete_named_chat" = "“%1$@” sohbeti silinsin mi?";
 "ask_delete_message" = "Bu ileti silinsin mi?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "İletiler %1$@ kişisine iletilsin mi?";
 "ask_forward_multiple" = "İletiler %1$d sohbete iletilsin mi?";
 "ask_export_attachment" = "İlişikleri dışa aktarmak, aygıtınızdaki diğer uygulamaların onlara erişmesine izin verir.\n\nSürdürülsün mü?";
@@ -435,8 +448,11 @@
 // search
 "search" = "Ara";
 "search_in_chat" = "Sohbette Ara";
+// Placeholder will be replaced by the chat name
+"search_in" = "%1$@ içinde ara";
 "search_files" = "Dosyalar Ara";
 "search_explain" = "Sohbetleri, kişileri ve iletileri ara";
+"search_result_for_x" = "“%1$@” için sonuç";
 "search_no_result_for_x" = "“%1$@” için sonuç bulunamadı";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Okunmayan";
@@ -448,6 +464,7 @@
 "group_create_button" = "Grup Oluştur";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Lütfen grup için bir ad girin.";
+"please_enter_chat_name" = "Lütfen bir ad girin.";
 "group_add_members" = "Üyeler Ekle";
 "group_self_not_in_group" = "Bu eylemi gerçekleştirmek için grubun bir üyesi olmalısınız.";
 "profile_encryption" = "Şifreleme";
@@ -660,6 +677,7 @@
 "pref_notifications_priority" = "Öncelik";
 "pref_notifications_explain" = "Yeni iletiler için sistem bildirimlerini etkinleştir";
 "pref_show_notification_content" = "Bildirimde ileti içeriğini göster";
+// deprecated
 "pref_show_notification_content_explain" = "Bildirimlerde iletinin gönderenini ve ilk sözcüklerini gösterir";
 "pref_led_color" = "LED Rengi";
 "pref_sound" = "Ses";
@@ -678,6 +696,8 @@
 "pref_incognito_keyboard_explain" = "Kişiselleştirilen öğrenmeyi etkisizleştirmek için klavye iste";
 "pref_read_receipts" = "Okundu Onayları";
 "pref_read_receipts_explain" = "Okundu onayları etkisizleştirilirse, diğerlerinden gelen okundu onaylarını göremeyeceksiniz.";
+// Title above a list of contacts who read a message
+"read_by" = "Okuyanlar";
 "pref_server" = "Sunucu";
 "pref_encryption" = "Şifreleme";
 "pref_manage_keys" = "Anahtarları Yönet";
@@ -700,16 +720,23 @@
 "pref_background" = "Duvar Kâğıdı";
 "pref_background_btn_default" = "Varsayılan Görseli Kullan";
 "pref_background_btn_gallery" = "Galeriden Seç";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Bu seçeneği değiştirirseniz, sunucunuzun ve diğer istemcilerinizin uygun olarak yapılandırıldığından emin olun.\n\nDeğilse özellikler hiç çalışmayabilir.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Çoklu Aygıt Modu";
 "pref_multidevice_explain" = "İletilerinizi diğer aygıtlarınızla eşzamanlayın. İkinci bir aygıt eklendiğinde otomatik olarak etkinleştirilir";
 "pref_multidevice_change_warn" = "Aynı profili birden fazla aygıtta kullanırken Çoklu Aygıt Modu etkinleştirilmelidir. Bu ayarı yalnızca bu profili diğer tüm aygıtlarınızdan kaldırdıysanız etkisizleştirin.\n\nProfili birden fazla aygıtta kullanırken Çoklu Aygıt Modu\'nu etkisizleştirmek, iletilerin kaçırılmasına ve diğer sorunlara neden olur.";
+// deprecated
 "pref_auto_folder_moves" = "DeltaChat Klasörüne Otomatik Olarak Taşı";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Yalnızca DeltaChat Klasöründen Getir";
+// deprecated
 "pref_show_emails" = "Klasik E-Postaları Göster";
+// deprecated
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
+// deprecated
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
 "pref_experimental_features_explain" = "Bu özellikler, kararsız olabilir ve değiştirilebilir ya da kaldırılabilir";
@@ -761,14 +788,17 @@
 // automatically delete message
 "delete_old_messages" = "Eski İletileri Sil";
 "autodel_device_title" = "İletileri Aygıttan Sil";
+// deprecated
 "autodel_server_title" = "İletileri Sunucudan Sil";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri “%2$@” silmek istiyor musunuz?\n\n• Bu, tüm ortamları kapsar\n\n• İletiler görülse de görülmese de silinecek\n\n• “Kaydedilen İletiler” yerel silmeden atlanacak";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "%1$d iletiyi şimdi ve gelecekte yeni getirilen tüm iletileri “%2$@” silmek istiyor musunuz?\n\n⚠️ Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar\n\n⚠️ Verileri sunucuda tutmak istiyorsanız ya da klasik e-posta istemcilerini de kullanıyorsanız bu işlevi kullanmayın";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Bu, tüm sunucu klasörlerindeki e-postaları, ortamları ve “Kaydedilen İletiler”i kapsar. Verileri sunucuda tutmak istiyorsanız ya da klasik e-posta istemcilerini de kullanıyorsanız bu işlevi kullanmayın";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Bir kerede silmeyi aç";
+// deprecated
 "autodel_server_warn_multi_device" = "Bir kerede silmeyi etkinleştirirseniz, bu profilde çoklu aygıtları kullanamazsınız.";
 "autodel_confirm" = "Anladım, tüm bu iletileri sil";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -786,9 +816,12 @@
 "group_name_changed_by_you" = "“%1$@” grup adını “%2$@” olarak değiştirdiniz.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ tarafından “%1$@” grup adı “%2$@” olarak değiştirildi.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "“%1$@” kanal adı “%2$@” olarak değiştirildi.";
 "group_image_changed_by_you" = "Grup görselini değiştirdiniz.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ tarafından grup görseli değiştirildi.";
+"channel_image_changed" = "Kanal görseli değiştirildi.";
 "chat_description_changed_by_you" = "Sohbet açıklamasını değiştirdiniz.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "%1$@ tarafından sohbet açıklaması değiştirildi.";
@@ -860,7 +893,7 @@
 "invalid_unencrypted_explanation" = "Uçtan uca şifrelemeyi kurmak için kişilerle kişisel olarak tanışabilir ve onları tanıtmak için onların QR kodunu tarayabilirsiniz.";
 "learn_more" = "Daha Fazlasını Öğrenin";
 "devicemsg_self_deleted" = "“Kaydedilen İletiler” sohbetini sildiniz.\n\nℹ️ “Kaydedilen İletiler” özelliğini yeniden kullanmak için kendinizle yeni bir sohbet oluşturun.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Sağlayıcınızın depolaması dolmak üzere: %1$@%% zaten kullanımda.\n\nDepolama tam dolduğunda iletileri alamayabilirsiniz.\n\n👉 Lütfen sağlayıcınızın web arabiriminden eski verileri silip silemeyeceğinizi denetleyin ve “Ayarlar / Sohbetler / Eski İletileri Sil”i etkinleştirmeyi düşünün. Herhangi bir zamanda şu anki depolama kullanımınızı “Ayarlar / Bağlanabilirlik”ten denetleyebilirsiniz.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Aygıtınızdaki tarih ya da saat yanlış görünüyor (%1$@).\n\nİletilerinizin doğru şekilde alınmasını sağlamak için saatinizi ⏰🔧 ayarlayın.";
@@ -922,6 +955,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ zaten bir taslak ileti; onu değiştirmek istiyor musunuz?";
 "mailto_link_could_not_be_decoded" = "mailto bağlantısının kodu çözülemedi: %1$@";
+"remove_quote" = "Alıntıyı kaldır";
+"remove_attachment" = "İlişiği kaldır";
 // notifications
 "notify_reply_button" = "Yanıtla";
 "notify_new_message" = "Yeni ileti";
@@ -937,6 +972,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Yeni iletileriniz var";
 "n_messages_in_m_chats" = "%2$d sohbette %1$d ileti";
+// location streaming
+"location_streaming_notification_text" = "Konumunuzu paylaşıyorsunuz";
+"location_rationale" = "Sohbet üyeleriyle canlı konumunuzu paylaşmak için Delta Chat\'in konum verilerinizi kullanmasına izin verin.\n\nCanlı konumun çalışmasını kesintisiz yapmak için konum verileri, uygulama kapatıldığında ya da kullanımda değilken bile kullanılır.";
 // permissions
 "perm_required_title" = "İzin gerekli";
 "perm_continue" = "Sürdür";
@@ -976,6 +1014,7 @@
 "global_menu_help_about_desktop" = "Delta Chat hakkında";
 "global_menu_file_open_desktop" = "Delta Chat\'i Aç";
 "global_menu_minimize_to_tray" = "Küçült";
+"no_account_selected" = "Bir profil seçin ya da yeni bir profil oluşturun";
 "no_chat_selected_suggestion_desktop" = "Bir sohbet seçin ya da yeni bir sohbet oluşturun";
 "write_message_desktop" = "Bir ileti yazın";
 "encryption_info_title_desktop" = "Şifreleme Bilgisi";
@@ -997,8 +1036,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Yazım önerileri bulunamadı.";
 "show_window" = "Pencereyi Göster";
+"data_found_other_installation_message" = "Başka bir Delta Chat kurulumundan gelen profilleriniz erişilebilir değildir - farklı kurulumlar, verilerini ayrı konumlarda saklar.\n\nVarolan profilleri tutmak için:\n1. Şimdi çıkın\n2. Diğer Delta Chat\'i açın - gerekirse, onu %1$@ üzerinden yeniden kurun\n3. Her profili “Ayarlar/Sohbetler”den yedekleyin\n4. Bu sürümü yeniden başlatın\n5. Yedekleri “Zaten bir profilim var”dan geri yükleyin\n\nÖnceki profilleriniz olmadan sürdürülsün mü?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tuş Bağları";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Gezinti";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "İleti Girişi";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Seçilen İleti";
 "switch_between_chats" = "Sohbetler Arasında Geçiş Yap";
 "scroll_messages" = "İletileri Kaydır";
 // command to put the cursor to the search input field

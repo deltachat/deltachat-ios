@@ -167,7 +167,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>要將%d個檔案傳送給%s？</string>
+			<string>要將%d個檔案傳送給%2$@？</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

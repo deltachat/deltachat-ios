@@ -57,7 +57,9 @@
 "media" = "Medios";
 "apps_and_media" = "Apps & Multimedia";
 "profile" = "Perfil";
+// deprecated
 "all_profiles" = "Todos os Perfís";
+// deprecated
 "current_profile" = "Perfil Actual";
 "main_menu" = "Menú principal";
 "start_chat" = "Inciar chat";
@@ -78,6 +80,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Descargar sempre imaxes remotas";
 "once" = "Unha vez";
+// deprecated
 "show_warning" = "Mostrar aviso";
 "not_now" = "Agora non";
 "never" = "Nunca";
@@ -145,6 +148,7 @@
 "camera" = "Cámara";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
+// Switch eg. from front to back camera
 "switch_camera" = "Cambiar de cámara";
 "toggle_fullscreen" = "Activar modo de pantalla completa";
 "location" = "Localización";
@@ -303,6 +307,7 @@
 "mute_for_one_day" = "Acalar durante 1 día";
 "mute_for_seven_days" = "Acalar durante 7 días";
 "mute_forever" = "Acalar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "durante 5 min.";
 "share_location_for_30_minutes" = "durante 30 min.";
 "share_location_for_one_hour" = "durante 1 hora";
@@ -314,6 +319,7 @@
 "ask_leave_group" = "Tes a certeza de querer saír?";
 "ask_delete_named_chat" = "Eliminar a conversa \"%1$@\" en todos os teus dispositivos?";
 "ask_delete_message" = "Eliminar esta mensaxe en todos os teus dispositivos?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? Ao exportar anexos outras aplicacións no dispositivo terán acceso a eles.\n\nGardar?";
@@ -576,6 +582,7 @@
 "pref_notifications_priority" = "Prioridade";
 "pref_notifications_explain" = "Activa as notificación para as novas mensaxes";
 "pref_show_notification_content" = "Motra o contido da mensaxe na notificación";
+// deprecated
 "pref_show_notification_content_explain" = "Mostra a remitente e as primeiras palabras da mensaxe na notificación";
 "pref_led_color" = "Cor LED";
 "pref_sound" = "Son";
@@ -614,12 +621,19 @@
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imaxe por omisión";
 "pref_background_btn_gallery" = "Escoller na galería";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Se desactivas esta opción, asegúrate de que o servidor e os teus outros clientes están configurados de xeito acorde.\n\nSe non, algo podería fallar.";
+// deprecated
 "pref_auto_folder_moves" = "Mover automáticamente ao cartafol DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Obter só desde cartafol DeltaChat";
+// deprecated
 "pref_show_emails" = "Mostrar correos clásicos";
+// deprecated
 "pref_show_emails_no" = "Non, só conversas";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Para os contactos aceptados";
+// deprecated
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Zona de probas";
 "pref_on_demand_location_streaming" = "Difusión da ubicación por solicitude";
@@ -659,12 +673,13 @@
 // automatically delete message
 "delete_old_messages" = "Eliminar mensaxes antigas";
 "autodel_device_title" = "Borrar mensaxes do dispositivo";
+// deprecated
 "autodel_server_title" = "Borrar mensaxes do servidor";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Queres borrar %1$d mensaxes agora e todas as novas mensaxes \"%2$@\" no futuro?\n\n• Esto inclúe todo o multimedia\n\n• As mensaxes borraranse fosen lidas ou non\n\n• As \"mensaxes gardadas\" non serán borradas do dispositivo.";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Desexas eliminar %1$d mensaxes e todas as \"%2$@\" novas mensaxes obtidas no futuro?\n\n⚠️ Esto inclúe emails, multimedia e \"Mensaxes gardadas\" en tódolos cartafoles do servidor\n\n⚠️ Non uses esta función se queres manter os datos gardados no servidor\n\n⚠️ Non uses esta función se estás a utilizar outro cliente de email ademáis de Delta Chat";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Esto inclúe emails, multimedia e \"Mensaxes gardadas\" en tódolos cartafoles do servidor. Non uses esta función se queres manter os datos gardados no servidor ou se estás a utilizar outro cliente de email ademáis de Delta Chat.";
 "autodel_confirm" = "Entendo, dalle e borra as mensaxes todas";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -741,7 +756,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparición de mensaxes definido en %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Eliminaches o chat \"Mensaxes gardadas\".\n\nℹ️ Para usar \"Mensaxes gardadas\" de novo, crea un novo chat contigo mesmo.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ A almacenaxe do teu provedor vaise esgotar, xa utilizaches %1$@ %%.\n\nPode que non recibas mensaxes cando a almacenaxe chegue a 100%% utilizado.\n\n👉 Mira se podes eliminar datos antigos na interface web do teu provedor e pensa se debes activar \"Axustes / Eliminar Mensaxes Antigas\". Podes ver a almacenaxe actual utilizada en \"Axustes / Conectividade\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ A hora ou data no teu dispositivo poderían ser incorrectas (%1$@).\n\nAxusta o reloxio ⏰🔧 para asegurar que as túas mensaxes son recibidas correctamente.";

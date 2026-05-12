@@ -62,6 +62,7 @@
 "always" = "Aina";
 "always_load_remote_images" = "Lataa aina kuvat verkosta";
 "once" = "Kerran";
+// deprecated
 "show_warning" = "Näytä varoitus";
 "not_now" = "Ei nyt";
 "never" = "Ei koskaan";
@@ -126,6 +127,7 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kuvaa";
+// Switch eg. from front to back camera
 "switch_camera" = "Vaihda kameraa";
 "toggle_fullscreen" = "Koko näytön tila";
 "location" = "Sijainti";
@@ -248,12 +250,14 @@
 "mute_for_one_day" = "Mykistä 1 päiväksi";
 "mute_for_seven_days" = "Mykistä 7 päiväksi";
 "mute_forever" = "Mykistä ikuisesti";
+// deprecated
 "share_location_for_5_minutes" = "5 minuutiksi";
 "share_location_for_30_minutes" = "30 minuutiksi";
 "share_location_for_one_hour" = "1 tunniksi";
 "share_location_for_two_hours" = "2 tunniksi";
 "share_location_for_six_hours" = "6 tunniksi";
 "file_saved_to" = "Tiedosto tallennettu \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Välitä viestit yhteystiedolle %1$@?";
 "ask_forward_multiple" = "Välitä viestit %1$d keskustelulle?";
 "ask_export_attachment" = "Liitteiden vieminen antaa muille laitteen sovelluksille mahdollisuuden lukea niitä.\n\nJatka?";
@@ -490,6 +494,7 @@
 "pref_notifications_priority" = "Prioriteetti";
 "pref_notifications_explain" = "Ota järjestelmäilmoitukset käyttöön uusista viesteistä";
 "pref_show_notification_content" = "Näytä viestien sisältö ilmoituksissa";
+// deprecated
 "pref_show_notification_content_explain" = "Näytä lähettäjä ja viestin ensimmäiset sanat ilmoituksissa";
 "pref_led_color" = "LEDin väri";
 "pref_sound" = "Ääni";
@@ -528,12 +533,19 @@
 "pref_background" = "Taustakuva";
 "pref_background_btn_default" = "Käytä oletuskuvaa";
 "pref_background_btn_gallery" = "Valitse galleriasta";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Jos muutat tätä asetusta, varmista että palvelimesi ja muut päätelaitteesi ovat määritetty vastaavasti.\n\nMuutoin ne eivät ehkä toimi lainkaan.";
+// deprecated
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat -kansioon";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Hae vain DeltaChat -kansiosta";
+// deprecated
 "pref_show_emails" = "Näytä tavanomaiset sähköpostiviestit";
+// deprecated
 "pref_show_emails_no" = "Ei, vain pikaviestit";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Hyväksytyille yhteystiedoille";
+// deprecated
 "pref_show_emails_all" = "Kaikki";
 "pref_experimental_features" = "Kokeelliset ominaisuudet";
 "pref_on_demand_location_streaming" = "Tarvittaessa sijainnin jatkuva jakaminen";
@@ -577,12 +589,13 @@
 // automatically delete message
 "delete_old_messages" = "Poista vanhat viestit";
 "autodel_device_title" = "Poista viestit laitteelta";
+// deprecated
 "autodel_server_title" = "Poista viestit palvelimelta";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Haluatko poistaa %1$d viestiä heti ja kaikki uudet viestit \"%2$@\" jatkossa?\n\n• Tämä sisältää kaiken median\n\n• Viestit poistetaan riippumatta siitä onko ne nähty vai ei\n\n• \"Tallennetut viestit\" jätetään paikalliselle laitteelle";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Haluatko poistaa %1$d viestiä heti ja kaikki uudet viestit \"%2$@\" jatkossa?\n\n⚠️ Tämä sisältää sähköpostiviestit, median ja kaikki \"Tallennetut viestit\" kaikissa palvelimen kansioissa\n\n⚠️ Älä käytä tätä toimintoa, jos haluat säilyttää tiedot palvelimella\n\n⚠️ Älä käytä tätä toimintoa, jos käytät muita sähköpostisovelluksia Delta Chatin lisäksi";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Tämä sisältää sähköpostit, median ja \"Tallennetut viestit\" kaikissa palvelimen kansioissa. Älä käytä tätä toimintoa, jos haluat pitää tietosi palvelimella tai jos käytät muita sähköpostisovelluksia Delta Chatin lisäksi.";
 "autodel_confirm" = "Ymmärrän, poista kaikki nämä viestit";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -661,7 +674,7 @@
 "invalid_unencrypted_explanation" = "Päästä-päähän salauksen saat käyttöön tapaamalla yhteystietosi ja skannaamalla hänen QR -koodinsa.";
 "learn_more" = "Lue lisää";
 "devicemsg_self_deleted" = "Poistit \"Tallennetut viestit\" -keskustelun.\n\nℹ️ Aloita uusi keskustelu itsesi kanssa, niin voit jälleen käyttää \"Tallennetut viestit\" -ominaisuutta.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Palveluntarjoajasi tallennuskiintiö ylitetään pian, käytössä on jo %1$@ / %%.\n\nEt välttämättä enää voi vastaanottaa viestejäsi, kun 100 %% on käytössä.\n\n👉 Kokeile poistaa viestejä palveluntarjoajasi internetkäyttöliittymästä. Kannattaa myös ehkä kytkeä päälle \"Asetukset / Poista vanhat viestit\". Voit tarkistaa tämän hetkisen tallennustilan käytön \"Asetukset / Yhteys\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Laitteesi päivämäärä tai aika vaikuttaa olevan väärässä (%1$@).\n\nAseta kellonaika ⏰🔧 varmistaaksesi, että viestin vastaanottaminen onnistuu.";

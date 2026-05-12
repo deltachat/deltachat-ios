@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>Gửi tập tin sau tới %s?</string>
+			<string>Gửi tập tin sau tới %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

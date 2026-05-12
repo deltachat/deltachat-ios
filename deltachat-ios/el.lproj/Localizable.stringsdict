@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Αποστολή του παρακάτω αρχείου στο %s;</string>
+			<string>Αποστολή του παρακάτω αρχείου στο %2$@;</string>
 			<key>other</key>
-			<string>Αποστολή των παρακάτω %d αρχείων στο %s;</string>
+			<string>Αποστολή των παρακάτω %d αρχείων στο %2$@;</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

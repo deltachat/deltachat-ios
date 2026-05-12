@@ -211,11 +211,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Invia il seguente file a %s?</string>
+			<string>Invia il seguente file a %2$@?</string>
 			<key>many</key>
-			<string>Invia i seguenti %d files a %s?</string>
+			<string>Invia i seguenti %d files a %2$@?</string>
 			<key>other</key>
-			<string>Invia i seguenti %d files a %s?</string>
+			<string>Invia i seguenti %d files a %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

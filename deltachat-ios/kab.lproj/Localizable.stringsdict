@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Azen afylu-agi ɣer %s?</string>
+			<string>Azen afylu-agi ɣer %2$@?</string>
 			<key>other</key>
-			<string>Azen %d ifuyla-agi ɣer %s?</string>
+			<string>Azen %d ifuyla-agi ɣer %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

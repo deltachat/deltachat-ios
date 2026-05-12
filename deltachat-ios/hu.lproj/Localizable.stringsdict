@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>A következő fájl elküldése neki: %s?</string>
+			<string>A következő fájl elküldése neki: %2$@?</string>
 			<key>other</key>
-			<string>A következő %d fájl elküldése „%s” számára?</string>
+			<string>A következő %d fájl elküldése „%2$@” számára?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

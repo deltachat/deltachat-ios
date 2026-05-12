@@ -103,11 +103,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Enviar o ficheiro para %s?</string>
+			<string>Enviar o ficheiro para %2$@?</string>
 			<key>many</key>
-			<string>Enviar %d ficheiros para %s?</string>
+			<string>Enviar %d ficheiros para %2$@?</string>
 			<key>other</key>
-			<string>Enviar %d ficheiros para %s?</string>
+			<string>Enviar %d ficheiros para %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

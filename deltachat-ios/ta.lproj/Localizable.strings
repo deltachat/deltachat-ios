@@ -113,11 +113,13 @@
 "mute_for_one_day" = "1 நாள் இதற்காக ஊமையாக்கு";
 "mute_for_seven_days" = "7 நாட்கள் இதற்காக ஊமையாக்கு";
 "mute_forever" = "எப்போதுமே ஊமையாக்கு";
+// deprecated
 "share_location_for_5_minutes" = "5 நிமிடங்கள் ";
 "share_location_for_30_minutes" = "30 நிமிடங்கள் ";
 "share_location_for_one_hour" = "1 மணி";
 "share_location_for_two_hours" = "2 மணிகள்";
 "share_location_for_six_hours" = "6 மணிகள்";
+// deprecated, use ask_forward_messages
 "ask_forward" = "தேர்வு செய்யப்பட்ட செய்திகளை இவற்றுக்கு %1$@ முன்னோக்கி அனுப்பவா ?";
 "ask_block_contact" = "இந்த தொடர்பை முடக்கவா ?";
 // contact list

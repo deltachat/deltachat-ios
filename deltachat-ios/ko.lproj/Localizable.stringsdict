@@ -125,7 +125,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>other</key>
-			<string>%s에게 %d파일을 보낼까요?</string>
+			<string>%2$@에게 %d파일을 보낼까요?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

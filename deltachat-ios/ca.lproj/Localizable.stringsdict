@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Voleu enviar el següent fitxer a %s?</string>
+			<string>Voleu enviar el següent fitxer a %2$@?</string>
 			<key>other</key>
-			<string>Voleu enviar els següents %d fitxers a %s?</string>
+			<string>Voleu enviar els següents %d fitxers a %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

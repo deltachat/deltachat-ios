@@ -59,7 +59,9 @@
 "media" = "Medien";
 "apps_and_media" = "Apps & Medien";
 "profile" = "Profil";
+// deprecated
 "all_profiles" = "Alle Profile";
+// deprecated
 "current_profile" = "Aktuelles Profil";
 "main_menu" = "Hauptmenü";
 "start_chat" = "Chat starten";
@@ -84,6 +86,7 @@
 "always" = "Immer";
 "always_load_remote_images" = "Bilder immer nachladen";
 "once" = "Einmal";
+// deprecated
 "show_warning" = "Warnung anzeigen";
 "not_now" = "Nicht jetzt";
 "never" = "Nie";
@@ -160,7 +163,10 @@
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Aufnehmen";
+// Switch eg. from front to back camera
 "switch_camera" = "Kamera wechseln";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Kamera wechseln";
 "toggle_fullscreen" = "Vollbildmodus umschalten";
 "location" = "Standort";
 "locations" = "Standorte";
@@ -327,11 +333,13 @@
 "mute_for_one_day" = "Stumm für 1 Tag";
 "mute_for_seven_days" = "Stumm für 7 Tage";
 "mute_forever" = "Stumm für immer";
+// deprecated
 "share_location_for_5_minutes" = "für 5 Minuten";
 "share_location_for_30_minutes" = "für 30 Minuten";
 "share_location_for_one_hour" = "für 1 Stunde";
 "share_location_for_two_hours" = "für 2 Stunden";
 "share_location_for_six_hours" = "für 6 Stunden";
+"share_location_for_24_hours" = "für 24 Stunden";
 "file_saved_to" = "Datei gespeichert unter \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Anrufen";
@@ -343,6 +351,8 @@
 "answer_call" = "Annehmen";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ablehnen";
+// the action to end a call
+"end_call2" = "Anruf beenden";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Sprachanruf";
 // Used in call bubbles, summaries, notifications
@@ -366,12 +376,19 @@
 "missed_call" = "Verpasster Anruf";
 "already_in_call" = "Bereits im Anruf";
 "call_answered_elsewhere" = "Anruf auf einem anderen Gerät beantwortet";
+"call_requires_camera_permission" = "Kamerazugriff für Videoanrufe erforderlich";
 "call_requires_mic_permission" = "Mikrofonzugriff für Anrufe erforderlich";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Anruf mit %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "%1$@ anrufen…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Diesen Chat verlassen?";
 "ask_delete_named_chat" = "Chat \"%1$@\" löschen?";
 "ask_delete_message" = "Diese Nachricht löschen?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
+// deprecated, use ask_forward_messages
 "ask_forward" = "Nachricht weiterleiten an %1$@?";
 "ask_forward_multiple" = "Nachrichten an %1$d Chats weiterleiten?";
 "ask_export_attachment" = "Das Exportieren von Anhängen ermöglicht es allen anderen Anwendungen auf deinem Gerät, auf diese zuzugreifen.\n\nFortfahren? ";
@@ -652,9 +669,9 @@
 "pref_enter_sends" = "Enter-Taste sendet";
 "pref_enter_sends_explain" = "Durch Drücken der Eingabetaste werden Textnachrichten gesendet.";
 "pref_outgoing_media_quality" = "Medienqualität beim Senden";
-"pref_outgoing_media_quality_hint" = "Um Originalqualität zu senden, hänge Medien als „Datei“ an. Dies verbraucht deutlich mehr Datenvolumen für dich und die Empfänger.";
+"pref_outgoing_media_quality_hint" = "Um Originalqualität zu senden, hänge Medien als „Datei“ an. Dies verbraucht deutlich mehr Daten für dich und die Empfänger.";
 "pref_outgoing_balanced" = "Ausgewogen";
-"pref_outgoing_worse" = "Schlechte Qualität, kleine Dateien";
+"pref_outgoing_worse" = "Schlechte Qualität, Daten sparen";
 "pref_vibrate" = "Vibrieren";
 "pref_screen_security" = "Bildschirmsicherheit";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
@@ -671,6 +688,7 @@
 "pref_notifications_priority" = "Priorität";
 "pref_notifications_explain" = "System-Benachrichtigungen bei neuen Nachrichten aktivieren";
 "pref_show_notification_content" = "Textinhalt in Benachrichtigungen anzeigen";
+// deprecated
 "pref_show_notification_content_explain" = "Absender und Textbeginn in Benachrichtigungen anzeigen";
 "pref_led_color" = "LED-Farbe";
 "pref_sound" = "Ton";
@@ -713,16 +731,23 @@
 "pref_background" = "Hintergrund";
 "pref_background_btn_default" = "Standard-Bild verwenden";
 "pref_background_btn_gallery" = "Aus Galerie auswählen";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Wenn du diese Option änderst, stelle sicher, dass der Server und die anderen Geräte entsprechend konfiguriert sind\n\nAndernfalls funktionieren Dinge möglicherweise nicht wie erwartet.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Mehrgerätemodus";
 "pref_multidevice_explain" = "Synchronisiere deine Nachrichten mit deinen anderen Geräten. Wird beim Hinzufügen eines zweiten Geräts automatisch aktiviert.";
 "pref_multidevice_change_warn" = "Der Mehrgerätemodus muss aktiviert sein, wenn dasselbe Profil auf mehreren Geräten verwendet wird. Deaktiviere diese Einstellung nur, wenn du dieses Profil von allen anderen Geräten entfernt hast.\n\nDie Deaktivierung des Mehrgerätemodus bei Verwendung des Profils auf mehreren Geräten führt zu verlorenen Nachrichten und anderen Problemen.";
+// deprecated
 "pref_auto_folder_moves" = "Autom. Verschieben in den DeltaChat-Ordner";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Nur aus DeltaChat-Ordner lesen";
+// deprecated
 "pref_show_emails" = "Normale E-Mails anzeigen";
+// deprecated
 "pref_show_emails_no" = "Nein, nur Chats";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Akzeptierte Kontakte";
+// deprecated
 "pref_show_emails_all" = "Alle";
 "pref_experimental_features" = "Experimentelle Features";
 "pref_experimental_features_explain" = "Die Features können instabil sein und geändert oder entfernt werden";
@@ -774,14 +799,17 @@
 // automatically delete message
 "delete_old_messages" = "Alte Nachrichten löschen";
 "autodel_device_title" = "Nachrichten vom Gerät löschen";
+// deprecated
 "autodel_server_title" = "Nachrichten vom Server löschen";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten \"%2$@\" löschen?\n\n• Dies schliesst alle Medien mit ein\n\n• Nachrichten werden gelöscht, auch wenn sie nicht angesehen wurden\n\n• \"Gespeicherte Nachrichten\" werden nicht gelöscht";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Wirklich %1$d Nachrichten jetzt und zukünftig alle neuen Nachrichten \"%2$@\" löschen?\n\n⚠️ Dies schließt E-Mails, Medien und \"Gespeicherte Nachrichten\" aus allen Server-Ordnern mit ein\n\n⚠️ Verwende diese Funktion nicht, wenn du Daten auf dem Server behalten möchtest oder auch klassische E-Mail-Clients verwendest";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Dies schließt E-Mails, Medien und \"Gespeicherte Nachrichten\" aus allen Server-Ordnern mit ein. Verwenden diese Funktion nicht, wenn du Daten auf dem Server behalten möchtest oder auch klassische E-Mail-Clients verwendest.";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Sofortiges Löschen einschalten";
+// deprecated
 "autodel_server_warn_multi_device" = "Wenn sofortiges Löschen aktiviert ist, können nicht mehrere Geräte für dieses Profil verwendet werden.";
 "autodel_confirm" = "Verstanden, all diese Nachrichten löschen";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -876,7 +904,7 @@
 "invalid_unencrypted_explanation" = "Um eine Ende-zu-Ende-Verschlüsselung herzustellen, kannst du Kontakte persönlich treffen und ihren QR-Code scannen.";
 "learn_more" = "Mehr erfahren";
 "devicemsg_self_deleted" = "Du hast den Chat \"Gespeicherte Nachrichten\" gelöscht.\n\nℹ️ Um die Funktion \"Gespeicherte Nachrichten\" erneut zu verwenden, erstelle einfach einen Chat mit dir selbst.";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ Der Speicherplatz deines Anbieters ist bald erschöpft; bereits %1$@%% sind verbraucht.\n\nDu kannst möglicherweise keine Nachrichten mehr empfangen, wenn der Speicherplatz komplett verbraucht ist.\n\n👉 Bitte prüfe, ob du alte Daten im Webinterface des Anbieters löschen kannst, und erwäge, \"Einstellungen / Chats / Alte Nachrichten löschen\" zu aktivieren. Den aktuellen Speicherverbrauch kannst du jederzeit unter \"Einstellungen / Verbindungsstatus\" überprüfen.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Dein Gerät scheint ein falsches Datum oder eine falsche Uhrzeit (%1$@) zu verwenden.\n\nStelle deine Uhr ⏰🔧 richtig ein, um sicherzustellen, dass deine Nachrichten korrekt empfangen werden.";
@@ -956,8 +984,6 @@
 "new_messages_body" = "Du hast neue Nachrichten";
 "n_messages_in_m_chats" = "%1$d Nachrichten in %2$d Chats";
 // location streaming
-"location_streaming_channel_desc" = "Kanal für Standortübertragung";
-"location_streaming_notification_title" = "Standardübertragung";
 "location_streaming_notification_text" = "Du teilst deinen Standort";
 "location_rationale" = "Damit du deinen aktuellen Standort teilen kannst, musst du Delta Chat die Nutzung deiner Standortdaten erlauben.\n\nDamit die Standortanzeige nahtlos funktioniert, werden Standortdaten auch dann verwendet, wenn die App geschlossen ist oder nicht genutzt wird.";
 // permissions
@@ -1048,6 +1074,8 @@
 "a11y_message_context_menu_btn_label" = "Nachrichtaktionen";
 "a11y_background_preview_label" = "Vorschau für Hintergrundbild";
 "a11y_disappearing_messages_activated" = "Verschwindende Nachrichten eingeschaltet";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Öffne %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Teilen des Standorts beenden";
 "a11y_voice_message_hint_ios" = "Nach der Aufnahme zum Senden doppelt tippen. Um die Aufnahme zu verwerfen, mit zwei Fingern links-rechts hin- und herwischen.";

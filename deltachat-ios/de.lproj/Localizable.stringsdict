@@ -189,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Die folgende Datei an %s senden?</string>
+			<string>Die folgende Datei an %2$@ senden?</string>
 			<key>other</key>
-			<string>Die folgenden %d Dateien an %s senden?</string>
+			<string>Die folgenden %d Dateien an %2$@ senden?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -224,6 +224,22 @@
 			<string>%d Nachricht löschen?</string>
 			<key>other</key>
 			<string>%d Nachrichten löschen?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Nachricht an %2$@ weiterleiten?</string>
+			<key>other</key>
+			<string>%d Nachrichten an %2$@ weiterleiten?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

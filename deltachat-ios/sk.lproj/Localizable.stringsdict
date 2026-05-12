@@ -193,13 +193,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odoslať nasledujúci súbor %s používateľovi?</string>
+			<string>Odoslať nasledujúci súbor %2$@ používateľovi?</string>
 			<key>few</key>
-			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %2$@ používateľovi?</string>
 			<key>many</key>
-			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %2$@ používateľovi?</string>
 			<key>other</key>
-			<string>Odoslať nasledujúce %d súbory %s používateľovi?</string>
+			<string>Odoslať nasledujúce %d súbory %2$@ používateľovi?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>

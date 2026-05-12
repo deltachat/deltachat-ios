@@ -57,7 +57,9 @@
 "media" = "Amidya";
 "apps_and_media" = "Isnasen & Amidya";
 "profile" = "Amaɣnu";
+// deprecated
 "all_profiles" = "Akk imeɣna";
+// deprecated
 "current_profile" = "Amaɣnu amiran";
 "main_menu" = "Umuɣ agejdan";
 "start_chat" = "Bdu adiwinni";
@@ -80,6 +82,7 @@
 "always" = "Dima";
 "always_load_remote_images" = "Sali-d yal tikelt tugniwin n unmeggag";
 "once" = "Tikkelt";
+// deprecated
 "show_warning" = "Sken ulɣu";
 "not_now" = "Mačči tura";
 "never" = "Werǧin";
@@ -155,6 +158,7 @@
 "camera" = "Takamiṛat";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Tuṭṭfa ";
+// Switch eg. from front to back camera
 "switch_camera" = "Beddel takamiṛat ";
 "toggle_fullscreen" = "Ldi/Mdel askar n ugdil ačuran";
 "location" = "Adig";
@@ -320,6 +324,7 @@
 "mute_for_one_day" = "Sgugem i 1 wass";
 "mute_for_seven_days" = "Sgugem i 7 wussan";
 "mute_forever" = "Sgugem i lebda";
+// deprecated
 "share_location_for_5_minutes" = "I 5 n tisdatin";
 "share_location_for_30_minutes" = "I 30 n tisdatin";
 "share_location_for_one_hour" = "I 1 usrag";
@@ -363,6 +368,7 @@
 "ask_leave_group" = "Tetḥeqqeḍ tebɣiḍ ad truḥeḍ? ";
 "ask_delete_named_chat" = "Kkes adiwenni \"%1$@\"?";
 "ask_delete_message" = "Kkes izen-a?";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Welleh iznan ɣer %1$@?";
 "ask_forward_multiple" = "Welleh iznan ɣer %1$d n yidiwenniyen?";
 "ask_export_attachment" = "Asifeḍ n imeddayen ad yeǧǧ isnasen-nniḍen deg yibenk-ik·im ad kecmen ɣur-sen.\n\nad tkemmleḍ?";
@@ -656,6 +662,7 @@
 "pref_notifications_priority" = "Tazwart";
 "pref_notifications_explain" = "Rmed ilɣa n unagraw i yiznan imaynuten";
 "pref_show_notification_content" = "Sken agbur n yizen deg ulɣu";
+// deprecated
 "pref_show_notification_content_explain" = "Sken-d amazan akked wawalen imezwura n yizen deg yilɣa";
 "pref_led_color" = "Ini LED";
 "pref_sound" = "Imesli";
@@ -696,16 +703,23 @@
 "pref_background" = "Tugniwin n ugilal";
 "pref_background_btn_default" = "Seqdec tugna tamezwert";
 "pref_background_btn_gallery" = "Fren seg timidelt";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Ma tbeddleḍ aɣewwaṛ-a, senqed aqeddac-ik·im d yimsaɣen-ik·im-nniḍen ad ttuswelen akken iwata.\n\nMa ulac, yezmer lḥal ur tteddunt ara akk tɣawsiwin.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Askar n tugett n yibenk";
 "pref_multidevice_explain" = "Mtawi iznan-ik·im akked ibenkan-nniḍen. Irmed s wudem awurman deg tmerna n yibenk wis sin";
 "pref_multidevice_change_warn" = "Askar aget-ibenk yessefk ad yettwarmed mi ara tesqedceḍ yiwen n umaɣnu deg ddeqs n yibenkan. Sens kan aɣewwaṛ-agi ma yella tekkseḍ amaɣnu-yagi seg yibenkan-ik·im nniḍen.\n\nAsens n usakar n waget-ibenk mi ara tesqedceḍ amaɣnu ɣef ddeqs n yibenkan ad d-yeglu s yiznan yettwazeglen akked wuguren-nniḍen.";
+// deprecated
 "pref_auto_folder_moves" = "Ddu s wudem awurman ɣer ukaram n DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Awi-d kan seg akaram n DeltaChat";
+// deprecated
 "pref_show_emails" = "Sken imaylen iklasanen";
+// deprecated
 "pref_show_emails_no" = "Ala, idiwenniyen kan";
+// deprecated
 "pref_show_emails_accepted_contacts" = "I yinermisen yettwaqeblen";
+// deprecated
 "pref_show_emails_all" = "Akk";
 "pref_experimental_features" = "Timahilin tirmitanin";
 "pref_experimental_features_explain" = "Timahilin-agi zemrent ad ilint ur rkident ara, daɣen zemrent ad ttwabeddlent neɣ ad ttwakksent";
@@ -757,14 +771,17 @@
 // automatically delete message
 "delete_old_messages" = "Kkes iznan iqbuṛen";
 "autodel_device_title" = "Kkes iznan seg yibenk";
+// deprecated
 "autodel_server_title" = "Kkes iznan seg uqeddac";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Tebɣiḍ ad tekkseḍ %1$d n iznan tura akk d yiznan imaynuten \"%2$@\" ɣer zdat?\n\n• Deg-s akk imidyaten\n\n• Iznan ad ttwakksen ma yella ttwalan neɣ ala\n\n• \"Iznan yettwaskelsen\" ad ttwazeglen seg tukksa tadigant";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Tebɣiḍ ad tekkseḍ %1$d n iznan tura akk d yiznan imaynuten \"%2$@\" ɣer zdat?\n\n⚠️ Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac\n\n⚠️ Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac. Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
+// deprecated
 "autodel_server_warn_multi_device_title" = "Rmed tukksa n dindin";
+// deprecated
 "autodel_server_warn_multi_device" = "Ma tremdeḍ tukksa n dindin ur tezmireḍ ara ad tesqedceḍ aṭas n yibenkan deg umaɣnu-a. ";
 "autodel_confirm" = "Fehmeɣ, kkes akk iznan-agi";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -856,7 +873,7 @@
 "invalid_unencrypted_explanation" = "Akken ad tesbeddeḍ awgelhen n yixef ɣer yixef, tzemreḍ ad temlileḍ inermisen s timmad-nsen u ad ḍummeḍ tangalt-nsen QR akken ad ten-id-tesmendeḍ.";
 "learn_more" = "Issin ugar";
 "devicemsg_self_deleted" = "Tekkseḍ adiwenni n \" iznan yettwakelsen \".\n\nℹ️ Akken ad tesqedceḍ tamahilt \" iznan yettwakelsen \", rnu adiwenni amaynut akked yiman-ik·im. ";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️Asaǧǧaw-ik·im n usekles qrib ad yaččar: %1$@%% yettwaseqdec yakan.\n\nAhat ur tezmireḍ ara ad d-remseḍ iznan ma yella asekles yeččur.\n\n 👉 Ttxil-k·m senqed ma yella tzemreḍ ad tekkseḍ isefka iqburen deg ugrudem n web n isaǧǧawen syin rmed \"Iɣewwaṛen / Idiwenniyen / Kkes iznan iqbuṛen\". Tzemreḍ ad tesneqdeḍ aseqdec n usekles-inek·inem amiran deg \"Iɣewwaṛen / tuqqna\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Azemz neɣ akud deg yibenk-ik·im yettban-d ur iṣeḥḥa ara (%1$@).\n\nṢeggem tamasragt-ik·im ⏰🔧Akken ad neḍmen d akken iznan-ik·im ad ttwaremsen akken iwata. ";

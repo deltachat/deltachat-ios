@@ -65,6 +65,7 @@
 "always" = "Sempre";
 "always_load_remote_images" = "Sempre Carregar Imagens Remotas";
 "once" = "Uma vez";
+// deprecated
 "show_warning" = "Mostrar Aviso";
 "not_now" = "Mais tarde";
 "never" = "Nunca";
@@ -124,6 +125,7 @@
 "camera" = "Câmera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
+// Switch eg. from front to back camera
 "switch_camera" = "Trocar câmera";
 "toggle_fullscreen" = "Ativar modo tela cheia";
 "location" = "Localização";
@@ -237,12 +239,14 @@
 "mute_for_one_day" = "Silenciar por 1 dia";
 "mute_for_seven_days" = "Silenciar por 7 dias";
 "mute_forever" = "Silenciar para sempre";
+// deprecated
 "share_location_for_5_minutes" = "por 5 minutos";
 "share_location_for_30_minutes" = "por 30 minutos";
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
 "file_saved_to" = "Arquivo salvo em \"%1$@\".";
+// deprecated, use ask_forward_messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
 "ask_export_attachment" = "Exportar o anexo? Anexos exportados poderão ser acessados por outros aplicativos.\n\nContinuar?";
@@ -446,6 +450,7 @@
 "pref_notifications_priority" = "Prioridade";
 "pref_notifications_explain" = "Ativar notificações do sistema para novas mensagens";
 "pref_show_notification_content" = "Mostrar o conteúdo da mensagem na notificação";
+// deprecated
 "pref_show_notification_content_explain" = "Mostra o remetente e as primeiras palavras da mensagem nas notificações";
 "pref_led_color" = "Cor do LED";
 "pref_sound" = "Som";
@@ -480,12 +485,19 @@
 "pref_background" = "Papel de parede";
 "pref_background_btn_default" = "Usar imagem padrão";
 "pref_background_btn_gallery" = "Selecionar da galeria";
+// deprecated
 "pref_imap_folder_warn_disable_defaults" = "Se você mudar esta opção, certifique-se de que seu servidor e demais aplicativos estejam configurados de acordo.\n\nDo contrário, funcionalidades podem não funcionar.";
+// deprecated
 "pref_auto_folder_moves" = "Mover automaticamente para a pasta DeltaChat";
+// deprecated
 "pref_only_fetch_mvbox_title" = "Apenas pegar da pasta DeltaChat";
+// deprecated
 "pref_show_emails" = "Exibir e-mails normais";
+// deprecated
 "pref_show_emails_no" = "Não, somente conversas";
+// deprecated
 "pref_show_emails_accepted_contacts" = "Para contatos aceitos";
+// deprecated
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Recursos experimentais";
 "pref_on_demand_location_streaming" = "Streaming de localização sob demanda";
@@ -520,12 +532,13 @@
 // automatically delete message
 "delete_old_messages" = "Apagar mensagens antigas";
 "autodel_device_title" = "Apagar mensagens do dispositivo";
+// deprecated
 "autodel_server_title" = "Apagar mensagens do servidor";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Você quer apagar %1$d mensagens agora e todas as mensagens recém-obtidas \"%2$@\" no futuro?\n\n• Isso inclui todas as mídias\n\n• As mensagens serão excluídas independentemente de serem sido vistas ou não\n\n• \"Mensagens salvas\" serão ignoradas da exclusão local";
-// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+// deprecated
 "autodel_server_ask" = "Você quer apagar %1$d mensagens agora e todas as mensagens recém-obtidas \"%2$@\" no futuro?\n\n⚠️ Isso inclui e-mails, mídia e \"Mensagens salvas\" em todas as pastas do servidor\n\n⚠️ Não use esta função se quiser manter os dados no servidor\n\n⚠️ Não use esta função se estiver usando outros clientes de e-mail além do Delta Chat";
-// shown below enabled autodel_server-option, should be a summary of autodel_server_ask and remind about the impact
+// deprecated
 "autodel_server_enabled_hint" = "Isso inclui e-mails, mídia e \"Mensagens salvas\" em todas as pastas do servidor. Não use esta função se quiser manter os dados no servidor ou se estiver usando outros clientes de e-mail além do Delta Chat.";
 "autodel_confirm" = "Eu entendo, apague todas essas mensagens";
 // "At once" in the meaning of "Immediately", without any intervening time.
@@ -597,7 +610,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Temporizador de desaparecimento de mensagens definido para %1$@ semanas por %2$@.";
 "devicemsg_self_deleted" = "Você excluiu o bate-papo \"Mensagens salvas\".\n\nℹ️ Para usar o recurso \"Mensagens salvas\" novamente, crie um novo bate-papo com você mesmo. ";
-// %1$s will be replaced by the amount of storage already used, sth. as '500 MB'. If you want to use a percentage sign, type in two of them, eg. %1$s %%
+// deprecated
 "devicemsg_storage_exceeding" = "⚠️ O armazenamento em seu provedor está prestes a terminar, %1$@%% já foram utilizados\n\nVocê pode não conseguir receber mensagens quando o armazenamento estiver 100 %% utilizado.\n\n👉 Verifique se você pode excluir dados antigos através da interface da web do provedor e considere habilitar \"Configurações / Excluir Mensagens Antigas\". Você pode verificar o uso de armazenamento atual a qualquer momento em \"Configurações / Conectividade\". ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ A data ou hora do seu dispositivo parecem imprecisas (%1$@).\n\nAjuste o relógio ⏰🔧 para garantir que suas mensagens sejam recebidas corretamente.";
