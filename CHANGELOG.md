@@ -4,6 +4,7 @@
 
 - "Calls" and "Channels" are available by default and are no longer experimental
 - Remove legacy option that are useful for unsupported shared usage only
+- Your own video now shows as mirrored in a call
 
 
 ## v2.49.2
