@@ -27,6 +27,7 @@ class CallViewController: UIViewController {
         videoView.layer.cornerRadius = 20
         videoView.layer.cornerCurve = .continuous
         videoView.layer.masksToBounds = true
+        videoView.transform = CGAffineTransform(scaleX: -1, y: 1)
         return videoView
     }()
     private lazy var localVideoContainerView: UIView = {
