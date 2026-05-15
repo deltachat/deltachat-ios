@@ -130,19 +130,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.transform = CGAffineTransform(scaleX: 1, y: -1)
+        func setDefaultBackgroundImage() {
+            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        }
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
             view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
                              placeholderImage: nil,
                              options: [.retryFailed]) { [weak self] (_, error, _, _) in
                 if let error = error {
                     logger.error("Error loading background image: \(error.localizedDescription)" )
-                    DispatchQueue.main.async { [weak self] in
-                        self?.setDefaultBackgroundImage(view: view)
+                    DispatchQueue.main.async {
+                        setDefaultBackgroundImage()
                     }
                 }
             }
         } else {
-            setDefaultBackgroundImage(view: view)
+            setDefaultBackgroundImage()
         }
         view.clipsToBounds = true
         return view
@@ -2296,10 +2299,6 @@ extension ChatViewController {
             // so the keyboard is hidden and the tableView contentInset is recalculated
             resignFirstResponder()
         }
-    }
-
-    private func setDefaultBackgroundImage(view: UIImageView) {
-        view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
     }
 
     private func copyTextToClipboard(ids: [Int]) {
