@@ -2416,10 +2416,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func commandTapped(command: String, indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        if let text = messageInputBar.inputTextView.text, !text.isEmpty {
-            return
-        }
-        messageInputBar.inputTextView.text = command + " "
+        guard draft.text.isEmpty else { return }
+        draft.text = command + " "
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {
