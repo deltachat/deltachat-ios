@@ -3231,7 +3231,7 @@ struct InputBarTextView: View {
 
     var body: some View {
         _InputBarTextView(text: $text, contentSize: $contentSize)
-            .frame(height: contentSize.height)
+            .frame(idealHeight: contentSize.height, alignment: .center)
     }
 }
 
