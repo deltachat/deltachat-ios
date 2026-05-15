@@ -3018,7 +3018,7 @@ struct InputBarView: View {
                         .scaledToFit()
                         .padding(4)
                 }).frame(height: buttonSize)
-                TextEditor(text: $draft.text)
+                InputBarTextView(text: $draft.text)
                     .focused($textEditorFocus)
                     .scrollNeverDismissesKeyboard_iOS16()
                     .overlay(alignment: .leading) {
@@ -3029,7 +3029,7 @@ struct InputBarView: View {
                         }
                     }
                     .padding(.horizontal, 10)
-                    .modifier { glassEffect(view: $0, interactive: true) }
+                    .modifier { glassEffect(view: $0, minHeight: buttonSize, interactive: true) }
                     .frame(maxHeight: 150)
                     .onTapGesture {
                         textEditorFocus = true
@@ -3096,10 +3096,10 @@ struct InputBarView: View {
         }
     }
 
-    @ViewBuilder func glassEffect<V: View>(view: V, interactive: Bool) -> some View {
+    @ViewBuilder func glassEffect<V: View>(view: V, minHeight: CGFloat? = nil, interactive: Bool) -> some View {
         if #available(iOS 26.0, *) {
-            view.transparentScrolling()
-                .padding(8)
+            view.padding(8)
+                .frame(minHeight: minHeight)
                 .glassEffect(.regular.interactive(interactive), in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
         } else {
             view
@@ -3193,17 +3193,6 @@ struct UncachedMenu<Content: View, Label: View>: View {
 }
 
 public extension View {
-    func transparentScrolling() -> some View {
-        if #available(iOS 16.0, *) {
-            return scrollContentBackground(.hidden)
-        } else {
-            return onAppear {
-                // TODO: Check if other textviews set their backgroundColor otherwise this will modify them
-                UITextView.appearance().backgroundColor = .clear
-            }
-        }
-    }
-
     func scrollNeverDismissesKeyboard_iOS16() -> some View {
         if #available(iOS 16.0, *) {
             return scrollDismissesKeyboard(.never)
@@ -3236,4 +3225,51 @@ private struct CalculatedSizePreferenceModifier: ViewModifier {
 private struct CalculatedSizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+struct InputBarTextView: View {
+    @Binding var text: String
+    @State private var contentSize: CGSize = .zero
+
+    var body: some View {
+        _InputBarTextView(text: $text, contentSize: $contentSize)
+            .frame(height: contentSize.height)
+    }
+}
+
+private struct _InputBarTextView: UIViewRepresentable {
+    @Binding var text: String
+    @Binding var contentSize: CGSize
+
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.font = UIFont.preferredFont(forTextStyle: .body)
+        textView.backgroundColor = .clear
+        context.coordinator.contentSizePublisher = textView.publisher(for: \.contentSize)
+            .receive(on: RunLoop.main)
+            .assign(to: \.contentSize, on: self)
+        return textView
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text)
+    }
+
+    class Coordinator: NSObject, UITextViewDelegate {
+        @Binding var text: String
+        var contentSizePublisher: AnyCancellable?
+
+        init(text: Binding<String>) {
+            self._text = text
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            self.text = textView.text
+        }
+    }
 }
