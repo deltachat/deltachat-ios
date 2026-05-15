@@ -144,6 +144,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             setDefaultBackgroundImage(view: view)
         }
+        view.clipsToBounds = true
         return view
     }()
 
