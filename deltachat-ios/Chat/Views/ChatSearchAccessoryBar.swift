@@ -6,14 +6,7 @@ public protocol ChatSearchDelegate: AnyObject {
     func onSearchNextPressed()
 }
 
-public class ChatSearchAccessoryBar: UIView, InputItem {
-    public weak var inputBarAccessoryView: InputBarAccessoryView?
-    public var parentStackViewPosition: InputStackView.Position?
-    public func textViewDidChangeAction(with textView: InputTextView) {}
-    public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
-    public func keyboardEditingEndsAction() {}
-    public func keyboardEditingBeginsAction() {}
-
+public class ChatSearchToolBar: UIView {
     public var isEnabled: Bool {
         willSet(newValue) {
             upButton.isEnabled = newValue
@@ -23,47 +16,47 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
 
     weak var delegate: ChatSearchDelegate?
 
-    private lazy var upButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-        view.tintColor = .systemBlue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
-        view.imageView?.contentMode = .scaleAspectFit
-        return view
+    private lazy var upButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.up"),
+            style: .plain,
+            target: self,
+            action: #selector(onUpPressed)
+        )
+        // TODO: Accessibility title
+        return button
     }()
 
-    private lazy var downButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        view.tintColor = .systemBlue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageView?.contentMode = .scaleAspectFit
-        view.isUserInteractionEnabled = true
-        return view
+    private lazy var downButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.down"),
+            style: .plain,
+            target: self,
+            action: #selector(onDownPressed)
+        )
+        // TODO: Accessibility title
+        return button
     }()
 
-    private lazy var searchResultLabel: UILabel = {
-        let view = UILabel(frame: .zero)
-        view.font = UIFont.preferredFont(for: .body, weight: .regular)
-        view.textColor = DcColors.grayTextColor
-        view.textAlignment = .center
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var searchResultLabel: UIBarButtonItem = {
+        let item = UIBarButtonItem()
+        item.isEnabled = false
+        if #available(iOS 26.0, *) {
+            item.tintColor = DcColors.defaultTextColor
+        } else {
+            item.tintColor = DcColors.grayTextColor
+        }
+        return item
     }()
 
-    private lazy var buttonContainer: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [upButton, downButton])
-        view.axis = .horizontal
-        view.distribution = .equalSpacing
-        view.alignment = .trailing
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    private lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.items = [searchResultLabel, .flexibleSpace(), upButton, downButton]
+        return toolbar
     }()
 
     convenience init() {
         self.init(frame: .zero)
-
     }
 
     public override init(frame: CGRect) {
@@ -77,27 +70,8 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }
 
     public func setupSubviews() {
-        addSubview(searchResultLabel)
-        addSubview(buttonContainer)
-
-        addConstraints([
-            searchResultLabel.constraintCenterYTo(self),
-            searchResultLabel.constraintAlignLeadingToAnchor(self.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 32),
-            buttonContainer.constraintAlignTopTo(self, paddingTop: 4),
-            buttonContainer.constraintAlignBottomTo(self, paddingBottom: 4),
-            buttonContainer.constraintWidthTo(90),
-            buttonContainer.constraintAlignTrailingToAnchor(self.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 12),
-            upButton.constraintHeightTo(40),
-            downButton.constraintHeightTo(40),
-            upButton.constraintWidthTo(40),
-            downButton.constraintWidthTo(40)
-        ])
-
-        let upGestaureListener = UITapGestureRecognizer(target: self, action: #selector(onUpPressed))
-        upButton.addGestureRecognizer(upGestaureListener)
-
-        let downGestureListener = UITapGestureRecognizer(target: self, action: #selector(onDownPressed))
-        downButton.addGestureRecognizer(downGestureListener)
+        addSubview(toolbar)
+        toolbar.fillSuperviewAvoidingSafeAreaAndKeyboard()
     }
 
     @objc func onUpPressed() {
@@ -109,10 +83,20 @@ public class ChatSearchAccessoryBar: UIView, InputItem {
     }
 
     public func updateSearchResult(sum: Int, position: Int) {
+        if #available(iOS 26.0, *) {
+            // On liquid glass you can see button items with no text so we remove it.
+            // Note that UIBarButtonItem.isHidden does nothing on iOS 26.
+            if sum == 0 {
+                toolbar.items = [.flexibleSpace(), upButton, downButton]
+            } else {
+                toolbar.items = [searchResultLabel, .flexibleSpace(), upButton, downButton]
+            }
+        }
+
         if sum == 0 {
-            searchResultLabel.text = nil
+            searchResultLabel.title = nil
         } else {
-            searchResultLabel.text = "\(position) / \(sum)"
+            searchResultLabel.title = "\(position) / \(sum)"
         }
     }
 }

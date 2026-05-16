@@ -16,22 +16,14 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         searchController.searchBar.placeholder = String.localized("search")
         searchController.searchBar.delegate = self
         searchController.delegate = self
-        searchController.searchBar.inputAccessoryView = accessoryViewContainer
+        searchController.searchBar.inputAccessoryView = searchAccessoryBar
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
         return searchController
     }()
 
-    lazy var accessoryViewContainer: InputBarAccessoryView = {
-        let inputBar = InputBarAccessoryView()
-        inputBar.setMiddleContentView(searchAccessoryBar, animated: false)
-        inputBar.sendButton.isHidden = true
-        inputBar.delegate = self
-        return inputBar
-    }()
-
-    public lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
-        let view = ChatSearchAccessoryBar()
+    public lazy var searchAccessoryBar: ChatSearchToolBar = {
+        let view = ChatSearchToolBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isEnabled = false
@@ -92,9 +84,12 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         setupSubviews()
         keyboardManager?.bind(to: webView.scrollView)
-        keyboardManager?.on(event: .didHide) { [weak self] _ in
-            self?.webView.scrollView.contentInset.bottom = 0
+        let recalculateContentInset: (KeyboardNotification) -> Void = { [weak self] notification in
+            guard let self else { return }
+            webView.scrollView.contentInset.bottom = notification.endFrame.height
         }
+        keyboardManager?.on(event: .didHide, do: recalculateContentInset)
+        keyboardManager?.on(event: .didShow, do: recalculateContentInset)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -115,9 +110,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
         if allowSearch {
             navigationItem.searchController = searchController
         }
-        accessoryViewContainer.setLeftStackViewWidthConstant(to: 0, animated: false)
-        accessoryViewContainer.setRightStackViewWidthConstant(to: 0, animated: false)
-        accessoryViewContainer.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
     }
 
     private func initSearch() {
@@ -264,11 +256,5 @@ extension WebViewViewController: ChatSearchDelegate {
 
     func onSearchNextPressed() {
         self.searchNext()
-    }
-}
-
-extension WebViewViewController: InputBarAccessoryViewDelegate {
-    func inputBar(_ inputBar: InputBarAccessoryView, didAdaptToKeyboard height: CGFloat) {
-        self.webView.scrollView.contentInset.bottom = height
     }
 }

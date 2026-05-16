@@ -1,13 +1,15 @@
 import UIKit
 import DcCore
 
-public class DraftArea: UIView, InputItem {
-    public weak var inputBarAccessoryView: InputBarAccessoryView?
-    public var parentStackViewPosition: InputStackView.Position?
-    public func textViewDidChangeAction(with textView: InputTextView) {}
-    public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
-    public func keyboardEditingEndsAction() {}
-    public func keyboardEditingBeginsAction() {}
+// TODO: REMOVE
+
+public class DraftArea: UIView/*, InputItem*/ {
+//    public weak var inputBarAccessoryView: InputBarAccessoryView?
+//    public var parentStackViewPosition: InputStackView.Position?
+//    public func textViewDidChangeAction(with textView: InputTextView) {}
+//    public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
+//    public func keyboardEditingEndsAction() {}
+//    public func keyboardEditingBeginsAction() {}
 
     var delegate: DraftPreviewDelegate? {
         get {
@@ -73,14 +75,14 @@ public class DraftArea: UIView, InputItem {
     }
 
     public func configure(draft: DraftModel) {
-        guard let  chatInputBar = inputBarAccessoryView else {
-            return assertionFailure("Expecting inputBarAccessoryView of type ChatInputBar")
-        }
-        quotePreview.configure(draft: draft)
-        mediaPreview.configure(draft: draft)
-        documentPreview.configure(draft: draft)
-        contactCardPreview.configure(draft: draft)
-        chatInputBar.configure(draft: draft)
+//        guard let chatInputBar = inputBarAccessoryView else {
+//            return assertionFailure("Expecting inputBarAccessoryView of type ChatInputBar")
+//        }
+//        quotePreview.configure(draft: draft)
+//        mediaPreview.configure(draft: draft)
+//        documentPreview.configure(draft: draft)
+//        contactCardPreview.configure(draft: draft)
+//        chatInputBar.configure(draft: draft)
     }
 
     /// reload cleans caches containing the drafted attachment so that the UI will update correctly
@@ -90,13 +92,13 @@ public class DraftArea: UIView, InputItem {
     }
 
     public func cancel() {
-        quotePreview.cancel()
-        mediaPreview.cancel()
-        documentPreview.cancel()
-        contactCardPreview.cancel()
-        if let chatInputBar = inputBarAccessoryView {
-            chatInputBar.cancel()
-        }
+//        quotePreview.cancel()
+//        mediaPreview.cancel()
+//        documentPreview.cancel()
+//        contactCardPreview.cancel()
+//        if let chatInputBar = inputBarAccessoryView {
+//            chatInputBar.cancel()
+//        }
     }
 
 }
