@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import DcCore
+import SDWebImage
 
 public class DraftModel: ObservableObject {
     @Published var draftMsg: DcMsg?
@@ -40,6 +41,7 @@ public class DraftModel: ObservableObject {
     }
 
     public func setQuote(quotedMsg: DcMsg?) {
+        assert(Thread.isMainThread)
         if draftMsg == nil && quotedMsg != nil {
             draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
         }
@@ -49,6 +51,7 @@ public class DraftModel: ObservableObject {
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
+        assert(Thread.isMainThread)
         sendEditRequestFor = nil
         let quoteMsg = draftMsg?.quoteMessage
         draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
@@ -58,7 +61,21 @@ public class DraftModel: ObservableObject {
         save(context: dcContext)
     }
 
+    public func reloadAttachmentPreview() {
+        assert(Thread.isMainThread)
+        guard let attachment else { return }
+        if viewType == DC_MSG_IMAGE {
+            let url = URL(fileURLWithPath: attachment, isDirectory: false)
+            SDImageCache.shared.removeImage(forKey: url.absoluteString) { [weak self] in
+                self?.publishDraftMsgChange()
+            }
+        } else if viewType == DC_MSG_VIDEO {
+            publishDraftMsgChange()
+        }
+    }
+
     public func clearAttachment() {
+        assert(Thread.isMainThread)
         sendEditRequestFor = nil
         let quoteMsg = draftMsg?.quoteMessage
         if !trimmedText.isEmpty || quoteMsg != nil {
@@ -73,6 +90,7 @@ public class DraftModel: ObservableObject {
     }
 
     public func save(context: DcContext) {
+        assert(Thread.isMainThread)
         guard sendEditRequestFor == nil else { return }
 
         guard !trimmedText.isEmpty || quoteMessage != nil || attachment != nil else {
@@ -92,6 +110,7 @@ public class DraftModel: ObservableObject {
     }
 
     public func clear() {
+        assert(Thread.isMainThread)
         text = ""
         draftMsg = nil
         sendEditRequestFor = nil
@@ -99,6 +118,7 @@ public class DraftModel: ObservableObject {
     }
 
     public func send() {
+        assert(Thread.isMainThread)
         guard canSend() else { return }
         if let sendEditRequestFor {
             dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
