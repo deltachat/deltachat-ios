@@ -3,9 +3,25 @@
 ## Unreleased
 
 - "Calls" and "Channels" are available by default and are no longer experimental
-- Remove legacy option that are useful for unsupported shared usage only
-- Your own video now shows as mirrored in a call
+- Resend the last 10 messages to new broadcast channel member
+- Enable PQC (Post-Quantum Cryptography) support. We do not generate PQC keys yet, this step is needed for forward compatibility
+- Improve avatar quality
+- Remove "Move to DeltaChat folder", in case you are using the option, a device message shows how to proceed
+- Remove "Only fetch from DeltaChat folder" option, the functionality is preserved for existing profiles
+- Remove "Delete Messages from Server" option, this is now up to the server:
+  Chatmail handles that automatically, classic email servers used as relay often have lots of storage or options themselves
+- Remove "Show Email" options, all messages are shown by default, account sharing is anyway not supported
+- Allow otherwise invalid TLS connections if the key is unchanged
+- Do not show "non delivered" notifications in broadcast channels
+- Adapt quota warning to automatic cleanup.
+- Fix: Your own video now shows as mirrored in a call
+- Fix: Improve detection of stickers
 - Fix: Allow animated stickers
+- Fix: Reconnect when removing a relay
+- Fix: Ensure that message being sent is added to the bottom
+- Fix: Don't receive message if a deletion request was received before
+- Fix some text direction issues in "Show full message" view
+- Update core to 2.50.0
 
 
 ## v2.49.2
@@ -14,7 +30,7 @@
 - When tapping an invite link, after app installation, offer corresponding chat
 - Fix: do not crash when swiping keyboard down
 - Update translations and local help
-- Usign core 2.49.0
+- Using core 2.49.0
 
 
 ## v2.49.0
