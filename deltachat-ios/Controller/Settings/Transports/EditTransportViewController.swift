@@ -43,6 +43,7 @@ class EditTransportViewController: UITableViewController {
         smtpServerCell,
         smtpPortCell,
         certCheckCell,
+        forceE2eeCell,
         viewLogCell
     ]
     private let editAddr: String?
@@ -209,6 +210,10 @@ class EditTransportViewController: UITableViewController {
         cell.tag = tagCertCheckCell
         cell.accessoryType = .disclosureIndicator
         return cell
+    }()
+
+    lazy var forceE2eeCell: SwitchCell = {
+        return SwitchCell(textLabel: String.localized("enforce_e2ee"), on: dcContext.getConfigBool("force_encryption"))
     }()
 
     lazy var viewLogCell: UITableViewCell = {
@@ -429,6 +434,7 @@ class EditTransportViewController: UITableViewController {
         loginParam.certificateChecks = certValue
 
         do {
+            dcContext.setConfigBool("force_encryption", forceE2eeCell.isOn)
             _ = try dcContext.addOrUpdateTransport(param: loginParam)
         } catch {
             progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
