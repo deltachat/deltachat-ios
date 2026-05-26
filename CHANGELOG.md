@@ -14,6 +14,7 @@
 - Allow otherwise invalid TLS connections if the key is unchanged
 - Do not show "non delivered" notifications in broadcast channels
 - Adapt quota warning to automatic cleanup.
+- Add an option to process unencrypted messages to "Advanced / Relays / Edit / More Options". By default, only encrypted messages can be sent or received
 - Fix: Your own video now shows as mirrored in a call
 - Fix: Improve detection of stickers
 - Fix: Allow animated stickers
