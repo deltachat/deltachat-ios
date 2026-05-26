@@ -165,6 +165,8 @@
 "capture" = "捕获";
 // Switch eg. from front to back camera
 "switch_camera" = "切换摄像头";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "切换摄像头";
 "toggle_fullscreen" = "切换全屏模式";
 "location" = "位置";
 "locations" = "位置";
@@ -349,6 +351,8 @@
 "answer_call" = "接听";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "拒接";
+// the action to end a call
+"end_call2" = "结束通话";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "音频通话";
 // Used in call bubbles, summaries, notifications
@@ -372,6 +376,7 @@
 "missed_call" = "未接来电";
 "already_in_call" = "已在通话中";
 "call_answered_elsewhere" = "通话已在其他设备上接听";
+"call_requires_camera_permission" = "视频通话需要摄像头权限";
 "call_requires_mic_permission" = "通话需要麦克风权限";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "与 %1$@ 的通话";
@@ -382,9 +387,10 @@
 "ask_leave_group" = "是否确定要离开？";
 "ask_delete_named_chat" = "删除聊天“%1$@”？";
 "ask_delete_message" = "删除此消息？";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
-"ask_forward" = "将消息转发给 %1$@？";
-"ask_forward_multiple" = "转发消息到 %1$d 个聊天？";
+"ask_forward" = "将消息转发到 %1$@？";
+"ask_forward_multiple" = "将消息转发到 %1$d 个聊天？";
 "ask_export_attachment" = "导出附件将允许您设备上的其他应用访问这些附件。\n\n是否继续？";
 "ask_block_contact" = "屏蔽此联系人？\n\n被屏蔽的联系人所创建的直接消息或群组将不会显示。\n\n被屏蔽的联系人所创建的其他群组仍将显示他们的消息。";
 "ask_unblock_contact" = "取消屏蔽此联系人？";
@@ -402,7 +408,7 @@
 // chatlist and chat view
 "chat_archived_chats_title" = "已归档聊天";
 "chat_please_enter_message" = "请输入消息。";
-"chat_camera_unavailable" = "相机不可用。";
+"chat_camera_unavailable" = "摄像头不可用。";
 "chat_unable_to_record_audio" = "无法录制音频。";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "发一条消息给 %1$@。";
@@ -535,6 +541,7 @@
 "connectivity_connected" = "已连接";
 "sending" = "发送中…";
 "last_msg_sent_successfully" = "最后一条消息已成功发送。";
+// deprecated
 "not_supported_by_provider" = "不被您的邮件提供商支持。";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "消息";
@@ -569,7 +576,6 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
-"login_advanced_hint" = "此登录适用于高级用户：\n\n• 请勿使用您在其他应用中已使用的地址。\n\n• 传统电子邮件服务器允许进行未端到端加密的聊天，此类聊天以邮件图标标记。";
 "login_inbox" = "收件箱";
 "login_imap_login" = "IMAP 登录名";
 "login_imap_server" = "IMAP 服务器";
@@ -910,7 +916,7 @@
 "load_qr_code_as_image" = "从图像加载二维码";
 "qrscan_title" = "扫描二维码";
 "qrscan_hint" = "将摄像头对准二维码。";
-"qrscan_hint_desktop" = "移动二维码到相机";
+"qrscan_hint_desktop" = "将二维码移动到摄像头";
 "qrscan_failed" = "二维码无法被解码";
 "qrscan_ask_join_group" = "是否要加入群组“%1$@”？";
 "qrscan_ask_join_channel" = "是否要加入频道“%1$@”？";

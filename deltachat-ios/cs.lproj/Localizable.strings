@@ -499,6 +499,7 @@
 "connectivity_connected" = "Připojeno";
 "sending" = "Odesílání...";
 "last_msg_sent_successfully" = "Poslední zpráva úspěšně odeslána.";
+// deprecated
 "not_supported_by_provider" = "Nepodporováno vaším poskytovatelem.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Zprávy";
@@ -533,7 +534,6 @@
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
 "login_title" = "Přihlaš se";
-"login_advanced_hint" = "Toto přihlášení je určeno pro pokročilé uživatele: \n\n Nepoužívejte adresu, kterou používáte v jiné aplikaci. \n\n- Klasický e-mailový server umožňuje chatování bez koncového šifrování označeného ikonou pošty.";
 "login_inbox" = "Příchozí";
 "login_imap_login" = "IMAP uživatelské jméno";
 "login_imap_server" = "IMAP server";

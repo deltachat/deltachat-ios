@@ -22,6 +22,8 @@
 "downloading" = "A descarregar…";
 "open_attachment" = "Abrir Anexo";
 "join" = "Entrar";
+"join_group" = "Juntar-se ao Grupo";
+"join_channel" = "Juntar-se ao Canal";
 "rejoin" = "Re-entrar";
 "delete" = "Apagar";
 "delete_for_me" = "Apagar para mim";
@@ -30,6 +32,7 @@
 "update" = "Actualizar";
 "emoji" = "Emoji";
 "attachment" = "Anexo";
+"back" = "Voltar";
 "close" = "Fechar";
 "close_window" = "Fechar Janela";
 "forward" = "Reencaminhar";
@@ -45,6 +48,7 @@
 // Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Silenciar";
 "ephemeral_messages" = "Destruição de mensagens";
+"ephemeral_messages_hint" = "Aplicam-se a todos os membros desta conversa; continuam a poder copiar, guardar, e reencaminhar mensagens.";
 "save" = "Guardar";
 "chat" = "Conversa";
 "profile" = "Perfil";
@@ -60,6 +64,10 @@
 "mark_as_read" = "Marcar como lida";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Marcar lida";
+// Used as an menu entry or button
+"mark_as_unread" = "Marcar como Não Lidas";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Marcar não lida";
 // Placeholder text when something is loading
 "loading" = "A carregar...";
 "hide" = "Ocultar";
@@ -73,6 +81,7 @@
 "offline" = "Offline";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Próx.";
+"warning" = "Aviso";
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
 "no_app_to_handle_data" = "Não é possível encontrar uma aplicação para lidar com esse tipo de dados.";
@@ -84,12 +93,16 @@
 "bad_email_address" = "Endereço de errado de email";
 "password" = "Palavra-chave";
 "now" = "Agora";
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
+"danger" = "Atenção";
 "today" = "Hoje";
 "yesterday" = "Ontem";
 "this_week" = "Esta semana";
 "this_month" = "Este mês";
 "last_week" = "Semana passada";
 "last_month" = "Mês passado";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Visto/a pela última vez às/a %1$@";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Eu";
@@ -107,6 +120,8 @@
 "documents" = "Documentos";
 "contact" = "Contacto";
 "camera" = "Câmera";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Des/ligar Câmara";
 "location" = "Local";
 "gallery" = "Galeria";
 "file" = "Ficheiro";
@@ -117,6 +132,9 @@
 "webxdc_apps" = "Apps";
 "games" = "Jogos";
 "tools" = "Ferramentas";
+"app_size" = "Tamanho";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
+"app_date_published" = "Publicada";
 "unknown" = "Desconhecido";
 "green" = "Verde";
 "red" = "Vermelho";
@@ -126,6 +144,7 @@
 "purple" = "Roxo";
 "magenta" = "Magenta";
 "white" = "Branco";
+"zoom" = "Zoom";
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
@@ -164,6 +183,7 @@
 "menu_message_details" = "Detalhe da mensagem";
 "menu_copy_to_clipboard" = "Copiar para área de transferência";
 "invite_friends" = "Convidar amigos";
+"menu_copy_link_to_clipboard" = "Copiar Ligação";
 "menu_forward" = "Reencaminhar mensagem";
 "menu_reply" = "Responder";
 "menu_mute" = "Silenciar notificações";
@@ -189,6 +209,11 @@
 "menu_settings" = "Definições";
 "menu_advanced" = "Avançado";
 "menu_view_profile" = "Ver perfil";
+"device_talk_explain" = "Mensagens nesta conversa são geradas no teu dispositivo para informar de actualizações e problemas durante utilização.";
+"device_talk_welcome_message2" = "Entra em contacto!\n\n🙌 Clica em \"Código QR\" no ecrã principal de ambos os dispositivos. Escolhe \"Ler Código QR\" num deles, e aponta-o ao outro\n\n🌍 Se não estiverem juntos em pessoa, lẽ através de vídeochamada ou partilha uma ligação de convite desde \"Ler Código QR\"\n\nFinalmente: Aproveita a experiência descentralizada de enviar mensagens. Ao contrário doutras apps populares, não há controlo central ou rastreamento ou venda a grandes organizações dos teus dados, amigos, colegas ou família.";
+"edit_contact" = "Editar Contacto";
+"reply_privately" = "Responder em Privado";
+"donate_device_msg" = "❤️ Parece que estás a gostar do Delta Chat!\n\nConsidera doar para ajudar a garantir que o Delta Chat se mantém grátis para todos.\n\nApesar do Delta Chat ser grátis de usar e ser código aberto, o desenvolvimento custa dinheiro. Ajuda-nos a manter o Delta Chat independente e a fazê-lo ainda mais altamente no futuro.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Calado por 1 hora";
 "mute_for_eight_hours" = "Calado por 8 horas";
 "mute_for_one_day" = "Calado por 1 dia";
@@ -200,6 +225,23 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
+"share_location_for_24_hours" = "Durante 24 horas";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Ligar";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Atender";
+// the action to end a call
+"end_call2" = "Desligar Chamada";
+"call_ringing" = "A chamar...";
+"already_in_call" = "Já em chamada";
+"call_answered_elsewhere" = "Chamada atendida noutro dispositivo";
+"call_requires_camera_permission" = "É necessária a permssão de acesso à câmara para fazer vídeochamadas";
+"call_requires_mic_permission" = "É necessária a permssão de acesso ao microfone para fazer chamadas";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Chamada com %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "A chamar %1$@…";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Reencaminhar mensages para %1$@?";
 "ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
@@ -207,6 +249,7 @@
 "ask_block_contact" = "Bloquear este contacto?\n\nMensagens directas e grupos criados por contactos bloqueados serão ocultados.\n\nMensagens de contactos bloqueados não serão ocultadas noutros grupos.";
 "ask_unblock_contact" = "Desbloquear esse contacto? Poderá mais uma vez receber mensagens deste contacto.";
 "ask_delete_contacts" = "Remover contactos? Assim removerá permanentemente os contactos selecionados.\n\nContactos com chats a decorrer e contactos com endereços do sistema não podem ser removidos permanentemente.";
+"ask_delete_contact" = "Apagar contacto %1$@?\n\nContactos com conversas abertas não podme ser apagados permanentement.";
 "ask_start_chat_with" = "Conversar com %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
@@ -232,6 +275,10 @@
 "chat_self_talk_subtitle" = "Mensagens que enviei para mim";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Guardar mensagem";
+"saved_messages" = "Mensagens Guardadas";
+"saved_messages_explain" = "• Reencaminha mensagens aqui para acesso fácil\n\n• Tira notas escritas ou de áudio\n\n• Anexa ficheiros para os guardar";
+// Should match "Saved" from "Saved messages"
+"saved" = "Guardadas";
 // webxdc
 // "Start..." button for an app
 "start_app" = "Arrancar…";
@@ -241,7 +288,10 @@
 "send_message_to" = "Enviar mensagem para…";
 // search
 "search" = "Pesquisar";
+// Placeholder will be replaced by the chat name
+"search_in" = "Procurar em %1$@";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
+"search_result_for_x" = "Resultado para \"%1$@\"";
 "search_no_result_for_x" = "Nenhum resultado encontrado para \"%1$@\"";
 // create/edit groups, contact/group profile
 "group_name" = "Nome do grupo";
@@ -249,6 +299,7 @@
 "group_create_button" = "Criar grupo";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Por favor, introduza um nome para o grupo.";
+"please_enter_chat_name" = "Por favor introduz um nome.";
 "group_add_members" = "Adicionar membros";
 "group_self_not_in_group" = "Tem de ser membro do grupo para realizar a ação.";
 "profile_encryption" = "Encriptação";
@@ -256,8 +307,10 @@
 "tab_group" = "Grupo";
 "tab_gallery" = "Galeria";
 "tab_links" = "Ligações";
+"tab_map" = "Mapa";
 "all_apps_empty_hint" = "Apps recebidas ou enviadas em qualquer bate-papo aparecerão aqui.";
 "media_preview" = "Visualização de mídia";
+"send_message" = "Enviar Mensagem";
 // Shown beside progress bar, stay short
 "preparing_account" = "A preparar perfil…";
 // Shown beside progress bar, stay short
@@ -265,6 +318,10 @@
 // Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
 "connectivity_updating" = "A actualizar…";
 "sending" = "A enviar…";
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Mensagens";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ de %2$@ usados";
 "login_title" = "Login";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";
@@ -277,6 +334,10 @@
 "login_smtp_server" = "SMTP servidor";
 "login_smtp_port" = "SMTP porto";
 "login_smtp_security" = "SMTP segurança";
+// Hint for the list of relays
+"transport_list_hint" = "Mensagens são recebidas em todos os relays.\n\n⚠️ Se alterares alguma coisa aqui, confirma que todos os teus dispositivos estão pelo menos na versão 2.47.0. Caso contrário, dispositivos mais desactualizados podem perder mensagens.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_or_hide_transport_x" = "Remover relay \"%1$@\"?\n\nContactos que conheçam apenas este relay não serão capazes de te contactar até lhes enviares uma nova mensagem.\n\nEm caso de dúvida, oculta-o em vez de o remover.";
 "login_error_mail" = "Por favor insira um endereço de e-mail válido";
 "login_error_server" = "Por favor insira um servidor ou endereço IP válido";
 "login_error_port" = "Por favor, insira um porto válido (1-65535)";
@@ -286,6 +347,9 @@
 "import_backup_no_backup_found" = "Nenhum backup encontrado. \n\nCopie o backup para \"%1$@\" e tente novamente.";
 // %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
+"switch_account" = "Trocar Perfil";
+"add_account" = "Adicionar Perfil";
+"delete_account_explain_with_name" = "Todos os dados do perfil \"%1$@\" neste dispositivo serão removidos, incluindo a configuração de criptografia de ponta-a-ponta, contactos, conversas, mensagens e multimédia. Não é possível desfazer esta acção.";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Reencaminhar ...";
@@ -298,15 +362,21 @@
 "pref_your_name" = "O seu nome";
 // Label of the Bio/Signature/Status/Motto field
 "pref_default_status_label" = "Informação do estado";
+"chat_description" = "Descrição";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Tecla ENTER para enviar";
 "pref_enter_sends_explain" = "Pressionar a tecla ENTER enviará mensagens de texto";
+"pref_outgoing_worse" = "Pior qualidade, poupa em dados";
 "pref_vibrate" = "Vibrar";
 "pref_screen_security" = "Segurança do ecrã";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Bloquear capturas de ecrã na lista atualizada e no aplicativo";
 "pref_screen_security_please_restart_hint" = "Para aplicar a configuração de segurança do ecrã, reinicie o aplicativo.";
 "pref_notifications" = "Notificações";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Chamadas";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Mostrar ecrã de chamadas para contactos aceites";
 "pref_notifications_show" = "Mostrar";
 "pref_notifications_priority" = "Prioridade";
 "pref_led_color" = "Cor do LED";
@@ -325,6 +395,10 @@
 "pref_incognito_keyboard_explain" = "Desligar aprendizagem automática no teclado";
 "pref_read_receipts" = "Ler recibos";
 "pref_read_receipts_explain" = "Se as confirmações de leitura estiverem desactivadas, não poderá ver os recibos de leitura de outras pessoas.";
+// Title above a list of contacts who read a message
+"read_by" = "Lida por";
+"pref_server" = "Servidor";
+"pref_encryption" = "Criptografia";
 "pref_manage_keys" = "Gerir teclas";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
@@ -347,13 +421,20 @@
 "pref_show_emails_no" = "Não, apenas conversas";
 // deprecated
 "pref_show_emails_all" = "Tudo";
+"disable" = "Desactivar";
+"emoji_activity" = "Actividade";
+"emoji_objects" = "Objectos";
+"emoji_symbols" = "Símbolos";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por mim.";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "O nome do grupo mudou de \"%1$@\" para \"%2$@\" por %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Nome do canal mudou de \"%1$@\" para \"%2$@\".";
 "group_image_changed_by_you" = "Imagem do grupo modificada por mim.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imagem do grupo modificada por %1$@.";
+"channel_image_changed" = "Imagem do canal alterada.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Membro %1$@ adicionado por mim.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
@@ -367,6 +448,9 @@
 "group_image_deleted_by_you" = "Imagem do grupo apagada por mim.";
 // %1$s will be replaced by name of the contact
 "group_image_deleted_by_other" = "Imagem do grupo apagada por %1$@.";
+"messages_are_e2ee" = "Mensagens são cifradas de ponta-a-ponta.";
+// qr code stuff
+"qr_code" = "Código QR";
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";
 "qrscan_ask_join_group" = "Quer se juntar-se ao grupo \"%1$@\"?";
@@ -387,6 +471,7 @@
 "qrshow_join_contact_hint" = "Digitalize para configurar um contato com %1$@";
 "secure_join_wait" = "A estabelecer ligação cifrada de ponta-a-ponta, por favor aguarde…";
 "contact_verified" = "%1$@ verificado.";
+"remove_attachment" = "Remover anexo";
 // notifications
 "notify_reply_button" = "Responder";
 "notify_new_message" = "Mensagem nova";
@@ -396,6 +481,9 @@
 "notify_name_and_message" = "Nome e mensagem";
 "notify_name_only" = "Apenas nome";
 "notify_no_name_or_message" = "Sem nome ou mensagem";
+// location streaming
+"location_streaming_notification_text" = "Estás a partilhar a tua localização";
+"location_rationale" = "Para partilhar a tua localização em tempo real com os membros da conversa, permite o Delta Chat de usar a tua localização.\n\nPara a localização funcionar em tempo real sem falhas, a localização é usada mesmo quando a app está fechada ou não em uso.";
 // permissions
 "perm_required_title" = "Permissão necessária";
 "perm_continue" = "Continuar";
@@ -404,6 +492,7 @@
 "perm_explain_access_to_mic_denied" = "O Delta Chat necessita de permissão de acesso ao microfone para enviar mensagens de áudio, mas foi negado. Por favor, continue com as configurações do aplicativo, selecione \"Permissões\" e active \"Microfone\".";
 "perm_explain_access_to_storage_denied" = "O Delta Chat necessita da permissão de armazenamento para anexar ou exportar fotos, vídeos ou áudio, mas foi negado. Por favor, continue no menu de configurações do aplicativo, seleccione \"Permissões\" e active \"Armazenamento\".";
 "perm_explain_access_to_location_denied" = "O Delta Chat necessita permissão de acesso à localização para anexar um local, mas ele negado. Por favor, continue no menu de configurações do aplicativo, selecione \"Permissões \"e ative \"Localização\".";
+"ImageEditorHud_crop" = "Recortar";
 "ImageEditorHud_rotate" = "Rodar";
 "global_menu_preferences_language_desktop" = "Escolha o seu idioma...";
 "global_menu_file_desktop" = "Arquivo";
@@ -421,6 +510,7 @@
 "global_menu_help_desktop" = "Ajuda";
 "global_menu_help_report_desktop" = "Comunicar um problema";
 "global_menu_minimize_to_tray" = "Minimizar";
+"no_account_selected" = "Seleciona um perfil ou cria um novo";
 "no_chat_selected_suggestion_desktop" = "Selecione um CHAT ou crie um novo";
 "write_message_desktop" = "Escreva uma mensagem";
 "encryption_info_title_desktop" = "Informação sobre encriptação";
@@ -436,5 +526,16 @@
 "message_detail_received_desktop" = "recebido";
 "menu.view.developer.open.log.folder" = "Abrir pasta de Log";
 "menu.view.developer.open.current.log.file" = "Abrir o aqrquio do log actual";
+"data_found_other_installation_message" = "Os teus perfis doutro Delta Chat não estão acessívels - diferentes instalações armazenam os seus dados in diferentes locais.\n\nPara manter os perfis actuais:\n1. Sai agora\n2. Abre o outro Delta Chat - se necessário, reinstala a partir de %1$@\n3. Cria uma cópia de segurança de cada perfil em \"Definições/Conversas\"\n4. Reabre esta versão\n5. Restaura a partir das cópias de segurança com \"Já tenho um perfil\"\n\nContinuar sem os teus perfis anteriores?";
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Atalhos de teclado";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Abrir %1$@";
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+"pref_background_notifications_explain" = "Necessita que optimizações de bateria sejam ignoradas, usa se notificações não chegarem atempadamente";
+"pref_background_notifications_rationale" = "Para manter a ligação e receber mensagens em segundo plano, ignora optimizações de bateria no próximo passo.\n\nO Delta Chat usa poucos recursos e tem cuidado para não gastar muita bateria.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
+"perm_enable_bg_already_done" = "Já deste permissão para que o Delta Chat receba mensagens em segundo plano.\n\nSe continuas a não receber mensagens em segundo plano, confirma as definições de sistema também.";
+// device messages for updates
+"update_2_0" = "Que há de novo?\n\n💯 Criptografia de ponta-a-ponta é fiável e para sempre. Os cadeados 🔒 foram-se!\n\n✉️ Email clássico sem criptografia de ponta-a-ponta é marcado com o símbolo duma carta\n\n😻 Novo e melhorado ecrã de perfil para todos os teus contactos\n\n🔲 Novo botão de acesso rápido a apps usadas numa conversa\n\n❤️ Por favor doa para ajudar a mantermo-nos independentes e continuar a trazer-te melhorias: %1$@";

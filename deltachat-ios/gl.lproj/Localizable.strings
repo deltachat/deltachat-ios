@@ -467,6 +467,7 @@
 "connectivity_connected" = "Conectado";
 "sending" = "Enviando...";
 "last_msg_sent_successfully" = "Enviouse correctamente a última mensaxe.";
+// deprecated
 "not_supported_by_provider" = "O teu provedor non ten soporte";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensaxes";

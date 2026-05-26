@@ -541,6 +541,7 @@
 "connectivity_connected" = "Ühendatud";
 "sending" = "Saadan…";
 "last_msg_sent_successfully" = "Viimase sõnumi saatmine õnnestus.";
+// deprecated
 "not_supported_by_provider" = "Sinu teenusepakkuja ei toeta seda võimalust.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Sõnumid";
@@ -575,7 +576,6 @@
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
 "login_title" = "Logi sisse";
-"login_advanced_hint" = "See sisselogimine sobib oskuskasutajatele:\n\n• Ära kasuta kontot, mis juba on kasutusel mõnes muus rakenduses.\n\n• Klassikaline e-posti server võimaldab vestlemist vaid ilma läbiva krüptimiseta ja seda märgistab kirja ikoon.";
 "login_inbox" = "Saabuvad kirjad";
 "login_imap_login" = "IMAP-i kasutajanimi";
 "login_imap_server" = "IMAP-i server";

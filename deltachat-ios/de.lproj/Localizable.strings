@@ -378,6 +378,7 @@
 "call_answered_elsewhere" = "Anruf auf einem anderen Gerät beantwortet";
 "call_requires_camera_permission" = "Kamerazugriff für Videoanrufe erforderlich";
 "call_requires_mic_permission" = "Mikrofonzugriff für Anrufe erforderlich";
+"call_requires_connection" = "Anruf kann nicht gestartet werden. Stelle sicher, dass dein Gerät mit dem Internet verbunden ist, und versuche es erneut.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Anruf mit %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -541,6 +542,7 @@
 "connectivity_connected" = "Verbunden";
 "sending" = "Sende…";
 "last_msg_sent_successfully" = "Letzte Nachricht erfolgreich versandt.";
+// deprecated
 "not_supported_by_provider" = "Nicht unterstützt von deinem Anbieter.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Nachrichten";
@@ -575,7 +577,7 @@
 "welcome_chat_over_email" = "Sicherer dezentraler Chat";
 "scan_invitation_code" = "Einladungscode scannen";
 "login_title" = "Login";
-"login_advanced_hint" = "Für fortgeschrittene Benutzer:\n\n• Verwende keine Adresse, die du bereits in einer anderen App nutzt.\n\n• Klassische E-Mail-Server ermöglichen Chats ohne Ende-zu-Ende-Verschlüsselung, gekennzeichnet durch ein E-Mail-Symbol.";
+"login_advanced_hint" = "Für fortgeschrittene Benutzer:\n\nVerwende keine Adresse, die du bereits in einer anderen App nutzt.";
 "login_inbox" = "Posteingang";
 "login_imap_login" = "IMAP-Anmeldename";
 "login_imap_server" = "IMAP-Server";
@@ -610,6 +612,7 @@
 "used_for_sending" = "Zum Senden verwendet";
 "hide_from_contacts" = "Vor Kontakten verstecken";
 "hidden_from_contacts" = "Vor Kontakten versteckt";
+"enforce_e2ee" = "Verschlüsselung für alle Relays erzwingen";
 // Hint for the list of relays
 "transport_list_hint" = "Nachrichten werden auf allen Relays empfangen.\n\n⚠️ Wenn Sie hier Änderungen vornehmen, stellen Sie sicher, dass auf allen Ihren Geräten mindestens Version 2.47.0 installiert ist. Andernfalls könnten auf älteren Versionen Nachrichten verloren gehen.";
 // shown if a QR code was scanned that can be used as a relay

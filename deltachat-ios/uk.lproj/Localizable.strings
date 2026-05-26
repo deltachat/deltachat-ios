@@ -519,6 +519,7 @@
 "connectivity_connected" = "Підключено";
 "sending" = "Шлеться…";
 "last_msg_sent_successfully" = "Останнє повідомлення успішно надіслано.";
+// deprecated
 "not_supported_by_provider" = "Не підтримується вашим провайдером електронної пошти.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Повідомлення";
@@ -553,7 +554,6 @@
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
 "login_title" = "Увійти";
-"login_advanced_hint" = "Цей спосіб входу призначений для досвідчених користувачів:\n\n• Не використовуйте обліковий запис, який ви вже використовуєте в іншому застосунку.\n\n• Класичний поштовий сервер дозволяє чати без наскрізного шифрування — вони позначені піктограмою листа.";
 "login_inbox" = "Вхідні";
 "login_imap_login" = "IMAP-логін";
 "login_imap_server" = "IMAP-сервер";

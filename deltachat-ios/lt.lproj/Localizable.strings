@@ -460,6 +460,7 @@
 "connectivity_connected" = "Prisijungta";
 "sending" = "Siunčiama…";
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
+// deprecated
 "not_supported_by_provider" = "Jūsų teikėjas nepalaiko šios ypatybės.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
@@ -492,7 +493,6 @@
 "welcome_chat_over_email" = "Saugūs decentralizuoti pokalbiai";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
-"login_advanced_hint" = "Šis prisijungimas skirtas patyrusiems naudotojams:\n\n• Nenaudokite adreso, kurį naudojate kitoje programoje.\n\n• Klasikinis el. pašto serveris leidžia pokalbius be ištisinio šifravimo, pažymėtus voko piktograma.";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
 "login_imap_server" = "IMAP serveris";

@@ -282,6 +282,26 @@
 			<string>Удалить %d сообщений?</string>
 		</dict>
 	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Переслать сообщение пользователю %2$@?</string>
+			<key>few</key>
+			<string>Переслать %d сообщения пользователям %2$@?</string>
+			<key>many</key>
+			<string>Переслать %d сообщения пользователям %2$@?</string>
+			<key>other</key>
+			<string>Переслать %d сообщения пользователям %2$@?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
