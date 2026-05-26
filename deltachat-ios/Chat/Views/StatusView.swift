@@ -147,7 +147,7 @@ public class StatusView: UIView {
         }
 
         switch Int32(state) {
-        case DC_DOWNLOAD_IN_PROGRESS, DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+        case DC_DOWNLOAD_IN_PROGRESS, DC_STATE_OUT_PENDING:
             stateView.image = UIImage(named: "ic_hourglass_empty_white_36pt")?.maskWithColor(color: tintColor)
         case DC_STATE_OUT_DELIVERED:
             stateView.image = showOnlyPendingAndError ? nil : UIImage(named: "ic_done_36pt")?.maskWithColor(color: tintColor)
@@ -164,7 +164,7 @@ public class StatusView: UIView {
     public static func getAccessibilityString(message: DcMsg, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
         let state: String
         switch Int32(message.state) {
-        case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+        case DC_STATE_OUT_PENDING:
             state = String.localized("a11y_delivery_status_sending")
         case DC_STATE_OUT_DELIVERED:
             state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
