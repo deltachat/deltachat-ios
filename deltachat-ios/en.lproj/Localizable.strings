@@ -378,6 +378,7 @@
 "call_answered_elsewhere" = "Call answered on another device";
 "call_requires_camera_permission" = "Camera permission is required for video calls";
 "call_requires_mic_permission" = "Microphone permission is required for calls";
+"call_requires_connection" = "Cannot start call. Make sure your device has an internet connection and try again.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Call with %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -541,6 +542,7 @@
 "connectivity_connected" = "Connected";
 "sending" = "Sending…";
 "last_msg_sent_successfully" = "Last message sent successfully.";
+// deprecated
 "not_supported_by_provider" = "Not supported by your provider.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Messages";
@@ -575,7 +577,7 @@
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
-"login_advanced_hint" = "This login is for advanced users:\n\n• Do not use an address you\'re using in another app.\n\n• Classic email server allow chats without end-to-end encryption marked by a mail icon.";
+"login_advanced_hint" = "This login is for advanced users.\n\nDo not use an address you\'re using in another app.";
 "login_inbox" = "Inbox";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -610,6 +612,7 @@
 "used_for_sending" = "Used for sending";
 "hide_from_contacts" = "Hide from Contacts";
 "hidden_from_contacts" = "Hidden from contacts";
+"enforce_e2ee" = "Enforce Encryption for All Relays";
 // Hint for the list of relays
 "transport_list_hint" = "Messages are received on all relays.\n\n⚠️ If you change anything here, make sure all your devices run at least version 2.47.0. Otherwise older devices may miss messages.";
 // shown if a QR code was scanned that can be used as a relay

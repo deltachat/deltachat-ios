@@ -439,6 +439,7 @@
 "connectivity_connected" = "Pripojené";
 "sending" = "Odosielam...";
 "last_msg_sent_successfully" = "Posledná správa odoslaná úspešne.";
+// deprecated
 "not_supported_by_provider" = "Nie je podporovaná vaším poskytovateľom.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Správy";

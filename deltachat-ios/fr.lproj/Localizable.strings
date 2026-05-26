@@ -519,6 +519,7 @@
 "connectivity_connected" = "Connecté";
 "sending" = "Envoi...";
 "last_msg_sent_successfully" = "Dernier message envoyé avec succès.";
+// deprecated
 "not_supported_by_provider" = "Non pris en charge par votre fournisseur de mail.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Messages";
@@ -553,7 +554,6 @@
 "welcome_chat_over_email" = "Messagerie décentralisée sécurisée";
 "scan_invitation_code" = "Scanner le code d\'invitation";
 "login_title" = "Connexion";
-"login_advanced_hint" = "Ce type de connexion est réservé aux utilisateurs avancés.\n\n• N\'utilisez pas une adresse déjà employée dans une autre appli.\n\n• Les serveurs de courriel classiques autorisent les discussions non chiffrées de bout en bout, lesquelles sont représentées par une icône enveloppe.";
 "login_inbox" = "Boîte de réception";
 "login_imap_login" = "Utilisateur IMAP";
 "login_imap_server" = "Serveur IMAP";

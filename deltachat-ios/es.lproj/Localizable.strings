@@ -535,6 +535,7 @@
 "connectivity_connected" = "Conectado";
 "sending" = "Enviando…";
 "last_msg_sent_successfully" = "El último mensaje fue enviado satisfactoriamente.";
+// deprecated
 "not_supported_by_provider" = "No soportado por tu proveedor.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensajes";
@@ -569,7 +570,6 @@
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
-"login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados:\n\n• No utilice una cuenta que esté usando en otra app.\n\n• El servidor de correo electrónico clásico permite chats sin cifrado de extremo a extremo, los cuales están marcados por un icono de correo.";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
 "login_imap_server" = "Servidor IMAP";

@@ -330,6 +330,7 @@
 "connectivity_connected" = "연결됨";
 "sending" = "전송중...";
 "last_msg_sent_successfully" = "마지막 메시지 전송됨.";
+// deprecated
 "not_supported_by_provider" = "공급자가 지원하지 않습니다.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "메시지";

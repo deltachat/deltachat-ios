@@ -1,0 +1,2 @@
+NSCameraUsageDescription = "O Delta Chat usa a câmara para tirar e enviar fotos e vídeos, e para ler códigos QR.";
+NSMicrophoneUsageDescription = "O Delta Chat usa o microfone para gravar and enviar mensagens de voz e vídeos com som.";

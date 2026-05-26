@@ -395,6 +395,7 @@
 "connectivity_connected" = "Свързани сте";
 "sending" = "Изпращане…";
 "last_msg_sent_successfully" = "Последното съобщение беше изпратено успешно.";
+// deprecated
 "not_supported_by_provider" = "Не се поддържа от Вашия доставчик.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Съобщения";

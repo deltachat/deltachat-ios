@@ -535,6 +535,7 @@
 "connectivity_connected" = "Połączony";
 "sending" = "Wysyłanie…";
 "last_msg_sent_successfully" = "Twoja ostatnia wiadomość została pomyślnie wysłana";
+// deprecated
 "not_supported_by_provider" = "Nieobsługiwane przez twojego dostawcę.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Wiadomości";
@@ -569,7 +570,6 @@
 "welcome_chat_over_email" = "Bezpieczny zdecentralizowany czat";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "login_title" = "Zaloguj się";
-"login_advanced_hint" = "To logowanie jest przeznaczone dla zaawansowanych użytkowników:\n\n• Nie używaj adresu, z którego korzystasz w innej aplikacji.\n\n• Klasyczny serwer pocztowy umożliwia rozmowy bez szyfrowania end-to-end, oznaczone ikoną poczty.";
 "login_inbox" = "Skrzynka odbiorcza";
 "login_imap_login" = "Nazwa użytkownika IMAP";
 "login_imap_server" = "Serwer IMAP";

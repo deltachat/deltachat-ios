@@ -56,6 +56,24 @@
 			<string>%d chats</string>
 		</dict>
 	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d contacto</string>
+			<key>many</key>
+			<string>%d contactos</string>
+			<key>other</key>
+			<string>%d contactos</string>
+		</dict>
+	</dict>
 	<key>n_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -126,6 +144,24 @@
 			<string>Apagar %d mensagens?</string>
 			<key>other</key>
 			<string>Apagar %d mensagens?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Reencaminhar mensagem para %2$@?</string>
+			<key>many</key>
+			<string>Reencaminhar %d mensagens para %2$@?</string>
+			<key>other</key>
+			<string>Reencaminhar %d mensagens para %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

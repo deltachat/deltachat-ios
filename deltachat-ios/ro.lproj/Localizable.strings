@@ -363,6 +363,7 @@
 "connectivity_connected" = "Conectat";
 "sending" = "Trimitere…";
 "last_msg_sent_successfully" = "Ultimul mesaj a fost trimis cu succes.";
+// deprecated
 "not_supported_by_provider" = "Nu este suportat de furnizorul dumneavoastră.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mesaje";

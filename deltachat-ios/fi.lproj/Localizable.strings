@@ -395,6 +395,7 @@
 "connectivity_connected" = "Yhdistetty";
 "sending" = "Lähetetään";
 "last_msg_sent_successfully" = "Viimeinen viesti lähetetty onnistuneesti.";
+// deprecated
 "not_supported_by_provider" = "Ei tuettu palveluntarjoajallasi.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Viestit";

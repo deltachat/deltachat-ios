@@ -530,6 +530,7 @@
 "connectivity_connected" = "Bağlı";
 "sending" = "Gönderiliyor…";
 "last_msg_sent_successfully" = "Son ileti başarıyla gönderildi.";
+// deprecated
 "not_supported_by_provider" = "Sağlayıcınız tarafından desteklenmiyor.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "İletiler";
@@ -564,7 +565,6 @@
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
 "login_title" = "Giriş Yap";
-"login_advanced_hint" = "Bu giriş gelişmiş kullanıcılar içindir:\n\n• Başka bir uygulamada kullandığınız bir hesabı kullanmayın.\n\n• Klasik e-posta sunucusu, bir posta simgesiyle işaretlenerek uçtan uca şifreleme olmayan sohbetlere izin verir.";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Giriş Adı";
 "login_imap_server" = "IMAP Sunucusu";

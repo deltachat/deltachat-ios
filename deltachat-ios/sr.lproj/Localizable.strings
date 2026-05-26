@@ -379,6 +379,7 @@
 "connectivity_connected" = "Повезани";
 "sending" = "Слање...";
 "last_msg_sent_successfully" = "Последња порука је успешно послата.";
+// deprecated
 "not_supported_by_provider" = "Није подржано од вашег провајдера.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Поруке";

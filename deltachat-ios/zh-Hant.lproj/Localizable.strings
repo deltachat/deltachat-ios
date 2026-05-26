@@ -516,6 +516,7 @@
 "connectivity_connected" = "已連接";
 "sending" = "傳送中…";
 "last_msg_sent_successfully" = "已成功送出上一條消息。";
+// deprecated
 "not_supported_by_provider" = "您的供應商不支援。";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "訊息";
@@ -550,7 +551,6 @@
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "掃描邀請碼";
 "login_title" = "登入";
-"login_advanced_hint" = "此登入適用於進階使用者：\n\n• 不要使用你在其他應用程式中使用的位址。\n\n• 傳統的電子郵件伺服器允許未使用端對端加密的聊天，並以郵件圖示標示。";
 "login_inbox" = "收件匣";
 "login_imap_login" = "IMAP 帳號";
 "login_imap_server" = "IMAP 伺服器";

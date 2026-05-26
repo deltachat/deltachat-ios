@@ -343,6 +343,8 @@
 "answer_call" = "Përgjigjuni";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Hidhe poshtë";
+// the action to end a call
+"end_call2" = "Përfundoje Thirrjen";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Thirrje audio";
 // Used in call bubbles, summaries, notifications
@@ -366,6 +368,7 @@
 "missed_call" = "Thirrje e humbur";
 "already_in_call" = "Tashmë në një thirrje";
 "call_answered_elsewhere" = "Thirrje që ka marrë përgjigje në pajisje tjetër";
+"call_requires_camera_permission" = "Për thirrje me video janë të domosdoshme leje mbi kamerën";
 "call_requires_mic_permission" = "Leja mbi mikrofonin është e domosdoshme për thirrje";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Thirrje me %1$@";
@@ -376,6 +379,7 @@
 "ask_leave_group" = "Jeni i sigurt se doni të largoheni?";
 "ask_delete_named_chat" = "Të fshihet fjalosja “%1$@” në krejt pajisjet tuaja?";
 "ask_delete_message" = "Të fshihet ky mesazh në krejt pajisjet tuaja?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Të përcillen mesazhet te %1$@?";
 "ask_forward_multiple" = "Të përcillen mesazhet te %1$d fjalosje?";
@@ -529,6 +533,7 @@
 "connectivity_connected" = "I lidhur";
 "sending" = "Po dërgohet…";
 "last_msg_sent_successfully" = "Mesazhi i fundit i dërguar me sukses.";
+// deprecated
 "not_supported_by_provider" = "I pambuluar nga furnizuesi juaj i shërbimit";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mesazhe";
@@ -563,7 +568,6 @@
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
-"login_advanced_hint" = "Kjo hyrje është për përdorues të përparuar:\n\n• Mos përdorni një llogari që po e përdorni me një aplikacion tjetër.\n\n• Shërbyesi klasik i email-eve lejon fjalosje pa fshehtëzim skaj-më-skaj, shënuar me një ikonë poste.";
 "login_inbox" = "Të marrë";
 "login_imap_login" = "Emër Hyrjeje në IMAP";
 "login_imap_server" = "Shërbyes IMAP";

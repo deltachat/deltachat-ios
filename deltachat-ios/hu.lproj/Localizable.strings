@@ -485,6 +485,7 @@
 "connectivity_connected" = "Kapcsolódott";
 "sending" = "Küldés…";
 "last_msg_sent_successfully" = "Utolsó üzenet sikeresen elküldve.";
+// deprecated
 "not_supported_by_provider" = "Az Ön szolgáltatója nem támogatja.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Üzenetek";
