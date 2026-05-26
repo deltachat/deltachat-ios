@@ -296,7 +296,7 @@ class ContactCell: UITableViewCell {
             archivedIndicator.isHidden = true
         } else {
             switch Int32(status) {
-            case DC_STATE_OUT_PENDING, DC_STATE_OUT_PREPARING:
+            case DC_STATE_OUT_PENDING:
                 deliveryStatusIndicator.image = UIImage(named: "ic_hourglass_empty_white_36pt")?.maskWithColor(color: DcColors.middleGray)
             case DC_STATE_OUT_DELIVERED:
                 deliveryStatusIndicator.image = UIImage(named: "ic_done_36pt")

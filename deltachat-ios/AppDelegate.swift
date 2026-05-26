@@ -712,7 +712,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_SENDING, localizationKey: "sending")
         dcContext.setStockTranslation(id: DC_STR_LAST_MSG_SENT_SUCCESSFULLY, localizationKey: "last_msg_sent_successfully")
         dcContext.setStockTranslation(id: DC_STR_ERROR, localizationKey: "error_x")
-        dcContext.setStockTranslation(id: DC_STR_NOT_SUPPORTED_BY_PROVIDER, localizationKey: "not_supported_by_provider")
         dcContext.setStockTranslation(id: DC_STR_MESSAGES, localizationKey: "messages")
         dcContext.setStockTranslation(id: DC_STR_PART_OF_TOTAL_USED, localizationKey: "part_of_total_used")
         dcContext.setStockTranslation(id: DC_STR_SECURE_JOIN_STARTED, localizationKey: "secure_join_started")
