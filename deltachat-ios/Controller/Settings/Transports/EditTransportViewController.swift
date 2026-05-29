@@ -282,6 +282,10 @@ class EditTransportViewController: UITableViewController {
             }
         }
 
+        if loginParam?.imapFolder == nil {
+            advancedSectionCells.removeAll { $0 === imapFolderCell }
+        }
+
         // init text cells (selections are initialized at viewWillAppear)
         emailCell.setText(text: loginParam?.addr)
         passwordCell.setText(text: loginParam?.password)
