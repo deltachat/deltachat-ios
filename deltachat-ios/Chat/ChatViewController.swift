@@ -227,27 +227,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return dcContext.getChat(chatId: chatId)
     }()
 
-    private var customInputAccessoryView: UIView? {
-        didSet { reloadInputViews() }
-    }
-    override var inputAccessoryView: UIView? {
-        get { return nil; customInputAccessoryView }
-        set { customInputAccessoryView = newValue }
-    }
-
-    override var canBecomeFirstResponder: Bool {
-        return false
+    private var shouldProcessContentInsetUpdates: Bool {
         if let p = presentedViewController, !p.isBeingDismissed, !(p is UISearchController) {
-            // Don't show inputAccessoryView when anything other than searchController is presented
+            // Don't process content inset when anything other than searchController is presented
             return false
         } else if navigationController?.topViewController != self {
-            // Don't show inputAccessoryView when not top view controller
+            // Don't process content inset when not top view controller
             return false
         } else if contextMenuVisible {
-            // Don't show inputAccessoryView when context menu is visible
+            // Don't process content inset when context menu is visible
             return false
         } else {
-            return dcChat.canSend || dcChat.isContactRequest || tableView.isEditing || presentedViewController is UISearchController
+            return true
         }
     }
 
@@ -325,7 +316,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         definesPresentationContext = true
 
         let animateKeyboardChange: KeyboardManager.EventCallback = { [weak self, tableView] notification in
-            guard let self, !contextMenuVisible else { return }
+            guard let self, shouldProcessContentInsetUpdates else { return }
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
@@ -537,6 +528,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Manually set the safe area because tableView is flipped
         tableView.contentInset.bottom = view.safeAreaInsets.top
 
+        guard shouldProcessContentInsetUpdates else { return }
         let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
         if tableView.contentInset.top != topInset {
             if tableView.contentOffset.y == -tableView.contentInset.top {
