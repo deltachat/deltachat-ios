@@ -8,13 +8,14 @@
 - Improve avatar quality
 - Remove "Move to DeltaChat folder", in case you are using the option, a device message shows how to proceed
 - Remove "Only fetch from DeltaChat folder" option, the functionality is preserved for existing profiles
-- Remove "Delete Messages from Server" option, this is now up to the server:
-  Chatmail handles that automatically, classic email servers used as relay often have lots of storage or options themselves
+- Remove "Delete Messages from Server" option, esp. for multi-device mode, the server knows better what to do
+- In single-device mode, encrypted messages are remoevd from the server immediately
 - Remove "Show Email" options, all messages are shown by default, account sharing is anyway not supported
 - Allow otherwise invalid TLS connections if the key is unchanged
 - Do not show "non delivered" notifications in broadcast channels
 - Adapt quota warning to automatic cleanup.
 - Add an option to process unencrypted messages to "Advanced / Relays / Edit / More Options". By default, only encrypted messages can be sent or received
+- Follow certificate check parameter in autoconfig
 - Fix: Your own video now shows as mirrored in a call
 - Fix: Improve detection of stickers
 - Fix: Allow animated stickers
@@ -22,7 +23,9 @@
 - Fix: Ensure that message being sent is added to the bottom
 - Fix: Don't receive message if a deletion request was received before
 - Fix some text direction issues in "Show full message" view
-- Update core to 2.50.0
+- Fix: Do not try to resolve proxy IPv6 addresses in square brackets.
+- Fix: Do not fail to receive post-message with status updates for deleted webxdc
+- Update core to 2.51.0
 
 
 ## v2.49.2
