@@ -7,6 +7,7 @@ public struct DcEnteredLoginParam: Codable {
     public var imapSecurity: String?
     public var imapServer: String?
     public var imapUser: String?
+    public var imapFolder: String?
     public var oauth2: Bool?
     public var password: String
     public var smtpPassword: String?
