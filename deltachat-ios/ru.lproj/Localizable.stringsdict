@@ -295,11 +295,11 @@
 			<key>one</key>
 			<string>Переслать сообщение пользователю %2$@?</string>
 			<key>few</key>
-			<string>Переслать %d сообщения пользователям %2$@?</string>
+			<string>Переслать %d сообщения пользователю %2$@?</string>
 			<key>many</key>
-			<string>Переслать %d сообщения пользователям %2$@?</string>
+			<string>Переслать %d сообщений пользователю %2$@?</string>
 			<key>other</key>
-			<string>Переслать %d сообщения пользователям %2$@?</string>
+			<string>Переслать %d сообщений пользователю %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>

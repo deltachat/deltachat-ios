@@ -378,6 +378,7 @@
 "call_answered_elsewhere" = "Er is opgenomen op een ander apparaat";
 "call_requires_camera_permission" = "Cameratoegang is vereist om te kunnen videobellen";
 "call_requires_mic_permission" = "Microfoontoegang is vereist om te kunnen bellen";
+"call_requires_connection" = "De oproep kan niet worden gestart. Zorg dat je verbonden bent met het internet en probeer het opnieuw.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Bellen met %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -576,6 +577,7 @@
 "welcome_chat_over_email" = "Veilige, gedecentraliseerde gesprekken";
 "scan_invitation_code" = "Uitnodigingscode scannen";
 "login_title" = "Inloggen";
+"login_advanced_hint" = "Deze inlogmethode is alleen voor ervaren gebruikers.\n\nGebruik geen adres dat je reeds in een andere app gebruikt.";
 "login_inbox" = "Postvak in";
 "login_imap_login" = "IMAP-inlognaam";
 "login_imap_server" = "IMAP-server";
@@ -610,6 +612,7 @@
 "used_for_sending" = "Wordt gebruikt voor versturen";
 "hide_from_contacts" = "Verbergen op contactpersonenlijst";
 "hidden_from_contacts" = "Verborgen op contactpersonenlijst";
+"enforce_e2ee" = "Versleuteling afdwingen op alle relays";
 // Hint for the list of relays
 "transport_list_hint" = "Berichten worden op alle relays ontvangen.\n\n⚠️ Als je hier iets wijzigt, doe dat dan alléén als ál je apparaten gebruikmaken van versie 2.47.0, anders kunnen er berichten ontbreken.";
 // shown if a QR code was scanned that can be used as a relay

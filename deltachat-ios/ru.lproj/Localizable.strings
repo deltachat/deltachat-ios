@@ -378,6 +378,7 @@
 "call_answered_elsewhere" = "Звонок отвечен на другом устройстве";
 "call_requires_camera_permission" = "Для видеозвонков требуется разрешение на использование камеры";
 "call_requires_mic_permission" = "Для совершения звонков требуется разрешение на использование микрофона";
+"call_requires_connection" = "Не удалось начать вызов. Убедитесь, что ваше устройство подключено к интернету, и повторите попытку.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Звонок от %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -576,6 +577,7 @@
 "welcome_chat_over_email" = "Безопасный децентрализованный чат";
 "scan_invitation_code" = "Сканировать код приглашения";
 "login_title" = "Войти";
+"login_advanced_hint" = "Этот способ входа предназначен для опытных пользователей.\n\nНе используйте адрес, который вы уже используете в другом приложении.";
 "login_inbox" = "Входящие";
 "login_imap_login" = "Имя пользователя IMAP";
 "login_imap_server" = "Сервер IMAP";
@@ -610,6 +612,7 @@
 "used_for_sending" = "Используется для отправки";
 "hide_from_contacts" = "Скрыть из контактов";
 "hidden_from_contacts" = "Скрыт из контактов";
+"enforce_e2ee" = "Принудительное шифрование для всех релеев";
 // Hint for the list of relays
 "transport_list_hint" = "Сообщения поступают на все релеи.\n\n⚠️ Если вы измените какие-либо настройки в этом разделе, убедитесь, что на всех ваших устройствах установлена версия Delta Chat не ниже 2.47.0. В противном случае старые версии могут не получать сообщения.";
 // shown if a QR code was scanned that can be used as a relay

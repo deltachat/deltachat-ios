@@ -370,6 +370,7 @@
 "call_answered_elsewhere" = "Thirrje që ka marrë përgjigje në pajisje tjetër";
 "call_requires_camera_permission" = "Për thirrje me video janë të domosdoshme leje mbi kamerën";
 "call_requires_mic_permission" = "Leja mbi mikrofonin është e domosdoshme për thirrje";
+"call_requires_connection" = "S’niset dot thirrja. Sigurohuni se keni lidhje internet dhe riprovoni.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Thirrje me %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -568,6 +569,7 @@
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
 "login_title" = "Hyni";
+"login_advanced_hint" = "Kjo hyrje është për përdorues të thelluar.\n\nMos përdorni një adresë që e përdorni në një aplikacion tjetër.";
 "login_inbox" = "Të marrë";
 "login_imap_login" = "Emër Hyrjeje në IMAP";
 "login_imap_server" = "Shërbyes IMAP";
@@ -602,6 +604,7 @@
 "used_for_sending" = "E përdorur për dërgim";
 "hide_from_contacts" = "Fshihe prej Kontaktesh";
 "hidden_from_contacts" = "Fshehur prej kontakteve";
+"enforce_e2ee" = "Detyro Fshehtëzim për Krejt Reletë";
 // Hint for the list of relays
 "transport_list_hint" = "Mesazhet merren në të tëra reletë.\n\n⚠️ Nëse ndryshoni diçka këtu, sigurohuni se krejt pajisjet tuaja xhirojnë të paktën versionin 2.47.0. Përndryshe, pajisje më të vjetra mund të humbin mesazhe.";
 // shown if a QR code was scanned that can be used as a relay
@@ -743,6 +746,7 @@
 "pref_show_emails_all" = "Krejt";
 "pref_experimental_features" = "Veçori Eksperimentale";
 "pref_experimental_features_explain" = "Këto veçori mund të jenë të paqëndrueshme dhe mund të ndryshohen, ose hiqen";
+"pref_on_demand_location_streaming" = "Dhënie Vendndodhjeje";
 "pref_background_default" = "Figurë parazgjedhje";
 "pref_background_default_color" = "Ngjyrë parazgjedhje";
 "pref_background_custom_image" = "Figurë vetjake";
