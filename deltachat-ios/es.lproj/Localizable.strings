@@ -165,6 +165,8 @@
 "capture" = "Capturar";
 // Switch eg. from front to back camera
 "switch_camera" = "Alternar cámara";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Alternar cámara";
 "toggle_fullscreen" = "Alternar modo pantalla completa";
 "location" = "Ubicación";
 "locations" = "Ubicaciones";
@@ -349,6 +351,8 @@
 "answer_call" = "Contestar";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rechazar";
+// the action to end a call
+"end_call2" = "Finalizar llamada";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Llamada";
 // Used in call bubbles, summaries, notifications
@@ -372,7 +376,9 @@
 "missed_call" = "Llamada perdida";
 "already_in_call" = "Ya estás en una llamada";
 "call_answered_elsewhere" = "Llamada contestada en otro dispositivo";
+"call_requires_camera_permission" = "Se requiere permiso de cámara para las videollamadas";
 "call_requires_mic_permission" = "Se requiere permiso de micrófono para las llamadas";
+"call_requires_connection" = "No se puede iniciar la llamada. Asegúrese de que su dispositivo tenga conexión a Internet e inténtelo de nuevo.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Llamada con %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -382,6 +388,7 @@
 "ask_leave_group" = "¿Seguro que quieres abandonar este canal?";
 "ask_delete_named_chat" = "¿Eliminar chat \"%1$@\" de todos tus dispositivos?";
 "ask_delete_message" = "¿Eliminar este mensaje de todos tus dispositivos?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";
@@ -570,6 +577,7 @@
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
 "login_title" = "Iniciar sesión";
+"login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados.\n\nNo utilice una dirección de correo que esté utilizando en otra aplicación.";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -604,6 +612,7 @@
 "used_for_sending" = "Usado para enviar";
 "hide_from_contacts" = "Ocultar de los contactos";
 "hidden_from_contacts" = "Ocultado de los contactos";
+"enforce_e2ee" = "Exigir el cifrado para todos los retransmisores";
 // Hint for the list of relays
 "transport_list_hint" = "Los mensajes se reciben en todos los retransmisores.\n\n⚠️ Si cambias algo aquí, asegúrese de que todos sus dispositivos ejecutan al menos la versión 2.47.0. De lo contrario, los dispositivos más antiguos pueden perder algunos mensajes.";
 // shown if a QR code was scanned that can be used as a relay
@@ -893,7 +902,7 @@
 "chat_unencrypted_explanation" = "Los mensajes en este chat usan el correo electrónico clásico y no están cifrados de extremo a extremo.";
 "messages_are_e2ee" = "Los mensajes están cifrados de extremo a extremo.";
 "chat_protection_enabled_tap_to_learn_more" = "A partir de ahora se garantiza que los mensajes están cifrados de extremo a extremo . Toca para obtener más información.";
-"chat_protection_enabled_explanation" = "Ahora se garantiza que todos los mensajes en este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus compañeros de chat. Ni siquiera tu proveedor de correo electrónico puede leerlos.";
+"chat_protection_enabled_explanation" = "Todos los mensajes de este chat están cifrados de extremo a extremo.\n\nEl cifrado de extremo a extremo mantiene los mensajes privados entre tú y tus interlocutores. Ni siquiera los servidores, proveedores o retransmisores pueden leerlos.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ requiere cifrado de extremo a extremo que aún no está configurado para este chat. Toca para obtener más información.";
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";
 "learn_more" = "Aprender más";

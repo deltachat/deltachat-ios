@@ -884,6 +884,8 @@
 "a11y_message_context_menu_btn_label" = "Veiksmai su žinute";
 "a11y_background_preview_label" = "Fono peržiūra";
 "a11y_disappearing_messages_activated" = "Išnykstančios žinutės aktyvuotos";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Atverti %1$@";
 "a11y_connectivity_hint" = "Bakstelėkite du kartus norėdami pamatyti išsamesnę informaciją apie jungiamumą.";
 "login_error_no_internet_connection" = "Nėra interneto ryšio, nepavyko prisijungti.";
 "share_account_not_configured" = "Paskyra nėra sukonfigūruota.";

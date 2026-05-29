@@ -378,6 +378,7 @@
 "call_answered_elsewhere" = "Kõne on vastatud muus seadmes";
 "call_requires_camera_permission" = "Videokõnede tegemiseks peab rakendusel olema õigus kasutada kaamerat";
 "call_requires_mic_permission" = "Helistamiseks peab rakendusel olema õigus kasutada mikrofoni";
+"call_requires_connection" = "Helistamine (kõne algatamine) ei õnnestu. Palun kontrolli, et sinu nutiseadme internetiühendus toimib ja proovi uuesti.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Kõne kasutajaga %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
@@ -576,6 +577,7 @@
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
 "login_title" = "Logi sisse";
+"login_advanced_hint" = "See sisselogimise viis on mõeldud oskuskasutajatele.\n\nPalun ära kasuta aadressi, mida kasutad juba teises rakenduses.";
 "login_inbox" = "Saabuvad kirjad";
 "login_imap_login" = "IMAP-i kasutajanimi";
 "login_imap_server" = "IMAP-i server";
@@ -610,6 +612,7 @@
 "used_for_sending" = "Kasutatud saatmiseks";
 "hide_from_contacts" = "Peida kontaktidest";
 "hidden_from_contacts" = "Peidetud kontaktidest";
+"enforce_e2ee" = "Kasuta kõikide alusühenduste (edastusserverite) puhul krüptimist";
 // Hint for the list of relays
 "transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\n\n⚠️ Kui muudad siin midagi, siis palun kontrolli, et kõikides sinu seadmetes on kasutusel vähemalt versioon 2.47.0. Vastasel juhul võivad vanema tarkvaraga seadmetes jääda sõnumid saabumata.";
 // shown if a QR code was scanned that can be used as a relay
