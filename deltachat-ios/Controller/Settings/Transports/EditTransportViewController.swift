@@ -37,6 +37,7 @@ class EditTransportViewController: UITableViewController {
         imapUserCell,
         imapServerCell,
         imapPortCell,
+        imapFolderCell,
         smtpSecurityCell,
         smtpUserCell,
         smtpPasswordCell,
@@ -134,6 +135,16 @@ class EditTransportViewController: UITableViewController {
             delegate: self)
         cell.textField.tag = tagTextFieldImapPort
         cell.textField.keyboardType = .numberPad
+        return cell
+    }()
+
+    lazy var imapFolderCell: TextFieldCell = {
+        let cell = TextFieldCell(
+            description: "IMAP Folder",
+            placeholder: String.localized("automatic"),
+            delegate: self)
+        cell.textField.isUserInteractionEnabled = false
+        cell.textField.textColor = .gray
         return cell
     }()
 
@@ -277,6 +288,7 @@ class EditTransportViewController: UITableViewController {
         imapUserCell.setText(text: loginParam?.imapUser)
         imapServerCell.setText(text: loginParam?.imapServer)
         imapPortCell.setText(text: editablePort(port: loginParam?.imapPort))
+        imapFolderCell.setText(text: loginParam?.imapFolder)
         imapSecurityValue.value = loginParam?.imapSecurity ?? "automatic"
         smtpUserCell.setText(text: loginParam?.smtpUser)
         smtpPasswordCell.setText(text: loginParam?.smtpPassword)
@@ -424,6 +436,7 @@ class EditTransportViewController: UITableViewController {
         var loginParam = DcEnteredLoginParam(addr: emailAddress, password: passwordCell.getText() ?? "")
         loginParam.imapServer = imapServerCell.getText()
         loginParam.imapPort = imapPortCell.getText().flatMap { Int($0) }
+        loginParam.imapFolder = imapFolderCell.getText()
         loginParam.imapUser = imapUserCell.getText()
         loginParam.imapSecurity = imapSecurityValue.value
         loginParam.smtpServer = smtpServerCell.getText()
