@@ -129,6 +129,7 @@
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
 		645575232F00000100F46CD3 /* OutgoingRingbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */; };
+		645575252F00000200F46CD3 /* outgoing-ringback.caf in Resources */ = {isa = PBXBuildFile; fileRef = 645575242F00000200F46CD3 /* outgoing-ringback.caf */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
 		648BA1872F9510FA007B1FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		648BA1CF2F9A320E007B1FDE /* DcAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = DCA000022CF72AA0009AF551 /* DcAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -504,6 +505,7 @@
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRingbackPlayer.swift; sourceTree = "<group>"; };
+		645575242F00000200F46CD3 /* outgoing-ringback.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "outgoing-ringback.caf"; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+activateWithPriority.swift"; sourceTree = "<group>"; };
 		64D0499F2EC890840093A0A8 /* PiPVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPVideoView.swift; sourceTree = "<group>"; };
@@ -1231,6 +1233,7 @@
 				B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */,
 				645575202EDEE69700F46CD3 /* CallWindow.swift */,
 				645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */,
+				645575242F00000200F46CD3 /* outgoing-ringback.caf */,
 				646896652E00415900E965B3 /* CallViewController.swift */,
 				641620FB2ECFCDC70076CFA3 /* CallUIToggleButton.swift */,
 				64D0499F2EC890840093A0A8 /* PiPVideoView.swift */,
@@ -1613,6 +1616,7 @@
 				B2636B5C2BADE39600F37A0A /* PrivacyInfo.xcprivacy in Resources */,
 				AE1988A723EB382A00B4CD5F /* Help in Resources */,
 				3060119C22DDE24000C1CE6F /* Localizable.strings in Resources */,
+				645575252F00000200F46CD3 /* outgoing-ringback.caf in Resources */,
 				7A9FB14E1FB061E2001FEA36 /* LaunchScreen.storyboard in Resources */,
 				306011B622E5E7FB00C1CE6F /* Localizable.stringsdict in Resources */,
 				7A9FB14B1FB061E2001FEA36 /* Assets.xcassets in Resources */,

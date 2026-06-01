@@ -1,15 +1,12 @@
 import AVFoundation
 
 final class OutgoingRingbackPlayer {
-    static let shared = OutgoingRingbackPlayer()
-
-    private let engine = AVAudioEngine()
-    private let player = AVAudioPlayerNode()
-    private var ringbackBuffer: AVAudioPCMBuffer?
+    private var player: AVAudioPlayer?
     private var ringbackWorkItem: DispatchWorkItem?
-    private var isEngineConfigured = false
 
-    private init() {}
+    deinit {
+        stopPlayback()
+    }
 
     func startOutgoingRingback(after delay: TimeInterval = 1.5) {
         guard Thread.isMainThread else {
@@ -36,30 +33,13 @@ final class OutgoingRingbackPlayer {
             return
         }
 
-        ringbackWorkItem?.cancel()
-        ringbackWorkItem = nil
-
-        if player.isPlaying {
-            player.stop()
-        }
-
-        if engine.isRunning {
-            engine.stop()
-        }
+        stopPlayback()
     }
 
     private func playRingbackLoop() {
-        guard !player.isPlaying else { return }
-
         do {
-            let buffer = makeRingbackBuffer()
-            configureEngine(format: buffer.format)
-            player.scheduleBuffer(buffer, at: nil, options: .loops)
-
-            if !engine.isRunning {
-                try engine.start()
-            }
-
+            let player = try makePlayer()
+            guard !player.isPlaying else { return }
             player.play()
         } catch {
             logger.error("☎️ failed to start outgoing ringback: \(error.localizedDescription)")
@@ -67,48 +47,38 @@ final class OutgoingRingbackPlayer {
         }
     }
 
-    private func configureEngine(format: AVAudioFormat) {
-        guard !isEngineConfigured else { return }
+    private func makePlayer() throws -> AVAudioPlayer {
+        if let player {
+            return player
+        }
 
-        engine.attach(player)
-        engine.connect(player, to: engine.mainMixerNode, format: format)
-        isEngineConfigured = true
+        guard let url = Bundle.main.url(forResource: "outgoing-ringback", withExtension: "caf") else {
+            throw RingbackError.missingResource
+        }
+
+        let player = try AVAudioPlayer(contentsOf: url)
+        player.numberOfLoops = -1
+        player.prepareToPlay()
+        self.player = player
+        return player
     }
 
-    private func makeRingbackBuffer() -> AVAudioPCMBuffer {
-        if let ringbackBuffer {
-            return ringbackBuffer
+    private func stopPlayback() {
+        ringbackWorkItem?.cancel()
+        ringbackWorkItem = nil
+
+        player?.stop()
+        player?.currentTime = 0
+    }
+}
+
+private enum RingbackError: LocalizedError {
+    case missingResource
+
+    var errorDescription: String? {
+        switch self {
+        case .missingResource:
+            return "outgoing-ringback.caf is missing from the app bundle"
         }
-
-        let sampleRate = 44_100.0
-        let duration = 6.0
-        let ringDuration = 2.0
-        let fadeDuration = 0.02
-        let amplitude = 0.16
-        let frameCount = AVAudioFrameCount(sampleRate * duration)
-        let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1)!
-        let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount)!
-
-        buffer.frameLength = frameCount
-
-        let samples = buffer.floatChannelData![0]
-        for index in 0 ..< Int(frameCount) {
-            let time = Double(index) / sampleRate
-            let cycleTime = time.truncatingRemainder(dividingBy: duration)
-
-            guard cycleTime < ringDuration else {
-                samples[index] = 0
-                continue
-            }
-
-            let fadeIn = min(cycleTime / fadeDuration, 1)
-            let fadeOut = min((ringDuration - cycleTime) / fadeDuration, 1)
-            let envelope = min(fadeIn, fadeOut)
-            let tone = (sin(2 * .pi * 440 * time) + sin(2 * .pi * 480 * time)) * 0.5
-            samples[index] = Float(amplitude * envelope * tone)
-        }
-
-        ringbackBuffer = buffer
-        return buffer
     }
 }

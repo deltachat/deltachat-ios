@@ -33,6 +33,7 @@ class CallViewController: UIViewController {
     /// Stores local ICE candidates to be sent to the remote peer when the data channel opens.
     private var iceTricklingBuffer: [RTCIceCandidate] = []
     @Published private var gatheredEnoughIce = false
+    private let outgoingRingbackPlayer = OutgoingRingbackPlayer()
     private let rtcAudioSession = RTCAudioSession.sharedInstance()
     private var localAudioTrack: RTCAudioTrack?
     private var localVideoCapturer: RTCCameraVideoCapturer?
@@ -214,9 +215,6 @@ class CallViewController: UIViewController {
     }
 
     deinit {
-        if call.direction == .outgoing {
-            OutgoingRingbackPlayer.shared.stop()
-        }
         peerConnection?.close()
     }
 
@@ -395,7 +393,7 @@ class CallViewController: UIViewController {
         guard let currentCallStatus else {
             callStatusLabel.isHidden = true
             callStatusLabel.accessibilityLabel = nil
-            OutgoingRingbackPlayer.shared.stop()
+            outgoingRingbackPlayer.stop()
             return
         }
 
@@ -404,17 +402,17 @@ class CallViewController: UIViewController {
             callStatusLabel.text = currentCallStatus.text
             callStatusLabel.accessibilityLabel = currentCallStatus.text
             callStatusLabel.isHidden = false
-            OutgoingRingbackPlayer.shared.stop()
+            outgoingRingbackPlayer.stop()
         case .ringing:
             callStatusLabel.text = currentCallStatus.text
             callStatusLabel.accessibilityLabel = currentCallStatus.text
             callStatusLabel.isHidden = false
-            OutgoingRingbackPlayer.shared.startOutgoingRingback(after: 0)
+            outgoingRingbackPlayer.startOutgoingRingback(after: 0)
         case .accepted:
             callStatusLabel.text = nil
             callStatusLabel.accessibilityLabel = nil
             callStatusLabel.isHidden = true
-            OutgoingRingbackPlayer.shared.stop()
+            outgoingRingbackPlayer.stop()
         }
     }
 }
