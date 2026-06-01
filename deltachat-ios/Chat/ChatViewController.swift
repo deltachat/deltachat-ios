@@ -2229,41 +2229,39 @@ extension ChatViewController {
     }
 
     private func copyTextToClipboard(ids: [Int]) {
-        var stringsToCopy = ""
+        func textToCopy(for msg: DcMsg) -> String? {
+            if msg.type == DC_MSG_TEXT, msg.hasHtml {
+                dcContext.getMsgHtml(msgId: msg.id)
+            } else if msg.type == DC_MSG_TEXT, let msgText = msg.text {
+                msgText
+            } else {
+                msg.summary(chars: 10000000)
+            }
+        }
+        var stringToCopy = ""
         if ids.count > 1 {
             let sortedIds = ids.sorted()
             var lastSenderId: Int = -1
             for id in sortedIds {
                 let msg = self.dcContext.getMessage(id: id)
-                var textToCopy: String?
-                if msg.type == DC_MSG_TEXT, let msgText = msg.text {
-                    textToCopy = msgText
-                } else if let msgSummary = msg.summary(chars: 10000000) {
-                    textToCopy = msgSummary
-                }
-
-                if let textToCopy = textToCopy {
+                if let textToCopy = textToCopy(for: msg) {
                     if lastSenderId != msg.fromContactId {
                         let lastSender = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
-                        stringsToCopy.append("\(lastSender):\n")
+                        stringToCopy.append("\(lastSender):\n")
                         lastSenderId = msg.fromContactId
                     }
-                    stringsToCopy.append("\(textToCopy)\n\n")
+                    stringToCopy.append("\(textToCopy)\n\n")
                 }
             }
 
-            if stringsToCopy.hasSuffix("\n\n") {
-                stringsToCopy.removeLast(2)
+            if stringToCopy.hasSuffix("\n\n") {
+                stringToCopy.removeLast(2)
             }
-        } else {
-            let msg = self.dcContext.getMessage(id: ids[0])
-            if msg.type == DC_MSG_TEXT, let msgText = msg.text {
-                stringsToCopy.append("\(msgText)")
-            } else if let msgSummary = msg.summary(chars: 10000000) {
-                stringsToCopy.append("\(msgSummary)")
-            }
+        } else if let id = ids.first {
+            let msg = self.dcContext.getMessage(id: id)
+            stringToCopy = textToCopy(for: msg) ?? ""
         }
-        UIPasteboard.general.string = stringsToCopy
+        UIPasteboard.general.string = stringToCopy
     }
 
     func copyImagesToClipboard(ids: [Int]) {
