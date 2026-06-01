@@ -156,7 +156,7 @@ class FullMessageViewController: WebViewViewController {
         document.head.appendChild(meta);
         
         var style = document.createElement('style');
-        style.innerHTML = `html { font-size: \(size)px; font: -apple-system }`;
+        style.innerHTML = `html { font-size: \(size)px; font-family: -apple-system }`;
         document.head.appendChild(style);
         """
 
