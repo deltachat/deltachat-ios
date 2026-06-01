@@ -2926,6 +2926,8 @@ struct InputBarView: View {
     private func _updateIntrinsicContentSize(_: Any) {
         if Thread.isMainThread {
             updateIntrinsicContentSize()
+            // Queue another update for after layout settles
+            DispatchQueue.main.async(execute: updateIntrinsicContentSize)
         } else {
             DispatchQueue.main.async(execute: updateIntrinsicContentSize)
         }
