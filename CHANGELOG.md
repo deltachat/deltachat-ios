@@ -26,6 +26,7 @@
 - Fix some text direction issues in "Show full message" view
 - Fix: Do not try to resolve proxy IPv6 addresses in square brackets.
 - Fix: Do not fail to receive post-message with status updates for deleted webxdc
+- Fix: Disabled new iOS 26 pop gesture in webxdc to align with older versions
 - Update core to 2.51.0
 
 
