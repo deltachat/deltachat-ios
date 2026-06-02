@@ -76,6 +76,21 @@ public class NotificationManager {
         }
     }
 
+    public static func removeNotificationsForAccount(accountId: Int) {
+        DispatchQueue.global().async {
+            let nc = UNUserNotificationCenter.current()
+            nc.getDeliveredNotifications { notifications in
+                let toRemove = notifications.compactMap { notification in
+                    let notificationAccountId = notification.request.content.userInfo["account_id"] as? Int ?? 0
+                    return notificationAccountId == accountId ? notification.request.identifier : nil
+                }
+                nc.removeDeliveredNotifications(withIdentifiers: toRemove)
+            }
+
+            NotificationManager.updateBadgeCounters()
+        }
+    }
+
     // MARK: - Notifications
 
     @objc private func handleMessagesNoticed(_ notification: Notification) {

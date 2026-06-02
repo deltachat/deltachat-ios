@@ -8,6 +8,8 @@ class ProfileSwitchViewController: UITableViewController {
     private let accountSection = 0
     private let addSection = 1
 
+    var onUnreadIndicatorsChanged: (() -> Void)?
+
     private lazy var accountIds: [Int] = {
         return dcAccounts.getAllSorted()
     }()
@@ -92,18 +94,23 @@ class ProfileSwitchViewController: UITableViewController {
         let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
         let muteTitle = dcContext.isMuted() ? "menu_unmute" : "menu_mute"
         let muteImage = dcContext.isMuted() ? "speaker.wave.2" : "speaker.slash"
+        let checkmarkImage = if #available(iOS 16, *) { "checkmark.message" } else { "checkmark.circle" }
+        let hasUnreadMessages = dcContext.getFreshMessagesCount() > 0
 
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                let children: [UIMenuElement] = [
+                var children: [UIMenuElement] = [
                     UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, with: indexPath, action: toggleMute),
                     UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", with: indexPath, action: setProfileTag),
                     UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", with: indexPath, action: moveToTop),
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteAccount),
                 ]
+                if hasUnreadMessages {
+                    children.append(UIAction.menuAction(localizationKey: "mark_all_as_read", systemImageName: checkmarkImage, with: indexPath, action: markAllAsRead))
+                }
+                children.append(UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteAccount))
                 return UIMenu(children: children)
             }
         )
@@ -113,6 +120,23 @@ class ProfileSwitchViewController: UITableViewController {
         let dcContext = dcAccounts.get(id: accountIds[indexPath.row])
         dcContext.setMuted(!dcContext.isMuted())
         tableView.reloadRows(at: [indexPath], with: .none)
+    }
+
+    func markAllAsRead(at indexPath: IndexPath) {
+        let accountId = accountIds[indexPath.row]
+        let dcContext = dcAccounts.get(id: accountId)
+        DispatchQueue.global().async { [weak self] in
+            dcContext.marknoticedAllChats()
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.onUnreadIndicatorsChanged?()
+                NotificationManager.removeNotificationsForAccount(accountId: accountId)
+                if let row = accountIds.firstIndex(of: accountId),
+                   let cell = tableView.cellForRow(at: IndexPath(row: row, section: accountSection)) as? AccountCell {
+                    cell.refreshUnreadState(dcContext: dcContext)
+                }
+            }
+        }
     }
 
     func setProfileTag(at indexPath: IndexPath) {
@@ -243,6 +267,7 @@ class AccountCell: UITableViewCell {
 
     private var selectedAccount: Int?
     private var accountId: Int?
+    private var accountTitle: String = ""
 
     private lazy var mutedIndicator: UIImageView = {
         let view = UIImageView()
@@ -316,26 +341,17 @@ class AccountCell: UITableViewCell {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
+        accountTitle = dcContext.displayname ?? dcContext.addr ?? ""
+
         let encrypted = dcContext.isDatabaseEncrypted() ? "⚠️ " : ""
-        let title = dcContext.displayname ?? dcContext.addr ?? ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
         accountAvatar.setColor(contact.color)
-        accountAvatar.setName(title)
+        accountAvatar.setName(accountTitle)
         if let image = contact.profileImage {
             accountAvatar.setImage(image)
         }
 
-        let unreadMessages = dcContext.getFreshMessagesCount()
-        accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
-
-        mutedIndicator.isHidden = !dcContext.isMuted()
-
-        accountName.text = encrypted + title
-        if unreadMessages > 0 {
-            accountName.accessibilityLabel = "\(title): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
-        } else {
-            accountName.accessibilityLabel = title
-        }
+        refreshUnreadState(dcContext: dcContext)
 
         let connectivityString = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: "")
         if let label = dcContext.getConfig("private_tag") {
@@ -352,13 +368,30 @@ class AccountCell: UITableViewCell {
             tagLabel.isHidden = true
         }
 
+        accountName.text = encrypted + accountTitle
         accessoryType = selectedAccount == accountId ? .checkmark : .none
+    }
+
+    func refreshUnreadState(dcContext: DcContext) {
+        let unreadMessages = dcContext.getFreshMessagesCount()
+        accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
+
+        if unreadMessages > 0 {
+            accountName.accessibilityLabel = "\(accountTitle): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
+        } else {
+            accountName.accessibilityLabel = accountTitle
+        }
+
+        mutedIndicator.isHidden = !dcContext.isMuted()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         accountAvatar.reset()
         accountName.text = nil
+        accountName.accessibilityLabel = nil
+        mutedIndicator.isHidden = true
+        accountTitle = ""
         accountId = -1
     }
 }

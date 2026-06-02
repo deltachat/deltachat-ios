@@ -349,6 +349,14 @@ public class DcContext {
         dc_marknoticed_chat(self.contextPointer, UInt32(chatId))
     }
 
+    public func marknoticedAllChats() {
+        do {
+            try DcAccounts.shared.blockingCall(method: "marknoticed_all_chats", params: [id as AnyObject])
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+    }
+
     public func markfreshChat(chatId: Int) {
         dc_markfresh_chat(self.contextPointer, UInt32(chatId))
     }
