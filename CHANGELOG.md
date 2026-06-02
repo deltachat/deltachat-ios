@@ -17,6 +17,7 @@
 - Adapt quota warning to automatic cleanup.
 - Add an option to process unencrypted messages to "Advanced / Relays / Edit / More Options". By default, only encrypted messages can be sent or received
 - Follow certificate check parameter in autoconfig
+- Show full message screen now uses the system font
 - Fix: Your own video now shows as mirrored in a call
 - Fix: Improve detection of stickers
 - Fix: Allow animated stickers

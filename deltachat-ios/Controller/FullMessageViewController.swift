@@ -48,7 +48,8 @@ class FullMessageViewController: WebViewViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addFontUserScript()
+        
         var title = dcContext.getMessage(id: messageId).subject
         if title.isEmpty {
             title = String.localized("chat_input_placeholder")
@@ -144,5 +145,27 @@ class FullMessageViewController: WebViewViewController {
                 self.webView.loadHTMLString(html, baseURL: nil)
             }
         }
+    }
+
+    private func addFontUserScript() {
+        let size = UIFont.preferredFont(forTextStyle: .body).pointSize
+        let source = """
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, initial-scale=1.0';
+        document.head.appendChild(meta);
+        
+        var style = document.createElement('style');
+        style.innerHTML = `html { font-size: \(size)px; font-family: -apple-system }`;
+        document.head.appendChild(style);
+        """
+
+        let script = WKUserScript(
+            source: source,
+            injectionTime: .atDocumentEnd,
+            forMainFrameOnly: false
+        )
+
+        webView.configuration.userContentController.addUserScript(script)
     }
 }
