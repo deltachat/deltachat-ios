@@ -1,7 +1,17 @@
 import AVFoundation
 
 final class OutgoingRingbackPlayer {
-    private var player: AVAudioPlayer?
+    private lazy var player: AVAudioPlayer? = {
+        guard let url = Bundle.main.url(forResource: "outgoing-ringback", withExtension: "caf", subdirectory: "Assets") else {
+            assertionFailure("Missing resource")
+            return nil
+        }
+        let player = try? AVAudioPlayer(contentsOf: url)
+        assert(player != nil, "Failed to init AVAudioPlayer")
+        player?.numberOfLoops = -1
+        player?.prepareToPlay()
+        return player
+    }()
     private var ringbackWorkItem: DispatchWorkItem?
 
     deinit {
