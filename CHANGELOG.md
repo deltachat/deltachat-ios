@@ -1,11 +1,12 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.51.1
+2026-06
 
-- Add "Mark All as Read" to the profile switcher context menu
 - "Calls" and "Channels" are available by default and are no longer experimental
 - Resend the last 10 messages to new broadcast channel member
 - Enable PQC (Post-Quantum Cryptography) support. We do not generate PQC keys yet, this step is needed for forward compatibility
+- Add "Mark All as Read" to the profile switcher context menu
 - Improve avatar quality
 - Remove "Move to DeltaChat folder", in case you are using the option, a device message shows how to proceed
 - Remove "Only fetch from DeltaChat folder" option, the functionality is preserved for existing profiles
@@ -32,6 +33,7 @@
 
 
 ## v2.49.2
+2026-04
 
 - Configurable app picker url
 - When tapping an invite link, after app installation, offer corresponding chat
