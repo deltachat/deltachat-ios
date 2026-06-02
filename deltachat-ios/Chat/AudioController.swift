@@ -176,7 +176,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             return
         }
         if isPlayingMessage(messageId: message.id, contextId: dcContext.id) {
-            // tap occur in the current cell that is playing audio sound
+            // tap occurred in the cell that is currently playing audio
             if state == .playing {
                 pauseSound(in: cell)
             } else {
