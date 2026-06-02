@@ -47,30 +47,9 @@ final class OutgoingRingbackPlayer {
     }
 
     private func playRingbackLoop() {
-        do {
-            let player = try makePlayer()
-            guard !player.isPlaying else { return }
-            player.play()
-        } catch {
-            logger.error("☎️ failed to start outgoing ringback: \(error.localizedDescription)")
-            stop()
-        }
-    }
-
-    private func makePlayer() throws -> AVAudioPlayer {
-        if let player {
-            return player
-        }
-
-        guard let url = Bundle.main.url(forResource: "outgoing-ringback", withExtension: "caf", subdirectory: "Assets") else {
-            throw RingbackError.missingResource
-        }
-
-        let player = try AVAudioPlayer(contentsOf: url)
-        player.numberOfLoops = -1
-        player.prepareToPlay()
-        self.player = player
-        return player
+        guard let player else { return }
+        guard !player.isPlaying else { return }
+        player.play()
     }
 
     private func stopPlayback() {
@@ -79,16 +58,5 @@ final class OutgoingRingbackPlayer {
 
         player?.stop()
         player?.currentTime = 0
-    }
-}
-
-private enum RingbackError: LocalizedError {
-    case missingResource
-
-    var errorDescription: String? {
-        switch self {
-        case .missingResource:
-            return "Assets/outgoing-ringback.caf is missing from the app bundle"
-        }
     }
 }
