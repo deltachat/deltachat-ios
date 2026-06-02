@@ -183,7 +183,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                 resumeSound()
             }
         } else {
-            // tap occur in a difference cell that the one is currently playing sound. First stop currently playing and start the sound for given message
+            // tap occurred in a different cell than the one that is currently playing sound. First stop currently playing and start the sound for given message
             stopAnyOngoingPlaying()
             playSound(for: message, in: cell)
         }
