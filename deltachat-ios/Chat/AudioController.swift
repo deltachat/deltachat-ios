@@ -235,7 +235,8 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         guard let player = audioPlayer else { return }
         player.pause()
         state = .pause
-        (audioCell ?? playingCell)?.audioPlayerView.showPlayLayout(false) // show play button on audio cell
+        let cell = audioCell ?? playingCell
+        cell?.audioPlayerView.showPlayLayout(false) // show play button on audio cell
         updateNowPlayingInfo()
         progressTimer?.invalidate()
     }
