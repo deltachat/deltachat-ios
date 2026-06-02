@@ -23,6 +23,8 @@
 "downloading" = "S\'està baixant...";
 "open_attachment" = "Obre l\'adjunt";
 "join" = "Uneix-te";
+"join_group" = "Unir-se al Grup";
+"join_channel" = "Unir-se al Canal";
 "rejoin" = "Torna a unir-te";
 "delete" = "Esborra";
 "delete_for_me" = "Esborra per a mi";
@@ -70,6 +72,8 @@
 "mark_as_read" = "Marca-ho com a llegit";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Llegit";
+// Used as an menu entry or button
+"mark_as_unread" = "Marcar com a no llegit";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "No llegit";
 // Placeholder text when something is loading
@@ -92,6 +96,7 @@
 "offline" = "Fora de línia";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Següent";
+"warning" = "Atenció";
 "error" = "Error";
 "error_x" = "Error: %1$@";
 "no_app_to_handle_data" = "No sé trobar cap aplicació per a gestionar aquest tipus de dades.";
@@ -160,6 +165,8 @@
 "capture" = "Captura";
 // Switch eg. from front to back camera
 "switch_camera" = "Canvia la càmera";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Commuta Càmera";
 "toggle_fullscreen" = "Alterna el mode de pantalla completa";
 "location" = "Ubicació";
 "locations" = "Ubicacions";
@@ -332,6 +339,7 @@
 "share_location_for_one_hour" = "Durant 1 hora";
 "share_location_for_two_hours" = "Durant 2 hores";
 "share_location_for_six_hours" = "Durant 6 hores";
+"share_location_for_24_hours" = "Durant 24 hores";
 "file_saved_to" = "El fitxer s\'ha desat a «%1$@».";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Truca";
@@ -343,6 +351,8 @@
 "answer_call" = "Respon";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Rebutja";
+// the action to end a call
+"end_call2" = "Finalitza trucada";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Trucada de veu";
 // Used in call bubbles, summaries, notifications
@@ -365,11 +375,20 @@
 "canceled_call" = "Trucada cancel·lada";
 "missed_call" = "Trucada perduda";
 "already_in_call" = "En una trucada";
+"call_answered_elsewhere" = "Trucada agafada en un altre dispositiu";
+"call_requires_camera_permission" = "Permís de Càmera és necessari per a video trucades";
+"call_requires_mic_permission" = "Permís de Micrófon necessari per a trucades.";
+"call_requires_connection" = "No es pot iniciar la trucada. Assegura\'t que el teu dispositiu té connexió a internet i torna-ho a intentar.";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Truca amb %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Trucant %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Segur que vols sortir?";
 "ask_delete_named_chat" = "¿Esborrar xat \"%1$@\" de tots els teus dispositius?";
 "ask_delete_message" = "¿Esborra aquest missatge de tots els teus dispositius?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Reenvia missatges a %1$@?";
 "ask_forward_multiple" = "Voleu reenviar els missatges a %1$d xats?";
@@ -441,8 +460,11 @@
 // search
 "search" = "Busca";
 "search_in_chat" = "Busca al xat";
+// Placeholder will be replaced by the chat name
+"search_in" = "Busca a %1$@";
 "search_files" = "Busca els fitxers";
 "search_explain" = "Busca als xats, contactes i missatges";
+"search_result_for_x" = "Resultat per \"%1$@\"";
 "search_no_result_for_x" = "No s\'han trobat resultats per \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Sense llegir";
@@ -454,6 +476,7 @@
 "group_create_button" = "Crea el grup";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Si us plau, poseu nom al grup.";
+"please_enter_chat_name" = "Si us plau, introdueix un nom.";
 "group_add_members" = "Afegiu-hi membres";
 "group_self_not_in_group" = "Has de ser membre del grup per poder fer això.";
 "profile_encryption" = "Encriptació";
@@ -554,6 +577,7 @@
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
 "login_title" = "Identifiqueu-vos";
+"login_advanced_hint" = "Aquest inici de sessió és per usuaris avançats.\n\nNo utilitzis una adreça que ja estiguis utilitzant en una altra aplicació.";
 "login_inbox" = "Safata d\'entrada";
 "login_imap_login" = "Nom d\'identificació IMAP";
 "login_imap_server" = "Servidor IMAP";
@@ -588,6 +612,7 @@
 "used_for_sending" = "Utilitzat per enviar";
 "hide_from_contacts" = "Amagar als contactes";
 "hidden_from_contacts" = "Amagat als contactes";
+"enforce_e2ee" = "Força el xifrat per tots els Retransmissors";
 // Hint for the list of relays
 "transport_list_hint" = "Els missatges es reben en tots els retransmissors.  ⚠️ Si canvies qualsevol cosa aquí, assegura\'t que tots els teus dispositius funcionin com a mínim amb la versió 2.47.0. Sinó, els dispositius més antics podrien no rebre els missatges.";
 // shown if a QR code was scanned that can be used as a relay
@@ -685,6 +710,8 @@
 "pref_incognito_keyboard_explain" = "Sol·licita al teclat que deshabiliti l\'aprenentatge personalitzat";
 "pref_read_receipts" = "Confirmació de lectura";
 "pref_read_receipts_explain" = "Si desactiveu la confirmació de lectura dels vostres missatges, tampoc no rebreu la dels altres usuaris.";
+// Title above a list of contacts who read a message
+"read_by" = "Llegit per";
 "pref_server" = "Servidor";
 "pref_encryption" = "Xifratge";
 "pref_manage_keys" = "Gestió de les claus";
@@ -803,9 +830,12 @@
 "group_name_changed_by_you" = "Heu canviat el nom del grup de «%1$@» a «%2$@».";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "Nom del grup \"%1$@\" canviat a \"%2$@\" per %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "S\'ha canviat el nom del canal de \"%1$@\" a \"%2$@\".";
 "group_image_changed_by_you" = "Heu canviat la imatge de grup.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "Imatge de grup canviada per %1$@.";
+"channel_image_changed" = "Imatge del canal canviada.";
 "chat_description_changed_by_you" = "Has modificat la descripció del xat.";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Descripció del xat modificada per %1$@.";
@@ -939,6 +969,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ja té un missatge d\'esborrany, voleu substituir-lo?";
 "mailto_link_could_not_be_decoded" = "No s\'ha pogut desxifrar l\'enllaç mailto: %1$@";
+"remove_quote" = "Elimina citació";
+"remove_attachment" = "Elimina adjunt";
 // notifications
 "notify_reply_button" = "Respondre";
 "notify_new_message" = "Missatge nou";
@@ -954,6 +986,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Teniu missatges nous";
 "n_messages_in_m_chats" = "%1$d missatges en %2$d xats";
+// location streaming
+"location_streaming_notification_text" = "Estàs compartint la teva ubicació";
+"location_rationale" = "Per a compartir la teva ubicació en directe amb membres de xat, permet que Delta Chat utilitzi les teves dades d\'ubicació.\n\n Perquè la ubicació en directe funcioni sense interrupcions, s\'utilitzaran les dades d\'ubicació fins i tot quan l\'aplicació està tancada o no s\'està fent servir.";
 // permissions
 "perm_required_title" = "Es requereix permís";
 "perm_continue" = "Continua";
@@ -974,7 +1009,7 @@
 "ImageEditorHud_rotate" = "Gira";
 "welcome_desktop" = "Us donem la benvinguda al Delta Chat";
 "global_menu_preferences_language_desktop" = "Trieu l\'idioma...";
-"global_menu_file_desktop" = "Arxiva";
+"global_menu_file_desktop" = "Aplicació";
 "global_menu_file_quit_desktop" = "Surt";
 "global_menu_edit_desktop" = "Modifica";
 "global_menu_edit_undo_desktop" = "Desfés";
@@ -993,6 +1028,7 @@
 "global_menu_help_about_desktop" = "Quant al Delta Chat";
 "global_menu_file_open_desktop" = "Obre el Delta Chat";
 "global_menu_minimize_to_tray" = "Minimitza";
+"no_account_selected" = "Tria un perfil o crea un perfil nou";
 "no_chat_selected_suggestion_desktop" = "Trieu un xat o creeu-ne un de nou";
 "write_message_desktop" = "Escriu un missatge";
 "encryption_info_title_desktop" = "Informació de xifratge";
@@ -1014,8 +1050,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "No s\'ha trobat cap suggeriment ortogràfic.";
 "show_window" = "Mostra la finestra";
+"data_found_other_installation_message" = "Els teus perfils d\'una altra instal·lació de Delta Chat no sóc accessibles - diferents instal·lacions emmagatzement la informació en llocs diferents.\n\nPer mantenir els perfils existents:\n1. Surt ara\n2. Obre l\'altre Delta Chat - si cal, reinstalal des de %1$@\n3. Fes una còpia de seguretat de cada perfil a \"Configuració/Xats\"\n4. Recarrega aquesta versió\n5. Restaura les còpies de seguretat utilitzant \"Ja tinc un perfil\"\n\nContinues sense els teus perfils anteriors?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Dreceres de teclat";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Navegació";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Introduir missatge";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Missatge seleccionat";
 "switch_between_chats" = "Canvia entre xats";
 "scroll_messages" = "Desplaça els missatges";
 // command to put the cursor to the search input field
@@ -1034,6 +1077,8 @@
 "a11y_message_context_menu_btn_label" = "Accions de missatge";
 "a11y_background_preview_label" = "Previsualització del fons de pantalla";
 "a11y_disappearing_messages_activated" = "S\'han activat els missatges efímers";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Obrir %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Deixa de compartir la ubicació";
 "a11y_voice_message_hint_ios" = "Després d\'enregistrar, feu doble toc per a enviar-lo. Per a descartar l\'enregistrament, fregueu amb dos dits.";
