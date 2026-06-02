@@ -52,7 +52,7 @@ final class OutgoingRingbackPlayer {
             return player
         }
 
-        guard let url = Bundle.main.url(forResource: "outgoing-ringback", withExtension: "caf") else {
+        guard let url = Bundle.main.url(forResource: "outgoing-ringback", withExtension: "caf", subdirectory: "Assets") else {
             throw RingbackError.missingResource
         }
 
@@ -78,7 +78,7 @@ private enum RingbackError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .missingResource:
-            return "outgoing-ringback.caf is missing from the app bundle"
+            return "Assets/outgoing-ringback.caf is missing from the app bundle"
         }
     }
 }
