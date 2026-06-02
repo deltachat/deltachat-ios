@@ -226,11 +226,11 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
     }
 
-    /// Used to pause the audio sound
+    /// Pauses the currently playing audio sound.
     ///
     /// - Parameters:
-    ///   - message: The `MessageType` that contain the audio item to be pause.
     ///   - audioCell: The `AudioMessageCell` that needs to be updated by the pause action.
+    ///     Pass `nil` to update the current `playingCell`.
     open func pauseSound(in audioCell: AudioMessageCell? = nil) {
         guard let player = audioPlayer else { return }
         player.pause()
@@ -387,6 +387,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         if Thread.isMainThread {
             action()
         } else {
+            // Wait until playback is fully stopped before callers continue and possibly start another audio session.
             DispatchQueue.main.sync(execute: action)
         }
     }

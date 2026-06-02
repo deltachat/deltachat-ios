@@ -2700,6 +2700,10 @@ extension ChatViewController: AudioControllerDelegate {
 
 // MARK: - Audio Playback
 private extension ChatViewController {
+    /// Stops currently playing chat audio before opening a media preview that may play audio itself.
+    ///
+    /// Call this before presenting previews for audio-like attachments, videos, and files so
+    /// an existing voice/audio message does not keep playing over the preview playback.
     func stopMessageAudioBeforeSoundPreview(for viewType: Int32?) {
         guard let viewType else { return }
         switch viewType {
