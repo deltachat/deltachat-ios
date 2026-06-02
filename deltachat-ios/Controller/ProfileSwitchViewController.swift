@@ -102,14 +102,13 @@ class ProfileSwitchViewController: UITableViewController {
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                var children: [UIMenuElement] = [
-                    UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, with: indexPath, action: toggleMute),
-                    UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", with: indexPath, action: setProfileTag),
-                    UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", with: indexPath, action: moveToTop),
-                ]
+                var children: [UIMenuElement] = []
+                children.append(UIAction.menuAction(localizationKey: muteTitle, systemImageName: muteImage, with: indexPath, action: toggleMute))
                 if hasUnreadMessages {
                     children.append(UIAction.menuAction(localizationKey: "mark_all_as_read", systemImageName: checkmarkImage, with: indexPath, action: markAllAsRead))
                 }
+                children.append(UIAction.menuAction(localizationKey: "profile_tag", systemImageName: "tag", with: indexPath, action: setProfileTag))
+                children.append(UIAction.menuAction(localizationKey: "move_to_top", systemImageName: "arrow.up", with: indexPath, action: moveToTop))
                 children.append(UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteAccount))
                 return UIMenu(children: children)
             }
