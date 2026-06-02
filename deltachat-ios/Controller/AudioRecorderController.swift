@@ -180,6 +180,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func startRecording() {
+        AudioController.stopBackgroundPlayback()
         do {
             self.setToolbarItems([pauseButton], animated: true)
             doneButton.isEnabled = true
@@ -199,6 +200,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @objc func continueRecording() {
+        AudioController.stopBackgroundPlayback()
         self.setToolbarItems([pauseButton], animated: true)
         isRecordingPaused = false
         guard let audioRecorder, audioRecorder.record() else { logger.error("continue recording failed"); return  }
