@@ -4,6 +4,8 @@
 
 - You can now click on the Location streaming info message to bring up the map
 - Fix: Reactions could go to the wrong message if a new message was received while long pressing
+- Fix: update relay list when modified on other devices
+
 
 ## v2.51.1
 2026-06
