@@ -850,6 +850,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             showInvalidUnencryptedDialog()
         case (_, DC_INFO_GROUP_DESCRIPTION_CHANGED):
             navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
+        case (_, DC_INFO_LOCATIONSTREAMING_ENABLED),
+            (_, DC_INFO_UNKNOWN) where message.isInfo && message.text == "Location streaming disabled.":
+            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
         default:
             if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
