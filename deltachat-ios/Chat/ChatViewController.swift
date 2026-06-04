@@ -1897,8 +1897,7 @@ extension ChatViewController {
         return preview
     }
 
-    private func appendReactionItems(to menuElements: inout [UIMenuElement], indexPath: IndexPath) {
-        let messageId = messages[indexPath.row].id
+    private func appendReactionItems(to menuElements: inout [UIMenuElement], messageId: Int) {
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
@@ -1982,11 +1981,11 @@ extension ChatViewController {
 
                 if canReply(to: message) {
                     if #available(iOS 16.0, *) {
-                        appendReactionItems(to: &children, indexPath: indexPath)
+                        appendReactionItems(to: &children, messageId: messageId)
                         preferredElementSizeSmall = true
                     } else {
                         var items: [UIMenuElement] = []
-                        appendReactionItems(to: &items, indexPath: indexPath)
+                        appendReactionItems(to: &items, messageId: messageId)
                         children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
                     }
                     children.append(
