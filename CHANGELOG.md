@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: Reactions could go to the wrong message if a new message was received while long pressing
+
 ## v2.51.1
 2026-06
 
