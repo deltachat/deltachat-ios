@@ -44,10 +44,6 @@ class TransportListViewController: UITableViewController {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
     @objc private func handleTransportsModified(_ notification: Notification) {
         guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
