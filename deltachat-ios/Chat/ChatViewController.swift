@@ -223,7 +223,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private let titleView = ChatTitleView()
 
-    private lazy var dcChat: DcChat = {
+    private(set) lazy var dcChat: DcChat = {
         return dcContext.getChat(chatId: chatId)
     }()
 
