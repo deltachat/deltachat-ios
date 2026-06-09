@@ -23,6 +23,8 @@
 "downloading" = "Deskargatzen...";
 "open_attachment" = "Erantsitakoa ireki";
 "join" = "Batu";
+"join_group" = "Sartu taldean";
+"join_channel" = "Sartu kanalean";
 "rejoin" = "Batu berriro";
 "delete" = "Ezabatu";
 "delete_for_me" = "Ezabatu niretzat";
@@ -70,6 +72,8 @@
 "mark_as_read" = "Ezarri irakurri gisa";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Markatu irakurrita";
+// Used as an menu entry or button
+"mark_as_unread" = "Markatu irakurri gabeko gisa";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Irakurri gabe";
 // Placeholder text when something is loading
@@ -92,6 +96,7 @@
 "offline" = "Lineaz kanpo";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Hurrengoa";
+"warning" = "Abisua";
 "error" = "Errorea";
 "error_x" = "Errorea: %1$@";
 "no_app_to_handle_data" = "Ezin izan da datu mota hau kudeatzeko aplikaziorik.";
@@ -160,6 +165,8 @@
 "capture" = "Harrapatu";
 // Switch eg. from front to back camera
 "switch_camera" = "Aldatu kamera";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Aldatu kamera";
 "toggle_fullscreen" = "Aldatu pantaila osoa modua";
 "location" = "Kokalekua";
 "locations" = "Kokalekuak";
@@ -332,6 +339,7 @@
 "share_location_for_one_hour" = "Ordubetez";
 "share_location_for_two_hours" = "2 orduz";
 "share_location_for_six_hours" = "6 orduz";
+"share_location_for_24_hours" = "24 orduz";
 "file_saved_to" = "Fitxategia \"%1$@\" helbidean gordeta";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Deitu";
@@ -343,6 +351,8 @@
 "answer_call" = "Erantzun";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Ukatu";
+// the action to end a call
+"end_call2" = "Amaitu deia";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Audio deia";
 // Used in call bubbles, summaries, notifications
