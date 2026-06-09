@@ -1,10 +1,15 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.52.0
+2026-06
 
-- You can now click on the Location streaming info message to bring up the map
+- Click on location streaming info message to open the map
+- Fix: Update the channel title after joining if the QR code included a wrong title
+- Fix: Don't send removal message to contact that hasn't been a chat member
 - Fix: Reactions could go to the wrong message if a new message was received while long pressing
 - Fix: update relay list when modified on other devices
+- Update translations and local help
+- Update core to 2.52.0
 
 
 ## v2.51.1
