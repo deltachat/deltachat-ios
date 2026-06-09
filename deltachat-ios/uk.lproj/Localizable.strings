@@ -23,6 +23,8 @@
 "downloading" = "Скачується…";
 "open_attachment" = "Відчинити прикріплене";
 "join" = "Долучитися";
+"join_group" = "Приєднатися до групи";
+"join_channel" = "Приєднатися до каналу";
 "rejoin" = "Передолучитися";
 "delete" = "Видалити";
 "delete_for_me" = "Видалити для мене";
@@ -70,6 +72,8 @@
 "mark_as_read" = "Позначити як прочитане";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Позначити прочитаним";
+// Used as an menu entry or button
+"mark_as_unread" = "Позначити непрочитаним";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
 "mark_as_unread_short" = "Непрочитане";
 // Placeholder text when something is loading
@@ -92,6 +96,7 @@
 "offline" = "Не в мережі";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Наступний";
+"warning" = "Попередження";
 "error" = "Помилка";
 "error_x" = "Помилка: %1$@";
 "no_app_to_handle_data" = "Додаток, що дозволяє обробляти цей тип даних, не знайдено.";
@@ -160,6 +165,8 @@
 "capture" = "Захопити";
 // Switch eg. from front to back camera
 "switch_camera" = "Перемкнути камеру";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Увімкнення/вимкнення камери";
 "toggle_fullscreen" = "Перейти в повноекранний режим";
 "location" = "Розташування";
 "locations" = "Розташування";
@@ -332,6 +339,7 @@
 "share_location_for_one_hour" = "на 1 годину";
 "share_location_for_two_hours" = "на 2 години";
 "share_location_for_six_hours" = "на 6 годин";
+"share_location_for_24_hours" = "На 24 години";
 "file_saved_to" = "Файл збережено до \"%1$@\".";
 // the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
 "start_call" = "Дзвонити";
@@ -343,6 +351,8 @@
 "answer_call" = "Відповісти";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "Відхилити";
+// the action to end a call
+"end_call2" = "Завершити дзвінок";
 // Used in call bubbles, summaries, notifications
 "audio_call" = "Аудіовиклик";
 // Used in call bubbles, summaries, notifications
@@ -365,11 +375,20 @@
 "canceled_call" = "Скасований дзвінок";
 "missed_call" = "Пропущений дзвінок";
 "already_in_call" = "Вже на зв\'язку";
+"call_answered_elsewhere" = "Дзвінок прийнято на іншому пристрої";
+"call_requires_camera_permission" = "Для відеодзвінків потрібен доступ до камери";
+"call_requires_mic_permission" = "Для здійснення дзвінків необхідний доступ до мікрофона";
+"call_requires_connection" = "Не вдається розпочати дзвінок. Переконайтеся, що на вашому пристрої є підключення до Інтернету, і спробуйте ще раз.";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Зателефонувати до %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Дзвонимо до %1$@…";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ви впевнені, що хочете піти?";
 "ask_delete_named_chat" = "Видалити чат \"%1$@\" на всіх ваших пристроях?";
 "ask_delete_message" = "Видалити це повідомлення?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Переслати повідомлення %1$@?";
 "ask_forward_multiple" = "Переслати повідомлення в %1$d?";
@@ -441,8 +460,11 @@
 // search
 "search" = "Пошук";
 "search_in_chat" = "Шукати в чаті";
+// Placeholder will be replaced by the chat name
+"search_in" = "Пошук у %1$@";
 "search_files" = "Шукати файли";
 "search_explain" = "Пошук чатів, контактів і повідомлень";
+"search_result_for_x" = "Результати для \"%1$@\"";
 "search_no_result_for_x" = "Запит \"%1$@\" не дав результатів";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Непрочитане";
@@ -454,6 +476,7 @@
 "group_create_button" = "Створити групу";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "Уведіть назву групі.";
+"please_enter_chat_name" = "Будь-ласка введіть ім\'я.";
 "group_add_members" = "Додати учасників";
 "group_self_not_in_group" = "Лише учасник групи має змогу виконати цю дію.";
 "profile_encryption" = "Шифрування";
@@ -554,6 +577,7 @@
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
 "login_title" = "Увійти";
+"login_advanced_hint" = "Цей спосіб входу призначений для досвідчених користувачів.\n\nНе використовуйте адресу, яку ви вже використовуєте в іншому додатку.";
 "login_inbox" = "Вхідні";
 "login_imap_login" = "IMAP-логін";
 "login_imap_server" = "IMAP-сервер";
@@ -588,6 +612,7 @@
 "used_for_sending" = "Використовується для відправки";
 "hide_from_contacts" = "Приховати від контактів";
 "hidden_from_contacts" = "Приховано від контактів";
+"enforce_e2ee" = "Застосувати політику шифрування для всіх ретрансляторів";
 // Hint for the list of relays
 "transport_list_hint" = "Повідомлення приймаються на всіх relay-серверах.\n\n⚠️ Якщо ви щось змінюєте тут, переконайтеся, що всі ваші пристрої працюють принаймні з версією 2.47.0. Інакше старіші пристрої можуть пропустити повідомлення.";
 // shown if a QR code was scanned that can be used as a relay
@@ -685,6 +710,8 @@
 "pref_incognito_keyboard_explain" = "Вимагати вимкнення персоналізації підказок клавіатури";
 "pref_read_receipts" = "Отримувати сповіщення про прочитання";
 "pref_read_receipts_explain" = "Якщо сповіщення про прочитання відключені, Ви не будете бачити підтвердження прочитання повідомлень іншими користувачами.";
+// Title above a list of contacts who read a message
+"read_by" = "Прочитано";
 "pref_server" = "Сервер";
 "pref_encryption" = "Шифрування";
 "pref_manage_keys" = "Розпорядження ключами";
@@ -803,9 +830,12 @@
 "group_name_changed_by_you" = "Ви змінили назву групи з \"%1$@\" на \"%2$@\".";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
 "group_name_changed_by_other" = "%3$@ змінив (-ла) назву групи з \"%1$@\" на \"%2$@\".";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Назва каналу змінена з «%1$@» на «%2$@».";
 "group_image_changed_by_you" = "Зображення групи змінено.";
 // %1$s will be replaced by name of the contact who did the action
 "group_image_changed_by_other" = "%1$@ змінює зображення групи.";
+"channel_image_changed" = "Змінено зображення каналу.";
 "chat_description_changed_by_you" = "Ви змінили опис чату";
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "%1$@ змінює опис чату.";
@@ -939,6 +969,8 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ уже містить чернетку повідомлення, бажаєте її замінити?";
 "mailto_link_could_not_be_decoded" = "неможливо декодувати посилання mailto: %1$@";
+"remove_quote" = "Видалити цитату";
+"remove_attachment" = "Видалити вкладення";
 // notifications
 "notify_reply_button" = "Відповісти";
 "notify_new_message" = "Нове повідомлення";
@@ -954,6 +986,9 @@
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "У вас нові повідомлення";
 "n_messages_in_m_chats" = "%1$d повідомлень в %2$d чатах";
+// location streaming
+"location_streaming_notification_text" = "Ви ділитеся своїм місцеперебуванням";
+"location_rationale" = "Щоб ділитися своїм місцезнаходженням у реальному часі з учасниками чату, надайте Delta Chat доступ до даних про ваше місцезнаходження.\n\nДля безперервної роботи функції трансляції місцезнаходження дані про місцезнаходження використовуються навіть тоді, коли застосунок закрито або він не використовується.";
 // permissions
 "perm_required_title" = "Потрібен дозвіл";
 "perm_continue" = "Продовжити";
@@ -993,6 +1028,7 @@
 "global_menu_help_about_desktop" = "Про Delta Chat";
 "global_menu_file_open_desktop" = "Відкрити Delta Chat";
 "global_menu_minimize_to_tray" = "Згорнути";
+"no_account_selected" = "Оберіть профіль або створіть новий профіль";
 "no_chat_selected_suggestion_desktop" = "Виберіть чат або створіть новий";
 "write_message_desktop" = "Напишіть повідомлення";
 "encryption_info_title_desktop" = "Інформація про шифрування";
@@ -1014,8 +1050,15 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Пропозицій щодо написання не знайдено.";
 "show_window" = "Показати вікно";
+"data_found_other_installation_message" = "Доступ до ваших профілів з іншої інсталяції Delta Chat неможливий — різні інсталяції зберігають свої дані в окремих місцях.\n\nЩоб зберегти існуючі профілі:\n1. Закрийте програму\n2. Відкрийте іншу версію Delta Chat — за потреби переінсталюйте її з %1$@\n3. Створіть резервну копію кожного профілю в меню «Налаштування/чати»\n4. Перезапустіть цю версію\n5. Відновіть резервні копії, вибравши «У мене вже є профіль»\n\nПродовжити без попередніх профілів?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Сполучення клавіш";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Навігація";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Введення повідомлення";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Обране повідомлення";
 "switch_between_chats" = "Переключитися між чатами";
 "scroll_messages" = "Прокрутити повідомлення";
 // command to put the cursor to the search input field
@@ -1034,6 +1077,8 @@
 "a11y_message_context_menu_btn_label" = "Дії з повідомленням";
 "a11y_background_preview_label" = "Попередній перегляд фону";
 "a11y_disappearing_messages_activated" = "Зникнення повідомлень увімкнено";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Відкрити %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Припинити надсилати геодані";
 "a11y_voice_message_hint_ios" = "Після запису двічі торкніться для відправки. Щоб скинути запис, проведіть двома пальцями.";

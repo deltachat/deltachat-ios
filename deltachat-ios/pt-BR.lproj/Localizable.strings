@@ -23,8 +23,12 @@
 "downloading" = "Descarregando…";
 "open_attachment" = "Abrir anexo";
 "join" = "Entrar";
+"join_group" = "Entrar no Grupo";
+"join_channel" = "Entrar no Canal";
 "rejoin" = "Re-entrar";
 "delete" = "Apagar";
+"delete_for_me" = "Apagar para mim";
+"delete_for_everyone" = "Apagar para todos";
 "info" = "Informação";
 "update" = "Atualizar";
 "emoji" = "Emoji";
@@ -34,27 +38,44 @@
 "close_window" = "Fechar Janela";
 "forward" = "Encaminhar";
 "create" = "Criar";
+"reset" = "Voltar à configuração padrão";
+"later" = "Depois";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Re-enviar";
+"edited" = "Editado";
+"edit_message" = "Editar a mensagem";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
 "archive" = "Arquivar";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Desarquivar";
 // Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
 "mute" = "Silenciar";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
+"muted" = "Mudo";
 "ephemeral_messages" = "Mensagens efêmeras";
 "ephemeral_messages_hint" = "Essas configurações se aplicam a todos os participantes usando o Delta Chat. No entanto, eles podem copiar, salvar e encaminhar mensagens ou usar outros clientes de email.";
 "save" = "Salvar";
 "chat" = "Conversa";
 "media" = "Mídia";
+"apps_and_media" = "Aplicativos & Mídias";
 "profile" = "Perfil";
+// deprecated
+"all_profiles" = "Todos os perfis";
+// deprecated
+"current_profile" = "Perfil atual";
 "main_menu" = "Menu principal";
 "start_chat" = "Começar conversa";
 "show_full_message" = "Mostrar mensagem completa...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
 "mark_all_as_read" = "Marcar tudo como lido";
+// Used as an menu entry or button
+"mark_as_read" = "Marcar como lido";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Lida";
+// Used as an menu entry or button
+"mark_as_unread" = "Marcar como não lido";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Não lidas";
 // Placeholder text when something is loading
 "loading" = "Carregando...";
 "hide" = "Esconder";
@@ -75,11 +96,14 @@
 "offline" = "Desconectado";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Avançar";
+"warning" = "Aviso";
 "error" = "Erro";
 "error_x" = "Erro: %1$@";
 "no_app_to_handle_data" = "Não foi possível encontrar um app para abrir esse tipo de arquivo.";
 "no_browser_installed" = "Nenhum navegador instalado.";
 "file_not_found" = "Não foi possível encontrar %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Não é possível salvar %1$@.";
 "copied_to_clipboard" = "Salvo na área de transferência.";
 "contacts_headline" = "Contatos";
 "email_address" = "Endereço de email";
@@ -100,9 +124,14 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Visto por último %1$@";
 "last_seen_unknown" = "Visto pela última vez: desconhecido";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Menos de 1 minuto";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+"selected_colon" = "Selecionado:";
+"selected" = "Selecionado";
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
@@ -111,6 +140,7 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
+"add_to_sticker_collection" = "Adicionar à coleção de adesivos";
 "images" = "Imagens";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Áudio";
@@ -127,6 +157,8 @@
 "capture" = "Capturar";
 // Switch eg. from front to back camera
 "switch_camera" = "Trocar câmera";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Alternar câmera";
 "toggle_fullscreen" = "Ativar modo tela cheia";
 "location" = "Localização";
 "locations" = "Localizações";
@@ -134,10 +166,22 @@
 "images_and_videos" = "Imagens e vídeos";
 "file" = "Arquivo";
 "files" = "Arquivos";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Escolher dos arquivos";
+"choose_from_gallery" = "Escolha na Galeria";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
+"home" = "Início";
+"games" = "Jogos";
+"tools" = "Ferramentas";
+"app_size" = "Tamanho";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
+"app_date_published" = "Publicado";
+"add_to_chat" = "Adicionar à conversa";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Navegar";
 "unknown" = "Desconhecido";
 "green" = "Verde";
 "red" = "Vermelho";
@@ -157,8 +201,26 @@
 "slow" = "Lento";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Novo contato";
+"menu_new_classic_contact" = "Adicionar contacto manualmente";
 "menu_new_chat" = "Nova conversa";
 "menu_new_group" = "Novo grupo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Conversa com...";
+"clone_chat" = "Clonar conversa";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Canal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Canais";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Novo canal";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Nome do canal";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
+"email" = "E-mail";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Novo e-mail";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Assunto";
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
 "menu_edit_group" = "Modificar grupo";
@@ -168,6 +230,8 @@
 "menu_unarchive_chat" = "Desarquivar conversa";
 "menu_add_attachment" = "Inserir anexo";
 "menu_leave_group" = "Sair do grupo";
+"menu_leave_channel" = "Sair do canal";
+"menu_leave_and_delete" = "Sair & apagar para mim";
 "menu_delete_chat" = "Apagar conversa";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Limpar bate-papo";
@@ -175,6 +239,10 @@
 "menu_delete_location" = "Apagar esta localização?";
 "menu_message_details" = "Detalhes da mensagem";
 "menu_copy_to_clipboard" = "Copiar para a área de transferência";
+"share_invite_link" = "Compartilhar link de convite";
+"invite_friends" = "Convidar amigos";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Fale comigo no Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Copiar seleção";
 "menu_copy_link_to_clipboard" = "Copiar link";
 "menu_copy_text_to_clipboard" = "Copiar texto";
@@ -188,8 +256,10 @@
 "menu_export_attachment" = "Exportar o anexo";
 "menu_export_attachments" = "Exportar anexos";
 "menu_all_media" = "Todos os arquivos de mídia";
+"all_apps_and_media" = "Todos os aplicativos & Media";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Mostrar na conversa";
+"show_app_in_chat" = "Mostrar aplicativo na conversa";
 "menu_share" = "Compartilhar";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloquear";
@@ -201,11 +271,17 @@
 "menu_scroll_to_bottom" = "Rolar até o fim";
 "menu_scroll_to_top" = "Rolar até o início";
 "menu_help" = "Ajuda";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Sobre os aplicativos";
 "privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
 "select_chat" = "Selecionar Chat";
 "select_more" = "Selecionar mais";
 "menu_edit_name" = "Modificar nome";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Defina um apelido que será mostrado a você em vez de \"%1$@\". Deixe em branco para usar o nome escolhido pelo contato.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Apelido para \"%1$@\"";
 "menu_settings" = "Configurações";
 "menu_advanced" = "Avançado";
 "menu_view_profile" = "Ver perfil";
@@ -234,6 +310,7 @@
 "source_code" = "Código Fonte";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Adicionar à Tela Inicial";
+"donate" = "Doação";
 "mute_for_one_hour" = "Silenciar por 1 hora";
 "mute_for_eight_hours" = "Silenciar por 8 horas";
 "mute_for_one_day" = "Silenciar por 1 dia";
@@ -245,7 +322,41 @@
 "share_location_for_one_hour" = "por 1 hora";
 "share_location_for_two_hours" = "por 2 horas";
 "share_location_for_six_hours" = "por 6 horas";
+"share_location_for_24_hours" = "Por 24 horas";
 "file_saved_to" = "Arquivo salvo em \"%1$@\".";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Chamada";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
+"start_audio_call" = "Chamada de áudio";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
+"start_video_call" = "Chamada de vídeo";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Resposta";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Não aceitar";
+// the action to end a call
+"end_call2" = "Encerrar chamada";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Chamada de áudio";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Chamada de vídeo";
+"call_initializing" = "Inicializando...";
+"call_incoming" = "Chamada recebida";
+"call_ringing" = "Tocando...";
+"call_reconnecting" = "Reconectando...";
+"call_ended" = "Chamada encerrada";
+"call_failed" = "Falha na chamada";
+// deprecated, use "Audio call" instead
+"incoming_audio_call" = "Chamada de áudio recebida";
+"declined_call" = "Chamada recusada";
+"canceled_call" = "Chamada cancelada";
+"missed_call" = "Chamada perdida";
+"already_in_call" = "Já em uma chamada";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Tem certeza de que quer sair?";
+"ask_delete_message" = "Apagar esta mensagem?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Encaminhar mensagens para %1$@?";
 "ask_forward_multiple" = "Encaminhar mensagens para 1%1$d conversas?";
@@ -257,6 +368,8 @@
 "ask_start_chat_with" = "Conversar com %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Remover %1$@ do grupo?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Remover %1$@ do canal?";
 "open_url_confirmation" = "Você quer abrir este link?";
 // contact list
 "contacts_title" = "Contatos";
@@ -311,6 +424,7 @@
 "puny_code_warning_description" = "Você clicou em um link que pode estar representando maliciosamente letras de aparência semelhante com o uso de alfabetos diferentes. Seguir o link rotulado como %1$@ levará a %2$@, o que é normal para caracteres não latinos. Se você não esperava esses caracteres, este link pode ser prejudicial";
 // search
 "search" = "Procurar";
+"search_in_chat" = "Pesquisar na conversa";
 "search_explain" = "Procurar conversas, contatos e mensagens";
 "search_no_result_for_x" = "Nada relativo a \"%1$@\"";
 // create/edit groups, contact/group profile
@@ -384,6 +498,19 @@
 "messages" = "Mensagens";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usado";
+// welcome and login
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Criar novo perfil";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Concordar & Criar perfil";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+"instant_onboarding_group_info" = "Crie um perfil para participar do grupo \"%1$@\".";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
+"instant_onboarding_contact_info" = "Crie um perfil para conversa com %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Crie um novo perfil e comece a conversar com %1$@?";
+// Question shown when group's/channel's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Criar um novo perfil e ingressar em \"%1$@\"?";
 "scan_invitation_code" = "Escanear Código De Convite";
 "login_title" = "Acessar";
 "login_inbox" = "Caixa de entrada";
@@ -706,6 +833,7 @@
 "global_menu_help_about_desktop" = "Sobre o Delta Chat";
 "global_menu_file_open_desktop" = "Abrir o Delta Chat ";
 "global_menu_minimize_to_tray" = "Minimizar";
+"no_account_selected" = "seleccionar um perfil ou criar um novo perfil";
 "no_chat_selected_suggestion_desktop" = "Selecione uma conversa ou crie uma nova";
 "write_message_desktop" = "Escrever uma mensagem";
 "encryption_info_title_desktop" = "Informações da criptografia";

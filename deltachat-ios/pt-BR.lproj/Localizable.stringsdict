@@ -2,6 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d duração de um minuto</string>
+			<key>many</key>
+			<string>%d minutos de duração</string>
+			<key>other</key>
+			<string>%d minutos de duração</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -92,6 +110,24 @@
 			<string>%d mensagens</string>
 		</dict>
 	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d reação</string>
+			<key>many</key>
+			<string>%d reações</string>
+			<key>other</key>
+			<string>%d reações</string>
+		</dict>
+	</dict>
 	<key>n_members</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -146,6 +182,24 @@
 			<string>%d selecionados</string>
 		</dict>
 	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d visualização</string>
+			<key>many</key>
+			<string>%d visualizações</string>
+			<key>other</key>
+			<string>%d visualizações</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -164,6 +218,24 @@
 			<string>Enviar os seguintes arquivos %d para %2$@?</string>
 		</dict>
 	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>apagar %d conversa?</string>
+			<key>many</key>
+			<string>apagar %d conversas?</string>
+			<key>other</key>
+			<string>apagar %d conversas?</string>
+		</dict>
+	</dict>
 	<key>ask_delete_messages</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -180,6 +252,24 @@
 			<string>Apagar %d mensagens?</string>
 			<key>other</key>
 			<string>Apagar %d mensagens?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Encaminhar mensagem para %2$@?</string>
+			<key>many</key>
+			<string>Encaminhar %d mensagens para %2$@?</string>
+			<key>other</key>
+			<string>Encaminhar %d mensagens para %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
