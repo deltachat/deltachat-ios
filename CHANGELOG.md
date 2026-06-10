@@ -3,6 +3,7 @@
 ## Unreleased
 
 - You can now click on the Location streaming info message to bring up the map
+- Add new webxdc.isAppSender and webxdc.isBroadcast APIs for mini-apps
 - Fix: Reactions could go to the wrong message if a new message was received while long pressing
 - Fix: update relay list when modified on other devices
 
