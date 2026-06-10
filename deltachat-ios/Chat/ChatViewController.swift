@@ -96,8 +96,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var inputToolBarHost: UIViewController = {
+        /// The InputBarView initializer uses @autoclosure for draft so this prevents chatvc leak
+        let draft = self.draft
         let host = UIHostingController(rootView: InputBarView(
-            draft: self.draft,
+            draft: draft,
             chatViewController: self,
             updateIntrinsicContentSize: { [weak self] in
                 self?.inputToolBarHost.view.invalidateIntrinsicContentSize()
