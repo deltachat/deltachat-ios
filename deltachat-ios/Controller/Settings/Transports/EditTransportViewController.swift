@@ -224,7 +224,7 @@ class EditTransportViewController: UITableViewController {
     }()
 
     lazy var forceE2eeCell: SwitchCell = {
-        return SwitchCell(textLabel: String.localized("enforce_e2ee"), on: dcContext.getConfigBool("force_encryption"))
+        return SwitchCell(textLabel: String.localized("enforce_e2ee"), on: dcContext.forceEncryption)
     }()
 
     lazy var viewLogCell: UITableViewCell = {
@@ -451,7 +451,7 @@ class EditTransportViewController: UITableViewController {
         loginParam.certificateChecks = certValue
 
         do {
-            dcContext.setConfigBool("force_encryption", forceE2eeCell.isOn)
+            dcContext.forceEncryption = forceE2eeCell.isOn
             _ = try dcContext.addOrUpdateTransport(param: loginParam)
         } catch {
             progressAlertHandler.updateProgressAlert(error: error.localizedDescription)

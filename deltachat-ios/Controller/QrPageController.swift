@@ -97,7 +97,7 @@ class QrPageController: UIPageViewController {
         actions.append(UIAction(title: String.localized("paste_from_clipboard"), image: UIImage(systemName: "doc.on.clipboard")) { [weak self] _ in
             self?.pasteFromClipboard()
         })
-        if dcContext.isChatmail == false {
+        if dcContext.forceEncryption == false {
             actions.append(UIAction(title: String.localized("menu_new_classic_contact"), image: UIImage(systemName: "highlighter")) { [weak self] _ in
                 guard let self else { return }
                 self.navigationController?.pushViewController(NewContactController(dcContext: self.dcContext), animated: true)
