@@ -789,8 +789,9 @@ public class DcContext {
         set { setConfigBool("mdns_enabled", newValue) }
     }
 
-    public var isChatmail: Bool {
-        return getConfigInt("is_chatmail") == 1
+    public var forceEncryption: Bool {
+        get { return getConfigBool("force_encryption") }
+        set { setConfigBool("force_encryption", newValue) }
     }
 
     public var isProxyEnabled: Bool {

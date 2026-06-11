@@ -63,7 +63,7 @@ class NewChatViewController: UITableViewController {
 
         var newOptions: [NewOption]
         newOptions = [.scanQRCode, .newGroup, .newBroadcastList]
-        if self.dcContext.isChatmail == false {
+        if self.dcContext.forceEncryption == false {
             newOptions.append(.newEmail)
         }
         self.newOptions = newOptions
