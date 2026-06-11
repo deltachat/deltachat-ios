@@ -59,8 +59,6 @@ on https://appstoreconnect.apple.com :
    a) status becomes "Ready to Submit" automatically after some minutes
    b) select "open-testing-group" on the left, select "Builds" tab
    c) click "+" and select the version made "Ready to submit" above
-   d) make sure the credentials shown on the next page are working
-      (the credentials are needed by apple for review)
 
    OR
 
@@ -69,8 +67,9 @@ on https://appstoreconnect.apple.com :
    a) enter the version number (without leading "v")
    b) fill out "what's new", use CHANGELOG.md as a template, add the line:
       "These features will roll out over the coming days. Thanks for using Delta Chat!"
-   c) select a build
-   d) make sure, the credentials for the apple-review-team are working
+   c) upload App Clip header image from `scripts/app-clip-header-image.png`,
+      set subtitle to "Open to accept invite" and action to "Open"
+   d) select a build
    e) select "Release update over 7-day period using phased release"
    f) click on "Save" and then "Add for Review"
    g) in the "Draft Submission" dialog, hit "Submit for Review" another time
