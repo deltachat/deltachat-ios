@@ -32,7 +32,6 @@
 		302D546A2693591700A8B271 /* ChatContactRequestBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302D54692693591700A8B271 /* ChatContactRequestBar.swift */; };
 		302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */; };
 		302E592426A5CF4800DD4F58 /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */; };
-		30349291256441E200A523D0 /* QuotePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30349290256441E200A523D0 /* QuotePreview.swift */; };
 		303492952565AABC00A523D0 /* DraftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492942565AABC00A523D0 /* DraftModel.swift */; };
 		3034929F25752FC800A523D0 /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3034929E25752FC800A523D0 /* MediaPreview.swift */; };
 		303492A5257546B400A523D0 /* DraftPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303492A4257546B400A523D0 /* DraftPreview.swift */; };
@@ -369,7 +368,6 @@
 		302D54692693591700A8B271 /* ChatContactRequestBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatContactRequestBar.swift; sourceTree = "<group>"; };
 		302E1BB3252B5AB4008F4264 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = "deltachat-ios/Chat/Views/PlayButtonView.swift"; sourceTree = SOURCE_ROOT; };
 		302E592326A5CF4800DD4F58 /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
-		30349290256441E200A523D0 /* QuotePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotePreview.swift; sourceTree = "<group>"; };
 		303492942565AABC00A523D0 /* DraftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftModel.swift; sourceTree = "<group>"; };
 		3034929E25752FC800A523D0 /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
 		303492A4257546B400A523D0 /* DraftPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftPreview.swift; sourceTree = "<group>"; };
@@ -702,6 +700,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		643B44782E0C2BD900AEE026 /* DcTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = DcTests;
 			sourceTree = "<group>";
 		};
@@ -905,7 +905,6 @@
 				3052C60D253F088E007D13EA /* DetectorType.swift */,
 				30653080254358B10093E196 /* QuoteView.swift */,
 				3034929E25752FC800A523D0 /* MediaPreview.swift */,
-				30349290256441E200A523D0 /* QuotePreview.swift */,
 				303492A4257546B400A523D0 /* DraftPreview.swift */,
 				303492AC2577CAC300A523D0 /* FileView.swift */,
 				D8C19DCF2C1C95A900B32F6D /* ContactCardPreview.swift */,
@@ -1632,13 +1631,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1866,7 +1861,6 @@
 				B2172F3C29C125F2002C289E /* AdvancedViewController.swift in Sources */,
 				AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */,
 				3052C60E253F088E007D13EA /* DetectorType.swift in Sources */,
-				30349291256441E200A523D0 /* QuotePreview.swift in Sources */,
 				AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */,
 				30FDB71F24D8170E0066C48D /* TextMessageCell.swift in Sources */,
 				B2CDA6322CCDB3080024763F /* MuteDialog.swift in Sources */,
