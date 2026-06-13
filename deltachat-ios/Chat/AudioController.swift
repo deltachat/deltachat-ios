@@ -96,13 +96,13 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     // MARK: - Methods
 
     static func stopBackgroundPlayback() {
-        performOnMainAndWait {
+        stopPlaybackSynchronouslyOnMain {
             backgroundPlaybackController?.stopAnyOngoingPlaying()
         }
     }
 
     static func stopBackgroundPlayback(forContextId contextId: Int) {
-        performOnMainAndWait {
+        stopPlaybackSynchronouslyOnMain {
             guard let controller = backgroundPlaybackController, controller.dcContext.id == contextId else { return }
             controller.stopAnyOngoingPlaying()
         }
@@ -402,11 +402,11 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
     }
 
-    private static func performOnMainAndWait(_ action: () -> Void) {
+    /// Runs playback cleanup on the main queue and waits until it finishes before the caller continues.
+    private static func stopPlaybackSynchronouslyOnMain(_ action: () -> Void) {
         if Thread.isMainThread {
             action()
         } else {
-            // Wait until playback is fully stopped before callers continue and possibly start another audio session.
             DispatchQueue.main.sync(execute: action)
         }
     }
