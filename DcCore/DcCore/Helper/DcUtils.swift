@@ -70,55 +70,6 @@ public struct DcUtils {
         return "application/octet-stream"
     }
 
-    public static func generateThumbnailFromVideo(url: URL?) -> UIImage? {
-		guard let url = url else {
-			return nil
-		}
-		do {
-			let asset = AVURLAsset(url: url)
-			let imageGenerator = AVAssetImageGenerator(asset: asset)
-			imageGenerator.appliesPreferredTrackTransform = true
-			let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-			return UIImage(cgImage: cgImage)
-		} catch {
-			print(error.localizedDescription)
-			return nil
-		}
-	}
-
-	public static func thumbnailFromPdf(withUrl url: URL, pageNumber: Int = 1, width: CGFloat = 240) -> UIImage? {
-		guard let pdf = CGPDFDocument(url as CFURL),
-			let page = pdf.page(at: pageNumber)
-			else {
-				return nil
-		}
-
-		var pageRect = page.getBoxRect(.mediaBox)
-		let pdfScale = width / pageRect.size.width
-		pageRect.size = CGSize(width: pageRect.size.width*pdfScale, height: pageRect.size.height*pdfScale)
-		pageRect.origin = .zero
-
-		UIGraphicsBeginImageContext(pageRect.size)
-		let context = UIGraphicsGetCurrentContext()!
-
-		// White BG
-		context.setFillColor(UIColor.white.cgColor)
-		context.fill(pageRect)
-		context.saveGState()
-
-		// Next 3 lines makes the rotations so that the page look in the right direction
-		context.translateBy(x: 0.0, y: pageRect.size.height)
-		context.scaleBy(x: 1.0, y: -1.0)
-		context.concatenate(page.getDrawingTransform(.mediaBox, rect: pageRect, rotate: 0, preserveAspectRatio: true))
-
-		context.drawPDFPage(page)
-		context.restoreGState()
-
-		let image = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-		return image
-	}
-
     public static func getConnectivityString(dcContext: DcContext, connectedString: String) -> String {
         let connectivity = dcContext.getConnectivity()
         if connectivity >= DC_CONNECTIVITY_CONNECTED {
