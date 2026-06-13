@@ -37,7 +37,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     lazy var audioSession: AVAudioSession = {
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker])
+            try audioSession.setCategory(AVAudioSession.Category.playback)
         } catch {
             logger.warning("setting audio session category failed: \(error.localizedDescription)")
         }
