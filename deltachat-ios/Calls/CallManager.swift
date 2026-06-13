@@ -1,6 +1,8 @@
+import AVFoundation
 import CallKit
 import UserNotifications
 import DcCore
+import WebRTC
 
 enum CallDirection {
     case incoming
@@ -265,8 +267,8 @@ extension CallManager: CXProviderDelegate {
         logger.info("☎️ call accepted pressed")
         DispatchQueue.main.async {
             CallManager.shared.answerIncomingCall()
+            action.fulfill()
         }
-        action.fulfill()
     }
 
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
@@ -281,6 +283,11 @@ extension CallManager: CXProviderDelegate {
 
     func providerDidReset(_ provider: CXProvider) {
         logger.info("☎️ provider did reset")
+    }
+
+    func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
+        logger.info("☎️ provider did activate audio session")
+        RTCAudioSession.sharedInstance().audioSessionDidActivate(audioSession)
     }
 }
 

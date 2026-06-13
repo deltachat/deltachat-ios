@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add outgoing ringing sound and call status
+- More reliably start audio of the first call
 
 
 ## v2.52.0
