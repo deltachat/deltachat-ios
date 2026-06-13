@@ -388,13 +388,18 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     private static func enqueueRemoteCommand(_ action: @escaping (AudioController) -> Void) -> MPRemoteCommandHandlerStatus {
-        guard let controller = backgroundPlaybackController else { return .noActionableNowPlayingItem }
-        DispatchQueue.main.async { [weak controller] in
-            guard let controller,
-                  backgroundPlaybackController === controller else { return }
+        let execute = {
+            guard let controller = backgroundPlaybackController else {
+                return MPRemoteCommandHandlerStatus.noActionableNowPlayingItem
+            }
             action(controller)
+            return MPRemoteCommandHandlerStatus.success
         }
-        return .success
+        if Thread.isMainThread {
+            return execute()
+        } else {
+            return DispatchQueue.main.sync(execute: execute)
+        }
     }
 
     private static func performOnMainAndWait(_ action: () -> Void) {
