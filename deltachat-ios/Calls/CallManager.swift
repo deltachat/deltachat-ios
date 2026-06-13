@@ -169,21 +169,6 @@ class CallManager: NSObject {
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCallController(uuid: currentCall.uuid)
-
-            // call is missed if
-            // - not accepted elsewhere (currentCall would have been set to nil in handleIncomingCallAcceptedEvent)
-            // - and not accepted here (check currentCall.callAcceptedHere)
-            if !currentCall.callAcceptedHere, !canUseCallKit {
-                let dcContext = DcAccounts.shared.get(id: accountId)
-                let dcMsg = dcContext.getMessage(id: msgId)
-                let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-                let content = UNMutableNotificationContent(forMissedCallMsg: dcMsg, chat: dcChat, context: dcContext)
-                if let content {
-                    let id = "missed-call-" + currentCall.uuid.uuidString
-                    let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                }
-            }
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
