@@ -264,7 +264,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
         }
         do {
-            try audioSession.setActive(false)
+            try audioSession.setActive(false, options: .notifyOthersOnDeactivation)
         } catch {
             logger.warning("deactivating audio session failed: \(error.localizedDescription)")
         }
