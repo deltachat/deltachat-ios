@@ -282,6 +282,14 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             stopAnyOngoingPlaying()
             return
         }
+        do {
+            try audioSession.setActive(true)
+        } catch {
+            logger.warning("activating audio session before resuming playback failed: \(error.localizedDescription)")
+            stopAnyOngoingPlaying()
+            delegate?.onAudioPlayFailed()
+            return
+        }
         player.prepareToPlay()
         guard player.play() else {
             logger.warning("resuming audio playback failed")
@@ -453,14 +461,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                 let shouldResume = shouldResumeAfterInterruption && options.contains(.shouldResume)
                 shouldResumeAfterInterruption = false
                 if shouldResume {
-                    do {
-                        try audioSession.setActive(true)
-                        resumeSound()
-                    } catch {
-                        logger.warning("reactivating audio session after interruption failed: \(error.localizedDescription)")
-                        stopAnyOngoingPlaying()
-                        delegate?.onAudioPlayFailed()
-                    }
+                    resumeSound()
                 }
             @unknown default:
                 break
