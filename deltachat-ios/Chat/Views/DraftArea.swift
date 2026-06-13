@@ -11,31 +11,31 @@ public class DraftArea: UIView/*, InputItem*/ {
 //    public func keyboardEditingEndsAction() {}
 //    public func keyboardEditingBeginsAction() {}
 
-    var delegate: DraftPreviewDelegate? {
-        get {
-            return quotePreview.delegate
-        }
-        set {
-            quotePreview.delegate = newValue
-            mediaPreview.delegate = newValue
-            documentPreview.delegate = newValue
-            contactCardPreview.delegate = newValue
-        }
-    }
+//    var delegate: DraftPreviewDelegate? {
+//        get {
+//            return quotePreview.delegate
+//        }
+//        set {
+//            quotePreview.delegate = newValue
+//            mediaPreview.delegate = newValue
+//            documentPreview.delegate = newValue
+//            contactCardPreview.delegate = newValue
+//        }
+//    }
+//
+//    lazy var mainContentView: UIStackView = {
+//        let view = UIStackView(arrangedSubviews: [quotePreview, mediaPreview, documentPreview, contactCardPreview])
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        view.axis = .vertical
+//        return view
+//    }()
 
-    lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [quotePreview, mediaPreview, documentPreview, contactCardPreview])
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        return view
-    }()
 
-
-    lazy var quotePreview: QuotePreview = {
-        let view = QuotePreview()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    lazy var quotePreview: QuotePreview = {
+//        let view = QuotePreview()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
 
     lazy var mediaPreview: MediaPreview = {
         let view = MediaPreview()
@@ -61,18 +61,18 @@ public class DraftArea: UIView/*, InputItem*/ {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupSubviews()
+//        self.setupSubviews()
     }
 
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setupSubviews() {
-        addSubview(mainContentView)
-        backgroundColor = DcColors.defaultTransparentBackgroundColor
-        mainContentView.fillSuperview()
-    }
+//    public func setupSubviews() {
+//        addSubview(mainContentView)
+//        backgroundColor = DcColors.defaultTransparentBackgroundColor
+//        mainContentView.fillSuperview()
+//    }
 
     public func configure(draft: DraftModel) {
 //        guard let chatInputBar = inputBarAccessoryView else {
