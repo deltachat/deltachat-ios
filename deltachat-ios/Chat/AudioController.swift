@@ -65,6 +65,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     private var lastNowPlayingInfoUpdate = Date.distantPast
     private var playingArtwork: MPMediaItemArtwork?
+    private var shouldResumeAfterInterruption = false
 
     // MARK: - Init Methods
 
@@ -77,6 +78,10 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(audioRouteChanged),
                                                name: AVAudioSession.routeChangeNotification,
+                                               object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(audioSessionInterrupted),
+                                               name: AVAudioSession.interruptionNotification,
                                                object: AVAudioSession.sharedInstance())
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(appWillTerminate),
@@ -258,6 +263,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         playingMessage = nil
         playingCell = nil
         playingArtwork = nil
+        shouldResumeAfterInterruption = false
         lastNowPlayingInfoUpdate = .distantPast
         if AudioController.backgroundPlaybackController === self {
             AudioController.backgroundPlaybackController = nil
@@ -425,6 +431,47 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     @objc private func appWillTerminate() {
         guard AudioController.backgroundPlaybackController === self else { return }
         stopAnyOngoingPlaying()
+    }
+
+    // MARK: - AVAudioSession.interruptionNotification handler
+    @objc private func audioSessionInterrupted(note: Notification) {
+        guard let typeValue = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
+        let optionsValue = note.userInfo?[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0
+        let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+
+        let handleInterruption = { [weak self] in
+            guard let self,
+                  AudioController.backgroundPlaybackController === self else { return }
+            switch type {
+            case .began:
+                shouldResumeAfterInterruption = state == .playing
+                if shouldResumeAfterInterruption {
+                    pauseSound()
+                }
+            case .ended:
+                let shouldResume = shouldResumeAfterInterruption && options.contains(.shouldResume)
+                shouldResumeAfterInterruption = false
+                if shouldResume {
+                    do {
+                        try audioSession.setActive(true)
+                        resumeSound()
+                    } catch {
+                        logger.warning("reactivating audio session after interruption failed: \(error.localizedDescription)")
+                        stopAnyOngoingPlaying()
+                        delegate?.onAudioPlayFailed()
+                    }
+                }
+            @unknown default:
+                break
+            }
+        }
+
+        if Thread.isMainThread {
+            handleInterruption()
+        } else {
+            DispatchQueue.main.async(execute: handleInterruption)
+        }
     }
 
     // MARK: - AVAudioSession.routeChangeNotification handler
