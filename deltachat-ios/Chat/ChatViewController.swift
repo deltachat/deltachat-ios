@@ -1235,11 +1235,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func configureMessageInputBar() {
-        removeToolbar()
-        addChild(inputToolBarHost)
-        toolbarContainerView.addSubview(inputToolBarHost.view)
-        inputToolBarHost.didMove(toParent: self)
-        inputToolBarHost.view.fillSuperview()
+        // Don't unnecessarily remove the input toolbar because it will lose focus
+        if toolbarContainerView.subviews != [inputToolBarHost.view] {
+            removeToolbar()
+            addChild(inputToolBarHost)
+            toolbarContainerView.addSubview(inputToolBarHost.view)
+            inputToolBarHost.didMove(toParent: self)
+            inputToolBarHost.view.fillSuperview()
+        }
         // TODO: Scroll down button
 //        messageInputBar.onScrollDownButtonPressed = { [weak self] in
 //            self?.scrollToBottom()
