@@ -1,6 +1,8 @@
 import UIKit
 import DcCore
 
+// TODO: Remove
+
 public protocol DraftPreviewDelegate: AnyObject {
     func onAttachmentAdded()
     func onCancelAttachment()

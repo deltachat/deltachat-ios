@@ -1,4 +1,5 @@
 import MapKit
+import SDWebImageSwiftUI
 import MCEmojiPicker
 import QuickLook
 import UIKit
@@ -33,6 +34,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var searchResultIndex: Int = 0
     private var debounceTimer: Timer?
 
+    private var wasInteractiveContentPopGestureRecognizerEnabled: Bool?
+
     /// Set additionalSafeAreaInsets on this view controller to cause PiP to avoid that area.
     /// Specifically this is used to avoid the draft area so you can see what you are typing while in a call
     private lazy var pipInsetViewController: UIViewController = {
@@ -44,11 +47,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return controller
     }()
 
+    private lazy var tableViewContainer: UIView = UIView()
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundView = backgroundContainer
+        tableView.backgroundColor = .clear
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
@@ -58,7 +62,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.register(ContactCardCell.self, forCellReuseIdentifier: ContactCardCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.keyboardDismissMode = .interactive
         tableView.allowsMultipleSelectionDuringEditing = true
 
         // Transform the tableView to maintain scroll position from bottom when views are added
@@ -76,6 +79,37 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return tableView
     }()
 
+    /// The height of the toolbar. This differs from `toolbar.frame.height` as this excludes the keyboard height.
+    /// This is useful because keyboard avoidance happens inside the SwiftUI view so it is hard to find the actual height of the toolbar.
+    /// This is cached because you can't calculate it during keyboard willShow/willHide using view.keyboardLayoutGuide.layoutFrame.height
+    private var toolbarHeight: CGFloat = 0 {
+        didSet {
+            guard toolbarHeight != oldValue else { return }
+            setTableViewContentInset()
+        }
+    }
+
+    private lazy var toolbarContainerView: UIView = {
+        let toolbarContainerView = UIView()
+        toolbarContainerView.backgroundColor = .clear
+        return toolbarContainerView
+    }()
+
+    private lazy var inputToolBarHost: UIViewController = {
+        /// The InputBarView initializer uses @autoclosure for draft so this prevents chatvc leak
+        let draft = self.draft
+        let host = UIHostingController(rootView: InputBarView(
+            draft: draft,
+            chatViewController: self,
+            updateIntrinsicContentSize: { [weak self] in
+                self?.inputToolBarHost.view.invalidateIntrinsicContentSize()
+            })
+        )
+        host.view.backgroundColor = .clear
+        host.view.addInteraction(UIDropInteraction(delegate: dropInteraction))
+        return host
+    }()
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -83,14 +117,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         searchController.searchBar.delegate = self
         searchController.delegate = self
         searchController.searchResultsUpdater = self
-        searchController.searchBar.inputAccessoryView = messageInputBar
         searchController.searchBar.autocorrectionType = .yes
         searchController.searchBar.keyboardType = .default
         return searchController
     }()
 
-    private lazy var searchAccessoryBar: ChatSearchAccessoryBar = {
-        let view = ChatSearchAccessoryBar()
+    private lazy var searchAccessoryBar: ChatSearchToolBar = {
+        let view = ChatSearchToolBar()
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isEnabled = false
@@ -101,31 +134,25 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.transform = CGAffineTransform(scaleX: 1, y: -1)
+        let traitCollection = traitCollection
+        func setDefaultBackgroundImage() {
+            view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+        }
         if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
             view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
                              placeholderImage: nil,
-                             options: [.retryFailed]) { [weak self] (_, error, _, _) in
+                             options: [.retryFailed]) { (_, error, _, _) in
                 if let error = error {
                     logger.error("Error loading background image: \(error.localizedDescription)" )
-                    DispatchQueue.main.async { [weak self] in
-                        self?.setDefaultBackgroundImage(view: view)
+                    DispatchQueue.main.async {
+                        setDefaultBackgroundImage()
                     }
                 }
             }
         } else {
-            setDefaultBackgroundImage(view: view)
+            setDefaultBackgroundImage()
         }
-        return view
-    }()
-
-    /// The `InputBarAccessoryView` used as the `inputAccessoryView` in the view controller.
-    let messageInputBar = InputBarAccessoryView()
-
-    private lazy var draftArea: DraftArea = {
-        let view = DraftArea()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
-        view.inputBarAccessoryView = messageInputBar
+        view.clipsToBounds = true
         return view
     }()
 
@@ -186,37 +213,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     ]))
 
-    /// When a context menu preview is created through `tableView(_:previewForHighlightingContextMenuWithConfiguration:)`
-    /// it is stored here so we can hide it when a user scrolls as the system does not hide
-    /// snapshots right away probably assuming it is part of the view hierarchy.
-    private weak var lastContextMenuPreviewSnapshot: UIView?
+    /// Context menu previews are shown in this layer which is behind the input bar.
+    /// We can hide previews when a user scrolls by removing this views subvieww.
+    /// This is needed because the system does not always hide snapshots right
+    /// away, probably assuming it is part of the view hierarchy.
+    private var contextMenuPreviewContainer = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        return view
+    }()
 
     private let titleView = ChatTitleView()
 
-    private lazy var dcChat: DcChat = {
+    private(set) lazy var dcChat: DcChat = {
         return dcContext.getChat(chatId: chatId)
     }()
 
-    private var customInputAccessoryView: UIView? {
-        didSet { reloadInputViews() }
-    }
-    override var inputAccessoryView: UIView? {
-        get { customInputAccessoryView }
-        set { customInputAccessoryView = newValue }
-    }
-
-    override var canBecomeFirstResponder: Bool {
+    private var shouldProcessContentInsetUpdates: Bool {
         if let p = presentedViewController, !p.isBeingDismissed, !(p is UISearchController) {
-            // Don't show inputAccessoryView when anything other than searchController is presented
+            // Don't process content inset when anything other than searchController is presented
             return false
         } else if navigationController?.topViewController != self {
-            // Don't show inputAccessoryView when not top view controller
+            // Don't process content inset when not top view controller
             return false
         } else if contextMenuVisible {
-            // Don't show inputAccessoryView when context menu is visible
+            // Don't process content inset when context menu is visible
             return false
         } else {
-            return dcChat.canSend || dcChat.isContactRequest || tableView.isEditing || presentedViewController is UISearchController
+            return true
         }
     }
 
@@ -272,8 +296,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
+        view.addSubview(backgroundContainer)
+        backgroundContainer.fillSuperview()
+        view.addSubview(tableViewContainer)
+        tableViewContainer.fillSuperview()
+        tableViewContainer.addSubview(tableView)
         tableView.fillSuperview()
+        if #available(iOS 26.0, *) {
+            tableView.topEdgeEffect.isHidden = true
+            tableView.bottomEdgeEffect.isHidden = true
+        }
+        view.addSubview(contextMenuPreviewContainer)
+        contextMenuPreviewContainer.fillSuperview()
 
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
@@ -283,28 +317,38 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
-        // Binding to the tableView will enable interactive dismissal
-        keyboardManager?.bind(to: tableView)
-        tableView.keyboardDismissMode = .onDrag
-        keyboardManager?.on(event: .willShow) { [weak self, tableView] notification in
+        let animateKeyboardChange: KeyboardManager.EventCallback = { [weak self, tableView] notification in
+            guard let self, shouldProcessContentInsetUpdates else { return }
             // Using superview instead of window here because in iOS 13+ a modal can change
             // the frame of the vc it is presented over which causes this calculation to be off.
             let globalTableViewFrame = tableView.convert(tableView.bounds, to: tableView.superview)
             let intersection = globalTableViewFrame.intersection(notification.endFrame)
-            let inset = max(intersection.height, tableView.safeAreaInsets.bottom)
+            let toolbarHeight = toolbarHeight
+            let safeAreaInsets = view.safeAreaInsets
+            let inset = max(intersection.height + toolbarHeight, safeAreaInsets.bottom + toolbarHeight)
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
             guard tableView.contentInset.top != inset else { return }
-            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) {
+            UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) { [weak self] in
                 tableView.contentInset.top = inset
                 if tableView.contentOffset.y < 30 {
                     // If user is less than 30 away from the bottom, we scroll
                     // the bottom of the content to the top of the keyboard.
                     tableView.contentOffset.y -= inset + tableView.contentOffset.y
                 }
-                self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - tableView.safeAreaInsets.bottom
+                self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - safeAreaInsets.bottom
             }
         }
+        // Binding to the tableView will enable interactive dismissal
+        // This doesn't work as good without an accessory view but
+        // keyboardLayoutGuide.keyboardDismissPadding does not play
+        // nicely with scrollable textview inside the dismiss padding area
+        keyboardManager?.bind(to: tableView)
+        tableView.keyboardDismissMode = .onDrag
+        keyboardManager?.on(event: .willHide, do: animateKeyboardChange)
+        keyboardManager?.on(event: .willShow, do: animateKeyboardChange)
+        keyboardManager?.on(event: .didHide, do: animateKeyboardChange)
+        keyboardManager?.on(event: .didShow, do: animateKeyboardChange)
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
@@ -312,12 +356,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         configureEmptyStateView()
 
+        view.addSubview(toolbarContainerView)
+        toolbarContainerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            toolbarContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            toolbarContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+
         if dcChat.canSend {
             configureUIForWriting()
         } else if dcChat.isContactRequest {
             configureContactRequestBar()
-        } else {
-            messageInputBar.isHidden = true
         }
         loadMessages()
     }
@@ -325,7 +374,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func configureUIForWriting() {
         configureMessageInputBar()
         draft.parse(draftMsg: dcContext.getDraft(chatId: chatId))
-        messageInputBar.inputTextView.text = draft.text
         configureDraftArea(draft: draft, animated: false)
         tableView.dragInteractionEnabled = true
         tableView.dropDelegate = self
@@ -366,14 +414,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         case let .forwardMessage(text, fileData, fileName):
             if let text {
-                messageInputBar.inputTextView.text = text
+                draft.text = text
             }
             if let fileData, let file = FileHelper.saveData(data: fileData, name: fileName, directory: .cachesDirectory) {
                 stageDocument(url: NSURL(fileURLWithPath: file))
             }
             RelayHelper.shared.finishRelaying()
-        case .mailto(_, draft: let draft):
-            messageInputBar.inputTextView.text = draft
+        case .mailto(_, draft: let draftText):
+            draft.text = draftText ?? draft.text
             RelayHelper.shared.finishRelaying()
         case .share(let items):
             let description = Dictionary(items.map { ($0.type, 1) }, uniquingKeysWith: +)
@@ -392,12 +440,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         case .none: break
         }
 
-        messageInputBar.scrollDownButton.isHidden = true
-
         if isInitialViewWillAppear {
             becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView.contentInset.top = max(self.inputAccessoryView?.frame.height ?? 0, self.tableView.safeAreaInsets.bottom)
                 if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
                     self.scrollToMessage(msgId: msgId, animated: false)
                     self.highlightedMsg = nil
@@ -421,7 +466,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         handleUserVisibility(isVisible: true)
-        messageInputBar.backgroundView.backgroundColor = DcColors.defaultTransparentBackgroundColor
+
+        if #available(iOS 26.0, *) {
+            wasInteractiveContentPopGestureRecognizerEnabled = navigationController?
+                .interactiveContentPopGestureRecognizer?.isEnabled
+            // This new pop gesture happens when you swipe in the middle of the screen which
+            // can happen accidentally when trying to swipe to select text in the input bar
+            // so we disable it in the chat view.
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = false
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -436,12 +489,33 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         audioController.stopAnyOngoingPlaying()
+        if #available(iOS 26.0, *), let previousValue = wasInteractiveContentPopGestureRecognizerEnabled {
+            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = previousValue
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        // Manually set the safe area because tableView is flipped
-        tableView.contentInset.bottom = tableView.safeAreaInsets.top
+        setTableViewContentInset()
+
+        if #available(iOS 26, *) {
+            // Custom tableView.topEdgeEffect
+            let mask = CAGradientLayer()
+            mask.frame = view.frame
+            mask.colors = [
+                UIColor(white: 1, alpha: 0).cgColor,
+                UIColor(white: 1, alpha: 0.3).cgColor,
+                UIColor(white: 1, alpha: 1).cgColor,
+            ]
+            mask.startPoint = CGPoint(x: 0.5, y: 0)
+            mask.endPoint = CGPoint(x: 0.5, y: view.safeAreaInsets.top / view.frame.height)
+            tableViewContainer.layer.mask = mask
+        }
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -449,6 +523,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if parent == nil {
             // going back to previous screen
             draft.save(context: dcContext)
+        }
+    }
+
+    func setTableViewContentInset() {
+        // Manually set the safe area because tableView is flipped
+        tableView.contentInset.bottom = view.safeAreaInsets.top
+
+        guard shouldProcessContentInsetUpdates else { return }
+        let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
+        if tableView.contentInset.top != topInset {
+            if tableView.contentOffset.y == -tableView.contentInset.top {
+                tableView.contentOffset.y = -topInset
+            }
+            tableView.contentInset.top = topInset
         }
     }
 
@@ -485,16 +573,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func checkInputBarVisibility() {
         if dcChat.canSend {
-            if messageInputBar.isHidden {
+            if toolbarContainerView.subviews.isEmpty {
                 configureUIForWriting()
-                messageInputBar.isHidden = false
-                becomeFirstResponder()
             }
         } else if !dcChat.isContactRequest {
-            if !messageInputBar.isHidden {
-                messageInputBar.isHidden = true
-            }
+            removeToolbar()
         }
+    }
+
+    private func removeToolbar() {
+        if toolbarContainerView.subviews == [inputToolBarHost.view] {
+            inputToolBarHost.willMove(toParent: nil)
+            inputToolBarHost.view.removeFromSuperview()
+            inputToolBarHost.removeFromParent()
+        }
+        toolbarContainerView.subviews.forEach { $0.removeFromSuperview() }
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
@@ -674,7 +767,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        lastContextMenuPreviewSnapshot?.removeFromSuperview()
+        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -695,50 +788,30 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func updateScrollDownButtonVisibility() {
-        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || isLastMessageVisible()
+//        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || isLastMessageVisible()
     }
 
     private func configureContactRequestBar() {
-        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-
-        let bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block, infoText: nil)
+        let bar = ChatContactRequestBar(dcChat.isMultiUser && !dcChat.isMailinglist ? .delete : .block)
         bar.delegate = self
         bar.translatesAutoresizingMaskIntoConstraints = false
-        messageInputBar.setMiddleContentView(bar, animated: false)
-
-        messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
-        messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
-        messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-        messageInputBar.setStackViewItems([], forStack: .top, animated: false)
-        messageInputBar.onScrollDownButtonPressed = { [weak self] in
-            self?.scrollToBottom()
-        }
-        inputAccessoryView = messageInputBar
+        removeToolbar()
+        toolbarContainerView.addSubview(bar)
+        bar.fillSuperview()
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
         if searchController.isActive {
-            messageInputBar.setMiddleContentView(searchAccessoryBar, animated: false)
-            messageInputBar.setLeftStackViewWidthConstant(to: 0, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 0, animated: false)
-            messageInputBar.setStackViewItems([], forStack: .top, animated: false)
-            messageInputBar.padding = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
-            return
+            removeToolbar()
+            toolbarContainerView.addSubview(searchAccessoryBar)
+            searchAccessoryBar.fillSuperview()
+        } else if draft.isEditing {
+            removeToolbar()
+            toolbarContainerView.addSubview(editingBar)
+            editingBar.fillSuperview()
+        } else if dcChat.canSend {
+            configureMessageInputBar()
         }
-
-        draftArea.configure(draft: draft)
-        if draft.isEditing {
-            inputAccessoryView = editingBar
-            messageInputBar.inputTextView.resignFirstResponder()
-        } else {
-            messageInputBar.setMiddleContentView(messageInputBar.inputTextView, animated: false)
-            messageInputBar.setLeftStackViewWidthConstant(to: draft.sendEditRequestFor == nil ? 40 : 0, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
-            messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
-            inputAccessoryView = messageInputBar
-        }
-
-        messageInputBar.setStackViewItems([draftArea], forStack: .top, animated: animated)
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -768,7 +841,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     /// Cell swipe action started
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        lastContextMenuPreviewSnapshot?.removeFromSuperview()
+        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func replyToMessage(_ msgId: Int) {
@@ -868,7 +941,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
@@ -1067,11 +1139,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                             CGPoint(x: 0, y: textOffset),
                             to: self.tableView
                         )
-                        let topInset = self.tableView.safeAreaInsets.top/2
+                        let topInset = self.view.safeAreaInsets.top/2
                         var bottomInset = 12.0
-                        if !self.messageInputBar.scrollDownButton.isHidden {
-                            bottomInset += 12 + self.messageInputBar.scrollDownButton.bounds.height
-                        }
+                        // TODO: Scroll down button
+//                        if !self.messageInputBar.scrollDownButton.isHidden {
+//                            bottomInset += 12 + self.messageInputBar.scrollDownButton.bounds.height
+//                        }
                         let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
                             .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
                         self.tableView.scrollRectToVisible(textFrame, animated: animated)
@@ -1151,87 +1224,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func configureMessageInputBar() {
-        messageInputBar.delegate = self
-        messageInputBar.inputTextView.tintColor = DcColors.primary
-        messageInputBar.inputTextView.placeholder = String.localized("chat_input_placeholder")
-        messageInputBar.inputTextView.accessibilityLabel = String.localized("write_message_desktop")
-        messageInputBar.separatorLine.backgroundColor = DcColors.colorDisabled
-        messageInputBar.inputTextView.textColor = DcColors.defaultTextColor
-        messageInputBar.inputTextView.backgroundColor = DcColors.inputFieldColor
-        messageInputBar.inputTextView.placeholderTextColor = DcColors.placeholderColor
-        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 38)
-        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 38)
-        messageInputBar.inputTextView.layer.borderColor = DcColors.colorDisabled.cgColor
-        messageInputBar.inputTextView.layer.borderWidth = 1.0
-        messageInputBar.inputTextView.layer.cornerRadius = 13.0
-        messageInputBar.inputTextView.layer.masksToBounds = true
-        messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        configureInputBarItems()
-        messageInputBar.inputTextView.imagePasteDelegate = self
-        messageInputBar.onScrollDownButtonPressed = { [weak self] in
-            self?.scrollToBottom()
-        }
-        messageInputBar.inputTextView.setDropInteractionDelegate(delegate: self)
-        messageInputBar.isTranslucent = true
-    }
-
-    private func evaluateInputBar(draft: DraftModel) {
-        messageInputBar.sendButton.isEnabled = draft.canSend()
-        messageInputBar.sendButton.accessibilityTraits = draft.canSend() ? .button : .notEnabled
-    }
-
-    private func configureInputBarItems() {
-        messageInputBar.setLeftStackViewWidthConstant(to: 40, animated: false)
-        messageInputBar.setRightStackViewWidthConstant(to: 40, animated: false)
-
-        let sendButtonImage = UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate)
-        messageInputBar.sendButton.image = sendButtonImage
-        messageInputBar.sendButton.accessibilityLabel = String.localized("menu_send")
-        messageInputBar.sendButton.accessibilityTraits = .button
-        messageInputBar.sendButton.title = nil
-        messageInputBar.sendButton.tintColor = UIColor(white: 1, alpha: 1)
-        messageInputBar.sendButton.layer.cornerRadius = 20
-        messageInputBar.middleContentViewPadding = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        // this adds a padding between textinputfield and send button
-        messageInputBar.sendButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        messageInputBar.sendButton.setSize(CGSize(width: 40, height: 40), animated: false)
-        messageInputBar.padding = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 12)
-        messageInputBar.shouldManageSendButtonEnabledState = false
-
-        let attachButton = InputBarButtonItem()
-            .configure {
-                $0.spacing = .fixed(0)
-                let clipperIcon = UIImage(named: "ic_attach_file_36pt")?.withRenderingMode(.alwaysTemplate)
-                $0.image = clipperIcon
-                $0.tintColor = DcColors.primary
-                $0.setSize(CGSize(width: 40, height: 40), animated: false)
-                $0.accessibilityLabel = String.localized("menu_add_attachment")
-                $0.accessibilityTraits = .button
-            }.onSelected {
-                $0.tintColor = UIColor.themeColor(light: .lightGray, dark: .darkGray)
-            }.onDeselected {
-                $0.tintColor = DcColors.primary
-            }
-        attachButton.showsMenuAsPrimaryAction = true
-        attachButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
-        attachButton.addAction(UIAction { [weak attachButton, weak self] _ in
-            attachButton?.menu = self?.clipperButtonMenu()
-        }, for: .menuActionTriggered)
-
-        let leftItems = [attachButton]
-
-        messageInputBar.setStackViewItems(leftItems, forStack: .left, animated: false)
-
-        // This just adds some more flare
-        messageInputBar.sendButton
-            .onEnabled { item in
-                UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = DcColors.primary
-                })}
-            .onDisabled { item in
-                UIView.animate(withDuration: 0.3, animations: {
-                    item.backgroundColor = DcColors.colorDisabled
-                })}
+        removeToolbar()
+        addChild(inputToolBarHost)
+        toolbarContainerView.addSubview(inputToolBarHost.view)
+        inputToolBarHost.didMove(toParent: self)
+        inputToolBarHost.view.fillSuperview()
+        // TODO: Scroll down button
+//        messageInputBar.onScrollDownButtonPressed = { [weak self] in
+//            self?.scrollToBottom()
+//        }
     }
 
     @objc private func chatProfilePressed() {
@@ -1259,35 +1260,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
-    private func clipperButtonMenu() -> UIMenu {
-        var actions = [UIMenuElement]()
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping (ChatViewController) -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { [unowned self] _ in handler(self) })
-        }
-
-        actions.append(UIMenu(options: [.displayInline], children: [
-            action("camera", "camera", { $0.showCameraViewController() }),
-            action("gallery", "photo.on.rectangle", { $0.showPhotoVideoLibrary() })
-        ]))
-
-        actions.append(action("file", "doc", { $0.showFilesLibrary() }))
-        if !dcChat.isOutBroadcast {
-            actions.append(action("webxdc_app", "square.grid.2x2", { $0.showAppPicker() }))
-        }
-
-        actions.append(action("voice_message", "mic", { $0.showVoiceMessageRecorder() }))
-        if UserDefaults.standard.bool(forKey: "location_streaming") {
-            let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
-            actions.append(action(
-                isLocationStreaming ? "stop_sharing_location" : "location",
-                isLocationStreaming ? "location.slash" : "location",
-                attributes: isLocationStreaming ? .destructive : [],
-                { $0.locationStreamingButtonPressed() }
-            ))
-        }
-        actions.append(action("contact", "person.crop.circle", { $0.showContactList() }))
-
-        return UIMenu(children: actions)
+    var isLocationStreaming: Bool {
+        dcContext.isSendingLocationsToChat(chatId: chatId)
     }
 
     private func confirmationAlert(title: String, message: String? = nil, actionTitle: String, actionStyle: UIAlertAction.Style = .default, actionHandler: @escaping ((UIAlertAction) -> Void), cancelHandler: ((UIAlertAction) -> Void)? = nil) {
@@ -1457,15 +1431,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func showFilesLibrary() {
+    func showFilesLibrary() {
         mediaPicker?.showFilesLibrary()
     }
 
-    private func showVoiceMessageRecorder() {
+    func showVoiceMessageRecorder() {
         mediaPicker?.showVoiceRecorder()
     }
 
-    private func showCameraViewController() {
+    func showCameraViewController() {
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             self.mediaPicker?.showCamera()
         } else {
@@ -1496,7 +1470,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func showPhotoVideoLibrary() {
+    func showPhotoVideoLibrary() {
         mediaPicker?.showGallery()
     }
 
@@ -1523,7 +1497,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.present(alert, animated: true, completion: nil)
     }
 
-    private func showAppPicker() {
+    func showAppPicker() {
         let appPicker = AppPickerViewController(context: dcContext)
         appPicker.delegate = self
         let navigationController = UINavigationController(rootViewController: appPicker)
@@ -1535,7 +1509,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(navigationController, animated: true)
     }
 
-    private func showContactList() {
+    func showContactList() {
         let contactList = SendContactViewController(dcContext: dcContext)
         contactList.delegate = self
 
@@ -1549,7 +1523,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(navigationController, animated: true)
     }
 
-    private func locationStreamingButtonPressed() {
+    func locationStreamingButtonPressed() {
         let isLocationStreaming = dcContext.isSendingLocationsToChat(chatId: chatId)
         if isLocationStreaming {
             locationStreamingFor(seconds: 0)
@@ -1600,15 +1574,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func focusInputTextView() {
-        if !messageInputBar.inputTextView.isFirstResponder {
-            becomeFirstResponder()
-            messageInputBar.inputTextView.becomeFirstResponder()
-        } else if UIAccessibility.isVoiceOverRunning {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
-                UIAccessibility.post(notification: .layoutChanged, argument: self?.messageInputBar.inputTextView)
-            })
-        }
+    private func focusInputTextView(_ focussed: Bool = true) {
+        // TODO: Set focusState
     }
 
     private func stageVCard(url: URL) {
@@ -1697,13 +1664,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
 
             FileHelper.deleteFileAsync(atPath: path)
-            self.draft.clear()
             DispatchQueue.main.async {
-                self.draftArea.quotePreview.cancel()
+                self.draft.clear()
             }
         }
     }
 
+    // TODO: Remove
     private func sendAttachmentMessage(viewType: Int32, filePath: String, fileName: String? = nil, message: String? = nil, quoteMessage: DcMsg? = nil) {
         let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath, fileName: fileName)
@@ -1724,7 +1691,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
             DispatchQueue.main.async {
                 self.draft.setQuote(quotedMsg: nil)
-                self.draftArea.quotePreview.cancel()
             }
         }
     }
@@ -1752,7 +1718,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         draft.clear()
         draft.sendEditRequestFor = message.id
         configureDraftArea(draft: draft)
-        messageInputBar.inputTextView.text = message.text
+        draft.text = message.text ?? draft.text
         focusInputTextView()
     }
 
@@ -1869,8 +1835,6 @@ extension ChatViewController {
     private func targetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let messageId = configuration.identifier as? NSString else { return nil }
         guard let index = messages.firstIndex(where: { $0.id == messageId.integerValue }) else { return nil }
-        // Using superview because tableView is transformed
-        guard let superview = tableView.superview else { return nil }
         let indexPath = IndexPath(row: index, section: 0)
 
         guard let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell,
@@ -1878,8 +1842,8 @@ extension ChatViewController {
 
         let messageFrame = cell.messageBackgroundContainer.frame
         let messageCenter = CGPoint(x: messageFrame.midX, y: messageFrame.midY)
-        let messageCenterInSuper = cell.convert(messageCenter, to: superview)
-        let previewTarget = UIPreviewTarget(container: superview, center: messageCenterInSuper)
+        let messageCenterInSuper = cell.convert(messageCenter, to: tableView)
+        let previewTarget = UIPreviewTarget(container: tableView, center: messageCenterInSuper, transform: CGAffineTransform(scaleX: 1, y: -1))
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
@@ -1891,12 +1855,8 @@ extension ChatViewController {
                                 byRoundingCorners: rectCorners,
                                 cornerRadii: CGSize(width: radius, height: radius))
         parameters.visiblePath = path
-        
-        let preview = UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
-        
-        self.lastContextMenuPreviewSnapshot = messageSnapshotView
-        
-        return preview
+
+        return UITargetedPreview(view: messageSnapshotView, parameters: parameters, target: previewTarget)
     }
 
     private func appendReactionItems(to menuElements: inout [UIMenuElement], messageId: Int) {
@@ -2090,9 +2050,11 @@ extension ChatViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard !tableView.isEditing else { return [] }
         // Prevent the drag preview from an showing upside down preview
-        // by requiring a context menu to be shown first.
-        guard lastContextMenuPreviewSnapshot != nil else { return [] }
-        
+        // by requiring a context menu to be shown first. On iOS 26 this can
+        // mean the first longtap after a successful drag session doesn't do
+        // anything but that is a bug on iOS side.
+        guard !contextMenuPreviewContainer.subviews.isEmpty else { return [] }
+
         let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
 
@@ -2225,10 +2187,6 @@ extension ChatViewController {
         }
     }
 
-    private func setDefaultBackgroundImage(view: UIImageView) {
-        view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
-    }
-
     private func copyTextToClipboard(ids: [Int]) {
         var stringsToCopy = ""
         if ids.count > 1 {
@@ -2344,10 +2302,8 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func commandTapped(command: String, indexPath: IndexPath) {
         if handleSelection(indexPath: indexPath) { return }
 
-        if let text = messageInputBar.inputTextView.text, !text.isEmpty {
-            return
-        }
-        messageInputBar.inputTextView.text = command + " "
+        guard draft.text.isEmpty else { return }
+        draft.text = command + " "
     }
 
     @objc func urlTapped(url: URL, indexPath: IndexPath) {
@@ -2551,71 +2507,9 @@ extension ChatViewController: MediaPickerDelegate {
 
 }
 
-// MARK: - MessageInputBarDelegate
-extension ChatViewController: InputBarAccessoryViewDelegate {
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let trimmedText = text.replacingOccurrences(of: "\u{FFFC}", with: "", options: .literal, range: nil)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-        var doResignFirstResponder = false
+extension ChatViewController {
 
-        if let sendEditRequestFor = draft.sendEditRequestFor {
-            dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
-            doResignFirstResponder = true
-        } else if let filePath = draft.attachment, let viewType = draft.viewType {
-            switch viewType {
-            case DC_MSG_GIF, DC_MSG_IMAGE, DC_MSG_FILE, DC_MSG_VIDEO, DC_MSG_WEBXDC, DC_MSG_VCARD:
-                self.sendAttachmentMessage(viewType: viewType, filePath: filePath, fileName: draft.draftMsg?.filename, message: trimmedText, quoteMessage: draft.quoteMessage)
-            default:
-                logger.warning("Unsupported viewType for drafted messages.")
-            }
-        } else if inputBar.inputTextView.images.isEmpty {
-            self.sendTextMessage(text: trimmedText, quoteMessage: draft.quoteMessage)
-        } else {
-            // only 1 attachment allowed for now, thus it takes the first one
-            self.sendImage(inputBar.inputTextView.images[0], message: trimmedText)
-        }
-        inputBar.inputTextView.text = String()
-        inputBar.inputTextView.attributedText = nil
-        draft.clear()
-        draftArea.cancel()
-
-        if doResignFirstResponder {
-            inputBar.inputTextView.resignFirstResponder()
-        }
-    }
-
-    func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
-        draft.text = text
-        evaluateInputBar(draft: draft)
-    }
-}
-
-// MARK: - DraftPreviewDelegate
-extension ChatViewController: DraftPreviewDelegate {
-    func onCancelQuote() {
-        if draft.sendEditRequestFor != nil {
-            draft.clear()
-            draftArea.cancel()
-            messageInputBar.inputTextView.text = nil
-            messageInputBar.inputTextView.resignFirstResponder()
-        } else {
-            draft.setQuote(quotedMsg: nil)
-            configureDraftArea(draft: draft)
-            focusInputTextView()
-        }
-    }
-
-    func onCancelAttachment() {
-        draft.clearAttachment()
-        configureDraftArea(draft: draft)
-        evaluateInputBar(draft: draft)
-        focusInputTextView()
-    }
-
-    func onAttachmentAdded() {
-        evaluateInputBar(draft: draft)
-    }
-
+    // TODO: Link this up with the new input bar
     func onAttachmentTapped() {
         if let attachmentPath = draft.attachment {
             let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
@@ -2765,7 +2659,7 @@ extension ChatViewController: ChatContactRequestDelegate {
         dcContext.acceptChat(chatId: chatId)
         let chat = dcContext.getChat(chatId: chatId)
         if chat.isMailinglist {
-            messageInputBar.isHidden = true
+            toolbarContainerView.subviews.forEach { $0.removeFromSuperview() }
         } else {
             configureUIForWriting()
         }
@@ -2789,9 +2683,9 @@ extension ChatViewController: QLPreviewControllerDelegate {
     }
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
+        assert(!Thread.isMainThread, "if this triggers that means we don't need to switch to main here")
         DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.draftArea.reload(draft: self.draft)
+            self?.draft.reloadAttachmentPreview()
         }
     }
 }
@@ -2805,7 +2699,7 @@ extension ChatViewController: AudioControllerDelegate {
 
 // MARK: - ChatInputTextViewPasteDelegate
 extension ChatViewController: ChatInputTextViewPasteDelegate {
-    func onImagePasted(image: UIImage) {
+    func onImagePasted(_ image: UIImage) {
         stageImage(image)
     }
 }
@@ -2827,13 +2721,10 @@ extension ChatViewController: ChatDropInteractionDelegate {
     }
 
     func onTextDragAndDropped(text: String) {
-        if messageInputBar.inputTextView.text.isEmpty {
-            messageInputBar.inputTextView.text = text
-        } else {
-            var updatedText = messageInputBar.inputTextView.text
-            updatedText?.append(" \(text) ")
-            messageInputBar.inputTextView.text = updatedText
+        if let lastChar = draft.text.last, lastChar != " " {
+            draft.text.append(" ")
         }
+        draft.text.append(text)
     }
 }
 
@@ -2895,5 +2786,316 @@ extension ChatViewController: AppPickerViewControllerDelegate {
 extension ChatViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return gestureRecognizer == performReplyOnOpeningSwipeActionsGestureRecognizer
+    }
+}
+
+import SwiftUI
+
+var isLiquidGlassEnabled: Bool = if #available(iOS 26.0, *) { true } else { false }
+
+// TODO: For animations and transitions we need to either rethink the intrinsicContentSize or embed this inside a SwiftUI view (aka rewrite chatviewcontroller to use SwiftUI)
+struct InputBarView: View {
+    @StateObject var draft: DraftModel
+    @FocusState private var textEditorFocus: Bool
+    weak var chatViewController: ChatViewController?
+    var updateIntrinsicContentSize: () -> Void
+
+    var buttonSize: CGFloat {
+        isLiquidGlassEnabled ? 54 : 36
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if draft.quoteText != nil {
+                HStack {
+                    QuoteViewSwiftUI(quoteText: draft.quoteText, quoteMessage: draft.quoteMessage, dcContext: draft.dcContext)
+                        .padding(.horizontal, 10)
+                    Button(String.localized("cancel"), systemImage: "xmark") {
+                        draft.setQuote(quotedMsg: nil)
+                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                }.modifier { glassEffect(view: $0, interactive: false) }
+            }
+            if draft.attachment != nil {
+                HStack {
+                    // TODO: Support attachments other than images
+                    WebImage(url: draft.draftMsg?.fileURL)
+                        .placeholder { ProgressView().padding() }
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+                    Spacer()
+                    Button(String.localized("cancel"), systemImage: "xmark") {
+                        draft.clearAttachment()
+                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                }.modifier { glassEffect(view: $0, interactive: false) }
+            }
+            HStack(alignment: .bottom, spacing: 4) {
+                UncachedMenu(content: { clipperMenu }, label: {
+                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(4)
+                }).frame(height: buttonSize)
+                InputBarTextView(text: $draft.text)
+                    .focused($textEditorFocus)
+                    .scrollNeverDismissesKeyboard_iOS16()
+                    .overlay(alignment: .leading) {
+                        if draft.text.isEmpty && !textEditorFocus {
+                            Text(String.localized("chat_input_placeholder"))
+                                .foregroundColor(Color(uiColor: DcColors.placeholderColor))
+                                .accessibilityHidden(true)
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    .modifier { glassEffect(view: $0, minHeight: buttonSize, interactive: true) }
+                    .frame(maxHeight: 150, alignment: .center)
+                    .onTapGesture {
+                        textEditorFocus = true
+                    }
+                    .accessibilityLabel(String.localized("write_message_desktop"))
+                Button(action: {
+                    draft.send()
+                }, label: {
+                    Image("paper_plane", label: Text(String.localized("menu_send")))
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(4)
+                })
+                .frame(height: buttonSize)
+                .disabled(!draft.canSend())
+            }
+        }
+        .padding(10)
+        .onChange(of: draft.text, perform: _updateIntrinsicContentSize)
+        .onChange(of: draft.quoteMessage?.id, perform: _updateIntrinsicContentSize)
+        .onChange(of: draft.attachment, perform: _updateIntrinsicContentSize)
+        .modifier { view in
+            if #available(iOS 26.0, *) {
+                GlassEffectContainer(spacing: 8) {
+                    view.buttonBorderShape(.circle)
+                        .buttonStyle(.glass)
+                }
+            } else {
+                view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
+            }
+        }
+    }
+
+    @ViewBuilder var clipperMenu: some View {
+        Button(String.localized("camera"), systemImage: "camera") {
+            chatViewController?.showCameraViewController()
+        }
+        Button(String.localized("gallery"), systemImage: "photo.on.rectangle") {
+            chatViewController?.showPhotoVideoLibrary()
+        }
+        Divider()
+        Button(String.localized("file"), systemImage: "doc") {
+            chatViewController?.showFilesLibrary()
+        }
+        if chatViewController?.dcChat.isOutBroadcast == false {
+            Button(String.localized("webxdc_app"), systemImage: "square.grid.2x2") {
+                chatViewController?.showAppPicker()
+            }
+        }
+        Button(String.localized("voice_message"), systemImage: "mic") {
+            chatViewController?.showVoiceMessageRecorder()
+        }
+        if UserDefaults.standard.bool(forKey: "location_streaming") {
+            let isLocationStreaming = chatViewController?.isLocationStreaming ?? false
+            Button(
+                String.localized(isLocationStreaming ? "stop_sharing_location" : "location"),
+                systemImage: isLocationStreaming ? "location.slash" : "location"
+            ) {
+                chatViewController?.locationStreamingButtonPressed()
+            }
+        }
+        Button(String.localized("contact"), systemImage: "person.crop.circle") {
+            chatViewController?.showContactList()
+        }
+    }
+
+    @ViewBuilder func glassEffect<V: View>(view: V, minHeight: CGFloat? = nil, interactive: Bool) -> some View {
+        if #available(iOS 26.0, *) {
+            view.padding(8)
+                .frame(minHeight: minHeight)
+                .glassEffect(.regular.interactive(interactive), in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
+        } else {
+            view
+        }
+    }
+
+    private func _updateIntrinsicContentSize(_: Any) {
+        if Thread.isMainThread {
+            updateIntrinsicContentSize()
+            // Queue another update for after layout settles
+            DispatchQueue.main.async(execute: updateIntrinsicContentSize)
+        } else {
+            DispatchQueue.main.async(execute: updateIntrinsicContentSize)
+        }
+    }
+}
+
+struct QuoteViewSwiftUI: View {
+    var quoteText: String?
+    var quoteMessage: DcMsg?
+    var dcContext: DcContext
+
+    @State private var size: CGSize = .zero
+
+    var body: some View {
+        if let quoteText {
+            let quoteContact = quoteMessage.flatMap { dcContext.getContact(id: $0.fromContactId) }
+            let color = Color(uiColor: quoteContact?.color ?? DcColors.unknownSender)
+            HStack {
+                VStack(alignment: .leading) {
+                    if quoteMessage?.isForwarded == true {
+                        Text(String.localized("forwarded_message"))
+                            .foregroundColor(color)
+                            .font(.init(UIFont.preferredFont(for: .caption1, weight: .semibold)))
+                    } else if let quoteMessage, let quoteContact {
+                        Text(quoteMessage.getSenderName(quoteContact, markOverride: true))
+                            .foregroundColor(color)
+                            .font(.preferredFont(for: .caption1, weight: .semibold))
+                    }
+                    Text(quoteText)
+                        .font(.preferredFont(for: .subheadline, weight: .regular))
+                        .lineLimit(3)
+                }
+                .padding(.leading)
+                .calculated(size: $size)
+                Spacer()
+                let isWebxdc = quoteMessage?.type == DC_MSG_WEBXDC
+                if let quoteImage = isWebxdc ? quoteMessage?.getWebxdcPreviewImage() : quoteMessage?.image {
+                    Image(uiImage: quoteImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: size.height)
+                }
+            }
+            .overlay(alignment: .leading) {
+                Capsule(style: .circular)
+                    .fill(color)
+                    .frame(width: 3)
+            }
+        }
+    }
+}
+
+public extension View {
+    /// Modify a view with a `ViewBuilder` closure.
+    ///
+    /// This represents a streamlining of the
+    /// [`modifier`](https://developer.apple.com/documentation/swiftui/view/modifier(_:))
+    /// \+ [`ViewModifier`](https://developer.apple.com/documentation/swiftui/viewmodifier)
+    /// pattern.
+    /// - Note: Do not use this with variables that change at runtime
+    func modifier<ModifiedContent: View>(
+        @ViewBuilder _ body: (_ content: Self) -> ModifiedContent
+    ) -> ModifiedContent {
+        body(self)
+    }
+}
+
+/// Similar to UIKit's UIDeferredMenuElement.uncached this reloads the menu before it is shown
+struct UncachedMenu<Content: View, Label: View>: View {
+    var content: () -> Content
+    var label: () -> Label
+    @State private var menuId = UUID()
+
+    var body: some View {
+        Menu(content: { content().id(menuId) }, label: label)
+            .simultaneousGesture(DragGesture(minimumDistance: 0).onChanged(reloadMenu))
+    }
+
+    func reloadMenu(_: DragGesture.Value) {
+        menuId = UUID()
+    }
+}
+
+public extension View {
+    func scrollNeverDismissesKeyboard_iOS16() -> some View {
+        if #available(iOS 16.0, *) {
+            return scrollDismissesKeyboard(.never)
+        } else {
+            return self
+        }
+    }
+}
+
+extension View {
+    public func calculated(size: Binding<CGSize>) -> some View {
+        self.modifier(CalculatedSizePreferenceModifier(size: size))
+    }
+}
+
+private struct CalculatedSizePreferenceModifier: ViewModifier {
+    @Binding var size: CGSize
+
+    func body(content: Content) -> some View {
+        content
+            .background(GeometryReader { geometry in
+                Color.clear.preference(key: CalculatedSizePreferenceKey.self, value: geometry.size)
+            })
+            .onPreferenceChange(CalculatedSizePreferenceKey.self) {
+                size = $0
+            }
+    }
+}
+
+private struct CalculatedSizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+struct InputBarTextView: View {
+    @Binding var text: String
+    @State private var contentSize: CGSize = .zero
+
+    var body: some View {
+        _InputBarTextView(text: $text, contentSize: $contentSize)
+            .frame(idealHeight: contentSize.height, alignment: .center)
+    }
+}
+
+private struct _InputBarTextView: UIViewRepresentable {
+    @Binding var text: String
+    @Binding var contentSize: CGSize
+    weak var pasteDelegate: UITextPasteDelegate?
+
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.adjustsFontForContentSizeCategory = true
+        textView.font = UIFont.preferredFont(forTextStyle: .body)
+        textView.backgroundColor = .clear
+        context.coordinator.contentSizePublisher = textView.publisher(for: \.contentSize)
+            .receive(on: RunLoop.main)
+            .assign(to: \.contentSize, on: self)
+        return textView
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.text = text
+        uiView.pasteDelegate = pasteDelegate
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text)
+    }
+
+    class Coordinator: NSObject, UITextViewDelegate {
+        @Binding var text: String
+        var contentSizePublisher: AnyCancellable?
+
+        init(text: Binding<String>) {
+            self._text = text
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            self.text = textView.text
+        }
     }
 }

@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import Foundation
 import CommonCrypto
 
@@ -96,6 +97,12 @@ extension UIFont {
     }
 }
 
+extension Font {
+    static func preferredFont(for style: UIFont.TextStyle, weight: UIFont.Weight) -> Font {
+        Font(UIFont.preferredFont(for: style, weight: weight))
+    }
+}
+
 extension UINavigationController {
     // pop up to viewsToPop viewControllers from the stack
     func popViewControllers(viewsToPop: Int, animated: Bool) {
@@ -120,21 +127,6 @@ extension UILabel {
         let prefix = text.substring(to: firstIndex.lowerBound)
         let size: CGSize = prefix.size(withAttributes: [NSAttributedString.Key.font: font])
         return size.height
-    }
-}
-
-extension UIButton {
-    func fixImageAndTitleSpacing() {
-        let spacing = 6.0
-        let insetAmount = spacing / 2
-        let isRTL = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
-        if isRTL {
-           imageEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
-           titleEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
-        } else {
-           imageEdgeInsets = UIEdgeInsets(top: 0, left: -insetAmount, bottom: 0, right: insetAmount)
-           titleEdgeInsets = UIEdgeInsets(top: 0, left: insetAmount, bottom: 0, right: -insetAmount)
-        }
     }
 }
 
