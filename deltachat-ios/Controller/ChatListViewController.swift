@@ -667,29 +667,15 @@ class ChatListViewController: UITableViewController {
 
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController,
               editingConstraints == nil else { return }
 
-        if tabBarController.view.subviews.contains(tabBarController.tabBar) {
-            // UITabBar is child of UITabBarController, let edit bar cover UITabBar (moving to the bottom would place it below UITabBar)
-            tabBarController.view.addSubview(editingBar)
-            editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: tabBarController.tabBar.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: tabBarController.tabBar.trailingAnchor),
-                editingBar.topAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: tabBarController.tabBar.bottomAnchor),
-            ]
-        } else {
-            // UITabBar is somewhere else (eg. atop on newer iPad), move edit bar to the bottom
-            guard let parentView = self.navigationController?.view else { return }
-            parentView.addSubview(editingBar)
-            editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
-                editingBar.heightAnchor.constraint(equalToConstant: 72)
-            ]
-        }
+        guard let parentView = self.navigationController?.view else { return }
+        parentView.addSubview(editingBar)
+        editingConstraints = [
+            editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+            editingBar.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+        ]
         NSLayoutConstraint.activate(editingConstraints ?? [])
     }
 
