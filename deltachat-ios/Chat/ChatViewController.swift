@@ -50,6 +50,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.backgroundView = backgroundContainer
         tableView.register(TextMessageCell.self, forCellReuseIdentifier: TextMessageCell.reuseIdentifier)
+        tableView.register(CallMessageCell.self, forCellReuseIdentifier: CallMessageCell.reuseIdentifier)
         tableView.register(ImageTextCell.self, forCellReuseIdentifier: ImageTextCell.reuseIdentifier)
         tableView.register(FileTextCell.self, forCellReuseIdentifier: FileTextCell.reuseIdentifier)
         tableView.register(InfoMessageCell.self, forCellReuseIdentifier: InfoMessageCell.reuseIdentifier)
@@ -629,6 +630,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch message.type {
         case DC_MSG_IMAGE, DC_MSG_GIF, DC_MSG_VIDEO, DC_MSG_STICKER:
             cell = dequeueCell(ofType: ImageTextCell.self)
+
+        case DC_MSG_CALL:
+            let callMessageCell = dequeueCell(ofType: CallMessageCell.self)
+            callMessageCell.configure(callInfo: dcContext.getCallInfo(msgId: message.id))
+            cell = callMessageCell
 
         case DC_MSG_FILE:
             cell = dequeueCell(ofType: FileTextCell.self)

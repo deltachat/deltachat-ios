@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improve call bubbles UI
 - Add outgoing ringing sound and call status
 
 
