@@ -111,22 +111,75 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
     }
 
     private func applyCallTitle(message: DcMsg, searchText: String?, highlight: Bool) {
-        guard let title = StatusView.callDisplayTitle(message: message, callInfo: callInfo), !title.isEmpty else {
+        guard let title = callDisplayTitle(message: message), !title.isEmpty else {
             messageLabel.attributedText = nil
             durationLabel.text = nil
             durationLabel.isHidden = true
             return
         }
         messageLabel.attributedText = formattedCallText(text: title, searchText: searchText, highlight: highlight)
-        durationLabel.text = StatusView.callDurationText(callInfo: callInfo)
+        durationLabel.text = callDurationText()
         durationLabel.isHidden = durationLabel.text == nil
     }
 
     override func additionalAccessibilityText(message _: DcMsg) -> String {
-        guard let duration = StatusView.callDurationText(callInfo: callInfo) else {
+        guard let duration = callDurationText() else {
             return ""
         }
         return "\(duration), "
+    }
+
+    private func callDisplayTitle(message: DcMsg) -> String? {
+        if let localizationKey = callLocalizationKey() {
+            return String.localized(localizationKey)
+        }
+        if let text = message.text, !text.isEmpty {
+            return text
+        }
+        return String.localized("audio_call")
+    }
+
+    private func callLocalizationKey() -> String? {
+        guard let callInfo else {
+            return nil
+        }
+
+        switch callInfo.state {
+        case .missed:
+            return "missed_call"
+        case .declined:
+            return "declined_call"
+        case .canceled:
+            return "canceled_call"
+        case .alerting, .active, .completed, .unknown:
+            return callInfo.hasVideo ? "video_call" : "audio_call"
+        }
+    }
+
+    private func callDurationText() -> String? {
+        guard let durationSeconds = callDurationSeconds() else {
+            return nil
+        }
+        let durationMinutes = max(0, durationSeconds) / 60
+        if durationMinutes == 0 {
+            return String.localized("call_duration_less_than_a_minute")
+        }
+        return String.localized(stringID: "call_duration_minutes", parameter: durationMinutes)
+    }
+
+    private func callDurationSeconds() -> Int? {
+        guard let state = callInfo?.state else {
+            return nil
+        }
+
+        switch state {
+        case .completed(let duration):
+            return duration
+        case .unknown(_, let duration):
+            return duration
+        case .alerting, .active, .missed, .declined, .canceled:
+            return nil
+        }
     }
 
     private func formattedCallText(text: String, searchText: String?, highlight: Bool) -> NSAttributedString {

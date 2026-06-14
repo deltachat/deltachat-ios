@@ -58,7 +58,8 @@ public class StatusView: UIView {
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
+        let constraints = [
+
             contentStackView.topAnchor.constraint(equalTo: topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             trailingAnchor.constraint(equalTo: contentStackView.trailingAnchor, constant: 5),
@@ -78,7 +79,9 @@ public class StatusView: UIView {
 
             savedView.widthAnchor.constraint(equalToConstant: 6),
             savedView.heightAnchor.constraint(equalToConstant: 11),
-        ])
+        ]
+
+        NSLayoutConstraint.activate(constraints)
     }
 
 
@@ -158,61 +161,20 @@ public class StatusView: UIView {
         stateView.isHidden = stateView.image == nil
     }
 
-    static func callDurationText(callInfo: DcContext.CallInfo?) -> String? {
-        guard let durationSeconds = callDurationSeconds(state: callInfo?.state) else {
-            return nil
-        }
-        let durationMinutes = max(0, durationSeconds) / 60
-        if durationMinutes == 0 {
-            return String.localized("call_duration_less_than_a_minute")
-        }
-        return String.localized(stringID: "call_duration_minutes", parameter: durationMinutes)
-    }
-
-    private static func callDurationSeconds(state: DcContext.CallInfoState?) -> Int? {
-        guard let state else {
-            return nil
-        }
-
-        switch state {
-        case .completed(let duration):
-            return duration
-        case .unknown(_, let duration):
-            return duration
-        case .alerting, .active, .missed, .declined, .canceled:
-            return nil
-        }
-    }
-
-    static func callDisplayTitle(message: DcMsg, callInfo: DcContext.CallInfo?) -> String? {
-        if let localizationKey = callLocalizationKey(callInfo: callInfo) {
-            return String.localized(localizationKey)
-        }
-        if let text = message.text, !text.isEmpty {
-            return text
-        }
-        return String.localized("audio_call")
-    }
-
-    private static func callLocalizationKey(callInfo: DcContext.CallInfo?) -> String? {
-        guard let callInfo else {
-            return nil
-        }
-
-        switch callInfo.state {
-        case .missed:
-            return "missed_call"
-        case .declined:
-            return "declined_call"
-        case .canceled:
-            return "canceled_call"
-        case .alerting, .active, .completed, .unknown:
-            return callInfo.hasVideo ? "video_call" : "audio_call"
-        }
-    }
-
     public static func getAccessibilityString(message: DcMsg, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
-        let state = deliveryStatusAccessibilityText(message: message, showOnlyPendingAndError: showOnlyPendingAndError)
+        let state: String
+        switch Int32(message.state) {
+        case DC_STATE_OUT_PENDING:
+            state = String.localized("a11y_delivery_status_sending")
+        case DC_STATE_OUT_DELIVERED:
+            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
+        case DC_STATE_OUT_MDN_RCVD:
+            state = showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_read")
+        case DC_STATE_OUT_FAILED:
+            state = String.localized("a11y_delivery_status_error")
+        default:
+            state = ""
+        }
         let stateString = state.isEmpty ? "" : ", \(state)"
         let viewsCountString: String
         if let viewCount {
@@ -222,21 +184,6 @@ public class StatusView: UIView {
         }
         let envelopeString = message.showEnvelope() ? (", " + String.localized("email")) : ""
         return "\(message.formattedSentDate())\(stateString)\(viewsCountString)\(envelopeString)"
-    }
-
-    private static func deliveryStatusAccessibilityText(message: DcMsg, showOnlyPendingAndError: Bool) -> String {
-        switch Int32(message.state) {
-        case DC_STATE_OUT_PENDING:
-            return String.localized("a11y_delivery_status_sending")
-        case DC_STATE_OUT_DELIVERED:
-            return showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_delivered")
-        case DC_STATE_OUT_MDN_RCVD:
-            return showOnlyPendingAndError ? "" : String.localized("a11y_delivery_status_read")
-        case DC_STATE_OUT_FAILED:
-            return String.localized("a11y_delivery_status_error")
-        default:
-            return ""
-        }
     }
 
     private func updateViewsSectionSpacing(hasLocation: Bool, showViewCount: Bool) {
