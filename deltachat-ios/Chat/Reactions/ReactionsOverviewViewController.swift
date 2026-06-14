@@ -85,9 +85,7 @@ extension ReactionsOverviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let contactId = contactIds[indexPath.row]
-
-        let isMe = (context.id == contactId)
-        if isMe == false {
+        if contactId != DC_CONTACT_ID_SELF {
             delegate?.showContact(self, with: contactId)
         }
     }

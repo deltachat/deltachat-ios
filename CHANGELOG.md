@@ -3,7 +3,7 @@
 ## Unreleased
 
 - Add outgoing ringing sound and call status
-
+- Fix: Tapping "Me" in reactions overview would open the wrong contact on anything other than your first profile
 
 ## v2.52.0
 2026-06
