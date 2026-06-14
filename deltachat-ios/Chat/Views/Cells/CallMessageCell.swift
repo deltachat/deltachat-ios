@@ -13,6 +13,7 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
     private var callTitleFont: UIFont { UIFont.preferredFont(for: .callout, weight: .semibold) }
     private var callDurationFont: UIFont { UIFont.preferredFont(for: .caption1, weight: .regular) }
     private lazy var callTitleMinHeightConstraint = messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
+    private var callInfo: DcContext.CallInfo?
 
     private var callTextLeadingPadding: CGFloat {
         callIconLeadingPadding + callIconSize + callIconTextPadding
@@ -51,9 +52,14 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        callInfo = nil
         durationLabel.text = nil
         durationLabel.isHidden = true
         updateCallLayout(isVideoCall: false)
+    }
+
+    func configure(callInfo: DcContext.CallInfo?) {
+        self.callInfo = callInfo
     }
 
     override func setupSubviews() {
@@ -73,13 +79,12 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
         updateCallLayout(isVideoCall: false)
     }
 
-    override func update(dcContext: DcContext, msg: DcMsg, callInfo: DcContext.CallInfo?, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
+    override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
         let isVideoCall = callInfo?.hasVideo == true
         updateCallLayout(isVideoCall: isVideoCall)
 
         super.update(dcContext: dcContext,
                      msg: msg,
-                     callInfo: callInfo,
                      messageStyle: messageStyle,
                      showAvatar: showAvatar,
                      showName: showName,
@@ -106,15 +111,22 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
     }
 
     private func applyCallTitle(message: DcMsg, searchText: String?, highlight: Bool) {
-        guard let title = StatusView.callDisplayTitle(message: message, callInfo: currentCallInfo), !title.isEmpty else {
+        guard let title = StatusView.callDisplayTitle(message: message, callInfo: callInfo), !title.isEmpty else {
             messageLabel.attributedText = nil
             durationLabel.text = nil
             durationLabel.isHidden = true
             return
         }
         messageLabel.attributedText = formattedCallText(text: title, searchText: searchText, highlight: highlight)
-        durationLabel.text = StatusView.callDurationText(callInfo: currentCallInfo)
+        durationLabel.text = StatusView.callDurationText(callInfo: callInfo)
         durationLabel.isHidden = durationLabel.text == nil
+    }
+
+    override func additionalAccessibilityText(message _: DcMsg) -> String {
+        guard let duration = StatusView.callDurationText(callInfo: callInfo) else {
+            return ""
+        }
+        return "\(duration), "
     }
 
     private func formattedCallText(text: String, searchText: String?, highlight: Bool) -> NSAttributedString {

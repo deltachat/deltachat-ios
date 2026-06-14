@@ -95,11 +95,7 @@ public class StatusView: UIView {
     }
 
     public func update(message: DcMsg, tintColor: UIColor, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) {
-        update(message: message, callInfo: nil, tintColor: tintColor, showOnlyPendingAndError: showOnlyPendingAndError, viewCount: viewCount)
-    }
-
-    public func update(message: DcMsg, callInfo: DcContext.CallInfo?, tintColor: UIColor, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) {
-        dateLabel.text = Self.statusDateText(message: message, callInfo: callInfo)
+        dateLabel.text = message.formattedSentDate()
         dateLabel.textColor = tintColor
         editedLabel.isHidden = !message.isEdited
         editedLabel.textColor = tintColor
@@ -162,10 +158,6 @@ public class StatusView: UIView {
         stateView.isHidden = stateView.image == nil
     }
 
-    static func statusDateText(message: DcMsg, callInfo _: DcContext.CallInfo?) -> String {
-        return message.formattedSentDate()
-    }
-
     static func callDurationText(callInfo: DcContext.CallInfo?) -> String? {
         guard let durationSeconds = callDurationSeconds(state: callInfo?.state) else {
             return nil
@@ -219,7 +211,7 @@ public class StatusView: UIView {
         }
     }
 
-    public static func getAccessibilityString(message: DcMsg, callInfo: DcContext.CallInfo? = nil, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
+    public static func getAccessibilityString(message: DcMsg, showOnlyPendingAndError: Bool = false, viewCount: Int? = nil) -> String {
         let state = deliveryStatusAccessibilityText(message: message, showOnlyPendingAndError: showOnlyPendingAndError)
         let stateString = state.isEmpty ? "" : ", \(state)"
         let viewsCountString: String
@@ -229,11 +221,7 @@ public class StatusView: UIView {
             viewsCountString = ""
         }
         let envelopeString = message.showEnvelope() ? (", " + String.localized("email")) : ""
-        if message.type == DC_MSG_CALL {
-            let durationString = callDurationText(callInfo: callInfo).map { "\($0), " } ?? ""
-            return "\(durationString)\(statusDateText(message: message, callInfo: callInfo))\(stateString)\(viewsCountString)\(envelopeString)"
-        }
-        return "\(statusDateText(message: message, callInfo: callInfo))\(stateString)\(viewsCountString)\(envelopeString)"
+        return "\(message.formattedSentDate())\(stateString)\(viewsCountString)\(envelopeString)"
     }
 
     private static func deliveryStatusAccessibilityText(message: DcMsg, showOnlyPendingAndError: Bool) -> String {

@@ -200,7 +200,6 @@ public class BaseMessageCell: UITableViewCell {
     private var showSelectionBackground: Bool
     private var timer: Timer?
 
-    private(set) var currentCallInfo: DcContext.CallInfo?
     private var dcContextId: Int?
     private var dcMsgId: Int?
     var a11yDcType: String?
@@ -386,11 +385,10 @@ public class BaseMessageCell: UITableViewCell {
          } else {
              selectedBackgroundView?.backgroundColor = .clear
          }
-     }
+    }
 
     // update classes inheriting BaseMessageCell first before calling super.update(...)
-    // swiftlint:disable:next function_parameter_count
-    func update(dcContext: DcContext, msg: DcMsg, callInfo: DcContext.CallInfo?, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
+    func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String?, highlight: Bool) {
         let fromContact = dcContext.getContact(id: msg.fromContactId)
         if msg.isFromCurrentSender {
             topLabel.text = msg.isForwarded ? String.localized("forwarded_message") : nil
@@ -491,18 +489,16 @@ public class BaseMessageCell: UITableViewCell {
 
         timer?.invalidate()
         timer = nil
-        currentCallInfo = msg.type == DC_MSG_CALL ? callInfo : nil
         if !msg.isInfo {
             let tintColor = statusTintColor(for: msg)
             let viewCount = showViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
             statusView.update(message: msg,
-                              callInfo: currentCallInfo,
                               tintColor: tintColor,
                               showOnlyPendingAndError: showViewCount,
                               viewCount: viewCount)
             timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 guard let self else { return }
-                self.statusView.dateLabel.text = StatusView.statusDateText(message: msg, callInfo: self.currentCallInfo)
+                self.statusView.dateLabel.text = msg.formattedSentDate()
             }
         }
 
@@ -634,8 +630,13 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
-            "\(StatusView.getAccessibilityString(message: msg, callInfo: currentCallInfo, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
+            "\(additionalAccessibilityText(message: msg))" +
+            "\(StatusView.getAccessibilityString(message: msg, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
             "\(reactionsString) "
+    }
+
+    func additionalAccessibilityText(message _: DcMsg) -> String {
+        return ""
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {
@@ -681,7 +682,6 @@ public class BaseMessageCell: UITableViewCell {
         reactionsView.prepareForReuse()
         timer?.invalidate()
         timer = nil
-        currentCallInfo = nil
         dcContextId = nil
         dcMsgId = nil
     }

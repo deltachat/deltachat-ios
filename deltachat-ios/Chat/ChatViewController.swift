@@ -632,7 +632,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell = dequeueCell(ofType: ImageTextCell.self)
 
         case DC_MSG_CALL:
-            cell = dequeueCell(ofType: CallMessageCell.self)
+            let callMessageCell = dequeueCell(ofType: CallMessageCell.self)
+            callMessageCell.configure(callInfo: dcContext.fetchCallInfo(msgId: message.id))
+            cell = callMessageCell
 
         case DC_MSG_FILE:
             cell = dequeueCell(ofType: FileTextCell.self)
@@ -665,10 +667,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         cell.baseDelegate = self
         cell.showSelectionBackground(tableView.isEditing)
-        let callInfo = message.type == DC_MSG_CALL ? dcContext.fetchCallInfo(msgId: message.id) : nil
         cell.update(dcContext: dcContext,
                     msg: message,
-                    callInfo: callInfo,
                     messageStyle: configureMessageStyle(for: message, at: indexPath),
                     showAvatar: showAvatar,
                     showName: showName,
