@@ -5,7 +5,8 @@ import UIKit
 class CallMessageCell: BaseMessageCell, ReusableCell {
     static let reuseIdentifier = "CallMessageCell"
 
-    private let callTextTrailingPadding: CGFloat = 76
+    private let callBubbleMinWidth: CGFloat = 240
+    private let callTextTrailingPadding: CGFloat = 8
     private let callIconSize: CGFloat = 28
     private let callIconLeadingPadding: CGFloat = 8
     private let callIconTextPadding: CGFloat = 4
@@ -63,6 +64,7 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
         messageBackgroundContainer.addSubview(callIconButton)
         NSLayoutConstraint.activate([
             callTitleMinHeightConstraint,
+            messageBackgroundContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: callBubbleMinWidth),
             callIconButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: callIconLeadingPadding),
             callIconButton.centerYAnchor.constraint(equalTo: mainContentView.centerYAnchor)
         ])
