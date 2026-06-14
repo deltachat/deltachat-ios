@@ -1589,7 +1589,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func focusInputTextView(_ focussed: Bool = true) {
-        // TODO: Set focusState
+        draft.isFieldFocused = focussed
     }
 
     private func stageVCard(url: URL) {
@@ -2886,6 +2886,19 @@ struct InputBarView: View {
         .onChange(of: draft.text, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.quoteMessage?.id, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.attachment, perform: _updateIntrinsicContentSize)
+        .onChange(of: draft.isFieldFocused) {
+            print("draft.isFieldFocused changed", $0)
+            textEditorFocus = $0
+        }
+        .onChange(of: textEditorFocus) {
+            print("textEditorFocus changed", $0)
+            if draft.isFieldFocused != $0 {
+                draft.isFieldFocused = $0
+            }
+        }
+        .onAppear {
+            textEditorFocus = draft.isFieldFocused
+        }
         .modifier { view in
             if #available(iOS 26.0, *) {
                 GlassEffectContainer(spacing: 8) {

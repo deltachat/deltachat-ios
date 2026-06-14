@@ -9,6 +9,7 @@ public class DraftModel: ObservableObject {
     @Published var text: String = ""
     let chatId: Int
     var isEditing: Bool = false // multi edit
+    @Published var isFieldFocused: Bool = false
     @Published var sendEditRequestFor: Int?
     var quoteMessage: DcMsg? {
         return draftMsg?.quoteMessage
