@@ -17,6 +17,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var isVisibleToUser: Bool = false
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
+    private var isDraggingScrollView = false
 
     private lazy var draft: DraftModel = {
         return DraftModel(dcContext: dcContext, chatId: chatId)
@@ -239,6 +240,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if contextMenuVisible {
             // Don't process content inset when context menu is visible
             return false
+        } else if isDraggingScrollView {
+            // Don't process content inset while scrolling
+            return false
         } else {
             return true
         }
@@ -452,6 +456,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         isInitialViewWillAppear = false
+
+        // Sometimes the first responder is not returned to the input field
+        // so we need to update the content inset when view appears again
+        setTableViewContentInset()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -768,6 +776,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
+        isDraggingScrollView = true
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -775,6 +784,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             markSeenMessagesInVisibleArea()
             updateScrollDownButtonVisibility()
         }
+        isDraggingScrollView = false
+        setTableViewContentInset()
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -3075,6 +3086,7 @@ private struct _InputBarTextView: UIViewRepresentable {
         textView.adjustsFontForContentSizeCategory = true
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = .clear
+        textView.autocapitalizationType = .sentences
         context.coordinator.contentSizePublisher = textView.publisher(for: \.contentSize)
             .receive(on: RunLoop.main)
             .assign(to: \.contentSize, on: self)
