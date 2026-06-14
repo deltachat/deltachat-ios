@@ -24,4 +24,3 @@ public class ChatInputTextView: UITextView {
         imagePasteDelegate?.onImagePasted(image)
     }
 }
-

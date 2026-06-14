@@ -2838,7 +2838,7 @@ struct InputBarView: View {
                         .scaledToFit()
                         .padding(4)
                 }).frame(height: buttonSize)
-                InputBarTextView(text: $draft.text)
+                InputBarTextView(text: $draft.text, imagePasteDelegate: chatViewController)
                     .focused($textEditorFocus)
                     .scrollNeverDismissesKeyboard_iOS16()
                     .overlay(alignment: .leading) {
@@ -3053,20 +3053,24 @@ private struct CalculatedSizePreferenceKey: PreferenceKey {
 struct InputBarTextView: View {
     @Binding var text: String
     @State private var contentSize: CGSize = .zero
+    weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
 
     var body: some View {
-        _InputBarTextView(text: $text, contentSize: $contentSize)
-            .frame(idealHeight: contentSize.height, alignment: .center)
+        _InputBarTextView(
+            text: $text,
+            contentSize: $contentSize,
+            imagePasteDelegate: imagePasteDelegate
+        ).frame(idealHeight: contentSize.height, alignment: .center)
     }
 }
 
 private struct _InputBarTextView: UIViewRepresentable {
     @Binding var text: String
     @Binding var contentSize: CGSize
-    weak var pasteDelegate: UITextPasteDelegate?
+    weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
 
-    func makeUIView(context: Context) -> UITextView {
-        let textView = UITextView()
+    func makeUIView(context: Context) -> ChatInputTextView {
+        let textView = ChatInputTextView()
         textView.delegate = context.coordinator
         textView.adjustsFontForContentSizeCategory = true
         textView.font = UIFont.preferredFont(forTextStyle: .body)
@@ -3077,9 +3081,9 @@ private struct _InputBarTextView: UIViewRepresentable {
         return textView
     }
 
-    func updateUIView(_ uiView: UITextView, context: Context) {
+    func updateUIView(_ uiView: ChatInputTextView, context: Context) {
         uiView.text = text
-        uiView.pasteDelegate = pasteDelegate
+        uiView.imagePasteDelegate = imagePasteDelegate
     }
 
     func makeCoordinator() -> Coordinator {
