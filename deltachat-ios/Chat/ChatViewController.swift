@@ -633,7 +633,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         case DC_MSG_CALL:
             let callMessageCell = dequeueCell(ofType: CallMessageCell.self)
-            callMessageCell.configure(callInfo: dcContext.fetchCallInfo(msgId: message.id))
+            callMessageCell.configure(callInfo: dcContext.getCallInfo(msgId: message.id))
             cell = callMessageCell
 
         case DC_MSG_FILE:

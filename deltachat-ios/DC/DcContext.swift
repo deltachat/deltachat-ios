@@ -876,7 +876,7 @@ public class DcContext {
         }
     }
 
-    public func fetchCallInfo(msgId: Int) -> CallInfo? {
+    public func getCallInfo(msgId: Int) -> CallInfo? {
         do {
             guard let data = try DcAccounts.shared.blockingCall(method: "call_info", params: [id as AnyObject, msgId as AnyObject]) else {
                 return nil
