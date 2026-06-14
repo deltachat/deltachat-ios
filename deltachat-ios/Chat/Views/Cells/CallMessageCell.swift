@@ -13,6 +13,11 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
     private var callTitleFont: UIFont { UIFont.preferredFont(for: .callout, weight: .semibold) }
     private var callDurationFont: UIFont { UIFont.preferredFont(for: .caption1, weight: .regular) }
     private lazy var callTitleMinHeightConstraint = messageLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 0)
+    private lazy var callBubbleMinWidthConstraint: NSLayoutConstraint = {
+        let constraint = messageBackgroundContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: callBubbleMinWidth)
+        constraint.priority = .defaultHigh
+        return constraint
+    }()
     private var callInfo: DcContext.CallInfo?
 
     private var callTextLeadingPadding: CGFloat {
@@ -70,7 +75,7 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
         messageBackgroundContainer.addSubview(callIconButton)
         NSLayoutConstraint.activate([
             callTitleMinHeightConstraint,
-            messageBackgroundContainer.widthAnchor.constraint(greaterThanOrEqualToConstant: callBubbleMinWidth),
+            callBubbleMinWidthConstraint,
             callIconButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: callIconLeadingPadding),
             callIconButton.centerYAnchor.constraint(equalTo: mainContentView.centerYAnchor)
         ])
