@@ -98,7 +98,7 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
                      highlight: highlight)
 
         durationLabel.textColor = durationTintColor(for: msg)
-        applyCallTitle(message: msg, searchText: searchText, highlight: highlight)
+        updateCallContent(message: msg, searchText: searchText, highlight: highlight)
     }
 
     private func updateCallLayout(isVideoCall: Bool) {
@@ -115,7 +115,7 @@ class CallMessageCell: BaseMessageCell, ReusableCell {
         button.setImage(UIImage(systemName: imageName), for: .normal)
     }
 
-    private func applyCallTitle(message: DcMsg, searchText: String?, highlight: Bool) {
+    private func updateCallContent(message: DcMsg, searchText: String?, highlight: Bool) {
         guard let title = callDisplayTitle(message: message), !title.isEmpty else {
             messageLabel.attributedText = nil
             durationLabel.text = nil
