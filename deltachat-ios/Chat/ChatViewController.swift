@@ -2090,6 +2090,7 @@ extension ChatViewController {
 
     func showWebxdcViewFor(message: DcMsg, href: String? = nil) {
         let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id, href: href)
+        AudioController.stopBackgroundPlayback()
         navigationController?.pushViewController(webxdcViewController, animated: true)
     }
 
