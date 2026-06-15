@@ -158,8 +158,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var editingBar: ChatEditingBar = {
-        let height = 52 + view.safeAreaInsets.bottom
-        let view = ChatEditingBar(frame: .init(0, 0, 0, height))
+        let view = ChatEditingBar()
         view.delegate = self
         return view
     }()
@@ -820,6 +819,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             removeToolbar()
             toolbarContainerView.addSubview(editingBar)
             editingBar.fillSuperview()
+            if #unavailable(iOS 26) {
+                // Since the toolbar items of the editing bar can be updated while the
+                // toolbar was not on the screen the UIToolbar might have updated its
+                // layout to not extend into the safe area so we need to reload it once
+                // it is added to the view hierarchy again
+                editingBar.layoutSubviews()
+            }
         } else if dcChat.canSend {
             configureMessageInputBar()
         }
