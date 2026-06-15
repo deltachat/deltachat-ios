@@ -482,12 +482,20 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     // MARK: - AVAudioSession.routeChangeNotification handler
     @objc func audioRouteChanged(note: Notification) {
-        if let userInfo = note.userInfo,
-           let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? Int,
-           reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue,
-           AudioController.backgroundPlaybackController === self {
+        guard let reason = note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? Int,
+              reason == AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue else { return }
+
+        let pauseAfterRouteChange = { [weak self] in
+            guard let self,
+                  AudioController.backgroundPlaybackController === self else { return }
             // headphones plugged out
             pauseSound()
+        }
+
+        if Thread.isMainThread {
+            pauseAfterRouteChange()
+        } else {
+            DispatchQueue.main.async(execute: pauseAfterRouteChange)
         }
     }
 }
