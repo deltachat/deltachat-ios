@@ -34,15 +34,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     open weak var delegate: AudioControllerDelegate?
 
-    lazy var audioSession: AVAudioSession = {
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.playback)
-        } catch {
-            logger.warning("setting audio session category failed: \(error.localizedDescription)")
-        }
-        return audioSession
-    }()
+    lazy var audioSession = AVAudioSession.sharedInstance()
 
     /// The `AVAudioPlayer` that is playing the sound
     open var audioPlayer: AVAudioPlayer?
@@ -207,7 +199,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         do {
             guard let fileUrl = message.fileURL else { throw AudioPlaybackError.missingFileURL }
             let player = try AVAudioPlayer(contentsOf: fileUrl)
-            try audioSession.setActive(true)
+            try activatePlaybackAudioSession()
             audioPlayer = player
             playingCell = audioCell
             playingMessage = message
@@ -283,7 +275,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             return
         }
         do {
-            try audioSession.setActive(true)
+            try activatePlaybackAudioSession()
         } catch {
             logger.warning("activating audio session before resuming playback failed: \(error.localizedDescription)")
             stopAnyOngoingPlaying()
@@ -328,6 +320,11 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     private func isPlayingMessage(messageId: Int, contextId: Int) -> Bool {
         return dcContext.id == contextId && playingMessage?.id == messageId
+    }
+
+    private func activatePlaybackAudioSession() throws {
+        try audioSession.setCategory(.playback, mode: .default)
+        try audioSession.setActive(true)
     }
 
     private func updateNowPlayingInfoIfNeeded() {
