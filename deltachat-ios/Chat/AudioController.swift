@@ -75,10 +75,6 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                                                selector: #selector(audioSessionInterrupted),
                                                name: AVAudioSession.interruptionNotification,
                                                object: AVAudioSession.sharedInstance())
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(appWillTerminate),
-                                               name: UIApplication.willTerminateNotification,
-                                               object: nil)
     }
 
     deinit {
@@ -435,11 +431,6 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     open func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-        stopAnyOngoingPlaying()
-    }
-
-    @objc private func appWillTerminate() {
-        guard AudioController.backgroundPlaybackController === self else { return }
         stopAnyOngoingPlaying()
     }
 
