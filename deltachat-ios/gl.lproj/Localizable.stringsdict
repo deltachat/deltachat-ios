@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dminuto de duración</string>
+			<key>other</key>
+			<string>%d minutos de duración</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -111,7 +127,7 @@
 			<key>one</key>
 			<string>%d membro</string>
 			<key>other</key>
-			<string>%d membros</string>
+			<string>%d participantes</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -144,6 +160,22 @@
 			<string>%d Seleccionados</string>
 			<key>other</key>
 			<string>%d Seleccionado</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%dvista</string>
+			<key>other</key>
+			<string>%dvistas</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -192,6 +224,22 @@
 			<string>Eliminar %d mensaxe en todos os teus dispositivos?</string>
 			<key>other</key>
 			<string>Eliminar %d mensaxes en todos os teus dispositivos?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Reenviar a mensaxe a %2$@?</string>
+			<key>other</key>
+			<string>Reenviar %d mensaxes a %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
