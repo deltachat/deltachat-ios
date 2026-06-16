@@ -225,7 +225,7 @@
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channels" = "Canals";
 // consider keeping the term "channel" as in WhatsApp or Telegram
-"new_channel" = "Nou Canal";
+"new_channel" = "Canal nou";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Nom del Canal";
 // The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.

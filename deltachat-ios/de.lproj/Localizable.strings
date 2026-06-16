@@ -577,7 +577,7 @@
 "welcome_chat_over_email" = "Sicherer dezentraler Chat";
 "scan_invitation_code" = "Einladungscode scannen";
 "login_title" = "Login";
-"login_advanced_hint" = "Für fortgeschrittene Benutzer:\n\nVerwende keine Adresse, die du bereits in einer anderen App nutzt.";
+"login_advanced_hint" = "Für fortgeschrittene Benutzer.\n\nVerwende keine Adresse, die du bereits in einer anderen App nutzt.";
 "login_inbox" = "Posteingang";
 "login_imap_login" = "IMAP-Anmeldename";
 "login_imap_server" = "IMAP-Server";
