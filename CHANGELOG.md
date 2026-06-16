@@ -1,10 +1,17 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.53.0
+2026-06
 
 - Add outgoing ringing sound and call status
+- Consistent outgoing image quality between images with different aspect ratio
+- Ignore blocked contacts attemting scanning your QR code
 - Fix: Tapping "Me" in reactions overview would open the wrong contact on anything other than your first profile
 - Fix: Video and PDF thumbnails are now cached for smoother scrolling
+- Fix: Improve webxdc status update handling in combination with partly arrived messages
+- Fix: Do not abort IMAP connection if setting the push token fails
+- Update translations and local help
+- Update core to 2.53.0
 
 
 ## v2.52.0
