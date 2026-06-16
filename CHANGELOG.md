@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add spinner while connecting/updating status
 - Add outgoing ringing sound and call status
 
 
