@@ -485,6 +485,9 @@ public class BaseMessageCell: UITableViewCell {
         messageBackgroundContainer.update(rectCorners: messageStyle,
                                           color: getBackgroundColor(dcContext: dcContext, message: msg))
 
+        // update() may be called again before reuse, so keep only one status refresh timer.
+        timer?.invalidate()
+        timer = nil
         if !msg.isInfo {
             var tintColor: UIColor
             if showBottomLabelBackground {
@@ -497,13 +500,12 @@ public class BaseMessageCell: UITableViewCell {
 
             let viewCount = showViewCount ? dcContext.getMessageReadReceiptCount(messageId: msg.id) : nil
             statusView.update(message: msg, tintColor: tintColor, showOnlyPendingAndError: showViewCount, viewCount: viewCount)
-            let timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
+            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { [weak self] _ in
                 guard let self else { return }
 
                 self.statusView.dateLabel.text = msg.formattedSentDate()
             }
 
-            self.timer = timer
         }
 
         if let quoteText = msg.quoteText {
@@ -624,8 +626,13 @@ public class BaseMessageCell: UITableViewCell {
             "\(quoteAccessibilityString) " +
             "\(additionalAccessibilityString) " +
             "\(messageLabelAccessibilityString) " +
+            "\(additionalAccessibilityText(message: msg))" +
             "\(StatusView.getAccessibilityString(message: msg, showOnlyPendingAndError: shouldShowViewCount, viewCount: viewCount))" +
             "\(reactionsString) "
+    }
+
+    func additionalAccessibilityText(message _: DcMsg) -> String {
+        return ""
     }
 
     func getBackgroundColor(dcContext: DcContext, message: DcMsg) -> UIColor {

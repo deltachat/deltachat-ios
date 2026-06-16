@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improve call bubbles UI
 - Add outgoing ringing sound and call status
 - Fix: Tapping "Me" in reactions overview would open the wrong contact on anything other than your first profile
 - Fix: Video and PDF thumbnails are now cached for smoother scrolling
