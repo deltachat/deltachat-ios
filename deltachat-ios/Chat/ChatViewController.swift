@@ -214,7 +214,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ]))
 
     /// Context menu previews are shown in this layer which is behind the input bar.
-    /// We can hide previews when a user scrolls by removing this views subvieww.
+    /// We can hide previews when a user scrolls by removing this views subview.
     /// This is needed because the system does not always hide snapshots right
     /// away, probably assuming it is part of the view hierarchy.
     private var contextMenuPreviewContainer = {
@@ -2405,6 +2405,7 @@ extension ChatViewController: MediaPickerDelegate {
             progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
             DispatchQueue.global().async {
                 url.convertToMp4(completionHandler: { [weak self] url, error in
+                    _ = DcUtils.generateThumbnailFromVideo(url: url)
                     DispatchQueue.main.async { [weak self] in
                         if let url, !progressAlertHandler.cancelled {
                             self?.stageVideo(url: (url as NSURL))
@@ -2837,18 +2838,16 @@ struct InputBarView: View {
             }
             if draft.attachment != nil {
                 HStack {
-                    // TODO: Support attachments other than images
-                    WebImage(url: draft.draftMsg?.fileURL)
-                        .placeholder { ProgressView().padding() }
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+                    attachmentPreview
                     Spacer()
                     Button(String.localized("cancel"), systemImage: "xmark") {
                         draft.clearAttachment()
                     }.layoutPriority(-1).labelStyle(.iconOnly)
-                }.modifier { glassEffect(view: $0, interactive: false) }
+                }
+                .onTapGesture {
+                    chatViewController?.onAttachmentTapped()
+                }
+                .modifier { glassEffect(view: $0, interactive: false) }
             }
             HStack(alignment: .bottom, spacing: 4) {
                 UncachedMenu(content: { clipperMenu }, label: {
@@ -2914,6 +2913,38 @@ struct InputBarView: View {
             } else {
                 view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
             }
+        }
+    }
+
+    @ViewBuilder var attachmentPreview: some View {
+        switch draft.viewType {
+        case DC_MSG_IMAGE, DC_MSG_GIF:
+            WebImage(url: draft.draftMsg?.fileURL)
+                .placeholder { ProgressView().padding() }
+                .resizable()
+                .scaledToFit()
+                .frame(height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+        case DC_MSG_VIDEO:
+            let thumbnail = DcUtils.generateThumbnailFromVideo(url: draft.draftMsg?.fileURL)
+            let fallback = UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor)
+            Image(uiImage: thumbnail ?? fallback ?? UIImage())
+                .resizable()
+                .scaledToFit()
+                .frame(height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+        case DC_MSG_FILE, DC_MSG_WEBXDC:
+            if let msg = draft.draftMsg {
+                FileViewRepresentable(message: msg, webxdcSummary: String.localized("webxdc_draft_hint"))
+                    .frame(minHeight: 50, maxHeight: 75)
+            }
+        case DC_MSG_VCARD:
+            if let msg = draft.draftMsg {
+                ContactCardViewRepresentable(message: msg, dcContext: draft.dcContext)
+                    .frame(height: 50)
+            }
+        default:
+            EmptyView()
         }
     }
 
@@ -3135,5 +3166,31 @@ private struct _InputBarTextView: UIViewRepresentable {
         func textViewDidChange(_ textView: UITextView) {
             self.text = textView.text
         }
+    }
+}
+
+private struct FileViewRepresentable: UIViewRepresentable {
+    var message: DcMsg
+    var webxdcSummary: String
+
+    func makeUIView(context: Context) -> FileView {
+        FileView()
+    }
+
+    func updateUIView(_ uiView: FileView, context: Context) {
+        uiView.configure(message: message, forceWebxdcSummary: webxdcSummary)
+    }
+}
+
+private struct ContactCardViewRepresentable: UIViewRepresentable {
+    var message: DcMsg
+    var dcContext: DcContext
+
+    func makeUIView(context: Context) -> ContactCardView {
+        ContactCardView()
+    }
+
+    func updateUIView(_ uiView: ContactCardView, context: Context) {
+        uiView.configure(message: message, dcContext: dcContext)
     }
 }
