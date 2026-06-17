@@ -69,8 +69,6 @@
 		3080A015277DDABA00E74565 /* KeyboardEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A012277DDAB900E74565 /* KeyboardEvent.swift */; };
 		3080A02C277DE26000E74565 /* NSConstraintLayoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02A277DE26000E74565 /* NSConstraintLayoutSet.swift */; };
 		3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */; };
-		3080A035277DE30100E74565 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A030277DE2FF00E74565 /* String+Extensions.swift */; };
-		3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */; };
 		3080A037277DE30100E74565 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A032277DE30000E74565 /* UITextView+Extensions.swift */; };
 		3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A033277DE30100E74565 /* UIView+AutoLayout.swift */; };
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
@@ -432,8 +430,6 @@
 		3080A012277DDAB900E74565 /* KeyboardEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEvent.swift; sourceTree = "<group>"; };
 		3080A02A277DE26000E74565 /* NSConstraintLayoutSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSConstraintLayoutSet.swift; sourceTree = "<group>"; };
 		3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
-		3080A030277DE2FF00E74565 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		3080A032277DE30000E74565 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		3080A033277DE30100E74565 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
@@ -842,9 +838,7 @@
 		3080A02E277DE2DD00E74565 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3080A031277DE30000E74565 /* NSMutableAttributedString+Extensions.swift */,
 				3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */,
-				3080A030277DE2FF00E74565 /* String+Extensions.swift */,
 				3080A032277DE30000E74565 /* UITextView+Extensions.swift */,
 				3080A033277DE30100E74565 /* UIView+AutoLayout.swift */,
 				6424C05F2FB8534A00F7313F /* UIToolbar+AutoLayout.swift */,
@@ -1793,7 +1787,6 @@
 				30E348E524F6647D005C93D1 /* FileTextCell.swift in Sources */,
 				641620FE2ECFFA880076CFA3 /* WebRTC+Extensions.swift in Sources */,
 				30238CFD28A5028300EF14AC /* WebxdcGridCell.swift in Sources */,
-				3080A036277DE30100E74565 /* NSMutableAttributedString+Extensions.swift in Sources */,
 				307A82CC25B8D26700748B57 /* ChatEditingBar.swift in Sources */,
 				6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */,
 				30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */,
@@ -1833,7 +1826,6 @@
 				30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */,
 				D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */,
 				3008CB7624F95B6D00E6A617 /* AudioController.swift in Sources */,
-				3080A035277DE30100E74565 /* String+Extensions.swift in Sources */,
 				5F153E9A2CC38BAA00871ABE /* GiveBackMyFirstResponder.swift in Sources */,
 				302B84CE2397F6CD001C261F /* URL+Extension.swift in Sources */,
 				7A9FB1441FB061E2001FEA36 /* AppDelegate.swift in Sources */,
