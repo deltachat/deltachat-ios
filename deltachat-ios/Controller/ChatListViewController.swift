@@ -79,7 +79,11 @@ class ChatListViewController: UITableViewController {
     }()
 
     private lazy var accountButton: UIBarButtonItem = {
-        return UIBarButtonItem(customView: accountButtonAvatar)
+        let accountButton = UIBarButtonItem(customView: accountButtonAvatar)
+        if #available(iOS 26.0, *) {
+            accountButton.hidesSharedBackground = true
+        }
+        return accountButton
     }()
 
     private var editingConstraints: [NSLayoutConstraint]?
