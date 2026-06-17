@@ -329,10 +329,9 @@ class AccountCell: UITableViewCell {
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             mutedIndicator.constraintCenterYTo(contentView),
             mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
-            labelStackView.constraintAlignTopToAnchor(margins.topAnchor),
+            labelStackView.constraintCenterYTo(contentView),
             labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
-            labelStackView.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultHigh),
+            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor),
         ])
     }
 
