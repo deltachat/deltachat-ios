@@ -1,7 +1,7 @@
 import DcCore
 import SwiftUI
 
-private struct ContactCardViewRepresentable: UIViewRepresentable {
+struct ContactCardViewRepresentable: UIViewRepresentable {
     var message: DcMsg
     var dcContext: DcContext
 

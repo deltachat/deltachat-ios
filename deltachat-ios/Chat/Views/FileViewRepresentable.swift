@@ -1,7 +1,7 @@
 import DcCore
 import SwiftUI
 
-private struct FileViewRepresentable: UIViewRepresentable {
+struct FileViewRepresentable: UIViewRepresentable {
     var message: DcMsg
     var webxdcSummary: String
 
