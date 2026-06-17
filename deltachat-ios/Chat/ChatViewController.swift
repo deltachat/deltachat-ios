@@ -2523,10 +2523,8 @@ extension ChatViewController: MediaPickerDelegate {
 
 extension ChatViewController {
 
-    // TODO: Link this up with the new input bar
     func onAttachmentTapped() {
-        if let attachmentPath = draft.attachment {
-            let attachmentURL = URL(fileURLWithPath: attachmentPath, isDirectory: false)
+        if let attachmentURL = draft.draftMsg?.fileURL {
             if draft.viewType == DC_MSG_WEBXDC, let draftMessage = draft.draftMsg {
                 showWebxdcViewFor(message: draftMessage)
             } else {
