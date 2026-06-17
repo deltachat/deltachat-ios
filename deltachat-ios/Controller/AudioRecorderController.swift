@@ -21,7 +21,13 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     private let bitrate: Int
 
     // Private variables
-    var oldSessionCategory: AVAudioSession.Category?
+    private struct AudioSessionConfiguration {
+        let category: AVAudioSession.Category
+        let mode: AVAudioSession.Mode
+        let options: AVAudioSession.CategoryOptions
+    }
+
+    private var previousAudioSessionConfiguration: AudioSessionConfiguration?
     var wasIdleTimerDisabled: Bool = false
 
     var recordingFilePath: String = ""
@@ -141,10 +147,10 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
         audioRecorder?.stop()
+        endRecordingSession()
         stopUpdatingMeter()
-        UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -186,15 +192,22 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
             if FileManager.default.fileExists(atPath: recordingFilePath) {
                 try FileManager.default.removeItem(atPath: recordingFilePath)
             }
-            let session = AVAudioSession.sharedInstance()
-            oldSessionCategory = session.category
-            try session.setCategory(AVAudioSession.Category.record)
+            try configureAudioSessionForRecording()
             UIApplication.shared.isIdleTimerDisabled = true
-            guard let audioRecorder, audioRecorder.prepareToRecord() else { logger.error("prepareToRecord() failed"); return }
+            guard let audioRecorder, audioRecorder.prepareToRecord() else {
+                logger.error("prepareToRecord() failed")
+                endRecordingSession()
+                return
+            }
             isRecordingPaused = false
-            guard audioRecorder.record() else { logger.error("record() failed"); return }
+            guard audioRecorder.record() else {
+                logger.error("record() failed")
+                endRecordingSession()
+                return
+            }
         } catch {
             logger.error("Cannot start recording: \(error)")
+            endRecordingSession()
         }
     }
 
@@ -212,6 +225,7 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     @objc func cancelAction() {
         audioRecorder?.stop()
+        endRecordingSession()
         do {
             try FileManager.default.removeItem(atPath: recordingFilePath)
         } catch {
@@ -236,13 +250,12 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     }
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        defer {
+            endRecordingSession()
+        }
         do {
             if flag {
                 self.setToolbarItems([startRecordingButton], animated: true)
-                if let oldSessionCategory = oldSessionCategory {
-                    try AVAudioSession.sharedInstance().setCategory(oldSessionCategory)
-                    UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
-                }
             } else {
                 try FileManager.default.removeItem(at: URL(fileURLWithPath: recordingFilePath))
             }
@@ -254,6 +267,35 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
 
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
         logger.error("audio recording failed: \(error?.localizedDescription ?? "unknown")")
+        endRecordingSession()
+    }
+
+    private func configureAudioSessionForRecording() throws {
+        let session = AVAudioSession.sharedInstance()
+        if previousAudioSessionConfiguration == nil {
+            previousAudioSessionConfiguration = AudioSessionConfiguration(category: session.category,
+                                                                         mode: session.mode,
+                                                                         options: session.categoryOptions)
+        }
+        try session.setCategory(.playAndRecord, mode: .default, options: [.allowBluetooth])
+        try session.setActive(true)
+    }
+
+    private func endRecordingSession() {
+        restoreAudioSession()
+        UIApplication.shared.isIdleTimerDisabled = wasIdleTimerDisabled
+    }
+
+    private func restoreAudioSession() {
+        guard let configuration = previousAudioSessionConfiguration else { return }
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setActive(false, options: .notifyOthersOnDeactivation)
+            try session.setCategory(configuration.category, mode: configuration.mode, options: configuration.options)
+            previousAudioSessionConfiguration = nil
+        } catch {
+            logger.error("Cannot restore audio session: \(error)")
+        }
     }
 
     func validateMicrophoneAccess() {

@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: Improve voice message recording with Bluetooth and car audio systems
+
+
 ## v2.53.0
 2026-06
 
