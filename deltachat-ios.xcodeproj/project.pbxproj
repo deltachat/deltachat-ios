@@ -806,9 +806,6 @@
 		3080A00D277DDA1400E74565 /* InputBarAccessoryView */ = {
 			isa = PBXGroup;
 			children = (
-				3080A02E277DE2DD00E74565 /* Extensions */,
-				3080A029277DE21300E74565 /* Models */,
-				3080A016277DDABF00E74565 /* KeyboardManager */,
 			);
 			path = InputBarAccessoryView;
 			sourceTree = "<group>";
@@ -822,20 +819,6 @@
 				3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */,
 			);
 			path = KeyboardManager;
-			sourceTree = "<group>";
-		};
-		3080A029277DE21300E74565 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		3080A02E277DE2DD00E74565 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		30E8F2112447285600CE2C90 /* DcShare */ = {
@@ -953,6 +936,7 @@
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
+				3080A016277DDABF00E74565 /* KeyboardManager */,
 				30FDB6B224D18E390066C48D /* Chat */,
 				B23977F32D7BA324006290CE /* Calls */,
 				AE851AC1227C694300ED86F0 /* Coordinator */,
