@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix: Improve voice message recording with Bluetooth and car audio systems
 - Allow voice and audio messages to continue playing in the background
 
 
