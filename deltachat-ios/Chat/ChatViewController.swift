@@ -408,7 +408,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         switch RelayHelper.shared.data {
         case .forwardMessages:
-            resignFirstResponder()
             askToForwardMessage()
         case .forwardVCard(let vcardData):
             if let vcardURL = prepareVCardData(vcardData) {
