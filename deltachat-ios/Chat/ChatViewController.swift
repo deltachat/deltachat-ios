@@ -444,7 +444,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         if isInitialViewWillAppear {
-            becomeFirstResponder()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
                     self.scrollToMessage(msgId: msgId, animated: false)
@@ -828,6 +827,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else if dcChat.canSend {
             configureMessageInputBar()
+        } else {
+            removeToolbar()
         }
     }
 
@@ -1408,7 +1409,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             actionHandler: { [weak self] _ in
                 guard let self else { return }
                 RelayHelper.shared.forwardIdsAndFinishRelaying(to: chatId)
-                becomeFirstResponder()
             },
             cancelHandler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
@@ -1425,7 +1425,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             actionHandler: { [weak self] _ in
                 guard let self else { return }
                 RelayHelper.shared.shareAndFinishRelaying(to: chatId)
-                becomeFirstResponder()
             },
             cancelHandler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
@@ -1767,7 +1766,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if searchController.isActive {
             searchController.isActive = false
             configureDraftArea(draft: draft)
-            becomeFirstResponder()
             navigationItem.searchController = nil
             reloadData()
         }
@@ -2189,14 +2187,6 @@ extension ChatViewController {
         self.updateTitle()
         if refreshMessagesAfterEditing && isEditing == false {
             refreshMessages()
-        }
-        if isEditing && canBecomeFirstResponder {
-            // Needed in case ChatViewController was never first responder
-            becomeFirstResponder()
-        } else if !isEditing && !canBecomeFirstResponder {
-            // Needed in case ChatViewController should not be first responder anymore
-            // so the keyboard is hidden and the tableView contentInset is recalculated
-            resignFirstResponder()
         }
     }
 
@@ -2648,7 +2638,6 @@ extension ChatViewController: UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         configureDraftArea(draft: draft)
-        becomeFirstResponder()
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -2659,9 +2648,7 @@ extension ChatViewController: UISearchBarDelegate {
 // MARK: - UISearchControllerDelegate
 extension ChatViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
-        DispatchQueue.main.async { [weak self] in
-            self?.searchController.searchBar.becomeFirstResponder()
-        }
+        searchController.searchBar.becomeFirstResponder()
     }
 }
 
