@@ -170,6 +170,4 @@ public class FileView: UIView {
             horizontalLayout = allowLayoutChange ? true : horizontalLayout
         }
     }
-
-
 }

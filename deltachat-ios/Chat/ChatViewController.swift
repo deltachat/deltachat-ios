@@ -1670,34 +1670,27 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-
     private func sendSticker(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
             // stickers may be huge when drag'n'dropped from photo-recognition, scale down to a reasonable size
             let image = image.sd_isAnimated ? image : image.scaleDownImage(toMax: 300) ?? image
-
-            guard let self, let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) else { return }
-
-            if self.draft.draftMsg != nil {
-                self.draft.setAttachment(viewType: DC_MSG_STICKER, path: path)
-            }
-            self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, message: nil, quoteMessage: self.draft.quoteMessage)
-
-            FileHelper.deleteFileAsync(atPath: path)
-            DispatchQueue.main.async {
-                self.draft.clear()
+            if let path = ImageFormat.saveImage(image: image, directory: .cachesDirectory) {
+                self.sendAttachmentMessage(viewType: DC_MSG_STICKER, filePath: path, quoteMessage: self.draft.quoteMessage)
+                DispatchQueue.main.async {
+                    self.draft.setQuote(quotedMsg: nil)
+                }
+                FileHelper.deleteFileAsync(atPath: path)
             }
         }
     }
 
-    // TODO: Remove
     private func sendAttachmentMessage(viewType: Int32, filePath: String, fileName: String? = nil, message: String? = nil, quoteMessage: DcMsg? = nil) {
-        let msg = draft.draftMsg ?? dcContext.newMessage(viewType: viewType)
+        let msg = dcContext.newMessage(viewType: viewType)
         msg.setFile(filepath: filePath, fileName: fileName)
         msg.text = (message ?? "").isEmpty ? nil : message
         msg.quoteMessage = quoteMessage
-
-        dcContext.sendMessage(chatId: self.chatId, message: msg)
+        dcContext.sendMessage(chatId: chatId, message: msg)
     }
 
     private func sendVoiceMessage(url: NSURL) {
