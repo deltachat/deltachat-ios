@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Fix: smaller input bar size for new liquid glass design.
+- Allow voice and audio messages to continue playing in the background
+
 
 ## v2.53.0
 2026-06
