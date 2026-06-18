@@ -40,7 +40,7 @@ public class ChatContactRequestBar: UIView {
 
     private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
-        toolbar.items = [rejectButton, acceptButton]
+        toolbar.items = [.flexibleSpace(), rejectButton, acceptButton, .flexibleSpace()]
         return toolbar
     }()
 
