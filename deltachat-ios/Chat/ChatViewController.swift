@@ -563,6 +563,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         if #available(iOS 26, *) {
+            // Custom tableView.bottomEdgeEffect
             let bottomCoveredHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
             if bottomCoveredHeight > 0 {
                 let bottomFadeStart = max((bounds.height - bottomCoveredHeight) / bounds.height, 0)
