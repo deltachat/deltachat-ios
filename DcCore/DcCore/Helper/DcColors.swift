@@ -29,9 +29,6 @@ public struct DcColors {
     public static let incomingMessageSecondaryTextColor = UIColor.themeColor(light: grey50, dark: coreDark05)
     public static let middleGray = UIColor(hexString: "848ba7")
     public static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
-    public static let inputFieldColor =  UIColor.themeColor(
-        light: UIColor(red: 200 / 255, green: 200 / 255, blue: 200 / 255, alpha: 0.25),
-        dark: UIColor(red: 30 / 255, green: 30 / 255, blue: 30 / 255, alpha: 0.25))
     public static let placeholderColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
     public static let providerPreparationBackground = UIColor.init(hexString: "fdf7b2")
     public static let providerBrokenBackground = UIColor.systemRed

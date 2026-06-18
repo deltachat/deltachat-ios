@@ -112,6 +112,6 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIDesignRequiresCompatibility</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

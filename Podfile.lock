@@ -23,6 +23,8 @@ PODS:
   - SDWebImageSVGKitPlugin (1.4.0):
     - SDWebImage/Core (~> 5.10)
     - SVGKit (~> 3.0)
+  - SDWebImageSwiftUI (2.2.7):
+    - SDWebImage (~> 5.10)
   - SDWebImageWebPCoder (0.14.6):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.17)
@@ -38,6 +40,7 @@ DEPENDENCIES:
   - SCSiriWaveformView
   - SDWebImage
   - SDWebImageSVGKitPlugin
+  - SDWebImageSwiftUI
   - SDWebImageWebPCoder
   - SVGKit
   - SwiftFormat/CLI
@@ -52,6 +55,7 @@ SPEC REPOS:
     - SCSiriWaveformView
     - SDWebImage
     - SDWebImageSVGKitPlugin
+    - SDWebImageSwiftUI
     - SDWebImageWebPCoder
     - SVGKit
     - SwiftFormat
@@ -76,12 +80,13 @@ SPEC CHECKSUMS:
   SCSiriWaveformView: 016392911fb442c17d6dbad68e666edb13193c02
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   SDWebImageSVGKitPlugin: 7542dd07c344ec3415ded0461a1161a6f087e0c9
+  SDWebImageSwiftUI: 65a2c8b4b0d9577f2e11556cb163cc4613b9ee54
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
   SwiftFormat: 2f3558ca02842dcd3fd970360d2d4054bd21624a
   SwiftLint: 92196976e597b9afec5dbe374810103e6c1d9d7c
   WebRTC-lib: e8f92db5eb92633d956b19937b9021caacedc043
 
-PODFILE CHECKSUM: 343dbe287cf14b0c9857f2deb8235c2218e914cc
+PODFILE CHECKSUM: d9063ac17daa7a53dd9d01bfa2b657820417f7aa
 
 COCOAPODS: 1.16.2

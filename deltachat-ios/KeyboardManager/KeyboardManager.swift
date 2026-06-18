@@ -35,17 +35,10 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     
     // MARK: - Properties [Public]
     
-    /// A weak reference to a view bounded to the top of the keyboard to act as an `InputAccessoryView`
-    /// but kept within the bounds of the `UIViewController`s view
-    open weak var inputAccessoryView: UIView?
-    
     /// A flag that indicates if a portion of the keyboard is visible on the screen
     private(set) public var isKeyboardHidden: Bool = true
     
     // MARK: - Properties [Private]
-    
-    /// The `NSLayoutConstraintSet` that holds the `inputAccessoryView` to the bottom if its superview
-    private var constraints: NSLayoutConstraintSet?
     
     /// A weak reference to a `UIScrollView` that has been attached for interactive keyboard dismissal
     private weak var scrollView: UIScrollView?
@@ -61,14 +54,6 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     private var cachedNotification: KeyboardNotification?
     
     // MARK: - Initialization
-    
-    /// Creates a `KeyboardManager` object an binds the view as fake `InputAccessoryView`
-    ///
-    /// - Parameter inputAccessoryView: The view to bind to the top of the keyboard but within its superview
-    public convenience init(inputAccessoryView: UIView) {
-        self.init()
-        self.bind(inputAccessoryView: inputAccessoryView)
-    }
     
     /// Creates a `KeyboardManager` object that observes the state of the keyboard
     public override init() {
@@ -127,57 +112,6 @@ open class KeyboardManager: NSObject, UIGestureRecognizerDelegate {
     @discardableResult
     open func on(event: KeyboardEvent, do callback: EventCallback?) -> Self {
         callbacks[event] = callback
-        return self
-    }
-    
-    /// Constrains the `inputAccessoryView` to the bottom of its superview and sets the
-    /// `.willChangeFrame` and `.willHide` event callbacks such that it mimics an `InputAccessoryView`
-    /// that is bound to the top of the keyboard
-    ///
-    /// - Parameter inputAccessoryView: The view to bind to the top of the keyboard but within its superview
-    /// - Returns: Self
-    @discardableResult
-    open func bind(inputAccessoryView: UIView) -> Self {
-        
-        guard let superview = inputAccessoryView.superview else {
-            fatalError("`inputAccessoryView` must have a superview")
-        }
-        self.inputAccessoryView = inputAccessoryView
-        inputAccessoryView.translatesAutoresizingMaskIntoConstraints = false
-        constraints = NSLayoutConstraintSet(
-            bottom: inputAccessoryView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
-            left: inputAccessoryView.leftAnchor.constraint(equalTo: superview.leftAnchor),
-            right: inputAccessoryView.rightAnchor.constraint(equalTo: superview.rightAnchor)
-        ).activate()
-        
-        callbacks[.willShow] = { [weak self] (notification) in
-            let keyboardHeight = notification.endFrame.height
-            guard
-                self?.isKeyboardHidden == false,
-                self?.constraints?.bottom?.constant == 0,
-                notification.isForCurrentApp else { return }
-            self?.animateAlongside(notification) {
-                self?.constraints?.bottom?.constant = -keyboardHeight
-                self?.inputAccessoryView?.superview?.layoutIfNeeded()
-            }
-        }
-        callbacks[.willChangeFrame] = { [weak self] (notification) in
-            let keyboardHeight = notification.endFrame.height
-            guard
-                self?.isKeyboardHidden == false,
-                notification.isForCurrentApp else { return }
-            self?.animateAlongside(notification) {
-                self?.constraints?.bottom?.constant = -keyboardHeight
-                self?.inputAccessoryView?.superview?.layoutIfNeeded()
-            }
-        }
-        callbacks[.willHide] = { [weak self] (notification) in
-            guard notification.isForCurrentApp else { return }
-            self?.animateAlongside(notification) { [weak self] in
-                self?.constraints?.bottom?.constant = 0
-                self?.inputAccessoryView?.superview?.layoutIfNeeded()
-            }
-        }
         return self
     }
     

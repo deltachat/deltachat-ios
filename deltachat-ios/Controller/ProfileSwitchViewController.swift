@@ -301,15 +301,6 @@ class AccountCell: UITableViewCell {
         return stackView
     }()
 
-    private lazy var backgroundContainer: BackgroundContainer = {
-        let container = BackgroundContainer()
-        container.image = UIImage(color: DcColors.accountSwitchBackgroundColor)
-        container.contentMode = .scaleToFill
-        container.clipsToBounds = true
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupSubviews()
@@ -329,10 +320,9 @@ class AccountCell: UITableViewCell {
             accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
             mutedIndicator.constraintCenterYTo(contentView),
             mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
-            labelStackView.constraintAlignTopToAnchor(margins.topAnchor),
+            labelStackView.constraintCenterYTo(contentView),
             labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
-            labelStackView.constraintAlignBottomToAnchor(margins.bottomAnchor),
-            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor, paddingTrailing: 32, priority: .defaultHigh),
+            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor),
         ])
     }
 

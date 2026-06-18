@@ -10,7 +10,6 @@ class ChatListViewController: UITableViewController {
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
     var isArchive: Bool
-    private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
     weak var backButtonUpdateableDataSource: BackButtonUpdateable?
 
     private weak var timer: Timer?
@@ -73,13 +72,17 @@ class ChatListViewController: UITableViewController {
     private lazy var accountButtonAvatar: InitialsBadge = {
         let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
         badge.accessibilityTraits = .button
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
         badge.addGestureRecognizer(tapGestureRecognizer)
         return badge
     }()
 
     private lazy var accountButton: UIBarButtonItem = {
-        return UIBarButtonItem(customView: accountButtonAvatar)
+        let accountButton = UIBarButtonItem(customView: accountButtonAvatar)
+        if #available(iOS 26.0, *) {
+            accountButton.hidesSharedBackground = true
+        }
+        return accountButton
     }()
 
     private var editingConstraints: [NSLayoutConstraint]?
@@ -667,29 +670,15 @@ class ChatListViewController: UITableViewController {
 
     private func addEditingView() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let tabBarController = appDelegate.window?.rootViewController as? UITabBarController,
               editingConstraints == nil else { return }
 
-        if tabBarController.view.subviews.contains(tabBarController.tabBar) {
-            // UITabBar is child of UITabBarController, let edit bar cover UITabBar (moving to the bottom would place it below UITabBar)
-            tabBarController.view.addSubview(editingBar)
-            editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: tabBarController.tabBar.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: tabBarController.tabBar.trailingAnchor),
-                editingBar.topAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: tabBarController.tabBar.bottomAnchor),
-            ]
-        } else {
-            // UITabBar is somewhere else (eg. atop on newer iPad), move edit bar to the bottom
-            guard let parentView = self.navigationController?.view else { return }
-            parentView.addSubview(editingBar)
-            editingConstraints = [
-                editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
-                editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-                editingBar.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
-                editingBar.heightAnchor.constraint(equalToConstant: 72)
-            ]
-        }
+        guard let parentView = self.navigationController?.view else { return }
+        parentView.addSubview(editingBar)
+        editingConstraints = [
+            editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+            editingBar.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+        ]
         NSLayoutConstraint.activate(editingConstraints ?? [])
     }
 
@@ -742,16 +731,7 @@ class ChatListViewController: UITableViewController {
             self?.refreshUnreadIndicators()
         }
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
-        if #available(iOS 15.0, *) {
-            if let sheet = accountSwitchNavigationController.sheetPresentationController {
-                sheet.detents = [.medium(), .large()]
-            }
-        } else {
-            accountSwitchTransitioningDelegate = PartialScreenModalTransitioningDelegate(from: self, to: accountSwitchNavigationController)
-            accountSwitchNavigationController.modalPresentationStyle = .custom
-            accountSwitchNavigationController.transitioningDelegate = accountSwitchTransitioningDelegate
-        }
-
+        accountSwitchNavigationController.sheetPresentationController?.detents = [.medium(), .large()]
         self.present(accountSwitchNavigationController, animated: true)
     }
 

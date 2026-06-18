@@ -10,11 +10,6 @@ public protocol ChatEditingDelegate: AnyObject {
 }
 
 public class ChatEditingBar: UIView {
-    public func textViewDidChangeAction(with textView: InputTextView) {}
-    public func keyboardSwipeGestureAction(with gesture: UISwipeGestureRecognizer) {}
-    public func keyboardEditingEndsAction() {}
-    public func keyboardEditingBeginsAction() {}
-
     public var isEnabled: Bool {
         willSet(newValue) {
             moreButton.isEnabled = newValue
@@ -26,56 +21,56 @@ public class ChatEditingBar: UIView {
 
     weak var delegate: ChatEditingDelegate?
 
-    public lazy var moreButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        view.tintColor = .systemBlue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
-        view.imageView?.contentMode = .scaleAspectFit
-        view.accessibilityLabel = String.localized("menu_more_options")
-        return view
+    public lazy var moreButton: UIBarButtonItem = {
+        let moreButton = UIBarButtonItem(
+            image: UIImage(systemName: "ellipsis.circle"),
+            menu: UIMenu(children: [
+                UIDeferredMenuElement.uncached({ [weak self] completion in
+                    completion(self?.delegate?.onMorePressed().children ?? [])
+                })
+            ])
+        )
+        moreButton.accessibilityLabel = String.localized("menu_more_options")
+        return moreButton
     }()
 
-    private lazy var copyButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "doc.on.doc"), for: .normal)
-        view.tintColor = .systemBlue
-        view.setTitleColor(.systemBlue, for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.imageView?.contentMode = .scaleAspectFit
-        view.isUserInteractionEnabled = true
+    private lazy var copyButton: UIBarButtonItem = {
+        let view = UIBarButtonItem(
+            image: UIImage(systemName: "doc.on.doc"),
+            style: .plain,
+            target: self,
+            action: #selector(onCopyPressed)
+        )
         view.accessibilityLabel = String.localized("menu_copy_text_to_clipboard")
         return view
     }()
 
-    public lazy var deleteButton: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage(systemName: "trash"), for: .normal)
+    public lazy var deleteButton: UIBarButtonItem = {
+        let view = UIBarButtonItem(
+            image: UIImage(systemName: "trash"),
+            style: .plain,
+            target: self,
+            action: #selector(onDeletePressed)
+        )
         view.tintColor = .systemRed
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
-        view.imageView?.contentMode = .scaleAspectFit
         view.accessibilityLabel = String.localized("delete")
         return view
     }()
 
-    public lazy var forwardButton: UIButton = {
-        let view = UIButton()
-        view.tintColor = .systemBlue
-        view.setImage(UIImage(systemName: "arrowshape.turn.up.forward"), for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = true
+    public lazy var forwardButton: UIBarButtonItem = {
+        let view = UIBarButtonItem(
+            image: UIImage(systemName: "arrowshape.turn.up.forward"),
+            style: .plain,
+            target: self,
+            action: #selector(onForwardPressed)
+        )
         view.accessibilityLabel = String.localized("forward")
         return view
     }()
 
-    private lazy var mainContentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [forwardButton, copyButton, deleteButton, moreButton])
-        view.axis = .horizontal
-        view.distribution = .fillEqually
-        view.alignment = .top
-        view.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var toolbar: UIToolbar = {
+        let view = UIToolbar()
+        view.items = [forwardButton, copyButton, deleteButton, .flexibleSpace(), moreButton]
         return view
     }()
 
@@ -83,7 +78,6 @@ public class ChatEditingBar: UIView {
         isEnabled = false
         super.init(frame: frame)
         self.setupSubviews()
-        backgroundColor = .systemBackground
     }
 
     required init(coder: NSCoder) {
@@ -91,29 +85,8 @@ public class ChatEditingBar: UIView {
     }
 
     public func setupSubviews() {
-        addSubview(mainContentView)
-
-        addConstraints([
-            mainContentView.constraintAlignTopTo(self, paddingTop: 4),
-            mainContentView.constraintAlignBottomTo(self, paddingBottom: 4),
-            mainContentView.constraintAlignLeadingTo(self),
-            mainContentView.constraintAlignTrailingTo(self),
-            deleteButton.constraintHeightTo(36),
-            forwardButton.constraintHeightTo(36),
-            copyButton.constraintHeightTo(36),
-            moreButton.constraintHeightTo(36)
-        ])
-
-        copyButton.addTarget(self, action: #selector(ChatEditingBar.onCopyPressed), for: .touchUpInside)
-        forwardButton.addTarget(self, action: #selector(ChatEditingBar.onForwardPressed), for: .touchUpInside)
-        deleteButton.addTarget(self, action: #selector(ChatEditingBar.onDeletePressed), for: .touchUpInside)
-
-        moreButton.showsMenuAsPrimaryAction = true
-        moreButton.menu = UIMenu() // otherwise .menuActionTriggered is not triggered
-        moreButton.addAction(UIAction { [weak self] _ in
-            guard let self else { return }
-            moreButton.menu = delegate?.onMorePressed()
-        }, for: .menuActionTriggered)
+        addSubview(toolbar)
+        toolbar.fillSuperviewAvoidingSafeAreaAndKeyboard()
     }
 
     @objc func onCopyPressed() {
