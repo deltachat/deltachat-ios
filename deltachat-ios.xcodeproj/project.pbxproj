@@ -85,7 +85,6 @@
 		30C7D5F128F4808C0078D24C /* MessageCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C7D5EB28F47E620078D24C /* MessageCounter.swift */; };
 		30CE137828D9C40800158DF4 /* ChatDropInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */; };
 		30DAF71C275901610073C154 /* WallpaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DAF71B275901610073C154 /* WallpaperViewController.swift */; };
-		30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */; };
 		30DDCBEB28FCA21800465D22 /* ProfileSwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDCBEA28FCA21800465D22 /* ProfileSwitchViewController.swift */; };
 		30DED713292EE4280040835D /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DED712292EE4280040835D /* LogViewController.swift */; };
 		30E348E124F53772005C93D1 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E348E024F53772005C93D1 /* ImageTextCell.swift */; };
@@ -448,7 +447,6 @@
 		30C7D5EB28F47E620078D24C /* MessageCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCounter.swift; sourceTree = "<group>"; };
 		30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDropInteraction.swift; sourceTree = "<group>"; };
 		30DAF71B275901610073C154 /* WallpaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewController.swift; sourceTree = "<group>"; };
-		30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartialScreenPresentationController.swift; sourceTree = "<group>"; };
 		30DDCBEA28FCA21800465D22 /* ProfileSwitchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSwitchViewController.swift; sourceTree = "<group>"; };
 		30DED712292EE4280040835D /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		30E348E024F53772005C93D1 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
@@ -1056,7 +1054,6 @@
 				B2F899E029F96A67003797D5 /* AllMediaViewController.swift */,
 				B259D64229B771D5008FB706 /* BackupTransferViewController.swift */,
 				30DDCBEA28FCA21800465D22 /* ProfileSwitchViewController.swift */,
-				30DDCBE828FCA1F900465D22 /* PartialScreenPresentationController.swift */,
 				3015634323A003BA00E9DEF4 /* AudioRecorderController.swift */,
 				AE0D26FC1FB1FE88002FAFCE /* ChatListViewController.swift */,
 				AE9DAF0C22C1215D004C9591 /* EditContactController.swift */,
@@ -1786,7 +1783,6 @@
 				AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */,
 				AE25F09022807AD800CDEA66 /* AvatarSelectionCell.swift in Sources */,
 				D86DF20C2D30318B00141B3E /* WebxdcStoreViewController.swift in Sources */,
-				30DDCBE928FCA1FA00465D22 /* PartialScreenPresentationController.swift in Sources */,
 				30A4149724F6EFBE00EC91EB /* InfoMessageCell.swift in Sources */,
 				302B84C6239676F0001C261F /* AvatarHelper.swift in Sources */,
 				30DAF71C275901610073C154 /* WallpaperViewController.swift in Sources */,

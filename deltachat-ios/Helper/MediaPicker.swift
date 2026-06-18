@@ -44,7 +44,6 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
 
     private let dcContext: DcContext
     private weak var navigationController: UINavigationController?
-    private var accountRecorderTransitionDelegate: PartialScreenModalTransitioningDelegate?
     private var sendAsFile: Bool = false
     weak var delegate: MediaPickerDelegate?
 
@@ -57,23 +56,13 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
         let audioRecorderController = AudioRecorderController(dcContext: dcContext)
         audioRecorderController.delegate = self
         let audioRecorderNavController = UINavigationController(rootViewController: audioRecorderController)
-
-        if #available(iOS 15.0, *) {
-            if let sheet = audioRecorderNavController.sheetPresentationController {
-                if #available(iOS 16.0, *) {
-                    let customDetent = UISheetPresentationController.Detent.custom(identifier: .init("thirtyPercent")) { context in
-                        return context.maximumDetentValue * 0.3
-                    }
-                    sheet.detents = [customDetent]
-                } else {
-                    sheet.detents = [.medium()]
-                }
-            }
-        } else {
-            if let shownViewController = navigationController?.visibleViewController {
-                accountRecorderTransitionDelegate = PartialScreenModalTransitioningDelegate(from: shownViewController, to: audioRecorderNavController)
-                audioRecorderNavController.modalPresentationStyle = .custom
-                audioRecorderNavController.transitioningDelegate = accountRecorderTransitionDelegate
+        if let sheet = audioRecorderNavController.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(identifier: .init("thirtyPercent")) { context in
+                    context.maximumDetentValue * 0.3
+                }]
+            } else {
+                sheet.detents = [.medium()]
             }
         }
 
@@ -205,9 +194,7 @@ extension MediaPicker: AudioRecorderControllerDelegate {
         self.delegate?.onVoiceMessageRecorded(url: url)
     }
 
-    func didClose() {
-        accountRecorderTransitionDelegate = nil
-    }
+    func didClose() {}
 }
 
 extension MediaPicker: UIDocumentPickerDelegate {

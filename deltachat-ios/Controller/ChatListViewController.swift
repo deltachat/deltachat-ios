@@ -10,7 +10,6 @@ class ChatListViewController: UITableViewController {
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
     var isArchive: Bool
-    private var accountSwitchTransitioningDelegate: PartialScreenModalTransitioningDelegate!
     weak var backButtonUpdateableDataSource: BackButtonUpdateable?
 
     private weak var timer: Timer?
@@ -73,7 +72,7 @@ class ChatListViewController: UITableViewController {
     private lazy var accountButtonAvatar: InitialsBadge = {
         let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
         badge.accessibilityTraits = .button
-        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
         badge.addGestureRecognizer(tapGestureRecognizer)
         return badge
     }()
@@ -732,16 +731,7 @@ class ChatListViewController: UITableViewController {
             self?.refreshUnreadIndicators()
         }
         let accountSwitchNavigationController = UINavigationController(rootViewController: viewController)
-        if #available(iOS 15.0, *) {
-            if let sheet = accountSwitchNavigationController.sheetPresentationController {
-                sheet.detents = [.medium(), .large()]
-            }
-        } else {
-            accountSwitchTransitioningDelegate = PartialScreenModalTransitioningDelegate(from: self, to: accountSwitchNavigationController)
-            accountSwitchNavigationController.modalPresentationStyle = .custom
-            accountSwitchNavigationController.transitioningDelegate = accountSwitchTransitioningDelegate
-        }
-
+        accountSwitchNavigationController.sheetPresentationController?.detents = [.medium(), .large()]
         self.present(accountSwitchNavigationController, animated: true)
     }
 
