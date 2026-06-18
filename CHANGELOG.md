@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: smaller input bar size for new liquid glass design.
+
 ## v2.53.0
 2026-06
 
