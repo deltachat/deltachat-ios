@@ -12,7 +12,7 @@ struct InputBarView: View {
     var updateIntrinsicContentSize: () -> Void
 
     var buttonSize: CGFloat {
-        isLiquidGlassEnabled ? 54 : 36
+        isLiquidGlassEnabled ? 42 : 36
     }
 
     var body: some View {
@@ -57,6 +57,7 @@ struct InputBarView: View {
                         }
                     }
                     .padding(.horizontal, 10)
+                    .padding(.vertical, -6)
                     .modifier { glassEffect(view: $0, minHeight: buttonSize, interactive: true) }
                     .frame(maxHeight: 150, alignment: .center)
                     .onTapGesture {
