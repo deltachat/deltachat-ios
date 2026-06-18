@@ -40,8 +40,6 @@ class ChatListEditingBar: UIView {
         var configuration = UIButton.Configuration.plain()
         configuration.imagePadding = 10
         button.configuration = configuration
-        // TODO: test if i need this
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         button.addTarget(self, action: #selector(archiveButtonPressed), for: .touchUpInside)
         return UIBarButtonItem(customView: button)
     }()
