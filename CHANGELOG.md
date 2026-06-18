@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Allow voice and audio messages to continue playing in the background
+- Improve message fading behind the input bar on iOS 26
 
 
 ## v2.53.0
