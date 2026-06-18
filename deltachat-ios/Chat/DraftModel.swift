@@ -123,7 +123,7 @@ public class DraftModel: ObservableObject {
         guard canSend() else { return }
         if let sendEditRequestFor {
             dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
-            // doResignFirstResponder = true // TODO: Can we move focusstate into the model? otherwise just end editing in general
+            isFieldFocused = false
         } else {
             let draftMsg = draftMsg ?? dcContext.newMessage(viewType: DC_MSG_TEXT)
             draftMsg.text = trimmedText
