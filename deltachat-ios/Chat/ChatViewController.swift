@@ -87,6 +87,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet {
             guard toolbarHeight != oldValue else { return }
             setTableViewContentInset()
+            updateTableViewContainerMask()
         }
     }
 
@@ -501,25 +502,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+        updateTableViewContainerMask()
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
 
-        if #available(iOS 26, *) {
-            // Custom tableView.topEdgeEffect
-            let mask = CAGradientLayer()
-            mask.frame = view.frame
-            mask.colors = [
-                UIColor(white: 1, alpha: 0).cgColor,
-                UIColor(white: 1, alpha: 0.3).cgColor,
-                UIColor(white: 1, alpha: 1).cgColor,
-            ]
-            mask.startPoint = CGPoint(x: 0.5, y: 0)
-            mask.endPoint = CGPoint(x: 0.5, y: view.safeAreaInsets.top / view.frame.height)
-            tableViewContainer.layer.mask = mask
-        }
+        updateTableViewContainerMask()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -542,6 +532,54 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             tableView.contentInset.top = topInset
         }
+    }
+
+    private func updateTableViewContainerMask() {
+        let bounds = tableViewContainer.bounds
+        guard bounds.height > 0 else { return }
+
+        let mask = CAGradientLayer()
+        mask.frame = bounds
+        mask.startPoint = CGPoint(x: 0.5, y: 0)
+        mask.endPoint = CGPoint(x: 0.5, y: 1)
+
+        var stops: [(location: CGFloat, alpha: CGFloat)] = []
+        func appendStop(location: CGFloat, alpha: CGFloat) {
+            let clampedLocation = min(max(location, 0), 1)
+            if let lastLocation = stops.last?.location, clampedLocation < lastLocation {
+                return
+            }
+            stops.append((clampedLocation, alpha))
+        }
+
+        if #available(iOS 26, *), view.safeAreaInsets.top > 0 {
+            // Custom tableView.topEdgeEffect.
+            let topFadeEnd = min(view.safeAreaInsets.top / bounds.height, 1)
+            appendStop(location: 0, alpha: 0)
+            appendStop(location: topFadeEnd * 0.6, alpha: 0.3)
+            appendStop(location: topFadeEnd, alpha: 1)
+        } else {
+            appendStop(location: 0, alpha: 1)
+        }
+
+        if #available(iOS 26, *) {
+            let bottomCoveredHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
+            if bottomCoveredHeight > 0 {
+                let bottomFadeStart = max((bounds.height - bottomCoveredHeight) / bounds.height, 0)
+                let bottomFadeMid = bottomFadeStart + ((1 - bottomFadeStart) * 0.4)
+                appendStop(location: bottomFadeStart, alpha: 1)
+                appendStop(location: bottomFadeMid, alpha: 0.3)
+                appendStop(location: 1, alpha: 0.1)
+            } else {
+                appendStop(location: 1, alpha: 1)
+            }
+        } else {
+            appendStop(location: 1, alpha: 1)
+        }
+
+        mask.colors = stops.map { UIColor(white: 1, alpha: $0.alpha).cgColor }
+        mask.locations = stops.map { NSNumber(value: Float($0.location)) }
+        tableViewContainer.layer.mask = mask
     }
 
     // MARK: - Notifications
