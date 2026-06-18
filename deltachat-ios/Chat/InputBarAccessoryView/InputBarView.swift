@@ -12,7 +12,7 @@ struct InputBarView: View {
     var updateIntrinsicContentSize: () -> Void
 
     var buttonSize: CGFloat {
-        isLiquidGlassEnabled ? 54 : 36
+        isLiquidGlassEnabled ? 42 : 36
     }
 
     var body: some View {
@@ -45,7 +45,7 @@ struct InputBarView: View {
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
-                        .padding(4)
+                        .padding(2)
                 }).frame(height: buttonSize)
                 InputBarTextView(text: $draft.text, imagePasteDelegate: chatViewController)
                     .focused($textEditorFocus)
@@ -57,7 +57,7 @@ struct InputBarView: View {
                         }
                     }
                     .padding(.horizontal, 10)
-                    .modifier { glassEffect(view: $0, minHeight: buttonSize, interactive: true) }
+                    .modifier { glassEffect(view: $0, padding: 2, minHeight: buttonSize, interactive: true) }
                     .frame(maxHeight: 150, alignment: .center)
                     .onTapGesture {
                         textEditorFocus = true
@@ -70,7 +70,7 @@ struct InputBarView: View {
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
-                        .padding(4)
+                        .padding(2)
                 })
                 .frame(height: buttonSize)
                 .disabled(!draft.canSend())
@@ -168,10 +168,10 @@ struct InputBarView: View {
         }
     }
 
-    @ViewBuilder func glassEffect<V: View>(view: V, minHeight: CGFloat? = nil, interactive: Bool) -> some View {
+    @ViewBuilder func glassEffect<V: View>(view: V, padding: CGFloat = 8, minHeight: CGFloat? = nil, interactive: Bool) -> some View {
         if #available(iOS 26.0, *) {
-            view.padding(8)
-                .frame(minHeight: minHeight)
+            view.padding(padding)
+                .frame(minHeight: minHeight, alignment: .center)
                 .glassEffect(.regular.interactive(interactive), in: .rect(cornerRadius: buttonSize / 2, style: .continuous))
         } else {
             view
