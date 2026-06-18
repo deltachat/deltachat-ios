@@ -2660,7 +2660,7 @@ extension ChatViewController: ChatContactRequestDelegate {
         dcContext.acceptChat(chatId: chatId)
         let chat = dcContext.getChat(chatId: chatId)
         if chat.isMailinglist {
-            toolbarContainerView.subviews.forEach { $0.removeFromSuperview() }
+            removeToolbar()
         } else {
             configureUIForWriting()
         }
