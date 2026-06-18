@@ -809,6 +809,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
+        assert(Thread.isMainThread)
         if searchController.isActive {
             removeToolbar()
             toolbarContainerView.addSubview(searchAccessoryBar)
@@ -817,17 +818,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             removeToolbar()
             toolbarContainerView.addSubview(editingBar)
             editingBar.fillSuperview()
-            if #unavailable(iOS 26) {
-                // Since the toolbar items of the editing bar can be updated while the
-                // toolbar was not on the screen the UIToolbar might have updated its
-                // layout to not extend into the safe area so we need to reload it once
-                // it is added to the view hierarchy again
-                editingBar.layoutSubviews()
-            }
         } else if dcChat.canSend {
             configureMessageInputBar()
         } else {
             removeToolbar()
+        }
+        if #unavailable(iOS 26) {
+            // A UIToolbar might have updated its layout to not extend into the
+            // safe area so we need to reload it once it is added to the view
+            // hierarchy again.
+            toolbarContainerView.layoutSubviews()
         }
     }
 
@@ -1273,6 +1273,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.searchController = self.searchController
         DispatchQueue.main.async { [weak self] in
             self?.searchController.isActive = true
+            // on slow phones this can fail on the first try so we just call it again
+            if self?.searchController.isActive == false {
+                self?.searchPressed()
+            }
         }
     }
 
@@ -2629,16 +2633,6 @@ extension ChatViewController: UISearchResultsUpdating {
 
 // MARK: - UISearchBarDelegate
 extension ChatViewController: UISearchBarDelegate {
-
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        configureDraftArea(draft: draft)
-        return true
-    }
-
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        configureDraftArea(draft: draft)
-    }
-
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         cancelSearch()
     }
@@ -2647,7 +2641,16 @@ extension ChatViewController: UISearchBarDelegate {
 // MARK: - UISearchControllerDelegate
 extension ChatViewController: UISearchControllerDelegate {
     func didPresentSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.becomeFirstResponder()
+        configureDraftArea(draft: draft)
+        if !searchController.searchBar.becomeFirstResponder() {
+            DispatchQueue.main.async {
+                searchController.searchBar.becomeFirstResponder()
+            }
+        }
+    }
+
+    func didDismissSearchController(_ searchController: UISearchController) {
+        configureDraftArea(draft: draft)
     }
 }
 
