@@ -3,6 +3,7 @@
 ## v2.53.0
 2026-06
 
+- Add spinner while connecting/updating status
 - Add outgoing ringing sound and call status
 - Consistent outgoing image quality between images with different aspect ratio
 - Ignore blocked contacts attemting scanning your QR code

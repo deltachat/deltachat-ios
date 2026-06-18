@@ -14,14 +14,42 @@ class ChatListViewController: UITableViewController {
 
     private weak var timer: Timer?
 
-    private lazy var titleView: UILabel = {
-        let view = UILabel()
-        let navTapGesture = UITapGestureRecognizer(target: self, action: #selector(onNavigationTitleTapped))
-        view.addGestureRecognizer(navTapGesture)
-        view.isUserInteractionEnabled = true
-        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    private lazy var titleView: UIControl = {
+        let view = UIControl()
+        view.addTarget(self, action: #selector(onNavigationTitleTapped), for: .touchUpInside)
         view.accessibilityTraits = .header
         return view
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        return label
+    }()
+
+    private lazy var connectingSpinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.hidesWhenStopped = true
+        spinner.isAccessibilityElement = false
+        return spinner
+    }()
+
+    private lazy var titleStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [connectingSpinner, titleLabel])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 6
+        stackView.isUserInteractionEnabled = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: titleView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: titleView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: titleView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: titleView.bottomAnchor)
+        ])
+        return stackView
     }()
 
     private lazy var searchController: UISearchController = {
@@ -741,22 +769,27 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateTitle() {
+        _ = titleStackView
         titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
             // multi-select is not allowed during forwarding
-            titleView.text = RelayHelper.shared.dialogTitle
+            updateTitleText(RelayHelper.shared.dialogTitle, showsSpinner: false)
             navigationItem.setLeftBarButton(isArchive ? nil : accountButton, animated: false)
             navigationItem.setRightBarButtonItems([cancelButton], animated: true)
             updateAccountButton()
         } else if isArchive {
-            titleView.text = String.localized("chat_archived_label")
+            updateTitleText(String.localized("chat_archived_label"), showsSpinner: false)
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
                 navigationItem.setRightBarButtonItems([markReadButton], animated: true)
             }
             updateMarkReadButton()
         } else {
-            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
+            let connectivity = dcContext.getConnectivity()
+            updateTitleText(
+                DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats")),
+                showsSpinner: connectivity >= DC_CONNECTIVITY_CONNECTING && connectivity < DC_CONNECTIVITY_CONNECTED
+            )
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(accountButton, animated: false)
                 updateAccountButton()
@@ -768,13 +801,26 @@ class ChatListViewController: UITableViewController {
                     navigationItem.setRightBarButtonItems([newButton, proxyShieldButton], animated: true)
                 }
 
-                if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
+                if connectivity >= DC_CONNECTIVITY_CONNECTED {
                     titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
                 }
             }
         }
         titleView.isUserInteractionEnabled = !tableView.isEditing
-        titleView.sizeToFit()
+    }
+
+    private func updateTitleText(_ text: String, showsSpinner: Bool) {
+        titleLabel.text = text
+        titleView.accessibilityLabel = text
+        connectingSpinner.isHidden = !showsSpinner
+        titleView.frame.size = titleStackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        titleView.layoutIfNeeded()
+
+        if showsSpinner {
+            connectingSpinner.startAnimating()
+        } else {
+            connectingSpinner.stopAnimating()
+        }
     }
 
     func handleMultiSelectionTitle() -> Bool {
@@ -783,7 +829,7 @@ class ChatListViewController: UITableViewController {
         }
         titleView.accessibilityHint = nil
         let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
-        titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
+        updateTitleText(String.localized(stringID: "n_selected", parameter: cnt), showsSpinner: false)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
         navigationItem.setRightBarButtonItems([markReadButton], animated: true)
         updateMarkReadButton()
