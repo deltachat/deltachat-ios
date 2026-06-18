@@ -301,15 +301,6 @@ class AccountCell: UITableViewCell {
         return stackView
     }()
 
-    private lazy var backgroundContainer: BackgroundContainer = {
-        let container = BackgroundContainer()
-        container.image = UIImage(color: DcColors.accountSwitchBackgroundColor)
-        container.contentMode = .scaleToFill
-        container.clipsToBounds = true
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         setupSubviews()
