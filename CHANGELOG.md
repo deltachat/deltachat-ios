@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Allow voice and audio messages to continue playing in the background
+
+
 ## v2.53.0
 2026-06
 

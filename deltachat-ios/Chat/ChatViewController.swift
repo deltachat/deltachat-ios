@@ -493,7 +493,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidDisappear(animated)
         AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
-        audioController.stopAnyOngoingPlaying()
         if #available(iOS 26.0, *), let previousValue = wasInteractiveContentPopGestureRecognizerEnabled {
             navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = previousValue
         }
@@ -1334,6 +1333,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         confirmationAlert(title: title, actionTitle: String.localized("delete_for_me"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
             guard let self else { return }
+            AudioController.stopPlaybackForDeletedChat(chatId: self.chatId, contextId: self.dcContext.id)
             self.dcContext.deleteReferencesAndChat(chatId: self.chatId)
             self.navigationController?.popViewController(animated: true)
         })
@@ -1366,6 +1366,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func askToDeleteMessages(ids: [Int]) {
         func deleteInUi(ids: [Int]) {
+            AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
             if #available(iOS 17.0, *) {
                 ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }
@@ -2091,6 +2092,7 @@ extension ChatViewController {
 
     func showWebxdcViewFor(message: DcMsg, href: String? = nil) {
         let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id, href: href)
+        AudioController.stopBackgroundPlayback()
         navigationController?.pushViewController(webxdcViewController, animated: true)
     }
 
@@ -2098,6 +2100,7 @@ extension ChatViewController {
         let msgIds = dcContext.getChatMedia(chatId: chatId, messageType: Int32(message.type), messageType2: 0, messageType3: 0)
         let index = msgIds.firstIndex(of: message.id) ?? 0
 
+        stopMessageAudioBeforeSoundPreview(for: Int32(message.type))
         navigationController?.pushViewController(PreviewController(dcContext: dcContext, type: .multi(msgIds, index)), animated: true)
     }
 
@@ -2526,6 +2529,7 @@ extension ChatViewController {
                     previewController.setEditing(true, animated: true)
                     previewController.delegate = self
                 }
+                stopMessageAudioBeforeSoundPreview(for: draft.viewType)
                 navigationController?.pushViewController(previewController, animated: true)
             }
         }
@@ -2694,6 +2698,23 @@ extension ChatViewController: QLPreviewControllerDelegate {
 extension ChatViewController: AudioControllerDelegate {
     func onAudioPlayFailed() {
         self.logAndAlert(error: String.localized("cannot_play_audio_file"))
+    }
+}
+
+// MARK: - Audio Playback
+private extension ChatViewController {
+    /// Stops currently playing chat audio before opening a media preview that may play audio itself.
+    ///
+    /// Call this before presenting previews for audio-like attachments, videos, and files so
+    /// an existing voice/audio message does not keep playing over the preview playback.
+    func stopMessageAudioBeforeSoundPreview(for viewType: Int32?) {
+        guard let viewType else { return }
+        switch viewType {
+        case DC_MSG_AUDIO, DC_MSG_VOICE, DC_MSG_VIDEO, DC_MSG_FILE:
+            AudioController.stopBackgroundPlayback()
+        default:
+            break
+        }
     }
 }
 
