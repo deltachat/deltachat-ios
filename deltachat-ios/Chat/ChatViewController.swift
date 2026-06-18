@@ -1333,6 +1333,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         confirmationAlert(title: title, actionTitle: String.localized("delete_for_me"), actionStyle: .destructive,
                           actionHandler: { [weak self] _ in
             guard let self else { return }
+            AudioController.stopPlaybackForDeletedChat(chatId: self.chatId, contextId: self.dcContext.id)
             self.dcContext.deleteReferencesAndChat(chatId: self.chatId)
             self.navigationController?.popViewController(animated: true)
         })
@@ -1365,6 +1366,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func askToDeleteMessages(ids: [Int]) {
         func deleteInUi(ids: [Int]) {
+            AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
             if #available(iOS 17.0, *) {
                 ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }

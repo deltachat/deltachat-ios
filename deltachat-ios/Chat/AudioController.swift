@@ -96,6 +96,25 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
     }
 
+    static func stopPlaybackForDeletedChat(chatId: Int, contextId: Int) {
+        stopPlaybackSynchronouslyOnMain {
+            guard let controller = backgroundPlaybackController,
+                  controller.dcContext.id == contextId,
+                  controller.chatId == chatId else { return }
+            controller.stopAnyOngoingPlaying()
+        }
+    }
+
+    static func stopPlaybackForDeletedMessages(messageIds: [Int], contextId: Int) {
+        stopPlaybackSynchronouslyOnMain {
+            guard let controller = backgroundPlaybackController,
+                  controller.dcContext.id == contextId,
+                  let playingMessageId = controller.playingMessage?.id,
+                  messageIds.contains(playingMessageId) else { return }
+            controller.stopAnyOngoingPlaying()
+        }
+    }
+
     /// - Parameters:
     ///   - cell: The `NewAudioMessageCell` that needs to be configure.
     ///   - message: The `DcMsg` that configures the cell.
