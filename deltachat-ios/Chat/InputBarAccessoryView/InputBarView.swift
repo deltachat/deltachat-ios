@@ -81,11 +81,9 @@ struct InputBarView: View {
         .onChange(of: draft.quoteMessage?.id, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.attachment, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.isFieldFocused) {
-            print("draft.isFieldFocused changed", $0)
             textEditorFocus = $0
         }
         .onChange(of: textEditorFocus) {
-            print("textEditorFocus changed", $0)
             if draft.isFieldFocused != $0 {
                 draft.isFieldFocused = $0
             }
