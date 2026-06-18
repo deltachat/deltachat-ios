@@ -2684,7 +2684,6 @@ extension ChatViewController: QLPreviewControllerDelegate {
     }
 
     func previewController(_ controller: QLPreviewController, didUpdateContentsOf previewItem: QLPreviewItem) {
-        assert(!Thread.isMainThread, "if this triggers that means we don't need to switch to main here")
         DispatchQueue.main.async { [weak self] in
             self?.draft.reloadAttachmentPreview()
         }
