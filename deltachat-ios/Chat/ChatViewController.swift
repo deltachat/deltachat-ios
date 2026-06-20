@@ -49,6 +49,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var tableViewContainer: UIView = UIView()
+    /// Reused for custom edge fades to avoid allocating a new mask layer on every layout pass.
     private let edgeEffectMask = CAGradientLayer()
     private let edgeEffectFadeExtension: CGFloat = 24
     private let edgeEffectDimmingGradients = (top: CAGradientLayer(), bottom: CAGradientLayer())
@@ -507,6 +508,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let newToolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+        // Avoid updating edge effects twice when toolbarHeight.didSet already handles the change.
         if toolbarHeight != newToolbarHeight {
             toolbarHeight = newToolbarHeight
         } else {
