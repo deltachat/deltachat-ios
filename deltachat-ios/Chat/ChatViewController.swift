@@ -583,7 +583,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         edgeEffectDimmingGradients.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
         edgeEffectDimmingGradients.top.startPoint = CGPoint(x: 0.5, y: 0)
         edgeEffectDimmingGradients.top.endPoint = CGPoint(x: 0.5, y: 1)
-        edgeEffectDimmingGradients.top.colors = [0.65, 0.30, 0].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
+        edgeEffectDimmingGradients.top.colors = [0.70, 0.55, 0].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
         edgeEffectDimmingGradients.top.locations = [0, 0.6, 1]
 
         let fadeEnd = min(height / bounds.height, 1)
