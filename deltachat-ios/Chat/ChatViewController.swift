@@ -49,6 +49,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var tableViewContainer: UIView = UIView()
+    private let readabilityFadeExtension: CGFloat = 24
+    private let readabilityDimmingGradients = (top: CAGradientLayer(), bottom: CAGradientLayer())
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -87,7 +89,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet {
             guard toolbarHeight != oldValue else { return }
             setTableViewContentInset()
-            updateTableViewContainerMask()
+            updateEdgeEffects()
         }
     }
 
@@ -309,6 +311,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if #available(iOS 26.0, *) {
             tableView.topEdgeEffect.isHidden = true
             tableView.bottomEdgeEffect.isHidden = true
+            view.layer.addSublayer(readabilityDimmingGradients.top)
+            view.layer.addSublayer(readabilityDimmingGradients.bottom)
         }
         view.addSubview(contextMenuPreviewContainer)
         contextMenuPreviewContainer.fillSuperview()
@@ -502,14 +506,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
-        updateTableViewContainerMask()
+        updateEdgeEffects()
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
-
-        updateTableViewContainerMask()
+        updateEdgeEffects()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -534,7 +537,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func updateTableViewContainerMask() {
+    private func updateEdgeEffects() {
         let bounds = tableViewContainer.bounds
         guard bounds.height > 0 else { return }
 
@@ -553,27 +556,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         if #available(iOS 26, *), view.safeAreaInsets.top > 0 {
-            // Custom tableView.topEdgeEffect.
-            let topFadeEnd = min(view.safeAreaInsets.top / bounds.height, 1)
-            appendStop(location: 0, alpha: 0)
-            appendStop(location: topFadeEnd * 0.6, alpha: 0.3)
-            appendStop(location: topFadeEnd, alpha: 1)
+            updateTopEdgeEffect(bounds: bounds, appendStop: appendStop)
         } else {
             appendStop(location: 0, alpha: 1)
         }
 
         if #available(iOS 26, *) {
-            // Custom tableView.bottomEdgeEffect
-            let bottomCoveredHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
-            if bottomCoveredHeight > 0 {
-                let bottomFadeStart = max((bounds.height - bottomCoveredHeight) / bounds.height, 0)
-                let bottomFadeMid = bottomFadeStart + ((1 - bottomFadeStart) * 0.4)
-                appendStop(location: bottomFadeStart, alpha: 1)
-                appendStop(location: bottomFadeMid, alpha: 0.3)
-                appendStop(location: 1, alpha: 0.1)
-            } else {
-                appendStop(location: 1, alpha: 1)
-            }
+            updateBottomEdgeEffect(bounds: bounds, appendStop: appendStop)
         } else {
             appendStop(location: 1, alpha: 1)
         }
@@ -581,6 +570,40 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         mask.colors = stops.map { UIColor(white: 1, alpha: $0.alpha).cgColor }
         mask.locations = stops.map { NSNumber(value: Float($0.location)) }
         tableViewContainer.layer.mask = mask
+    }
+
+    private func updateTopEdgeEffect(bounds: CGRect, appendStop: (CGFloat, CGFloat) -> Void) {
+        let height = view.safeAreaInsets.top + readabilityFadeExtension
+        readabilityDimmingGradients.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
+        readabilityDimmingGradients.top.startPoint = CGPoint(x: 0.5, y: 0)
+        readabilityDimmingGradients.top.endPoint = CGPoint(x: 0.5, y: 1)
+        readabilityDimmingGradients.top.colors = [0.65, 0.30, 0].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
+        readabilityDimmingGradients.top.locations = [0, 0.6, 1]
+
+        let fadeEnd = min(height / bounds.height, 1)
+        appendStop(0, 0)
+        appendStop(fadeEnd * 0.7, 0.15)
+        appendStop(fadeEnd, 0.9)
+    }
+
+    private func updateBottomEdgeEffect(bounds: CGRect, appendStop: (CGFloat, CGFloat) -> Void) {
+        let height = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom) + readabilityFadeExtension / 2
+        readabilityDimmingGradients.bottom.frame = CGRect(
+            x: 0,
+            y: view.bounds.height - height,
+            width: view.bounds.width,
+            height: height
+        )
+        readabilityDimmingGradients.bottom.startPoint = CGPoint(x: 0.5, y: 0)
+        readabilityDimmingGradients.bottom.endPoint = CGPoint(x: 0.5, y: 1)
+        readabilityDimmingGradients.bottom.colors = [0, 0.30, 0.65].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
+        readabilityDimmingGradients.bottom.locations = [0, 0.4, 1]
+
+        let fadeStart = max((bounds.height - height) / bounds.height, 0)
+        let fadeMid = fadeStart + ((1 - fadeStart) * 0.4)
+        appendStop(fadeStart, 1)
+        appendStop(fadeMid, 0.3)
+        appendStop(1, 0.1)
     }
 
     // MARK: - Notifications
@@ -999,6 +1022,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
+        updateEdgeEffects()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
