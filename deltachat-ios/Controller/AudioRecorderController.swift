@@ -275,9 +275,11 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
     private func configureAudioSessionForRecording() throws {
         let session = AVAudioSession.sharedInstance()
         if previousAudioSessionConfiguration == nil {
-            previousAudioSessionConfiguration = AudioSessionConfiguration(category: session.category,
-                                                                         mode: session.mode,
-                                                                         options: session.categoryOptions)
+            previousAudioSessionConfiguration = AudioSessionConfiguration(
+                category: session.category,
+                mode: session.mode,
+                options: session.categoryOptions
+            )
         }
         try session.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothHFP])
         try session.setActive(true)
