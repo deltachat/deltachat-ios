@@ -249,6 +249,14 @@ class ChatListViewModel: NSObject {
         }
     }
 
+    func markFreshSelectedChats(in indexPaths: [IndexPath]?) {
+        let chatIds = chatIdsFor(indexPaths: indexPaths)
+        for chatId in chatIds {
+            dcContext.markfreshChat(chatId: chatId)
+        }
+        NotificationManager.updateBadgeCounters() // we do not get an INCOMING_MSG event, updated manually
+    }
+
     func archiveChatToggle(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         let isArchivedBefore = chat.isArchived

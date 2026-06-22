@@ -1069,6 +1069,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
                 viewModel.markReadSelectedChats(in: tableView.indexPathsForSelectedRows)
                 setLongTapEditing(false)
             })
+        } else {
+            let markUnreadImage = if #available(iOS 16, *) { "message.badge" } else { "circle" }
+            actions.append(UIAction(title: String.localized("mark_as_unread"), image: UIImage(systemName: markUnreadImage)) { [weak self] _ in
+                guard let self else { return }
+                viewModel.markFreshSelectedChats(in: tableView.indexPathsForSelectedRows)
+                setLongTapEditing(false)
+            })
         }
 
         if viewModel.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) {
