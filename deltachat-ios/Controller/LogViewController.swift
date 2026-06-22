@@ -133,26 +133,24 @@ public class LogViewController: UIViewController {
     public func getLogLines() -> String {
         var log = ""
 
-        if #available(iOS 15.0, *) {
-            do {
-                let store = try OSLogStore(scope: .currentProcessIdentifier)
-                let position = store.position(timeIntervalSinceLatestBoot: 1)
-                var entries: [String] = []
-                entries = try store
-                    .getEntries(at: position)
-                    .compactMap { $0 as? OSLogEntryLog }
-                    .filter { $0.subsystem == DcLogger.subsystem }
-                    .map { "[\($0.date.formatted())] \($0.composedMessage)" }
-                if entries.isEmpty {
-                    log += "\nEmpty log returned, maybe running in a Simulator."
-                } else {
-                    for entry in entries {
-                        log += "\n" + entry
-                    }
+        do {
+            let store = try OSLogStore(scope: .currentProcessIdentifier)
+            let position = store.position(timeIntervalSinceLatestBoot: 1)
+            var entries: [String] = []
+            entries = try store
+                .getEntries(at: position)
+                .compactMap { $0 as? OSLogEntryLog }
+                .filter { $0.subsystem == DcLogger.subsystem }
+                .map { "[\($0.date.formatted())] \($0.composedMessage)" }
+            if entries.isEmpty {
+                log += "\nEmpty log returned, maybe running in a Simulator."
+            } else {
+                for entry in entries {
+                    log += "\n" + entry
                 }
-            } catch {
-                log += "\nCannot get log: \(error.localizedDescription)"
             }
+        } catch {
+            log += "\nCannot get log: \(error.localizedDescription)"
         }
 
         log += "\n\nTo get the full log, use Console.app on a Mac."

@@ -26,7 +26,7 @@ class EmptyStateLabel: PaddingTextView {
         centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         let centerYConstraint = centerYAnchor.constraint(equalTo: safeArea.centerYAnchor)
         centerYConstraint.isActive = true
-        if #available(iOS 15.0, *), evadeKeyboard {
+        if evadeKeyboard {
             centerYConstraint.priority = .defaultHigh
             bottomAnchor.constraint(lessThanOrEqualTo: parentView.keyboardLayoutGuide.topAnchor, constant: -40).isActive = true
         }

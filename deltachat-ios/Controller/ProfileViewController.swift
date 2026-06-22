@@ -318,7 +318,7 @@ class ProfileViewController: UITableViewController {
                 let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
                 let action = action("ephemeral_messages", "stopwatch", showEphemeralController)
                 action.state = ephemeralTimer > 0 ? .on : .off
-                if ephemeralTimer > 0, #available(iOS 15.0, *) {
+                if ephemeralTimer > 0 {
                     action.subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
                 }
                 actions.append(action)
@@ -340,17 +340,15 @@ class ProfileViewController: UITableViewController {
 
             if let chat {
                 if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
-                    let image = if #available(iOS 15.0, *) { "rectangle.portrait.on.rectangle.portrait" } else { "square.on.square" }
-                    moreOptions.append(action("clone_chat", image, showCloneChatController))
+                    moreOptions.append(action("clone_chat", "rectangle.portrait.on.rectangle.portrait" , showCloneChatController))
                 }
 
                 let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
                 moreOptions.append(action("clear_chat", clearImage, attributes: [.destructive], showClearConfirmationAlert))
 
                 if chat.mustLeaveBeforeDelete(dcContext) {
-                    let leaveImage = if #available(iOS 15.0, *) { "rectangle.portrait.and.arrow.right" } else { "arrow.right.square" }
                     let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
-                    moreOptions.append(action(leaveText, leaveImage, attributes: [.destructive], { [weak self] in
+                    moreOptions.append(action(leaveText, "rectangle.portrait.and.arrow.right", attributes: [.destructive], { [weak self] in
                         self?.showLeaveAlert(leaveText)
                     }))
                 } else {

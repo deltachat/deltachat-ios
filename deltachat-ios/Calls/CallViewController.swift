@@ -266,9 +266,7 @@ class CallViewController: UIViewController {
                 do {
                     let offer = try await peerConnection.offer(for: RTCMediaConstraints.default)
                     try await peerConnection.setLocalDescription(offer)
-                    if #available(iOS 15.0, *) {
-                        _ = await $gatheredEnoughIce.values.first(where: \.self)
-                    }
+                    _ = await $gatheredEnoughIce.values.first(where: \.self)
                     if call.messageId == nil {
                         let sdp = peerConnection.localDescription?.sdp ?? offer.sdp
                         let dcContext = DcAccounts.shared.get(id: call.contextId)
@@ -289,9 +287,7 @@ class CallViewController: UIViewController {
                 try await peerConnection.setRemoteDescription(.init(type: .offer, sdp: placeCallInfo))
                 let answer = try await peerConnection.answer(for: RTCMediaConstraints.default)
                 try await peerConnection.setLocalDescription(answer)
-                if #available(iOS 15.0, *) {
-                    _ = await $gatheredEnoughIce.values.first(where: \.self)
-                }
+                _ = await $gatheredEnoughIce.values.first(where: \.self)
                 guard let messageId = call.messageId else { return logger.error("errAcceptCall: messageId not set") }
                 let sdp = peerConnection.localDescription?.sdp ?? answer.sdp
                 logger.info("acceptCall: " + sdp)

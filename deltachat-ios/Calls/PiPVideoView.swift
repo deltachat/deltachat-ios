@@ -36,7 +36,6 @@ class PiPVideoView: UIView {
 
     /// - Note: Returns nil on iOS 14
     lazy var pipController: AVPictureInPictureController? = {
-        guard #available(iOS 15.0, *) else { return nil }
         let pipController = AVPictureInPictureController(contentSource: .init(
             activeVideoCallSourceView: videoCallSourceView,
             contentViewController: AVPictureInPictureVideoCallViewController()
@@ -82,7 +81,6 @@ class PiPVideoView: UIView {
 
 extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
-        guard #available(iOS 15.0, *) else { return }
         let pipVC = pictureInPictureController.contentSource?.activeVideoCallContentViewController
         pipView.removeFromSuperview()
         pipVC?.view.addSubview(pipView)
@@ -123,7 +121,6 @@ extension PiPVideoView: RTCVideoRenderer {
     }
 
     private func setPiPPreferredContentSize(_ size: CGSize) {
-        guard #available(iOS 15.0, *) else { return }
         pipController?.contentSource?.activeVideoCallContentViewController.preferredContentSize = size
     }
 

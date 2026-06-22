@@ -396,9 +396,7 @@ class WebxdcViewController: WebViewViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if #available(iOS 15.0, *) {
-            webView.setAllMediaPlaybackSuspended(true)
-        }
+        webView.setAllMediaPlaybackSuspended(true)
     }
 
     private func loadRestrictedHtml() {
@@ -476,18 +474,13 @@ class WebxdcViewController: WebViewViewController {
             return actions
         }
 
-        if #available(iOS 15.0, *) {
-            // uncached() allows us to update the menu easily; needed for widget state.
-            // UIDeferredMenuElement speeds up opening as complex checks are delayed until the menu is used.
-            return UIMenu(children: [
-                UIDeferredMenuElement.uncached({ completion in
-                    completion(actions())
-                })
-            ])
-        } else {
-            // prior to iOS 15, uncached() is not supported - but fortunately not needed as widgets are unsupported as well.
-            return UIMenu(children: actions())
-        }
+        // uncached() allows us to update the menu easily; needed for widget state.
+        // UIDeferredMenuElement speeds up opening as complex checks are delayed until the menu is used.
+        return UIMenu(children: [
+            UIDeferredMenuElement.uncached({ completion in
+                completion(actions())
+            })
+        ])
     }
 
     private func openSourceCodeUrl() {

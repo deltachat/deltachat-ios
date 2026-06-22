@@ -161,9 +161,8 @@ class ProxySettingsViewController: UITableViewController {
         let shareProxyViewController = ShareProxyViewController(dcContext: dcContext, proxyUrlString: proxyToShare)
 
         let navigationController = UINavigationController(rootViewController: shareProxyViewController)
-        if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
+        if let sheet = navigationController.sheetPresentationController {
             sheet.detents = [.medium()]
-
             present(navigationController, animated: true)
         } else {
             show(navigationController, sender: self)
