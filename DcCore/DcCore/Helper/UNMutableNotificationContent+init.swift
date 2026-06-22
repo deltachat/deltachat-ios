@@ -88,7 +88,6 @@ public extension UNMutableNotificationContent {
 
 extension UNMutableNotificationContent {
     fileprivate func setRelevanceScore(for msg: DcMsg, in chat: DcChat, context: DcContext) {
-        guard #available(iOS 15, *) else { return }
         relevanceScore = switch true {
         case _ where chat.visibility == DC_CHAT_VISIBILITY_PINNED: 0.9
         case _ where chat.isMultiUser && context.isMentionsEnabled && msg.isReplyToSelf: 0.8

@@ -1525,7 +1525,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         appPicker.delegate = self
         let navigationController = UINavigationController(rootViewController: appPicker)
 
-        if #available(iOS 15.0, *), let sheet = navigationController.sheetPresentationController {
+        if let sheet = navigationController.sheetPresentationController {
             sheet.detents = [.large()]
         }
 
@@ -1537,10 +1537,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         contactList.delegate = self
 
         let navigationController = UINavigationController(rootViewController: contactList)
-        if #available(iOS 15.0, *) {
-            if let sheet = navigationController.sheetPresentationController {
-                sheet.detents = [.large(), .medium()]
-            }
+        if let sheet = navigationController.sheetPresentationController {
+            sheet.detents = [.large(), .medium()]
         }
 
         present(navigationController, animated: true)
@@ -1917,10 +1915,8 @@ extension ChatViewController {
                 pickerViewController.delegate = self
 
                 let navigationController = UINavigationController(rootViewController: pickerViewController)
-                if #available(iOS 15.0, *) {
-                    if let sheet = navigationController.sheetPresentationController {
-                        sheet.detents = [.medium(), .large()]
-                    }
+                if let sheet = navigationController.sheetPresentationController {
+                    sheet.detents = [.medium(), .large()]
                 }
                 present(navigationController, animated: true)
             } else {
@@ -2365,10 +2361,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
         reactionsOverview.delegate = self
         let navigationController = UINavigationController(rootViewController: reactionsOverview)
-        if #available(iOS 15.0, *) {
-            if let sheet = navigationController.sheetPresentationController {
-                sheet.detents = [.medium()]
-            }
+        if let sheet = navigationController.sheetPresentationController {
+            sheet.detents = [.medium()]
         }
 
         self.present(navigationController, animated: true)
