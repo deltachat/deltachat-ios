@@ -41,7 +41,7 @@ class WelcomeViewController: UIViewController {
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelAccountCreation))
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAccountCreation))
     }()
 
     private lazy var mediaPicker: MediaPicker? = {

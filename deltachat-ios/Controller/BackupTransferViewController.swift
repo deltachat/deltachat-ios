@@ -20,7 +20,7 @@ class BackupTransferViewController: UIViewController {
     private var isFinishing = false
 
     private var cancelButton: UIBarButtonItem {
-        return UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        return UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     }
 
     private let statusLine: UILabel
