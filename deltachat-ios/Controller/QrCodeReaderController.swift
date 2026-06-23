@@ -159,7 +159,7 @@ class QrCodeReaderController: UIViewController {
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
                         UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
-                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
             }
             self?.present(alert, animated: true, completion: nil)
         }
