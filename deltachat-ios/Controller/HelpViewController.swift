@@ -17,7 +17,7 @@ class HelpViewController: WebViewViewController {
     }
 
     private lazy var doneButton: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed))
+        return UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(doneButtonPressed))
     }()
 
     private lazy var prevPageButton: UIBarButtonItem = {

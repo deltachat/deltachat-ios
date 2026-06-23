@@ -28,12 +28,12 @@ class AutodelOptionsViewController: UITableViewController {
     var currVal: Int
 
     private var cancelButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        let button =  UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
     }
 
     private var okButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("ok"), style: .done, target: self, action: #selector(okButtonPressed))
+        let button =  UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(okButtonPressed))
         return button
     }
 

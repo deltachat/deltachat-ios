@@ -236,12 +236,12 @@ class EditTransportViewController: UITableViewController {
     }()
 
     private var cancelButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(title: String.localized("cancel"), style: .plain, target: self, action: #selector(cancelButtonPressed))
+        let button =  UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
     }
 
     private lazy var loginButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("login_title"), style: .done, target: self, action: #selector(loginButtonPressed))
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(loginButtonPressed))
         button.isEnabled = !dcContext.isConfigured()
         return button
     }()
