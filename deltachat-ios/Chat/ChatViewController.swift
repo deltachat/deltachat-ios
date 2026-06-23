@@ -1487,7 +1487,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 alert.addAction(UIAlertAction(title: String.localized("open_settings"), style: .default, handler: { _ in
                     UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)}))
-                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .destructive, handler: nil))
+                alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             }
             self?.present(alert, animated: true, completion: nil)
         }
