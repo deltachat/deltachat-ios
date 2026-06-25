@@ -166,26 +166,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private let scrollDownButtonSize: CGFloat = isLiquidGlassEnabled ? 42 : 36
 
-    private lazy var scrollDownButton: UIView = {
+    private lazy var scrollDownButton: UIButton = {
         let button = UIButton(type: .system)
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "chevron.down")
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         button.configuration = configuration
         button.addTarget(self, action: #selector(scrollDownButtonPressed), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
+    private lazy var scrollDownButtonView: UIView = {
         let view: UIView
         if #available(iOS 26.0, *) {
             let effect = UIGlassEffect()
             effect.isInteractive = true
             let glassView = UIVisualEffectView(effect: effect)
-            glassView.contentView.addSubview(button)
-            button.fillSuperview()
+            glassView.contentView.addSubview(scrollDownButton)
+            scrollDownButton.fillSuperview()
             view = glassView
         } else {
-            button.backgroundColor = .secondarySystemBackground
-            view = button
+            scrollDownButton.backgroundColor = .secondarySystemBackground
+            view = scrollDownButton
         }
 
         view.layer.cornerRadius = scrollDownButtonSize / 2
@@ -848,6 +850,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             quoteReturnMessageIds = []
         }
         scrollDownButtonView.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible(allowPartialVisibility: true) && quoteReturnMessageIds.isEmpty)
+        if #available(iOS 18, *) { // chevron.down.2 is only available in iOS 18+
+            let imageName = quoteReturnMessageIds.isEmpty ? "chevron.down.2" : "chevron.down"
+            scrollDownButton.configuration?.image = UIImage(systemName: imageName)
+        }
     }
 
     @objc private func scrollDownButtonPressed() {
