@@ -18,7 +18,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
     private var isDraggingScrollView = false
-    private var quoteReturnMessageId: Int?
+    private var quoteReturnMessageIds: [Int] = []
 
     private lazy var draft: DraftModel = {
         return DraftModel(dcContext: dcContext, chatId: chatId)
@@ -497,7 +497,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
-        reloadInputViews()
+        updateScrollDownButtonVisibility()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
@@ -834,25 +834,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func configureScrollDownButton() {
-        view.addSubview(scrollDownButton)
+        view.addSubview(scrollDownButtonView)
         NSLayoutConstraint.activate([
-            scrollDownButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            scrollDownButton.bottomAnchor.constraint(equalTo: toolbarContainerView.topAnchor, constant: -12),
-            scrollDownButton.widthAnchor.constraint(equalToConstant: scrollDownButtonSize),
-            scrollDownButton.heightAnchor.constraint(equalToConstant: scrollDownButtonSize),
+            scrollDownButtonView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            scrollDownButtonView.bottomAnchor.constraint(equalTo: toolbarContainerView.topAnchor, constant: -12),
+            scrollDownButtonView.widthAnchor.constraint(equalToConstant: scrollDownButtonSize),
+            scrollDownButtonView.heightAnchor.constraint(equalToConstant: scrollDownButtonSize),
         ])
     }
 
     private func updateScrollDownButtonVisibility() {
         if tableView.contentOffset.y + tableView.contentInset.top < 30 {
-            quoteReturnMessageId = nil
+            quoteReturnMessageIds = []
         }
-        scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible(allowPartialVisibility: true) && quoteReturnMessageId == nil)
+        scrollDownButtonView.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible(allowPartialVisibility: true) && quoteReturnMessageIds.isEmpty)
     }
 
     @objc private func scrollDownButtonPressed() {
-        if let messageId = quoteReturnMessageId {
-            quoteReturnMessageId = nil
+        if let messageId = quoteReturnMessageIds.popLast() {
             scrollToMessage(msgId: messageId)
         } else {
             scrollToBottom()
@@ -1218,8 +1217,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                         )
                         let topInset = self.view.safeAreaInsets.top/2
                         var bottomInset = 12.0
-                        if !self.scrollDownButton.isHidden {
-                            bottomInset += 12 + self.scrollDownButton.bounds.height
+                        if !self.scrollDownButtonView.isHidden {
+                            bottomInset += 12 + self.scrollDownButtonView.bounds.height
                         }
                         let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
                             .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
@@ -2331,7 +2330,8 @@ extension ChatViewController: BaseMessageCellDelegate {
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
                 if let quoteIndex = messages.firstIndex(where: { $0.id == quoteMsg.id }), quoteIndex > indexPath.row {
-                    quoteReturnMessageId = msg.id
+                    quoteReturnMessageIds.removeAll(where: { $0 <= msg.id})
+                    quoteReturnMessageIds.append(msg.id)
                 }
                 scrollToMessage(msgId: quoteMsg.id)
             } else {
