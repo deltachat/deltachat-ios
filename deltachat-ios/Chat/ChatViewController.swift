@@ -18,6 +18,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
     private var isDraggingScrollView = false
+    private var quoteReturnMessageIds: [Int] = []
 
     private lazy var draft: DraftModel = {
         return DraftModel(dcContext: dcContext, chatId: chatId)
@@ -160,6 +161,40 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private lazy var editingBar: ChatEditingBar = {
         let view = ChatEditingBar()
         view.delegate = self
+        return view
+    }()
+
+    private let scrollDownButtonSize: CGFloat = isLiquidGlassEnabled ? 42 : 36
+
+    private lazy var scrollDownButton: UIButton = {
+        let button = UIButton(type: .system)
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "chevron.down")
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        button.configuration = configuration
+        button.addTarget(self, action: #selector(scrollDownButtonPressed), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var scrollDownButtonView: UIView = {
+        let view: UIView
+        if #available(iOS 26.0, *) {
+            let effect = UIGlassEffect()
+            effect.isInteractive = true
+            let glassView = UIVisualEffectView(effect: effect)
+            glassView.contentView.addSubview(scrollDownButton)
+            scrollDownButton.fillSuperview()
+            view = glassView
+        } else {
+            scrollDownButton.backgroundColor = .secondarySystemBackground
+            view = scrollDownButton
+        }
+
+        view.layer.cornerRadius = scrollDownButtonSize / 2
+        view.layer.cornerCurve = .continuous
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
         return view
     }()
 
@@ -366,6 +401,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             toolbarContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
         ])
 
+        configureScrollDownButton()
+
         if dcChat.canSend {
             configureUIForWriting()
         } else if dcChat.isContactRequest {
@@ -462,7 +499,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
-        reloadInputViews()
+        updateScrollDownButtonVisibility()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
@@ -775,6 +812,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         isDraggingScrollView = true
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateScrollDownButtonVisibility()
+    }
+
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             markSeenMessagesInVisibleArea()
@@ -794,8 +835,33 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateScrollDownButtonVisibility()
     }
 
+    private func configureScrollDownButton() {
+        view.addSubview(scrollDownButtonView)
+        NSLayoutConstraint.activate([
+            scrollDownButtonView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            scrollDownButtonView.bottomAnchor.constraint(equalTo: toolbarContainerView.topAnchor, constant: -12),
+            scrollDownButtonView.widthAnchor.constraint(equalToConstant: scrollDownButtonSize),
+            scrollDownButtonView.heightAnchor.constraint(equalToConstant: scrollDownButtonSize),
+        ])
+    }
+
     private func updateScrollDownButtonVisibility() {
-//        messageInputBar.scrollDownButton.isHidden = contextMenuVisible || messages.isEmpty || isLastMessageVisible()
+        if tableView.contentOffset.y + tableView.contentInset.top < 30 {
+            quoteReturnMessageIds = []
+        }
+        scrollDownButtonView.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible(allowPartialVisibility: true) && quoteReturnMessageIds.isEmpty)
+        if #available(iOS 18, *) { // chevron.down.2 is only available in iOS 18+
+            let imageName = quoteReturnMessageIds.isEmpty ? "chevron.down.2" : "chevron.down"
+            scrollDownButton.configuration?.image = UIImage(systemName: imageName)
+        }
+    }
+
+    @objc private func scrollDownButtonPressed() {
+        if let messageId = quoteReturnMessageIds.popLast() {
+            scrollToMessage(msgId: messageId)
+        } else {
+            scrollToBottom()
+        }
     }
 
     private func configureContactRequestBar() {
@@ -1157,10 +1223,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                         )
                         let topInset = self.view.safeAreaInsets.top/2
                         var bottomInset = 12.0
-                        // TODO: Scroll down button
-//                        if !self.messageInputBar.scrollDownButton.isHidden {
-//                            bottomInset += 12 + self.messageInputBar.scrollDownButton.bounds.height
-//                        }
+                        if !self.scrollDownButtonView.isHidden {
+                            bottomInset += 12 + self.scrollDownButtonView.bounds.height
+                        }
                         let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
                             .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
                         self.tableView.scrollRectToVisible(textFrame, animated: animated)
@@ -1196,6 +1261,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let cell = cell as? BaseMessageCell {
                     cell.messageBackgroundContainer.blink()
                 }
+                self.updateScrollDownButtonVisibility()
             }
         }
     }
@@ -1248,10 +1314,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             inputToolBarHost.didMove(toParent: self)
             inputToolBarHost.view.fillSuperview()
         }
-        // TODO: Scroll down button
-//        messageInputBar.onScrollDownButtonPressed = { [weak self] in
-//            self?.scrollToBottom()
-//        }
     }
 
     @objc private func chatProfilePressed() {
@@ -2273,6 +2335,10 @@ extension ChatViewController: BaseMessageCellDelegate {
         let msg = dcContext.getMessage(id: messages[indexPath.row].id)
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
+                if let quoteIndex = messages.firstIndex(where: { $0.id == quoteMsg.id }), quoteIndex > indexPath.row {
+                    quoteReturnMessageIds.removeAll(where: { $0 <= msg.id})
+                    quoteReturnMessageIds.append(msg.id)
+                }
                 scrollToMessage(msgId: quoteMsg.id)
             } else {
                 showChat(chatId: quoteMsg.chatId, messageId: quoteMsg.id, animated: false)
