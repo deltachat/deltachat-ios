@@ -375,6 +375,7 @@
 "canceled_call" = "Abgebrochener Anruf";
 "missed_call" = "Verpasster Anruf";
 "already_in_call" = "Bereits im Anruf";
+"call_back" = "Zurückrufen";
 "call_answered_elsewhere" = "Anruf auf einem anderen Gerät beantwortet";
 "call_requires_camera_permission" = "Kamerazugriff für Videoanrufe erforderlich";
 "call_requires_mic_permission" = "Mikrofonzugriff für Anrufe erforderlich";
