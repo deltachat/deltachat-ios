@@ -71,7 +71,7 @@
 // Used as an menu entry or button
 "mark_as_read" = "Mark as Read";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
-"mark_as_read_short" = "Mark Read";
+"mark_as_read_short" = "Read";
 // Used as an menu entry or button
 "mark_as_unread" = "Mark as Unread";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
@@ -375,6 +375,7 @@
 "canceled_call" = "Canceled call";
 "missed_call" = "Missed call";
 "already_in_call" = "Already in a call";
+"call_back" = "Call back";
 "call_answered_elsewhere" = "Call answered on another device";
 "call_requires_camera_permission" = "Camera permission is required for video calls";
 "call_requires_mic_permission" = "Microphone permission is required for calls";
