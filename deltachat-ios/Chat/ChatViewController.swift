@@ -135,7 +135,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private lazy var backgroundContainer: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
-        view.transform = CGAffineTransform(scaleX: 1, y: -1)
         let traitCollection = traitCollection
         func setDefaultBackgroundImage() {
             view.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
