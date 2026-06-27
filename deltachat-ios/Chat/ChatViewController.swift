@@ -1695,7 +1695,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func stageImage(_ image: UIImage) {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
-            guard draft.sendEditRequestFor == nil else { return }
+            guard draft.sendEditRequestForMsg == nil else { return }
             guard !image.hasStickerLikeProperties else {
                 return self.sendSticker(image)
             }
@@ -1791,7 +1791,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let message = dcContext.getMessage(id: msgId)
 
         draft.clear()
-        draft.sendEditRequestFor = message.id
+        draft.sendEditRequestForMsg = message
         configureDraftArea(draft: draft)
         draft.text = message.text ?? draft.text
         focusInputTextView()

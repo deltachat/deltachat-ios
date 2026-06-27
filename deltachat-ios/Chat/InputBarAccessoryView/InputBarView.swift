@@ -17,12 +17,19 @@ struct InputBarView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            if draft.quoteText != nil {
+            if let msg = draft.sendEditRequestForMsg ?? draft.quoteMessage {
                 HStack {
-                    QuoteViewSwiftUI(quoteText: draft.quoteText, quoteMessage: draft.quoteMessage, dcContext: draft.dcContext)
-                        .padding(.horizontal, 10)
+                    QuoteViewSwiftUI(
+                        msg: msg,
+                        isEditing: draft.sendEditRequestForMsg != nil,
+                        dcContext: draft.dcContext
+                    ).padding(.horizontal, 10)
                     Button(String.localized("cancel"), systemImage: "xmark") {
-                        draft.setQuote(quotedMsg: nil)
+                        if draft.sendEditRequestForMsg != nil {
+                            draft.clear()
+                        } else {
+                            draft.setQuote(quotedMsg: nil)
+                        }
                     }.layoutPriority(-1).labelStyle(.iconOnly)
                 }.modifier { glassEffect(view: $0, interactive: false) }
             }
