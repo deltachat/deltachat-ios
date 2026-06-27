@@ -26,9 +26,11 @@ struct QuoteViewSwiftUI: View {
                         .foregroundColor(color)
                         .font(.preferredFont(for: .caption1, weight: .semibold))
                 }
-                Text(msg.text ?? "")
-                    .font(.preferredFont(for: .subheadline, weight: .regular))
-                    .lineLimit(3)
+                if let text = msg.text {
+                    Text(text)
+                        .font(.preferredFont(for: .subheadline, weight: .regular))
+                        .lineLimit(3)
+                }
             }
             .padding(.leading)
             .calculated(size: $size)
