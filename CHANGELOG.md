@@ -7,6 +7,7 @@
 - Remove explict tab bar icon bounce and leave animation up to the system
 - Fix: Improve voice message recording with Bluetooth and car audio systems
 - Allow voice and audio messages to continue playing in the background
+- Improve message fading behind the input bar on iOS 26
 
 
 ## v2.53.0

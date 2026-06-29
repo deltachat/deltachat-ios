@@ -50,6 +50,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var tableViewContainer: UIView = UIView()
+    /// Reused for custom edge fades to avoid allocating a new mask layer on every layout pass.
+    private let edgeEffectMask = CAGradientLayer()
+    private let edgeEffectFadeExtension: CGFloat = 24
+    private let edgeEffectDimmingGradients = (top: CAGradientLayer(), bottom: CAGradientLayer())
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -88,6 +92,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         didSet {
             guard toolbarHeight != oldValue else { return }
             setTableViewContentInset()
+            updateEdgeEffects()
         }
     }
 
@@ -342,6 +347,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if #available(iOS 26.0, *) {
             tableView.topEdgeEffect.isHidden = true
             tableView.bottomEdgeEffect.isHidden = true
+            view.layer.addSublayer(edgeEffectDimmingGradients.top)
+            view.layer.addSublayer(edgeEffectDimmingGradients.bottom)
         }
         view.addSubview(contextMenuPreviewContainer)
         contextMenuPreviewContainer.fillSuperview()
@@ -536,26 +543,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+        let newToolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+        // Avoid updating edge effects twice when toolbarHeight.didSet already handles the change.
+        if toolbarHeight != newToolbarHeight {
+            toolbarHeight = newToolbarHeight
+        } else {
+            updateEdgeEffects()
+        }
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
-
-        if #available(iOS 26, *) {
-            // Custom tableView.topEdgeEffect
-            let mask = CAGradientLayer()
-            mask.frame = view.frame
-            mask.colors = [
-                UIColor(white: 1, alpha: 0).cgColor,
-                UIColor(white: 1, alpha: 0.3).cgColor,
-                UIColor(white: 1, alpha: 1).cgColor,
-            ]
-            mask.startPoint = CGPoint(x: 0.5, y: 0)
-            mask.endPoint = CGPoint(x: 0.5, y: view.safeAreaInsets.top / view.frame.height)
-            tableViewContainer.layer.mask = mask
-        }
+        updateEdgeEffects()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -578,6 +578,76 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             tableView.contentInset.top = topInset
         }
+    }
+
+    private func updateEdgeEffects() {
+        let bounds = tableViewContainer.bounds
+        guard bounds.height > 0 else { return }
+
+        edgeEffectMask.frame = bounds
+        edgeEffectMask.startPoint = CGPoint(x: 0.5, y: 0)
+        edgeEffectMask.endPoint = CGPoint(x: 0.5, y: 1)
+
+        var stops: [(location: CGFloat, alpha: CGFloat)] = []
+        func appendStop(location: CGFloat, alpha: CGFloat) {
+            let clampedLocation = min(max(location, 0), 1)
+            if let lastLocation = stops.last?.location, clampedLocation < lastLocation {
+                return
+            }
+            stops.append((clampedLocation, alpha))
+        }
+
+        if #available(iOS 26, *), view.safeAreaInsets.top > 0 {
+            updateTopEdgeEffect(bounds: bounds, appendStop: appendStop)
+        } else {
+            appendStop(location: 0, alpha: 1)
+        }
+
+        if #available(iOS 26, *) {
+            updateBottomEdgeEffect(bounds: bounds, appendStop: appendStop)
+        } else {
+            appendStop(location: 1, alpha: 1)
+        }
+
+        edgeEffectMask.colors = stops.map { UIColor(white: 1, alpha: $0.alpha).cgColor }
+        edgeEffectMask.locations = stops.map { NSNumber(value: Float($0.location)) }
+        if tableViewContainer.layer.mask !== edgeEffectMask {
+            tableViewContainer.layer.mask = edgeEffectMask
+        }
+    }
+
+    private func updateTopEdgeEffect(bounds: CGRect, appendStop: (CGFloat, CGFloat) -> Void) {
+        let height = view.safeAreaInsets.top + edgeEffectFadeExtension
+        edgeEffectDimmingGradients.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
+        edgeEffectDimmingGradients.top.startPoint = CGPoint(x: 0.5, y: 0)
+        edgeEffectDimmingGradients.top.endPoint = CGPoint(x: 0.5, y: 1)
+        edgeEffectDimmingGradients.top.colors = [0.70, 0.55, 0].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
+        edgeEffectDimmingGradients.top.locations = [0, 0.6, 1]
+
+        let fadeEnd = min(height / bounds.height, 1)
+        appendStop(0, 0)
+        appendStop(fadeEnd * 0.7, 0.15)
+        appendStop(fadeEnd, 0.9)
+    }
+
+    private func updateBottomEdgeEffect(bounds: CGRect, appendStop: (CGFloat, CGFloat) -> Void) {
+        let height = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom) + edgeEffectFadeExtension / 2
+        edgeEffectDimmingGradients.bottom.frame = CGRect(
+            x: 0,
+            y: view.bounds.height - height,
+            width: view.bounds.width,
+            height: height
+        )
+        edgeEffectDimmingGradients.bottom.startPoint = CGPoint(x: 0.5, y: 0)
+        edgeEffectDimmingGradients.bottom.endPoint = CGPoint(x: 0.5, y: 1)
+        edgeEffectDimmingGradients.bottom.colors = [0, 0.30, 0.65].map { UIColor.systemBackground.withAlphaComponent($0).cgColor }
+        edgeEffectDimmingGradients.bottom.locations = [0, 0.4, 1]
+
+        let fadeStart = max((bounds.height - height) / bounds.height, 0)
+        let fadeMid = fadeStart + ((1 - fadeStart) * 0.4)
+        appendStop(fadeStart, 1)
+        appendStop(fadeMid, 0.3)
+        appendStop(1, 0.1)
     }
 
     // MARK: - Notifications
@@ -1025,6 +1095,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
+        updateEdgeEffects()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
