@@ -375,6 +375,7 @@
 "canceled_call" = "Chiamata annullata";
 "missed_call" = "Chiamata persa";
 "already_in_call" = "Già in chiamata";
+"call_back" = "Richiama";
 "call_answered_elsewhere" = "Chiamata risposta su un altro dispositivo";
 "call_requires_camera_permission" = "Per le videochiamate è necessaria l\'autorizzazione per l\'utilizzo della fotocamera.";
 "call_requires_mic_permission" = "Per le chiamate è necessaria l\'autorizzazione per l\'utilizzo del microfono.";
