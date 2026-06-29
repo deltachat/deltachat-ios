@@ -6,6 +6,7 @@
 - Minimum system version is iOS 15.6 now (all iOS 14 devices can upgrade to iOS 15.6)
 - Remove explict tab bar icon bounce and leave animation up to the system
 - Fix: Improve voice message recording with Bluetooth and car audio systems
+- Fix: "x new messages" is now in the intended place even if there was a new day marker
 - Allow voice and audio messages to continue playing in the background
 
 

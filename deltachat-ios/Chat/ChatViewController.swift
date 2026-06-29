@@ -1142,8 +1142,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         var msgs = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         let freshMsgsCount = self.dcContext.getUnreadMessages(chatId: self.chatId)
         if freshMsgsCount > 0 && msgs.count >= freshMsgsCount {
-            let index = msgs.count - freshMsgsCount
-            msgs.insert((Int(DC_MSG_ID_MARKER1), 0), at: index)
+            /// Fresh count including daymarkers
+            var freshCount = freshMsgsCount
+            var i = 0
+            while i < freshCount {
+                i += 1
+                if msgs.count > freshCount, msgs[msgs.count - freshCount].0 == DC_MSG_ID_DAYMARKER {
+                    freshCount += 1
+                }
+            }
+            msgs.insert((Int(DC_MSG_ID_MARKER1), 0), at: msgs.count - freshCount)
         }
         self.messages = msgs.reversed()
         self.showEmptyStateView(self.messages.isEmpty)
