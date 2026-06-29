@@ -1166,26 +1166,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return !message.isMarkerOrInfo && dcChat.isMultiUser && !message.isFromCurrentSender
     }
 
-    /// Verifies if the last message cell is fully visible
-    private func isLastMessageVisible(allowPartialVisibility: Bool = true) -> Bool {
-        guard !messages.isEmpty else { return false }
-        // 1 because messageIds is reversed and last message is DC_MSG_ID_LAST_SPECIAL
-        let lastIndexPath = IndexPath(item: 1, section: 0)
-
-        var cellRect = tableView.rectForRow(at: lastIndexPath)
-        cellRect.origin = tableView.convert(cellRect.origin, to: tableView.superview)
-
-        var visibleRect = tableView.frame
-        // Adjust for keyboard
-        visibleRect.size.height -= tableView.contentInset.top
-        // Adjust for navbar
-        visibleRect.origin.y += tableView.contentInset.bottom
-        visibleRect.size.height -= tableView.contentInset.bottom
-
+    /// Verifies if the last message cell is visible
+    private func isLastMessageVisible(allowPartialVisibility: Bool) -> Bool {
         if allowPartialVisibility {
-            return visibleRect.intersects(cellRect)
+            tableView.indexPathsForVisibleRows?.contains(IndexPath(item: 0, section: 0)) ?? false
         } else {
-            return visibleRect.contains(cellRect)
+            tableView.contentOffset.y == 0
         }
     }
 
