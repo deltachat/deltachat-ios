@@ -10,7 +10,7 @@ public class DraftModel: ObservableObject {
     let chatId: Int
     var isEditing: Bool = false // multi edit
     @Published var isFieldFocused: Bool = false
-    @Published var sendEditRequestFor: Int?
+    @Published var sendEditRequestForMsg: DcMsg?
     var quoteMessage: DcMsg? {
         return draftMsg?.quoteMessage
     }
@@ -48,12 +48,12 @@ public class DraftModel: ObservableObject {
         }
         draftMsg?.quoteMessage = quotedMsg
         publishDraftMsgChange()
-        sendEditRequestFor = nil
+        sendEditRequestForMsg = nil
     }
 
     public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
         assert(Thread.isMainThread)
-        sendEditRequestFor = nil
+        sendEditRequestForMsg = nil
         let quoteMsg = draftMsg?.quoteMessage
         draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
         draftMsg?.quoteMessage = quoteMsg
@@ -77,7 +77,7 @@ public class DraftModel: ObservableObject {
 
     public func clearAttachment() {
         assert(Thread.isMainThread)
-        sendEditRequestFor = nil
+        sendEditRequestForMsg = nil
         let quoteMsg = draftMsg?.quoteMessage
         if !trimmedText.isEmpty || quoteMsg != nil {
             draftMsg = dcContext.newMessage(viewType: DC_MSG_TEXT)
@@ -92,7 +92,7 @@ public class DraftModel: ObservableObject {
 
     public func save(context: DcContext) {
         assert(Thread.isMainThread)
-        guard sendEditRequestFor == nil else { return }
+        guard sendEditRequestForMsg == nil else { return }
 
         guard !trimmedText.isEmpty || quoteMessage != nil || attachment != nil else {
             self.clear()
@@ -114,15 +114,15 @@ public class DraftModel: ObservableObject {
         assert(Thread.isMainThread)
         text = ""
         draftMsg = nil
-        sendEditRequestFor = nil
+        sendEditRequestForMsg = nil
         dcContext.setDraft(chatId: chatId, message: nil)
     }
 
     public func send() {
         assert(Thread.isMainThread)
         guard canSend() else { return }
-        if let sendEditRequestFor {
-            dcContext.sendEditRequest(msgId: sendEditRequestFor, newText: text)
+        if let sendEditRequestForMsg {
+            dcContext.sendEditRequest(msgId: sendEditRequestForMsg.id, newText: text)
             isFieldFocused = false
         } else {
             let draftMsg = draftMsg ?? dcContext.newMessage(viewType: DC_MSG_TEXT)

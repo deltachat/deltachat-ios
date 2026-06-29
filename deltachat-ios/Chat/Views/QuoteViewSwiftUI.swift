@@ -2,47 +2,50 @@ import DcCore
 import SwiftUI
 
 struct QuoteViewSwiftUI: View {
-    var quoteText: String?
-    var quoteMessage: DcMsg?
+    var msg: DcMsg
+    var isEditing: Bool
     var dcContext: DcContext
 
     @State private var size: CGSize = .zero
 
     var body: some View {
-        if let quoteText {
-            let quoteContact = quoteMessage.flatMap { dcContext.getContact(id: $0.fromContactId) }
-            let color = Color(uiColor: quoteContact?.color ?? DcColors.unknownSender)
-            HStack {
-                VStack(alignment: .leading) {
-                    if quoteMessage?.isForwarded == true {
-                        Text(String.localized("forwarded_message"))
-                            .foregroundColor(color)
-                            .font(.init(UIFont.preferredFont(for: .caption1, weight: .semibold)))
-                    } else if let quoteMessage, let quoteContact {
-                        Text(quoteMessage.getSenderName(quoteContact, markOverride: true))
-                            .foregroundColor(color)
-                            .font(.preferredFont(for: .caption1, weight: .semibold))
-                    }
-                    Text(quoteText)
+        let contact = isEditing ? nil : dcContext.getContact(id: msg.fromContactId)
+        let color = Color(uiColor: contact?.color ?? DcColors.unknownSender)
+        HStack {
+            VStack(alignment: .leading) {
+                if isEditing {
+                    Text(String.localized("edit_message"))
+                        .foregroundColor(color)
+                        .font(.preferredFont(for: .caption1, weight: .semibold))
+                } else if msg.isForwarded {
+                    Text(String.localized("forwarded_message"))
+                        .foregroundColor(color)
+                        .font(.preferredFont(for: .caption1, weight: .semibold))
+                } else if let contact {
+                    Text(msg.getSenderName(contact, markOverride: true))
+                        .foregroundColor(color)
+                        .font(.preferredFont(for: .caption1, weight: .semibold))
+                }
+                if let text = msg.text {
+                    Text(text)
                         .font(.preferredFont(for: .subheadline, weight: .regular))
                         .lineLimit(3)
                 }
-                .padding(.leading)
-                .calculated(size: $size)
-                Spacer()
-                let isWebxdc = quoteMessage?.type == DC_MSG_WEBXDC
-                if let quoteImage = isWebxdc ? quoteMessage?.getWebxdcPreviewImage() : quoteMessage?.image {
-                    Image(uiImage: quoteImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: size.height)
-                }
             }
-            .overlay(alignment: .leading) {
-                Capsule(style: .circular)
-                    .fill(color)
-                    .frame(width: 3)
+            .padding(.leading)
+            .calculated(size: $size)
+            Spacer()
+            if let quoteImage = msg.type == DC_MSG_WEBXDC ? msg.getWebxdcPreviewImage() : msg.image {
+                Image(uiImage: quoteImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: size.height)
             }
+        }
+        .overlay(alignment: .leading) {
+            Capsule(style: .circular)
+                .fill(color)
+                .frame(width: 3)
         }
     }
 }
