@@ -23,7 +23,7 @@ class EditContactController: UITableViewController {
         nameCell.placeholder = String.localizedStringWithFormat(String.localized("edit_name_placeholder"), authNameOrAddr)
 
         title = String.localized("menu_edit_name")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveButtonPressed))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     }
 
