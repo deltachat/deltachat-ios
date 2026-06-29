@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var callWindow: CallWindow!
     var notifyToken: String?
-    var applicationInForeground: Bool = false
+    private var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     private var appFullyInitialized = false
 
@@ -565,7 +565,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // The foreground check is necessary as this function is called when in app switcher
         let isCallNotification = notification.request.content.userInfo["answer_call"] != nil
-        if appIsInForeground() && !isCallNotification && callManager?.isCalling() != true {
+        let isCurrentChatNotification = appCoordinator.isShowingChat(
+            chatId: notification.request.content.userInfo["chat_id"] as? Int ?? -1
+        )
+        if appIsInForeground() && isCurrentChatNotification && !isCallNotification && callManager?.isCalling() != true {
             logger.info("Notifications: silent foreground notification")
             completionHandler([.badge])
         } else {
