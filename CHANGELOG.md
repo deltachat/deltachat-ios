@@ -8,6 +8,7 @@
 - Fix: Improve voice message recording with Bluetooth and car audio systems
 - Fix: "x new messages" is now in the intended place even if there was a new day marker
 - Allow voice and audio messages to continue playing in the background
+- More reliably start audio of the first call
 
 
 ## v2.53.0
