@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Show notifications when app is in foreground and the respective chat is not on screen
+
+
 ## v2.53.1 Testflight
 2026-06
 
