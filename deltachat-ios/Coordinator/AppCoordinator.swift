@@ -230,21 +230,6 @@ class AppCoordinator: NSObject {
             }
         }
         
-        // Create messages
-        let dcContext = dcAccounts.getSelected()
-        let messages = providers.map {
-            switch $0 {
-            case let .contentsAt(url, viewType):
-                let msg = dcContext.newMessage(viewType: viewType)
-                msg.setFile(filepath: url.relativePath)
-                return msg
-            case .text(let text):
-                let msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
-                msg.text = text
-                return msg
-            }
-        }
-        
         // Ask for sending messages
         if let chatId = parameters["chatId"].flatMap(Int.init) {
             showChat(chatId: chatId)
@@ -253,7 +238,7 @@ class AppCoordinator: NSObject {
             let nvc = tabBarController.selectedViewController as? UINavigationController
             nvc?.popToRootViewController(animated: false)
         }
-        RelayHelper.shared.setShareMessages(messages: messages)
+        RelayHelper.shared.setShareItems(items: providers)
 
         return true
     }
