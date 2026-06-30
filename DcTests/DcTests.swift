@@ -4,7 +4,7 @@ import DcCore
 @testable import deltachat_ios
 import UIKit
 
-class DcTests {
+@Suite(.serialized) class DcTests {
     lazy var context = DcTestContext.newOfflineAccount()
     deinit { DcTestContext.cleanup() }
     
@@ -27,6 +27,44 @@ class DcTests {
         #expect(webxdcVC != nil)
         await webxdcVC!.dismiss(animated: false)
         #expect(webxdcVC == nil)
+    }
+
+    @Test @MainActor func shareAttachmentToDifferentProfileKeepsFileBytes() async throws {
+        let aContext = DcTestContext.newOfflineAccount()
+        let aId = aContext.id
+
+        let bId = DcAccounts.shared.add()
+        let bContext = DcAccounts.shared.get(id: bId)
+        bContext.setConfig("displayname", "Unit Test Account B")
+        bContext.setConfig("addr", "ios.test.b@delta.chat")
+        bContext.setConfig("configured_addr", "ios.test.b@delta.chat")
+        bContext.setConfig("configured_mail_pw", "abcd")
+        bContext.setConfigBool("ui.ios.test_account", true)
+        bContext.setConfigBool("configured", true)
+
+        #expect(DcAccounts.shared.getSelected().id == aId)
+
+        try? FileManager.default.removeItem(at: shareExtensionDirectory)
+        try FileManager.default.createDirectory(at: shareExtensionDirectory, withIntermediateDirectories: true)
+        let fileURL = shareExtensionDirectory.appendingPathComponent("shared-file.txt")
+        let sharedBytes = Data([0x44, 0x65, 0x6c, 0x74, 0x61])
+        try sharedBytes.write(to: fileURL)
+        defer { try? FileManager.default.removeItem(at: shareExtensionDirectory) }
+
+        let provider = CodableNSItemProvider.contentsAt(url: fileURL, viewType: DC_MSG_FILE)
+        RelayHelper.shared.setShareItems(items: [provider])
+
+        #expect(DcAccounts.shared.select(id: bId))
+        let selectedBContext = DcAccounts.shared.get(id: bId)
+        let chatB = selectedBContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        RelayHelper.shared.shareAndFinishRelaying(to: chatB)
+
+        let ids = selectedBContext.getChatMsgs(chatId: chatB, flags: 0)
+        #expect(!ids.isEmpty)
+        guard let lastId = ids.last else { return }
+        let msg = selectedBContext.getMessage(id: lastId)
+        #expect(msg.type == DC_MSG_FILE)
+        #expect(msg.filesize > 0)
     }
 }
 

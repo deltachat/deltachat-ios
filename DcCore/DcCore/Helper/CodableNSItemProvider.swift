@@ -10,7 +10,14 @@ public var shareExtensionDirectory = FileManager.default
 public enum CodableNSItemProvider: Codable {
     case contentsAt(url: URL, viewType: Int32)
     case text(text: String)
-    
+
+    public var viewType: Int32 {
+        switch self {
+        case .contentsAt(_, let viewType): return viewType
+        case .text: return DC_MSG_TEXT
+        }
+    }
+
     public func itemProvider() -> NSItemProvider? {
         switch self {
         case .contentsAt(let url, _):
