@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Show notifications when app is in foreground and the respective chat is not on screen
+- Show in title if an app is still in draft mode
+- Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 
 
 ## v2.53.1 Testflight
