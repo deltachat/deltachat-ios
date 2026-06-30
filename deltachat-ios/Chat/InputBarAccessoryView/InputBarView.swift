@@ -94,6 +94,7 @@ struct InputBarView: View {
             if draft.isFieldFocused != $0 {
                 draft.isFieldFocused = $0
             }
+            _updateIntrinsicContentSize(())
         }
         .onAppear {
             textEditorFocus = draft.isFieldFocused
