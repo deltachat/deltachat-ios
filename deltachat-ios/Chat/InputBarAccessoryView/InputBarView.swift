@@ -65,7 +65,7 @@ struct InputBarView: View {
                     }
                     .padding(.horizontal, 10)
                     .modifier { glassEffect(view: $0, padding: 2, minHeight: buttonSize, interactive: true) }
-                    .frame(maxHeight: 150, alignment: .center)
+                    .frame(maxHeight: draft.text.isEmpty && !textEditorFocus ? buttonSize : 150, alignment: .center)
                     .onTapGesture {
                         textEditorFocus = true
                     }
@@ -97,6 +97,7 @@ struct InputBarView: View {
         }
         .onAppear {
             textEditorFocus = draft.isFieldFocused
+            _updateIntrinsicContentSize(())
         }
         .modifier { view in
             if #available(iOS 26.0, *) {
