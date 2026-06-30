@@ -15,6 +15,7 @@ class WebxdcViewController: WebViewViewController {
     let INTERNALSCHEMA = "webxdc"
     
     var messageId: Int
+    var isDraft: Bool = false
     var href: String?
     var webxdcName: String = ""
     var sourceCodeUrl: String?
@@ -309,7 +310,13 @@ class WebxdcViewController: WebViewViewController {
         let chatName = dcContext.getChat(chatId: msg.chatId).name
         self.allowInternet = dict["internet_access"] as? Bool ?? false
 
-        self.title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
+        isDraft = msg.state == DC_STATE_OUT_DRAFT
+        if isDraft {
+            title = String.localized("draft")
+        } else {
+            title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
+        }
+
         if let sourceCode = dict["source_code_url"] as? String,
            !sourceCode.isEmpty {
             sourceCodeUrl = sourceCode
@@ -431,32 +438,35 @@ class WebxdcViewController: WebViewViewController {
         let actions: () -> [UIMenuElement] = { [weak self] in
             guard let self else { return [] }
             var actions = [UIMenuElement]()
-            actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
-                guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                let message = dcContext.getMessage(id: self.messageId)
-                DispatchQueue.main.async {
-                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-                }
-            })
 
-            if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-                let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
-                    switch entry.type {
-                    case .app(let messageId): return messageId
-                    case .chat: return nil
+            if !isDraft {
+                actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
+                    guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    let message = dcContext.getMessage(id: self.messageId)
+                    DispatchQueue.main.async {
+                        appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
                     }
-                }
-                let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-                if isOnHomescreen {
-                    actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
-                        guard let self else { return }
-                        userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
-                    })
-                } else {
-                    actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
-                        guard let self else { return }
-                        userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
-                    })
+                })
+
+                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+                    let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
+                        switch entry.type {
+                        case .app(let messageId): return messageId
+                        case .chat: return nil
+                        }
+                    }
+                    let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
+                    if isOnHomescreen {
+                        actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
+                            guard let self else { return }
+                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
+                        })
+                    } else {
+                        actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
+                            guard let self else { return }
+                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
+                        })
+                    }
                 }
             }
 
