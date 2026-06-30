@@ -94,7 +94,11 @@ struct InputBarView: View {
             if draft.isFieldFocused != $0 {
                 draft.isFieldFocused = $0
             }
-            _updateIntrinsicContentSize(())
+            if isLiquidGlassEnabled || textEditorFocus {
+                // Only update when the size could grow otherwise
+                // kb dismiss animation is choppy on older phones
+                _updateIntrinsicContentSize(())
+            }
         }
         .onAppear {
             textEditorFocus = draft.isFieldFocused
