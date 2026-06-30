@@ -375,6 +375,7 @@
 "canceled_call" = "katkestatud kõne";
 "missed_call" = "Märkamata kõne";
 "already_in_call" = "Kõne  juba on pooleli";
+"call_back" = "Helista tagasi";
 "call_answered_elsewhere" = "Kõne on vastatud muus seadmes";
 "call_requires_camera_permission" = "Videokõnede tegemiseks peab rakendusel olema õigus kasutada kaamerat";
 "call_requires_mic_permission" = "Helistamiseks peab rakendusel olema õigus kasutada mikrofoni";

@@ -2,14 +2,22 @@
 
 ## Unreleased
 
+- Show notifications when app is in foreground and the respective chat is not on screen
+
+
+## v2.53.1 Testflight
+2026-06
+
 - Support LiquidGlass UI language on systems that support that
 - Minimum system version is iOS 15.6 now (all iOS 14 devices can upgrade to iOS 15.6)
 - Remove explict tab bar icon bounce and leave animation up to the system
-- Show notifications when app is in foreground and the respective chat is not on screen
+- Allow voice and audio messages to continue playing in the background
+- Fix scroll down button showing up when unintended
+- Fix: More reliably start audio of the first call
 - Fix: Improve voice message recording with Bluetooth and car audio systems
 - Fix: "x new messages" is now in the intended place even if there was a new day marker
-- Allow voice and audio messages to continue playing in the background
-- More reliably start audio of the first call
+- Update translations and local help
+- Using core 2.53.0
 
 
 ## v2.53.0

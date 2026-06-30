@@ -375,6 +375,7 @@
 "canceled_call" = "Połączenie anulowane";
 "missed_call" = "Połączenie anulowane";
 "already_in_call" = "Już w trakcie rozmowy";
+"call_back" = "Oddzwoń";
 "call_answered_elsewhere" = "Połączenie odebrane na innym urządzeniu";
 "call_requires_camera_permission" = "Do połączeń wideo wymagane jest zezwolenie na korzystanie z kamery";
 "call_requires_mic_permission" = "Do połączeń wymagane jest zezwolenie na korzystanie z mikrofonu";

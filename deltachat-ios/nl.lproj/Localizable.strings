@@ -375,6 +375,7 @@
 "canceled_call" = "Afgebroken oproep";
 "missed_call" = "Gemiste oproep";
 "already_in_call" = "Reeds in gesprek";
+"call_back" = "Terugbellen";
 "call_answered_elsewhere" = "Er is opgenomen op een ander apparaat";
 "call_requires_camera_permission" = "Cameratoegang is vereist om te kunnen videobellen";
 "call_requires_mic_permission" = "Microfoontoegang is vereist om te kunnen bellen";
