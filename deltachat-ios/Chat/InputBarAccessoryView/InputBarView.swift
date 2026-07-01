@@ -65,7 +65,7 @@ struct InputBarView: View {
                     }
                     .padding(.horizontal, 10)
                     .modifier { glassEffect(view: $0, padding: 2, minHeight: buttonSize, interactive: true) }
-                    .frame(maxHeight: 150, alignment: .center)
+                    .frame(maxHeight: draft.text.isEmpty && !textEditorFocus ? buttonSize : 150, alignment: .center)
                     .onTapGesture {
                         textEditorFocus = true
                     }
@@ -94,9 +94,15 @@ struct InputBarView: View {
             if draft.isFieldFocused != $0 {
                 draft.isFieldFocused = $0
             }
+            if isLiquidGlassEnabled || textEditorFocus {
+                // Only update when the size could grow otherwise
+                // kb dismiss animation is choppy on older phones
+                _updateIntrinsicContentSize(())
+            }
         }
         .onAppear {
             textEditorFocus = draft.isFieldFocused
+            _updateIntrinsicContentSize(())
         }
         .modifier { view in
             if #available(iOS 26.0, *) {

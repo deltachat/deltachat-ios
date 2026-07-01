@@ -22,6 +22,8 @@ private struct _InputBarTextView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> ChatInputTextView {
         let textView = ChatInputTextView()
+        textView.text = text
+        textView.imagePasteDelegate = imagePasteDelegate
         textView.keyboardDismissMode = .none
         textView.delegate = context.coordinator
         textView.adjustsFontForContentSizeCategory = true
