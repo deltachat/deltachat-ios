@@ -54,18 +54,22 @@ struct InputBarView: View {
                         .scaledToFit()
                         .padding(2)
                 }).frame(height: buttonSize)
-                InputBarTextView(text: $draft.text, imagePasteDelegate: chatViewController)
+                InputBarTextView(
+                    text: $draft.text,
+                    imagePasteDelegate: chatViewController,
+                    textContainerInset: UIEdgeInsets(top: 4, left: 12, bottom: 4, right: 12),
+                    maxHeight: 150
+                )
                     .focused($textEditorFocus)
                     .overlay(alignment: .leading) {
                         if draft.text.isEmpty && !textEditorFocus {
                             Text(String.localized("chat_input_placeholder"))
                                 .foregroundColor(Color(uiColor: DcColors.placeholderColor))
                                 .accessibilityHidden(true)
+                                .padding(.horizontal, 12)
                         }
                     }
-                    .padding(.horizontal, 10)
-                    .modifier { glassEffect(view: $0, padding: 2, minHeight: buttonSize, interactive: true) }
-                    .frame(maxHeight: 150, alignment: .center)
+                    .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: true) }
                     .onTapGesture {
                         textEditorFocus = true
                     }
