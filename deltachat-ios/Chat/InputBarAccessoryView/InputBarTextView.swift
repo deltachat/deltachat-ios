@@ -5,13 +5,16 @@ struct InputBarTextView: View {
     @Binding var text: String
     @State private var contentSize: CGSize = .zero
     weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
+    var textContainerInset: UIEdgeInsets
+    var maxHeight: CGFloat
 
     var body: some View {
         _InputBarTextView(
             text: $text,
             contentSize: $contentSize,
-            imagePasteDelegate: imagePasteDelegate
-        ).frame(idealHeight: contentSize.height, alignment: .center)
+            imagePasteDelegate: imagePasteDelegate,
+            textContainerInset: textContainerInset
+        ).frame(height: min(maxHeight, contentSize.height), alignment: .center)
     }
 }
 
@@ -19,9 +22,11 @@ private struct _InputBarTextView: UIViewRepresentable {
     @Binding var text: String
     @Binding var contentSize: CGSize
     weak var imagePasteDelegate: ChatInputTextViewPasteDelegate?
+    var textContainerInset: UIEdgeInsets
 
     func makeUIView(context: Context) -> ChatInputTextView {
         let textView = ChatInputTextView()
+        textView.textContainerInset = textContainerInset
         textView.keyboardDismissMode = .none
         textView.delegate = context.coordinator
         textView.adjustsFontForContentSizeCategory = true
@@ -37,6 +42,7 @@ private struct _InputBarTextView: UIViewRepresentable {
     func updateUIView(_ uiView: ChatInputTextView, context: Context) {
         uiView.text = text
         uiView.imagePasteDelegate = imagePasteDelegate
+        uiView.textContainerInset = textContainerInset
     }
 
     func makeCoordinator() -> Coordinator {
