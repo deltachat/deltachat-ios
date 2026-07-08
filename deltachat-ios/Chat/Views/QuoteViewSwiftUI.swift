@@ -33,14 +33,15 @@ struct QuoteViewSwiftUI: View {
                 }
             }
             .padding(.leading)
-            .fixedSize(horizontal: false, vertical: true)
-            Spacer()
-            if let quoteImage = msg.type == DC_MSG_WEBXDC ? msg.getWebxdcPreviewImage() : msg.image {
-                HStack {
-                    Image(uiImage: quoteImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                }.frame(width: 30)
+            Spacer(minLength: quoteImage == nil ? nil : 30)
+        }
+        .overlay(alignment: .trailing) {
+            if let quoteImage {
+                Image(uiImage: quoteImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .fixedSize(horizontal: false, vertical: false)
+                    .frame(width: 30)
             }
         }
         .overlay(alignment: .leading) {
