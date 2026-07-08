@@ -26,7 +26,7 @@ struct QuoteViewSwiftUI: View {
                         .foregroundColor(color)
                         .font(.preferredFont(for: .caption1, weight: .semibold))
                 }
-                if let text = msg.text {
+                if let text = msg.summary(chars: 1000) {
                     Text(text)
                         .font(.preferredFont(for: .subheadline, weight: .regular))
                         .lineLimit(3)
