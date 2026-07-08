@@ -357,25 +357,17 @@ class WelcomeContentView: UIView {
 
     private lazy var signUpButton: UIButton = {
         let button = UIButton(type: .roundedRect)
-        let title = String.localized("onboarding_create_instant_account")
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true
+        button.setTitle(String.localized("onboarding_create_instant_account"), for: .normal)
         button.addTarget(self, action: #selector(signUpButtonPressed(_:)), for: .touchUpInside)
+        button.primaryCapsule()
         return button
     }()
 
     private lazy var logInButton: UIButton = {
         let button = UIButton()
-        let title = String.localized("onboarding_alternative_logins")
-        button.setTitleColor(UIColor.systemBlue, for: .normal)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        button.setTitle(String.localized("onboarding_alternative_logins"), for: .normal)
         button.addTarget(self, action: #selector(logInButtonPressed(_:)), for: .touchUpInside)
+        button.secondaryCapsule()
         return button
     }()
 

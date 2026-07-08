@@ -4,6 +4,7 @@
 
 - Show notifications when app is in foreground and the respective chat is not on screen
 - Show in title if an app is still in draft mode
+- Style buttons on welcome screen according to LiquidGlass
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 
 
