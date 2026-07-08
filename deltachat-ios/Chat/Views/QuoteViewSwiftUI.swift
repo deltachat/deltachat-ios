@@ -11,6 +11,7 @@ struct QuoteViewSwiftUI: View {
     var body: some View {
         let contact = isEditing ? nil : dcContext.getContact(id: msg.fromContactId)
         let color = Color(uiColor: contact?.color ?? DcColors.unknownSender)
+        let quoteImage = msg.type == DC_MSG_WEBXDC ? msg.getWebxdcPreviewImage() : msg.image
         HStack {
             VStack(alignment: .leading) {
                 if isEditing {
