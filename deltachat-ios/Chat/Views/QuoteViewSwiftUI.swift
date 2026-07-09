@@ -11,6 +11,7 @@ struct QuoteViewSwiftUI: View {
     var body: some View {
         let contact = isEditing ? nil : dcContext.getContact(id: msg.fromContactId)
         let color = Color(uiColor: contact?.color ?? DcColors.unknownSender)
+        let quoteImage = msg.type == DC_MSG_WEBXDC ? msg.getWebxdcPreviewImage() : msg.image
         HStack {
             VStack(alignment: .leading) {
                 if isEditing {
@@ -33,13 +34,15 @@ struct QuoteViewSwiftUI: View {
                 }
             }
             .padding(.leading)
-            .calculated(size: $size)
-            Spacer()
-            if let quoteImage = msg.type == DC_MSG_WEBXDC ? msg.getWebxdcPreviewImage() : msg.image {
+            Spacer(minLength: quoteImage == nil ? nil : 30)
+        }
+        .overlay(alignment: .trailing) {
+            if let quoteImage {
                 Image(uiImage: quoteImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: size.height)
+                    .fixedSize(horizontal: false, vertical: false)
+                    .frame(width: 30)
             }
         }
         .overlay(alignment: .leading) {

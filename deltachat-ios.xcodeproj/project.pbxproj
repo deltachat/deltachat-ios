@@ -121,7 +121,6 @@
 		6498762E2FE2E1C2005F80F9 /* InputBarTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498762D2FE2E1C2005F80F9 /* InputBarTextView.swift */; };
 		649876302FE2E1D5005F80F9 /* FileViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6498762F2FE2E1D5005F80F9 /* FileViewRepresentable.swift */; };
 		649876322FE2E1E5005F80F9 /* ContactCardViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649876312FE2E1E5005F80F9 /* ContactCardViewRepresentable.swift */; };
-		649876342FE2E225005F80F9 /* View+calculatedSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649876332FE2E225005F80F9 /* View+calculatedSize.swift */; };
 		64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
 		64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */; };
@@ -483,7 +482,6 @@
 		6498762D2FE2E1C2005F80F9 /* InputBarTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBarTextView.swift; sourceTree = "<group>"; };
 		6498762F2FE2E1D5005F80F9 /* FileViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewRepresentable.swift; sourceTree = "<group>"; };
 		649876312FE2E1E5005F80F9 /* ContactCardViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardViewRepresentable.swift; sourceTree = "<group>"; };
-		649876332FE2E225005F80F9 /* View+calculatedSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+calculatedSize.swift"; sourceTree = "<group>"; };
 		64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+activateWithPriority.swift"; sourceTree = "<group>"; };
 		64D0499F2EC890840093A0A8 /* PiPVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPVideoView.swift; sourceTree = "<group>"; };
 		64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPFrameProcessor.swift; sourceTree = "<group>"; };
@@ -911,7 +909,6 @@
 			isa = PBXGroup;
 			children = (
 				649876292FE2E119005F80F9 /* View+modifier.swift */,
-				649876332FE2E225005F80F9 /* View+calculatedSize.swift */,
 				6498762B2FE2E140005F80F9 /* UncachedMenu.swift */,
 			);
 			path = SwiftUI;
@@ -1798,7 +1795,6 @@
 				30703B6D27AA80FF00BDADE6 /* WebxdcCell.swift in Sources */,
 				303492952565AABC00A523D0 /* DraftModel.swift in Sources */,
 				78E45E3A21D3CFBC00D4B15E /* SettingsViewController.swift in Sources */,
-				649876342FE2E225005F80F9 /* View+calculatedSize.swift in Sources */,
 				B259D64329B771D5008FB706 /* BackupTransferViewController.swift in Sources */,
 				645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */,
 				645575232F00000100F46CD3 /* OutgoingRingbackPlayer.swift in Sources */,
