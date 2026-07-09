@@ -4,10 +4,16 @@ import DcCore
 @testable import deltachat_ios
 import UIKit
 
-class DcTests {
-    lazy var context = DcTestContext.newOfflineAccount()
-    deinit { DcTestContext.cleanup() }
-    
+@Suite(.serialized) class DcTests {
+    lazy var context = DcTestContext.newOfflineAccount(named: "Main")
+    lazy var secondaryContext = DcTestContext.newOfflineAccount(named: "Secondary")
+    init() {
+        #expect(DcAccounts.shared.select(id: context.id))
+    }
+    deinit {
+        DcTestContext.cleanup()
+    }
+
     @Test @MainActor func webxdcShouldNotLeak() async throws {
         // send a webxdc message
         let selfChat = context.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
@@ -28,6 +34,33 @@ class DcTests {
         await webxdcVC!.dismiss(animated: false)
         #expect(webxdcVC == nil)
     }
+
+    @Test @MainActor func shareAttachmentToDifferentProfileKeepsFileBytes() async throws {
+        #expect(DcAccounts.shared.getSelected().id == context.id)
+
+        try? FileManager.default.removeItem(at: shareExtensionDirectory)
+        try FileManager.default.createDirectory(at: shareExtensionDirectory, withIntermediateDirectories: true)
+        let fileURL = shareExtensionDirectory.appendingPathComponent("shared-file.txt")
+        let sharedBytes = Data([0x44, 0x65, 0x6c, 0x74, 0x61])
+        try sharedBytes.write(to: fileURL)
+        defer { try? FileManager.default.removeItem(at: shareExtensionDirectory) }
+
+        let provider = CodableNSItemProvider.contentsAt(url: fileURL, viewType: DC_MSG_FILE)
+        RelayHelper.shared.setShareItems(items: [provider])
+
+        #expect(DcAccounts.shared.select(id: secondaryContext.id))
+        let chatB = secondaryContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        RelayHelper.shared.shareAndFinishRelaying(to: chatB)
+
+        let ids = secondaryContext.getChatMsgs(chatId: chatB, flags: 0)
+        #expect(!ids.isEmpty)
+        if let lastId = ids.last {
+            let msg = secondaryContext.getMessage(id: lastId)
+            #expect(msg.type == DC_MSG_FILE)
+            #expect(msg.filesize > 0)
+        }
+        #expect(DcAccounts.shared.select(id: context.id))
+    }
 }
 
 
@@ -39,18 +72,16 @@ struct DcTestContext {
         }
     }
     
-    static func newOfflineAccount() -> DcContext {
-        cleanup()
+    static func newOfflineAccount(named name: String) -> DcContext {
         let newAccountId = DcAccounts.shared.add()
         let newAccount = DcAccounts.shared.get(id: newAccountId)
-        newAccount.setConfig("displayname", "Unit Test Account")
-        newAccount.setConfig("addr", "ios.test@delta.chat")
-        newAccount.setConfig("configured_addr", "ios.test@delta.chat")
+        newAccount.setConfig("displayname", "Unit Test Account \(name)")
+        newAccount.setConfig("addr", "ios.test.\(name)@delta.chat")
+        newAccount.setConfig("configured_addr", "ios.test.\(name)@delta.chat")
         newAccount.setConfig("configured_mail_pw", "abcd")
         newAccount.setConfigBool("bcc_self", false)
         newAccount.setConfigBool("ui.ios.test_account", true)
         newAccount.setConfigBool("configured", true)
-        assert(DcAccounts.shared.select(id: newAccountId))
         return newAccount
     }
 }

@@ -462,7 +462,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             draft.text = draftText ?? draft.text
             RelayHelper.shared.finishRelaying()
         case .share(let items):
-            let description = Dictionary(items.map { ($0.type, 1) }, uniquingKeysWith: +)
+            let description = Dictionary(items.map { ($0.viewType, 1) }, uniquingKeysWith: +)
                 .compactMap { viewType, count in
                     switch viewType { // TODO: Localize
                     case DC_MSG_GIF: "\(count) GIF(s)"

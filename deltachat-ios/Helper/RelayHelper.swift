@@ -6,7 +6,7 @@ enum RelayData {
     case forwardMessage(text: String?, fileData: Data?, fileName: String?)
     case forwardVCard(Data)
     case mailto(address: String, draft: String?)
-    case share([DcMsg])
+    case share([CodableNSItemProvider])
 }
 
 class RelayHelper {
@@ -38,10 +38,10 @@ class RelayHelper {
         self.data = .forwardMessages(srcContextId: DcAccounts.shared.getSelected().id, ids: messageIds)
     }
     
-    func setShareMessages(messages: [DcMsg]) {
+    func setShareItems(items: [CodableNSItemProvider]) {
         finishRelaying()
         self.dialogTitle = String.localized("chat_share_with_title")
-        self.data = .share(messages)
+        self.data = .share(items)
     }
 
     func isForwarding() -> Bool {
@@ -56,9 +56,18 @@ class RelayHelper {
     }
     
     func shareAndFinishRelaying(to chatId: Int) {
-        if case .share(let messages) = data {
+        if case .share(let items) = data {
             let dcContext = DcAccounts.shared.getSelected()
-            for msg in messages {
+            for item in items {
+                let msg: DcMsg
+                switch item {
+                case let .contentsAt(url, viewType):
+                    msg = dcContext.newMessage(viewType: viewType)
+                    msg.setFile(filepath: url.relativePath)
+                case .text(let text):
+                    msg = dcContext.newMessage(viewType: DC_MSG_TEXT)
+                    msg.text = text
+                }
                 dcContext.sendMessage(chatId: chatId, message: msg)
             }
             DcUtils.donateSendMessageIntent(
