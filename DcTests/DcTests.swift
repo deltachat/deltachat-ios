@@ -5,9 +5,15 @@ import DcCore
 import UIKit
 
 @Suite(.serialized) class DcTests {
-    lazy var context = DcTestContext.newOfflineAccount()
-    deinit { DcTestContext.cleanup() }
-    
+    lazy var context = DcTestContext.newOfflineAccount(named: "Main")
+    lazy var secondaryContext = DcTestContext.newOfflineAccount(named: "Secondary")
+    init() {
+        #expect(DcAccounts.shared.select(id: context.id))
+    }
+    deinit {
+        DcTestContext.cleanup()
+    }
+
     @Test @MainActor func webxdcShouldNotLeak() async throws {
         // send a webxdc message
         let selfChat = context.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
@@ -30,19 +36,7 @@ import UIKit
     }
 
     @Test @MainActor func shareAttachmentToDifferentProfileKeepsFileBytes() async throws {
-        let aContext = DcTestContext.newOfflineAccount()
-        let aId = aContext.id
-
-        let bId = DcAccounts.shared.add()
-        let bContext = DcAccounts.shared.get(id: bId)
-        bContext.setConfig("displayname", "Unit Test Account B")
-        bContext.setConfig("addr", "ios.test.b@delta.chat")
-        bContext.setConfig("configured_addr", "ios.test.b@delta.chat")
-        bContext.setConfig("configured_mail_pw", "abcd")
-        bContext.setConfigBool("ui.ios.test_account", true)
-        bContext.setConfigBool("configured", true)
-
-        #expect(DcAccounts.shared.getSelected().id == aId)
+        #expect(DcAccounts.shared.getSelected().id == context.id)
 
         try? FileManager.default.removeItem(at: shareExtensionDirectory)
         try FileManager.default.createDirectory(at: shareExtensionDirectory, withIntermediateDirectories: true)
@@ -54,17 +48,18 @@ import UIKit
         let provider = CodableNSItemProvider.contentsAt(url: fileURL, viewType: DC_MSG_FILE)
         RelayHelper.shared.setShareItems(items: [provider])
 
-        #expect(DcAccounts.shared.select(id: bId))
-        let selectedBContext = DcAccounts.shared.get(id: bId)
-        let chatB = selectedBContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        #expect(DcAccounts.shared.select(id: secondaryContext.id))
+        let chatB = secondaryContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
         RelayHelper.shared.shareAndFinishRelaying(to: chatB)
 
-        let ids = selectedBContext.getChatMsgs(chatId: chatB, flags: 0)
+        let ids = secondaryContext.getChatMsgs(chatId: chatB, flags: 0)
         #expect(!ids.isEmpty)
-        guard let lastId = ids.last else { return }
-        let msg = selectedBContext.getMessage(id: lastId)
-        #expect(msg.type == DC_MSG_FILE)
-        #expect(msg.filesize > 0)
+        if let lastId = ids.last {
+            let msg = secondaryContext.getMessage(id: lastId)
+            #expect(msg.type == DC_MSG_FILE)
+            #expect(msg.filesize > 0)
+        }
+        #expect(DcAccounts.shared.select(id: context.id))
     }
 }
 
@@ -77,18 +72,16 @@ struct DcTestContext {
         }
     }
     
-    static func newOfflineAccount() -> DcContext {
-        cleanup()
+    static func newOfflineAccount(named name: String) -> DcContext {
         let newAccountId = DcAccounts.shared.add()
         let newAccount = DcAccounts.shared.get(id: newAccountId)
-        newAccount.setConfig("displayname", "Unit Test Account")
-        newAccount.setConfig("addr", "ios.test@delta.chat")
-        newAccount.setConfig("configured_addr", "ios.test@delta.chat")
+        newAccount.setConfig("displayname", "Unit Test Account \(name)")
+        newAccount.setConfig("addr", "ios.test.\(name)@delta.chat")
+        newAccount.setConfig("configured_addr", "ios.test.\(name)@delta.chat")
         newAccount.setConfig("configured_mail_pw", "abcd")
         newAccount.setConfigBool("bcc_self", false)
         newAccount.setConfigBool("ui.ios.test_account", true)
         newAccount.setConfigBool("configured", true)
-        assert(DcAccounts.shared.select(id: newAccountId))
         return newAccount
     }
 }
