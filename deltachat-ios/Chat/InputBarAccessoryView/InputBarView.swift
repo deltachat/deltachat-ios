@@ -109,6 +109,8 @@ struct InputBarView: View {
                 }
             } else {
                 view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
+                    .overlay(alignment: .top, content: Divider.init)
+                    .padding(.top, 8)
             }
         }
     }
