@@ -54,12 +54,13 @@ struct InputBarView: View {
                         .scaledToFit()
                         .padding(2)
                 }).frame(height: buttonSize)
-                InputBarTextView(
-                    text: $draft.text,
-                    imagePasteDelegate: chatViewController,
-                    textContainerInset: UIEdgeInsets(top: 4, left: 12, bottom: 4, right: 12),
-                    maxHeight: 150
-                )
+                VStack {
+                    InputBarTextView(
+                        text: $draft.text,
+                        imagePasteDelegate: chatViewController,
+                        textContainerInset: UIEdgeInsets(top: 4, left: 12, bottom: 4, right: 12),
+                        maxHeight: 150
+                    )
                     .focused($textEditorFocus)
                     .overlay(alignment: .leading) {
                         if draft.text.isEmpty && !textEditorFocus {
@@ -71,6 +72,7 @@ struct InputBarView: View {
                     }
                     .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: true) }
                     .accessibilityLabel(String.localized("write_message_desktop"))
+                }.frame(maxHeight: .infinity)
                 Button(action: {
                     draft.send()
                 }, label: {
