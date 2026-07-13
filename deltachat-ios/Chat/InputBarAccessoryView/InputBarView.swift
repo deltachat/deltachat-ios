@@ -70,9 +70,6 @@ struct InputBarView: View {
                         }
                     }
                     .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: true) }
-                    .onTapGesture {
-                        textEditorFocus = true
-                    }
                     .accessibilityLabel(String.localized("write_message_desktop"))
                 Button(action: {
                     draft.send()
@@ -92,7 +89,9 @@ struct InputBarView: View {
         .onChange(of: draft.quoteMessage?.id, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.attachment, perform: _updateIntrinsicContentSize)
         .onChange(of: draft.isFieldFocused) {
-            textEditorFocus = $0
+            if textEditorFocus != $0 {
+                textEditorFocus = $0
+            }
         }
         .onChange(of: textEditorFocus) {
             if draft.isFieldFocused != $0 {
