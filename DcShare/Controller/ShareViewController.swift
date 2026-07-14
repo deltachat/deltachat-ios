@@ -22,8 +22,8 @@ class ShareViewController: UIViewController {
                 let inputItems = extensionContext?.inputItems as? [NSExtensionItem] ?? []
                 let attachments = try await inputItems
                     .flatMap { $0.attachments ?? [] }
-                    .asyncMap { try await CodableNSItemProvider.init(from: $0) }
-            
+                    .asyncMap { try await CodableNSItemProvider(from: $0, in: shareExtensionDirectory) }
+
                 // Create deeplink referencing shared items
                 if let jsonData = try? JSONEncoder().encode(attachments),
                    let json = String(data: jsonData, encoding: .utf8),

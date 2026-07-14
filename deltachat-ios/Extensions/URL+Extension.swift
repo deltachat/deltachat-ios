@@ -54,4 +54,9 @@ extension URL {
     @_disfavoredOverload public static var temporaryDirectory: URL {
         FileManager.default.temporaryDirectory
     }
+
+    /// This makes URL.cachesDirectory available pre iOS 16
+    @_disfavoredOverload public static var cachesDirectory: URL {
+        FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first ?? URL(fileURLWithPath: "")
+    }
 }

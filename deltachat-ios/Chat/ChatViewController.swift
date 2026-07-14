@@ -2523,18 +2523,13 @@ extension ChatViewController: MediaPickerDelegate {
 
             // stage a single selected item
             if sendAsFile {
-                if let typeIdentifier = itemProvider.registeredTypeIdentifiers.first {
-                    itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [weak self] url, error in
-                        if let url {
-                            var copyURL = URL.temporaryDirectory.appendingPathComponent(url.lastPathComponent)
-                            copyURL = FileHelper.copyIfPossible(src: url, dest: copyURL)
-                            self?.stageDocument(url: copyURL as NSURL)
-                        } else if let error {
-                            self?.logAndAlert(error: error.localizedDescription)
-                        }
+                Task { [weak self] in
+                    switch try? await CodableNSItemProvider(from: itemProvider, in: .cachesDirectory) {
+                    case .contentsAt(url: let url, viewType: _):
+                        self?.stageDocument(url: url as NSURL)
+                    default:
+                        self?.logAndAlert(error: "Failed to load file")
                     }
-                } else {
-                    logAndAlert(error: "No types registered")
                 }
             } else if itemProvider.canLoadVideo() {
                 let progressAlertHandler = ProgressAlertHandler()
