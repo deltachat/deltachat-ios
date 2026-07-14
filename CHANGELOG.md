@@ -5,6 +5,7 @@
 - Show notifications when app is in foreground and the respective chat is not on screen
 - Show in title if an app is still in draft mode
 - Style buttons on welcome screen according to LiquidGlass
+- Changed the quick reaction emoji "👎" to "😂" in the message bubble context menu
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 - Fix: sharing files to a chat in a different profile no longer sends empty files
 
