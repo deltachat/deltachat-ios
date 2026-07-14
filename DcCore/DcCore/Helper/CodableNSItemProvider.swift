@@ -31,7 +31,7 @@ public enum CodableNSItemProvider: Codable {
         }
     }
     
-    public init(from provider: NSItemProvider) async throws {
+    public init(from provider: NSItemProvider, in directory: URL) async throws {
         self = try await withCheckedThrowingContinuation { continuation in
             switch provider.hasItemConformingToTypeIdentifier {
             case UTType.gif.identifier: loadFile(forType: .gif, DC_MSG_GIF, plistToImage: true)
@@ -54,7 +54,7 @@ public enum CodableNSItemProvider: Codable {
                 _ = provider.loadObject(ofClass: URL.self) { url, error in
                     if let url {
                         do {
-                            let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
+                            let tempFile = directory.appendingPathComponent(url.lastPathComponent)
                             try FileManager.default.copyItem(at: url, to: tempFile)
                             let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE
                             return continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
@@ -75,7 +75,7 @@ public enum CodableNSItemProvider: Codable {
                     guard let url else {
                         return continuation.resume(throwing: error ?? Error.providerDidNotReturnValueNorError)
                     }
-                    let tempFile = shareExtensionDirectory.appendingPathComponent(url.lastPathComponent)
+                    let tempFile = directory.appendingPathComponent(url.lastPathComponent)
                     do {
                         // If an app shares a UIImage instead of a path (eg the native screenshot process)
                         // the file we receive is a PList so we need to load the UIImage differently.
@@ -109,7 +109,7 @@ public enum CodableNSItemProvider: Codable {
                         // This case adds support for sharing a long-pressed
                         // image in Safari which gives only a url to NSItemProvider
                         do {
-                            let localUrl = shareExtensionDirectory
+                            let localUrl = directory
                                 .appendingPathComponent(UUID().uuidString)
                                 .appendingPathExtension(imageFormat.rawValue)
                             try data.write(to: localUrl)

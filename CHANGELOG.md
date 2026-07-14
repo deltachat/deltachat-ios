@@ -8,6 +8,7 @@
 - Changed the quick reaction emoji "👎" to "😂" in the message bubble context menu
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 - Fix: sharing files to a chat in a different profile no longer sends empty files
+- Fix: Attaching live photos as file so they aren't compressed did not work
 
 
 ## v2.53.1 Testflight
