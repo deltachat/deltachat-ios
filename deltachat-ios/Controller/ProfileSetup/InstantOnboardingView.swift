@@ -81,6 +81,7 @@ class InstantOnboardingView: UIView {
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
         contentScrollView.addSubview(contentStackView)
         contentScrollView.keyboardDismissMode = .onDrag
+        contentScrollView.alwaysBounceVertical = true
 
         super.init(frame: .zero)
 
