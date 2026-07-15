@@ -23,7 +23,7 @@ public class ChatEditingBar: UIView {
 
     public lazy var moreButton: UIBarButtonItem = {
         let moreButton = UIBarButtonItem(
-            image: UIImage(systemName: "ellipsis.circle"),
+            image: UIImage(systemName: "ellipsis"),
             menu: UIMenu(children: [
                 UIDeferredMenuElement.uncached({ [weak self] completion in
                     completion(self?.delegate?.onMorePressed().children ?? [])

@@ -31,7 +31,7 @@ class HelpViewController: WebViewViewController {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis.circle")
+        let image = UIImage(systemName: "ellipsis")
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 

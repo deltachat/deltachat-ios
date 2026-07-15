@@ -46,7 +46,7 @@ class ChatListEditingBar: UIView {
 
     private lazy var moreButton: UIBarButtonItem = {
         let button = UIBarButtonItem(
-            image: UIImage(systemName: "ellipsis.circle"),
+            image: UIImage(systemName: "ellipsis"),
             menu: UIMenu(children: [
                 UIDeferredMenuElement.uncached({ [weak self] completion in
                     completion(self?.delegate?.onMorePressed().children ?? [])

@@ -9,7 +9,7 @@ class FullMessageViewController: WebViewViewController {
         // just to see whether the message they get will change, this is a very generic icon.
         // (best would be if we know before if an HTML message contains images and thelike,
         // but we don't and this is probably also not worth  the effort. so we used the second best approach :)
-        let image = UIImage(systemName: "ellipsis.circle")
+        let image = UIImage(systemName: "ellipsis")
 
         let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showLoadOptions))
         button.accessibilityLabel = String.localized("load_remote_content")
