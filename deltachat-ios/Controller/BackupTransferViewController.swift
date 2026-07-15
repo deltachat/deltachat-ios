@@ -251,7 +251,7 @@ class BackupTransferViewController: UIViewController {
 
     private func updateMenuItems() {
         let menu = moreButtonMenu()
-        let button =  UIBarButtonItem(image: UIImage(systemName: "ellipsis"), menu: menu)
+        let button =  UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: menu)
         navigationItem.rightBarButtonItem = button
     }
 

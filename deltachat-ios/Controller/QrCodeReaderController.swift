@@ -24,7 +24,7 @@ class QrCodeReaderController: UIViewController {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis")
+        let image = UIImage(systemName: .ellipsisNavigation())
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 

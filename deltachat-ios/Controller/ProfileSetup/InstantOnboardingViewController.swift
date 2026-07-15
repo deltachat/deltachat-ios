@@ -20,7 +20,7 @@ class InstantOnboardingViewController: UIViewController {
     private var providerHostURL: URL
     private var qrCodeData: String?
     private lazy var menuButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis")
+        let image = UIImage(systemName: .ellipsisNavigation())
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
 
