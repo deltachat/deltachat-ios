@@ -299,7 +299,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private var emptyStateView: EmptyStateLabel = {
-        let view =  EmptyStateLabel()
+        let view = EmptyStateLabel()
         view.isHidden = true
         return view
     }()
@@ -1753,7 +1753,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             let msg = self.dcContext.newMessage(viewType: DC_MSG_VOICE)
-            if let quoteMessage =  self.draft.quoteMessage {
+            if let quoteMessage = self.draft.quoteMessage {
                 msg.quoteMessage = quoteMessage
             }
             msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")

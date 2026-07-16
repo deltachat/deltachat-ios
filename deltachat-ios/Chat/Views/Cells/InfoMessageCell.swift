@@ -116,7 +116,7 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
         if let weight = weight {
             messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: weight)
         } else {
-            messageLabel.font =  UIFont.preferredFont(for: .subheadline, weight: .medium)
+            messageLabel.font = UIFont.preferredFont(for: .subheadline, weight: .medium)
         }
 
         spacerView.isHidden = !isHeader

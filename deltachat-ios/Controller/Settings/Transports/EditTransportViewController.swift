@@ -236,7 +236,7 @@ class EditTransportViewController: UITableViewController {
     }()
 
     private var cancelButton: UIBarButtonItem {
-        let button =  UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
         return button
     }
 
