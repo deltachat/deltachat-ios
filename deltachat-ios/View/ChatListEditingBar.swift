@@ -59,7 +59,7 @@ class ChatListEditingBar: UIView {
 
     private lazy var toolbar: UIToolbar = {
         let toolbar = UIToolbar()
-        toolbar.items = [archiveButton, .flexibleSpace(), deleteButton, moreButton]
+        toolbar.items = [archiveButton, .flexibleSpace(), deleteButton, .fixedSpace(0), moreButton]
         return toolbar
     }()
 

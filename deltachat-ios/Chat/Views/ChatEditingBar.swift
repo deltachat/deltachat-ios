@@ -70,7 +70,7 @@ public class ChatEditingBar: UIView {
 
     private lazy var toolbar: UIToolbar = {
         let view = UIToolbar()
-        view.items = [forwardButton, copyButton, deleteButton, .flexibleSpace(), moreButton]
+        view.items = [forwardButton, copyButton, .flexibleSpace(), deleteButton, .fixedSpace(0), moreButton]
         return view
     }()
 
