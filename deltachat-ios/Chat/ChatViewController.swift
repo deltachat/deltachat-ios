@@ -703,6 +703,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         // Update the last seen indicator
         updateTitle()
+        let nc = UNUserNotificationCenter.current()
+        nc.removePendingNotificationRequests(withIdentifiers: ["best_attempt"])
+        nc.removeDeliveredNotifications(withIdentifiers: ["best_attempt"])
     }
 
     @objc func applicationWillResignActive(_ notification: NSNotification) {
