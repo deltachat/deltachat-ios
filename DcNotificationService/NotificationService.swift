@@ -2,8 +2,14 @@ import UserNotifications
 import CallKit
 import DcCore
 
+/// If one profile is stuck on connecting then all notifications are delayed by this amount of seconds
+/// so this is a tradeoff between how long we want to try to gather notifications and how long we want to let the user wait
+/// in case they have a broken profile.
+let fetchTimeout = 15.0
+
 class NotificationService: UNNotificationServiceExtension {
     let dcAccounts = DcAccounts.shared
+    let unc = UNUserNotificationCenter.current()
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         Task {
@@ -12,7 +18,6 @@ class NotificationService: UNNotificationServiceExtension {
     }
 
     func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) async {
-        let bestAttemptContent = request.content
         let nowTimestamp = Date().timeIntervalSince1970
         UserDefaults.pushToDebugArray("🤜")
 
@@ -27,36 +32,36 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(silentNotification())
             return
         }
-        UserDefaults.setNseFetching(for: 26)
+        UserDefaults.setNseFetching(for: fetchTimeout)
 
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
 
-        // Send the bestAttempt notification when memory is critical because the process will be killed
-        // by the system soon and any notification is better than nothing.
-        var exitedDueToCriticalMemory = false
+        // Queue the bestAttempt notification in case the NSE is killed due to memory usage
+        try? await unc.add(UNNotificationRequest(
+            identifier: "best_attempt",
+            content: request.content,
+            trigger: UNTimeIntervalNotificationTrigger(timeInterval: fetchTimeout + 1, repeats: false)
+        ))
+
+        // Log to debug array when memory is low
         let memoryPressureSource = DispatchSource.makeMemoryPressureSource(eventMask: .critical)
         memoryPressureSource.setEventHandler { [weak memoryPressureSource] in
-            guard let memoryPressureSource, !memoryPressureSource.isCancelled, !exitedDueToCriticalMemory else { return }
+            guard let memoryPressureSource, !memoryPressureSource.isCancelled else { return }
             memoryPressureSource.cancel()
-            // Order of importance because we might crash very soon
-            exitedDueToCriticalMemory = true
-            UserDefaults.setNseFetching(for: 3)
             UserDefaults.pushToDebugArray("ERR5_LOW_MEM")
-            contentHandler(bestAttemptContent)
         }
         memoryPressureSource.activate()
 
-        guard dcAccounts.backgroundFetch(timeout: 25) && !exitedDueToCriticalMemory else {
+        // Start bg fetch
+        guard dcAccounts.backgroundFetch(timeout: UInt64(fetchTimeout)) else {
             UserDefaults.pushToDebugArray("ERR3_CORE")
             UserDefaults.setNseFetchingDone()
-            if !exitedDueToCriticalMemory {
-                contentHandler(bestAttemptContent)
-            }
             return
         }
         UserDefaults.setNseFetchingDone()
-        memoryPressureSource.cancel()
+        unc.removePendingNotificationRequests(withIdentifiers: ["best_attempt"])
+        unc.removeDeliveredNotifications(withIdentifiers: ["best_attempt"])
 
         var notifications: [UNMutableNotificationContent] = []
         while true {
@@ -99,7 +104,7 @@ class NotificationService: UNNotificationServiceExtension {
                     let chat = dcContext.getChat(chatId: msg.chatId)
                     if let content = UNMutableNotificationContent(forIncomingCallMsg: msg, chat: chat, context: dcContext) {
                         let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
-                        try? await UNUserNotificationCenter.current().add(request)
+                        try? await unc.add(request)
                     }
                 } else if #available(iOSApplicationExtension 14.5, *) {
                     // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
@@ -140,11 +145,10 @@ class NotificationService: UNNotificationServiceExtension {
             } else if event.id == DC_EVENT_MSGS_NOTICED {
                 let noticedThreadId = "\(event.accountId)-\(event.data1Int)"
                 notifications = notifications.filter { $0.threadIdentifier != noticedThreadId }
-                let nc = UNUserNotificationCenter.current()
-                let deliveredNotificationIds = await nc.deliveredNotifications()
+                let deliveredNotificationIds = await unc.deliveredNotifications()
                     .filter { $0.request.content.threadIdentifier == noticedThreadId }
                     .map { $0.request.identifier }
-                nc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
+                unc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
             }
         }
 
@@ -152,7 +156,7 @@ class NotificationService: UNNotificationServiceExtension {
         for notification in notifications {
             let req = UNNotificationRequest(identifier: UUID().uuidString, content: notification, trigger: nil)
             do {
-                try await UNUserNotificationCenter.current().add(req)
+                try await unc.add(req)
             } catch {
                 UserDefaults.pushToDebugArray("ERR6_UNUNC")
             }
