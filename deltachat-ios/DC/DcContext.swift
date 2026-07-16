@@ -263,7 +263,7 @@ public class DcContext {
             return []
         }
 
-        let messageIds: [Int] =  DcUtils.copyAndFreeArray(inputArray: messagesPointer)
+        let messageIds: [Int] = DcUtils.copyAndFreeArray(inputArray: messagesPointer)
         return messageIds
     }
 

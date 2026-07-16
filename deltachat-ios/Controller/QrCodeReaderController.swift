@@ -172,7 +172,7 @@ class QrCodeReaderController: UIViewController {
               let statusBarOrientation = UIApplication.shared.orientation else {
             return
         }
-        let videoOrientation: AVCaptureVideoOrientation =  statusBarOrientation.videoOrientation ?? .portrait
+        let videoOrientation: AVCaptureVideoOrientation = statusBarOrientation.videoOrientation ?? .portrait
 
         if connection.videoOrientation == videoOrientation {
             print("no change to videoOrientation")

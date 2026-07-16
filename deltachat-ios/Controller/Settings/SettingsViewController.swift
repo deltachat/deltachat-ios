@@ -83,7 +83,7 @@ internal final class SettingsViewController: UITableViewController {
     private lazy var allAppsAndMediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.allAppsAndMedia.rawValue
-        cell.textLabel?.text =  String.localized("all_apps_and_media")
+        cell.textLabel?.text = String.localized("all_apps_and_media")
         cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
         cell.accessoryType = .disclosureIndicator
         return cell

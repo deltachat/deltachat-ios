@@ -457,7 +457,7 @@ public class BaseMessageCell: UITableViewCell {
 
         let downloadState = msg.downloadState
         let hasHtml = msg.hasHtml
-        let hasWebxdc =  msg.type == DC_MSG_WEBXDC
+        let hasWebxdc = msg.type == DC_MSG_WEBXDC
         
         switch downloadState {
         case DC_DOWNLOAD_AVAILABLE:
@@ -633,7 +633,7 @@ public class BaseMessageCell: UITableViewCell {
         if isTransparent {
             backgroundColor = UIColor.init(alpha: 0, red: 0, green: 0, blue: 0)
         } else if message.isFromCurrentSender {
-            backgroundColor =  DcColors.messagePrimaryColor
+            backgroundColor = DcColors.messagePrimaryColor
         } else {
             backgroundColor = DcColors.messageSecondaryColor
         }

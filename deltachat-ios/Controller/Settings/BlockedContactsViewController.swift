@@ -4,7 +4,7 @@ import DcCore
 class BlockedContactsViewController: GroupMembersViewController, GroupMemberSelectionDelegate {
 
     var emptyStateView: EmptyStateLabel = {
-        let view =  EmptyStateLabel()
+        let view = EmptyStateLabel()
         view.text = String.localized("blocked_empty_hint")
         return view
     }()
