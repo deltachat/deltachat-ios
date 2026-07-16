@@ -7,6 +7,14 @@ public extension String {
         return self + " ↗"
     }
 
+    static func ellipsisNavigation() -> String {
+        if #available(iOS 26.0, *) {
+            return "ellipsis"
+        } else {
+            return "ellipsis.circle"
+        }
+    }
+
     static func localized(_ stringID: String) -> String {
         let value = NSLocalizedString(stringID, comment: "")
         if value != stringID || NSLocale.preferredLanguages.first == "en" {

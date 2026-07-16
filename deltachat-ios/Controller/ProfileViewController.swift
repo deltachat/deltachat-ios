@@ -277,7 +277,7 @@ class ProfileViewController: UITableViewController {
     }
 
     private func updateMenuItems() {
-        let menuButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreButtonMenu())
+        let menuButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: moreButtonMenu())
         var buttonItems: [UIBarButtonItem] = [menuButton]
         if !isSavedMessages && !isDeviceChat && contact != nil {
             let editButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(showEditController))
