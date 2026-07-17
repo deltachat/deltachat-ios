@@ -49,11 +49,8 @@ class InstantOnboardingView: UIView {
 
         agreeButton = UIButton()
         agreeButton.setTitle(String.localized("instant_onboarding_create"), for: .normal)
-        agreeButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
-        agreeButton.setTitleColor(.white, for: .normal)
         agreeButton.translatesAutoresizingMaskIntoConstraints = false
-        agreeButton.layer.cornerRadius = 5
-        agreeButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 15, bottom: 8, right: 15)
+        agreeButton.primaryCapsule()
 
         privacyButton = UIButton(type: .system)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +60,8 @@ class InstantOnboardingView: UIView {
 
         otherOptionsButton = UIButton(type: .system)
         otherOptionsButton.setTitle(String.localized("instant_onboarding_show_more_instances"), for: .normal)
-        otherOptionsButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         otherOptionsButton.translatesAutoresizingMaskIntoConstraints = false
+        otherOptionsButton.secondaryCapsule()
 
         contentStackView = UIStackView(arrangedSubviews: [imageButton, nameTextField, hintLabelWrapper, privacyButtonWrapper, agreeButton, otherOptionsButton])
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
