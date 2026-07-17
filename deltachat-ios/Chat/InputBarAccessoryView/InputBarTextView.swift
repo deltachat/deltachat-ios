@@ -40,7 +40,9 @@ private struct _InputBarTextView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: ChatInputTextView, context: Context) {
-        uiView.text = text
+        if uiView.text != text {
+            uiView.text = text
+        }
         uiView.imagePasteDelegate = imagePasteDelegate
         uiView.textContainerInset = textContainerInset
     }
