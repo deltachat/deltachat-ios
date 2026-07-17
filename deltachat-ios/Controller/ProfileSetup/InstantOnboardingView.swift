@@ -124,6 +124,8 @@ class InstantOnboardingView: UIView {
             hintLabel.leadingAnchor.constraint(equalTo: hintLabelWrapper.leadingAnchor),
             hintLabelWrapper.trailingAnchor.constraint(greaterThanOrEqualTo: hintLabel.trailingAnchor),
             hintLabelWrapper.bottomAnchor.constraint(equalTo: hintLabel.bottomAnchor),
+
+            otherOptionsButton.widthAnchor.constraint(greaterThanOrEqualTo: agreeButton.widthAnchor)
         ]
 
         NSLayoutConstraint.activate(constraints)
