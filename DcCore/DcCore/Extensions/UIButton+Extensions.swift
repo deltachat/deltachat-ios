@@ -4,7 +4,7 @@ public extension UIButton {
     private func applyStyle(_ config: UIButton.Configuration) {
         var config = config
         config.cornerStyle = .capsule
-        config.buttonSize = .large
+        config.buttonSize = .medium
         configuration = config
     }
 
