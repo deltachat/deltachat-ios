@@ -176,6 +176,7 @@ class ChatListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setBottomTabBarHidden(hasEditingView())
 
         // create view
         navigationItem.titleView = titleView
@@ -659,12 +660,14 @@ class ChatListViewController: UITableViewController {
     func setLongTapEditing(_ editing: Bool, initialIndexPath: IndexPath? = nil) {
         setEditing(editing, animated: true)
         if editing {
+            setBottomTabBarHidden(true)
             tableView.selectRow(at: initialIndexPath, animated: true, scrollPosition: .none)
             addEditingView()
             updateTitleAndEditingBar()
         } else {
             removeEditingView()
             updateTitle()
+            setBottomTabBarHidden(false)
         }
     }
 
@@ -680,6 +683,14 @@ class ChatListViewController: UITableViewController {
             editingBar.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
         ]
         NSLayoutConstraint.activate(editingConstraints ?? [])
+    }
+
+    private func setBottomTabBarHidden(_ hidden: Bool) {
+        guard !isArchive, let tabBar = tabBarController?.tabBar, tabBar.isHidden != hidden else { return }
+
+        tabBar.isHidden = hidden
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
     private func removeEditingView() {
