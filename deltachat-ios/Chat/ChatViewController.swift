@@ -51,7 +51,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private lazy var tableViewContainer: UIView = UIView()
     private let edgeEffectExtension = (top: CGFloat(12), bottom: CGFloat(8))
-    private let edgeEffectBlurStrength = (light: CGFloat(0.85), dark: CGFloat(0.62))
+    private let edgeEffectBlurStrength = (light: CGFloat(0.70), dark: CGFloat(0.85))
     private let edgeEffectBlurTransition: Float = 0.5
     private let edgeEffectBlurViews = (
         top: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)),
