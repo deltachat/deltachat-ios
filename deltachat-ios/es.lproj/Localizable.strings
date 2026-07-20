@@ -237,6 +237,7 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nombre e imagen de grupo";
 "menu_show_global_map" = "Todas las ubicaciones";
 "menu_archive_chat" = "Archivar chat";
@@ -618,7 +619,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "¿Añadir este retransmisor?";
 "invalid_transport_qr" = "El código QR escaneado no contiene un retransmisor válido.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "¿Eliminar el retransmisor \"%1$@\"?\n\nLos contactos que solo conocen este retransmisor podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";

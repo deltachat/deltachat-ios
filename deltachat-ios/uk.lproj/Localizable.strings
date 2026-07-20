@@ -237,6 +237,7 @@
 "menu_send" = "Послати";
 "menu_toggle_keyboard" = "Увімкнути емодзі-клавіатуру";
 "menu_edit_group" = "Редагувати групу";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Назва групи та зображення";
 "menu_show_global_map" = "Показати всі місця";
 "menu_archive_chat" = "Архівувати чат";
@@ -618,7 +619,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Додати цей ретранслятор?";
 "invalid_transport_qr" = "Відсканований QR-код не містить дійсного ретранслятора.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Видалити ретранслятор \"%1$@\"?\n\nКонтакти, які знають тільки цей ретранслятор, можуть не зв\'язатися з вами, поки ви не напишете їм знову.\n\nЯкщо ви сумніваєтеся, сховайте його, а не видаляйте.";
 "login_certificate_checks" = "Перевірки сертифікатів";
 "login_error_mail" = "Вкажіть дійсну адресу електронної пошти";

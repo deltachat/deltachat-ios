@@ -237,6 +237,7 @@
 "menu_send" = "Bidali";
 "menu_toggle_keyboard" = "Txandakatu emoji teklatua";
 "menu_edit_group" = "Editatu taldea";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Taldearen izena eta irudia";
 "menu_show_global_map" = "Erakutsi kokaleku guztiak";
 "menu_archive_chat" = "Artxibatu txata";
@@ -618,7 +619,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Ezabatu \"%1$@\" errelea?\n\nErrele hau bakarrik ezagutzen duten kontaktuak ezin izango dira zurekin harremanetan jarri zuk mezu bat berriro bidali arte.\n\nZalantzarik baduzu, hobe da ezkutatzea ezabatzea baino.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
 "login_error_mail" = "Sartu baliozko e-mail helbide bat";

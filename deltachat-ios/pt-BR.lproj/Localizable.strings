@@ -224,6 +224,7 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Ativar teclado de emojis";
 "menu_edit_group" = "Modificar grupo";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nome e Imagem do grupo";
 "menu_show_global_map" = "Todas as localizações";
 "menu_archive_chat" = "Arquivar conversa";

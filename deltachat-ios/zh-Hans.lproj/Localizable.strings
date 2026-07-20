@@ -237,6 +237,7 @@
 "menu_send" = "发送";
 "menu_toggle_keyboard" = "切换表情符号键盘";
 "menu_edit_group" = "编辑群组";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "群组名称和图像";
 "menu_show_global_map" = "显示所有位置";
 "menu_archive_chat" = "归档聊天";
@@ -619,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "添加此中继？";
 "invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "移除中继“%1$@”？\n\n仅知道此中继的联系人可能无法联系到您，直到您再次发送消息。\n\n如有疑问，请将其隐藏而非移除。";
 "login_certificate_checks" = "证书检查";
 "login_error_mail" = "请输入有效的电子邮件地址";

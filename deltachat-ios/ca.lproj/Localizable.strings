@@ -237,6 +237,7 @@
 "menu_send" = "Envia";
 "menu_toggle_keyboard" = "Canvia al teclat d\'emojis";
 "menu_edit_group" = "Edita el grup";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nom i imatge del grup";
 "menu_show_global_map" = "Totes les ubicacions";
 "menu_archive_chat" = "Arxiva el xat";
@@ -618,7 +619,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Afegir aquest retransmissor?";
 "invalid_transport_qr" = "El codi QR escanejat no conté un retransmissor vàlid.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Esborrar el retransmissor \"%1$@\"?\n\nEls contactes que només coneixen aquest retransmissor no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
 "login_certificate_checks" = "El certificat coincideix";
 "login_error_mail" = "Si us plau poseu una adreça d\'email vàlida";

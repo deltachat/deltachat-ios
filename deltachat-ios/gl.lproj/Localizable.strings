@@ -237,6 +237,7 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Activar teclado de emoticonas";
 "menu_edit_group" = "Editar grupo";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nome e imaxe do grupo";
 "menu_show_global_map" = "Todas as localizacións";
 "menu_archive_chat" = "Arquivar conversa";
@@ -375,6 +376,7 @@
 "canceled_call" = "Chamada cancelada";
 "missed_call" = "Chamada perdida";
 "already_in_call" = "Xa nunha chamada";
+"call_back" = "Devolver a chamada";
 "call_answered_elsewhere" = "Chamada respondida noutro dispositivo";
 "call_requires_camera_permission" = "É preciso o permiso da cámara para as videochamadas";
 "call_requires_mic_permission" = "É preciso permiso para o micrófono para as chamadas";
@@ -391,7 +393,7 @@
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 // deprecated, use ask_forward_messages
 "ask_forward" = "Reenviar mensaxes a %1$@?";
-"ask_forward_multiple" = "¿Reenviar mensaxes a %1$d conversas?";
+"ask_forward_multiple" = "Reenviar mensaxes a %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? Ao exportar anexos outras aplicacións no dispositivo terán acceso a eles.\n\nGardar?";
 "ask_block_contact" = "Queres bloquear este contacto?\n\nAs mensaxes directas ou os grupos creados por contactos bloqueados non aparecerán.\n\nOutros grupos con contactos bloqueados seguirán mostrando as súas mensaxes.";
 "ask_unblock_contact" = "Desbloquear este contacto?";
@@ -475,8 +477,8 @@
 "change_group_image" = "Cambiar imaxe do grupo";
 "group_create_button" = "Crear grupo";
 // deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Por favor, introduce un nome para o grupo";
-"please_enter_chat_name" = "Introduce un nome.";
+"group_please_enter_group_name" = "Por favor, escribe un nome para o grupo";
+"please_enter_chat_name" = "Escribe un nome.";
 "group_add_members" = "Engadir participantes";
 "group_self_not_in_group" = "Debes ser parte do grupo para executar esta acción.";
 "profile_encryption" = "Cifrado";
@@ -500,7 +502,7 @@
 "all_apps_empty_hint" = "As aplicacións compartidas en calquera conversa amósanse aquí.";
 "media_preview" = "Vista previa dos medios";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
-"aspect_ratio_grid" = "Grella de relación de aspecto";
+"aspect_ratio_grid" = "Grella de proporcións";
 // option to show images in the gallery as square (instead of using correct width/height)
 "square_grid" = "Grella cadrada";
 "send_message" = "Enviar mensaxe";
@@ -590,20 +592,20 @@
 "login_smtp_port" = "Porto SMTP";
 "login_smtp_security" = "Seguridade SMTP";
 // the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
-"proxy_settings" = "Proxy";
-"proxy_use_proxy" = "Usar Proxy";
-"proxy_add" = "Engadir Proxy";
-"proxy_add_explain" = "Tipos de proxy compatibles: HTTP(S), SOCKS5 e Shadowsocks.";
-"proxy_add_url_hint" = "Escribe aquí a ligazón ao proxy";
-"proxy_invalid" = "Proxy non compatible ou non válido";
+"proxy_settings" = "Mandatario";
+"proxy_use_proxy" = "Usar mandatario";
+"proxy_add" = "Engadir mandatario";
+"proxy_add_explain" = "Tipos de mandatarios compatibles: HTTP(S), SOCKS5 e Shadowsocks.";
+"proxy_add_url_hint" = "Escribe aquí a ligazón ao mandatario";
+"proxy_invalid" = "Mandatario incompatible ou non válido";
 "proxy_list_header" = "Proxys gardados";
-"proxy_delete" = "Eliminar Proxy";
+"proxy_delete" = "Eliminar mandatario";
 "proxy_delete_explain" = "Tes certeza de querer eliminar \"%1$@\"?";
-"proxy_use_proxy_confirm" = "Queres usar o proxy \"%1$@\"?";
-"proxy_share_explain" = "As túas amizades poden engadir este proxy escaneando o código QR.";
+"proxy_use_proxy_confirm" = "Queres usar o mandatario \"%1$@\"?";
+"proxy_share_explain" = "As túas amizades poden engadir este mandatario escaneando o código QR.";
 "proxy_share_link" = "Compartir ligazón";
-"proxy_enabled" = "Proxy activado";
-"proxy_enabled_hint" = "Estás a usar un proxy. Se tes problemas para conectarte, proba cun proxy diferente.";
+"proxy_enabled" = "Mandatario activado";
+"proxy_enabled_hint" = "Estás a usar un mandatario. Se tes problemas para conectar, proba cun mandatario diferente.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Repetidores";
 "add_transport" = "Engadir repetidor";
@@ -618,13 +620,13 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Engadir este repetidor?";
 "invalid_transport_qr" = "O código QR escaneado non contén un repetidor válido.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Eliminar o repetidor \"%1$@\"?\n\nOs contactos que só coñecen este retransmisor poden non contactar contigo ata que lles envíes unha nova mensaxe.\n\nEn caso de dúbida, ocúltao en lugar de eliminalo.";
 "login_certificate_checks" = "Comprobacións do certificado";
-"login_error_mail" = "Introduce un enderezo de correo válido";
+"login_error_mail" = "Escribe un enderezo de correo válido";
 "login_error_server" = "Introduce un servidor / enderezo IP válido";
 "login_error_port" = "Introduce un porto válido (1–65535)";
-"login_error_required_fields" = "Introduce un enderezo de correo válido e o contrasinal";
+"login_error_required_fields" = "Escribe un enderezo de correo válido e un contrasinal";
 "import_backup_title" = "Importar respaldo";
 "import_backup_ask" = "Atopouse un respaldo en \"%1$@\".\n\nQueres importar e utilizar os seus datos e configuracións?";
 "import_backup_no_backup_found" = "Non se atoparon respaldos.\n\nCopia o respaldo a \"%1$@\" e inténtao outra vez.";
@@ -701,7 +703,7 @@
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
 "pref_dark_theme" = "Escuro";
-"pref_appearance" = "Aspecto";
+"pref_appearance" = "Aparencia";
 "pref_theme" = "Decorado";
 "pref_language" = "Idioma";
 "pref_use_system_ui_font" = "Utilizar a fonte do sistema";
@@ -936,7 +938,7 @@
 "revive_qr_code" = "Activar código QR";
 "qrshow_title" = "Código QR de convite";
 "qrshow_x_joining" = "%1$@ uniuse.";
-"qrshow_x_verified" = "Introduciuse %1$@.";
+"qrshow_x_verified" = "%1$@presentouse.";
 "qrshow_x_has_joined_group" = "%1$@ uniuse ao grupo.";
 "qrshow_join_group_title" = "Código QR de convite";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -948,7 +950,7 @@
 "qrshow_join_contact_no_connection_toast" = "Sen conexión a internet, non se pode configurar o código QR.";
 "qraccount_ask_create_and_login" = "Crear un novo perfil en \"%1$@\" e acceder alí?";
 "set_name_and_avatar_explain" = "Define un nome recoñecíbel polos teus contactos. Tamén podes definir unha imaxe de perfil.";
-"please_enter_name" = "Por favor introduce un nome.";
+"please_enter_name" = "Por favor escribe un nome.";
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Iniciar sesión en \"%1$@\"?";

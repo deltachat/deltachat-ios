@@ -237,6 +237,7 @@
 "menu_send" = "Отправить";
 "menu_toggle_keyboard" = "Эмодзи клавиатура";
 "menu_edit_group" = "Редактировать группу";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Название и изображение группы";
 "menu_show_global_map" = "Все местоположения";
 "menu_archive_chat" = "Отправить чат в архив";
@@ -375,6 +376,7 @@
 "canceled_call" = "Отменённый звонок";
 "missed_call" = "Пропущенный звонок";
 "already_in_call" = "Вызов уже идёт";
+"call_back" = "Обратный звонок";
 "call_answered_elsewhere" = "Звонок отвечен на другом устройстве";
 "call_requires_camera_permission" = "Для видеозвонков требуется разрешение на использование камеры";
 "call_requires_mic_permission" = "Для совершения звонков требуется разрешение на использование микрофона";
@@ -618,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Удалить релей \"%1$@\"?\n\nКонтакты, знающие только этот релей, могут потерять связь с вами, пока вы не напишете им снова.\n\nЕсли сомневаетесь, лучше скрыть его, а не удалять.";
 "login_certificate_checks" = "Проверки сертификатов";
 "login_error_mail" = "Введите корректный адрес электронной почты";

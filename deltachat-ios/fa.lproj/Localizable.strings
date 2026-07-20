@@ -220,6 +220,7 @@
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
 "menu_edit_group" = "ویرایش گروه";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "نام و تصویر گروه";
 "menu_show_global_map" = "نمایش همه موقعیت‌های مکانی";
 "menu_archive_chat" = "بایگانی گپ";

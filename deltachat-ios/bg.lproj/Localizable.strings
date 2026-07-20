@@ -167,6 +167,7 @@
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";
 "menu_edit_group" = "Редактиране на група";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Име и изображение на група";
 "menu_show_global_map" = "Показване на всички местоположения";
 "menu_archive_chat" = "Архивиране на чата";

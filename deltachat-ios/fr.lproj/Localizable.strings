@@ -235,6 +235,7 @@
 "menu_send" = "Envoyer";
 "menu_toggle_keyboard" = "Basculer le clavier emoji";
 "menu_edit_group" = "Modifier le groupe";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nom du groupe et photo";
 "menu_show_global_map" = "Toutes les positions";
 "menu_archive_chat" = "Archiver la discussion";
@@ -615,7 +616,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
 "invalid_transport_qr" = "Le code QR scanné ne renvoie pas vers un relais valide.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Supprimer le relai %1$@ ? Les contacts qui connaissent uniquement ce relai risquent de ne plus pouvoir vous joindre jusqu\'à ce que vous leur envoyiez un nouveau message. En cas de doute, mieux vaut le masquer que le supprimer.";
 "login_certificate_checks" = "Vérification du certificat";
 "login_error_mail" = "Entrez une adresse courriel valide";

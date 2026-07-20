@@ -237,6 +237,7 @@
 "menu_send" = "Wyślij";
 "menu_toggle_keyboard" = "Przełącz klawiaturę emoji";
 "menu_edit_group" = "Edytuj grupę";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nazwa grupy i obraz";
 "menu_show_global_map" = "Wszystkie lokalizacje";
 "menu_archive_chat" = "Archiwizuj czat";
@@ -619,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Dodać ten serwer przekaźnikowy?";
 "invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer przekaźnikowy.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Usuń przekaźnik „%1$@”?\n\nKontakty, które znają tylko ten przekaźnik, mogą nie dotrzeć do ciebie, dopóki nie wyślesz do nich ponownej wiadomości.\n\nW razie wątpliwości ukryj go, zamiast usuwać.";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
 "login_error_mail" = "Podaj ważny adres e-mail";
