@@ -2088,8 +2088,7 @@ extension ChatViewController {
 
                 children.append(contentsOf: [
                     UIMenu(options: [.displayInline], children: [
-                        // as menu icons are not shaped by a circle, "ellipsis.circle" looks better than just "ellipsis" (which is used elsewhere to avoid double circles)
-                        UIMenu(title: String.localized("menu_more_options"), image: UIImage(systemName: "ellipsis.circle"), children: moreOptions)
+                        UIMenu(title: String.localized("menu_more_options"), children: moreOptions)
                     ])
                 ])
 
