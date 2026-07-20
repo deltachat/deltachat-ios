@@ -174,6 +174,7 @@
 "menu_send" = "Sendi";
 "menu_toggle_keyboard" = "Baskuligi emoĝian klavaron";
 "menu_edit_group" = "Redakti grupon";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Grup-nomo kaj bildo";
 "menu_show_global_map" = "Montri ĉiujn lokojn";
 "menu_archive_chat" = "Enarĥivigi babilon";

@@ -115,6 +115,7 @@
 "menu_new_group" = "کۆڕی نوێ";
 "menu_send" = "بینێرە";
 "menu_edit_group" = "دەستکاری کۆڕ";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "ناو و وێنەی کۆڕ";
 "menu_show_global_map" = "پیشاندانی هەموو شوێنەکان";
 "menu_archive_chat" = "ئەرشیڤ کردنی وتووێژ";

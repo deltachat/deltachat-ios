@@ -237,6 +237,7 @@
 "menu_send" = "Versturen";
 "menu_toggle_keyboard" = "Emojitoetsenbord tonen/verbergen";
 "menu_edit_group" = "Groep aanpassen";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Groepsnaam en -foto";
 "menu_show_global_map" = "Alle locaties tonen";
 "menu_archive_chat" = "Gesprek archiveren";
@@ -619,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Wil je deze server toevoegen?";
 "invalid_transport_qr" = "De gescande QR-code bevat geen geldige overdrachtsserver.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Wil je ‘%1$@’ verwijderen?\n\nContactpersonen die deze relay niet kennen, kunnen je zo niet bereiken.\n\nBij twijfel verbergen in plaats van verwijderen.";
 "login_certificate_checks" = "Certificaatcontrole";
 "login_error_mail" = "Voer een geldig e-mailadres in";

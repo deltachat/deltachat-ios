@@ -94,6 +94,7 @@
 "menu_send" = "Göndər";
 "menu_toggle_keyboard" = "Emoji klaviatura keçidi";
 "menu_edit_group" = "Qrupu dəyiş";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Qrupun adı və şəkili";
 "menu_show_global_map" = "Bütün yerləşmə yerləri göstər";
 "menu_archive_chat" = "Çatın xəzinəsi";

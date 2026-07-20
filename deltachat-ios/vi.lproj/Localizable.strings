@@ -165,6 +165,7 @@
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";
 "menu_edit_group" = "Chỉnh sửa nhóm";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Tên nhóm và hình ảnh";
 "menu_show_global_map" = "Tất cả vị trí";
 "menu_archive_chat" = "Lưu trữ cuộc trò chuyện";

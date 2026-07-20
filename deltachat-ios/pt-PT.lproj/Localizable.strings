@@ -173,6 +173,7 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nome e imagem de grupo";
 "menu_archive_chat" = "Arquivar chat";
 "menu_unarchive_chat" = "Desarquivar chat";
@@ -336,7 +337,7 @@
 "login_smtp_security" = "SMTP segurança";
 // Hint for the list of relays
 "transport_list_hint" = "Mensagens são recebidas em todos os relays.\n\n⚠️ Se alterares alguma coisa aqui, confirma que todos os teus dispositivos estão pelo menos na versão 2.47.0. Caso contrário, dispositivos mais desactualizados podem perder mensagens.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Remover relay \"%1$@\"?\n\nContactos que conheçam apenas este relay não serão capazes de te contactar até lhes enviares uma nova mensagem.\n\nEm caso de dúvida, oculta-o em vez de o remover.";
 "login_error_mail" = "Por favor insira um endereço de e-mail válido";
 "login_error_server" = "Por favor insira um servidor ou endereço IP válido";

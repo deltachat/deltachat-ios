@@ -133,6 +133,7 @@
 "menu_send" = "送信";
 "menu_toggle_keyboard" = "絵文字キーボードを呼び出す";
 "menu_edit_group" = "グループを編集";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "グループ名と画像";
 "menu_show_global_map" = "全ての位置情報を表示する";
 "menu_archive_chat" = "チャットを保管";

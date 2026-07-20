@@ -202,6 +202,7 @@
 "menu_send" = "Siųsti";
 "menu_toggle_keyboard" = "Perjungti šypsniukų klaviatūrą";
 "menu_edit_group" = "Taisyti grupę";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Grupės pavadinimas ir paveikslas";
 "menu_show_global_map" = "Rodyti visas vietas";
 "menu_archive_chat" = "Archyvuoti pokalbį";

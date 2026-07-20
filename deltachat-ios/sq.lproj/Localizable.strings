@@ -229,6 +229,7 @@
 "menu_send" = "Dërgoje";
 "menu_toggle_keyboard" = "Shfaq/fshih Tastierë Emoji-sh";
 "menu_edit_group" = "Përpunoni Grup";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Emër dhe Figurë Grupi";
 "menu_show_global_map" = "Krejt Vendndodhjet";
 "menu_archive_chat" = "Arkivoje Fjalosjen";
@@ -610,7 +611,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Të shtohet kjo rele?";
 "invalid_transport_qr" = "Kodi QR i skanuar s’përmban një rele të vlefshme.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Të hiqet releja “%1$@”?\n\nKontaktet që njohin vetëm këtë rele mund të mos ju\nkapin dot, deri sa t’u dërgoni sërish mesazh.\n\nNëse s’jeni të sigurt, fshiheni, në vend se ta hiqni.";
 "login_certificate_checks" = "Kontrolle Dëshmish";
 "login_error_mail" = "Ju lutemi, jepni një adresë email të vlefshme";

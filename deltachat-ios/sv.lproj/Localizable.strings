@@ -227,6 +227,7 @@
 "menu_send" = "Skicka";
 "menu_toggle_keyboard" = "Byt emoji-tangentbord";
 "menu_edit_group" = "Redigera grupp";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Gruppnamn och bild";
 "menu_show_global_map" = "Visa alla platser";
 "menu_archive_chat" = "Arkivera chatt";

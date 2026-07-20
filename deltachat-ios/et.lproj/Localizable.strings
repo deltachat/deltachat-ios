@@ -237,6 +237,7 @@
 "menu_send" = "Saada";
 "menu_toggle_keyboard" = "Lülita emojide klahvistik sisse/välja";
 "menu_edit_group" = "Muuda gruppi";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Grupi nimi ja pilt";
 "menu_show_global_map" = "Kõik asukohad";
 "menu_archive_chat" = "Tõsta vestlus arhiivi";
@@ -619,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?\n\nKui mõni kontakt teab vaid seda ühendusviisi, siis ta ei pruugi sind kätte saada enne, kui oled talle uuesti kirjutanud.\n\nKui kahtled, siis eemakdamise asemel pigem peida see alusühendus (edastusserver).";
 "login_certificate_checks" = "Sertifikaadikontrollid";
 "login_error_mail" = "Palun sisesta korrektne e-posti aadress";

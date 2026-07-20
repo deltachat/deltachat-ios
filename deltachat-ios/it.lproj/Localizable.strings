@@ -237,6 +237,7 @@
 "menu_send" = "Invia";
 "menu_toggle_keyboard" = "Attiva/Disattiva Tastiera Emoji";
 "menu_edit_group" = "Modifica Gruppo";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Nome e Immagine Gruppo";
 "menu_show_global_map" = "Mostra tutte le Posizioni";
 "menu_archive_chat" = "Archivia Chat";
@@ -619,7 +620,7 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Aggiungere questo trasporto?";
 "invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
-// placeholder will be replaced by a relay server name
+// deprecated
 "confirm_remove_or_hide_transport_x" = "Rimuovo ripetitore \"%1$@\"?\n\nI contatti che conoscono solo questo relay potrebbero non raggiungerti finché non invierai loro un altro messaggio. In caso di dubbio, nascondilo invece di rimuoverlo.";
 "login_certificate_checks" = "Controlli Certificato";
 "login_error_mail" = "Per piacere Inserisci un indirizzo e-mail valido";

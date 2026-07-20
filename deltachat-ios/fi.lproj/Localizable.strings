@@ -167,6 +167,7 @@
 "menu_send" = "Lähetä";
 "menu_toggle_keyboard" = "Näytä emoji-näppäimistö";
 "menu_edit_group" = "Muokkaa ryhmää";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Ryhmän nimi ja kuva";
 "menu_show_global_map" = "Näytä kaikki sijainnit";
 "menu_archive_chat" = "Arkistoi keskustelu";
