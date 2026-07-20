@@ -161,6 +161,9 @@
 "contact" = "Contatto";
 "bot" = "Bot";
 "camera" = "Fotocamera";
+"front_camera" = "Fotocamera frontale";
+"back_camera" = "Fotocamera posteriore";
+"microphone" = "Microfono";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Cattura";
 // Switch eg. from front to back camera
@@ -380,11 +383,13 @@
 "call_answered_elsewhere" = "Chiamata risposta su un altro dispositivo";
 "call_requires_camera_permission" = "Per le videochiamate è necessaria l\'autorizzazione per l\'utilizzo della fotocamera.";
 "call_requires_mic_permission" = "Per le chiamate è necessaria l\'autorizzazione per l\'utilizzo del microfono.";
+"call_grant_mic_permission" = "Tocca per consentire l\'accesso al microfono";
 "call_requires_connection" = "Impossibile avviare la chiamata. Assicurati che il tuo dispositivo disponga di una connessione a Internet e riprova.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Chiama con %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
 "calling_person" = "Chiamata %1$@…";
+"audio_output" = "Uscita audio";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Sei sicuro di voler abbandonare?";
@@ -620,6 +625,8 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Aggiungere questo trasporto?";
 "invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Rimuovere il ripetitore \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Rimuovo ripetitore \"%1$@\"?\n\nI contatti che conoscono solo questo relay potrebbero non raggiungerti finché non invierai loro un altro messaggio. In caso di dubbio, nascondilo invece di rimuoverlo.";
 "login_certificate_checks" = "Controlli Certificato";
