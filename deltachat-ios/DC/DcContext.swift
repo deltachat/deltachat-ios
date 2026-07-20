@@ -621,10 +621,6 @@ public class DcContext {
         try DcAccounts.shared.blockingCall(method: "set_transport_unpublished", params: [id as AnyObject, addr as AnyObject, unpublished as AnyObject])
     }
 
-    public func deleteTransport(addr: String) throws {
-        try DcAccounts.shared.blockingCall(method: "delete_transport", params: [id as AnyObject, addr as AnyObject])
-    }
-
     public func setChatMuteDuration(chatId: Int, duration: Int) {
         dc_set_chat_mute_duration(self.contextPointer, UInt32(chatId), Int64(duration))
     }
