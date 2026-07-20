@@ -2008,17 +2008,20 @@ extension ChatViewController {
                 let message = dcContext.getMessage(id: messageId)
                 var children: [UIMenuElement] = []
                 var moreOptions: [UIMenuElement] = []
-                var preferredElementSizeSmall = false
 
                 if canReply(to: message) {
+                    let reactionsMenu: UIMenu
+                    var reactions: [UIMenuElement] = []
+                    appendReactionItems(to: &reactions, messageId: messageId)
                     if #available(iOS 16.0, *) {
-                        appendReactionItems(to: &children, messageId: messageId)
-                        preferredElementSizeSmall = true
+                        reactionsMenu = UIMenu(options: [.displayInline], children: reactions)
+                        reactionsMenu.preferredElementSize = .small
+
                     } else {
-                        var items: [UIMenuElement] = []
-                        appendReactionItems(to: &items, messageId: messageId)
-                        children.append(UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: items))
+                        reactionsMenu = UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactions)
                     }
+                    children.append(reactionsMenu)
+
                     children.append(
                         UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     )
@@ -2093,11 +2096,7 @@ extension ChatViewController {
                     ])
                 ])
 
-                let menu = UIMenu(children: children)
-                if preferredElementSizeSmall, #available(iOS 16.0, *) {
-                    menu.preferredElementSize = .small
-                }
-                return menu
+                return UIMenu(children: children)
             }
         )
     }
