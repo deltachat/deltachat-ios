@@ -6,6 +6,7 @@
 - Show in title if an app is still in draft mode
 - Style buttons on welcome screen according to LiquidGlass
 - Changed the quick reaction emoji "👎" to "😂" in the message bubble context menu
+- Option to hide relays is no longer needed
 - Fix: Make it easier to dismiss the keyboard on profile creation screen
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 - Fix: sharing files to a chat in a different profile no longer sends empty files
