@@ -28,3 +28,5 @@ public struct DcEnteredLoginParam: Codable {
         return false
     }
 }
+
+typealias DcEnteredLoginParamResult = JsonrpcResult<[DcEnteredLoginParam]>
