@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.55.0 Testflight
+2026-07
 
 - Show notifications when app is in foreground and the respective chat is not on screen
 - Show in title if an app is still in draft mode
@@ -11,6 +12,8 @@
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 - Fix: sharing files to a chat in a different profile no longer sends empty files
 - Fix: Attaching live photos as file so they aren't compressed did not work
+- Update translations and local help
+- Update to core 2.55.0
 
 
 ## v2.53.1 Testflight
