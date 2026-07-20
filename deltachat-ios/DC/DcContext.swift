@@ -596,10 +596,10 @@ public class DcContext {
         dc_send_text_msg(contextPointer, UInt32(id), message)
     }
 
-    public func listTransportsEx() -> [DcTransportListEntry] {
+    public func listTransports() -> [DcEnteredLoginParam] {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "list_transports_ex", params: [id as AnyObject]) {
-                return try JSONDecoder().decode(DcTransportListEntryResult.self, from: data).result
+            if let data = try DcAccounts.shared.blockingCall(method: "list_transports", params: [id as AnyObject]) {
+                return try JSONDecoder().decode(DcEnteredLoginParamResult.self, from: data).result
             }
         } catch {
             logger.error(error.localizedDescription)

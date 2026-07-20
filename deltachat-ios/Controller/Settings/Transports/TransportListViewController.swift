@@ -10,7 +10,7 @@ class TransportListViewController: UITableViewController {
     let dcContext: DcContext
     let dcAccounts: DcAccounts
 
-    var transports: [DcTransportListEntry]
+    var transports: [DcEnteredLoginParam]
 
     let addTransportCell: ActionCell
     private var qrCodeReader: QrCodeReaderController?
@@ -19,7 +19,7 @@ class TransportListViewController: UITableViewController {
     init(dcContext: DcContext, dcAccounts: DcAccounts, continueQrScan: String? = nil) {
         self.dcContext = dcContext
         self.dcAccounts = dcAccounts
-        self.transports = dcContext.listTransportsEx()
+        self.transports = dcContext.listTransports()
 
         addTransportCell = ActionCell()
         addTransportCell.actionTitle = String.localized("add_transport")
@@ -52,7 +52,7 @@ class TransportListViewController: UITableViewController {
     }
 
     private func reloadTransports() {
-        transports = dcContext.listTransportsEx()
+        transports = dcContext.listTransports()
         tableView.reloadData()
     }
 
@@ -60,13 +60,13 @@ class TransportListViewController: UITableViewController {
 
     private func setDefaultTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
-        dcContext.setConfig("configured_addr", transport.param.addr)
+        dcContext.setConfig("configured_addr", transport.addr)
         reloadTransports()
     }
 
     private func editTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
-        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.param.addr), animated: true)
+        navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.addr), animated: true)
     }
 
     private func addTransport() {
@@ -79,13 +79,13 @@ class TransportListViewController: UITableViewController {
     private func deleteTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
 
-        let parts = transport.param.addr.components(separatedBy: "@")
-        let text = String.localized(stringID: "confirm_remove_or_hide_transport_x", parameter: parts.last ?? transport.param.addr)
+        let parts = transport.addr.components(separatedBy: "@")
+        let text = String.localized(stringID: "confirm_remove_or_hide_transport_x", parameter: parts.last ?? transport.addr)
         let alert = UIAlertController(title: nil, message: text, preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: String.localized("hide_from_contacts"), style: .default, handler: { [weak self] _ in
             guard let self else { return }
             do {
-                try self.dcContext.setTransportUnpublished(addr: transport.param.addr, unpublished: true)
+                try self.dcContext.setTransportUnpublished(addr: transport.addr, unpublished: true)
             } catch {
                 logAndAlert(error: error.localizedDescription)
             }
@@ -94,7 +94,7 @@ class TransportListViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("remove_transport"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             do {
-                try self.dcContext.deleteTransport(addr: transport.param.addr)
+                try self.dcContext.deleteTransport(addr: transport.addr)
             } catch {
                 logAndAlert(error: error.localizedDescription)
             }
@@ -125,17 +125,14 @@ extension TransportListViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TransportCell.reuseIdentifier, for: indexPath) as? TransportCell else { fatalError() }
 
             let transport = transports[indexPath.row]
-            let isDefault = transport.param.isDefault(dcContext)
-            let parts = transport.param.addr.components(separatedBy: "@")
+            let isDefault = transport.isDefault(dcContext)
+            let parts = transport.addr.components(separatedBy: "@")
 
-            cell.textLabel?.text = parts.last ?? transport.param.addr
+            cell.textLabel?.text = parts.last ?? transport.addr
 
             var details = (parts.first ?? "")
             if isDefault {
                 details += " · " + String.localized("used_for_sending")
-            }
-            if transport.isUnpublished {
-                details += " · " + String.localized("hidden_from_contacts")
             }
             cell.detailTextLabel?.text = details
 
@@ -173,7 +170,7 @@ extension TransportListViewController {
         guard let transport = transports.get(at: indexPath.row) else { return nil }
         var actions: [UIContextualAction] = []
 
-        if !transport.param.isDefault(dcContext) {
+        if !transport.isDefault(dcContext) {
             let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
                 DispatchQueue.main.async {
                     self?.deleteTransport(at: indexPath)
@@ -197,7 +194,7 @@ extension TransportListViewController {
         actions.append(editAction)
 
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
-        actionsConfiguration.performsFirstActionWithFullSwipe = !transport.param.isDefault(dcContext)
+        actionsConfiguration.performsFirstActionWithFullSwipe = !transport.isDefault(dcContext)
         return actionsConfiguration
     }
 
@@ -213,7 +210,7 @@ extension TransportListViewController {
                 var children: [UIMenuElement] = []
 
                 children.append(UIAction.menuAction(localizationKey: "edit_transport", systemImageName: "pencil", with: indexPath, action: editTransport))
-                if !transport.param.isDefault(dcContext) {
+                if !transport.isDefault(dcContext) {
                     children.append(UIAction.menuAction(localizationKey: "remove_transport", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
                 }
 

@@ -275,10 +275,10 @@ class EditTransportViewController: UITableViewController {
         navigationItem.rightBarButtonItem = loginButton
 
         var loginParam: DcEnteredLoginParam?
-        let transports = dcContext.listTransportsEx()
+        let transports = dcContext.listTransports()
         for t in transports {
-            if t.param.addr == self.editAddr {
-                loginParam = t.param
+            if t.addr == self.editAddr {
+                loginParam = t
             }
         }
 
