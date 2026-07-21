@@ -596,7 +596,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard #available(iOS 26.0, *) else { return }
 
         let tintColor = traitCollection.userInterfaceStyle == .dark
-            ? UIColor.black.withAlphaComponent(0.65)
+            ? UIColor.black.withAlphaComponent(0.67)
             : UIColor.clear
         [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
             $0.contentView.backgroundColor = tintColor
