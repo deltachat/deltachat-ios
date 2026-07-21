@@ -21,7 +21,10 @@ class InstantOnboardingViewController: UIViewController {
     private var qrCodeData: String?
     private lazy var menuButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
-        return UIBarButtonItem(image: image, menu: moreButtonMenu())
+        let deferredMenu = UIDeferredMenuElement.uncached({ [weak self] completion in
+            completion(self?.moreButtonMenu().children ?? [])
+        })
+        return UIBarButtonItem(image: image, menu: UIMenu(children: [deferredMenu]))
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
@@ -221,17 +224,35 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        let actions = [
-            UIAction(title: String.localized("proxy_use_proxy"), image: UIImage(systemName: "shield")) { [weak self] _ in
-                self?.showProxySettings()
-            },
-        ]
-        return UIMenu(children: actions)
+        let proxyAction = UIAction(title: String.localized("proxy_use_proxy")) { [weak self] _ in
+            self?.showProxySettings()
+        }
+        let teamProfileAction = UIAction(title: String.localized("create_team_profile")) { [weak self] _ in
+            self?.toggleTeamProfile()
+        }
+        if dcContext.isTeamProfile {
+            teamProfileAction.state = .on
+        }
+
+        return UIMenu(children: [proxyAction, teamProfileAction])
     }
 
     @objc private func showProxySettings() {
         let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(proxySettingsController, animated: true)
+    }
+
+    @objc private func toggleTeamProfile() {
+        if dcContext.isTeamProfile {
+            dcContext.isTeamProfile = false
+        } else {
+            let alert = UIAlertController(title: nil, message: String.localized("team_profile_explain"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("create_team_profile"), style: .default, handler: { [weak self] _ in
+                self?.dcContext.isTeamProfile = true
+            }))
+            present(alert, animated: true, completion: nil)
+        }
     }
 
     private func updateMenuButtons() {
