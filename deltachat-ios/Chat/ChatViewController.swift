@@ -50,8 +50,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var tableViewContainer: UIView = UIView()
-    private let edgeEffectExtension = (top: CGFloat(12), bottom: CGFloat(8))
-    private let edgeEffectBlurStrength = (light: CGFloat(0.70), dark: CGFloat(0.85))
+    private let edgeEffectExtension = (top: CGFloat(16), bottom: CGFloat(8))
+    private let edgeEffectBlurStrength = CGFloat(0.72)
     private let edgeEffectBlurTransition: Float = 0.5
     private let edgeEffectBlurViews = (
         top: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)),
@@ -607,10 +607,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func updateEdgeEffectAppearance() {
         guard #available(iOS 26.0, *) else { return }
 
-        let strength = traitCollection.userInterfaceStyle == .dark
-            ? edgeEffectBlurStrength.dark
-            : edgeEffectBlurStrength.light
-        let blurMaskColor = UIColor(white: 0, alpha: strength).cgColor
+        let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
         edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
         edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
     }
