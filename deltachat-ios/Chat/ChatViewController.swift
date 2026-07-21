@@ -595,6 +595,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func updateEdgeEffectAppearance() {
         guard #available(iOS 26.0, *) else { return }
 
+        let tintColor = traitCollection.userInterfaceStyle == .dark
+            ? UIColor.black.withAlphaComponent(0.65)
+            : UIColor.clear
+        [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
+            $0.contentView.backgroundColor = tintColor
+        }
+
         let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
         edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
         edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
