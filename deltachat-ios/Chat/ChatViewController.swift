@@ -238,10 +238,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return panGestureRecognizer
     }()
 
-    private lazy var navBarTap: UITapGestureRecognizer = {
-        UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
-    }()
-
     private lazy var cancelButton: UIBarButtonItem = {
         UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
@@ -341,6 +337,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleView.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
         view.addSubview(backgroundContainer)
         backgroundContainer.fillSuperview()
         view.addSubview(tableViewContainer)
@@ -450,8 +447,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var isInitialViewWillAppear = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // this will be removed in viewWillDisappear
-        navigationController?.navigationBar.addGestureRecognizer(navBarTap)
         updateTitle()
 
         if activateSearch {
@@ -535,13 +530,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             // so we disable it in the chat view.
             navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = false
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
-        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -1125,10 +1113,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             var rightBarButtonItems = [UIBarButtonItem]()
 
-            let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
-            button.accessibilityLabel = String.localized("apps_and_media")
-            rightBarButtonItems.append(button)
-
             if let image = dcChat.profileImage {
                 titleView.initialsBadge.setImage(image)
             } else {
@@ -1365,10 +1349,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self?.searchPressed()
             }
         }
-    }
-
-    @objc private func appsAndMediaPressed() {
-        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     var isLocationStreaming: Bool {
