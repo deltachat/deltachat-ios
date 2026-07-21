@@ -69,7 +69,6 @@ class InstantOnboardingViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         hidesBottomBarWhenPushed = true
-        title = String.localized("pref_profile_info_headline")
 
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -77,6 +76,7 @@ class InstantOnboardingViewController: UIViewController {
 
         navigationItem.setRightBarButtonItems([menuButton], animated: true)
         updateProxyButton()
+        updateLabels()
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -243,16 +243,29 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     @objc private func toggleTeamProfile() {
+        dismissKeyboard() // let ppl read the new hint
         if dcContext.isTeamProfile {
             dcContext.isTeamProfile = false
+            updateLabels()
         } else {
             let alert = UIAlertController(title: nil, message: String.localized("team_profile_explain"), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: String.localized("create_team_profile"), style: .default, handler: { [weak self] _ in
-                self?.dcContext.isTeamProfile = true
+                guard let self else { return }
+
+                dcContext.isTeamProfile = true
+                updateLabels()
             }))
             present(alert, animated: true, completion: nil)
         }
+    }
+
+    private func updateLabels() {
+        let isTeamProfile = dcContext.isTeamProfile
+
+        title = String.localized(isTeamProfile ? "create_team_profile" : "pref_profile_info_headline")
+        contentView?.nameTextField.placeholder = String.localized(isTeamProfile ? "team_name" : "pref_your_name")
+        contentView?.hintLabel.text = String.localized(isTeamProfile ? "team_profile_explain" : "set_name_and_avatar_explain")
     }
 
     private func updateMenuButtons() {
