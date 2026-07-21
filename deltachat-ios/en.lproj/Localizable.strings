@@ -581,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Create a new profile and start chatting with %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Create a new profile and join \"%1$@\"?";
+"team" = "Team";
+"team_profile" = "Team Profile";
+"team_profile_explain" = "A \"Team Profile\" is managed collectively by a group of people or an organization.\n\n⚠️ Team Profiles are experimental and may be changed or removed in the future.";
+"team_name" = "Team Name";
+"create_team_profile" = "Create Team Profile";
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
 "login_title" = "Log In";
