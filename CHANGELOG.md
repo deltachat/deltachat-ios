@@ -1,34 +1,25 @@
 # Delta Chat iOS Changelog
 
-## v2.55.0 Testflight
+## v2.56.0
 2026-07
 
 - Show notifications when app is in foreground and the respective chat is not on screen
+- Allow voice and audio messages to continue playing in the background
 - Show in title if an app is still in draft mode
-- Style buttons on welcome screen according to LiquidGlass
-- Changed the quick reaction emoji "👎" to "😂" in the message bubble context menu
+- Add "laughing face" to quick reaction emoji
+- Support LiquidGlass UI language on systems that support that
 - Option to hide relays is no longer needed
+- Minimum system version is iOS 15.6 now (all iOS 14 devices can upgrade to iOS 15.6)
 - Fix: Make it easier to dismiss the keyboard on profile creation screen
 - Fix: Hide 'Show in Chat' and 'Use as widget' from app drafts
 - Fix: sharing files to a chat in a different profile no longer sends empty files
 - Fix: Attaching live photos as file so they aren't compressed did not work
-- Update translations and local help
-- Update to core 2.55.0
-
-
-## v2.53.1 Testflight
-2026-06
-
-- Support LiquidGlass UI language on systems that support that
-- Minimum system version is iOS 15.6 now (all iOS 14 devices can upgrade to iOS 15.6)
-- Remove explict tab bar icon bounce and leave animation up to the system
-- Allow voice and audio messages to continue playing in the background
 - Fix scroll down button showing up when unintended
 - Fix: More reliably start audio of the first call
 - Fix: Improve voice message recording with Bluetooth and car audio systems
 - Fix: "x new messages" is now in the intended place even if there was a new day marker
 - Update translations and local help
-- Using core 2.53.0
+- Update to core 2.56.0
 
 
 ## v2.53.0
