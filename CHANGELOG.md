@@ -1,5 +1,9 @@
 # Delta Chat iOS Changelog
 
+# Unrealsed
+
+- Translate text messages using Apple's system translation UI
+
 ## v2.55.0 Testflight
 2026-07
 

@@ -3,6 +3,7 @@ import MCEmojiPicker
 import QuickLook
 import UIKit
 import SwiftUI
+import Translation
 import AVFoundation
 import DcCore
 import SDWebImage
@@ -16,6 +17,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var messages: [(id: Int, timestamp: TimeInterval)] = []
     private var isVisibleToUser: Bool = false
     private var reactionMessageId: Int?
+    private var translationPresentationHost: UIViewController?
     private var contextMenuVisible = false
     private var isDraggingScrollView = false
     private var quoteReturnMessageIds: [Int] = []
@@ -2095,6 +2097,15 @@ extension ChatViewController {
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     )
                 }
+                if #available(iOS 17.4, *),
+                   message.type == DC_MSG_TEXT,
+                   !message.isMarkerOrInfo,
+                   let text = message.text,
+                   !text.isEmpty {
+                    children.append(
+                        UIAction.menuAction(localizationKey: "Translate", systemImageName: "translate", with: text, action: presentTranslation)
+                    )
+                }
                 if message.image != nil {
                     moreOptions.append(
                         UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", with: messageId, action: copyImageToClipboard)
@@ -2315,10 +2326,39 @@ extension ChatViewController {
         UIPasteboard.general.string = stringsToCopy
     }
 
+    @available(iOS 17.4, *)
+    private func presentTranslation(text: String) {
+        let host = UIHostingController(rootView: TranslationPresentationView(text: text) { [weak self] in
+            self?.translationPresentationHost?.willMove(toParent: nil)
+            self?.translationPresentationHost?.view.removeFromSuperview()
+            self?.translationPresentationHost?.removeFromParent()
+            self?.translationPresentationHost = nil
+        })
+        translationPresentationHost = host
+        addChild(host)
+        view.addSubview(host.view)
+        host.view.fillSuperview()
+        host.view.backgroundColor = .clear
+        host.didMove(toParent: self)
+    }
+
     func copyImagesToClipboard(ids: [Int]) {
         let images = ids.map(dcContext.getMessage).compactMap(\.image)
         guard !images.isEmpty else { return }
         UIPasteboard.general.images = images
+    }
+}
+
+@available(iOS 17.4, *)
+private struct TranslationPresentationView: View {
+    let text: String
+    let onDismiss: () -> Void
+    @State private var isPresented = true
+
+    var body: some View {
+        Color.clear
+            .translationPresentation(isPresented: $isPresented, text: text)
+            .onChange(of: isPresented) { if !$0 { onDismiss() } }
     }
 }
 
