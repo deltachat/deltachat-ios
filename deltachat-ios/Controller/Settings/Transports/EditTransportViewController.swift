@@ -49,15 +49,11 @@ class EditTransportViewController: UITableViewController {
     ]
     private let editAddr: String?
     private var advancedSectionShowing: Bool = false
-    private var providerInfoShowing: Bool = false
-
-    private var provider: DcProvider?
 
     // MARK: - cells
 
     private lazy var emailCell: TextFieldCell = {
         let cell = TextFieldCell.makeEmailCell(delegate: self)
-        cell.textField.addTarget(self, action: #selector(emailCellEdited), for: .editingChanged)
         cell.textField.tag = tagTextFieldEmail
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = .next
@@ -72,14 +68,6 @@ class EditTransportViewController: UITableViewController {
         cell.textField.tag = tagTextFieldPassword
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cell.textField.returnKeyType = advancedSectionShowing ? .next : .default
-        return cell
-    }()
-
-    private lazy var providerInfoCell: ProviderInfoCell = {
-        let cell = ProviderInfoCell()
-        cell.onInfoButtonPressed = { [weak self] in
-            self?.handleProviderInfoButton()
-        }
         return cell
     }()
 
@@ -399,36 +387,6 @@ class EditTransportViewController: UITableViewController {
         login(emailAddress: emailAddress)
     }
 
-    private func updateProviderInfo() {
-        provider = dcContext.getProviderFromEmailWithDns(addr: emailCell.getText() ?? "")
-        if let hint = provider?.beforeLoginHint,
-            let status = provider?.status,
-            let statusType = ProviderInfoStatus(rawValue: status),
-            !hint.isEmpty {
-            providerInfoCell.updateInfo(hint: hint, hintType: statusType)
-            if !providerInfoShowing {
-                showProviderInfo()
-            }
-        } else if providerInfoShowing {
-            hideProviderInfo()
-        }
-    }
-
-    private func showProviderInfo() {
-        basicSectionCells = [emailCell, passwordCell, providerInfoCell]
-        let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
-        tableView.insertRows(at: [providerInfoCellIndexPath], with: .fade)
-        providerInfoShowing = true
-    }
-
-    private func hideProviderInfo() {
-        providerInfoCell.updateInfo(hint: nil, hintType: .none)
-        basicSectionCells = [emailCell, passwordCell]
-        let providerInfoCellIndexPath = IndexPath(row: 2, section: 0)
-        tableView.deleteRows(at: [providerInfoCellIndexPath], with: .automatic)
-        providerInfoShowing = false
-    }
-
     private func login(emailAddress: String) {
         let progressAlertHandler = ProgressAlertHandler(notification: Event.configurationProgress, checkForInternetConnectivity: true) { [weak self] in
             self?.handleLoginSuccess()
@@ -487,13 +445,6 @@ class EditTransportViewController: UITableViewController {
         loginButton.isEnabled = !(emailCell.getText() ?? "").isEmpty && !(passwordCell.getText() ?? "").isEmpty
     }
 
-    private func handleProviderInfoButton() {
-        guard let provider = provider else {
-            return
-        }
-        openProviderInfo(provider: provider)
-    }
-
     func resignCell(cell: UITableViewCell) {
         if let c = cell as? TextFieldCell {
             c.textField.resignFirstResponder()
@@ -502,12 +453,6 @@ class EditTransportViewController: UITableViewController {
 
     @objc private func textFieldDidChange() {
         handleLoginButton()
-    }
-
-    @objc private func emailCellEdited() {
-        if providerInfoShowing {
-            updateProviderInfo()
-        }
     }
 
     // MARK: - coordinator
@@ -534,11 +479,6 @@ class EditTransportViewController: UITableViewController {
         securitySettingsController.delegate = smtpSecurityValue
         navigationController?.pushViewController(securitySettingsController, animated: true)
     }
-
-    private func openProviderInfo(provider: DcProvider) {
-        guard let url = URL(string: provider.getOverviewPage) else { return }
-        UIApplication.shared.open(url)
-    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -557,9 +497,6 @@ extension EditTransportViewController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == tagTextFieldEmail {
-            updateProviderInfo()
-        }
     }
 }
 

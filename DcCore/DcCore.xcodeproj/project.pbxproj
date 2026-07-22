@@ -45,7 +45,6 @@
 		D8BBF0132B57D97B008C96FD /* DcContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0122B57D97B008C96FD /* DcContact.swift */; };
 		D8BBF0152B57D991008C96FD /* DcLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0142B57D991008C96FD /* DcLot.swift */; };
 		D8BBF0172B57D99F008C96FD /* DcBackupProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */; };
-		D8BBF0192B57D9AE008C96FD /* DcProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF0182B57D9AE008C96FD /* DcProvider.swift */; };
 		D8BBF01B2B57D9BE008C96FD /* DcReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +92,6 @@
 		D8BBF0122B57D97B008C96FD /* DcContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcContact.swift; sourceTree = "<group>"; };
 		D8BBF0142B57D991008C96FD /* DcLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcLot.swift; sourceTree = "<group>"; };
 		D8BBF0162B57D99F008C96FD /* DcBackupProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcBackupProvider.swift; sourceTree = "<group>"; };
-		D8BBF0182B57D9AE008C96FD /* DcProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcProvider.swift; sourceTree = "<group>"; };
 		D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DcReaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +152,6 @@
 				D8BBF0062B57D91B008C96FD /* DcEventEmitter.swift */,
 				D8BBF0142B57D991008C96FD /* DcLot.swift */,
 				D8BBF0102B57D96F008C96FD /* DcMsg.swift */,
-				D8BBF0182B57D9AE008C96FD /* DcProvider.swift */,
 				D8BBF01A2B57D9BE008C96FD /* DcReaction.swift */,
 				B2F691242C0790140010D9B1 /* DcVcard.swift */,
 				30421985243F209E00516852 /* events.swift */,
@@ -334,7 +331,6 @@
 				D8BBF0032B57D8E5008C96FD /* DcAccount.swift in Sources */,
 				30421964243F0B8400516852 /* String+Extensions.swift in Sources */,
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
-				D8BBF0192B57D9AE008C96FD /* DcProvider.swift in Sources */,
 				30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */,
 				3057028624C5C60000D84EFC /* UITableView+Extensions.swift in Sources */,
 				308198AB24866229003BE20D /* UserDefaults+Extensions.swift in Sources */,
