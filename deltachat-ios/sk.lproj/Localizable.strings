@@ -10,35 +10,38 @@
 "yes" = "Áno";
 "no" = "Nie";
 "select" = "Vybrať";
-"on" = "Zapnúť";
-"off" = "Vypnúť";
-"def" = "Štandardné nastavenie";
-"default_value" = "Štandardné nastavenie (%1$@)";
-"custom" = "Vlastný";
-"none" = "Nie je";
-"automatic" = "Automatický";
-"strict" = "Striktný";
+"on" = "Zapnuté";
+"off" = "Vypnuté";
+"def" = "Predvolené";
+"default_value" = "Predvolené (%1$@)";
+"custom" = "Vlastné";
+"none" = "Nenastavené";
+"automatic" = "Automaticky";
+"strict" = "Presne";
 "open" = "Otvoriť";
 "download" = "Stiahnuť";
-"downloading" = "Sťahujem...";
+"downloading" = "Sťahovanie…";
 "open_attachment" = "Otvoriť prílohu";
-"join" = "Spojiť";
-"rejoin" = "Znovu spojiť";
+"join" = "Pripojiť sa";
+"join_group" = "Pripojiť sa ku skupine";
+"join_channel" = "Pripojiť sa do kanála";
+"rejoin" = "Znovu sa pripojiť";
 "delete" = "Odstrániť";
 "delete_for_me" = "Odstrániť pre mňa";
 "delete_for_everyone" = "Odstrániť pre všetkých";
-"info" = "Informácia";
+"info" = "Informácie";
 "update" = "Aktualizovať";
 "emoji" = "Smajlíci";
 "attachment" = "Príloha";
 "back" = "Späť";
-"close" = "Zatvoriť";
+"close" = "Zavrieť";
 "close_window" = "Zavrieť okno";
-"forward" = "Vpred";
+"forward" = "Preposlať";
 "create" = "Vytvoriť";
+"reset" = "Obnoviť";
 "later" = "Neskôr";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
-"resend" = "Znovu poslať";
+"resend" = "Poslať znovu";
 "edited" = "Upravená";
 "edit_message" = "Upraviť správu";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -46,9 +49,11 @@
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Zrušiť archiváciu";
 // Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
-"mute" = "Stíšiť";
+"mute" = "Stlmiť";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
+"muted" = "Stlmené";
 "ephemeral_messages" = "Miznúce správy";
-"ephemeral_messages_hint" = "Tieto nastavenia platia pre všetkých účastníkov používajúcich Delta Chat. Môžu však kopírovať, ukladať a preposielať správy alebo používať iných e-mailových klientov.";
+"ephemeral_messages_hint" = "Platí pre všetkých členov tejto konverzácie, ktorí si však stále môžu správy ukladať, kopírovať alebo preposlať.";
 "save" = "Uložiť";
 "chat" = "Konverzácia";
 "media" = "Médiá";
@@ -58,39 +63,45 @@
 "all_profiles" = "Všetky účty";
 // deprecated
 "current_profile" = "Aktuálny účet";
-"main_menu" = "Hlavné menu";
+"main_menu" = "Hlavná ponuka";
 "start_chat" = "Začať konverzáciu";
 "show_full_message" = "Zobraziť celú správu ...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "Všetko prečítané";
+"mark_all_as_read" = "Všetko ako prečítané";
 // Used as an menu entry or button
 "mark_as_read" = "Označiť ako prečítané";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
 "mark_as_read_short" = "Prečítané";
+// Used as an menu entry or button
+"mark_as_unread" = "Označiť ako neprečítané";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Neprečítané";
 // Placeholder text when something is loading
-"loading" = "Načítam…";
+"loading" = "Načítavanie…";
 "hide" = "Skryť";
 "activate" = "Zapnúť";
 "load_remote_content" = "Načítať vzdialené obrázky";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Na sledovanie vás možno použiť obrázky nadiaľku.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď je vypnutá, stále sa vám môžu zobrazovať vložené alebo uložené obrázky.\n\nNačítať vzdialené obrázky?";
+"load_remote_content_ask" = "Načítanie obrázkov je možné zneužiť na sledovanie vašej aktivity.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď to nie je povolené, stále sa môžu zobrazovať vložené obrázky alebo obrázky z vyrovnávacej pamäte.\n\nNačítať vzdialený obsah?";
 "always" = "Vždy";
-"once" = "Raz";
+"always_load_remote_images" = "Vždy načítať vzdialené obrázky";
+"once" = "Len raz";
 // deprecated
 "show_warning" = "Zobraziť varovanie";
 "not_now" = "Teraz nie";
 "never" = "Nikdy";
-"one_moment" = "Moment...";
+"one_moment" = "Len chvíľu…";
 "done" = "Hotovo";
 "undo" = "Vrátiť späť";
 "offline" = "Offline";
 // For the next view or as "continue". Should be as short as possible.
-"next" = "Ďalšie";
+"next" = "Ďalej";
+"warning" = "Upozornenie";
 "error" = "Chyba";
 "error_x" = "Chyba: %1$@";
-"no_app_to_handle_data" = "Nemôžem nájsť aplikáciu na spracovanie tohto typu údajov.";
+"no_app_to_handle_data" = "Nie je možné nájsť aplikáciu na spracovanie tohto typu údajov.";
 "no_browser_installed" = "Nie je nainštalovaný žiadny prehliadač.";
-"file_not_found" = "Nemohol nájsť %1$@.";
+"file_not_found" = "Nie je možné nájsť %1$@.";
 // the placeholder will be replaced by the name of a file
 "cannot_save_file" = "Nepodarilo sa uložiť %1$@.";
 "copied_to_clipboard" = "Skopírované do schránky.";
@@ -107,12 +118,15 @@
 "this_week" = "Tento týždeň";
 "this_month" = "Tento mesiac";
 "last_week" = "Minulý týždeň";
-"last_month" = "Minulý mesiac";
+"last_month" = "Minulý mesiacB";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
-"last_seen_at" = "Naposledy videné o%1$@";
+"last_seen_at" = "Naposledy videné o%1$@AA";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
-"last_seen_relative" = "Naposledy online %1$@";
+"last_seen_relative" = "Naposledy videné %1$@";
 "last_seen_unknown" = "Naposledy videné: Neznáme";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Menej ako minútu";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"

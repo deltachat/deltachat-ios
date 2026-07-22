@@ -581,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "你想新建个人资料并开始和 %1$@ 聊天吗？";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "你想新建个人资料并加入 \"%1$@\" 聊天群吗？";
+"team" = "团队";
+"team_profile" = "团队配置";
+"team_profile_explain" = "“团队配置”由一群人或一个组织共同管理。\n\n⚠️ 团队配置目前处于实验阶段，未来可能会更改或移除。";
+"team_name" = "团队名称";
+"create_team_profile" = "创建团队配置";
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";

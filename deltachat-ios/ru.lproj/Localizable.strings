@@ -161,6 +161,9 @@
 "contact" = "Контакт";
 "bot" = "Бот";
 "camera" = "Камера";
+"front_camera" = "Фронтальная камера";
+"back_camera" = "Основная камера";
+"microphone" = "Микрофон";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Снять";
 // Switch eg. from front to back camera
@@ -380,11 +383,13 @@
 "call_answered_elsewhere" = "Звонок отвечен на другом устройстве";
 "call_requires_camera_permission" = "Для видеозвонков требуется разрешение на использование камеры";
 "call_requires_mic_permission" = "Для совершения звонков требуется разрешение на использование микрофона";
+"call_grant_mic_permission" = "Нажмите, чтобы предоставить доступ к микрофону";
 "call_requires_connection" = "Не удалось начать вызов. Убедитесь, что ваше устройство подключено к интернету, и повторите попытку.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Звонок от %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
 "calling_person" = "Вызов %1$@…";
+"audio_output" = "Аудиовыход";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы действительно хотите выйти?";
@@ -576,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Создать новый профиль и начать чат с %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Создать новый профиль и присоединиться к \"%1$@\"?";
+"team" = "Команда";
+"team_profile" = "Профиль команды";
+"team_profile_explain" = "\"Профиль команды\" управляется совместно группой лиц или организацией.\n\n⚠️ Профили команд являются экспериментальной функцией; в будущем они могут быть изменены или удалены.";
+"team_name" = "Название команды";
+"create_team_profile" = "Создать профиль команды";
 "welcome_chat_over_email" = "Безопасный децентрализованный чат";
 "scan_invitation_code" = "Сканировать код приглашения";
 "login_title" = "Войти";
@@ -620,6 +630,8 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Удалить релей \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Удалить релей \"%1$@\"?\n\nКонтакты, знающие только этот релей, могут потерять связь с вами, пока вы не напишете им снова.\n\nЕсли сомневаетесь, лучше скрыть его, а не удалять.";
 "login_certificate_checks" = "Проверки сертификатов";
