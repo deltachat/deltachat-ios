@@ -581,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Wil je een nieuw profiel aanmaken en een gesprek beginnen met ‘%1$@’?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Wil je een nieuw profiel aanmaken en deelnemen aan ‘%1$@’?";
+"team" = "Team";
+"team_profile" = "Teamprofiel";
+"team_profile_explain" = "Een teamprofiel wordt beheerd door meerdere mensen of een organisatie.\n\n⚠️ Let op: teamprofielen zijn momenteel experimenteel en kunnen in de toekomst mogelijk nog veranderen of toch weer uit de roulatie genomen worden.";
+"team_name" = "Teamnaam";
+"create_team_profile" = "Teamprofiel aanmaken";
 "welcome_chat_over_email" = "Veilige, gedecentraliseerde gesprekken";
 "scan_invitation_code" = "Uitnodigingscode scannen";
 "login_title" = "Inloggen";
