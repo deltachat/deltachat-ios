@@ -30,8 +30,6 @@ public struct DcColors {
     public static let middleGray = UIColor(hexString: "848ba7")
     public static let secondaryTextColor = UIColor.themeColor(lightHex: "848ba7", darkHex: "a5abc0")
     public static let placeholderColor = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
-    public static let providerPreparationBackground = UIColor.init(hexString: "fdf7b2")
-    public static let providerBrokenBackground = UIColor.systemRed
     public static let systemMessageBackgroundColor = UIColor.init(hexString: "65444444")
     public static let systemMessageFontColor = UIColor.white
     public static let gotoButtonBackgroundColor = UIColor.init(hexString: "65666666")
