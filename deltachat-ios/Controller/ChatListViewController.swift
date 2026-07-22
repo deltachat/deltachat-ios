@@ -269,6 +269,7 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
+        navigationItem.backButtonDisplayMode = .minimal
         let numberOfUnreadMessages = DcAccounts.shared.getFreshMessagesCount()
 
         if isArchive {

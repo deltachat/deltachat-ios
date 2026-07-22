@@ -50,6 +50,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
 
     private lazy var tableViewContainer: UIView = UIView()
+    private let edgeEffectExtension = (top: CGFloat(16), bottom: CGFloat(8))
+    private let edgeEffectBlurStrength = CGFloat(0.72)
+    private let edgeEffectBlurTransition: Float = 0.5
+    private let edgeEffectBlurViews = (
+        top: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)),
+        bottom: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
+    )
+    private let edgeEffectBlurMasks = (top: CAGradientLayer(), bottom: CAGradientLayer())
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -230,10 +238,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return panGestureRecognizer
     }()
 
-    private lazy var navBarTap: UITapGestureRecognizer = {
-        UITapGestureRecognizer(target: self, action: #selector(chatProfilePressed))
-    }()
-
     private lazy var cancelButton: UIBarButtonItem = {
         UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
@@ -333,6 +337,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleView.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
         view.addSubview(backgroundContainer)
         backgroundContainer.fillSuperview()
         view.addSubview(tableViewContainer)
@@ -342,6 +347,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if #available(iOS 26.0, *) {
             tableView.topEdgeEffect.isHidden = true
             tableView.bottomEdgeEffect.isHidden = true
+
+            edgeEffectBlurMasks.top.locations = [0, NSNumber(value: 1 - edgeEffectBlurTransition), 1]
+            edgeEffectBlurMasks.bottom.locations = [0, NSNumber(value: edgeEffectBlurTransition), 1]
+            updateEdgeEffectAppearance()
+
+            edgeEffectBlurViews.top.layer.mask = edgeEffectBlurMasks.top
+            edgeEffectBlurViews.bottom.layer.mask = edgeEffectBlurMasks.bottom
+            [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
+                $0.isUserInteractionEnabled = false
+                view.addSubview($0)
+            }
         }
         view.addSubview(contextMenuPreviewContainer)
         contextMenuPreviewContainer.fillSuperview()
@@ -431,8 +447,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     var isInitialViewWillAppear = true
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // this will be removed in viewWillDisappear
-        navigationController?.navigationBar.addGestureRecognizer(navBarTap)
         updateTitle()
 
         if activateSearch {
@@ -518,13 +532,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // the navigationController will be used when chatDetail is pushed, so we have to remove that gestureRecognizer
-        navigationController?.navigationBar.removeGestureRecognizer(navBarTap)
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         AppStateRestorer.shared.resetLastActiveChat()
@@ -537,25 +544,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
+        updateEdgeEffects()
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
-
-        if #available(iOS 26, *) {
-            // Custom tableView.topEdgeEffect
-            let mask = CAGradientLayer()
-            mask.frame = view.frame
-            mask.colors = [
-                UIColor(white: 1, alpha: 0).cgColor,
-                UIColor(white: 1, alpha: 0.3).cgColor,
-                UIColor(white: 1, alpha: 1).cgColor,
-            ]
-            mask.startPoint = CGPoint(x: 0.5, y: 0)
-            mask.endPoint = CGPoint(x: 0.5, y: view.safeAreaInsets.top / view.frame.height)
-            tableViewContainer.layer.mask = mask
-        }
+        updateEdgeEffects()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -578,6 +573,38 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             tableView.contentInset.top = topInset
         }
+    }
+
+    private func updateEdgeEffects() {
+        guard #available(iOS 26.0, *) else { return }
+
+        let topHeight = view.safeAreaInsets.top + edgeEffectExtension.top
+        edgeEffectBlurViews.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: topHeight)
+        edgeEffectBlurMasks.top.frame = edgeEffectBlurViews.top.bounds
+
+        let bottomHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom) + edgeEffectExtension.bottom
+        edgeEffectBlurViews.bottom.frame = CGRect(
+            x: 0,
+            y: view.bounds.height - bottomHeight,
+            width: view.bounds.width,
+            height: bottomHeight
+        )
+        edgeEffectBlurMasks.bottom.frame = edgeEffectBlurViews.bottom.bounds
+    }
+
+    private func updateEdgeEffectAppearance() {
+        guard #available(iOS 26.0, *) else { return }
+
+        let tintColor = traitCollection.userInterfaceStyle == .dark
+            ? UIColor.black.withAlphaComponent(0.67)
+            : UIColor.clear
+        [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
+            $0.contentView.backgroundColor = tintColor
+        }
+
+        let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
+        edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
+        edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
     }
 
     // MARK: - Notifications
@@ -1028,6 +1055,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
+        updateEdgeEffectAppearance()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
