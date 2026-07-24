@@ -4,6 +4,7 @@
 
 - Retire provider database
 - Add experimental "Team Profile" mode to profile creation
+- No longer open last chat when app is restarted
 - Fix notification info line
 
 
