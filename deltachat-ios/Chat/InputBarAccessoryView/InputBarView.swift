@@ -115,6 +115,7 @@ struct InputBarView: View {
                     .padding(.top, 8)
             }
         }
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     @ViewBuilder var attachmentPreview: some View {
