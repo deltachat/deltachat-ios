@@ -511,7 +511,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AppStateRestorer.shared.storeLastActiveChat(chatId: chatId)
         updateScrollDownButtonVisibility()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
@@ -534,7 +533,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        AppStateRestorer.shared.resetLastActiveChat()
         handleUserVisibility(isVisible: false)
         if #available(iOS 26.0, *), let previousValue = wasInteractiveContentPopGestureRecognizerEnabled {
             navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = previousValue

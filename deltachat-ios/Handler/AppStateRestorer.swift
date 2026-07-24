@@ -3,7 +3,6 @@ import UIKit
 class AppStateRestorer {
 
     private let lastActiveTabKey = "last_active_tab3"
-    private let lastActiveChatId = "last_active_chat_id"
     private let offsetKey = 11
 
     // UserDefaults returns 0 by default which conflicts with tab 0 -> therefore we map our tab indexes by adding an offsetKey
@@ -30,32 +29,6 @@ class AppStateRestorer {
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let activeTab = tabBarController.selectedIndex + offsetKey
-
-        if let tab = Tab(rawValue: activeTab), tab != .chatTab {
-            resetLastActiveChat()
-        }
-
         UserDefaults.standard.set(activeTab, forKey: lastActiveTabKey)
-    }
-
-    private func storeChat(chatId: Int?) {
-        let value = chatId ?? -1
-        UserDefaults.standard.set(value, forKey: lastActiveChatId)
-    }
-
-    func storeLastActiveChat(chatId: Int) {
-        storeChat(chatId: chatId)
-    }
-
-    func resetLastActiveChat() {
-        storeChat(chatId: nil)
-    }
-
-    func restoreLastActiveChatId() -> Int? {
-        let restoredChatId = UserDefaults.standard.integer(forKey: lastActiveChatId)
-        if restoredChatId == -1 || restoredChatId == 0 {
-            return nil
-        }
-        return restoredChatId
     }
 }
