@@ -2328,12 +2328,12 @@ extension ChatViewController {
 
     @available(iOS 17.4, *)
     private func presentTranslation(text: String) {
-        let host = UIHostingController(rootView: TranslationPresentationView(text: text) { [weak self] in
+        let host = UIHostingController(rootView: TranslationPresentationView(text: text, onDismiss: { [weak self] in
             self?.translationPresentationHost?.willMove(toParent: nil)
             self?.translationPresentationHost?.view.removeFromSuperview()
             self?.translationPresentationHost?.removeFromParent()
             self?.translationPresentationHost = nil
-        })
+        }))
         translationPresentationHost = host
         addChild(host)
         view.addSubview(host.view)
