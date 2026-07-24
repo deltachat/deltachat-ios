@@ -21,7 +21,10 @@ class InstantOnboardingViewController: UIViewController {
     private var qrCodeData: String?
     private lazy var menuButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
-        return UIBarButtonItem(image: image, menu: moreButtonMenu())
+        let deferredMenu = UIDeferredMenuElement.uncached({ [weak self] completion in
+            completion(self?.moreButtonMenu().children ?? [])
+        })
+        return UIBarButtonItem(image: image, menu: UIMenu(children: [deferredMenu]))
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
@@ -66,7 +69,6 @@ class InstantOnboardingViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
 
         hidesBottomBarWhenPushed = true
-        title = String.localized("pref_profile_info_headline")
 
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -74,6 +76,7 @@ class InstantOnboardingViewController: UIViewController {
 
         navigationItem.setRightBarButtonItems([menuButton], animated: true)
         updateProxyButton()
+        updateLabels()
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -221,17 +224,48 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        let actions = [
-            UIAction(title: String.localized("proxy_use_proxy"), image: UIImage(systemName: "shield")) { [weak self] _ in
-                self?.showProxySettings()
-            },
-        ]
-        return UIMenu(children: actions)
+        let proxyAction = UIAction(title: String.localized("proxy_use_proxy")) { [weak self] _ in
+            self?.showProxySettings()
+        }
+        let teamProfileAction = UIAction(title: String.localized("create_team_profile")) { [weak self] _ in
+            self?.toggleTeamProfile()
+        }
+        if dcContext.isTeamProfile {
+            teamProfileAction.state = .on
+        }
+
+        return UIMenu(children: [proxyAction, teamProfileAction])
     }
 
     @objc private func showProxySettings() {
         let proxySettingsController = ProxySettingsViewController(dcContext: dcContext, dcAccounts: dcAccounts)
         navigationController?.pushViewController(proxySettingsController, animated: true)
+    }
+
+    @objc private func toggleTeamProfile() {
+        dismissKeyboard() // let ppl read the new hint
+        if dcContext.isTeamProfile {
+            dcContext.isTeamProfile = false
+            updateLabels()
+        } else {
+            let alert = UIAlertController(title: nil, message: String.localized("team_profile_explain"), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: String.localized("create_team_profile"), style: .default, handler: { [weak self] _ in
+                guard let self else { return }
+
+                dcContext.isTeamProfile = true
+                updateLabels()
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
+    private func updateLabels() {
+        let isTeamProfile = dcContext.isTeamProfile
+
+        title = String.localized(isTeamProfile ? "create_team_profile" : "pref_profile_info_headline")
+        contentView?.nameTextField.placeholder = String.localized(isTeamProfile ? "team_name" : "pref_your_name")
+        contentView?.hintLabel.text = String.localized(isTeamProfile ? "team_profile_explain" : "set_name_and_avatar_explain")
     }
 
     private func updateMenuButtons() {

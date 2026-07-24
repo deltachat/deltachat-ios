@@ -39,7 +39,8 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private var deleteAvatar: Bool = false
 
     private lazy var nameCell: TextFieldCell = {
-        let cell = TextFieldCell(description: String.localized("pref_your_name"), placeholder: String.localized("please_enter_name"))
+        let title = String.localized(dcContext.isTeamProfile ? "team_name" : "pref_your_name")
+        let cell = TextFieldCell(description: title, placeholder: String.localized("please_enter_name"))
         cell.setText(text: dcContext.displayname)
         cell.textFieldDelegate = self
         cell.textField.returnKeyType = .default
@@ -49,7 +50,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     private lazy var sections: [SectionConfigs] = {
         let nameSection = SectionConfigs(
             headerTitle: nil,
-            footerTitle: String.localized("pref_who_can_see_profile_explain"),
+            footerTitle: String.localized(dcContext.isTeamProfile ? "team_profile_explain" : "pref_who_can_see_profile_explain"),
             cells: [nameCell, avatarSelectionCell, statusCell]
         )
         return [nameSection]
@@ -69,7 +70,7 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("pref_profile_info_headline")
+        title = String.localized(dcContext.isTeamProfile ? "team_profile" : "pref_profile_info_headline")
         avatarSelectionCell.onAvatarTapped = { [weak self] in
             self?.onAvatarTapped()
         }

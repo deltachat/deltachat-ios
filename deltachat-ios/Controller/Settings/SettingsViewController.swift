@@ -131,7 +131,7 @@ internal final class SettingsViewController: UITableViewController {
             appNameAndVersion += " v" + appVersion
         }
         let profileSection = SectionConfigs(
-            headerTitle: String.localized("pref_profile_info_headline"),
+            headerTitle: String.localized(dcContext.isTeamProfile ? "team_profile" : "pref_profile_info_headline"),
             cells: [self.profileCell]
         )
         let preferencesSection = SectionConfigs(

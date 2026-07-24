@@ -785,6 +785,11 @@ public class DcContext {
         set { setConfigBool("force_encryption", newValue) }
     }
 
+    public var isTeamProfile: Bool {
+        get { return getConfigBool("team_profile") }
+        set { setConfigBool("team_profile", newValue) }
+    }
+
     public var isProxyEnabled: Bool {
         get { return getConfigBool("proxy_enabled") }
         set { setConfigBool("proxy_enabled", newValue) }

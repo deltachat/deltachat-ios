@@ -344,11 +344,13 @@ class AccountCell: UITableViewCell {
         refreshUnreadState(dcContext: dcContext)
 
         let connectivityString = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: "")
-        if let label = dcContext.getConfig("private_tag") {
+        let privateTag = dcContext.getConfig("private_tag") ?? (dcContext.isTeamProfile ? "team" : nil)
+
+        if let privateTag {
             tagLabel.text = if !connectivityString.isEmpty {
-                connectivityString + " · " + label
+                connectivityString + " · " + privateTag
             } else {
-                label
+                privateTag
             }
             tagLabel.isHidden = false
         } else if !connectivityString.isEmpty {

@@ -34,14 +34,12 @@ class InstantOnboardingView: UIView {
         nameTextField.text = name
         nameTextField.textAlignment = .center
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.placeholder = String.localized("pref_your_name")
         nameTextField.borderStyle = .roundedRect
 
         hintLabel = UILabel()
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
         hintLabel.numberOfLines = 0
         hintLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        hintLabel.text = String.localized("set_name_and_avatar_explain")
 
         hintLabelWrapper = UIView()
         hintLabelWrapper.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +68,7 @@ class InstantOnboardingView: UIView {
         contentStackView.distribution = .fill
         contentStackView.setCustomSpacing(16, after: imageButton)
         contentStackView.setCustomSpacing(16, after: nameTextField)
-        contentStackView.setCustomSpacing(8, after: hintLabelWrapper)
+        contentStackView.setCustomSpacing(16, after: hintLabelWrapper)
         contentStackView.setCustomSpacing(32, after: privacyButtonWrapper)
         contentStackView.setCustomSpacing(16, after: agreeButton)
 

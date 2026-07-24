@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Retire provider database
+- Add experimental "Team Profile" mode to profile creation
 
 
 ## v2.56.0
