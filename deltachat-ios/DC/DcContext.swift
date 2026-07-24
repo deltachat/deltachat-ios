@@ -723,11 +723,6 @@ public class DcContext {
         return Int(dc_add_device_msg(contextPointer, label, msg?.cptr ?? nil))
     }
 
-    public func getProviderFromEmailWithDns(addr: String) -> DcProvider? {
-        guard let dcProviderPointer = dc_provider_new_from_email_with_dns(contextPointer, addr) else { return nil }
-        return DcProvider(dcProviderPointer)
-    }
-
     public func imex(what: Int32, directory: String, passphrase: String? = nil) {
         dc_imex(contextPointer, what, directory, passphrase)
     }

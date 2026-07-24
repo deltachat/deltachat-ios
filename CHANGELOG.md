@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Retire provider database
+
+
 ## v2.56.0
 2026-07
 
