@@ -4,6 +4,7 @@
 
 - Retire provider database
 - Add experimental "Team Profile" mode to profile creation
+- Fix notification info line
 
 
 ## v2.56.0
