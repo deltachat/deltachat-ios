@@ -189,21 +189,6 @@ internal final class NotificationsViewController: UITableViewController {
         }
     }
 
-    static func isLowDataMode() -> Bool {
-        assert(!Thread.isMainThread)
-        var result = false
-        let semaphore = DispatchSemaphore(value: 0)
-        let monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { path in
-            result = path.isConstrained
-            semaphore.signal()
-        }
-        monitor.start(queue: DispatchQueue.global())
-        _ = semaphore.wait(timeout: .now() + 1)
-        monitor.cancel()
-        return result
-    }
-
     static func getNotificationStatus(dcContext: DcContext, completionHandler: @escaping (String?) -> Void) {
         DispatchQueue.runOnMain {
             // `UIApplication.shared` needs to be called from main thread
@@ -222,7 +207,6 @@ internal final class NotificationsViewController: UITableViewController {
                 }
 
                 let connectiviy = dcContext.getConnectivity()
-                let pushState = dcContext.getPushState()
                 var notificationsEnabledInSystem = false
                 let semaphore = DispatchSemaphore(value: 0)
                 DispatchQueue.global(qos: .userInitiated).async {
@@ -246,56 +230,14 @@ internal final class NotificationsViewController: UITableViewController {
                     return
                 }
 
-                if pushState == DC_PUSH_NOT_CONNECTED || connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
+                if connectiviy == DC_CONNECTIVITY_NOT_CONNECTED {
                     completionHandler(String.localized("connectivity_not_connected"))
                     return
                 }
 
-                if pushState == DC_PUSH_CONNECTED {
-                    // "low data" and "low power" modes do not affect push
-                    completionHandler(nil)
-                    return
-                }
-
-                if isLowDataMode() {
-                    completionHandler(String.localized("connectivity_low_data_mode"))
-                    return
-                }
-
-                if ProcessInfo.processInfo.isLowPowerModeEnabled {
-                    completionHandler(String.localized("connectivity_low_power_mode"))
-                    return
-                }
-
-                let timestamps = UserDefaults.standard.array(forKey: Constants.Keys.notificationTimestamps) as? [Double]
-                guard let timestamps = timestamps, !timestamps.isEmpty else {
-                    // in most cases, here the app was just installed and we do not have any data.
-                    // so, do not show something error-like here.
-                    // (in case of errors, it usually converts to an error sooner or later)
-                    completionHandler(nil)
-                    return
-                }
-
-                let averageDelta = (Double(Date().timeIntervalSince1970) - timestamps.first!) / Double(timestamps.count)
-
-                var lastWakeups = ""
-                var lastWakeupsCnt = 0
-                for timestamp in timestamps.reversed() {
-                    lastWakeups += (lastWakeupsCnt > 0 ? ", " : "") + DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamp)
-                    lastWakeupsCnt += 1
-                    if lastWakeupsCnt >= 3 {
-                        break
-                    }
-                }
-
-                let avg = "Server does not support instant delivery. "
-                    .appending(" ")
-                    .appending(String.localizedStringWithFormat(String.localized("last_check_at"), lastWakeups))
-                    .appending(", ")
-                    .appending(averageDelta / 3600 > 2 ?
-                               String.localized(stringID: "notifications_avg_hours", parameter: Int(averageDelta / 3600)) :
-                                String.localized(stringID: "notifications_avg_minutes", parameter: Int(averageDelta / 60)))
-                completionHandler(avg)
+                // "low data" and "low power" modes do not affect push.
+                completionHandler(nil)
+                return
             }
         }
     }

@@ -420,10 +420,6 @@ public class DcContext {
         return "ErrGetInfo"
     }
 
-    public func getPushState() -> Int32 {
-        return dc_get_push_state(contextPointer)
-    }
-
     public func getContactEncrInfo(contactId: Int) -> String {
         if let cString = dc_get_contact_encrinfo(contextPointer, UInt32(contactId)) {
             let switftString = String(cString: cString)
