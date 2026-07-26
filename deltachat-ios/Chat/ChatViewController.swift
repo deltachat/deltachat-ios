@@ -2102,7 +2102,7 @@ extension ChatViewController {
                    let text = message.text,
                    !text.isEmpty {
                     children.append(
-                        UIAction.menuAction(localizationKey: "Translate", systemImageName: "translate", with: text, action: presentTranslation)
+                        UIAction.menuAction(localizationKey: "translate", systemImageName: "translate", with: text, action: presentTranslation)
                     )
                 }
                 if message.image != nil {
