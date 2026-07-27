@@ -1191,6 +1191,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return !message.isMarkerOrInfo && dcChat.canSend
     }
 
+    private func canReact(to message: DcMsg) -> Bool {
+        if dcChat.isInBroadcast {
+            return dcContext.isContactInChat(chatId: dcChat.id, contactId: DC_CONTACT_ID_SELF)
+        }
+        return canReply(to: message)
+    }
+
     private func canReplyPrivately(to message: DcMsg) -> Bool {
         return !message.isMarkerOrInfo && dcChat.isMultiUser && !message.isFromCurrentSender
     }
@@ -2035,7 +2042,7 @@ extension ChatViewController {
                 var children: [UIMenuElement] = []
                 var moreOptions: [UIMenuElement] = []
 
-                if canReply(to: message) {
+                if canReact(to: message) {
                     let reactionsMenu: UIMenu
                     var reactions: [UIMenuElement] = []
                     appendReactionItems(to: &reactions, messageId: messageId)
