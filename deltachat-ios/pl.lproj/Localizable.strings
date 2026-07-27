@@ -581,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Utworzyć nowy profil i rozpocząć rozmowę z %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Utworzyć nowy profil i dołączyć do grupy „%1$@”?";
+"team" = "Zespół";
+"team_profile" = "Profil zespołu";
+"team_profile_explain" = "„Profil zespołu” jest zarządzany zbiorowo przez grupę osób lub organizację.\n\n⚠️ Profile zespołu są eksperymentalne i w przyszłości mogą zostać zmienione lub usunięte.";
+"team_name" = "Nazwa zespołu";
+"create_team_profile" = "Utwórz profil zespołu";
 "welcome_chat_over_email" = "Bezpieczny zdecentralizowany czat";
 "scan_invitation_code" = "Zeskanuj kod zaproszenia";
 "login_title" = "Zaloguj się";

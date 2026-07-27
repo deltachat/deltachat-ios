@@ -1,11 +1,14 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.57.0
+2026-07
 
 - Retire provider database
 - Add experimental "Team Profile" mode to profile creation
 - No longer open last chat when app is restarted
-- Fix notification info line
+- Fix relays not synced properly between recent versions
+- Fix: Show correct notification status in settings overview
+- Update to core 2.57.0
 
 
 ## v2.56.0
