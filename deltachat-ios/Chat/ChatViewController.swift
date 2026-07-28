@@ -2486,6 +2486,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     }
 
     @objc func reactionsTapped(indexPath: IndexPath) {
+        guard !dcChat.isInBroadcast else { return }
         guard let reactions = dcContext.getMessageReactions(messageId: messages[indexPath.row].id) else { return }
 
         let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
