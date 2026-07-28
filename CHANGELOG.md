@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Allow to react in channels
+- Offer five default reactions when long-tapping a message
+
+
 ## v2.57.0
 2026-07
 
