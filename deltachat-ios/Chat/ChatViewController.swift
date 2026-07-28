@@ -113,6 +113,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             chatViewController: self,
             updateIntrinsicContentSize: { [weak self] in
                 self?.inputToolBarHost.view.invalidateIntrinsicContentSize()
+                self?.toolbarContainerView.layoutSubviews()
             })
         )
         host.view.backgroundColor = .clear

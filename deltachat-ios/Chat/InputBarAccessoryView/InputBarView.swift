@@ -102,6 +102,15 @@ struct InputBarView: View {
         }
         .onAppear {
             textEditorFocus = draft.isFieldFocused
+            _updateIntrinsicContentSize(())
+        }
+        .onWillDisappear {
+            if textEditorFocus {
+                // iOS 26 doesn't correctly give back the first responder inside a SwiftUI
+                // view so we just resign it before another view is shown over this.
+                // It is not enough to just do `textEditorFocus = false`.
+                UIResponder.currentFirstResponder?.resignFirstResponder()
+            }
         }
         .modifier { view in
             if #available(iOS 26.0, *) {
