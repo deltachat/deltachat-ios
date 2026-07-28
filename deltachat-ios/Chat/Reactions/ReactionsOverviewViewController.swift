@@ -18,6 +18,7 @@ class ReactionsOverviewViewController: UIViewController {
 
         self.showFrequencies = showFrequencies
 
+        // layout by strings is not great, but good enough for now for a secondary UI
         if showFrequencies {
             self.contactIds = []
             self.texts = reactions.reactions.map { reaction in
