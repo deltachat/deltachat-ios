@@ -85,7 +85,7 @@ class ChatTitleView: UIButton {
             configuration = .glass()
         }
 
-        layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 10)
         isAccessibilityElement = true
 
         addSubview(contentStack)
