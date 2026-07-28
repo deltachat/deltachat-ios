@@ -1987,35 +1987,37 @@ extension ChatViewController {
             })
         }
 
-        let showPicker = myReactions.isEmpty || myReactionChecked
-        let title: String
-        let accessibilityLabel: String?
-        if showPicker {
-            title = "•••"
-            accessibilityLabel = String.localized("pref_other")
-        } else {
-            title = (myReactions.first ?? "?") + "✓"
-            accessibilityLabel = nil
-        }
-        let action = UIAction(title: title) { [weak self] _ in
-            guard let self else { return }
+        if !(dcChat.isInBroadcast || dcChat.isOutBroadcast) {
+            let showPicker = myReactions.isEmpty || myReactionChecked
+            let title: String
+            let accessibilityLabel: String?
             if showPicker {
-                reactionMessageId = messageId
-                let pickerViewController = MCEmojiPickerViewController()
-                pickerViewController.navigationItem.title = String.localized("react")
-                pickerViewController.delegate = self
-
-                let navigationController = UINavigationController(rootViewController: pickerViewController)
-                if let sheet = navigationController.sheetPresentationController {
-                    sheet.detents = [.medium(), .large()]
-                }
-                present(navigationController, animated: true)
+                title = "•••"
+                accessibilityLabel = String.localized("pref_other")
             } else {
-                dcContext.sendReaction(messageId: messageId, reaction: nil)
+                title = (myReactions.first ?? "?") + "✓"
+                accessibilityLabel = nil
             }
+            let action = UIAction(title: title) { [weak self] _ in
+                guard let self else { return }
+                if showPicker {
+                    reactionMessageId = messageId
+                    let pickerViewController = MCEmojiPickerViewController()
+                    pickerViewController.navigationItem.title = String.localized("react")
+                    pickerViewController.delegate = self
+
+                    let navigationController = UINavigationController(rootViewController: pickerViewController)
+                    if let sheet = navigationController.sheetPresentationController {
+                        sheet.detents = [.medium(), .large()]
+                    }
+                    present(navigationController, animated: true)
+                } else {
+                    dcContext.sendReaction(messageId: messageId, reaction: nil)
+                }
+            }
+            action.accessibilityLabel = accessibilityLabel
+            menuElements.append(action)
         }
-        action.accessibilityLabel = accessibilityLabel
-        menuElements.append(action)
     }
 
     private func isLinkTapped(indexPath: IndexPath, point: CGPoint) -> String? {
