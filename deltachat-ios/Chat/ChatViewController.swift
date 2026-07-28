@@ -1999,7 +1999,7 @@ extension ChatViewController {
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
-        for reaction in [DefaultReactions.thumbsUp, .heart, .faceWithTearsOfJoy] {
+        for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let title: String
             if sentThisReaction {
@@ -2080,10 +2080,8 @@ extension ChatViewController {
                     let reactionsMenu: UIMenu
                     var reactions: [UIMenuElement] = []
                     appendReactionItems(to: &reactions, messageId: messageId)
-                    if #available(iOS 16.0, *) {
-                        reactionsMenu = UIMenu(options: [.displayInline], children: reactions)
-                        reactionsMenu.preferredElementSize = .small
-
+                    if #available(iOS 17.0, *) {
+                        reactionsMenu = UIMenu(options: [.displayInline, .displayAsPalette], children: reactions)
                     } else {
                         reactionsMenu = UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactions)
                     }
