@@ -302,7 +302,7 @@ class ProfileViewController: UITableViewController {
             } else if isMultiUser && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
                 primaryOptions.append(action("global_menu_edit_desktop", "pencil", showEditController))
             }
-            if let chat, !isOutBroadcast && !isSavedMessages {
+            if let chat, !isSavedMessages {
                 primaryOptions.append(action(chat.isMuted ? "menu_unmute" : "mute", chat.isMuted ? "speaker.wave.2" : "speaker.slash", toggleMuteChat))
             }
             if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
