@@ -62,7 +62,7 @@ struct InputBarView: View {
                         maxHeight: 150
                     )
                     .focused($textEditorFocus)
-                    .overlay(alignment: .leading) {
+                    .background(alignment: .leading) {
                         if draft.text.isEmpty && !textEditorFocus {
                             Text(String.localized("chat_input_placeholder"))
                                 .foregroundColor(Color(uiColor: DcColors.placeholderColor))
