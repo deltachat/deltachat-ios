@@ -1,6 +1,11 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Add audio speed control
+
+
 ## 2.64.0
 2026-10
 
