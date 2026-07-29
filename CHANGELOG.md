@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add audio speed control
 - Fix: Category labels in emoji picker not rendering correctly on iOS 26
 
 
