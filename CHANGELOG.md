@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix chat edge contrast when iOS changes the status bar color
+
+
 ## v2.57.0
 2026-07
 
