@@ -614,14 +614,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
               statusBarStyle != lastStatusBarStyle else { return }
 
         lastStatusBarStyle = statusBarStyle
-        let blurStyle: UIBlurEffect.Style
-        switch statusBarStyle {
+        let blurStyle: UIBlurEffect.Style = switch statusBarStyle {
         case .lightContent:
-            blurStyle = .systemUltraThinMaterialDark
+            .systemUltraThinMaterialDark
         case .darkContent:
-            blurStyle = .systemUltraThinMaterialLight
+            .systemUltraThinMaterialLight
         default:
-            blurStyle = .systemUltraThinMaterial
+            .systemUltraThinMaterial
         }
         edgeEffectBlurViews.top.effect = UIBlurEffect(style: blurStyle)
     }
