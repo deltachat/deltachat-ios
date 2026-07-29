@@ -69,7 +69,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MCEmojiPicker:
-    :commit: d9eb480883c0a46b8813b9fe1f4e00d4df1ad071
+    :commit: a94d61d273847209758c3e8736e61f1d622ec01a
     :git: https://github.com/deltachat/MCEmojiPicker
 
 SPEC CHECKSUMS:
