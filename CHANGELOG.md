@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: Category labels in emoji picker not rendering correctly on iOS 26
+
+
 ## v2.57.0
 2026-07
 
