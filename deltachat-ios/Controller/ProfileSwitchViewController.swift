@@ -189,7 +189,7 @@ class ProfileSwitchViewController: UITableViewController {
 
     func deleteAccount(at indexPath: IndexPath) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
+        Utils.authenticateDeviceOwner(reason: String.localized("delete_account")) { [weak self] in
             guard let self else { return }
             let accountId = accountIds[indexPath.row]
             let account = dcAccounts.get(id: accountId)
