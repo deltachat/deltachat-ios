@@ -30,7 +30,7 @@ struct InputBarView: View {
                         } else {
                             draft.setQuote(quotedMsg: nil)
                         }
-                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                    }.layoutPriority(-1).labelStyle(.iconOnly).font(.title2)
                 }.modifier { glassEffect(view: $0, interactive: false) }
             }
             if draft.attachment != nil {
@@ -39,7 +39,7 @@ struct InputBarView: View {
                     Spacer()
                     Button(String.localized("cancel"), systemImage: "xmark") {
                         draft.clearAttachment()
-                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                    }.layoutPriority(-1).labelStyle(.iconOnly).font(.title2)
                 }
                 .onTapGesture {
                     chatViewController?.onAttachmentTapped()
