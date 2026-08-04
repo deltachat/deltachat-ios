@@ -29,6 +29,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         case playFailed
     }
 
+    static let playbackRates: [Float] = [1.0, 1.25, 1.5, 2.0]
     private static var backgroundPlaybackController: AudioController?
     private static var remoteCommandsConfigured = false
 
@@ -130,6 +131,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
             cell.audioPlayerView.showPlayLayout(player.isPlaying)
             cell.audioPlayerView.setDuration(duration: player.currentTime)
+            cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
         }
     }
     
@@ -201,6 +203,16 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
     }
 
+    public func playbackSpeedButtonTapped(cell: AudioMessageCell, messageId: Int) {
+        let activeController = AudioController.backgroundPlaybackController ?? self
+        guard activeController.isPlayingMessage(messageId: messageId, contextId: dcContext.id),
+              let player = activeController.audioPlayer else { return }
+        let rate = AudioController.nextPlaybackRate(after: player.rate)
+        player.rate = rate
+        cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
+        activeController.updateNowPlayingInfo()
+    }
+
     /// Used to start play audio sound
     ///
     /// - Parameters:
@@ -221,14 +233,16 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             loadArtwork(for: message)
             AudioController.backgroundPlaybackController = self
             AudioController.configureRemoteCommands()
-            player.prepareToPlay()
             player.delegate = self
+            player.enableRate = true
+            player.prepareToPlay()
             state = .playing
             guard player.play() else {
                 state = .stopped
                 throw AudioPlaybackError.playFailed
             }
             audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
+            audioCell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
             updateNowPlayingInfo()
             startProgressTimer()
         } catch {
@@ -236,6 +250,15 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             stopAnyOngoingPlaying()
             delegate?.onAudioPlayFailed()
         }
+    }
+
+    static func nextPlaybackRate(after rate: Float) -> Float {
+        guard let index = playbackRates.firstIndex(of: rate) else { return 1.0 }
+        return playbackRates[(index + 1) % playbackRates.count]
+    }
+
+    static func playbackRateLabel(_ rate: Float) -> String {
+        String(format: "%gx", Double(rate))
     }
 
     /// Pauses the currently playing audio sound.
@@ -439,7 +462,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? 1.0 : 0.0
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? player.rate : 0.0
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
         lastNowPlayingInfoUpdate = Date()
     }
