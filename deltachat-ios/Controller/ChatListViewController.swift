@@ -675,17 +675,18 @@ class ChatListViewController: UITableViewController {
     }
 
     private func addEditingView() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              editingConstraints == nil else { return }
+        guard editingConstraints == nil else { return }
 
         guard let parentView = self.navigationController?.view else { return }
         parentView.addSubview(editingBar)
         editingConstraints = [
             editingBar.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
             editingBar.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
-            editingBar.bottomAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.bottomAnchor),
+            editingBar.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
         ]
         NSLayoutConstraint.activate(editingConstraints ?? [])
+        // Updates UIToolbar to extend its background into safe area on pre liquid glass
+        editingBar.layoutSubviews()
     }
 
     private func setBottomTabBarHidden(_ hidden: Bool) {
