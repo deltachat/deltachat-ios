@@ -112,10 +112,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             draft: draft,
             chatViewController: self,
             updateIntrinsicContentSize: { [weak self] in
-                self?.inputToolBarHost.view.invalidateIntrinsicContentSize()
-                self?.toolbarContainerView.layoutSubviews()
+                if #unavailable(iOS 16) {
+                    self?.inputToolBarHost.view.setNeedsUpdateConstraints()
+                }
             })
         )
+        if #available(iOS 16.0, *) {
+            host.sizingOptions = [.intrinsicContentSize]
+        }
         host.view.backgroundColor = .clear
         host.view.addInteraction(UIDropInteraction(delegate: dropInteraction))
         return host
