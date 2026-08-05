@@ -397,6 +397,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - safeAreaInsets.bottom
             }
+            if #unavailable(iOS 16) {
+                // On iOS 15 the SwiftUI input bar does not layout automatically
+                // when the keyboard changes so we just trigger it manually.
+                self.inputToolBarHost.view.setNeedsUpdateConstraints()
+            }
         }
         // Binding to the tableView will enable interactive dismissal
         // This doesn't work as good without an accessory view but
@@ -408,6 +413,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         keyboardManager?.on(event: .willShow, do: animateKeyboardChange)
         keyboardManager?.on(event: .didHide, do: animateKeyboardChange)
         keyboardManager?.on(event: .didShow, do: animateKeyboardChange)
+        if #unavailable(iOS 16) {
+            // We access the keyboardLayoutGuide in viewDidLayoutSubviews but on iOS 15
+            // its layoutFrame is wrong unless we initialize it here.
+            _ = view.keyboardLayoutGuide
+        }
 
         if !dcContext.isConfigured() {
             // TODO: display message about nothing being configured
