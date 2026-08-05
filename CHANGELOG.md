@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix: Category labels in emoji picker not rendering correctly on iOS 26
+- Fix: Incorrect content inset when "Share to x" alert is presented when sharing to Delta Chat
 
 
 ## v2.57.0
