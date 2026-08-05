@@ -568,7 +568,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Manually set the safe area because tableView is flipped
         tableView.contentInset.bottom = view.safeAreaInsets.top
 
-        guard shouldProcessContentInsetUpdates else { return }
         let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
         if tableView.contentInset.top != topInset {
             if tableView.contentOffset.y == -tableView.contentInset.top {
