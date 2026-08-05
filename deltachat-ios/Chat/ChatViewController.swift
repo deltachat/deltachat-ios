@@ -58,6 +58,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         bottom: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
     )
     private let edgeEffectBlurMasks = (top: CAGradientLayer(), bottom: CAGradientLayer())
+    private var lastStatusBarStyle: UIStatusBarStyle?
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -527,6 +528,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         handleUserVisibility(isVisible: true)
 
         if #available(iOS 26.0, *) {
+            updateTopEdgeEffectAppearance()
             wasInteractiveContentPopGestureRecognizerEnabled = navigationController?
                 .interactiveContentPopGestureRecognizer?.isEnabled
             // This new pop gesture happens when you swipe in the middle of the screen which
@@ -608,6 +610,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
         edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
         edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
+    }
+
+    private func updateTopEdgeEffectAppearance() {
+        guard #available(iOS 26.0, *),
+              let statusBarStyle = view.window?.windowScene?.statusBarManager?.statusBarStyle,
+              statusBarStyle != lastStatusBarStyle else { return }
+
+        lastStatusBarStyle = statusBarStyle
+        let blurStyle: UIBlurEffect.Style = switch statusBarStyle {
+        case .lightContent:
+            .systemUltraThinMaterialDark
+        case .darkContent:
+            .systemUltraThinMaterialLight
+        default:
+            .systemUltraThinMaterial
+        }
+        edgeEffectBlurViews.top.effect = UIBlurEffect(style: blurStyle)
     }
 
     // MARK: - Notifications
@@ -846,6 +865,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateScrollDownButtonVisibility()
+        updateTopEdgeEffectAppearance()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -1059,6 +1079,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
         updateEdgeEffectAppearance()
+        updateTopEdgeEffectAppearance()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {

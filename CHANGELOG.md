@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix chat edge contrast when iOS changes the status bar color
 - Fix: Category labels in emoji picker not rendering correctly on iOS 26
 
 
