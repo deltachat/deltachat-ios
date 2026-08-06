@@ -33,6 +33,10 @@ private struct _InputBarTextView: UIViewRepresentable {
         textView.font = UIFont.preferredFont(forTextStyle: .body)
         textView.backgroundColor = .clear
         textView.autocapitalizationType = .sentences
+        if #available(iOS 18.0, *) {
+            // Send stickers to the paste function instead of into the text field
+            textView.supportsAdaptiveImageGlyph = false
+        }
         context.coordinator.contentSizePublisher = textView.publisher(for: \.contentSize)
             .receive(on: RunLoop.main)
             .assign(to: \.contentSize, on: self)
