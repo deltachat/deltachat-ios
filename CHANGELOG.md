@@ -1,11 +1,20 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## v2.57.1
+2026-08
 
 - Prefer adding relay over adding profiles when scanning a DCACCOUNT: or DCLOGIN: QR code
+- Share attachments of multiple selected messages at once
 - Fix chat edge contrast when iOS changes the status bar color
 - Fix: Category labels in emoji picker not rendering correctly on iOS 26
 - Fix: Incorrect content inset when "Share to x" alert is presented when sharing to Delta Chat
+- Fix sometimes unaligned chat subtitle
+- Fix onboarding page buttons
+- Fix status bar edge effect contrast
+- Fix stickers
+- Fix layout glitches in iOS 15
+- Add Hebrew language, update translations and local help
+- Using core 2.57.0
 
 
 ## v2.57.0
