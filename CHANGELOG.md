@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Prefer adding relay over adding profiles when scanning a DCACCOUNT: or DCLOGIN: QR code
 - Fix chat edge contrast when iOS changes the status bar color
 - Fix: Category labels in emoji picker not rendering correctly on iOS 26
 - Fix: Incorrect content inset when "Share to x" alert is presented when sharing to Delta Chat
