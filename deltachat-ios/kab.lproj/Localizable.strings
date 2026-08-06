@@ -585,7 +585,9 @@
 "remove_transport" = "Kkes amedwel";
 "edit_transport" = "Ẓreg amedwel";
 "used_for_sending" = "Yettwaseqdec i tuzzna";
+// deprecated
 "hide_from_contacts" = "Ffer-it ɣef inermisen";
+// deprecated
 "hidden_from_contacts" = "Uffir ɣef inermisen";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Rnu amedwel-agi?";

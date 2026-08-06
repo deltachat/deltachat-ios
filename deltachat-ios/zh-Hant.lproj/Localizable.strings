@@ -584,7 +584,9 @@
 "remove_transport" = "移除中繼伺服器";
 "edit_transport" = "編輯中繼伺服器";
 "used_for_sending" = "用于发送";
+// deprecated
 "hide_from_contacts" = "对联系人隐藏";
+// deprecated
 "hidden_from_contacts" = "已对联系人隐藏";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "新增這個中繼伺服器？";

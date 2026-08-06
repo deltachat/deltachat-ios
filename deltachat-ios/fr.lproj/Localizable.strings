@@ -608,7 +608,9 @@
 "remove_transport" = "Supprimer un relais";
 "edit_transport" = "Modifier le relais";
 "used_for_sending" = "Utilisé pour les envois";
+// deprecated
 "hide_from_contacts" = "Masquer pour les contacts";
+// deprecated
 "hidden_from_contacts" = "Masqué pour les contacts";
 "enforce_e2ee" = "Forcer le chiffrement pour tous les relais";
 // Hint for the list of relays

@@ -622,7 +622,9 @@
 "remove_transport" = "Eliminar Retransmisor";
 "edit_transport" = "Editar Retransmisor";
 "used_for_sending" = "Usado para enviar";
+// deprecated
 "hide_from_contacts" = "Ocultar de los contactos";
+// deprecated
 "hidden_from_contacts" = "Ocultado de los contactos";
 "enforce_e2ee" = "Exigir el cifrado para todos los retransmisores";
 // Hint for the list of relays

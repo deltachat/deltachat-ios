@@ -13,13 +13,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Trvanie %d minútu</string>
-			<key>few</key>
-			<string>Trvanie %d minúty</string>
-			<key>many</key>
-			<string>Trvanie %d minút</string>
+			<string>%d משך הזמן בדקות</string>
+			<key>two</key>
+			<string>%d משך הזמן בדקות</string>
 			<key>other</key>
-			<string>Trvanie %d minút</string>
+			<string>%d משך הזמן בדקות</string>
 		</dict>
 	</dict>
 	<key>n_minutes</key>
@@ -33,13 +31,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d minúta</string>
-			<key>few</key>
-			<string>%d minúty</string>
-			<key>many</key>
-			<string>%d minút</string>
+			<string>%d דקה</string>
+			<key>two</key>
+			<string>%d דקה</string>
 			<key>other</key>
-			<string>%d minút</string>
+			<string>%d דק\'</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -53,13 +49,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d hodina</string>
-			<key>few</key>
-			<string>%d hodiny</string>
-			<key>many</key>
-			<string>%d hodín</string>
+			<string>%d שעה</string>
+			<key>two</key>
+			<string>%d שעות</string>
 			<key>other</key>
-			<string>%d hodín</string>
+			<string>%d שעות</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>
@@ -73,13 +67,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d konverzácia</string>
-			<key>few</key>
-			<string>%d konverzácie</string>
-			<key>many</key>
-			<string>%d konverzácií</string>
+			<string>%d צ\'אט</string>
+			<key>two</key>
+			<string>%d צ\'אטים</string>
 			<key>other</key>
-			<string>%d konverzácií</string>
+			<string>%d צ\'אטים</string>
 		</dict>
 	</dict>
 	<key>n_contacts</key>
@@ -93,13 +85,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d kontakt</string>
-			<key>few</key>
-			<string>%d kontakty</string>
-			<key>many</key>
-			<string>%d kontaktov</string>
+			<string>%d צור קשר</string>
+			<key>two</key>
+			<string>%d אנשי קשר</string>
 			<key>other</key>
-			<string>%d kontaktov</string>
+			<string>%d אנשי קשר</string>
 		</dict>
 	</dict>
 	<key>n_messages</key>
@@ -113,13 +103,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d správa</string>
-			<key>few</key>
-			<string>%d správy</string>
-			<key>many</key>
-			<string>%d správ</string>
+			<string>%d הודעה</string>
+			<key>two</key>
+			<string>%d הודעות</string>
 			<key>other</key>
-			<string>%d správ</string>
+			<string>%d הודעות</string>
 		</dict>
 	</dict>
 	<key>n_reactions</key>
@@ -133,13 +121,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d reakcia</string>
-			<key>few</key>
-			<string>%d reakcie</string>
-			<key>many</key>
-			<string>%d reakcií</string>
+			<string>%d תגובה</string>
+			<key>two</key>
+			<string>%d תגובות</string>
 			<key>other</key>
-			<string>%d reakcií</string>
+			<string>%d תגובות</string>
 		</dict>
 	</dict>
 	<key>n_members</key>
@@ -153,13 +139,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d člen</string>
-			<key>few</key>
-			<string>%d členovia</string>
-			<key>many</key>
-			<string>%d členov</string>
+			<string>%d חבר</string>
+			<key>two</key>
+			<string>%d חברים</string>
 			<key>other</key>
-			<string>%d členov</string>
+			<string>%d חברים</string>
 		</dict>
 	</dict>
 	<key>n_recipients</key>
@@ -173,13 +157,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d sledujúci</string>
-			<key>few</key>
-			<string>%d sledujúci</string>
-			<key>many</key>
-			<string>%d sledujúcich</string>
+			<string>%d מנויים</string>
+			<key>two</key>
+			<string>%d מנויים</string>
 			<key>other</key>
-			<string>%d sledujúcich</string>
+			<string>%d מנויים</string>
 		</dict>
 	</dict>
 	<key>n_selected</key>
@@ -193,13 +175,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d vybraný</string>
-			<key>few</key>
-			<string>%d vybrané</string>
-			<key>many</key>
-			<string>%d vybraných</string>
+			<string>%d נבחר</string>
+			<key>two</key>
+			<string>%d נבחר</string>
 			<key>other</key>
-			<string>%d vybraných</string>
+			<string>%d נבחרו</string>
 		</dict>
 	</dict>
 	<key>n_views</key>
@@ -213,13 +193,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d zobrazenie</string>
-			<key>few</key>
-			<string>%d zobrazenia</string>
-			<key>many</key>
-			<string>%d zobrazení</string>
+			<string>%d תצוגה</string>
+			<key>two</key>
+			<string>%d צפיות</string>
 			<key>other</key>
-			<string>%d zobrazení</string>
+			<string>%d צפיות</string>
 		</dict>
 	</dict>
 	<key>ask_send_following_n_files_to</key>
@@ -233,13 +211,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odoslať nasledujúci súbor používateľovi %2$@?</string>
-			<key>few</key>
-			<string>Odoslať nasledujúce %d súbory používateľovi %2$@?</string>
-			<key>many</key>
-			<string>Odoslať nasledujúcich %d súborov používateľovi %2$@?</string>
+			<string>האם לשלוח את הקובץ הבא לכתובת %2$@?</string>
+			<key>two</key>
+			<string>האם יש לשלוח את הקבצים הבאים מ- %d לכתובת %2$@?</string>
 			<key>other</key>
-			<string>Odoslať nasledujúcich %d súborov používateľovi %2$@?</string>
+			<string>האם יש לשלוח את הקבצים הבאים מ- %d לכתובת %2$@?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_chat</key>
@@ -253,13 +229,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odstrániť %d konverzáciu?</string>
-			<key>few</key>
-			<string>Odstrániť %d konverzácie?</string>
-			<key>many</key>
-			<string>Odstrániť %d konverzácií?</string>
+			<string>למחוק את הצ\'אט ב- %d?</string>
+			<key>two</key>
+			<string>למחוק את הצ\'אטים ב- %d?</string>
 			<key>other</key>
-			<string>Odstrániť %d konverzácií?</string>
+			<string>למחוק %d צ\'אטים?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>
@@ -273,13 +247,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Odstrániť %d správu?</string>
-			<key>few</key>
-			<string>Odstrániť %d správy?</string>
-			<key>many</key>
-			<string>Odstrániť %d správ?</string>
+			<string>להמחק הודעה מ- %d?</string>
+			<key>two</key>
+			<string>למחוק הודעות מ- %d?</string>
 			<key>other</key>
-			<string>Odstrániť %d správ?</string>
+			<string>למחוק %d הודעות?</string>
 		</dict>
 	</dict>
 	<key>ask_forward_messages</key>
@@ -293,13 +265,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Preposlať správu do konverzácie %2$@?</string>
-			<key>few</key>
-			<string>Preposlať %d správy do konverzácie %2$@?</string>
-			<key>many</key>
-			<string>Preposlať %d mspráv do konverzácie %2$@?</string>
+			<string>להעביר את ההודעה ל- %2$@?</string>
+			<key>two</key>
+			<string>להעביר הודעות מ- %d ל- %2$@?</string>
 			<key>other</key>
-			<string>Preposlať %d správ do konverzácie %2$@?</string>
+			<string>להעביר הודעות מ- %d ל- %2$@?</string>
 		</dict>
 	</dict>
 	<key>chat_archived</key>
@@ -313,13 +283,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d konverzácia bola archivovaná</string>
-			<key>few</key>
-			<string>%d konverzácie boli archivované</string>
-			<key>many</key>
-			<string>%d konverzácií bolo archivovaných</string>
+			<string>%d הצ\'אט הועבר לארכיון</string>
+			<key>two</key>
+			<string>%d שיחות בארכיון</string>
 			<key>other</key>
-			<string>%d konverzácií bolo archivovaných</string>
+			<string>%d צ\'אטים בארכיון</string>
 		</dict>
 	</dict>
 	<key>chat_unarchived</key>
@@ -333,13 +301,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Archivácia %d konverzácie bola zrušená</string>
-			<key>few</key>
-			<string>Archivácia %d konverzácií bola zrušená</string>
-			<key>many</key>
-			<string>Archivácia %d konverzácií bola zrušená</string>
+			<string>%d צ\'אט שלא הועבר לארכיון</string>
+			<key>two</key>
+			<string>%d צ\'אטים שלא נשמרו בארכיון</string>
 			<key>other</key>
-			<string>Archivácia %d konverzácií bola zrušená</string>
+			<string>%d צ\'אטים שלא נשמרו בארכיון</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -353,13 +319,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d nová správa</string>
-			<key>few</key>
-			<string>%d nové správy</string>
-			<key>many</key>
-			<string>%dnových správ</string>
+			<string>%d הודעה חדשה</string>
+			<key>two</key>
+			<string>%d הודעות חדשות</string>
 			<key>other</key>
-			<string>%d nových správ</string>
+			<string>%d הודעות חדשות</string>
 		</dict>
 	</dict>
 </dict>

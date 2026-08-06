@@ -581,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Ein neues Profil erstellen und mit %1$@ chatten?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Ein neues Profil erstellen und \"%1$@\" beitreten?";
+"team" = "Team";
+"team_profile" = "Teamprofil";
+"team_profile_explain" = "Ein „Teamprofil“ wird gemeinsam von einer Gruppe oder einer Organisation verwaltet.\n\n⚠️ Teamprofil-Funktionen sind experimentell und können sich ändern.";
+"team_name" = "Teamname";
+"create_team_profile" = "Teamprofil erstellen";
 "welcome_chat_over_email" = "Sicherer dezentraler Chat";
 "scan_invitation_code" = "Einladungscode scannen";
 "login_title" = "Login";
@@ -617,16 +622,18 @@
 "remove_transport" = "Relay entfernen";
 "edit_transport" = "Relay bearbeiten";
 "used_for_sending" = "Zum Senden verwendet";
+// deprecated
 "hide_from_contacts" = "Vor Kontakten verstecken";
+// deprecated
 "hidden_from_contacts" = "Vor Kontakten versteckt";
 "enforce_e2ee" = "Verschlüsselung für alle Relays erzwingen";
 // Hint for the list of relays
-"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen.\n\n⚠️ Wenn Sie hier Änderungen vornehmen, stellen Sie sicher, dass auf allen Ihren Geräten mindestens Version 2.47.0 installiert ist. Andernfalls könnten auf älteren Versionen Nachrichten verloren gehen.";
+"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Relay hinzufügen?";
 "invalid_transport_qr" = "Der gescannte QR-Code enthält keine gültiges Relay.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Relay \"%1$@\" entfernen?";
+"confirm_remove_relay_x" = "Relay \"%1$@\" entfernen?\n\nVor dem endgültigen Löschen wird es schrittweise deaktiviert, um deinen Kontakten einen nahtlosen Übergang zu ermöglichen.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Relay \"%1$@\" entfernen?\n\nKontakte, die nur dieses Relay kennen, erreichen dich möglicherweise erst wieder, wenn du ihnen erneut eine Nachricht schickst.\n\nIm Zweifelsfall, verstecke das Relay anstelle es zu löschen.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";

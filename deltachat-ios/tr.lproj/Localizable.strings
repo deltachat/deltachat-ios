@@ -598,7 +598,9 @@
 "remove_transport" = "Aktarıcıyı Kaldır";
 "edit_transport" = "Aktarıcıyı Düzenle";
 "used_for_sending" = "Gönderim için kullanıldı";
+// deprecated
 "hide_from_contacts" = "Kişilerden Gizle";
+// deprecated
 "hidden_from_contacts" = "Kişilerden gizlendi";
 // Hint for the list of relays
 "transport_list_hint" = "İletiler tüm aktarıcılardan alınır.\n\n⚠️ Burada herhangi bir şeyi değiştirirseniz, tüm aygıtlarınızın en azından 2.47.0 sürümünü çalıştırdığından emin olun. Yoksa daha eski aygıtlar iletileri kaçırabilir.";

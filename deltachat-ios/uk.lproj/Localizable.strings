@@ -611,7 +611,9 @@
 "remove_transport" = "Видалити ретранслятор";
 "edit_transport" = "Редагувати ретранслятор";
 "used_for_sending" = "Використовується для відправки";
+// deprecated
 "hide_from_contacts" = "Приховати від контактів";
+// deprecated
 "hidden_from_contacts" = "Приховано від контактів";
 "enforce_e2ee" = "Застосувати політику шифрування для всіх ретрансляторів";
 // Hint for the list of relays
