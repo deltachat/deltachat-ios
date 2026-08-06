@@ -162,7 +162,7 @@ public class LogViewController: UIViewController {
 
     @objc private func shareButtonPressed() {
         if let text = logText.text {
-            Utils.share(text: text, parentViewController: self, sourceItem: shareButton)
+            Utils.share(log: text, parentViewController: self, sourceItem: shareButton)
         }
     }
 
