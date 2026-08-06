@@ -51,11 +51,6 @@ struct Utils {
         return directoryURL.appendingPathComponent(identifier).appendingPathComponent(name)
     }
 
-    public static func getSafeBottomLayoutInset() -> CGFloat {
-        let window = UIApplication.shared.windows.first
-        return window?.safeAreaInsets.bottom ?? 0
-    }
-
     public static func getInviteLink(context: DcContext, chatId: Int) -> String? {
         return context.getSecurejoinQr(chatId: chatId)
     }
