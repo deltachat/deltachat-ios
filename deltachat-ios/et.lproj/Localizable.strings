@@ -628,7 +628,7 @@
 "hidden_from_contacts" = "Peidetud kontaktidest";
 "enforce_e2ee" = "Kasuta kõikide alusühenduste (edastusserverite) puhul krüptimist";
 // Hint for the list of relays
-"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\";
+"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
