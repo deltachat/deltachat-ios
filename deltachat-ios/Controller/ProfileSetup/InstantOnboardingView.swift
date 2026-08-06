@@ -131,6 +131,7 @@ class InstantOnboardingView: UIView {
 
     func validateTextfield(text: String?) {
         agreeButton.isEnabled = text?.isEmpty == false
+        otherOptionsButton.isEnabled = text?.isEmpty == false
     }
 
     func updateContent(with customProvider: String?) {
