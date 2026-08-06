@@ -130,22 +130,8 @@ class InstantOnboardingView: UIView {
     }
 
     func validateTextfield(text: String?) {
-        let buttonShouldBeEnabled: Bool
-
-        if let text {
-            buttonShouldBeEnabled = (text.isEmpty == false)
-        } else {
-            buttonShouldBeEnabled = false
-        }
-        agreeButton.isEnabled = buttonShouldBeEnabled
-
-        if buttonShouldBeEnabled {
-            agreeButton.backgroundColor = .systemBlue
-            otherOptionsButton.setTitleColor(.systemBlue, for: .normal)
-        } else {
-            agreeButton.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
-            otherOptionsButton.setTitleColor(UIColor.systemGray.withAlphaComponent(0.5), for: .normal)
-        }
+        agreeButton.isEnabled = text?.isEmpty == false
+        otherOptionsButton.isEnabled = text?.isEmpty == false
     }
 
     func updateContent(with customProvider: String?) {
