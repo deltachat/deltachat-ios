@@ -53,7 +53,10 @@ struct InputBarView: View {
                         .resizable()
                         .scaledToFit()
                         .padding(2)
-                }).frame(height: buttonSize)
+                })
+                .frame(height: buttonSize)
+                // This fixes the attach button being hidden sometimes on iOS 15
+                .fixedSize(horizontal: true, vertical: false)
                 VStack {
                     InputBarTextView(
                         text: $draft.text,
