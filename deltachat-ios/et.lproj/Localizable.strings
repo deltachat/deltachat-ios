@@ -583,7 +583,7 @@
 "instant_onboarding_confirm_group" = "Kas sa soovid luua uue profiili ja liituda „%1$@“ grupiga?";
 "team" = "Tiim";
 "team_profile" = "Tiimiprofiil";
-"team_profile_explain" = "Tiimiprofiili hallatakse üheskoos kasutajate grupi või organisatsiooni poolt.\n\n⚠️Selline võimalus on veel katsetamisjärgus ja võib tulevikus muutuda või sootuks ära kaduda.";
+"team_profile_explain" = "Tiimiprofiili hallatakse üheskoos kasutajate grupi või organisatsiooni poolt.\n\n⚠️Selline võimalus on veel katsetamisjärgus ja võib tulevikus muutuda.";
 "team_name" = "Tiimi nimi";
 "create_team_profile" = "Loo tiimiprofiil";
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
@@ -622,16 +622,18 @@
 "remove_transport" = "Eemalda alusühendus";
 "edit_transport" = "Muuda alusühendust";
 "used_for_sending" = "Kasutatud saatmiseks";
+// deprecated
 "hide_from_contacts" = "Peida kontaktidest";
+// deprecated
 "hidden_from_contacts" = "Peidetud kontaktidest";
 "enforce_e2ee" = "Kasuta kõikide alusühenduste (edastusserverite) puhul krüptimist";
 // Hint for the list of relays
-"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\n\n⚠️ Kui muudad siin midagi, siis palun kontrolli, et kõikides sinu seadmetes on kasutusel vähemalt versioon 2.47.0. Vastasel juhul võivad vanema tarkvaraga seadmetes jääda sõnumid saabumata.";
+"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).\";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Kas eemaldad „%1$@“ alusühenduse (edastusserveri)?";
+"confirm_remove_relay_x" = "Kas eemaldad „%1$@“ alusühenduse (edastusserveri)?Enne lõplikku kustutamist toimub vaikne üleminek, kus kõik sinu kontaktid saavad muudatusega arvestada.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?\n\nKui mõni kontakt teab vaid seda ühendusviisi, siis ta ei pruugi sind kätte saada enne, kui oled talle uuesti kirjutanud.\n\nKui kahtled, siis eemakdamise asemel pigem peida see alusühendus (edastusserver).";
 "login_certificate_checks" = "Sertifikaadikontrollid";

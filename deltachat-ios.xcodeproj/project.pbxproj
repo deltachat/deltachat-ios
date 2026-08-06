@@ -646,6 +646,9 @@
 		B2D729EB27C57B9000A4E0BE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		B2DF962E2EE328E30037F07F /* TransportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportListViewController.swift; sourceTree = "<group>"; };
 		B2DF96302EE3368F0037F07F /* TransportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportCell.swift; sourceTree = "<group>"; };
+		B2EE26D03024ED87006F44D9 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B2EE26D13024ED87006F44D9 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2EE26D23024ED87006F44D9 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = he; path = he.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B2F899E029F96A67003797D5 /* AllMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllMediaViewController.swift; sourceTree = "<group>"; };
 		BF8DFC4D179F4CF1E83D78C9 /* Pods_DcShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DcShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8083ACF2D14384F005DCB7D /* UserDefaults+Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Widgets.swift"; sourceTree = "<group>"; };
@@ -698,8 +701,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		643B44782E0C2BD900AEE026 /* DcTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = DcTests;
 			sourceTree = "<group>";
 		};
@@ -1508,6 +1509,7 @@
 				vi,
 				et,
 				kab,
+				he,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			preferredProjectObjectVersion = 77;
@@ -1620,9 +1622,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2012,6 +2018,7 @@
 				B209B2042B10139700FBBECF /* vi */,
 				B25A25F02E4B755300423316 /* et */,
 				B2C110C72F0BE12B0036DC64 /* kab */,
+				B2EE26D03024ED87006F44D9 /* he */,
 			);
 			name = InfoPlist.strings;
 			path = "deltachat-ios";
@@ -2066,6 +2073,7 @@
 				B209B2052B10139700FBBECF /* vi */,
 				B25A25F12E4B755300423316 /* et */,
 				B2C110C82F0BE12B0036DC64 /* kab */,
+				B2EE26D13024ED87006F44D9 /* he */,
 			);
 			name = Localizable.strings;
 			path = "deltachat-ios";
@@ -2120,6 +2128,7 @@
 				B209B2062B10139700FBBECF /* vi */,
 				B25A25F22E4B755300423316 /* et */,
 				B2C110C92F0BE12B0036DC64 /* kab */,
+				B2EE26D23024ED87006F44D9 /* he */,
 			);
 			name = Localizable.stringsdict;
 			path = "deltachat-ios";

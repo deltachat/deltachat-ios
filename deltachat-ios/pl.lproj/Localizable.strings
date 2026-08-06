@@ -583,7 +583,7 @@
 "instant_onboarding_confirm_group" = "Utworzyć nowy profil i dołączyć do grupy „%1$@”?";
 "team" = "Zespół";
 "team_profile" = "Profil zespołu";
-"team_profile_explain" = "„Profil zespołu” jest zarządzany zbiorowo przez grupę osób lub organizację.\n\n⚠️ Profile zespołu są eksperymentalne i w przyszłości mogą zostać zmienione lub usunięte.";
+"team_profile_explain" = "„Profil zespołu” jest zarządzany zbiorowo przez grupę osób lub organizację.\n\n⚠️ Profile zespołu są eksperymentalne i mogą ulec zmianie.";
 "team_name" = "Nazwa zespołu";
 "create_team_profile" = "Utwórz profil zespołu";
 "welcome_chat_over_email" = "Bezpieczny zdecentralizowany czat";
@@ -622,16 +622,18 @@
 "remove_transport" = "Usuń serwer przekaźnikowy";
 "edit_transport" = "Edytuj serwer przekaźnikowy";
 "used_for_sending" = "Służy do wysyłania";
+// deprecated
 "hide_from_contacts" = "Ukryj w kontaktach";
+// deprecated
 "hidden_from_contacts" = "Ukryty w kontaktach";
 "enforce_e2ee" = "Wymuś szyfrowanie dla wszystkich przekaźników";
 // Hint for the list of relays
-"transport_list_hint" = "Wiadomości są odbierane na wszystkich przekaźnikach.\n\n⚠️ Jeśli cokolwiek tutaj zmienisz, upewnij się, że wszystkie twoje urządzenia mają co najmniej wersję 2.47.0. W przeciwnym razie starsze urządzenia mogą nie odebrać wiadomości.";
+"transport_list_hint" = "Wiadomości są odbierane na wszystkich przekaźnikach.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Dodać ten serwer przekaźnikowy?";
 "invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer przekaźnikowy.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Usinąć przekaźnik „%1$@”?|";
+"confirm_remove_relay_x" = "Usunąć przekaźnik „%1$@”?\n\nPrzed usunięciem dane będą stopniowo wycofywane, aby umożliwić płynne przełączenie kontaktów.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Usuń przekaźnik „%1$@”?\n\nKontakty, które znają tylko ten przekaźnik, mogą nie dotrzeć do ciebie, dopóki nie wyślesz do nich ponownej wiadomości.\n\nW razie wątpliwości ukryj go, zamiast usuwać.";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";

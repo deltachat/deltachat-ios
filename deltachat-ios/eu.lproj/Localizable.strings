@@ -161,6 +161,9 @@
 "contact" = "Kontaktua";
 "bot" = "Bot";
 "camera" = "Kamera";
+"front_camera" = "Aurreko kamera";
+"back_camera" = "Atzeko kamera";
+"microphone" = "Mikrofonoa";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Harrapatu";
 // Switch eg. from front to back camera
@@ -376,14 +379,17 @@
 "canceled_call" = "Bertan behera utzitako deia";
 "missed_call" = "Galdutako deia";
 "already_in_call" = "Dei batean dagoeneko";
+"call_back" = "Deitu berriro";
 "call_answered_elsewhere" = "Deia beste gailu batean erantzun da";
 "call_requires_camera_permission" = "Kamerarako baimena behar da bideo-deiak egiteko";
 "call_requires_mic_permission" = "Mikrofonorako baimena behar da bideo-deiak egiteko";
+"call_grant_mic_permission" = "Ukitu mikrofonorako sarbidea emateko";
 "call_requires_connection" = "Ezin da deia hasi. Ziurtatu gailuak interneterako konexioa duela eta saiatu berriro.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Deia %1$@(r)ekin";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
 "calling_person" = "%1$@ deitzen...";
+"audio_output" = "Audio sarrera";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ziur irten nahi duzula?";
@@ -575,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Sortu kontu berri bat eta hasi %1$@(r)ekin txateatzen?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Sortu profil berri bat eta sartu \"%1$@\"(e)n?";
+"team" = "Taldea";
+"team_profile" = "Taldearen profila";
+"team_profile_explain" = "\"Taldearen profila\" talde batek edo erakunde batek kudeatzen du kolektiboki.\n\n️⚠️  Taldearen profilak esperimentalak dira eta alda daitezke.";
+"team_name" = "Taldearen izena";
+"create_team_profile" = "Sortu taldearen profila";
 "welcome_chat_over_email" = "Txat deszentralizatu segurua";
 "scan_invitation_code" = "Eskaneatu gonbidapen kodea";
 "login_title" = "Hasi saioa";
@@ -611,7 +622,9 @@
 "remove_transport" = "Ezabatu errelea";
 "edit_transport" = "Editatu errelea";
 "used_for_sending" = "Bidaltzeko erabilita";
+// deprecated
 "hide_from_contacts" = "Ezkutatu kontaktuetatik";
+// deprecated
 "hidden_from_contacts" = "Kontaktuetatik ezkutatuta";
 "enforce_e2ee" = "Behartu zifraketa errele guztietarako";
 // Hint for the list of relays

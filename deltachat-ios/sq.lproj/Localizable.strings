@@ -603,7 +603,9 @@
 "remove_transport" = "Hiqni Rele";
 "edit_transport" = "Përpunoni Rele";
 "used_for_sending" = "E përdorur për dërgim";
+// deprecated
 "hide_from_contacts" = "Fshihe prej Kontaktesh";
+// deprecated
 "hidden_from_contacts" = "Fshehur prej kontakteve";
 "enforce_e2ee" = "Detyro Fshehtëzim për Krejt Reletë";
 // Hint for the list of relays

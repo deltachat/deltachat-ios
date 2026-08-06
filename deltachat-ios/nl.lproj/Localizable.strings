@@ -622,16 +622,18 @@
 "remove_transport" = "Server verwijderen";
 "edit_transport" = "Server bewerken";
 "used_for_sending" = "Wordt gebruikt voor versturen";
+// deprecated
 "hide_from_contacts" = "Verbergen op contactpersonenlijst";
+// deprecated
 "hidden_from_contacts" = "Verborgen op contactpersonenlijst";
 "enforce_e2ee" = "Versleuteling afdwingen op alle relays";
 // Hint for the list of relays
-"transport_list_hint" = "Berichten worden op alle relays ontvangen.\n\n⚠️ Als je hier iets wijzigt, doe dat dan alléén als ál je apparaten gebruikmaken van versie 2.47.0, anders kunnen er berichten ontbreken.";
+"transport_list_hint" = "Berichten worden op alle relays ontvangen.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Wil je deze server toevoegen?";
 "invalid_transport_qr" = "De gescande QR-code bevat geen geldige overdrachtsserver.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Wil je ‘%1$@’ verwijderen?";
+"confirm_remove_relay_x" = "Wil je ‘%1$@’ verwijderen?\n\nHet verwijderproces vindt in stappen plaats, zodat je contactpersonen keurig overgezet worden.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Wil je ‘%1$@’ verwijderen?\n\nContactpersonen die deze relay niet kennen, kunnen je zo niet bereiken.\n\nBij twijfel verbergen in plaats van verwijderen.";
 "login_certificate_checks" = "Certificaatcontrole";

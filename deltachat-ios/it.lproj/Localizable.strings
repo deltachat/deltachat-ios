@@ -583,7 +583,7 @@
 "instant_onboarding_confirm_group" = "Vuoi creare un nuovo profilo e unirti al \"%1$@\" gruppo chat?";
 "team" = "Squadra";
 "team_profile" = "Profilo Squadra";
-"team_profile_explain" = "Un \"Profilo Squadra\" è gestito collettivamente da un gruppo di persone o da un\'organizzazione.\n\n⚠️ I Profili Squadra sono sperimentali e potrebbero essere modificati o rimossi in futuro.";
+"team_profile_explain" = "Un \"Profilo Squadra\" è gestito collettivamente da un gruppo di persone o da un\'organizzazione.\n\n⚠️ I Profili Squadra sono sperimentali e soggetti a modifiche.";
 "team_name" = "Nome Squadra";
 "create_team_profile" = "Crea Profilo Squadra";
 "welcome_chat_over_email" = "Chat Decentralizzata Sicura";
@@ -622,7 +622,9 @@
 "remove_transport" = "Rimuovi Trasporto";
 "edit_transport" = "Modifica Trasporto";
 "used_for_sending" = "Utilizzato per l\'invio";
+// deprecated
 "hide_from_contacts" = "Nascondi dai Contatti";
+// deprecated
 "hidden_from_contacts" = "Nascosto dai contatti";
 "enforce_e2ee" = "Applica Crittografia a Tutti i Ripetitori";
 // Hint for the list of relays
