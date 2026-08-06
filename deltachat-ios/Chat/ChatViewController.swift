@@ -1865,10 +1865,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func shareSingle(_ msgId: Int) {
-        Utils.share(message: dcContext.getMessage(id: msgId), parentViewController: self, sourceView: view)
-    }
-
     private func resendSingle(_ msgId: Int) {
         dcContext.resendMessages(msgIds: [msgId])
     }
@@ -2136,7 +2132,7 @@ extension ChatViewController {
                 }
 
                 if message.file != nil {
-                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: messageId, action: shareSingle))
+                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments))
                 }
 
                 children.append(
@@ -2309,6 +2305,10 @@ extension ChatViewController {
         if refreshMessagesAfterEditing && isEditing == false {
             refreshMessages()
         }
+    }
+
+    private func shareAttachments(of msgIds: [Int]) {
+        Utils.share(attachmentsOf: msgIds.map(dcContext.getMessage(id:)), parentViewController: self, sourceView: view)
     }
 
     private func copyTextToClipboard(ids: [Int]) {
@@ -2668,6 +2668,14 @@ extension ChatViewController: ChatEditingDelegate {
         if canSaveOrUnsave {
             actions.append(UIAction(title: String.localized(doSave ? "save_desktop" : "unsave"), image: UIImage(systemName: doSave ? "bookmark" : "bookmark.slash.fill")) { [weak self] _ in
                 self?.onMultipleSaveOrUnsave(doSave: doSave)
+            })
+        }
+        let rows = tableView.indexPathsForSelectedRows ?? []
+        let ids = rows.compactMap { messages[$0.row].id }
+        if ids.contains(where: { dcContext.getMessage(id: $0).file != nil }) {
+            actions.append(UIAction(title: String.localized("menu_share"), image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                    self?.shareAttachments(of: ids)
+                    self?.setEditing(isEditing: false)
             })
         }
         return UIMenu(children: actions)

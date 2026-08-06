@@ -60,28 +60,34 @@ struct Utils {
         return context.getSecurejoinQr(chatId: chatId)
     }
 
-    public static func share(message: DcMsg, parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
-        guard let scrambledURL = message.fileURL else { return }
+    public static func share(attachmentsOf messages: [DcMsg], parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
+        var objectsToShare = [Any]()
+        for message in messages {
+            guard let scrambledURL = message.fileURL else { continue }
 
-        let shareURL: URL
-        if let filename = message.filename {
-            let cleanURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
-            shareURL = FileHelper.copyIfPossible(src: scrambledURL, dest: cleanURL)
-        } else {
-            shareURL = scrambledURL
+            let shareURL: URL
+            if let filename = message.filename {
+                let cleanURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
+                shareURL = FileHelper.copyIfPossible(src: scrambledURL, dest: cleanURL)
+            } else {
+                shareURL = scrambledURL
+            }
+
+            if message.type == DC_MSG_WEBXDC {
+                let dict = message.getWebxdcInfoDict()
+                let previewImage = message.getWebxdcPreviewImage()
+                let previewText = dict["name"] as? String ?? shareURL.lastPathComponent
+                objectsToShare.append(WebxdcItemSource(
+                    title: previewText,
+                    previewImage: previewImage,
+                    url: shareURL
+                ))
+            } else {
+                objectsToShare.append(shareURL)
+            }
         }
 
-        let objectsToShare: [Any]
-        if message.type == DC_MSG_WEBXDC {
-            let dict = message.getWebxdcInfoDict()
-            let previewImage = message.getWebxdcPreviewImage()
-            let previewText = dict["name"] as? String ?? shareURL.lastPathComponent
-            objectsToShare = [WebxdcItemSource(title: previewText,
-                                               previewImage: previewImage,
-                                               url: shareURL)]
-        } else {
-            objectsToShare = [shareURL]
-        }
+        guard !objectsToShare.isEmpty else { return }
 
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
@@ -96,18 +102,12 @@ struct Utils {
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    public static func share(url: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        guard let url = URL(string: url) else { return }
-
-        Utils.share(url: url, parentViewController: parentViewController, sourceItem: sourceItem)
-    }
-
-    public static func share(text: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
-        guard let textData = text.data(using: .utf8) else { return }
+    public static func share(log: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
+        guard let logData = log.data(using: .utf8) else { return }
 
         // UTF-8 byte order mark, commonly seen in text files. See [List Of file signatures](https://en.wikipedia.org/wiki/List_of_file_signatures)
         var data = Data([0xEF, 0xBB, 0xBF])
-        data.append(textData)
+        data.append(logData)
 
         let tempLogfileURL = FileManager.default.temporaryDirectory.appendingPathComponent("deltachat-log.txt")
         try? FileManager.default.removeItem(at: tempLogfileURL)
@@ -116,20 +116,25 @@ struct Utils {
         Utils.share(url: tempLogfileURL, parentViewController: parentViewController, sourceItem: sourceItem)
     }
 
+    public static func share(url: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
+        guard let url = URL(string: url) else { return }
+        Utils.share(url: url, parentViewController: parentViewController, sourceItem: sourceItem)
+    }
+
     public static func share(url: URL, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         activityVC.popoverPresentationController?.barButtonItem = sourceItem
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    public static func share(text: String, parentViewController: UIViewController, sourceView: UIView) {
-        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+    public static func share(url: URL, parentViewController: UIViewController, sourceView: UIView) {
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sourceView // iPad crashes without a source
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    public static func share(url: URL, parentViewController: UIViewController, sourceView: UIView) {
-        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    public static func share(text: String, parentViewController: UIViewController, sourceView: UIView) {
+        let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = sourceView // iPad crashes without a source
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
