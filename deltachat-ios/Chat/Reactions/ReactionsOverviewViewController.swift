@@ -22,7 +22,7 @@ class ReactionsOverviewViewController: UIViewController {
         if showFrequencies {
             self.contactIds = []
             self.texts = reactions.reactions.map { reaction in
-                return "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
+                "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
             }
         } else {
             self.contactIds = Array(reactions.reactionsByContact.keys)
