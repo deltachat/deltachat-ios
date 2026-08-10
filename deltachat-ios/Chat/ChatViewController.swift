@@ -2039,9 +2039,7 @@ extension ChatViewController {
                     pickerViewController.delegate = self
 
                     let navigationController = UINavigationController(rootViewController: pickerViewController)
-                    if let sheet = navigationController.sheetPresentationController {
-                        sheet.detents = [.medium(), .large()]
-                    }
+                    navigationController.sheetPresentationController?.detents = [.medium(), .large()]
                     present(navigationController, animated: true)
                 } else {
                     dcContext.sendReaction(messageId: messageId, reaction: nil)
