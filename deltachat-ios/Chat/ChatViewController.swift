@@ -471,7 +471,28 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self?.searchController.isActive = true
             }
         }
-        
+
+        if isInitialViewWillAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
+                    self.scrollToMessage(msgId: msgId, animated: false)
+                    self.highlightedMsg = nil
+                } else {
+                    self.scrollToLastUnseenMessage(animated: false)
+                }
+            }
+        }
+        isInitialViewWillAppear = false
+
+        // Sometimes the first responder is not returned to the input field
+        // so we need to update the content inset when view appears again
+        setTableViewContentInset()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateScrollDownButtonVisibility()
+
         switch RelayHelper.shared.data {
         case .forwardMessages:
             askToForwardMessage()
@@ -507,27 +528,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             askToShareMessage(description: description)
         case .none: break
         }
-
-        if isInitialViewWillAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if let msgId = self.highlightedMsg, self.messages.firstIndex(where: { $0.id == msgId }) != nil {
-                    self.scrollToMessage(msgId: msgId, animated: false)
-                    self.highlightedMsg = nil
-                } else {
-                    self.scrollToLastUnseenMessage(animated: false)
-                }
-            }
-        }
-        isInitialViewWillAppear = false
-
-        // Sometimes the first responder is not returned to the input field
-        // so we need to update the content inset when view appears again
-        setTableViewContentInset()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateScrollDownButtonVisibility()
+        
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
