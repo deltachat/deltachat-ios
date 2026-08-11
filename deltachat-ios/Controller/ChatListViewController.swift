@@ -16,7 +16,6 @@ class ChatListViewController: UITableViewController {
 
     private lazy var titleView: UILabel = {
         let view = UILabel()
-        view.isUserInteractionEnabled = false
         view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         view.accessibilityTraits = .header
         return view
