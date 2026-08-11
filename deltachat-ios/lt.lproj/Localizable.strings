@@ -19,9 +19,11 @@
 "strict" = "Griežtas";
 "open" = "Atverti";
 "download" = "Atsisiųsti";
-"downloading" = "Atsisiunčiama…";
+"downloading" = "Atsiunčiama…";
 "open_attachment" = "Atverti priedą";
 "join" = "Prisijungti";
+"join_group" = "Prisijungti prie grupės";
+"join_channel" = "Prisijungti prie kanalo";
 "rejoin" = "Prisijungti iš naujo";
 "delete" = "Ištrinti";
 "delete_for_me" = "Ištrinti man";
@@ -45,6 +47,10 @@
 "archive" = "Archyvuoti";
 // Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
 "unarchive" = "Išarchyvuoti";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
+"mute" = "Išjungti pranešimus";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
+"muted" = "Pranešimai išjungti";
 "ephemeral_messages" = "Išnykstančios žinutės";
 "ephemeral_messages_hint" = "Šie nustatymai taikomi visiems Delta Chat besinaudojantiems dalyviams. Vis dėlto, jie gali kopijuoti, įrašyti ir persiųsti žinutes arba naudoti kitas el. pašto kliento programas.";
 "save" = "Įrašyti";
@@ -105,6 +111,8 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Adresatas paskutinį kartą matytas %1$@";
 "last_seen_unknown" = "Adresatas paskutinį kartą matytas: Nežinoma";
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Mažiau nei 1 minutė";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 "self" = "Aš";
@@ -135,8 +143,13 @@
 "documents" = "Dokumentai";
 "contact" = "Adresatas";
 "camera" = "Kamera";
+"front_camera" = "Priekinė kamera";
+"back_camera" = "Galinė kamera";
+"microphone" = "Mikrofonas";
 // Switch eg. from front to back camera
 "switch_camera" = "Perjungti kamerą";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Perjungti kamerą";
 "toggle_fullscreen" = "Perjungti viso ekrano veikseną";
 "location" = "Vieta";
 "locations" = "Vietos";
@@ -328,7 +341,14 @@
 // deprecated, use "Video call" instead
 "incoming_video_call" = "Gaunamasis vaizdo skambutis";
 "missed_call" = "Praleistas skambutis";
+"call_back" = "Atskambinti";
 "call_answered_elsewhere" = "Atsiliepta kitame įrenginyje";
+"call_requires_camera_permission" = "Vaizdo skambučiams reikalingas leidimas naudoti kamerą";
+"call_requires_mic_permission" = "Skambučiams reikalingas leidimas naudoti mikrofoną";
+"call_grant_mic_permission" = "Bakstelėkite norėdami suteikti prieigą prie mikrofono";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Skambutis su %1$@";
+"audio_output" = "Garso išvestis";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ar tikrai norite išeiti?";
@@ -437,7 +457,7 @@
 "multidevice_open_settings_on_other_device" = "Pirmajame įrenginyje pereikite į „Nustatymai / Pridėti antrąjį įrenginį“ ir nuskenuokite ten rodomą kodą";
 "multidevice_receiver_scanning_ask" = "Kopijuoti profilį iš kito įrenginio į šį įrenginį?";
 "multidevice_receiver_needs_update" = "Profilis, kurį norite importuoti, yra iš naujesnės Delta Chat versijos.\n\nNorėdami tęsti ir nustatyti antrąjį įrenginį, atnaujinkite šiame įrenginyje Delta Chat į naujausią versiją.";
-"multidevice_abort" = "Nutraukti antrojo įrenginio nustatymą?";
+"multidevice_abort" = "Nutraukti antrojo įrenginio paruošimą?";
 "multidevice_abort_will_invalidate_copied_qr" = "Tai padarys į iškarpinę nukopijuotą QR kodą negaliojantį.";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilis perduotas į jūsų antrąjį įrenginį.";
 // Shown beside progress bar, stay short
@@ -491,6 +511,11 @@
 "instant_onboarding_confirm_contact" = "Sukurti naują profilį ir pradėti pokalbį su %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Sukurti naują profilį ir prisijungti prie „%1$@“?";
+"team" = "Komanda";
+"team_profile" = "Komandos profilis";
+"team_profile_explain" = "„Komandos profilį“ drauge tvarko grupė žmonių ar organizacija.\n\n⚠️ Komandos profiliai yra eksperimentinė ypatybė ir gali būti pakeista.";
+"team_name" = "Komandos pavadinimas";
+"create_team_profile" = "Sukurti komandos profilį";
 "welcome_chat_over_email" = "Saugūs decentralizuoti pokalbiai";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
 "login_title" = "Prisijungti";
@@ -524,6 +549,10 @@
 "add_transport" = "Pridėti retransliavimą";
 "remove_transport" = "Šalinti retransliavimą";
 "edit_transport" = "Taisyti retransliavimą";
+// deprecated
+"hide_from_contacts" = "Slėpti nuo adresatų";
+// deprecated
+"hidden_from_contacts" = "Paslėpta nuo adresatų";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Pridėti šį retransliavimą?";
 "invalid_transport_qr" = "Nuskenuotame QR kode nėra tinkamo retransliavimo.";
@@ -552,12 +581,13 @@
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
 "unconfigured_account" = "Nesukonfigūruota paskyra";
 "unconfigured_account_hint" = "Atverkite paskyrą norėdami ją konfigūruoti.";
+"try_connect_now" = "Bandyti prisijungti dabar";
 "sync_all" = "Sinchronizuoti visas";
 // Translations: %1$s will be replaced by a more detailed error message
 "configuration_failed_with_error" = "Konfigūracija patyrė nesėkmę. Klaida: %1$@";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
-"forward_to" = "Kam persiųsti …";
+"forward_to" = "Kam persiųsti…";
 "share_abort" = "Bendrinimas nutrauktas dėl trūkstamų leidimų.";
 // preferences
 "pref_profile_info_headline" = "Jūsų profilis";
@@ -573,6 +603,7 @@
 "pref_enter_sends" = "Įvedimo (Enter) klavišas išsiunčia";
 "pref_enter_sends_explain" = "Paspaudus įvedimo (Enter) klavišą, bus išsiunčiamos tekstinės žinutės";
 "pref_outgoing_media_quality" = "Išsiunčiamosios medijos kokybė";
+"pref_outgoing_media_quality_hint" = "Norėdami siųsti mediją pradinės kokybės, pridėkite ją į žinutę kaip „Failą“. Tai naudoja žymiai daugiau jūsų ir gavėjų duomenų.";
 "pref_outgoing_balanced" = "Subalansuota";
 "pref_outgoing_worse" = "Blogesnė kokybė, mažas dydis";
 "pref_vibrate" = "Vibruoti";
@@ -583,6 +614,8 @@
 "pref_notifications" = "Pranešimai";
 "pref_mention_notifications" = "Paminėjimai";
 "pref_mention_notifications_explain" = "Grupėse, kuriose išjungti pranešimai, pranešti apie jums adresuotas žinutes, tokias kaip atsakymai ar reakcijos";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Skambučiai";
 "pref_notifications_show" = "Rodyti";
 "pref_notifications_priority" = "Pirmenybė";
 "pref_notifications_explain" = "Įjungti sistemos pranešimus apie naujas žinutes";
@@ -605,6 +638,8 @@
 "pref_incognito_keyboard_explain" = "Prašyti klaviatūros išjungti suasmenintą mokymąsi";
 "pref_read_receipts" = "Pranešimai apie skaitymą";
 "pref_read_receipts_explain" = "Jei pranešimai apie skaitymą yra išjungti, jūs negalėsite matyti pranešimų apie skaitymą iš kitų žmonių.";
+// Title above a list of contacts who read a message
+"read_by" = "Perskaitė";
 "pref_server" = "Serveris";
 "pref_encryption" = "Šifravimas";
 "pref_manage_keys" = "Tvarkyti raktus";
@@ -663,12 +698,14 @@
 "send_stats_to_devs" = "Siųsti statistiką Delta Chat plėtotojams";
 "stats_device_message" = "Ar norite padėti tobulinti Delta Chat ir pagelbėti tyrimams, kas savaitę siunčiant anoniminę statistiką apie naudojimąsi Delta Chat?\n\n👉 Bakstelėkite čia… 👈";
 "stats_confirmation_dialog" = "Ar norite padėti tobulinti Delta Chat ir pagelbėti tyrimams, kas savaitę siunčiant anoniminę statistiką apie naudojimąsi Delta Chat?";
+"stats_disable_dialog" = "Statistikos siuntimas jau yra įjungtas.\n\nAr norite jį išjungti?";
 "disable" = "Išjungti";
 "stats_keep_sending" = "Siųsti ir toliau";
+"stats_msg_body" = "Priede yra anoniminė naudojimosi statistika, kuri mums padeda tobulinti Delta Chat. Išsamesnei informacijai žiūrėkite https://delta.chat/help#statssending . Dėkojame!";
 // Emoji picker and categories
 "emoji_search_results" = "Paieškos rezultatai";
 "emoji_not_found" = "Nerasta jokių šypsniukų";
-"emoji_recent" = "Paskiausi";
+"emoji_recent" = "Paskiausiai naudoti";
 "emoji_people" = "Žmonės ir kūnas";
 "emoji_nature" = "Gyvūnai ir gamta";
 "emoji_foods" = "Maistas ir gėrimai";
@@ -759,6 +796,7 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@ nustatė išnykstančių žinučių laikmatį į %1$@ sav. ";
 "chat_unencrypted_explanation" = "Žinutės šiame pokalbyje naudoja klasikinius el. laiškus ir nėra šifruotos ištisinio perdavimo būdu.";
+"messages_are_e2ee" = "Žinutės yra šifruotos ištisinio perdavimo būdu.";
 "chat_protection_enabled_tap_to_learn_more" = "Žinutės yra šifruotos ištisinio perdavimo būdu. Bakstelėkite norėdami sužinoti daugiau.";
 "chat_protection_enabled_explanation" = "Visos žinutės šiame pokalbyje yra šifruotos ištisinio perdavimo būdu.\n\nIštisinis šifravimas išlaiko žinutes tarp jūsų ir jūsų pokalbio partnerių privačias. Netgi serveriai, teikėjai ar retransliavimai negali jų perskaityti.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ reikalauja ištisinio šifravimo, kuris kol kas nėra nustatytas šiam pokalbiui. Bakstelėkite norėdami sužinoti daugiau.";
@@ -773,13 +811,14 @@
 "qr_code" = "QR kodas";
 "load_qr_code_as_image" = "Įkelti QR kodą kaip paveikslą";
 "qrscan_title" = "Nuskenuoti QR kodą";
-"qrscan_hint" = "Laikykite savo kamerą virš QR kodo";
+"qrscan_hint" = "Laikykite kamerą virš QR kodo";
 "qrscan_failed" = "Nepavyko dekoduoti QR kodo";
 "qrscan_ask_join_group" = "Ar norite prisijungti prie grupės \"%1$@\"?";
 "qrscan_ask_join_channel" = "Ar norite prisijungti prie kanalo „%1$@“?";
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
 "qrscan_fingerprint_label" = "Kontrolinis kodas";
+"withdraw_verifycontact_explain" = "Kiti žmonės gali nuskenuoti šį QR kodą, kad su jumis susisiektų.\n\nJūs galite jį atstatyti, kad esamas QR kodas ar pakvietimo nuoroda daugiau nebeveiktų.";
 "withdraw_qr_code" = "Pasyvinti QR kodą";
 "revive_verifycontact_explain" = "Šis QR kodas buvo atstatytas ir daugiau nebėra aktyvus.";
 "revive_qr_code" = "Aktyvuoti QR kodą";
@@ -813,6 +852,7 @@
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Pokalbyje „%1$@“ jau yra žinutės juodraštis. Ar norite jį pakeisti?";
 "mailto_link_could_not_be_decoded" = "nepavyko dekoduoti mailto nuorodos: %1$@";
+"remove_attachment" = "Šalinti priedą";
 // notifications
 "notify_reply_button" = "Atsakyti";
 "notify_new_message" = "Nauja žinutė";
@@ -823,6 +863,7 @@
 "notify_name_only" = "Tik vardą";
 "notify_no_name_or_message" = "Jokio vardo ar žinutės";
 "notifications_disabled" = "Pranešimai išjungti";
+"unreliable_bg_notifications" = "Įjunkite „Priverstinai naudoti foninį ryšį“ norėdami patikimai gauti pranešimus";
 "new_messages" = "Naujos žinutės";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Yra naujų žinučių";
@@ -876,7 +917,20 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
 "show_window" = "Rodyti langą";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Naršymas";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Žinutės įvestis";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Pažymėta žinutė";
 "switch_between_chats" = "Perjungti tarp pokalbių";
+"scroll_messages" = "Slinkti žinutes";
+// command to put the cursor to the search input field
+"focus_search_input" = "Fokusuoti paieškos lauką";
+// command to put the cursor to the message input field
+"focus_message_input" = "Fokusuoti žinutės įvesties lauką";
+"force_refresh_network" = "Priverstinai atnaujinti tinklo ryšį";
+"insert_newline" = "Įterpti naują eilutę";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
 "a11y_delivery_status_error" = "Pristatymo būsena: Klaida";
 "a11y_delivery_status_sending" = "Pristatymo būsena: Siunčiama";
