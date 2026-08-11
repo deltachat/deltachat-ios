@@ -1,5 +1,16 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Show phased out relays in connectivity view as such
+- Sending relay is a per-device setting now
+- Collect call information from all relays
+- Reduce traffic (no unncessary keys attached to group chats, improve read receipts)
+- Send messages to up to 5 relays
+- Fix: If one relay is connected, assume overall connectivity
+- Update to core 2.58.0
+
+
 ## v2.57.1
 2026-08
 
