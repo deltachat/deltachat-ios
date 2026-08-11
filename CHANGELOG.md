@@ -9,6 +9,7 @@
 - Collect call information from all relays
 - Reduce traffic (no unncessary keys attached to group chats, improve read receipts)
 - Send messages to up to 5 relays
+- Do not open "Connectivity View" from main title; use "Settigns" instead
 - Fix: If one relay is connected, assume overall connectivity
 - Update to core 2.58.0
 
