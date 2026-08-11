@@ -8,17 +8,32 @@ protocol ReactionsOverviewViewControllerDelegate: AnyObject {
 class ReactionsOverviewViewController: UIViewController {
 
     private let tableView: UITableView
-    private let reactions: DcReactions
+    private let showFrequencies: Bool
+    private let texts: [String]
     private let contactIds: [Int]
-    private let context: DcContext
 
     weak var delegate: ReactionsOverviewViewControllerDelegate?
 
-    init(reactions: DcReactions, context: DcContext) {
+    init(reactions: DcReactions, showFrequencies: Bool, context: DcContext) {
 
-        self.reactions = reactions
-        self.contactIds = Array(self.reactions.reactionsByContact.keys)
-        self.context = context
+        self.showFrequencies = showFrequencies
+
+        // layout by strings is not great, but good enough for now for a secondary UI
+        if showFrequencies {
+            self.contactIds = []
+            self.texts = reactions.reactions.map { reaction in
+                "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
+            }
+        } else {
+            self.contactIds = Array(reactions.reactionsByContact.keys)
+            self.texts = self.contactIds.map { contactId in
+                let contact = context.getContact(id: contactId)
+                if let emojis = reactions.reactionsByContact[contactId] {
+                    return "\(contact.displayName): \(emojis.joined(separator: ","))"
+                }
+                return ""
+            }
+        }
 
         tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,20 +76,14 @@ class ReactionsOverviewViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension ReactionsOverviewViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactIds.count
+        return texts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ReactionsOverviewTableViewCell.reuseIdentifier, for: indexPath) as? ReactionsOverviewTableViewCell
         else { fatalError("WTF?! Wrong cell!") }
-        
-        let contactId = contactIds[indexPath.row]
-        let contact = context.getContact(id: contactId)
 
-        if let emojis = reactions.reactionsByContact[contactId] {
-            cell.configure(emojis: emojis, contact: contact)
-        }
-
+        cell.textLabel?.text = texts[indexPath.row]
         return cell
     }
 }
@@ -84,9 +93,11 @@ extension ReactionsOverviewViewController: UITableViewDataSource {
 extension ReactionsOverviewViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let contactId = contactIds[indexPath.row]
-        if contactId != DC_CONTACT_ID_SELF {
-            delegate?.showContact(self, with: contactId)
+        if !showFrequencies {
+            let contactId = contactIds[indexPath.row]
+            if contactId != DC_CONTACT_ID_SELF {
+                delegate?.showContact(self, with: contactId)
+            }
         }
     }
 }

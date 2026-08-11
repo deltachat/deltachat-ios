@@ -1226,6 +1226,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return !message.isMarkerOrInfo && dcChat.canSend
     }
 
+    private func canReact(to message: DcMsg) -> Bool {
+        if dcChat.isInBroadcast {
+            return dcContext.isContactInChat(chatId: dcChat.id, contactId: DC_CONTACT_ID_SELF)
+        }
+        return canReply(to: message)
+    }
+
     private func canReplyPrivately(to message: DcMsg) -> Bool {
         return !message.isMarkerOrInfo && dcChat.isMultiUser && !message.isFromCurrentSender
     }
@@ -1992,7 +1999,7 @@ extension ChatViewController {
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
-        for reaction in [DefaultReactions.thumbsUp, .heart, .faceWithTearsOfJoy] {
+        for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
             let title: String
             if sentThisReaction {
@@ -2012,35 +2019,35 @@ extension ChatViewController {
             })
         }
 
-        let showPicker = myReactions.isEmpty || myReactionChecked
-        let title: String
-        let accessibilityLabel: String?
-        if showPicker {
-            title = "•••"
-            accessibilityLabel = String.localized("pref_other")
-        } else {
-            title = (myReactions.first ?? "?") + "✓"
-            accessibilityLabel = nil
-        }
-        let action = UIAction(title: title) { [weak self] _ in
-            guard let self else { return }
+        if !(dcChat.isInBroadcast || dcChat.isOutBroadcast) {
+            let showPicker = myReactions.isEmpty || myReactionChecked
+            let title: String
+            let accessibilityLabel: String?
             if showPicker {
-                reactionMessageId = messageId
-                let pickerViewController = MCEmojiPickerViewController()
-                pickerViewController.navigationItem.title = String.localized("react")
-                pickerViewController.delegate = self
-
-                let navigationController = UINavigationController(rootViewController: pickerViewController)
-                if let sheet = navigationController.sheetPresentationController {
-                    sheet.detents = [.medium(), .large()]
-                }
-                present(navigationController, animated: true)
+                title = "•••"
+                accessibilityLabel = String.localized("pref_other")
             } else {
-                dcContext.sendReaction(messageId: messageId, reaction: nil)
+                title = (myReactions.first ?? "?") + "✓"
+                accessibilityLabel = nil
             }
+            let action = UIAction(title: title) { [weak self] _ in
+                guard let self else { return }
+                if showPicker {
+                    reactionMessageId = messageId
+                    let pickerViewController = MCEmojiPickerViewController()
+                    pickerViewController.navigationItem.title = String.localized("react")
+                    pickerViewController.delegate = self
+
+                    let navigationController = UINavigationController(rootViewController: pickerViewController)
+                    navigationController.sheetPresentationController?.detents = [.medium(), .large()]
+                    present(navigationController, animated: true)
+                } else {
+                    dcContext.sendReaction(messageId: messageId, reaction: nil)
+                }
+            }
+            action.accessibilityLabel = accessibilityLabel
+            menuElements.append(action)
         }
-        action.accessibilityLabel = accessibilityLabel
-        menuElements.append(action)
     }
 
     private func isLinkTapped(indexPath: IndexPath, point: CGPoint) -> String? {
@@ -2067,14 +2074,12 @@ extension ChatViewController {
                 var children: [UIMenuElement] = []
                 var moreOptions: [UIMenuElement] = []
 
-                if canReply(to: message) {
+                if canReact(to: message) {
                     let reactionsMenu: UIMenu
                     var reactions: [UIMenuElement] = []
                     appendReactionItems(to: &reactions, messageId: messageId)
-                    if #available(iOS 16.0, *) {
-                        reactionsMenu = UIMenu(options: [.displayInline], children: reactions)
-                        reactionsMenu.preferredElementSize = .small
-
+                    if #available(iOS 17.0, *) {
+                        reactionsMenu = UIMenu(options: [.displayInline, .displayAsPalette], children: reactions)
                     } else {
                         reactionsMenu = UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactions)
                     }
@@ -2481,7 +2486,7 @@ extension ChatViewController: BaseMessageCellDelegate {
     @objc func reactionsTapped(indexPath: IndexPath) {
         guard let reactions = dcContext.getMessageReactions(messageId: messages[indexPath.row].id) else { return }
 
-        let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, context: dcContext)
+        let reactionsOverview = ReactionsOverviewViewController(reactions: reactions, showFrequencies: dcChat.isInBroadcast || dcChat.isOutBroadcast, context: dcContext)
         reactionsOverview.delegate = self
         let navigationController = UINavigationController(rootViewController: reactionsOverview)
         if let sheet = navigationController.sheetPresentationController {

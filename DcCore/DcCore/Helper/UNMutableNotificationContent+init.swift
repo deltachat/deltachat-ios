@@ -27,7 +27,8 @@ public extension UNMutableNotificationContent {
     /// Initialiser that returns a notification for an incoming reaction. Returns nil if no notification should be sent (eg if chat is muted)
     convenience init?(forReaction reaction: String, from contact: Int, msg: DcMsg, chat: DcChat, context: DcContext) {
         guard !context.isMuted() else { return nil }
-        guard !chat.isMuted || (chat.isMultiUser && context.isMentionsEnabled) else { return nil }
+        guard !chat.isMuted || (chat.isMultiUser && !chat.isOutBroadcast && context.isMentionsEnabled) else { return nil }
+
         let contact = context.getContact(id: contact)
         let summary = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
         self.init()

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow to react in channels
+- Offer five default reactions when long-tapping a message
 - Show phased out relays in connectivity view as such
 - Sending relay is a per-device setting now
 - Collect call information from all relays

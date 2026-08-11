@@ -329,6 +329,10 @@ public class DcContext {
         return dc_remove_contact_from_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
     }
 
+    public func isContactInChat(chatId: Int, contactId: Int32) -> Bool {
+        return dc_is_contact_in_chat(contextPointer, UInt32(chatId), UInt32(contactId)) == 1
+    }
+
     public func setChatName(chatId: Int, name: String) -> Bool {
         return dc_set_chat_name(contextPointer, UInt32(chatId), name) == 1
     }
