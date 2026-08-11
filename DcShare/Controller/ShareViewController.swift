@@ -46,7 +46,10 @@ class ShareViewController: UIViewController {
                     var responder: UIResponder? = self
                     while responder != nil {
                         if let application = responder as? UIApplication {
-                            await application.open(url)
+                            extensionContext?.completeRequest(returningItems: []) { _ in
+                                sleep(2) // wait for the share sheet to be dismissed
+                                application.open(url)
+                            }
                             break
                         }
                         responder = responder?.next
@@ -60,9 +63,6 @@ class ShareViewController: UIViewController {
             } catch {
                 return logAndAlert(error: error)
             }
-            
-            // Complete
-            extensionContext?.completeRequest(returningItems: [])
         }
     }
     

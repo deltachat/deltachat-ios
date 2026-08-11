@@ -213,7 +213,9 @@ class AppCoordinator: NSObject {
             logger.error("Missing data parameter or incorrect format in URL \(url)")
             return false
         }
-        
+
+        RelayHelper.shared.setShareItems(items: providers)
+
         // Switch account if needed
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
            let accountId = parameters["accountId"].flatMap(Int.init) {
@@ -222,7 +224,7 @@ class AppCoordinator: NSObject {
                 appDelegate.reloadDcContext()
             }
         }
-        
+
         // Ask for sending messages
         if let chatId = parameters["chatId"].flatMap(Int.init) {
             showChat(chatId: chatId)
@@ -231,7 +233,6 @@ class AppCoordinator: NSObject {
             let nvc = tabBarController.selectedViewController as? UINavigationController
             nvc?.popToRootViewController(animated: false)
         }
-        RelayHelper.shared.setShareItems(items: providers)
 
         return true
     }
