@@ -2101,7 +2101,7 @@ extension ChatViewController {
                    !message.isMarkerOrInfo,
                    let text = message.text,
                    !text.isEmpty {
-                    children.append(
+                    moreOptions.append(
                         UIAction.menuAction(localizationKey: "translate", systemImageName: "translate", with: text, action: presentTranslation)
                     )
                 }
