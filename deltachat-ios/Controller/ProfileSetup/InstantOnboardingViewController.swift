@@ -17,8 +17,13 @@ class InstantOnboardingViewController: UIViewController {
 
     var contentView: InstantOnboardingView? { view as? InstantOnboardingView }
 
+    // QR code data used to create the profile
+    private var providerQrData: String?
     private var providerHostURL: URL
-    private var qrCodeData: String?
+
+    // QR code data processed once profile is created
+    private var securejoinQrData: String?
+
     private lazy var menuButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
         let deferredMenu = UIDeferredMenuElement.uncached({ [weak self] completion in
@@ -56,14 +61,14 @@ class InstantOnboardingViewController: UIViewController {
                let host = parsedQrCode.text1,
                let url = URL(string: "https://\(host)") {
                 self.providerHostURL = url
-                self.qrCodeData = qrCodeData
+                self.providerQrData = qrCodeData
             } else {
                 self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
-                self.qrCodeData = nil
+                self.providerQrData = nil
             }
         } else {
             self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
-            self.qrCodeData = nil
+            self.providerQrData = nil
         }
 
         super.init(nibName: nil, bundle: nil)
@@ -84,7 +89,7 @@ class InstantOnboardingViewController: UIViewController {
     override func loadView() {
         super.loadView()
         let customProvider: String?
-        if qrCodeData != nil {
+        if providerQrData != nil {
             customProvider = providerHostURL.host
         } else {
             customProvider = nil
@@ -263,9 +268,28 @@ class InstantOnboardingViewController: UIViewController {
     private func updateLabels() {
         let isTeamProfile = dcContext.isTeamProfile
 
-        title = String.localized(isTeamProfile ? "create_team_profile" : "pref_profile_info_headline")
-        contentView?.nameTextField.placeholder = String.localized(isTeamProfile ? "team_name" : "pref_your_name")
-        contentView?.hintLabel.text = String.localized(isTeamProfile ? "team_profile_explain" : "set_name_and_avatar_explain")
+        if isTeamProfile {
+            title = String.localized("create_team_profile")
+            contentView?.nameTextField.placeholder = String.localized("team_name")
+            contentView?.hintLabel.text = String.localized("team_profile_explain")
+        } else {
+            title = String.localized("pref_profile_info_headline")
+            contentView?.nameTextField.placeholder = String.localized("pref_your_name")
+
+            var hint: String = ""
+            if let securejoinQrData {
+                let parsedQrCode = dcContext.checkQR(qrCode: securejoinQrData)
+                if parsedQrCode.state == DC_QR_ASK_VERIFYCONTACT {
+                    let name =  dcContext.getContact(id: parsedQrCode.id).displayName
+                    hint += String.localized(stringID: "instant_onboarding_contact_info", parameter: name) + "\n\n"
+                } else {
+                    let name = parsedQrCode.text1 ?? ""
+                    hint += String.localized(stringID: "instant_onboarding_group_info", parameter: name) + "\n\n"
+                }
+            }
+            hint += String.localized("set_name_and_avatar_explain")
+            contentView?.hintLabel.text = hint
+        }
     }
 
     private func updateMenuButtons() {
@@ -315,7 +339,7 @@ class InstantOnboardingViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
 
-            let qrCodeData = self.qrCodeData ?? "dcaccount:nine.testrun.org"
+            let qrCodeData = self.providerQrData ?? "dcaccount:nine.testrun.org"
             do {
                 _ = try self.dcContext.addTransportFromQr(qrCode: qrCodeData)
             } catch {
@@ -330,12 +354,16 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func handleCreateSuccess() {
-        DispatchQueue.main.async {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             appDelegate.registerForNotifications()
             appDelegate.reloadDcContext()
             appDelegate.prepopulateWidget()
             appDelegate.handleAppClipInviteLink()
+            if let securejoinQrData {
+                _ = dcContext.joinSecurejoin(qrCode: securejoinQrData)
+            }
+
         }
     }
 
@@ -357,17 +385,43 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
     func handleQrCode(_ qrCode: String) {
         // update with new code
         let parsedQrCode = dcContext.checkQR(qrCode: qrCode)
-        if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT,
-           let host = parsedQrCode.text1,
-           let url = URL(string: "https://\(host)") {
-            self.providerHostURL = url
-            self.qrCodeData = qrCode
 
+        switch Int32(parsedQrCode.state) {
+        case DC_QR_LOGIN, DC_QR_ACCOUNT:
+            guard let host = parsedQrCode.text1, let url = URL(string: "https://\(host)") else { return }
+            self.providerHostURL = url
+            self.providerQrData = qrCode
             contentView?.updateContent(with: host)
             dismissQRReader()
-        } else {
+
+        case DC_QR_ASK_VERIFYCONTACT:
+            let name =  dcContext.getContact(id: parsedQrCode.id).displayName
+            let question = String.localized(stringID: "instant_onboarding_confirm_contact", parameter: name)
+            askCreateChatAfterProfileCreation(question: question, securejoinQrData: qrCode)
+
+        case DC_QR_ASK_VERIFYGROUP, DC_QR_ASK_VERIFYBROADCAST:
+            let name = parsedQrCode.text1 ?? ""
+            let question = String.localized(stringID: "instant_onboarding_confirm_group", parameter: name)
+            askCreateChatAfterProfileCreation(question: question, securejoinQrData: qrCode)
+
+        default:
             qrErrorAlert()
         }
+    }
+
+    private func askCreateChatAfterProfileCreation(question: String, securejoinQrData: String) {
+        let alert = UIAlertController(title: nil, message: question, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
+            guard let self else { return }
+            qrCodeReader?.startSession()
+        }))
+        alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
+            guard let self else { return }
+            self.securejoinQrData = securejoinQrData
+            updateLabels()
+            dismissQRReader()
+        }))
+        qrCodeReader?.present(alert, animated: true, completion: nil)
     }
 
     private func qrErrorAlert() {
