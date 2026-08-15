@@ -632,6 +632,8 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Kendu \"%1$@\"?\n\nEzabatu aurretik, pixkanaka-pixkanaka kenduko da, zure kontaktuak arin alda daitezen.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Ezabatu \"%1$@\" errelea?\n\nErrele hau bakarrik ezagutzen duten kontaktuak ezin izango dira zurekin harremanetan jarri zuk mezu bat berriro bidali arte.\n\nZalantzarik baduzu, hobe da ezkutatzea ezabatzea baino.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";

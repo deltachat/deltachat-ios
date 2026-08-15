@@ -1,6 +1,6 @@
 // common strings without special context
 "app_name" = "Delta Chat";
-"ok" = "OK";
+"ok" = "De acordo";
 "cancel" = "Cancelar";
 "clear_search" = "Eliminar busca";
 // a noun, used on a button, short for "show link"
@@ -161,6 +161,9 @@
 "contact" = "Contacto";
 "bot" = "Robot";
 "camera" = "Cámara";
+"front_camera" = "Cámara frontal";
+"back_camera" = "Cámara traseira";
+"microphone" = "Micrófono";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Capturar";
 // Switch eg. from front to back camera
@@ -380,11 +383,13 @@
 "call_answered_elsewhere" = "Chamada respondida noutro dispositivo";
 "call_requires_camera_permission" = "É preciso o permiso da cámara para as videochamadas";
 "call_requires_mic_permission" = "É preciso permiso para o micrófono para as chamadas";
+"call_grant_mic_permission" = "Prema para outorgar acceso ao micrófono";
 "call_requires_connection" = "Non se pode iniciar a chamada. Asegúrate de que o teu dispositivo teña conexión a Internet e téntao de novo.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Chamada con %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
 "calling_person" = "Chamando a %1$@...";
+"audio_output" = "Saída do son";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Tes a certeza de querer saír?";
@@ -576,6 +581,11 @@
 "instant_onboarding_confirm_contact" = "Queres crear un novo perfil e comezar a conversar con %1$@?";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Queres crear un novo perfil e unirte ao grupo \"%1$@\"?";
+"team" = "Equipo";
+"team_profile" = "Perfil do equipo";
+"team_profile_explain" = "Un \"perfil do equipo\" é xestionado colectivamente por un conxunto de persoas dunha organización. Os perfís de equipo son experimentais e están expostos a cambios.";
+"team_name" = "Nome do equipo";
+"create_team_profile" = "Crear perfil do equipo";
 "welcome_chat_over_email" = "Conversas Seguras e Descentralizadas";
 "scan_invitation_code" = "Escanear código de convite";
 "login_title" = "Acceder";
@@ -622,6 +632,8 @@
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Engadir este repetidor?";
 "invalid_transport_qr" = "O código QR escaneado non contén un repetidor válido.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Eliminar repetidor \"%1$@\"? Antes da eliminación, será retirado gradualmente de modo que os seus contactos podan mudarse mainamente";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Eliminar o repetidor \"%1$@\"?\n\nOs contactos que só coñecen este retransmisor poden non contactar contigo ata que lles envíes unha nova mensaxe.\n\nEn caso de dúbida, ocúltao en lugar de eliminalo.";
 "login_certificate_checks" = "Comprobacións do certificado";

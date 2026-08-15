@@ -248,7 +248,7 @@
 "menu_add_attachment" = "Aggiungi Allegato";
 "menu_leave_group" = "Abbandona Gruppo";
 "menu_leave_channel" = "Abbandona Canale";
-"menu_leave_and_delete" = "Lascia & Cancella per Me";
+"menu_leave_and_delete" = "Abbandona & Cancella per Me";
 "menu_delete_chat" = "Elimina Chat";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Cancella Messaggi";

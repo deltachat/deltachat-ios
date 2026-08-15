@@ -23,6 +23,8 @@
 "downloading" = "در حال بارگیری…";
 "open_attachment" = "بازکردن پیوست";
 "join" = "پیوستن";
+"join_group" = "پیوستن به گروه";
+"join_channel" = "پیوستن به کانال";
 "rejoin" = "پیوستن مجدد";
 "delete" = "حذف";
 "delete_for_me" = "حذف برای من";
@@ -90,6 +92,7 @@
 "offline" = "آفلاین";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "بعدی";
+"warning" = "هشدار";
 "error" = "خطا";
 "error_x" = "خطا: %1$@";
 "no_app_to_handle_data" = "نرم‌افزاری برای باز کردن این نوع داده یافت نشد";
@@ -147,6 +150,7 @@
 "contact" = "مخاطب";
 "bot" = "ربات";
 "camera" = "دوربین";
+"front_camera" = "دوربین جلو";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "گرفتن";
 // Switch eg. from front to back camera
@@ -333,6 +337,10 @@
 "answer_call" = "جواب دادن";
 // the action "to decline" a call, not: "the decline"
 "end_call" = "رد کردن";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "تماس صوتی";
+// Used in call bubbles, summaries, notifications
+"video_call" = "تماس تصویری";
 // deprecated, use "Audio call" instead
 "outgoing_audio_call" = "تماس صوتی خروجی";
 // deprecated, use "Video call" instead
