@@ -16,9 +16,6 @@ class ChatListViewController: UITableViewController {
 
     private lazy var titleView: UILabel = {
         let view = UILabel()
-        let navTapGesture = UITapGestureRecognizer(target: self, action: #selector(onNavigationTitleTapped))
-        view.addGestureRecognizer(navTapGesture)
-        view.isUserInteractionEnabled = true
         view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         view.accessibilityTraits = .header
         return view
@@ -295,18 +292,6 @@ class ChatListViewController: UITableViewController {
         } else { // if numberOfUnreadMessages == 0
             navigationItem.backBarButtonItem = nil
             navigationItem.backButtonTitle = String.localized("pref_chats")
-        }
-    }
-
-    @objc
-    public func onNavigationTitleTapped() {
-        titleView.isEnabled = false // immedidate feedback
-        CATransaction.flush()
-
-        self.navigationController?.pushViewController(ConnectivityViewController(dcContext: self.dcContext), animated: true)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // /immedidate feedback
-            self.titleView.isEnabled = true
         }
     }
 
