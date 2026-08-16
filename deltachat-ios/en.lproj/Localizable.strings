@@ -770,6 +770,9 @@
 "pref_show_emails_all" = "All";
 "pref_experimental_features" = "Experimental Features";
 "pref_experimental_features_explain" = "These features may be unstable and may be changed or removed";
+"pref_debug" = "Debug";
+"pref_enable_logging" = "Enable Logging";
+"pref_enable_logging_explain" = "When enabled, app activity is written to the system log. This includes sensitive data such as messages, contacts, and file paths. Disable this in production and when sharing your device with others.";
 "pref_on_demand_location_streaming" = "Location Streaming";
 "pref_background_default" = "Default image";
 "pref_background_default_color" = "Default color";

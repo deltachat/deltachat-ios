@@ -12,23 +12,30 @@ public class DcLogger {
     static let category = "deltachat"
     let osLog: Logger
 
+    static var enabled: Bool {
+        get { UserDefaults.standard.bool(forKey: UserDefaults.loggingEnabledKey) }
+        set { UserDefaults.standard.set(newValue, forKey: UserDefaults.loggingEnabledKey) }
+    }
+
     public init() {
         osLog = Logger(subsystem: DcLogger.subsystem, category: DcLogger.category)
     }
 
     public func error(_ message: String) {
-        osLog.error("❤️ \(message, privacy: .public)") // "public" is needed to show lines; core takes care of privacy
+        guard DcLogger.enabled else { return }
+        osLog.error("❤️ \(message, privacy: .public)")
     }
 
     public func warning(_ message: String) {
+        guard DcLogger.enabled else { return }
         osLog.warning("🧡 \(message, privacy: .public)")
     }
 
     public func info(_ message: String) {
-        osLog.notice("💙 \(message, privacy: .public)") // info() is not persisted
+        guard DcLogger.enabled else { return }
+        osLog.info("💙 \(message, privacy: .public)")
     }
 
-    // debug() marked as DEBUG as these lines are for, well debugging. and should not being released. otherwise, use info()
     #if DEBUG
     public func debug(_ message: String) {
         osLog.debug("💚 \(message, privacy: .public)")

@@ -63,6 +63,23 @@ internal final class AdvancedViewController: UITableViewController {
         })
     }()
 
+    lazy var loggingCell: SwitchCell = {
+        return SwitchCell(
+            textLabel: String.localized("pref_enable_logging"),
+            on: DcLogger.enabled,
+            action: { cell in
+                DcLogger.enabled = cell.isOn
+                if cell.isOn {
+                    let alert = UIAlertController(
+                        title: String.localized("pref_enable_logging"),
+                        message: String.localized("pref_enable_logging_explain"),
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
+                    self.navigationController?.present(alert, animated: true, completion: nil)
+                }
+        })
+    }()
+
     lazy var locationStreamingCell: SwitchCell = {
         return SwitchCell(
             textLabel: String.localized("pref_on_demand_location_streaming"),
@@ -98,10 +115,6 @@ internal final class AdvancedViewController: UITableViewController {
     }()
 
     private lazy var sections: [SectionConfigs] = {
-        let viewLogSection = SectionConfigs(
-            headerTitle: nil,
-            footerTitle: nil,
-            cells: [viewLogCell])
         let serverSection = SectionConfigs(
             headerTitle: String.localized("pref_server"),
             footerTitle: String.localized("pref_multidevice_explain"),
@@ -110,8 +123,12 @@ internal final class AdvancedViewController: UITableViewController {
             headerTitle: String.localized("pref_experimental_features"),
             footerTitle: String.localized("pref_experimental_features_explain"),
             cells: [locationStreamingCell, appPickerCell])
+        let debugSection = SectionConfigs(
+            headerTitle: String.localized("pref_debug"),
+            footerTitle: String.localized("pref_enable_logging_explain"),
+            cells: [loggingCell, viewLogCell])
 
-        return [viewLogSection, serverSection, experimentalSection]
+        return [serverSection, experimentalSection, debugSection]
     }()
 
     init(dcAccounts: DcAccounts) {

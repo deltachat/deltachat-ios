@@ -8,6 +8,7 @@ public extension UserDefaults {
     static var nseFetchingKey = "nseFetching"
     static var incomingCallPayloadKey = "incomingCallPayload"
     static var appPickerUrl = "appPickerUrl"
+    static var loggingEnabledKey = "loggingEnabled"
     static var defaultAppPickerUrlString = "https://webxdc.org/apps/"
 
     static var shared: UserDefaults? {
