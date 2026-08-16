@@ -61,6 +61,49 @@ import UIKit
         }
         #expect(DcAccounts.shared.select(id: context.id))
     }
+
+    @Test @MainActor func invalidDeeplinkIdsAreRejected() throws {
+        let coordinator = AppCoordinator(window: UIWindow(), dcAccounts: DcAccounts.shared)
+        let accountId = context.id
+        let invalidChatId = 999
+
+        let urls = [
+            "chat.delta.deeplink://chat?accountId=-1&chatId=1",
+            "chat.delta.deeplink://chat?accountId=\(accountId)&chatId=-1",
+            "chat.delta.deeplink://chat?accountId=\(accountId)&chatId=4294967296",
+            "chat.delta.deeplink://chat?accountId=\(accountId)&chatId=\(invalidChatId)",
+            "chat.delta.deeplink://chat?accountId=\(accountId)&chaId=-1",
+            "chat.delta.deeplink://webxdc?accountId=\(accountId)&chatId=-1&msgId=-1",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=-1",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=invalid",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=\(accountId)&chatId=-1",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=\(accountId)&chatId=invalid",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=\(accountId)&chatId=\(invalidChatId)",
+        ]
+
+        for urlString in urls {
+            let url = try #require(URL(string: urlString))
+            #expect(coordinator.handleDeepLinkURL(url) == false, "Expected to reject \(urlString)")
+        }
+    }
+
+    @Test @MainActor func optionalShareDeeplinkIdsCanBeOmitted() throws {
+        #expect(DcAccounts.shared.select(id: context.id))
+        let coordinator = AppCoordinator(window: UIWindow(), dcAccounts: DcAccounts.shared)
+        let accountId = context.id
+        let chatId = context.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
+        let urls = [
+            "chat.delta.deeplink://share?data=%5B%5D",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=\(accountId)",
+            "chat.delta.deeplink://share?data=%5B%5D&chatId=\(chatId)",
+            "chat.delta.deeplink://share?data=%5B%5D&accountId=\(accountId)&chatId=\(chatId)",
+        ]
+
+        for urlString in urls {
+            let url = try #require(URL(string: urlString))
+            #expect(coordinator.handleDeepLinkURL(url), "Expected to accept \(urlString)")
+        }
+    }
 }
 
 
