@@ -12,6 +12,7 @@
 - Do not open "Connectivity View" from main title; use "Settigns" instead
 - Fix: If one relay is connected, assume overall connectivity
 - Fix marking messages as seen across devices
+- Disable logging by default and add an option in advanced settings
 - Update to core 2.59.0
 
 
