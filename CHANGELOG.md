@@ -12,6 +12,7 @@
 - Do not open "Connectivity View" from main title; use "Settigns" instead
 - Fix: If one relay is connected, assume overall connectivity
 - Fix marking messages as seen across devices
+- Harden deeplinks parameters parsing to address crash and missbehaviours
 - Update to core 2.59.0
 
 

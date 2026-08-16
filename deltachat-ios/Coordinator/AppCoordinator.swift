@@ -123,6 +123,42 @@ class AppCoordinator: NSObject {
         }
     }
 
+    private func deepLinkId(named name: String, in parameters: [String: String]) -> Int? {
+        guard let string = parameters[name],
+              let id = UInt32(string),
+              id != 0 else {
+            logger.error("Invalid or missing \(name) in deeplink")
+            return nil
+        }
+        return Int(id)
+    }
+
+    /// Like deepLinkId(named:in:), but the parameter may be absent:
+    /// returns .some(nil) when absent, nil when present but invalid.
+    private func deepLinkId(ifPresent name: String, in parameters: [String: String]) -> Int?? {
+        guard parameters[name] != nil else { return Int?.none }
+        guard let id = deepLinkId(named: name, in: parameters) else { return nil }
+        return id
+    }
+
+    private func deepLinkContext(accountId: Int) -> DcContext? {
+        guard dcAccounts.getAll().contains(accountId) else {
+            logger.error("Invalid accountId in deeplink")
+            return nil
+        }
+        return dcAccounts.get(id: accountId)
+    }
+
+    private func selectDeepLinkAccountIfNeeded(accountId: Int) -> Bool {
+        guard dcAccounts.getSelected().id != accountId else { return true }
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              dcAccounts.select(id: accountId) else {
+            return false
+        }
+        appDelegate.reloadDcContext()
+        return true
+    }
+
     private func handleWebxdcDeeplink(url: URL) -> Bool {
 
         guard let parameters = url.queryParameters else {
@@ -130,24 +166,23 @@ class AppCoordinator: NSObject {
             return false
         }
 
-        let accountId = Int(parameters["accountId"] ?? "-1") ?? -1
-        let chatId = Int(parameters["chatId"] ?? "-1") ?? -1
-        let messageId = Int(parameters["msgId"] ?? "-1") ?? -1
-
-        if !"\(url)".starts(with: "chat.delta.deeplink://webxdc?") ||
-           messageId == -1 ||
-           chatId == -1 ||
-           accountId == -1 {
+        guard let accountId = deepLinkId(named: "accountId", in: parameters),
+              let chatId = deepLinkId(named: "chatId", in: parameters),
+              let messageId = deepLinkId(named: "msgId", in: parameters),
+              let dcContext = deepLinkContext(accountId: accountId) else {
             return false
         }
 
-        if dcAccounts.getSelected().id != accountId {
-            if !dcAccounts.select(id: accountId) {
-                return false
-            }
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
-            appDelegate.reloadDcContext()
-        } else {
+        let dcMsg = dcContext.getMessage(id: messageId)
+        guard dcMsg.isValid,
+              dcMsg.type == DC_MSG_WEBXDC,
+              dcMsg.chatId == chatId,
+              dcContext.getChat(chatId: chatId).isValid else {
+            logger.error("Invalid chatId or msgId in webxdc deeplink")
+            return false
+        }
+
+        if dcAccounts.getSelected().id == accountId {
             // check if webxdc is already opened
             if let navController = self.tabBarController.selectedViewController as? UINavigationController,
                let topViewController = navController.topViewController,
@@ -158,34 +193,26 @@ class AppCoordinator: NSObject {
             }
         }
 
-        let dcContext = dcAccounts.getSelected()
-        let dcMsg = dcContext.getMessage(id: messageId)
-        if dcMsg.isValid, dcMsg.type == DC_MSG_WEBXDC {
-            showChat(chatId: chatId, msgId: messageId, openHighlightedMsg: true, animated: false, clearViewControllerStack: true)
-            return true
-        } else {
-            showChats()
-            return false
-        }
+        guard selectDeepLinkAccountIfNeeded(accountId: accountId) else { return false }
+        showChat(chatId: chatId, msgId: messageId, openHighlightedMsg: true, animated: false, clearViewControllerStack: true)
+        return true
     }
 
     private func handleOpenChatDeeplink(url: URL) -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-              let parameters = url.queryParameters,
-              let accountIdString = parameters["accountId"],
-              let accountId = Int(accountIdString),
-              let chatIdString = parameters["chatId"],
-              let chatId = Int(chatIdString) else {
+        guard let parameters = url.queryParameters,
+              let accountId = deepLinkId(named: "accountId", in: parameters),
+              let chatId = deepLinkId(named: "chatId", in: parameters),
+              let dcContext = deepLinkContext(accountId: accountId) else {
             logger.error("Missing parameters in URL \(url)")
             return false
         }
 
-        if dcAccounts.getSelected().id != accountId {
-            if !dcAccounts.select(id: accountId) {
-                return false
-            }
-            appDelegate.reloadDcContext()
-        } else {
+        guard dcContext.getChat(chatId: chatId).isValid else {
+            logger.error("Invalid chatId in chat deeplink")
+            return false
+        }
+
+        if dcAccounts.getSelected().id == accountId {
             // check if chat is already opened
             if let navController = self.tabBarController.selectedViewController as? UINavigationController,
                let topViewController = navController.topViewController,
@@ -196,12 +223,8 @@ class AppCoordinator: NSObject {
             }
         }
 
-        let chat = dcAccounts.getSelected().getChat(chatId: chatId)
-        if chat.isValid {
-            showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
-        } else {
-            showChats()
-        }
+        guard selectDeepLinkAccountIfNeeded(accountId: accountId) else { return false }
+        showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
         return true
     }
     
@@ -213,18 +236,24 @@ class AppCoordinator: NSObject {
             logger.error("Missing data parameter or incorrect format in URL \(url)")
             return false
         }
-        
-        // Switch account if needed
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-           let accountId = parameters["accountId"].flatMap(Int.init) {
-            if dcAccounts.getSelected().id != accountId {
-                if !dcAccounts.select(id: accountId) { return false }
-                appDelegate.reloadDcContext()
-            }
+
+        guard let accountId = deepLinkId(ifPresent: "accountId", in: parameters),
+              let chatId = deepLinkId(ifPresent: "chatId", in: parameters) else {
+            return false
+        }
+
+        let targetAccountId = accountId ?? dcAccounts.getSelected().id
+        guard let dcContext = deepLinkContext(accountId: targetAccountId) else { return false }
+        if let chatId, !dcContext.getChat(chatId: chatId).isValid {
+            logger.error("Invalid chatId in share deeplink")
+            return false
         }
         
+        // Switch account if needed
+        guard selectDeepLinkAccountIfNeeded(accountId: targetAccountId) else { return false }
+        
         // Ask for sending messages
-        if let chatId = parameters["chatId"].flatMap(Int.init) {
+        if let chatId {
             showChat(chatId: chatId)
         } else {
             showChats()
