@@ -15,6 +15,17 @@ extension URL {
         }
     }
 
+    var isHTTPURL: Bool {
+        guard let scheme = scheme?.lowercased() else { return false }
+        return scheme == "https" || scheme == "http"
+    }
+
+    func hasSameOrigin(as other: URL) -> Bool {
+        scheme?.lowercased() == other.scheme?.lowercased()
+            && host?.lowercased() == other.host?.lowercased()
+            && port == other.port
+    }
+
     /// Note: This copies the file at URL to a temporary file in case the original is deleted (or access is lost) during conversion.
     public func convertToMp4(completionHandler: ((URL?, Error?) -> Void)?) {
         let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-")

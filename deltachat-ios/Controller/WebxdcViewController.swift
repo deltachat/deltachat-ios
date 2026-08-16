@@ -495,7 +495,8 @@ class WebxdcViewController: WebViewViewController {
 
     private func openSourceCodeUrl() {
         if let sourceCodeUrl,
-           let url = URL(string: sourceCodeUrl) {
+           let url = URL(string: sourceCodeUrl),
+           url.isHTTPURL {
             UIApplication.shared.open(url)
         }
     }

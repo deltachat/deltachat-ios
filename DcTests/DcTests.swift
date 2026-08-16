@@ -187,6 +187,13 @@ import UIKit
         #expect(fileURL.lastPathComponent == "accounts.toml")
     }
 
+    @Test func externalURLPolicyRejectsLocalAndApplicationSchemes() throws {
+        #expect(try #require(URL(string: "https://delta.chat/source")).isHTTPURL)
+        #expect(try #require(URL(string: "http://example.org/source")).isHTTPURL)
+        #expect(try #require(URL(string: "chat.delta.deeplink://share?data=x")).isHTTPURL == false)
+        #expect(try #require(URL(string: "file:///private/account.toml")).isHTTPURL == false)
+    }
+
     private func makeShareDeeplink(items: [CodableNSItemProvider]) throws -> URL {
         let encodedItems = try JSONEncoder().encode(items)
         let json = try #require(String(data: encodedItems, encoding: .utf8))

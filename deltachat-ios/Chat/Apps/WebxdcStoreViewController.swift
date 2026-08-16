@@ -50,7 +50,7 @@ extension WebxdcStoreViewController: WKNavigationDelegate {
         }
 
         // if url ends with .xdc -> download and store in core and call delegate
-        if url.pathExtension == "xdc" {
+        if url.pathExtension == "xdc", url.isHTTPURL {
             Task { [weak self] in
                 guard let self else { return }
                 // show spinner instead of close-button
@@ -67,9 +67,9 @@ extension WebxdcStoreViewController: WKNavigationDelegate {
                 delegate?.pickedAnDownloadedApp(self, fileURL: fileURL as URL)
                 decisionHandler(.cancel)
             }
-        } else if url.host == appPickerUrl?.host {
+        } else if let appPickerUrl, url.hasSameOrigin(as: appPickerUrl) {
             decisionHandler(.allow)
-        } else if UIApplication.shared.canOpenURL(url) {
+        } else if url.isHTTPURL, UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
             decisionHandler(.cancel)
         } else {

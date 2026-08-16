@@ -46,6 +46,24 @@ class FullMessageViewController: WebViewViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard navigationAction.navigationType == .linkActivated,
+              let url = navigationAction.request.url,
+              // the document is loaded with baseURL nil, so in-page anchor
+              // links resolve to about:blank#fragment and are harmless
+              url.scheme?.lowercased() != "about" else {
+            decisionHandler(.allow)
+            return
+        }
+
+        if url.scheme?.lowercased() == "mailto" {
+            openChatFor(url: url)
+        } else if url.isHTTPURL {
+            UIApplication.shared.open(url)
+        }
+        decisionHandler(.cancel)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addFontUserScript()
