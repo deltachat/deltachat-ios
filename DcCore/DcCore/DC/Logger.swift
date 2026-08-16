@@ -13,7 +13,16 @@ public class DcLogger {
     let osLog: Logger
 
     static var enabled: Bool {
-        get { UserDefaults.standard.bool(forKey: UserDefaults.loggingEnabledKey) }
+        get {
+            if UserDefaults.standard.object(forKey: UserDefaults.loggingEnabledKey) == nil {
+                #if DEBUG
+                return true
+                #else
+                return false
+                #endif
+            }
+            return UserDefaults.standard.bool(forKey: UserDefaults.loggingEnabledKey)
+        }
         set { UserDefaults.standard.set(newValue, forKey: UserDefaults.loggingEnabledKey) }
     }
 
