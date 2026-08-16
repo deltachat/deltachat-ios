@@ -6,13 +6,55 @@ enum RelayData {
     case forwardMessage(text: String?, fileData: Data?, fileName: String?)
     case forwardVCard(Data)
     case mailto(address: String, draft: String?)
-    case share([CodableNSItemProvider])
+    case share(ValidatedShareItems)
+}
+
+/// Share-extension items whose file URLs have been resolved and confined to
+/// the app-group staging directory.
+struct ValidatedShareItems {
+    let providers: [CodableNSItemProvider]
+
+    init?(_ providers: [CodableNSItemProvider]) {
+        let root = shareExtensionDirectory
+            .standardizedFileURL
+            .resolvingSymlinksInPath()
+        let rootComponents = root.pathComponents
+        var validatedProviders = [CodableNSItemProvider]()
+
+        for provider in providers {
+            switch provider {
+            case .text:
+                validatedProviders.append(provider)
+            case let .contentsAt(url, viewType):
+                guard url.isFileURL else {
+                    logger.error("Rejected non-file URL in share deeplink")
+                    return nil
+                }
+
+                let resolvedURL = url
+                    .standardizedFileURL
+                    .resolvingSymlinksInPath()
+                let resolvedComponents = resolvedURL.pathComponents
+                guard resolvedComponents.count > rootComponents.count,
+                      resolvedComponents.prefix(rootComponents.count).elementsEqual(rootComponents),
+                      let resourceValues = try? resolvedURL.resourceValues(forKeys: [.isRegularFileKey]),
+                      resourceValues.isRegularFile == true else {
+                    logger.error("Rejected file outside the share-extension staging directory")
+                    return nil
+                }
+
+                validatedProviders.append(.contentsAt(url: resolvedURL, viewType: viewType))
+            }
+        }
+
+        self.providers = validatedProviders
+    }
 }
 
 class RelayHelper {
     static var shared: RelayHelper = RelayHelper()
     var dialogTitle: String = ""
-    var data: RelayData? {
+    private(set) var data: RelayData? {
         didSet {
             NotificationCenter.default.post(name: Event.relayHelperDidChange, object: nil)
         }
@@ -38,7 +80,7 @@ class RelayHelper {
         self.data = .forwardMessages(srcContextId: DcAccounts.shared.getSelected().id, ids: messageIds)
     }
     
-    func setShareItems(items: [CodableNSItemProvider]) {
+    func setShareItems(items: ValidatedShareItems) {
         finishRelaying()
         self.dialogTitle = String.localized("chat_share_with_title")
         self.data = .share(items)
@@ -58,7 +100,7 @@ class RelayHelper {
     func shareAndFinishRelaying(to chatId: Int) {
         if case .share(let items) = data {
             let dcContext = DcAccounts.shared.getSelected()
-            for item in items {
+            for item in items.providers {
                 let msg: DcMsg
                 switch item {
                 case let .contentsAt(url, viewType):

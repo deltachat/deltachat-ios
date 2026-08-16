@@ -46,7 +46,8 @@ import UIKit
         defer { try? FileManager.default.removeItem(at: shareExtensionDirectory) }
 
         let provider = CodableNSItemProvider.contentsAt(url: fileURL, viewType: DC_MSG_FILE)
-        RelayHelper.shared.setShareItems(items: [provider])
+        let shareItems = try #require(ValidatedShareItems([provider]))
+        RelayHelper.shared.setShareItems(items: shareItems)
 
         #expect(DcAccounts.shared.select(id: secondaryContext.id))
         let chatB = secondaryContext.createChatByContactId(contactId: Int(DC_CONTACT_ID_SELF))
@@ -103,6 +104,77 @@ import UIKit
             let url = try #require(URL(string: urlString))
             #expect(coordinator.handleDeepLinkURL(url), "Expected to accept \(urlString)")
         }
+    }
+
+    @Test @MainActor func shareDeeplinkFilesStayInsideStagingDirectory() throws {
+        #expect(DcAccounts.shared.select(id: context.id))
+        RelayHelper.shared.finishRelaying()
+
+        let fileManager = FileManager.default
+        let coordinator = AppCoordinator(window: UIWindow(), dcAccounts: DcAccounts.shared)
+        let stagingParent = shareExtensionDirectory.deletingLastPathComponent()
+        let identifier = UUID().uuidString
+        let privateFile = stagingParent.appendingPathComponent("private-\(identifier).txt")
+        let siblingDirectory = stagingParent.appendingPathComponent("share_extension_\(identifier)", isDirectory: true)
+        let siblingFile = siblingDirectory.appendingPathComponent("file.txt")
+        let stagedFile = shareExtensionDirectory.appendingPathComponent("staged-\(identifier).txt")
+        let stagedSymlink = shareExtensionDirectory.appendingPathComponent("link-\(identifier).txt")
+
+        try fileManager.createDirectory(at: shareExtensionDirectory, withIntermediateDirectories: true)
+        try fileManager.createDirectory(at: siblingDirectory, withIntermediateDirectories: true)
+        try Data("private".utf8).write(to: privateFile)
+        try Data("sibling".utf8).write(to: siblingFile)
+        try fileManager.createSymbolicLink(at: stagedSymlink, withDestinationURL: privateFile)
+        defer {
+            RelayHelper.shared.finishRelaying()
+            try? fileManager.removeItem(at: privateFile)
+            try? fileManager.removeItem(at: siblingDirectory)
+            try? fileManager.removeItem(at: stagedFile)
+            try? fileManager.removeItem(at: stagedSymlink)
+        }
+
+        let traversalURL = shareExtensionDirectory.appendingPathComponent("../\(privateFile.lastPathComponent)")
+        let rejectedURLs = [
+            privateFile,
+            siblingFile,
+            traversalURL,
+            stagedSymlink,
+            shareExtensionDirectory,
+            try #require(URL(string: "https://example.org/file.txt")),
+        ]
+
+        for fileURL in rejectedURLs {
+            let items = [
+                CodableNSItemProvider.text(text: "keep validation all-or-nothing"),
+                .contentsAt(url: fileURL, viewType: DC_MSG_FILE),
+            ]
+            #expect(coordinator.handleDeepLinkURL(try makeShareDeeplink(items: items)) == false)
+            #expect(RelayHelper.shared.isSharing() == false)
+        }
+
+        try Data("staged".utf8).write(to: stagedFile)
+        let validItems = [CodableNSItemProvider.contentsAt(url: stagedFile, viewType: DC_MSG_FILE)]
+        #expect(coordinator.handleDeepLinkURL(try makeShareDeeplink(items: validItems)))
+        #expect(RelayHelper.shared.isSharing())
+        if case .share(let shareItems) = RelayHelper.shared.data {
+            guard case .contentsAt(let url, _) = try #require(shareItems.providers.first) else {
+                Issue.record("Expected a staged file provider")
+                return
+            }
+            #expect(url == stagedFile.standardizedFileURL.resolvingSymlinksInPath())
+        } else {
+            Issue.record("Expected validated share items")
+        }
+    }
+
+    private func makeShareDeeplink(items: [CodableNSItemProvider]) throws -> URL {
+        let encodedItems = try JSONEncoder().encode(items)
+        let json = try #require(String(data: encodedItems, encoding: .utf8))
+        var components = URLComponents()
+        components.scheme = "chat.delta.deeplink"
+        components.host = "share"
+        components.queryItems = [.init(name: "data", value: json)]
+        return try #require(components.url)
     }
 }
 

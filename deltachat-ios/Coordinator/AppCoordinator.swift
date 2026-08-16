@@ -231,9 +231,10 @@ class AppCoordinator: NSObject {
     private func handleShareDeeplink(url: URL) -> Bool {
         guard let parameters = url.queryParameters,
               let data = parameters["data"]?.data(using: .utf8),
-              let providers = try? JSONDecoder().decode([CodableNSItemProvider].self, from: data)
+              let providers = try? JSONDecoder().decode([CodableNSItemProvider].self, from: data),
+              let shareItems = ValidatedShareItems(providers)
         else {
-            logger.error("Missing data parameter or incorrect format in URL \(url)")
+            logger.error("Invalid share deeplink data")
             return false
         }
 
@@ -260,7 +261,7 @@ class AppCoordinator: NSObject {
             let nvc = tabBarController.selectedViewController as? UINavigationController
             nvc?.popToRootViewController(animated: false)
         }
-        RelayHelper.shared.setShareItems(items: providers)
+        RelayHelper.shared.setShareItems(items: shareItems)
 
         return true
     }
