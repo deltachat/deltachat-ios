@@ -1,12 +1,23 @@
 import Foundation
 
 public class FileHelper {
+
+    /// Converts an untrusted display name into one filesystem path component.
+    /// Both slash styles are handled because filenames can originate on other
+    /// platforms (for example through webxdc or email metadata).
+    static func safeFilename(_ filename: String) -> String {
+        let normalized = filename.replacingOccurrences(of: "\\", with: "/")
+        let component = normalized
+            .split(separator: "/", omittingEmptySubsequences: true)
+            .last
+            .map(String.init)?
+            .replacingOccurrences(of: "\0", with: "") ?? ""
+        return component.isEmpty || component == "." || component == ".." ? "file" : component
+    }
     
     // implementation is following Apple's recommendations
     // https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/AccessingFilesandDirectories/AccessingFilesandDirectories.html
     public static func saveData(data: Data, name: String? = nil, suffix: String? = nil, directory: FileManager.SearchPathDirectory = .applicationSupportDirectory) -> String? {
-        var path: URL?
-
         // ensure directory exists (application support dir doesn't exist per default)
         let fileManager = FileManager.default
         let urls = fileManager.urls(for: directory, in: .userDomainMask) as [URL]
@@ -38,18 +49,22 @@ public class FileHelper {
             return nil
         }
 
-        // add file name to path
+        // Add a single file name to the path. `name` may originate in message
+        // metadata, so it must never be allowed to add path components.
+        let filename: String
         if let name {
             if let suffix {
-                path = subdirectoryURL.appendingPathComponent("\(name).\(suffix)")
+                filename = "\(name).\(suffix)"
             } else {
-                path = subdirectoryURL.appendingPathComponent(name)
+                filename = name
             }
         } else if let suffix {
             let timestamp = Double(Date().timeIntervalSince1970)
-            path = subdirectoryURL.appendingPathComponent("\(timestamp).\(suffix)")
+            filename = "\(timestamp).\(suffix)"
+        } else {
+            return nil
         }
-        guard let path else { return nil }
+        let path = subdirectoryURL.appendingPathComponent(safeFilename(filename), isDirectory: false)
 
         // write data
         do {

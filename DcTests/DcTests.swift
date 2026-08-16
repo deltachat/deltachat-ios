@@ -167,6 +167,26 @@ import UIKit
         }
     }
 
+    @Test func fileHelperConfinesUntrustedFilenames() throws {
+        #expect(FileHelper.safeFilename("../../accounts.toml") == "accounts.toml")
+        #expect(FileHelper.safeFilename("folder\\secret.txt") == "secret.txt")
+        #expect(FileHelper.safeFilename("..") == "file")
+
+        let path = try #require(FileHelper.saveData(
+            data: Data("test".utf8),
+            name: "../../accounts.toml",
+            directory: .cachesDirectory
+        ))
+        defer { FileHelper.deleteFile(path) }
+
+        let fileURL = URL(fileURLWithPath: path).standardizedFileURL
+        let caches = try #require(FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first)
+        let identifier = try #require(Bundle.main.bundleIdentifier)
+        let expectedDirectory = caches.appendingPathComponent(identifier, isDirectory: true).standardizedFileURL
+        #expect(fileURL.deletingLastPathComponent() == expectedDirectory)
+        #expect(fileURL.lastPathComponent == "accounts.toml")
+    }
+
     private func makeShareDeeplink(items: [CodableNSItemProvider]) throws -> URL {
         let encodedItems = try JSONEncoder().encode(items)
         let json = try #require(String(data: encodedItems, encoding: .utf8))

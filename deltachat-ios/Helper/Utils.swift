@@ -62,7 +62,8 @@ struct Utils {
 
             let shareURL: URL
             if let filename = message.filename {
-                let cleanURL = FileManager.default.temporaryDirectory.appendingPathComponent(filename)
+                let cleanURL = FileManager.default.temporaryDirectory
+                    .appendingPathComponent(FileHelper.safeFilename(filename), isDirectory: false)
                 shareURL = FileHelper.copyIfPossible(src: scrambledURL, dest: cleanURL)
             } else {
                 shareURL = scrambledURL
