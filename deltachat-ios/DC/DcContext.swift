@@ -85,14 +85,6 @@ public class DcContext {
         return swiftString
     }
 
-    public func setWebxdcIntegration(filepath: String?) {
-        dc_set_webxdc_integration(contextPointer, filepath)
-    }
-
-    public func initWebxdcIntegration(for chatId: Int) -> Int {
-        return Int(dc_init_webxdc_integration(contextPointer, UInt32(chatId)))
-    }
-
     public func sendWebxdcRealtimeAdvertisement(messageId: Int) {
         do {
             try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])

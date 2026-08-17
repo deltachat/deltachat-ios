@@ -22,7 +22,6 @@ class WebxdcViewController: WebViewViewController {
     var selfAddr: String = ""
     var sendUpdateInterval: Int = 0
     var sendUpdateMaxSize: Int = 0
-    private var allowInternet: Bool = false
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
@@ -308,8 +307,6 @@ class WebxdcViewController: WebViewViewController {
         sendUpdateInterval = dict["send_update_interval"] as? Int ?? 0
         sendUpdateMaxSize = dict["send_update_max_size"] as? Int ?? 0
         let chatName = dcContext.getChat(chatId: msg.chatId).name
-        self.allowInternet = dict["internet_access"] as? Bool ?? false
-
         isDraft = msg.state == DC_STATE_OUT_DRAFT
         if isDraft {
             title = String.localized("draft")
@@ -394,11 +391,7 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if allowInternet {
-            loadHtml()
-        } else {
-            loadRestrictedHtml()
-        }
+        loadRestrictedHtml()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -603,22 +596,19 @@ extension WebxdcViewController: WKURLSchemeHandler {
                 statusCode = (data.isEmpty ? 404 : 200)
             }
 
-            var headerFields = [
+            let headerFields = [
                 "Content-Type": mimeType,
                 "Content-Length": "\(data.count)",
+                "Content-Security-Policy": """
+                default-src 'self';
+                style-src 'self' 'unsafe-inline' blob: ;
+                font-src 'self' data: blob: ;
+                script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ;
+                connect-src 'self' data: blob: ;
+                img-src 'self' data: blob: ;
+                webrtc 'block' ;
+                """,
             ]
-
-            if !self.allowInternet {
-                headerFields["Content-Security-Policy"] = """
-                    default-src 'self';
-                    style-src 'self' 'unsafe-inline' blob: ;
-                    font-src 'self' data: blob: ;
-                    script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ;
-                    connect-src 'self' data: blob: ;
-                    img-src 'self' data: blob: ;
-                    webrtc 'block' ;
-                    """
-            }
 
             guard let response = HTTPURLResponse(
                 url: url,

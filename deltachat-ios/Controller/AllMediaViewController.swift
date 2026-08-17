@@ -41,10 +41,6 @@ class AllMediaViewController: UIPageViewController {
         return control
     }()
 
-    private lazy var mapButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
-    }()
-
     init(dcContext: DcContext, chatId: Int = 0) {
         self.dcContext = dcContext
         self.chatId = chatId
@@ -62,7 +58,6 @@ class AllMediaViewController: UIPageViewController {
         dataSource = self
         delegate = self
         navigationItem.titleView = segmentControl
-        navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
         let page = pages[prevIndex]
@@ -78,10 +73,6 @@ class AllMediaViewController: UIPageViewController {
                                direction: sender.selectedSegmentIndex > prevIndex ? .forward : .reverse, animated: true, completion: nil)
             prevIndex = sender.selectedSegmentIndex
         }
-    }
-
-    @objc private func showMap() {
-        navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     // MARK: - factory

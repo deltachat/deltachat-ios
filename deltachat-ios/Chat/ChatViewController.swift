@@ -1067,7 +1067,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         case (_, DC_INFO_GROUP_DESCRIPTION_CHANGED):
             navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
         case (_, DC_INFO_LOCATIONSTREAMING_ENABLED):
-            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+            break
         default:
             if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
