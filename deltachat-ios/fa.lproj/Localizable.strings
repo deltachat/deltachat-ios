@@ -530,7 +530,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "استفاده از یک کارساز دیگر";
 "instant_onboarding_other_server" = "فهرست کارسازهای Chatmail";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "ایجاد نمایه برای وارد شدن به گپ «%1$@».";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "برای گفتگو با %1$@ یک حساب کاربری ایجاد کنید.";
@@ -610,6 +610,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "ارسال %1$dپرونده به «%2$@»؟";
 "ask_send_files_to_selected_chats" = "ارسال %1$dپرونده به %2$d گپ؟";
+// deprecated
 "videos_sent_without_recoding" = "(فیلم‌ها به صورت پرونده‌های بزرگ بدون تغییر ارسال می‌شوند. برای ارسال فیلم‌ها به عنوان پرونده‌های کوچک‌تر، آن‌ها را به صورت جدا پیوست کنید)";
 "share_text_multiple_chats" = "ارسال این متن به %1$d گپ؟n/n/«%2$@»";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
