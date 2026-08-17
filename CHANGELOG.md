@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## 2.59.1
+2026-08
 
 - Allow to react in channels
 - Allow scanning Invitation Code when creating a new profile
