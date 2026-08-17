@@ -503,7 +503,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
 "instant_onboarding_other_server" = "Išvardyti retransliavimo serverius";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Sukurti profilį, kad būtų prisijungta prie grupės „%1$@“.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Sukurti profilį, kad būtų pradėtas pokalbis su %1$@.";

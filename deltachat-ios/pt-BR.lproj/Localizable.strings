@@ -504,7 +504,7 @@
 "onboarding_create_instant_account" = "Criar novo perfil";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Concordar & Criar perfil";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Crie um perfil para participar do grupo \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Crie um perfil para conversa com %1$@.";

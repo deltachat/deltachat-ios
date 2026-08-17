@@ -555,7 +555,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Diğer Sunucuyu Kullan";
 "instant_onboarding_other_server" = "Chatmail Sunucularını Listele";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "“%1$@” grubuna katılmak için bir profil oluşturun.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "%1$@ ile sohbet etmek için bir profil oluşturun.";
@@ -644,6 +644,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d dosya “%2$@” sohbetine gönderilsin mi?";
 "ask_send_files_to_selected_chats" = "%1$d dosya %2$d sohbete gönderilsin mi?";
+// deprecated
 "videos_sent_without_recoding" = "(Çoklu video göndermek, onları olduğu gibi gönderecektir ve bu da büyük boyutlara yol açabilir. Boyutlarını küçültmek ve veri tasarrufu sağlamak için her videoyu kendi iletisinde gönderebilirsiniz.)";
 "share_text_multiple_chats" = "Bu metin %1$d sohbete gönderilsin mi?\n\n“%2$@”";
 "share_abort" = "Eksik izinlerden dolayı paylaşımdan vazgeçildi.";

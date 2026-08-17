@@ -420,7 +420,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Да се използва друг сървър";
 "instant_onboarding_other_server" = "Списък със сървъри за чат поща";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Създайте профил, за да се присъедините към групата \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Създайте профил, за да обменяте съобщения с %1$@.";

@@ -573,8 +573,8 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Anderen Server verwenden";
 "instant_onboarding_other_server" = "Chatmail-Server anzeigen";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
-"instant_onboarding_group_info" = "Erstelle ein Profil, um der Gruppe \"%1$@\" beizutreten.";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
+"instant_onboarding_group_info" = "Erstelle ein Profil, um \"%1$@\" beizutreten.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Erstelle ein Profil, um mit %1$@ zu chatten.";
 // Question shown when another user's QR code is scanned from onboarding screen
@@ -671,6 +671,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d Dateien an \"%2$@\" senden?";
 "ask_send_files_to_selected_chats" = "%1$d Datei(en) an %2$d Chats senden?";
+// deprecated
 "videos_sent_without_recoding" = "(Videos werden als große Originaldateien versandt. Um Videos als kleinere Dateien zu versenden, hänge sie einzeln an)";
 "share_text_multiple_chats" = "Den folgenden Text an %1$d Chats senden?\n\n\"%2$@\"";
 "share_abort" = "Teilen aufgrund fehlender Berechtigungen abgebrochen.";
@@ -857,16 +858,22 @@
 "chat_description_changed_by_other" = "Chat-Beschreibung geändert von %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ hinzugefügt.";
+"member_you_added" = "Du wurdest hinzugefügt.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "%1$@ hinzugefügt.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%1$@ hinzugefügt von %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Du wurdest von %1$@ hinzugefügt.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Du hast %1$@ entfernt.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%1$@ entfernt von %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Du wurdest von %1$@ entfernt.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "%1$@ entfernt.";
+"member_you_removed" = "Du wurdest entfernt.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Du hast die Gruppe verlassen.";
 // "left" in the meaning of "exited".
