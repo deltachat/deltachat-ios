@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Log to a private file instead of the system log, so logs are no longer readable from outside the app (e.g. via USB or Wi-Fi); "View Log" keeps the last two executions
 - Allow to react in channels
 - Offer five default reactions when long-tapping a message
 - Show phased out relays in connectivity view as such
