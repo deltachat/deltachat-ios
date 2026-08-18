@@ -108,7 +108,9 @@ struct Utils {
         try? FileManager.default.removeItem(at: tempLogfileURL)
         try? data.write(to: tempLogfileURL)
         
-        Utils.share(url: tempLogfileURL, parentViewController: parentViewController, sourceItem: sourceItem)
+        Utils.share(url: tempLogfileURL, parentViewController: parentViewController, sourceItem: sourceItem) {
+            try? FileManager.default.removeItem(at: tempLogfileURL)
+        }
     }
 
     public static func share(url: String, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
@@ -116,9 +118,12 @@ struct Utils {
         Utils.share(url: url, parentViewController: parentViewController, sourceItem: sourceItem)
     }
 
-    public static func share(url: URL, parentViewController: UIViewController, sourceItem: UIBarButtonItem) {
+    public static func share(url: URL, parentViewController: UIViewController, sourceItem: UIBarButtonItem, onDismiss: (() -> Void)? = nil) {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         activityVC.popoverPresentationController?.barButtonItem = sourceItem
+        if let onDismiss {
+            activityVC.completionWithItemsHandler = { _, _, _, _ in onDismiss() }
+        }
         parentViewController.present(activityVC, animated: true, completion: nil)
     }
 
