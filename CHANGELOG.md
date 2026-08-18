@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Play voice messages on the ear speaker and turn the screen off when the phone is held to the ear
 - Allow to react in channels
 - Offer five default reactions when long-tapping a message
 - Show phased out relays in connectivity view as such
