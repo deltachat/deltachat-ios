@@ -3,6 +3,7 @@
 ## 2.59.1
 2026-08
 
+- Play voice messages on the ear speaker and turn the screen off when the phone is held to the ear
 - Allow to react in channels
 - Allow scanning Invitation Code when creating a new profile
 - Offer five default reactions when long-tapping a message
