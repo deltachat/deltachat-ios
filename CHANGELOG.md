@@ -13,6 +13,7 @@
 - Send messages to up to 5 relays
 - Do not open "Connectivity View" from main title; use "Settigns" instead
 - Fix: If one relay is connected, assume overall connectivity
+- Fix: Delete the temporary log file after sharing it, it stayed readable via USB otherwise
 - Fix marking messages as seen across devices
 - Update to core 2.59.0
 
