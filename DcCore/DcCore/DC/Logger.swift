@@ -79,9 +79,13 @@ public class DcLogger {
     }
 
     private func openCurrentLogFile() {
-        guard let currentUrl = DcLogger.logFileURLs.last else { return }
+        guard var currentUrl = DcLogger.logFileURLs.last else { return }
         // O_APPEND keeps concurrent writes from the main app and the extensions intact
         fileDescriptor = open(currentUrl.path, O_WRONLY | O_APPEND | O_CREAT, 0o600)
+        // keep the logs out of iCloud/iTunes backups; renaming preserves the flag
+        var resourceValues = URLResourceValues()
+        resourceValues.isExcludedFromBackup = true
+        try? currentUrl.setResourceValues(resourceValues)
         openedAt = Date()
     }
 
