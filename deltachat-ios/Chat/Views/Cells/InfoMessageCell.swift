@@ -89,24 +89,30 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
     func setupSubviews() {
         contentView.addSubview(messageBackgroundContainer)
         contentView.addSubview(contentContainerOuterView)
-        contentView.addConstraints([
-            contentContainerOuterView.constraintAlignTopTo(contentView, paddingTop: 12, priority: .defaultLow),
-            contentContainerOuterView.constraintAlignBottomTo(contentView, paddingBottom: 12, priority: .defaultLow),
-            contentContainerOuterView.constraintAlignLeadingMaxTo(contentView, paddingLeading: 55),
-            contentContainerOuterView.constraintCenterXTo(contentView, priority: .defaultLow),
-            messageBackgroundContainer.constraintAlignLeadingTo(contentContainerInnerView, paddingLeading: -10),
-            messageBackgroundContainer.constraintAlignTopTo(contentContainerInnerView, paddingTop: -6),
-            messageBackgroundContainer.constraintAlignBottomTo(contentContainerInnerView, paddingBottom: -6),
-            messageBackgroundContainer.constraintAlignTrailingTo(contentContainerInnerView, paddingTrailing: -10),
+        let outerTopConstraint = contentContainerOuterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
+        outerTopConstraint.priority = .defaultLow
+        let outerBottomConstraint = contentContainerOuterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        outerBottomConstraint.priority = .defaultLow
+        let outerCenterXConstraint = contentContainerOuterView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        outerCenterXConstraint.priority = .defaultLow
+        NSLayoutConstraint.activate([
+            outerTopConstraint,
+            outerBottomConstraint,
+            contentContainerOuterView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 55),
+            outerCenterXConstraint,
+            messageBackgroundContainer.leadingAnchor.constraint(equalTo: contentContainerInnerView.leadingAnchor, constant: -10),
+            messageBackgroundContainer.topAnchor.constraint(equalTo: contentContainerInnerView.topAnchor, constant: -6),
+            messageBackgroundContainer.bottomAnchor.constraint(equalTo: contentContainerInnerView.bottomAnchor, constant: 6),
+            messageBackgroundContainer.trailingAnchor.constraint(equalTo: contentContainerInnerView.trailingAnchor, constant: 10),
             spacerView.heightAnchor.constraint(equalToConstant: 16),
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
         ])
 
-        imageHeightConstraint = iconView.constraintHeightTo(0, priority: .required)
+        imageHeightConstraint = iconView.heightAnchor.constraint(equalToConstant: 0)
         imageSize = UIFont.preferredFont(for: .subheadline, weight: .medium).pointSize
         imageHeightConstraint?.isActive = true
-        trailingConstraint = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 55)
-        trailingConstraintEditingMode = messageLabel.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 10)
+        trailingConstraint = messageLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -55)
+        trailingConstraintEditingMode = messageLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -10)
         trailingConstraint?.isActive = !isEditing
         trailingConstraintEditingMode?.isActive = isEditing
     }

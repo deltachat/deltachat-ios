@@ -54,22 +54,22 @@ open class AudioPlayerView: UIView {
 
     /// Responsible for setting up the constraints of the cell's subviews.
     open func setupConstraints() {
-        playButton.constraintHeightTo(45, priority: UILayoutPriority(rawValue: 999)).isActive = true
-        playButton.constraintWidthTo(45, priority: UILayoutPriority(rawValue: 999)).isActive = true
-
-        let playButtonConstraints = [playButton.constraintCenterYTo(self),
-                                     playButton.constraintAlignLeadingTo(self, paddingLeading: 12)]
-        let durationLabelConstraints = [durationLabel.constraintAlignTrailingTo(self, paddingTrailing: 12),
-                                        durationLabel.constraintCenterYTo(self)]
-        self.addConstraints(playButtonConstraints)
-        self.addConstraints(durationLabelConstraints)
-
-        progressView.addConstraints(left: playButton.rightAnchor,
-                                    right: durationLabel.leftAnchor,
-                                    centerY: self.centerYAnchor,
-                                    leftConstant: 8,
-                                    rightConstant: 8)
-        let height = self.heightAnchor.constraint(equalTo: playButton.heightAnchor)
+        let playButtonHeight = playButton.heightAnchor.constraint(equalToConstant: 45)
+        playButtonHeight.priority = UILayoutPriority(rawValue: 999)
+        let playButtonWidth = playButton.widthAnchor.constraint(equalToConstant: 45)
+        playButtonWidth.priority = UILayoutPriority(rawValue: 999)
+        NSLayoutConstraint.activate([
+            playButtonHeight,
+            playButtonWidth,
+            playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            durationLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            progressView.leftAnchor.constraint(equalTo: playButton.rightAnchor, constant: 8),
+            progressView.rightAnchor.constraint(equalTo: durationLabel.leftAnchor, constant: -8),
+            progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
+        let height = heightAnchor.constraint(equalTo: playButton.heightAnchor)
         height.priority = .required
         height.isActive = true
     }
