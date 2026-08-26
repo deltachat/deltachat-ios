@@ -79,10 +79,20 @@ public class InitialsBadge: UIView {
     private func setupSubviews(with radius: CGFloat) {
         addSubview(imageView)
         imageView.layer.cornerRadius = radius
-        leadingImageAnchorConstraint = imageView.constraintAlignLeadingToAnchor(leadingAnchor)
-        trailingImageAnchorConstraint = imageView.constraintAlignTrailingToAnchor(trailingAnchor)
-        topImageAnchorConstraint = imageView.constraintAlignTopToAnchor(topAnchor)
-        bottomImageAnchorConstraint = imageView.constraintAlignBottomToAnchor(bottomAnchor)
+        let leadingConstraint = imageView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        let trailingConstraint = imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        let topConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
+        let bottomConstraint = imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        leadingImageAnchorConstraint = leadingConstraint
+        trailingImageAnchorConstraint = trailingConstraint
+        topImageAnchorConstraint = topConstraint
+        bottomImageAnchorConstraint = bottomConstraint
+        NSLayoutConstraint.activate([
+            leadingConstraint,
+            trailingConstraint,
+            topConstraint,
+            bottomConstraint,
+        ])
 
         addSubview(label)
         label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -93,15 +103,15 @@ public class InitialsBadge: UIView {
 
         addSubview(recentlySeenView)
         addSubview(unreadMessageCounter)
-        let imgViewConstraints = [recentlySeenView.constraintAlignBottomTo(self),
-                                  recentlySeenView.constraintAlignTrailingTo(self),
-                                  recentlySeenView.constraintHeightTo(recentlySeenViewWh),
-                                  recentlySeenView.constraintWidthTo(recentlySeenViewWh),
-                                  unreadMessageCounter.constraintAlignTopTo(self),
-                                  unreadMessageCounter.constraintAlignTrailingTo(self, paddingTrailing: -8)
-        ]
         recentlySeenView.layer.cornerRadius = recentlySeenViewWh / 2
-        addConstraints(imgViewConstraints)
+        NSLayoutConstraint.activate([
+            recentlySeenView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            recentlySeenView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            recentlySeenView.heightAnchor.constraint(equalToConstant: recentlySeenViewWh),
+            recentlySeenView.widthAnchor.constraint(equalToConstant: recentlySeenViewWh),
+            unreadMessageCounter.topAnchor.constraint(equalTo: topAnchor),
+            unreadMessageCounter.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+        ])
     }
 
     required init?(coder _: NSCoder) {
