@@ -95,10 +95,12 @@ class TextFieldCell: UITableViewCell {
     private func setupViews() {
         let margins = contentView.layoutMarginsGuide
         contentView.addSubview(stackView)
-        stackView.alignTopToAnchor(margins.topAnchor)
-        stackView.alignBottomToAnchor(margins.bottomAnchor)
-        stackView.alignLeadingToAnchor(margins.leadingAnchor)
-        stackView.alignTrailingToAnchor(margins.trailingAnchor)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: margins.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+        ])
         updateViews()
     }
 
