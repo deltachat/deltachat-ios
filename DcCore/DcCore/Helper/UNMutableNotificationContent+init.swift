@@ -19,6 +19,7 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
+        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
         threadIdentifier = "\(context.id)-\(chat.id)"
         sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
@@ -37,6 +38,7 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
+        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-reaction-\(contact.id)"
         threadIdentifier = "\(context.id)-\(chat.id)"
         sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
@@ -52,21 +54,23 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
+        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-update"
         threadIdentifier = "\(context.id)-\(chat.id)"
         sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
     }
 
-    convenience init?(forIncomingCallMsg msg: DcMsg, chat: DcChat, context: DcContext) {
+    convenience init?(forIncomingCallMsg msg: DcMsg, hasVideo: Bool, chat: DcChat, context: DcContext) {
         guard !context.isMuted(), !chat.isMuted, !canUseCallKit else { return nil }
         self.init()
         let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
         title = chat.isMultiUser ? chat.name : sender
-        body = .localized("incoming_call")
+        body = .localized(hasVideo ? "video_call" : "audio_call")
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
         userInfo["answer_call"] = true
+        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
         threadIdentifier = "calls"
         sound = .default // TODO: Ring?
         setRelevanceScore(for: msg, in: chat, context: context)
@@ -81,6 +85,7 @@ public extension UNMutableNotificationContent {
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id
+        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
         threadIdentifier = "calls"
         sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
@@ -96,5 +101,9 @@ extension UNMutableNotificationContent {
         case _ where chat.isMultiUser: 0.3
         default: 0.5
         }
+    }
+
+    public func idOrRandomUUID() -> String {
+        userInfo["id"] as? String ?? UUID().uuidString
     }
 }

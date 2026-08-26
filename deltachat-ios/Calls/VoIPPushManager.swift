@@ -1,4 +1,5 @@
 import PushKit
+import UIKit
 import DcCore
 
 class VoIPPushManager: NSObject, PKPushRegistryDelegate {
@@ -33,10 +34,18 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
             guard let placeCallInfo = callInfo["place_call_info"] as? String else { return }
             let hasVideo = callInfo["has_video"] as? Bool == true
             CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo, hasVideo: hasVideo)
-        } else if event == DC_EVENT_CALL_ENDED || event == DC_EVENT_INCOMING_CALL_ACCEPTED {
-            CallManager.shared.endCallControllerIfUnacceptedIncoming()
+            if !UserDefaults.mainIoRunning {
+                // didBecomeActive or willEnterForeground are not called when app is started from NSE
+                // so we need to start IO here.
+                UserDefaults.setMainIoRunning()
+                DcAccounts.shared.startIo()
+                DcAccounts.shared.maybeNetwork()
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                appDelegate?.registerBackgroundTask()
+            }
         } else {
-            logger.error("unknown event: \(event)")
+            // This would be bad because it prevents future calls from launching
+            logger.error("☎️ unknown event: \(event)")
         }
     }
 }
