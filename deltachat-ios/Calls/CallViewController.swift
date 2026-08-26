@@ -233,16 +233,28 @@ class CallViewController: UIViewController {
             callStatusLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
         view.addSubview(remoteVideoView)
-        remoteVideoView.fillSuperview()
+        remoteVideoView.translatesAutoresizingMaskIntoConstraints = false
         localVideoContainerView.addSubview(localVideoView)
-        localVideoView.fillSuperview()
+        localVideoView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(localVideoContainerView)
-        localVideoContainerView.constraint(equalTo: CGSize(width: 150, height: 150))
-        localVideoContainerView.alignTopToAnchor(view.safeAreaLayoutGuide.topAnchor, paddingTop: 10)
-        localVideoContainerView.alignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 10)
+        localVideoContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(flipCameraButton)
-        flipCameraButton.alignBottomToAnchor(localVideoView.bottomAnchor, paddingBottom: 4)
-        flipCameraButton.alignTrailingToAnchor(localVideoView.trailingAnchor, paddingTrailing: 4)
+        NSLayoutConstraint.activate([
+            remoteVideoView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            remoteVideoView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            remoteVideoView.topAnchor.constraint(equalTo: view.topAnchor),
+            remoteVideoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            localVideoView.leftAnchor.constraint(equalTo: localVideoContainerView.leftAnchor),
+            localVideoView.rightAnchor.constraint(equalTo: localVideoContainerView.rightAnchor),
+            localVideoView.topAnchor.constraint(equalTo: localVideoContainerView.topAnchor),
+            localVideoView.bottomAnchor.constraint(equalTo: localVideoContainerView.bottomAnchor),
+            localVideoContainerView.widthAnchor.constraint(equalToConstant: 150),
+            localVideoContainerView.heightAnchor.constraint(equalToConstant: 150),
+            localVideoContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            localVideoContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            flipCameraButton.bottomAnchor.constraint(equalTo: localVideoView.bottomAnchor, constant: -4),
+            flipCameraButton.trailingAnchor.constraint(equalTo: localVideoView.trailingAnchor, constant: -4),
+        ])
         view.addSubview(callButtonStackView)
         callButtonStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -250,8 +262,10 @@ class CallViewController: UIViewController {
             callButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         view.addSubview(unreadMessageCounter)
-        unreadMessageCounter.alignTrailingToAnchor(startPiPButton.trailingAnchor)
-        unreadMessageCounter.alignTopToAnchor(startPiPButton.topAnchor)
+        NSLayoutConstraint.activate([
+            unreadMessageCounter.trailingAnchor.constraint(equalTo: startPiPButton.trailingAnchor),
+            unreadMessageCounter.topAnchor.constraint(equalTo: startPiPButton.topAnchor),
+        ])
         setUnreadMessageCount(DcAccounts.shared.getFreshMessagesCount())
         view.bringSubviewToFront(callStatusLabel)
 

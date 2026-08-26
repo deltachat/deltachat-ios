@@ -58,9 +58,17 @@ class PiPVideoView: UIView {
         ])
 
         pipView.addSubview(renderView)
-        renderView.fillSuperview()
+        renderView.translatesAutoresizingMaskIntoConstraints = false
         pipView.addSubview(avatarView)
-        avatarView.centerInSuperview()
+        avatarView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            renderView.leftAnchor.constraint(equalTo: pipView.leftAnchor),
+            renderView.rightAnchor.constraint(equalTo: pipView.rightAnchor),
+            renderView.topAnchor.constraint(equalTo: pipView.topAnchor),
+            renderView.bottomAnchor.constraint(equalTo: pipView.bottomAnchor),
+            avatarView.centerXAnchor.constraint(equalTo: pipView.centerXAnchor),
+            avatarView.centerYAnchor.constraint(equalTo: pipView.centerYAnchor),
+        ])
         NSLayoutConstraint.activate([
             avatarView.leftAnchor.constraint(equalTo: pipView.leftAnchor, constant: 20),
             avatarView.topAnchor.constraint(equalTo: pipView.topAnchor, constant: 20),
@@ -68,7 +76,7 @@ class PiPVideoView: UIView {
         avatarView.widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
 
         videoCallSourceView.addSubview(pipView)
-        pipView.fillSuperview()
+        constrainPiPView(to: videoCallSourceView)
 
         pipController?.delegate = self
         resetSize()
@@ -83,8 +91,10 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         let pipVC = pictureInPictureController.contentSource?.activeVideoCallContentViewController
         pipView.removeFromSuperview()
-        pipVC?.view.addSubview(pipView)
-        pipView.fillSuperview()
+        if let pipViewContainer = pipVC?.view {
+            pipViewContainer.addSubview(pipView)
+            constrainPiPView(to: pipViewContainer)
+        }
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         CallWindow.shared?.showCallUI()
@@ -93,7 +103,7 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         pipView.removeFromSuperview()
         videoCallSourceView.addSubview(pipView)
-        pipView.fillSuperview()
+        constrainPiPView(to: videoCallSourceView)
         videoCallSourceView.setNeedsLayout()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: any Error) {
@@ -130,6 +140,16 @@ extension PiPVideoView: RTCVideoRenderer {
             renderView.displayLayer?.flushAndRemoveImage()
             resetSize()
         }
+    }
+
+    private func constrainPiPView(to container: UIView) {
+        pipView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pipView.leftAnchor.constraint(equalTo: container.leftAnchor),
+            pipView.rightAnchor.constraint(equalTo: container.rightAnchor),
+            pipView.topAnchor.constraint(equalTo: container.topAnchor),
+            pipView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+        ])
     }
 }
 
