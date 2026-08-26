@@ -107,16 +107,13 @@ class NotificationService: UNNotificationServiceExtension {
         if dcAccounts.backgroundFetch(timeout: UInt64(fetchTimeout)) {
             unc.removePendingNotificationRequests(withIdentifiers: ["best_attempt"])
             unc.removeDeliveredNotifications(withIdentifiers: ["best_attempt"])
-            // Wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE to be processed
-            await eventEmitterTask.value
             UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         } else {
             UserDefaults.pushToDebugArray("ERR3_CORE")
-            // We assume backgroundFetch returned false faster than the eventEmitterTask started
-            // and that hasn't called eventEmitter.getNextEvent() yet, because if it did, that task
-            // will be stuck as no events will ever be sent to the eventEmitter.
-            eventEmitterTask.cancel()
         }
+
+        // Wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE to be processed
+        await eventEmitterTask.value
 
         UserDefaults.setNseFetchingDone()
 
