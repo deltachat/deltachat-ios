@@ -16,6 +16,7 @@ public class NotificationManager {
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingReaction(_:)), name: Event.incomingReaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingWebxdcNotify(_:)), name: Event.incomingWebxdcNotify, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessageDeleted(_:)), name: Event.messageDeleted, object: nil)
     }
 
     deinit {
@@ -50,38 +51,47 @@ public class NotificationManager {
     }
 
     public static func removeAllNotifications() {
+        unc.removeAllPendingNotificationRequests()
         unc.removeAllDeliveredNotifications()
+    }
+
+    public static func removeNotificationsForMessage(_ msgId: Int, accountId: Int) {
+        Task {
+            await removeNotifications(where: {
+                $0.userInfo["account_id"] as? Int == accountId
+                    && $0.userInfo["message_id"] as? Int == msgId
+            })
+            updateBadgeCounters()
+        }
     }
 
     public static func removeNotificationsForChat(_ chatId: Int, accountId: Int) {
         Task {
-            let noticedThreadId = "\(accountId)-\(chatId)"
-            let pendingNotificationIds = await unc.pendingNotificationRequests()
-                .filter { $0.content.threadIdentifier == noticedThreadId }
-                .map { $0.identifier }
-            unc.removePendingNotificationRequests(withIdentifiers: pendingNotificationIds)
-            let deliveredNotificationIds = await unc.deliveredNotifications()
-                .filter { $0.request.content.threadIdentifier == noticedThreadId }
-                .map { $0.request.identifier }
-            unc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
-
-            NotificationManager.updateBadgeCounters()
+            await removeNotifications(where: {
+                $0.threadIdentifier == "\(accountId)-\(chatId)"
+            })
+            updateBadgeCounters()
         }
     }
 
     public static func removeNotificationsForAccount(accountId: Int) {
         Task {
-            let pendingNotificationIds = await unc.pendingNotificationRequests()
-                .filter { $0.content.userInfo["account_id"] as? Int == accountId }
-                .map { $0.identifier }
-            unc.removePendingNotificationRequests(withIdentifiers: pendingNotificationIds)
-            let deliveredNotificationIds = await unc.deliveredNotifications()
-                .filter { $0.request.content.userInfo["account_id"] as? Int == accountId }
-                .map { $0.request.identifier }
-            unc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
-
-            NotificationManager.updateBadgeCounters()
+            await removeNotifications(where: {
+                $0.userInfo["account_id"] as? Int == accountId
+            })
+            updateBadgeCounters()
         }
+    }
+
+    private static func removeNotifications(where filter: (UNNotificationContent) -> Bool) async {
+        let pendingNotificationIds = await unc.pendingNotificationRequests()
+            .filter { filter($0.content) }
+            .map { $0.identifier }
+        unc.removePendingNotificationRequests(withIdentifiers: pendingNotificationIds)
+        let deliveredNotificationIds = await unc.deliveredNotifications()
+            .filter { filter($0.request.content) }
+            .map { $0.request.identifier }
+        unc.removeDeliveredNotifications(withIdentifiers: deliveredNotificationIds)
     }
 
     // MARK: - Notifications
@@ -153,5 +163,11 @@ public class NotificationManager {
         if let content = UNMutableNotificationContent(forWebxdcNotification: webxdcNotification, msg: msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
         }
+    }
+
+    @objc private func handleMessageDeleted(_ notification: Notification) {
+        guard let accountId = notification.userInfo?["account_id"] as? Int,
+              let msgId = notification.userInfo?["message_id"] as? Int else { return }
+        Self.removeNotificationsForMessage(msgId, accountId: accountId)
     }
 }
