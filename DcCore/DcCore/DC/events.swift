@@ -10,6 +10,7 @@ public enum Event {
     public static let incomingReaction = Notification.Name(rawValue: "incomingReaction")
     public static let incomingWebxdcNotify = Notification.Name(rawValue: "incomingWebxdcNotify")
     public static let messagesNoticed = Notification.Name(rawValue: "messagesNoticed")
+    public static let messageDeleted = Notification.Name(rawValue: "messageDeleted")
 
     // Chats
     public static let chatModified = Notification.Name(rawValue: "chatModified")
@@ -171,6 +172,12 @@ public class DcEventHandler {
                 "msg_id": Int(data2),
                 "href": event.data1String,
                 "text": event.data2String
+            ])
+        case DC_EVENT_MSG_DELETED:
+            NotificationCenter.default.post(name: Event.messageDeleted, object: nil, userInfo: [
+                "message_id": Int(data2),
+                "chat_id": Int(data1),
+                "account_id": accountId
             ])
 
         case DC_EVENT_CONTACTS_CHANGED:

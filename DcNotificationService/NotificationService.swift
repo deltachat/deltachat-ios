@@ -99,6 +99,9 @@ class NotificationService: UNNotificationServiceExtension {
                     UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
                 case DC_EVENT_MSGS_NOTICED:
                     NotificationManager.removeNotificationsForChat(event.data1Int, accountId: event.accountId)
+                case DC_EVENT_MSG_DELETED:
+                    NotificationManager.removeNotificationsForMessage(event.data2Int, accountId: event.accountId)
+
                 default: break
                 }
             }
