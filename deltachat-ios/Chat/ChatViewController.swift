@@ -196,7 +196,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             effect.isInteractive = true
             let glassView = UIVisualEffectView(effect: effect)
             glassView.contentView.addSubview(scrollDownButton)
-            scrollDownButton.fillSuperview()
+            scrollDownButton.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                scrollDownButton.leftAnchor.constraint(equalTo: glassView.contentView.leftAnchor),
+                scrollDownButton.rightAnchor.constraint(equalTo: glassView.contentView.rightAnchor),
+                scrollDownButton.topAnchor.constraint(equalTo: glassView.contentView.topAnchor),
+                scrollDownButton.bottomAnchor.constraint(equalTo: glassView.contentView.bottomAnchor),
+            ])
             view = glassView
         } else {
             scrollDownButton.backgroundColor = .secondarySystemBackground
@@ -345,11 +351,29 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         titleView.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
         view.addSubview(backgroundContainer)
-        backgroundContainer.fillSuperview()
+        backgroundContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backgroundContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            backgroundContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            backgroundContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
         view.addSubview(tableViewContainer)
-        tableViewContainer.fillSuperview()
+        tableViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableViewContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableViewContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableViewContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            tableViewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
         tableViewContainer.addSubview(tableView)
-        tableView.fillSuperview()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leftAnchor.constraint(equalTo: tableViewContainer.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: tableViewContainer.rightAnchor),
+            tableView.topAnchor.constraint(equalTo: tableViewContainer.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: tableViewContainer.bottomAnchor),
+        ])
         if #available(iOS 26.0, *) {
             tableView.topEdgeEffect.isHidden = true
             tableView.bottomEdgeEffect.isHidden = true
@@ -366,7 +390,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         view.addSubview(contextMenuPreviewContainer)
-        contextMenuPreviewContainer.fillSuperview()
+        contextMenuPreviewContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            contextMenuPreviewContainer.leftAnchor.constraint(equalTo: view.leftAnchor),
+            contextMenuPreviewContainer.rightAnchor.constraint(equalTo: view.rightAnchor),
+            contextMenuPreviewContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            contextMenuPreviewContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
 
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
@@ -931,7 +961,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         bar.translatesAutoresizingMaskIntoConstraints = false
         removeToolbar()
         toolbarContainerView.addSubview(bar)
-        bar.fillSuperview()
+        NSLayoutConstraint.activate([
+            bar.leftAnchor.constraint(equalTo: toolbarContainerView.leftAnchor),
+            bar.rightAnchor.constraint(equalTo: toolbarContainerView.rightAnchor),
+            bar.topAnchor.constraint(equalTo: toolbarContainerView.topAnchor),
+            bar.bottomAnchor.constraint(equalTo: toolbarContainerView.bottomAnchor),
+        ])
     }
 
     private func configureDraftArea(draft: DraftModel, animated: Bool = true) {
@@ -939,11 +974,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if searchController.isActive {
             removeToolbar()
             toolbarContainerView.addSubview(searchAccessoryBar)
-            searchAccessoryBar.fillSuperview()
+            searchAccessoryBar.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                searchAccessoryBar.leftAnchor.constraint(equalTo: toolbarContainerView.leftAnchor),
+                searchAccessoryBar.rightAnchor.constraint(equalTo: toolbarContainerView.rightAnchor),
+                searchAccessoryBar.topAnchor.constraint(equalTo: toolbarContainerView.topAnchor),
+                searchAccessoryBar.bottomAnchor.constraint(equalTo: toolbarContainerView.bottomAnchor),
+            ])
         } else if draft.isEditing {
             removeToolbar()
             toolbarContainerView.addSubview(editingBar)
-            editingBar.fillSuperview()
+            editingBar.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                editingBar.leftAnchor.constraint(equalTo: toolbarContainerView.leftAnchor),
+                editingBar.rightAnchor.constraint(equalTo: toolbarContainerView.rightAnchor),
+                editingBar.topAnchor.constraint(equalTo: toolbarContainerView.topAnchor),
+                editingBar.bottomAnchor.constraint(equalTo: toolbarContainerView.bottomAnchor),
+            ])
         } else if dcChat.canSend {
             configureMessageInputBar()
         } else {
@@ -1376,7 +1423,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             addChild(inputToolBarHost)
             toolbarContainerView.addSubview(inputToolBarHost.view)
             inputToolBarHost.didMove(toParent: self)
-            inputToolBarHost.view.fillSuperview()
+            inputToolBarHost.view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                inputToolBarHost.view.leftAnchor.constraint(equalTo: toolbarContainerView.leftAnchor),
+                inputToolBarHost.view.rightAnchor.constraint(equalTo: toolbarContainerView.rightAnchor),
+                inputToolBarHost.view.topAnchor.constraint(equalTo: toolbarContainerView.topAnchor),
+                inputToolBarHost.view.bottomAnchor.constraint(equalTo: toolbarContainerView.bottomAnchor),
+            ])
             toolbarContainerView.invalidateIntrinsicContentSize()
         }
     }

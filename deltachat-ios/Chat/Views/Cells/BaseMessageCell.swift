@@ -168,8 +168,8 @@ public class BaseMessageCell: UITableViewCell {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            button.constraintHeightTo(gotoOriginalWidth),
-            button.constraintWidthTo(gotoOriginalWidth)
+            button.heightAnchor.constraint(equalToConstant: gotoOriginalWidth),
+            button.widthAnchor.constraint(equalToConstant: gotoOriginalWidth),
         ])
         button.addTarget(self, action: #selector(onGotoOriginal), for: .touchUpInside)
         button.backgroundColor = DcColors.gotoButtonBackgroundColor
@@ -234,50 +234,58 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(avatarView)
         contentView.addSubview(gotoOriginalButton)
 
-        contentView.addConstraints([
-            avatarView.constraintAlignLeadingTo(contentView, paddingLeading: 2),
-            avatarView.constraintAlignBottomTo(messageBackgroundContainer),
-            avatarView.constraintWidthTo(avatarSize, priority: .defaultHigh),
-            avatarView.constraintHeightTo(avatarSize, priority: .defaultHigh),
-            topLabel.constraintAlignTopTo(messageBackgroundContainer, paddingTop: 6),
-            topLabel.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 8),
-            topLabel.constraintAlignTrailingMaxTo(messageBackgroundContainer, paddingTrailing: 8),
-            messageBackgroundContainer.constraintAlignTopTo(contentView, paddingTop: 3),
-            actionButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: 12),
-            statusView.constraintAlignLeadingMaxTo(messageBackgroundContainer, paddingLeading: 8),
-            statusView.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 8),
-            statusView.constraintToBottomOf(actionButton, paddingTop: 8, priority: .defaultHigh),
-            statusView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 6),
-            gotoOriginalButton.constraintCenterYTo(messageBackgroundContainer),
+        let avatarWidthConstraint = avatarView.widthAnchor.constraint(equalToConstant: avatarSize)
+        avatarWidthConstraint.priority = .defaultHigh
+        let avatarHeightConstraint = avatarView.heightAnchor.constraint(equalToConstant: avatarSize)
+        avatarHeightConstraint.priority = .defaultHigh
+        let statusTopConstraint = statusView.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 8)
+        statusTopConstraint.priority = .defaultHigh
+        NSLayoutConstraint.activate([
+            avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 2),
+            avatarView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor),
+            avatarWidthConstraint,
+            avatarHeightConstraint,
+            topLabel.topAnchor.constraint(equalTo: messageBackgroundContainer.topAnchor, constant: 6),
+            topLabel.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor, constant: 8),
+            topLabel.trailingAnchor.constraint(lessThanOrEqualTo: messageBackgroundContainer.trailingAnchor, constant: -8),
+            messageBackgroundContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 3),
+            actionButton.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor, constant: 12),
+            statusView.leadingAnchor.constraint(greaterThanOrEqualTo: messageBackgroundContainer.leadingAnchor, constant: 8),
+            statusView.trailingAnchor.constraint(equalTo: messageBackgroundContainer.trailingAnchor, constant: -8),
+            statusTopConstraint,
+            statusView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor, constant: -6),
+            gotoOriginalButton.centerYAnchor.constraint(equalTo: messageBackgroundContainer.centerYAnchor),
         ])
 
-        gotoOriginalLeftConstraint = gotoOriginalButton.constraintAlignLeadingTo(messageBackgroundContainer, paddingLeading: -(gotoOriginalWidth+8))
+        gotoOriginalLeftConstraint = gotoOriginalButton.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor, constant: -(gotoOriginalWidth+8))
         gotoOriginalLeftConstraint?.isActive = false
-        gotoOriginalRightConstraint = gotoOriginalButton.constraintToTrailingOf(contentView, paddingLeading: -(gotoOriginalWidth+8))
+        gotoOriginalRightConstraint = gotoOriginalButton.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -(gotoOriginalWidth+8))
         gotoOriginalRightConstraint?.isActive = false
 
-        leadingConstraint = messageBackgroundContainer.constraintAlignLeadingTo(contentView, paddingLeading: 6)
-        bottomConstraint = messageBackgroundContainer.constraintAlignBottomTo(contentView, paddingBottom: 3)
+        leadingConstraint = messageBackgroundContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6)
+        bottomConstraint = messageBackgroundContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3)
         bottomConstraint?.isActive = true
-        leadingConstraintGroup = messageBackgroundContainer.constraintToTrailingOf(avatarView, paddingLeading: 2)
-        trailingConstraint = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 50)
-        trailingConstraintEditingMode = messageBackgroundContainer.constraintAlignTrailingMaxTo(contentView, paddingTrailing: 6)
-        leadingConstraintCurrentSender = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 50)
-        leadingConstraintCurrentSenderEditingMode = messageBackgroundContainer.constraintAlignLeadingMaxTo(contentView, paddingLeading: 6)
-        trailingConstraintCurrentSender = messageBackgroundContainer.constraintAlignTrailingTo(contentView, paddingTrailing: 6)
+        leadingConstraintGroup = messageBackgroundContainer.leadingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 2)
+        trailingConstraint = messageBackgroundContainer.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -50)
+        trailingConstraintEditingMode = messageBackgroundContainer.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -6)
+        leadingConstraintCurrentSender = messageBackgroundContainer.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 50)
+        leadingConstraintCurrentSenderEditingMode = messageBackgroundContainer.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 6)
+        trailingConstraintCurrentSender = messageBackgroundContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6)
 
-        mainContentViewLeadingConstraint = mainContentView.constraintAlignLeadingTo(messageBackgroundContainer)
-        mainContentViewTrailingConstraint = mainContentView.constraintAlignTrailingTo(messageBackgroundContainer)
+        mainContentViewLeadingConstraint = mainContentView.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor)
+        mainContentViewTrailingConstraint = mainContentView.trailingAnchor.constraint(equalTo: messageBackgroundContainer.trailingAnchor)
         mainContentViewLeadingConstraint?.isActive = true
         mainContentViewTrailingConstraint?.isActive = true
 
-        mainContentBelowTopLabelConstraint = mainContentView.constraintToBottomOf(topLabel, paddingTop: 6)
-        mainContentUnderTopLabelConstraint = mainContentView.constraintAlignTopTo(messageBackgroundContainer)
-        mainContentAboveActionBtnConstraint = actionButton.constraintToBottomOf(mainContentView, paddingTop: 8, priority: .defaultHigh)
-        mainContentUnderBottomLabelConstraint = mainContentView.constraintAlignBottomTo(messageBackgroundContainer, paddingBottom: 0, priority: .defaultHigh)
+        mainContentBelowTopLabelConstraint = mainContentView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 6)
+        mainContentUnderTopLabelConstraint = mainContentView.topAnchor.constraint(equalTo: messageBackgroundContainer.topAnchor)
+        mainContentAboveActionBtnConstraint = actionButton.topAnchor.constraint(equalTo: mainContentView.bottomAnchor, constant: 8)
+        mainContentAboveActionBtnConstraint?.priority = .defaultHigh
+        mainContentUnderBottomLabelConstraint = mainContentView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor)
+        mainContentUnderBottomLabelConstraint?.priority = .defaultHigh
 
-        actionBtnZeroHeightConstraint = actionButton.constraintHeightTo(0)
-        actionBtnTrailingConstraint = actionButton.constraintAlignTrailingTo(messageBackgroundContainer, paddingTrailing: 12)
+        actionBtnZeroHeightConstraint = actionButton.heightAnchor.constraint(equalToConstant: 0)
+        actionBtnTrailingConstraint = actionButton.trailingAnchor.constraint(equalTo: messageBackgroundContainer.trailingAnchor, constant: -12)
 
         topCompactView = false
         bottomCompactView = false
