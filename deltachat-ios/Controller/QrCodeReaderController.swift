@@ -133,10 +133,12 @@ class QrCodeReaderController: UIViewController {
         view.addSubview(infoLabel)
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         infoLabelBottomConstraint = infoLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
-        infoLabelCenterConstraint = infoLabel.constraintCenterYTo(view)
+        infoLabelCenterConstraint = infoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         infoLabelBottomConstraint?.isActive = true
-        infoLabel.constraintAlignLeadingTo(view, paddingLeading: 5).isActive = true
-        infoLabel.constraintAlignTrailingTo(view, paddingTrailing: 5).isActive = true
+        NSLayoutConstraint.activate([
+            infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+        ])
     }
     
     private func showCameraWarning() {

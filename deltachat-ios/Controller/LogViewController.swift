@@ -40,10 +40,10 @@ public class LogViewController: UIViewController {
 
         let bottomConstraint = view.bottomAnchor.constraint(equalTo: logText.bottomAnchor)
 
-        view.addConstraints([
-            logText.constraintAlignTopToAnchor(view.safeAreaLayoutGuide.topAnchor),
-            logText.constraintAlignLeadingToAnchor(view.safeAreaLayoutGuide.leadingAnchor),
-            logText.constraintAlignTrailingToAnchor(view.safeAreaLayoutGuide.trailingAnchor),
+        NSLayoutConstraint.activate([
+            logText.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            logText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            logText.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             bottomConstraint
         ])
         self.bottomConstraint = bottomConstraint
