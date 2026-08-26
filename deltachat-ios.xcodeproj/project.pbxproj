@@ -68,7 +68,6 @@
 		3080A014277DDABA00E74565 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A011277DDAB900E74565 /* KeyboardManager.swift */; };
 		3080A015277DDABA00E74565 /* KeyboardEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A012277DDAB900E74565 /* KeyboardEvent.swift */; };
 		3080A034277DE30100E74565 /* NSNotification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */; };
-		3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3080A033277DE30100E74565 /* UIView+AutoLayout.swift */; };
 		30860EE926F49E64002651A6 /* DownloadOnDemandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */; };
 		308850A0282A914F00204623 /* DcMsg+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304219D82440734A00516852 /* DcMsg+Extension.swift */; };
 		3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3095A350237DD1F700AB07F7 /* MediaPicker.swift */; };
@@ -433,7 +432,6 @@
 		3080A011277DDAB900E74565 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		3080A012277DDAB900E74565 /* KeyboardEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardEvent.swift; sourceTree = "<group>"; };
 		3080A02F277DE2FF00E74565 /* NSNotification+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extensions.swift"; sourceTree = "<group>"; };
-		3080A033277DE30100E74565 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		30860EE826F49E64002651A6 /* DownloadOnDemandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadOnDemandViewController.swift; sourceTree = "<group>"; };
 		3095A350237DD1F700AB07F7 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		30A4149624F6EFBE00EC91EB /* InfoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMessageCell.swift; sourceTree = "<group>"; };
@@ -1113,7 +1111,6 @@
 				3011E8042787365D00214221 /* KeychainManager.swift */,
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
 				B2CDA6312CCDB3080024763F /* MuteDialog.swift */,
-				3080A033277DE30100E74565 /* UIView+AutoLayout.swift */,
 				6424C05F2FB8534A00F7313F /* UIToolbar+AutoLayout.swift */,
 				649876282FE2E10A005F80F9 /* SwiftUI */,
 			);
@@ -1864,7 +1861,6 @@
 				30F8817624DA97DA0023780E /* BackgroundContainer.swift in Sources */,
 				3067AA4C2666310E00525036 /* ChatInputTextView.swift in Sources */,
 				30DDCBEB28FCA21800465D22 /* ProfileSwitchViewController.swift in Sources */,
-				3080A038277DE30100E74565 /* UIView+AutoLayout.swift in Sources */,
 				649876302FE2E1D5005F80F9 /* FileViewRepresentable.swift in Sources */,
 				30B0ACFA24AB5B99004D5E29 /* EphemeralMessagesViewController.swift in Sources */,
 				305962102346154D00C80F33 /* String+Extension.swift in Sources */,
