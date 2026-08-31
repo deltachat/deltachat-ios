@@ -17,6 +17,8 @@ public class NotificationManager {
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingWebxdcNotify(_:)), name: Event.incomingWebxdcNotify, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessageDeleted(_:)), name: Event.messageDeleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleCallEnded(_:)), name: Event.callEnded, object: nil)
     }
 
     deinit {
@@ -105,9 +107,8 @@ public class NotificationManager {
 
     @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
         NotificationManager.updateBadgeCounters()
-        Task { [weak self] in
-            guard let self,
-                  let accountId = notification.userInfo?["account_id"] as? Int,
+        Task {
+            guard let accountId = notification.userInfo?["account_id"] as? Int,
                   let chatId = notification.userInfo?["chat_id"] as? Int,
                   let messageId = notification.userInfo?["message_id"] as? Int
             else { return }
@@ -115,19 +116,40 @@ public class NotificationManager {
         }
     }
 
-    public func notifyIncomingMessage(_ msgId: Int, chatId: Int, accountId: Int) async {
+    @objc private func handleCallEnded(_ notification: Notification) {
+        Task {
+            guard let accountId = notification.userInfo?["account_id"] as? Int,
+                  let msgId = notification.userInfo?["message_id"] as? Int else { return }
+            await notifyIncomingMessage(msgId, accountId: accountId)
+        }
+    }
+
+    public func notifyIncomingMessage(_ msgId: Int, chatId: Int? = nil, accountId: Int) async {
         let eventContext = dcAccounts.get(id: accountId)
-        let chat = eventContext.getChat(chatId: chatId)
         let msg = eventContext.getMessage(id: msgId)
+        let chat = eventContext.getChat(chatId: chatId ?? msg.chatId)
         if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
         }
     }
 
+    /// If there is already a notification for this message we update it.
+    public func updateNotification(forMsg msgId: Int, accountId: Int) async {
+        let eventContext = dcAccounts.get(id: accountId)
+        let msg = eventContext.getMessage(id: msgId)
+        let chat = eventContext.getChat(chatId: msg.chatId)
+        if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
+            let id = content.idOrRandomUUID()
+            let isPending = await Self.unc.pendingNotificationRequests().contains(where: { $0.identifier == id })
+            let isDelivered = await Self.unc.deliveredNotifications().contains(where: { $0.request.identifier == id })
+            guard isPending || isDelivered else { return }
+            try? await Self.unc.add(UNNotificationRequest(identifier: id, content: content, trigger: isPending ? inOneSecond : nil))
+        }
+    }
+
     @objc private func handleIncomingReaction(_ notification: Notification) {
-        Task { [weak self] in
-            guard let self,
-                  let accountId = notification.userInfo?["account_id"] as? Int,
+        Task {
+            guard let accountId = notification.userInfo?["account_id"] as? Int,
                   let msgId = notification.userInfo?["msg_id"] as? Int,
                   let reaction = notification.userInfo?["reaction"] as? String,
                   let contact = notification.userInfo?["contact_id"] as? Int
@@ -146,9 +168,8 @@ public class NotificationManager {
     }
 
     @objc private func handleIncomingWebxdcNotify(_ notification: Notification) {
-        Task { [weak self] in
-            guard let self,
-                  let accountId = notification.userInfo?["account_id"] as? Int,
+        Task {
+            guard let accountId = notification.userInfo?["account_id"] as? Int,
                   let msgId = notification.userInfo?["msg_id"] as? Int,
                   let text = notification.userInfo?["text"] as? String
             else { return }
@@ -162,6 +183,15 @@ public class NotificationManager {
         let chat = eventContext.getChat(chatId: msg.chatId)
         if let content = UNMutableNotificationContent(forWebxdcNotification: webxdcNotification, msg: msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
+        }
+    }
+
+    @objc private func handleMessagesChanged(_ notification: Notification) {
+        Task {
+            guard let accountId = notification.userInfo?["account_id"] as? Int,
+                  let msgId = notification.userInfo?["message_id"] as? Int,
+                  msgId > 0 else { return }
+            await updateNotification(forMsg: msgId, accountId: accountId)
         }
     }
 

@@ -94,14 +94,19 @@ class NotificationService: UNNotificationServiceExtension {
                             }
                         }
                     }
-                case DC_EVENT_CALL_ENDED, DC_EVENT_INCOMING_CALL_ACCEPTED:
+                case DC_EVENT_CALL_ENDED:
+                    await notificationManager.notifyIncomingMessage(event.data1Int, accountId: event.accountId)
+                    fallthrough
+                case DC_EVENT_INCOMING_CALL_ACCEPTED:
                     UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
                     UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
                 case DC_EVENT_MSGS_NOTICED:
                     NotificationManager.removeNotificationsForChat(event.data1Int, accountId: event.accountId)
-                case DC_EVENT_MSG_DELETED:
+                case DC_EVENT_MSGS_CHANGED:
+                    guard event.data2Int > 0 else { break }
+                    await notificationManager.updateNotification(forMsg: event.data2Int, accountId: event.accountId)
+                case DC_EVENT_MSG_READ, DC_EVENT_MSG_DELETED:
                     NotificationManager.removeNotificationsForMessage(event.data2Int, accountId: event.accountId)
-
                 default: break
                 }
             }
