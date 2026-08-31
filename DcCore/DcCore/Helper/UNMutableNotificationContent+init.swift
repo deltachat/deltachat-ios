@@ -1,4 +1,5 @@
 import UserNotifications
+import Intents
 
 public extension UNMutableNotificationContent {
     /// The limit for expanded notifications on iOS 14+.
@@ -22,6 +23,83 @@ public extension UNMutableNotificationContent {
         threadIdentifier = "\(context.id)-\(chat.id)"
         sound = .default
         setRelevanceScore(for: msg, in: chat, context: context)
+    }
+
+    /// Returns an iOS communication notification for an incoming message.
+    ///
+    /// The system uses the sender's image for one-to-one chats and the chat image
+    /// for group chats. If the system cannot create the richer notification, keep
+    /// the regular notification content instead.
+    public func updatingForIncomingMessage(_ msg: DcMsg, chat: DcChat, context: DcContext) -> UNNotificationContent {
+        guard #available(iOS 15.0, *) else { return self }
+
+        let senderContact = context.getContact(id: msg.fromContactId)
+        let senderName = msg.getSenderName(senderContact)
+        let senderHandle = INPersonHandle(
+            value: senderContact.email.isEmpty ? "deltachat-contact-\(context.id)-\(senderContact.id)" : senderContact.email,
+            type: senderContact.email.isEmpty ? .unknown : .emailAddress
+        )
+        let sender = INPerson(
+            personHandle: senderHandle,
+            nameComponents: nil,
+            displayName: senderName,
+            image: senderContact.profileImage.flatMap { $0.pngData() }.map(INImage.init(imageData:)),
+            contactIdentifier: nil,
+            customIdentifier: "\(context.id)-\(senderContact.id)",
+            isMe: false,
+            suggestionType: .none
+        )
+
+        let isGroup = chat.isMultiUser
+        let groupName = isGroup ? INSpeakableString(spokenPhrase: chat.name) : nil
+        let recipients: [INPerson]? = isGroup ? chat.getContactIds(context)
+            .filter { $0 != msg.fromContactId && $0 != Int(DC_CONTACT_ID_SELF) }
+            .map { contactId in
+                let contact = context.getContact(id: contactId)
+                let handle = INPersonHandle(
+                    value: contact.email.isEmpty ? "deltachat-contact-\(context.id)-\(contact.id)" : contact.email,
+                    type: contact.email.isEmpty ? .unknown : .emailAddress
+                )
+                return INPerson(
+                    personHandle: handle,
+                    nameComponents: nil,
+                    displayName: contact.displayName,
+                    image: nil,
+                    contactIdentifier: nil,
+                    customIdentifier: "\(context.id)-\(contact.id)",
+                    isMe: false,
+                    suggestionType: .none
+                )
+            } : nil
+        let intent = INSendMessageIntent(
+            recipients: recipients,
+            outgoingMessageType: .outgoingMessageText,
+            content: body,
+            speakableGroupName: groupName,
+            conversationIdentifier: "\(context.id)-\(chat.id)",
+            serviceName: nil,
+            sender: sender,
+            attachments: nil
+        )
+
+        if let groupImage = chat.profileImage.flatMap({ $0.pngData() }).map(INImage.init(imageData:)) {
+            intent.setImage(groupImage, forParameterNamed: \.speakableGroupName)
+        }
+
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.direction = .incoming
+        interaction.donate { error in
+            if let error {
+                logger.warning("Could not donate incoming message intent: \(error)")
+            }
+        }
+
+        do {
+            return try updating(from: intent)
+        } catch {
+            logger.warning("Could not create communication notification: \(error)")
+            return self
+        }
     }
 
     /// Initialiser that returns a notification for an incoming reaction. Returns nil if no notification should be sent (eg if chat is muted)
