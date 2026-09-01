@@ -120,7 +120,8 @@ public class NotificationManager {
             let chat = eventContext.getChat(chatId: chatId)
             let msg = eventContext.getMessage(id: messageId)
             if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+                let notificationContent = content.updatingForIncomingMessage(msg, chat: chat, context: eventContext)
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: notificationContent, trigger: nil)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                 logger.info("notification added for \(messageId)")
             }
