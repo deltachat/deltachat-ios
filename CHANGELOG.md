@@ -3,6 +3,7 @@
 ## 2.59.1
 2026-08
 
+- Log to a private file instead of the system log, so logs are no longer readable from outside the app (e.g. via USB or Wi-Fi); "View Log" keeps the last two executions
 - Allow to react in channels
 - Allow scanning Invitation Code when creating a new profile
 - Offer five default reactions when long-tapping a message

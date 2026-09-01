@@ -133,6 +133,7 @@ public class LogViewController: UIViewController {
     public func getLogLines() -> String {
         var log = ""
 
+        #if DEBUG
         do {
             let store = try OSLogStore(scope: .currentProcessIdentifier)
             let position = store.position(timeIntervalSinceLatestBoot: 1)
@@ -154,6 +155,13 @@ public class LogViewController: UIViewController {
         }
 
         log += "\n\nTo get the full log, use Console.app on a Mac."
+        #else
+        // release builds log to a file in the app-group container, see DcLogger
+        log = getDcLogger().getLogText()
+        if log.isEmpty {
+            log = "\nEmpty log."
+        }
+        #endif
 
         return log
     }
