@@ -59,6 +59,14 @@ class NotificationService: UNNotificationServiceExtension {
                 guard let event = eventEmitter.getNextEvent() else { break }
                 if event.id == DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE { break }
                 switch event.id {
+                #if DEBUG
+                case DC_EVENT_ERROR:
+                    print("❤️ [\(event.accountId)] \(event.data2String)")
+                case DC_EVENT_WARNING:
+                    print("🧡 [\(event.accountId)] \(event.data2String)")
+                case DC_EVENT_INFO:
+                    print("💙 [\(event.accountId)] \(event.data2String)")
+                #endif
                 case DC_EVENT_INCOMING_MSG:
                     await notificationManager.notifyIncomingMessage(event.data2Int, chatId: event.data1Int, accountId: event.accountId)
                 case DC_EVENT_INCOMING_REACTION:
