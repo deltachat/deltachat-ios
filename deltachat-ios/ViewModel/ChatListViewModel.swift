@@ -245,7 +245,7 @@ class ChatListViewModel: NSObject {
         let chatIds = chatIdsFor(indexPaths: indexPaths)
         for chatId in chatIds {
             dcContext.marknoticedChat(chatId: chatId)
-            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+            NotificationManager.removeNotificationsForChat(chatId, accountId: dcContext.id)
         }
     }
 
@@ -254,7 +254,7 @@ class ChatListViewModel: NSObject {
         let isArchivedBefore = chat.isArchived
         dcContext.archiveChat(chatId: chatId, archive: !isArchivedBefore)
         if !isArchivedBefore {
-            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+            NotificationManager.removeNotificationsForChat(chatId, accountId: dcContext.id)
         }
         updateChatList(notifyListener: true)
     }
@@ -492,7 +492,7 @@ extension DcContext {
         if #available(iOS 17.0, *) {
             UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: id, chatId: chatId)
         }
-        NotificationManager.removeNotificationsForChat(dcContext: self, chatId: chatId)
+        NotificationManager.removeNotificationsForChat(chatId, accountId: id)
         INInteraction.delete(with: ["\(id).\(chatId)"])
     }
 }

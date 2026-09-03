@@ -3,15 +3,11 @@ import notify
 @objc public enum DarwinNotification: Int {
     case appRunningQuestion
     case appRunningConfirmation
-    case nseFetchingQuestion
-    case nseFetchingConfirmation
 
     var name: String {
         switch self {
         case .appRunningQuestion: "chat.delta.app_running_question"
         case .appRunningConfirmation: "chat.delta.app_running_confirmation"
-        case .nseFetchingQuestion: "chat.delta.nse_fetching_question"
-        case .nseFetchingConfirmation: "chat.delta.nse_fetching_confirmation"
         }
     }
 }

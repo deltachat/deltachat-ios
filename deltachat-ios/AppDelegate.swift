@@ -335,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // let the app run in background for a little while
     // eg. to complete sending messages out and to react to responses.
-    private func registerBackgroundTask() {
+    func registerBackgroundTask() {
         logger.info("⬅️ registering background task")
         bgIoTimestamp = Double(Date().timeIntervalSince1970)
         unregisterBackgroundTask()
@@ -625,7 +625,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func reloadDcContext(accountCode: String? = nil) {
         setStockTranslations()
         locationManager.reloadDcContext()
-        notificationManager.reloadDcContext()
         if dcAccounts.getSelected().isConfigured() {
             appCoordinator.resetTabBarRootViewControllers()
         } else {

@@ -550,7 +550,7 @@ class ProfileViewController: UITableViewController {
         guard let chat else { return }
         let archivedBefore = chat.isArchived
         if !archivedBefore {
-            NotificationManager.removeNotificationsForChat(dcContext: dcContext, chatId: chatId)
+            NotificationManager.removeNotificationsForChat(chatId, accountId: dcContext.id)
         }
         dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
         self.chat = dcContext.getChat(chatId: chatId)

@@ -137,6 +137,10 @@ public class DcAccounts {
         return dc_accounts_background_fetch(accountsPointer, timeout) == 1
     }
 
+    public func stopBackgroundFetch() {
+        dc_accounts_stop_background_fetch(accountsPointer)
+    }
+
     public func setPushToken(token: String) {
         dc_accounts_set_push_device_token(accountsPointer, token)
     }
