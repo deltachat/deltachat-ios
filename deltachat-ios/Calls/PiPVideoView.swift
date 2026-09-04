@@ -58,14 +58,10 @@ class PiPVideoView: UIView {
         ])
 
         pipView.addSubview(renderView)
-        renderView.translatesAutoresizingMaskIntoConstraints = false
+        renderView.fillSuperview()
         pipView.addSubview(avatarView)
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            renderView.leftAnchor.constraint(equalTo: pipView.leftAnchor),
-            renderView.rightAnchor.constraint(equalTo: pipView.rightAnchor),
-            renderView.topAnchor.constraint(equalTo: pipView.topAnchor),
-            renderView.bottomAnchor.constraint(equalTo: pipView.bottomAnchor),
             avatarView.centerXAnchor.constraint(equalTo: pipView.centerXAnchor),
             avatarView.centerYAnchor.constraint(equalTo: pipView.centerYAnchor),
         ])
@@ -76,7 +72,7 @@ class PiPVideoView: UIView {
         avatarView.widthAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
 
         videoCallSourceView.addSubview(pipView)
-        constrainPiPView(to: videoCallSourceView)
+        pipView.fillSuperview()
 
         pipController?.delegate = self
         resetSize()
@@ -93,7 +89,7 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
         pipView.removeFromSuperview()
         if let pipViewContainer = pipVC?.view {
             pipViewContainer.addSubview(pipView)
-            constrainPiPView(to: pipViewContainer)
+            pipView.fillSuperview()
         }
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
@@ -103,7 +99,7 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         pipView.removeFromSuperview()
         videoCallSourceView.addSubview(pipView)
-        constrainPiPView(to: videoCallSourceView)
+        pipView.fillSuperview()
         videoCallSourceView.setNeedsLayout()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, failedToStartPictureInPictureWithError error: any Error) {
@@ -142,15 +138,6 @@ extension PiPVideoView: RTCVideoRenderer {
         }
     }
 
-    private func constrainPiPView(to container: UIView) {
-        pipView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pipView.leftAnchor.constraint(equalTo: container.leftAnchor),
-            pipView.rightAnchor.constraint(equalTo: container.rightAnchor),
-            pipView.topAnchor.constraint(equalTo: container.topAnchor),
-            pipView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-        ])
-    }
 }
 
 /// A view that can render an RTCVideoTrack in PiP using AVSampleBufferDisplayLayer.

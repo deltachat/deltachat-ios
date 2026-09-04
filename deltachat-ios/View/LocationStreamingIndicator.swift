@@ -28,10 +28,8 @@ class LocationStreamingIndicator: UIImageView {
         tintColor = DcColors.checkmarkGreen
         image = UIImage(named: "ic_location")?.withRenderingMode(.alwaysTemplate)
         translatesAutoresizingMaskIntoConstraints = false
-        let heightConstraint = heightAnchor.constraint(equalToConstant: size)
-        heightConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            heightConstraint,
+            heightAnchor.constraint(equalToConstant: size).withPriority(.defaultLow),
             widthAnchor.constraint(equalToConstant: aspectRatio * size),
         ])
         contentMode = .scaleAspectFit

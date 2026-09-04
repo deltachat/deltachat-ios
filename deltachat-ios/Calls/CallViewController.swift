@@ -233,21 +233,13 @@ class CallViewController: UIViewController {
             callStatusLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
         view.addSubview(remoteVideoView)
-        remoteVideoView.translatesAutoresizingMaskIntoConstraints = false
+        remoteVideoView.fillSuperview()
         localVideoContainerView.addSubview(localVideoView)
-        localVideoView.translatesAutoresizingMaskIntoConstraints = false
+        localVideoView.fillSuperview()
         view.addSubview(localVideoContainerView)
         localVideoContainerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(flipCameraButton)
         NSLayoutConstraint.activate([
-            remoteVideoView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            remoteVideoView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            remoteVideoView.topAnchor.constraint(equalTo: view.topAnchor),
-            remoteVideoView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            localVideoView.leftAnchor.constraint(equalTo: localVideoContainerView.leftAnchor),
-            localVideoView.rightAnchor.constraint(equalTo: localVideoContainerView.rightAnchor),
-            localVideoView.topAnchor.constraint(equalTo: localVideoContainerView.topAnchor),
-            localVideoView.bottomAnchor.constraint(equalTo: localVideoContainerView.bottomAnchor),
             localVideoContainerView.widthAnchor.constraint(equalToConstant: 150),
             localVideoContainerView.heightAnchor.constraint(equalToConstant: 150),
             localVideoContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),

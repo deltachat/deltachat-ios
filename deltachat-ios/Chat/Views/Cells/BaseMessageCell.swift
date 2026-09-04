@@ -234,17 +234,11 @@ public class BaseMessageCell: UITableViewCell {
         contentView.addSubview(avatarView)
         contentView.addSubview(gotoOriginalButton)
 
-        let avatarWidthConstraint = avatarView.widthAnchor.constraint(equalToConstant: avatarSize)
-        avatarWidthConstraint.priority = .defaultHigh
-        let avatarHeightConstraint = avatarView.heightAnchor.constraint(equalToConstant: avatarSize)
-        avatarHeightConstraint.priority = .defaultHigh
-        let statusTopConstraint = statusView.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 8)
-        statusTopConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             avatarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 2),
             avatarView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor),
-            avatarWidthConstraint,
-            avatarHeightConstraint,
+            avatarView.widthAnchor.constraint(equalToConstant: avatarSize).withPriority(.defaultHigh),
+            avatarView.heightAnchor.constraint(equalToConstant: avatarSize).withPriority(.defaultHigh),
             topLabel.topAnchor.constraint(equalTo: messageBackgroundContainer.topAnchor, constant: 6),
             topLabel.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor, constant: 8),
             topLabel.trailingAnchor.constraint(lessThanOrEqualTo: messageBackgroundContainer.trailingAnchor, constant: -8),
@@ -252,7 +246,7 @@ public class BaseMessageCell: UITableViewCell {
             actionButton.leadingAnchor.constraint(equalTo: messageBackgroundContainer.leadingAnchor, constant: 12),
             statusView.leadingAnchor.constraint(greaterThanOrEqualTo: messageBackgroundContainer.leadingAnchor, constant: 8),
             statusView.trailingAnchor.constraint(equalTo: messageBackgroundContainer.trailingAnchor, constant: -8),
-            statusTopConstraint,
+            statusView.topAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 8).withPriority(.defaultHigh),
             statusView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor, constant: -6),
             gotoOriginalButton.centerYAnchor.constraint(equalTo: messageBackgroundContainer.centerYAnchor),
         ])
@@ -279,10 +273,8 @@ public class BaseMessageCell: UITableViewCell {
 
         mainContentBelowTopLabelConstraint = mainContentView.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 6)
         mainContentUnderTopLabelConstraint = mainContentView.topAnchor.constraint(equalTo: messageBackgroundContainer.topAnchor)
-        mainContentAboveActionBtnConstraint = actionButton.topAnchor.constraint(equalTo: mainContentView.bottomAnchor, constant: 8)
-        mainContentAboveActionBtnConstraint?.priority = .defaultHigh
-        mainContentUnderBottomLabelConstraint = mainContentView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor)
-        mainContentUnderBottomLabelConstraint?.priority = .defaultHigh
+        mainContentAboveActionBtnConstraint = actionButton.topAnchor.constraint(equalTo: mainContentView.bottomAnchor, constant: 8).withPriority(.defaultHigh)
+        mainContentUnderBottomLabelConstraint = mainContentView.bottomAnchor.constraint(equalTo: messageBackgroundContainer.bottomAnchor).withPriority(.defaultHigh)
 
         actionBtnZeroHeightConstraint = actionButton.heightAnchor.constraint(equalToConstant: 0)
         actionBtnTrailingConstraint = actionButton.trailingAnchor.constraint(equalTo: messageBackgroundContainer.trailingAnchor, constant: -12)

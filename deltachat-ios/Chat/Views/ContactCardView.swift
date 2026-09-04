@@ -38,11 +38,8 @@ public class ContactCardView: UIView {
         let heightConstraint = profileImageView.heightAnchor.constraint(equalToConstant: 50)
         imageWidthConstraint = widthConstraint
         imageHeightConstraint = heightConstraint
+        contactStackView.fillSuperview()
         NSLayoutConstraint.activate([
-            contactStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            contactStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            contactStackView.topAnchor.constraint(equalTo: topAnchor),
-            contactStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             widthConstraint,
             heightConstraint,
         ])

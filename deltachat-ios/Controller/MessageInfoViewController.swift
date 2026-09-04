@@ -25,12 +25,6 @@ class MessageInfoViewController: UIViewController {
         textView.isEditable = false
         textView.font = .preferredFont(forTextStyle: .body)
         view.addSubview(textView)
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            textView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            textView.topAnchor.constraint(equalTo: view.topAnchor),
-            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        textView.fillSuperview()
     }
 }

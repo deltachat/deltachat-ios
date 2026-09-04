@@ -26,4 +26,15 @@ public extension UIView {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = 2
     }
+
+    func fillSuperview() {
+        guard let superview else { return }
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            leftAnchor.constraint(equalTo: superview.leftAnchor),
+            rightAnchor.constraint(equalTo: superview.rightAnchor),
+            topAnchor.constraint(equalTo: superview.topAnchor),
+            bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+        ])
+    }
 }

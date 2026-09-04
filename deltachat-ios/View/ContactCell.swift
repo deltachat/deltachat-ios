@@ -212,16 +212,12 @@ class ContactCell: UITableViewCell {
         avatar.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(avatar)
 
-        let avatarTopConstraint = avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: badgeSize / 4)
-        avatarTopConstraint.priority = .defaultLow
-        let avatarBottomConstraint = avatar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(badgeSize / 4))
-        avatarBottomConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
             avatar.widthAnchor.constraint(equalToConstant: badgeSize),
             avatar.heightAnchor.constraint(equalToConstant: badgeSize),
             avatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: badgeSize / 4),
-            avatarTopConstraint,
-            avatarBottomConstraint,
+            avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: badgeSize / 4).withPriority(.defaultLow),
+            avatar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(badgeSize / 4)).withPriority(.defaultLow),
             avatar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
 

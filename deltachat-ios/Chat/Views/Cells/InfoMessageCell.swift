@@ -89,17 +89,11 @@ class InfoMessageCell: UITableViewCell, ReusableCell {
     func setupSubviews() {
         contentView.addSubview(messageBackgroundContainer)
         contentView.addSubview(contentContainerOuterView)
-        let outerTopConstraint = contentContainerOuterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12)
-        outerTopConstraint.priority = .defaultLow
-        let outerBottomConstraint = contentContainerOuterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
-        outerBottomConstraint.priority = .defaultLow
-        let outerCenterXConstraint = contentContainerOuterView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
-        outerCenterXConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            outerTopConstraint,
-            outerBottomConstraint,
+            contentContainerOuterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12).withPriority(.defaultLow),
+            contentContainerOuterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12).withPriority(.defaultLow),
             contentContainerOuterView.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 55),
-            outerCenterXConstraint,
+            contentContainerOuterView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).withPriority(.defaultLow),
             messageBackgroundContainer.leadingAnchor.constraint(equalTo: contentContainerInnerView.leadingAnchor, constant: -10),
             messageBackgroundContainer.topAnchor.constraint(equalTo: contentContainerInnerView.topAnchor, constant: -6),
             messageBackgroundContainer.bottomAnchor.constraint(equalTo: contentContainerInnerView.bottomAnchor, constant: 6),

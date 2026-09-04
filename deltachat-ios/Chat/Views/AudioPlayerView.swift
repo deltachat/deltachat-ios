@@ -54,13 +54,9 @@ open class AudioPlayerView: UIView {
 
     /// Responsible for setting up the constraints of the cell's subviews.
     open func setupConstraints() {
-        let playButtonHeight = playButton.heightAnchor.constraint(equalToConstant: 45)
-        playButtonHeight.priority = UILayoutPriority(rawValue: 999)
-        let playButtonWidth = playButton.widthAnchor.constraint(equalToConstant: 45)
-        playButtonWidth.priority = UILayoutPriority(rawValue: 999)
         NSLayoutConstraint.activate([
-            playButtonHeight,
-            playButtonWidth,
+            playButton.heightAnchor.constraint(equalToConstant: 45).withPriority(UILayoutPriority(rawValue: 999)),
+            playButton.widthAnchor.constraint(equalToConstant: 45).withPriority(UILayoutPriority(rawValue: 999)),
             playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             durationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
@@ -68,10 +64,8 @@ open class AudioPlayerView: UIView {
             progressView.leftAnchor.constraint(equalTo: playButton.rightAnchor, constant: 8),
             progressView.rightAnchor.constraint(equalTo: durationLabel.leftAnchor, constant: -8),
             progressView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            heightAnchor.constraint(equalTo: playButton.heightAnchor),
         ])
-        let height = heightAnchor.constraint(equalTo: playButton.heightAnchor)
-        height.priority = .required
-        height.isActive = true
     }
 
     open func setupSubviews() {
