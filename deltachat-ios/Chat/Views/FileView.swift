@@ -89,9 +89,11 @@ public class FileView: UIView {
 
     func setupSubviews() {
         addSubview(fileStackView)
+        let widthConstraint = fileImageView.widthAnchor.constraint(equalToConstant: 50)
+        let heightConstraint = fileImageView.heightAnchor.constraint(equalToConstant: 50 * 1.3).withPriority(.defaultLow)
+        imageWidthConstraint = widthConstraint
+        imageHeightConstraint = heightConstraint
         fileStackView.fillSuperview()
-        imageWidthConstraint = fileImageView.constraintWidthTo(50)
-        imageHeightConstraint = fileImageView.constraintHeightTo(50 * 1.3, priority: .defaultLow)
         horizontalLayout = true
     }
 

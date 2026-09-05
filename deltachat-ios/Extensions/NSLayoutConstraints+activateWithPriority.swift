@@ -1,8 +1,12 @@
 import UIKit
 
 extension NSLayoutConstraint {
+    func withPriority(_ priority: UILayoutPriority) -> Self {
+        self.priority = priority
+        return self
+    }
+
     static func activate(_ constraints: [NSLayoutConstraint], withPriority priority: UILayoutPriority) {
-        constraints.forEach { $0.priority = priority }
-        activate(constraints)
+        activate(constraints.map { $0.withPriority(priority) })
     }
 }

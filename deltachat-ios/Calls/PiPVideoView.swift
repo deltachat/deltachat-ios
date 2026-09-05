@@ -60,7 +60,11 @@ class PiPVideoView: UIView {
         pipView.addSubview(renderView)
         renderView.fillSuperview()
         pipView.addSubview(avatarView)
-        avatarView.centerInSuperview()
+        avatarView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            avatarView.centerXAnchor.constraint(equalTo: pipView.centerXAnchor),
+            avatarView.centerYAnchor.constraint(equalTo: pipView.centerYAnchor),
+        ])
         NSLayoutConstraint.activate([
             avatarView.leftAnchor.constraint(equalTo: pipView.leftAnchor, constant: 20),
             avatarView.topAnchor.constraint(equalTo: pipView.topAnchor, constant: 20),
@@ -83,8 +87,10 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         let pipVC = pictureInPictureController.contentSource?.activeVideoCallContentViewController
         pipView.removeFromSuperview()
-        pipVC?.view.addSubview(pipView)
-        pipView.fillSuperview()
+        if let pipViewContainer = pipVC?.view {
+            pipViewContainer.addSubview(pipView)
+            pipView.fillSuperview()
+        }
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         CallWindow.shared?.showCallUI()
@@ -131,6 +137,7 @@ extension PiPVideoView: RTCVideoRenderer {
             resetSize()
         }
     }
+
 }
 
 /// A view that can render an RTCVideoTrack in PiP using AVSampleBufferDisplayLayer.

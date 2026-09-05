@@ -46,8 +46,12 @@ class GalleryCell: UICollectionViewCell {
 
         contentView.addSubview(playButtonView)
         playButtonView.translatesAutoresizingMaskIntoConstraints = false
-        playButtonView.centerInSuperview()
-        playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
+        NSLayoutConstraint.activate([
+            playButtonView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            playButtonView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            playButtonView.widthAnchor.constraint(equalToConstant: 50),
+            playButtonView.heightAnchor.constraint(equalToConstant: 50),
+        ])
     }
 
     func update(item: GalleryItem) {

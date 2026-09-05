@@ -28,14 +28,16 @@ class MessageCounter: UIView {
         layer.cornerRadius = radius
         translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.systemRed
-        addConstraint(constraintHeightTo(size))
-        widthConstraint = constraintWidthTo(size)
-        addConstraint(widthConstraint!)
+        let initialWidthConstraint = widthAnchor.constraint(equalToConstant: size)
+        widthConstraint = initialWidthConstraint
         addSubview(label)
-        let labelConstraints = [ label.constraintAlignLeadingTo(self),
-                                 label.constraintAlignTrailingTo(self),
-                                 label.constraintCenterYTo(self) ]
-        self.addConstraints(labelConstraints)
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: size),
+            initialWidthConstraint,
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+        ])
     }
 
     required init?(coder _: NSCoder) {
@@ -46,13 +48,13 @@ class MessageCounter: UIView {
         let countString = NSAttributedString(string: String(msgNo), attributes: [.font: UIFont.systemFont(ofSize: 12)])
         let countStringSize = countString.width(considering: minSize) + padding
         if countStringSize > minSize {
-            removeConstraint(widthConstraint!)
-            widthConstraint = constraintWidthTo(countStringSize)
-            addConstraint(widthConstraint!)
+            widthConstraint?.isActive = false
+            widthConstraint = widthAnchor.constraint(equalToConstant: countStringSize)
+            widthConstraint?.isActive = true
         } else if frame.width > minSize {
-            removeConstraint(widthConstraint!)
-            widthConstraint = constraintWidthTo(minSize)
-            addConstraint(widthConstraint!)
+            widthConstraint?.isActive = false
+            widthConstraint = widthAnchor.constraint(equalToConstant: minSize)
+            widthConstraint?.isActive = true
         }
         label.attributedText = countString
     }

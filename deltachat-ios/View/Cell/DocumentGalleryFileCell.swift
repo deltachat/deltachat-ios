@@ -64,15 +64,16 @@ class DocumentGalleryFileCell: UITableViewCell {
         contentView.addSubview(fileImageView)
         contentView.addSubview(stackView)
         fileImageView.translatesAutoresizingMaskIntoConstraints = false
-        fileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true
-        fileImageView.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.9).isActive = true
-        fileImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 0).isActive = true
-        fileImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        stackView.constraintToTrailingOf(fileImageView, paddingLeading: 12).isActive = true
-        stackView.constraintAlignTrailingTo(contentView, paddingTrailing: 12).isActive = true
-        stackView.constraintAlignTopTo(contentView, paddingTop: 6).isActive = true
-        stackView.constraintAlignBottomTo(contentView, paddingBottom: 6).isActive = true
-
+        NSLayoutConstraint.activate([
+            fileImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            fileImageView.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.9),
+            fileImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            fileImageView.widthAnchor.constraint(equalToConstant: 50),
+            stackView.leadingAnchor.constraint(equalTo: fileImageView.trailingAnchor, constant: 12),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+        ])
     }
 
     // MARK: - update

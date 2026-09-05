@@ -18,9 +18,9 @@ public class FileTextCell: BaseMessageCell, ReusableCell {
     override func setupSubviews() {
         super.setupSubviews()
         let spacerView = UIView()
-        spacerHeight = spacerView.constraintHeightTo(8, priority: .defaultHigh)
+        spacerHeight = spacerView.heightAnchor.constraint(equalToConstant: 8).withPriority(.defaultHigh)
         spacerHeight?.isActive = true
-        spacerWidth = spacerView.constraintWidthTo(280, priority: UILayoutPriority(rawValue: 400))
+        spacerWidth = spacerView.widthAnchor.constraint(equalToConstant: 280).withPriority(UILayoutPriority(rawValue: 400))
         mainContentView.addArrangedSubview(fileView)
         mainContentView.addArrangedSubview(spacerView)
         mainContentView.addArrangedSubview(messageLabel)
