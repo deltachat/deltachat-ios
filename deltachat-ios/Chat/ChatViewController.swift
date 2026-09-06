@@ -2910,6 +2910,9 @@ extension ChatViewController: ReactionsOverviewViewControllerDelegate {
 
 extension ChatViewController: BackButtonUpdateable {
     func shouldUpdateBackButton(_ viewController: UIViewController, chatId: Int, accountId: Int) -> Bool {
+        // On liquid glass we don't show new messages indicator in the back button
+        guard #unavailable(iOS 26.0) else { return false }
+
         if chatId == self.chatId && accountId == dcContext.id {
             return false
         } else {
