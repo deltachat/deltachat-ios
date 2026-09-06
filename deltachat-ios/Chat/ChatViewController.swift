@@ -471,42 +471,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self?.searchController.isActive = true
             }
         }
-        
-        switch RelayHelper.shared.data {
-        case .forwardMessages:
-            askToForwardMessage()
-        case .forwardVCard(let vcardData):
-            if let vcardURL = prepareVCardData(vcardData) {
-                stageVCard(url: vcardURL)
-                RelayHelper.shared.finishRelaying()
-            }
-        case let .forwardMessage(text, fileData, fileName):
-            if let text {
-                draft.text = text
-            }
-            if let fileData, let file = FileHelper.saveData(data: fileData, name: fileName, directory: .cachesDirectory) {
-                stageDocument(url: NSURL(fileURLWithPath: file))
-            }
-            RelayHelper.shared.finishRelaying()
-        case .mailto(_, draft: let draftText):
-            draft.text = draftText ?? draft.text
-            RelayHelper.shared.finishRelaying()
-        case .share(let items):
-            let description = Dictionary(items.map { ($0.viewType, 1) }, uniquingKeysWith: +)
-                .compactMap { viewType, count in
-                    switch viewType { // TODO: Localize
-                    case DC_MSG_GIF: "\(count) GIF(s)"
-                    case DC_MSG_IMAGE: "\(count) image(s)"
-                    case DC_MSG_VIDEO: "\(count) video(s)"
-                    case DC_MSG_FILE: "\(count) file(s)"
-                    case DC_MSG_TEXT: "\(count) text message(s)"
-                    default: nil
-                    }
-                }
-                .joined(separator: ", ")
-            askToShareMessage(description: description)
-        case .none: break
-        }
 
         if isInitialViewWillAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -528,6 +492,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateScrollDownButtonVisibility()
+        handleRelayHelperData()
+
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
@@ -1546,7 +1512,45 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         )
     }
-    
+
+    private func handleRelayHelperData() {
+        switch RelayHelper.shared.data {
+        case .forwardMessages:
+            askToForwardMessage()
+        case .forwardVCard(let vcardData):
+            if let vcardURL = prepareVCardData(vcardData) {
+                stageVCard(url: vcardURL)
+                RelayHelper.shared.finishRelaying()
+            }
+        case let .forwardMessage(text, fileData, fileName):
+            if let text {
+                draft.text = text
+            }
+            if let fileData, let file = FileHelper.saveData(data: fileData, name: fileName, directory: .cachesDirectory) {
+                stageDocument(url: NSURL(fileURLWithPath: file))
+            }
+            RelayHelper.shared.finishRelaying()
+        case .mailto(_, draft: let draftText):
+            draft.text = draftText ?? draft.text
+            RelayHelper.shared.finishRelaying()
+        case .share(let items):
+            let description = Dictionary(items.map { ($0.viewType, 1) }, uniquingKeysWith: +)
+                .compactMap { viewType, count in
+                    switch viewType { // TODO: Localize
+                    case DC_MSG_GIF: "\(count) GIF(s)"
+                    case DC_MSG_IMAGE: "\(count) image(s)"
+                    case DC_MSG_VIDEO: "\(count) video(s)"
+                    case DC_MSG_FILE: "\(count) file(s)"
+                    case DC_MSG_TEXT: "\(count) text message(s)"
+                    default: nil
+                    }
+                }
+                .joined(separator: ", ")
+            askToShareMessage(description: description)
+        case .none: break
+        }
+    }
+
     private func askToShareMessage(description: String) {
         let chat = dcContext.getChat(chatId: chatId)
         confirmationAlert(
