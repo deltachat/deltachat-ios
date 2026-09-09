@@ -63,7 +63,7 @@ class NotificationService: UNNotificationServiceExtension {
         unc.removePendingNotificationRequests(withIdentifiers: ["best_attempt"])
         unc.removeDeliveredNotifications(withIdentifiers: ["best_attempt"])
 
-        var notifications: [UNMutableNotificationContent] = []
+        var notifications: [UNNotificationContent] = []
         while true {
             guard let event = eventEmitter.getNextEvent() else { break }
             if event.id == DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE { break }
@@ -72,7 +72,7 @@ class NotificationService: UNNotificationServiceExtension {
                 let chat = dcContext.getChat(chatId: event.data1Int)
                 let msg = dcContext.getMessage(id: event.data2Int)
                 if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: dcContext) {
-                    notifications.append(content)
+                    notifications.append(content.updatingForIncomingMessage(msg, chat: chat, context: dcContext))
                 }
             } else if event.id == DC_EVENT_INCOMING_REACTION {
                 let dcContext = dcAccounts.get(id: event.accountId)
