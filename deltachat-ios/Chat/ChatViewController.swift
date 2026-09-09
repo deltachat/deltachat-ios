@@ -446,6 +446,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             configureContactRequestBar()
         }
         loadMessages()
+
+        // Update markSeenMessagesInVisibleArea when callWindow hides
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.callWindow
+            .publisher(for: \.isHidden)
+            .filter(\.self)
+            .sink { [weak self] _ in self?.markSeenMessagesInVisibleArea() }
+            .store(in: &bag)
     }
 
     private func configureUIForWriting() {
