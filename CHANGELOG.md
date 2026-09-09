@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Fix: No longer send read receipts when call window is covering messages
+
+
 ## 2.59.1
 2026-08
 
