@@ -324,12 +324,35 @@ class CallViewController: UIViewController {
     private func configureAudioSession() {
         rtcAudioSession.lockForConfiguration()
         do {
-            try rtcAudioSession.setCategory(.playAndRecord, mode: .videoChat, options: .defaultToSpeaker)
+            try rtcAudioSession.setCategory(.playAndRecord, mode: .videoChat)
             try rtcAudioSession.setActive(true)
+            sendAudioToBluetoothOrLoudspeaker()
         } catch {
             logger.error("Error updating AVAudioSession category: \(error)")
         }
         rtcAudioSession.unlockForConfiguration()
+
+        NotificationCenter.default.addObserver(
+            forName: AVAudioSession.routeChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.sendAudioToBluetoothOrLoudspeaker()
+        }
+    }
+
+    /// This prevents the quiet earpiece speaker from being used
+    private func sendAudioToBluetoothOrLoudspeaker() {
+        let hasBluetooth = rtcAudioSession.currentRoute.outputs.contains {
+            $0.portType == .bluetoothHFP ||
+            $0.portType == .bluetoothA2DP ||
+            $0.portType == .bluetoothLE
+        }
+        if hasBluetooth {
+            try? rtcAudioSession.overrideOutputAudioPort(.none)
+        } else {
+            try? rtcAudioSession.overrideOutputAudioPort(.speaker)
+        }
     }
 
     func setUnreadMessageCount(_ messageCount: Int) {
