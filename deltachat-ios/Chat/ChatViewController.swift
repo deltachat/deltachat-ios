@@ -14,7 +14,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private var dcContext: DcContext
     private var messages: [(id: Int, timestamp: TimeInterval)] = []
-    private var isVisibleToUser: Bool = false
+    private var isVisibleToUser: Bool {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        guard delegate?.appIsInForeground() == true else { return false }
+        guard delegate?.callWindow.isHidden == true else { return false }
+        guard navigationController?.visibleViewController == self else { return false }
+        return true
+    }
     private var reactionMessageId: Int?
     private var contextMenuVisible = false
     private var isDraggingScrollView = false
@@ -440,6 +446,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             configureContactRequestBar()
         }
         loadMessages()
+
+        // Update markSeenMessagesInVisibleArea when callWindow hides
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.callWindow
+            .publisher(for: \.isHidden)
+            .filter(\.self)
+            .sink { [weak self] _ in self?.markSeenMessagesInVisibleArea() }
+            .store(in: &bag)
     }
 
     private func configureUIForWriting() {
@@ -528,14 +542,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateScrollDownButtonVisibility()
+        markSeenMessagesInVisibleArea()
         // things that do not affect the chatview
         // and are delayed after the view is displayed
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             self.dcContext.marknoticedChat(chatId: self.chatId)
         }
-
-        handleUserVisibility(isVisible: true)
 
         if #available(iOS 26.0, *) {
             updateTopEdgeEffectAppearance()
@@ -550,7 +563,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        handleUserVisibility(isVisible: false)
         if #available(iOS 26.0, *), let previousValue = wasInteractiveContentPopGestureRecognizerEnabled {
             navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = previousValue
         }
@@ -756,9 +768,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc func applicationDidBecomeActive(_ notification: NSNotification) {
-        if navigationController?.visibleViewController == self {
-            handleUserVisibility(isVisible: true)
-        }
+        markSeenMessagesInVisibleArea()
         // Update the last seen indicator
         updateTitle()
         let nc = UNUserNotificationCenter.current()
@@ -767,17 +777,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc func applicationWillResignActive(_ notification: NSNotification) {
-        if navigationController?.visibleViewController == self {
-            handleUserVisibility(isVisible: false)
-            draft.save(context: dcContext)
-        }
-    }
-
-    func handleUserVisibility(isVisible: Bool) {
-        isVisibleToUser = isVisible
-        if isVisible {
-            markSeenMessagesInVisibleArea()
-        }
+        draft.save(context: dcContext)
     }
 
     /// UITableView methods
@@ -1004,8 +1004,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func markSeenMessagesInVisibleArea() {
-        if isVisibleToUser,
-           let indexPaths = tableView.indexPathsForVisibleRows {
+        if isVisibleToUser, let indexPaths = tableView.indexPathsForVisibleRows {
             let visibleMessagesIds = indexPaths.map { UInt32(messages[$0.row].id) }
             if !visibleMessagesIds.isEmpty {
                 DispatchQueue.global().async { [weak self] in
