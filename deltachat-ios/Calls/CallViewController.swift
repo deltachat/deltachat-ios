@@ -324,8 +324,7 @@ class CallViewController: UIViewController {
     private func configureAudioSession() {
         rtcAudioSession.lockForConfiguration()
         do {
-            try rtcAudioSession.setCategory(.playAndRecord)
-            try rtcAudioSession.setMode(.videoChat)
+            try rtcAudioSession.setCategory(.playAndRecord, mode: .videoChat, options: .defaultToSpeaker)
             try rtcAudioSession.setActive(true)
         } catch {
             logger.error("Error updating AVAudioSession category: \(error)")
