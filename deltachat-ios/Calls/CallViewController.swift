@@ -148,8 +148,8 @@ class CallViewController: UIViewController {
         let callButtonStackView = UIStackView(arrangedSubviews: [
             hangupButton,
             toggleMicrophoneButton,
-            toggleSpeakerButton,
             toggleVideoButton,
+            toggleSpeakerButton,
             remoteVideoView.pipController != nil ? startPiPButton : nil,
         ].compactMap(\.self))
         callButtonStackView.axis = .horizontal
