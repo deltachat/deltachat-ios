@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- More reliable and quicker notifications and call ringing
+- Update notification when its message is edited
+- Remove notification if its message is deleted
 - Improved share sheet reliability
 - Fix: No longer send read receipts when call window is covering messages
 
