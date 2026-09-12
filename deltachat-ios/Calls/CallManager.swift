@@ -105,17 +105,17 @@ class CallManager: NSObject {
         guard let accountId = ui["account_id"] as? Int,
               let msgId = ui["message_id"] as? Int,
               let placeCallInfo = ui["place_call_info"] as? String else { return }
+        let hasVideo = ui["has_video"] as? Bool == true
         if !canUseCallKit {
             let dcContext = DcAccounts.shared.get(id: accountId)
             let dcMsg = dcContext.getMessage(id: msgId)
             let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-            if let content = UNMutableNotificationContent(forIncomingCallMsg: dcMsg, chat: dcChat, context: dcContext) {
+            if let content = UNMutableNotificationContent(forIncomingCallMsg: dcMsg, hasVideo: hasVideo, chat: dcChat, context: dcContext) {
                 let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
         }
         guard !isCalling() else { return }
-        let hasVideo = ui["has_video"] as? Bool == true
         reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo, hasVideo: hasVideo)
     }
 
@@ -174,21 +174,6 @@ class CallManager: NSObject {
         if let currentCall, currentCall.contextId == accountId, currentCall.messageId == msgId {
             logger.info("☎️ call to end (\(accountId),\(msgId)) is the current call :)")
             endCallController(uuid: currentCall.uuid)
-
-            // call is missed if
-            // - not accepted elsewhere (currentCall would have been set to nil in handleIncomingCallAcceptedEvent)
-            // - and not accepted here (check currentCall.callAcceptedHere)
-            if !currentCall.callAcceptedHere, !canUseCallKit {
-                let dcContext = DcAccounts.shared.get(id: accountId)
-                let dcMsg = dcContext.getMessage(id: msgId)
-                let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-                let content = UNMutableNotificationContent(forMissedCallMsg: dcMsg, chat: dcChat, context: dcContext)
-                if let content {
-                    let id = "missed-call-" + currentCall.uuid.uuidString
-                    let request = UNNotificationRequest(identifier: id, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                }
-            }
         } else {
             logger.info("☎️ call (\(accountId),\(msgId)) already ended")
         }
