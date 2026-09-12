@@ -6,7 +6,7 @@ class CallUIToggleButton: UIButton {
         didSet { updateState(toggleState) }
     }
 
-    init(imageSystemName: String, size: CGFloat = 70, state: Bool) {
+    init(imageSystemName: String, size: CGFloat = 60, state: Bool) {
         self.size = size
         self.toggleState = state
         super.init(frame: .zero)

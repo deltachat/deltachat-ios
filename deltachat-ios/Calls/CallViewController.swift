@@ -103,6 +103,17 @@ class CallViewController: UIViewController {
         return toggleMicrophoneButton
     }()
 
+    private lazy var toggleSpeakerButton: CallUIToggleButton = {
+        let toggleSpeakerButton = CallUIToggleButton(imageSystemName: "speaker.wave.2.fill", state: false)
+        toggleSpeakerButton.addAction(UIAction { [unowned self, unowned toggleSpeakerButton] _ in
+            toggleSpeakerButton.toggleState.toggle()
+            rtcAudioSession.lockForConfiguration()
+            try? rtcAudioSession.overrideOutputAudioPort(toggleSpeakerButton.toggleState ? .speaker : .none)
+            rtcAudioSession.unlockForConfiguration()
+        }, for: .touchUpInside)
+        return toggleSpeakerButton
+    }()
+
     private lazy var toggleVideoButton: CallUIToggleButton = {
         let toggleVideoButton = CallUIToggleButton(imageSystemName: "video.fill", state: localVideoTrack?.isEnabled == true)
         toggleVideoButton.addAction(UIAction { [unowned self, unowned toggleVideoButton] _ in
@@ -138,10 +149,11 @@ class CallViewController: UIViewController {
             hangupButton,
             toggleMicrophoneButton,
             toggleVideoButton,
+            toggleSpeakerButton,
             remoteVideoView.pipController != nil ? startPiPButton : nil,
         ].compactMap(\.self))
         callButtonStackView.axis = .horizontal
-        callButtonStackView.spacing = 16
+        callButtonStackView.spacing = 10
         callButtonStackView.distribution = .fill
         callButtonStackView.contentMode = .center
         return callButtonStackView
@@ -214,6 +226,7 @@ class CallViewController: UIViewController {
 
     deinit {
         peerConnection?.close()
+        try? rtcAudioSession.overrideOutputAudioPort(.none)
     }
 
     override func viewDidLoad() {
@@ -324,8 +337,7 @@ class CallViewController: UIViewController {
     private func configureAudioSession() {
         rtcAudioSession.lockForConfiguration()
         do {
-            try rtcAudioSession.setCategory(.playAndRecord)
-            try rtcAudioSession.setMode(.videoChat)
+            try rtcAudioSession.setCategory(.playAndRecord, mode: .videoChat)
             try rtcAudioSession.setActive(true)
         } catch {
             logger.error("Error updating AVAudioSession category: \(error)")
