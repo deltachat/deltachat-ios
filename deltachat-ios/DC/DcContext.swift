@@ -617,8 +617,8 @@ public class DcContext {
         return res != nil
     }
 
-    public func setTransportUnpublished(addr: String, unpublished: Bool) throws {
-        try DcAccounts.shared.blockingCall(method: "set_transport_unpublished", params: [id as AnyObject, addr as AnyObject, unpublished as AnyObject])
+    public func deleteTransport(addr: String) throws {
+        try DcAccounts.shared.blockingCall(method: "delete_transport", params: [id as AnyObject, addr as AnyObject])
     }
 
     public func setChatMuteDuration(chatId: Int, duration: Int) {

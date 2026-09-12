@@ -85,7 +85,7 @@ class TransportListViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: String.localized("remove_transport"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             do {
-                try self.dcContext.setTransportUnpublished(addr: transport.addr, unpublished: true)
+                try self.dcContext.deleteTransport(addr: transport.addr)
             } catch {
                 logAndAlert(error: error.localizedDescription)
             }
@@ -161,17 +161,15 @@ extension TransportListViewController {
         guard let transport = transports.get(at: indexPath.row) else { return nil }
         var actions: [UIContextualAction] = []
 
-        if !transport.isDefault(dcContext) {
-            let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
-                DispatchQueue.main.async {
-                    self?.deleteTransport(at: indexPath)
-                    completion(true)
-                }
+        let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
+            DispatchQueue.main.async {
+                self?.deleteTransport(at: indexPath)
+                completion(true)
             }
-            deleteAction.backgroundColor = .systemRed
-            deleteAction.image = UIImage(systemName: "trash")
-            actions.append(deleteAction)
         }
+        deleteAction.backgroundColor = .systemRed
+        deleteAction.image = UIImage(systemName: "trash")
+        actions.append(deleteAction)
 
         let editAction = UIContextualAction(style: .destructive, title: String.localized("global_menu_edit_desktop")) { [weak self] _, _, completion in
             DispatchQueue.main.async {
