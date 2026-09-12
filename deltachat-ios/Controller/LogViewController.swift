@@ -83,12 +83,11 @@ public class LogViewController: UIViewController {
         info += "any-database-encrypted=\(dcContext.isAnyDatabaseEncrypted())\n"
 
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let notifyTokenBegin: String
-            if let notifiyToken = appDelegate.notifyToken {
+            let notifyTokenBegin = if let notifiyToken = appDelegate.notifyToken {
                 // half of the notifiy token is unusally enough for debugging
-                notifyTokenBegin = String(notifiyToken.prefix(notifiyToken.count/2)) + "..."
+                String(notifiyToken.prefix(notifiyToken.count/2)) + "..."
             } else {
-                notifyTokenBegin = "<unset>"
+                "<unset>"
             }
             info += "notify-token=\(notifyTokenBegin)\n"
         }
