@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Improved share sheet reliability
 - Fix: No longer send read receipts when call window is covering messages
 
 
