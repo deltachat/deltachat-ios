@@ -103,6 +103,17 @@ class CallViewController: UIViewController {
         return toggleMicrophoneButton
     }()
 
+    private lazy var toggleSpeakerButton: CallUIToggleButton = {
+        let toggleSpeakerButton = CallUIToggleButton(imageSystemName: "speaker.wave.2.fill", state: false)
+        toggleSpeakerButton.addAction(UIAction { [unowned self, unowned toggleSpeakerButton] _ in
+            toggleSpeakerButton.toggleState.toggle()
+            rtcAudioSession.lockForConfiguration()
+            try? rtcAudioSession.overrideOutputAudioPort(toggleSpeakerButton.toggleState ? .speaker : .none)
+            rtcAudioSession.unlockForConfiguration()
+        }, for: .touchUpInside)
+        return toggleSpeakerButton
+    }()
+
     private lazy var toggleVideoButton: CallUIToggleButton = {
         let toggleVideoButton = CallUIToggleButton(imageSystemName: "video.fill", state: localVideoTrack?.isEnabled == true)
         toggleVideoButton.addAction(UIAction { [unowned self, unowned toggleVideoButton] _ in
@@ -137,11 +148,12 @@ class CallViewController: UIViewController {
         let callButtonStackView = UIStackView(arrangedSubviews: [
             hangupButton,
             toggleMicrophoneButton,
+            toggleSpeakerButton,
             toggleVideoButton,
             remoteVideoView.pipController != nil ? startPiPButton : nil,
         ].compactMap(\.self))
         callButtonStackView.axis = .horizontal
-        callButtonStackView.spacing = 16
+        callButtonStackView.spacing = 10
         callButtonStackView.distribution = .fill
         callButtonStackView.contentMode = .center
         return callButtonStackView
@@ -214,6 +226,7 @@ class CallViewController: UIViewController {
 
     deinit {
         peerConnection?.close()
+        try? rtcAudioSession.overrideOutputAudioPort(.none)
     }
 
     override func viewDidLoad() {
@@ -326,33 +339,10 @@ class CallViewController: UIViewController {
         do {
             try rtcAudioSession.setCategory(.playAndRecord, mode: .videoChat)
             try rtcAudioSession.setActive(true)
-            sendAudioToBluetoothOrLoudspeaker()
         } catch {
             logger.error("Error updating AVAudioSession category: \(error)")
         }
         rtcAudioSession.unlockForConfiguration()
-
-        NotificationCenter.default.addObserver(
-            forName: AVAudioSession.routeChangeNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            self?.sendAudioToBluetoothOrLoudspeaker()
-        }
-    }
-
-    /// This prevents the quiet earpiece speaker from being used
-    private func sendAudioToBluetoothOrLoudspeaker() {
-        let hasBluetooth = rtcAudioSession.currentRoute.outputs.contains {
-            $0.portType == .bluetoothHFP ||
-            $0.portType == .bluetoothA2DP ||
-            $0.portType == .bluetoothLE
-        }
-        if hasBluetooth {
-            try? rtcAudioSession.overrideOutputAudioPort(.none)
-        } else {
-            try? rtcAudioSession.overrideOutputAudioPort(.speaker)
-        }
     }
 
     func setUnreadMessageCount(_ messageCount: Int) {
