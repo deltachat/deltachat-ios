@@ -6,6 +6,9 @@
 - Update notification when its message is edited
 - Remove notification if its message is deleted
 - Improved share sheet reliability
+- Remove a relay immediately instead of unpublishing it
+- Carry all relays in invite links for better connectivity
+- Fix: Do not load webxdc icon if it has too large dimensions
 - Fix: No longer send read receipts when call window is covering messages
 
 
