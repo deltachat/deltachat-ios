@@ -290,7 +290,6 @@ class CallViewController: UIViewController {
                 _ = await $gatheredEnoughIce.values.first(where: \.self)
                 guard let messageId = call.messageId else { return logger.error("errAcceptCall: messageId not set") }
                 let sdp = peerConnection.localDescription?.sdp ?? answer.sdp
-                logger.info("acceptCall: " + sdp)
                 let dcContext = DcAccounts.shared.get(id: call.contextId)
                 call.callAcceptedHere = true
                 dcContext.acceptIncomingCall(msgId: messageId, acceptCallInfo: sdp)
