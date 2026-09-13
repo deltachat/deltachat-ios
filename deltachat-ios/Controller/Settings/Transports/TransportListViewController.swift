@@ -162,20 +162,16 @@ extension TransportListViewController {
         var actions: [UIContextualAction] = []
 
         let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
-            DispatchQueue.main.async {
-                self?.deleteTransport(at: indexPath)
-                completion(true)
-            }
+            self?.deleteTransport(at: indexPath)
+            completion(true)
         }
         deleteAction.backgroundColor = .systemRed
         deleteAction.image = UIImage(systemName: "trash")
         actions.append(deleteAction)
 
         let editAction = UIContextualAction(style: .destructive, title: String.localized("global_menu_edit_desktop")) { [weak self] _, _, completion in
-            DispatchQueue.main.async {
-                self?.editTransport(at: indexPath)
-                completion(true)
-            }
+            self?.editTransport(at: indexPath)
+            completion(true)
         }
         editAction.backgroundColor = .lightGray
         editAction.accessibilityLabel = String.localized("edit_transport")
