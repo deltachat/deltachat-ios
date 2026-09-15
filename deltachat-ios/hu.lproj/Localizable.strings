@@ -510,7 +510,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Másik szolgáltató használata";
 "instant_onboarding_other_server" = "Chatmail-kiszolgálók listája";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Hozzon létre egy profilt, hogy csatlakozni tudjon a(z) „%1$@” nevű csoporthoz.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Hozzon létre egy profilt, hogy csevegni tudjon vele: %1$@.";
@@ -582,6 +582,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d fájl elküldése „%2$@” számára?";
 "ask_send_files_to_selected_chats" = "%1$d fájl megosztása a vele való csevegésben: %2$d?";
+// deprecated
 "videos_sent_without_recoding" = "(A videók eredeti, nagyméretű fájlként kerülnek elküldésre. Amennyiben azt szeretné, hogy a videók kisebb fájlként kerüljenek elküldésre, mellékelje őket külön-külön)";
 "share_text_multiple_chats" = "Megosztja ezt a szöveget a vele való csevegésben: %1$d?\n\n„%2$@”";
 "share_abort" = "A megosztás megszakadt a hiányzó engedélyek miatt.";

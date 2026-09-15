@@ -565,7 +565,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Utiliser un autre serveur";
 "instant_onboarding_other_server" = "Liste des serveurs chatmail";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Créez un profil pour rejoindre le groupe « %1$@ ».";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Créez un profil pour discuter avec %1$@.";
@@ -655,6 +655,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Envoyer %1$d fichiers à « %2$@ » ?";
 "ask_send_files_to_selected_chats" = "Envoyer %1$d fichier(s) à %2$d discussions ?";
+// deprecated
 "videos_sent_without_recoding" = "(Lorsque vous joignez plusieurs vidéos à un même message, elles sont envoyées dans leur taille originale, qui peut être conséquente. Joindre une seule vidéo par message vous permettra de l\'envoyer en taille réduite et d\'économiser vos données.)";
 "share_text_multiple_chats" = "Envoyer ce texte à %1$d discussions ?\n\n« %2$@ »";
 "share_abort" = "Partage annulé en raison de permissions manquantes.";

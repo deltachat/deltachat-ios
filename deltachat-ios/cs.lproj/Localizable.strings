@@ -524,7 +524,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Použít jiný server";
 "instant_onboarding_other_server" = "Seznam chatmail serverů";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Založit profil k připojení ke skupině \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Založit profil k chatování s uživatelem %1$@.";
@@ -604,6 +604,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Poslat %1$d soubory do chatu \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Poslat %1$d soubor(y) do %2$d chatu?";
+// deprecated
 "videos_sent_without_recoding" = "(Videa se posílají jako původní velké soubory. Pokud si přejete posílat videa jako menší soubory, přiložte je odděleně)";
 "share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno kvůli chybějícím oprávnění.";

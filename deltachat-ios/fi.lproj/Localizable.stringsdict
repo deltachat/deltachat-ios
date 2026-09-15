@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minuutin kesto</string>
+			<key>other</key>
+			<string>%d minuutin kesto</string>
+		</dict>
+	</dict>
 	<key>n_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -82,6 +98,22 @@
 			<string>%d viestiä</string>
 		</dict>
 	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d reaktio</string>
+			<key>other</key>
+			<string>%d reaktiota</string>
+		</dict>
+	</dict>
 	<key>n_members</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -130,6 +162,22 @@
 			<string>%d valittu</string>
 		</dict>
 	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Nähty %d kerran</string>
+			<key>other</key>
+			<string>Nähty %d kertaa</string>
+		</dict>
+	</dict>
 	<key>ask_send_following_n_files_to</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -144,6 +192,22 @@
 			<string>Lähetä seuraava tiedosto yhteystiedolle %2$@?</string>
 			<key>other</key>
 			<string>Lähetä seuraavat %d tiedostot yhteystiedolle %2$@?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Poistetaanko %d keskustelu?</string>
+			<key>other</key>
+			<string>Poistetaanko %d keskustelua?</string>
 		</dict>
 	</dict>
 	<key>ask_delete_messages</key>

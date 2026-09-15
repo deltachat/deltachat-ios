@@ -573,7 +573,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Usa Altro Server";
 "instant_onboarding_other_server" = "Elenco Server Chatmail";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Crea un profilo per unirti al gruppo \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Crea un profilo per chattare con %1$@.";
@@ -671,6 +671,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Inviare %1$d file a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Invia %1$d file(s) a %2$d chat?";
+// deprecated
 "videos_sent_without_recoding" = "(I video vengono inviati come file originali, di grandi dimensioni. Per inviare i video come file più piccoli, allegali separatamente)";
 "share_text_multiple_chats" = "Invia questo testo a %1$d chat?\n\n\"%2$@\"";
 "share_abort" = "Condivisione annullata per permessi mancanti.";

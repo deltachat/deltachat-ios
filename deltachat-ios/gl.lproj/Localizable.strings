@@ -573,7 +573,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Usar outro servidor";
 "instant_onboarding_other_server" = "Lista de servidores Chatmail";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "Crear un perfil para unirse ao grupo \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Crear un perfil para conversar con %1$@.";
@@ -583,7 +583,7 @@
 "instant_onboarding_confirm_group" = "Queres crear un novo perfil e unirte ao grupo \"%1$@\"?";
 "team" = "Equipo";
 "team_profile" = "Perfil do equipo";
-"team_profile_explain" = "Un \"perfil do equipo\" é xestionado colectivamente por un conxunto de persoas dunha organización. Os perfís de equipo son experimentais e están expostos a cambios.";
+"team_profile_explain" = "Un \"perfil do equipo\" é xestionado colectivamente por un conxunto de persoas dunha organización.\n\nOs perfís de equipo son experimentais e están expostos a cambios.";
 "team_name" = "Nome do equipo";
 "create_team_profile" = "Crear perfil do equipo";
 "welcome_chat_over_email" = "Conversas Seguras e Descentralizadas";
@@ -633,7 +633,7 @@
 "confirm_add_transport" = "Engadir este repetidor?";
 "invalid_transport_qr" = "O código QR escaneado non contén un repetidor válido.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Eliminar repetidor \"%1$@\"? Antes da eliminación, será retirado gradualmente de modo que os seus contactos podan mudarse mainamente";
+"confirm_remove_relay_x" = "Eliminar repetidor \"%1$@\"?\n\nAntes da eliminación, será retirado gradualmente de modo que os seus contactos podan mudarse mainamente";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Eliminar o repetidor \"%1$@\"?\n\nOs contactos que só coñecen este retransmisor poden non contactar contigo ata que lles envíes unha nova mensaxe.\n\nEn caso de dúbida, ocúltao en lugar de eliminalo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -671,6 +671,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Enviar %1$d ficheiros para \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Enviar %1$d ficheiro(s) a %2$d conversas?";
+// deprecated
 "videos_sent_without_recoding" = "(Ao enviar varios vídeos, enviaranse tal cal, o que pode ser excesivo. Para facelos máis pequenos e aforrar datos, podes enviar cada vídeo na súa propia mensaxe)";
 "share_text_multiple_chats" = "Enviar este texto a %1$d conversas?\n\n\"%2$@\"";
 "share_abort" = "Deixouse de compartir por falta de permisos";

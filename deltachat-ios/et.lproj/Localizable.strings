@@ -573,7 +573,7 @@
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "Kasuta muud serverid";
 "instant_onboarding_other_server" = "Edastusserverite loend";
-// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group name
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
 "instant_onboarding_group_info" = "„%1$@“ grupiga liitumiseks loo profiil.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "„%1$@“ kasutajaga vestlemiseks loo profiil.";
@@ -671,6 +671,7 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Kas saadad %1$d faili „%2$@“ vestlusesse?";
 "ask_send_files_to_selected_chats" = "Kas saadad %1$d faili „%2$d“ vestlusesse?";
+// deprecated
 "videos_sent_without_recoding" = "(Videod saadetakse algupäraste suurte failidena. Videote mahu vähendamiseks lisa nad manustena ükshaaval)";
 "share_text_multiple_chats" = "Kas saadad selle teksti %1$d vestlusesse?\n\n„%2$@“";
 "share_abort" = "Puuduvate õiguste tõttu on jagamine katkestatud.";

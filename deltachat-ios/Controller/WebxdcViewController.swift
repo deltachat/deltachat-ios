@@ -105,7 +105,7 @@ class WebxdcViewController: WebViewViewController {
               setListener: (li) => listener = li,
               leave: () => webkit.messageHandlers.leaveRealtime.postMessage(""),
               send: (data) => {
-                if ((!data) instanceof Uint8Array) {
+                if (!(data instanceof Uint8Array)) {
                   throw new Error('realtime listener data must be a Uint8Array')
                 }
                 webkit.messageHandlers.sendRealtimeData.postMessage(Array.from(data));
