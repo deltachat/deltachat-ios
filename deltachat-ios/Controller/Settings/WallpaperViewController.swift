@@ -107,17 +107,17 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
         view.addSubview(blurView)
         view.addSubview(container)
 
-        view.addConstraints([
-            container.constraintAlignBottomTo(view),
-            container.constraintAlignLeadingTo(view),
-            container.constraintAlignTrailingTo(view),
-            blurView.constraintAlignTopTo(container),
-            blurView.constraintAlignLeadingTo(container),
-            blurView.constraintAlignTrailingTo(container),
-            blurView.constraintAlignBottomTo(container),
-            backgroundContainer.constraintAlignBottomTo(view),
-            backgroundContainer.constraintAlignLeadingTo(view),
-            backgroundContainer.constraintAlignTrailingTo(view),
+        NSLayoutConstraint.activate([
+            container.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            blurView.topAnchor.constraint(equalTo: container.topAnchor),
+            blurView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            blurView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            blurView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            backgroundContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
      }

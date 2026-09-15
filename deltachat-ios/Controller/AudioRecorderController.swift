@@ -105,8 +105,14 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.view.addSubview(waveFormView)
         self.view.addSubview(noRecordingPermissionView)
 
-        waveFormView.fill(view: view)
-        noRecordingPermissionView.fill(view: view, paddingLeading: 10, paddingTrailing: 10)
+        waveFormView.fillSuperview()
+        noRecordingPermissionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noRecordingPermissionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            noRecordingPermissionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            noRecordingPermissionView.topAnchor.constraint(equalTo: view.topAnchor),
+            noRecordingPermissionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
 
         let recordSettings = [AVFormatIDKey: kAudioFormatMPEG4AAC_HE,
                               AVSampleRateKey: 44100.0,

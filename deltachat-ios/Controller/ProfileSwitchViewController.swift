@@ -316,14 +316,14 @@ class AccountCell: UITableViewCell {
         contentView.addSubview(mutedIndicator)
         contentView.addSubview(labelStackView)
         let margins = contentView.layoutMarginsGuide
-        contentView.addConstraints([
-            accountAvatar.constraintCenterYTo(contentView),
-            accountAvatar.constraintAlignLeadingToAnchor(margins.leadingAnchor),
-            mutedIndicator.constraintCenterYTo(contentView),
-            mutedIndicator.constraintToTrailingOf(accountAvatar, paddingLeading: 12),
-            labelStackView.constraintCenterYTo(contentView),
-            labelStackView.constraintToTrailingOf(mutedIndicator, paddingLeading: 3),
-            labelStackView.constraintAlignTrailingToAnchor(margins.trailingAnchor),
+        NSLayoutConstraint.activate([
+            accountAvatar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            accountAvatar.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            mutedIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            mutedIndicator.leadingAnchor.constraint(equalTo: accountAvatar.trailingAnchor, constant: 12),
+            labelStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            labelStackView.leadingAnchor.constraint(equalTo: mutedIndicator.trailingAnchor, constant: 3),
+            labelStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
         ])
     }
 

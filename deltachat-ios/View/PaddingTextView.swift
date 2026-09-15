@@ -27,16 +27,16 @@ public class PaddingTextView: UIView {
     }
 
     private lazy var containerLeadingConstraint: NSLayoutConstraint = {
-        return label.constraintAlignLeadingTo(self)
+        return label.leadingAnchor.constraint(equalTo: leadingAnchor)
     }()
     private lazy var containerTailingConstraint: NSLayoutConstraint = {
-        return label.constraintAlignTrailingTo(self)
+        return label.trailingAnchor.constraint(equalTo: trailingAnchor)
     }()
     private lazy var containerTopConstraint: NSLayoutConstraint = {
-        return label.constraintAlignTopTo(self)
+        return label.topAnchor.constraint(equalTo: topAnchor)
     }()
     private lazy var containerBottomConstraint: NSLayoutConstraint = {
-        return label.constraintAlignBottomTo(self)
+        return label.bottomAnchor.constraint(equalTo: bottomAnchor)
     }()
 
     public var text: String? {
@@ -77,7 +77,7 @@ public class PaddingTextView: UIView {
     init() {
         super.init(frame: .zero)
         addSubview(label)
-        addConstraints([
+        NSLayoutConstraint.activate([
             containerTailingConstraint,
             containerLeadingConstraint,
             containerBottomConstraint,

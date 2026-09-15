@@ -69,16 +69,6 @@ class RecentWebxdcAppsCell: UICollectionViewCell {
         ]
 
         NSLayoutConstraint.activate(constraints)
-
-//            imageView.constraintAlignLeadingToAnchor(contentView.leadingAnchor),
-//            imageView.constraintAlignTrailingToAnchor(contentView.trailingAnchor),
-//            imageView.constraintAlignTopToAnchor(contentView.topAnchor),
-//            ,
-//            descriptionLabel.constraintAlignTrailingMaxTo(contentView),
-//            descriptionLabel.constraintCenterXTo(contentView),
-//            ,
-//            descriptionLabel.constraintToBottomOf(imageView, paddingTop: 4),
-//            descriptionLabel.constraintToBottomOf(contentView)
     }
 
     func update(item: GalleryItem) {

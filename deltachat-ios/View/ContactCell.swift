@@ -212,13 +212,13 @@ class ContactCell: UITableViewCell {
         avatar.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(avatar)
 
-        contentView.addConstraints([
-            avatar.constraintWidthTo(badgeSize),
-            avatar.constraintHeightTo(badgeSize),
-            avatar.constraintAlignLeadingTo(contentView, paddingLeading: badgeSize / 4),
-            avatar.constraintAlignTopTo(contentView, paddingTop: badgeSize / 4, priority: .defaultLow),
-            avatar.constraintAlignBottomTo(contentView, paddingBottom: badgeSize / 4, priority: .defaultLow),
-            avatar.constraintCenterYTo(contentView, priority: .required),
+        NSLayoutConstraint.activate([
+            avatar.widthAnchor.constraint(equalToConstant: badgeSize),
+            avatar.heightAnchor.constraint(equalToConstant: badgeSize),
+            avatar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: badgeSize / 4),
+            avatar.topAnchor.constraint(equalTo: contentView.topAnchor, constant: badgeSize / 4).withPriority(.defaultLow),
+            avatar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -(badgeSize / 4)).withPriority(.defaultLow),
+            avatar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
 
         deliveryStatusIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -233,14 +233,14 @@ class ContactCell: UITableViewCell {
         verticalStackView.addArrangedSubview(toplineStackView)
         verticalStackView.addArrangedSubview(bottomlineStackView)
         verticalStackView.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: margin).isActive = true
-        verticalStackView.constraintCenterYTo(avatar, priority: .required).isActive = true
+        verticalStackView.centerYAnchor.constraint(equalTo: avatar.centerYAnchor).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin).isActive = true
         verticalStackView.axis = .vertical
 
-        toplineStackView.addConstraints([
-            pinnedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
-            mutedIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2),
-            locationStreamingIndicator.constraintHeightTo(titleLabel.font.pointSize * 1.2)
+        NSLayoutConstraint.activate([
+            pinnedIndicator.heightAnchor.constraint(equalToConstant: titleLabel.font.pointSize * 1.2),
+            mutedIndicator.heightAnchor.constraint(equalToConstant: titleLabel.font.pointSize * 1.2),
+            locationStreamingIndicator.heightAnchor.constraint(equalToConstant: titleLabel.font.pointSize * 1.2),
         ])
 
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongTap))

@@ -60,7 +60,11 @@ class PiPVideoView: UIView {
         pipView.addSubview(renderView)
         renderView.fillSuperview()
         pipView.addSubview(avatarView)
-        avatarView.centerInSuperview()
+        avatarView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            avatarView.centerXAnchor.constraint(equalTo: pipView.centerXAnchor),
+            avatarView.centerYAnchor.constraint(equalTo: pipView.centerYAnchor),
+        ])
         NSLayoutConstraint.activate([
             avatarView.leftAnchor.constraint(equalTo: pipView.leftAnchor, constant: 20),
             avatarView.topAnchor.constraint(equalTo: pipView.topAnchor, constant: 20),

@@ -6,7 +6,7 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
     private let lineCount: Int
 
     private lazy var textFieldHeightConstraint: NSLayoutConstraint = {
-        return textField.constraintHeightTo(calcHeight())
+        return textField.heightAnchor.constraint(equalToConstant: calcHeight())
     }()
 
     private func calcHeight() -> CGFloat {
@@ -64,19 +64,19 @@ class MultilineTextFieldCell: UITableViewCell, UITextViewDelegate {
         contentView.addSubview(placeholder)
         let margins = contentView.layoutMarginsGuide
 
-        descriptionField.alignLeadingToAnchor(margins.leadingAnchor)
-        descriptionField.alignTrailingToAnchor(margins.trailingAnchor)
-        descriptionField.alignTopToAnchor(margins.topAnchor)
-
-        textField.alignLeadingToAnchor(margins.leadingAnchor, paddingLeading: -5)
-        textField.alignTrailingToAnchor(margins.trailingAnchor)
-        contentView.addConstraint(textFieldHeightConstraint)
-        textField.alignTopToAnchor(descriptionField.bottomAnchor)
-        textField.alignBottomToAnchor(margins.bottomAnchor)
-
-        placeholder.alignLeadingToAnchor(margins.leadingAnchor)
-        placeholder.alignTrailingToAnchor(textField.layoutMarginsGuide.trailingAnchor)
-        placeholder.alignTopToAnchor(textField.layoutMarginsGuide.topAnchor)
+        NSLayoutConstraint.activate([
+            descriptionField.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            descriptionField.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            descriptionField.topAnchor.constraint(equalTo: margins.topAnchor),
+            textField.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -5),
+            textField.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            textFieldHeightConstraint,
+            textField.topAnchor.constraint(equalTo: descriptionField.bottomAnchor),
+            textField.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            placeholder.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            placeholder.trailingAnchor.constraint(equalTo: textField.layoutMarginsGuide.trailingAnchor),
+            placeholder.topAnchor.constraint(equalTo: textField.layoutMarginsGuide.topAnchor),
+        ])
     }
 
     override func setSelected(_ selected: Bool, animated _: Bool) {

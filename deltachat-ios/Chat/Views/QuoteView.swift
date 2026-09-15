@@ -57,25 +57,26 @@ public class QuoteView: UIView {
         addSubview(imagePreview)
         addSubview(quote)
 
-        addConstraints([
-            imagePreview.constraintAlignTrailingTo(self, paddingTrailing: 16),
-            imagePreview.constraintHeightTo(36),
-            imagePreview.constraintCenterYTo(citeBar),
-            imagePreview.constraintAlignTopMaxTo(self),
-            senderTitle.constraintAlignTopTo(self),
-            senderTitle.constraintAlignLeadingTo(self, paddingLeading: 28),
-            senderTitle.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
-            quote.constraintAlignLeadingTo(self, paddingLeading: 28),
-            quote.constraintToBottomOf(senderTitle),
-            quote.constraintTrailingToLeadingOf(imagePreview, paddingTrailing: 8),
-            quote.constraintAlignBottomTo(self, paddingBottom: 4),
-            citeBar.constraintAlignLeadingTo(self, paddingLeading: 14),
-            citeBar.constraintAlignTopTo(senderTitle, paddingTop: 2),
-            citeBar.constraintAlignBottomTo(quote, paddingBottom: 2),
-            citeBar.constraintWidthTo(3),
+        NSLayoutConstraint.activate([
+            imagePreview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            imagePreview.heightAnchor.constraint(equalToConstant: 36),
+            imagePreview.centerYAnchor.constraint(equalTo: citeBar.centerYAnchor),
+            imagePreview.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
+            senderTitle.topAnchor.constraint(equalTo: topAnchor),
+            senderTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
+            senderTitle.trailingAnchor.constraint(equalTo: imagePreview.leadingAnchor, constant: -8),
+            quote.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 28),
+            quote.topAnchor.constraint(equalTo: senderTitle.bottomAnchor),
+            quote.trailingAnchor.constraint(equalTo: imagePreview.leadingAnchor, constant: -8),
+            quote.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+            citeBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 14),
+            citeBar.topAnchor.constraint(equalTo: senderTitle.topAnchor, constant: 2),
+            citeBar.bottomAnchor.constraint(equalTo: quote.bottomAnchor, constant: -2),
+            citeBar.widthAnchor.constraint(equalToConstant: 3),
         ])
-        imageWidthConstraint = imagePreview.constraintWidthTo(0)
-        imageWidthConstraint?.isActive = true
+        let widthConstraint = imagePreview.widthAnchor.constraint(equalToConstant: 0)
+        imageWidthConstraint = widthConstraint
+        widthConstraint.isActive = true
     }
 
     public func configureAccessibilityLabel() -> String {

@@ -33,14 +33,18 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
     override func setupSubviews() {
         super.setupSubviews()
         contentImageView.addSubview(playButtonView)
-        playButtonView.centerInSuperview()
-        playButtonView.constraint(equalTo: CGSize(width: 50, height: 50))
+        NSLayoutConstraint.activate([
+            playButtonView.centerXAnchor.constraint(equalTo: contentImageView.centerXAnchor),
+            playButtonView.centerYAnchor.constraint(equalTo: contentImageView.centerYAnchor),
+            playButtonView.widthAnchor.constraint(equalToConstant: 50),
+            playButtonView.heightAnchor.constraint(equalToConstant: 50),
+        ])
         mainContentView.addArrangedSubview(contentImageView)
         mainContentView.addArrangedSubview(messageLabel)
         messageLabel.paddingLeading = 12
         messageLabel.paddingTrailing = 12
-        contentImageView.constraintAlignLeadingMaxTo(mainContentView, priority: .required).isActive = true
-        contentImageView.constraintAlignTrailingMaxTo(mainContentView, priority: .required).isActive = true
+        contentImageView.leadingAnchor.constraint(greaterThanOrEqualTo: mainContentView.leadingAnchor).isActive = true
+        contentImageView.trailingAnchor.constraint(lessThanOrEqualTo: mainContentView.trailingAnchor).isActive = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         contentImageView.addGestureRecognizer(gestureRecognizer)

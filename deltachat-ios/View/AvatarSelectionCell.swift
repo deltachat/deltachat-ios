@@ -54,10 +54,13 @@ class AvatarSelectionCell: UITableViewCell {
 
     private func setupSubviews() {
         contentView.addSubview(container)
-        container.alignTopToAnchor(contentView.layoutMarginsGuide.topAnchor)
-        container.alignBottomToAnchor(contentView.layoutMarginsGuide.bottomAnchor)
-        container.alignLeadingToAnchor(contentView.layoutMarginsGuide.leadingAnchor)
-        container.alignTrailingToAnchor(contentView.layoutMarginsGuide.trailingAnchor)
+        let margins = contentView.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: margins.topAnchor),
+            container.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            container.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+        ])
 
         let touchListener = UILongPressGestureRecognizer(target: self, action: #selector(onBadgeTouched))
         touchListener.minimumPressDuration = 0
