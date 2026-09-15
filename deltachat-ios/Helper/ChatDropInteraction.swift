@@ -1,4 +1,5 @@
 import Foundation
+import DcCore
 import UIKit
 import MobileCoreServices
 import UniformTypeIdentifiers
@@ -23,11 +24,11 @@ public class ChatDropInteraction: NSObject {
             return UIDropProposal(operation: .copy)
     }
 
-    public func dropInteraction(performDrop session: UIDropSession) {
+    public func dropInteraction(performDrop session: UIDropSession, dcContext: DcContext) {
         if session.items.first?.itemProvider.canLoadImage(allowAnimated: true) == true {
             loadImageObjects(session: session)
         } else if session.items.first?.itemProvider.canLoadVideo() == true {
-            loadVideoObjects(session: session)
+            loadVideoObjects(session: session, dcContext: dcContext)
         } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.url.identifier]) {
             loadTextObjects(session: session)
         } else if session.hasItemsConforming(toTypeIdentifiers: [UTType.text.identifier]) {
@@ -45,9 +46,9 @@ public class ChatDropInteraction: NSObject {
         }
     }
     
-    private func loadVideoObjects(session: UIDropSession) {
+    private func loadVideoObjects(session: UIDropSession, dcContext: DcContext) {
         guard let droppedItem = session.items.first else { return }
-        droppedItem.itemProvider.loadCompressedVideo { [weak self] videoUrl, _ in
+        droppedItem.itemProvider.loadCompressedVideo(dcContext: dcContext) { [weak self] videoUrl, _ in
             guard let videoUrl else { return }
             self?.delegate?.onVideoDragAndDropped(url: videoUrl as NSURL)
         }
@@ -94,8 +95,8 @@ extension ChatDropInteraction: UIDropInteractionDelegate {
         return dropInteraction(sessionDidUpdate: session)
     }
 
-    public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
-        dropInteraction(performDrop: session)
+    public func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession, dcContext: DcContext) {
+        dropInteraction(performDrop: session, dcContext: dcContext)
     }
 }
 
