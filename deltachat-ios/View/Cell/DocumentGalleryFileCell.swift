@@ -88,7 +88,7 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     private func updateFileMsg(msg: DcMsg) {
         if let fileUrl = msg.fileURL {
-            generateThumbnailFor(url: fileUrl, placeholder: UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor))
+            generateThumbnailFor(url: fileUrl, placeholder: UIImage(systemName: "paperclip")?.withTintColor(DcColors.grayTextColor, renderingMode: .alwaysOriginal))
         }
         title.text = msg.filename
         subtitle.text = msg.getPrettyFileSize()
@@ -96,7 +96,7 @@ class DocumentGalleryFileCell: UITableViewCell {
 
     private func updateVoiceMsg(msg: DcMsg, dcContext: DcContext) {
         if let fileUrl = msg.fileURL {
-            generateThumbnailFor(url: fileUrl, placeholder: UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor))
+            generateThumbnailFor(url: fileUrl, placeholder: UIImage(systemName: "paperclip")?.withTintColor(DcColors.grayTextColor, renderingMode: .alwaysOriginal))
         }
         title.text = msg.getSenderName(dcContext.getContact(id: msg.fromContactId))
         subtitle.text = msg.formattedSentDate()

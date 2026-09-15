@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Use the system paperclip icon for attachments
 - Allow to react in channels
 - Offer five default reactions when long-tapping a message
 - Show phased out relays in connectivity view as such
