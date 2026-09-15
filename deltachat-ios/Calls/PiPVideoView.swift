@@ -87,10 +87,8 @@ extension PiPVideoView: AVPictureInPictureControllerDelegate {
     func pictureInPictureControllerWillStartPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
         let pipVC = pictureInPictureController.contentSource?.activeVideoCallContentViewController
         pipView.removeFromSuperview()
-        if let pipViewContainer = pipVC?.view {
-            pipViewContainer.addSubview(pipView)
-            pipView.fillSuperview()
-        }
+        pipVC?.view.addSubview(pipView)
+        pipView.fillSuperview()
     }
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         CallWindow.shared?.showCallUI()
@@ -137,7 +135,6 @@ extension PiPVideoView: RTCVideoRenderer {
             resetSize()
         }
     }
-
 }
 
 /// A view that can render an RTCVideoTrack in PiP using AVSampleBufferDisplayLayer.

@@ -28,7 +28,6 @@ class CallUIToggleButton: UIButton {
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        guard superview != nil else { return }
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: size),

@@ -34,15 +34,13 @@ public class ContactCardView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(contactStackView)
-        let widthConstraint = profileImageView.widthAnchor.constraint(equalToConstant: 50)
-        let heightConstraint = profileImageView.heightAnchor.constraint(equalToConstant: 50)
-        imageWidthConstraint = widthConstraint
-        imageHeightConstraint = heightConstraint
+        imageWidthConstraint = profileImageView.widthAnchor.constraint(equalToConstant: 50)
+        imageHeightConstraint = profileImageView.heightAnchor.constraint(equalToConstant: 50)
         contactStackView.fillSuperview()
         NSLayoutConstraint.activate([
-            widthConstraint,
-            heightConstraint,
-        ])
+            imageWidthConstraint,
+            imageHeightConstraint,
+        ].compactMap { $0 })
     }
 
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }

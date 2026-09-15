@@ -28,16 +28,15 @@ class MessageCounter: UIView {
         layer.cornerRadius = radius
         translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor.systemRed
-        let initialWidthConstraint = widthAnchor.constraint(equalToConstant: size)
-        widthConstraint = initialWidthConstraint
+        widthConstraint = widthAnchor.constraint(equalToConstant: size)
         addSubview(label)
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: size),
-            initialWidthConstraint,
+            widthConstraint,
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
-        ])
+        ].compactMap { $0 })
     }
 
     required init?(coder _: NSCoder) {

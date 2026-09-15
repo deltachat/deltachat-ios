@@ -105,13 +105,9 @@ class AudioRecorderController: UIViewController, AVAudioRecorderDelegate {
         self.view.addSubview(waveFormView)
         self.view.addSubview(noRecordingPermissionView)
 
-        waveFormView.translatesAutoresizingMaskIntoConstraints = false
+        waveFormView.fillSuperview()
         noRecordingPermissionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            waveFormView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            waveFormView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            waveFormView.topAnchor.constraint(equalTo: view.topAnchor),
-            waveFormView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             noRecordingPermissionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             noRecordingPermissionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             noRecordingPermissionView.topAnchor.constraint(equalTo: view.topAnchor),

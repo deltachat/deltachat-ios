@@ -79,20 +79,16 @@ public class InitialsBadge: UIView {
     private func setupSubviews(with radius: CGFloat) {
         addSubview(imageView)
         imageView.layer.cornerRadius = radius
-        let leadingConstraint = imageView.leadingAnchor.constraint(equalTo: leadingAnchor)
-        let trailingConstraint = imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        let topConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
-        let bottomConstraint = imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        leadingImageAnchorConstraint = leadingConstraint
-        trailingImageAnchorConstraint = trailingConstraint
-        topImageAnchorConstraint = topConstraint
-        bottomImageAnchorConstraint = bottomConstraint
+        leadingImageAnchorConstraint = imageView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        trailingImageAnchorConstraint = imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
+        topImageAnchorConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
+        bottomImageAnchorConstraint = imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([
-            leadingConstraint,
-            trailingConstraint,
-            topConstraint,
-            bottomConstraint,
-        ])
+            leadingImageAnchorConstraint,
+            trailingImageAnchorConstraint,
+            topImageAnchorConstraint,
+            bottomImageAnchorConstraint,
+        ].compactMap { $0 })
 
         addSubview(label)
         label.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
