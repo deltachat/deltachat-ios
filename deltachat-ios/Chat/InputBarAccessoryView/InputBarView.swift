@@ -48,11 +48,10 @@ struct InputBarView: View {
             }
             HStack(alignment: .bottom, spacing: 4) {
                 UncachedMenu(content: { clipperMenu }, label: {
-                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(2)
+                    Image(systemName: "paperclip")
+                        .imageScale(.large)
+                        .frame(width: buttonSize, height: buttonSize)
+                        .accessibilityLabel(Text(String.localized("menu_add_attachment")))
                 })
                 .frame(height: buttonSize)
                 // This fixes the attach button being hidden sometimes on iOS 15
