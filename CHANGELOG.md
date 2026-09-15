@@ -9,6 +9,7 @@
 - Remove a relay immediately instead of unpublishing it
 - Carry all relays in invite links for better connectivity
 - Harden deeplinks parameters parsing to address crash from hand crafted urls
+- Respect "media quality" when sending videos
 - Fix: Do not load webxdc icon if it has too large dimensions
 - Fix: No longer send read receipts when call window is covering messages
 
