@@ -1,4 +1,5 @@
 import Foundation
+import DcCore
 import AVKit
 
 extension URL {
@@ -16,7 +17,7 @@ extension URL {
     }
 
     /// Note: This copies the file at URL to a temporary file in case the original is deleted (or access is lost) during conversion.
-    public func convertToMp4(completionHandler: ((URL?, Error?) -> Void)?) {
+    public func convertToMp4(dcContext: DcContext, completionHandler: ((URL?, Error?) -> Void)?) {
         let filename = self.deletingPathExtension().lastPathComponent.replacingOccurrences(of: ".", with: "-")
         let original = filename.appending("." + pathExtension)
         let inputURL = FileHelper.copyIfPossible(src: self, dest: .temporaryDirectory.appendingPathComponent(original))
@@ -25,7 +26,8 @@ extension URL {
         FileHelper.deleteFile(outputURL.path)
         
         let avAsset = AVURLAsset(url: inputURL, options: nil)
-        guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: AVAssetExportPresetMediumQuality) else {
+        let quality: String = dcContext.getConfigInt("media_quality") == 1 ? AVAssetExportPresetLowQuality : AVAssetExportPresetMediumQuality
+        guard let exportSession = AVAssetExportSession(asset: avAsset, presetName: quality) else {
            completionHandler?(nil, ConversionError.runtimeError("Could not initiate AVAssertExportSession"))
            return
         }

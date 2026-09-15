@@ -1918,7 +1918,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @objc(tableView:performDropWithCoordinator:)
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
-        return self.dropInteraction.dropInteraction(performDrop: coordinator.session)
+        return self.dropInteraction.dropInteraction(performDrop: coordinator.session, dcContext: dcContext)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -2516,8 +2516,10 @@ extension ChatViewController: MediaPickerDelegate {
             let progressAlertHandler = ProgressAlertHandler()
             progressAlertHandler.dataSource = self
             progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
-            DispatchQueue.global().async {
-                url.convertToMp4(completionHandler: { [weak self] url, error in
+            DispatchQueue.global().async { [weak self] in
+                guard let self else { return }
+
+                url.convertToMp4(dcContext: dcContext) { [weak self] url, error in
                     _ = DcUtils.generateThumbnailFromVideo(url: url)
                     DispatchQueue.main.async { [weak self] in
                         if let url, !progressAlertHandler.cancelled {
@@ -2527,7 +2529,7 @@ extension ChatViewController: MediaPickerDelegate {
                             progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
                         }
                     }
-                })
+                }
             }
         }
     }
@@ -2561,11 +2563,13 @@ extension ChatViewController: MediaPickerDelegate {
                     }
                 }
 
-                DispatchQueue.global().async {
+                DispatchQueue.global().async { [weak self] in
+                    guard let self else { return }
+
                     for itemProvider in itemProviders {
                         if !progressAlertHandler.cancelled {
                             if itemProvider.canLoadVideo() {
-                                itemProvider.loadCompressedVideo { [weak self] url, error in
+                                itemProvider.loadCompressedVideo(dcContext: dcContext) { [weak self] url, error in
                                     if let url, !progressAlertHandler.cancelled {
                                         self?.sendVideo(url: url)
                                     } else if let error {
@@ -2606,7 +2610,7 @@ extension ChatViewController: MediaPickerDelegate {
                 let progressAlertHandler = ProgressAlertHandler()
                 progressAlertHandler.dataSource = self
                 progressAlertHandler.showProgressAlert(title: nil, dcContext: self.dcContext)
-                itemProvider.loadCompressedVideo { [weak self] url, error in
+                itemProvider.loadCompressedVideo(dcContext: dcContext) { [weak self] url, error in
                     if let url, !progressAlertHandler.cancelled {
                         self?.stageVideo(url: (url as NSURL))
                         progressAlertHandler.updateProgressAlertSuccess()

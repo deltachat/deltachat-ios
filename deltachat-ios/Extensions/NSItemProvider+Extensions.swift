@@ -1,4 +1,5 @@
 import UniformTypeIdentifiers
+import DcCore
 import SDWebImage
 import UIKit
 
@@ -72,13 +73,13 @@ extension NSItemProvider {
     /// Loads a video, converts it to mp4, and compresses the video.
     /// Unlike native load functions this calls completion on the main thread
     @discardableResult
-    public func loadCompressedVideo(completion: @escaping (URL?, Error?) -> Void) -> Progress {
+    public func loadCompressedVideo(dcContext: DcContext, completion: @escaping (URL?, Error?) -> Void) -> Progress {
         var progressLater: Progress?
         let compress = { (url: URL?, _: Bool, error: Error?) in
             if let url {
                 // Note: NSFileCoordinator is required on iOS 15
                 NSFileCoordinator().coordinate(readingItemAt: url, error: nil) { url in
-                    url.convertToMp4 { url, error in
+                    url.convertToMp4(dcContext: dcContext) { url, error in
                         progressLater?.completedUnitCount += 10
                         DispatchQueue.main.async { completion(url, error) }
                     }
