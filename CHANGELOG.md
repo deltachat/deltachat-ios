@@ -10,6 +10,8 @@
 - Carry all relays in invite links for better connectivity
 - Harden deeplinks parameters parsing to address crash from hand crafted urls
 - Respect "media quality" when sending videos
+- No need to mark a relay for sending, this is chosen by the core automatically
+- Verification line is no longer needed, all contacts have that mean and are e2ee by default since V2
 - Fix: Do not load webxdc icon if it has too large dimensions
 - Fix: No longer send read receipts when call window is covering messages
 
