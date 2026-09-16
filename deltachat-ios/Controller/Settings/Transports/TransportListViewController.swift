@@ -116,18 +116,10 @@ extension TransportListViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TransportCell.reuseIdentifier, for: indexPath) as? TransportCell else { fatalError() }
 
             let transport = transports[indexPath.row]
-            let isDefault = transport.isDefault(dcContext)
             let parts = transport.addr.components(separatedBy: "@")
 
             cell.textLabel?.text = parts.last ?? transport.addr
-
-            var details = (parts.first ?? "")
-            if isDefault {
-                details += " · " + String.localized("used_for_sending")
-            }
-            cell.detailTextLabel?.text = details
-
-            cell.accessoryType = isDefault ? .checkmark : .none
+            cell.detailTextLabel?.text = parts.first ?? transport.addr
 
             return cell
         } else {
@@ -179,7 +171,6 @@ extension TransportListViewController {
         actions.append(editAction)
 
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
-        actionsConfiguration.performsFirstActionWithFullSwipe = !transport.isDefault(dcContext)
         return actionsConfiguration
     }
 
@@ -191,13 +182,10 @@ extension TransportListViewController {
             previewProvider: nil,
             actionProvider: { [weak self] _ in
                 guard let self else { return nil }
-                guard let transport = transports.get(at: indexPath.row) else { return nil }
                 var children: [UIMenuElement] = []
 
                 children.append(UIAction.menuAction(localizationKey: "edit_transport", systemImageName: "pencil", with: indexPath, action: editTransport))
-                if !transport.isDefault(dcContext) {
-                    children.append(UIAction.menuAction(localizationKey: "remove_transport", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
-                }
+                children.append(UIAction.menuAction(localizationKey: "remove_transport", attributes: [.destructive], systemImageName: "trash", with: indexPath, action: deleteTransport))
 
                 return UIMenu(children: children)
             }

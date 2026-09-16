@@ -20,13 +20,6 @@ public struct DcEnteredLoginParam: Codable {
         self.addr = addr
         self.password = password
     }
-
-    public func isDefault(_ dcContext: DcContext) -> Bool {
-        if let configuredAddr = dcContext.getConfig("configured_addr"), configuredAddr == addr {
-            return true
-        }
-        return false
-    }
 }
 
 typealias DcEnteredLoginParamResult = JsonrpcResult<[DcEnteredLoginParam]>
