@@ -158,9 +158,7 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     @objc private func showPrivacy(_ sender: UIButton) {
-        let url = providerHostURL.appendingPathComponent("/privacy.html")
-
-        if UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "https://delta.chat/gdpr"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
@@ -391,7 +389,6 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
             guard let host = parsedQrCode.text1, let url = URL(string: "https://\(host)") else { return }
             self.providerHostURL = url
             self.providerQrData = qrCode
-            contentView?.updateContent(with: host)
             dismissQRReader()
 
         case DC_QR_ASK_VERIFYCONTACT:
