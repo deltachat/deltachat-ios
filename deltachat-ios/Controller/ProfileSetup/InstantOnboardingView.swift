@@ -51,6 +51,7 @@ class InstantOnboardingView: UIView {
         agreeButton.primaryCapsule()
 
         privacyButton = UIButton(type: .system)
+        privacyButton.setTitle(String.localized("privacy_policy").markAsExternal(), for: .normal)
         privacyButton.translatesAutoresizingMaskIntoConstraints = false
         privacyButtonWrapper = UIView()
         privacyButtonWrapper.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +88,6 @@ class InstantOnboardingView: UIView {
 
         setupConstraints()
         validateTextfield(text: nameTextField.text)
-        updateContent(with: customProvider)
     }
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -132,14 +132,5 @@ class InstantOnboardingView: UIView {
     func validateTextfield(text: String?) {
         agreeButton.isEnabled = text?.isEmpty == false
         otherOptionsButton.isEnabled = text?.isEmpty == false
-    }
-
-    func updateContent(with customProvider: String?) {
-        let title = if let customProvider {
-            String.localized(stringID: "instant_onboarding_agree_instance", parameter: customProvider)
-        } else {
-            String.localized(stringID: "instant_onboarding_agree_default2", parameter: InstantOnboardingViewController.defaultChatmailDomain)
-        }
-        privacyButton.setTitle(title.markAsExternal(), for: .normal)
     }
 }
