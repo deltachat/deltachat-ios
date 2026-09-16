@@ -9,17 +9,12 @@ class ProfileViewController: UITableViewController {
         case options
         case members
         case sharedChats
-        case actions
     }
 
     enum Options {
         case description
         case media
         case startChat
-    }
-
-    enum Actions {
-        case verifiedBy
     }
 
     enum ManageMembersActions {
@@ -29,7 +24,6 @@ class ProfileViewController: UITableViewController {
 
     private var sections: [Sections] = []
     private var options: [Options] = []
-    private var actions: [Actions] = []
     private var manageMembersActions: [ManageMembersActions] = []
 
     private let dcContext: DcContext
@@ -54,28 +48,6 @@ class ProfileViewController: UITableViewController {
     private lazy var descriptionCell: MultilineLabelCell = {
         let cell = MultilineLabelCell()
         cell.multilineDelegate = self
-        return cell
-    }()
-
-    private lazy var verifiedByCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        if let contact {
-            cell.imageView?.image = UIImage(named: "verified")?.scaleDownImage(toMax: 21.0)
-
-            let verifierId = contact.getVerifierId()
-            let verifiedInfo: String
-            if verifierId == 0 {
-                cell.accessoryType = .none
-                verifiedInfo = String.localized("verified_by_unknown")
-            } else if verifierId == DC_CONTACT_ID_SELF {
-                cell.accessoryType = .none
-                verifiedInfo = String.localized("verified_by_you")
-            } else {
-                cell.accessoryType = .disclosureIndicator
-                verifiedInfo = String.localizedStringWithFormat(String.localized("verified_by"), dcContext.getContact(id: verifierId).displayName)
-            }
-            cell.textLabel?.text = verifiedInfo
-        }
         return cell
     }()
 
@@ -120,7 +92,6 @@ class ProfileViewController: UITableViewController {
         if let sharedChats, sharedChats.length > 0 {
             sections.append(.sharedChats)
         }
-        sections.append(.actions)
 
         super.init(style: .insetGrouped)
 
@@ -247,17 +218,12 @@ class ProfileViewController: UITableViewController {
 
     private func updateOptions() {
         options = []
-        actions = []
         manageMembersActions = []
 
         let description = getDescription()
         if !description.isEmpty {
             descriptionCell.setText(text: description)
             options.append(.description)
-        }
-
-        if !isSavedMessages && !isDeviceChat, let contact, contact.isVerified {
-            actions.append(.verifiedBy)
         }
 
         options.append(.media) // add unconditionally, to have a visual anchor
@@ -744,8 +710,6 @@ class ProfileViewController: UITableViewController {
             return manageMembersActions.count + memberIds.count
         case .sharedChats:
             return sharedChats?.length ?? 0
-        case .actions:
-            return actions.count
         }
     }
 
@@ -798,11 +762,6 @@ class ProfileViewController: UITableViewController {
             guard let sharedChatCell = tableView.dequeueReusableCell(withIdentifier: ContactCell.reuseIdentifier, for: indexPath) as? ContactCell else { return UITableViewCell() }
             updateSharedChat(cell: sharedChatCell, row: indexPath.row)
             return sharedChatCell
-        case .actions:
-            switch actions[indexPath.row] {
-            case .verifiedBy:
-                return verifiedByCell
-            }
         }
     }
 
@@ -837,16 +796,6 @@ class ProfileViewController: UITableViewController {
             }
         case .sharedChats:
             showChat(otherChatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
-        case .actions:
-            switch actions[indexPath.row] {
-            case .verifiedBy:
-                guard let contact else { return }
-                tableView.deselectRow(at: indexPath, animated: true)
-                let verifierId = contact.getVerifierId()
-                if verifierId != 0 && verifierId != DC_CONTACT_ID_SELF {
-                    showContactDetail(of: verifierId)
-                }
-            }
         }
     }
 

@@ -295,8 +295,9 @@ public class DcContext {
         return Int(dc_create_chat_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
-    public func createGroupChat(verified: Bool, name: String) -> Int {
-        return Int(dc_create_group_chat(contextPointer, verified ? 1 : 0, name))
+    public func createGroupChat(name: String) -> Int {
+        let ignoredParameter: Int32 = 0
+        return Int(dc_create_group_chat(contextPointer, ignoredParameter, name))
     }
 
     public func createBroadcast(name: String) -> Int {

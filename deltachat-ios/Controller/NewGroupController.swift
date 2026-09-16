@@ -133,21 +133,12 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         doneButton.isEnabled = nameOk
     }
 
-    private func allMembersVerified() -> Bool {
-        for contactId in contactIdsForGroup {
-            if !dcContext.getContact(id: contactId).isVerified {
-                return false
-            }
-        }
-        return true
-    }
-
     @objc func doneButtonPressed() {
         guard let groupName = groupNameCell.textField.text else { return }
         let groupChatId = switch createMode {
         case .createBroadcast: dcContext.createBroadcast(name: groupName)
         case .createEmail: dcContext.createGroupChatUnencrypted(name: groupName)
-        case .createGroup: dcContext.createGroupChat(verified: allMembersVerified(), name: groupName)
+        case .createGroup: dcContext.createGroupChat(name: groupName)
         }
 
         for contactId in contactIdsForGroup {
