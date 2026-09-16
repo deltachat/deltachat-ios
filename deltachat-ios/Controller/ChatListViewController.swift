@@ -173,8 +173,6 @@ class ChatListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setBottomTabBarHidden(hasEditingView())
-
         // create view
         navigationItem.titleView = titleView
         updateTitle()
@@ -182,6 +180,7 @@ class ChatListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setBottomTabBarHidden(hasEditingView())
         startTimer()
     }
 
