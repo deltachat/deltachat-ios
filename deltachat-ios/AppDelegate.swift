@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var callWindow: CallWindow!
     var notifyToken: String?
-    private var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     private var appFullyInitialized = false
 
@@ -247,25 +246,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - app lifecycle
 
-    // applicationWillEnterForeground() is _not_ called on initial app start
-    func applicationWillEnterForeground(_: UIApplication) {
-        logger.info("➡️ applicationWillEnterForeground")
-        applicationInForeground = true
-        UserDefaults.setMainIoRunning()
-        dcAccounts.startIo()
-
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            if let reachability = self.reachability {
-                if reachability.connection != .unavailable {
-                    self.dcAccounts.maybeNetwork()
-                }
-            }
-
-            AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
-        }
-    }
-
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
         if !appFullyInitialized {
@@ -286,30 +266,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 "chat_id": Int(0),
             ])
         }
-    }
-
-    // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
-    func applicationDidBecomeActive(_: UIApplication) {
-        logger.info("➡️ applicationDidBecomeActive")
-        UserDefaults.setMainIoRunning()
-        applicationInForeground = true
-        NotificationManager.updateBadgeCounters()
-        if dcAccounts.getSelected().isConfigured() {
-            // This supports the case that app clips stay installed and
-            // keep handling i.delta.chat links instead of the main app which
-            // shouldn't happen but would be pretty bad so better safe than sorry
-            handleAppClipInviteLink()
-        }
-    }
-
-    func applicationWillResignActive(_: UIApplication) {
-        logger.info("⬅️ applicationWillResignActive")
-        registerBackgroundTask()
-    }
-
-    func applicationDidEnterBackground(_: UIApplication) {
-        logger.info("⬅️ applicationDidEnterBackground")
-        applicationInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -792,16 +748,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func appIsInForeground() -> Bool {
-        if Thread.isMainThread {
-            switch UIApplication.shared.applicationState {
-            case .background, .inactive:
-                applicationInForeground = false
-            case .active:
-                applicationInForeground = true
-            @unknown default:
-                applicationInForeground = false
-            }
-        }
-        return applicationInForeground
+        window?.windowScene?.activationState == .foregroundActive
     }
 }
