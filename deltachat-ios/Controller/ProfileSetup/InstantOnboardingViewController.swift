@@ -337,9 +337,9 @@ class InstantOnboardingViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
 
-            let qrCodeData = self.providerQrData ?? "dcaccount:nine.testrun.org"
+            let qrCodeData = self.providerQrData ?? nil
             do {
-                _ = try self.dcContext.addTransportFromQr(qrCode: qrCodeData)
+                _ = try self.dcContext.initTransports(qrCode: qrCodeData)
             } catch {
                 DispatchQueue.main.async {
                     progressAlertHandler.updateProgressAlert(error: error.localizedDescription)

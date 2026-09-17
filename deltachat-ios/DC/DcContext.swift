@@ -608,6 +608,11 @@ public class DcContext {
         return []
     }
 
+    public func initTransports(qrCode: String?) throws -> Bool {
+        let res = try DcAccounts.shared.blockingCall(method: "init_transports", params: [id as AnyObject, qrCode as AnyObject])
+        return res != nil
+    }
+
     public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
         let res = try DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
         return res != nil
