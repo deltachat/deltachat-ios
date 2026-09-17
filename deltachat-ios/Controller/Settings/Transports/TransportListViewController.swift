@@ -58,12 +58,6 @@ class TransportListViewController: UITableViewController {
 
     // MARK: - Actions
 
-    private func setDefaultTransport(at indexPath: IndexPath) {
-        guard let transport = transports.get(at: indexPath.row) else { return }
-        dcContext.setConfig("configured_addr", transport.addr)
-        reloadTransports()
-    }
-
     private func editTransport(at indexPath: IndexPath) {
         guard let transport = transports.get(at: indexPath.row) else { return }
         navigationController?.pushViewController(EditTransportViewController(dcAccounts: dcAccounts, editAddr: transport.addr), animated: true)
@@ -139,9 +133,7 @@ extension TransportListViewController {
 
 extension TransportListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == TransportSection.transports.rawValue {
-            setDefaultTransport(at: indexPath)
-        } else {
+        if indexPath.section == TransportSection.add.rawValue {
             addTransport()
         }
 
@@ -150,7 +142,6 @@ extension TransportListViewController {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard indexPath.section == TransportSection.transports.rawValue else { return nil }
-        guard let transport = transports.get(at: indexPath.row) else { return nil }
         var actions: [UIContextualAction] = []
 
         let deleteAction = UIContextualAction(style: .destructive, title: String.localized("remove_desktop")) { [weak self] _, _, completion in
