@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Onboard on multiple relays by default
 - No need to mark a relay for sending, this is chosen by the core automatically
 - Better image quality
 - More reliable and quicker notifications and call ringing
