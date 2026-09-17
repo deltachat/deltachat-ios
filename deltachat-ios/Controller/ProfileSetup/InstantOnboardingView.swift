@@ -15,7 +15,7 @@ class InstantOnboardingView: UIView {
     private let contentStackView: UIStackView
     private(set) var contentScrollView: UIScrollView
 
-    init(avatarImage: UIImage?, name: String?, customProvider: String?) {
+    init(avatarImage: UIImage?, name: String?) {
 
         imageButton = UIButton()
         imageButton.translatesAutoresizingMaskIntoConstraints = false
