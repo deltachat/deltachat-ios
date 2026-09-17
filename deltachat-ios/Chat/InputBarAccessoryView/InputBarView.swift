@@ -46,7 +46,7 @@ struct InputBarView: View {
                 }
                 .modifier { glassEffect(view: $0, interactive: false) }
             }
-            HStack(alignment: .bottom, spacing: 4) {
+            HStack(alignment: .bottom, spacing: 6) {
                 UncachedMenu(content: { clipperMenu }, label: {
                     Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
                         .renderingMode(.template)
