@@ -142,8 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // maybeNetwork() shall not be called in ui thread;
                 // Reachability::reachabilityChanged uses DispatchQueue.main.async only
                 logger.info("network: reachable \(reachability.connection.description)")
-                DispatchQueue.global().async { [weak self] in
-                    guard let self else { return }
+                DispatchQueue.global().async {
                     self.dcAccounts.maybeNetwork()
                     if self.notifyToken == nil && self.dcAccounts.getSelected().isConfigured() {
                         self.registerForNotifications()
@@ -154,8 +153,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             reachability.whenUnreachable = { _ in
                 logger.info("network: not reachable")
-                DispatchQueue.global().async { [weak self] in
-                    self?.dcAccounts.maybeNetworkLost()
+                DispatchQueue.global().async {
+                    self.dcAccounts.maybeNetworkLost()
                 }
             }
 
