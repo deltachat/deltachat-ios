@@ -19,7 +19,6 @@ class InstantOnboardingViewController: UIViewController {
 
     // QR code data used to create the profile
     private var providerQrData: String?
-    private var providerHostURL: URL
 
     // QR code data processed once profile is created
     private var securejoinQrData: String?
@@ -57,17 +56,12 @@ class InstantOnboardingViewController: UIViewController {
 
         if let qrCodeData {
             let parsedQrCode = dcContext.checkQR(qrCode: qrCodeData)
-            if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT,
-               let host = parsedQrCode.text1,
-               let url = URL(string: "https://\(host)") {
-                self.providerHostURL = url
+            if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT {
                 self.providerQrData = qrCodeData
             } else {
-                self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
                 self.providerQrData = nil
             }
         } else {
-            self.providerHostURL = URL(string: "https://" + InstantOnboardingViewController.defaultChatmailDomain)!
             self.providerQrData = nil
         }
 
@@ -88,13 +82,7 @@ class InstantOnboardingViewController: UIViewController {
 
     override func loadView() {
         super.loadView()
-        let customProvider: String?
-        if providerQrData != nil {
-            customProvider = providerHostURL.host
-        } else {
-            customProvider = nil
-        }
-        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage(), name: dcContext.displayname, customProvider: customProvider)
+        let contentView = InstantOnboardingView(avatarImage: dcContext.getSelfAvatarImage(), name: dcContext.displayname)
         contentView.agreeButton.addTarget(self, action: #selector(InstantOnboardingViewController.acceptAndCreateButtonPressed), for: .touchUpInside)
         contentView.imageButton.addTarget(self, action: #selector(InstantOnboardingViewController.onAvatarTapped), for: .touchUpInside)
         contentView.privacyButton.addTarget(self, action: #selector(InstantOnboardingViewController.showPrivacy(_:)), for: .touchUpInside)
@@ -337,9 +325,8 @@ class InstantOnboardingViewController: UIViewController {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
 
-            let qrCodeData = self.providerQrData ?? nil
             do {
-                _ = try self.dcContext.initTransports(qrCode: qrCodeData)
+                _ = try self.dcContext.initTransports(qrCode: self.providerQrData ?? self.securejoinQrData)
             } catch {
                 DispatchQueue.main.async {
                     progressAlertHandler.updateProgressAlert(error: error.localizedDescription)
@@ -386,8 +373,6 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
 
         switch Int32(parsedQrCode.state) {
         case DC_QR_LOGIN, DC_QR_ACCOUNT:
-            guard let host = parsedQrCode.text1, let url = URL(string: "https://\(host)") else { return }
-            self.providerHostURL = url
             self.providerQrData = qrCode
             dismissQRReader()
 
