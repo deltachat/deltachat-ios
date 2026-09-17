@@ -271,6 +271,8 @@ class ChatListViewController: UITableViewController {
     private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
         if #available(iOS 26, *) {
             navigationItem.backButtonDisplayMode = .minimal
+            // On liquid glass we don't show new messages indicator nor "archive/chats" in the back button
+            return
         }
         let numberOfUnreadMessages = DcAccounts.shared.getFreshMessagesCount()
 
