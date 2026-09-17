@@ -48,11 +48,10 @@ struct InputBarView: View {
             }
             HStack(alignment: .bottom, spacing: 4) {
                 UncachedMenu(content: { clipperMenu }, label: {
-                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(2)
+                    Image(systemName: "paperclip")
+                        .imageScale(.large)
+                        .frame(width: buttonSize, height: buttonSize)
+                        .accessibilityLabel(String.localized("menu_add_attachment"))
                 })
                 .frame(height: buttonSize)
                 // This fixes the attach button being hidden sometimes on iOS 15
@@ -141,7 +140,7 @@ struct InputBarView: View {
                 .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
         case DC_MSG_VIDEO:
             let thumbnail = DcUtils.generateThumbnailFromVideo(url: draft.draftMsg?.fileURL)
-            let fallback = UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor)
+            let fallback = UIImage(systemName: "paperclip")?.withTintColor(DcColors.grayTextColor, renderingMode: .alwaysOriginal)
             Image(uiImage: thumbnail ?? fallback ?? UIImage())
                 .resizable()
                 .scaledToFit()

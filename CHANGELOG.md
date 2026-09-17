@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Use the system paperclip icon for attachments
 - More reliable and quicker notifications and call ringing
 - Update notification when its message is edited
 - Remove notification if its message is deleted
