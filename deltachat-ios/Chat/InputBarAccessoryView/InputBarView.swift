@@ -15,6 +15,10 @@ struct InputBarView: View {
         isLiquidGlassEnabled ? 42 : 36
     }
 
+    /// This interactivity causes Menu buttons to not be tappable on iOS 27 (#3299).
+    /// We should check back later to see if this iOS bug is fixed and enable it again.
+    private let glassEffectInteractivityOnInputField = if #available(iOS 27, *) { false } else { true }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let msg = draft.sendEditRequestForMsg ?? draft.quoteMessage {
@@ -73,7 +77,7 @@ struct InputBarView: View {
                                 .padding(.horizontal, 12)
                         }
                     }
-                    .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: true) }
+                    .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: glassEffectInteractivityOnInputField) }
                     .accessibilityLabel(String.localized("write_message_desktop"))
                 }.frame(maxHeight: .infinity)
                 Button(action: {
