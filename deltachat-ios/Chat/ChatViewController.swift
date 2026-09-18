@@ -382,6 +382,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
+        if #available(iOS 27, *) {
+            // On iOS 27 the tabbar of the previous view causes a second viewSafeAreaInsetsDidChange
+            // when it hides which happens during layout of the toolbar so the inset calculation is
+            // wrong on initial appear. To fix this we just recalculate the insets every time the
+            // toolbar height changes.
+            toolbarContainerView
+                .publisher(for: \.bounds)
+                .map(\.height)
+                .receive(on: RunLoop.main) // This is necessary because bounds might change right before shouldProcessContentInsetUpdates is updated eg from scrolling
+                .sink { [weak self] _ in
+                    guard self?.shouldProcessContentInsetUpdates == true else { return }
+                    self?.setTableViewContentInset()
+                }
+                .store(in: &bag)
+        }
+
         let animateKeyboardChange: KeyboardManager.EventCallback = { [weak self, tableView] notification in
             guard let self, shouldProcessContentInsetUpdates else { return }
             // Using superview instead of window here because in iOS 13+ a modal can change
@@ -2916,9 +2932,6 @@ extension ChatViewController: ReactionsOverviewViewControllerDelegate {
 
 extension ChatViewController: BackButtonUpdateable {
     func shouldUpdateBackButton(_ viewController: UIViewController, chatId: Int, accountId: Int) -> Bool {
-        // On liquid glass we don't show new messages indicator in the back button
-        guard #unavailable(iOS 26.0) else { return false }
-
         if chatId == self.chatId && accountId == dcContext.id {
             return false
         } else {

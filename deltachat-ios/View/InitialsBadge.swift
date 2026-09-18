@@ -1,9 +1,10 @@
 import UIKit
+import Combine
 import DcCore
 
 public class InitialsBadge: UIView {
 
-    private let size: CGFloat
+    private var boundsPublisher: AnyCancellable?
 
     var leadingImageAnchorConstraint: NSLayoutConstraint?
     var trailingImageAnchorConstraint: NSLayoutConstraint?
@@ -62,23 +63,31 @@ public class InitialsBadge: UIView {
         setImage(image)
     }
 
-    public init(size: CGFloat, accessibilityLabel: String? = nil) {
-        self.size = size
-        super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+    /// Pass nil to *size* if you want to dynamically resize this view later
+    public init(size: CGFloat?, accessibilityLabel: String? = nil) {
+        super.init(frame: CGRect(x: 0, y: 0, width: size ?? 0, height: size ?? 0))
         self.accessibilityLabel = accessibilityLabel
-        let radius = size / 2
-        layer.cornerRadius = radius
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: size).isActive = true
-        widthAnchor.constraint(equalToConstant: size).isActive = true
-        label.font = UIFont.systemFont(ofSize: size * 3 / 5)
-        setupSubviews(with: radius)
+        if let size {
+            heightAnchor.constraint(equalToConstant: size).isActive = true
+        }
+        widthAnchor.constraint(equalTo: heightAnchor, multiplier: 1).isActive = true
+        boundsPublisher = publisher(for: \.bounds).sink { [weak self] bounds in
+            guard let self else { return }
+            layer.cornerRadius = bounds.width / 2
+            imageView.layer.cornerRadius = bounds.width / 2
+            label.font = UIFont.systemFont(ofSize: bounds.width * 3 / 5)
+            let recentlySeenViewWh = min(35, bounds.height / 2 * 0.6)
+            recentlySeenView.frame.size.width = recentlySeenViewWh
+            recentlySeenView.frame.size.height = recentlySeenViewWh
+            recentlySeenView.layer.cornerRadius = recentlySeenViewWh / 2
+        }
+        setupSubviews()
         isAccessibilityElement = true
     }
 
-    private func setupSubviews(with radius: CGFloat) {
+    private func setupSubviews() {
         addSubview(imageView)
-        imageView.layer.cornerRadius = radius
         leadingImageAnchorConstraint = imageView.leadingAnchor.constraint(equalTo: leadingAnchor)
         trailingImageAnchorConstraint = imageView.trailingAnchor.constraint(equalTo: trailingAnchor)
         topImageAnchorConstraint = imageView.topAnchor.constraint(equalTo: topAnchor)
@@ -95,16 +104,11 @@ public class InitialsBadge: UIView {
         label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
-        let recentlySeenViewWh = min(35, radius * 0.6)
-
         addSubview(recentlySeenView)
         addSubview(unreadMessageCounter)
-        recentlySeenView.layer.cornerRadius = recentlySeenViewWh / 2
         NSLayoutConstraint.activate([
             recentlySeenView.bottomAnchor.constraint(equalTo: bottomAnchor),
             recentlySeenView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            recentlySeenView.heightAnchor.constraint(equalToConstant: recentlySeenViewWh),
-            recentlySeenView.widthAnchor.constraint(equalToConstant: recentlySeenViewWh),
             unreadMessageCounter.topAnchor.constraint(equalTo: topAnchor),
             unreadMessageCounter.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
         ])

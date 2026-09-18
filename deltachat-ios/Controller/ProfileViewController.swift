@@ -306,7 +306,8 @@ class ProfileViewController: UITableViewController {
                 )
                 action.state = ephemeralTimer > 0 ? .on : .off
                 if ephemeralTimer > 0 {
-                    action.subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
+                    // UIMenuElement.subtitle is iOS 15+ while UIMenuLeaf.subtitle is iOS 16+...
+                    (action as UIMenuElement).subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
                 }
                 actions.append(action)
             }
