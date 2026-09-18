@@ -85,14 +85,25 @@ public struct DcUtils {
         }
     }
 
-    public static func showRecentlySeen(context: DcContext, chat: DcChat) -> Bool {
+    public enum RecentlySeen {
+        case recentlySeen
+        case longTimeNoSee
+        case nothingSpecial
+    }
+
+    public static func showRecentlySeen(context: DcContext, chat: DcChat) -> RecentlySeen {
         var recentlySeen = false
         if !chat.isSelfTalk && !chat.isMultiUser && !chat.isMailinglist && !chat.isDeviceTalk {
             let contactIds = chat.getContactIds(context)
             if contactIds.count == 1 {
-                recentlySeen = context.getContact(id: contactIds[0]).wasSeenRecently
+                let contact = context.getContact(id: contactIds[0])
+                if contact.wasSeenRecently {
+                    return RecentlySeen.recentlySeen
+                } else if contact.isStale {
+                    return RecentlySeen.longTimeNoSee
+                }
             }
         }
-        return recentlySeen
+        return RecentlySeen.nothingSpecial
     }
 }
