@@ -41,7 +41,15 @@ class ProfileViewController: UITableViewController {
         let isBlocked = contact?.isBlocked ?? false
         let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked)
         header.onAvatarTap = { [weak self] in self?.showEnlargedAvatar() }
-        header.setRecentlySeen(contact?.wasSeenRecently ?? false)
+
+
+        let recentlySeen: DcUtils.RecentlySeen
+        if let contact {
+            recentlySeen = contact.wasSeenRecently ? DcUtils.RecentlySeen.recentlySeen : (contact.isStale ? DcUtils.RecentlySeen.longTimeNoSee : DcUtils.RecentlySeen.nothingSpecial)
+        } else {
+            recentlySeen = DcUtils.RecentlySeen.nothingSpecial
+        }
+        header.setRecentlySeen(recentlySeen)
         return header
     }()
 
