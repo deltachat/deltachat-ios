@@ -5,6 +5,16 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Airdrop ipa to device when building for &quot;Any iOS Device&quot;"
+               scriptText = "[[ &quot;$DEVICE_NAME&quot; == &quot;Any iOS Device&quot; ]] || exit 0&#10;&#10;# Include everything installed with brew&#10;eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;&#10;&#10;cd &quot;$(dirname &quot;$WORKSPACE_PATH&quot;)&quot;&#10;./scripts/install-with-airdrop-to-trollstore.sh&#10;cd -&#10;"
+               shellToInvoke = "/bin/zsh">
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -83,12 +93,12 @@
       </BuildableProductRunnable>
       <AdditionalOptions>
          <AdditionalOption
-            key = "MallocStackLogging"
+            key = "PrefersMallocStackLoggingLite"
             value = ""
             isEnabled = "YES">
          </AdditionalOption>
          <AdditionalOption
-            key = "PrefersMallocStackLoggingLite"
+            key = "MallocStackLogging"
             value = ""
             isEnabled = "YES">
          </AdditionalOption>

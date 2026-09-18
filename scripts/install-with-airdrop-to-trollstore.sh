@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Xcode 27 no longer allows installing to devices before iOS 17
 # so you can use this script to install to those devices instead.
