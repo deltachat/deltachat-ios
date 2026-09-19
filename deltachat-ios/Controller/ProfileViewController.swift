@@ -39,7 +39,8 @@ class ProfileViewController: UITableViewController {
 
     private lazy var headerCell: ProfileHeader = {
         let isBlocked = contact?.isBlocked ?? false
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked)
+        let isStale = contact?.isStale ?? false
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked || isStale)
         header.onAvatarTap = { [weak self] in self?.showEnlargedAvatar() }
 
 
@@ -418,6 +419,8 @@ class ProfileViewController: UITableViewController {
                 subtitle = chat.getMailinglistAddr()
             } else if let contact, contact.isBlocked {
                 subtitle = String.localized("contact_blocked")
+            } else if let contact, contact.isStale {
+                subtitle = "Last seen a long time ago"
             } else {
                 subtitle = nil
             }
@@ -431,6 +434,8 @@ class ProfileViewController: UITableViewController {
         } else if let contact {
             if contact.isBlocked {
                 subtitle = String.localized("contact_blocked")
+            } else if contact.isStale {
+                subtitle = "Last seen a long time ago"
             } else {
                 subtitle = nil
             }
