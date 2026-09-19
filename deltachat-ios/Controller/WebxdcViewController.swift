@@ -54,7 +54,7 @@ class WebxdcViewController: WebViewViewController {
     lazy var webxdcbridge: String = {
         let addr = selfAddr
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let displayname = (dcContext.displayname ?? dcContext.addr)?
+        let displayname = (dcContext.displayname ?? String.localized("unnamed") )?
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         
         let script = """

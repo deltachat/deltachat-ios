@@ -709,7 +709,7 @@ class ChatListViewController: UITableViewController {
         }
 
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
-        let title = dcContext.displayname ?? dcContext.addr ?? ""
+        let title = dcContext.displayname ?? String.localized("unnamed")
         accountButtonAvatar.setColor(contact.color)
         accountButtonAvatar.setName(title)
         if let image = contact.profileImage {
