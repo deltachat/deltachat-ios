@@ -11,7 +11,7 @@ class QrPageController: UIPageViewController {
     private var selectedIndex: Int = 0
 
     private var qrCodeHint: String {
-        return String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), dcContext.displayname ?? dcContext.addr ?? "")
+        return String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), dcContext.displayname ?? String.localized("unnamed"))
     }
 
     private lazy var qrSegmentControl: UISegmentedControl = {

@@ -772,10 +772,6 @@ public class DcContext {
         set { setConfig("selfavatar", newValue) }
     }
 
-    public var addr: String? {
-        return getConfig("addr")
-    }
-
     public var mdnsEnabled: Bool {
         get { return getConfigBool("mdns_enabled") }
         set { setConfigBool("mdns_enabled", newValue) }

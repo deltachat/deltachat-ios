@@ -193,7 +193,7 @@ class ProfileSwitchViewController: UITableViewController {
             guard let self else { return }
             let accountId = accountIds[indexPath.row]
             let account = dcAccounts.get(id: accountId)
-            let message = "⚠️ " + String.localized(stringID: "delete_account_explain_with_name", parameter: account.displayname ?? account.addr ?? "no addr")
+            let message = "⚠️ " + String.localized(stringID: "delete_account_explain_with_name", parameter: account.displayname ?? String.localized("unnamed"))
             let alert = UIAlertController(title: String.localized("delete_account_ask"), message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
                 guard let self else { return }
@@ -331,7 +331,7 @@ class AccountCell: UITableViewCell {
         let accountId = dcContext.id
         self.accountId = accountId
         self.selectedAccount = selectedAccount
-        accountTitle = dcContext.displayname ?? dcContext.addr ?? ""
+        accountTitle = dcContext.displayname ?? String.localized("unnamed")
 
         let encrypted = dcContext.isDatabaseEncrypted() ? "⚠️ " : ""
         let contact = dcContext.getContact(id: Int(DC_CONTACT_ID_SELF))
