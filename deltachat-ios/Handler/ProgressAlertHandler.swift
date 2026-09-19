@@ -75,12 +75,10 @@ class ProgressAlertHandler {
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
 
         updateProgressAlertValue(value: 1000)
-        // delay so the user has time to read the success message
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            progressAlertController.dismiss(animated: true) {
-                onComplete?()
-            }
-        })
+        DispatchQueue.main.async {
+            progressAlertController.dismiss(animated: true)
+        }
+        onComplete?()
     }
 
     public func showProgressAlert(title: String?, dcContext: DcContext) {
