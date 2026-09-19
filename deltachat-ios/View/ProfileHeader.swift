@@ -90,8 +90,8 @@ class ProfileHeader: UIStackView {
         avatar.setImage(image)
     }
 
-    func setRecentlySeen(_ seen: Bool) {
-        avatar.setRecentlySeen(seen)
+    func setRecentlySeen(_ recentlySeen: DcUtils.RecentlySeen) {
+        avatar.setRecentlySeen(recentlySeen)
     }
 
     func resetBackupImage() {

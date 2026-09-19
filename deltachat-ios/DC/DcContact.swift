@@ -50,6 +50,10 @@ public class DcContact {
         return dc_contact_was_seen_recently(contactPointer) == 1
     }
 
+    public var isStale: Bool {
+        return dc_contact_is_stale(contactPointer) == 1
+    }
+
     public var status: String {
         guard let cString = dc_contact_get_status(contactPointer) else { return "" }
         let swiftString = String(cString: cString)

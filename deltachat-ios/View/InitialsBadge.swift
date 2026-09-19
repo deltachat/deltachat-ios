@@ -31,7 +31,6 @@ public class InitialsBadge: UIView {
     private var recentlySeenView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = DcColors.recentlySeenDot
         view.clipsToBounds = true
         view.isHidden = true
         return view
@@ -136,8 +135,19 @@ public class InitialsBadge: UIView {
         backgroundColor = color
     }
 
-    public func setRecentlySeen(_ seen: Bool) {
-        recentlySeenView.isHidden = !seen
+    public func setRecentlySeen(_ recentlySeen: DcUtils.RecentlySeen) {
+        switch recentlySeen {
+        case DcUtils.RecentlySeen.recentlySeen:
+            recentlySeenView.backgroundColor = DcColors.recentlySeenDot
+            recentlySeenView.isHidden = false
+
+        case DcUtils.RecentlySeen.longTimeNoSee:
+            recentlySeenView.backgroundColor = DcColors.longTimeNoSeeDot
+            recentlySeenView.isHidden = false
+
+        case DcUtils.RecentlySeen.nothingSpecial:
+            recentlySeenView.isHidden = true
+        }
     }
     
     public func setUnreadMessageCount(_ messageCount: Int, isMuted: Bool = false) {
