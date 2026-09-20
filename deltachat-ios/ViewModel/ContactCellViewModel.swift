@@ -38,7 +38,7 @@ class ContactCellViewModel: AvatarCellViewModel {
         return contact.displayName
     }
     var subtitle: String {
-        return contact.email
+        return contact.contactSeenLine ?? contact.email
     }
 
     var avartarTitle: String {
