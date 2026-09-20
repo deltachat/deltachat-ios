@@ -526,8 +526,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Din profil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Integritetspolicy för %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Om profiler på %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Godkänn & Skapa profil";
@@ -916,8 +918,11 @@
 "contact_verified" = "%1$@ verifierad.";
 "contact_blocked" = "Du blockerade kontakten";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Introducerad av %1$@";
+// deprecated
 "verified_by_you" = "Introducerad av mig";
+// deprecated
 "verified_by_unknown" = "Introducerad";
 "mailto_dialog_header_select_chat" = "Välj chatt för att skicka meddelandet till";
 // first placeholder is the name of the chat

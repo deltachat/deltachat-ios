@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Ontdekken";
 "unknown" = "Onbekend";
+"unnamed" = "Naamloos";
 "green" = "Groen";
 "red" = "Rood";
 "blue" = "Blauw";
@@ -206,6 +207,8 @@
 "purple" = "Paars";
 "magenta" = "Magenta";
 "white" = "Wit";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Zoomen";
 "extra_small" = "Extra klein";
 "small" = "Klein";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Gesprek losmaken";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Vastmaken";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Vastgemaakt";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Losmaken";
 "ConversationFragment_quoted_message_not_found" = "Het oorspronkelijke bericht is niet aangetroffen";
@@ -565,8 +570,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Mijn profiel";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Privacybeleid van %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Over profielen op %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Akkoord gaan en profiel aanmaken";
@@ -621,6 +628,7 @@
 "add_transport" = "Server toevoegen";
 "remove_transport" = "Server verwijderen";
 "edit_transport" = "Server bewerken";
+// deprecated
 "used_for_sending" = "Wordt gebruikt voor versturen";
 // deprecated
 "hide_from_contacts" = "Verbergen op contactpersonenlijst";
@@ -628,12 +636,12 @@
 "hidden_from_contacts" = "Verborgen op contactpersonenlijst";
 "enforce_e2ee" = "Versleuteling afdwingen op alle relays";
 // Hint for the list of relays
-"transport_list_hint" = "Berichten worden op alle relays ontvangen.";
+"transport_list_hint" = "Relays worden gebruikt voor het versturen en ontvangen van berichten. Door meer dan een relay toe te voegen, zorg je voor een stabielere verbinding.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Wil je deze server toevoegen?";
 "invalid_transport_qr" = "De gescande QR-code bevat geen geldige overdrachtsserver.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Wil je ‘%1$@’ verwijderen?\n\nHet verwijderproces vindt in stappen plaats, zodat je contactpersonen keurig overgezet worden.";
+"confirm_remove_relay_x" = "Wil je ‘%1$@’ verwijderen?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Wil je ‘%1$@’ verwijderen?\n\nContactpersonen die deze relay niet kennen, kunnen je zo niet bereiken.\n\nBij twijfel verbergen in plaats van verwijderen.";
 "login_certificate_checks" = "Certificaatcontrole";
@@ -858,16 +866,22 @@
 "chat_description_changed_by_other" = "De gespreksbeschrijving is aangepast door %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "‘%1$@’ is toegevoegd.";
+"member_you_added" = "Je bent toegevoegd.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Je hebt ‘%1$@’ toegevoegd.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "‘%1$@’ is toegevoegd door %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Je bent toegevoegd door %1$@.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Je hebt ‘%1$@’ verwijderd.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "‘%1$@’ is verwijderd door %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Je bent verwijderd door %1$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "‘%1$@’ is verwijderd.";
+"member_you_removed" = "Je bent verwijderd.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Je hebt de groep verlaten.";
 // "left" in the meaning of "exited".
@@ -979,8 +993,11 @@
 "contact_verified" = "%1$@ is goedgekeurd.";
 "contact_blocked" = "Je hebt deze contactpersoon geblokkeerd";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Geïntroduceerd door %1$@";
+// deprecated
 "verified_by_you" = "Geïntroduceerd door mij";
+// deprecated
 "verified_by_unknown" = "Geïntroduceerd";
 "mailto_dialog_header_select_chat" = "Kies in welk gesprek je dit bericht wilt delen";
 // first placeholder is the name of the chat
@@ -1015,6 +1032,7 @@
 "perm_explain_access_to_storage_denied" = "Delta Chat wil bestanden kunnen ontvangen en versturen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Opslag’ in.";
 "perm_explain_access_to_location_denied" = "Delta Chat wil je locatie kunnen delen. Ga naar de app-instellingen, kies ‘Rechten’ en schakel ‘Locatie’ in.";
 "perm_explain_access_to_notifications_denied" = "Open Systeeminstellingen → Apps → Delta Chat en schakel meldingen in.";
+"perm_explain_local_network_denied" = "Delta Chat heeft toegang tot nabije apparaten nodig om verbinding te maken met apparaten op het lokale netwerk. Je kunt deze toegang verlenen via Apps → Delta Chat → Rechten.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Teken met je vinger om vervaging toe te passen";
 "ImageEditorHud_add_text" = "Tekst toevoegen";
@@ -1141,3 +1159,9 @@
 "perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
 // device messages for updates
 "update_2_0" = "Wijzigingslog:\n\n💯 Eind-tot-eindversleuteling is voortaan betrouwbaarder én standaard. Slotjes 🔒 zijn verleden tijd!\n\n✉️ Klassieke e-mails zonder eind-tot-eindversleuteling worden voortaan gemarkeerd met een letter\n\n😻 Nieuwe, mooiere profielpagina\'s van al je contactpersonen\n\n🔲 Nieuwe knop voor snelle toegang tot apps in gesprekken\n\n❤️ Overweeg een donatie, zodat we onafhankelijk kunnen blijven en verbeteringen kunnen blijven aanbrengen: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Er is een nieuwe versie beschikbaar: %1$@. Druk op dit bericht om de update te installeren en gebruik te maken van alle nieuwe snufjes.";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Bezig met downloaden van %1$@…";
+"update_now" = "Nu bijwerken";
+"update_install_permission_explain" = "Sta eerst in de systeeminstellingen toe dat Delta Chat apps mag installeren.";

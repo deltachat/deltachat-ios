@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Ваш профиль";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Политика конфиденциальности для %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "О профилях на %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Принять и создать профиль";
@@ -574,7 +576,7 @@
 "instant_onboarding_show_more_instances" = "Использовать другой сервер";
 "instant_onboarding_other_server" = "Список серверов Chatmail";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
-"instant_onboarding_group_info" = "Создайте профиль, чтобы присоединиться к группе \"%1$@\".";
+"instant_onboarding_group_info" = "Создайте профиль, чтобы присоединиться к \"%1$@\".";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Создайте профиль для чата с %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
@@ -621,19 +623,16 @@
 "add_transport" = "Добавить релей";
 "remove_transport" = "Удалить релей";
 "edit_transport" = "Редактировать релей";
+// deprecated
 "used_for_sending" = "Используется для отправки";
 // deprecated
 "hide_from_contacts" = "Скрыть из контактов";
 // deprecated
 "hidden_from_contacts" = "Скрыт из контактов";
 "enforce_e2ee" = "Принудительное шифрование для всех релеев";
-// Hint for the list of relays
-"transport_list_hint" = "Сообщения поступают на все релеи.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Удалить релей \"%1$@\"?\n\nПеред удалением он будет постепенно выведен из обращения, чтобы ваши контакты могли плавно завершить переход.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Удалить релей \"%1$@\"?\n\nКонтакты, знающие только этот релей, могут потерять связь с вами, пока вы не напишете им снова.\n\nЕсли сомневаетесь, лучше скрыть его, а не удалять.";
 "login_certificate_checks" = "Проверки сертификатов";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "Описание чата изменено пользователем %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Добавлен участник %1$@.";
+"member_you_added" = "Вас добавили.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Вы добавили участника %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ добавляет участника %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Вас добавил(а) %1$@.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Вы удалили участника %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ удаляет участника %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Вас удалил(а) %1$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Участник %1$@ удалён.";
+"member_you_removed" = "Вас удалили.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Вы покинули группу.";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ подтверждён.";
 "contact_blocked" = "Вы заблокировали контакт";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Подтверждён: %1$@";
+// deprecated
 "verified_by_you" = "Подтверждён: Лично";
+// deprecated
 "verified_by_unknown" = "Подтверждён";
 "mailto_dialog_header_select_chat" = "Выберите чат, чтобы отправить сообщение";
 // first placeholder is the name of the chat

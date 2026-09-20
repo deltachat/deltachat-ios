@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "הפרופיל שלך";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "מדיניות פרטיות עבור %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "אודות הפרופילים ב- %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "מסכים & צור פרופיל";
@@ -621,19 +623,16 @@
 "add_transport" = "הוסף ממסר";
 "remove_transport" = "הסרת ממסר";
 "edit_transport" = "ערוך ממסר";
+// deprecated
 "used_for_sending" = "משמש לשליחה";
 // deprecated
 "hide_from_contacts" = "הסתר מאנשי הקשר";
 // deprecated
 "hidden_from_contacts" = "מוסתר מאנשי הקשר";
 "enforce_e2ee" = "אכיפת הצפנה על כל השרתים הממסרים";
-// Hint for the list of relays
-"transport_list_hint" = "ההודעות מתקבלות בכל השרתים.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "להוסיף את הממסר הזה?";
 "invalid_transport_qr" = "קוד ה-QR שנסרק אינו מכיל ממסר תקין.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "להסיר את הממסר \"%1$@\"?\n\nלפני ההסרה, השירות יופסק בהדרגה כדי לאפשר לאנשי הקשר שלך לעבור לשירות החדש בצורה חלקה.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "להסיר את \"%1$@\"?\n\nאנשי הקשר שמכירים רק את \" \" עלולים שלא להצליח ליצור איתך קשר עד שתשלח להם הודעה נוספת.\n\nאם אתה מתלבט, עדיף להסתיר אותו מאשר להסיר אותו.";
 "login_certificate_checks" = "בדיקת תעודות";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "תיאור הצ\'אט שונה על ידי %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "נוסף חבר: %1$@.";
+"member_you_added" = "הצטרפת.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "הוספת את החבר %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "החבר %1$@ נוסף על ידי %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "צורפת על-ידי %1$@.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "הסרת את החבר %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "החבר %1$@ הוסר על ידי %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "הוסרת על-ידי %1$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "החבר \" %1$@ \" הוסר.";
+"member_you_removed" = "הוסרת.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "עזבת את הקבוצה.";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ הוצג.";
 "contact_blocked" = "חסמת את איש הקשר";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "הוצג על ידי %1$@";
+// deprecated
 "verified_by_you" = "הוצג על ידי";
+// deprecated
 "verified_by_unknown" = "הוצג";
 "mailto_dialog_header_select_chat" = "בחר צ\'אט שאליו ברצונך לשלוח את ההודעה";
 // first placeholder is the name of the chat

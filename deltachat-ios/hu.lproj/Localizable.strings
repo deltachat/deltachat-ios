@@ -502,8 +502,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Adatvédelmi irányelvek ehhez: %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "További információ a profilokról itt: %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Elfogadás és profil létrehozása";
@@ -857,8 +859,11 @@
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
 "contact_verified" = "%1$@ bemutatva.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "%1$@ által bemutatva";
+// deprecated
 "verified_by_you" = "Ön által bemutatva";
+// deprecated
 "verified_by_unknown" = "Bemutatva";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat

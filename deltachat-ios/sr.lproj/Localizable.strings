@@ -658,6 +658,7 @@
 "secure_join_replies" = "%1$@ је одговорио и чека да буде додат у групу...";
 "contact_verified" = "%1$@ потврђен.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Проверено од %1$@";
 "mailto_dialog_header_select_chat" = "Изабери ћаскање у које желите да пошаљете поруку";
 // first placeholder is the name of the chat
