@@ -55,7 +55,7 @@ public class DcContact {
     }
 
     public var contactSeenLine: String? {
-        guard lastSeen > 0 else { return nil }
+        guard lastSeen > 0, isKeyContact else { return nil }
         let recentLimit: TimeInterval = 10 * 60
         let oneHour: TimeInterval = 60 * 60
         let oneDay: TimeInterval = 24 * 60 * 60
