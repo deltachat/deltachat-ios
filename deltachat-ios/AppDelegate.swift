@@ -690,7 +690,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_FILE, localizationKey: "file")
         dcContext.setStockTranslation(id: DC_STR_GIF, localizationKey: "gif")
         dcContext.setStockTranslation(id: DC_STR_ARCHIVEDCHATS, localizationKey: "chat_archived_label")
-        dcContext.setStockTranslation(id: DC_STR_CANNOT_LOGIN, localizationKey: "login_error_cannot_login")
         dcContext.setStockTranslation(id: DC_STR_LOCATION, localizationKey: "location")
         dcContext.setStockTranslation(id: DC_STR_STICKER, localizationKey: "sticker")
         dcContext.setStockTranslation(id: DC_STR_DEVICE_MESSAGES, localizationKey: "device_talk")
