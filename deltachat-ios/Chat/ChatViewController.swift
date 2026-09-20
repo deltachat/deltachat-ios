@@ -1105,6 +1105,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     subtitle = String.localized("bot")
                 } else if !dcChat.isEncrypted {
                     subtitle = dcContact?.email
+                } else if let dcContact, let seenLine = dcContact.contactSeenLine {
+                    subtitle = seenLine
                 } else {
                     subtitle = nil
                 }
