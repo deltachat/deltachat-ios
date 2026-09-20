@@ -522,8 +522,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "نمایه شما";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "سیاست حریم خصوصی برای %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "دربارهٔ نمایه‌ها در %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "قبول کردن و ایجاد نمایه";
@@ -903,8 +905,11 @@
 "contact_verified" = "%1$@ تأیید شد.";
 "contact_blocked" = "شما این مخاطب را مسدود کردید.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "احراز هویت شده توسط %1$@";
+// deprecated
 "verified_by_you" = "تأیید شده توسط من";
+// deprecated
 "verified_by_unknown" = "معرفی شده";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat

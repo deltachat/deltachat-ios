@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Sirvi";
 "unknown" = "Teadmata";
+"unnamed" = "Ilma nimeta";
 "green" = "Roheline";
 "red" = "Punane";
 "blue" = "Sinine";
@@ -206,6 +207,8 @@
 "purple" = "Purpurpunane";
 "magenta" = "Fuksiapunane";
 "white" = "Valge";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Suumitase";
 "extra_small" = "Eriti väike";
 "small" = "Väike";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Lõpeta vestluse esiletõstmine";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Tõste esile";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Esiletõstetud";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Lõpeta esiletõstmine";
 "ConversationFragment_quoted_message_not_found" = "Algset sõnumit ei leidu";
@@ -565,8 +570,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Sinu profiil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "%1$@ teenuse privaatsusreeglid";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Teave %1$@ teenuse profiilide kohta";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Nõustun ja alustan profiili loomist";
@@ -621,6 +628,7 @@
 "add_transport" = "Lisa alusühendus";
 "remove_transport" = "Eemalda alusühendus";
 "edit_transport" = "Muuda alusühendust";
+// deprecated
 "used_for_sending" = "Kasutatud saatmiseks";
 // deprecated
 "hide_from_contacts" = "Peida kontaktidest";
@@ -628,12 +636,12 @@
 "hidden_from_contacts" = "Peidetud kontaktidest";
 "enforce_e2ee" = "Kasuta kõikide alusühenduste (edastusserverite) puhul krüptimist";
 // Hint for the list of relays
-"transport_list_hint" = "Sõnumid saavad kõik alusühendused (edastusserverid).";
+"transport_list_hint" = "Alusühendused (edastusserverid) on kasutusel sõnumite saatmiseks ja vastuvõtmiseks. Sinu ühendus on töökindlam, kui neid on enam, kui üks.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Kas lisad selle alusühenduse (edastusserveri)?";
 "invalid_transport_qr" = "Skaneeritud QR-koodis pole korrektset alusühendust (edastusserverid)";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Kas eemaldad „%1$@“ alusühenduse (edastusserveri)?Enne lõplikku kustutamist toimub vaikne üleminek, kus kõik sinu kontaktid saavad muudatusega arvestada.";
+"confirm_remove_relay_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Kas eemaldad alusühenduse (edastusserveri) „%1$@“?\n\nKui mõni kontakt teab vaid seda ühendusviisi, siis ta ei pruugi sind kätte saada enne, kui oled talle uuesti kirjutanud.\n\nKui kahtled, siis eemakdamise asemel pigem peida see alusühendus (edastusserver).";
 "login_certificate_checks" = "Sertifikaadikontrollid";
@@ -858,16 +866,22 @@
 "chat_description_changed_by_other" = "%1$@ muutis vestluse kirjeldust.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Lisandus uus liige: %1$@.";
+"member_you_added" = "Sa oled lisatud.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Sina lisasid uue liikme: %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ lisas uue liikme: %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@ lisas sinu.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Sina eemaldasid liikme: %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ eemaldas liikme: %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@ eemaldas sinu.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Grupi liige „%1$@“ on eemaldatud.";
+"member_you_removed" = "Sa oled eemaldatud.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Sa lahkusid grupist.";
 // "left" in the meaning of "exited".
@@ -979,8 +993,11 @@
 "contact_verified" = "%1$@ lisas vestlusesse.";
 "contact_blocked" = "Sina blokeerisid selle kontakti";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "%1$@ lisas kontakti vestlusesse";
+// deprecated
 "verified_by_you" = "Mina lisasin kontakti vestlusesse";
+// deprecated
 "verified_by_unknown" = "Vestlusesse lisatud";
 "mailto_dialog_header_select_chat" = "Vali vestlus, kuhu soovid sõnumi saata";
 // first placeholder is the name of the chat
@@ -1015,6 +1032,7 @@
 "perm_explain_access_to_storage_denied" = "Failide saatmiseks ja vastuvõtmiseks ava rakenduse seadistused, sealt „Õigused“ / „Load“ ning luba „Mäluruum“.";
 "perm_explain_access_to_location_denied" = "Asukoha tuvastamiseks ava rakenduse seadistused, sealt „Õigused“ / „Load“ ning luba „Asukoht“.";
 "perm_explain_access_to_notifications_denied" = "Teavituste saamiseks ava rakenduse seadistused, sealt „Õigused“ / „Load“ ning luba „Märguanded“.";
+"perm_explain_local_network_denied" = "Ühendamaks seadmetega kohtvõrgus vajab Delta Chat õigust „Seadmed läheduses“. Saad seda seadistada siit: „Rakendused“ → „Delta Chat“ → „Õigused“.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Hägustamiseks joonista kusagil";
 "ImageEditorHud_add_text" = "Lisa tekst";
@@ -1141,3 +1159,9 @@
 "perm_enable_bg_already_done" = "Sa juba oled Delta Chatil lubanud laadida sõnumeid taustal.\n\nKui see siiski ei toimi, siis palun kontrolli rakenduse õigusi süsteemi seadistustest.";
 // device messages for updates
 "update_2_0" = "Mida on meil uut?\n\n💯 Läbiv krüptimine on töökindel ja seda nüüd igaveseks. Tabalukud 🔒 on läinud!\n\n✉️ Klassikalised e-kirjad, kus läbiv krüptimine on puudu, on märgitud ümbriku ikooniga\n\n😻 Uus ja tõhusam profiilivaade kõikide sinu kontaktide jaoks\n\n🔲 Uus nupp kiireks ligipääsuks vestluses kasutatavate rakendusteni\n\n❤️ Palun toeta meie arendust rahaliselt - nii saame jääda sõltumatuteks ja jätkata selle rakenduse täiustamist: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Saadaval on uus versioon %1$@. Uuendamiseks klõpsa seda sõnumit ja naudi uuenenud rakendust";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "%1$@ on allalaadimisel…";
+"update_now" = "Uuenda kohe";
+"update_install_permission_explain" = "Et uuenduse paigaldamine oleks võimalik, luba palun esmalt süsteemi seadistustest Delta Chatil pakendusi paigaldada.";

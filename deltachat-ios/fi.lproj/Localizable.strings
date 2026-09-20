@@ -27,6 +27,8 @@
 "join_channel" = "Liity kanavalle";
 "rejoin" = "Liity uudelleen";
 "delete" = "Poista";
+"delete_for_me" = "Poista minulta";
+"delete_for_everyone" = "Poista kaikilta";
 "info" = "Lisätietoja";
 "update" = "Päivitä";
 "emoji" = "Emoji";
@@ -144,6 +146,7 @@
 "open_sticker_folder" = "Avaa tarrakansio";
 "ask_add_sticker_to_collection" = "Lisätäänkö tämä tarra kokoelmaan?";
 "ask_delete_sticker" = "Poistetaanko tämä tarra?";
+"sticker_picker_empty_hint" = "Napauta tarraa lisätäksesi sen tänne.";
 "images" = "Kuvat";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Äänite";
@@ -446,6 +449,7 @@
 "search_in_chat" = "Hae keskustelussa";
 "search_files" = "Hae tiedostoja";
 "search_explain" = "Etsi keskusteluja, yhteystietoja ja viestejä";
+"search_result_for_x" = "Tulos haulle \"%1$@\"";
 "search_no_result_for_x" = "Ei tuloksia haulle \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "Lukematon";
@@ -538,8 +542,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profiilisi";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Yksityisyydensuojaseloste %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Tietoja profiileista kohteessa %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Hyväksy & luo profiili";
@@ -584,8 +590,17 @@
 "proxy_delete_explain" = "Poistetaanko välityspalvelin \"%1$@\"?";
 "proxy_use_proxy_confirm" = "Haluatko käyttää välityspalvelinta \"%1$@\"?";
 "proxy_share_explain" = "Kaverisi voivat lisätä tämän välityspalvelimen skannaamalla QR-koodin.";
+"proxy_share_link" = "Jaa linkki";
 "proxy_enabled" = "Välityspalvelin otettu käyttöön";
 "proxy_enabled_hint" = "Käytät välityspalvelinta. Jos sinulla on yhdistämisongelmia, kokeile käyttää toista välityspalvelinta.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Releet";
+"add_transport" = "Lisää rele";
+"remove_transport" = "Poista rele";
+"edit_transport" = "Muokkaa relettä";
+"enforce_e2ee" = "Pakota salaus kaikkiin releisiin";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Lisätäänkö tämä rele?";
 "login_certificate_checks" = "Varmenteiden tarkastus";
 "login_error_mail" = "Anna kelvollinen sähköpostiosoite";
 "login_error_server" = "Anna kelvollinen palvelin tai IP-osoite";
@@ -726,6 +741,8 @@
 "pref_show_tray_icon" = "Näytä työkalupalkin kuvake";
 "pref_edit_profile" = "Muokkaa profiilia";
 "send_stats_to_devs" = "Lähetä tilastotietoja Delta Chatin kehittäjille";
+"stats_keep_sending" = "Jatka lähettämistä";
+"stats_msg_body" = "Liite sisältää anonyymeja käyttötilastoja; ne auttavat parantamaan Delta Chatin toimintaa.. Lue https://delta.chat/help#statssending saadaksesi lisätietoja.";
 // Emoji picker and categories
 "emoji_search_results" = "Hakutulokset";
 "emoji_not_found" = "Emojeja ei löytynyt";
@@ -782,16 +799,22 @@
 "chat_description_changed_by_you" = "Muutit keskustelun kuvausta.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ lisätty.";
+"member_you_added" = "Sinut lisättiin";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Jäsen %1$@ lisätty minun toimestani.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Jäsen %1$@ lisätty käyttäjän %2$@ toimesta.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@ lisäsi sinut.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Jäsen %1$@ poistettu minun toimestani.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Jäsen %1$@ poistettu käyttäjän %2$@ toimesta.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@ poisti sinut.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Jäsen %1$@ poistettu";
+"member_you_removed" = "Sinut poistettiin";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Lähdit ryhmästä.";
 // "left" in the meaning of "exited".
@@ -837,6 +860,7 @@
 "ephemeral_timer_weeks_by_you" = "Katoavien viestien ajastin asetettu %1$@ viikkoon minun toimestani.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Katoavien viestien ajastin asetettu %1$@ viikkoon käyttäjän %2$@ toimesta.";
+"messages_are_e2ee" = "Viestit ovat päästä päähän -salattuja.";
 "chat_protection_enabled_tap_to_learn_more" = "Tästä eteenpäin viestit on taatusti päästä-päähän salattuja. Lisätietoja napauttamalla.";
 "chat_protection_enabled_explanation" = "Kaikki viestit tässä keskustelussa ovat taatusti päästä-päähän salattuja.\n\nPäästä-päähän -salaus pitää viestisi sinun ja keskustelukumppanisi välillä. Edes sähköpostipalveluntarjoaja ei pysty niitä lukemaan.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ vaatii päästä-päähän -salausta joka ei enää ole käytössä tässä keskustelussa. Lue lisää napauttamalla.";
@@ -894,7 +918,9 @@
 "secure_join_wait" = "Otetaan taattua päästä-päähän salausta käyttöön, odota...";
 "contact_verified" = "%1$@ varmistettu.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "%1$@ lisäsi";
+// deprecated
 "verified_by_you" = "Lisäämäni";
 "mailto_dialog_header_select_chat" = "Valitse keskustelu viestien lähettämiseen";
 // first placeholder is the name of the chat

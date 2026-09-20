@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Browse";
 "unknown" = "Unknown";
+"unnamed" = "Unnamed";
 "green" = "Green";
 "red" = "Red";
 "blue" = "Blue";
@@ -206,6 +207,8 @@
 "purple" = "Purple";
 "magenta" = "Magenta";
 "white" = "White";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
 "extra_small" = "Extra small";
 "small" = "Small";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Unpin Chat";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Pin";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Pinned";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Unpin";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
@@ -565,8 +570,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Your Profile";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Privacy Policy for %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "About profiles on %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Agree & Create Profile";
@@ -621,6 +628,7 @@
 "add_transport" = "Add Relay";
 "remove_transport" = "Remove Relay";
 "edit_transport" = "Edit Relay";
+// deprecated
 "used_for_sending" = "Used for sending";
 // deprecated
 "hide_from_contacts" = "Hide from Contacts";
@@ -628,12 +636,12 @@
 "hidden_from_contacts" = "Hidden from contacts";
 "enforce_e2ee" = "Enforce Encryption for All Relays";
 // Hint for the list of relays
-"transport_list_hint" = "Messages are received on all relays.";
+"transport_list_hint" = "Relays are used for sending and receiving messages. Having more than one keeps your connection reliable.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Add this relay?";
 "invalid_transport_qr" = "The scanned QR code does not contain a valid relay.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Remove relay \"%1$@\"?\n\nBefore deletion, it will be gradually phased out so your contacts can switch over smoothly.";
+"confirm_remove_relay_x" = "Remove relay \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Remove relay \"%1$@\"?\n\nContacts who only know this relay may not reach you until you message them again.\n\nIf in doubt, hide it rather than removing it.";
 "login_certificate_checks" = "Certificate Checks";
@@ -985,8 +993,11 @@
 "contact_verified" = "%1$@ introduced.";
 "contact_blocked" = "You blocked the contact";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Introduced by %1$@";
+// deprecated
 "verified_by_you" = "Introduced by me";
+// deprecated
 "verified_by_unknown" = "Introduced";
 "mailto_dialog_header_select_chat" = "Select chat to send the message to";
 // first placeholder is the name of the chat
@@ -1021,6 +1032,7 @@
 "perm_explain_access_to_storage_denied" = "To receive or send files, go to the app settings, select \"Permissions\", and enable \"Storage\".";
 "perm_explain_access_to_location_denied" = "To attach a location, go to the app settings, select \"Permissions\", and enable \"Location\".";
 "perm_explain_access_to_notifications_denied" = "To receive notifications, go to \"System Settings / Apps / Delta Chat\" and enable \"Notifications\".";
+"perm_explain_local_network_denied" = "Delta Chat needs the \"Nearby devices\" permission to connect to devices on the local network. You can set it under Apps / Delta Chat / Permissions.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Draw anywhere to blur";
 "ImageEditorHud_add_text" = "Add Text";
@@ -1147,6 +1159,12 @@
 "perm_enable_bg_already_done" = "You already allowed Delta Chat to receive messages in the background.\n\nIf messages still do not arrive in background, please also check your system settings.";
 // device messages for updates
 "update_2_0" = "What\'s new?\n\n💯 End-to-end encryption is reliable and forever now. Padlocks 🔒 are gone!\n\n✉️ Classic email without end-to-end encryption is marked with a letter symbol\n\n😻 New enhanced profile screen for all your contacts\n\n🔲 New button for quick access to apps used in a chat\n\n❤️ Please donate to help us remain independent and continue to bring improvements: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 New version %1$@ available. Tap this message to update and enjoy the new features";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Downloading %1$@ …";
+"update_now" = "Update Now";
+"update_install_permission_explain" = "To install the update, please first allow Delta Chat to install apps in the system settings.";
 // iOS specific untranslated strings
 "connectivity_low_data_mode" = "Throttled by system's \"Low Data Mode\".";
 "connectivity_low_power_mode" = "Throttled by system's \"Low Power Mode\".";

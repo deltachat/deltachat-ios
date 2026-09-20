@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Twój profil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Polityka prywatności na %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "O profilach na %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Zgadzam się i Utwórz profil";
@@ -621,19 +623,16 @@
 "add_transport" = "Dodaj serwer przekaźnikowy";
 "remove_transport" = "Usuń serwer przekaźnikowy";
 "edit_transport" = "Edytuj serwer przekaźnikowy";
+// deprecated
 "used_for_sending" = "Służy do wysyłania";
 // deprecated
 "hide_from_contacts" = "Ukryj w kontaktach";
 // deprecated
 "hidden_from_contacts" = "Ukryty w kontaktach";
 "enforce_e2ee" = "Wymuś szyfrowanie dla wszystkich przekaźników";
-// Hint for the list of relays
-"transport_list_hint" = "Wiadomości są odbierane na wszystkich przekaźnikach.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Dodać ten serwer przekaźnikowy?";
 "invalid_transport_qr" = "Zeskanowany kod QR zawiera nieprawidłowy serwer przekaźnikowy.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Usunąć przekaźnik „%1$@”?\n\nPrzed usunięciem dane będą stopniowo wycofywane, aby umożliwić płynne przełączenie kontaktów.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Usuń przekaźnik „%1$@”?\n\nKontakty, które znają tylko ten przekaźnik, mogą nie dotrzeć do ciebie, dopóki nie wyślesz do nich ponownej wiadomości.\n\nW razie wątpliwości ukryj go, zamiast usuwać.";
 "login_certificate_checks" = "Sprawdzanie certyfikatów";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "Opis czatu zmieniony przez %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Dodano członka %1$@.";
+"member_you_added" = "Dodano cię.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Dodano członka %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Użytkownik %2$@ dodał członka %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Użytkownik %1$@ dodał cię.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Usunięto członka %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Użytkownik %2$@ usunął członka %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Użytkownik %1$@ usunął cię.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Usunięto członka %1$@.";
+"member_you_removed" = "Usunięto cię.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Opuszczono grupę";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "Kontakt %1$@ zweryfikowany.";
 "contact_blocked" = "Zablokowano kontakt";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Kontakt zweryfikowany przez %1$@";
+// deprecated
 "verified_by_you" = "Kontakt zweryfikowany przez ciebie";
+// deprecated
 "verified_by_unknown" = "Zweryfikowano";
 "mailto_dialog_header_select_chat" = "Wybierz czat, do którego chcesz wysłać wiadomość";
 // first placeholder is the name of the chat

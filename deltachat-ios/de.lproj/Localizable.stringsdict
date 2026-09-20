@@ -290,5 +290,21 @@
 			<string>%d neue Nachrichten</string>
 		</dict>
 	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d ungelesene Nachricht</string>
+			<key>other</key>
+			<string>%d ungelesene Nachrichten</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

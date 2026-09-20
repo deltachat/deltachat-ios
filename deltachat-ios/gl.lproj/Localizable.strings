@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "O teu perfil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Política de Privacidade de %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Sobre os perfís en %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Aceptar e Crear perfil";
@@ -621,19 +623,16 @@
 "add_transport" = "Engadir repetidor";
 "remove_transport" = "Eliminar repetidor";
 "edit_transport" = "Editar repetidor";
+// deprecated
 "used_for_sending" = "Usado para enviar";
 // deprecated
 "hide_from_contacts" = "Ocultar dos contactos";
 // deprecated
 "hidden_from_contacts" = "Oculto dos contactos";
 "enforce_e2ee" = "Aplicar o cifrado para todos os repetidores";
-// Hint for the list of relays
-"transport_list_hint" = "As mensaxes recíbense en todos os repetidores.\n\n⚠️ Se cambias algo aquí, asegúrate de que todos os teus dispositivos executen polo menos a versión 2.47.0. Se non, os dispositivos máis antigos poden perder mensaxes.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Engadir este repetidor?";
 "invalid_transport_qr" = "O código QR escaneado non contén un repetidor válido.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Eliminar repetidor \"%1$@\"?\n\nAntes da eliminación, será retirado gradualmente de modo que os seus contactos podan mudarse mainamente";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Eliminar o repetidor \"%1$@\"?\n\nOs contactos que só coñecen este retransmisor poden non contactar contigo ata que lles envíes unha nova mensaxe.\n\nEn caso de dúbida, ocúltao en lugar de eliminalo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -857,17 +856,23 @@
 // %1$s will be replaced by name of the contact who did the action
 "chat_description_changed_by_other" = "Descrición da conversa modificada por %1$@.";
 // %1$s will be replaced by name of the contact added to the group
-"member_x_added" = " %1$@ entrou no grupo.";
+"member_x_added" = "Engadiuse a %1$@.";
+"member_you_added" = "Engadíronte.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Engadiches a %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@ engadiu a %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Engadido/a por %1$@.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Eliminaches a %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@eliminou a %1$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Borrado/a por %1$@.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Eliminouse a %1$@.";
+"member_you_removed" = "Borráronte.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Abandonaches o grupo.";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "Introducíronse %1$@.-";
 "contact_blocked" = "Bloqueaches o contacto";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Contacto introducido por %1$@";
+// deprecated
 "verified_by_you" = "Contacto introducido por min";
+// deprecated
 "verified_by_unknown" = "Contacto introducido";
 "mailto_dialog_header_select_chat" = "Escoller conversa á que enviar a mensaxe";
 // first placeholder is the name of the chat

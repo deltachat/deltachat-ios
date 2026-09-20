@@ -497,6 +497,7 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Jūsų profilis";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "%1$@ privatumo politika";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Sutinku ir sukurti profilį";

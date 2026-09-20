@@ -678,7 +678,9 @@
 "secure_join_replies" = "%1$@ đã trả lời, đang chờ được thêm vào nhóm…";
 "contact_verified" = "%1$@ đã được giới thiệu.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Được giới thiệu bởi %1$@";
+// deprecated
 "verified_by_you" = "Được tôi giới thiệu";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";
 // first placeholder is the name of the chat

@@ -80,11 +80,11 @@
 "loading" = "加载中…";
 "hide" = "隐藏";
 "activate" = "激活";
-"load_remote_content" = "加载远程图像";
+"load_remote_content" = "加载远程图片";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "远程图像可以跟踪您。\n\n此设置可能还会加载字体以及其他内容。禁用状态下，您仍可能会看到嵌入的图像和缓存中的图像。\n\n是否加载远程图像？";
+"load_remote_content_ask" = "远程图片可以跟踪您。\n\n此设置还可能会加载字体和其他内容。如果禁用此设置，嵌入或缓存的图片仍可能会显示。\n\n是否加载远程图片？";
 "always" = "总是";
-"always_load_remote_images" = "始终加载远程图像";
+"always_load_remote_images" = "始终加载远程图片";
 "once" = "仅一次";
 // deprecated
 "show_warning" = "显示警告";
@@ -241,7 +241,7 @@
 "menu_toggle_keyboard" = "切换表情符号键盘";
 "menu_edit_group" = "编辑群组";
 // deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "群组名称和图像";
+"menu_group_name_and_image" = "群组名称和头像";
 "menu_show_global_map" = "显示所有位置";
 "menu_archive_chat" = "归档聊天";
 "menu_unarchive_chat" = "取消归档聊天";
@@ -257,7 +257,7 @@
 "menu_message_details" = "消息详情";
 "menu_copy_to_clipboard" = "复制到剪贴板";
 "share_invite_link" = "分享邀请链接";
-"share_invite_link_explain" = "任何有此链接的人都可查看您的个人资料并开始与您聊天。请仅与您信任的人分享。";
+"share_invite_link_explain" = "任何有此链接的人都可查看您的账号并开始与您聊天。请仅与您信任的人分享。";
 "invite_friends" = "邀请好友";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "在 Delta Chat 上联系我：\n%1$@";
@@ -478,8 +478,8 @@
 // create/edit groups, contact/group profile
 "group_name" = "群组名称";
 "group_avatar" = "群组图像";
-"remove_group_image" = "移除群组图像";
-"change_group_image" = "更改群组图像";
+"remove_group_image" = "移除群组头像";
+"change_group_image" = "更改群组头像";
 "group_create_button" = "创建群组";
 // deprecated, use please_enter_chat_name
 "group_please_enter_group_name" = "请输入群组名称。";
@@ -515,7 +515,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "添加第二台设备";
 "multidevice_same_network_hint" = "让两台设备连接相同的 Wi-Fi 或网络";
-"multidevice_this_creates_a_qr_code" = "这将创建一个二维码，第二台设备可以扫描该二维码来复制配置文件。\n\n请确保没有不必要的观察者或摄像机可以看到以下屏幕。";
+"multidevice_this_creates_a_qr_code" = "这将创建一个二维码，第二台设备可以扫描该二维码来复制账号。\n\n请确保没有不必要的观察者或摄像机可以看到以下屏幕。";
 "multidevice_install_dc_on_other_device" = "在你的其他设备上安装 Delta Chat (https://get.delta.chat)";
 // "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
 "multidevice_tap_scan_on_other_device" = "启动 Delta Chat，点按“我已有账号/添加为第二台设备”，然后扫描此处显示的二维码";
@@ -524,7 +524,7 @@
 "multidevice_receiver_title" = "添加为第二台设备";
 "multidevice_open_settings_on_other_device" = "在第一台设备上，启动 Delta Chat，转到“设置/添加第二台设备”，然后扫描显示的二维码";
 "multidevice_receiver_scanning_ask" = "是否将账号从其他设备复制到此设备？";
-"multidevice_receiver_needs_update" = "您要导入的配置文件来自较新的 Delta Chat 版本。\n\n要继续设置第二台设备，请更新此设备上的 Delta Chat 到最新版。";
+"multidevice_receiver_needs_update" = "您要导入的账号来自较新的 Delta Chat 版本。\n\n要继续设置第二台设备，请更新此设备上的 Delta Chat 到最新版。";
 "multidevice_abort" = "中止第二台设备的设置吗？";
 "multidevice_abort_will_invalidate_copied_qr" = "这会让复制到剪贴板的二维码失效。";
 "multidevice_transfer_done_devicemsg" = "ℹ️ 账号已传输到您的第二台设备。";
@@ -563,29 +563,31 @@
 // This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
 "manual_account_setup_option" = "使用传统电子邮件作为中继";
 // Instant onboarding title (there is not more to do than to set name and avatar)
-"instant_onboarding_title" = "个人资料";
+"instant_onboarding_title" = "您的账号";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "%1$@ 的隐私政策";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
-"instant_onboarding_agree_instance" = "关于 %1$@ 上的个人资料";
+// deprecated
+"instant_onboarding_agree_instance" = "关于 %1$@ 上的账号";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "同意并创建账号";
 // Secondary, link-like button to open a page with other possible instances
 "instant_onboarding_show_more_instances" = "使用其他服务器";
 "instant_onboarding_other_server" = "列出聊天邮件服务器";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
-"instant_onboarding_group_info" = "创建个人资料加入“%1$@” 群。";
+"instant_onboarding_group_info" = "创建账号加入“%1$@”。";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
-"instant_onboarding_contact_info" = "创建个人资料和 %1$@ 聊天";
+"instant_onboarding_contact_info" = "创建账号即可与 %1$@ 聊天。";
 // Question shown when another user's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_contact" = "你想新建个人资料并开始和 %1$@ 聊天吗？";
+"instant_onboarding_confirm_contact" = "创建新账号，开始与 %1$@ 聊天吗？";
 // Question shown when group's/channel's QR code is scanned from onboarding screen
-"instant_onboarding_confirm_group" = "你想新建个人资料并加入 \"%1$@\" 聊天群吗？";
+"instant_onboarding_confirm_group" = "创建新账号并加入“%1$@”吗？";
 "team" = "团队";
-"team_profile" = "团队配置";
-"team_profile_explain" = "“团队配置”由一群人或一个组织共同管理。\n\n⚠️ 团队配置目前处于实验阶段，可能会有所更改。";
+"team_profile" = "团队账号";
+"team_profile_explain" = "“团队账号”由一群人或一个组织共同管理。\n\n⚠️ 团队账号目前处于实验阶段，可能会有所更改。";
 "team_name" = "团队名称";
-"create_team_profile" = "创建团队配置";
+"create_team_profile" = "创建团队账号";
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "扫描邀请码";
 "login_title" = "登录";
@@ -621,19 +623,16 @@
 "add_transport" = "添加中继";
 "remove_transport" = "移除中继";
 "edit_transport" = "编辑中继";
+// deprecated
 "used_for_sending" = "用于发送";
 // deprecated
 "hide_from_contacts" = "对联系人隐藏";
 // deprecated
 "hidden_from_contacts" = "已对联系人隐藏";
 "enforce_e2ee" = "对所有中继强制加密";
-// Hint for the list of relays
-"transport_list_hint" = "在所有中继上均已收到消息。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "添加此中继？";
 "invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "移除中继“%1$@”？在删除之前，它将逐步停用，以便您的联系人可以平稳过渡。";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "移除中继“%1$@”？\n\n仅知道此中继的联系人可能无法联系到您，直到您再次发送消息。\n\n如有疑问，请将其隐藏而非移除。";
 "login_certificate_checks" = "证书检查";
@@ -676,14 +675,14 @@
 "share_text_multiple_chats" = "发送这段文字到 %1$d 个聊天？\n\n\"%2$@“";
 "share_abort" = "由于缺少权限，分享中止。";
 // preferences
-"pref_profile_info_headline" = "您的个人资料";
-"pref_profile_photo" = "个人资料图片";
-"pref_blocked_contacts" = "已屏蔽的联系人";
-"blocked_empty_hint" = "被您屏蔽的联系人将显示于此。";
-"pref_who_can_see_profile_explain" = "在与其他用户交流时，您的个人资料图片、名称和个人简介将与您的消息一起发送。";
+"pref_profile_info_headline" = "您的账号";
+"pref_profile_photo" = "头像";
+"pref_blocked_contacts" = "已屏蔽联系人";
+"blocked_empty_hint" = "已屏蔽的联系人将显示在此处。";
+"pref_who_can_see_profile_explain" = "在与其他用户交流时，您的头像、名称和个人简介将与您的消息一起发送。";
 "pref_your_name" = "您的名称";
 // Label of the Bio/Signature/Status/Motto field
-"pref_default_status_label" = "签名档";
+"pref_default_status_label" = "个人简介";
 "chat_description" = "描述";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
 "pref_enter_sends" = "Enter 键发送";
@@ -783,11 +782,11 @@
 "up_to_x_most_worse_quality_images" = "%1$@ 以下，最差的图像质量";
 "up_to_x_most_balanced_quality_images" = "%1$@ 以下，均衡的图像质量";
 "download_failed" = "下载失败";
-"profile_image_select" = "选择个人资料图片";
-"select_your_new_profile_image" = "选择新的个人资料图片";
-"profile_image_delete" = "删除个人资料图片";
+"profile_image_select" = "选择头像";
+"select_your_new_profile_image" = "选择新头像";
+"profile_image_delete" = "删除头像";
 "pref_show_tray_icon" = "显示托盘图标";
-"pref_edit_profile" = "编辑个人资料";
+"pref_edit_profile" = "编辑账号";
 "send_stats_to_devs" = "发送统计数据给 Delta Chat 开发者";
 "stats_device_message" = "您是否愿意通过每周发送匿名使用统计数据来帮助改进 Delta Chat 并支持相关研究？\n\n👉 点击此处… 👈";
 "stats_confirmation_dialog" = "您是否愿意通过每周发送匿名使用统计数据来帮助改进 Delta Chat 并支持相关研究？";
@@ -830,7 +829,7 @@
 // deprecated
 "autodel_server_warn_multi_device_title" = "开启一次性删除";
 // deprecated
-"autodel_server_warn_multi_device" = "如果您启用一次删除，则无法在此配置文件中使用多台设备。";
+"autodel_server_warn_multi_device" = "如果您启用一次性删除，则无法在此账号上使用多台设备。";
 "autodel_confirm" = "我了解，将这些消息全部删除";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "下载后立即";
@@ -842,32 +841,38 @@
 "autodel_after_1_year" = "1 年后";
 // system messages
 "systemmsg_subject_for_new_contact" = "来自 %1$@ 的消息";
-"systemmsg_failed_sending_to" = "发送消息给 %1$@ 失败。";
+"systemmsg_failed_sending_to" = "无法向 %1$@ 发送消息。";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
-"group_name_changed_by_you" = "你已将群组名称从“%1$@”更改为“%2$@”";
+"group_name_changed_by_you" = "您已将群组名称从“%1$@”更改为“%2$@”。";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
-"group_name_changed_by_other" = "%3$@已将群组名称从“%1$@”更改为“%2$@”";
+"group_name_changed_by_other" = "%3$@ 已将群组名称从“%1$@”更改为“%2$@”。";
 // %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
 "channel_name_changed" = "频道名称已从“%1$@”更改为“%2$@”。";
-"group_image_changed_by_you" = "你更改了群组图像";
+"group_image_changed_by_you" = "您更改了群组头像。";
 // %1$s will be replaced by name of the contact who did the action
-"group_image_changed_by_other" = "%1$@ 更改了群组图像";
-"channel_image_changed" = "频道图像已更改。";
+"group_image_changed_by_other" = "%1$@ 更改了群组头像。";
+"channel_image_changed" = "频道头像已更改。";
 "chat_description_changed_by_you" = "您更改了聊天描述。";
 // %1$s will be replaced by name of the contact who did the action
-"chat_description_changed_by_other" = "聊天描述已由 %1$@ 更改。";
+"chat_description_changed_by_other" = "%1$@ 更改了聊天描述。";
 // %1$s will be replaced by name of the contact added to the group
-"member_x_added" = "添加了成员 %1$@ 。";
+"member_x_added" = "添加了成员 %1$@。";
+"member_you_added" = "您已被添加。";
 // %1$s will be replaced by name of the contact added to the group
-"add_member_by_you" = "你添加了成员 %1$@";
+"add_member_by_you" = "您添加了成员 %1$@。";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
-"add_member_by_other" = "%2$@ 添加了成员 %1$@";
+"add_member_by_other" = "%2$@ 添加了成员 %1$@。";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@ 添加了您。";
 // %1$s will be replaced by name of the contact removed from the group
-"remove_member_by_you" = "你移除了成员 %1$@";
+"remove_member_by_you" = "您移除了成员 %1$@。";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@ 移除了成员 %1$@";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@ 移除了您。";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
-"member_x_removed" = "已移除成员 %1$@ ";
+"member_x_removed" = "移除了成员 %1$@。";
+"member_you_removed" = "您已被移除。";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "您已离开群组。";
 // "left" in the meaning of "exited".
@@ -875,9 +880,9 @@
 "you_joined_the_channel" = "您已加入频道。";
 // "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
 "group_left_by_other" = "%1$@ 退出了群组";
-"group_image_deleted_by_you" = "你删除了群组图像";
+"group_image_deleted_by_you" = "您删除了群组头像。";
 // %1$s will be replaced by name of the contact
-"group_image_deleted_by_other" = "%1$@ 删除了群组图像";
+"group_image_deleted_by_other" = "%1$@ 删除了群组头像。";
 "location_enabled_by_you" = "你开启了位置流";
 // %1$s will be replaced by name of the contact
 "location_enabled_by_other" = "%1$@ 开启了位置流";
@@ -933,7 +938,7 @@
 "enter_system_secret_to_continue" = "解锁以继续";
 // qr code stuff
 "qr_code" = "二维码";
-"load_qr_code_as_image" = "从图像加载二维码";
+"load_qr_code_as_image" = "将二维码加载为图片";
 "qrscan_title" = "扫描二维码";
 "qrscan_hint" = "将摄像头对准二维码。";
 "qrscan_hint_desktop" = "将二维码移动到摄像头";
@@ -963,8 +968,8 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "扫描即可与 %1$@ 聊天";
 "qrshow_join_contact_no_connection_toast" = "没有互联网连接，无法进行二维码设置。";
-"qraccount_ask_create_and_login" = "在“%1$@”创建新的电子邮件地址并登录？";
-"set_name_and_avatar_explain" = "设置联系人可以识别的名称，您还可以设置个人资料图片。";
+"qraccount_ask_create_and_login" = "在“%1$@”上创建新账号并登录？";
+"set_name_and_avatar_explain" = "设置联系人可以识别的名称，您还可以设置头像。";
 "please_enter_name" = "请输入名称。";
 "qraccount_qr_code_cannot_be_used" = "扫描的二维码不能用于创建新账号。";
 // the placeholder will be replaced by the address of the profile
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ 已验证。";
 "contact_blocked" = "您已屏蔽该联系人";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "验证人 %1$@";
+// deprecated
 "verified_by_you" = "由您验证";
+// deprecated
 "verified_by_unknown" = "已验证";
 "mailto_dialog_header_select_chat" = "选择要发送消息的聊天";
 // first placeholder is the name of the chat
@@ -1045,7 +1053,7 @@
 "global_menu_help_about_desktop" = "关于 Delta Chat";
 "global_menu_file_open_desktop" = "打开 Delta Chat";
 "global_menu_minimize_to_tray" = "最小化";
-"no_account_selected" = "选择配置文件或创建新配置文件";
+"no_account_selected" = "选择账号或创建新账号";
 "no_chat_selected_suggestion_desktop" = "选择聊天或创建新聊天";
 "write_message_desktop" = "输入消息…";
 "encryption_info_title_desktop" = "加密信息";

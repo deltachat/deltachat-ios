@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Tu perfil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Política de privacidad para %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Acerca de los perfiles en %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Aceptar y crear perfil";
@@ -621,19 +623,16 @@
 "add_transport" = "Añadir Retransmisor";
 "remove_transport" = "Eliminar Retransmisor";
 "edit_transport" = "Editar Retransmisor";
+// deprecated
 "used_for_sending" = "Usado para enviar";
 // deprecated
 "hide_from_contacts" = "Ocultar de los contactos";
 // deprecated
 "hidden_from_contacts" = "Ocultado de los contactos";
 "enforce_e2ee" = "Exigir el cifrado para todos los retransmisores";
-// Hint for the list of relays
-"transport_list_hint" = "Los mensajes se reciben en todos los retransmisores.\n\n⚠️ Si cambias algo aquí, asegúrese de que todos sus dispositivos ejecutan al menos la versión 2.47.0. De lo contrario, los dispositivos más antiguos pueden perder algunos mensajes.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "¿Añadir este retransmisor?";
 "invalid_transport_qr" = "El código QR escaneado no contiene un retransmisor válido.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "¿Eliminar retransmisor \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "¿Eliminar el retransmisor \"%1$@\"?\n\nLos contactos que solo conocen este retransmisor podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "Descripción del chat modificada por %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "Miembro %1$@ añadido.";
+"member_you_added" = "Te han añadido.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Añadiste al miembro %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Miembro %1$@ añadido por %2$@. ";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@ te ha añadido.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Eliminaste al miembro %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Miembro %1$@ eliminado por %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@ te ha expulsado.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Miembro %1$@ eliminado.";
+"member_you_removed" = "Te han expulsado.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Saliste del grupo.";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ verificado.";
 "contact_blocked" = "Contacto bloqueado";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Verificado por %1$@";
+// deprecated
 "verified_by_you" = "Verificado por ti";
+// deprecated
 "verified_by_unknown" = "Introducido";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat

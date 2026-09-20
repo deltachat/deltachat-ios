@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Entdecken";
 "unknown" = "Unbekannt";
+"unnamed" = "Unbenannt";
 "green" = "Grün";
 "red" = "Rot";
 "blue" = "Blau";
@@ -206,6 +207,8 @@
 "purple" = "Lila";
 "magenta" = "Magenta";
 "white" = "Weiß";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
 "extra_small" = "Extraklein";
 "small" = "Klein";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Chat loslösen";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Anheften";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Angeheftet";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Loslösen";
 "ConversationFragment_quoted_message_not_found" = "Originalnachricht nicht gefunden";
@@ -565,8 +570,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Dein Profil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Datenschutzerklärung für %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Infos zu Profilen auf %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Einverstanden & Profil erstellen";
@@ -621,6 +628,7 @@
 "add_transport" = "Relay hinzufügen";
 "remove_transport" = "Relay entfernen";
 "edit_transport" = "Relay bearbeiten";
+// deprecated
 "used_for_sending" = "Zum Senden verwendet";
 // deprecated
 "hide_from_contacts" = "Vor Kontakten verstecken";
@@ -628,12 +636,12 @@
 "hidden_from_contacts" = "Vor Kontakten versteckt";
 "enforce_e2ee" = "Verschlüsselung für alle Relays erzwingen";
 // Hint for the list of relays
-"transport_list_hint" = "Nachrichten werden auf allen Relays empfangen.";
+"transport_list_hint" = "Relais werden zum Senden und Empfangen von Nachrichten verwendet. Mehrere Relays erhöhen die Zuverlässigkeit.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Relay hinzufügen?";
 "invalid_transport_qr" = "Der gescannte QR-Code enthält keine gültiges Relay.";
 // placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Relay \"%1$@\" entfernen?\n\nVor dem endgültigen Löschen wird es schrittweise deaktiviert, um deinen Kontakten einen nahtlosen Übergang zu ermöglichen.";
+"confirm_remove_relay_x" = "Relay \"%1$@\" entfernen?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Relay \"%1$@\" entfernen?\n\nKontakte, die nur dieses Relay kennen, erreichen dich möglicherweise erst wieder, wenn du ihnen erneut eine Nachricht schickst.\n\nIm Zweifelsfall, verstecke das Relay anstelle es zu löschen.";
 "login_certificate_checks" = "Zertifikatsüberprüfung";
@@ -985,8 +993,11 @@
 "contact_verified" = "%1$@ eingeführt.";
 "contact_blocked" = "Du hast den Kontakt blockiert";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Eingeführt von %1$@";
+// deprecated
 "verified_by_you" = "Durch mich eingeführt";
+// deprecated
 "verified_by_unknown" = "Eingeführt";
 "mailto_dialog_header_select_chat" = "Wähle den Chat, an den die Nachricht gesendet werden soll";
 // first placeholder is the name of the chat
@@ -1021,6 +1032,7 @@
 "perm_explain_access_to_storage_denied" = "Um Dateien zu empfangen oder zu versenden, bitte in den System-Einstellungen Delta Chat den Zugriff auf den Speicher erlauben.";
 "perm_explain_access_to_location_denied" = "Um einen Standort anzuhängen, bitte in den Systemeinstellungen DeltaChat den Zugriff auf \"Standort\" erlauben.";
 "perm_explain_access_to_notifications_denied" = "Um Benachrichtigungen zu erhalten, öffne \"Systemeinstellungen / Apps / Delta Chat\" und aktiviere \"Benachrichtigungen\".";
+"perm_explain_local_network_denied" = "Delta Chat benötigt die \"Geräte in der Nähe\"-Berechtigung, um eine Verbindung zu Geräten im lokalen Netzwerk herzustellen. Sie können diese unter \"Apps /  Delta Chat / Berechtigungen\" vergeben.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Zeichne zum Verwischen in beliebige Bereiche";
 "ImageEditorHud_add_text" = "Text hinzufügen";
@@ -1141,9 +1153,15 @@
 "pref_background_notifications_explain" = "Erfordert das Deaktivieren der Akku-Optimierungen; empfohlen, wenn Nachrichten nicht rechtzeitig ankommen";
 "pref_reliable_service" = "Hintergrundverbindung erzwingen";
 "pref_reliable_service_explain" = "Verursacht eine permanente Benachrichtigung";
-"pref_background_notifications_rationale" = "Um die Verbindung aufrechtzuerhalten und Nachrichten im Hintergrund zu empfangen, ignorieren im nächsten Schritt die \"Akku-Optimierungen\".\n\nDelta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";
+"pref_background_notifications_rationale" = "Um die Verbindung aufrechtzuerhalten und Nachrichten im Hintergrund zu empfangen, ignoriere im nächsten Schritt die \"Akku-Optimierungen\".\n\nDelta Chat verbraucht nur minimale Ressourcen und achtet darauf, den Akku zu schonen.";
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Tippen hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_already_done" = "Du hast Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls keine Nachrichten eingehen, überprüfe bitte auch die Systemeinstellungen.";
 // device messages for updates
 "update_2_0" = "Was ist neu?\n\n💯 Die Ende-zu-Ende-Verschlüsselung ist jetzt dauerhaft. Vorhängeschlösser 🔒 gibt es nicht mehr!\n\n✉️ Klassische E-Mails ohne Ende-zu-Ende-Verschlüsselung sind mit einem Umschlag-Symbol gekennzeichnet\n\n😻 Neues, verbessertes Profil für alle Kontakte\n\n🔲 Neue Schaltfläche für den schnellen Zugriff auf Apps, die in einem Chat verwendet werden\n\n❤️ Bitte spende und hilf uns, unabhängig zu bleiben und weiterhin Verbesserungen zu bringen: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Neue Version %1$@ verfügbar. Tippe auf diese Nachricht, um das Update zu installieren und die neuen Funktionen zu nutzen.";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Lade %1$@ herunter …";
+"update_now" = "Jetzt aktualisieren";
+"update_install_permission_explain" = "Um das Update zu installieren, erlaube Delta Chat bitte zunächst in den Systemeinstellungen, Apps zu installieren.";

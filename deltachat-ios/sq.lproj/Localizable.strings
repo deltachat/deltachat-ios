@@ -551,8 +551,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profili Juaj";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Rregulla Privatësie për %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Rreth profilesh në %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Pranojeni & Krijoni Profil";
@@ -602,14 +604,13 @@
 "add_transport" = "Shtoni Rele";
 "remove_transport" = "Hiqni Rele";
 "edit_transport" = "Përpunoni Rele";
+// deprecated
 "used_for_sending" = "E përdorur për dërgim";
 // deprecated
 "hide_from_contacts" = "Fshihe prej Kontaktesh";
 // deprecated
 "hidden_from_contacts" = "Fshehur prej kontakteve";
 "enforce_e2ee" = "Detyro Fshehtëzim për Krejt Reletë";
-// Hint for the list of relays
-"transport_list_hint" = "Mesazhet merren në të tëra reletë.\n\n⚠️ Nëse ndryshoni diçka këtu, sigurohuni se krejt pajisjet tuaja xhirojnë të paktën versionin 2.47.0. Përndryshe, pajisje më të vjetra mund të humbin mesazhe.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Të shtohet kjo rele?";
 "invalid_transport_qr" = "Kodi QR i skanuar s’përmban një rele të vlefshme.";
@@ -958,8 +959,11 @@
 "contact_verified" = "%1$@ u soll.";
 "contact_blocked" = "E bllokuat kontaktin";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Sjellë nga %1$@";
+// deprecated
 "verified_by_you" = "Sjellë nga unë";
+// deprecated
 "verified_by_unknown" = "Sjellë nga";
 "mailto_dialog_header_select_chat" = "Përzgjidhni fjalosje ku të dërgohet mesazhi";
 // first placeholder is the name of the chat

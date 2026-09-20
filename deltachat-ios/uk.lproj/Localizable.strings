@@ -559,8 +559,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Ваш профіль";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Політика конфіденційності для %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Про профілі на %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Погодитися та створити профіль";
@@ -610,14 +612,13 @@
 "add_transport" = "Додати ретранслятор";
 "remove_transport" = "Видалити ретранслятор";
 "edit_transport" = "Редагувати ретранслятор";
+// deprecated
 "used_for_sending" = "Використовується для відправки";
 // deprecated
 "hide_from_contacts" = "Приховати від контактів";
 // deprecated
 "hidden_from_contacts" = "Приховано від контактів";
 "enforce_e2ee" = "Застосувати політику шифрування для всіх ретрансляторів";
-// Hint for the list of relays
-"transport_list_hint" = "Повідомлення приймаються на всіх ретрансляторах.\n\n⚠️ Якщо ви щось змінюєте тут, переконайтеся, що всі ваші пристрої працюють принаймні з версією 2.47.0. Інакше старіші пристрої можуть пропустити повідомлення.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Додати цей ретранслятор?";
 "invalid_transport_qr" = "Відсканований QR-код не містить дійсного ретранслятора.";
@@ -673,8 +674,8 @@
 "pref_default_status_label" = "Текст підпису";
 "chat_description" = "Опис";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
-"pref_enter_sends" = "Відправляти клявішею   Enter";
-"pref_enter_sends_explain" = "Натискаючи клявішу   Enter відправлятимете текстові повідомлення";
+"pref_enter_sends" = "Enter для надсилання";
+"pref_enter_sends_explain" = "Натискання клавіші Enter призведе до надсилання текстових повідомлень";
 "pref_outgoing_media_quality" = "Якість вихідних медіа файлів";
 "pref_outgoing_media_quality_hint" = "Щоб надіслати в оригінальній якості, прикріпіть медіа як \"Файл\". При цьому використовується значно більше даних для вас і ваших одержувачів.";
 "pref_outgoing_balanced" = "Збалансована якість";
@@ -966,8 +967,11 @@
 "contact_verified" = "%1$@ представлено!";
 "contact_blocked" = "Ви заблокували контакт";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Представни·ця: %1$@";
+// deprecated
 "verified_by_you" = "Представлено мною";
+// deprecated
 "verified_by_unknown" = "Представлено";
 "mailto_dialog_header_select_chat" = "Виберіть чат, куди потрібно надіслати повідомлення";
 // first placeholder is the name of the chat

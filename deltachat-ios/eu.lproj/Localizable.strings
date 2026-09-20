@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Zure kontua";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "%1$@(r)en pribatutasun-politika";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "%1$@(e)ko kontuei buruz";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Ados eta sortu kontua";
@@ -621,19 +623,16 @@
 "add_transport" = "Gehitu errelea";
 "remove_transport" = "Ezabatu errelea";
 "edit_transport" = "Editatu errelea";
+// deprecated
 "used_for_sending" = "Bidaltzeko erabilita";
 // deprecated
 "hide_from_contacts" = "Ezkutatu kontaktuetatik";
 // deprecated
 "hidden_from_contacts" = "Kontaktuetatik ezkutatuta";
 "enforce_e2ee" = "Behartu zifraketa errele guztietarako";
-// Hint for the list of relays
-"transport_list_hint" = "Mezuak errele guztietan jasotzen dira.\n\n⚠️ Hemen zerbait aldatzen baduzu, ziurtatu zure gailu guztiek gutxienez 2.47.0 bertsioa dutela. Bestela, gailu zaharragoek mezuak gal ditzakete.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Gehitu errelea?";
 "invalid_transport_qr" = "Eskaneatutako QR kodeak ez dauka baliozko errelerik.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Kendu \"%1$@\"?\n\nEzabatu aurretik, pixkanaka-pixkanaka kenduko da, zure kontaktuak arin alda daitezen.";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Ezabatu \"%1$@\" errelea?\n\nErrele hau bakarrik ezagutzen duten kontaktuak ezin izango dira zurekin harremanetan jarri zuk mezu bat berriro bidali arte.\n\nZalantzarik baduzu, hobe da ezkutatzea ezabatzea baino.";
 "login_certificate_checks" = "Ziurtagiri-egiaztaketak";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "%1$@(e)k txataren deskribapena aldatu du";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ kidea gehitu da.";
+"member_you_added" = "Gehitu zaituzte.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "%1$@ kidea gehitu duzu.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "%2$@(e)k: %1$@ kidea gehitu du";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@-k gehitu zaitu.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "%1$@ kidea kendu duzu.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "%2$@(e)k: %1$@ kidea kenduta";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@-k kendu zaitu.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "%1$@ kidea kenduta.";
+"member_you_removed" = "Kendu zaituzte.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Taldetik atera zara";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ egiaztatuta.";
 "contact_blocked" = "Kontaktua blokeatu duzu";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "%1$@(e)k egiaztatuta";
+// deprecated
 "verified_by_you" = "Nik egiaztatuta";
+// deprecated
 "verified_by_unknown" = "Egiaztatuta";
 "mailto_dialog_header_select_chat" = "Aukeratu txat bat mezua bidaltzeko";
 // first placeholder is the name of the chat

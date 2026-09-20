@@ -784,6 +784,7 @@
 "secure_join_replies" = "%1$@respondeu, esperando para ser adicionado ao grupo...";
 "contact_verified" = "%1$@ verificado.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Verificado por %1$@";
 "mailto_dialog_header_select_chat" = "Selecione o bate-papo para enviar a mensagem";
 // first placeholder is the name of the chat

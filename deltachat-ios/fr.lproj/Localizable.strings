@@ -557,8 +557,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Votre profil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Politique de confidentialité pour %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Informations concernant les profils sur %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Accepter et créer le profil";
@@ -607,14 +609,13 @@
 "add_transport" = "Ajouter un relais";
 "remove_transport" = "Supprimer un relais";
 "edit_transport" = "Modifier le relais";
+// deprecated
 "used_for_sending" = "Utilisé pour les envois";
 // deprecated
 "hide_from_contacts" = "Masquer pour les contacts";
 // deprecated
 "hidden_from_contacts" = "Masqué pour les contacts";
 "enforce_e2ee" = "Forcer le chiffrement pour tous les relais";
-// Hint for the list of relays
-"transport_list_hint" = "Les messages sont reçus sur tous les relais.\n\n⚠️ Si vous changez un paramètre ici, assurez vous que tous vos appareils utilisent la version 2.47.0 ou ultérieure. Autrement vos appareils pourraient rater des messages.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Ajouter le relais ?";
 "invalid_transport_qr" = "Le code QR scanné ne renvoie pas vers un relais valide.";
@@ -963,8 +964,11 @@
 "contact_verified" = "%1$@ connu.";
 "contact_blocked" = "Vous avez bloqué le contact";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Connu de %1$@";
+// deprecated
 "verified_by_you" = "Connu de vous";
+// deprecated
 "verified_by_unknown" = "Connu";
 "mailto_dialog_header_select_chat" = "Sélectionnez une discussion où envoyer le message";
 // first placeholder is the name of the chat

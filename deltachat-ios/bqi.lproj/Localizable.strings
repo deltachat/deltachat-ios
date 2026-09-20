@@ -379,6 +379,7 @@
 "qrshow_x_verified" = "%1$@ تاییڌ وابی.";
 "contact_verified" = "%1$@ تاییڌ وابی.";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "تاییڌ وابیڌه و دس %1$@";
 // notifications
 "notify_reply_button" = "ولوم";

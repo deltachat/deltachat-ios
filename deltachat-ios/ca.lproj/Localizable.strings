@@ -565,8 +565,10 @@
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "El vostre perfil";
 // The placeholder will be replaced by the default onboarding server
+// deprecated
 "instant_onboarding_agree_default2" = "Política de privadesa de %1$@";
 // The placeholder will be replaced by instance name, the whole text will link to the instance page
+// deprecated
 "instant_onboarding_agree_instance" = "Quant als perfils en %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "D\'acord i crea el perfil";
@@ -621,19 +623,16 @@
 "add_transport" = "Afegir Retransmissor";
 "remove_transport" = "Elimina Retransmissors";
 "edit_transport" = "Edita Retransmissor";
+// deprecated
 "used_for_sending" = "Utilitzat per enviar";
 // deprecated
 "hide_from_contacts" = "Amagar als contactes";
 // deprecated
 "hidden_from_contacts" = "Amagat als contactes";
 "enforce_e2ee" = "Força el xifrat per tots els Retransmissors";
-// Hint for the list of relays
-"transport_list_hint" = "Els missatges es reben en tots els retransmissors.  ⚠️ Si canvies qualsevol cosa aquí, assegura\'t que tots els teus dispositius funcionin com a mínim amb la versió 2.47.0. Sinó, els dispositius més antics podrien no rebre els missatges.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Afegir aquest retransmissor?";
 "invalid_transport_qr" = "El codi QR escanejat no conté un retransmissor vàlid.";
-// placeholder will be replaced by a relay server name
-"confirm_remove_relay_x" = "Esborrar retransmissor \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Esborrar el retransmissor \"%1$@\"?\n\nEls contactes que només coneixen aquest retransmissor no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
 "login_certificate_checks" = "El certificat coincideix";
@@ -858,16 +857,22 @@
 "chat_description_changed_by_other" = "Descripció del xat modificada per %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "S\'ha afegit el membre %1$@.";
+"member_you_added" = "T\'han afegit.";
 // %1$s will be replaced by name of the contact added to the group
 "add_member_by_you" = "Heu afegit el membre %1$@.";
 // %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
 "add_member_by_other" = "Membre %1$@ afegit per %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "%1$@ t\'ha afegit.";
 // %1$s will be replaced by name of the contact removed from the group
 "remove_member_by_you" = "Heu eliminat el membre %1$@.";
 // %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
 "remove_member_by_other" = "Membre %1$@ eliminat per %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "%1$@ t\'ha expulsat.";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "Membre %1$@ eliminat.";
+"member_you_removed" = "Has estat expulsat.";
 // "left" in the meaning of "exited".
 "group_left_by_you" = "Heu abandonat el grup.";
 // "left" in the meaning of "exited".
@@ -979,8 +984,11 @@
 "contact_verified" = "%1$@ afegit.";
 "contact_blocked" = "Heu blocat el contacte";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
+// deprecated
 "verified_by" = "Afegit per %1$@";
+// deprecated
 "verified_by_you" = "Afegit per mi";
+// deprecated
 "verified_by_unknown" = "Afegit";
 "mailto_dialog_header_select_chat" = "Trieu el xat on enviar el missatge";
 // first placeholder is the name of the chat

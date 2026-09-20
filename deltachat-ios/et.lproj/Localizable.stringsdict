@@ -290,5 +290,21 @@
 			<string>%d uut sõnumit</string>
 		</dict>
 	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d lugemata sõnum</string>
+			<key>other</key>
+			<string>%d lugemata sõnumit</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
