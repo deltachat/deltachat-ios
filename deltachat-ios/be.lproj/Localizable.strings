@@ -1,0 +1,456 @@
+// common strings without special context
+"app_name" = "Delta Chat";
+"ok" = "ОК";
+"cancel" = "Скасаваць";
+"clear_search" = "Ачысціць пошук";
+// a noun, used on a button, short for "show link"
+"link" = "Спасылка";
+// "scan" in the meaning of "scan QR code"
+"scan" = "Сканаваць";
+"yes" = "Так";
+"no" = "Не";
+"select" = "Выбраць";
+"on" = "Укл.";
+"off" = "Выкл.";
+"def" = "Па змаўчанні";
+"default_value" = "Па змаўчанні (%1$@)";
+"custom" = "Свой варыянт";
+"none" = "Не зададзена";
+"automatic" = "Аўтаматычна";
+"strict" = "Строгі";
+"open" = "Адкрыць";
+"download" = "Спампаваць";
+"downloading" = "Загрузка…";
+"open_attachment" = "Адкрыць укладанне";
+"join" = "Далучыцца";
+"join_group" = "Уступіць у групу";
+"join_channel" = "Далучыцца да канала";
+"rejoin" = "Далучыцца зноў";
+"delete" = "Выдаліць";
+"delete_for_me" = "Выдаліць для мяне";
+"delete_for_everyone" = "Выдаліць для ўсіх";
+"info" = "Інфармацыя";
+"update" = "Абнавіць";
+"emoji" = "Эмодзі";
+"attachment" = "Укладанне";
+"back" = "Назад";
+"close" = "Закрыць";
+"close_window" = "Закрыць акно";
+"forward" = "Пераслаць";
+"create" = "Стварыць";
+"reset" = "Скінуць";
+"later" = "Пазней";
+// "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
+"resend" = "Адправіць паўторна";
+"edited" = "Адрэдагавана";
+"edit_message" = "Рэдагаваць паведамленне";
+// Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
+"archive" = "Архіваваць";
+// Verb "to unarchive", as in "remove a chat from the archive", opposite of the previous string
+"unarchive" = "Вярнуць з архіва";
+// Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
+"mute" = "Не апавяшчаць";
+// Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
+"muted" = "Апавяшчэнні адключаны";
+"ephemeral_messages" = "Знікаючыя паведамленні";
+"ephemeral_messages_hint" = "Распаўсюджваецца на ўсіх удзельнікаў чата; аднак яны ўсё яшчэ могуць капіяваць, захоўваць і перасылаць паведамленні.";
+"save" = "Захаваць";
+"chat" = "Чат";
+"media" = "Медыя";
+"apps_and_media" = "Праграмы і медыя";
+"profile" = "Профіль";
+// deprecated
+"all_profiles" = "Усе профілі";
+// deprecated
+"current_profile" = "Бягучы профіль";
+"main_menu" = "Галоўнае меню";
+"start_chat" = "Напісаць";
+"show_full_message" = "Паказаць паведамленне цалкам…";
+// Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
+"mark_all_as_read" = "Прачытаць усе";
+// Used as an menu entry or button
+"mark_as_read" = "Прачытаць";
+// Used as an menu entry or button
+"mark_as_unread" = "Скасаваць чытанне";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Не прачытана";
+// Placeholder text when something is loading
+"loading" = "Загрузка…";
+"hide" = "Схаваць";
+"activate" = "Актываваць";
+"load_remote_content" = "Загрузка выяў з знешніх крыніц";
+// Possible answers to the question are: Never, Always, Once
+"load_remote_content_ask" = "Выявы, размешчаныя на знешніх крыніцах, могуць быць выкарыстаны для сачэння за вамі.\n\nГэтая налада таксама дазваляе загружаць шрыфты і іншае змесціва. Калі яна адключана, могуць адлюстроўвацца ўбудаваныя або кэшаваныя выявы.\n\nДазволіць загрузку з знешніх крыніц?";
+"always" = "Заўсёды";
+"always_load_remote_images" = "Заўсёды загружаць выявы з знешніх крыніц";
+"once" = "Толькі цяпер";
+// deprecated
+"show_warning" = "Паказаць папярэджанне";
+"not_now" = "Не цяпер";
+"never" = "Ніколі";
+"one_moment" = "Хвілінку…";
+"done" = "Гатова";
+"undo" = "Адмяніць";
+"offline" = "Не ў сетцы";
+// For the next view or as "continue". Should be as short as possible.
+"next" = "Далей";
+"warning" = "Папярэджанне";
+"error" = "Памылка";
+"error_x" = "Памылка: %1$@";
+"no_app_to_handle_data" = "Не ўдалося знайсці праграму для апрацоўкі гэтага тыпу даных.";
+"no_browser_installed" = "Аглядальнік не ўсталяваны.";
+"file_not_found" = "Не ўдалося знайсці %1$@.";
+// the placeholder will be replaced by the name of a file
+"cannot_save_file" = "Не ўдалося захаваць %1$@.";
+"copied_to_clipboard" = "Скапіявана ў буфер абмену.";
+"contacts_headline" = "Кантакты";
+"email_address" = "Адрас электроннай пошты";
+"bad_email_address" = "Няправільны адрас электроннай пошты.";
+"password" = "Пароль";
+"existing_password" = "Бягучы пароль";
+"now" = "Цяпер";
+// Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
+"danger" = "Увага";
+"today" = "Сёння";
+"yesterday" = "Учора";
+"this_week" = "На гэтым тыдні";
+"this_month" = "У гэтым месяцы";
+"last_week" = "На мінулым тыдні";
+"last_month" = "У мінулым месяцы";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+"last_seen_at" = "Быў(-ла) %1$@";
+// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+"last_seen_relative" = "Быў(-ла) %1$@";
+"last_seen_unknown" = "Быў(-ла): невядома";
+// Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
+// Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
+"call_duration_less_than_a_minute" = "Менш за 1 хвіліну";
+// Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
+// Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Short form for "N Items Selected"
+"selected_colon" = "Выбрана:";
+"selected" = "Выбрана";
+"self" = "Я";
+"draft" = "Чарнавік";
+"image" = "Выява";
+// Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
+"reply_noun" = "Адказ";
+"gif" = "Анімацыя";
+// "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
+"sticker" = "Стыкер";
+"add_to_sticker_collection" = "Дадаць у калекцыю стыкераў";
+// deprecated, use sticker_picker_empty_hint instead
+"add_stickers_instructions" = "Для дадання стыкераў, націсніце «Адкрыць тэчку стыкераў», стварыце ў ёй падтэчку для вашага набору стыкераў і перацягніце туды файлы выяў і стыкераў";
+// deprecated
+"open_sticker_folder" = "Адкрыць тэчку стыкераў";
+"ask_add_sticker_to_collection" = "Дадаць гэты стыкер у калекцыю?";
+"ask_delete_sticker" = "Выдаліць гэты стыкер?";
+"sticker_picker_empty_hint" = "Націсніце на стыкер, каб дадаць яго сюды.";
+"images" = "Выявы";
+// a noun, used for "Music" and other "Audio" files
+"audio" = "Аўдыя";
+"voice_message" = "Галасавое паведамленне";
+"forwarded" = "Пераслана";
+"forwarded_message" = "Перасланае паведамленне";
+// %1$s will be replaced by the name of the person who forwarded the message
+"forwarded_by" = "Пераслаў(-ла) %1$@";
+"video" = "Відэа";
+"documents" = "Дакументы";
+"contact" = "Кантакт";
+"bot" = "Бот";
+"camera" = "Камера";
+// As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
+"capture" = "Зняць";
+// Switch eg. from front to back camera
+"switch_camera" = "Пераключыць камеру";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Перамкнуць камеру";
+"toggle_fullscreen" = "Перамкнуць поўнаэкранны рэжым";
+"location" = "Месцазнаходжанне";
+"locations" = "Месцазнаходжанні";
+"gallery" = "Галерэя";
+"images_and_videos" = "Выявы і відэа";
+"file" = "Файл";
+"files" = "Файлы";
+"files_attach_hint" = "Адправіць арыгінальныя файлы і нясціснутыя выявы";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Выбраць са сховішча";
+"choose_from_gallery" = "Выбраць з галерэі";
+// "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_app" = "Праграма";
+// plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
+"webxdc_apps" = "Праграмы";
+"webxdc_store_url" = "URL каталога праграм";
+"webxdc_store_url_explain" = "Калі ўсталявана, URL будзе ўжывацца ў якасці каталога праграм замест стандартнага";
+"webxdc_draft_hint" = "Націсніце «Адправіць», каб падзяліцца";
+"home" = "Галоўная";
+"games" = "Гульні";
+"tools" = "Інструменты";
+"app_size" = "Памер";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
+"app_date_published" = "Апублікавана";
+"add_to_chat" = "Дадаць у чат";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Пошук";
+"unknown" = "Невядома";
+"green" = "Зялёны";
+"red" = "Чырвоны";
+"blue" = "Сіні";
+"orange" = "Памяранцавы";
+"cyan" = "Сіне-зялёны";
+"purple" = "Фіялетавы";
+"magenta" = "Маджэнта";
+"white" = "Белы";
+"zoom" = "Маштаб";
+"extra_small" = "Вельмі маленькі";
+"small" = "Маленькі";
+"normal" = "Звычайны";
+"large" = "Вялікі";
+"extra_large" = "Вельмі вялікі";
+"fast" = "Хуткі";
+"slow" = "Павольны";
+// menu labels (or icon, buttons...)
+"menu_new_contact" = "Новы кантакт";
+"menu_new_classic_contact" = "Дадаць кантакт уручную";
+"new_classic_contact_explain" = "Кантакты, дададзеныя уручную, можна выкарыстоўваць для адпраўкі тэкставых паведамленняў па звычайнай электроннай пошце, і для іх не гарантавана скразное шыфраванне.";
+"menu_new_chat" = "Новы чат";
+"menu_new_group" = "Новая група";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Напісаць…";
+"clone_chat" = "Кланаваць чат";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Канал";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Каналы";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Новы канал";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Назва канала";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
+"email" = "Электронная пошта";
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Новы ліст";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Тэма";
+"menu_send" = "Адправіць";
+"menu_toggle_keyboard" = "Перамкнуць клавіятуру эмодзі";
+"menu_edit_group" = "Рэдагаваць групу";
+// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
+"menu_group_name_and_image" = "Назва і выява групы";
+"menu_show_global_map" = "Усе месцазнаходжанні";
+"menu_archive_chat" = "Архіваваць чат";
+"menu_unarchive_chat" = "Вярнуць чат з архіва";
+"menu_add_attachment" = "Дадаць укладанне";
+"menu_leave_group" = "Пакінуць групу";
+"menu_leave_channel" = "Пакінуць канал";
+"menu_leave_and_delete" = "Пакінуць і выдаліць для мяне";
+"menu_delete_chat" = "Выдаліць чат";
+// Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
+"clear_chat" = "Ачысціць чат";
+"delete_contact" = "Выдаліць кантакт";
+"menu_delete_location" = "Выдаліць гэтае месцазнаходжанне?";
+"menu_message_details" = "Інфармацыя пра паведамленне";
+"menu_copy_to_clipboard" = "Капіяваць у буфер абмену";
+"share_invite_link" = "Падзяліцца спасылкай-запрашэннем";
+"share_invite_link_explain" = "Кожны, хто мае гэтую спасылку, зможа праглядзець ваш профіль і напісаць вам. Дзяліцеся ёю толькі з тымі, каму давяраеце.";
+"invite_friends" = "Запрасіць сяброў";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Напішыце мне ў Delta Chat:\n%1$@";
+"menu_copy_selection_to_clipboard" = "Капіяваць выбранае";
+"menu_copy_link_to_clipboard" = "Капіяваць спасылку";
+"menu_copy_text_to_clipboard" = "Капіяваць тэкст";
+"menu_copy_image_to_clipboard" = "Капіяваць выяву";
+"menu_copy_email_to_clipboard" = "Капіяваць электронную пошту";
+"paste_from_clipboard" = "Уставіць з буфера абмену";
+"ask_copy_unopenable_link_to_clipboard" = "Не ўдалося адкрыць спасылку «%1$d» у аглядальніку. Скапіяваць яе замест гэтага ў буфер абмену?";
+"menu_forward" = "Пераслаць паведамленне";
+"menu_reply" = "Адказаць на паведамленне";
+"menu_mute" = "Адключыць апавяшчэнні";
+"menu_unmute" = "Уключыць апавяшчэнні";
+"menu_export_attachment" = "Экспартаваць укладанне";
+"menu_export_attachments" = "Экспартаваць укладанні";
+"menu_all_media" = "Усе медыя";
+"all_apps_and_media" = "Усе праграмы і медыя";
+// Command to jump to the original message corresponding to a gallery image or document
+"show_in_chat" = "Паказаць у чаце";
+"show_app_in_chat" = "Паказаць праграму ў чаце";
+"menu_share" = "Падзяліцца";
+// Verb "to block sth." usually a mailing list or a contact, not a noun
+"block" = "Заблакаваць";
+"menu_block_contact" = "Заблакаваць кантакт";
+"menu_unblock_contact" = "Разблакаваць кантакт";
+"accept" = "Прыняць";
+"menu_play" = "Прайграць";
+"menu_pause" = "Прыпыніць";
+"menu_scroll_to_bottom" = "Пракруціць да нізу";
+"menu_scroll_to_top" = "Пракруціць да верху";
+"menu_help" = "Даведка";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Пра праграмы";
+"privacy_policy" = "Палітыка прыватнасці";
+"menu_select_all" = "Выбраць усё";
+"select_chat" = "Выбраць чат";
+"select_more" = "Выбраць больш";
+"menu_edit_name" = "Рэдагаваць імя";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Усталюйце псеўданім, які будзе паказвацца вам замест «%1$@». Пакіньце пустым, каб выкарыстоўваць імя, выбранае кантактам.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Псеўданім для «%1$@»";
+"menu_settings" = "Налады";
+"menu_advanced" = "Пашыраныя";
+"menu_view_profile" = "Прагляд профілю";
+"menu_zoom_in" = "Павялічыць маштаб";
+"menu_zoom_out" = "Паменшыць маштаб";
+"menu_save_log" = "Захаваць журнал";
+"menu_more_options" = "Яшчэ";
+"menu_learn_spelling" = "Запамінаць правапіс";
+"jump_to_message" = "Перайсці да паведамлення";
+"replace_draft" = "Замяніць чарнавік";
+"title_share_location" = "Дзяліцца месцазнаходжаннем з усімі ўдзельнікамі групы";
+"device_talk" = "Паведамленні прылады";
+"device_talk_subtitle" = "Паведамленні, створаныя прыладай";
+"device_talk_explain" = "Паведамленні ў гэтым чаце ствараюцца на вашай прыладзе, каб інфармаваць вас пра абнаўленні праграмы і праблемы падчас выкарыстання.";
+"device_talk_welcome_message2" = "Заставайцеся на сувязі!\n\n🙌 Націсніце «QR-код» на галоўным экране абедзвюх прылад. На адной прыладзе выберыце «Сканаваць QR-код» і накіруйце камеру на іншую прыладу.\n\n🌍 Калі прылады знаходзяцца ў розных месцах, адскануйце QR-код праз відэавыклік ці падзяліцеся спасылкай-запрашэннем з раздзела «Сканаваць QR-код»\n\nА потым: карыстайцеся перавагамі дэцэнтралізаванай праграмы абмену паведамленнямі. У адрозненне ад іншых папулярных праграм, яна не мае цэнтральнага вузла кіравання, не сочыць за вамі і не прадае вашых дадзеных, дадзеных пра вашых сяброў, калегаў ці сямейнікаў буйным арганізацыям.";
+"edit_contact" = "Рэдагаваць кантакт";
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
+"pin_chat" = "Замацаваць чат";
+// Opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin_chat" = "Адмацаваць чат";
+// Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
+"pin" = "Замацаваць";
+// Opposite of "Pin chat", removing the sticky-state from a chat.
+"unpin" = "Адмацаваць";
+"ConversationFragment_quoted_message_not_found" = "Зыходнае паведамленне не знойдзена";
+"reply_privately" = "Адказаць асабіста";
+"source_code" = "Зыходны код";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Дадаць на галоўны экран";
+"donate" = "Ахвяраваць";
+"donate_device_msg" = "❤️ Здаецца, вам падабаецца Delta Chat!\n\nРазгледзіце магчымасць зрабіць ахвяраванне, каб дапамагчы нам захаваць Delta Chat бясплатным для ўсіх.\n\nХоць выкарыстанне Delta Chat бясплатнае і зыходны код адкрыты, распрацоўка каштуе грошай. Дапамажыце нам захаваць незалежнасць Delta Chat і зрабіць яго яшчэ лепш у будучыні.\n\nhttps://delta.chat/donate";
+"mute_for_one_hour" = "Не апавяшчаць 1 гадзіну";
+"mute_for_eight_hours" = "Не апавяшчаць 8 гадзін";
+"mute_for_one_day" = "Не апавяшчаць 1 дзень";
+"mute_for_seven_days" = "Не апавяшчаць 7 дзён";
+"mute_forever" = "Ніколі не апавяшчаць";
+// deprecated
+"share_location_for_5_minutes" = "5 хвілін";
+"share_location_for_30_minutes" = "30 хвілін";
+"share_location_for_one_hour" = "1 гадзіну";
+"share_location_for_two_hours" = "2 гадзіны";
+"share_location_for_six_hours" = "6 гадзін";
+"share_location_for_24_hours" = "24 гадзіны";
+"file_saved_to" = "Файл захаваны ў «%1$@».";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Патэлефанаваць";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
+"start_audio_call" = "Аўдыявыклік";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
+"start_video_call" = "Відэавыклік";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Адказаць";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Адхіліць";
+// the action to end a call
+"end_call2" = "Скончыць выклік";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Аўдыявыклік";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Відэавыклік";
+"call_initializing" = "Ініцыялізацыя...";
+"call_incoming" = "Уваходны выклік";
+"call_ringing" = "Выклік…";
+"call_reconnecting" = "Перападлучэнне...";
+"call_ended" = "Выклік скончаны";
+"call_failed" = "Выклік не атрымаўся";
+// deprecated, use "Audio call" instead
+"outgoing_audio_call" = "Выходны аўдыявыклік";
+// deprecated, use "Video call" instead
+"outgoing_video_call" = "Выходны відэавыклік";
+// deprecated, use "Audio call" instead
+"incoming_audio_call" = "Уваходны аўдыявыклік";
+// deprecated, use "Video call" instead
+"incoming_video_call" = "Уваходны відэавыклік";
+"declined_call" = "Адхілены выклік";
+"canceled_call" = "Скасаваны выклік";
+"missed_call" = "Прапушчаны выклік";
+"already_in_call" = "Выклік ужо ідзе";
+"call_answered_elsewhere" = "Выклік прыняты на іншай прыладзе";
+"call_requires_camera_permission" = "Для здзяйснення відэавыклікаў патрабуецца дазвол на выкарыстанне камеры";
+"call_requires_mic_permission" = "Для здзяйснення выклікаў патрабуецца дазвол на выкарыстанне мікрафона";
+"call_requires_connection" = "Не ўдалося пачаць выклік. Пераканайцеся, што ваша прылада падлучана да сеціва, і паўтарыце спробу.";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Выклік з карыстальнікам %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Выклік карыстальніка %1$@…";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Вы ўпэўнены, што хочаце выйсці?";
+"ask_delete_named_chat" = "Выдаліць чат «%1$@»?";
+"ask_delete_message" = "Выдаліць гэтае паведамленне?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
+// deprecated, use ask_forward_messages
+"ask_forward" = "Пераслаць паведамленні ў чат %1$@?";
+"ask_forward_multiple" = "Пераслаць паведамленні ў %1$d чаты(-аў)?";
+"ask_export_attachment" = "Экспартаванне ўкладанняў дазволіць іншым праграмам на вашай прыладзе атрымаць да іх доступ.\n\nПрацягнуць?";
+"ask_block_contact" = "Заблакаваць гэты кантакт?\n\nАсабістыя паведамленні або групы, створаныя заблакаванымі кантактамі, не будуць паказвацца.\n\nУ іншых групах, дзе ёсць заблакаваныя кантакты, іх паведамленні па-ранейшаму будуць бачныя.";
+"ask_unblock_contact" = "Разблакаваць гэты кантакт?";
+"ask_delete_contacts" = "Выдаліць кантакты?\n\nКантакты з актыўных чатаў нельга выдаліць назаўжды.";
+"ask_delete_contact" = "Выдаліць кантакт %1$@?\n\nКантакты з актыўных чатаў нельга выдаліць назаўжды.";
+"ask_start_chat_with" = "Стварыць чат з карыстальнікам %1$@?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_members" = "Выдаліць %1$@ з групы?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Выдаліць %1$@ з канала?";
+"open_url_confirmation" = "Адкрыць гэтую спасылку?";
+// contact list
+"contacts_title" = "Кантакты";
+"contacts_type_email_above" = "Увядзіце адрас электроннай пошты вышэй";
+// chatlist and chat view
+"chat_archived_chats_title" = "Архіўныя чаты";
+"chat_please_enter_message" = "Увядзіце паведамленне.";
+"chat_camera_unavailable" = "Камера недаступная.";
+"chat_unable_to_record_audio" = "Немагчыма запісаць аўдыя.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Адпраўце паведамленне карыстальніку %1$@.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Каналы — інструмент для трансляцыі вашых паведамленняў мноству атрымальнікаў.";
+"chat_new_group_hint" = "Іншыя ўбачаць гэтую групу толькі пасля таго, як вы адправіце першае паведамленне.";
+"chat_record_slide_to_cancel" = "Правядзіце для скасавання";
+"chat_record_explain" = "Націсніце і ўтрымлівайце для запісу галасавога паведамлення, адпусціце для адпраўкі";
+"chat_no_chats_yet_title" = "Няма чатаў.\nНацісніце на «+», каб пачаць новы чат.";
+"chat_all_archived" = "Усе чаты архіваваны.\nНацісніце на «+», каб пачаць новы чат.";
+"chat_share_with_title" = "Падзяліцца з…";
+"chat_input_placeholder" = "Напісаць";
+"chat_archived_label" = "Архівавана";
+"chat_request_label" = "Запыт";
+"chat_request_label_explain" = "Уключаць запыты ў лічыльнікі і апавяшчэнні";
+"chat_no_messages" = "Няма паведамленняў.";
+"chat_self_talk_subtitle" = "Паведамленні сабе";
+"archive_empty_hint" = "Архіўныя чаты з\'явяцца тут.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Захаваць паведамленне";
+"saved_messages" = "Захаваныя паведамленні";
+"saved_messages_explain" = "— Перасылайце паведамленні сюды для хуткага доступу\n\n— Рабіце нататкі ці запісвайце галасавыя паведамленні\n\n— Далучайце медыя, каб захаваць іх";
+// Should match "Saved" from "Saved messages"
+"saved" = "Захавана";
+"save_as" = "Захаваць як…";
+"retry_send" = "Паўтарыць адпраўку паведамлення";
+"cannot_display_unsuported_file_type" = "Немагчыма адлюстраваць гэты тып файла: %1$@";
+"attachment_failed_to_load" = "Не ўдалося загрузіць укладанне";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Працягваць запіс";
+// mailing lists
+"mailing_list" = "Спіс рассылання";
+// webxdc
+// "Start..." button for an app
+"start_app" = "Запусціць...";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "Спачатку прыміце запыт.";
+// title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
+"send_file_to" = "Адправіць «%1$@»…";
+// title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
+"send_message_to" = "Адправіць паведамленне…";
+// punycode warning / labeled links
+"puny_code_warning_header" = "Выяўлена падазроная спасылка";
+// placeholder contains the hostname converted to ascii
+"puny_code_warning_question" = "Вы ўпэўнены, што жадаеце наведаць %1$@?";

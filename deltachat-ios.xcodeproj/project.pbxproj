@@ -557,6 +557,9 @@
 		B209B2062B10139700FBBECF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B20A907A2D05112700F44463 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		B210FF152D83672B00D3A0B4 /* VoIPPushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoIPPushManager.swift; sourceTree = "<group>"; };
+		B2135B0B3060140300577665 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B2135B0C3060140300577665 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2135B0D3060140300577665 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = be; path = be.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		B2172F3B29C125F2002C289E /* AdvancedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedViewController.swift; sourceTree = "<group>"; };
 		B23977F42D7BA336006290CE /* CallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallManager.swift; sourceTree = "<group>"; };
 		B240E55E2EE31DAE00786BA2 /* EditTransportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransportViewController.swift; sourceTree = "<group>"; };
@@ -1508,6 +1511,7 @@
 				et,
 				kab,
 				he,
+				be,
 			);
 			mainGroup = 7A9FB1371FB061E2001FEA36;
 			preferredProjectObjectVersion = 77;
@@ -2017,6 +2021,7 @@
 				B25A25F02E4B755300423316 /* et */,
 				B2C110C72F0BE12B0036DC64 /* kab */,
 				B2EE26D03024ED87006F44D9 /* he */,
+				B2135B0B3060140300577665 /* be */,
 			);
 			name = InfoPlist.strings;
 			path = "deltachat-ios";
@@ -2072,6 +2077,7 @@
 				B25A25F12E4B755300423316 /* et */,
 				B2C110C82F0BE12B0036DC64 /* kab */,
 				B2EE26D13024ED87006F44D9 /* he */,
+				B2135B0C3060140300577665 /* be */,
 			);
 			name = Localizable.strings;
 			path = "deltachat-ios";
@@ -2127,6 +2133,7 @@
 				B25A25F22E4B755300423316 /* et */,
 				B2C110C92F0BE12B0036DC64 /* kab */,
 				B2EE26D23024ED87006F44D9 /* he */,
+				B2135B0D3060140300577665 /* be */,
 			);
 			name = Localizable.stringsdict;
 			path = "deltachat-ios";

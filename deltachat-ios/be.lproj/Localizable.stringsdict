@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Працягласць: %d хвіліна</string>
+			<key>few</key>
+			<string>Працягласць: %d хвіліны</string>
+			<key>many</key>
+			<string>Працягласць: %d хвілін</string>
+			<key>other</key>
+			<string>Працягласць: %d хвілін</string>
+		</dict>
+	</dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d хв.</string>
+			<key>few</key>
+			<string>%d хв.</string>
+			<key>many</key>
+			<string>%d хв.</string>
+			<key>other</key>
+			<string>%d хв.</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d гадз.</string>
+			<key>few</key>
+			<string>%d гадз.</string>
+			<key>many</key>
+			<string>%d гадз.</string>
+			<key>other</key>
+			<string>%d гадз.</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d чат</string>
+			<key>few</key>
+			<string>%d чаты</string>
+			<key>many</key>
+			<string>%d чатаў</string>
+			<key>other</key>
+			<string>%d чатаў</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d кантакт</string>
+			<key>few</key>
+			<string>%d кантакты</string>
+			<key>many</key>
+			<string>%d кантактаў</string>
+			<key>other</key>
+			<string>%d кантактаў</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d паведамленне</string>
+			<key>few</key>
+			<string>%d паведамленні</string>
+			<key>many</key>
+			<string>%d паведамленняў</string>
+			<key>other</key>
+			<string>%d паведамленняў</string>
+		</dict>
+	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d рэакцыя</string>
+			<key>few</key>
+			<string>%d рэакцыі</string>
+			<key>many</key>
+			<string>%d рэакцый</string>
+			<key>other</key>
+			<string>%d рэакцый</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d удзельнік</string>
+			<key>few</key>
+			<string>%d удзельнікі</string>
+			<key>many</key>
+			<string>%d удзельнікаў</string>
+			<key>other</key>
+			<string>%d удзельнікаў</string>
+		</dict>
+	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d падпісчык</string>
+			<key>few</key>
+			<string>%d падпісчыкі</string>
+			<key>many</key>
+			<string>%d падпісчыкаў</string>
+			<key>other</key>
+			<string>%d падпісчыкаў</string>
+		</dict>
+	</dict>
+	<key>n_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d выбрана</string>
+			<key>few</key>
+			<string>%d выбрана</string>
+			<key>many</key>
+			<string>%d выбрана</string>
+			<key>other</key>
+			<string>%d выбрана</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d прагляд</string>
+			<key>few</key>
+			<string>%d прагляды</string>
+			<key>many</key>
+			<string>%d праглядаў</string>
+			<key>other</key>
+			<string>%d праглядаў</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Адправіць наступны файл карыстальніку %2$@?</string>
+			<key>few</key>
+			<string>Адправіць наступныя %d файла карыстальніку %2$@?</string>
+			<key>many</key>
+			<string>Адправіць наступныя %d файлаў карыстальніку %2$@?</string>
+			<key>other</key>
+			<string>Адправіць наступныя %d файлаў карыстальніку %2$@?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Выдаліць %d чат?</string>
+			<key>few</key>
+			<string>Выдаліць %d чаты?</string>
+			<key>many</key>
+			<string>Выдаліць %d чатаў?</string>
+			<key>other</key>
+			<string>Выдаліць %d чатаў?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Выдаліць %d паведамленне?</string>
+			<key>few</key>
+			<string>Выдаліць %d паведамленні?</string>
+			<key>many</key>
+			<string>Выдаліць %d паведамленняў?</string>
+			<key>other</key>
+			<string>Выдаліць %d паведамленняў?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Пераслаць паведамленне ў чат %2$@?</string>
+			<key>few</key>
+			<string>Пераслаць %d паведамленні ў чат %2$@?</string>
+			<key>many</key>
+			<string>Пераслаць %d паведамленняў у чат %2$@?</string>
+			<key>other</key>
+			<string>Пераслаць %d паведамленняў у чат %2$@?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Архіваваны %d чат</string>
+			<key>few</key>
+			<string>Архіваваны %d чаты</string>
+			<key>many</key>
+			<string>Архівавана %d чатаў</string>
+			<key>other</key>
+			<string>Архівавана %d чатаў</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Вернуты %d чат з архіву</string>
+			<key>few</key>
+			<string>Вернута %d чаты з архіву</string>
+			<key>many</key>
+			<string>Вернута %d чатаў з архіву</string>
+			<key>other</key>
+			<string>Вернута %d чатаў з архіву</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d новае паведамленне</string>
+			<key>few</key>
+			<string>%d новыя паведамленні</string>
+			<key>many</key>
+			<string>%d новых паведамленняў</string>
+			<key>other</key>
+			<string>%d новых паведамленняў</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
