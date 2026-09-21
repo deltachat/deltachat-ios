@@ -47,7 +47,7 @@ public class DcContact {
     }
 
     public var wasSeenRecently: Bool {
-        return dc_contact_was_seen_recently(contactPointer) == 1
+        return dc_contact_get_freshness(contactPointer) == DC_FRESHNESS_RECENTLY_SEEN
     }
 
     public var status: String {
