@@ -213,35 +213,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    // `open` is called when an url should be opened by Delta Chat.
-    // we currently use that for handing openpgp4fpr.
-    //
-    // before `open` gets called, `didFinishLaunchingWithOptions` is called.
-    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        logger.info("➡️ open url")
-
-        switch url.scheme?.lowercased() {
-        case "dcaccount", "dclogin",
-             "https" where url.host == Utils.inviteDomain:
-            appCoordinator.handleQRCode(url.absoluteString)
-            return true
-        case "openpgp4fpr":
-            // Hack to format url properly
-            let urlString = url.absoluteString
-                           .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
-                           .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
-
-            appCoordinator.handleQRCode(urlString)
-            return true
-        case "mailto":
-            return appCoordinator.handleMailtoURL(url)
-        case "chat.delta.deeplink":
-            return appCoordinator.handleDeepLinkURL(url)
-        default:
-            return false
-        }
-    }
-
 
     // MARK: - app lifecycle
 

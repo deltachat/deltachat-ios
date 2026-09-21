@@ -202,12 +202,12 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
                                           message: nil,
                                           preferredStyle: .safeActionSheet)
             alert.addAction(UIAlertAction(title: String.localized("start_chat"), style: .default, handler: { _ in
-                _ = appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
+                appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
             }))
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
-            _ = appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
+            appDelegate.appCoordinator.handleMailtoURL(url, askToChat: false)
         }
     }
 

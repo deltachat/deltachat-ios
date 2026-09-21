@@ -48,4 +48,28 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
     func sceneDidEnterBackground(_ scene: UIScene) {
         logger.info("⬅️ sceneDidEnterBackground")
     }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        logger.info("➡️ open url")
+
+        guard let url = URLContexts.first?.url else { return }
+
+        switch url.scheme?.lowercased() {
+        case "dcaccount", "dclogin",
+             "https" where url.host == Utils.inviteDomain:
+            appDelegate?.appCoordinator.handleQRCode(url.absoluteString)
+        case "openpgp4fpr":
+            // Hack to format url properly
+            let urlString = url.absoluteString
+                .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
+                .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
+            appDelegate?.appCoordinator.handleQRCode(urlString)
+        case "mailto":
+            appDelegate?.appCoordinator.handleMailtoURL(url)
+        case "chat.delta.deeplink":
+            appDelegate?.appCoordinator.handleDeepLinkURL(url)
+        default:
+            break
+        }
+    }
 }
