@@ -190,30 +190,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator.handleQRCode(inviteLink)
     }
 
-    func application(_ application: UIApplication,
-                     continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-           let incomingURL = userActivity.webpageURL,
-           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-           let host = components.host {
-            logger.info("➡️ open univeral link url")
-
-            if host == Utils.inviteDomain {
-                appCoordinator.handleQRCode(incomingURL.absoluteString)
-                return true
-            } else {
-                return false
-            }
-        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
-            logger.info("➡️ INStartAudioCallIntent")
-            return false
-        } else {
-            return false
-        }
-    }
-
-
     // MARK: - app lifecycle
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {

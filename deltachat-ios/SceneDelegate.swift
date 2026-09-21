@@ -1,4 +1,5 @@
 import DcCore
+import Intents
 import UIKit
 
 class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDelegate {
@@ -47,6 +48,21 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         logger.info("⬅️ sceneDidEnterBackground")
+    }
+
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+           let incomingURL = userActivity.webpageURL,
+           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+           let host = components.host {
+            logger.info("➡️ open univeral link url")
+
+            if host == Utils.inviteDomain {
+                appDelegate?.appCoordinator.handleQRCode(incomingURL.absoluteString)
+            }
+        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
+            logger.info("➡️ INStartAudioCallIntent")
+        }
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
