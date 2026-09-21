@@ -52,24 +52,21 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-           let incomingURL = userActivity.webpageURL,
-           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-           let host = components.host {
-            logger.info("➡️ open univeral link url")
-
-            if host == Utils.inviteDomain {
-                appDelegate?.appCoordinator.handleQRCode(incomingURL.absoluteString)
-            }
+           let incomingURL = userActivity.webpageURL {
+            logger.info("➡️ continue NSUserActivityTypeBrowsingWeb")
+            handle(url: incomingURL)
         } else if userActivity.interaction?.intent is INStartAudioCallIntent {
-            logger.info("➡️ INStartAudioCallIntent")
+            logger.info("➡️ continue INStartAudioCallIntent")
         }
     }
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        logger.info("➡️ open url")
-
+        logger.info("➡️ open url contexts")
         guard let url = URLContexts.first?.url else { return }
+        handle(url: url)
+    }
 
+    private func handle(url: URL) {
         switch url.scheme?.lowercased() {
         case "dcaccount", "dclogin",
              "https" where url.host == Utils.inviteDomain:
