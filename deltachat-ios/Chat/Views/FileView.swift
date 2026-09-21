@@ -28,10 +28,7 @@ public class FileView: UIView {
     // depending on the file type, if false the view will be configured according to horizontalLayout Bool
     public var allowLayoutChange: Bool = true
 
-    private lazy var defaultImage: UIImage = {
-        let image = UIImage(named: "ic_attach_file_36pt")
-        return image!
-    }()
+    private lazy var defaultImage = UIImage(systemName: "paperclip")
 
     private lazy var fileStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fileImageView, fileMetadataStackView])
