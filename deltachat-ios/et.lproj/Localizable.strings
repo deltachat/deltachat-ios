@@ -476,6 +476,7 @@
 "search_in" = "Otsi vestlusest „%1$@“";
 "search_files" = "Otsi failidest";
 "search_explain" = "Otsi vestlusi, kontakte või sõnumeid";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Otsingutulemused märksõnale „%1$@“";
 "search_no_result_for_x" = "„%1$@“ otsingul pole tulemusi";
 // Adjective, as in "Show Unread Messages"
@@ -652,7 +653,7 @@
 "import_backup_title" = "Taasta varukoopiast";
 "import_backup_ask" = "Asukohas „%1$@“ on olemas varukoopia.\n\nKas sa soovid ta importida ning kasutada kõiki seal leiduvaid andmeid ja seadistusi?";
 "import_backup_no_backup_found" = "Varukoopiaid ei leidu.\n\nKopeeri varukoopia siia: „%1$@“ ning proovi uuesti.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "E-posti aadressiga „%1$@“ ei õnnestu sisse logida. Palun kontrolli, kas aadress ja salasõna on õiged.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Luba kasutada vigaseid sertifikaate";

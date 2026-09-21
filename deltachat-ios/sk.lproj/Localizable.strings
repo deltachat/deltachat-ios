@@ -470,6 +470,7 @@
 "search_in" = "Hľadať v konverzácii %1$@";
 "search_files" = "Hľadať súbory";
 "search_explain" = "Vyhľadajte konverzácie, kontakty a správy";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Výsledky pre „%1$@“";
 "search_no_result_for_x" = "Neboli nájdené žiadne výsledky pre „%1$@“";
 // Adjective, as in "Show Unread Messages"
@@ -642,7 +643,7 @@
 "import_backup_title" = "Importovať zálohu";
 "import_backup_ask" = "Záloha sa našla v umiestnení „%1$@“.\n\nChcete z nej importovať a použiť všetky dáta a nastavenia?";
 "import_backup_no_backup_found" = "Neboli nájdené žiadne zálohy.\n\nSkopírujte zálohu do priečinka „%1$@“ a skúste to znova.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nie je možné prihlásiť sa ako „%1$@“. Skontrolujte správnosť e-mailovej adresy a hesla.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Prijať neplatné certifikáty";

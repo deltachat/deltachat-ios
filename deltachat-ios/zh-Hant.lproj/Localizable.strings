@@ -604,7 +604,7 @@
 "import_backup_title" = "匯入備份";
 "import_backup_ask" = "在 「%1$@ 」找到備份\n\n你要匯入備份，並使用原來的資料和設定嗎?";
 "import_backup_no_backup_found" = "找不到備份\n\n請把備份複製到「%1$@」然後再試一次，或是按「開始傳送訊息」進行標準設定。";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "無法登入 %1$@。請確定 email 帳號和密碼是否正確。 ";
 // TLS certificate checks
 "accept_invalid_certificates" = "接受無效證書";

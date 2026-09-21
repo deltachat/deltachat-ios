@@ -452,7 +452,7 @@
 "import_backup_title" = "Възстановяване от резервно копие";
 "import_backup_ask" = "Открито е резервно копие в \"%1$@\".\n\n Искате ли да импортирате и използвате всички данни и настройки от него?";
 "import_backup_no_backup_found" = "Не са открити резервни копия.\n\nКопирайте резервното копие в \"%1$@\" и опитайте отново.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не можете да влезете като \"%1$@\". Моля, проверете дали адресът за електронна поща и паролата са правилни. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "Да бъдат приемани невалидните сертификати";

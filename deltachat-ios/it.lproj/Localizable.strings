@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Sfoglia";
 "unknown" = "Sconosciuto";
+"unnamed" = "Senza nome";
 "green" = "Verde";
 "red" = "Rosso";
 "blue" = "Blu";
@@ -206,6 +207,8 @@
 "purple" = "Viola";
 "magenta" = "Magenta";
 "white" = "Bianco";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Ingrandimento";
 "extra_small" = "Extra piccolo";
 "small" = "Piccolo";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Non fissare";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Blocca";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Fissato";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Sblocca";
 "ConversationFragment_quoted_message_not_found" = "Messaggio originale non trovato";
@@ -471,6 +476,7 @@
 "search_in" = "Cerca in %1$@";
 "search_files" = "Cerca File";
 "search_explain" = "Cerca chat, contatti e messaggi";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Risultato per \"%1$@\"";
 "search_no_result_for_x" = "Nessun risultato trovato per \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
@@ -630,9 +636,13 @@
 // deprecated
 "hidden_from_contacts" = "Nascosto dai contatti";
 "enforce_e2ee" = "Applica Crittografia a Tutti i Ripetitori";
+// Hint for the list of relays
+"transport_list_hint" = "I ripetitori vengono utilizzati per inviare e ricevere messaggi. Averne più di uno rende la connessione affidabile.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Aggiungere questo trasporto?";
 "invalid_transport_qr" = "Il codice QR scansionato non contiene un mezzo di trasporto valido.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Rimuovere il ripetitore \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Rimuovo ripetitore \"%1$@\"?\n\nI contatti che conoscono solo questo relay potrebbero non raggiungerti finché non invierai loro un altro messaggio. In caso di dubbio, nascondilo invece di rimuoverlo.";
 "login_certificate_checks" = "Controlli Certificato";
@@ -643,7 +653,7 @@
 "import_backup_title" = "Ripristina da Backup";
 "import_backup_ask" = "Backup trovato in \"%1$@\".\n\nVuoi importarlo e usare tutti i dati e le impostazioni salvate?";
 "import_backup_no_backup_found" = "Nessun backup trovato\n\nCopia il backup in \"%1$@\" e riprova.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossibile accedere come \"%1$@\". Per favore verifica che l\'indirizzo e-mail e la password siano corretti.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accetta certificati non validi";
@@ -1023,6 +1033,7 @@
 "perm_explain_access_to_storage_denied" = "Per ricevere o inviare file, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Archiviazione\".";
 "perm_explain_access_to_location_denied" = "Per allegare una posizione, vai alle impostazioni dell\'app, seleziona \"Autorizzazioni\" e abilita \"Posizione\".";
 "perm_explain_access_to_notifications_denied" = "Per ricevere le notifiche, vai su \"Impostazioni di Sistema / App / Delta Chat\" e attiva \"Notifiche\".";
+"perm_explain_local_network_denied" = "Delta Chat necessita dell\'autorizzazione \"Dispositivi nelle vicinanze\" per connettersi ai dispositivi sulla rete locale. Puoi configurarla in App / Delta Chat / Autorizzazioni.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Disegna ovunque per sfocare";
 "ImageEditorHud_add_text" = "Aggiungi Testo";
@@ -1149,3 +1160,9 @@
 "perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in secondo piano.\n\nSe i messaggi non arrivano in secondo piano, per piacere controlla anche le impostazioni di sistema.";
 // device messages for updates
 "update_2_0" = "Novità?\n\n💯 La crittografia end-to-end è ora affidabile e definitiva. I lucchetti 🔒 sono spariti!\n\n✉️ Le email classiche senza crittografia end-to-end sono contrassegnate dal simbolo di una lettera\n\n😻 Nuova schermata del profilo migliorata per tutti i tuoi contatti\n\n🔲 Nuovo pulsante per l\'accesso rapido alle app utilizzate in una chat\n\n❤️ Dona per aiutarci a rimanere indipendenti e continuare a migliorare: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 È disponibile la nuova versione %1$@ . Tocca questo messaggio per aggiornare e scoprire le nuove funzionalità";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Scaricamento %1$@ …";
+"update_now" = "Aggiorna Ora";
+"update_install_permission_explain" = "Per installare l\'aggiornamento, consenti innanzitutto a Delta Chat di installare app nelle impostazioni di sistema.";

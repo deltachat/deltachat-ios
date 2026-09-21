@@ -533,7 +533,7 @@
 "import_backup_title" = "Importar da Cópia de Segurança";
 "import_backup_ask" = "Becape localizado em \"%1$@\".\n\nVocê quer importá-lo e usar seus dados e configurações?";
 "import_backup_no_backup_found" = "Becapes não localizados.\n\nCopie o becape para \"%1$@\" e tente de novo.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossível acessar \"%1$@\". Por favor, verifique o e-mail e senha.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceitar certificados inválidos";

@@ -124,6 +124,10 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Zuletzt gesehen %1$@";
 "last_seen_unknown" = "Zuletzt gesehen: Unbekannt";
+// This is about a contact that was not seen for one or more months
+// This is about a contact that was not seen for one or more years
+// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+"never_seen" = "Nie gesehen";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Weniger als 1 Minute";
@@ -476,6 +480,7 @@
 "search_in" = "In \"%1$@\" suchen";
 "search_files" = "Dateien suchen";
 "search_explain" = "Suche nach Chats, Kontakten und Nachrichten";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Ergebnis für \"%1$@\"";
 "search_no_result_for_x" = "Keine Ergebnisse für \"%1$@\" gefunden.";
 // Adjective, as in "Show Unread Messages"
@@ -652,7 +657,7 @@
 "import_backup_title" = "Wiederherstellen aus Backup";
 "import_backup_ask" = "Backup \"%1$@\" gefunden.\n\nDieses einlesen und alle Daten und Einstellungen daraus verwenden?";
 "import_backup_no_backup_found" = "Kein Backup gefunden.\n\nKopiere das Backup nach \"%1$@\" und versuche es erneut.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Login als \"%1$@\" nicht möglich. Bitte Adresse und Passwort auf Richtigkeit überprüfen.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Ungültige Zertifikate akzeptieren";

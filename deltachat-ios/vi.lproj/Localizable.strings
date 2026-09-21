@@ -420,7 +420,7 @@
 "import_backup_title" = "Khôi phục từ bản sao lưu";
 "import_backup_ask" = "Đã tìm thấy bản sao lưu tại \"%1$@\".\n\nBạn có muốn nhập và sử dụng tất cả dữ liệu cũng như cài đặt từ nó không?";
 "import_backup_no_backup_found" = "Không tìm thấy bản sao lưu nào.\n\nSao chép bản sao lưu vào \"%1$@\" và thử lại.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Không thể đăng nhập với tên \"%1$@\". Vui lòng kiểm tra xem địa chỉ e-mail và mật khẩu có đúng không.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Chấp nhận chứng chỉ không hợp lệ";

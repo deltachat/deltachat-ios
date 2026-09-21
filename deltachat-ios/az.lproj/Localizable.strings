@@ -213,7 +213,7 @@
 "login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
 "import_backup_ask" = "\"%1$@\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages

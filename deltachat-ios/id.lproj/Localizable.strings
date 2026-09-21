@@ -318,7 +318,7 @@
 "import_backup_title" = "Impor cadangan";
 "import_backup_ask" = "Cadangan ditemukan di \"%1$@\".\n\n Apakah Anda ingin mengimpor dan menggunakan semua data dan pengaturan darinya?";
 "import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Terima sertifikat yang tidak sah";

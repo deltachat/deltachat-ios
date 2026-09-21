@@ -579,7 +579,7 @@
 "import_backup_title" = "Obnovit ze zálohy";
 "import_backup_ask" = "Záloha nalezena v \"%1$@\"\n\nPřejete si soubor načíst a použít všechna jeho data a nastavení?";
 "import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopírujte zálohu do \"%1$@\" a zkuste to znovu.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";

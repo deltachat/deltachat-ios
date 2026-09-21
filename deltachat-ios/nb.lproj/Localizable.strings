@@ -456,6 +456,7 @@
 "search_in" = "Søk i %1$@ ";
 "search_files" = "Søk i filer";
 "search_explain" = "Søk etter chatter, kontakter, og meldinger";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Resultat for \"%1$@\"";
 "search_no_result_for_x" = "Ingen resultater funnet for \"%1$@\"";
 // Adjective, as in "Show Unread Messages"

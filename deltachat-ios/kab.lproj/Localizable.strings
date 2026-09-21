@@ -605,7 +605,7 @@
 "import_backup_title" = "Err-d seg uḥraz";
 "import_backup_ask" = "Aḥraz yettwaf di \"%1$@\".\n\nTebɣiḍ ad d-tketreḍ u ad tesqedceḍ akk isefka d yiɣewwaren seg-s?";
 "import_backup_no_backup_found" = "Ulac Iḥrazen yettwafen.\n\nNɣel aḥraz ɣer \"%1$@\" sakin ɛreḍ tikelt nniḍen.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Ur izmir ara ad yeqqen am \"%1$@\". Ma ulac aɣilif, senqed ma yella tansa d wawal uffir d tameɣtut.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Qbel iselkan arameɣtu";

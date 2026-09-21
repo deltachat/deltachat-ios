@@ -361,7 +361,7 @@
 "import_backup_title" = "Επαναφορά από το Aντίγραφο Aσφαλείας";
 "import_backup_ask" = "Το αντίγραφο ασφαλείας βρέθηκε στο \"%1$@\".\n\nΘέλετε να εισαγάγετε και να χρησιμοποιήσετε όλα τα δεδομένα και τις ρυθμίσεις από αυτό;";
 "import_backup_no_backup_found" = "Δεν βρέθηκαν αντίγραφα ασφαλείας.\n\nΑντιγράψτε το αντίγραφο ασφαλείας στο \"%1$@\" και δοκιμάστε ξανά.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Δεν είναι δυνατή η είσοδος ως \"%1$@\". Ελέγξτε εάν η διεύθυνση e-mail και ο κωδικός πρόσβασης είναι σωστά.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Αποδοχή μη έγκυρων πιστοποιητικών";

@@ -471,6 +471,7 @@
 "search_in" = "חפש ב- %1$@";
 "search_files" = "חיפוש בקבצים";
 "search_explain" = "חיפוש אחר צ\'אטים, אנשי קשר והודעות";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "תוצאות עבור \"%1$@\"";
 "search_no_result_for_x" = "לא נמצאו תוצאות עבור \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
@@ -643,7 +644,7 @@
 "import_backup_title" = "שחזור מגיבוי";
 "import_backup_ask" = "נמצא גיבוי בכתובת \"%1$@\".\n\nהאם ברצונך לייבא ולהשתמש בכל הנתונים וההגדרות המופיעים בו?";
 "import_backup_no_backup_found" = "לא נמצאו גיבויים.\n\nהעתיקו את הגיבוי ל-\"%1$@\" ונסו שוב.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "לא ניתן להתחבר כ-\"%1$@\". אנא בדוק אם הכתובת והסיסמה נכונות.";
 // TLS certificate checks
 "accept_invalid_certificates" = "קבלת תעודות לא חוקיות";
