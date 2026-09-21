@@ -557,7 +557,7 @@
 "import_backup_title" = "Biztonsági mentés visszaállítása";
 "import_backup_ask" = "A biztonsági mentés itt található: „%1$@”.\n\nAz összes adatot és beállítást szeretné importálni és használni belőle?";
 "import_backup_no_backup_found" = "A biztonsági mentés nem található.\n\nMásolja a biztonsági mentést ide: „%1$@” és próbálja újra.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nem lehetett bejelentkezni ide: „%1$@”. Ellenőrizze, hogy a megadott e-mail-cím és a jelszó helyes-e.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Érvénytelen tanúsítványok elfogadása";

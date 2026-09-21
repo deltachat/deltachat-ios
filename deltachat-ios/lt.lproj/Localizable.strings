@@ -565,7 +565,7 @@
 "import_backup_title" = "Importuoti atsarginę kopiją";
 "import_backup_ask" = "Atsarginė kopija rasta ties \"%1$@\".\n\nAr norite iš jos importuoti ir naudoti visus duomenis ir nustatymus?";
 "import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \"%1$@\" ir bandykite dar kartą.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nepavyksta prisijungti kaip \"%1$@\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";

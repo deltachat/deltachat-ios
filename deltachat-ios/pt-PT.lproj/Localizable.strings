@@ -292,6 +292,7 @@
 // Placeholder will be replaced by the chat name
 "search_in" = "Procurar em %1$@";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Resultado para \"%1$@\"";
 "search_no_result_for_x" = "Nenhum resultado encontrado para \"%1$@\"";
 // create/edit groups, contact/group profile
@@ -344,7 +345,7 @@
 "import_backup_title" = "Importar backup";
 "import_backup_ask" = "Backup encontrado em \"%1$@\".\n\nQuer importar e usar todos os dados e respectivas configurações?";
 "import_backup_no_backup_found" = "Nenhum backup encontrado. \n\nCopie o backup para \"%1$@\" e tente novamente.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 "switch_account" = "Trocar Perfil";
 "add_account" = "Adicionar Perfil";

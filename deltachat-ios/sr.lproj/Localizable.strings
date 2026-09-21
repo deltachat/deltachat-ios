@@ -407,7 +407,7 @@
 "import_backup_title" = "Увези резервну копију";
 "import_backup_ask" = "Резервна копија пронађена у „%1$@“.\n\nЖелите ли да увезете и користите све њене податке и поставке?";
 "import_backup_no_backup_found" = "Нема резервних копија.\n\nКопирајте резервну копију у „%1$@“ и покушајте поново.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не могу да се пријавим као „%1$@“. Проверите да ли су е-адреса и лозинка тачни.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Прихватите и неважеће сертификате";

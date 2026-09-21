@@ -192,6 +192,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Selaa";
 "unknown" = "Tuntematon";
+"unnamed" = "Nimetön";
 "green" = "Vihreä";
 "red" = "Punainen";
 "blue" = "Sininen";
@@ -200,6 +201,8 @@
 "purple" = "Violetti";
 "magenta" = "Magenta";
 "white" = "Valkoinen";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Suurennos";
 "extra_small" = "Erittäin pieni";
 "small" = "Pieni";
@@ -242,6 +245,7 @@
 "menu_add_attachment" = "Lisää liite";
 "menu_leave_group" = "Poistu ryhmästä";
 "menu_leave_channel" = "Poistu kanavalta";
+"menu_leave_and_delete" = "Poistu ja poista minulta";
 "menu_delete_chat" = "Poista keskustelu";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tyhjennä keskustelu";
@@ -311,6 +315,8 @@
 "unpin_chat" = "Irrota keskustelu";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Kiinnitä";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Kiinnitetty";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Irrota";
 "ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
@@ -449,6 +455,7 @@
 "search_in_chat" = "Hae keskustelussa";
 "search_files" = "Hae tiedostoja";
 "search_explain" = "Etsi keskusteluja, yhteystietoja ja viestejä";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Tulos haulle \"%1$@\"";
 "search_no_result_for_x" = "Ei tuloksia haulle \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
@@ -598,6 +605,10 @@
 "add_transport" = "Lisää rele";
 "remove_transport" = "Poista rele";
 "edit_transport" = "Muokkaa relettä";
+// deprecated
+"hide_from_contacts" = "Piilota yhteystiedoista";
+// deprecated
+"hidden_from_contacts" = "Piilotettu yhteystiedoista";
 "enforce_e2ee" = "Pakota salaus kaikkiin releisiin";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Lisätäänkö tämä rele?";
@@ -609,7 +620,7 @@
 "import_backup_title" = "Palauta varmuuskopiosta";
 "import_backup_ask" = "Varmuuskopio löydetty sijainnista \"%1$@\".\n\nHaluatko tuoda sen ja käyttää sen asetuksia?";
 "import_backup_no_backup_found" = "Varmuuskopioita ei löytynyt.\n\nKopioi varmuuskopio kohteeseen \"%1$@\" ja yritä uudelleen.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Osoitteella \"%1$@\" kirjautuminen epäonnistui. Tarkistathan että sähköpostiosoite ja salasana ovat oikeinkirjoitettuja.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Hyväksy rikkinäiset varmenteet";
@@ -710,6 +721,7 @@
 "pref_background_btn_gallery" = "Valitse galleriasta";
 // deprecated
 "pref_imap_folder_warn_disable_defaults" = "Jos muutat tätä asetusta, varmista että palvelimesi ja muut päätelaitteesi ovat määritetty vastaavasti.\n\nMuutoin ne eivät ehkä toimi lainkaan.";
+"pref_multidevice_explain" = "Synkronoi viestit muiden laitteiden kanssa. Otetaan automaattisesti käyttöön, kun toinen  laite lisätään";
 // deprecated
 "pref_auto_folder_moves" = "Siirrä automaattisesti DeltaChat -kansioon";
 // deprecated
@@ -723,6 +735,7 @@
 // deprecated
 "pref_show_emails_all" = "Kaikki";
 "pref_experimental_features" = "Kokeelliset ominaisuudet";
+"pref_experimental_features_explain" = "Nämä ominaisuudet eivät välttämättä ole vakaita, ja ne saattavat muuttua tai poistua";
 "pref_on_demand_location_streaming" = "Tarvittaessa sijainnin jatkuva jakaminen";
 "pref_background_default" = "Oletuskuva";
 "pref_background_default_color" = "Oletusväri";
@@ -741,6 +754,10 @@
 "pref_show_tray_icon" = "Näytä työkalupalkin kuvake";
 "pref_edit_profile" = "Muokkaa profiilia";
 "send_stats_to_devs" = "Lähetä tilastotietoja Delta Chatin kehittäjille";
+"stats_device_message" = "Haluatko auttaa parantamaan Delta Chatia ja tukea tutkimusta lähettämällä viikottaiset, anonyymit käyttötilastot?\n\n👉 Napauta tästä… 👈";
+"stats_confirmation_dialog" = "Haluatko auttaa parantamaan Delta Chatia ja tukea tutkimusta lähettämällä viikottaiset, anonyymit käyttötilastot?";
+"stats_disable_dialog" = "Tilastojen lähettäminen on jo käytössä.\n\nHaluatko poistaa sen käytöstä?";
+"disable" = "Poista käytöstä";
 "stats_keep_sending" = "Jatka lähettämistä";
 "stats_msg_body" = "Liite sisältää anonyymeja käyttötilastoja; ne auttavat parantamaan Delta Chatin toimintaa.. Lue https://delta.chat/help#statssending saadaksesi lisätietoja.";
 // Emoji picker and categories
@@ -797,6 +814,8 @@
 "group_image_changed_by_other" = "Ryhmän kuva vaihdettu käyttäjän %1$@ toimesta.";
 "channel_image_changed" = "Kanavan kuva vaihdettu.";
 "chat_description_changed_by_you" = "Muutit keskustelun kuvausta.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Keskustelun kuvausta muuttanut %1$@.";
 // %1$s will be replaced by name of the contact added to the group
 "member_x_added" = "%1$@ lisätty.";
 "member_you_added" = "Sinut lisättiin";
@@ -844,6 +863,7 @@
 "ephemeral_timer_1_week_by_you" = "Katoavien viestien ajastin asetettu 1 viikkoon minun toimestani.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_week_by_other" = "Katoavien viestien ajastin asetettu 1 viikkoon käyttäjän %1$@ toimesta.";
+"ephemeral_timer_1_year_by_you" = "Asetit katoavien viestien ajastimeksi yhden vuoden.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
 "ephemeral_timer_minutes_by_you" = "Katoavien viestien ajastin asetettu %1$@ minuuttiin minun toimestani.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
@@ -917,6 +937,7 @@
 "secure_join_replies" = "Vastaus saatu käyttäjältä %1$@, odotetaan lisäystä ryhmään...";
 "secure_join_wait" = "Otetaan taattua päästä-päähän salausta käyttöön, odota...";
 "contact_verified" = "%1$@ varmistettu.";
+"contact_blocked" = "Estit yhteystiedon";
 // Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
 // deprecated
 "verified_by" = "%1$@ lisäsi";
@@ -1063,3 +1084,9 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Napauta vastaanottaaksesi viestejä, kun Delta Chat on taustalla.";
 "perm_enable_bg_already_done" = "Annoit jo luvan viestien vastaanottamiselle taustalla.\n\nJos et saa viestejä taustalla, tarkista myös järjestelmäasetukset.";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Uusi versio %1$@ on saatavilla. Napauta tätä viestiä päivittääksesi ja nauttiaksesi uusista ominaisuuksista";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Ladataan %1$@ …";
+"update_now" = "Päivitä nyt";
+"update_install_permission_explain" = "Jotta voit asentaa päivityksen, salli ensin Delta Chatin asentaa sovelluksia järjestelmän asetuksista.";

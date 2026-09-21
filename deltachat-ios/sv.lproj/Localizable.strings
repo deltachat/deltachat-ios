@@ -589,7 +589,7 @@
 "import_backup_title" = "Importera säkerhetskopia";
 "import_backup_ask" = "Säkerhetskopia hittades på %1$@.\n\n Vill du importera och använda all data och alla inställningar från den?";
 "import_backup_no_backup_found" = "Inga säkerhetskopior hittades.\n\nKopiera säkerhetskopian till \"%1$@\" och försök igen.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Kan inte logga in som \"%1$@\". Kontrollera om e-postadressen och lösenordet är korrekt.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptera ogiltiga certifikat";

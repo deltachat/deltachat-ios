@@ -471,6 +471,7 @@
 "search_in" = "在 %1$@ 中搜索";
 "search_files" = "搜索文件";
 "search_explain" = "搜索聊天、联系人和消息";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "“%1$@”的结果";
 "search_no_result_for_x" = "没有找到有关\"%1$@\"的结果";
 // Adjective, as in "Show Unread Messages"
@@ -643,7 +644,7 @@
 "import_backup_title" = "从备份恢复";
 "import_backup_ask" = "在“%1$@”找到备份。\n\n是否要导入并使用其中的所有数据和设置？";
 "import_backup_no_backup_found" = "未找到备份。\n\n请将备份复制到“%1$@”，然后重试。";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "无法作为“%1$@”登录。请检查电子邮件地址和密码是否正确。";
 // TLS certificate checks
 "accept_invalid_certificates" = "接受无效的证书";

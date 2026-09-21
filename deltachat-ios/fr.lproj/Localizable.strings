@@ -463,6 +463,7 @@
 "search_in" = "Rechercher dans %1$@";
 "search_files" = "Chercher dans les fichiers";
 "search_explain" = "Rechercher des discussions, des contacts ou des messages";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Résultats de recherche pour \"%1$@\"";
 "search_no_result_for_x" = "Aucun résultat trouvé pour \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
@@ -629,7 +630,7 @@
 "import_backup_title" = "Rétablir une sauvegarde";
 "import_backup_ask" = "Sauvegarde trouvée dans « %1$@ ».\n\nVoulez-vous l\'importer et en utiliser toutes les données et paramètres ?";
 "import_backup_no_backup_found" = "Aucune sauvegarde trouvée.\n\nCopiez le fichier de sauvegarde vers « %1$@ » et essayez à nouveau.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Connexion en tant que « %1$@ » impossible. Vérifiez que votre adresse courriel et votre mot de passe sont corrects.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accepter les certificats non valides";

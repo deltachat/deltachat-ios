@@ -198,6 +198,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Explora";
 "unknown" = "Desconegut";
+"unnamed" = "Sense nom";
 "green" = "Verd";
 "red" = "Vermell";
 "blue" = "Blau";
@@ -206,6 +207,8 @@
 "purple" = "Morat";
 "magenta" = "Magenta";
 "white" = "Blanc";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
 "extra_small" = "Molt petit";
 "small" = "Petit";
@@ -323,6 +326,8 @@
 "unpin_chat" = "Desfixa el xat";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixa";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Fixa\'t";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desfixa";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
@@ -471,6 +476,7 @@
 "search_in" = "Busca a %1$@";
 "search_files" = "Busca els fitxers";
 "search_explain" = "Busca als xats, contactes i missatges";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Resultat per \"%1$@\"";
 "search_no_result_for_x" = "No s\'han trobat resultats per \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
@@ -630,9 +636,13 @@
 // deprecated
 "hidden_from_contacts" = "Amagat als contactes";
 "enforce_e2ee" = "Força el xifrat per tots els Retransmissors";
+// Hint for the list of relays
+"transport_list_hint" = "Els retransmissors s\'utilitzen per enviar i rebre missatges electrònics. Disposar de més d\'un retransmissor manté la connexió fiable.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Afegir aquest retransmissor?";
 "invalid_transport_qr" = "El codi QR escanejat no conté un retransmissor vàlid.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Eliminar el retransmissor \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Esborrar el retransmissor \"%1$@\"?\n\nEls contactes que només coneixen aquest retransmissor no et podran contactar fins que els escriguis de nou.\n\nSi no ho tens clar, amaga\'l enlloc d\'esborrar-lo.";
 "login_certificate_checks" = "El certificat coincideix";
@@ -643,7 +653,7 @@
 "import_backup_title" = "Importa una còpia de seguretat";
 "import_backup_ask" = "S\'ha trobat una còpia de seguretat a \"%1$@\".\n\nVoleu importar-la i fer-ne servir les dades i els paràmetres de configuració?";
 "import_backup_no_backup_found" = "No s\'han trobat còpies de seguretat.\n\nCol·loca la còpia de seguretat a \"%1$@\" i torneu-ho a provar.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "No es pot iniciar la sessió com a \"%1$@\". Comproveu que l\'adreça electrònica i la contrasenya són correctes.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Accepta certificats no vàlids";
@@ -1023,6 +1033,7 @@
 "perm_explain_access_to_storage_denied" = "Per a rebre o enviar fitxers, aneu a la configuració de l\'aplicació, seleccioneu «Permisos» i activeu «Emmagatzematge».";
 "perm_explain_access_to_location_denied" = "Per a adjuntar la ubicació, aneu a la configuració de l\'aplicació, trieu «Permisos» i activeu la «Ubicació».";
 "perm_explain_access_to_notifications_denied" = "Per a rebre les notificacions, aneu a «Configuració del sistema / Aplicacions / Delta Chat» i activeu «Notificacions»";
+"perm_explain_local_network_denied" = "Delta Chat necessita el permís \"Dispositius propers\" per connectar-se a dispositius de la xarxa local. Pots configurar-lo a Aplicacions / Delta Chat / Permisos.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Dibuixeu a qualsevol lloc per a difuminar-lo";
 "ImageEditorHud_add_text" = "Afegeix text";
@@ -1149,3 +1160,9 @@
 "perm_enable_bg_already_done" = "Ja heu autoritzat Delta Chat a rebre missatges en segon pla.\n\nSi encara no us arriben els missatge, reviseu els paràmetres de sistema.";
 // device messages for updates
 "update_2_0" = "Què hi ha de nou?\n\n💯 El xifrat d\'extrem a extrem és fiable i permanent. Els candaus 🔒 han desaparegut!\n\n✉️ El correu electrònic clàssic sense xifrar d\'extrem a extrem es mostra amb el símbol d\'un sobre.\n\n😻 Nova pantalla de perfil millorada per a tots els teus contactes.\n\n🔲 Nou botó per accedir ràpidament a les aplicacions utilitzades als xats.\n\n❤️ Si us plau, fes una donació per ajudar-nos a continuar independents i seguir aportant millores: %1$@";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Nova versió %1$@ disponible. Prem aquest missatge per actualitzar i gaudir de les noves funcions.";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Descarregant %1$@ …";
+"update_now" = "Actualitza ara";
+"update_install_permission_explain" = "Per instal·lar l\'actualització, primer permet que Delta Chat instal·li aplicacions a la configuració del sistema.";

@@ -254,7 +254,7 @@
 "import_backup_title" = "Importa una còpia de seguresa";
 "import_backup_ask" = "Còpia de seguresa agatada in \"%1$@\".\n\nCheres a l\'importare e a impreare totu sos datos e sas impostatziones dae cue?";
 "import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";

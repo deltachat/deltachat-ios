@@ -465,6 +465,7 @@
 "search_in" = "Пошук у %1$@";
 "search_files" = "Шукати файли";
 "search_explain" = "Пошук чатів, контактів і повідомлень";
+// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
 "search_result_for_x" = "Результати для \"%1$@\"";
 "search_no_result_for_x" = "Запит \"%1$@\" не дав результатів";
 // Adjective, as in "Show Unread Messages"
@@ -632,7 +633,7 @@
 "import_backup_title" = "Відновити з резервної копії";
 "import_backup_ask" = "Знайдена резервна копія \"%1$@\".\n\nВідновити з неї всі дані й параметри?";
 "import_backup_no_backup_found" = "Жодної резервної копії не знайдено. \n\nПомістіть резервну копію в теку \"%1$@\" та спробуйте знову.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Не вдалося увійти як \"%1$@\". Будь ласка, перевірте правильність адреси електронної пошти та паролю.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Приймати недійсні сертифікати";

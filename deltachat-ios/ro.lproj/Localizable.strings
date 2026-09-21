@@ -391,7 +391,7 @@
 "import_backup_title" = "Restaurarea din copia de rezervă";
 "import_backup_ask" = "Backup găsit la \"%1$@\".\n\nDoriți să importați și să utilizați toate datele și setările din acesta?";
 "import_backup_no_backup_found" = "Nu s-au găsit copii de rezervă.\n\nCopiază copia de rezervă pe \"%1$@\" și încercați din nou.";
-// %1$s will be replaced by the failing address
+// deprecated, %1$s will be replaced by the failing address
 "login_error_cannot_login" = "Nu se poate autentifica ca \"%1$@\". Vă rugăm să verificați dacă adresa de e-mail și parola sunt corecte.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Acceptarea certificatelor nevalabile";

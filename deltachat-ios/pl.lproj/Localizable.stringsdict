@@ -362,5 +362,25 @@
 			<string>%d nowych wiadomości</string>
 		</dict>
 	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d nieprzeczytana wiadomość</string>
+			<key>few</key>
+			<string>%d nieprzeczytane wiadomości</string>
+			<key>many</key>
+			<string>%d nieprzeczytanych wiadomości</string>
+			<key>other</key>
+			<string>%d nieprzeczytanej wiadomości</string>
+		</dict>
+	</dict>
 </dict>
 </plist>
