@@ -146,6 +146,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             chat: dcChat,
             scrollToMsg: { [weak self] msg in
                 self?.scrollToMessage(msgId: msg.id)
+            },
+            startWebxdc: { [weak self] msg in
+                self?.showWebxdcViewFor(message: msg)
             }
         ))
         if #available(iOS 16.0, *) {
