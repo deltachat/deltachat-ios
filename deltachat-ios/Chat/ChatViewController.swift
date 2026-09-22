@@ -132,6 +132,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return host
     }()
 
+    private lazy var pinbarContainerView: UIView = {
+        let pinbarContainerView = UIView()
+        pinbarContainerView.backgroundColor = .clear
+        pinbarContainerView
+            .publisher(for: \.bounds)
+            .dropFirst()
+            .sink { [weak self] _ in self?.setTableViewContentInset() }
+            .store(in: &bag)
+
+        let host = UIHostingController(rootView: PinBarView(
+            context: dcContext,
+            chat: dcChat,
+            scrollToMsg: { [weak self] msg in
+                self?.scrollToMessage(msgId: msg.id)
+            }
+        ))
+        if #available(iOS 16.0, *) {
+            host.sizingOptions = [.intrinsicContentSize]
+        }
+        host.view.backgroundColor = .clear
+        addChild(host)
+        pinbarContainerView.addSubview(host.view)
+        host.didMove(toParent: self)
+        host.view.fillSuperview()
+
+        return pinbarContainerView
+    }()
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -447,6 +475,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         configureEmptyStateView()
 
+        view.addSubview(pinbarContainerView)
+        pinbarContainerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pinbarContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pinbarContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+
         view.addSubview(toolbarContainerView)
         toolbarContainerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -571,7 +606,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func setTableViewContentInset() {
         // Manually set the safe area because tableView is flipped
-        tableView.contentInset.bottom = view.safeAreaInsets.top
+        tableView.contentInset.bottom = view.safeAreaInsets.top + pinbarContainerView.frame.height
 
         let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
         if tableView.contentInset.top != topInset {
@@ -2163,6 +2198,13 @@ extension ChatViewController {
                 children.append(
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                 )
+
+                if dcChat.canSend, !message.isInfo {
+                    let isPinned = message.isPinned
+                    let pinTitle = isPinned ? "unpin" : "pin"
+                    let pinImage = isPinned ? "pin.slash.fill" : "pin.fill"
+                    moreOptions.append(UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned }))
+                }
 
                 if dcChat.canSend && message.isFromCurrentSender {
                     moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle))

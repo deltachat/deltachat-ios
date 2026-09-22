@@ -50,12 +50,12 @@ public class DcContext {
     // viewType: one of DC_MSG_*
     public func newMessage(viewType: Int32) -> DcMsg {
         let messagePointer = dc_msg_new(contextPointer, viewType)
-        return DcMsg(pointer: messagePointer)
+        return DcMsg(pointer: messagePointer, dcContext: self)
     }
 
     public func getMessage(id: Int) -> DcMsg {
         let messagePointer = dc_get_msg(contextPointer, UInt32(id))
-        return DcMsg(pointer: messagePointer)
+        return DcMsg(pointer: messagePointer, dcContext: self)
     }
 
     public func sendMessage(chatId: Int, message: DcMsg) {
@@ -218,7 +218,7 @@ public class DcContext {
 
     public func getChat(chatId: Int) -> DcChat {
         let chatPointer = dc_get_chat(contextPointer, UInt32(chatId))
-        return DcChat(chatPointer: chatPointer)
+        return DcChat(chatPointer: chatPointer, dcContext: self)
     }
 
     public func getChatIdByContactId(_ contactId: Int) -> Int {
@@ -451,7 +451,7 @@ public class DcContext {
 
     public func getDraft(chatId: Int) -> DcMsg? {
         if let draft = dc_get_draft(contextPointer, UInt32(chatId)) {
-            return DcMsg(pointer: draft)
+            return DcMsg(pointer: draft, dcContext: self)
         }
         return nil
     }
@@ -614,8 +614,7 @@ public class DcContext {
     }
 
     public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
-        let res = try DcAccounts.shared.blockingCall(method: "add_or_update_transport", accountId: id, codable: param)
-        return res != nil
+        DcAccounts.shared.blockingCall(method: "add_or_update_transport", id, param) != nil
     }
 
     public func addTransportFromQr(qrCode: String) throws -> Bool {
