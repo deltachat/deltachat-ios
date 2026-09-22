@@ -24,22 +24,26 @@ struct InputBarView: View {
                         isEditing: draft.sendEditRequestForMsg != nil,
                         dcContext: draft.dcContext
                     ).padding(.horizontal, 10)
-                    Button(String.localized("cancel"), systemImage: "xmark") {
+                    Button(action: {
                         if draft.sendEditRequestForMsg != nil {
                             draft.clear()
                         } else {
                             draft.setQuote(quotedMsg: nil)
                         }
-                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                    }, label: {
+                        Label(String.localized("cancel"), systemImage: "xmark")
+                            .padding(4)
+                    }).layoutPriority(-1).labelStyle(.iconOnly)
                 }.modifier { glassEffect(view: $0, interactive: false) }
             }
             if draft.attachment != nil {
                 HStack {
                     attachmentPreview
                     Spacer()
-                    Button(String.localized("cancel"), systemImage: "xmark") {
-                        draft.clearAttachment()
-                    }.layoutPriority(-1).labelStyle(.iconOnly)
+                    Button(action: draft.clearAttachment, label: {
+                        Label(String.localized("cancel"), systemImage: "xmark")
+                            .padding(4)
+                    }).layoutPriority(-1).labelStyle(.iconOnly)
                 }
                 .onTapGesture {
                     chatViewController?.onAttachmentTapped()
