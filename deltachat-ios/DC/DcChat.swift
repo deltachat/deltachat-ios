@@ -142,12 +142,10 @@ public class DcChat {
         return dc_chat_is_sending_locations(chatPointer) == 1
     }
 
-    public var pinnedMessages: [DcMsg] {
+    public var pinnedMessageIds: [Int] {
         do {
             if let data = DcAccounts.shared.blockingCall(method: "get_pinned_messages", dcContext.id, id) {
-                return try JSONDecoder().decode(JsonrpcResult<[Int]>.self, from: data).result
-                    .map(dcContext.getMessage)
-                    .reversed()
+                return try JSONDecoder().decode(JsonrpcResult<[Int]>.self, from: data).result.reversed()
             }
         } catch {
             logger.error(error.localizedDescription)
