@@ -5,6 +5,7 @@
 - Onboard on multiple relays by default
 - No need to mark a relay for sending, this is chosen by the core automatically
 - Better image quality
+- Show a hint about contacts not seen for a while
 - More reliable and quicker notifications and call ringing
 - Update notification when its message is edited
 - Remove notification if its message is deleted
