@@ -20,7 +20,7 @@
 - Fix: No longer send read receipts when call window is covering messages
 - Add Belarusian translation
 - Update translations and local help
-- Update to core 2.61.0
+- Update to core 2.62.0
 
 
 ## 2.59.1
