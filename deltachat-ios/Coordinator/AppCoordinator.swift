@@ -339,20 +339,6 @@ class AppCoordinator: NSObject {
                 dcContext: dcContext
             )
 
-        case DC_QR_FPR_WITHOUT_ADDR:
-            let msg = String.localized("qrscan_no_addr_found") + "\n\n" +
-                String.localized("qrscan_fingerprint_label") + ":\n" + (qrParsed.text1 ?? "")
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            viewController.present(alert, animated: true, completion: nil)
-
-        case DC_QR_FPR_MISMATCH:
-            let name = dcContext.getContact(id: qrParsed.id).displayName
-            let msg = String.localizedStringWithFormat(String.localized("qrscan_fingerprint_mismatch"), name)
-            let alert = UIAlertController(title: msg, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: nil))
-            viewController.present(alert, animated: true, completion: nil)
-
         case DC_QR_ADDR, DC_QR_FPR_OK:
             let name = dcContext.getContact(id: qrParsed.id).displayName
             let msg = String.localizedStringWithFormat(String.localized(state==DC_QR_ADDR ? "ask_start_chat_with" : "qrshow_x_verified"), name)
