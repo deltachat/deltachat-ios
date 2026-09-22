@@ -1,6 +1,7 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## 2.62.0
+2026-09
 
 - Onboard on multiple relays by default
 - No need to mark a relay for sending, this is chosen by the core automatically
