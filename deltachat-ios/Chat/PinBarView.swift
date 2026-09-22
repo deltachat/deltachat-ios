@@ -58,9 +58,9 @@ struct PinBarView: View {
             } else {
                 view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
                     .overlay(alignment: .bottom, content: Divider.init)
-                    .padding(.bottom, 8)
             }
         }
+        .padding(.bottom, 8)
         .transition(.move(edge: .top).combined(with: .opacity))
         .onTapGesture {
             scrollToMsg(context.getMessage(id: pins[selected]))
