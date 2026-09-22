@@ -67,7 +67,9 @@ class ChatListViewController: UITableViewController {
     }()
 
     private lazy var accountButtonAvatar: InitialsBadge = {
-        let badge = InitialsBadge(size: 37, accessibilityLabel: String.localized("switch_account"))
+        // On iOS 27 bar button items might have different sizes so we dynamically resize
+        let size: CGFloat? = if #available(iOS 27.0, *) { nil } else { 37 }
+        let badge = InitialsBadge(size: size, accessibilityLabel: String.localized("switch_account"))
         badge.accessibilityTraits = .button
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accountButtonTapped))
         badge.addGestureRecognizer(tapGestureRecognizer)
@@ -76,7 +78,9 @@ class ChatListViewController: UITableViewController {
 
     private lazy var accountButton: UIBarButtonItem = {
         let accountButton = UIBarButtonItem(customView: accountButtonAvatar)
-        if #available(iOS 26.0, *) {
+        if #available(iOS 27.0, *) {
+            accountButton.isPaddingRemoved = true
+        } else if #available(iOS 26.0, *) {
             accountButton.hidesSharedBackground = true
         }
         return accountButton
@@ -173,8 +177,6 @@ class ChatListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setBottomTabBarHidden(hasEditingView())
-
         // create view
         navigationItem.titleView = titleView
         updateTitle()
@@ -182,6 +184,7 @@ class ChatListViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setBottomTabBarHidden(hasEditingView())
         startTimer()
     }
 
@@ -268,6 +271,8 @@ class ChatListViewController: UITableViewController {
     private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
         if #available(iOS 26, *) {
             navigationItem.backButtonDisplayMode = .minimal
+            // On liquid glass we don't show new messages indicator nor "archive/chats" in the back button
+            return
         }
         let numberOfUnreadMessages = DcAccounts.shared.getFreshMessagesCount()
 
@@ -701,7 +706,16 @@ class ChatListViewController: UITableViewController {
 
     private func updateAccountButton() {
         let unreadMessages = dcAccounts.getFreshMessagesCount(skipCurrent: true)
-        accountButtonAvatar.setUnreadMessageCount(unreadMessages)
+        if #available(iOS 27, *) {
+            accountButton.badge = unreadMessages == 0 ? nil : .count(unreadMessages)
+            // There is a bug with `isPaddingRemoved = true` in combination with badge
+            // where the badge doesn't update until next layout pass. Toggling it off
+            // and on again updates the badge number.
+            accountButton.isPaddingRemoved.toggle()
+            accountButton.isPaddingRemoved.toggle()
+        } else {
+            accountButtonAvatar.setUnreadMessageCount(unreadMessages)
+        }
         if unreadMessages > 0 {
             accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
         } else {
@@ -745,9 +759,9 @@ class ChatListViewController: UITableViewController {
         if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
             // multi-select is not allowed during forwarding
             titleView.text = RelayHelper.shared.dialogTitle
+            updateAccountButton()
             navigationItem.setLeftBarButton(isArchive ? nil : accountButton, animated: false)
             navigationItem.setRightBarButtonItems([cancelButton], animated: true)
-            updateAccountButton()
         } else if isArchive {
             titleView.text = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {

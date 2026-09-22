@@ -111,6 +111,7 @@ class AppCoordinator: NSObject {
         }
     }
 
+    @discardableResult
     func handleDeepLinkURL(_ url: URL) -> Bool {
         if url.absoluteString.starts(with: "chat.delta.deeplink://webxdc?") {
             return handleWebxdcDeeplink(url: url)
@@ -235,21 +236,19 @@ class AppCoordinator: NSObject {
         return true
     }
 
-    func handleMailtoURL(_ url: URL, askToChat: Bool = true) -> Bool {
+    func handleMailtoURL(_ url: URL, askToChat: Bool = true) {
         if RelayHelper.shared.parseMailtoUrl(url) {
             showTab(index: chatsTab)
             if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
                 rootController.popToRootViewController(animated: false)
                 if let controller = rootController.viewControllers.first as? ChatListViewController {
                     controller.handleMailto(askToChat: askToChat)
-                    return true
                 }
             }
         } else {
             logger.warning("Could not parse mailto: URL")
         }
         RelayHelper.shared.finishRelaying()
-        return false
     }
 
     func handleDeltaChatInvitation(url: URL, from viewController: UIViewController) {

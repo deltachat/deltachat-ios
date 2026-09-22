@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     var callWindow: CallWindow!
     var notifyToken: String?
-    private var applicationInForeground: Bool = false
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     private var appFullyInitialized = false
 
@@ -143,8 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 // maybeNetwork() shall not be called in ui thread;
                 // Reachability::reachabilityChanged uses DispatchQueue.main.async only
                 logger.info("network: reachable \(reachability.connection.description)")
-                DispatchQueue.global().async { [weak self] in
-                    guard let self else { return }
+                DispatchQueue.global().async {
                     self.dcAccounts.maybeNetwork()
                     if self.notifyToken == nil && self.dcAccounts.getSelected().isConfigured() {
                         self.registerForNotifications()
@@ -155,8 +153,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
             reachability.whenUnreachable = { _ in
                 logger.info("network: not reachable")
-                DispatchQueue.global().async { [weak self] in
-                    self?.dcAccounts.maybeNetworkLost()
+                DispatchQueue.global().async {
+                    self.dcAccounts.maybeNetworkLost()
                 }
             }
 
@@ -192,79 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         appCoordinator.handleQRCode(inviteLink)
     }
 
-    func application(_ application: UIApplication,
-                     continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        if userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-           let incomingURL = userActivity.webpageURL,
-           let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
-           let host = components.host {
-            logger.info("➡️ open univeral link url")
-
-            if host == Utils.inviteDomain {
-                appCoordinator.handleQRCode(incomingURL.absoluteString)
-                return true
-            } else {
-                return false
-            }
-        } else if userActivity.interaction?.intent is INStartAudioCallIntent {
-            logger.info("➡️ INStartAudioCallIntent")
-            return false
-        } else {
-            return false
-        }
-    }
-
-    // `open` is called when an url should be opened by Delta Chat.
-    // we currently use that for handing openpgp4fpr.
-    //
-    // before `open` gets called, `didFinishLaunchingWithOptions` is called.
-    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        logger.info("➡️ open url")
-
-        switch url.scheme?.lowercased() {
-        case "dcaccount", "dclogin",
-             "https" where url.host == Utils.inviteDomain:
-            appCoordinator.handleQRCode(url.absoluteString)
-            return true
-        case "openpgp4fpr":
-            // Hack to format url properly
-            let urlString = url.absoluteString
-                           .replacingOccurrences(of: "openpgp4fpr", with: "OPENPGP4FPR", options: .literal, range: nil)
-                           .replacingOccurrences(of: "%23", with: "#", options: .literal, range: nil)
-
-            appCoordinator.handleQRCode(urlString)
-            return true
-        case "mailto":
-            return appCoordinator.handleMailtoURL(url)
-        case "chat.delta.deeplink":
-            return appCoordinator.handleDeepLinkURL(url)
-        default:
-            return false
-        }
-    }
-
-
     // MARK: - app lifecycle
-
-    // applicationWillEnterForeground() is _not_ called on initial app start
-    func applicationWillEnterForeground(_: UIApplication) {
-        logger.info("➡️ applicationWillEnterForeground")
-        applicationInForeground = true
-        UserDefaults.setMainIoRunning()
-        dcAccounts.startIo()
-
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            if let reachability = self.reachability {
-                if reachability.connection != .unavailable {
-                    self.dcAccounts.maybeNetwork()
-                }
-            }
-
-            AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
-        }
-    }
 
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         logger.info("➡️ applicationProtectedDataDidBecomeAvailable")
@@ -286,30 +212,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 "chat_id": Int(0),
             ])
         }
-    }
-
-    // applicationDidBecomeActive() is called on initial app start _and_ after applicationWillEnterForeground()
-    func applicationDidBecomeActive(_: UIApplication) {
-        logger.info("➡️ applicationDidBecomeActive")
-        UserDefaults.setMainIoRunning()
-        applicationInForeground = true
-        NotificationManager.updateBadgeCounters()
-        if dcAccounts.getSelected().isConfigured() {
-            // This supports the case that app clips stay installed and
-            // keep handling i.delta.chat links instead of the main app which
-            // shouldn't happen but would be pretty bad so better safe than sorry
-            handleAppClipInviteLink()
-        }
-    }
-
-    func applicationWillResignActive(_: UIApplication) {
-        logger.info("⬅️ applicationWillResignActive")
-        registerBackgroundTask()
-    }
-
-    func applicationDidEnterBackground(_: UIApplication) {
-        logger.info("⬅️ applicationDidEnterBackground")
-        applicationInForeground = false
     }
 
     func applicationWillTerminate(_: UIApplication) {
@@ -790,16 +692,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func appIsInForeground() -> Bool {
-        if Thread.isMainThread {
-            switch UIApplication.shared.applicationState {
-            case .background, .inactive:
-                applicationInForeground = false
-            case .active:
-                applicationInForeground = true
-            @unknown default:
-                applicationInForeground = false
-            }
-        }
-        return applicationInForeground
+        window?.windowScene?.activationState == .foregroundActive
     }
 }

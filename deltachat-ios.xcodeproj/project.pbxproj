@@ -125,6 +125,7 @@
 		64AFC0802F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */; };
 		64D049A02EC890840093A0A8 /* PiPVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0499F2EC890840093A0A8 /* PiPVideoView.swift */; };
 		64D049A22EC8913A0093A0A8 /* PiPFrameProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */; };
+		64DD4BEA3059A0B300C603F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD4BE93059A0AC00C603F2 /* SceneDelegate.swift */; };
 		64F9EBA02E117CD8007EE3D9 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */; };
 		7070FB9B2101ECBB000DC258 /* NewGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7070FB9A2101ECBB000DC258 /* NewGroupController.swift */; };
 		70B8882E2091B8550074812E /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8882D2091B8550074812E /* ContactCell.swift */; };
@@ -485,6 +486,7 @@
 		64AFC07F2F0EB9E900F44416 /* NSLayoutConstraints+activateWithPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraints+activateWithPriority.swift"; sourceTree = "<group>"; };
 		64D0499F2EC890840093A0A8 /* PiPVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPVideoView.swift; sourceTree = "<group>"; };
 		64D049A12EC8913A0093A0A8 /* PiPFrameProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiPFrameProcessor.swift; sourceTree = "<group>"; };
+		64DD4BE93059A0AC00C603F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		64F9EB9F2E117CCF007EE3D9 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		7070FB9A2101ECBB000DC258 /* NewGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupController.swift; sourceTree = "<group>"; };
 		70B8882D2091B8550074812E /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -703,6 +705,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		643B44782E0C2BD900AEE026 /* DcTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = DcTests;
 			sourceTree = "<group>";
 		};
@@ -966,6 +970,7 @@
 				AE77838B23E32EAA0093EABD /* ViewModel */,
 				305961812346125000C80F33 /* Extensions */,
 				7A9FB1431FB061E2001FEA36 /* AppDelegate.swift */,
+				64DD4BE93059A0AC00C603F2 /* SceneDelegate.swift */,
 				AE851AC3227C695900ED86F0 /* View */,
 				AE851AC2227C695000ED86F0 /* Helper */,
 				3080A016277DDABF00E74565 /* KeyboardManager */,
@@ -1624,13 +1629,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1739,6 +1740,7 @@
 				D84AED242B55E8EB00D753F6 /* ReactionsOverviewViewController.swift in Sources */,
 				B2DF96312EE3368F0037F07F /* TransportCell.swift in Sources */,
 				3059620E234614E700C80F33 /* DcContact+Extension.swift in Sources */,
+				64DD4BEA3059A0B300C603F2 /* SceneDelegate.swift in Sources */,
 				30DED713292EE4280040835D /* LogViewController.swift in Sources */,
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				B2D255972BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift in Sources */,
@@ -2337,7 +2339,6 @@
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2403,7 +2404,6 @@
 				DEVELOPMENT_TEAM = 8Y86453UA8;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
