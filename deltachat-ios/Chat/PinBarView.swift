@@ -23,7 +23,9 @@ struct PinBarView: View {
         // TODO: Switch to "pinned messages changed" event here
         .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged)) { event in
             guard event.userInfo?["chat_id"] as? Int == chat.id else { return }
-            pins = chat.pinnedMessages
+            withAnimation {
+                pins = chat.pinnedMessages
+            }
         }
     }
 
@@ -59,6 +61,7 @@ struct PinBarView: View {
                     .padding(.bottom, 8)
             }
         }
+        .transition(.move(edge: .top).combined(with: .opacity))
         .onTapGesture {
             scrollToMsg(pins[selected])
             withAnimation {
@@ -105,12 +108,9 @@ public struct PinPageControl: UIViewRepresentable {
 
 extension View {
     func bind(size: Binding<CGSize>) -> some View {
-        background {
-            GeometryReader { proxy in
-                Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
-            }
-        }
-        .onPreferenceChange(SizePreferenceKey.self) {
+        background(GeometryReader { proxy in
+            Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
+        }).onPreferenceChange(SizePreferenceKey.self) {
             size.wrappedValue = $0
         }
     }
