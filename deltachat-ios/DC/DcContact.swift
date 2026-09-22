@@ -50,33 +50,23 @@ public class DcContact {
         return dc_contact_get_freshness(contactPointer)
     }
 
-    public var contactSeenLine: String? {
-        let recentLimit: TimeInterval = 10 * 60
-        let oneHour: TimeInterval = 60 * 60
-        let oneDay: TimeInterval = 24 * 60 * 60
+    public var oldContactHint: String? {
+        if freshness != DC_FRESHNESS_OLD {
+            return nil
+        }
+
+        if lastSeen == 0 {
+            return String.localized("never_seen")
+        }
+
+        let age = Date().timeIntervalSince(Date(timeIntervalSince1970: TimeInterval(lastSeen)))
         let oneMonth: TimeInterval = 31 * 24 * 60 * 60
         let oneYear: TimeInterval = 365 * 24 * 60 * 60
-
-        let seenDate = Date(timeIntervalSince1970: TimeInterval(lastSeen))
-        let nowDate = Date()
-        let age = max(0, nowDate.timeIntervalSince(seenDate))
-
-        if age < recentLimit {
-            return "recently seen"
-        }
-        if age < oneHour {
-            return "seen minutes ago"
-        }
-        if age < oneDay {
-            return "seen \(Int(age / oneHour)) hours ago"
-        }
-        if age < oneMonth {
-            return "seen \(Int(age / oneDay)) days ago"
-        }
         if age < oneYear {
-            return "seen \(Int(age / oneMonth)) months ago"
+            return String.localized(stringID: "seen_n_months_ago", parameter: Int(age / oneMonth))
         }
-        return "seen \(Int(age / oneYear)) years ago"
+
+        return String.localized(stringID: "seen_n_years_ago", parameter: Int(age / oneYear))
     }
 
     public var status: String {
