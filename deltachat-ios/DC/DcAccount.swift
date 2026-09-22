@@ -194,13 +194,13 @@ public class DcAccounts {
     }
 
     @discardableResult
-    public func blockingCall(method: String, accountId: Int, codable: Codable) throws -> Data? {
+    public func blockingCall(method: String, _ codable: Codable...) -> Data? {
         do {
-            let jsonData = try JSONEncoder().encode(codable)
-            let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
-            return try blockingCall(method: method, paramsStr: "[\(accountId),\(jsonString)]")
+            let jsonData = try codable.map { try JSONEncoder().encode($0) }
+            let jsonStrings = jsonData.map { String(data: $0, encoding: .utf8) ?? "" }
+            return try blockingCall(method: method, paramsStr: "[\(jsonStrings.joined(separator: ","))]")
         } catch {
-            logger.error("blockingCall(codable:) error: \(error)")
+            logger.error("blockingCall(method:codable:) error: \(error)")
         }
         return nil
     }
