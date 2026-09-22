@@ -46,16 +46,11 @@ public class DcContact {
         return Int64(dc_contact_get_last_seen(contactPointer))
     }
 
-    public var wasSeenRecently: Bool {
-        return dc_contact_get_freshness(contactPointer) == DC_FRESHNESS_RECENTLY_SEEN
-    }
-
-    public var showContactSeenLine: Bool {
-        return contactSeenLine != nil
+    public var freshness: Int32 {
+        return dc_contact_get_freshness(contactPointer)
     }
 
     public var contactSeenLine: String? {
-        guard lastSeen > 0, isKeyContact else { return nil }
         let recentLimit: TimeInterval = 10 * 60
         let oneHour: TimeInterval = 60 * 60
         let oneDay: TimeInterval = 24 * 60 * 60
