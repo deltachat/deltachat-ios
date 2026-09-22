@@ -1148,5 +1148,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "לחץ כאן כדי לקבל הודעות בזמן ש- Delta Chat פועל ברקע.";
 "perm_enable_bg_already_done" = "כבר אישרת ל- Delta Chat לקבל הודעות ברקע.\n\nאם ההודעות עדיין לא מגיעות ברקע, אנא בדוק גם את הגדרות המערכת שלך.";
-// device messages for updates
-"update_2_0" = "מה חדש?\n\n💯 ההצפנה מקצה לקצה אמינה וכעת היא קבועה. מנעולים 🔒 נעלמו!\n\n✉️ דוא\"ל קלאסי ללא הצפנה מקצה לקצה מסומן בסמל של אות\n\n😻 מסך פרופיל משופר חדש לכל אנשי הקשר שלכם\n\n🔲 כפתור חדש לגישה מהירה לאפליקציות המשמשות בצ\'אט\n\n❤️ אנא תרמו כדי לעזור לנו להישאר עצמאיים ולהמשיך להביא שיפורים: %1$@";

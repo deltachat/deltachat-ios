@@ -124,6 +124,10 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = " Ultimo accesso %1$@";
 "last_seen_unknown" = "Ultimo accesso: sconosciuto";
+// This is about a contact that was not seen for one or more months
+// This is about a contact that was not seen for one or more years
+// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+"never_seen" = "Mai visto";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Meno di 1 minuto";
@@ -984,6 +988,7 @@
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo profilo.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
+"relay_login_hint" = "Utilizzando %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1159,7 +1164,11 @@
 "perm_enable_bg_reminder_title" = "Tocca qui per ricevere messaggi mentre Delta Chat è in secondo piano.";
 "perm_enable_bg_already_done" = "Hai già autorizzato Delta Chat a ricevere messaggi in secondo piano.\n\nSe i messaggi non arrivano in secondo piano, per piacere controlla anche le impostazioni di sistema.";
 // device messages for updates
-"update_2_0" = "Novità?\n\n💯 La crittografia end-to-end è ora affidabile e definitiva. I lucchetti 🔒 sono spariti!\n\n✉️ Le email classiche senza crittografia end-to-end sono contrassegnate dal simbolo di una lettera\n\n😻 Nuova schermata del profilo migliorata per tutti i tuoi contatti\n\n🔲 Nuovo pulsante per l\'accesso rapido alle app utilizzate in una chat\n\n❤️ Dona per aiutarci a rimanere indipendenti e continuare a migliorare: %1$@";
+"update_2_6" = "Scopri le novità!\n\n🌐 I tuoi messaggi viaggiano in modo più intelligente: grazie ai ripetitori multipli, il guasto di uno di essi non ne bloccherà l\'invio\n\n📞 Le chiamate sono diventate mature e non sono più in fase sperimentale\n\n📢 I canali sono qui per restare: ora anche con le reazioni\n\n✍️ Aggiungi una descrizione alla chat, così nessuno avrà dubbi\n\n👌 Le immagini inviate ora sono più nitide\n\n🔵 Contrassegna le chat come non lette, così non te ne dimenticherai";
+"update_2_6_android_additions" = "🐇 Accelerazione e riproduzione automatica dei messaggi vocali\n\ne finalmente: abbiamo un selettore di sticker di base!";
+"update_2_6_desktop_additions" = "🐇 Velocizzazione e riproduzione automatica dei messaggi vocali\n\n⏯️ nuovo lettore audio\n\n✅ selezione di più messaggi per inoltro ed eliminazione\n\nfinalmente: abbiamo un selettore di sticker di base!";
+"update_2_6_ios_additions" = "🎤 Riproduci i messaggi vocali in sottofondo";
+"update_2_6_end" = "Ti preghiamo di donare per aiutarci a rimanere indipendenti e continuare ad apportare miglioramenti ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"
 "update_available_msg" = "🎉 È disponibile la nuova versione %1$@ . Tocca questo messaggio per aggiornare e scoprire le nuove funzionalità";
 // The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
