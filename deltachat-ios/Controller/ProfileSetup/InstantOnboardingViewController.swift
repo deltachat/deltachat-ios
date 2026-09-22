@@ -146,7 +146,7 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     @objc private func showPrivacy(_ sender: UIButton) {
-        if let url = URL(string: "https://delta.chat/gdpr"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "https://delta.chat/privacy"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
