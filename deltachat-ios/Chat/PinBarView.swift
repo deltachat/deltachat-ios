@@ -5,7 +5,7 @@ struct PinBarView: View {
     let context: DcContext
     let chat: DcChat
     let scrollToMsg: (DcMsg) -> Void
-    @State private var pins: [DcMsg] = [] {
+    @State private var pins: [Int] = [] {
         willSet { selected = min(selected, newValue.count) }
     }
     @State private var selected: Int = 0
@@ -18,13 +18,13 @@ struct PinBarView: View {
             }
         }
         .onAppear {
-            pins = chat.pinnedMessages
+            pins = chat.pinnedMessageIds
         }
         // TODO: Switch to "pinned messages changed" event here
         .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged)) { event in
             guard event.userInfo?["chat_id"] as? Int == chat.id else { return }
             withAnimation {
-                pins = chat.pinnedMessages
+                pins = chat.pinnedMessageIds
             }
         }
     }
@@ -36,7 +36,7 @@ struct PinBarView: View {
                     .frame(maxHeight: size.height)
                     .padding(.leading, 8)
             }
-            Text(pins[selected].summary(chars: 100) ?? "...")
+            Text(context.getMessage(id: pins[selected]).summary(chars: 100) ?? "...")
                 .transition(.asymmetric(
                     insertion: .move(edge: .top).combined(with: .opacity),
                     removal: .move(edge: .bottom).combined(with: .opacity)
@@ -63,14 +63,14 @@ struct PinBarView: View {
         }
         .transition(.move(edge: .top).combined(with: .opacity))
         .onTapGesture {
-            scrollToMsg(pins[selected])
+            scrollToMsg(context.getMessage(id: pins[selected]))
             withAnimation {
                 selected = (selected + 1) % pins.count
             }
         }
         .contextMenu {
             Button(action: {
-                pins[selected].isPinned = false
+                context.getMessage(id: pins[selected]).isPinned = false
             }, label: {
                 Label("Unpin", systemImage: "pin.slash.fill")
             })
