@@ -388,7 +388,7 @@ class ContactCell: UITableViewCell {
         case .contact(let contactData):
             let contact = cellViewModel.dcContext.getContact(id: contactData.contactId)
             titleLabel.attributedText = cellViewModel.title.boldAt(indexes: cellViewModel.titleHighlightIndexes, fontSize: titleLabel.font.pointSize)
-            subtitleLabel.isHidden = contact.isKeyContact && !contact.showContactSeenLine
+            subtitleLabel.isHidden = contact.isKeyContact && contact.freshness != DC_FRESHNESS_OLD
 
             if let profileImage = contact.profileImage {
                 avatar.setImage(profileImage)
@@ -396,7 +396,7 @@ class ContactCell: UITableViewCell {
                 avatar.setName(cellViewModel.title)
                 avatar.setColor(contact.color)
             }
-            avatar.setRecentlySeen(contact.wasSeenRecently)
+            avatar.setRecentlySeen(contact.freshness == DC_FRESHNESS_RECENTLY_SEEN)
             setTimeLabel(0)
             setStatusIndicators(unreadCount: 0,
                                 status: 0,

@@ -90,7 +90,7 @@ public struct DcUtils {
         if !chat.isSelfTalk && !chat.isMultiUser && !chat.isMailinglist && !chat.isDeviceTalk {
             let contactIds = chat.getContactIds(context)
             if contactIds.count == 1 {
-                recentlySeen = context.getContact(id: contactIds[0]).wasSeenRecently
+                recentlySeen = context.getContact(id: contactIds[0]).freshness == DC_FRESHNESS_RECENTLY_SEEN
             }
         }
         return recentlySeen
