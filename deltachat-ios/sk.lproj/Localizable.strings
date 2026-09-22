@@ -1139,5 +1139,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Klepnutím sem prijmete správy, zatiaľ čo je Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Aplikácii Delta Chat ste už povolili príjem správ na pozadí.\n\nAk správy stále neprichádzajú na pozadí, skontrolujte tiež nastavenia systému.";
-// device messages for updates
-"update_2_0" = "Čo je nové?\n\n💯 Šifrovanie od zariadenia k zariadeniu je dostatočne spoľahlivé a od teraz predvolene natrvalo zapnuté. Zámky 🔒 znázorňujúce šifrovanie sa viac nezobrazujú!\n\n✉️ Správy doručované bežným e-mailom bez šifrovania od zariadenia k zariadeniu sú označené symbolom obálky\n\n😻 Nová vylepšená obrazovka profilu pre všetky kontakty\n\n🔲 Nové tlačidlo pre rýchly prístup k súkromným aplikáciám v konverzáciách\n\n❤️ Prosím, prispejte nám na vývoj, aby sme mohli zostať nezávislí a naďalej mohli prinášať vylepšenia: %1$@";

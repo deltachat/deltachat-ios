@@ -988,6 +988,7 @@
 "qraccount_qr_code_cannot_be_used" = "Der eingescannte QR-Code kann nicht dazu verwendet werden, eine neues Profil zu erstellen.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Bei \"%1$@\" anmelden?";
+"relay_login_hint" = "%1$@ verwenden";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ hat dich zu dieser Gruppe eingeladen.\n\nWarte auf die Antwort des Gerätes von %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1163,7 +1164,11 @@
 "perm_enable_bg_reminder_title" = "Tippen hier, um Nachrichten zu empfangen, während Delta Chat im Hintergrund läuft.";
 "perm_enable_bg_already_done" = "Du hast Delta Chat bereits erlaubt, Nachrichten im Hintergrund zu empfangen.\n\nFalls keine Nachrichten eingehen, überprüfe bitte auch die Systemeinstellungen.";
 // device messages for updates
-"update_2_0" = "Was ist neu?\n\n💯 Die Ende-zu-Ende-Verschlüsselung ist jetzt dauerhaft. Vorhängeschlösser 🔒 gibt es nicht mehr!\n\n✉️ Klassische E-Mails ohne Ende-zu-Ende-Verschlüsselung sind mit einem Umschlag-Symbol gekennzeichnet\n\n😻 Neues, verbessertes Profil für alle Kontakte\n\n🔲 Neue Schaltfläche für den schnellen Zugriff auf Apps, die in einem Chat verwendet werden\n\n❤️ Bitte spende und hilf uns, unabhängig zu bleiben und weiterhin Verbesserungen zu bringen: %1$@";
+"update_2_6" = "Was gibt es neues?\n\n🌐 Nachrichten werden jetzt intelligenter übertragen: Dank mehrerer Relais hält der Ausfall eines Relais deine Nachrichten nicht mehr auf\n\n📞 Anrufe sind nicht mehr im Testmodus\n\n📢 Kanäle sind gekommen, um zu bleiben - jetzt sogar mit Reaktionen\n\n ✍️ Füge eine Chat-Beschreibung hinzu, damit niemand im Unklaren bleibt\n\n👌 Gesendete Bilder sehen jetzt besser aus\n\n🔵 Markiere Chats als ungelesen, damit du sie nicht vergisst";
+"update_2_6_android_additions" = "🐇 Sprachmitteilungen schneller und automatisch abspielen\n\nEndlich: Wir haben einen einfachen Sticker-Picker!";
+"update_2_6_desktop_additions" = "🐇 Sprachmitteilungen schneller und automatisch abspielen\n\n✅ Mehrere Nachrichten zum Weiterleiten oder Löschen auswählen\n\nEndlich: Wir haben einen einfachen Sticker-Picker!";
+"update_2_6_ios_additions" = "🎤 Sprachmitteilungen im Hintergrund abspielen";
+"update_2_6_end" = "Spende, damit wir unabhängig bleiben und weiterhin Verbesserungen vornehmen können ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"
 "update_available_msg" = "🎉 Neue Version %1$@ verfügbar. Tippe auf diese Nachricht, um das Update zu installieren und die neuen Funktionen zu nutzen.";
 // The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"

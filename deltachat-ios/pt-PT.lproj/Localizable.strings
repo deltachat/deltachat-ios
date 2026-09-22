@@ -537,5 +537,3 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
 "perm_enable_bg_already_done" = "Já deste permissão para que o Delta Chat receba mensagens em segundo plano.\n\nSe continuas a não receber mensagens em segundo plano, confirma as definições de sistema também.";
-// device messages for updates
-"update_2_0" = "Que há de novo?\n\n💯 Criptografia de ponta-a-ponta é fiável e para sempre. Os cadeados 🔒 foram-se!\n\n✉️ Email clássico sem criptografia de ponta-a-ponta é marcado com o símbolo duma carta\n\n😻 Novo e melhorado ecrã de perfil para todos os teus contactos\n\n🔲 Novo botão de acesso rápido a apps usadas numa conversa\n\n❤️ Por favor doa para ajudar a mantermo-nos independentes e continuar a trazer-te melhorias: %1$@";
