@@ -106,7 +106,7 @@ class HelpViewController: WebViewViewController {
                 }
             },
             UIAction(title: String.localized("privacy_policy"), image: UIImage(systemName: "arrow.up.right")) { _ in
-                if let url = URL(string: "https://delta.chat/gdpr") {
+                if let url = URL(string: "https://delta.chat/privacy") {
                     UIApplication.shared.open(url)
                 }
             },
