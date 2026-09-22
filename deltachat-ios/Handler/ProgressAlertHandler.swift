@@ -73,11 +73,10 @@ class ProgressAlertHandler {
 
     public func updateProgressAlertSuccess(completion onComplete: VoidFunction? = nil) {
         guard let progressAlertController else { return assertionFailure("Please present an alert") }
+        assert(Thread.isMainThread)
 
         updateProgressAlertValue(value: 1000)
-        DispatchQueue.main.async {
-            progressAlertController.dismiss(animated: true)
-        }
+        progressAlertController.dismiss(animated: true)
         onComplete?()
     }
 
