@@ -15,6 +15,5 @@ struct FileViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: FileView, context: Context) {
         uiView.configure(message: message, forceWebxdcSummary: webxdcSummary)
         uiView.fileTitle.numberOfLines = 1
-        uiView.fileTitle.lineBreakMode = message.type == DC_MSG_WEBXDC ? .byTruncatingTail : .byTruncatingMiddle
     }
 }

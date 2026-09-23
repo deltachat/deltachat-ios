@@ -137,7 +137,7 @@ public class FileView: UIView {
             horizontalLayout = true
         }
         fileTitle.numberOfLines = 3
-        fileTitle.lineBreakMode = .byCharWrapping
+        fileTitle.lineBreakMode = .byTruncatingMiddle
         fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
         fileTitle.text = message.filename
