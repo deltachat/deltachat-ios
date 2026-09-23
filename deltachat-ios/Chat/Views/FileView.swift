@@ -53,6 +53,7 @@ public class FileView: UIView {
         let stackView = UIStackView(arrangedSubviews: [fileTitle, fileSubtitle])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 4
         stackView.clipsToBounds = true
         return stackView
     }()
