@@ -8,7 +8,6 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window?.windowScene = scene as? UIWindowScene
-        appDelegate?.callWindow?.windowScene = scene as? UIWindowScene
     }
 
 

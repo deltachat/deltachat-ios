@@ -41,7 +41,7 @@ public class NotificationManager {
                 chatsNavigationController.tabBarItem.badgeValue = number > 0 ? "\(number)" : nil
             }
 
-            appDelegate?.callWindow?.callViewController?.setUnreadMessageCount(number)
+            appDelegate?.callWindow.callViewController?.setUnreadMessageCount(number)
         }
         #endif
     }
