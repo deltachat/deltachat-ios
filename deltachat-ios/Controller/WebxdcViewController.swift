@@ -290,7 +290,7 @@ class WebxdcViewController: WebViewViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             systemItem: .close,
             primaryAction: UIAction(handler: { [weak self] _ in
-                self?.dismiss(animated: true)
+                self?.navigationController?.popViewController(animated: true)
             })
         )
     }
