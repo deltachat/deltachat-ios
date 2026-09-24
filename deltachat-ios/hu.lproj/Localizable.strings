@@ -824,10 +824,13 @@
 "qrscan_hint_desktop" = "Mozgassa a QR-kódot a kamera elé";
 "qrscan_failed" = "A QR-kódot nem sikerült értelmezni";
 "qrscan_ask_join_group" = "Biztosan csatlakozik a(z) „%1$@” nevű szobához?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "A beolvasott ujjlenyomat nem egyezik „%1$@” utoljára ismert ujjlenyomatával.";
+// deprecated
 "qrscan_no_addr_found" = "Ez a QR-kód tartalmaz egy ujjlenyomatot, de nem tartalmaz e-mail-címet.\n\nA sávon kívüli hitelesítéshez először hozzon létre egy titkosított kapcsolatot a címzettel.";
 "qrscan_contains_text" = "A beolvasott QR-kód-szöveg:\n\n%1$@";
 "qrscan_contains_url" = "A beolvasott QR-kód-webcím:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Ujjlenyomat";
 "withdraw_verifycontact_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy felvegyék önnel a kapcsolatot.\n\nA QR-kódot itt kikapcsolhatja, és újból bekapcsolhatja, ha újra beolvassa.";
 "withdraw_verifygroup_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy csatlakozhassanak a(z) „%1$@” nevű csoporthoz.\n\nA QR-kódot itt kikapcsolhatja, és újra bekapcsolhatja, ha újra beolvassa.";

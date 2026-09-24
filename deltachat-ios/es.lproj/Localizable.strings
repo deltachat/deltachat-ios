@@ -124,6 +124,10 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "Visto por última vez: %1$@";
 "last_seen_unknown" = "Visto por última vez: Desconocido";
+// This is about a contact that was not seen for one or more months
+// This is about a contact that was not seen for one or more years
+// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+"never_seen" = "No se ha visto nunca";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Menos de 1 minuto";
@@ -955,10 +959,13 @@
 "qrscan_failed" = "El código QR no pudo ser decodificado";
 "qrscan_ask_join_group" = "¿Quieres unirte al grupo \"%1$@\"?";
 "qrscan_ask_join_channel" = "¿Quieres unirte al canal \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "La huella digital escaneada no coincide con la última huella vista para \"%1$@\".";
+// deprecated
 "qrscan_no_addr_found" = "Este código QR contiene una huella digital pero no una dirección de correo electrónico.\n\nPara una verificación fuera de banda, establezca primero una conexión cifrada con el destinatario.";
 "qrscan_contains_text" = "Texto del código QR escaneado:\n\n%1$@";
 "qrscan_contains_url" = "URL del código QR escaneado:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Huella digital";
 "withdraw_verifycontact_explain" = "Este código QR puede ser escaneado por otras personas para contactarlo.\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
@@ -984,6 +991,8 @@
 "qraccount_qr_code_cannot_be_used" = "El código QR escaneado no puede ser usado para configurar una nueva cuenta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "¿Iniciar sesión en \"%1$@\"?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Utilizando %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ te invitó a unirte a este grupo.\n\nEsperando que el dispositivo de %2$@ responda…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1158,6 +1167,12 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
+// device messages for updates
+"update_2_6" = "¡Adivina qué hay de nuevo!\n\n🌐 Ahora tus mensajes se transmiten de forma más inteligente: gracias a los múltiples retransmisores, si uno deja de funcionar, los mensajes no se detendrán\n\n📞 Las llamadas han madurado y ya no son una función experimental\n\n📢 Los canales ahora son interactivos gracias a las reacciones\n\n✍️ Añade una descripción al chat, para que nadie se quede con la duda\n\n👌 Las imágenes enviadas ahora se ven con mayor nitidez\n\n🔵 Marca los chats como no leídos, para que no se te olviden";
+"update_2_6_android_additions" = "🐇 Acelera y reproduce automáticamente los mensajes de voz\n\nPor fin: ¡ya tenemos un selector básico de pegatinas!";
+"update_2_6_desktop_additions" = "🐇 Acelera y reproduce automáticamente los mensajes de voz\n\n⏯️ Nuevo reproductor de audio\n\n✅ Selecciona varios mensajes para reenviarlos o eliminarlos\n\nPor fin: ¡ya tenemos un selector básico de pegatinas!";
+"update_2_6_ios_additions" = "🎤 Reproduce mensajes de voz en segundo plano";
+"update_2_6_end" = "Por favor, si puedes, haz una donación para ayudarnos a mantenernos independientes y seguir aportando mejoras ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"
 "update_available_msg" = "🎉 Ya está disponible la nueva versión %1$@. Toca este mensaje para actualizar la aplicación y disfrutar de las nuevas funciones.";
 // The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"

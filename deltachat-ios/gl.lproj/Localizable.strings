@@ -946,10 +946,13 @@
 "qrscan_failed" = "Non se puido descodificar o código QR";
 "qrscan_ask_join_group" = "Queres unirte ao grupo \"%1$@\"?";
 "qrscan_ask_join_channel" = "Queres unirte á canle \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "A pegada dixital escaneada non coincide coa última vista para %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Este código QR contén unha pegada dixital pero non un enderezo de correo.\n\nPara unha verificación fóra de liña, por favor establece unha conexión cifrada co persoa correspondente.";
 "qrscan_contains_text" = "Texto escaneado no código QR:\n\n%1$@";
 "qrscan_contains_url" = "URL escaneado no código QR:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Pegada dactilar";
 "withdraw_verifycontact_explain" = "Este código QR permite que outras persoas contacten contigo.\n\nPodes desactivar o código QR aquí e reactivalo volvéndoo a escanear.";
 "withdraw_verifygroup_explain" = "Este código QR permite que outras persoas se unan ao grupo \"%1$@\".\n\nPodes desactivar aquí o código QR e reactivalo volvéndoo a escanear.";

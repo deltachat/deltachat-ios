@@ -584,10 +584,13 @@
 "qr_code" = "QR-kode";
 "qrscan_title" = "Skann QR-kode";
 "qrscan_hint" = "Beveg kameraet over QR-koden.";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Det skannede fingeravtrykket stemmer ikke overens med sist sette fingeravtrukk for %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "QR-koden inneholder et fingeravtrykk, men ingen e-postadresse.\n\nFor bekreftelse utenfor programmet, etabler en kryptert tilkobling til mottakeren først.";
 "qrscan_contains_text" = "Den skannede QR-koden inneholder følgende tekst:\n\n%1$@";
 "qrscan_contains_url" = "Den skannede QR-koden inneholder følgende lenke:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Fingeravtrykk";
 "qrshow_title" = "QR-invitasjonskode";
 "qrshow_x_joining" = "%1$@ tar del.";

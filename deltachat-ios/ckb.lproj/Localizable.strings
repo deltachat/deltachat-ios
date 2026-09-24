@@ -393,6 +393,7 @@
 "qrscan_ask_join_group" = "دەتوێت بەشداری کۆڕی \"%1$@\" ببیت؟";
 "qrscan_contains_text" = "دەقی کۆدی QRە سکانکراوەکە:\n\n%1$@";
 "qrscan_contains_url" = "ناونیشانی وێبی کۆدی QRە سکانکراوەکە:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "پەنجەمۆر";
 "qrshow_title" = "کۆدی QRی بانگهێشت کردن";
 "qrshow_x_joining" = "%1$@ بەشداربوو";

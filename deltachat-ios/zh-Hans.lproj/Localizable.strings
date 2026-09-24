@@ -124,6 +124,10 @@
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
 "last_seen_relative" = "最后上线 %1$@";
 "last_seen_unknown" = "最后上线：未知";
+// This is about a contact that was not seen for one or more months
+// This is about a contact that was not seen for one or more years
+// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+"never_seen" = "从未见过";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "不到 1 分钟";
@@ -198,6 +202,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "浏览";
 "unknown" = "未知";
+"unnamed" = "未命名";
 "green" = "绿色";
 "red" = "红色";
 "blue" = "蓝色";
@@ -206,6 +211,8 @@
 "purple" = "紫色";
 "magenta" = "紫红色";
 "white" = "白色";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "缩放";
 "extra_small" = "特小";
 "small" = "小";
@@ -323,6 +330,8 @@
 "unpin_chat" = "取消固定聊天";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "固定";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "已置顶";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "取消固定";
 "ConversationFragment_quoted_message_not_found" = "原消息未找到";
@@ -631,9 +640,13 @@
 // deprecated
 "hidden_from_contacts" = "已对联系人隐藏";
 "enforce_e2ee" = "对所有中继强制加密";
+// Hint for the list of relays
+"transport_list_hint" = "中继用于发送和接收消息。多于1个中继有助保持连接稳定。";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "添加此中继？";
 "invalid_transport_qr" = "扫描的二维码不包含有效的中继。";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "删除 \"%1$@\" 中继？";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "移除中继“%1$@”？\n\n仅知道此中继的联系人可能无法联系到您，直到您再次发送消息。\n\n如有疑问，请将其隐藏而非移除。";
 "login_certificate_checks" = "证书检查";
@@ -946,10 +959,13 @@
 "qrscan_failed" = "二维码无法被解码";
 "qrscan_ask_join_group" = "是否要加入群组“%1$@”？";
 "qrscan_ask_join_channel" = "是否要加入频道“%1$@”？";
+// deprecated
 "qrscan_fingerprint_mismatch" = "扫描到的指纹与上次见到的 %1$@ 的指纹不匹配。";
+// deprecated
 "qrscan_no_addr_found" = "此二维码包含指纹，但没有电子邮件地址。\n\n对于带外验证，请先与接收者建立加密连接。";
 "qrscan_contains_text" = "已扫描到的二维码文本：\n\n%1$@";
 "qrscan_contains_url" = "已扫描到的二维码 URL：\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "指纹";
 "withdraw_verifycontact_explain" = "其他人可以扫描此二维码与您联系。\n\n您可以重置它，这样现有的二维码或邀请链接将不再有效。";
 "withdraw_verifygroup_explain" = "其他人可以扫描此二维码以加入群组“%1$@”。\n\n您可以重置它，这样现有的二维码或邀请链接将不再有效。";
@@ -975,6 +991,8 @@
 "qraccount_qr_code_cannot_be_used" = "扫描的二维码不能用于创建新账号。";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "登录 \"%1$@\"吗？";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "使用 %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ 邀请您加入此群组。\n\n正在等待 %2$@ 的设备回复…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1024,6 +1042,7 @@
 "perm_explain_access_to_storage_denied" = "要发送或接收文件，请转到应用设置，选择“权限”，然后启用“存储”。";
 "perm_explain_access_to_location_denied" = "要附加位置，请转到应用设置，选择“权限”，然后启用“位置”。";
 "perm_explain_access_to_notifications_denied" = "要接收通知，请转到“系统设置/应用/Delta Chat\"并开启”通知“。";
+"perm_explain_local_network_denied" = "Delta Chat 需要 \"附近设备\" 权限连接到本地网络上的设备。可在“应用/Delta Chat/权限”下设置它。";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "对任意地方涂抹以进行模糊";
 "ImageEditorHud_add_text" = "添加文字";
@@ -1148,3 +1167,15 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "点按此处即可在 Delta Chat 处于后台时接收消息。";
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
+// device messages for updates
+"update_2_6" = "猜猜更新了什么！\n\n🌐 更智能的消息路由: 有了多个中继，一个中继失灵不会阻止消息传递\n\n📞 通话不再是实验性功能\n\n📢 在频道内发送回应进行互动\n\n✍️ 新增聊天描述 \n\n👌 y已发送的图片看上去更锐利\n\n🔵 标记聊天为未读以免遗忘回复";
+"update_2_6_android_additions" = "🐇 加速播放和自动播放语音消息\n\n我们终于推出了基础的贴纸选择器！";
+"update_2_6_desktop_additions" = "🐇 加速播放和自动播放语音消息\n\n⏯️ 新的音频播放器\n\n✅ 多选消息进行转发和删除\n\n我们终于推出了基础的贴纸选择器！";
+"update_2_6_ios_additions" = "🎤 后台播放语音消息";
+"update_2_6_end" = "如果可以，请捐款帮助我们保持独立并继续带来改进  ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 有新版本%1$@。 轻触此消息进行更新，体验新功能";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "正在下载 %1$@…";
+"update_now" = "立即更新";
+"update_install_permission_explain" = "要安装更新，请先在系统设置中允许 Delta Chat 安装应用";

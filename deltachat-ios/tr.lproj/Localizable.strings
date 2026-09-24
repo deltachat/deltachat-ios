@@ -915,10 +915,13 @@
 "qrscan_failed" = "QR kodu çözülemedi";
 "qrscan_ask_join_group" = "“%1$@” grubuna katılmak istiyor musunuz?";
 "qrscan_ask_join_channel" = "“%1$@” kanalına katılmak istiyor musunuz?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Taranan parmak izi, %1$@ için son görülenle eşleşmiyor.";
+// deprecated
 "qrscan_no_addr_found" = "Bu QR kodu bir parmak izi içeriyor ama adres yok.\n\nBir bant dışı doğrulama için lütfen önce alıcıya şifrelenen bir bağlantı kurun.";
 "qrscan_contains_text" = "Taranan QR kodu metni:\n\n%1$@";
 "qrscan_contains_url" = "Taranan QR kodu URL\'si:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Parmak izi";
 "withdraw_verifycontact_explain" = "Bu QR kodu, size ulaşmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";
 "withdraw_verifygroup_explain" = "Bu QR kodu, “%1$@” grubuna katılmak için diğerleri tarafından taranabilir.\n\nOnu sıfırlayabilirsiniz; böylece varolan QR kodu ya da çağırma bağlantısı artık çalışmayacaktır.";

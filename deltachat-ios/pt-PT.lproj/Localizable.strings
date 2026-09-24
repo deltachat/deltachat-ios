@@ -454,10 +454,13 @@
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";
 "qrscan_ask_join_group" = "Quer se juntar-se ao grupo \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "A impressão digital digitalizada não corresponde à impressão digital usada pela última vez em %1$@";
+// deprecated
 "qrscan_no_addr_found" = "Este código QR contém uma impressão digital, mas nenhum endereço de e-mail. \n\nPara uma verificação fora da banda, estabeleça primeiro uma encriptada criptografada com o destinatário.";
 "qrscan_contains_text" = "Texto de código QR digitalizado: \n\n%1$@";
 "qrscan_contains_url" = "URL do código QR digitalizado: \n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Impressão digital";
 "qrshow_title" = "Código de convite do QR";
 "qrshow_x_joining" = "%1$@ junta-se.";

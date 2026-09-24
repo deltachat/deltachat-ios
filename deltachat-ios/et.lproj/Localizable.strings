@@ -959,10 +959,13 @@
 "qrscan_failed" = "QR-koodi dekodeerimine ei õnnestunud";
 "qrscan_ask_join_group" = "Kas soovid liituda „%1$@“ grupiga?";
 "qrscan_ask_join_channel" = "Kas sa soovid liituda „%1$@“ kanaliga?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Skaneeritud sõrmejälg ei vasta %1$@ viimati nähtud sõrmejäljele.";
+// deprecated
 "qrscan_no_addr_found" = "Selles QR-koois on sõrmejälg, kuid pole aadressi.\n\nTavakanalivälise verifitseerimise jaoks palun esmalt loo teise osapoolega krüptitud ühendus.";
 "qrscan_contains_text" = "Skaneeritud QR-koodi tekst:\n\n%1$@";
 "qrscan_contains_url" = "Skaneeritud QR-koodi võrguaadress:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Sõrmejälg";
 "withdraw_verifycontact_explain" = "Seda QR-koodi saavad teised skaneerida nii sinuga suhtlema hakata\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
 "withdraw_verifygroup_explain" = "Seda QR-koodi saab kasutada „%1$@“ grupiga liitumiseks.\n\nKui sa ta lähtestad, siis ei QR-kood ega kutse link pole enam kasutatavad.";
@@ -988,6 +991,8 @@
 "qraccount_qr_code_cannot_be_used" = "Selle skaneeritud QR-koodi abil ei saa uut profiili kasutusele võtta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Kas logid sisse „%1$@“ profiili?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Kasutusel on: %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsus sind liituma selle grupiga.\n\nOotan vastust kasutaja %2$@ seadmest…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1162,6 +1167,12 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Kui soovid, et Delta Chat saaks sõnumeid ka taustateenusena toimides, siis klõpsi siin.";
 "perm_enable_bg_already_done" = "Sa juba oled Delta Chatil lubanud laadida sõnumeid taustal.\n\nKui see siiski ei toimi, siis palun kontrolli rakenduse õigusi süsteemi seadistustest.";
+// device messages for updates
+"update_2_6" = "Vaata, mida meil on uut!\n\n🌐 Sinu sõnumid liiguvad nutikamalt: kui kasutusel on mitu edastusserverit, siis ühe kadumine ei peata liiklust\n\n📞 Kõned pole enam katselised\n\n📢 Kanalid on siin ja edaspidi - sealhulgas reageerimise võimalusega\n\n✍️ Vestlustele saad lisada kirjelduse ja kõigil on pilt selgem\n\n👌 Saadetud pildid näevad nüüd välja selgemad\n\n🔵 Saad vestlusi märkida mitteloetuks ja see aitab sul asju meelde jätta";
+"update_2_6_android_additions" = "🐇 Häälsõnumite kiirkuulamine ja automaatne esitus\n\nLõpuks ometi: meil on nüüd kasutusel lihtne kleepsuvalija!";
+"update_2_6_desktop_additions" = "🐇 Häälsõnumite kiirkuulamine ja automaatne esitus\n\n⏯️ Uus pleier\n\n✅ Mitme sõnumi valimise võimalus edastamiseks või kustutamiseks\n\nLõpuks ometi: meil on nüüd kasutusel lihtne kleepsuvalija!";
+"update_2_6_ios_additions" = "🎤 Esita häälsõnumeid taustal";
+"update_2_6_end" = "Palun aita meil jääda sõltuvatuks ning jätkata rakenduse arendamist ja täiendamist ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"
 "update_available_msg" = "🎉 Saadaval on uus versioon %1$@. Uuendamiseks klõpsa seda sõnumit ja naudi uuenenud rakendust";
 // The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"

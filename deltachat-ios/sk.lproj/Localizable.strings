@@ -945,10 +945,13 @@
 "qrscan_failed" = "QR kód sa nepodarilo dekódovať";
 "qrscan_ask_join_group" = "Chcete sa pridať k skupine „%1$@“?";
 "qrscan_ask_join_channel" = "Chcete sa pridať ku kanálu \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Naskenovaný odtlačok prsta sa nezhoduje s posledným zaznamenaným pre %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Tento QR kód obsahuje odtlačok prsta bez e-mailovej adresy.\n\nANa nezávislé overenie najskôr prosím vytvorte šifrované pripojenie k príjemcovi.";
 "qrscan_contains_text" = "Naskenovaný text QR kódu: \n\n%1$@";
 "qrscan_contains_url" = "URL adresa z naskenovaného QR kódu:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Odtlačok prsta";
 "withdraw_verifycontact_explain" = "Tento QR kód môžu naskenovať iní, aby vás mohli kontaktovať.\n\nKód môžete tiež obnoviť, ak chcete zneplatniť pôvodný QR kód alebo pozývací odkaz.";
 "withdraw_verifygroup_explain" = "Tento QR kód môžu naskenovať ostatní, aby sa pridali ku skupine „%1$@“.\n\nKód môžete tiež obnoviť, ak chcete zneplatniť pôvodný QR kód alebo pozývací odkaz.";
