@@ -119,15 +119,26 @@
 "this_month" = "This month";
 "last_week" = "Last week";
 "last_month" = "Last month";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// deprecated
 "last_seen_at" = "Last seen at %1$@";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+// deprecated
 "last_seen_relative" = "Last seen %1$@";
+// deprecated
 "last_seen_unknown" = "Last seen: Unknown";
-// This is about a contact that was not seen for one or more months
-// This is about a contact that was not seen for one or more years
-// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Seen recently";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Seen today";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Seen within a week";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Seen within a month";
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Seen a long time ago";
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Never seen";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Less than 1 minute";
