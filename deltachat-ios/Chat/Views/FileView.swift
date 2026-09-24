@@ -53,6 +53,7 @@ public class FileView: UIView {
         let stackView = UIStackView(arrangedSubviews: [fileTitle, fileSubtitle])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 4
         stackView.clipsToBounds = true
         return stackView
     }()
@@ -136,7 +137,7 @@ public class FileView: UIView {
             horizontalLayout = true
         }
         fileTitle.numberOfLines = 3
-        fileTitle.lineBreakMode = .byCharWrapping
+        fileTitle.lineBreakMode = .byTruncatingMiddle
         fileTitle.font = UIFont.preferredFont(forTextStyle: .headline)
         fileSubtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
         fileTitle.text = message.filename

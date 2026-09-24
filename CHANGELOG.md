@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Better file preview when drafting a message 
+
+
 ## 2.62.0
 2026-09
 
