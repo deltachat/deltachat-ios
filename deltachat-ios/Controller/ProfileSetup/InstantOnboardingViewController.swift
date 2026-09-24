@@ -380,6 +380,7 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
         switch Int32(parsedQrCode.state) {
         case DC_QR_LOGIN, DC_QR_ACCOUNT:
             self.providerQrData = qrCode
+            updateLabels()
             dismissQRReader()
 
         case DC_QR_ASK_VERIFYCONTACT:
