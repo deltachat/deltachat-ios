@@ -1,11 +1,18 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## 2.62.1
+2026-09
 
 - Better file preview when drafting a message 
+- Mini apps got a close button, swipe gestures are consumed in-app
+- Show scanned relay in onboarding screen, if any
+- Fix sharing files from delta; this bug was introduced in 2.62.0
+- Fix removing quotes or attachments from drafts pre-liquid-glass
+- Update translations and local help
+- Using core 2.62.0
 
 
-## 2.62.0
+## 2.62.0 Testflight
 2026-09
 
 - Onboard on multiple relays by default
