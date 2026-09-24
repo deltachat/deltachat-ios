@@ -501,10 +501,13 @@
 "qrscan_hint" = "Placer kamera over QR kode";
 "qrscan_failed" = "QR-kode kunne ikke blive afkodet";
 "qrscan_ask_join_group" = "Vil du deltage i gruppen \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Det aflæste fingeraftryk passer ikke til sidst set fingeraftryk for %1$@";
+// deprecated
 "qrscan_no_addr_found" = "Denne QR kode indeholder et fingeraftryk men ingen e-mail adresse.\n\nFor en uden for område efterprøvning opret først en krypteret forbindelse til modtager.";
 "qrscan_contains_text" = "Skannet QR kode tekst:\n\n%1$@";
 "qrscan_contains_url" = "Skannet QR kode URL:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Fingeraftryk";
 "withdraw_qr_code" = "Deaktiver QR kode";
 "revive_qr_code" = "Aktiver QR kode";

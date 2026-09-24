@@ -959,10 +959,13 @@
 "qrscan_failed" = "De QR-code kan niet worden ontcijferd";
 "qrscan_ask_join_group" = "Wil je deelnemen aan de groep ‘%1$@’?";
 "qrscan_ask_join_channel" = "Wil je deelnemen aan het kanaal ‘%1$@’?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "De gescande vingerafdruk komt niet overeen met de vorige voor %1$@";
+// deprecated
 "qrscan_no_addr_found" = "Deze QR-code bevat een vingerafdruk, maar geen e-mailadres.\n\nVoor out-of-bandgoedkeuring, moet je eerst een beveiligde verbinding opzetten met de ontvanger.";
 "qrscan_contains_text" = "Gescande QR-codetekst:\n\n %1$@";
 "qrscan_contains_url" = "Gescande QR-code-url:\n\n %1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Vingerafdruk";
 "withdraw_verifycontact_explain" = "Deze QR-code kan door anderen worden gescand om contact met je op te nemen.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
 "withdraw_verifygroup_explain" = "Deze QR-code kan door anderen worden gescand om deel te nemen aan de groep ‘%1$@’.\n\nJe kunt de QR-code hier deactiveren, zodat die niet meer werkt.";
@@ -988,6 +991,8 @@
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Met behulp van %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ heeft je uitgenodigd voor deze groep.\n\nEr wordt gewacht op antwoord van het apparaat van %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1162,6 +1167,12 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Druk hier om berichten te ontvangen als Delta Chat niet geopend is.";
 "perm_enable_bg_already_done" = "Je hebt al toestemming gegeven voor het ophalen van berichten op de achtergrond.\n\nAls het nog steeds niet werkt, controleer dan de systeeminstellingen.";
+// device messages for updates
+"update_2_6" = "Raad eens wat er allemaal verbeterd is?\n\n🌐 Je berichten leggen voortaan een slimmere route af: door gebruik te maken van meerdere relays, is het geen ramp meer als er eentje platligt\n\n📞 Gesprekken zijn de experimentele fase ontgroeid\n\n📢 Kanalen zijn voortaan interactief en hebben ondersteuning voor reacties\n\n✍️ Voeg een gespreksbeschrijving toe, zodat niemand nog in het duister tast\n\n👌Verstuurde afbeeldingen worden voortaan scherper weergegeven\n\n🔵 Markeer gesprekken als ongelezen, zodat je ze niet meer vergeet te beantwoorden";
+"update_2_6_android_additions" = "🐇 Het afspelen van spraakberichten verloopt voortaan vlotter\n\nTot slot: neem eens een kijkje in het nieuwe stickermenu!";
+"update_2_6_desktop_additions" = "🐇 Het afspelen van spraakberichten verloopt voortaan vlotter\n\n⏯️ Nieuwe audiospeler\n\n✅ Selecteer meerdere berichten om door te sturen of te verwijderen\n\nTot slot: neem eens een kijkje in het nieuwe stickermenu!";
+"update_2_6_ios_additions" = "🎤 Speel spraakberichten op de achtergrond af";
+"update_2_6_end" = "Als je een euro kunt missen, overweeg dan een donatie, zodat we onafhankelijk kunnen blijven en verbeteringen kunnen blijven aanbrengen ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"
 "update_available_msg" = "🎉 Er is een nieuwe versie beschikbaar: %1$@. Druk op dit bericht om de update te installeren en gebruik te maken van alle nieuwe snufjes.";
 // The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"

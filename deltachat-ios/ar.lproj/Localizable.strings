@@ -181,6 +181,7 @@
 "pref_background" = "الخلفية";
 // deprecated
 "pref_show_emails_all" = "كلها";
+// deprecated
 "qrscan_fingerprint_label" = "البصمة";
 // notifications
 "notify_reply_button" = "رد";

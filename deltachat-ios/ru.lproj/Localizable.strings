@@ -120,10 +120,14 @@
 "last_week" = "Прошлая неделя";
 "last_month" = "Прошлый месяц";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
-"last_seen_at" = "Последнее посещение: %1$@";
+"last_seen_at" = "Последняя активность: %1$@";
 // Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
-"last_seen_relative" = "Последнее посещение: %1$@";
-"last_seen_unknown" = "Последнее посещение: Неизвестно";
+"last_seen_relative" = "Последняя активность: %1$@";
+"last_seen_unknown" = "Последняя активность: Неизвестно";
+// This is about a contact that was not seen for one or more months
+// This is about a contact that was not seen for one or more years
+// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+"never_seen" = "Нет активности";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Менее 1 минуты";
@@ -198,6 +202,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Обзор";
 "unknown" = "Неизвестно";
+"unnamed" = "Без имени";
 "green" = "Зелёный";
 "red" = "Красный";
 "blue" = "Синий";
@@ -206,6 +211,8 @@
 "purple" = "Пурпурный";
 "magenta" = "Маджента";
 "white" = "Белый";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Масштаб";
 "extra_small" = "Очень маленький";
 "small" = "Маленький";
@@ -323,6 +330,8 @@
 "unpin_chat" = "Открепить чат";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Закрепить";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Закреплено";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Открепить";
 "ConversationFragment_quoted_message_not_found" = "Исходное сообщение не найдено";
@@ -631,9 +640,13 @@
 // deprecated
 "hidden_from_contacts" = "Скрыт из контактов";
 "enforce_e2ee" = "Принудительное шифрование для всех релеев";
+// Hint for the list of relays
+"transport_list_hint" = "Релеи обеспечивают передачу сообщений. Наличие нескольких релеев повышает отказоустойчивость соединения.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Добавить этот релей?";
 "invalid_transport_qr" = "Отсканированный QR-код не содержит корректный релей.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Удалить релей \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Удалить релей \"%1$@\"?\n\nКонтакты, знающие только этот релей, могут потерять связь с вами, пока вы не напишете им снова.\n\nЕсли сомневаетесь, лучше скрыть его, а не удалять.";
 "login_certificate_checks" = "Проверки сертификатов";
@@ -946,10 +959,13 @@
 "qrscan_failed" = "QR-код не может быть декодирован";
 "qrscan_ask_join_group" = "Вы хотите присоединиться к группе \"%1$@\"?";
 "qrscan_ask_join_channel" = "Вы хотите присоединиться к каналу \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Отсканированный отпечаток не совпадает с последним известным отпечатком %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Этот QR-код содержит отпечаток ключа, но не содержит адрес.\n\nДля проверки подлинности с использованием альтернативного канала связи следует сначала установить с получателем защищённое соединение.";
 "qrscan_contains_text" = "Текст из QR-кода:\n\n%1$@";
 "qrscan_contains_url" = "URL из QR-кода:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Отпечаток";
 "withdraw_verifycontact_explain" = "Этот QR-код можно отсканировать, чтобы связаться с вами.\n\nВы можете сбросить его и тогда существующий QR-код или ссылка-приглашение перестанут работать.";
 "withdraw_verifygroup_explain" = "Этот QR-код можно отсканировать, чтобы присоединиться к группе \"%1$@\".\n\nВы можете сбросить его и тогда существующий QR-код или ссылка-приглашение перестанут работать.";
@@ -975,6 +991,8 @@
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR-код не может быть использован для создания нового профиля.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Авторизоваться в \"%1$@\"?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Используется %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ приглашает вас присоединиться к этой группе.\n\nОжидаем ответа от устройства %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1024,6 +1042,7 @@
 "perm_explain_access_to_storage_denied" = "Чтобы получать или отправлять файлы, откройте настройки приложения, выберите \"Разрешения\" и включите доступ к \"Хранилищу\".";
 "perm_explain_access_to_location_denied" = "Чтобы прикрепить местоположение, откройте настройки приложения, выберите \"Разрешения\" и включите доступ к \"Местоположению\".";
 "perm_explain_access_to_notifications_denied" = "Для получения уведомлений, перейдите в \"Настройки системы / Приложения / Delta Chat\" и включите доступ к \"Уведомлениям\".";
+"perm_explain_local_network_denied" = "Для подключения к устройствам в локальной сети Delta Chat необходимо разрешение \"Поиск устройств поблизости\". Вы можете изменить этот параметр в настройках: Приложения / Delta Chat / Разрешения.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Нарисуйте где угодно, чтобы размыть";
 "ImageEditorHud_add_text" = "Добавить текст";
@@ -1148,3 +1167,15 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Нажмите здесь, чтобы получать сообщения, когда Delta Chat находится в фоновом режиме.";
 "perm_enable_bg_already_done" = "Вы уже разрешили Delta Chat получать сообщения в фоновом режиме.\n\nЕсли сообщения все равно не приходят в фоновом режиме, также проверьте настройки вашей системы.";
+// device messages for updates
+"update_2_6" = "Угадайте, что нового!\n\n🌐 Более умная доставка сообщений: благодаря поддержке нескольких реле, сбой одного из них не прервет отправку.\n\n📞 Звонки стали надежными: функция больше не является экспериментальной.\n\n📢 Интерактивные каналы: теперь в каналах можно ставить реакции.\n\n✍️ Описание чатов: добавьте описание, чтобы у участников не возникало лишних вопросов.\n\n👌 Улучшенное качество изображений: отправленные фото теперь выглядят четче.\n\n🔵 Отметка \"непрочитанное\": помечайте чаты, чтобы ничего не упустить.";
+"update_2_6_android_additions" = "🐇 Ускорение и автовоспроизведение голосовых сообщений\n\nНаконец-то: появился базовый выбор стикеров!";
+"update_2_6_desktop_additions" = "🐇 Ускорение и автовоспроизведение голосовых сообщений\n\n⏯️ Новый аудиоплеер\n\n✅ Выбор нескольких сообщений для пересылки или удаления\n\nНаконец-то: появился базовый выбор стикеров!";
+"update_2_6_ios_additions" = "🎤 Воспроизведение голосовых сообщений в фоновом режиме";
+"update_2_6_end" = "Если у вас есть возможность, пожалуйста, поддержите нас пожертвованием. Это поможет нам сохранить независимость проекта и продолжать развивать его ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Доступна новая версия %1$@. Нажмите на это сообщение, чтобы обновиться и оценить все возможности";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Загрузка %1$@…";
+"update_now" = "Обновить";
+"update_install_permission_explain" = "Чтобы установить обновление, сначала разрешите Delta Chat установку приложений в системных настройках.";

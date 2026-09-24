@@ -854,10 +854,13 @@
 "qrscan_failed" = "QR kód nelze přečíst";
 "qrscan_ask_join_group" = "Přejete si přidat ke skupině \"%1$@\"?";
 "qrscan_ask_join_channel" = "Chcete se připojit ke kanálu \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Rozpoznaný otisk uživatele %1$@ neodpovídá jeho poslednímu otisku.";
+// deprecated
 "qrscan_no_addr_found" = "Tento QR kód obsahuje otisk, ale žádný e-mail.\n\nK ověření nezávislou cestou nejprve vytvořte šifrované připojení k příjemci.";
 "qrscan_contains_text" = "Text z QR kódu:\n\n%1$@";
 "qrscan_contains_url" = "Adresa URL z QR kódu:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Otisk";
 "withdraw_verifycontact_explain" = "Tento QR kód mohou ostatní uživatelé použít, aby vás kontaktovali.\n\nMůžete také vygenerovat nový, čímž dosavadní QR kód či odkaz s pozvánkou zneplatníte.";
 "withdraw_verifygroup_explain" = "Tento QR kód mohou ostatní uživatelé použít k připojení ke skupině \"%1$@\".\n\nMůžete také vygenerovat nový, čímž dosavadní QR kód či odkaz s pozvánkou zneplatníte.";

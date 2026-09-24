@@ -879,10 +879,13 @@
 "qrscan_failed" = "QR-koden kunde inte avkodas";
 "qrscan_ask_join_group" = "Vill du ansluta till gruppen \"%1$@\"?";
 "qrscan_ask_join_channel" = "Vill du ansluta till kanalen \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Det skannade fingeravtrycket stämmer inte med senast sedda för %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "QR-koden innehåller ett fingeravtryck men ingen e-postadress.\n\nUpprätta först en krypterad anslutning till mottagaren, för en utanför-bandet-verifiering.";
 "qrscan_contains_text" = "Skannad QR-kod-text:\n\n%1$@";
 "qrscan_contains_url" = "Skannad QR-kod-URL:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Fingeravtryck";
 "withdraw_verifycontact_explain" = "Denna QR-kod kan skannas av andra för att kontakta dig.\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";
 "withdraw_verifygroup_explain" = "Denna QR-kod kan skannas av andra för att gå med i gruppen \"%1$@\".\n\nDu kan avaktivera QR-koden här och återaktivera den genom att skanna den igen.";

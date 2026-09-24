@@ -959,10 +959,13 @@
 "qrscan_failed" = "Impossibile decodificare il codice QR";
 "qrscan_ask_join_group" = "Vuoi entrare nel gruppo \"%1$@\"?";
 "qrscan_ask_join_channel" = "Vuoi unirti al canale \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "L\'impronta digitale scansionata non corrisponde all\'ultima visualizzata per %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Questo codice QR contiene un\'impronta ma non un indirizzo email.\n\nPer una verifica efficace, per favore prima stabilisci una connessione cifrata col destinatario.";
 "qrscan_contains_text" = "Testo codice QR scansionato:\n\n%1$@";
 "qrscan_contains_url" = "URL del codice QR scansionato:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Impronta digitale";
 "withdraw_verifycontact_explain" = "Questo codice QR può essere scansionato da altri per contattarti.\n\nPuoi reimpostarlo, in modo che il codice QR o il link di invito esistente non funzionino più.";
 "withdraw_verifygroup_explain" = "Questo codice QR può essere scansionato da altri per unirsi al gruppo \"%1$@\".\n\nPuoi reimpostarlo, in modo che il codice QR o il link di invito esistente non funzionino più.";
@@ -988,6 +991,7 @@
 "qraccount_qr_code_cannot_be_used" = "Il codice QR scansionato non può essere utilizzato per creare un nuovo profilo.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Accedere a \"%1$@\"?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Utilizzando %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ti ha invitato ad unirti a questo gruppo.\n\nIn attesa che il dispositivo di %2$@ risponda…";

@@ -946,10 +946,13 @@
 "qrscan_failed" = "לא ניתן לפענח את קוד ה-QR";
 "qrscan_ask_join_group" = "האם ברצונך להצטרף לקבוצה \"%1$@\"?";
 "qrscan_ask_join_channel" = "האם ברצונך להצטרף לערוץ \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "טביעת האצבע שנסרקה אינה תואמת את זו שנראתה לאחרונה עבור %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "קוד ה-QR הזה מכיל טביעת אצבע אך לא כתובת.\n\nלצורך אימות מחוץ לתחום התדר, אנא הקם תחילה חיבור מוצפן עם הנמען.";
 "qrscan_contains_text" = "טקסט של קוד QR שנסרק:\n\n%1$@";
 "qrscan_contains_url" = "כתובת ה-URL של קוד ה-QR שנסרק:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "טביעת אצבע";
 "withdraw_verifycontact_explain" = "אנשים אחרים יכולים לסרוק את קוד ה-QR הזה כדי ליצור איתך קשר.\n\nניתן לאפס אותו, כך שקוד ה-QR או קישור ההזמנה הקיימים כבר לא יפעלו.";
 "withdraw_verifygroup_explain" = "אנשים אחרים יכולים לסרוק את קוד ה-QR הזה כדי להצטרף לקבוצה \"%1$@\".\n\nניתן לאפס אותו, כך שקוד ה-QR או קישור ההזמנה הקיימים כבר לא יפעלו.";

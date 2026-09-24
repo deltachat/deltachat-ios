@@ -903,10 +903,13 @@
 "qrscan_failed" = "QR-koodia ei voitu selvittää";
 "qrscan_ask_join_group" = "Haluatko liittyä ryhmään \"%1$@\"?";
 "qrscan_ask_join_channel" = "Haluatko liittyä kanavalle \"%1$@\"?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Skannattu sormenjälki ei vastaa viimeksi nähtyä %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Tämä QR-koodi sisältää sormenjäljen mutta ei sähköpostiosoitetta.\n\nOffline-varmentamista varten tulee ensin luoda salattu yhteys vastaanottajaan.";
 "qrscan_contains_text" = "Skannattu QR-koodin teksti:\n\n%1$@";
 "qrscan_contains_url" = "Skannattu QR-koodin URL:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Sormenjälki";
 "withdraw_verifycontact_explain" = "Muut voivat skannata tämän QR-koodin ottaakseen yhteyttä sinuun.\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla uudestaan.";
 "withdraw_verifygroup_explain" = "Muut voivat skannata tämän QR-koodin liittyäkseen ryhmään \"%1$@\".\n\nVoit kytkeä QR-koodin pois täällä ja aktivoida sen uudelleen skannaamalla.";

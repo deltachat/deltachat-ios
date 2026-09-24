@@ -310,10 +310,13 @@
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
 "qrscan_ask_join_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "%1$@üçün skan olunan barmaq izi son görüldüyü barmaq izinə uyğun deyil";
+// deprecated
 "qrscan_no_addr_found" = "QR kodu iz ehtiva edir, lakin heç bir e-poçt ünvanı yoxdur.\n\nƏlaqə qurmaq üçün əvvəlcə abonentlə şifrəli bir əlaqə qurun.";
 "qrscan_contains_text" = "QR kod mətni skan olundu:\n\n%1$@";
 "qrscan_contains_url" = "QR kod linki skan olundu:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "İz";
 "qrshow_title" = "QR dəvət kodu";
 "qrshow_x_joining" = "%1$@ qoşulur.";

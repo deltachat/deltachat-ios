@@ -946,10 +946,13 @@
 "qrscan_failed" = "Ezin izan da QR kodea deszifratu";
 "qrscan_ask_join_group" = "\"%1$@\" taldera elkartu nahi duzu?";
 "qrscan_ask_join_channel" = "\"%1$@\" kanalera batu nahi duzu?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Eskaneatutako hatz-marka eta %1$@ erabiltzaileari ikusitako azken hatz-marka ez datoz bat.";
+// deprecated
 "qrscan_no_addr_found" = "QR kode honek hatz-marka bat du baina ez e-mail helbidea.\n\nBandaz kanpoko egiaztaketa baterako, ezarri zifratutako konexio bat hartzailearekin aurretik.";
 "qrscan_contains_text" = "Eskaneatutako QR kodearen testua:\n\n%1$@";
 "qrscan_contains_url" = "Eskaneatutako QR kodearen URL-a:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Hatz-marka";
 "withdraw_verifycontact_explain" = "QR kode hau beste batzuek eskaneatu dezakete zurekin harremanetan jartzeko.\n\nBerrezarri egin dezakezu, lehendik dagoen QR kodeak edo gonbidapen-estekak gehiago funtziona ez dezan.";
 "withdraw_verifygroup_explain" = "QR kode hau beste batzuek eskaneatu dezakete \"%1$@\" taldera batzeko.\n\nBerrezarri egin dezakezu, lehendik dagoen QR kodeak edo gonbidapen-estekak gehiago funtziona ez dezan.";

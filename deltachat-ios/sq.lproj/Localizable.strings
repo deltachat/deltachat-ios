@@ -921,10 +921,13 @@
 "qrscan_failed" = "Kodi QR s’u shkodua dot";
 "qrscan_ask_join_group" = "Doni të bëheni pjesë e grupit “%1$@”?";
 "qrscan_ask_join_channel" = "Doni të hyni te kanali “%1$@”?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "Shenjat e gishtave të skanuar nuk përputhen me shenjat e gishtave parë së fundi për %1$@.";
+// deprecated
 "qrscan_no_addr_found" = "Ky kod QR përmban shenja gishtash, por jo adresë.\n\nPër një verifikim “out-of-band”, ju lutemi, së pari vendosni me marrësin një lidhje të fshehtëzuar.";
 "qrscan_contains_text" = "Tekst kodi QR të skanuar:\n\n%1$@";
 "qrscan_contains_url" = "URL kodi QR të skanuar:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Shenja gishtash";
 "withdraw_verifycontact_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u lidhur me ju.\n\nMund ta riprodhoni, në mënyrë që kodi QR ekzistues, ose ftesa, s’do të funksionojnë më.";
 "withdraw_verifygroup_explain" = "Ky kod QR mund të skanohet nga të tjerë për t’u bërë pjesë e grupit “%1$@”.\n\nMund ta riprodhoni, në mënyrë që kodi QR ekzistues, ose ftesa, s’do të funksionojnë më.";

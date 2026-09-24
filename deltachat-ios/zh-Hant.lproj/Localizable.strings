@@ -894,10 +894,13 @@
 "qrscan_failed" = "QR 碼無法識別";
 "qrscan_ask_join_group" = "你要參加群組 「%1$@」嗎?";
 "qrscan_ask_join_channel" = "是否加入頻道“%1$@”？";
+// deprecated
 "qrscan_fingerprint_mismatch" = "掃描的指紋與的最後一次看到%1$@的指紋不匹配。";
+// deprecated
 "qrscan_no_addr_found" = "此 QR 碼包含指紋，但不包含電子郵件位址。\n\n要進行帶外驗證，請先與收件者建立加密連接。";
 "qrscan_contains_text" = "掃描的 QR 碼文本：\n\n%1$@";
 "qrscan_contains_url" = "掃描的 QR 碼 URL：\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "指紋";
 "withdraw_verifycontact_explain" = "其他人可以掃描此QR碼與您聯絡。您可以在此處停用QR碼，然後再次掃描以重新啟動它。";
 "withdraw_verifygroup_explain" = "其他人可以掃描此 QR 碼以加入群組「%1$@」。\n\n您可以在此處停用 QR 碼，然後再次掃描以重新啟動它。";

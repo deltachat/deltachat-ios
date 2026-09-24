@@ -926,10 +926,13 @@
 "qrscan_failed" = "Le code QR n\'a pas pu être décodé";
 "qrscan_ask_join_group" = "Voulez-vous rejoindre le groupe \"%1$@\" ?";
 "qrscan_ask_join_channel" = "Voulez-vous rejoindre le canal \"%1$@\" ?";
+// deprecated
 "qrscan_fingerprint_mismatch" = "L\'empreinte digitale numérisée ne correspond pas à la dernière empreinte digitale vue depuis %1$@";
+// deprecated
 "qrscan_no_addr_found" = "Ce code QR contient une empreinte numérique mais pas d\'adresse de courriel.\n\nPour une vérification externe, veuillez d\'abord établir une connexion chiffrée avec le destinataire.";
 "qrscan_contains_text" = "Texte du QR code numérisé:\n\n%1$@";
 "qrscan_contains_url" = "Url du QR code numérisé :\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Empreinte digitale";
 "withdraw_verifycontact_explain" = "Ce code QR peut être scanné par d\'autres personnes pour vous contacter.\n\nVous pouvez le réinitialiser pour désactiver le code QR ou le lien d\'invitation existants.";
 "withdraw_verifygroup_explain" = "Partagez ce QR code à d\'autres personnes pour rejoindre le groupe « %1$@ ».\n\nIl peut être désactivé ou réinitialisé à tout moment.";

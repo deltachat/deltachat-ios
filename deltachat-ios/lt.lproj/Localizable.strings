@@ -818,6 +818,7 @@
 "qrscan_ask_join_channel" = "Ar norite prisijungti prie kanalo „%1$@“?";
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
+// deprecated
 "qrscan_fingerprint_label" = "Kontrolinis kodas";
 "withdraw_verifycontact_explain" = "Kiti žmonės gali nuskenuoti šį QR kodą, kad su jumis susisiektų.\n\nJūs galite jį atstatyti, kad esamas QR kodas ar pakvietimo nuoroda daugiau nebeveiktų.";
 "withdraw_qr_code" = "Pasyvinti QR kodą";

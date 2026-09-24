@@ -180,6 +180,7 @@
 "member_x_removed" = "Član %1$@ uklonjen.";
 // qr code stuff
 "qr_code" = "QR kod";
+// deprecated
 "qrscan_fingerprint_label" = "Otisak prsta";
 // notifications
 "notify_reply_button" = "Odgovori";

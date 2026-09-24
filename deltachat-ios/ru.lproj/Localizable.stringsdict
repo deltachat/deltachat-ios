@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Активность: %d мес. назад</string>
+			<key>few</key>
+			<string>Активность: %d мес. назад</string>
+			<key>many</key>
+			<string>Активность: %d мес. назад</string>
+			<key>other</key>
+			<string>Активность: %d мес. назад</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Активность: %d год назад</string>
+			<key>few</key>
+			<string>Активность: %d года назад</string>
+			<key>many</key>
+			<string>Активность: %d лет назад</string>
+			<key>other</key>
+			<string>Активность: %d лет назад</string>
+		</dict>
+	</dict>
 	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -360,6 +400,26 @@
 			<string>%d новых сообщений</string>
 			<key>other</key>
 			<string>%d новых сообщений</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d непрочитанное</string>
+			<key>few</key>
+			<string>%d непрочитанных</string>
+			<key>many</key>
+			<string>%d непрочитанных</string>
+			<key>other</key>
+			<string>%d непрочитанных</string>
 		</dict>
 	</dict>
 </dict>
