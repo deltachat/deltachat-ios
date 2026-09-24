@@ -252,30 +252,36 @@ class InstantOnboardingViewController: UIViewController {
     }
 
     private func updateLabels() {
-        let isTeamProfile = dcContext.isTeamProfile
+        var hint: String = ""
+        if let providerQrData {
+            let parsedQrCode = dcContext.checkQR(qrCode: providerQrData)
+            if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT {
+                let name = parsedQrCode.text1 ?? "ErrName"
+                hint += String.localized(stringID: "relay_login_hint", parameter: name) + "\n\n"
+            }
+        }
+        if let securejoinQrData {
+            let parsedQrCode = dcContext.checkQR(qrCode: securejoinQrData)
+            if parsedQrCode.state == DC_QR_ASK_VERIFYCONTACT {
+                let name = dcContext.getContact(id: parsedQrCode.id).displayName
+                hint += String.localized(stringID: "instant_onboarding_contact_info", parameter: name) + "\n\n"
+            } else {
+                let name = parsedQrCode.text1 ?? "ErrName"
+                hint += String.localized(stringID: "instant_onboarding_group_info", parameter: name) + "\n\n"
+            }
+        }
 
-        if isTeamProfile {
+        if dcContext.isTeamProfile {
             title = String.localized("create_team_profile")
             contentView?.nameTextField.placeholder = String.localized("team_name")
-            contentView?.hintLabel.text = String.localized("team_profile_explain")
+            hint += String.localized("team_profile_explain")
         } else {
             title = String.localized("pref_profile_info_headline")
             contentView?.nameTextField.placeholder = String.localized("pref_your_name")
-
-            var hint: String = ""
-            if let securejoinQrData {
-                let parsedQrCode = dcContext.checkQR(qrCode: securejoinQrData)
-                if parsedQrCode.state == DC_QR_ASK_VERIFYCONTACT {
-                    let name =  dcContext.getContact(id: parsedQrCode.id).displayName
-                    hint += String.localized(stringID: "instant_onboarding_contact_info", parameter: name) + "\n\n"
-                } else {
-                    let name = parsedQrCode.text1 ?? ""
-                    hint += String.localized(stringID: "instant_onboarding_group_info", parameter: name) + "\n\n"
-                }
-            }
             hint += String.localized("set_name_and_avatar_explain")
-            contentView?.hintLabel.text = hint
         }
+
+        contentView?.hintLabel.text = hint
     }
 
     private func updateMenuButtons() {
