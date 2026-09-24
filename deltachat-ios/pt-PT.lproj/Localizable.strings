@@ -101,7 +101,7 @@
 "this_month" = "Este mês";
 "last_week" = "Semana passada";
 "last_month" = "Mês passado";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// deprecated
 "last_seen_at" = "Visto/a pela última vez às/a %1$@";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.

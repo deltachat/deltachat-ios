@@ -119,15 +119,16 @@
 "this_month" = "Este mes";
 "last_week" = "La semana pasada";
 "last_month" = "El mes pasado";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// deprecated
 "last_seen_at" = "Visto por última vez: %1$@";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+// deprecated
 "last_seen_relative" = "Visto por última vez: %1$@";
+// deprecated
 "last_seen_unknown" = "Visto por última vez: Desconocido";
-// This is about a contact that was not seen for one or more months
-// This is about a contact that was not seen for one or more years
-// This is about a contact that was never seen (as added by others to a group or created by a vcard)
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "No se ha visto nunca";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Menos de 1 minuto";

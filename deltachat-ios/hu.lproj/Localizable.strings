@@ -112,10 +112,11 @@
 "this_month" = "Ebben a hónapban";
 "last_week" = "Múlt héten";
 "last_month" = "Múlt hónapban";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// deprecated
 "last_seen_at" = "Utoljára látta: %1$@";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+// deprecated
 "last_seen_relative" = "Utoljára látta: %1$@";
+// deprecated
 "last_seen_unknown" = "Utoljára látta: - (ismeretlen)";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.

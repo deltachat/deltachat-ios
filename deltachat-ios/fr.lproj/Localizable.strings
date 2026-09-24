@@ -119,10 +119,11 @@
 "this_month" = "Ce mois-ci";
 "last_week" = "La semaine dernière";
 "last_month" = "Le mois dernier";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by date or time, resulting in "Last seen at 12:13 AM" or "Last seen Nov 12"
+// deprecated
 "last_seen_at" = "Vu·e pour la dernière fois à %1$@";
-// Refers to the time a contact was last seen. Shown below contact name in the profile. The placeholder will be replaced by a relative point in time as "3 minutes ago" (see https://momentjs.com for more examples and languages)
+// deprecated
 "last_seen_relative" = "Dernière activité %1$@";
+// deprecated
 "last_seen_unknown" = "Vu·e pour la dernière fois : inconnu";
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
