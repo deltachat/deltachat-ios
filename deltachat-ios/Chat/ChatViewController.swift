@@ -17,7 +17,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var isVisibleToUser: Bool {
         let delegate = UIApplication.shared.delegate as? AppDelegate
         guard delegate?.appIsInForeground() == true else { return false }
-        guard delegate?.callWindow.isHidden == true else { return false }
+        guard delegate?.callWindow?.isHidden ?? true else { return false }
         guard navigationController?.visibleViewController == self else { return false }
         return true
     }
@@ -465,7 +465,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // Update markSeenMessagesInVisibleArea when callWindow hides
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.callWindow
+        appDelegate?.callWindow?
             .publisher(for: \.isHidden)
             .filter(\.self)
             .sink { [weak self] _ in self?.markSeenMessagesInVisibleArea() }

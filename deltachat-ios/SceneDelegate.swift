@@ -6,9 +6,19 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
     weak var appDelegate: AppDelegate?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.window?.windowScene = scene as? UIWindowScene
-        appDelegate?.callWindow?.windowScene = scene as? UIWindowScene
+        guard let windowScene = scene as? UIWindowScene,
+              let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        self.appDelegate = appDelegate
+
+        appDelegate.callWindow = CallWindow(windowScene: windowScene)
+
+        let window = UIWindow(windowScene: windowScene)
+        window.backgroundColor = UIColor.systemBackground
+        appDelegate.window = window
+
+        // appCoordinator is nil if the app is not yet fully initialized (eg. keychain not yet available);
+        // in that case, continueDidFinishLaunchingWithOptions() attaches the window later
+        appDelegate.appCoordinator?.attach(window: window)
     }
 
 

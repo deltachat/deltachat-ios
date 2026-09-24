@@ -6,7 +6,8 @@ import DcCore
 // MARK: - AppCoordinator
 class AppCoordinator: NSObject {
 
-    private let window: UIWindow
+    private var window: UIWindow?
+    private var rootViewController: UIViewController?
     private let dcAccounts: DcAccounts
     // the order below is important as well - and there are two enums, here and at
     // AppStateRestorer (this is error prone and could probably be merged)
@@ -61,8 +62,7 @@ class AppCoordinator: NSObject {
     }
 
     // MARK: - misc
-    init(window: UIWindow, dcAccounts: DcAccounts) {
-        self.window = window
+    init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         let dcContext = dcAccounts.getSelected()
         super.init()
@@ -75,6 +75,19 @@ class AppCoordinator: NSObject {
         } else {
             showTab(index: lastActiveTab)
         }
+    }
+
+    /// called by SceneDelegate once the window is created
+    func attach(window: UIWindow) {
+        self.window = window
+        window.rootViewController = rootViewController
+        window.makeKeyAndVisible()
+    }
+
+    private func setRootViewController(_ viewController: UIViewController) {
+        rootViewController = viewController
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
     }
 
     func showTab(index: Int) {
@@ -503,8 +516,7 @@ class AppCoordinator: NSObject {
         }
 
         loginNavController.setViewControllers(viewControllers, animated: false)
-        window.rootViewController = loginNavController
-        window.makeKeyAndVisible()
+        setRootViewController(loginNavController)
 
         // the applicationIconBadgeNumber is remembered by the system even on reinstalls (just tested on ios 13.3.1),
         // to avoid appearing an old number of a previous installation, we reset the counter manually.
@@ -513,16 +525,14 @@ class AppCoordinator: NSObject {
     }
 
     func presentTabBarController() {
-        window.rootViewController = tabBarController
         showTab(index: chatsTab)
-        window.makeKeyAndVisible()
+        setRootViewController(tabBarController)
     }
 
     func presentQrCodeController() {
         popTabsToRootViewControllers()
-        window.rootViewController = tabBarController
         showTab(index: qrTab)
-        window.makeKeyAndVisible()
+        setRootViewController(tabBarController)
     }
 
     func popTabsToRootViewControllers() {

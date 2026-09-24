@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
-    var callWindow: CallWindow!
+    var callWindow: CallWindow?
     var notifyToken: String?
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     private var appFullyInitialized = false
@@ -123,14 +123,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
            fatalError("Could not initialize a new account.")
         }
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-        guard let window = window else {
-            fatalError("window was nil in app delegate")
-        }
-        window.backgroundColor = UIColor.systemBackground
-        callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
-        appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
+        appCoordinator = AppCoordinator(dcAccounts: dcAccounts)
+        if let window {
+            // scene connected before the app was fully initialized (eg. keychain was not yet available)
+            appCoordinator.attach(window: window)
+        }
         locationManager = LocationManager(dcAccounts: dcAccounts)
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         notificationManager = NotificationManager(dcAccounts: dcAccounts)
