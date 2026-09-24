@@ -287,15 +287,12 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-    }
-
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        let willBeRemoved = parent == nil
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = willBeRemoved
-        if #available(iOS 26.0, *) {
-            navigationController?.interactiveContentPopGestureRecognizer?.isEnabled = willBeRemoved
-        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            systemItem: .close,
+            primaryAction: UIAction(handler: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
+        )
     }
 
     func refreshWebxdcInfo() {
