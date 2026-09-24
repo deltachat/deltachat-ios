@@ -264,12 +264,14 @@ class CallViewController: UIViewController {
             callButtonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             callButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
-        view.addSubview(unreadMessageCounter)
-        NSLayoutConstraint.activate([
-            unreadMessageCounter.trailingAnchor.constraint(equalTo: startPiPButton.trailingAnchor),
-            unreadMessageCounter.topAnchor.constraint(equalTo: startPiPButton.topAnchor),
-        ])
-        setUnreadMessageCount(DcAccounts.shared.getFreshMessagesCount())
+        if remoteVideoView.pipController != nil {
+            view.addSubview(unreadMessageCounter)
+            NSLayoutConstraint.activate([
+                unreadMessageCounter.trailingAnchor.constraint(equalTo: startPiPButton.trailingAnchor),
+                unreadMessageCounter.topAnchor.constraint(equalTo: startPiPButton.topAnchor),
+            ])
+            setUnreadMessageCount(DcAccounts.shared.getFreshMessagesCount())
+        }
         view.bringSubviewToFront(callStatusLabel)
 
         if call.direction == .outgoing {
