@@ -13,8 +13,8 @@ class CallWindow: UIWindow {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(windowScene: UIWindowScene) {
+        super.init(windowScene: windowScene)
         rootViewController = UIViewController()
         // Required to show above input accessory view (eg the message bar on chat vc)
         windowLevel = .alert

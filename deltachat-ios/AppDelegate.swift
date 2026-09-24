@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     var reachability: Reachability?
     var window: UIWindow?
-    var callWindow: CallWindow!
+    lazy var callWindow: CallWindow = CallWindow(windowScene: window?.windowScene ?? {
+        fatalError("Missing window scene")
+    }())
     var notifyToken: String?
     private var launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     private var appFullyInitialized = false
@@ -128,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             fatalError("window was nil in app delegate")
         }
         window.backgroundColor = UIColor.systemBackground
-        callWindow = CallWindow(frame: UIScreen.main.bounds)
         installEventHandler()
         appCoordinator = AppCoordinator(window: window, dcAccounts: dcAccounts)
         locationManager = LocationManager(dcAccounts: dcAccounts)
