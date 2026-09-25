@@ -125,7 +125,17 @@
 "last_seen_relative" = "Viimati nähtud: %1$@";
 // deprecated
 "last_seen_unknown" = "Viimati nähtud: pole teada";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Nähtud hiljuti";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Nähtud täna";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Nähtud viimase nädala jooksul";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Nähtud viimase kuu jooksul";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Nähtud õige ammu";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Pole iialgi nähtud";
 // deprecated

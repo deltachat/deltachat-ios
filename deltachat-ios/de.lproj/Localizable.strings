@@ -129,6 +129,8 @@
 "seen_recently" = "Kürzlich gesehen";
 // A contact was seen today. The string is at places with few space, so stay as short as possible.
 "seen_today" = "Heute gesehen";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Gestern gesehen";
 // A contact was seen within a week. The string is at places with few space, so stay as short as possible.
 "seen_within_week" = "Innerhalb einer Woche gesehen";
 // A contact was seen within a month. The string is at places with few space, so stay as short as possible.

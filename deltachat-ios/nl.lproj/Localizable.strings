@@ -125,7 +125,17 @@
 "last_seen_relative" = "Laatst gezien: %1$@";
 // deprecated
 "last_seen_unknown" = "Laatst gezien: onbekend";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Onlangs nog gezien";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Vandaag nog gezien";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Deze week nog gezien";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Deze maand nog gezien";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Lang geleden voor het laatst gezien";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Nooit gezien";
 // deprecated
