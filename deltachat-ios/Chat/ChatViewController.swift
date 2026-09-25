@@ -1117,12 +1117,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 subtitle = String.localized("chat_self_talk_subtitle")
             } else if chatContactIds.count >= 1 {
                 dcContact = dcContext.getContact(id: chatContactIds[0])
-                if let dcContact, dcContact.isBot {
-                    subtitle = String.localized("bot")
-                } else if !dcChat.isEncrypted {
-                    subtitle = dcContact?.email
-                } else if let dcContact, let seenLine = dcContact.oldContactHint, dcChat.canSend {
-                    subtitle = seenLine
+                let pendingInvite = !dcChat.canSend && !dcChat.isContactRequest
+                if !pendingInvite, let dcContact {
+                    subtitle = dcContact.getSubtitle(oldOnly: true)
                 } else {
                     subtitle = nil
                 }

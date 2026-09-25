@@ -38,8 +38,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - subviews
 
     private lazy var headerCell: ProfileHeader = {
-        let isBlocked = contact?.isBlocked ?? false
-        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isBlocked)
+        let isContact = contact != nil
+        let header = ProfileHeader(hasSubtitle: isGroup || isOutBroadcast || isMailinglist || isContact)
         header.onAvatarTap = { [weak self] in self?.showEnlargedAvatar() }
         header.setRecentlySeen(contact?.freshness == DC_FRESHNESS_RECENTLY_SEEN)
         return header
@@ -407,10 +407,8 @@ class ProfileViewController: UITableViewController {
                     // do not show misleading "1 member" in case securejoin has not finished
                     subtitle = nil
                 }
-            } else if isMailinglist {
-                subtitle = chat.getMailinglistAddr()
-            } else if let contact, contact.isBlocked {
-                subtitle = String.localized("contact_blocked")
+            } else if let contact {
+                subtitle = contact.getSubtitle(oldOnly: false)
             } else {
                 subtitle = nil
             }
@@ -422,11 +420,7 @@ class ProfileViewController: UITableViewController {
                 headerCell.setBackupImage(name: chat.name, color: chat.color)
             }
         } else if let contact {
-            if contact.isBlocked {
-                subtitle = String.localized("contact_blocked")
-            } else {
-                subtitle = nil
-            }
+            subtitle = contact.getSubtitle(oldOnly: false)
 
             headerCell.updateDetails(title: contact.displayName, subtitle: subtitle)
             if let img = contact.profileImage {
@@ -803,14 +797,6 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if sections[section] == .sharedChats {
             return String.localized("profile_shared_chats")
-        }
-        return nil
-    }
-
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        if sections[section] == .options {
-            guard let contact, contact.lastSeen != 0, !isSavedMessages, !isDeviceChat else { return nil }
-            return String.localizedStringWithFormat(String.localized("last_seen_relative"), DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(contact.lastSeen)))
         }
         return nil
     }
