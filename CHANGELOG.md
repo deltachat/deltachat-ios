@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Show coarse time when a contact was seen in the profile headers
+
+
 ## 2.62.1
 2026-09
 

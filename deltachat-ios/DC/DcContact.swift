@@ -50,19 +50,44 @@ public class DcContact {
         return dc_contact_get_freshness(contactPointer)
     }
 
-    public var oldContactHint: String? {
-        if freshness != DC_FRESHNESS_OLD {
+    public func getSubtitle(oldOnly: Bool) -> String? {
+        if id == DC_CONTACT_ID_SELF || id == DC_CONTACT_ID_DEVICE {
+            return nil
+        } else if isBlocked {
+            return String.localized("contact_blocked")
+        } else if !isKeyContact {
+            return email
+        } else if isBot {
+            return String.localized("bot")
+        } else if freshness == DC_FRESHNESS_RECENTLY_SEEN {
+            return String.localized("seen_recently")
+        } else if oldOnly && freshness != DC_FRESHNESS_OLD {
             return nil
         }
+        return formattedLastSeen
+    }
 
+    private var formattedLastSeen: String? {
         if lastSeen == 0 {
             return String.localized("never_seen")
         }
 
-        let age = Date().timeIntervalSince(Date(timeIntervalSince1970: TimeInterval(lastSeen)))
+        let lastSeenDate = Date(timeIntervalSince1970: TimeInterval(lastSeen))
+        if Calendar.current.isDateInToday(lastSeenDate) {
+            return String.localized("seen_today")
+        } else if Calendar.current.isDateInYesterday(lastSeenDate) {
+            return String.localized("seen_yesterday")
+        }
+
+        let age = Date().timeIntervalSince(lastSeenDate)
+        let oneWeek: TimeInterval = 7 * 24 * 60 * 60
         let oneMonth: TimeInterval = 31 * 24 * 60 * 60
         let oneYear: TimeInterval = 365 * 24 * 60 * 60
-        if age < oneYear {
+        if age < oneWeek {
+            return String.localized("seen_within_week")
+        } else if age < oneMonth {
+            return String.localized("seen_within_month")
+        } else if age < oneYear {
             return String.localized(stringID: "seen_n_months_ago", parameter: Int(age / oneMonth))
         }
 
