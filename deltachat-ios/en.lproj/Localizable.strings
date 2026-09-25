@@ -169,6 +169,11 @@
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Audio";
 "voice_message" = "Voice Message";
+"transcribe_voice_message" = "Transcribe";
+"transcribing_voice_message" = "Transcribing…";
+"voice_transcription_unavailable" = "Speech recognition is unavailable for this voice message or language.";
+"voice_transcription_permission_denied" = "Allow Speech Recognition for Delta Chat in Settings to transcribe voice messages.";
+"voice_transcription_no_speech" = "No speech could be recognized in this voice message.";
 "forwarded" = "Forwarded";
 "forwarded_message" = "Forwarded Message";
 // %1$s will be replaced by the name of the person who forwarded the message

@@ -196,7 +196,9 @@ class WelcomeViewController: UIViewController {
             UIApplication.shared.isIdleTimerDisabled = false
             if dcContext.isConfigured() {
                 let accountId = dcContext.id
-                _ = dcAccounts.remove(id: accountId)
+                if dcAccounts.remove(id: accountId) {
+                    VoiceTranscriptionStore.removeAll(accountId: accountId)
+                }
                 KeychainManager.deleteAccountSecret(id: accountId)
                 _ = dcAccounts.add()
                 dcContext = dcAccounts.getSelected()
