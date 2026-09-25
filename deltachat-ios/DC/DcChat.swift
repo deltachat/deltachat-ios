@@ -5,10 +5,12 @@ import UIKit
 /// See [dc_chat_t Class Reference](https://c.delta.chat/classdc__chat__t.html)
 public class DcChat {
     var chatPointer: OpaquePointer?
+    var dcContext: DcContext
 
     // use DcContext.getChat() instead of calling the constructor directly
-    public init(chatPointer: OpaquePointer?) {
+    public init(chatPointer: OpaquePointer?, dcContext: DcContext) {
         self.chatPointer = chatPointer
+        self.dcContext = dcContext
     }
 
     deinit {
@@ -138,5 +140,16 @@ public class DcChat {
 
     public var isSendingLocations: Bool {
         return dc_chat_is_sending_locations(chatPointer) == 1
+    }
+
+    public var pinnedMessageIds: [Int] {
+        do {
+            if let data = DcAccounts.shared.blockingCall(method: "get_pinned_messages", dcContext.id, id) {
+                return try JSONDecoder().decode(JsonrpcResult<[Int]>.self, from: data).result.reversed()
+            }
+        } catch {
+            logger.error(error.localizedDescription)
+        }
+        return []
     }
 }

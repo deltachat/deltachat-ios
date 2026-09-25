@@ -8,6 +8,7 @@ public class StatusView: UIView {
     private let editedLabel: UILabel
     private let envelopeView: UIImageView
     private let locationView: UIImageView
+    private let pinView: UIImageView
     private let viewsIconView: UIImageView
     private let viewsCountLabel: UILabel
     private let stateView: UIImageView
@@ -30,6 +31,8 @@ public class StatusView: UIView {
         envelopeView.translatesAutoresizingMaskIntoConstraints = false
         locationView = UIImageView()
         locationView.translatesAutoresizingMaskIntoConstraints = false
+        pinView = UIImageView()
+        pinView.translatesAutoresizingMaskIntoConstraints = false
         viewsIconView = UIImageView()
         viewsIconView.translatesAutoresizingMaskIntoConstraints = false
         viewsCountLabel = UILabel()
@@ -40,7 +43,7 @@ public class StatusView: UIView {
         savedView = UIImageView()
         savedView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, dateLabel, locationView, viewsIconView, viewsCountLabel, stateView])
+        contentStackView = UIStackView(arrangedSubviews: [savedView, envelopeView, editedLabel, pinView, dateLabel, locationView, viewsIconView, viewsCountLabel, stateView])
         contentStackView.alignment = .center
         contentStackView.spacing = defaultSpacing
         contentStackView.setCustomSpacing(2, after: viewsIconView)
@@ -71,6 +74,9 @@ public class StatusView: UIView {
             locationView.widthAnchor.constraint(equalToConstant: 10),
             locationView.heightAnchor.constraint(equalToConstant: 14),
 
+            pinView.widthAnchor.constraint(equalToConstant: 14),
+            pinView.heightAnchor.constraint(equalToConstant: 10),
+
             viewsIconView.widthAnchor.constraint(equalToConstant: 14),
             viewsIconView.heightAnchor.constraint(equalToConstant: 10),
 
@@ -90,6 +96,7 @@ public class StatusView: UIView {
         editedLabel.isHidden = true
         envelopeView.isHidden = true
         locationView.isHidden = true
+        pinView.isHidden = true
         viewsIconView.isHidden = true
         viewsCountLabel.isHidden = true
         viewsCountLabel.text = nil
@@ -115,6 +122,14 @@ public class StatusView: UIView {
             locationView.isHidden = false
         } else {
             locationView.isHidden = true
+        }
+
+        if message.isPinned {
+            pinView.image = UIImage(systemName: "pin.fill")?.maskWithColor(color: tintColor)
+            pinView.contentMode = .scaleAspectFit
+            pinView.isHidden = false
+        } else {
+            pinView.isHidden = true
         }
 
         if let viewCount {

@@ -6,9 +6,11 @@ import UIKit
 public class DcMsg {
 
     var messagePointer: OpaquePointer?
+    var dcContext: DcContext
 
-    init(pointer: OpaquePointer?) {
+    init(pointer: OpaquePointer?, dcContext: DcContext) {
         messagePointer = pointer
+        self.dcContext = dcContext
     }
 
     deinit {
@@ -37,6 +39,14 @@ public class DcMsg {
 
     public var isValid: Bool {
         return messagePointer != nil
+    }
+
+    public var isPinned: Bool {
+        get {
+            dc_msg_is_pinned(messagePointer) != 0
+        } set {
+            DcAccounts.shared.blockingCall(method: "set_pinned_message_state", dcContext.id, id, newValue)
+        }
     }
 
     public var messageId: String {
@@ -127,7 +137,7 @@ public class DcMsg {
     public var quoteMessage: DcMsg? {
         get {
             guard let msgpointer = dc_msg_get_quoted_msg(messagePointer) else { return nil }
-            return DcMsg(pointer: msgpointer)
+            return DcMsg(pointer: msgpointer, dcContext: dcContext)
         }
         set {
             dc_msg_set_quote(messagePointer, newValue?.messagePointer)
@@ -144,7 +154,7 @@ public class DcMsg {
 
     public var parent: DcMsg? {
         guard let msgpointer = dc_msg_get_parent(messagePointer) else { return nil }
-        return DcMsg(pointer: msgpointer)
+        return DcMsg(pointer: msgpointer, dcContext: dcContext)
     }
 
     public var downloadState: Int32 {
