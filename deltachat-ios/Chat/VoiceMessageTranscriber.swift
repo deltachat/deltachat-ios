@@ -2,7 +2,7 @@ import Foundation
 import Speech
 import DcCore
 
-/// Prefers on-device recognition, with the same server fallback used by PocketMai.
+/// Transcribes voice messages using on-device recognition only.
 final class VoiceMessageTranscriber {
     private var recognizer: SFSpeechRecognizer?
     private var task: SFSpeechRecognitionTask?
@@ -15,14 +15,15 @@ final class VoiceMessageTranscriber {
 
     static var isAvailable: Bool {
         guard let recognizer = SFSpeechRecognizer(locale: Locale.current) else { return false }
-        return recognizer.isAvailable
+        return recognizer.isAvailable && recognizer.supportsOnDeviceRecognition
     }
 
     func transcribe(fileURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
         self.completion = completion
         guard FileManager.default.fileExists(atPath: fileURL.path),
               let recognizer = SFSpeechRecognizer(locale: Locale.current),
-              recognizer.isAvailable else {
+              recognizer.isAvailable,
+              recognizer.supportsOnDeviceRecognition else {
             finish(.failure(TranscriptionError.unavailable))
             return
         }
@@ -36,35 +37,27 @@ final class VoiceMessageTranscriber {
                     return
                 }
 
-                self.recognize(fileURL: fileURL, onDevice: recognizer.supportsOnDeviceRecognition)
+                self.recognize(fileURL: fileURL)
             }
         }
     }
 
-    private func recognize(fileURL: URL, onDevice: Bool) {
+    private func recognize(fileURL: URL) {
         guard let recognizer else { return }
         recognitionGeneration += 1
         let generation = recognitionGeneration
         let request = SFSpeechURLRecognitionRequest(url: fileURL)
         request.shouldReportPartialResults = false
-        request.requiresOnDeviceRecognition = onDevice
+        request.requiresOnDeviceRecognition = true
         request.taskHint = .dictation
         task = recognizer.recognitionTask(with: request) { [weak self] result, error in
             DispatchQueue.main.async {
                 guard let self, self.recognitionGeneration == generation else { return }
                 if let error {
-                    if onDevice {
-                        self.recognize(fileURL: fileURL, onDevice: false)
-                    } else {
-                        self.finish(.failure(error))
-                    }
+                    self.finish(.failure(error))
                 } else if let result, result.isFinal {
                     let text = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
-                    if text.isEmpty && onDevice {
-                        self.recognize(fileURL: fileURL, onDevice: false)
-                    } else {
-                        self.finish(text.isEmpty ? .failure(TranscriptionError.noSpeech) : .success(text))
-                    }
+                    self.finish(text.isEmpty ? .failure(TranscriptionError.noSpeech) : .success(text))
                 }
             }
         }
