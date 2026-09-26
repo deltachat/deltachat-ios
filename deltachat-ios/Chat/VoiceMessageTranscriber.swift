@@ -1,5 +1,6 @@
 import Foundation
 import Speech
+import AVFoundation
 import DcCore
 
 /// Transcribes voice messages using on-device recognition only.
@@ -14,14 +15,37 @@ final class VoiceMessageTranscriber {
     }
 
     static var isAvailable: Bool {
+        if #available(iOS 26.0, *), SpeechTranscriber.isAvailable {
+            return true
+        }
         guard let recognizer = SFSpeechRecognizer(locale: Locale.current) else { return false }
         return recognizer.isAvailable && recognizer.supportsOnDeviceRecognition
     }
 
     func transcribe(fileURL: URL, completion: @escaping (Result<String, Error>) -> Void) {
         self.completion = completion
-        guard FileManager.default.fileExists(atPath: fileURL.path),
-              let recognizer = SFSpeechRecognizer(locale: Locale.current),
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            finish(.failure(TranscriptionError.unavailable))
+            return
+        }
+        if #available(iOS 26.0, *), SpeechTranscriber.isAvailable {
+            Task { [weak self] in
+                guard let self else { return }
+                do {
+                    if let text = try await self.transcribeOnDevice(fileURL: fileURL) {
+                        await MainActor.run { self.finish(.success(text)) }
+                        return
+                    }
+                } catch {}
+                await MainActor.run { self.transcribeLegacy(fileURL: fileURL) }
+            }
+            return
+        }
+        transcribeLegacy(fileURL: fileURL)
+    }
+
+    private func transcribeLegacy(fileURL: URL) {
+        guard let recognizer = SFSpeechRecognizer(locale: Locale.current),
               recognizer.isAvailable,
               recognizer.supportsOnDeviceRecognition else {
             finish(.failure(TranscriptionError.unavailable))
@@ -40,6 +64,31 @@ final class VoiceMessageTranscriber {
                 self.recognize(fileURL: fileURL)
             }
         }
+    }
+
+    @available(iOS 26.0, *)
+    private func transcribeOnDevice(fileURL: URL) async throws -> String? {
+        guard let locale = await SpeechTranscriber.supportedLocale(equivalentTo: Locale.current),
+              SpeechTranscriber.installedLocales.contains(where: { $0.identifier == locale.identifier }) else {
+            return nil
+        }
+        let transcriber = SpeechTranscriber(locale: locale, preset: .transcription)
+        let analyzer = SpeechAnalyzer(modules: [transcriber])
+        let file = try AVAudioFile(forReading: fileURL)
+        async let text = transcriber.results.reduce("") {
+            $0 + String($1.text.characters)
+        }
+        if let lastSample = try await analyzer.analyzeSequence(from: file) {
+            try await analyzer.finalizeAndFinish(through: lastSample)
+        } else {
+            await analyzer.cancelAndFinishNow()
+        }
+        let result = try await text
+        let trimmed = result.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            throw TranscriptionError.noSpeech
+        }
+        return trimmed
     }
 
     private func recognize(fileURL: URL) {
