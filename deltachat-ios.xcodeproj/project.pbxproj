@@ -240,6 +240,7 @@
 		D8FB03FD2B4EF20700A355F8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */; };
 		D8FB04002B4F0CF100A355F8 /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */; };
 		DCA0000D2CF72AA1009AF551 /* DcAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = DCA000022CF72AA0009AF551 /* DcAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F52E2A0190D7454E9BFCE001 /* VoiceMessageTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52E2A0290D7454E9BFCE001 /* VoiceMessageTranscriber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -682,6 +683,7 @@
 		D8FB03FC2B4EF20700A355F8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D8FB03FF2B4F0CF000A355F8 /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		DCA000022CF72AA0009AF551 /* DcAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DcAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F52E2A0290D7454E9BFCE001 /* VoiceMessageTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageTranscriber.swift; sourceTree = "<group>"; };
 		FCEAC85C8C41D57193C24E9A /* Pods_deltachat_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_deltachat_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -860,6 +862,7 @@
 				D80F62772B59D1B800877059 /* Send Reaction */,
 				D84AED252B566BF700D753F6 /* Reactions */,
 				3008CB7524F95B6D00E6A617 /* AudioController.swift */,
+				F52E2A0290D7454E9BFCE001 /* VoiceMessageTranscriber.swift */,
 				30FDB6F824D1C1000066C48D /* ChatViewController.swift */,
 				3080A00D277DDA1400E74565 /* InputBarAccessoryView */,
 				30FDB6B524D193DD0066C48D /* Views */,
@@ -1780,6 +1783,7 @@
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
 				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */,
+				F52E2A0190D7454E9BFCE001 /* VoiceMessageTranscriber.swift in Sources */,
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
 				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
 				7AE0A5491FC42F65005ECB4B /* NewChatViewController.swift in Sources */,
