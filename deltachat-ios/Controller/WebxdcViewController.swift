@@ -291,12 +291,9 @@ class WebxdcViewController: WebViewViewController {
 
     func refreshWebxdcInfo() {
         let msg = dcContext.getMessage(id: messageId)
-        let json = msg.getWebxdcInfoJson()
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        info = try? decoder.decode(WebxdcInfo.self, from: json.data(using: .utf8) ?? Data())
+        info = msg.getWebxdcInfo()
         if info == nil {
-            logger.error("Failed to decode WebxdcInfo from \(json)")
+            logger.error("Failed to decode WebxdcInfo")
             assertionFailure()
         }
 
@@ -664,21 +661,6 @@ extension WKWebViewConfiguration {
             urlSchemeHandler?.webView(webView, stop: urlSchemeTask)
         }
     }
-}
-
-struct WebxdcInfo: Decodable {
-    let name: String
-    let icon: String
-    let document: String?
-    let summary: String?
-    /// Note that core sends an empty string as default which is not a valid URL so we can't use URL decoding
-    let sourceCodeUrl: String?
-    let internetAccess: Bool
-    let selfAddr: String
-    let isAppSender: Bool
-    let isBroadcast: Bool
-    let sendUpdateInterval: Int
-    let sendUpdateMaxSize: Int
 }
 
 
