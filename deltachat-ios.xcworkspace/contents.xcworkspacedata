@@ -20,10 +20,10 @@
       location = "group:TESTING.md">
    </FileRef>
    <FileRef
-      location = "group:DcCore/DcCore.xcodeproj">
+      location = "group:deltachat-ios.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:deltachat-ios.xcodeproj">
+      location = "group:DcCore/DcCore.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
