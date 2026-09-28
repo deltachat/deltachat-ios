@@ -42,6 +42,8 @@ public class InitialsBadge: UIView {
         let imageViewContainer = UIImageView()
         imageViewContainer.clipsToBounds = true
         imageViewContainer.translatesAutoresizingMaskIntoConstraints = false
+        imageViewContainer.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        imageViewContainer.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return imageViewContainer
     }()
     
