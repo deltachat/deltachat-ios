@@ -303,7 +303,7 @@ class WebxdcViewController: WebViewViewController {
         if isDraft {
             title = String.localized("draft")
         } else {
-            title = "\(info?.document?.nilIfEmpty ?? info?.name.nilIfEmpty ?? "ErrName") – \(chatName)"
+            title = "\(info?.document?.nilIfEmpty ?? msg.getWebxdcAppName()) – \(chatName)"
         }
     }
 
