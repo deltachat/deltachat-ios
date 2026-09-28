@@ -212,6 +212,13 @@ public class DcMsg {
         return [:]
     }
 
+    public func getWebxdcInfo() -> WebxdcInfo? {
+        let json = getWebxdcInfoJson().data(using: .utf8) ?? Data()
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try? decoder.decode(WebxdcInfo.self, from: json)
+    }
+
     // returns webxdc app name for an webxdc-info-messages or webxdc-instances
     public func getWebxdcAppName() -> String {
         let msg = if self.isInfo, let parent = self.parent {
@@ -219,8 +226,7 @@ public class DcMsg {
         } else {
             self
         }
-        let dict = msg.getWebxdcInfoDict()
-        return dict["name"] as? String ?? "ErrName"
+        return msg.getWebxdcInfo()?.name ?? "ErrName"
     }
 
     public func getWebxdcHref() -> String? {

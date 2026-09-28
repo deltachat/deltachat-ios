@@ -1,5 +1,10 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Add new webxdc.isAppSender and webxdc.isBroadcast APIs for mini-apps
+
+
 ## 2.62.1
 2026-09
 

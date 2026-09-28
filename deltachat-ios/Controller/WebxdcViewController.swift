@@ -17,12 +17,7 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var isDraft: Bool = false
     var href: String?
-    var webxdcName: String = ""
-    var sourceCodeUrl: String?
-    var selfAddr: String = ""
-    var sendUpdateInterval: Int = 0
-    var sendUpdateMaxSize: Int = 0
-    private var allowInternet: Bool = false
+    var info: WebxdcInfo?
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
@@ -52,7 +47,7 @@ class WebxdcViewController: WebViewViewController {
     """
     
     lazy var webxdcbridge: String = {
-        let addr = selfAddr
+        let addr = info?.selfAddr
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let displayname = (dcContext.displayname ?? String.localized("unnamed") )?
             .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
@@ -119,13 +114,12 @@ class WebxdcViewController: WebViewViewController {
         }
 
           return {
-            selfAddr: decodeURI("\((addr ?? "unknown"))"),
-        
-            selfName: decodeURI("\((displayname ?? "unknown"))"),
-
-            sendUpdateInterval: \(sendUpdateInterval),
-
-            sendUpdateMaxSize: \(sendUpdateMaxSize),
+            selfAddr: decodeURI("\((addr?.nilIfEmpty ?? "ErrAddr"))"),
+            selfName: decodeURI("\((displayname?.nilIfEmpty ?? "ErrName"))"),
+            sendUpdateInterval: \(info?.sendUpdateInterval ?? 0),
+            sendUpdateMaxSize: \(info?.sendUpdateMaxSize ?? 0),
+            isAppSender: \(info?.isAppSender == true),
+            isBroadcast: \(info?.isBroadcast == true),
 
             joinRealtimeChannel: () => {
               realtimeChannel = createRealtimeChannel();
@@ -297,26 +291,19 @@ class WebxdcViewController: WebViewViewController {
 
     func refreshWebxdcInfo() {
         let msg = dcContext.getMessage(id: messageId)
-        let dict = msg.getWebxdcInfoDict()
+        info = msg.getWebxdcInfo()
+        if info == nil {
+            logger.error("Failed to decode WebxdcInfo")
+            assertionFailure()
+        }
 
-        let document = dict["document"] as? String ?? ""
-        webxdcName = dict["name"] as? String ?? "ErrName" // name should not be empty
-        selfAddr = dict["self_addr"] as? String ?? "ErrAddr"
-        sendUpdateInterval = dict["send_update_interval"] as? Int ?? 0
-        sendUpdateMaxSize = dict["send_update_max_size"] as? Int ?? 0
         let chatName = dcContext.getChat(chatId: msg.chatId).name
-        self.allowInternet = dict["internet_access"] as? Bool ?? false
 
         isDraft = msg.state == DC_STATE_OUT_DRAFT
         if isDraft {
             title = String.localized("draft")
         } else {
-            title = document.isEmpty ? "\(webxdcName) – \(chatName)" : "\(document) – \(chatName)"
-        }
-
-        if let sourceCode = dict["source_code_url"] as? String,
-           !sourceCode.isEmpty {
-            sourceCodeUrl = sourceCode
+            title = "\(info?.document?.nilIfEmpty ?? msg.getWebxdcAppName()) – \(chatName)"
         }
     }
 
@@ -391,7 +378,7 @@ class WebxdcViewController: WebViewViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if allowInternet {
+        if info?.internetAccess == true {
             loadHtml()
         } else {
             loadRestrictedHtml()
@@ -471,7 +458,7 @@ class WebxdcViewController: WebViewViewController {
             helpActions.append(UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
                 self?.openHelp(fragment: "#webxdc")
             })
-            if sourceCodeUrl != nil {
+            if let url = info?.sourceCodeUrl, !url.isEmpty {
                 helpActions.append(UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
                     self?.openSourceCodeUrl()
                 })
@@ -491,8 +478,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func openSourceCodeUrl() {
-        if let sourceCodeUrl,
-           let url = URL(string: sourceCodeUrl) {
+        if let url = URL(string: info?.sourceCodeUrl ?? "") {
             UIApplication.shared.open(url)
         }
     }
@@ -605,7 +591,7 @@ extension WebxdcViewController: WKURLSchemeHandler {
                 "Content-Length": "\(data.count)",
             ]
 
-            if !self.allowInternet {
+            if self.info?.internetAccess != true {
                 headerFields["Content-Security-Policy"] = """
                     default-src 'self';
                     style-src 'self' 'unsafe-inline' blob: ;
@@ -674,5 +660,12 @@ extension WKWebViewConfiguration {
         func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
             urlSchemeHandler?.webView(webView, stop: urlSchemeTask)
         }
+    }
+}
+
+
+extension String {
+    var nilIfEmpty: String? {
+        isEmpty ? nil : self
     }
 }
