@@ -383,8 +383,3 @@ enum ContactDetail {
     case NAME
     case EMAIL
 }
-
-struct ContactWithSearchResults {
-    let contact: DcContact
-    let indexesToHighlight: [ContactHighlights]
-}
