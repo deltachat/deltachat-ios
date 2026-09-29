@@ -125,6 +125,22 @@
 "last_seen_relative" = "Naposledy videné %1$@";
 // deprecated
 "last_seen_unknown" = "Naposledy videné: Neznáme";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Nedávno aktívny";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Dnes aktívny";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Včera aktívny";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Tento týždeň aktívny";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Tento mesiac aktívny";
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Viac než pred rokom aktívny";
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
+"never_seen" = "Zatiaľ neaktívny";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Menej ako minútu";
@@ -199,6 +215,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Prehľadávať";
 "unknown" = "Neznáme";
+"unnamed" = "Bez názvu";
 "green" = "Zelená";
 "red" = "Červená";
 "blue" = "Modrá";
@@ -207,6 +224,8 @@
 "purple" = "Fialová";
 "magenta" = "Purpurová";
 "white" = "Biela";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Priblíženie";
 "extra_small" = "Veľmi malé";
 "small" = "Malé";
@@ -324,6 +343,8 @@
 "unpin_chat" = "Zrušiť pripnutie konverzácie";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Pripnúť";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Pripnuté";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Zrušiť pripnutie";
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
@@ -631,9 +652,13 @@
 // deprecated
 "hidden_from_contacts" = "Skrytý pre kontakty";
 "enforce_e2ee" = "Vynútiť šifrovanie pre všetky relay servery";
+// Hint for the list of relays
+"transport_list_hint" = "Relay servery sa používajú na prijímanie a odosielanie správ. Vaše spojenie bude spoľahlivejšie, ak si nastavíte viac než jeden.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Pridať tento relay server?";
 "invalid_transport_qr" = "Naskenovaný QR kód neobsahuje platný odkaz na relay server.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Odstrániť relay server „%1$@ “?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Odstrániť relé „%1$@ “?\n\nKontakty, ktoré poznajú iba toto relé, sa s vami nemusia dostať do kontaktu, kým im znovu nepošlete správu.\n\nAk si nie ste istí, radšej ho skryte, ako aby ste ho odstránili.";
 "login_certificate_checks" = "Kontrola certifikátov";
@@ -978,6 +1003,8 @@
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na nastavenie nového účtu.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Prihlásiť sa ako „%1$@“?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Použije sa %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ vás pozval, aby ste sa pridali k tejto skupine.\n\nČakanie na odpoveď zo zariadenia používateľa %2$@…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1025,6 +1052,7 @@
 "perm_explain_access_to_storage_denied" = "Ak chcete prijímať alebo odosielať súbory, prejdite do nastavení aplikácie, klepnite na „Povolenia“ a začiarknite „Úložisko“.";
 "perm_explain_access_to_location_denied" = "Ak chcete zdieľať polohu, prejdite do nastavení aplikácie, klepnite na „Povolenia“ a začiarknite „Poloha“.";
 "perm_explain_access_to_notifications_denied" = "Ak chcete dostávať upozornenia, prejdite do aplikácie Nastavenia / Aplikácie / Delta Chat“ a povoľte „Upozornenia“.";
+"perm_explain_local_network_denied" = "Aplikácia Delta Chat potrebuje oprávnenie „Zariadenia v okolí“, aby mohla komunikovať s inými vašimi aplikáciami Delta Chat na zariadeniach v lokálnej sieti. Toto oprávnenie môžete nastaviť v aplikácii Nastavenia, časti Aplikácie / Delta Chat / Oprávnenia.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Rozmazať môžete kreslením kamkoľvek";
 "ImageEditorHud_add_text" = "Pridať text";
@@ -1143,3 +1171,15 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Klepnutím sem prijmete správy, zatiaľ čo je Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Aplikácii Delta Chat ste už povolili príjem správ na pozadí.\n\nAk správy stále neprichádzajú na pozadí, skontrolujte tiež nastavenia systému.";
+// device messages for updates
+"update_2_6" = "Hádajte, čo je nové!\n\n🌐 Vaše správy teraz putujú efektívnejšie: vďaka viacerým serverom relay, výpadok jedného z nich ich nezastaví\n\n📞 Hovory dospeli a už nie sú v experimentálnej fáze\n\n📢 Kanály sa stali interaktívnymi vďaka reakciám\n\n✍️ Pridajte popis chatu, aby nikto nebol v neistote\n\n👌 Odoslané obrázky teraz vyzerajú ostrejšie\n\n🔵 Označujte si chaty ako neprečítané, aby ste na ne nezabudli";
+"update_2_6_android_additions" = "🐇 Možnosť zrýchliť a automaticky prehrávať hlasové správy\n\nA konečne: Máme k dispozícii nálepky!";
+"update_2_6_desktop_additions" = "🐇 Možnosť zrýchlenia prehrávania a automatické prehrávanie hlasových správ\n\n⏯️ Nový prehrávač zvuku\n\n✅ Možnosť vybrať viacero správ na preposlanie alebo odstránenie\n\nA konečne: Máme k dispozícii nálepky!";
+"update_2_6_ios_additions" = "🎤 Prehrávanie hlasových správ na pozadí";
+"update_2_6_end" = "Ak máte možnosť, prosím, prispejte nám, aby sme mohli zostať nezávislí a naďalej aplikáciu zdokonaľovať ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 K dispozícii je nová verzia %1$@. Aktualizujte klepnutím na túto správu a užite si nové funkcie";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Preberanie %1$@ …";
+"update_now" = "Aktualizovať teraz";
+"update_install_permission_explain" = "Ak chcete nainštalovať aktualizáciu, najskôr v aplikácii Nastavenia povoľte aplikácii Delta Chat inštaláciu aplikácií.";

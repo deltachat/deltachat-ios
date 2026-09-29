@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Pred %d mesiacom aktívny</string>
+			<key>few</key>
+			<string>pred %d mesiacmi aktívny</string>
+			<key>many</key>
+			<string>pred %d mesiacmi aktívny</string>
+			<key>other</key>
+			<string>Pred %d mesiacmi aktívny</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Pred %d rokom aktívny</string>
+			<key>few</key>
+			<string>Pred %d rokmi aktívny</string>
+			<key>many</key>
+			<string>Pred %d rokmi aktívny</string>
+			<key>other</key>
+			<string>Pred %d rokmi aktívny</string>
+		</dict>
+	</dict>
 	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -360,6 +400,26 @@
 			<string>%dnových správ</string>
 			<key>other</key>
 			<string>%d nových správ</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d neprečítaná správa</string>
+			<key>few</key>
+			<string>%d neprečítané správy</string>
+			<key>many</key>
+			<string>%d neprečítaných správ</string>
+			<key>other</key>
+			<string>%d neprečítaných správ</string>
 		</dict>
 	</dict>
 </dict>

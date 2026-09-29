@@ -13,11 +13,11 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Visto e %d, hace un mes</string>
+			<string>últ. vez hace %d mes</string>
 			<key>many</key>
-			<string>Visto %d meses hace</string>
+			<string>últ. vez hace %d meses</string>
 			<key>other</key>
-			<string>Visto hace %d meses</string>
+			<string>últ. vez hace %d meses</string>
 		</dict>
 	</dict>
 	<key>seen_n_years_ago</key>

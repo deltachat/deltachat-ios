@@ -125,7 +125,19 @@
 "last_seen_relative" = "Ostatnio widziano %1$@";
 // deprecated
 "last_seen_unknown" = "Ostatnio widziano: nie wiadomo";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Widziano niedawno";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Widziano dzisiaj";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Widziano wczoraj";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Widziano w ciągu tygodnia";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Widziano w ciągu miesiąca";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Widziano dawno temu";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Nigdy nie widziano";
 // deprecated
