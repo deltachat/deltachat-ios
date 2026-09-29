@@ -157,10 +157,8 @@ internal final class NotificationsViewController: UITableViewController {
         case .systemSettings:
             let urlString = if #available(iOS 16, *) {
                 UIApplication.openNotificationSettingsURLString
-            } else if #available(iOS 15.4, *) {
-                UIApplicationOpenNotificationSettingsURLString
             } else {
-                UIApplication.openSettingsURLString
+                UIApplicationOpenNotificationSettingsURLString
             }
 
             if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
