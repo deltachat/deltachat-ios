@@ -200,10 +200,6 @@ public class DcContext {
         return DcUtils.copyAndFreeArray(inputArray: cBlockedContacts)
     }
 
-    public func addContacts(contactString: String) {
-        dc_add_address_book(contextPointer, contactString)
-    }
-
     public func lookupContactIdByAddress(_ address: String) -> Int {
         return Int(dc_lookup_contact_id_by_addr(contextPointer, address))
     }
@@ -225,16 +221,6 @@ public class DcContext {
         return Int(dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId)))
     }
 
-    public func getDeviceTalkChat() -> DcChat {
-        let deviceTalkChatId = getChatIdByContactId(Int(DC_CONTACT_ID_DEVICE))
-        return getChat(chatId: deviceTalkChatId)
-    }
-
-    public func getSelfTalkChat() -> DcChat {
-        let selfTalkChatId = getChatIdByContactId(Int(DC_CONTACT_ID_SELF))
-        return getChat(chatId: selfTalkChatId)
-    }
-
     public func getChatIdByContactIdOld(_ contactId: Int) -> Int? {
         // deprecated function, use getChatIdByContactId() and check for != 0 as for all other places IDs are used
         let chatId = dc_get_chat_id_by_contact_id(contextPointer, UInt32(contactId))
@@ -252,10 +238,6 @@ public class DcContext {
         let diff = CFAbsoluteTimeGetCurrent() - start
         logger.info("⏰ getChatlist: \(diff) s")
         return chatlist
-    }
-
-    public func sendMsgSync(chatId: Int, msg: DcMsg) {
-        dc_send_msg_sync(contextPointer, UInt32(chatId), msg.messagePointer)
     }
 
     public func getChatMedia(chatId: Int, messageType: Int32, messageType2: Int32, messageType3: Int32) -> [Int] {
@@ -593,10 +575,6 @@ public class DcContext {
         dc_save_msgs(contextPointer, msgIds.compactMap { UInt32($0) }, Int32(msgIds.count))
     }
 
-    public func sendTextInChat(id: Int, message: String) {
-        dc_send_text_msg(contextPointer, UInt32(id), message)
-    }
-
     public func listTransports() -> [DcEnteredLoginParam] {
         do {
             if let data = try DcAccounts.shared.blockingCall(method: "list_transports", params: [id as AnyObject]) {
@@ -718,10 +696,6 @@ public class DcContext {
 
     public func setChatProfileImage(chatId: Int, path: String?) {
         dc_set_chat_profile_image(contextPointer, UInt32(chatId), path)
-    }
-
-    public func wasDeviceMsgEverAdded(label: String) -> Bool {
-        return dc_was_device_msg_ever_added(contextPointer, label) != 0
     }
 
     @discardableResult

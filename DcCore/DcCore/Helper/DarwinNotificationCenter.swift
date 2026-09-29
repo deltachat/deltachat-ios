@@ -93,16 +93,6 @@ public class DarwinNotificationCenter {
 }
 
 extension DarwinNotificationCenter {
-    public func didReplyBlocking(_ reply: DarwinNotification, to: DarwinNotification, timeout: DispatchTime) -> Bool {
-        let group = DispatchGroup()
-        group.enter()
-        let observer = addObserver(for: reply) { _ in group.leave() }
-        post(to)
-        let result = group.wait(timeout: timeout)
-        removeObserver(observer)
-        return result == .success
-    }
-
     public func didReply(_ reply: DarwinNotification, to: DarwinNotification, timeout: DispatchTime) async -> Bool {
         await withCheckedContinuation { continuation in
             var didContinue = false

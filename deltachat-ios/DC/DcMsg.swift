@@ -284,10 +284,6 @@ public class DcMsg {
         dc_msg_set_file_and_deduplicate(messagePointer, filepath, fileName, mimeType)
     }
 
-    public func setDimension(width: CGFloat, height: CGFloat) {
-        dc_msg_set_dimension(messagePointer, Int32(width), Int32(height))
-    }
-
     public var filesize: Int {
         return Int(dc_msg_get_filebytes(messagePointer))
     }

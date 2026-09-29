@@ -200,18 +200,6 @@ class TextFieldCell: UITableViewCell {
 
         return cell
     }
-
-    static func makeConfigCell(labelID: String, placeholderID: String, delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: String.localized(labelID), placeholder: String.localized(placeholderID))
-        cell.textField.autocapitalizationType = .words
-        cell.textField.autocorrectionType = .no
-        // .namePhonePad doesn't support autocapitalization
-        // see: https://stackoverflow.com/a/36365399
-        // therefore we use .default to capitalize the first character of the name
-        cell.textField.keyboardType = .default
-        cell.textFieldDelegate = delegate
-        return cell
-    }
 }
 
 extension TextFieldCell: UITextFieldDelegate {

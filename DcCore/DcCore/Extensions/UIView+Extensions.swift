@@ -22,11 +22,6 @@ public extension UIView {
         return borderView
     }
 
-    func makeBorder(color: UIColor = UIColor.systemRed) {
-        self.layer.borderColor = color.cgColor
-        self.layer.borderWidth = 2
-    }
-
     func fillSuperview() {
         guard let superview else { return }
         translatesAutoresizingMaskIntoConstraints = false

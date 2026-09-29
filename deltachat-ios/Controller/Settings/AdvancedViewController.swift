@@ -182,15 +182,6 @@ internal final class AdvancedViewController: UITableViewController {
     }
 
     // MARK: - actions
-    private func showSystemContactsRestrictedAlert() {
-        let alert = UIAlertController(title: String.localized("import_device_contacts"), message: String.localized("import_device_contacts_hint"), preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: String.localized("menu_settings"), style: .default) { _ in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-        })
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-    }
-
     private func showLogViewController() {
         let controller = LogViewController(dcContext: dcContext)
         navigationController?.pushViewController(controller, animated: true)
@@ -224,12 +215,6 @@ internal final class AdvancedViewController: UITableViewController {
             appPickerCell.detailTextLabel?.text = UserDefaults.getAppPickerUrlString()
         })
         present(alert, animated: true)
-    }
-
-    private func presentError(message: String) {
-        let error = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        error.addAction(UIAlertAction(title: String.localized("ok"), style: .cancel))
-        present(error, animated: true)
     }
 
     // MARK: - updates
