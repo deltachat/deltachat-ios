@@ -36,6 +36,7 @@ class CallManager: NSObject {
 
     private let voIPPushManager: VoIPPushManager
     private let provider: CXProvider?
+    private let ephemeralProvider: CXProvider?
     private let callController: CXCallController?
     private let callObserver: CXCallObserver?
     private var currentCall: DcCall?
@@ -48,10 +49,17 @@ class CallManager: NSObject {
             configuration.maximumCallsPerCallGroup = 1
             configuration.supportedHandleTypes = [.generic]
             provider = CXProvider(configuration: configuration)
+            let ephemeralConfiguration = CXProviderConfiguration()
+            ephemeralConfiguration.supportsVideo = true
+            ephemeralConfiguration.maximumCallsPerCallGroup = 1
+            ephemeralConfiguration.supportedHandleTypes = [.generic]
+            ephemeralConfiguration.includesCallsInRecents = false
+            ephemeralProvider = CXProvider(configuration: ephemeralConfiguration)
             callController = CXCallController()
             callObserver = CXCallObserver()
         } else {
             provider = nil
+            ephemeralProvider = nil
             callController = nil
             callObserver = nil
         }
@@ -59,6 +67,7 @@ class CallManager: NSObject {
         super.init()
 
         provider?.setDelegate(self, queue: nil)
+        ephemeralProvider?.setDelegate(self, queue: nil)
         callObserver?.setDelegate(self, queue: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
@@ -81,11 +90,14 @@ class CallManager: NSObject {
             startCallAction.isVideo = hasVideoInitially
 
             let transaction = CXTransaction(action: startCallAction)
+            let isEphemeral = dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0
+            let provider = isEphemeral ? ephemeralProvider : provider
             callController?.request(transaction) { [currentCall] error in
                 if let error {
                     logger.error("☎️ failed to start call: \(error.localizedDescription)")
                 } else if let currentCall {
                     logger.info("☎️ call started to \(nameToDisplay)")
+                    provider?.reportOutgoingCall(with: uuid, startedConnectingAt: nil)
                     AudioController.stopBackgroundPlayback()
                     DispatchQueue.main.async {
                         CallWindow.shared?.showCallUI(for: currentCall)
@@ -139,6 +151,8 @@ class CallManager: NSObject {
             update.supportsDTMF = false
             update.hasVideo = hasVideo
 
+            let isEphemeral = dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0
+            let provider = isEphemeral ? ephemeralProvider : provider
             provider?.reportNewIncomingCall(with: uuid, update: update) { error in
                 if let error {
                     logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
@@ -229,12 +243,7 @@ class CallManager: NSObject {
 
     func isCalling() -> Bool {
         if canUseCallKit, let callObserver {
-            for call in callObserver.calls {
-                if !call.hasEnded {
-                    return true
-                }
-            }
-            return false
+            return callObserver.calls.contains(where: { !$0.hasEnded })
         } else {
             return currentCall != nil
         }
