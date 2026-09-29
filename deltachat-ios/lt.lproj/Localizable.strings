@@ -64,6 +64,14 @@
 "main_menu" = "Pagrindinis meniu";
 "start_chat" = "Pradėti pokalbį";
 "show_full_message" = "Rodyti visą žinutę…";
+// Used as an menu entry or button
+"mark_as_read" = "Žymėti kaip skaitytą";
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "Skaityta";
+// Used as an menu entry or button
+"mark_as_unread" = "Žymėti kaip neskaitytą";
+// Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
+"mark_as_unread_short" = "Neskaityta";
 // Placeholder text when something is loading
 "loading" = "Įkeliama…";
 "hide" = "Slėpti";
@@ -152,8 +160,8 @@
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Perjungti kamerą";
 "toggle_fullscreen" = "Perjungti viso ekrano veikseną";
-"location" = "Vieta";
-"locations" = "Vietos";
+"location" = "Vietovė";
+"locations" = "Vietovės";
 "gallery" = "Galerija";
 "images_and_videos" = "Paveikslai ir vaizdo įrašai";
 "file" = "Failas";
@@ -183,6 +191,8 @@
 "purple" = "Purpurinė";
 "magenta" = "Rausvai raudona";
 "white" = "Balta";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Mastelis";
 "extra_small" = "Labai mažas";
 "small" = "Mažas";
@@ -208,6 +218,7 @@
 "new_channel" = "Naujas kanalas";
 // consider keeping the term "channel" as in WhatsApp or Telegram
 "channel_name" = "Kanalo pavadinimas";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
 "email" = "El. paštas";
 // "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
 "new_email" = "Naujas el. laiškas";
@@ -218,7 +229,7 @@
 "menu_edit_group" = "Taisyti grupę";
 // deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
 "menu_group_name_and_image" = "Grupės pavadinimas ir paveikslas";
-"menu_show_global_map" = "Rodyti visas vietas";
+"menu_show_global_map" = "Rodyti visas vietoves";
 "menu_archive_chat" = "Archyvuoti pokalbį";
 "menu_unarchive_chat" = "Išarchyvuoti pokalbį";
 "menu_add_attachment" = "Pridėti priedą";
@@ -229,7 +240,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
 "delete_contact" = "Ištrinti adresatą";
-"menu_delete_location" = "Ištrinti šią vietą?";
+"menu_delete_location" = "Ištrinti šią vietovę?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
 "share_invite_link" = "Bendrinti pakvietimo nuorodą";
@@ -283,7 +294,7 @@
 "menu_more_options" = "Daugiau parinkčių";
 "jump_to_message" = "Peršokti į žinutę";
 "replace_draft" = "Pakeisti juodraštį";
-"title_share_location" = "Bendrinti savo vietą su visais grupės dalyviais";
+"title_share_location" = "Bendrinti savo vietovę su visais grupės dalyviais";
 "device_talk" = "Įrenginio žinutės";
 "device_talk_subtitle" = "Vietiniu mastu sugeneruotos žinutės";
 "device_talk_explain" = "Šiame pokalbyje esančios žinutės yra generuojamos jūsų įrenginyje, kad naudojimosi metu būtumėte informuoti apie programėlės atnaujinimus ir problemas.";
@@ -551,6 +562,8 @@
 "add_transport" = "Pridėti retransliavimą";
 "remove_transport" = "Šalinti retransliavimą";
 "edit_transport" = "Taisyti retransliavimą";
+// deprecated
+"used_for_sending" = "Naudojama siuntimui";
 // deprecated
 "hide_from_contacts" = "Slėpti nuo adresatų";
 // deprecated
@@ -870,6 +883,8 @@
 "new_messages" = "Naujos žinutės";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Yra naujų žinučių";
+// location streaming
+"location_streaming_notification_text" = "Jūs bendrinate savo buvimo vietovę";
 // permissions
 "perm_required_title" = "Reikalingas leidimas";
 "perm_continue" = "Tęsti";
@@ -920,6 +935,8 @@
 // deprecated, used on desktop although there is not spell checker
 "no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
 "show_window" = "Rodyti langą";
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Spartieji klavišai";
 // subtitle in the "keybindings" dialog
 "navigation_shortcut_section" = "Naršymas";
 // subtitle in the "keybindings" dialog
@@ -946,6 +963,8 @@
 "a11y_disappearing_messages_activated" = "Išnykstančios žinutės aktyvuotos";
 // The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
 "open_link" = "Atverti %1$@";
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Nustoti bendrinti vietovę";
 "a11y_connectivity_hint" = "Bakstelėkite du kartus norėdami pamatyti išsamesnę informaciją apie jungiamumą.";
 "login_error_no_internet_connection" = "Nėra interneto ryšio, nepavyko prisijungti.";
 "share_account_not_configured" = "Paskyra nėra sukonfigūruota.";
@@ -960,6 +979,7 @@
 "notifications_avg_hours" = "Vidutiniškai kas %1$d val.";
 "last_check_at" = "Tikrinta %1$@";
 "system_settings" = "Sistemos nustatymai";
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
 "pref_instant_delivery" = "Greitas pristatymas";
 "pref_background_notifications" = "Naudoti foninį ryšį";
@@ -969,3 +989,9 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
 "perm_enable_bg_already_done" = "Jūs jau leidote Delta Chat gauti žinutes fone.\n\nJei žinutės vis tiek nepristatomos fone, patikrinkite taip pat savo sistemos nustatymus.";
+"update_2_6_end" = "Jei galite, paremkite mus, kad padėtumėte mums išlikti nepriklausomiems bei toliau teikti patobulinimus ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Yra prieinama nauja versija %1$@. Bakstelėkite šią žinutę norėdami atnaujinti ir mėgautis naujomis ypatybėmis";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Atsiunčiama %1$@ …";
+"update_now" = "Atnaujinti dabar";

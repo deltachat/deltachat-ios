@@ -125,6 +125,22 @@
 "last_seen_relative" = "נראה לאחרונה %1$@";
 // deprecated
 "last_seen_unknown" = "נראה לאחרונה: לא ידוע";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "נראה לאחרונה";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "נראה היום";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "נראה אתמול";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "נראה השבוע";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "נראה החודש";
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "נראה לפני זמן רב";
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
+"never_seen" = "טרם נראה";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "פחות מדקה";
@@ -199,6 +215,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "דפדף";
 "unknown" = "לא ידוע";
+"unnamed" = "ללא שם";
 "green" = "ירוק";
 "red" = "אדום";
 "blue" = "כחול";
@@ -207,6 +224,8 @@
 "purple" = "סגול";
 "magenta" = "מג\'נטה";
 "white" = "לבן";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "זום";
 "extra_small" = "קטן במיוחד";
 "small" = "קטן";
@@ -324,6 +343,8 @@
 "unpin_chat" = "הסר את הצמדת הצ\'אט";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "סיכה";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "מוצמד";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "הסר את הסימון";
 "ConversationFragment_quoted_message_not_found" = "לא נמצא ההודעה המקורית";
@@ -632,9 +653,13 @@
 // deprecated
 "hidden_from_contacts" = "מוסתר מאנשי הקשר";
 "enforce_e2ee" = "אכיפת הצפנה על כל השרתים הממסרים";
+// Hint for the list of relays
+"transport_list_hint" = "ממסרים משמשים לשליחת וקבלת מסרונים. שימוש ביותר מאחד שומר על אמינות החיבור.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "להוסיף את הממסר הזה?";
 "invalid_transport_qr" = "קוד ה-QR שנסרק אינו מכיל ממסר תקין.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "הסר ממסר \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "להסיר את \"%1$@\"?\n\nאנשי הקשר שמכירים רק את \" \" עלולים שלא להצליח ליצור איתך קשר עד שתשלח להם הודעה נוספת.\n\nאם אתה מתלבט, עדיף להסתיר אותו מאשר להסיר אותו.";
 "login_certificate_checks" = "בדיקת תעודות";
@@ -979,6 +1004,8 @@
 "qraccount_qr_code_cannot_be_used" = "לא ניתן להשתמש בקוד ה-QR שנסרק כדי להגדיר פרופיל חדש.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "להיכנס ל- \"%1$@\"?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "משתמש ב-%1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ הזמין אותך להצטרף לקבוצה זו.\n\nממתין לתגובה מהמכשיר של %2$@ …";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1028,6 +1055,7 @@
 "perm_explain_access_to_storage_denied" = "כדי לקבל או לשלוח קבצים, היכנס להגדרות האפליקציה, בחר \"הרשאות\" והפעל את \"אחסון\".";
 "perm_explain_access_to_location_denied" = "כדי להפעיל את זיהוי המיקום, היכנס להגדרות האפליקציה, בחר \"הרשאות\" והפעל את \"מיקום\".";
 "perm_explain_access_to_notifications_denied" = "כדי לקבל התראות, היכנס ל\"הגדרות מערכת / אפליקציות / Delta Chat\" והפעל את האפשרות \"התראות\".";
+"perm_explain_local_network_denied" = "Delta Chat צריכה את הרשאת \"מכשירים בקרבת מקום\" כדי להתחבר למכשירים ברשת המקומית. תוכל להגדיר זאת תחת אפליקציות / Delta Chat / הרשאות.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "צייר בכל מקום כדי לטשטש";
 "ImageEditorHud_add_text" = "הוסף טקסט";
@@ -1152,3 +1180,15 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "לחץ כאן כדי לקבל הודעות בזמן ש- Delta Chat פועל ברקע.";
 "perm_enable_bg_already_done" = "כבר אישרת ל- Delta Chat לקבל הודעות ברקע.\n\nאם ההודעות עדיין לא מגיעות ברקע, אנא בדוק גם את הגדרות המערכת שלך.";
+// device messages for updates
+"update_2_6" = "נחשו מה חדש!\n\n🌐 ההודעות שלכם מועברות כעת בחוכמה: בשל השימוש בממסרים מרובים, ממסר שאינו זמין לא ימנע את הגעתן\n\n📞 השיחות הקוליות הבשילו ואינן עוד נסיוניות\n\n📢 הערוצים הופכים אינטרקטיבים עם תגובות\n\n✍️ הוסף תיאור לשיחה כדי שאיש לא יתבלבל\n\n👌 תמונות שנשלחו נראות כעת חדות יותר\n\n🔵 סמן צ\'אט כ-לא נקרא, בכדי שלא תשכח";
+"update_2_6_android_additions" = "🐇 האצה וניגון אוטומטי של הודעות קוליות\n\nסוף סוף: יש לנו כלי בחירה בסיסי לסטיקרים!";
+"update_2_6_desktop_additions" = "🐇 האצה וניגון אוטומטי של הודעות קוליות\n\n⏯️ נגן אודיו חדש\n\n✅ בחירה של הודעות מרובות לשליחה או מחיקה\n\nסוף סוף: יש לנו כלי בחירה בסיסי לסטיקרים!";
+"update_2_6_ios_additions" = "🎤 נגן הודעות קוליות ברקע";
+"update_2_6_end" = "אם ביכולתך, אנא תרום כדי לעזור לנו להישאר עצמאיים ולהמשיך ולפתח שיפורים ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 הגירסה החדשה %1$@ זמינה. לחץ על הודעה זו כדי לעדכן ולהנות מהתכונות החדשות";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "בהורדה %1$@...";
+"update_now" = "עדכן עכשיו";
+"update_install_permission_explain" = "כדי להתקין את העדכון, קודם יש לאפשר ל- Delta Chat לבצע התקנות בהגדרות המערכת.";

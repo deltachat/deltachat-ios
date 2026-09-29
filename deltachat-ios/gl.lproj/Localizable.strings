@@ -125,6 +125,22 @@
 "last_seen_relative" = "Último acceso %1$@";
 // deprecated
 "last_seen_unknown" = "Última conexión: Descoñecida";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Visto recentemente";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Visto hoxe";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Visto onte";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Visto nesta última semana";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Visto neste último mes";
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Visto hai moito tempo";
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
+"never_seen" = "Nunca visto";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Menos dun minuto";
@@ -199,6 +215,7 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Explorar";
 "unknown" = "Descoñecido";
+"unnamed" = "Sen nome";
 "green" = "Verde";
 "red" = "Vermello";
 "blue" = "Azul";
@@ -207,6 +224,8 @@
 "purple" = "Púrpura";
 "magenta" = "Maxenta";
 "white" = "Branco";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
 "extra_small" = "Moi pequena";
 "small" = "Pequeno";
@@ -324,6 +343,8 @@
 "unpin_chat" = "Desancorar conversa";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Ancorar";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Fixado";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
 "unpin" = "Desancorar";
 "ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
@@ -632,9 +653,13 @@
 // deprecated
 "hidden_from_contacts" = "Oculto dos contactos";
 "enforce_e2ee" = "Aplicar o cifrado para todos os repetidores";
+// Hint for the list of relays
+"transport_list_hint" = "Os repetidores empréganse para enviar e recibi-las mensaxes. Ter máis dun fai a súa conexión máis segura.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Engadir este repetidor?";
 "invalid_transport_qr" = "O código QR escaneado non contén un repetidor válido.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Elimina-lo repetidor \"%1$@\"?";
 // deprecated
 "confirm_remove_or_hide_transport_x" = "Eliminar o repetidor \"%1$@\"?\n\nOs contactos que só coñecen este retransmisor poden non contactar contigo ata que lles envíes unha nova mensaxe.\n\nEn caso de dúbida, ocúltao en lugar de eliminalo.";
 "login_certificate_checks" = "Comprobacións do certificado";
@@ -979,6 +1004,8 @@
 "qraccount_qr_code_cannot_be_used" = "O código QR escaneado non se pode utilizar para crear unha nova conta.";
 // the placeholder will be replaced by the address of the profile
 "qrlogin_ask_login" = "Iniciar sesión en \"%1$@\"?";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Empregando %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ convidoute a este grupo.\n\nAgardando a que responda o dispositivo de %2$@ ...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1028,6 +1055,7 @@
 "perm_explain_access_to_storage_denied" = "Para recibir ou enviar ficheiros, vai aos axustes da aplicación, escolle \"Permisos\" e activa \"Almacenaxe\".";
 "perm_explain_access_to_location_denied" = "Para engadir a localización, vai aos axustes da aplicación, escolle \"Permisos\" e activa \"Localización\".";
 "perm_explain_access_to_notifications_denied" = "Para recibir notificacións, vai a \"Axustes de Sistema / Apps / Delta Chat\" e activa as \"Notificacións\".";
+"perm_explain_local_network_denied" = "Delta Chat precisa o permiso \"Aparellos próximos\" para conectarse a aparellos na rede local. Poden configuralo en Aplicacións/Delta Chat/Permisos.";
 // ImageEditorHud
 "ImageEditorHud_draw_anywhere_to_blur" = "Debuxa en calquera lugar para desenfocar";
 "ImageEditorHud_add_text" = "Engadir texto";
@@ -1058,7 +1086,7 @@
 "global_menu_help_about_desktop" = "Sobre Delta Chat";
 "global_menu_file_open_desktop" = "Abrir Delta Chat";
 "global_menu_minimize_to_tray" = "Minimizar";
-"no_account_selected" = "Selecciona un perfil ou crea un novo perfil";
+"no_account_selected" = "Escolla un perfil ou cree un novo perfil";
 "no_chat_selected_suggestion_desktop" = "Escolle unha conversa ou crea unha nova";
 "write_message_desktop" = "Escribe unha mensaxe";
 "encryption_info_title_desktop" = "Info do cifrado";
@@ -1152,3 +1180,15 @@
 // disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Preme aquí para recibir mensaxes mentres Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Xa permitiches que Delta Chat reciba mensaxes en segundo plano\n\nSe aínda así non recibes as mensaxes, por favor comproba a configuración do sistema.";
+// device messages for updates
+"update_2_6" = "Descubra as novidades!\n\n🌐 As súas mensaxes discorrerán de maneira máis intelixente: con múltiples repetidores, a caída dun non as deterá\n\n📞 As chamadas maduraron e xa non son experimentais\n\n📢 Os canais pasan a ser interactivos con reaccións\n\n✍️ Engada unha descripción da conversa, para que ninguén teña dúbidas\n\n👌 As imaxes envíadas agora vense máis nítidas\n\n🔵 Sinale conversas como non lidas, para non esquecelas";
+"update_2_6_android_additions" = "Acelere e reproduza automáticamente as mensaxes de voz\n\nFinalmente: temos un selector básico de adhesivos!";
+"update_2_6_desktop_additions" = "Acelere e reproduza automáticamente as mensaxes de voz\n\n⏯️ Novo reprodutor de son\n\n✅ Escolla varias mensaxes para reenviar ou eliminar\n\nFinalmente: temos un selector básico de adhesivos!";
+"update_2_6_ios_additions" = "🎤 Reproduza mensaxes de voz de fondo";
+"update_2_6_end" = "Se pode, rogámoslle unha doazón para axudarnos a continuar sendo un proxecto independente e engadindo melloras ❤️ https://delta.chat/donate";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "Nova versión %1$@ dispoñíbel. Prema esta mensaxe para actualizar e gozar as novas características";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Descargando %1$@…";
+"update_now" = "Actualiza agora";
+"update_install_permission_explain" = "Para instalar e actualizar, permita primeiro que Delta Chat instale apps nas preferencias do sistema.";

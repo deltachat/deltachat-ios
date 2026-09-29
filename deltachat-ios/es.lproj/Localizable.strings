@@ -125,9 +125,21 @@
 "last_seen_relative" = "Visto por última vez: %1$@";
 // deprecated
 "last_seen_unknown" = "Visto por última vez: Desconocido";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "últ. vez recientemente";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "últ. vez hoy";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "últ. vez ayer";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "últ. vez hace unos días";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "últ. vez hace unas semanas";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "últ. vez hace mucho tiempo";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
-"never_seen" = "No se ha visto nunca";
+"never_seen" = "no se ha visto nunca";
 // deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
@@ -164,7 +176,7 @@
 "video" = "Video";
 "documents" = "Documentos";
 "contact" = "Contacto";
-"bot" = "Bot";
+"bot" = "bot";
 "camera" = "Cámara";
 "front_camera" = "Cámara frontal";
 "back_camera" = "Cámara trasera";
@@ -189,7 +201,7 @@
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Aplicación";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
-"webxdc_apps" = "Aplicaciones";
+"webxdc_apps" = "Apps";
 "webxdc_store_url" = "App Picker URL";
 "webxdc_store_url_explain" = "Si se establece, la URL se utilizará como App Picker en lugar de la predeterminada";
 "webxdc_draft_hint" = "Pulsa \"Enviar\" para compartir";
@@ -512,10 +524,10 @@
 "tab_image_empty_hint" = "Imágenes compartidas en este chat se mostrarán aquí.";
 "tab_video_empty_hint" = "Vídeos compartidos en este chat se mostrarán aquí.";
 "tab_audio_empty_hint" = "Los archivos de audio y los mensajes de voz compartidos en este chat se mostrarán aquí.";
-"tab_webxdc_empty_hint" = "Aplicaciones privadas compartidas en este chat se mostrarán aquí";
+"tab_webxdc_empty_hint" = "Apps compartidas en este chat se mostrarán aquí";
 "tab_all_media_empty_hint" = "La multimedia compartida en cualquier chat aparecerá aquí";
 "all_files_empty_hint" = "Documentos y otros archivos compartidos en cualquier chat se mostrarán aquí.";
-"all_apps_empty_hint" = "Aplicaciones privadas recibidas o enviadas en cualquier chat aparecerán aquí.";
+"all_apps_empty_hint" = "Apps recibidas o enviadas en cualquier chat aparecerán aquí.";
 "media_preview" = "Vista previa de multimedia";
 // option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
 "aspect_ratio_grid" = "Cuadrícula de relación de aspecto";

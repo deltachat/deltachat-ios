@@ -1,3 +1,6 @@
+NSCameraUsageDescription = "Delta Chat naudoja kamerą, kad fotografuotų, filmuotų ir siųstų nuotraukas bei vaizdo įrašus, o taip pat skenuotų QR kodus.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat reikia leidimo bendrinti jūsų vietovę tą laikotarpį, kurį esate jįungę vietovės bendrinimą.";
+NSLocationWhenInUseUsageDescription = "Delta Chat reikia leidimo bendrinti jūsų vietovę tą laikotarpį, kurį esate jįungę vietovės bendrinimą.";
 NSMicrophoneUsageDescription = "Delta Chat naudoja mikrofoną, kad įrašytų ir siųstų balso žinutes bei vaizdo įrašus su garsu.";
 NSPhotoLibraryUsageDescription = "Delta Chat leis jums pasirinkti, kurias nuotraukas iš savo kolekcijos išsiųsti.";
 NSPhotoLibraryAddUsageDescription = "Delta Chat nori įrašyti paveikslus į jūsų nuotraukų kolekciją.";

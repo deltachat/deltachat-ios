@@ -129,6 +129,8 @@
 "seen_recently" = "Nähtud hiljuti";
 // A contact was seen today. The string is at places with few space, so stay as short as possible.
 "seen_today" = "Nähtud täna";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Nähtud eile";
 // A contact was seen within a week. The string is at places with few space, so stay as short as possible.
 "seen_within_week" = "Nähtud viimase nädala jooksul";
 // A contact was seen within a month. The string is at places with few space, so stay as short as possible.

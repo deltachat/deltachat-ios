@@ -125,7 +125,19 @@
 "last_seen_relative" = "Последняя активность: %1$@";
 // deprecated
 "last_seen_unknown" = "Последняя активность: Неизвестно";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Был(а) недавно";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Был(а) сегодня";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Был(а) вчера";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Был(а) на этой неделе";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Был(а) в этом месяце";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Был(а) очень давно";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Нет активности";
 // deprecated

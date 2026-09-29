@@ -13,13 +13,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Активность: %d мес. назад</string>
+			<string>Был(а) %d мес. назад</string>
 			<key>few</key>
-			<string>Активность: %d мес. назад</string>
+			<string>Был(а) %d мес. назад</string>
 			<key>many</key>
-			<string>Активность: %d мес. назад</string>
+			<string>Был(а) %d мес. назад</string>
 			<key>other</key>
-			<string>Активность: %d мес. назад</string>
+			<string>Был(а) %d мес. назад</string>
 		</dict>
 	</dict>
 	<key>seen_n_years_ago</key>
@@ -33,13 +33,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Активность: %d год назад</string>
+			<string>Был(а) %d год назад</string>
 			<key>few</key>
-			<string>Активность: %d года назад</string>
+			<string>Был(а) %d года назад</string>
 			<key>many</key>
-			<string>Активность: %d лет назад</string>
+			<string>Был(а) %d лет назад</string>
 			<key>other</key>
-			<string>Активность: %d лет назад</string>
+			<string>Был(а) %d лет назад</string>
 		</dict>
 	</dict>
 	<key>call_duration_minutes</key>

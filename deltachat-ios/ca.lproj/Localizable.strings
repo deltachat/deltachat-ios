@@ -125,7 +125,19 @@
 "last_seen_relative" = "Vist per darrer cop: %1$@";
 // deprecated
 "last_seen_unknown" = "Vist per darrer cop: desconegut";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Vist recentment";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Vist avui";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Vist ahir";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Vist fa una setmana";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Vist fa un mes";
 // A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Vist fa molt de temps";
 // A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
 "never_seen" = "Mai vist";
 // deprecated
