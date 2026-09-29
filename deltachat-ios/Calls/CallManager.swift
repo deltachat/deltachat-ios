@@ -36,6 +36,7 @@ class CallManager: NSObject {
 
     private let voIPPushManager: VoIPPushManager
     private let provider: CXProvider?
+    private let ephemeralProvider: CXProvider?
     private let callController: CXCallController?
     private let callObserver: CXCallObserver?
     private var currentCall: DcCall?
@@ -45,13 +46,17 @@ class CallManager: NSObject {
         if canUseCallKit {
             let configuration = CXProviderConfiguration()
             configuration.supportsVideo = true
+            configuration.maximumCallGroups = 1
             configuration.maximumCallsPerCallGroup = 1
             configuration.supportedHandleTypes = [.generic]
             provider = CXProvider(configuration: configuration)
+            configuration.includesCallsInRecents = false
+            ephemeralProvider = CXProvider(configuration: configuration)
             callController = CXCallController()
             callObserver = CXCallObserver()
         } else {
             provider = nil
+            ephemeralProvider = nil
             callController = nil
             callObserver = nil
         }
@@ -59,6 +64,7 @@ class CallManager: NSObject {
         super.init()
 
         provider?.setDelegate(self, queue: nil)
+        ephemeralProvider?.setDelegate(self, queue: nil)
         callObserver?.setDelegate(self, queue: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(CallManager.handleIncomingCallEvent(_:)), name: Event.incomingCall, object: nil)
@@ -139,6 +145,8 @@ class CallManager: NSObject {
             update.supportsDTMF = false
             update.hasVideo = hasVideo
 
+            let isEphemeral = dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0
+            let provider = isEphemeral ? ephemeralProvider : provider
             provider?.reportNewIncomingCall(with: uuid, update: update) { error in
                 if let error {
                     logger.info("☎️ failed to report incoming call: \(error.localizedDescription)")
@@ -229,12 +237,7 @@ class CallManager: NSObject {
 
     func isCalling() -> Bool {
         if canUseCallKit, let callObserver {
-            for call in callObserver.calls {
-                if !call.hasEnded {
-                    return true
-                }
-            }
-            return false
+            return callObserver.calls.contains(where: { !$0.hasEnded })
         } else {
             return currentCall != nil
         }
