@@ -46,12 +46,15 @@ class CallManager: NSObject {
         if canUseCallKit {
             let configuration = CXProviderConfiguration()
             configuration.supportsVideo = true
-            configuration.maximumCallGroups = 1
             configuration.maximumCallsPerCallGroup = 1
             configuration.supportedHandleTypes = [.generic]
             provider = CXProvider(configuration: configuration)
-            configuration.includesCallsInRecents = false
-            ephemeralProvider = CXProvider(configuration: configuration)
+            let ephemeralConfiguration = CXProviderConfiguration()
+            ephemeralConfiguration.supportsVideo = true
+            ephemeralConfiguration.maximumCallsPerCallGroup = 1
+            ephemeralConfiguration.supportedHandleTypes = [.generic]
+            ephemeralConfiguration.includesCallsInRecents = false
+            ephemeralProvider = CXProvider(configuration: ephemeralConfiguration)
             callController = CXCallController()
             callObserver = CXCallObserver()
         } else {
@@ -87,11 +90,14 @@ class CallManager: NSObject {
             startCallAction.isVideo = hasVideoInitially
 
             let transaction = CXTransaction(action: startCallAction)
+            let isEphemeral = dcContext.getChatEphemeralTimer(chatId: dcChat.id) > 0
+            let provider = isEphemeral ? ephemeralProvider : provider
             callController?.request(transaction) { [currentCall] error in
                 if let error {
                     logger.error("☎️ failed to start call: \(error.localizedDescription)")
                 } else if let currentCall {
                     logger.info("☎️ call started to \(nameToDisplay)")
+                    provider?.reportOutgoingCall(with: uuid, startedConnectingAt: nil)
                     AudioController.stopBackgroundPlayback()
                     DispatchQueue.main.async {
                         CallWindow.shared?.showCallUI(for: currentCall)
