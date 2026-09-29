@@ -84,9 +84,7 @@ class NewChatViewController: UITableViewController {
 
         navigationItem.searchController = searchController
         definesPresentationContext = true // to make sure searchbar will only be shown in this viewController
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
+        navigationItem.hidesSearchBarWhenScrolling = false
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(ContactCell.self, forCellReuseIdentifier: ContactCell.reuseIdentifier)
         tableView.sectionHeaderHeight = UITableView.automaticDimension

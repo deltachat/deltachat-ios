@@ -64,7 +64,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.tag = CellTags.addAnotherDevice.rawValue
         cell.textLabel?.text = String.localized("multidevice_title")
-        let imageName = if #available(iOS 15, *) { "ipad.and.iphone" } else { "rectangle.on.rectangle" }
+        let imageName = "ipad.and.iphone"
         cell.imageView?.image = UIImage(systemName: imageName)
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -74,7 +74,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.advanced.rawValue
         cell.textLabel?.text = String.localized("menu_advanced")
-        let imageName = if #available(iOS 15, *) { "chevron.left.forwardslash.chevron.right" } else { "chevron.left.slash.chevron.right" }
+        let imageName = "chevron.left.forwardslash.chevron.right"
         cell.imageView?.image = UIImage(systemName: imageName)
         cell.accessoryType = .disclosureIndicator
         return cell
