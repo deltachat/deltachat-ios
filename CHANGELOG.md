@@ -1,11 +1,15 @@
 # Delta Chat iOS Changelog
 
-## Unreleased
+## 2.62.2 Testflight
+2026-09
 
 - Show coarse time when a contact was seen in the profile headers
+- Fix profile button on iOS 27
+- Update translations
+- Using core 2.62.0
 
 
-## 2.62.1
+## 2.62.1 Testflight
 2026-09
 
 - Better file preview when drafting a message 
