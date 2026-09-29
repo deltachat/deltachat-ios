@@ -134,10 +134,6 @@ public class InitialsBadge: UIView {
         self.label.isHidden = true
     }
 
-    public func showsInitials() -> Bool {
-        return !label.isHidden
-    }
-
     public func setColor(_ color: UIColor) {
         backgroundColor = color
     }

@@ -41,14 +41,6 @@ public extension UIImage {
         return newImage
     }
 
-    func imageSizeInPixel() -> CGSize {
-        let heightInPoints = size.height
-        let heightInPixels = heightInPoints * scale
-        let widthInPoints = size.width
-        let widthInPixels = widthInPoints * scale
-        return CGSize(width: widthInPixels, height: heightInPixels)
-    }
-
     func isTransparent() -> Bool {
         guard let alpha: CGImageAlphaInfo = self.cgImage?.alphaInfo else { return false }
         return alpha == .first || alpha == .last || alpha == .premultipliedFirst || alpha == .premultipliedLast

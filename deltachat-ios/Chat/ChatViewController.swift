@@ -1466,10 +1466,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func askToDeleteMessage(id: Int) {
-        self.askToDeleteMessages(ids: [id])
-    }
-
     private func askToDeleteMessages(ids: [Int]) {
         func deleteInUi(ids: [Int]) {
             AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
@@ -1724,18 +1720,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             navigationController?.present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func sendTextMessage(text: String, quoteMessage: DcMsg?) {
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            let message = self.dcContext.newMessage(viewType: DC_MSG_TEXT)
-            message.text = text
-            if let quoteMessage {
-                message.quoteMessage = quoteMessage
-            }
-            self.dcContext.sendMessage(chatId: self.chatId, message: message)
         }
     }
 

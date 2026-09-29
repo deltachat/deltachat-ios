@@ -184,13 +184,6 @@ class ChatListViewModel: NSObject {
         return chatIds
     }
 
-    func msgIdFor(row: Int) -> Int? {
-        if showSearchResults {
-            return nil
-        }
-        return chatList.getMsgId(index: row)
-    }
-
     func refreshData() {
         updateChatList(notifyListener: true)
     }
