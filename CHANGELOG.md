@@ -1,33 +1,13 @@
 # Delta Chat iOS Changelog
 
-## 2.62.2 Testflight
-2026-09
-
-- Show coarse time when a contact was seen in the profile headers
-- Fix profile button on iOS 27
-- Update translations
-- Using core 2.62.0
-
-
-## 2.62.1 Testflight
-2026-09
-
-- Better file preview when drafting a message 
-- Mini apps got a close button, swipe gestures are consumed in-app
-- Show scanned relay in onboarding screen, if any
-- Fix sharing files from delta; this bug was introduced in 2.62.0
-- Fix removing quotes or attachments from drafts pre-liquid-glass
-- Update translations and local help
-- Using core 2.62.0
-
-
-## 2.62.0 Testflight
+## 2.62.2
 2026-09
 
 - Onboard on multiple relays by default
 - No need to mark a relay for sending, this is chosen by the core automatically
 - Better image quality
 - Show a hint about contacts not seen for a while
+- Show coarse time when a contact was seen in the profile headers
 - More reliable and quicker notifications and call ringing
 - Update notification when its message is edited
 - Remove notification if its message is deleted
@@ -38,8 +18,11 @@
 - Respect "media quality" when sending videos
 - Verification line is no longer needed, all contacts have that mean and are e2ee by default since V2
 - Improve fetching messages in background
+- Better file preview when drafting a message
+- Mini apps got a close button, swipe gestures are consumed in-app
 - Fix: Do not load webxdc icon if it has too large dimensions
 - Fix: No longer send read receipts when call window is covering messages
+- Fix removing quotes or attachments from drafts pre-liquid-glass
 - Add Belarusian translation
 - Update translations and local help
 - Update to core 2.62.0
