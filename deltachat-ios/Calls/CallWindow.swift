@@ -16,7 +16,7 @@ class CallWindow: UIWindow {
     override init(windowScene: UIWindowScene) {
         super.init(windowScene: windowScene)
         rootViewController = UIViewController()
-        // Required to show above input accessory view (eg the message bar on chat vc)
+        // Required to show above input accessory view
         windowLevel = .alert
         makeKeyAndVisible()
         isHidden = true
