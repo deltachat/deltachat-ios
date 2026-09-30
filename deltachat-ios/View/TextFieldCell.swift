@@ -185,6 +185,17 @@ class TextFieldCell: UITableViewCell {
         cell.textField.textContentType = UITextContentType.password
         cell.textField.isSecureTextEntry = true
         cell.textFieldDelegate = delegate
+
+        let toggle = UIButton(type: .system, primaryAction: UIAction { [weak textField = cell.textField] action in
+            guard let textField, let button = action.sender as? UIButton else { return }
+            textField.isSecureTextEntry.toggle()
+            button.setImage(UIImage(systemName: textField.isSecureTextEntry ? "eye" : "eye.slash"), for: .normal)
+        })
+        toggle.setImage(UIImage(systemName: "eye"), for: .normal)
+        toggle.tintColor = .secondaryLabel
+        cell.textField.rightView = toggle
+        cell.textField.rightViewMode = .always
+
         return cell
     }
 
