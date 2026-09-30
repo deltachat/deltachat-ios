@@ -152,15 +152,6 @@ extension TransportListViewController {
         deleteAction.image = UIImage(systemName: "trash")
         actions.append(deleteAction)
 
-        let editAction = UIContextualAction(style: .destructive, title: String.localized("global_menu_edit_desktop")) { [weak self] _, _, completion in
-            self?.editTransport(at: indexPath)
-            completion(true)
-        }
-        editAction.backgroundColor = .lightGray
-        editAction.accessibilityLabel = String.localized("edit_transport")
-        editAction.image = UIImage(systemName: "pencil")
-        actions.append(editAction)
-
         let actionsConfiguration = UISwipeActionsConfiguration(actions: actions)
         return actionsConfiguration
     }
