@@ -153,9 +153,16 @@ class InstantOnboardingViewController: UIViewController {
 
     @objc
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized("pref_profile_photo"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
-        alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
+        let alert = UIAlertController(title: String.localized("profile_image_select"), message: nil, preferredStyle: .safeActionSheet)
+
+        let cameraAction = UIAlertAction(title: String.localized("take_photo"), style: .default, handler: cameraButtonPressed(_:))
+        cameraAction.setValue(UIImage(systemName: "camera"), forKey: "image")
+        alert.addAction(cameraAction)
+
+        let galleryAction = UIAlertAction(title: String.localized("choose_from_gallery"), style: .default, handler: galleryButtonPressed(_:))
+        galleryAction.setValue(UIImage(systemName: "photo.on.rectangle"), forKey: "image")
+        alert.addAction(galleryAction)
+
         if dcContext.getSelfAvatarImage() != nil {
             alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteProfileIconPressed(_:)))
         }
