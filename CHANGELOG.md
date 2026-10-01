@@ -3,6 +3,7 @@
 
 ## Unreleased
 
+- Nicer profile and group image selection
 - Fix: show meaningful subtitle for group members on group creation
 
 
