@@ -185,7 +185,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
             let contact = dcContext.getContact(id: groupContactIds[row])
             let displayName = contact.displayName
             contactCell.titleLabel.text = displayName
-            contactCell.subtitleLabel.text = contact.email
+            contactCell.subtitleLabel.text = contact.getSubtitle(oldOnly: true)
             contactCell.avatar.setName(displayName)
             contactCell.avatar.setColor(contact.color)
             if let profileImage = contact.profileImage {
