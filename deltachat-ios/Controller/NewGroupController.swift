@@ -266,11 +266,11 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     private func onAvatarTapped() {
         let alert = UIAlertController(title: String.localized(createMode == .createGroup ? "select_group_image_desktop" : "image"), message: nil, preferredStyle: .safeActionSheet)
 
-        let cameraAction = UIAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        let cameraAction = UIAlertAction(title: String.localized("take_photo"), style: .default, handler: cameraButtonPressed(_:))
         cameraAction.setValue(UIImage(systemName: "camera"), forKey: "image")
         alert.addAction(cameraAction)
 
-        let galleryAction = UIAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+        let galleryAction = UIAlertAction(title: String.localized("choose_from_gallery"), style: .default, handler: galleryButtonPressed(_:))
         galleryAction.setValue(UIImage(systemName: "photo.on.rectangle"), forKey: "image")
         alert.addAction(galleryAction)
 
