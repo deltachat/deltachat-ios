@@ -1,5 +1,11 @@
 # Delta Chat iOS Changelog
 
+
+## Unreleased
+
+- Fix: show meaningful subtitle for group members on group creation
+
+
 ## 2.62.2
 2026-09
 
