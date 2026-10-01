@@ -34,6 +34,7 @@ public class ChatDropInteraction: NSObject {
                     self?.delegate?.onTextDragAndDropped(text: text)
                 case .contentsAt(let url, DC_MSG_GIF), .contentsAt(let url, DC_MSG_IMAGE):
                     guard let image = UIImage.sd_image(with: try? Data(contentsOf: url)) else { return }
+                    try? FileManager.default.removeItem(at: url)
                     self?.delegate?.onImageDragAndDropped(image: image)
                 case .contentsAt(let url, DC_MSG_VIDEO):
                     url.convertToMp4(dcContext: dcContext) { compressedUrl, _ in
