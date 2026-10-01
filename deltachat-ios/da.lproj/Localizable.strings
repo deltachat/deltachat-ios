@@ -286,6 +286,7 @@
 "messages" = "Beskeder";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ af %2$@ brugt";
+// deprecated
 "login_title" = "Login";
 "login_inbox" = "Indbakke";
 "login_imap_login" = "IMAP logind navn";
@@ -522,6 +523,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skan dette for at indstille kontakt med %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ingen internet forbindelse, kan ikke udføre QR kode opsætning.";
+// deprecated
 "qraccount_ask_create_and_login" = "Opret ny e-mail adresse på \"%1$@\" og log ind der?";
 "qraccount_qr_code_cannot_be_used" = "Den skannede QR-kode kan ikke bruges til at opsætte en ny konto.";
 "contact_verified" = "%1$@ bekræftet.";

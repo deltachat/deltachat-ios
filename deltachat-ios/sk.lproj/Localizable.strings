@@ -577,7 +577,7 @@
 "messages" = "Správy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ z %2$@využitých ";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Nový účet";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -612,6 +612,7 @@
 "create_team_profile" = "Vytvoriť tímový účet";
 "welcome_chat_over_email" = "Decentralizované zabezpečené konverzácie";
 "scan_invitation_code" = "Skenovať kód pozvánky";
+// deprecated
 "login_title" = "Prihlásiť sa";
 "login_advanced_hint" = "Toto prihlásenie je určené pre pokročilých používateľov.\n\nNepoužívajte adresu, ktorú už používate v inej aplikácii.";
 "login_inbox" = "Prichádzajúca pošta";
@@ -997,11 +998,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Naskenujte a konverzujte s %1$@";
 "qrshow_join_contact_no_connection_toast" = "Žiadne pripojenie na internet, Nie je možné vykonať nastavenie QR kódom.";
+// deprecated
 "qraccount_ask_create_and_login" = "Vytvoriť nový účet na „%1$@“ a prihlásiť sa?";
 "set_name_and_avatar_explain" = "Zadajte meno, pod ktorým vás budú poznať ostatní. Môžete si tiež nastaviť profilový obrázok.";
 "please_enter_name" = "Prosím, zadajte meno.";
 "qraccount_qr_code_cannot_be_used" = "Naskenovaný QR kód nie je možné použiť na nastavenie nového účtu.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Prihlásiť sa ako „%1$@“?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Použije sa %1$@";
@@ -1144,8 +1146,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Na vyhotovenie fotografií, záznam videa alebo použitie čítačky QR kódov otvorte nastavenia systému a povoľte \"Fotoaparát\".";
 "open_settings" = "Otvoriť nastavenia";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importovať kontakty zo zariadenia";
+// deprecated
 "import_device_contacts_hint" = "Ak chcete konverzovať s kontaktmi uloženými vo vašom zariadení, otvorte Nastavenia a povoľte Kontakty.";
 // iOS notification settings
 "disabled_in_dc" = "Vypnuté v aplikácii Delta Chat";

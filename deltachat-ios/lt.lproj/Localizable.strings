@@ -499,7 +499,7 @@
 "messages" = "Žinutės";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Panaudota %1$@ iš %2$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Sukurti naują profilį";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -531,6 +531,7 @@
 "create_team_profile" = "Sukurti komandos profilį";
 "welcome_chat_over_email" = "Saugūs decentralizuoti pokalbiai";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
+// deprecated
 "login_title" = "Prisijungti";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
@@ -849,11 +850,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Nuskenuokite norėdami pradėti pokalbį su %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
+// deprecated
 "qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
 "set_name_and_avatar_explain" = "Nusistatykite vardą, kurį jūsų adresatai atpažins. Taip pat galite nusistatyti profilio nuotrauką.";
 "please_enter_name" = "Įrašykite vardą.";
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ pakvietė jus prisijungti prie šios grupės.\n\nLaukiama, kol atsakys naudotojo %2$@ įrenginys…";
@@ -970,7 +972,7 @@
 "share_account_not_configured" = "Paskyra nėra sukonfigūruota.";
 "cannot_play_audio_file" = "Garso įrašo failas negali būti atkurtas.";
 "open_settings" = "Atverti nustatymus";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importuoti įrenginio adresatus";
 // iOS notification settings
 "disabled_in_dc" = "Išjungta Delta Chat programėlėje";

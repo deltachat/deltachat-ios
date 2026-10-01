@@ -578,7 +578,7 @@
 "messages" = "Сообщения";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ из %2$@ используется";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Создать новый профиль";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "Создать профиль команды";
 "welcome_chat_over_email" = "Безопасный децентрализованный чат";
 "scan_invitation_code" = "Сканировать код приглашения";
+// deprecated
 "login_title" = "Войти";
 "login_advanced_hint" = "Этот способ входа предназначен для опытных пользователей.\n\nНе используйте адрес, который вы уже используете в другом приложении.";
 "login_inbox" = "Входящие";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Отсканируйте, чтобы начать чат с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нет соединения с интернетом, невозможно выполнить настройку QR-кода.";
+// deprecated
 "qraccount_ask_create_and_login" = "Создать новый профиль на \"%1$@\" и авторизоваться?";
 "set_name_and_avatar_explain" = "Укажите имя, которое будут видеть ваши контакты. Вы также можете установить изображение профиля.";
 "please_enter_name" = "Введите имя.";
 "qraccount_qr_code_cannot_be_used" = "Отсканированный QR-код не может быть использован для создания нового профиля.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Авторизоваться в \"%1$@\"?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Используется %1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Чтобы делать фотографии, снимать видео и использовать сканер QR-кодов, откройте системные настройки и включите доступ к \"Камере\".";
 "open_settings" = "Открыть настройки";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Импорт контактов устройства";
+// deprecated
 "import_device_contacts_hint" = "Чтобы переписываться с контактами из вашей адресной книги, откройте \"Настройки\" и включите доступ к \"Контактам\".";
 // iOS notification settings
 "disabled_in_dc" = "Отключено в Delta Chat.";

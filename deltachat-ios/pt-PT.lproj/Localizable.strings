@@ -324,6 +324,7 @@
 "messages" = "Mensagens";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usados";
+// deprecated
 "login_title" = "Login";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";

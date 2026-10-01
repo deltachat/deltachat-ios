@@ -178,6 +178,7 @@
 "contact" = "Contact";
 "bot" = "Bot";
 "camera" = "Camera";
+"take_photo" = "Take Photo";
 "front_camera" = "Front camera";
 "back_camera" = "Back camera";
 "microphone" = "Microphone";
@@ -578,7 +579,7 @@
 "messages" = "Messages";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ of %2$@ used";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Create New Profile";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +614,7 @@
 "create_team_profile" = "Create Team Profile";
 "welcome_chat_over_email" = "Secure Decentralized Chat";
 "scan_invitation_code" = "Scan Invitation Code";
+// deprecated
 "login_title" = "Log In";
 "login_advanced_hint" = "This login is for advanced users.\n\nDo not use an address you\'re using in another app.";
 "login_inbox" = "Inbox";
@@ -998,11 +1000,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Scan to chat with %1$@";
 "qrshow_join_contact_no_connection_toast" = "No internet connection, can\'t perform QR code setup.";
+// deprecated
 "qraccount_ask_create_and_login" = "Create new profile on \"%1$@\" and log in there?";
 "set_name_and_avatar_explain" = "Set a name that your contacts will recognize. You can also set a profile image.";
 "please_enter_name" = "Please enter a name.";
 "qraccount_qr_code_cannot_be_used" = "The scanned QR code cannot be used to set up a new profile.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Log into \"%1$@\"?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Using %1$@";
@@ -1147,8 +1150,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "To take photos, capture videos or use the QR-Code scanner, open the system settings and enable \"Camera\".";
 "open_settings" = "Open Settings";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Import device contacts";
+// deprecated
 "import_device_contacts_hint" = "To chat with contacts from your device open Settings and enable \"Contacts\".";
 // iOS notification settings
 "disabled_in_dc" = "Disabled in Delta Chat";

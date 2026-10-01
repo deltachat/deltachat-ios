@@ -234,6 +234,7 @@
 "tab_docs_empty_hint" = "Sos documentos editàbiles, cussos musicales e totu sas àteras castas de documentos cumpartzidos in custa tzarrada ant a èssere ammustrados inoghe.";
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
+// deprecated
 "login_title" = "Intra";
 "login_inbox" = "In arrivu";
 "login_imap_login" = "Nùmene impreadore IMAP";

@@ -401,6 +401,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ trong tổng số %2$@ đã được sử dụng";
 "scan_invitation_code" = "Quét mã mời";
+// deprecated
 "login_title" = "Đăng nhập";
 "login_inbox" = "Hộp thư đến";
 "login_imap_login" = "Tên đăng nhập IMAP";
@@ -672,9 +673,10 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Quét để trò chuyện với %1$@";
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";
@@ -788,8 +790,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Để chụp ảnh, quay video hoặc sử dụng trình quét Mã QR, hãy mở cài đặt hệ thống và bật \"Camera\".";
 "open_settings" = "Mở Cài đặt";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Nhập danh bạ thiết bị";
+// deprecated
 "import_device_contacts_hint" = "Để trò chuyện với các liên hệ từ thiết bị của bạn, hãy mở Cài đặt và bật \"Danh bạ\".";
 // iOS notification settings
 "disabled_in_dc" = "Đã tắt trong Delta Chat";

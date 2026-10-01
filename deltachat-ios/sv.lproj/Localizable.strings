@@ -517,7 +517,7 @@
 "messages" = "Meddelanden";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ av %2$@ används";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Skapa ny profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -547,6 +547,7 @@
 "instant_onboarding_confirm_group" = "Vill du skapa en ny profil och gå med i chattgruppen \"%1$@\"?";
 "welcome_chat_over_email" = "Säker decentraliserad chatt";
 "scan_invitation_code" = "Skanna inbjudningskod";
+// deprecated
 "login_title" = "Logga in";
 "login_inbox" = "Inkorg";
 "login_imap_login" = "IMAP inloggningsnamn";
@@ -906,11 +907,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skanna det här för att få kontakt med %1$@.";
 "qrshow_join_contact_no_connection_toast" = "Ingen internetanslutning, kan inte utföra QR-kod-inställning.";
+// deprecated
 "qraccount_ask_create_and_login" = "Vill du skapa ny profil på \"%1$@\" och logga in där?";
 "set_name_and_avatar_explain" = "Ange ett namn som dina kontakter kommer att känna igen. Du kan också ange en profilbild.";
 "please_enter_name" = "Ange ett namn.";
 "qraccount_qr_code_cannot_be_used" = "Den skannade QR-koden kan inte användas för att konfigurera ett nytt konto.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Vill du logga in på \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ bjöd in dig att gå med i den här gruppen.\n\nVäntar på att enheten hos %2$@ ska svara...";
@@ -1037,8 +1039,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "För att ta bilder, spela in videor eller använda QR-kodläsaren, öppna systeminställningarna och aktivera \"Kamera\".";
 "open_settings" = "Öppna inställningar";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importera enhetens kontakter";
+// deprecated
 "import_device_contacts_hint" = "Om du vill chatta med kontakter från din enhet öppnar du Inställningar och aktiverar \"Kontakter\".";
 // iOS notification settings
 "disabled_in_dc" = "Inaktiverad i Delta Chat";

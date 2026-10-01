@@ -539,7 +539,7 @@
 "messages" = "İletiler";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ kullanıldı";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Yeni Profil Oluştur";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -569,6 +569,7 @@
 "instant_onboarding_confirm_group" = "Yeni bir profil oluşturmak ve “%1$@” grubuna katılmak istiyor musunuz?";
 "welcome_chat_over_email" = "Güvenli Merkezi Olmayan Sohbet";
 "scan_invitation_code" = "Çağrı Kodunu Tara";
+// deprecated
 "login_title" = "Giriş Yap";
 "login_inbox" = "Gelen Kutusu";
 "login_imap_login" = "IMAP Giriş Adı";
@@ -942,11 +943,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "%1$@ ile sohbet etmek için bunu tarayın";
 "qrshow_join_contact_no_connection_toast" = "Internet bağlantısı yok; QR kodu ayarlaması gerçekleştirilemiyor.";
+// deprecated
 "qraccount_ask_create_and_login" = "“%1$@” üzerinde yeni profil oluşturulsun ve orada giriş yapılsın mı?";
 "set_name_and_avatar_explain" = "Kişilerinizin tanıyacağı bir ad ayarlayın. Bir profil görseli de ayarlayabilirsiniz.";
 "please_enter_name" = "Lütfen bir ad girin.";
 "qraccount_qr_code_cannot_be_used" = "Taranan QR kodu, yeni bir profil ayarlamak için kullanılamıyor.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "“%1$@” adresine giriş yapılsın mı?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ sizi bu gruba katılmaya çağırdı.\n\n%2$@ kişisinin aygıtının yanıt vermesi bekleniyor…";
@@ -1086,8 +1088,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Fotoğraflar çekmek, videolar yakalamak ya da QR Kodu tarayıcısını kullanmak için sistem ayarlarını açın ve “Kamera”yı etkinleştirin.";
 "open_settings" = "Ayarlar\'ı Aç";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Aygıt kişilerini içe aktar";
+// deprecated
 "import_device_contacts_hint" = "Aygıtınızdan gelen kişilerle sohbet etmek için Ayarlar\'ı açın ve “Kişiler”i etkinleştirin.";
 // iOS notification settings
 "disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";

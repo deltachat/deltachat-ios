@@ -543,7 +543,7 @@
 "messages" = "Mesazhe";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ nga %2$@ gjithsej";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Krijoni Profil të Ri";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -573,6 +573,7 @@
 "instant_onboarding_confirm_group" = "Doni të krijohet një profil i ri dhe të hyhet te grupi “%1$@” i fjalosjeve?";
 "welcome_chat_over_email" = "Fjalosje e Decentralizuar, e Parrezik";
 "scan_invitation_code" = "Skanoni Kod Ftese";
+// deprecated
 "login_title" = "Hyni";
 "login_advanced_hint" = "Kjo hyrje është për përdorues të thelluar.\n\nMos përdorni një adresë që e përdorni në një aplikacion tjetër.";
 "login_inbox" = "Të marrë";
@@ -948,11 +949,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Që të bisedoni me %1$@, skanojeni";
 "qrshow_join_contact_no_connection_toast" = "S\’ka lidhje në internet, s\’bëhet dot ujdisja e kodit QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Të krijohet profil i ri te “%1$@” dhe të bëhet hyrja atje?";
 "set_name_and_avatar_explain" = "Caktoni një emër, që kontaktet tuaj do ta njohin. Mundeni edhe të caktoni një emër profili.";
 "please_enter_name" = "Ju lutemi, jepni një emër.";
 "qraccount_qr_code_cannot_be_used" = "Kodi QR i skanuar s’mund të përdoret për të ujdisur një profil të ri.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Të hyhet si “%1$@”?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ ju ftoi të bëheni pjesë e këtij grupi.\n\nPo pritet për pajisjen e %2$@ që të përgjigjet…";
@@ -1094,8 +1096,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Për të bërë foto, regjistruar video ose përdorur skanerin QR-Code, hapni rregullimet e sistemit dhe aktivizoni “Kamera”.";
 "open_settings" = "Hap Rregullimet";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importo kontakte pajisjeje";
+// deprecated
 "import_device_contacts_hint" = "Për t’u fjalosur me kontakte nga pajisja juaj, hapni Rregullime dhe aktivizoni “Kontaktet”.";
 // iOS notification settings
 "disabled_in_dc" = "Çaktivizuar në Delta Chat";

@@ -136,6 +136,7 @@
 "tab_links" = "الروابط";
 "tab_map" = "الخريطة";
 "media_preview" = "معاينة الصورة";
+// deprecated
 "login_title" = "الولوج";
 "login_inbox" = "صندوق الوارد";
 "login_imap_login" = "مستخدم IMAP";

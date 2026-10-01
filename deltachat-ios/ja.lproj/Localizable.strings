@@ -286,6 +286,7 @@
 "connectivity_updating" = "アップデート中";
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "接続済み";
+// deprecated
 "login_title" = "ログイン";
 "login_inbox" = "受信";
 "login_imap_login" = "IMAPログイン名";
@@ -507,6 +508,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "スキャンして%1$@に連絡します。";
 "qrshow_join_contact_no_connection_toast" = "インターネットに接続されていないので、QRコードの設定ができません。";
+// deprecated
 "qraccount_ask_create_and_login" = "%1$@に新しいメールアドレスを作ってログしますか。";
 "contact_verified" = "%1$@を確認しました。";
 // notifications

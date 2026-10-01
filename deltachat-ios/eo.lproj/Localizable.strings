@@ -301,6 +301,7 @@
 "tab_map" = "Mapo";
 "media_preview" = "Aŭdvida antaŭrigardo";
 "send_message" = "Sendi mesaĝon";
+// deprecated
 "login_title" = "Ensaluti";
 "login_inbox" = "Ricevujo";
 "login_imap_login" = "IMAP salutnomo";

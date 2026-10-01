@@ -578,7 +578,7 @@
 "messages" = "Missatges";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usats";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Crea un perfil nou";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "Crea perfil d\'equi";
 "welcome_chat_over_email" = "Xat segur i descentralitzat";
 "scan_invitation_code" = "Escaneja el Codi d\'Invitació";
+// deprecated
 "login_title" = "Identifiqueu-vos";
 "login_advanced_hint" = "Aquest inici de sessió és per usuaris avançats.\n\nNo utilitzis una adreça que ja estiguis utilitzant en una altra aplicació.";
 "login_inbox" = "Safata d\'entrada";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanegeu això per establir contacte amb %1$@";
 "qrshow_join_contact_no_connection_toast" = "No hi ha connexió a internet, no es pot fer la configuració amb codi QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Voleu crear un perfil nou a «%1$@» i iniciar sessió allà?";
 "set_name_and_avatar_explain" = "Indiqueu un nom que els vostres contactes puguin reconèixer. També podeu establir una imatge de perfil.";
 "please_enter_name" = "Introduïu un nom";
 "qraccount_qr_code_cannot_be_used" = "El codi QR escanejat no es pot usar per a configurar un perfil nou.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Voleu iniciar sessió a «%1$@»?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Utilitzant %1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Per a fer fotos, capturar vídeos o usar l\'escàner de codis QR, obriu la configuració del sistema i activeu «Càmera».";
 "open_settings" = "Obre la configuració";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importa els contactes del dispositiu";
+// deprecated
 "import_device_contacts_hint" = "Per a xatejar amb contactes des del vostre dispositiu, obriu Configuració i activeu «Contactes».";
 // iOS notification settings
 "disabled_in_dc" = "Desactivat a Delta Chat";

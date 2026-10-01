@@ -540,7 +540,7 @@
 "messages" = "Viestit";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ / %2$@ käytössä";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Luo uusi profiili";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -574,6 +574,7 @@
 "create_team_profile" = "Luo tiimiprofiili";
 "welcome_chat_over_email" = "Turvallinen hajautettu keskustelu";
 "scan_invitation_code" = "Skannaa kutsukoodi";
+// deprecated
 "login_title" = "Kirjaudu sisään";
 "login_inbox" = "Saapuvan postin laatikko";
 "login_imap_login" = "IMAP -kirjautumistunnus";
@@ -929,11 +930,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skannaa aloittaaksesi keskustelun käyttäjän %1$@ kanssa";
 "qrshow_join_contact_no_connection_toast" = "Ei internetyhteyttä, QR-koodin luominen ei onnistu.";
+// deprecated
 "qraccount_ask_create_and_login" = "Luo uusi sähköpostiosoite palvelimella \"%1$@\" ja kirjaudu sisään?";
 "set_name_and_avatar_explain" = "Aseta nimi jonka yhteystietosi tunnistavat. Voit myös asettaa profiilikuvan.";
 "please_enter_name" = "Syötä nimi.";
 "qraccount_qr_code_cannot_be_used" = "Uutta tiliä ei voida luoda skannatulla QR-koodilla.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Haluatko kirjautua osoitteella \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ kutsui sinut tähän ryhmään.\n\nOdotetaan vastausta yhteystiedon %2$@ laitteelta...";
@@ -1066,8 +1068,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Avaa järjestelmäasetukset ja kytke päälle \"Kamera\" ottaaksesi kuvia tai videoita tai käyttääksesi QR-koodinlukijaa.";
 "open_settings" = "Avaa asetukset";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Tuo laitteen yhteystiedot";
+// deprecated
 "import_device_contacts_hint" = "Avaa asetukset ja kytke päälle \"Yhteystiedot\" viestiäksesi laitteen yhteystietojen kanssa.";
 // iOS notification settings
 "disabled_in_dc" = "Kytketty pois Delta Chatissa";

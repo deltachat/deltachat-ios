@@ -578,7 +578,7 @@
 "messages" = "Mensajes";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usado";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Crear perfil nuevo";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "Crear perfil de equipo";
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
+// deprecated
 "login_title" = "Iniciar sesión";
 "login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados.\n\nNo utilice una dirección de correo que esté utilizando en otra aplicación.";
 "login_inbox" = "Bandeja de entrada";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanea esto para configurar un contacto con %1$@";
 "qrshow_join_contact_no_connection_toast" = "No hay conexión a Internet, no se puede configurar con código QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "¿Crear una nueva dirección de correo en \"%1$@\" e ingresar allí?";
 "set_name_and_avatar_explain" = "Establece un nombre que tus contactos puedan reconocer. También puedes establecer una foto de perfil.";
 "please_enter_name" = "Por favor, introduce un nombre.";
 "qraccount_qr_code_cannot_be_used" = "El código QR escaneado no puede ser usado para configurar una nueva cuenta.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "¿Iniciar sesión en \"%1$@\"?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Utilizando %1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Para hacer fotos, capturar vídeos o utilizar el escáner de códigos QR, abra los ajustes del sistema y active \"Cámara\".";
 "open_settings" = "Abrir configuración";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importar contactos del dispositivo";
+// deprecated
 "import_device_contacts_hint" = "Para chatear con los contactos de tu dispositivo abre los ajustes y activa \"Contactos\".";
 // iOS notification settings
 "disabled_in_dc" = "Deshabilitado en Delta Chat";
