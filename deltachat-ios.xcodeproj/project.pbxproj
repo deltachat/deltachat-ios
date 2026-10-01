@@ -160,7 +160,6 @@
 		AE57C0802552BBD0003CFE70 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */; };
 		AE57C084255310BB003CFE70 /* ContextMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE57C083255310BB003CFE70 /* ContextMenuController.swift */; };
 		AE6EC5242497663200A400E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */; };
-		AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */; };
 		AE76E5EE242BF2EA003CF461 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */; };
 		AE77838F23E4276D0093EABD /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE851AC4227C755A00ED86F0 /* Protocols.swift */; };
@@ -522,7 +521,6 @@
 		AE57C07F2552BBD0003CFE70 /* GalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItem.swift; sourceTree = "<group>"; };
 		AE57C083255310BB003CFE70 /* ContextMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuController.swift; sourceTree = "<group>"; };
 		AE6EC5232497663200A400E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
-		AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerAlertAction.swift; sourceTree = "<group>"; };
 		AE76E5ED242BF2EA003CF461 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCellViewModel.swift; sourceTree = "<group>"; };
 		AE851AC4227C755A00ED86F0 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -1137,7 +1135,6 @@
 				30260CA6238F02F700D8D52C /* MultilineTextFieldCell.swift */,
 				AE38B31722672DFC00EC37A1 /* ActionCell.swift */,
 				AE25F08F22807AD800CDEA66 /* AvatarSelectionCell.swift */,
-				AE728F14229D5C390047565B /* PhotoPickerAlertAction.swift */,
 				AE52EA18229EB53C00C586C9 /* ProfileHeader.swift */,
 				AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */,
 				AED62BCD247687E6009E220D /* LocationStreamingIndicator.swift */,
@@ -1906,7 +1903,6 @@
 				AE851AC5227C755A00ED86F0 /* Protocols.swift in Sources */,
 				D8CF2DDC2CDD110F001C2352 /* ProxySettingsViewController.swift in Sources */,
 				D8CF2DDD2CDD110F001C2352 /* ProxyTableViewCell.swift in Sources */,
-				AE728F15229D5C390047565B /* PhotoPickerAlertAction.swift in Sources */,
 				D82AD24D2D27E47A009D6026 /* UIApplication+Orientation.swift in Sources */,
 				AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */,
 				AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */,
