@@ -20,7 +20,6 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -70,6 +69,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         tag = msg.id
         minImageWidthConstraint?.constant = msg.hasText ? minImageWidthWithText : minImageWidth
         stickerMaxWidthConstraint?.isActive = msg.type == DC_MSG_STICKER
+        contentImageView.contentMode = msg.type == DC_MSG_STICKER ? .scaleAspectFit : .scaleAspectFill
 
         if let url = msg.fileURL,
             msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF || msg.type == DC_MSG_STICKER {
