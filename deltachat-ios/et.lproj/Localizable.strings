@@ -578,7 +578,7 @@
 "messages" = "Sõnumid";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Kasutusel %1$@ / %2$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Loo uus profiil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "Loo tiimiprofiil";
 "welcome_chat_over_email" = "Turvaline hajutatud vestluslahendus";
 "scan_invitation_code" = "Skaneeri kutsekoodi";
+// deprecated
 "login_title" = "Logi sisse";
 "login_advanced_hint" = "See sisselogimise viis on mõeldud oskuskasutajatele.\n\nPalun ära kasuta aadressi, mida kasutad juba teises rakenduses.";
 "login_inbox" = "Saabuvad kirjad";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Skaneeri vestlemaks kasutajaga „%1$@“";
 "qrshow_join_contact_no_connection_toast" = "Internetiühendus puudub ja QR-koodil põhinevat seadistamist kasutada ei saa.";
+// deprecated
 "qraccount_ask_create_and_login" = "Kas lood uue profiili nimega „%1$@“ ja logid sinna sisse?";
 "set_name_and_avatar_explain" = "Vali nimi, mida sinu kontaktid ära tunnevad. Saad ka lisada profiili tunnuspildi.";
 "please_enter_name" = "Palun sisesta nimi.";
 "qraccount_qr_code_cannot_be_used" = "Selle skaneeritud QR-koodi abil ei saa uut profiili kasutusele võtta.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Kas logid sisse „%1$@“ profiili?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Kasutusel on: %1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Pildistamiseks, videote salvestamiseks ja QR-koodide skaneerimiseks ava süsteemi seadistused ja luba rakendusel kasutada kaamerat.";
 "open_settings" = "Ava seadistused";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Impordi seadme kontaktid";
+// deprecated
 "import_device_contacts_hint" = "Selleks, et saaksid suhelda oma nutiseame kontaktidega, ava seadistused ja lülita sisse valik „Kontaktid“.";
 // iOS notification settings
 "disabled_in_dc" = "Pole Delta Chatis kasutusel";

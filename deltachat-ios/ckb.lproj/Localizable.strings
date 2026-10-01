@@ -251,6 +251,7 @@
 "tab_docs_empty_hint" = "بەڵگە و مۆسیقا و هەموو پەڕگە هاوبەشکراوەکانی نێو ئەم وتووێژە، لێرەدا پیشان دەدرێن.";
 "media_preview" = "پێشدیتنی ڕەنگاڵە";
 "send_message" = "پەیام بنێرە";
+// deprecated
 "login_title" = "بچۆ ژوورەوە";
 "login_inbox" = "هاتنگە";
 "login_imap_login" = "ناوی چوونەژوورەوەی IMAP";
@@ -406,6 +407,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "بۆ ڕێکخستنی پێوەندی لەگەڵ %1$@، ئەم کۆدە سکان بکە. ";
 "qrshow_join_contact_no_connection_toast" = "هێڵی ئینتەرنێت بەردەست نییە، ڕێکخستنی کۆدی QR جێبەجێ ناکرێ.";
+// deprecated
 "qraccount_ask_create_and_login" = "دەتەوێت ناونیشانی ئیمەیلێکی نوێ لەسەر \"%1$@\" درووست بکەیت و لەوێ بچیتە ژوورەوە؟";
 "qraccount_qr_code_cannot_be_used" = "ناتوانی لە کۆدی QRە سکان کراوەکە کەڵک بگریت بۆ پێکهێنانی هەژمارێکی نوێ.";
 "contact_verified" = "%1$@ پشتڕاست کرایەوە";

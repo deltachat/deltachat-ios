@@ -525,7 +525,7 @@
 "messages" = "Iznan";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ seg %2$@ yettwaseqdac";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Rnu amaɣnu amaynut";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -555,6 +555,7 @@
 "instant_onboarding_confirm_group" = "Snulfu-d amaɣnu amaynut sakin rnu ɣer \"%1$@\"?";
 "welcome_chat_over_email" = "Adiwenni Aɣelsan Aruslemmas";
 "scan_invitation_code" = "Ḍumm tangalt n tinnubga";
+// deprecated
 "login_title" = "Kcem";
 "login_inbox" = "Tanaka n urmas";
 "login_imap_login" = "Isem n tuqqna IMAP. ";
@@ -923,11 +924,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Ḍumm iwakken ad tmeslayeḍ d %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ulac tuqqna internet, ur izmir ara ad isebded tangalt QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Rnu amaɣnu amaynut di \"%1$@\" sakin tkecmeḍ dinna?";
 "set_name_and_avatar_explain" = "Sbadu isem ara ɛeqlen inermisen-ik·im. Tzemreḍ daɣen ad tesbaduḍ tugna n umaɣnu.";
 "please_enter_name" = "Ma ulac aɣilif, sekcem isem.";
 "qraccount_qr_code_cannot_be_used" = "Tangalt QR tettwaḍummen ur tezmir ara ad tettwaseqdec i usebded n umaɣnu amaynut. ";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Kcem ɣer \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ yeɛreḍ-ik·im-id ad d-ternud ɣer ugraw-a.\n\nRǧu ibenk n %2$@ ad d-yerr...";
@@ -1054,8 +1056,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Akken ad d-teṭṭfeḍ tiwlafin, tuṭṭfa n tvidyutin neɣ ad tesqedceḍ aḍummu n tengalt QR, ldi iɣewwaṛen n unagraw u rmed \" takamirat \".";
 "open_settings" = "Ldi iɣewwaṛen";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Kter inermisen n yibenk";
+// deprecated
 "import_device_contacts_hint" = "Iwakken ad tmeslayeḍ akked inermisen seg yibenk-ik·im, ldi Iɣewwaṛen sakkin rmed \"Iinermisen\".";
 // iOS notification settings
 "disabled_in_dc" = "Ittwasens deg Delta Chat";

@@ -493,7 +493,7 @@
 "messages" = "Üzenetek";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@/%2$@ használatban";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Új profil létrehozása";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -523,6 +523,7 @@
 "instant_onboarding_confirm_group" = "Szeretne új profilt létrehozni és csatlakozni a „%1$@” szobához?";
 "welcome_chat_over_email" = "Biztonságos decentralizált csevegés";
 "scan_invitation_code" = "QR-kód-meghívó beolvasása";
+// deprecated
 "login_title" = "Bejelentkezés";
 "login_inbox" = "Bejövő";
 "login_imap_login" = "IMAP bejelentkezési név";
@@ -850,11 +851,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "QR-kód beolvasása a csevegéshez vele: „%1$@”";
 "qrshow_join_contact_no_connection_toast" = "Nincs internetkapcsolat, nem lehet elvégezni a QR-kód beállítását.";
+// deprecated
 "qraccount_ask_create_and_login" = "Új profil létrehozása a(z) „%1$@” oldalon és bejelentkezés ott?";
 "set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet a partnerei felismernek. Beállíthat egy profilképet is.";
 "please_enter_name" = "Adjon meg egy nevet.";
 "qraccount_qr_code_cannot_be_used" = "A beolvasott QR-kód nem használható új profil beállítására.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Bejelentkezés ide: „%1$@”?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ meghívta önt, hogy csatlakozzon ehhez a csoporthoz.\n\n%2$@ eszközére várakozás a válaszhoz…";
@@ -978,8 +980,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "A fényképek-, videók- vagy QR-kódok rögzítéséhez lépjen a rendszer beállításaiba, válassza ki a „Alkalmazások és értesítések” menüpontot, válassza ki az DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Kamerához”.";
 "open_settings" = "Beállítások megnyitása";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Eszköz névjegyeinek importálása";
+// deprecated
 "import_device_contacts_hint" = "Az eszközén lévő névjegyekkel való csevegéshez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Névjegyekhez”.";
 // iOS notification settings
 "disabled_in_dc" = "Letiltva a Delta Chatben";

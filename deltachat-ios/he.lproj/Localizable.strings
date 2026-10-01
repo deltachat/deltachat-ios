@@ -578,7 +578,7 @@
 "messages" = "הודעות";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ מ- %2$@ בשימוש";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "צור פרופיל חדש";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "צור פרופיל צוות";
 "welcome_chat_over_email" = "צ\'אט מבוזר ומאובטח";
 "scan_invitation_code" = "סרוק את קוד ההזמנה";
+// deprecated
 "login_title" = "התחבר";
 "login_advanced_hint" = "כניסה זו מיועדת למשתמשים מתקדמים.\n\nאין להשתמש בכתובת בה אתה משתמש גם באפליקציה אחרת.";
 "login_inbox" = "תיבת דואר נכנס";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "סרוק כדי לשוחח עם %1$@";
 "qrshow_join_contact_no_connection_toast" = "אין חיבור לאינטרנט, לא ניתן לבצע את הגדרת קוד ה-QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "ליצור פרופיל חדש באתר \"%1$@\" ולהתחבר משם?";
 "set_name_and_avatar_explain" = "הגדר שם שאנשי הקשר שלך יזהו. תוכל גם להגדיר תמונת פרופיל.";
 "please_enter_name" = "אנא הזן שם.";
 "qraccount_qr_code_cannot_be_used" = "לא ניתן להשתמש בקוד ה-QR שנסרק כדי להגדיר פרופיל חדש.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "להיכנס ל- \"%1$@\"?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "משתמש ב-%1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "כדי לצלם תמונות, להקליט סרטונים או להשתמש בסורק ה-QR, פתח את הגדרות המערכת והפעל את האפשרות \"מצלמה\".";
 "open_settings" = "פתח את ההגדרות";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "יבוא אנשי קשר מהמכשיר";
+// deprecated
 "import_device_contacts_hint" = "כדי לשוחח בצ\'אט עם אנשי הקשר מהמכשיר שלך, פתח את \"הגדרות\" והפעל את האפשרות \"אנשי קשר\".";
 // iOS notification settings
 "disabled_in_dc" = "מושבת ב- Delta Chat";

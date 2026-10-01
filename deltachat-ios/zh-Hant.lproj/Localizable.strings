@@ -524,7 +524,7 @@
 "messages" = "訊息";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "使用了 %2$@ 中的 %1$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "創建新帳戶";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -554,6 +554,7 @@
 "instant_onboarding_confirm_group" = "您想創建新的個人資料並加入 「%1$@」 聊天群組嗎？";
 "welcome_chat_over_email" = "安全的去中心化聊天";
 "scan_invitation_code" = "掃描邀請碼";
+// deprecated
 "login_title" = "登入";
 "login_inbox" = "收件匣";
 "login_imap_login" = "IMAP 帳號";
@@ -921,11 +922,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "掃描 QRCode 以新增 %1$@";
 "qrshow_join_contact_no_connection_toast" = "沒有互聯網連接，無法執行QR碼設置。";
+// deprecated
 "qraccount_ask_create_and_login" = "在 「%1$@」 上建立賬戶並登入？";
 "set_name_and_avatar_explain" = "設置聯絡人可以識別的名稱。您還可以設置大頭貼。";
 "please_enter_name" = "請輸入名稱。";
 "qraccount_qr_code_cannot_be_used" = "掃描的 QR 碼不能用於建立新賬戶。";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "登入「%1$@」？";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@邀請您加入此群組。\n\n正在等待%2$@裝置的回覆...";
@@ -1052,8 +1054,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "要拍照、攝錄影片或使用QR碼掃描器，請打開系統設定並啟用「相機」。";
 "open_settings" = "開啟設定";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "匯入裝置聯繫人";
+// deprecated
 "import_device_contacts_hint" = "要從您的裝置與聯絡人聊天，請打開「設定」並啟用「聯絡人」。";
 // iOS notification settings
 "disabled_in_dc" = "在 Delta Chat 中已禁用";

@@ -372,6 +372,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ folosit";
 "scan_invitation_code" = "Scanați Codul Invitației";
+// deprecated
 "login_title" = "Autentificare";
 "login_inbox" = "Inbox";
 "login_imap_login" = "Nume de autentificare IMAP";

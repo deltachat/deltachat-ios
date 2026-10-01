@@ -513,7 +513,7 @@
 "messages" = "پیام‌ها";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "مقدار %1$@ از %2$@ استفاده شده است. ";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "ایجاد حساب کاربری جدید";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -543,6 +543,7 @@
 "instant_onboarding_confirm_group" = "می‌خواهید یک نمایهٔ جدید درست کنید و به گروه «%1$@» ملحق شوید؟";
 "welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
+// deprecated
 "login_title" = "ورود";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
@@ -893,11 +894,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
+// deprecated
 "qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
 "set_name_and_avatar_explain" = "اسمی انتخاب کنید که مخاطبینتان با آن شما را بشناسند. می توانید برای خود عکسی هم انتخاب کنید.";
 "please_enter_name" = "لطفا یک نام وارد کنید.";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه‌اندازی حساب جدید استفاده کرد. ";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "کاربر %1$@ شما را دعوت کرده است تا عضو این گروه شوید. در انتظار دستگاه %2$@ برای پاسخگویی...";
@@ -1024,8 +1026,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "برای عکس یا فیلم گرفتن یا اسکن کردن کد کیو آر، وارد تنظیم‌های سیستم شده و دسترسی به دوربین را فعال کنید. ";
 "open_settings" = "تنظیم‌ها را باز کنید";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "وارد کردن مخاطبین";
+// deprecated
 "import_device_contacts_hint" = "برای شروع گپ با مخاطبین دستگاه خود، تنظیم‌ها را باز کرده و «مخاطبین» را به کار بیندازید.";
 // iOS notification settings
 "disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";

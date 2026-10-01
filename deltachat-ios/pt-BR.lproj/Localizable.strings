@@ -500,7 +500,7 @@
 "messages" = "Mensagens";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usado";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Criar novo perfil";
 // Confirmation button on the instant onboarding screen
@@ -514,6 +514,7 @@
 // Question shown when group's/channel's QR code is scanned from onboarding screen
 "instant_onboarding_confirm_group" = "Criar um novo perfil e ingressar em \"%1$@\"?";
 "scan_invitation_code" = "Escanear Código De Convite";
+// deprecated
 "login_title" = "Acessar";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "Login IMAP";
@@ -778,9 +779,10 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanear para estabelecer contato com %1$@";
 "qrshow_join_contact_no_connection_toast" = "Sem conexão à rede não é possível realizar configuração por código QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Criar novo endereço de e-mail em \"%1$@\" e entrar nele?";
 "qraccount_qr_code_cannot_be_used" = "O código QR lido não pode ser usado para configurar uma nova conta.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Conectar-se em \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@te convidou para entrar neste grupo.\n\nEsperando o dispositivo de %2$@ responder...";
@@ -889,8 +891,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Para tirar fotos, capturar vídeos ou usar o escâner de QR-Code, abra as configurações do sistema e ative \"Câmera\".";
 "open_settings" = "Abrir Configurações";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importar contatos do dispositivo";
+// deprecated
 "import_device_contacts_hint" = "Para conversar com os contatos do seu dispositivo, abra as Configurações e ative \"Contatos\".";
 // iOS notification settings
 "disabled_in_dc" = "Desativado no Delta Chat";

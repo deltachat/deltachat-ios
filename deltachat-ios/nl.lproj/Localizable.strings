@@ -578,7 +578,7 @@
 "messages" = "Berichten";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ van %2$@ in gebruik";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Account aanmaken";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -613,6 +613,7 @@
 "create_team_profile" = "Teamprofiel aanmaken";
 "welcome_chat_over_email" = "Veilige, gedecentraliseerde gesprekken";
 "scan_invitation_code" = "Uitnodigingscode scannen";
+// deprecated
 "login_title" = "Inloggen";
 "login_advanced_hint" = "Deze inlogmethode is alleen voor ervaren gebruikers.\n\nGebruik geen adres dat je reeds in een andere app gebruikt.";
 "login_inbox" = "Postvak in";
@@ -998,11 +999,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Scan dit om een gesprek te beginnen met %1$@";
 "qrshow_join_contact_no_connection_toast" = "Geen internetverbinding; kan QR-codes niet instellen.";
+// deprecated
 "qraccount_ask_create_and_login" = "Wil je een nieuw e-mailadres aanmaken op ‘%1$@’ en daarmee inloggen?";
 "set_name_and_avatar_explain" = "Kies een naam die herkenbaar is voor je contactpersonen en, desgewenst, een profielfoto.";
 "please_enter_name" = "Voer een naam in.";
 "qraccount_qr_code_cannot_be_used" = "De gescande QR-code kan niet worden gebruikt om een nieuw account in te stellen.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Inloggen als ‘%1$@’?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Met behulp van %1$@";
@@ -1147,8 +1149,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Voor het maken van foto\'s, opnemen van video\'s en gebruik van de QR-codescanner is cameratoegang vereist. Open de systeeminstellingen en verleen deze toegang.";
 "open_settings" = "Open instellingen";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importeer lokale contactpersonen";
+// deprecated
 "import_device_contacts_hint" = "Voor het voeren van gesprekken met contactpersonen is toegang vereist. Open de systeeminstellingen en verleen deze toegang.";
 // iOS notification settings
 "disabled_in_dc" = "Uitgeschakeld in Delta Chat";

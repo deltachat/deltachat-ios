@@ -403,7 +403,7 @@
 "messages" = "Съобщения";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Използвани са %1$@ от %2$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Създаване на нов профил";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -433,6 +433,7 @@
 "instant_onboarding_confirm_group" = "Искате ли да създадете нов профил и да се присъедините към чат групата \"%1$@\"?";
 "welcome_chat_over_email" = "Защитен децентрализиран чат";
 "scan_invitation_code" = "Сканиране на код за покана";
+// deprecated
 "login_title" = "Влизане";
 "login_inbox" = "Входящи";
 "login_imap_login" = " Име за влизане на IMAP";
@@ -716,11 +717,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Сканирайте, за да чатите с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Няма връзка към Интернет, не може да бъде извършена настройка чрез QR код.";
+// deprecated
 "qraccount_ask_create_and_login" = "Да бъде ли създаден нов адрес за електронна поща на \"%1$@\" и да бъде ли осъществено влизане там?";
 "set_name_and_avatar_explain" = "Задайте име, което Вашите контакти ще разпознават. Можете също да установите изображение за профил.";
 "please_enter_name" = "Моля, въведете име.";
 "qraccount_qr_code_cannot_be_used" = "Не може да бъде създаден нов акаунт със сканирания QR код.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Желаете ли да влезете в \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ Ви покани да се присъедините към тази група.\n\nИзчаква се устройството на %2$@ да отговори…";
@@ -837,8 +839,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "За да правите снимки, да записвате видеоклипове или да използвате скенера на QR кодове, отворете системните настройки и разрешете \"Камера\".";
 "open_settings" = "Отваряне на настройките";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Въвеждане на контакти от устройството";
+// deprecated
 "import_device_contacts_hint" = "За да чатите с контакти от Вашето устройство, отворете Настройки и разрешете \"Контакти\".";
 // iOS notification settings
 "disabled_in_dc" = "Забранено в Delta Chat";

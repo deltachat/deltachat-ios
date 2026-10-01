@@ -388,6 +388,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@од %2$@искоришћени";
 "scan_invitation_code" = "Скенирај код позива за приступ.";
+// deprecated
 "login_title" = "Пријави се";
 "login_inbox" = "Пријем";
 "login_imap_login" = "Корисничко име за ИМАП";
@@ -652,9 +653,10 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Очитај да ћаскате са %1$@";
 "qrshow_join_contact_no_connection_toast" = "Нисте повезани на интернет, није могуће подесити бар-кôд.";
+// deprecated
 "qraccount_ask_create_and_login" = "Направите нову е-адресу на „%1$@“ и приступите јој тамо?";
 "qraccount_qr_code_cannot_be_used" = "Очитани бар-кôд не може бити коришћен да подеси нови налог.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Пријави се у „%1$@“?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@вас је позвао да се придружите групи.\n\nЧекамо да уређај од %2$@одговори...";
@@ -762,8 +764,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Да би направили фотографије, видео записе или читач бар-кôда, отворите поставке на оперативном систему и омогућите приступу камери.";
 "open_settings" = "Отвори поставке";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Увезите контакте са уређаја";
+// deprecated
 "import_device_contacts_hint" = "Да би ћаскали са контактима са вашег уређаја отворите поставке и омогућите приступ контактима.";
 // iOS notification settings
 "disabled_in_dc" = "Онемогућено у Delta Chat";

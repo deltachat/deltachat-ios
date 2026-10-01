@@ -557,7 +557,7 @@
 "messages" = "Mezuak";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%2$@etik %1$@ erabilita";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Sortu kontu berria";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -592,6 +592,7 @@
 "create_team_profile" = "Sortu taldearen profila";
 "welcome_chat_over_email" = "Txat deszentralizatu segurua";
 "scan_invitation_code" = "Eskaneatu gonbidapen kodea";
+// deprecated
 "login_title" = "Hasi saioa";
 "login_advanced_hint" = "Saio-hasiera hau erabiltzaile aurreratuentzat da.\n\nEz erabili beste aplikazio batean erabiltzen ari zaren helbide bat.";
 "login_inbox" = "Sarrera ontzia";
@@ -973,11 +974,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Eskaneatu hau %1$@ erabiltzailearen kontaktua ezartzeko";
 "qrshow_join_contact_no_connection_toast" = "Ez dago Internet konexiorik, ezin da QR kode bidezko ezarpena aplikatu";
+// deprecated
 "qraccount_ask_create_and_login" = "Sortu kontu berria \"%1$@\" zerbitzarian eta saioa han hasi?";
 "set_name_and_avatar_explain" = "Ezarri zure kontaktuak ezagutuko duten izen bat. Abatar bat ere ezar dezakezu.";
 "please_enter_name" = "Mesedez, sartu izen bat.";
 "qraccount_qr_code_cannot_be_used" = "Eskaneatutako QR kodea ezin da kontu berri bat ezartzeko erabili.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Hasi saioa \"%1$@\"(e)n?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@(e)k talde honetara batzeko gonbidapena egin dizu. \n\n%2$@(r)en gailuak erantzun dezan itxaroten…";
@@ -1119,8 +1121,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Argazkiak ateratzeko, bideoak grabatzeko edo QR kodeen eskanerra erabiltzeko, ireki sistemaren ezarpenak eta gaitu \"Kamera\".";
 "open_settings" = "Ireki ezarpenak";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Inportatu gailuko kontaktuak";
+// deprecated
 "import_device_contacts_hint" = "Zure gailuko kontaktuekin txateatzeko, ireki ezarpenak eta gaitu \"Kontaktuak\".";
 // iOS notification settings
 "disabled_in_dc" = "Desgaitu Delta Chat-en";

@@ -551,7 +551,7 @@
 "messages" = "Повідомлення";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Використано %1$@ з %2$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Створити новий профіль";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -581,6 +581,7 @@
 "instant_onboarding_confirm_group" = "Створити новий профіль і приєднатися до \"%1$@\"?";
 "welcome_chat_over_email" = "Безпечний децентралізований чат";
 "scan_invitation_code" = "Сканувати код запрошення";
+// deprecated
 "login_title" = "Увійти";
 "login_advanced_hint" = "Цей спосіб входу призначений для досвідчених користувачів.\n\nНе використовуйте адресу, яку ви вже використовуєте в іншому додатку.";
 "login_inbox" = "Вхідні";
@@ -956,11 +957,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Відскануйте код, щоб спілкуватись з %1$@";
 "qrshow_join_contact_no_connection_toast" = "Відсутнє інтернет з\'єднання, не вдалося налаштувати QR-код.";
+// deprecated
 "qraccount_ask_create_and_login" = "Створити новий профіль на \"%1$@\" і увійти в нього?";
 "set_name_and_avatar_explain" = "Встановіть ім’я, яке розпізнають ваші контакти. Ви також можете встановити зображення профілю.";
 "please_enter_name" = "Будь ласка, введіть ім\'я.";
 "qraccount_qr_code_cannot_be_used" = "Вісканований QR-код не може бути використаний для створення нового профілю.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Увійти до \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ запросив (-ла) Вас приєднатися до цієї групи.\n\nОчікуємо на відповідь від пристрою %2$@…";
@@ -1102,8 +1104,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Щоб фотографувати, знімати відео або використовувати сканер QR-коду, відкрийте налаштування системи та ввімкніть камеру.";
 "open_settings" = "Відкрити налаштування";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Імпорт контактів з пристрою";
+// deprecated
 "import_device_contacts_hint" = "Щоб спілкуватися з контактами з пристрою, відкрийте \"Налаштування\" та ввімкніть \"Контакти\".";
 // iOS notification settings
 "disabled_in_dc" = "Вимкнено в Delta Chat";

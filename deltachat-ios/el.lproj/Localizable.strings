@@ -342,6 +342,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ από %2$@ χρησιμοποιείται";
 "scan_invitation_code" = "Σάρωση Κωδικού Πρόσκλησης";
+// deprecated
 "login_title" = "Σύνδεση";
 "login_inbox" = "Εισερχόμενα";
 "login_imap_login" = "Όνομα Σύνδεσης IMAP";
@@ -604,9 +605,10 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Σάρωση για συνομιλία με %1$@";
 "qrshow_join_contact_no_connection_toast" = "Δεν υπάρχει σύνδεση στο διαδίκτυο, δεν είναι δυνατή η ρύθμιση κωδικού QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Δημιουργήστε νέα διεύθυνση e-mail στο \"%1$@\" και συνδεθείτε εκεί;";
 "qraccount_qr_code_cannot_be_used" = "Ο σαρωμένος κωδικός QR δεν μπορεί να χρησιμοποιηθεί για τη δημιουργία νέου λογαριασμού.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Σύνδεση στο \"%1$@\";";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ σας προσκάλεσε να συμμετάσχετε σε αυτήν την ομάδα.\n\nΑναμονή για απάντηση από τη συσκευή του %2$@…";
@@ -711,8 +713,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Για να τραβήξετε φωτογραφίες, να τραβήξετε βίντεο ή να χρησιμοποιήσετε το σαρωτή QR-Code, ανοίξτε τις ρυθμίσεις συστήματος και ενεργοποιήστε την \"Κάμερα\".";
 "open_settings" = "Άνοιγμα Ρυθμίσεων";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Εισαγωγή επαφών από συσκευή";
+// deprecated
 "import_device_contacts_hint" = "Για να συνομιλήσετε με επαφές από τη συσκευή σας, ανοίξτε τις Ρυθμίσεις και ενεργοποιήστε τις \"Επαφές\".";
 // iOS notification settings
 "disabled_in_dc" = "Απενεργοποιήθηκε στο Delta Chat";

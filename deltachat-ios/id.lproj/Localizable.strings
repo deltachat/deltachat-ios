@@ -299,6 +299,7 @@
 "tab_docs_empty_hint" = "Dokumen, musik dan berkas yang dibagikan di obrolan ini akan ditampilkan disini.";
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
+// deprecated
 "login_title" = "Masuk";
 "login_inbox" = "Surel masuk";
 "login_imap_login" = "Nama login IMAP";
@@ -470,6 +471,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Pindai ini untuk mengatur kontak dengan%1$@.";
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
+// deprecated
 "qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
 "contact_verified" = "%1$@diverifikasi.";

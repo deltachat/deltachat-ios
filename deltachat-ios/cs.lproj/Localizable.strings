@@ -507,7 +507,7 @@
 "messages" = "Zprávy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "Zaplněno %1$@ z %2$@";
-// welcome and login
+// welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Vytvořit nový profil";
 // Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
@@ -537,6 +537,7 @@
 "instant_onboarding_confirm_group" = "Přejete si založit nový profil a připojit se k chatovací skupině \"%1$@\"?";
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
+// deprecated
 "login_title" = "Přihlaš se";
 "login_inbox" = "Příchozí";
 "login_imap_login" = "IMAP uživatelské jméno";
@@ -881,11 +882,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Naskenujte k navázání spojení s uživatelem %1$@";
 "qrshow_join_contact_no_connection_toast" = "Žádné připojení k Internetu. Zprovoznění QR kódem nelze provést.";
+// deprecated
 "qraccount_ask_create_and_login" = "Přejete si vytvořit nový profil na \"%1$@\" a připojit se k němu?";
 "set_name_and_avatar_explain" = "Nastavte si jméno, podle kterého vás ostatní poznají. Můžete si také nastavit profilový obrázek.";
 "please_enter_name" = "Prosím, zadejte jméno.";
 "qraccount_qr_code_cannot_be_used" = "Tento QR kód neumožňuje nastavení nového účtu.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "Přejete si přihlásit k \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Uživatel %1$@ vás pozval do této skupiny.\n\nČekání na odpověď od zařízení uživatele %2$@...";
@@ -1011,8 +1013,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Pro focení, natáčení a skenování QR kódů, otevřete systémová nastavení a povolte \"Fotoaparát\".";
 "open_settings" = "Otevřít nastavení";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "Importovat kontakty ze zařízení";
+// deprecated
 "import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
 // iOS notification settings
 "disabled_in_dc" = "Zakázáno aplikací Delta Chat";

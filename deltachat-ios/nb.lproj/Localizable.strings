@@ -502,6 +502,7 @@
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Legg til annen enhet";
 "multidevice_same_network_hint" = "Sørg for at begge enhetene er tilkoblet samme Wi-Fi eller nettverk";
+// deprecated
 "login_title" = "Logg inn";
 "login_inbox" = "Innboks";
 "login_imap_login" = "IMAP-innloggingsnavn";

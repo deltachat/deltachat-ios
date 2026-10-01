@@ -339,6 +339,7 @@
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%2$@중 %1$@ 사용됨";
 "scan_invitation_code" = "초대 코드 스캔";
+// deprecated
 "login_title" = "로그인";
 "login_inbox" = "받은 편지함";
 "login_imap_login" = "IMAP 로그인 이름";
@@ -586,9 +587,10 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "%1$@과 채팅을 하려면 스캔하시오";
 "qrshow_join_contact_no_connection_toast" = "인터넷에 연결되어 있지 않아 QR 코드 설정을 수행할 수 없습니다.";
+// deprecated
 "qraccount_ask_create_and_login" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?";
 "qraccount_qr_code_cannot_be_used" = "스캔한 QR 코드를 사용하여 새 계정을 설정할 수 없습니다.";
-// the placeholder will be replaced by the address of the profile
+// deprecated
 "qrlogin_ask_login" = "\"%1$@\"에 로그인하시겠습니까?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@이 그룹에 가입하도록 초대했습니다.\n\n%2$@의 장치가 응답하기를 기다리는 중입니다...";
@@ -686,8 +688,9 @@
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "사진 찍기, 비디오 캡쳐 혹은 QR-Code 스캐너를 이용하려면, 환경설정에서 \"카메라\"를 활성화하시오.";
 "open_settings" = "설정 열기";
-// iOS device contact alert
+// deprecated
 "import_device_contacts" = "장치 연락처 가져오기";
+// deprecated
 "import_device_contacts_hint" = "단말기에서 연락처와 대화하려면 설정을 열고 \"연락처\"를 활성화합니다.";
 // iOS notification settings
 "disabled_in_dc" = "Delta Chat에서 비활성화됨";
