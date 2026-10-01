@@ -264,13 +264,21 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     private func onAvatarTapped() {
-        let alert = UIAlertController(title: String.localized(createMode == .createGroup ? "group_avatar" : "image"), message: nil, preferredStyle: .safeActionSheet)
-            alert.addAction(PhotoPickerAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:)))
-            alert.addAction(PhotoPickerAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:)))
-            if avatarSelectionCell.isAvatarSet() {
-                alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteGroupAvatarPressed(_:)))
-            }
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+        let alert = UIAlertController(title: String.localized(createMode == .createGroup ? "select_group_image_desktop" : "image"), message: nil, preferredStyle: .safeActionSheet)
+
+        let cameraAction = UIAlertAction(title: String.localized("camera"), style: .default, handler: cameraButtonPressed(_:))
+        cameraAction.setValue(UIImage(systemName: "camera"), forKey: "image")
+        alert.addAction(cameraAction)
+
+        let galleryAction = UIAlertAction(title: String.localized("gallery"), style: .default, handler: galleryButtonPressed(_:))
+        galleryAction.setValue(UIImage(systemName: "photo.on.rectangle"), forKey: "image")
+        alert.addAction(galleryAction)
+
+        if avatarSelectionCell.isAvatarSet() {
+            alert.addAction(UIAlertAction(title: String.localized("delete"), style: .destructive, handler: deleteGroupAvatarPressed(_:)))
+        }
+        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+
         self.present(alert, animated: true, completion: nil)
     }
 
