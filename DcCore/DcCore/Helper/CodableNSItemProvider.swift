@@ -18,7 +18,7 @@ public enum CodableNSItemProvider: Codable {
         }
     }
 
-    public func itemProvider() -> NSItemProvider? {
+    public func itemProvider() -> NSItemProvider {
         switch self {
         case .contentsAt(let url, _):
             return NSItemProvider(contentsOf: url) ?? {
