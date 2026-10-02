@@ -164,7 +164,7 @@ extension GroupMembersViewController: UISearchResultsUpdating {
         }
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+    private func filterContentForSearchText(_ searchText: String) {
         filteredContactIds = filterContactIds(queryString: searchText)
         tableView.reloadData()
         tableView.scrollToTop()

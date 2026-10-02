@@ -271,7 +271,7 @@ class NewChatViewController: UITableViewController {
         }
     }
 
-    private func filterContentForSearchText(_ searchText: String, scope _: String = String.localized("pref_show_emails_all")) {
+    private func filterContentForSearchText(_ searchText: String) {
         filteredContactIds = dcContext.getContacts(flags: DC_GCL_ADD_SELF, queryString: searchText)
         tableView.reloadData()
         tableView.scrollToTop()
