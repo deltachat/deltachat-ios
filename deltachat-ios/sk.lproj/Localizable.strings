@@ -13,6 +13,7 @@
 "on" = "Zapnuté";
 "off" = "Vypnuté";
 "def" = "Predvolené";
+// deprecated
 "default_value" = "Predvolené (%1$@)";
 "custom" = "Vlastné";
 "none" = "Nenastavené";
@@ -25,6 +26,7 @@
 "join" = "Pripojiť sa";
 "join_group" = "Pripojiť sa ku skupine";
 "join_channel" = "Pripojiť sa do kanála";
+// deprecated
 "rejoin" = "Znovu sa pripojiť";
 "delete" = "Odstrániť";
 "delete_for_me" = "Odstrániť pre mňa";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Načítanie obrázkov je možné zneužiť na sledovanie vašej aktivity.\n\nToto nastavenie tiež umožňuje načítať písma a ďalší obsah. Aj keď to nie je povolené, stále sa môžu zobrazovať vložené obrázky alebo obrázky z vyrovnávacej pamäte.\n\nNačítať vzdialený obsah?";
 "always" = "Vždy";
+// deprecated
 "always_load_remote_images" = "Vždy načítať vzdialené obrázky";
 "once" = "Len raz";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Nie je možné nájsť aplikáciu na spracovanie tohto typu údajov.";
 "no_browser_installed" = "Nie je nainštalovaný žiadny prehliadač.";
 "file_not_found" = "Nie je možné nájsť %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Nepodarilo sa uložiť %1$@.";
 "copied_to_clipboard" = "Skopírované do schránky.";
 "contacts_headline" = "Kontakty";
 "email_address" = "E-mailová adresa";
+// deprecated
 "bad_email_address" = "Zlá e-mailová adresa";
 "password" = "Heslo";
 "existing_password" = "Existujúce heslo";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Vybrané:";
 "selected" = "Vybrané";
 "self" = "Ja";
@@ -187,6 +192,7 @@
 "switch_camera" = "Vybrať fotoaparát";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Prepnúť fotoaparát";
+// deprecated
 "toggle_fullscreen" = "Prepnúť režim zobrazenia na celú obrazovku";
 "location" = "Poloha";
 "locations" = "Polohy";
@@ -227,10 +233,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Priblíženie";
+// deprecated
 "extra_small" = "Veľmi malé";
 "small" = "Malé";
 "normal" = "Normálne";
 "large" = "Veľké";
+// deprecated
 "extra_large" = "Veľmi veľké";
 "fast" = "Rýchlo";
 "slow" = "Pomaly";
@@ -273,6 +281,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vyčistiť konverzáciu";
 "delete_contact" = "Odstrániť kontakt";
+// deprecated
 "menu_delete_location" = "Odstrániť toto umiestnenie?";
 "menu_message_details" = "Podrobnosti správy";
 "menu_copy_to_clipboard" = "Skopírovať do schránky";
@@ -315,6 +324,7 @@
 "privacy_policy" = "Zásady súkromia";
 "menu_select_all" = "Vybrať všetko";
 "select_chat" = "Vybrať konverzáciu";
+// deprecated
 "select_more" = "Vybrať viac";
 "menu_edit_name" = "Upraviť meno";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +355,7 @@
 "pin" = "Pripnúť";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Pripnuté";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Zrušiť pripnutie";
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedať súkromne";
@@ -462,8 +472,11 @@
 "saved_messages_explain" = "• Sem si preposielajte správy, aby ste k nim mali jednoduchý rýchly prístup\n\n• Píšte si poznámky alebo nahrávajte hlasové odkazy\n\n• Pridajte prílohy, ktoré si chcete uchovať";
 // Should match "Saved" from "Saved messages"
 "saved" = "Uložené";
+// deprecated
 "save_as" = "Uložiť ako";
+// deprecated
 "retry_send" = "Skúste správu odoslať znova";
+// deprecated
 "cannot_display_unsuported_file_type" = "Nie je možné zobraziť tento typ súboru: %1$@";
 "attachment_failed_to_load" = "Prílohu sa nepodarilo načítať";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -515,12 +528,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
 "tab_gallery" = "Galéria";
+// deprecated
 "tab_docs" = "Dokumentácia";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Tu sa zobrazujú obrázky a videá zdieľané v tejto konverzácii.";
 "tab_docs_empty_hint" = "Tu sa zobrazujú dokumenty a ďalšie súbory zdieľané v tejto konverzácii.";
 "tab_image_empty_hint" = "Tu sa zobrazujú obrázky zdieľané v tejto konverzácii.";
+// deprecated
 "tab_video_empty_hint" = "Tu sa zobrazujú videá zdieľané v tejto konverzácii.";
 "tab_audio_empty_hint" = "Tu sa zobrazujú zvukové súbory a hlasové správy zdieľané v tejto konverzácii.";
 "tab_webxdc_empty_hint" = "Tu sa zobrazujú súkromné aplikácie zdieľané v tejto konverzácii.";
@@ -528,9 +543,9 @@
 "all_files_empty_hint" = "Tu sa zobrazujú dokumenty a ďalšie súbory zdieľané vo všetkých konverzáciách.";
 "all_apps_empty_hint" = "Tu sa zobrazujú súkromné aplikácie zdieľané vo tejtovšetkých konverzáciách.";
 "media_preview" = "Ukážka médií";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Mriežka podľa pomeru strán";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Štvorcová mriežka";
 "send_message" = "Odoslať správu";
 // Multi Device
@@ -739,6 +754,7 @@
 "pref_led_color" = "Farba LED";
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
+// deprecated
 "pref_privacy" = "Ochrana osobných údajov";
 "pref_system_default" = "Nastavenie systému";
 // Translators: as in "opposite of dark"
@@ -756,7 +772,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Prečítali";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Šifrovanie";
+// deprecated
 "pref_manage_keys" = "Spravovať kľúče";
 "pref_chats" = "Konverzácie";
 "pref_in_chat_sounds" = "Zvuky v konverzáciách";
@@ -793,7 +811,7 @@
 "pref_show_emails_no" = "Nie, iba konverzácie";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Pre overené kontakty";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Všetky";
 "pref_experimental_features" = "Experimentálne vlastnosti";
 "pref_experimental_features_explain" = "Tieto funkcie môžu byť nestabilné, prípadne môžu byť v budúcnosti zmenené alebo odstránené";
@@ -804,6 +822,8 @@
 "pref_background_custom_color" = "Vlastná farba";
 "export_aborted" = "Export bol prerušený.";
 "auto_download_messages" = "Automaticky Sťahovať Správy";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Všetky";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Až do %1$@";
 "up_to_x_most_worse_quality_images" = "Až do %1$@, väčšina obrázkov v horšej kvalite";
@@ -1138,9 +1158,11 @@
 "open_link" = "%1$@ odkaz";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Zastaviť zdieľanie polohy";
+// deprecated
 "a11y_voice_message_hint_ios" = "Po ukončení nahrávania klepnutím dvomi prstami odošlete alebo potiahnutím dvoma prstami vľavo-vpravo môžete nahrávanie zrušiť.";
 "a11y_connectivity_hint" = "Dvojitým klepnutím otvoríte podrobnosti o pripojení.";
 "login_error_no_internet_connection" = "Žiadne pripojenie k internetu, prihlásenie sa nepodarilo";
+// deprecated
 "share_account_not_configured" = "Účet nie je nastavený.";
 "cannot_play_audio_file" = "Zvukový súbor sa nepodarilo prehrať.";
 // iOS camera permission alert
@@ -1150,12 +1172,16 @@
 "import_device_contacts" = "Importovať kontakty zo zariadenia";
 // deprecated
 "import_device_contacts_hint" = "Ak chcete konverzovať s kontaktmi uloženými vo vašom zariadení, otvorte Nastavenia a povoľte Kontakty.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Vypnuté v aplikácii Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Vypnuté v nastaveniach systému";
 "bg_app_refresh_disabled" = "\"Obnovenie aplikácie na pozadí\" vypnuté v nastaveniach systému";
+// deprecated
 "notifications_avg_minutes" = "V priemere každých %1$d minút";
+// deprecated
 "notifications_avg_hours" = "V priemere každých %1$d hodín";
+// deprecated
 "last_check_at" = "Skontrolované %1$@";
 "system_settings" = "Systémové nastavenia";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

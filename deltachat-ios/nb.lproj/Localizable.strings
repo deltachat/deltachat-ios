@@ -13,6 +13,7 @@
 "on" = "På";
 "off" = "Av";
 "def" = "Forvalg";
+// deprecated
 "default_value" = "Standardverdi (%1$@)";
 "custom" = "Egendefinert";
 "none" = "Ingen";
@@ -25,6 +26,7 @@
 "join" = "Bli med";
 "join_group" = "Bli med i gruppe";
 "join_channel" = "Bli med i kanal";
+// deprecated
 "rejoin" = "Bli med igjen";
 "delete" = "Slett";
 "delete_for_me" = "Slett for meg";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Eksterne bilder kan spore deg.\n\nDenne innstillingen kan også laste skrifttyper og annet innhold. Hvis avslått vil innkapslede og mellomlagrede bilder kunne vises.\n\nLast eksternt innhold?";
 "always" = "Alltid";
+// deprecated
 "always_load_remote_images" = "Last alltid eksterne bilder";
 "once" = "Én gang";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Kan ikke finne en app som kan handtere denne typen data.";
 "no_browser_installed" = "Ingen nettleser installert";
 "file_not_found" = "Filen %1$@ ble ikke funnet.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Kan ikke lagre fil %1$@";
 "copied_to_clipboard" = "Kopiert til utklippstavle";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadresse";
+// deprecated
 "bad_email_address" = "Feilaktig e-postadresse.";
 "password" = "Passord";
 "existing_password" = "Eksisterende passord";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Valgt:";
 "selected" = "Valgt";
 "self" = "Meg";
@@ -166,6 +171,7 @@
 "capture" = "Ta opp";
 // Switch eg. from front to back camera
 "switch_camera" = "Bytt kamera";
+// deprecated
 "toggle_fullscreen" = "Vis fullskjerm";
 "location" = "Posisjon";
 "locations" = "Posisjoner";
@@ -203,10 +209,12 @@
 "magenta" = "Magenta";
 "white" = "Hvit";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Ekstra liten";
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
+// deprecated
 "extra_large" = "Ekstra stor";
 "fast" = "Raskt";
 "slow" = "Langsomt";
@@ -249,6 +257,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tøm chat";
 "delete_contact" = "Slett kontakt";
+// deprecated
 "menu_delete_location" = "Slett på dette stedet?";
 "menu_message_details" = "Meldingsdetaljer";
 "menu_copy_to_clipboard" = "Kopier til utklippstavle";
@@ -291,6 +300,7 @@
 "privacy_policy" = "Personvernerklæring";
 "menu_select_all" = "Velg alle";
 "select_chat" = "Velg chat";
+// deprecated
 "select_more" = "Velg mer";
 "menu_edit_name" = "Rediger navn";
 // The placeholder will be replaced by the name the contact gave themself
@@ -319,7 +329,7 @@
 "unpin_chat" = "Løsne chat";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fest";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Løsn";
 "ConversationFragment_quoted_message_not_found" = "Fant ikke opprinnelig melding";
 "reply_privately" = "Svar privat";
@@ -419,6 +429,7 @@
 "chat_input_placeholder" = "Melding";
 "chat_archived_label" = "Arkivert";
 "chat_request_label" = "Forespørsel";
+// deprecated
 "chat_request_label_explain" = "Inkluder forespørsler i tellere og varsler";
 "chat_no_messages" = "Ingen meldinger.";
 "chat_self_talk_subtitle" = "Meldinger jeg har sendt til meg selv";
@@ -429,8 +440,11 @@
 "saved_messages_explain" = "• Videresend meldinger hit for enkel tilgang\n\n• Ta tekst- eller tale-notater\n\n• Legg ved media for å lagre dem";
 // Should match "Saved" from "Saved messages"
 "saved" = "Lagret";
+// deprecated
 "save_as" = "Lagre som";
+// deprecated
 "retry_send" = "Forsøk å sende på nytt";
+// deprecated
 "cannot_display_unsuported_file_type" = "Kan ikke vise denne filtypen: %1$@";
 "attachment_failed_to_load" = "Kunne ikke laste vedlegg";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -480,12 +494,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";
+// deprecated
 "tab_docs" = "Dokumenter";
 "tab_links" = "Lenker";
 "tab_map" = "Kart";
 "tab_gallery_empty_hint" = "Bilder og videor tilknyttet denne chatten vil vises her.";
 "tab_docs_empty_hint" = "Dokumenter og andre filer tilknyttet denne chatten vil vises her.";
 "tab_image_empty_hint" = "Bilder tilknyttet denne chatten vil vises her.";
+// deprecated
 "tab_video_empty_hint" = "Videoer tilknyttet denne chatten vil vises her.";
 "tab_audio_empty_hint" = "Lydfiler og talebeskjeder tilknyttet denne chatten vil vises her.";
 "tab_webxdc_empty_hint" = "Apper tilknyttet denne chatten vil vises her.";
@@ -493,9 +509,9 @@
 "all_files_empty_hint" = "Dokumenter og andre filer tilknyttet alle chatter vil vises her.";
 "all_apps_empty_hint" = "Apper tilknyttet alle chatter vil vises her.";
 "media_preview" = "Forhåndsvisning av medier";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Rutenett for størrelsesforhold";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Kvadratisk rutenett";
 "send_message" = "Send melding";
 // Multi Device
@@ -540,6 +556,7 @@
 "pref_led_color" = "LED-farge";
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
+// deprecated
 "pref_privacy" = "Personvern";
 "pref_system_default" = "System standard";
 // Translators: as in "opposite of dark"
@@ -553,6 +570,7 @@
 "pref_incognito_keyboard_explain" = "Be tastatur om å slå av lærefunksjon";
 "pref_read_receipts" = "Meldingskvitteringer";
 "pref_read_receipts_explain" = "Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.";
+// deprecated
 "pref_manage_keys" = "Behandle nøkler";
 "pref_chats" = "Chatter";
 "pref_in_chat_sounds" = "Merknader i programmet";

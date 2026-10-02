@@ -13,6 +13,7 @@
 "on" = "Ligado";
 "off" = "Desligado";
 "def" = "Padrão";
+// deprecated
 "default_value" = "Padrão (%1$@)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
@@ -24,6 +25,7 @@
 "join" = "Entrar";
 "join_group" = "Juntar-se ao Grupo";
 "join_channel" = "Juntar-se ao Canal";
+// deprecated
 "rejoin" = "Re-entrar";
 "delete" = "Apagar";
 "delete_for_me" = "Apagar para mim";
@@ -90,6 +92,7 @@
 "copied_to_clipboard" = "Copiado para a área de transferência.";
 "contacts_headline" = "Contactos";
 "email_address" = "Endereço de email";
+// deprecated
 "bad_email_address" = "Endereço de errado de email";
 "password" = "Palavra-chave";
 "now" = "Agora";
@@ -148,6 +151,7 @@
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
+// deprecated
 "extra_large" = "Extra grande";
 "fast" = "Rápido";
 "slow" = "Lento";
@@ -205,6 +209,7 @@
 "privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
 "select_chat" = "Seleccionar Chat";
+// deprecated
 "select_more" = "Seleccionar mais";
 "menu_edit_name" = "Editar nome";
 "menu_settings" = "Definições";
@@ -383,6 +388,7 @@
 "pref_led_color" = "Cor do LED";
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
+// deprecated
 "pref_privacy" = "Privacidade";
 "pref_system_default" = "Configuração por omissão";
 // Translators: as in "opposite of dark"
@@ -399,7 +405,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Lida por";
 "pref_server" = "Servidor";
+// deprecated
 "pref_encryption" = "Criptografia";
+// deprecated
 "pref_manage_keys" = "Gerir teclas";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
@@ -420,8 +428,10 @@
 "pref_show_emails" = "Exibir e-mails comuns";
 // deprecated
 "pref_show_emails_no" = "Não, apenas conversas";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Tudo";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Tudo";
 "disable" = "Desactivar";
 "emoji_activity" = "Actividade";
 "emoji_objects" = "Objectos";

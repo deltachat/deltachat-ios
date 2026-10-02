@@ -13,6 +13,7 @@
 "on" = "Ligado";
 "off" = "Desligado";
 "def" = "Padrão";
+// deprecated
 "default_value" = "Padrão (%1$@)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
@@ -25,6 +26,7 @@
 "join" = "Entrar";
 "join_group" = "Entrar no Grupo";
 "join_channel" = "Entrar no Canal";
+// deprecated
 "rejoin" = "Re-entrar";
 "delete" = "Apagar";
 "delete_for_me" = "Apagar para mim";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Imagens remotas podem ser usadas para te rastrear.\n\nO ajuste também permite o carregamento de fontes e outros conteúdos. Mesmo que desabilitado, você ainda poderá ver imagens em cache ou embarcadas.\n\nCarregar imagens remotas?";
 "always" = "Sempre";
+// deprecated
 "always_load_remote_images" = "Sempre Carregar Imagens Remotas";
 "once" = "Uma vez";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Não foi possível encontrar um app para abrir esse tipo de arquivo.";
 "no_browser_installed" = "Nenhum navegador instalado.";
 "file_not_found" = "Não foi possível encontrar %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Não é possível salvar %1$@.";
 "copied_to_clipboard" = "Salvo na área de transferência.";
 "contacts_headline" = "Contatos";
 "email_address" = "Endereço de email";
+// deprecated
 "bad_email_address" = "Email inválido.";
 "password" = "Senha";
 "existing_password" = "Senha existente";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Selecionado:";
 "selected" = "Selecionado";
 "self" = "Eu";
@@ -160,6 +165,7 @@
 "switch_camera" = "Trocar câmera";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Alternar câmera";
+// deprecated
 "toggle_fullscreen" = "Ativar modo tela cheia";
 "location" = "Localização";
 "locations" = "Localizações";
@@ -193,10 +199,12 @@
 "magenta" = "Magenta";
 "white" = "Branco";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Muito pequeno";
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
+// deprecated
 "extra_large" = "Muito grande";
 "fast" = "Rápido";
 "slow" = "Lento";
@@ -238,6 +246,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Limpar bate-papo";
 "delete_contact" = "Apagar contato";
+// deprecated
 "menu_delete_location" = "Apagar esta localização?";
 "menu_message_details" = "Detalhes da mensagem";
 "menu_copy_to_clipboard" = "Copiar para a área de transferência";
@@ -278,6 +287,7 @@
 "privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
 "select_chat" = "Selecionar Chat";
+// deprecated
 "select_more" = "Selecionar mais";
 "menu_edit_name" = "Modificar nome";
 // The placeholder will be replaced by the name the contact gave themself
@@ -305,7 +315,7 @@
 "unpin_chat" = "Desafixar conversa";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixar";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desafixar";
 "ConversationFragment_quoted_message_not_found" = "Mensagem original não encontrada";
 "reply_privately" = "Responder em privado";
@@ -401,8 +411,11 @@
 "saved_messages_explain" = "• Encaminhe mensagens aqui para fácil acesso\n\n• Faça anotações ou gravações de voz\n\n• Anexe mídia para salvá-las";
 // Should match "Saved" from "Saved messages"
 "saved" = "Salvo";
+// deprecated
 "save_as" = "Guardar como";
+// deprecated
 "retry_send" = "Tentar enviar mensagem novamente";
+// deprecated
 "cannot_display_unsuported_file_type" = "Não é possível exibir este tipo de arquivo: %1$@";
 "attachment_failed_to_load" = "Falha ao carregar anexo";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -444,12 +457,14 @@
 "tab_contact" = "Contato";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galeria";
+// deprecated
 "tab_docs" = "Documentos";
 "tab_links" = "Links";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Imagens e vídeos compartilhados nesta conversa serão mostrados aqui.";
 "tab_docs_empty_hint" = "Documentos, músicas e outros arquivos compartilhados nesta conversa serão mostrados aqui.";
 "tab_image_empty_hint" = "As imagens compartilhadas neste chat serão exibidas aqui.";
+// deprecated
 "tab_video_empty_hint" = "Os vídeos compartilhados neste chat serão exibidos aqui.";
 "tab_audio_empty_hint" = "Os arquivos de áudio e mensagens de voz compartilhados neste chat serão exibidos aqui.";
 "tab_webxdc_empty_hint" = "Apps compartilhadas neste chat serão exibidas aqui.";
@@ -586,6 +601,7 @@
 "pref_led_color" = "Cor do LED";
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
+// deprecated
 "pref_privacy" = "Privacidade";
 "pref_system_default" = "Padrão do sistema";
 // Translators: as in "opposite of dark"
@@ -599,6 +615,7 @@
 "pref_incognito_keyboard_explain" = "Desligar aprendizagem automática do teclado";
 "pref_read_receipts" = "Confirmações de leitura";
 "pref_read_receipts_explain" = "Se sua confirmações de leitura estiverem desativas você não verá as dos demais.";
+// deprecated
 "pref_manage_keys" = "Gerenciar chaves";
 "pref_chats" = "Conversas";
 "pref_in_chat_sounds" = "Sons da conversa";
@@ -628,7 +645,7 @@
 "pref_show_emails_no" = "Não, somente conversas";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Para contatos aceitos";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Recursos experimentais";
 "pref_on_demand_location_streaming" = "Streaming de localização sob demanda";
@@ -638,6 +655,8 @@
 "pref_background_custom_color" = "Cor personalizada";
 "export_aborted" = "Exportação abortada.";
 "auto_download_messages" = "Descarregar Mensagens Automaticamente";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Todos";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Até %1$@";
 "up_to_x_most_worse_quality_images" = "Até %1$@, imagens de pior qualidade";
@@ -883,9 +902,11 @@
 "a11y_disappearing_messages_activated" = "Mensagens que desaparecem ativadas";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Parar de compartilhar localização";
+// deprecated
 "a11y_voice_message_hint_ios" = "Após a gravação, toque duas vezes para enviar. Para descartar a gravação, deslize com dois dedos.";
 "a11y_connectivity_hint" = "Toque duas vezes para ver os detalhes de conectividade.";
 "login_error_no_internet_connection" = "Sem conexão com a Internet, o registro falhou.";
+// deprecated
 "share_account_not_configured" = "A conta não está configurada.";
 "cannot_play_audio_file" = "O arquivo de áudio não pode ser reproduzido.";
 // iOS camera permission alert
@@ -895,12 +916,16 @@
 "import_device_contacts" = "Importar contatos do dispositivo";
 // deprecated
 "import_device_contacts_hint" = "Para conversar com os contatos do seu dispositivo, abra as Configurações e ative \"Contatos\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Desativado no Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Desativado nas configurações do sistema";
 "bg_app_refresh_disabled" = "\"Atualização do Aplicativo em Segundo Plano\" desativada nas configurações do sistema";
+// deprecated
 "notifications_avg_minutes" = "Em média, a cada %1$d minutos";
+// deprecated
 "notifications_avg_hours" = "Em média, a cada %1$d horas";
+// deprecated
 "last_check_at" = "Verificado em %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Para manter a conexão com seu servidor de e-mail e receber mensagens em segundo plano, ignore as otimizações de bateria na próxima etapa.\n\nO Delta Chat usa poucos recursos e toma cuidado para não descarregar a bateria.";

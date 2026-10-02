@@ -13,6 +13,7 @@
 "on" = "Açık";
 "off" = "Kapalı";
 "def" = "Varsayılan";
+// deprecated
 "default_value" = "Varsayılan (%1$@)";
 "custom" = "Özel";
 "none" = "Yok";
@@ -25,6 +26,7 @@
 "join" = "Katıl";
 "join_group" = "Gruba Katıl";
 "join_channel" = "Kanala Katıl";
+// deprecated
 "rejoin" = "Yeniden Katıl";
 "delete" = "Sil";
 "delete_for_me" = "Benim için Sil";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Uzak görseller sizi izleyebilir.\n\nBu ayar, yazı tiplerini ve diğer içeriği de yükler. Etkisizleştirilirse, katıştırılan ya da önbelleklenen görselleri görebilirsiniz.\n\nUzak görseller yüklensin mi?";
 "always" = "Her zaman";
+// deprecated
 "always_load_remote_images" = "Her Zaman Uzak Görselleri Yükle";
 "once" = "Bir kez";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Bu veri türünü işleyen bir uygulama bulunamıyor.";
 "no_browser_installed" = "Kurulu tarayıcı yok.";
 "file_not_found" = "%1$@ bulunamadı.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "%1$@ kaydedilemiyor.";
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kişiler";
 "email_address" = "E-Posta Adresi";
+// deprecated
 "bad_email_address" = "Yanlış e-posta adresi.";
 "password" = "Parola";
 "existing_password" = "Varolan Parola";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Seçilen:";
 "selected" = "Seçilen";
 "self" = "Ben";
@@ -166,6 +171,7 @@
 "capture" = "Yakala";
 // Switch eg. from front to back camera
 "switch_camera" = "Kamerayı Değiştir";
+// deprecated
 "toggle_fullscreen" = "Tam Ekran Moduna Geç";
 "location" = "Konum";
 "locations" = "Konumlar";
@@ -203,10 +209,12 @@
 "magenta" = "Eflatun";
 "white" = "Beyaz";
 "zoom" = "Yakınlaştır";
+// deprecated
 "extra_small" = "Çok küçük";
 "small" = "Küçük";
 "normal" = "Normal";
 "large" = "Büyük";
+// deprecated
 "extra_large" = "Çok büyük";
 "fast" = "Hızlı";
 "slow" = "Yavaş";
@@ -249,6 +257,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sohbeti Temizle";
 "delete_contact" = "Kişiyi Sil";
+// deprecated
 "menu_delete_location" = "Bu Konumu Sil";
 "menu_message_details" = "İleti Bilgisi";
 "menu_copy_to_clipboard" = "Panoya Kopyala";
@@ -291,6 +300,7 @@
 "privacy_policy" = "Gizlilik İlkesi";
 "menu_select_all" = "Tümünü Seç";
 "select_chat" = "Sohbet Seç";
+// deprecated
 "select_more" = "Daha fazlasını seç";
 "menu_edit_name" = "Adı Düzenle";
 // The placeholder will be replaced by the name the contact gave themself
@@ -319,7 +329,7 @@
 "unpin_chat" = "Sohbeti Sabitleme";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Sabitle";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Sabitleme";
 "ConversationFragment_quoted_message_not_found" = "Özgün ileti bulunamadı";
 "reply_privately" = "Özel Olarak Yanıtla";
@@ -414,6 +424,7 @@
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlenen";
 "chat_request_label" = "İstek";
+// deprecated
 "chat_request_label_explain" = "Sayaçlarda ve bildirimlerde istekleri kapsa";
 "chat_no_messages" = "İleti yok.";
 "chat_self_talk_subtitle" = "Kendime İletiler";
@@ -424,8 +435,11 @@
 "saved_messages_explain" = "• Kolay erişim için iletileri buraya iletin\n\n• Notlar ya da sesli notlar alın\n\n• Onları kaydetmek için ortamlar iliştirin";
 // Should match "Saved" from "Saved messages"
 "saved" = "Kaydedilen";
+// deprecated
 "save_as" = "Farklı Kaydet";
+// deprecated
 "retry_send" = "İletiyi göndermeyi yeniden dene";
+// deprecated
 "cannot_display_unsuported_file_type" = "Bu dosya türü görüntülenemiyor: %1$@";
 "attachment_failed_to_load" = "İlişiği yükleme başarısız";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -477,12 +491,14 @@
 "tab_contact" = "Kişi";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
+// deprecated
 "tab_docs" = "Belgeler";
 "tab_links" = "Bağlantılar";
 "tab_map" = "Harita";
 "tab_gallery_empty_hint" = "Bu sohbete iliştirilen görseller ve videolar burada görünecek.";
 "tab_docs_empty_hint" = "Bu sohbete iliştirilen belgeler ve diğer dosyalar burada görünecek.";
 "tab_image_empty_hint" = "Bu sohbete iliştirilen görseller burada görünecek.";
+// deprecated
 "tab_video_empty_hint" = "Bu sohbete iliştirilen videolar burada görünecek.";
 "tab_audio_empty_hint" = "Bu sohbete iliştirilen ses dosyaları ve sesli iletiler burada görünecek.";
 "tab_webxdc_empty_hint" = "Bu sohbete iliştirilen uygulamalar burada görünecek.";
@@ -490,9 +506,9 @@
 "all_files_empty_hint" = "Herhangi bir sohbete iliştirilen belgeler ve diğer dosyalar burada görünecek.";
 "all_apps_empty_hint" = "Herhangi bir sohbete iliştirilen uygulamalar burada görünecek.";
 "media_preview" = "Ortam Önizlemesi";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "En Boy Oranı Izgarası";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Kare Izgara";
 "send_message" = "İleti Gönder";
 // Multi Device
@@ -690,6 +706,7 @@
 "pref_led_color" = "LED Rengi";
 "pref_sound" = "Ses";
 "pref_silent" = "Sessiz";
+// deprecated
 "pref_privacy" = "Gizlilik";
 "pref_system_default" = "Sistem varsayılanı";
 // Translators: as in "opposite of dark"
@@ -707,7 +724,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Okuyanlar";
 "pref_server" = "Sunucu";
+// deprecated
 "pref_encryption" = "Şifreleme";
+// deprecated
 "pref_manage_keys" = "Anahtarları Yönet";
 "pref_chats" = "Sohbetler";
 "pref_in_chat_sounds" = "Sohbet İçi Sesler";
@@ -744,7 +763,7 @@
 "pref_show_emails_no" = "Hayır, yalnızca sohbetler";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Kabul edilen kişiler için";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Tümü";
 "pref_experimental_features" = "Deneysel Özellikler";
 "pref_experimental_features_explain" = "Bu özellikler, kararsız olabilir ve değiştirilebilir ya da kaldırılabilir";
@@ -755,6 +774,8 @@
 "pref_background_custom_color" = "Özel renk";
 "export_aborted" = "Dışa aktarmadan vazgeçildi.";
 "auto_download_messages" = "İletileri Otomatik İndir";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Tümü";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "%1$@ kadar";
 "up_to_x_most_worse_quality_images" = "%1$@ kadar, en kötü kaliteli görseller";
@@ -1080,9 +1101,11 @@
 "a11y_disappearing_messages_activated" = "Kaybolan iletiler etkinleştirildi";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Konum paylaşımını durdur";
+// deprecated
 "a11y_voice_message_hint_ios" = "Kaydettikten sonra göndermek için çift dokunun. Kaydı atmak için iki parmakla sarın.";
 "a11y_connectivity_hint" = "Bağlanabilirlik ayrıntılarını görüntülemek için çift dokunun.";
 "login_error_no_internet_connection" = "Internet bağlantısı yok; giriş başarısız.";
+// deprecated
 "share_account_not_configured" = "Profil yapılandırılmadı.";
 "cannot_play_audio_file" = "Ses dosyası oynatılamıyor.";
 // iOS camera permission alert
@@ -1092,12 +1115,16 @@
 "import_device_contacts" = "Aygıt kişilerini içe aktar";
 // deprecated
 "import_device_contacts_hint" = "Aygıtınızdan gelen kişilerle sohbet etmek için Ayarlar\'ı açın ve “Kişiler”i etkinleştirin.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Delta Chat\'ten etkisizleştirildi";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Sistem ayarlarından etkisizleştirildi";
 "bg_app_refresh_disabled" = "“Arka Planda Uygulama Yenileme” sistem ayarlarından etkisizleştirildi";
+// deprecated
 "notifications_avg_minutes" = "Ortalama olarak her %1$d dakikada bir";
+// deprecated
 "notifications_avg_hours" = "Ortalama olarak her %1$d saatte bir";
+// deprecated
 "last_check_at" = "Denetleme %1$@";
 "system_settings" = "Sistem Ayarları";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

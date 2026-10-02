@@ -8,6 +8,7 @@
 "on" = "چالاک";
 "off" = "ناچالاک";
 "def" = "بنەڕەتی";
+// deprecated
 "default_value" = "بنەڕەتی (%1$@)";
 "custom" = "دڵخواز";
 "none" = "هیچیان";
@@ -15,6 +16,7 @@
 "open" = "کردنەوە";
 "open_attachment" = "کردنەوەی پێوەلکاو";
 "join" = "بەشداربوون";
+// deprecated
 "rejoin" = "دیسان بەشداربوونەوە";
 "delete" = "بیسڕەوە";
 "info" = "زانیاری";
@@ -56,6 +58,7 @@
 "copied_to_clipboard" = "ڕوونووس کرا";
 "contacts_headline" = "بەردەنگەکان";
 "email_address" = "پۆستی ئەلیکترۆنی";
+// deprecated
 "bad_email_address" = "پۆستی ئەلیکترۆنی بێکەڵک";
 "password" = "تێپەڕوشە";
 "existing_password" = "دووپات کردنەوەی تێپەڕوشە";
@@ -102,10 +105,12 @@
 "magenta" = "سووری ئەرخەوانی";
 "white" = "سپی";
 "zoom" = "نزیک کردنەوە";
+// deprecated
 "extra_small" = "زۆر بچووک";
 "small" = "بچووک";
 "normal" = "ئاسایی";
 "large" = "گەورە";
+// deprecated
 "extra_large" = "زۆر گەورە";
 "fast" = "خێرا";
 "slow" = "خاو";
@@ -124,6 +129,7 @@
 "menu_leave_group" = "بەجێهێشتنی کۆڕ";
 "menu_delete_chat" = "سڕینەوەی وتووێژ";
 "delete_contact" = "سڕینەوەی بەردەنگ";
+// deprecated
 "menu_delete_location" = "ئەم شوێنە دەسڕیتەوە؟";
 "menu_message_details" = "وردەکارییەکانی پەیامەکە";
 "menu_copy_to_clipboard" = "ڕوونووس کردن";
@@ -149,6 +155,7 @@
 "menu_scroll_to_top" = "ڕۆیشتن بەرەو ژوور";
 "menu_help" = "یارمەتی";
 "menu_select_all" = "هەمووی هەڵبژێرە";
+// deprecated
 "select_more" = "هەڵبژاردنی زۆرتر";
 "menu_edit_name" = "دەستکاری ناو";
 "menu_settings" = "ڕێکخستنەکان";
@@ -168,7 +175,7 @@
 "unpin_chat" = "لابردنی دەرزیلە";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "دەرزیلە بکە";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "دەرزیلە لابە";
 "ConversationFragment_quoted_message_not_found" = "پەیامە ڕەسەنەکە نەدۆزرایەوە";
 "reply_privately" = "وەڵامدانەوەی نهێنی";
@@ -220,7 +227,9 @@
 "saved_messages_explain" = "• پەیامەکان بنێرە ئێرە تاکوو بەئاسانی لەبەردەست بن\n\n• ڕەشنووسی دەق یان دەنگی دابنە\n\n• ڕەنگاڵە پەیوەست بکە تاکوو پاشەکەوت بکرێن";
 // Should match "Saved" from "Saved messages"
 "saved" = "پاشەکەوت کرا";
+// deprecated
 "retry_send" = "دیسان هەوڵ بدەوە بۆ هەناردنی پەیامەکە";
+// deprecated
 "cannot_display_unsuported_file_type" = "ئەم چەشنە پەڕگەیە پیشان نادرێت: %1$@";
 "attachment_failed_to_load" = "پێوەلکاوەکە دانەگیرا";
 // mailing lists
@@ -244,6 +253,7 @@
 "tab_contact" = "بەردەنگ";
 "tab_group" = "کۆڕ";
 "tab_gallery" = "پیشانگە";
+// deprecated
 "tab_docs" = "بەڵگەکان";
 "tab_links" = "بەستەرەکان";
 "tab_map" = "نەخشە";
@@ -309,6 +319,7 @@
 "pref_led_color" = "ڕەنگی چرای LED";
 "pref_sound" = "دەنگ";
 "pref_silent" = "بێدەنگ";
+// deprecated
 "pref_privacy" = "پاراستنی تاکەکەسی";
 "pref_system_default" = "بنەڕەتی سیستەم";
 // Translators: as in "opposite of dark"
@@ -322,6 +333,7 @@
 "pref_incognito_keyboard_explain" = "داخوازی بۆ ئەوەی کە تەختەکلیلەکە فێربوون و لەبەرگرتنەوەی نووسراوەکانت ناچالاک بکات.";
 "pref_read_receipts" = "وەرگرنامەی خوێندنەوە";
 "pref_read_receipts_explain" = "ئەگەر \"وەرگرنامەی خوێندن\" ناچالاک بێت، ئیدی تۆش نایبینیت کە ئاخۆ کەسانی دی پەیامەکەتیان خوێندووەتەوە یان نا.";
+// deprecated
 "pref_manage_keys" = "بەڕێوەبردنی کلیلەکان";
 "pref_chats" = "وتووێژەکان";
 "pref_in_chat_sounds" = "دەنگەکانی نێو-وتووێژی";
@@ -343,7 +355,7 @@
 "pref_show_emails_no" = "نا، بەس چاتەکان";
 // deprecated
 "pref_show_emails_accepted_contacts" = "بۆ بەردەنگە پەسندکراوەکان";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "هەموو";
 "pref_experimental_features" = "ئەو تایبەتمەندییانەی بۆ تاقی کردنەوەن";
 "pref_background_default" = "پشتخانی بنەڕەتی";
@@ -351,6 +363,8 @@
 "pref_background_custom_image" = "وێنەی دڵخواز";
 "pref_background_custom_color" = "ڕەنگی دڵخواز";
 "export_aborted" = "هەناردەکردن ڕاوەستا";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "هەموو";
 "profile_image_select" = "هەڵبژاردنی وێنەی لادیمەن";
 "select_your_new_profile_image" = "وێنەی لادیمەنە نوێکەت هەڵبژێرە";
 "profile_image_delete" = "سڕینەوەی وێنەی لادیمەن";

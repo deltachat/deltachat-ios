@@ -13,6 +13,7 @@
 "on" = "رۊشن";
 "off" = "کۊر";
 "def" = "پؽش فرز";
+// deprecated
 "default_value" = "پؽش فرز (%1$@)";
 "custom" = "سفارشی";
 "none" = "هیچکویکی";
@@ -23,6 +24,7 @@
 "downloading" = "هونی دانلود ابۊ...";
 "open_attachment" = "گۊشیڌن پیوست";
 "join" = "ٱووڌن";
+// deprecated
 "rejoin" = "ز نۊ ٱووڌن";
 "delete" = "پاک کردن";
 "delete_for_me" = "پاک کردن سی مو";
@@ -76,6 +78,7 @@
 "activate" = "فعال کردن";
 "load_remote_content" = "بار ونی شؽواتا ز در";
 "always" = "همیشه";
+// deprecated
 "always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
 // deprecated
@@ -93,11 +96,12 @@
 "no_app_to_handle_data" = "برنومه ای سی ای نوع داده نجۊرست.";
 "no_browser_installed" = "هیچ گشت گری نپۊرسته.";
 "file_not_found" = "%1$@ ن نجوست.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "نتره %1$@ ن زفت کونه.";
 "copied_to_clipboard" = "من ویرگه لف گیری وابی.";
 "contacts_headline" = "هومدنگووݩ";
 "email_address" = "نشۊوی ایمیل";
+// deprecated
 "bad_email_address" = "نشۊوی ایمیل موشکل داره.";
 "password" = "رزم";
 "existing_password" = "رزم مووجۊد";
@@ -119,6 +123,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "پسند وابیڌه:";
 "self" = "مو";
 "draft" = "پؽش هؽل";
@@ -150,6 +155,7 @@
 "capture" = "گرؽڌن";
 // Switch eg. from front to back camera
 "switch_camera" = "آلشت شؽواتگر";
+// deprecated
 "toggle_fullscreen" = "آلشت وزیت پوی بلگه";
 "location" = "جاگه";
 "locations" = "جاگه یل";
@@ -187,10 +193,12 @@
 "magenta" = "سوئرکوۊ";
 "white" = "اسبؽڌ";
 "zoom" = "گپ کردن";
+// deprecated
 "extra_small" = "قلوه کۊچیر";
 "small" = "کۊچیر";
 "normal" = "عادی";
 "large" = "گپ";
+// deprecated
 "extra_large" = "قلوه گپ";
 "fast" = "زل";
 "slow" = "هووار";
@@ -230,6 +238,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "روفتن ویرگار گوفت وو لوفت";
 "delete_contact" = "پاک کردن هومدنگ";
+// deprecated
 "menu_delete_location" = "ای جاگه پاک بۊ؟";
 "menu_message_details" = "جۊزیات پیوم";
 "menu_copy_to_clipboard" = "لف گیری من ویرگه";
@@ -257,6 +266,7 @@
 "menu_help" = "هیاری";
 "menu_select_all" = "پسند پوی";
 "select_chat" = "پسند گوفت وو لوفت";
+// deprecated
 "select_more" = "پسند بیشتر";
 "menu_edit_name" = "آلشت نوم";
 "menu_settings" = "سامووا";
@@ -305,7 +315,9 @@
 "saved_messages" = "پیوما زفت بیڌه";
 // Should match "Saved" from "Saved messages"
 "saved" = "زفت وابی";
+// deprecated
 "save_as" = "زفت و عونوان";
+// deprecated
 "retry_send" = "ز نۊ سی فشناڌن پیوم تقلا کوݩ";
 // mailing lists
 "mailing_list" = "نومگه پوستی";
@@ -325,6 +337,7 @@
 "tab_contact" = "هومدنگ";
 "tab_group" = "جرگه";
 "tab_gallery" = "شؽوات مال";
+// deprecated
 "tab_docs" = "سندا";
 "tab_links" = "لینگا";
 "tab_map" = "نقشه";
@@ -350,8 +363,10 @@
 "pref_chats" = "گوفت وو لوفتا";
 "pref_log_header" = "گوزارش";
 "pref_background_btn_gallery" = "پسند ز شؽوات مال";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "پوی";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "پوی";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "تا سقف %1$@";
 "profile_image_select" = "پسند شؽوات پوروفایل";

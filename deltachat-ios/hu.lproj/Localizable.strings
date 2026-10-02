@@ -13,6 +13,7 @@
 "on" = "Bekapcsolva";
 "off" = "Kikapcsolva";
 "def" = "Alapértelmezett";
+// deprecated
 "default_value" = "Alapértelmezett (%1$@)";
 "custom" = "Egyéni";
 "none" = "Semmi";
@@ -23,6 +24,7 @@
 "downloading" = "Letöltés…";
 "open_attachment" = "Melléklet megnyitása";
 "join" = "Csatlakozás";
+// deprecated
 "rejoin" = "Újracsatlakozás";
 "delete" = "Törlés";
 "delete_for_me" = "Törlés számomra";
@@ -78,6 +80,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "A távoli képek követhetik Önt.\n\nEz a beállítás betűtípusokat és egyéb tartalmakat is betölthet. Ha letiltja, beágyazott vagy gyorsítótárazott képek jelenhetnek meg.\n\nBetölti a távoli képeket?";
 "always" = "Mindig";
+// deprecated
 "always_load_remote_images" = "Mindig töltse be a távoli képeket";
 "once" = "Azonnal";
 // deprecated
@@ -95,11 +98,12 @@
 "no_app_to_handle_data" = "Nem található alkalmazást az ilyen típusú adatok kezeléséhez.";
 "no_browser_installed" = "Nincs telepítve böngésző.";
 "file_not_found" = "%1$@ nem található.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Nem lehet menteni a következőt: %1$@.";
 "copied_to_clipboard" = "Vágólapra másolva.";
 "contacts_headline" = "Névjegyek";
 "email_address" = "E-mail-cím";
+// deprecated
 "bad_email_address" = "Hibás e-mail-cím.";
 "password" = "Jelszó";
 "existing_password" = "Jelenlegi jelszó";
@@ -121,6 +125,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Kiválasztva:";
 "self" = "Ön";
 "draft" = "Piszkozat";
@@ -152,6 +157,7 @@
 "capture" = "Rögzítés";
 // Switch eg. from front to back camera
 "switch_camera" = "Kameraváltás";
+// deprecated
 "toggle_fullscreen" = "Váltás teljes képernyős módra";
 "location" = "Hely";
 "locations" = "Helyek";
@@ -189,10 +195,12 @@
 "magenta" = "Magenta";
 "white" = "Fehér";
 "zoom" = "Nagyítás";
+// deprecated
 "extra_small" = "Extra kicsi";
 "small" = "Kicsi";
 "normal" = "Normál";
 "large" = "Nagy";
+// deprecated
 "extra_large" = "Nagyon nagy";
 "fast" = "Gyors";
 "slow" = "Lassú";
@@ -233,6 +241,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Csevegés kiürítése";
 "delete_contact" = "Névjegy törlése";
+// deprecated
 "menu_delete_location" = "Biztosan törli ezt a helyet?";
 "menu_message_details" = "Üzenetinformáció";
 "menu_copy_to_clipboard" = "Másolás a vágólapra";
@@ -275,6 +284,7 @@
 "privacy_policy" = "Adatvédelmi irányelvek";
 "menu_select_all" = "Összes kiválasztása";
 "select_chat" = "Csevegés kiválasztása";
+// deprecated
 "select_more" = "Továbbiak kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
 // The placeholder will be replaced by the name the contact gave themself
@@ -303,7 +313,7 @@
 "unpin_chat" = "Csevegés kitűzésének megszüntetése";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Kitűzés";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Kitűzés megszüntetése";
 "ConversationFragment_quoted_message_not_found" = "Nem található az eredeti üzenet";
 "reply_privately" = "Válasz privátban";
@@ -373,6 +383,7 @@
 "chat_input_placeholder" = "Üzenet…";
 "chat_archived_label" = "Archivált";
 "chat_request_label" = "Kérés";
+// deprecated
 "chat_request_label_explain" = "Kérések felvétele a számlálókba és értesítésekbe";
 "chat_no_messages" = "Nincsenek üzenetek.";
 "chat_self_talk_subtitle" = "Önmagamnak küldött üzenetek";
@@ -383,8 +394,11 @@
 "saved_messages_explain" = "• Üzenetek továbbítása az egyszerű hozzáférés érdekében\n\n• Jegyzetek vagy hangjegyzetek készítése\n\n• Médiaanyagok mellékelése a mentéshez";
 // Should match "Saved" from "Saved messages"
 "saved" = "Mentett";
+// deprecated
 "save_as" = "Mentés mint";
+// deprecated
 "retry_send" = "Üzenet újraküldése";
+// deprecated
 "cannot_display_unsuported_file_type" = "Ezt a fájltípust nem lehet megjeleníteni: %1$@";
 "attachment_failed_to_load" = "Nem sikerült betölteni a mellékletet";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -431,12 +445,14 @@
 "tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
 "tab_gallery" = "Galéria";
+// deprecated
 "tab_docs" = "Dokumentumok";
 "tab_links" = "Hivatkozások";
 "tab_map" = "Térkép";
 "tab_gallery_empty_hint" = "Az ebben a csevegésben megosztott képek és videók itt fognak megjelenni.";
 "tab_docs_empty_hint" = "Az ebben a csevegésben megosztott dokumentumok és egyéb fájlok itt fognak megjelenni.";
 "tab_image_empty_hint" = "Az ebben a csevegésben megosztott képek itt fognak megjelenni.";
+// deprecated
 "tab_video_empty_hint" = "Az ebben a csevegésben megosztott videók itt fognak megjelenni.";
 "tab_audio_empty_hint" = "Az ebben a csevegésben megosztott hangfájlok és hangüzenetek itt fognak megjelenni.";
 "tab_webxdc_empty_hint" = "Az ebben a csevegésben megosztott alkalmazások itt fognak megjelenni.";
@@ -444,9 +460,9 @@
 "all_files_empty_hint" = "A csevegésekben megosztott dokumentumok és egyéb fájlok itt jelennek meg.";
 "all_apps_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni.";
 "media_preview" = "Médiaelőnézet";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Tengelyarányrács";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
 // Multi Device
@@ -622,6 +638,7 @@
 "pref_led_color" = "Értesítésjelző-fény színe";
 "pref_sound" = "Hang";
 "pref_silent" = "Csendes";
+// deprecated
 "pref_privacy" = "Adatvédelem";
 "pref_system_default" = "Rendszer alapértelmezett";
 // Translators: as in "opposite of dark"
@@ -637,7 +654,9 @@
 "pref_read_receipts" = "Olvasási visszaigazolások";
 "pref_read_receipts_explain" = "Ha az olvasási visszaigazolásokat letiltja, akkor Ön sem fogja látni mások olvasási visszaigazolásait.";
 "pref_server" = "Kiszolgáló";
+// deprecated
 "pref_encryption" = "Titkosítás";
+// deprecated
 "pref_manage_keys" = "Kulcsok kezelése";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
@@ -670,7 +689,7 @@
 "pref_show_emails_no" = "Nem, csak csevegések";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Elfogadott partnerek számára";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
 "pref_on_demand_location_streaming" = "On-Demand folyamatos helymegosztás";
@@ -680,6 +699,8 @@
 "pref_background_custom_color" = "Egyéni szín";
 "export_aborted" = "Exportálás megszakítva.";
 "auto_download_messages" = "Üzenetek automatikus letöltése";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Összes";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Legfeljebb %1$@";
 "up_to_x_most_worse_quality_images" = "Legfeljebb %1$@, leginkább rosszabb minőségű kép";
@@ -972,9 +993,11 @@
 "a11y_disappearing_messages_activated" = "Eltűnő üzenetek bekapcsolva";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Helymegosztás kikapcsolása.";
+// deprecated
 "a11y_voice_message_hint_ios" = "A felvétel rögzítése után duplán koppintson a küldéshez. A felvétel elvetéséhez csúsztassa két ujjával.";
 "a11y_connectivity_hint" = "Dupla koppintás a tárhely részleteinek megtekintéséhez.";
 "login_error_no_internet_connection" = "Nincs internetkapcsolat, nem sikerült bejelentkezni.";
+// deprecated
 "share_account_not_configured" = "A profil nincs konfigurálva.";
 "cannot_play_audio_file" = "A hangfájl nem játszható le.";
 // iOS camera permission alert
@@ -984,12 +1007,16 @@
 "import_device_contacts" = "Eszköz névjegyeinek importálása";
 // deprecated
 "import_device_contacts_hint" = "Az eszközén lévő névjegyekkel való csevegéshez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Névjegyekhez”.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Letiltva a Delta Chatben";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Letilva a rendszerbeállításokban";
 "bg_app_refresh_disabled" = "„Háttérfrissítések” letiltva a rendszerbeállításokban";
+// deprecated
 "notifications_avg_minutes" = "Átlagosan %1$d percenként";
+// deprecated
 "notifications_avg_hours" = "Átlagosan %1$d óránként";
+// deprecated
 "last_check_at" = "Ellenőrizés ideje: %1$@";
 "system_settings" = "Rendszer-beállítások";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

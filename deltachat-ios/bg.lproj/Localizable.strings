@@ -9,6 +9,7 @@
 "on" = "Включено";
 "off" = "Изключено";
 "def" = "По подразбиране";
+// deprecated
 "default_value" = "По подразбиране (%1$@)";
 "custom" = "Дефиниран от потребителя";
 "none" = "Без";
@@ -19,6 +20,7 @@
 "downloading" = "Сваля се...";
 "open_attachment" = "Отваряне на прикачен файл";
 "join" = "Присъединяване";
+// deprecated
 "rejoin" = "Присъединяване отново";
 "delete" = "Изтриване";
 "info" = "Информация";
@@ -60,6 +62,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Отдалечените изображения могат да Ви следят.\n\nСъщо така тази настройка позволява да се зареждат шрифтове и друго съдържание. Ако е забранена, може да се появяват вградени или кеширани изображения.\n\nДа се зареждат ли ли отдалечени изображения?";
 "always" = "Винаги";
+// deprecated
 "always_load_remote_images" = "Винаги да се зареждат отдалечените изображения";
 "once" = "Веднъж";
 // deprecated
@@ -80,6 +83,7 @@
 "copied_to_clipboard" = "Копирано в клипборда.";
 "contacts_headline" = "Контакти";
 "email_address" = "Адрес за електронна поща";
+// deprecated
 "bad_email_address" = "Невалиден адрес за електронна поща.";
 "password" = "Парола";
 "existing_password" = "Съществуваща парола";
@@ -130,6 +134,7 @@
 "capture" = "Заснемане";
 // Switch eg. from front to back camera
 "switch_camera" = "Превключване на камерата";
+// deprecated
 "toggle_fullscreen" = "Включване/изключване на пълноекранния режим";
 "location" = "Местоположение";
 "locations" = "Местоположения";
@@ -151,10 +156,12 @@
 "magenta" = "Маджента";
 "white" = "Бяло";
 "zoom" = "Мащабиране";
+// deprecated
 "extra_small" = "Много малко";
 "small" = "Малко";
 "normal" = "Нормално";
 "large" = "Голямо";
+// deprecated
 "extra_large" = "Много голямо";
 "fast" = "Бързо";
 "slow" = "Бавно";
@@ -179,6 +186,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Изчистване на чата";
 "delete_contact" = "Изтриване на контакт";
+// deprecated
 "menu_delete_location" = "Да бъде ли изтрито това местоположение?";
 "menu_message_details" = "Детайли на съобщение";
 "menu_copy_to_clipboard" = "Копиране в клипборд";
@@ -215,6 +223,7 @@
 "privacy_policy" = "Политика за поверителност";
 "menu_select_all" = "Избор на всичко";
 "select_chat" = "Изберете чат";
+// deprecated
 "select_more" = "Избор на още";
 "menu_edit_name" = "Редактиране на името";
 "menu_settings" = "Настройки";
@@ -239,7 +248,7 @@
 "unpin_chat" = "Премахване на чата от забодените";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Забождане";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Премахване от забодените";
 "ConversationFragment_quoted_message_not_found" = "Оригиналното съобщение не е открито";
 "reply_privately" = "Личен отговор";
@@ -299,8 +308,11 @@
 "saved_messages_explain" = "• Препращайте съобщения тук за лесен достъп\n\n• Взимайте си текстови или гласови бележки\n\n• Прикрепяйте медийни файлове, за да ги запазите";
 // Should match "Saved" from "Saved messages"
 "saved" = "Запазено";
+// deprecated
 "save_as" = "Запазване като";
+// deprecated
 "retry_send" = "Нов опит за изпращане на съобщението";
+// deprecated
 "cannot_display_unsuported_file_type" = "Файл от тип %1$@ не може да бъде показан";
 "attachment_failed_to_load" = "Неуспешно зареждане на прикрепен файл";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -343,21 +355,23 @@
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
 "tab_gallery" = "Галерия";
+// deprecated
 "tab_docs" = "Документи";
 "tab_links" = "Връзки";
 "tab_map" = "Карта";
 "tab_gallery_empty_hint" = "Изображенията и видеоклиповете, споделени в този чат, ще се показват тук.";
 "tab_docs_empty_hint" = "Документите и другите файлове, споделени в този чат, ще се показват тук.";
 "tab_image_empty_hint" = "Изображенията, споделени в този чат, ще се появяват тук.";
+// deprecated
 "tab_video_empty_hint" = "Видеоклиповете, споделени в този чат, ще се появяват тук.";
 "tab_audio_empty_hint" = "Аудио файловете и гласовите съобщения, споделени в този чат, ще се появяват тук.";
 "tab_webxdc_empty_hint" = "Приложенията, споделени в този чат, ще се появяват тук.";
 "tab_all_media_empty_hint" = "Медийните файлове, споделени в кой да е чат, ще се появяват тук.";
 "all_apps_empty_hint" = "Приложенията, получени или изпратени в кой да е чат, ще се появяват тук.";
 "media_preview" = "Предварителен преглед на медия файл";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Мрежа, запазваща съотношенията";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Мрежа от квадрати";
 "send_message" = "Изпращане на съобщение";
 // Multi Device
@@ -505,6 +519,7 @@
 "pref_led_color" = "Цвят на LED светлината";
 "pref_sound" = "Звук";
 "pref_silent" = "Без звук";
+// deprecated
 "pref_privacy" = "Поверителност";
 "pref_system_default" = "Подразбиращото се за системата";
 // Translators: as in "opposite of dark"
@@ -519,7 +534,9 @@
 "pref_read_receipts" = "Известия за прочетена поща";
 "pref_read_receipts_explain" = "Ако известията за прочетена поща са забранени, няма да може да виждате известията, идващи от други потребители.";
 "pref_server" = "Сървър";
+// deprecated
 "pref_encryption" = "Криптиране";
+// deprecated
 "pref_manage_keys" = "Управление на ключове";
 "pref_chats" = "Чатове";
 "pref_in_chat_sounds" = "Звуци в чата";
@@ -551,7 +568,7 @@
 "pref_show_emails_no" = "Не, само чатове";
 // deprecated
 "pref_show_emails_accepted_contacts" = "За приетите контакти";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Всички";
 "pref_experimental_features" = "Експериментални възможности";
 "pref_on_demand_location_streaming" = "Поточно излъчване на местоположението при поискване";
@@ -561,6 +578,8 @@
 "pref_background_custom_color" = "Зададен от Вас цвят";
 "export_aborted" = "Експортът е прекъснат.";
 "auto_download_messages" = "Съобщенията да се свалят автоматично";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Всички";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "До %1$@";
 "up_to_x_most_worse_quality_images" = "До %1$@, повечето от които изображения с по-лошо качество";
@@ -831,9 +850,11 @@
 "a11y_disappearing_messages_activated" = "Активирани са изчезващите съобщения";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Споделянето на местоположението да бъде спряно";
+// deprecated
 "a11y_voice_message_hint_ios" = "След като приключите със записа, докоснете двукратно, за да го изпратите. За да го отхвърлите, приплъзнете с два пръста.";
 "a11y_connectivity_hint" = "Докоснете двукратно, за да видите информация за връзката.";
 "login_error_no_internet_connection" = "Няма връзка към интернет, влизането е неуспешно.";
+// deprecated
 "share_account_not_configured" = "Акаунтът не е конфигуриран.";
 "cannot_play_audio_file" = "Аудио файлът не може да бъде възпроизведен.";
 // iOS camera permission alert
@@ -843,12 +864,16 @@
 "import_device_contacts" = "Въвеждане на контакти от устройството";
 // deprecated
 "import_device_contacts_hint" = "За да чатите с контакти от Вашето устройство, отворете Настройки и разрешете \"Контакти\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Забранено в Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Забранено в системните настройки";
 "bg_app_refresh_disabled" = "\"Опресняване на приложението на заден план\" е забранено в системните настройки";
+// deprecated
 "notifications_avg_minutes" = "Средно всеки %1$d минути";
+// deprecated
 "notifications_avg_hours" = "Средно всеки %1$d часа";
+// deprecated
 "last_check_at" = "Проверено на %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "За да се поддържа връзката към Вашия сървър за електронна поща и да получавате съобщения във фонов режим, игнорирайте оптимизациите на батерията на следващата стъпка.\n\nDelta Chat използва малко ресурси и се грижи да не изтощава Вашата батерия.";

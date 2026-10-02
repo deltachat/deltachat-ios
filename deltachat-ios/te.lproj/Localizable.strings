@@ -80,6 +80,7 @@
 "small" = "చిన్న";
 "normal" = "సాధారణంగా";
 "large" = "పెద్ద";
+// deprecated
 "extra_large" = "చాలా పెద్దది";
 "fast" = "త్వరగా";
 "slow" = "మెల్లిగా";
@@ -159,6 +160,7 @@
 "pref_led_color" = "LED రంగు";
 "pref_sound" = "శబ్ధం";
 "pref_silent" = "మౌనం";
+// deprecated
 "pref_privacy" = "గోప్యత";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "లైటు";

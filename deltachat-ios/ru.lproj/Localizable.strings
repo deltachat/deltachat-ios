@@ -13,6 +13,7 @@
 "on" = "Вкл.";
 "off" = "Выкл.";
 "def" = "По умолчанию";
+// deprecated
 "default_value" = "По умолчанию (%1$@)";
 "custom" = "Свой вариант";
 "none" = "Не задано";
@@ -25,6 +26,7 @@
 "join" = "Присоединиться";
 "join_group" = "Вступить в группу";
 "join_channel" = "Присоединиться к каналу";
+// deprecated
 "rejoin" = "Присоединиться снова";
 "delete" = "Удалить";
 "delete_for_me" = "Удалить для меня";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Изображения, размещенные на внешних источниках, могут быть использованы для слежки за вами.\n\nЭта настройка также позволяет загружать шрифты и другой контент. Если она отключена, вы сможете видеть встроенные или кешированные изображения.\n\nРазрешить загрузку из внешних источников?";
 "always" = "Всегда";
+// deprecated
 "always_load_remote_images" = "Всегда загружать изображения из внешних источников";
 "once" = "Только сейчас";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Не удалось найти приложение для обработки этого типа данных.";
 "no_browser_installed" = "Браузер не установлен.";
 "file_not_found" = "Не удалось найти %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Невозможно сохранить %1$@.";
 "copied_to_clipboard" = "Скопировано в буфер обмена.";
 "contacts_headline" = "Контакты";
 "email_address" = "Адрес электронной почты";
+// deprecated
 "bad_email_address" = "Неправильный адрес электронной почты.";
 "password" = "Пароль";
 "existing_password" = "Текущий пароль";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Выбрано:";
 "selected" = "Выбрано";
 "self" = "Я";
@@ -178,6 +183,7 @@
 "contact" = "Контакт";
 "bot" = "Бот";
 "camera" = "Камера";
+"take_photo" = "Сделать фото";
 "front_camera" = "Фронтальная камера";
 "back_camera" = "Основная камера";
 "microphone" = "Микрофон";
@@ -187,6 +193,7 @@
 "switch_camera" = "Переключить камеру";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Переключить камеру";
+// deprecated
 "toggle_fullscreen" = "Полноэкранный режим";
 "location" = "Местоположение";
 "locations" = "Местоположения";
@@ -227,10 +234,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Масштаб";
+// deprecated
 "extra_small" = "Очень маленький";
 "small" = "Маленький";
 "normal" = "Обычный";
 "large" = "Большой";
+// deprecated
 "extra_large" = "Очень большой";
 "fast" = "Быстрый";
 "slow" = "Медленный";
@@ -273,6 +282,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистить чат";
 "delete_contact" = "Удалить контакт";
+// deprecated
 "menu_delete_location" = "Удалить местоположение?";
 "menu_message_details" = "Информация о сообщении";
 "menu_copy_to_clipboard" = "Копировать в буфер обмена";
@@ -315,6 +325,7 @@
 "privacy_policy" = "Политика конфиденциальности";
 "menu_select_all" = "Выбрать всё";
 "select_chat" = "Выбрать чат";
+// deprecated
 "select_more" = "Выбрать больше";
 "menu_edit_name" = "Редактировать имя";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +356,7 @@
 "pin" = "Закрепить";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Закреплено";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Открепить";
 "ConversationFragment_quoted_message_not_found" = "Исходное сообщение не найдено";
 "reply_privately" = "Ответить лично";
@@ -453,6 +464,7 @@
 "chat_input_placeholder" = "Сообщение";
 "chat_archived_label" = "Архивировано";
 "chat_request_label" = "Запрос";
+// deprecated
 "chat_request_label_explain" = "Включать запросы в счётчики и уведомления";
 "chat_no_messages" = "Нет сообщений.";
 "chat_self_talk_subtitle" = "Сообщения, отправленные себе";
@@ -463,8 +475,11 @@
 "saved_messages_explain" = "• Пересылайте сообщения сюда для быстрого доступа\n\n• Делайте заметки или записывайте голосовые сообщения\n\n• Прикрепляйте медиафайлы, чтобы сохранить их";
 // Should match "Saved" from "Saved messages"
 "saved" = "Сохранено";
+// deprecated
 "save_as" = "Сохранить как…";
+// deprecated
 "retry_send" = "Повторить отправку сообщения";
+// deprecated
 "cannot_display_unsuported_file_type" = "Невозможно показать этот тип файла: %1$@";
 "attachment_failed_to_load" = "Не удалось загрузить вложение";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +531,14 @@
 "tab_contact" = "Контакты";
 "tab_group" = "Группа";
 "tab_gallery" = "Галерея";
+// deprecated
 "tab_docs" = "Документы";
 "tab_links" = "Ссылки";
 "tab_map" = "Карта";
 "tab_gallery_empty_hint" = "Изображения и видео, прикреплённые к этому чату, будут показаны здесь.";
 "tab_docs_empty_hint" = "Документы и прочие файлы, прикреплённые к этому чату, будут показаны здесь.";
 "tab_image_empty_hint" = "Изображения, прикреплённые к этому чату, будут показаны здесь.";
+// deprecated
 "tab_video_empty_hint" = "Видео, прикреплённые к этому чату, будут показаны здесь.";
 "tab_audio_empty_hint" = "Аудиофайлы и голосовые сообщения, прикреплённые к этому чату, будут показаны здесь.";
 "tab_webxdc_empty_hint" = "Приложения, прикреплённые к этому чату, будут показаны здесь.";
@@ -529,9 +546,9 @@
 "all_files_empty_hint" = "Документы и прочие вложения, из всех ваших чатов, будут показаны здесь.";
 "all_apps_empty_hint" = "Приложения, из всех ваших чатов, будут показаны здесь.";
 "media_preview" = "Предпросмотр медиафайлов";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Сетка с соотношением сторон";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Сетка квадратов";
 "send_message" = "Отправить сообщение";
 // Multi Device
@@ -740,6 +757,7 @@
 "pref_led_color" = "Цвет светодиода ";
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучный";
+// deprecated
 "pref_privacy" = "Конфиденциальность";
 "pref_system_default" = "По умолчанию";
 // Translators: as in "opposite of dark"
@@ -757,7 +775,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Прочитано";
 "pref_server" = "Сервер";
+// deprecated
 "pref_encryption" = "Шифрование";
+// deprecated
 "pref_manage_keys" = "Управление ключами";
 "pref_chats" = "Чаты";
 "pref_in_chat_sounds" = "Звуки в чате";
@@ -794,7 +814,7 @@
 "pref_show_emails_no" = "Нет, только чаты";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Для принятых контактов";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Все";
 "pref_experimental_features" = "Экспериментальные функции";
 "pref_experimental_features_explain" = "Эти функции могут быть нестабильными и могут быть изменены или удалены";
@@ -805,6 +825,8 @@
 "pref_background_custom_color" = "Персональный цвет";
 "export_aborted" = "Экспорт прерван.";
 "auto_download_messages" = "Автозагрузка сообщений";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Все";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "До %1$@";
 "up_to_x_most_worse_quality_images" = "До %1$@, изображения плохого качества";
@@ -1141,9 +1163,11 @@
 "open_link" = "Открыть %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Прекратить делиться местоположением";
+// deprecated
 "a11y_voice_message_hint_ios" = "После записи дважды нажмите, чтобы отправить. Чтобы отменить запись, проведите двумя пальцами.";
 "a11y_connectivity_hint" = "Дважды нажмите, чтобы увидеть подробности соединения.";
 "login_error_no_internet_connection" = "Отсутствует соединение с интернетом, авторизация не удалась.";
+// deprecated
 "share_account_not_configured" = "Профиль не настроен.";
 "cannot_play_audio_file" = "Аудиофайл не может быть воспроизведён.";
 // iOS camera permission alert
@@ -1153,12 +1177,16 @@
 "import_device_contacts" = "Импорт контактов устройства";
 // deprecated
 "import_device_contacts_hint" = "Чтобы переписываться с контактами из вашей адресной книги, откройте \"Настройки\" и включите доступ к \"Контактам\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Отключено в Delta Chat.";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Отключено в системных настройках";
 "bg_app_refresh_disabled" = "\"Фоновое обновление приложений\" отключено в системных настройках";
+// deprecated
 "notifications_avg_minutes" = "В среднем каждые %1$d минут(ы)";
+// deprecated
 "notifications_avg_hours" = "В среднем каждые %1$d часа(ов)";
+// deprecated
 "last_check_at" = "Проверено в %1$@";
 "system_settings" = "Настройки системы";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

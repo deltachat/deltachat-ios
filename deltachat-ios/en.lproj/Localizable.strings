@@ -13,6 +13,7 @@
 "on" = "On";
 "off" = "Off";
 "def" = "Default";
+// deprecated
 "default_value" = "Default (%1$@)";
 "custom" = "Custom";
 "none" = "None";
@@ -25,6 +26,7 @@
 "join" = "Join";
 "join_group" = "Join Group";
 "join_channel" = "Join Channel";
+// deprecated
 "rejoin" = "Rejoin";
 "delete" = "Delete";
 "delete_for_me" = "Delete for Me";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Remote images can track you.\n\nThis setting also may load fonts and other content. If disabled, embedded or cached images may appear.\n\nLoad remote images?";
 "always" = "Always";
+// deprecated
 "always_load_remote_images" = "Always Load Remote Images";
 "once" = "Once";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Can\'t find an app to handle this type of data.";
 "no_browser_installed" = "No browser installed.";
 "file_not_found" = "Could not find %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Cannot save %1$@.";
 "copied_to_clipboard" = "Copied to clipboard.";
 "contacts_headline" = "Contacts";
 "email_address" = "Email Address";
+// deprecated
 "bad_email_address" = "Bad email address.";
 "password" = "Password";
 "existing_password" = "Existing Password";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Selected:";
 "selected" = "Selected";
 "self" = "Me";
@@ -188,6 +193,7 @@
 "switch_camera" = "Switch Camera";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Toggle Camera";
+// deprecated
 "toggle_fullscreen" = "Toggle Full Screen Mode";
 "location" = "Location";
 "locations" = "Locations";
@@ -203,6 +209,7 @@
 "webxdc_app" = "App";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
+"webxdc_add" = "Add App";
 "webxdc_store_url" = "App Picker URL";
 "webxdc_store_url_explain" = "If set, the URL will be used as the App Picker instead of the default one";
 "webxdc_draft_hint" = "Tap \"Send\" to share";
@@ -228,10 +235,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Extra small";
 "small" = "Small";
 "normal" = "Normal";
 "large" = "Large";
+// deprecated
 "extra_large" = "Extra large";
 "fast" = "Fast";
 "slow" = "Slow";
@@ -274,6 +283,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Clear Chat";
 "delete_contact" = "Delete Contact";
+// deprecated
 "menu_delete_location" = "Delete this Location?";
 "menu_message_details" = "Message Info";
 "menu_copy_to_clipboard" = "Copy to Clipboard";
@@ -316,6 +326,7 @@
 "privacy_policy" = "Privacy Policy";
 "menu_select_all" = "Select All";
 "select_chat" = "Select Chat";
+// deprecated
 "select_more" = "Select more";
 "menu_edit_name" = "Edit Name";
 // The placeholder will be replaced by the name the contact gave themself
@@ -346,7 +357,7 @@
 "pin" = "Pin";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Pinned";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Unpin";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
 "reply_privately" = "Reply Privately";
@@ -454,6 +465,7 @@
 "chat_input_placeholder" = "Message";
 "chat_archived_label" = "Archived";
 "chat_request_label" = "Request";
+// deprecated
 "chat_request_label_explain" = "Include requests in counters and notifications";
 "chat_no_messages" = "No messages.";
 "chat_self_talk_subtitle" = "Messages to Self";
@@ -464,8 +476,11 @@
 "saved_messages_explain" = "• Forward messages here for easy access\n\n• Take notes or voice memos\n\n• Attach media to save them";
 // Should match "Saved" from "Saved messages"
 "saved" = "Saved";
+// deprecated
 "save_as" = "Save As";
+// deprecated
 "retry_send" = "Retry to send message";
+// deprecated
 "cannot_display_unsuported_file_type" = "Cannot display this file type: %1$@";
 "attachment_failed_to_load" = "Failed to load attachment";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -517,12 +532,14 @@
 "tab_contact" = "Contact";
 "tab_group" = "Group";
 "tab_gallery" = "Gallery";
+// deprecated
 "tab_docs" = "Docs";
 "tab_links" = "Links";
 "tab_map" = "Map";
 "tab_gallery_empty_hint" = "Images and videos attached to this chat will appear here.";
 "tab_docs_empty_hint" = "Documents and other files attached to this chat will appear here.";
 "tab_image_empty_hint" = "Images attached to this chat will appear here.";
+// deprecated
 "tab_video_empty_hint" = "Videos attached to this chat will appear here.";
 "tab_audio_empty_hint" = "Audio files and voice messages attached to this chat will appear here.";
 "tab_webxdc_empty_hint" = "Apps attached to this chat will appear here.";
@@ -530,9 +547,9 @@
 "all_files_empty_hint" = "Documents and other files attached to any chat will appear here.";
 "all_apps_empty_hint" = "Apps attached to any chat will appear here.";
 "media_preview" = "Media Preview";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Aspect Ratio Grid";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Square Grid";
 "send_message" = "Send Message";
 // Multi Device
@@ -741,6 +758,7 @@
 "pref_led_color" = "LED Color";
 "pref_sound" = "Sound";
 "pref_silent" = "Silent";
+// deprecated
 "pref_privacy" = "Privacy";
 "pref_system_default" = "System default";
 // Translators: as in "opposite of dark"
@@ -758,7 +776,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Read by";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Encryption";
+// deprecated
 "pref_manage_keys" = "Manage Keys";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "In-Chat Sounds";
@@ -795,7 +815,7 @@
 "pref_show_emails_no" = "No, chats only";
 // deprecated
 "pref_show_emails_accepted_contacts" = "For accepted contacts";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "All";
 "pref_experimental_features" = "Experimental Features";
 "pref_experimental_features_explain" = "These features may be unstable and may be changed or removed";
@@ -806,6 +826,8 @@
 "pref_background_custom_color" = "Custom color";
 "export_aborted" = "Export aborted.";
 "auto_download_messages" = "Auto-Download Messages";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "All";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Up to %1$@";
 "up_to_x_most_worse_quality_images" = "Up to %1$@, most worse quality images";
@@ -1142,9 +1164,11 @@
 "open_link" = "Open %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Stop sharing location";
+// deprecated
 "a11y_voice_message_hint_ios" = "After recording, double-tap to send. To discard the recording, scrub with two fingers.";
 "a11y_connectivity_hint" = "Double tap to view connectivity details.";
 "login_error_no_internet_connection" = "No internet connection, login failed.";
+// deprecated
 "share_account_not_configured" = "Profile is not configured.";
 "cannot_play_audio_file" = "The audio file cannot be played.";
 // iOS camera permission alert
@@ -1154,12 +1178,16 @@
 "import_device_contacts" = "Import device contacts";
 // deprecated
 "import_device_contacts_hint" = "To chat with contacts from your device open Settings and enable \"Contacts\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Disabled in Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Disabled in system settings";
 "bg_app_refresh_disabled" = "\"Background App Refresh\" disabled in system settings";
+// deprecated
 "notifications_avg_minutes" = "On average every %1$d minutes";
+// deprecated
 "notifications_avg_hours" = "On average every %1$d hours";
+// deprecated
 "last_check_at" = "Checked at %1$@";
 "system_settings" = "System Settings";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

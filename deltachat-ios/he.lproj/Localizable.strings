@@ -13,6 +13,7 @@
 "on" = "הפעל";
 "off" = "כבה";
 "def" = "ברירת מחדל";
+// deprecated
 "default_value" = "ברירת מחדל (%1$@)";
 "custom" = "מותאם אישית";
 "none" = "אין";
@@ -25,6 +26,7 @@
 "join" = "הצטרפו";
 "join_group" = "הצטרף לקבוצה";
 "join_channel" = "הצטרף לערוץ";
+// deprecated
 "rejoin" = "הצטרף מחדש";
 "delete" = "מחק";
 "delete_for_me" = "מחק עבורי";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "תמונות מרחוק יכולות לעקוב אחריך.\n\nהגדרה זו עשויה גם לטעון גופנים ותכנים אחרים. אם היא מושבתת, ייתכן שתמונות מוטמעות או שמורות במטמון יופיעו.\n\nלטעון תמונות מרחוק?";
 "always" = "תמיד";
+// deprecated
 "always_load_remote_images" = "טען תמיד תמונות מרחוק";
 "once" = "פעם אחת";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "לא נמצאה אפליקציה שתתמודד עם סוג הנתונים הזה.";
 "no_browser_installed" = "לא מותקן דפדפן";
 "file_not_found" = "לא נמצא %1$@";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "לא ניתן לשמור %1$@";
 "copied_to_clipboard" = "הועתק ללוח.";
 "contacts_headline" = "אנשי קשר";
 "email_address" = "כתובת דוא\"ל";
+// deprecated
 "bad_email_address" = "כתובת דוא\"ל שגויה.";
 "password" = "סיסמה";
 "existing_password" = "סיסמה קיימת";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "נבחר:";
 "selected" = "נבחר";
 "self" = "אני";
@@ -187,6 +192,7 @@
 "switch_camera" = "החלף מצלמה";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "הפעל/כבה מצלמה";
+// deprecated
 "toggle_fullscreen" = "הפעל/כבה מצב מסך מלא";
 "location" = "מיקום";
 "locations" = "מיקומים";
@@ -227,10 +233,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "זום";
+// deprecated
 "extra_small" = "קטן במיוחד";
 "small" = "קטן";
 "normal" = "רגיל";
 "large" = "גדול";
+// deprecated
 "extra_large" = "גדול במיוחד";
 "fast" = "מהיר";
 "slow" = "איטי";
@@ -273,6 +281,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "נקה את הצ\'אט";
 "delete_contact" = "מחיקת איש קשר";
+// deprecated
 "menu_delete_location" = "האם למחוק את המיקום הזה?";
 "menu_message_details" = "פרטי ההודעה";
 "menu_copy_to_clipboard" = "העתק ללוח";
@@ -315,6 +324,7 @@
 "privacy_policy" = "מדיניות פרטיות";
 "menu_select_all" = "בחר הכל";
 "select_chat" = "בחר צ\'אט";
+// deprecated
 "select_more" = "בחר עוד";
 "menu_edit_name" = "ערוך שם";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +355,7 @@
 "pin" = "סיכה";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "מוצמד";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "הסר את הסימון";
 "ConversationFragment_quoted_message_not_found" = "לא נמצא ההודעה המקורית";
 "reply_privately" = "השב באופן פרטי";
@@ -453,6 +463,7 @@
 "chat_input_placeholder" = "הודעה";
 "chat_archived_label" = "בארכיון";
 "chat_request_label" = "בקשה";
+// deprecated
 "chat_request_label_explain" = "הכללת בקשות בספירות ובהתראות";
 "chat_no_messages" = "אין הודעות.";
 "chat_self_talk_subtitle" = "מסרים לעצמי";
@@ -463,8 +474,11 @@
 "saved_messages_explain" = "• העבר הודעות לכאן כדי להקל על הגישה\n\n• רשום הערות או הקלט תזכורות קוליות\n\n• צרף קבצי מדיה כדי לשמור אותם";
 // Should match "Saved" from "Saved messages"
 "saved" = "נשמר";
+// deprecated
 "save_as" = "שמור בשם";
+// deprecated
 "retry_send" = "נסה שוב לשלוח את ההודעה";
+// deprecated
 "cannot_display_unsuported_file_type" = "לא ניתן להציג סוג קובץ זה: %1$@";
 "attachment_failed_to_load" = "לא הצליח לטעון את הקובץ המצורף";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +530,14 @@
 "tab_contact" = "צור קשר";
 "tab_group" = "קבוצה";
 "tab_gallery" = "גלריה";
+// deprecated
 "tab_docs" = "מסמכים";
 "tab_links" = "קישורים";
 "tab_map" = "מפה";
 "tab_gallery_empty_hint" = "תמונות וסרטונים המצורפים לצ\'אט זה יופיעו כאן.";
 "tab_docs_empty_hint" = "מסמכים וקבצים אחרים המצורפים לצ\'אט זה יופיעו כאן.";
 "tab_image_empty_hint" = "תמונות המצורפות לשיחה זו יופיעו כאן.";
+// deprecated
 "tab_video_empty_hint" = "סרטונים המצורפים לצ\'אט זה יופיעו כאן.";
 "tab_audio_empty_hint" = "קובצי אודיו והודעות קוליות המצורפים לצ\'אט זה יופיעו כאן.";
 "tab_webxdc_empty_hint" = "אפליקציות המצורפות לצ\'אט זה יופיעו כאן.";
@@ -529,9 +545,9 @@
 "all_files_empty_hint" = "מסמכים וקבצים אחרים המצורפים לכלל הצ\'אטים יופיעו כאן.";
 "all_apps_empty_hint" = "האפליקציות המקושרות לכלל הצ\'אטים יופיעו כאן.";
 "media_preview" = "תצוגה מקדימה";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "רשת יחס רוחב-גובה";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "רשת ריבועית";
 "send_message" = "שלח הודעה";
 // Multi Device
@@ -740,6 +756,7 @@
 "pref_led_color" = "צבע נורית ה-LED";
 "pref_sound" = "צליל";
 "pref_silent" = "שקט";
+// deprecated
 "pref_privacy" = "פרטיות";
 "pref_system_default" = "הגדרת ברירת המחדל של המערכת";
 // Translators: as in "opposite of dark"
@@ -757,7 +774,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "נקרא על ידי";
 "pref_server" = "שרת";
+// deprecated
 "pref_encryption" = "הצפנה";
+// deprecated
 "pref_manage_keys" = "ניהול מפתחות";
 "pref_chats" = "צ\'אטים";
 "pref_in_chat_sounds" = "צלילים בצ\'אט";
@@ -794,7 +813,7 @@
 "pref_show_emails_no" = "לא, צ\'אטים בלבד";
 // deprecated
 "pref_show_emails_accepted_contacts" = "עבור אנשי קשר שאושרו";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "הכל";
 "pref_experimental_features" = "תכונות ניסיוניות";
 "pref_experimental_features_explain" = "תכונות אלו עשויות להיות לא יציבות, והן עשויות להשתנות או להוסר";
@@ -805,6 +824,8 @@
 "pref_background_custom_color" = "צבע מותאם אישית";
 "export_aborted" = "הייצוא הופסק.";
 "auto_download_messages" = "הורדה אוטומטית של הודעות";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "הכל";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "עד %1$@";
 "up_to_x_most_worse_quality_images" = "עד %1$@, רוב התמונות באיכות הנמוכה ביותר";
@@ -1141,9 +1162,11 @@
 "open_link" = "פתח %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "הפסק לשתף את המיקום";
+// deprecated
 "a11y_voice_message_hint_ios" = "לאחר ההקלטה, הקש פעמיים כדי לשלוח. כדי למחוק את ההקלטה, החלק עם שתי אצבעות.";
 "a11y_connectivity_hint" = "הקש פעמיים כדי להציג את פרטי החיבור.";
 "login_error_no_internet_connection" = "אין חיבור לאינטרנט, הכניסה נכשלה.";
+// deprecated
 "share_account_not_configured" = "הפרופיל לא הוגדר.";
 "cannot_play_audio_file" = "לא ניתן לנגן את קובץ השמע.";
 // iOS camera permission alert
@@ -1153,12 +1176,16 @@
 "import_device_contacts" = "יבוא אנשי קשר מהמכשיר";
 // deprecated
 "import_device_contacts_hint" = "כדי לשוחח בצ\'אט עם אנשי הקשר מהמכשיר שלך, פתח את \"הגדרות\" והפעל את האפשרות \"אנשי קשר\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "מושבת ב- Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "מושבת בהגדרות המערכת";
 "bg_app_refresh_disabled" = "\"רענון אפליקציות ברקע\" מושבת בהגדרות המערכת";
+// deprecated
 "notifications_avg_minutes" = "בממוצע, כל %1$d דקות";
+// deprecated
 "notifications_avg_hours" = "בממוצע כל %1$d שעות";
+// deprecated
 "last_check_at" = "נבדק ב- %1$@";
 "system_settings" = "הגדרות מערכת";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

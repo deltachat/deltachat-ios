@@ -13,6 +13,7 @@
 "on" = "Zapnuto";
 "off" = "Vypnuto";
 "def" = "Výchozí";
+// deprecated
 "default_value" = "Výchozí (%1$@)";
 "custom" = "Vlastní";
 "none" = "Žádný";
@@ -25,6 +26,7 @@
 "join" = "Připojit se";
 "join_group" = "Připojit se ke skupině";
 "join_channel" = "Připojte se ke kanálu";
+// deprecated
 "rejoin" = "Znovu se připojit";
 "delete" = "Smazat";
 "delete_for_me" = "Smazat pro mě";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Vzdálené obrázky vás mohou sledovat.\n\nTato volba povolí i stahování dalšího obsahu, jako jsou například písma. Obrázky z vyrovnávací paměti nebo ty, které jsou součástí zprávy, se zobrazí, i když je tato volba vypnuta.\n\nPřejete si načíst vzdálené obrázky?";
 "always" = "Vždy";
+// deprecated
 "always_load_remote_images" = "Vždy načítat vzdálené obrázky";
 "once" = "Jednou";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Aplikace pro tento typ dat nenalezena.";
 "no_browser_installed" = "Není nainstalován žádný prohlížeč.";
 "file_not_found" = "Nelze najít %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Nelze uložit %1$@";
 "copied_to_clipboard" = "Zkopírováno do schránky.";
 "contacts_headline" = "Kontakty";
 "email_address" = "E-mailová adresa";
+// deprecated
 "bad_email_address" = "Neplatná e-mailová adresa.";
 "password" = "Heslo";
 "existing_password" = "Stávající heslo";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Vybráno:";
 "selected" = "Vybráno";
 "self" = "Já";
@@ -166,6 +171,7 @@
 "capture" = "Spoušť";
 // Switch eg. from front to back camera
 "switch_camera" = "Přepnout kameru";
+// deprecated
 "toggle_fullscreen" = "Přepnout režim celé obrazovky";
 "location" = "Poloha";
 "locations" = "Polohy";
@@ -203,10 +209,12 @@
 "magenta" = "Fialová";
 "white" = "Bílá";
 "zoom" = "Zvětšit";
+// deprecated
 "extra_small" = "Velmi malá";
 "small" = "Malá";
 "normal" = "Normální";
 "large" = "Velká";
+// deprecated
 "extra_large" = "Velmi velká";
 "fast" = "Rychle";
 "slow" = "Pomalu";
@@ -247,6 +255,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vyprázdnit chat";
 "delete_contact" = "Smazat kontakt";
+// deprecated
 "menu_delete_location" = "Přejete si smazat tuto polohu?";
 "menu_message_details" = "Informace o zprávě";
 "menu_copy_to_clipboard" = "Kopírovat do schránky";
@@ -289,6 +298,7 @@
 "privacy_policy" = "Zásady ochrany osobních údajů";
 "menu_select_all" = "Vybrat vše";
 "select_chat" = "Vybrat chat";
+// deprecated
 "select_more" = "Vybrat další";
 "menu_edit_name" = "Upravit jméno";
 // The placeholder will be replaced by the name the contact gave themself
@@ -317,7 +327,7 @@
 "unpin_chat" = "Odepnout chat";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Připnout";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Odepnout";
 "ConversationFragment_quoted_message_not_found" = "Původní zpráva nenalezena";
 "reply_privately" = "Odpovědět soukromě";
@@ -387,6 +397,7 @@
 "chat_input_placeholder" = "Zpráva";
 "chat_archived_label" = "Archivováno";
 "chat_request_label" = "Žádost";
+// deprecated
 "chat_request_label_explain" = "Zahrnutí požadavků do čítačů a oznámení";
 "chat_no_messages" = "Žádné zprávy.";
 "chat_self_talk_subtitle" = "Zprávy poslané sobě";
@@ -397,8 +408,11 @@
 "saved_messages_explain" = "Sem si můžete:\n\n• přeposílat zprávy pro rychlý přístup,\n\n• zapisovat textové i hlasové poznámky,\n\n• ukládat multimédia";
 // Should match "Saved" from "Saved messages"
 "saved" = "Uložené";
+// deprecated
 "save_as" = "Uložit jako";
+// deprecated
 "retry_send" = "Opakovat pokus o zaslání zprávy";
+// deprecated
 "cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Načtení přílohy se nezdařilo";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -445,12 +459,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
 "tab_gallery" = "Galerie";
+// deprecated
 "tab_docs" = "Dokumenty";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Zde se zobrazí obrázky a videa sdílené v tomto chatu.";
 "tab_docs_empty_hint" = "Zde se zobrazí dokumenty, hudba a další soubory sdílené v tomto chatu.";
 "tab_image_empty_hint" = "Zde se zobrazí obrázky sdílené v tomto chatu.";
+// deprecated
 "tab_video_empty_hint" = "Zde se zobrazí videa sdílená v tomto chatu.";
 "tab_audio_empty_hint" = "Zde se zobrazí zvukové soubory a hlasové zprávy sdílené v tomto chatu.";
 "tab_webxdc_empty_hint" = "Zde se zobrazí aplikace sdílené v tomto chatu.";
@@ -458,9 +474,9 @@
 "all_files_empty_hint" = "Zde se zobrazí dokumenty a další soubory sdílené v jakémkoli chatu.";
 "all_apps_empty_hint" = "Zde se zobrazí aplikace sdílené v jakémkoli chatu.";
 "media_preview" = "Náhled multimédia";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Mřížka zachovávající poměry stran";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Mřížka čtverců";
 "send_message" = "Odeslat zprávu";
 // Multi Device
@@ -644,6 +660,7 @@
 "pref_led_color" = "Barva diody";
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
+// deprecated
 "pref_privacy" = "Soukromí";
 "pref_system_default" = "Podle systému";
 // Translators: as in "opposite of dark"
@@ -659,7 +676,9 @@
 "pref_read_receipts" = "Potvrzení o přečtení";
 "pref_read_receipts_explain" = "Při vypnutém čtení potvrzení se nezobrazí potvrzení o příjetí od ostatních.";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Šifrování";
+// deprecated
 "pref_manage_keys" = "Správa klíčů";
 "pref_chats" = "Chaty";
 "pref_in_chat_sounds" = "Zvuky v rámci chatu";
@@ -696,7 +715,7 @@
 "pref_show_emails_no" = "Ne, pouze chaty";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Pro přijaté kontakty";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Vše";
 "pref_experimental_features" = "Experimentální funkce ";
 "pref_experimental_features_explain" = "Tyto funkce mohou být nestabilní a mohou být změněny nebo odstraněny.";
@@ -707,6 +726,8 @@
 "pref_background_custom_color" = "Vlastní barva";
 "export_aborted" = "Export přerušen.";
 "auto_download_messages" = "Automatické stahování zpráv";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Vše";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Do %1$@";
 "up_to_x_most_worse_quality_images" = "Do %1$@, většina obrázků horší kvality";
@@ -1005,9 +1026,11 @@
 "a11y_disappearing_messages_activated" = "Mizející zprávy jsou zapnuty";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Přestat sdílet polohu";
+// deprecated
 "a11y_voice_message_hint_ios" = "Po ukončení nahrávání stiskněte dvakrát pro odeslání. Pro zahození nahrané zprávy, přejeďte dvěma prsty.";
 "a11y_connectivity_hint" = "Stiskněte dvakrát pro zobrazení detailů připojení.";
 "login_error_no_internet_connection" = "Žádné připojení k internetu, přihlášení selhalo.";
+// deprecated
 "share_account_not_configured" = "Profil není nakonfigurovaný.";
 "cannot_play_audio_file" = "Zvukový soubor nemohl být přehrán.";
 // iOS camera permission alert
@@ -1017,12 +1040,16 @@
 "import_device_contacts" = "Importovat kontakty ze zařízení";
 // deprecated
 "import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Zakázáno aplikací Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Zakázáno v systémovém nastavení";
 "bg_app_refresh_disabled" = "\"Aktualizace aplikací na pozadí\" jsou vypnuty v systémovém nastavení";
+// deprecated
 "notifications_avg_minutes" = "Průměrně jednou za %1$d minut";
+// deprecated
 "notifications_avg_hours" = "Průměrně jednou za %1$d hodin";
+// deprecated
 "last_check_at" = "Naposledy zkontrolováno %1$@";
 "system_settings" = "Systémová nastavení";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

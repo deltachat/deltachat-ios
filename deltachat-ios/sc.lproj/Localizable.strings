@@ -8,6 +8,7 @@
 "on" = "Allutu";
 "off" = "Istudadu";
 "def" = "Predefinidu";
+// deprecated
 "default_value" = "Predefinidu (%1$@)";
 "custom" = "Personalizadu";
 "none" = "Perunu";
@@ -15,6 +16,7 @@
 "strict" = "Astrintu";
 "open" = "Aberi";
 "join" = "Auni·ti";
+// deprecated
 "rejoin" = "Torra a t\'aunire";
 "delete" = "Iscantzella";
 "info" = "Informatziones";
@@ -54,6 +56,7 @@
 "copied_to_clipboard" = "Copiadu in punta de billete.";
 "contacts_headline" = "Cuntatos";
 "email_address" = "Indiritzu de posta eletrònica";
+// deprecated
 "bad_email_address" = "Indiritzu non vàlidu.";
 "password" = "Crae de intrada";
 "existing_password" = "Crae chi b\'at";
@@ -98,10 +101,12 @@
 "magenta" = "Magenta";
 "white" = "Biancu";
 "zoom" = "Ismànnia";
+// deprecated
 "extra_small" = "Minore meda";
 "small" = "Minore";
 "normal" = "Normale";
 "large" = "Largu";
+// deprecated
 "extra_large" = "Largu meda";
 "fast" = "Lestru";
 "slow" = "Lentu";
@@ -120,6 +125,7 @@
 "menu_add_attachment" = "Annanghe un\'allegadu";
 "menu_leave_group" = "Lassa su grupu";
 "menu_delete_chat" = "Iscantzella sa tzarrada";
+// deprecated
 "menu_delete_location" = "Iscantzellare custa positzione?";
 "menu_message_details" = "Detàllios de su messàgiu";
 "menu_copy_to_clipboard" = "Còpia in punta de billete";
@@ -156,7 +162,7 @@
 "unpin_chat" = "Isbloca sa tzarrada";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Apica";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Isbloca";
 "mute_for_one_hour" = "A sa muda pro 1 ora";
 "mute_for_eight_hours" = "A sa muda pro 8 oras";
@@ -206,7 +212,9 @@
 "saved_messages_explain" = "• Inoltra sos messàgios inoghe pro bi pòdere atzèdere in manera lestra\n\n• Sarva notas iscritas o sonoras\n\n• Allega mèdios pro los sarvare";
 // Should match "Saved" from "Saved messages"
 "saved" = "Sarvadu";
+// deprecated
 "retry_send" = "Torra a proare a imbiare su messàgiu";
+// deprecated
 "cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
 // search
 "search" = "Chirca";
@@ -227,6 +235,7 @@
 "tab_contact" = "Cuntatu";
 "tab_group" = "Grupu";
 "tab_gallery" = "Galleria";
+// deprecated
 "tab_docs" = "Documentos";
 "tab_links" = "Ligàmenes";
 "tab_map" = "Mapa";
@@ -300,6 +309,7 @@
 "pref_led_color" = "Colore LED";
 "pref_sound" = "Sonu";
 "pref_silent" = "Istuda su sonu";
+// deprecated
 "pref_privacy" = "Riservadesa";
 "pref_system_default" = "Predefinidu de sistema";
 // Translators: as in "opposite of dark"
@@ -313,6 +323,7 @@
 "pref_incognito_keyboard_explain" = "Pedi a sa tastiera de disabilitare s\'imparu personalizadu";
 "pref_read_receipts" = "Retzidas de leghidura";
 "pref_read_receipts_explain" = "Si sas retzidas de leghidura sunt disabilitadas, no as a pòdere bìdere sas retzidas de leghidura de àtere.";
+// deprecated
 "pref_manage_keys" = "Amministra sas craes";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
@@ -340,7 +351,7 @@
 "pref_show_emails_no" = "Nono, tzarradas ebbia";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Pro sos cuntatos atzetados";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Totus";
 "pref_experimental_features" = "Funtzionalidades isperimentales";
 "pref_on_demand_location_streaming" = "Trasmissione de sa positzione suta dimanda";
@@ -349,6 +360,8 @@
 "pref_background_custom_image" = "Immàgine personalizada";
 "pref_background_custom_color" = "Colore personalizadu";
 "export_aborted" = "Esportatzione annullada.";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Totus";
 "profile_image_select" = "Ischerta s\'immàgine de profilu";
 "select_your_new_profile_image" = "Ischerta s\'immàgine de profilu noa tua";
 "profile_image_delete" = "Iscantzella s\'immàgine de profilu";

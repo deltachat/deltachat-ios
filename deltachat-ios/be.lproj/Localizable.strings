@@ -13,6 +13,7 @@
 "on" = "Укл.";
 "off" = "Выкл.";
 "def" = "Па змаўчанні";
+// deprecated
 "default_value" = "Па змаўчанні (%1$@)";
 "custom" = "Свой варыянт";
 "none" = "Не зададзена";
@@ -25,6 +26,7 @@
 "join" = "Далучыцца";
 "join_group" = "Уступіць у групу";
 "join_channel" = "Далучыцца да канала";
+// deprecated
 "rejoin" = "Далучыцца зноў";
 "delete" = "Выдаліць";
 "delete_for_me" = "Выдаліць для мяне";
@@ -82,6 +84,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Выявы, размешчаныя на знешніх крыніцах, могуць быць выкарыстаны для сачэння за вамі.\n\nГэтая налада таксама дазваляе загружаць шрыфты і іншае змесціва. Калі яна адключана, могуць адлюстроўвацца ўбудаваныя або кэшаваныя выявы.\n\nДазволіць загрузку з знешніх крыніц?";
 "always" = "Заўсёды";
+// deprecated
 "always_load_remote_images" = "Заўсёды загружаць выявы з знешніх крыніц";
 "once" = "Толькі цяпер";
 // deprecated
@@ -100,11 +103,12 @@
 "no_app_to_handle_data" = "Не ўдалося знайсці праграму для апрацоўкі гэтага тыпу даных.";
 "no_browser_installed" = "Аглядальнік не ўсталяваны.";
 "file_not_found" = "Не ўдалося знайсці %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Не ўдалося захаваць %1$@.";
 "copied_to_clipboard" = "Скапіявана ў буфер абмену.";
 "contacts_headline" = "Кантакты";
 "email_address" = "Адрас электроннай пошты";
+// deprecated
 "bad_email_address" = "Няправільны адрас электроннай пошты.";
 "password" = "Пароль";
 "existing_password" = "Бягучы пароль";
@@ -129,6 +133,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Выбрана:";
 "selected" = "Выбрана";
 "self" = "Я";
@@ -166,6 +171,7 @@
 "switch_camera" = "Пераключыць камеру";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Перамкнуць камеру";
+// deprecated
 "toggle_fullscreen" = "Перамкнуць поўнаэкранны рэжым";
 "location" = "Месцазнаходжанне";
 "locations" = "Месцазнаходжанні";
@@ -203,10 +209,12 @@
 "magenta" = "Маджэнта";
 "white" = "Белы";
 "zoom" = "Маштаб";
+// deprecated
 "extra_small" = "Вельмі маленькі";
 "small" = "Маленькі";
 "normal" = "Звычайны";
 "large" = "Вялікі";
+// deprecated
 "extra_large" = "Вельмі вялікі";
 "fast" = "Хуткі";
 "slow" = "Павольны";
@@ -249,6 +257,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ачысціць чат";
 "delete_contact" = "Выдаліць кантакт";
+// deprecated
 "menu_delete_location" = "Выдаліць гэтае месцазнаходжанне?";
 "menu_message_details" = "Інфармацыя пра паведамленне";
 "menu_copy_to_clipboard" = "Капіяваць у буфер абмену";
@@ -291,6 +300,7 @@
 "privacy_policy" = "Палітыка прыватнасці";
 "menu_select_all" = "Выбраць усё";
 "select_chat" = "Выбраць чат";
+// deprecated
 "select_more" = "Выбраць больш";
 "menu_edit_name" = "Рэдагаваць імя";
 // The placeholder will be replaced by the name the contact gave themself
@@ -319,7 +329,7 @@
 "unpin_chat" = "Адмацаваць чат";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Замацаваць";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Адмацаваць";
 "ConversationFragment_quoted_message_not_found" = "Зыходнае паведамленне не знойдзена";
 "reply_privately" = "Адказаць асабіста";
@@ -424,6 +434,7 @@
 "chat_input_placeholder" = "Напісаць";
 "chat_archived_label" = "Архівавана";
 "chat_request_label" = "Запыт";
+// deprecated
 "chat_request_label_explain" = "Уключаць запыты ў лічыльнікі і апавяшчэнні";
 "chat_no_messages" = "Няма паведамленняў.";
 "chat_self_talk_subtitle" = "Паведамленні сабе";
@@ -434,8 +445,11 @@
 "saved_messages_explain" = "— Перасылайце паведамленні сюды для хуткага доступу\n\n— Рабіце нататкі ці запісвайце галасавыя паведамленні\n\n— Далучайце медыя, каб захаваць іх";
 // Should match "Saved" from "Saved messages"
 "saved" = "Захавана";
+// deprecated
 "save_as" = "Захаваць як…";
+// deprecated
 "retry_send" = "Паўтарыць адпраўку паведамлення";
+// deprecated
 "cannot_display_unsuported_file_type" = "Немагчыма адлюстраваць гэты тып файла: %1$@";
 "attachment_failed_to_load" = "Не ўдалося загрузіць укладанне";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues

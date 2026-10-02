@@ -42,6 +42,7 @@
 "error_x" = "பிழை: %1$@";
 "contacts_headline" = "தொடர்புகள்";
 "email_address" = "மின் அஞ்சல் முகவரி";
+// deprecated
 "bad_email_address" = "தவறான மின் அஞ்சல் முகவரி";
 "password" = "கடவுச்சொல்";
 "now" = "இப்போது";
@@ -80,6 +81,7 @@
 "small" = "சிறிய";
 "normal" = "சாதாரணமாக";
 "large" = "பெரிய";
+// deprecated
 "extra_large" = "கூடுதல் பெரியது";
 "fast" = "வேகமாக";
 "slow" = "மெதுவாக";
@@ -164,6 +166,7 @@
 "pref_led_color" = "LED நிறம்";
 "pref_sound" = "ஓசை";
 "pref_silent" = "அமைதி";
+// deprecated
 "pref_privacy" = "தனியுரிமை";
 "pref_system_default" = "கருவி இயல்புநிலை";
 // Translators: as in "opposite of dark"

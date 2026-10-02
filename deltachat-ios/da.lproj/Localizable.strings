@@ -9,6 +9,7 @@
 "on" = "Til";
 "off" = "Fra";
 "def" = "Standard";
+// deprecated
 "default_value" = "Standardindstilling (%1$@)";
 "custom" = "Tilpasset";
 "none" = "Ingen";
@@ -19,6 +20,7 @@
 "downloading" = "Downloader...";
 "open_attachment" = "Åbn vedhæftning";
 "join" = "Tilslut";
+// deprecated
 "rejoin" = "Slut til igen";
 "delete" = "Slet";
 "info" = "Info";
@@ -64,6 +66,7 @@
 "copied_to_clipboard" = "Kopieret til udklipsholder";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-mailadresse";
+// deprecated
 "bad_email_address" = "Ugyldig e-mailadresse.";
 "password" = "Adgangskode";
 "existing_password" = "Eksisterende adgangskode";
@@ -115,10 +118,12 @@
 "magenta" = "Magentarød";
 "white" = "Hvid";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Ekstra lille";
 "small" = "Lille";
 "normal" = "Normal";
 "large" = "Stor";
+// deprecated
 "extra_large" = "Ekstra stor";
 "fast" = "Hurtig";
 "slow" = "Langsom";
@@ -138,6 +143,7 @@
 "menu_leave_group" = "Forlad gruppe";
 "menu_delete_chat" = "Slet samtale";
 "delete_contact" = "Slet kontakt";
+// deprecated
 "menu_delete_location" = "Slet denne placering?";
 "menu_message_details" = "Beskeddetaljer";
 "menu_copy_to_clipboard" = "Kopiér til udklipsholder";
@@ -168,6 +174,7 @@
 "menu_help" = "Hjælp";
 "privacy_policy" = "Privatlivspolitik";
 "menu_select_all" = "Vælg alle";
+// deprecated
 "select_more" = "Vælg flere";
 "menu_edit_name" = "Rediger navn";
 "menu_settings" = "Opsætning";
@@ -187,7 +194,7 @@
 "unpin_chat" = "Løsn samtale";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fastgør";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Løsn";
 "ConversationFragment_quoted_message_not_found" = "Oprindelig besked ikke fundet";
 "reply_privately" = "Svar privat";
@@ -239,7 +246,9 @@
 "saved_messages_explain" = "Videresend beskeder her for at have nem adgang\n\n Tage notater eller voicememoer \n\n Vedhæft filer for at gemme dem";
 // Should match "Saved" from "Saved messages"
 "saved" = "Gemt";
+// deprecated
 "retry_send" = "Forsøg igen at sende besked";
+// deprecated
 "cannot_display_unsuported_file_type" = "Kan ikke vise denne filtype: 1%1$@";
 "attachment_failed_to_load" = "Visning af vedhæftede fil mislykkedes";
 // search
@@ -261,6 +270,7 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";
+// deprecated
 "tab_docs" = "Dokumenter";
 "tab_links" = "Henvisninger";
 "tab_map" = "Kort";
@@ -356,6 +366,7 @@
 "pref_led_color" = "LED farve";
 "pref_sound" = "Lyd";
 "pref_silent" = "Stille";
+// deprecated
 "pref_privacy" = "Privatliv";
 "pref_system_default" = "Systemstandard";
 // Translators: as in "opposite of dark"
@@ -369,6 +380,7 @@
 "pref_incognito_keyboard_explain" = "Anmod tastatur om at deaktivere personlig indlæring";
 "pref_read_receipts" = "Kvittering for læsning";
 "pref_read_receipts_explain" = "Hvis læst kvittering er deaktiveret vil læst kvittering fra andre ikke blive vist.";
+// deprecated
 "pref_manage_keys" = "Håndtér nøgler";
 "pref_chats" = "Samtaler";
 "pref_in_chat_sounds" = "In-chat-lyde";
@@ -396,7 +408,7 @@
 "pref_show_emails_no" = "Nej, kun samtaler";
 // deprecated
 "pref_show_emails_accepted_contacts" = "For godkendte kontakter";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Alle";
 "pref_experimental_features" = "Eksperimentelle features";
 "pref_on_demand_location_streaming" = "On-demand lokationsstreaming";
@@ -405,6 +417,8 @@
 "pref_background_custom_image" = "Brugerdefineret billede";
 "pref_background_custom_color" = "Brugerdefineret farve";
 "export_aborted" = "Eksport annulleret";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Alle";
 "profile_image_select" = "Vælg profilbillede";
 "select_your_new_profile_image" = "Vælg dit nye profilbillede";
 "profile_image_delete" = "Slet profilbillede";

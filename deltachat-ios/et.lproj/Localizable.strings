@@ -13,6 +13,7 @@
 "on" = "Sees";
 "off" = "Väljas";
 "def" = "Vaikimisi";
+// deprecated
 "default_value" = "Vaikimisi (%1$@)";
 "custom" = "Kohandatud";
 "none" = "Puudub";
@@ -25,6 +26,7 @@
 "join" = "Liitu";
 "join_group" = "Liitu grupiga";
 "join_channel" = "Liitu kanaliga";
+// deprecated
 "rejoin" = "Liitu uuesti";
 "delete" = "Kustuta";
 "delete_for_me" = "Kustuta minu jaoks";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Kaugseadmes asuvate piltide abil saab sinu tegevust jälgida.\n\nAga selle seadistuse abil laaditakse ka kirjatüüpide faile ja muud sisu.Kui see eelistus pole kasutusel, siis võidakse kuvada lõimitud või puhverdatud pilte.\n\nKas soovid laadida kaugseadmes asuvaid pilte?";
 "always" = "Alati";
+// deprecated
 "always_load_remote_images" = "Alati laadi kaugseadmes asuvaid pilte";
 "once" = "Vaid see kord";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Ei leidu rakendust, mis oskaks sellist tüüpi andmeid kasutada.";
 "no_browser_installed" = "Ühtegi veebibrauserit pole paigaldatud.";
 "file_not_found" = "Ei õnnestunud leida: %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "„%1$@“ faili salvestamine ei õnnestunud.";
 "copied_to_clipboard" = "Kopeeritud lõikelauale.";
 "contacts_headline" = "Kontaktid";
 "email_address" = "E-posti aadressid";
+// deprecated
 "bad_email_address" = "Vigane e-posti aadress.";
 "password" = "Salasõna";
 "existing_password" = "Olemasolev salasõna";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Valitud:";
 "selected" = "Valitud";
 "self" = "Mina";
@@ -178,6 +183,7 @@
 "contact" = "Kontakt";
 "bot" = "Robot";
 "camera" = "Kaamera";
+"take_photo" = "Pildista";
 "front_camera" = "Eeskaamera";
 "back_camera" = "Tagakaamera";
 "microphone" = "Mikrofon";
@@ -187,6 +193,7 @@
 "switch_camera" = "Vaheta kaamerat";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Lülita kaamera sisse/välja";
+// deprecated
 "toggle_fullscreen" = "Lülita täisekraanivaate sisse/välja";
 "location" = "Asukoht";
 "locations" = "Asukohad";
@@ -227,10 +234,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Suumitase";
+// deprecated
 "extra_small" = "Eriti väike";
 "small" = "Väike";
 "normal" = "Tavaline";
 "large" = "Suur";
+// deprecated
 "extra_large" = "Eriti suur";
 "fast" = "Kiire";
 "slow" = "Aeglane";
@@ -273,6 +282,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Eemalda vestluse sisu";
 "delete_contact" = "Kustuta kontakt";
+// deprecated
 "menu_delete_location" = "Kas kustutame selle asukoha?";
 "menu_message_details" = "Sõnumi teave";
 "menu_copy_to_clipboard" = "Kopeeri lõikelauale.";
@@ -315,6 +325,7 @@
 "privacy_policy" = "Privaatsusreeglid";
 "menu_select_all" = "Vali kõik";
 "select_chat" = "Vali vestlus";
+// deprecated
 "select_more" = "Vali veel";
 "menu_edit_name" = "Muuda nime";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +356,7 @@
 "pin" = "Tõste esile";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Esiletõstetud";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Lõpeta esiletõstmine";
 "ConversationFragment_quoted_message_not_found" = "Algset sõnumit ei leidu";
 "reply_privately" = "Vasta privaatselt";
@@ -453,6 +464,7 @@
 "chat_input_placeholder" = "Sõnum";
 "chat_archived_label" = "Arhiveeritud";
 "chat_request_label" = "Päring";
+// deprecated
 "chat_request_label_explain" = "Lisa päringud nii loenduritesse kui teavitustesse";
 "chat_no_messages" = "Sõnumeid pole.";
 "chat_self_talk_subtitle" = "Sõnumid sulle endale";
@@ -463,8 +475,11 @@
 "saved_messages_explain" = "• Mugavaks ligipääsuks edasta sõnumid siia\n\n• Tee märkmeid või koosta häälmemosid\n\n• Lisa talletamiseks meediafaile";
 // Should match "Saved" from "Saved messages"
 "saved" = "Salvestatud";
+// deprecated
 "save_as" = "Salvesta kui";
+// deprecated
 "retry_send" = "Proovi uuesti sõnumit saata";
+// deprecated
 "cannot_display_unsuported_file_type" = "Selle failitüübi kuvamine pole võimalik: %1$@";
 "attachment_failed_to_load" = "Manuse laadimine ei õnnestunud";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +531,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galerii";
+// deprecated
 "tab_docs" = "Dokumendid";
 "tab_links" = "Lingid";
 "tab_map" = "Kaart";
 "tab_gallery_empty_hint" = "Sellele vestlusele lisatud pildid ja videod saavad olema nähtavad siin.";
 "tab_docs_empty_hint" = "Sellele vestlusele lisatud dokumendid ja muud failid saavad olema nähtavad siin.";
 "tab_image_empty_hint" = "Sellele vestlusele lisatud pildid saavad olema nähtavad siin.";
+// deprecated
 "tab_video_empty_hint" = "Sellele vestlusele lisatud videod saavad olema nähtavad siin.";
 "tab_audio_empty_hint" = "Sellele vestlusele lisatud helifailid ja häälsõnumid saavad olema nähtavad siin.";
 "tab_webxdc_empty_hint" = "Sellele vestlusele lisatud rakendused saavad olema nähtavad siin.";
@@ -529,9 +546,9 @@
 "all_files_empty_hint" = "Ükspuha mis vestlusele lisatud dokumendid ja muud failid saavad olema nähtavad siin.";
 "all_apps_empty_hint" = "Ükspuha mis vestlusele lisatud rakendused saavad olema nähtavad siin.";
 "media_preview" = "Meediumi eelvaade";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Proportsionaalne ruudustikuvaade";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Range ruudustikuvaade";
 "send_message" = "Saada sõnum";
 // Multi Device
@@ -740,6 +757,7 @@
 "pref_led_color" = "LED-värv";
 "pref_sound" = "Heli";
 "pref_silent" = "Vaikne";
+// deprecated
 "pref_privacy" = "Privaatsus";
 "pref_system_default" = "Süsteemi vaikimisi valik";
 // Translators: as in "opposite of dark"
@@ -757,7 +775,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Seda on lugenud";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Krüptimine";
+// deprecated
 "pref_manage_keys" = "Halda võtmeid";
 "pref_chats" = "Vestlused";
 "pref_in_chat_sounds" = "Helid vestluses";
@@ -794,7 +814,7 @@
 "pref_show_emails_no" = "Ei, vaid vestlustele";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Kinnitatud kontaktidele";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Kõik";
 "pref_experimental_features" = "Katselised funktsionaalsused";
 "pref_experimental_features_explain" = "Need funktsionaalsused ei pruugi korralikult toimida ning nad võivad tulevikus muutuda või sootuks olla eemaldatud";
@@ -805,6 +825,8 @@
 "pref_background_custom_color" = "Sinu valitud värv";
 "export_aborted" = "Eksportimine on katkestatud";
 "auto_download_messages" = "Laadi sõnumid alla automaatselt";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Kõik";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Suurusega kuni %1$@";
 "up_to_x_most_worse_quality_images" = "Suurusega kuni %1$@, üldjuhul kehva kvaliteediga pildid";
@@ -1141,9 +1163,11 @@
 "open_link" = "Ava %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Lõpeta asukoha jagamine";
+// deprecated
 "a11y_voice_message_hint_ios" = "Peale salvestamist saad topeltpuudutusega saata. Salvestisest saad loobuda hõõrudes kahe sõrmega.";
 "a11y_connectivity_hint" = "Võrguühenduse üksikasjade vaatamiseks klõpsa kaks korda.";
 "login_error_no_internet_connection" = "Internetiühendus puudub, sisselogimine ei õnnesti.";
+// deprecated
 "share_account_not_configured" = "Profiil pole seadistatud";
 "cannot_play_audio_file" = "Helifaili esitamine ei õnnestu.";
 // iOS camera permission alert
@@ -1153,12 +1177,16 @@
 "import_device_contacts" = "Impordi seadme kontaktid";
 // deprecated
 "import_device_contacts_hint" = "Selleks, et saaksid suhelda oma nutiseame kontaktidega, ava seadistused ja lülita sisse valik „Kontaktid“.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Pole Delta Chatis kasutusel";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "On süsteemi seadistustest välja lülitatud";
 "bg_app_refresh_disabled" = "Rakenduse uuendamine taustal on süsteemi seadistustest välja lülitatud";
+// deprecated
 "notifications_avg_minutes" = "Keskmiselt iga %1$d minuti järel";
+// deprecated
 "notifications_avg_hours" = "Keskmiselt iga %1$d tunni järel";
+// deprecated
 "last_check_at" = "Kontrollitud %1$@";
 "system_settings" = "Süsteemi seadistused";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

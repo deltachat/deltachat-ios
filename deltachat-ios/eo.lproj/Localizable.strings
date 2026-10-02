@@ -18,6 +18,7 @@
 "downloading" = "Elŝutado...";
 "open_attachment" = "Malfermu aldonaĵon";
 "join" = "Aliĝi";
+// deprecated
 "rejoin" = "Realiĝi";
 "delete" = "Forigi";
 "delete_for_me" = "Forigi por mi";
@@ -73,6 +74,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "La foraj bildoj povas spuri vin.\n\nTiu ĉi agordo povas ankaŭ ŝargi tiparojn kaj aliajn enhavojn. Malŝaltite, enkorpigitaj aŭ kaŝmemorigitaj bildoj povas aperi.\n\nŜargu forajn bildojn? ";
 "always" = "Ĉiam";
+// deprecated
 "always_load_remote_images" = "Ĉiam ŝargu forajn bildojn";
 "once" = "Unufoje";
 // deprecated
@@ -90,11 +92,12 @@
 "no_app_to_handle_data" = "Ne povas trovi aplikaĵon por trakti tiun ĉi tipon de datumo.";
 "no_browser_installed" = "Neniu retumilo instalita.";
 "file_not_found" = "Ne povis trovi %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Ne eblas konservi la dosieron %1$@.";
 "copied_to_clipboard" = "Kopiita al tondujo";
 "contacts_headline" = "Kontaktoj";
 "email_address" = "Retadreso";
+// deprecated
 "bad_email_address" = "Malbona retadreso.";
 "password" = "Pasvorto";
 "existing_password" = "Estanta Pasvorto";
@@ -140,6 +143,7 @@
 "capture" = "Kapti";
 // Switch eg. from front to back camera
 "switch_camera" = "Elektu alian kameraon";
+// deprecated
 "toggle_fullscreen" = "Baskulu el/al la plena ekrano";
 "location" = "Loko";
 "locations" = "Lokoj";
@@ -161,10 +165,12 @@
 "magenta" = "Malva";
 "white" = "Blanka";
 "zoom" = "Grandeco";
+// deprecated
 "extra_small" = "Ege malgranda";
 "small" = "Malgranda";
 "normal" = "Normala";
 "large" = "Granda";
+// deprecated
 "extra_large" = "Tre granda";
 "fast" = "Rapida";
 "slow" = "Malrapida";
@@ -186,6 +192,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Viŝi la babilejon";
 "delete_contact" = "Forviŝi Kontakton";
+// deprecated
 "menu_delete_location" = "Ĉu forigi tiun ĉi lokon?";
 "menu_message_details" = "Mesaĝ-detaloj";
 "menu_copy_to_clipboard" = "Kopii al tondujo";
@@ -218,6 +225,7 @@
 "privacy_policy" = "Politiko pri privateco";
 "menu_select_all" = "Elekti ĉion";
 "select_chat" = "Elektu babilejon";
+// deprecated
 "select_more" = "Elekti pli";
 "menu_edit_name" = "Redakti nomon";
 "menu_settings" = "Agordoj";
@@ -240,7 +248,7 @@
 "unpin_chat" = "Depingli babilon";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Alpingli";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Depingli";
 "mute_for_one_hour" = "Silentigi por 1 horo";
 "mute_for_eight_hours" = "Silentigi por 8 horoj";
@@ -278,6 +286,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Konservi";
 "saved_messages" = "Konservitaj mesaĝoj";
+// deprecated
 "retry_send" = "Reprovi sendi mesaĝon";
 // search
 "search" = "Serĉi";
@@ -296,6 +305,7 @@
 "tab_contact" = "Kontakto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galerio";
+// deprecated
 "tab_docs" = "Dokumentoj";
 "tab_links" = "Ligiloj";
 "tab_map" = "Mapo";
@@ -344,6 +354,7 @@
 "pref_led_color" = "LED-a koloro";
 "pref_sound" = "Sono";
 "pref_silent" = "Silenta";
+// deprecated
 "pref_privacy" = "Privateco";
 "pref_system_default" = "Sistema defaŭlto";
 // Translators: as in "opposite of dark"
@@ -357,6 +368,7 @@
 "pref_incognito_keyboard_explain" = "Peti al la klavaro malŝalti personan lernadon";
 "pref_read_receipts" = "Legokonfirmoj";
 "pref_read_receipts_explain" = "Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.";
+// deprecated
 "pref_manage_keys" = "Administri ŝlosilojn";
 "pref_chats" = "Interparoloj";
 "pref_in_chat_sounds" = "Sonoj dum interparolado";
@@ -373,8 +385,10 @@
 "pref_background" = "Fono";
 "pref_background_btn_default" = "Uzi defaŭltan bildon";
 "pref_background_btn_gallery" = "Elekti el galerio";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Ĉiuj";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Ĉiuj";
 // notifications
 "notify_reply_button" = "Respondi";
 "notify_new_message" = "Nova mesaĝo";

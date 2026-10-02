@@ -13,6 +13,7 @@
 "on" = "On";
 "off" = "Off";
 "def" = "Parazgjedhje";
+// deprecated
 "default_value" = "Parazgjedhje (%1$@)";
 "custom" = "Vetjake";
 "none" = "Asnjë";
@@ -25,6 +26,7 @@
 "join" = "Hyni";
 "join_group" = "Bëhuni Pjesë e Grupit";
 "join_channel" = "Ejani në Kanal";
+// deprecated
 "rejoin" = "Rihyni";
 "delete" = "Fshije";
 "delete_for_me" = "Fshije për Mua";
@@ -81,6 +83,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Figurat e largëta mund të përdoren për t’ju ndjekur.\n\nKy rregullim lejon gjithashtu të ngarkohen shkronja dhe lëndë tjetër. Edhe nëse është e çaktivizuar, prapë mund të shihni figura të trupëzuara ose të ruajtura në fshehtinë.\n\nTë ngarkohen figura të largëta?";
 "always" = "Përherë";
+// deprecated
 "always_load_remote_images" = "Ngarko Përherë Figura të Largëta";
 "once" = "Vetëm një herë";
 // deprecated
@@ -99,11 +102,12 @@
 "no_app_to_handle_data" = "S\’gjendet dot një aplikacion për trajtimin e këtij lloji të dhënash.";
 "no_browser_installed" = "S\’ka shfletues të instaluar.";
 "file_not_found" = "S\’u gjet dot %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "S’ruhet dot %1$@.";
 "copied_to_clipboard" = "U kopjua në të papastër.";
 "contacts_headline" = "Kontakte";
 "email_address" = "Adresë Email";
+// deprecated
 "bad_email_address" = "Adresë email e keqe.";
 "password" = "Fjalëkalim";
 "existing_password" = "Fjalëkalimi Ekzistues";
@@ -128,6 +132,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Të përzgjedhur:";
 "self" = "Unë";
 "draft" = "Skicë";
@@ -160,6 +165,7 @@
 "camera" = "Kamerë";
 // Switch eg. from front to back camera
 "switch_camera" = "Ndërro Kamera";
+// deprecated
 "toggle_fullscreen" = "Kalo në / Dil nga mënyra “Sa krejt ekrani”";
 "location" = "Vendndodhje";
 "locations" = "Vendndodhje";
@@ -197,10 +203,12 @@
 "magenta" = "Rozë";
 "white" = "E bardhë";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Tejet të vogla";
 "small" = "Të vogla";
 "normal" = "Normale";
 "large" = "Të mëdha";
+// deprecated
 "extra_large" = "Ekstra të mëdha";
 "fast" = "Shpejt";
 "slow" = "Ngadalë";
@@ -243,6 +251,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Spastroje Fjalosjen";
 "delete_contact" = "Fshije Kontaktin";
+// deprecated
 "menu_delete_location" = "Të fshihet kjo Vendndodhje?";
 "menu_message_details" = "Hollësi Mesazhi";
 "menu_copy_to_clipboard" = "Kopjoje në të Papastër";
@@ -285,6 +294,7 @@
 "privacy_policy" = "Rregulla Privatësie";
 "menu_select_all" = "Përzgjidhi Krejt";
 "select_chat" = "Përzgjidhni Fjalosje";
+// deprecated
 "select_more" = "Përzgjidhni më tepër";
 "menu_edit_name" = "Përpunoni Emrin";
 // The placeholder will be replaced by the name the contact gave themself
@@ -313,7 +323,7 @@
 "unpin_chat" = "Hiqeni Bisedën Nga e Fiksuar";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fiksoje";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Çfiksoje";
 "ConversationFragment_quoted_message_not_found" = "S’u gjet mesazhi origjinal";
 "reply_privately" = "Përgjigjuni Privatisht";
@@ -418,6 +428,7 @@
 "chat_input_placeholder" = "Mesazh";
 "chat_archived_label" = "Arkivuar";
 "chat_request_label" = "Kërkesë";
+// deprecated
 "chat_request_label_explain" = "Përfshi kërkesa në numëratorë dhe njoftime";
 "chat_no_messages" = "S\’ka mesazhe.";
 "chat_self_talk_subtitle" = "Mesazhe Vetes";
@@ -428,8 +439,11 @@
 "saved_messages_explain" = "• Përcillini mesazhet këtu për përdorim të lehtë\n\n• Mbani shënime ose kujtesa zanore\n\n• Bashkëngjitni media për t’i ruajtur";
 // Should match "Saved" from "Saved messages"
 "saved" = "Të ruajtur";
+// deprecated
 "save_as" = "Ruaje Si";
+// deprecated
 "retry_send" = "Riprovo të dërgosh mesazhin";
+// deprecated
 "cannot_display_unsuported_file_type" = "S’mund të shfaqet ky lloj kartelash: %1$@";
 "attachment_failed_to_load" = "S’u arrit të ngarkohet bashkëngjitje";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -481,12 +495,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
+// deprecated
 "tab_docs" = "Dokumente";
 "tab_links" = "Lidhje";
 "tab_map" = "Hartë";
 "tab_gallery_empty_hint" = "Figurat dhe videot e dhëna në këtë fjalosje do të shfaqen këtu.";
 "tab_docs_empty_hint" = "Dokumentet dhe kartela të tjera të bashkëngjitura në këtë fjalosje do të shfaqen këtu.";
 "tab_image_empty_hint" = "Figurat e bashkëngjitura në këtë fjalosje do të shfaqen këtu.";
+// deprecated
 "tab_video_empty_hint" = "Videot e bashkëngjitura në këtë fjalosje do të shfaqen këtu.";
 "tab_audio_empty_hint" = "Kartelat audio dhe mesazhet zanore të bashkëngjitura në këtë fjalosje do të shfaqen këtu.";
 "tab_webxdc_empty_hint" = "Këtu do të shfaqen aplikacione bashkëngjitur në këtë fjalosje ";
@@ -494,9 +510,9 @@
 "all_files_empty_hint" = "Dokumentet dhe kartela të tjera të bashkëngjitura në çfarëdo fjalosje do të shfaqen këtu.";
 "all_apps_empty_hint" = "Këtu do të duken aplikacione bashkëngjitur në cilëndo fjalosje.";
 "media_preview" = "Paraparje Mediash";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Mozaik Përpjesëtimor  ";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Mozaik Katror";
 "send_message" = "Dërgo Mesazh";
 // Multi Device
@@ -696,6 +712,7 @@
 "pref_led_color" = "Ngjyrë LED-i";
 "pref_sound" = "Tingull";
 "pref_silent" = "Heshtazi";
+// deprecated
 "pref_privacy" = "Privatësi";
 "pref_system_default" = "Parazgjedhje sistemi";
 // Translators: as in "opposite of dark"
@@ -713,7 +730,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Lexuar nga";
 "pref_server" = "Shërbyes";
+// deprecated
 "pref_encryption" = "Fshehtëzim";
+// deprecated
 "pref_manage_keys" = "Administroni Kyçe";
 "pref_chats" = "Fjalosje";
 "pref_in_chat_sounds" = "Tinguj Brenda Fjalosjeje";
@@ -750,7 +769,7 @@
 "pref_show_emails_no" = "Jo, vetëm fjalosje";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Për kontakte të pranuar";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Krejt";
 "pref_experimental_features" = "Veçori Eksperimentale";
 "pref_experimental_features_explain" = "Këto veçori mund të jenë të paqëndrueshme dhe mund të ndryshohen, ose hiqen";
@@ -761,6 +780,8 @@
 "pref_background_custom_color" = "Ngjyrë vetjake";
 "export_aborted" = "Eksportimi dështoi.";
 "auto_download_messages" = "Vetëshkarko Mesazhet";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Krejt";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Deri në %1$@";
 "up_to_x_most_worse_quality_images" = "Deri në %1$@, figura me cilësinë më të dobët";
@@ -1088,9 +1109,11 @@
 "open_link" = "Hap %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Ndale tregimin e vendndodhjes";
+// deprecated
 "a11y_voice_message_hint_ios" = "Pas regjistrimit, prekeni dy herë që të dërgohet. Për ta hedhur regjistrimin tej, fërkojeni majtas-djathtas me dy gishta.";
 "a11y_connectivity_hint" = "Prekeni dy herë që të shihni hollësi lidhjeje.";
 "login_error_no_internet_connection" = "S’ka lidhje internet, hyrja dështoi.";
+// deprecated
 "share_account_not_configured" = "Profili s’është i formësuar.";
 "cannot_play_audio_file" = "Kartela audio s’luhet dot.";
 // iOS camera permission alert
@@ -1100,12 +1123,16 @@
 "import_device_contacts" = "Importo kontakte pajisjeje";
 // deprecated
 "import_device_contacts_hint" = "Për t’u fjalosur me kontakte nga pajisja juaj, hapni Rregullime dhe aktivizoni “Kontaktet”.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Çaktivizuar në Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Çaktivizuar te rregullimet e sistemit";
 "bg_app_refresh_disabled" = "“Rifreskim Aplikacionesh Në Prapaskenë” çaktivizuar te rregullimet e sistemit";
+// deprecated
 "notifications_avg_minutes" = "Mesatarisht çdo %1$d minuta";
+// deprecated
 "notifications_avg_hours" = "Mesatarisht %1$d orë";
+// deprecated
 "last_check_at" = "Kontrolluar më %1$@";
 "system_settings" = "Rregullime Sistemi";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

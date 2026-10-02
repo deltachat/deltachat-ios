@@ -13,6 +13,7 @@
 "on" = "Activat";
 "off" = "Desactivat";
 "def" = "Per defecte";
+// deprecated
 "default_value" = "Per defecte (%1$@)";
 "custom" = "Personalitzat";
 "none" = "Cap";
@@ -25,6 +26,7 @@
 "join" = "Uneix-te";
 "join_group" = "Unir-se al Grup";
 "join_channel" = "Unir-se al Canal";
+// deprecated
 "rejoin" = "Torna a unir-te";
 "delete" = "Esborra";
 "delete_for_me" = "Esborra per a mi";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Les imatges remotes es poden usar per rastrejar-vos.\n\nEl paràmetre també pot permetre la càrrega de fonts i altre contingut. Fins i tot desactivat, encara podríeu veure imatges incrustades o en memòria cau.\n\nVoleu carregar les imatges remotes?";
 "always" = "Sempre";
+// deprecated
 "always_load_remote_images" = "Carrega sempre les imatges remotes";
 "once" = "Una vegada";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "No sé trobar cap aplicació per a gestionar aquest tipus de dades.";
 "no_browser_installed" = "No hi ha instal·lat cap navegador.";
 "file_not_found" = "No s\'ha trobat %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "No es pot desar %1$@.";
 "copied_to_clipboard" = "Copiat al porta-retalls.";
 "contacts_headline" = "Contactes";
 "email_address" = "Adreça de correu electrònic";
+// deprecated
 "bad_email_address" = "Adreça de correu electrònic errònia.";
 "password" = "Contrasenya";
 "existing_password" = "Contrasenya existent";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Seleccionat:";
 "selected" = "Seleccionat";
 "self" = "Jo";
@@ -178,6 +183,7 @@
 "contact" = "Contacte";
 "bot" = "Bot";
 "camera" = "Càmera";
+"take_photo" = "Fes una foto";
 "front_camera" = "Càmera frontal";
 "back_camera" = "Càmera darrera";
 "microphone" = "Micrófon";
@@ -187,6 +193,7 @@
 "switch_camera" = "Canvia la càmera";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Commuta Càmera";
+// deprecated
 "toggle_fullscreen" = "Alterna el mode de pantalla completa";
 "location" = "Ubicació";
 "locations" = "Ubicacions";
@@ -227,10 +234,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Molt petit";
 "small" = "Petit";
 "normal" = "Normal";
 "large" = "Gran";
+// deprecated
 "extra_large" = "Molt gran";
 "fast" = "Ràpid";
 "slow" = "Lent";
@@ -273,6 +282,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Buida el xat";
 "delete_contact" = "Esborra el contacte";
+// deprecated
 "menu_delete_location" = "Voleu esborrar aquesta ubicació?";
 "menu_message_details" = "Informació del missatge";
 "menu_copy_to_clipboard" = "Copia al porta-retalls";
@@ -315,6 +325,7 @@
 "privacy_policy" = "Política de privadesa";
 "menu_select_all" = "Selecciona-ho tot";
 "select_chat" = "Selecciona el xat";
+// deprecated
 "select_more" = "Selecciona\'n més";
 "menu_edit_name" = "Edita el nom";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +356,7 @@
 "pin" = "Fixa";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fixa\'t";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desfixa";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
@@ -453,6 +464,7 @@
 "chat_input_placeholder" = "Missatge";
 "chat_archived_label" = "Arxivat";
 "chat_request_label" = "Sol·licitud";
+// deprecated
 "chat_request_label_explain" = "Inclou les sol·licituds als comptadors i notificacions";
 "chat_no_messages" = "Cap missatge.";
 "chat_self_talk_subtitle" = "Missatges enviats a mi mateix/a";
@@ -463,8 +475,11 @@
 "saved_messages_explain" = "• Reenvieu missatges aquí per a un accés ràpid\n\n• Preneu notes de text o de veu\n\n• Adjunteu multimedia per a desar-la";
 // Should match "Saved" from "Saved messages"
 "saved" = "Desat";
+// deprecated
 "save_as" = "Desa com";
+// deprecated
 "retry_send" = "Torna a provar d\'enviar el missatge";
+// deprecated
 "cannot_display_unsuported_file_type" = "Aquest tipus de fitxer: %1$@ no es pot mostrar";
 "attachment_failed_to_load" = "La càrrega de l\'adjunt ha fallat";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +531,14 @@
 "tab_contact" = "Contacte";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeria";
+// deprecated
 "tab_docs" = "Docs";
 "tab_links" = "Enllaços";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Les imatges i els vídeos compartits en aquest xat sortiran aquí.";
 "tab_docs_empty_hint" = "Els documents i d\'altres fitxers compartits en aquest xat sortiran aquí.";
 "tab_image_empty_hint" = "Les imatges compartides en aquest xat sortiran aquí.";
+// deprecated
 "tab_video_empty_hint" = "Els vídeos compartits en aquest xat sortiran aquí.";
 "tab_audio_empty_hint" = "Els fitxers d\'àudio i els missatges de veu compartits en aquest xat sortiran aquí.";
 "tab_webxdc_empty_hint" = "Les apps compartides en aquest xat sortiran aquí.";
@@ -529,9 +546,9 @@
 "all_files_empty_hint" = "Els documents i altres fitxers compartits en qualsevol xat apareixeran aquí.";
 "all_apps_empty_hint" = "Les aplicacions compartides en qualsevol xat apareixeran aquí.";
 "media_preview" = "Previsualització multimèdia";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Graella d\'aspecte proporcinal";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Graella quadrada";
 "send_message" = "Envia el missatge";
 // Multi Device
@@ -740,6 +757,7 @@
 "pref_led_color" = "Color LED";
 "pref_sound" = "So";
 "pref_silent" = "Silenci";
+// deprecated
 "pref_privacy" = "Privacitat";
 "pref_system_default" = "Per defecte del sistema";
 // Translators: as in "opposite of dark"
@@ -757,7 +775,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Llegit per";
 "pref_server" = "Servidor";
+// deprecated
 "pref_encryption" = "Xifratge";
+// deprecated
 "pref_manage_keys" = "Gestió de les claus";
 "pref_chats" = "Xats";
 "pref_in_chat_sounds" = "Sons d\'entrada";
@@ -794,7 +814,7 @@
 "pref_show_emails_no" = "No, només xats";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Per a contactes acceptats";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Tot";
 "pref_experimental_features" = "Funcionalitats experimentals";
 "pref_experimental_features_explain" = "Aquestes funcionalitats poden ser inestables i poden canviar o ser suprimides";
@@ -805,6 +825,8 @@
 "pref_background_custom_color" = "Color personalitzat";
 "export_aborted" = "S\'ha cancel·lat l\'exportació.";
 "auto_download_messages" = "Baixa els missatges automàticament";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Tot";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Fins a %1$@";
 "up_to_x_most_worse_quality_images" = "Fins a %1$@, les imatges de pitjor qualitat";
@@ -1141,9 +1163,11 @@
 "open_link" = "Obrir %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Deixa de compartir la ubicació";
+// deprecated
 "a11y_voice_message_hint_ios" = "Després d\'enregistrar, feu doble toc per a enviar-lo. Per a descartar l\'enregistrament, fregueu amb dos dits.";
 "a11y_connectivity_hint" = "Feu doble toc per a veure els detalls de connectivitat.";
 "login_error_no_internet_connection" = "No hi ha connexió a internet, l\'inici de sessió ha fallat.";
+// deprecated
 "share_account_not_configured" = "No s\'ha configurat el perfil.";
 "cannot_play_audio_file" = "No es pot reproduir l\'`audio.";
 // iOS camera permission alert
@@ -1153,12 +1177,16 @@
 "import_device_contacts" = "Importa els contactes del dispositiu";
 // deprecated
 "import_device_contacts_hint" = "Per a xatejar amb contactes des del vostre dispositiu, obriu Configuració i activeu «Contactes».";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Desactivat a Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Desactivat a la configuració del sistema";
 "bg_app_refresh_disabled" = "El \"Refresc en segon pla d\'aplicacions\" està deshabilitat als paràmetres del sistema";
+// deprecated
 "notifications_avg_minutes" = "De mitjana, cada %1$d minuts";
+// deprecated
 "notifications_avg_hours" = "De mitjana, cada %1$d hores";
+// deprecated
 "last_check_at" = "Comprovat a les %1$@";
 "system_settings" = "Paràmetres del sistema";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

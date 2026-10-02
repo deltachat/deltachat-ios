@@ -45,6 +45,7 @@
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kontaktlar";
 "email_address" = "Email ünvanı";
+// deprecated
 "bad_email_address" = "Səhv e-mail ünvanı.";
 "password" = "Parol";
 "now" = "Indi";
@@ -84,6 +85,7 @@
 "small" = "Kiçik";
 "normal" = "Normal";
 "large" = "Böyük";
+// deprecated
 "extra_large" = "Çox böyük";
 "fast" = "Sürətli";
 "slow" = "Ləng";
@@ -102,6 +104,7 @@
 "menu_add_attachment" = "Fayl əlavə et";
 "menu_leave_group" = "Qrupu tərk et";
 "menu_delete_chat" = "Çatı sil";
+// deprecated
 "menu_delete_location" = "Bu yerləşməni silmək? ";
 "menu_message_details" = "Mesaj məlumatları";
 "menu_copy_to_clipboard" = "Panoya kopyalamaq";
@@ -170,6 +173,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Saxla";
 "saved_messages" = "Saxlanılmış mesajlar";
+// deprecated
 "retry_send" = "Mesaji yenidən göndərməyə cəht et";
 // search
 "search" = "Axtarış";
@@ -188,6 +192,7 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Qrup";
 "tab_gallery" = "Şəkillər";
+// deprecated
 "tab_docs" = "Sənədlər";
 "tab_links" = "Linklər";
 "tab_map" = "Xəritə";
@@ -245,6 +250,7 @@
 "pref_led_color" = "LED rəng";
 "pref_sound" = "Səs";
 "pref_silent" = "Səssiz";
+// deprecated
 "pref_privacy" = "Gizlilik";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Açıq";
@@ -257,6 +263,7 @@
 "pref_incognito_keyboard_explain" = "Klaviaturanın personal öyrənməyini söndürmək";
 "pref_read_receipts" = "Qəbul olunanları oxuyun";
 "pref_read_receipts_explain" = "Bildirişlər aradan qaldırılırsa, başqalarının oxuduğu bildirişləri görə bilməyəcəksiniz.";
+// deprecated
 "pref_manage_keys" = "Açar edarəetməsi";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
@@ -284,12 +291,14 @@
 "pref_show_emails_no" = "Xeyir, ancaq çatlar";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Qəbul edilən kontaktlar üçün";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Hamısı";
 "pref_background_default" = "Özünəməxsus arxa fon";
 "pref_background_default_color" = "Özünəməxsus rəng";
 "pref_background_custom_image" = "Şəkil";
 "pref_background_custom_color" = "Rəng";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Hamısı";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
 "group_name_changed_by_you" = "Qrupun adı \"%1$@\" - dən \"%2$@\" - yə deyişildi məndən. ";
 // %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.

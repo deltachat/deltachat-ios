@@ -13,6 +13,7 @@
 "on" = "Увімкнено";
 "off" = "Вимкнено";
 "def" = "За замовчуванням";
+// deprecated
 "default_value" = "За замовчуванням (%1$@)";
 "custom" = "На користувацький вибір";
 "none" = "Не задано";
@@ -25,6 +26,7 @@
 "join" = "Долучитися";
 "join_group" = "Приєднатися до групи";
 "join_channel" = "Приєднатися до каналу";
+// deprecated
 "rejoin" = "Передолучитися";
 "delete" = "Видалити";
 "delete_for_me" = "Видалити для мене";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Віддалені зображення можуть вас відстежувати.\n\nЦей параметр також може завантажувати шрифти та інший вміст. Якщо його вимкнено, можуть з\'являтися вбудовані або кешовані зображення.\n\nЗавантажувати віддалені зображення?";
 "always" = "Завжди";
+// deprecated
 "always_load_remote_images" = "Завжди завантажувати віддалені зображення";
 "once" = "Один раз";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Додаток, що дозволяє обробляти цей тип даних, не знайдено.";
 "no_browser_installed" = "Не встановлено браузер.";
 "file_not_found" = "Не вдалося знайти %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Не можливо зберегти файл %1$@.";
 "copied_to_clipboard" = "Скопійовано до буферу обміну.";
 "contacts_headline" = "Контактні особи";
 "email_address" = "Адреса електронної пошти";
+// deprecated
 "bad_email_address" = "Неправильна адреса електронної пошти.";
 "password" = "Пароль";
 "existing_password" = "Наявний пароль";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Обрано:";
 "selected" = "Вибране";
 "self" = "Я";
@@ -168,6 +173,7 @@
 "switch_camera" = "Перемкнути камеру";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Увімкнення/вимкнення камери";
+// deprecated
 "toggle_fullscreen" = "Перейти в повноекранний режим";
 "location" = "Розташування";
 "locations" = "Розташування";
@@ -205,10 +211,12 @@
 "magenta" = "Пурпурний";
 "white" = "Білий";
 "zoom" = "Масштаб";
+// deprecated
 "extra_small" = "Найменший";
 "small" = "Маленький";
 "normal" = "Звичайний";
 "large" = "Великий";
+// deprecated
 "extra_large" = "Величезний";
 "fast" = "Швидко";
 "slow" = "Повільно";
@@ -251,6 +259,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Очистити чат";
 "delete_contact" = "Видалити контакт";
+// deprecated
 "menu_delete_location" = "Видалити це місце?";
 "menu_message_details" = "Інформація про повідомлення";
 "menu_copy_to_clipboard" = "Копіювати в буфер обміну";
@@ -293,6 +302,7 @@
 "privacy_policy" = "Політика конфіденційності";
 "menu_select_all" = "Вибрати все";
 "select_chat" = "Оберіть чат";
+// deprecated
 "select_more" = "Вибрати ще";
 "menu_edit_name" = "Редагувати ім\'я";
 // The placeholder will be replaced by the name the contact gave themself
@@ -321,7 +331,7 @@
 "unpin_chat" = "Відкріпити чат";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Закріпити";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Відкрипити";
 "ConversationFragment_quoted_message_not_found" = "Первісне повідомлення не знайдено";
 "reply_privately" = "Відповісти приватно";
@@ -426,6 +436,7 @@
 "chat_input_placeholder" = "Повідомлення";
 "chat_archived_label" = "Заархівовано";
 "chat_request_label" = "Запит";
+// deprecated
 "chat_request_label_explain" = "Включайте запити в лічильники та сповіщення";
 "chat_no_messages" = "Немає повідомлень.";
 "chat_self_talk_subtitle" = "Повідомлення, відправлені самому собі";
@@ -436,8 +447,11 @@
 "saved_messages_explain" = "• Пересилайте повідомлення сюди для швидкого доступу\n\n• Робіть нотатки або голосові нагадування\n\n• Вкладайте медіа для збереження";
 // Should match "Saved" from "Saved messages"
 "saved" = "Збережені";
+// deprecated
 "save_as" = "Зберегти як";
+// deprecated
 "retry_send" = "Спробуйте знову послати повідомлення";
+// deprecated
 "cannot_display_unsuported_file_type" = "Неможливо відобразити цей тип файлів: %1$@";
 "attachment_failed_to_load" = "Не вдалося завантажити вкладення";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -489,12 +503,14 @@
 "tab_contact" = "Контактні відомості";
 "tab_group" = "Група";
 "tab_gallery" = "Галерея";
+// deprecated
 "tab_docs" = "Документи";
 "tab_links" = "Посилання";
 "tab_map" = "Мапа";
 "tab_gallery_empty_hint" = "Зображення та відео, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_docs_empty_hint" = "Документи та інші файли, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_image_empty_hint" = "Зображення, якими поділилися у цьому чаті, будуть відображатися тут.";
+// deprecated
 "tab_video_empty_hint" = "Відео, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_audio_empty_hint" = "Аудіозаписи та голосові повідомлення, якими поділилися у цьому чаті, будуть відображатися тут.";
 "tab_webxdc_empty_hint" = "Застосунки, якими поділилися у цьому чаті, будуть відображатися тут.";
@@ -502,9 +518,9 @@
 "all_files_empty_hint" = "Документи та інші файли, якими поділилися в будь-якому чаті, з’являться тут.";
 "all_apps_empty_hint" = "Програми, якими поділилися в будь-якому чаті, з’являться тут.";
 "media_preview" = "Попередній перегляд медіа";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Сітка співвідношення сторін";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Квадратна сітка";
 "send_message" = "Надіслати повідомлення";
 // Multi Device
@@ -704,6 +720,7 @@
 "pref_led_color" = "Колір світлодіоду";
 "pref_sound" = "Звук";
 "pref_silent" = "Беззвучний";
+// deprecated
 "pref_privacy" = "Конфіденційність";
 "pref_system_default" = "За замовчуванням системи";
 // Translators: as in "opposite of dark"
@@ -721,7 +738,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Прочитано";
 "pref_server" = "Сервер";
+// deprecated
 "pref_encryption" = "Шифрування";
+// deprecated
 "pref_manage_keys" = "Розпорядження ключами";
 "pref_chats" = "Чати";
 "pref_in_chat_sounds" = "Звуки в чаті";
@@ -758,7 +777,7 @@
 "pref_show_emails_no" = "Ні, лише чати";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Для прийнятих контактів";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Всі";
 "pref_experimental_features" = "Експериментальні функції";
 "pref_experimental_features_explain" = "Ці функції можуть бути нестабільними і можуть бути змінені або видалені";
@@ -769,6 +788,8 @@
 "pref_background_custom_color" = "Персональний колір";
 "export_aborted" = "Експорт припинено.";
 "auto_download_messages" = "Автоматично завантажувати повідомлення";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Всі";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "До %1$@";
 "up_to_x_most_worse_quality_images" = "До %1$@, зображення найгіршої якості";
@@ -1096,9 +1117,11 @@
 "open_link" = "Відкрити %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Припинити надсилати геодані";
+// deprecated
 "a11y_voice_message_hint_ios" = "Після запису двічі торкніться для відправки. Щоб скинути запис, проведіть двома пальцями.";
 "a11y_connectivity_hint" = "Двічі торкніться, щоб переглянути деталі підключення.";
 "login_error_no_internet_connection" = "Немає підключення до Інтернету, не вдалося ввійти.";
+// deprecated
 "share_account_not_configured" = "Профіль не налаштовано.";
 "cannot_play_audio_file" = "Неможливо відтворити аудіофайл.";
 // iOS camera permission alert
@@ -1108,12 +1131,16 @@
 "import_device_contacts" = "Імпорт контактів з пристрою";
 // deprecated
 "import_device_contacts_hint" = "Щоб спілкуватися з контактами з пристрою, відкрийте \"Налаштування\" та ввімкніть \"Контакти\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Вимкнено в Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Вимкнено в налаштуваннях системи";
 "bg_app_refresh_disabled" = "\"Фонова активність додатку\" вимкнена в налаштуваннях системи";
+// deprecated
 "notifications_avg_minutes" = "У середньому %1$d хвилин";
+// deprecated
 "notifications_avg_hours" = "У середньому %1$d годин";
+// deprecated
 "last_check_at" = "Перевірено о %1$@";
 "system_settings" = "Системні налаштування";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

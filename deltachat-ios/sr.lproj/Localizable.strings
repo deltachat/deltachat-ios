@@ -9,6 +9,7 @@
 "on" = "Укључено";
 "off" = "Искључено";
 "def" = "Подразумевано";
+// deprecated
 "default_value" = "Задато (%1$@)";
 "custom" = "Посебно";
 "none" = "Ништа";
@@ -19,6 +20,7 @@
 "downloading" = "Преузимање...";
 "open_attachment" = "Отвори прилог";
 "join" = "Придружи се";
+// deprecated
 "rejoin" = "Придружи се поново";
 "delete" = "Обриши";
 "delete_for_me" = "Обриши за мене";
@@ -69,6 +71,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Слике са сервера могу да вас прате\n\nОво подешавање такође може да учита додатне фонтове и други садржај. Ако је онемогућено, могу се појавити уграђене или ускладиштене слике.\n\nДа ли желите да учитате слике са сервера?";
 "always" = "Увек";
+// deprecated
 "always_load_remote_images" = "Увек учитај слике са сервера";
 "once" = "Само једном";
 // deprecated
@@ -89,6 +92,7 @@
 "copied_to_clipboard" = "Копирано у клипборд.";
 "contacts_headline" = "Контакти";
 "email_address" = "Е-адреса";
+// deprecated
 "bad_email_address" = "Лоша е-адреса.";
 "password" = "Лозинка";
 "existing_password" = "Постојећа лозинка";
@@ -110,6 +114,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Изабрано:";
 "self" = "Ја";
 "draft" = "Нацрт";
@@ -137,6 +142,7 @@
 "capture" = "Сними";
 // Switch eg. from front to back camera
 "switch_camera" = "Промени камеру";
+// deprecated
 "toggle_fullscreen" = "Обрће режим пуног екрана";
 "location" = "Локација";
 "locations" = "Локације";
@@ -163,10 +169,12 @@
 "magenta" = "Љубичаста";
 "white" = "Бела";
 "zoom" = "Увеличање";
+// deprecated
 "extra_small" = "Малецка";
 "small" = "Мала";
 "normal" = "Нормална";
 "large" = "Велика";
+// deprecated
 "extra_large" = "Огромна";
 "fast" = "Брзо";
 "slow" = "Споро";
@@ -188,6 +196,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Обриши ћаскање";
 "delete_contact" = "Избриши контакт";
+// deprecated
 "menu_delete_location" = "Избриши овај положај?";
 "menu_message_details" = "Детаљи поруке";
 "menu_copy_to_clipboard" = "Копирај у клипборд";
@@ -220,6 +229,7 @@
 "privacy_policy" = "Политика приватности";
 "menu_select_all" = "Изабери све";
 "select_chat" = "Изабери ћаскање";
+// deprecated
 "select_more" = "Изабери још";
 "menu_edit_name" = "Уреди назив";
 "menu_settings" = "Поставке";
@@ -243,7 +253,7 @@
 "unpin_chat" = "Откачи ћаскање";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Закачи";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Откачи";
 "ConversationFragment_quoted_message_not_found" = "Оригинална порука није пронађена";
 "reply_privately" = "Одговори у приватној поруци";
@@ -313,8 +323,11 @@
 "saved_messages_explain" = "• Проследи поруке овде за лакши приступ\n\n• Направите текстуалне или звучне белешке\n\n• Приложите медиј да би га снимили";
 // Should match "Saved" from "Saved messages"
 "saved" = "Снимљено";
+// deprecated
 "save_as" = "Сними као";
+// deprecated
 "retry_send" = "Покушај поново да пошаљеш поруку";
+// deprecated
 "cannot_display_unsuported_file_type" = "Тип фајла %1$@не може бити приказан";
 "attachment_failed_to_load" = "Учитавање прилога је неуспешно";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -353,12 +366,14 @@
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
 "tab_gallery" = "Галерија";
+// deprecated
 "tab_docs" = "Документи";
 "tab_links" = "Везе";
 "tab_map" = "Мапа";
 "tab_gallery_empty_hint" = "Слике и видео записи подељени у овом ћаскању ће се појавити овде.";
 "tab_docs_empty_hint" = "Документи и други фајлови подељене у овом ћаскању ће се појавити овде.";
 "tab_image_empty_hint" = "Слике подељене у овом ћаскању ће се појавити овде.";
+// deprecated
 "tab_video_empty_hint" = "Видео записи подељени у овом ћаскању ће се појавити овде.";
 "tab_audio_empty_hint" = "Звучне поруке и записи подељене у овом ћаскању ће се појавити овде.";
 "tab_webxdc_empty_hint" = "Приватне апликације подељене у овом ћаскању ће се појавити овде.";
@@ -460,6 +475,7 @@
 "pref_led_color" = "Боја ЛЕД светла";
 "pref_sound" = "Звук";
 "pref_silent" = "Без звука";
+// deprecated
 "pref_privacy" = "Приватност";
 "pref_system_default" = "Подразумеване поставке оперативног система";
 // Translators: as in "opposite of dark"
@@ -473,6 +489,7 @@
 "pref_incognito_keyboard_explain" = "Затражи од тастатуре да онемогући персонализовано учење";
 "pref_read_receipts" = "Примај и шаљи поруке читања";
 "pref_read_receipts_explain" = "Уколико су извештаји читања онемогућени, нећете видети када неко прочита ваше поруке.";
+// deprecated
 "pref_manage_keys" = "Управљај кључевима";
 "pref_chats" = "Ћаскања";
 "pref_in_chat_sounds" = "Звуци ћаскања";
@@ -502,7 +519,7 @@
 "pref_show_emails_no" = "Не, само ћаскања";
 // deprecated
 "pref_show_emails_accepted_contacts" = "За прихваћене контакте";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Сви";
 "pref_experimental_features" = "Експерименталне могућности";
 "pref_on_demand_location_streaming" = "Проток положаја на захтев";
@@ -512,6 +529,8 @@
 "pref_background_custom_color" = "Прилагођена боја";
 "export_aborted" = "Извоз је прекинут.";
 "auto_download_messages" = "Аутоматско преузимање порука";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Сви";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Повећано на %1$@";
 "up_to_x_most_worse_quality_images" = "Повећано на %1$@, најлошији квалитет слика";
@@ -756,9 +775,11 @@
 "a11y_disappearing_messages_activated" = "Нестајуће поруке су активиране";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Престаните са дељењем положаја";
+// deprecated
 "a11y_voice_message_hint_ios" = "Након снимања, двапут додирните да бисте послали. Да бисте одбацили снимак, трљајте га са два прста.";
 "a11y_connectivity_hint" = "Двапут додирните да прегледате детаље о повезивању.";
 "login_error_no_internet_connection" = "Неуспешна пријава на налог, нисте повезани на интернет.";
+// deprecated
 "share_account_not_configured" = "Налог није још конфигурисан.";
 "cannot_play_audio_file" = "Овај звучни запис не може репродуковати.";
 // iOS camera permission alert
@@ -768,12 +789,16 @@
 "import_device_contacts" = "Увезите контакте са уређаја";
 // deprecated
 "import_device_contacts_hint" = "Да би ћаскали са контактима са вашег уређаја отворите поставке и омогућите приступ контактима.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Онемогућено у Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Онемогућено у поставкама оперативног система";
 "bg_app_refresh_disabled" = "„Освежавање апликације у позадини“ је онемогућено у поставкама оперативног система";
+// deprecated
 "notifications_avg_minutes" = "У просеку сваких %1$dминута";
+// deprecated
 "notifications_avg_hours" = "У просеку сваких %1$dсати";
+// deprecated
 "last_check_at" = "Проверено у %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Да би сте одржавали везу са вашим сервером за е-пошту и да би сте примали поруке у позадини, игноришите оптимизације ефикасности батерије у следећем кораку.\n\nDelta Chat не користи много енергије и води рачуна да вам не испразни батерију.";
