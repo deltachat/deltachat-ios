@@ -9,6 +9,7 @@
 "on" = "Deschis";
 "off" = "Închideți";
 "def" = "Implicit";
+// deprecated
 "default_value" = "Implicit (%1$@)";
 "custom" = "Personalizat";
 "none" = "Nici unul";
@@ -19,6 +20,7 @@
 "downloading" = "Descărcarea…";
 "open_attachment" = "Deschideți Atașamentul";
 "join" = "Alăturați-vă";
+// deprecated
 "rejoin" = "Reînscrieți-vă la";
 "delete" = "Ștergeți";
 "info" = "Informații";
@@ -57,6 +59,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Imaginile de la distanță vă pot urmări.\n\nAceastă setare poate, de asemenea, să încarce fonturi și alt conținut. Dacă este dezactivată, pot apărea imagini încorporate sau în cache.\n\nÎncărcare imagini la distanță?";
 "always" = "Întotdeauna";
+// deprecated
 "always_load_remote_images" = "Încărcați întotdeauna imagini la distanță";
 "once" = "Odată ce";
 // deprecated
@@ -77,6 +80,7 @@
 "copied_to_clipboard" = "Copiat în clipboard.";
 "contacts_headline" = "Contacte";
 "email_address" = "Adresă de e-mail";
+// deprecated
 "bad_email_address" = "Adresă de e-mail greșită.";
 "password" = "Parolă";
 "existing_password" = "Parolă existentă";
@@ -120,6 +124,7 @@
 "capture" = "Captură";
 // Switch eg. from front to back camera
 "switch_camera" = "Comutați camera";
+// deprecated
 "toggle_fullscreen" = "Comutarea modului ecran complet";
 "location" = "Locație";
 "gallery" = "Galerie";
@@ -140,10 +145,12 @@
 "magenta" = "Magenta";
 "white" = "Alb";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Foarte mic";
 "small" = "Mic";
 "normal" = "Normal";
 "large" = "Mare";
+// deprecated
 "extra_large" = "Foarte mare";
 "fast" = "Rapid";
 "slow" = "Lent";
@@ -165,6 +172,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Curăță Chat-ul";
 "delete_contact" = "Ștergeți Contactul";
+// deprecated
 "menu_delete_location" = "Ștergeți această locație?";
 "menu_message_details" = "Detalii Mesaj";
 "menu_copy_to_clipboard" = "Copiați în clipboard";
@@ -196,6 +204,7 @@
 "menu_help" = "Ajutor";
 "privacy_policy" = "Politica de confidențialitate";
 "menu_select_all" = "Selectați toate";
+// deprecated
 "select_more" = "Selectați mai mult";
 "menu_edit_name" = "Editați Numele";
 "menu_settings" = "Setări";
@@ -219,7 +228,7 @@
 "unpin_chat" = "Desprindeți Chat-ul";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fixați";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desprindeți";
 "ConversationFragment_quoted_message_not_found" = "Mesajul original nu a fost găsit";
 "reply_privately" = "Răspundeți în Privat";
@@ -278,8 +287,11 @@
 "saved_messages_explain" = "• Redirecționați mesajele aici pentru acces ușor\n\n• Luați notițe sau notițe vocale\n\n\n• Atașați fișiere media pentru a le salva";
 // Should match "Saved" from "Saved messages"
 "saved" = "Salvat";
+// deprecated
 "save_as" = "Salvați ca";
+// deprecated
 "retry_send" = "Reîncercarea de a trimite mesajul";
+// deprecated
 "cannot_display_unsuported_file_type" = "Nu se poate afișa acest tip de fișier: %1$@";
 "attachment_failed_to_load" = "Nu s-a reușit încărcarea atașamentului";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -316,12 +328,14 @@
 "tab_contact" = "Contact";
 "tab_group" = "Grup";
 "tab_gallery" = "Galerie";
+// deprecated
 "tab_docs" = "Documente";
 "tab_links" = "Link-uri";
 "tab_map" = "Hartă";
 "tab_gallery_empty_hint" = "Imaginile și videoclipurile partajate în acest chat vor apărea aici.";
 "tab_docs_empty_hint" = "Documentele și alte fișiere partajate în acest chat vor apărea aici.";
 "tab_image_empty_hint" = "Imaginile partajate în acest chat vor apărea aici.";
+// deprecated
 "tab_video_empty_hint" = "Videoclipurile partajate în acest chat vor apărea aici.";
 "tab_audio_empty_hint" = "Fișierele audio și mesajele vocale partajate în acest chat vor apărea aici.";
 "tab_webxdc_empty_hint" = "App-urile partajate în acest chat vor apărea aici.";
@@ -444,6 +458,7 @@
 "pref_led_color" = "Culoare LED";
 "pref_sound" = "Sunet";
 "pref_silent" = "Silențios";
+// deprecated
 "pref_privacy" = "Confidențialitate";
 "pref_system_default" = "Sistem implicit";
 // Translators: as in "opposite of dark"
@@ -457,4 +472,5 @@
 "pref_incognito_keyboard_explain" = "Solicitați tastatura pentru a dezactiva învățarea personalizată";
 "pref_read_receipts" = "Citiți Chitanțele";
 "pref_read_receipts_explain" = "Dacă sunt dezactivate chitanțele de citire, nu veți putea vedea chitanțele de citire de la alte persoane.";
+// deprecated
 "pref_manage_keys" = "Gestionați Cheile";

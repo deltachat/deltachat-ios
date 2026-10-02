@@ -13,6 +13,7 @@
 "on" = "Activado";
 "off" = "Desactivado";
 "def" = "Por defecto";
+// deprecated
 "default_value" = "Por defecto (%1$@)";
 "custom" = "Personalizado";
 "none" = "Ninguno";
@@ -25,6 +26,7 @@
 "join" = "Unirse";
 "join_group" = "Unirse al grupo";
 "join_channel" = "Unirse al canal";
+// deprecated
 "rejoin" = "Volver a unirse";
 "delete" = "Eliminar";
 "delete_for_me" = "Eliminar solo para mí";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLa opción también permite cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
 "always" = "Siempre";
+// deprecated
 "always_load_remote_images" = "Cargar siempre imágenes remotas";
 "once" = "Una vez";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "No se puede encontrar una aplicación compatible con este tipo de contenido";
 "no_browser_installed" = "No hay ningún navegador instalado.";
 "file_not_found" = "No se pudo encontrar %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "No se puede guardar %1$@.";
 "copied_to_clipboard" = "Copiado al portapapeles.";
 "contacts_headline" = "Contactos";
 "email_address" = "Dirección de correo";
+// deprecated
 "bad_email_address" = "Dirección de correo no válida.";
 "password" = "Contraseña";
 "existing_password" = "Contraseña existente";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Seleccionado:";
 "selected" = "Seleccionado";
 "self" = "Yo";
@@ -178,6 +183,7 @@
 "contact" = "Contacto";
 "bot" = "bot";
 "camera" = "Cámara";
+"take_photo" = "Haz una foto";
 "front_camera" = "Cámara frontal";
 "back_camera" = "Cámara trasera";
 "microphone" = "Micrófono";
@@ -187,6 +193,7 @@
 "switch_camera" = "Alternar cámara";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Alternar cámara";
+// deprecated
 "toggle_fullscreen" = "Alternar modo pantalla completa";
 "location" = "Ubicación";
 "locations" = "Ubicaciones";
@@ -227,10 +234,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Muy pequeño";
 "small" = "Pequeño";
 "normal" = "Normal";
 "large" = "Grande";
+// deprecated
 "extra_large" = "Muy grande";
 "fast" = "Rápido";
 "slow" = "Lento";
@@ -273,6 +282,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vaciar chat";
 "delete_contact" = "Eliminar contacto";
+// deprecated
 "menu_delete_location" = "¿Eliminar esta ubicación?";
 "menu_message_details" = "Detalles del mensaje";
 "menu_copy_to_clipboard" = "Copiar al portapapeles";
@@ -315,6 +325,7 @@
 "privacy_policy" = "Política de privacidad";
 "menu_select_all" = "Seleccionar todo";
 "select_chat" = "Seleccionar chat";
+// deprecated
 "select_more" = "Seleccionar más";
 "menu_edit_name" = "Editar nombre";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +356,7 @@
 "pin" = "Anclar";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fijado";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desanclar";
 "ConversationFragment_quoted_message_not_found" = "Mensaje original no encontrado";
 "reply_privately" = "Responder en privado";
@@ -453,6 +464,7 @@
 "chat_input_placeholder" = "Mensaje";
 "chat_archived_label" = "Archivado";
 "chat_request_label" = "Solicitud";
+// deprecated
 "chat_request_label_explain" = "Incluir solicitudes en contadores y notificaciones";
 "chat_no_messages" = "No hay mensajes.";
 "chat_self_talk_subtitle" = "Mensajes que envié a mí mismo";
@@ -463,8 +475,11 @@
 "saved_messages_explain" = "• Reenvía mensajes aquí para accederlos fácilmente luego\n\n• Toma notas o mensajes de voz\n\n• Adjunta archivos para guardarlos";
 // Should match "Saved" from "Saved messages"
 "saved" = "Guardado";
+// deprecated
 "save_as" = "Guardar como";
+// deprecated
 "retry_send" = "Reintentar enviar mensaje";
+// deprecated
 "cannot_display_unsuported_file_type" = "No se puede mostrar este tipo de archivo: %1$@";
 "attachment_failed_to_load" = "Fallo al cargar el adjunto";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +531,14 @@
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galería";
+// deprecated
 "tab_docs" = "Documentos";
 "tab_links" = "Enlaces";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Las imágenes y videos compartidos en este chat se mostrarán aquí.";
 "tab_docs_empty_hint" = "Documentos, música y otros archivos compartidos en este chat se mostrarán aquí.";
 "tab_image_empty_hint" = "Imágenes compartidas en este chat se mostrarán aquí.";
+// deprecated
 "tab_video_empty_hint" = "Vídeos compartidos en este chat se mostrarán aquí.";
 "tab_audio_empty_hint" = "Los archivos de audio y los mensajes de voz compartidos en este chat se mostrarán aquí.";
 "tab_webxdc_empty_hint" = "Apps compartidas en este chat se mostrarán aquí";
@@ -529,9 +546,9 @@
 "all_files_empty_hint" = "Documentos y otros archivos compartidos en cualquier chat se mostrarán aquí.";
 "all_apps_empty_hint" = "Apps recibidas o enviadas en cualquier chat aparecerán aquí.";
 "media_preview" = "Vista previa de multimedia";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Cuadrícula de relación de aspecto";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Cuadrícula cuadrada";
 "send_message" = "Enviar mensaje";
 // Multi Device
@@ -740,6 +757,7 @@
 "pref_led_color" = "Color de LED";
 "pref_sound" = "Sonido";
 "pref_silent" = "Silencio";
+// deprecated
 "pref_privacy" = "Privacidad";
 "pref_system_default" = "Predeterminado del sistema";
 // Translators: as in "opposite of dark"
@@ -757,7 +775,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Leído por";
 "pref_server" = "Servidor";
+// deprecated
 "pref_encryption" = "Cifrado";
+// deprecated
 "pref_manage_keys" = "Administrar claves";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
@@ -794,7 +814,7 @@
 "pref_show_emails_no" = "No, sólo chats";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Para contactos aceptados";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Características experimentales";
 "pref_experimental_features_explain" = "Estas funciones pueden ser inestables y pueden ser modificadas o eliminadas";
@@ -805,6 +825,8 @@
 "pref_background_custom_color" = "Color personalizado";
 "export_aborted" = "Exportado abortado.";
 "auto_download_messages" = "Descarga automática de mensajes";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Todos";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Hasta %1$@";
 "up_to_x_most_worse_quality_images" = "Hasta %1$@, la mayoría de imágenes de peor calidad";
@@ -1141,9 +1163,11 @@
 "open_link" = "Abrir %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Dejar de compartir ubicación";
+// deprecated
 "a11y_voice_message_hint_ios" = "Después de grabar, toque dos veces para enviar. Para descartar la grabación, deslice de izquierda a derecha con dos dedos.";
 "a11y_connectivity_hint" = "Toca dos veces para ver los detalles de conectividad.";
 "login_error_no_internet_connection" = "No hay conexión a Internet, el inicio de sesión falló.";
+// deprecated
 "share_account_not_configured" = "La cuenta no está configurada.";
 "cannot_play_audio_file" = "El archivo de audio no se puede reproducir.";
 // iOS camera permission alert
@@ -1153,12 +1177,16 @@
 "import_device_contacts" = "Importar contactos del dispositivo";
 // deprecated
 "import_device_contacts_hint" = "Para chatear con los contactos de tu dispositivo abre los ajustes y activa \"Contactos\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Deshabilitado en Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Deshabilitado en la configuración del sistema";
 "bg_app_refresh_disabled" = "\"Actualización de aplicaciones en segundo plano\" desactivada en los ajustes del sistema";
+// deprecated
 "notifications_avg_minutes" = "Promedio cada %1$d minutos";
+// deprecated
 "notifications_avg_hours" = "Promedio cada %1$d horas";
+// deprecated
 "last_check_at" = "Comprobado en %1$@";
 "system_settings" = "Configuración del sistema";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

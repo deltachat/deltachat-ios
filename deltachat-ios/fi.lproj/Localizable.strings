@@ -13,6 +13,7 @@
 "on" = "Päällä";
 "off" = "Pois";
 "def" = "Oletus";
+// deprecated
 "default_value" = "Oletus (%1$@)";
 "custom" = "Mukautettu";
 "none" = "Ei mitään";
@@ -25,6 +26,7 @@
 "join" = "Liity";
 "join_group" = "Liity ryhmään";
 "join_channel" = "Liity kanavalle";
+// deprecated
 "rejoin" = "Liity uudelleen";
 "delete" = "Poista";
 "delete_for_me" = "Poista minulta";
@@ -83,6 +85,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Verkosta ladattujen kuvien avulla sinua voidaan seurata.\n\nAsetus mahdollistaa myös fonttien ja muun sisällön lataamisen. Voit nähdä upotettuja kuvia, vaikka asetus ei olisi käytössä.\n\nLataa kuvat verkosta?";
 "always" = "Aina";
+// deprecated
 "always_load_remote_images" = "Lataa aina kuvat verkosta";
 "once" = "Kerran";
 // deprecated
@@ -101,11 +104,12 @@
 "no_app_to_handle_data" = "Tiedoston avaamiseen sopivaa sovellusta ei löydetty.";
 "no_browser_installed" = "Selainta ei asennettu.";
 "file_not_found" = "%1$@ ei löytynyt. ";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Tiedostoa %1$@ ei voitu tallentaa.";
 "copied_to_clipboard" = "Kopioitu leikepöydälle";
 "contacts_headline" = "Yhteystiedot";
 "email_address" = "Sähköpostiosoite";
+// deprecated
 "bad_email_address" = "Virheellinen sähköpostiosoite";
 "password" = "Salasana";
 "existing_password" = "Olemassa oleva salasana";
@@ -130,6 +134,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Valittu:";
 "selected" = "Valittu";
 "self" = "Minä";
@@ -168,6 +173,7 @@
 "capture" = "Kuvaa";
 // Switch eg. from front to back camera
 "switch_camera" = "Vaihda kameraa";
+// deprecated
 "toggle_fullscreen" = "Koko näytön tila";
 "location" = "Sijainti";
 "locations" = "Sijainnit";
@@ -205,10 +211,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Suurennos";
+// deprecated
 "extra_small" = "Erittäin pieni";
 "small" = "Pieni";
 "normal" = "Tavallinen";
 "large" = "Suuri";
+// deprecated
 "extra_large" = "Erittäin suuri";
 "fast" = "Nopea";
 "slow" = "Hidas";
@@ -251,6 +259,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Tyhjennä keskustelu";
 "delete_contact" = "Poista yhteystieto";
+// deprecated
 "menu_delete_location" = "Poista tämä sijainti?";
 "menu_message_details" = "Viestin tiedot";
 "menu_copy_to_clipboard" = "Kopioi leikepöydälle";
@@ -292,6 +301,7 @@
 "privacy_policy" = "Yksityisyyskäytäntö";
 "menu_select_all" = "Valitse kaikki";
 "select_chat" = "Valitse keskustelu";
+// deprecated
 "select_more" = "Valitse lisää";
 "menu_edit_name" = "Muokkaa nimeä";
 "menu_settings" = "Asetukset";
@@ -318,7 +328,7 @@
 "pin" = "Kiinnitä";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Kiinnitetty";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Irrota";
 "ConversationFragment_quoted_message_not_found" = "Alkuperäistä viestiä ei löydy";
 "reply_privately" = "Vastaa yksityisesti";
@@ -428,8 +438,11 @@
 "saved_messages_explain" = "• Välitä viestejä tänne helppoa pääsyä varten\n\n• Kirjoita tai äänitä muistiinpanoja\n\n• Liitä mediaa tallentaaksesi ne";
 // Should match "Saved" from "Saved messages"
 "saved" = "Tallennettu";
+// deprecated
 "save_as" = "Tallenna nimellä";
+// deprecated
 "retry_send" = "Yritä uudelleen lähettääksesi viestin";
+// deprecated
 "cannot_display_unsuported_file_type" = "Tiedostotyypin näyttäminen epäonnistui: %1$@";
 "attachment_failed_to_load" = "Liitteiden lataaminen epäonnistui";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -479,12 +492,14 @@
 "tab_contact" = "Yhteystieto";
 "tab_group" = "Ryhmä";
 "tab_gallery" = "Galleria";
+// deprecated
 "tab_docs" = "Asiakirjat";
 "tab_links" = "Linkit";
 "tab_map" = "Kartta";
 "tab_gallery_empty_hint" = "Tässä keskustelussa jaetut kuvat ja videot näkyvät tässä.";
 "tab_docs_empty_hint" = "Tässä keskustelussa jaetut asiakirjat, musiikki ja muut tiedostot näkyvät tässä.";
 "tab_image_empty_hint" = "Tässä keskustelussa jaetut kuvat näkyvät tässä.";
+// deprecated
 "tab_video_empty_hint" = "Tässä keskustelussa jaetut videot näkyvät tässä.";
 "tab_audio_empty_hint" = "Tässä keskustelussa jaetut äänitiedostot ja -viestit näkyvät tässä.";
 "tab_webxdc_empty_hint" = "Keskustelussa jaetut yksityiset sovellukset näkyvät tässä.";
@@ -492,9 +507,9 @@
 "all_files_empty_hint" = "Asiakirjat ja muut keskusteluihin liitetyt tiedostot näkyvät tässä.";
 "all_apps_empty_hint" = "Kaikissa keskusteluissa jaetut yksityiset sovellukset näkyvät tässä.";
 "media_preview" = "Median esikatselu";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Kuvasuhteen mukainen ruudukko";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Neliöruudukko";
 "send_message" = "Lähetä viesti";
 // Multi Device
@@ -685,6 +700,7 @@
 "pref_led_color" = "LEDin väri";
 "pref_sound" = "Ääni";
 "pref_silent" = "Äänetön";
+// deprecated
 "pref_privacy" = "Yksityisyys";
 "pref_system_default" = "Järjestelmän oletus";
 // Translators: as in "opposite of dark"
@@ -700,7 +716,9 @@
 "pref_read_receipts" = "Lukukuittaukset";
 "pref_read_receipts_explain" = "Jos lukukuittaukset eivät ole päällä, et näe niitä muiltakaan.";
 "pref_server" = "Palvelin";
+// deprecated
 "pref_encryption" = "Salaus";
+// deprecated
 "pref_manage_keys" = "Hallinnoi avaimia";
 "pref_chats" = "Keskustelut";
 "pref_in_chat_sounds" = "Keskustelunaikaiset äänet";
@@ -734,7 +752,7 @@
 "pref_show_emails_no" = "Ei, vain pikaviestit";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Hyväksytyille yhteystiedoille";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Kaikki";
 "pref_experimental_features" = "Kokeelliset ominaisuudet";
 "pref_experimental_features_explain" = "Nämä ominaisuudet eivät välttämättä ole vakaita, ja ne saattavat muuttua tai poistua";
@@ -745,6 +763,8 @@
 "pref_background_custom_color" = "Mukautettu väri";
 "export_aborted" = "Vienti keskeytetty.";
 "auto_download_messages" = "Lataa viestit automaattisesti";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Kaikki";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Korkeintaan %1$@";
 "up_to_x_most_worse_quality_images" = "Korkeintaan %1$@, suurin osa alhaisen laadun kuvista";
@@ -1060,9 +1080,11 @@
 "open_link" = "Avaa %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Lopeta sijainnin jakaminen";
+// deprecated
 "a11y_voice_message_hint_ios" = "Nauhoittamisen jälkeen napauta kahdesti lähettääksesi. Hylätäksesi nauhoitteen pyyhkäise vasemmalta oikealle kahdella sormella.";
 "a11y_connectivity_hint" = "Napauta kahdesti nähdäksesi yksityiskohtia yhteydestä.";
 "login_error_no_internet_connection" = "Ei internet-yhteyttä, sisäänkirjaus epäonnistui.";
+// deprecated
 "share_account_not_configured" = "Tiliä ei ole määritetty.";
 "cannot_play_audio_file" = "Äänitiedostoa ei voi toistaa.";
 // iOS camera permission alert
@@ -1072,12 +1094,16 @@
 "import_device_contacts" = "Tuo laitteen yhteystiedot";
 // deprecated
 "import_device_contacts_hint" = "Avaa asetukset ja kytke päälle \"Yhteystiedot\" viestiäksesi laitteen yhteystietojen kanssa.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Kytketty pois Delta Chatissa";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Kytketty pois järjestelmäasetuksissa";
 "bg_app_refresh_disabled" = "Taustasovelluksen päivitys kytketty pois järjestelmäasetuksissa";
+// deprecated
 "notifications_avg_minutes" = "Keskimäärin%1$d minuutin välein";
+// deprecated
 "notifications_avg_hours" = "Keskimäärin %1$d tunnin välein";
+// deprecated
 "last_check_at" = "Tarkistettu %1$@";
 "system_settings" = "Järjestelmän asetukset";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

@@ -29,7 +29,7 @@ class DownloadOnDemandViewController: UITableViewController {
     static func getValString(val: Int) -> String {
         switch val {
         case 0:
-            return String.localized("pref_show_emails_all")
+            return String.localized("all")
         case 40960, 163840:
             return String.localizedStringWithFormat(String.localized("up_to_x_most_worse_quality_images"), "160 KiB")
         case 655360:

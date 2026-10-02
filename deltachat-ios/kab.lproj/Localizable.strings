@@ -13,6 +13,7 @@
 "on" = "Sermed";
 "off" = "Sens";
 "def" = "Amezwer";
+// deprecated
 "default_value" = "Amezwer (%1$@)";
 "custom" = "Admawan";
 "none" = "Ulac";
@@ -23,6 +24,7 @@
 "downloading" = "Asider...";
 "open_attachment" = " Ldi amedday";
 "join" = "Ddu ɣer";
+// deprecated
 "rejoin" = "kcem ɣer";
 "delete" = "Kkes";
 "delete_for_me" = "Kkes i nekk";
@@ -80,6 +82,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Tugniwin n unmeggag zemrent ad k-ḍefrent.\n\nAɣewwaṛ-agi yezmer ad yessali daɣen tisefsiyin akked ugbur-nniḍen. Ma yella yensa, tugniwin yettwaffren neɣ tusliɣin zemrent ad d-banent.\n\nSali-d tugniwin n unmeggag?";
 "always" = "Dima";
+// deprecated
 "always_load_remote_images" = "Sali-d yal tikelt tugniwin n unmeggag";
 "once" = "Tikkelt";
 // deprecated
@@ -97,11 +100,12 @@
 "no_app_to_handle_data" = "Ur izmir ara ad d-yaf asnas i usefrek n wanaw-a n yisefka.";
 "no_browser_installed" = "Ulac iminig ibedden.";
 "file_not_found" = "Ur yezmir ara ad yaf %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Ur izmir ara ad isellek %1$@.";
 "copied_to_clipboard" = "Nɣel ɣer tecfawt.";
 "contacts_headline" = "Inermisen";
 "email_address" = "Tansa imayl";
+// deprecated
 "bad_email_address" = "Yir tansa imayl";
 "password" = "Awal n uɛeddi";
 "existing_password" = "Awal n uɛeddi yellan";
@@ -126,6 +130,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Yettwafran:";
 "selected" = "Yettwafren";
 "self" = "Nekk";
@@ -161,6 +166,7 @@
 "capture" = "Tuṭṭfa ";
 // Switch eg. from front to back camera
 "switch_camera" = "Beddel takamiṛat ";
+// deprecated
 "toggle_fullscreen" = "Ldi/Mdel askar n ugdil ačuran";
 "location" = "Adig";
 "locations" = " Idgan";
@@ -198,10 +204,12 @@
 "magenta" = "akeẓẓal";
 "white" = "Amellal";
 "zoom" = "Asemɣer/asimẓi";
+// deprecated
 "extra_small" = "Amecṭuḥ ugar";
 "small" = "Amecṭuḥ";
 "normal" = "Amagnu";
 "large" = "meqqer";
+// deprecated
 "extra_large" = "meqqer ugar";
 "fast" = "arurad";
 "slow" = " Ẓẓay";
@@ -243,6 +251,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sfeḍ adiwenni usrid";
 "delete_contact" = "Kkes anermis";
+// deprecated
 "menu_delete_location" = "Kkes adig-agi?";
 "menu_message_details" = "Talɣut n yizen";
 "menu_copy_to_clipboard" = "Nɣel ɣer tecfawt";
@@ -285,6 +294,7 @@
 "privacy_policy" = "Tsertit tabaḍnit";
 "menu_select_all" = "Fren meṛṛa ";
 "select_chat" = "Fren Adiwenni";
+// deprecated
 "select_more" = "Fren ugar";
 "menu_edit_name" = "Ẓreg isem";
 // The placeholder will be replaced by the name the contact gave themself
@@ -312,7 +322,7 @@
 "unpin_chat" = "Kkes asenteḍ n udiwenni";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Senṭeḍ";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Kkes asenteḍ";
 "ConversationFragment_quoted_message_not_found" = "Izen aneṣli ulac-it";
 "reply_privately" = "Err s wudem uslig";
@@ -405,6 +415,7 @@
 "chat_input_placeholder" = "Izen";
 "chat_archived_label" = "yettwaɣber";
 "chat_request_label" = "Asuter";
+// deprecated
 "chat_request_label_explain" = "Seddu isuturen deg yimsiḍnen akked deg ilɣa";
 "chat_no_messages" = "Ulac iznan. ";
 "chat_self_talk_subtitle" = "Iznan i yiman-nsen";
@@ -415,8 +426,11 @@
 "saved_messages_explain" = "• Welleh iznan dagi i unekcum fessusen\n\n•Aru tizmilin neɣ takatut n taɣect\n\n• Seddu amidya akken ad ten-teskelseḍ";
 // Should match "Saved" from "Saved messages"
 "saved" = "Yettwasekles";
+// deprecated
 "save_as" = "Yettwasekles Am";
+// deprecated
 "retry_send" = "Ales ad tazned izen";
+// deprecated
 "cannot_display_unsuported_file_type" = "Ur izmir ara ad d-yesken anaw-agi n ufaylu: %1$@";
 "attachment_failed_to_load" = "Asali n imeddayen ur yeddi ara";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -463,12 +477,14 @@
 "tab_contact" = "Anermis";
 "tab_group" = "Agraw";
 "tab_gallery" = "Tamidelt ";
+// deprecated
 "tab_docs" = "Isemliyen";
 "tab_links" = "Iseɣwan";
 "tab_map" = "Takarḍa";
 "tab_gallery_empty_hint" = "Tugniwin akked tvidyutin icudden ɣer udiwenni-agi ad d-banen dagi.";
 "tab_docs_empty_hint" = "Isemliyen akked ifuyla-nniḍen icudden ɣer udiwenni-agi ad d-banen dagi. ";
 "tab_image_empty_hint" = "Tugniwin icudden ɣer udiwenni-agi ad d-banent dagi. ";
+// deprecated
 "tab_video_empty_hint" = "Tividyutin icudden ɣer udiwenni-agi ad d-banent dagi.";
 "tab_audio_empty_hint" = "Ifuyla imeslawen akked iznan n taɣect icudden ɣer udiwenni-agi ad d-banen dagi.";
 "tab_webxdc_empty_hint" = "Isnasen icudden ɣer udiwenni-a ad d-banen dagi. ";
@@ -476,9 +492,9 @@
 "all_files_empty_hint" = "Isemliyen akked ifuyla-nniḍen icudden ɣer yal adiwenni ad d-banen dagi. ";
 "all_apps_empty_hint" = "Isnasen icudden ɣer yal adiwenni ad d-banen dagi. ";
 "media_preview" = "Taskant n umidya";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Iẓiki n uktassaɣ n tmẓriwit";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Iẓiki n umkuẓ";
 "send_message" = "Azen izen";
 // Multi Device
@@ -676,6 +692,7 @@
 "pref_led_color" = "Ini LED";
 "pref_sound" = "Imesli";
 "pref_silent" = "Asusam";
+// deprecated
 "pref_privacy" = "Tabaḍnit";
 "pref_system_default" = "Anagraw amezwer";
 // Translators: as in "opposite of dark"
@@ -691,7 +708,9 @@
 "pref_read_receipts" = "Ɣeṛ armas";
 "pref_read_receipts_explain" = "Ma yella taɣuri n urmas tensa, ur tettizmireḍ ara ad twaliḍ iremsen n tɣuri sɣur wiyaḍ. Ɣeṛ armas.";
 "pref_server" = "Aqeddac";
+// deprecated
 "pref_encryption" = "Awgelhen";
+// deprecated
 "pref_manage_keys" = "Sefrek tisura";
 "pref_chats" = "Idiwenniyen";
 "pref_in_chat_sounds" = "Imeslan n idiwenniyen";
@@ -728,7 +747,7 @@
 "pref_show_emails_no" = "Ala, idiwenniyen kan";
 // deprecated
 "pref_show_emails_accepted_contacts" = "I yinermisen yettwaqeblen";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Akk";
 "pref_experimental_features" = "Timahilin tirmitanin";
 "pref_experimental_features_explain" = "Timahilin-agi zemrent ad ilint ur rkident ara, daɣen zemrent ad ttwabeddlent neɣ ad ttwakksent";
@@ -739,6 +758,8 @@
 "pref_background_custom_color" = "Ini yugnen";
 "export_aborted" = "Asifeḍ ur yeddi ara.";
 "auto_download_messages" = "Sider iznan s wudem awurman ";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Akk";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Arma d %1$@";
 "up_to_x_most_worse_quality_images" = "Arma d %1$@, tugniwin n tɣara n diri maḍi";
@@ -1048,9 +1069,11 @@
 "a11y_disappearing_messages_activated" = "Iznan ur nettdum ara yettwarmed";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Ḥbes beṭṭu n wadig";
+// deprecated
 "a11y_voice_message_hint_ios" = "Seld asekles, sit snat n tikkal i tuzna. Akken ad tekkseḍ asekles, sfeḍ s sin yiḍarren.";
 "a11y_connectivity_hint" = "Sit snat n tikkal akken ad twaliḍ talqayt n tuqqna.";
 "login_error_no_internet_connection" = "Ulac tuqqna internet, tuqqna ur teddi ara.";
+// deprecated
 "share_account_not_configured" = "Amaɣnu ur ittuswel ara. ";
 "cannot_play_audio_file" = "Afaylu ameslaw ulamek ara yettwaɣer.";
 // iOS camera permission alert
@@ -1060,12 +1083,16 @@
 "import_device_contacts" = "Kter inermisen n yibenk";
 // deprecated
 "import_device_contacts_hint" = "Iwakken ad tmeslayeḍ akked inermisen seg yibenk-ik·im, ldi Iɣewwaṛen sakkin rmed \"Iinermisen\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Ittwasens deg Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Ittwasens deg iɣewwaren n unagraw";
 "bg_app_refresh_disabled" = "\"Asmiren n usnas n ugilal\" yensa deg yiɣewwaren n unagraw";
+// deprecated
 "notifications_avg_minutes" = "Deg tlemmast yal %1$d n tesdatin";
+// deprecated
 "notifications_avg_hours" = "Deg tlemmast yal %1$d isragen";
+// deprecated
 "last_check_at" = "Ittwasenqed di %1$@";
 "system_settings" = "Iɣewwaṛen n unagraw";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

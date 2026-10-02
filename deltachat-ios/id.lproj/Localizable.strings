@@ -9,6 +9,7 @@
 "on" = "Nyala";
 "off" = "Mati";
 "def" = "Default";
+// deprecated
 "default_value" = "Default (%1$@)";
 "custom" = "Menurut pesanan";
 "none" = "Tidak ada";
@@ -19,6 +20,7 @@
 "downloading" = "Sedang Mengunduh";
 "open_attachment" = "Buka lampiran";
 "join" = "Gabung";
+// deprecated
 "rejoin" = "Gabung kembali";
 "delete" = "Hapus";
 "info" = "Info";
@@ -75,6 +77,7 @@
 "copied_to_clipboard" = "Sudah dikopi di papan klip.";
 "contacts_headline" = "Kontak";
 "email_address" = "Alamat email";
+// deprecated
 "bad_email_address" = "Alamat surel jelek.";
 "password" = "Kata kunci";
 "existing_password" = "Kata sandi sudah pernah";
@@ -120,6 +123,7 @@
 "capture" = "Tangkap";
 // Switch eg. from front to back camera
 "switch_camera" = "Ganti kamera";
+// deprecated
 "toggle_fullscreen" = "Beralih ke Mode Layar Penuh";
 "location" = "Lokasi";
 "locations" = "Lokasi";
@@ -141,10 +145,12 @@
 "magenta" = "Magenta";
 "white" = "Putih";
 "zoom" = "Perbesar";
+// deprecated
 "extra_small" = "Sangat kecil";
 "small" = "Kecil";
 "normal" = "Normal";
 "large" = "Besar";
+// deprecated
 "extra_large" = "Sangat besar";
 "fast" = "Cepat";
 "slow" = "Lambat";
@@ -166,6 +172,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Hapus Obrolan";
 "delete_contact" = "Hapus kontak";
+// deprecated
 "menu_delete_location" = "Hapus lokasi ini?";
 "menu_message_details" = "Detail pesan";
 "menu_copy_to_clipboard" = "Kopi ke papan klip";
@@ -197,6 +204,7 @@
 "privacy_policy" = "Kebijakan Privasi";
 "menu_select_all" = "Pilih semua";
 "select_chat" = "Pilih Obrolan";
+// deprecated
 "select_more" = "Pilih lebih banyak";
 "menu_edit_name" = "Edit nama";
 "menu_settings" = "Setelan";
@@ -219,7 +227,7 @@
 "unpin_chat" = "Lepas pin obrolan";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Sematkan";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Lepas pin";
 "ConversationFragment_quoted_message_not_found" = "Pesan orisinil tidak ditemukan";
 "reply_privately" = "Balas secara privat";
@@ -270,7 +278,9 @@
 "saved_messages_explain" = "• Teruskan pesan di sini untuk akses yang mudah\n\n• Buat catatan atau memo suara\n\n• Lampirkan media untuk menyimpannya";
 // Should match "Saved" from "Saved messages"
 "saved" = "Sudah disimpan";
+// deprecated
 "retry_send" = "Coba lagi mengirim pesan";
+// deprecated
 "cannot_display_unsuported_file_type" = "Tidak dapat menampilkan tipe berkas ini: %1$@";
 "attachment_failed_to_load" = "Gagal memuat lampiran";
 // search
@@ -292,6 +302,7 @@
 "tab_contact" = "Kontak";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
+// deprecated
 "tab_docs" = "Dokumen";
 "tab_links" = "Tautan";
 "tab_map" = "Peta";
@@ -362,6 +373,7 @@
 "pref_led_color" = "Warna LED";
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
+// deprecated
 "pref_privacy" = "Privasi";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Cahaya";
@@ -372,6 +384,7 @@
 "pref_incognito_keyboard" = "Keyboard penyamaran";
 "pref_read_receipts" = "Baca tanda terima";
 "pref_read_receipts_explain" = "Jika tanda terima baca dinonaktifkan, Anda tidak akan dapat melihat tanda terima baca dari orang lain.";
+// deprecated
 "pref_manage_keys" = "Kelola kunci";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
@@ -397,11 +410,13 @@
 "pref_show_emails_no" = "Tidak, hanya obrolan saja";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Untuk kontak yang telah diterima";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Semua";
 "pref_experimental_features" = "Fitur yang masih bersifat eksperimen";
 "pref_background_default" = "Latar belakang default";
 "pref_background_default_color" = "Warna default";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Semua";
 "profile_image_select" = "Pilih gambar profil";
 "select_your_new_profile_image" = "Pilih gambar profil baru";
 "profile_image_delete" = "Hapus gambar profil";

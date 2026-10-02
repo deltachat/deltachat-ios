@@ -13,6 +13,7 @@
 "on" = "روشن";
 "off" = "خاموش";
 "def" = "پیش‌فرض";
+// deprecated
 "default_value" = "پیش‌فرض (%1$@)";
 "custom" = "سفارشی";
 "none" = "هیچ‌کدام";
@@ -25,6 +26,7 @@
 "join" = "پیوستن";
 "join_group" = "پیوستن به گروه";
 "join_channel" = "پیوستن به کانال";
+// deprecated
 "rejoin" = "پیوستن مجدد";
 "delete" = "حذف";
 "delete_for_me" = "حذف برای من";
@@ -80,6 +82,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "تصاویر مربوط به نشانی‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شود. اگر غیرفعال باشد ممکن است همچنان تصویر‌های درون پیام و تصویر‌های بارگیری شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
 "always" = "همیشه";
+// deprecated
 "always_load_remote_images" = "تصاویر با منبع بیرونی همیشه بارگیری شوند";
 "once" = "همین یک بار";
 // deprecated
@@ -98,11 +101,12 @@
 "no_app_to_handle_data" = "نرم‌افزاری برای باز کردن این نوع داده یافت نشد";
 "no_browser_installed" = "هیچ مرورگری نصب نیست.";
 "file_not_found" = "عدم یافتن %1$@";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "نمی‌توان %1$@ را ذخیره کرد.";
 "copied_to_clipboard" = "در حافظه کپی شد.";
 "contacts_headline" = "مخاطبین";
 "email_address" = "نشانی رایانامه";
+// deprecated
 "bad_email_address" = "نشانی رایانامه ایراد دارد.";
 "password" = "رمزعبور";
 "existing_password" = "رمزعبور موجود";
@@ -124,6 +128,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "انتخاب شده‌ها:";
 "self" = "من";
 "draft" = "پیش‌نویس";
@@ -156,6 +161,7 @@
 "capture" = "گرفتن";
 // Switch eg. from front to back camera
 "switch_camera" = "تغییر دوربین";
+// deprecated
 "toggle_fullscreen" = "تغییر وضعیت تمام صفحه";
 "location" = "موقعیت مکانی";
 "locations" = "مکان‌ها";
@@ -193,10 +199,12 @@
 "magenta" = "سرخابی";
 "white" = "سفید";
 "zoom" = "بزرگ نمایی";
+// deprecated
 "extra_small" = "بسیار کوچک";
 "small" = "کوچک";
 "normal" = "عادی";
 "large" = "بزرگ";
+// deprecated
 "extra_large" = "خیلی بزرگ";
 "fast" = "سریع";
 "slow" = "آهسته";
@@ -237,6 +245,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
 "delete_contact" = "پاک کردن مخاطب";
+// deprecated
 "menu_delete_location" = "حذف این موقعیت مکانی؟";
 "menu_message_details" = "جزئیات پیام";
 "menu_copy_to_clipboard" = "رونوشت‌برداری در حافظه";
@@ -279,6 +288,7 @@
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
 "select_chat" = "انتخاب چت";
+// deprecated
 "select_more" = "انتخاب بیشتر";
 "menu_edit_name" = "ویرایش نام";
 // The placeholder will be replaced by the name the contact gave themself
@@ -307,7 +317,7 @@
 "unpin_chat" = "کندن گپ از سنجاق";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "سنجاق‌کردن";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "سنجاق برداری";
 "ConversationFragment_quoted_message_not_found" = "پیام اصلی یافت نشد";
 "reply_privately" = "پاسخ دادن به صورت خصوصی";
@@ -393,6 +403,7 @@
 "chat_input_placeholder" = "پیام";
 "chat_archived_label" = "بایگانی شد";
 "chat_request_label" = "درخواست";
+// deprecated
 "chat_request_label_explain" = "حساب کردن درخواست‌ها در شمارنده‌ها و اعلان‌ها";
 "chat_no_messages" = "پیامی نیست. ";
 "chat_self_talk_subtitle" = "پیام‌هایی که برای خودم ارسال کرده‌ام. ";
@@ -403,8 +414,11 @@
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
 // Should match "Saved" from "Saved messages"
 "saved" = "ذخیره شد";
+// deprecated
 "save_as" = "ذخیره به عنوان";
+// deprecated
 "retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
+// deprecated
 "cannot_display_unsuported_file_type" = "امکان نمایش این نوع پرونده وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -451,12 +465,14 @@
 "tab_contact" = "مخاطب";
 "tab_group" = "گروه";
 "tab_gallery" = "گالری";
+// deprecated
 "tab_docs" = "اسناد";
 "tab_links" = "لینک‌ها";
 "tab_map" = "نقشه";
 "tab_gallery_empty_hint" = "تصاویر و ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_docs_empty_hint" = "اسناد و پرونده‌های هم‌رساندهٔ دیگر در این گپ اینجا نمایش داده می‌شوند.";
 "tab_image_empty_hint" = "تصویر‌های هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
+// deprecated
 "tab_video_empty_hint" = "ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_audio_empty_hint" = "پرونده‌های صوتی و پیام‌های صوتی هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_webxdc_empty_hint" = "برنامه‌هایی که در این گپ به اشتراک گذاشته شده‌اند، این‌جا نمایش داده خواهند شد.";
@@ -464,9 +480,9 @@
 "all_files_empty_hint" = "سند‌ها و دیگر پرونده‌هایی که در هر چپ پیوست شده‌اند این‌جا ظاهر خواهند شد.";
 "all_apps_empty_hint" = "برنامه‌های ارسال شده در همهٔ گپ‌ها اینجا ظاهر خواهند شد.";
 "media_preview" = "نمایش رسانه";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "حفظ مقیاس تصویر";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "جدول مربعی";
 "send_message" = "ارسال پیام";
 // Multi Device
@@ -650,6 +666,7 @@
 "pref_led_color" = " LED رنگ";
 "pref_sound" = "صدا";
 "pref_silent" = "سکوت";
+// deprecated
 "pref_privacy" = "حریم خصوصی";
 "pref_system_default" = "پیش‌فرض سیستم";
 // Translators: as in "opposite of dark"
@@ -665,7 +682,9 @@
 "pref_read_receipts" = "رسید خوانده شدن";
 "pref_read_receipts_explain" = "اگر رسید خوانده شدن غیرفعال باشد، نمی‌توانید اعلام خوانده شدن توسط دیگران را ببینید.";
 "pref_server" = "کارساز";
+// deprecated
 "pref_encryption" = "رمزگذاری";
+// deprecated
 "pref_manage_keys" = "مدیریت کلیدها";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
@@ -702,7 +721,7 @@
 "pref_show_emails_no" = "نه، فقط گپ‌ها";
 // deprecated
 "pref_show_emails_accepted_contacts" = "برای مخاطبین پذیرفته شده";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "همه";
 "pref_experimental_features" = "ویژگی‌های آزمایشی";
 "pref_experimental_features_explain" = "این ویژگی‌ها ممکن است ناپایدار باشند و همچنین ممکن است بعدا تغییر کنند یا حذف شوند";
@@ -713,6 +732,8 @@
 "pref_background_custom_color" = "رنگ ترجیحی";
 "export_aborted" = "فرایند صدور متوقف شد.";
 "auto_download_messages" = "بارگیری خودکار پیام‌ها";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "همه";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "تا سقف %1$@";
 "up_to_x_most_worse_quality_images" = "تا سقف %1$@، بدترین کیفیت تصویر";
@@ -1018,9 +1039,11 @@
 "a11y_disappearing_messages_activated" = "پیام‌های ناپدید شونده فعال شدند";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "توقف اشتراک موقعیت مکانی";
+// deprecated
 "a11y_voice_message_hint_ios" = "پس از ضبط کردن برای ارسال دوبار ضربه بزنید. برای حذف و رد ضبط کردن با دو انگشت خود بکشید. ";
 "a11y_connectivity_hint" = "برای مشاهده اطلاعات اتصال دوبار ضربه بزنید";
 "login_error_no_internet_connection" = "بدون اتصال اینترنت. ورود ناموفق";
+// deprecated
 "share_account_not_configured" = "حساب تنظیم نشده است";
 "cannot_play_audio_file" = "امکان پخش کردن پروندهٔ صوتی وجود ندارد.";
 // iOS camera permission alert
@@ -1030,12 +1053,16 @@
 "import_device_contacts" = "وارد کردن مخاطبین";
 // deprecated
 "import_device_contacts_hint" = "برای شروع گپ با مخاطبین دستگاه خود، تنظیم‌ها را باز کرده و «مخاطبین» را به کار بیندازید.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "در تنظیم‌های سیستم غیر فعال شده است. ";
 "bg_app_refresh_disabled" = "گزینه «بازخوانی نرم‌افزار در پس‌زمینه» در تنظیم‌های سیستم غیر فعال شده است. ";
+// deprecated
 "notifications_avg_minutes" = "به صورت متوسط هر%1$d دقیقه";
+// deprecated
 "notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
+// deprecated
 "last_check_at" = "بررسی شده در %1$@";
 "system_settings" = "تنظیم‌های سیستم";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

@@ -12,6 +12,7 @@
 "on" = "Įjungta";
 "off" = "Išjungta";
 "def" = "Pagal numatymą";
+// deprecated
 "default_value" = "Numatytasis (%1$@)";
 "custom" = "Tinkintas";
 "none" = "Nėra";
@@ -24,6 +25,7 @@
 "join" = "Prisijungti";
 "join_group" = "Prisijungti prie grupės";
 "join_channel" = "Prisijungti prie kanalo";
+// deprecated
 "rejoin" = "Prisijungti iš naujo";
 "delete" = "Ištrinti";
 "delete_for_me" = "Ištrinti man";
@@ -80,6 +82,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Nuotoliniai paveikslai gali būti naudojami, kad būtumėte sekami.\n\nŠis nustatymas taip pat leidžia šriftų įkėlimą ir kitą turinį. Netgi, jeigu jis yra išjungtas, gali būti, kad vis tiek matysite įterptus paveikslus ar paveikslus iš podėlio.\n\nĮkelti nuotolinius paveikslus?";
 "always" = "Visada";
+// deprecated
 "always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
 // deprecated
@@ -97,11 +100,12 @@
 "no_app_to_handle_data" = "Nepavyksta rasti programėlės, kuri apdorotų šį duomenų tipą.";
 "no_browser_installed" = "Neįdiegta jokia naršyklė.";
 "file_not_found" = "Nepavyko rasti %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Nepavyksta įrašyti %1$@.";
 "copied_to_clipboard" = "Nukopijuota į iškarpinę.";
 "contacts_headline" = "Adresatai";
 "email_address" = "El. pašto adresas";
+// deprecated
 "bad_email_address" = "Blogas el. pašto adresas.";
 "password" = "Slaptažodis";
 "existing_password" = "Dabartinis slaptažodis";
@@ -159,6 +163,7 @@
 "switch_camera" = "Perjungti kamerą";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Perjungti kamerą";
+// deprecated
 "toggle_fullscreen" = "Perjungti viso ekrano veikseną";
 "location" = "Vietovė";
 "locations" = "Vietovės";
@@ -194,10 +199,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Mastelis";
+// deprecated
 "extra_small" = "Labai mažas";
 "small" = "Mažas";
 "normal" = "Normalus";
 "large" = "Didelis";
+// deprecated
 "extra_large" = "Labai didelis";
 "fast" = "Greitas";
 "slow" = "Lėtas";
@@ -240,6 +247,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
 "delete_contact" = "Ištrinti adresatą";
+// deprecated
 "menu_delete_location" = "Ištrinti šią vietovę?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
@@ -305,7 +313,7 @@
 "unpin_chat" = "Atsegti pokalbį";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Prisegti";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Atsegti";
 "ConversationFragment_quoted_message_not_found" = "Pradinė žinutė nerasta";
 "reply_privately" = "Atsakyti privačiai";
@@ -405,8 +413,11 @@
 "saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsisaugoti";
 // Should match "Saved" from "Saved messages"
 "saved" = "Įrašyta";
+// deprecated
 "save_as" = "Įrašyti kaip";
+// deprecated
 "retry_send" = "Bandyti iš naujo išsiųsti žinutę";
+// deprecated
 "cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
 // mailing lists
@@ -444,12 +455,14 @@
 "tab_contact" = "Adresatas";
 "tab_group" = "Grupė";
 "tab_gallery" = "Galerija";
+// deprecated
 "tab_docs" = "Dokumentai";
 "tab_links" = "Nuorodos";
 "tab_map" = "Žemėlapis";
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "tab_image_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti paveikslai.";
+// deprecated
 "tab_video_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti vaizdo įrašai.";
 "tab_audio_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti garso įrašų failai ir balso žinutės.";
 "tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
@@ -640,6 +653,7 @@
 "pref_show_notification_content_explain" = "Rodyti pranešimuose siuntėjo vardą ir pirmuosius žinutės žodžius";
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
+// deprecated
 "pref_privacy" = "Privatumas";
 "pref_system_default" = "Sistemos numatytoji";
 // Translators: as in "opposite of dark"
@@ -657,7 +671,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Perskaitė";
 "pref_server" = "Serveris";
+// deprecated
 "pref_encryption" = "Šifravimas";
+// deprecated
 "pref_manage_keys" = "Tvarkyti raktus";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
@@ -691,7 +707,7 @@
 "pref_show_emails_no" = "Ne, tik pokalbius";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Iš priimtų adresatų";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Iš visų";
 "pref_experimental_features" = "Eksperimentinės ypatybės";
 "pref_experimental_features_explain" = "Šios ypatybės gali būti nestabilios ir gali būti pakeistos ar pašalintos";
@@ -701,6 +717,8 @@
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
 "auto_download_messages" = "Automatinis žinučių atsiuntimas";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Iš visų";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Iki %1$@";
 "up_to_x_most_worse_quality_images" = "Iki %1$@, iš esmės, blogos kokybės paveikslus";
@@ -969,16 +987,21 @@
 "stop_sharing_location" = "Nustoti bendrinti vietovę";
 "a11y_connectivity_hint" = "Bakstelėkite du kartus norėdami pamatyti išsamesnę informaciją apie jungiamumą.";
 "login_error_no_internet_connection" = "Nėra interneto ryšio, nepavyko prisijungti.";
+// deprecated
 "share_account_not_configured" = "Paskyra nėra sukonfigūruota.";
 "cannot_play_audio_file" = "Garso įrašo failas negali būti atkurtas.";
 "open_settings" = "Atverti nustatymus";
 // deprecated
 "import_device_contacts" = "Importuoti įrenginio adresatus";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Išjungta Delta Chat programėlėje";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
+// deprecated
 "notifications_avg_minutes" = "Vidutiniškai kas %1$d min.";
+// deprecated
 "notifications_avg_hours" = "Vidutiniškai kas %1$d val.";
+// deprecated
 "last_check_at" = "Tikrinta %1$@";
 "system_settings" = "Sistemos nustatymai";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"

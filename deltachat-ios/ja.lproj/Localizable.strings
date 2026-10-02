@@ -9,6 +9,7 @@
 "on" = "入";
 "off" = "切";
 "def" = "標準";
+// deprecated
 "default_value" = "初期値（%1$@）";
 "custom" = "カスタム";
 "none" = "無し";
@@ -19,6 +20,7 @@
 "downloading" = "ダウンロード中";
 "open_attachment" = "添付ファイルを開く";
 "join" = "参加";
+// deprecated
 "rejoin" = "参加";
 "delete" = "削除";
 "info" = "情報";
@@ -67,6 +69,7 @@
 "copied_to_clipboard" = "クリップボードにコピーしました";
 "contacts_headline" = "連絡先";
 "email_address" = "メールアドレス";
+// deprecated
 "bad_email_address" = "メールアドレスが不正です。";
 "password" = "パスワード";
 "existing_password" = "既存のパスワード";
@@ -103,6 +106,7 @@
 "capture" = "撮影";
 // Switch eg. from front to back camera
 "switch_camera" = "カメラを切り替える";
+// deprecated
 "toggle_fullscreen" = "フルスクリーン";
 "location" = "場所";
 "gallery" = "画像";
@@ -119,10 +123,12 @@
 "magenta" = "赤紫";
 "white" = "白";
 "zoom" = "文字の大きさ";
+// deprecated
 "extra_small" = "細小";
 "small" = "小";
 "normal" = "中";
 "large" = "大";
+// deprecated
 "extra_large" = "巨大";
 "fast" = "高速";
 "slow" = "低速";
@@ -142,6 +148,7 @@
 "menu_leave_group" = "退室する";
 "menu_delete_chat" = "チャットを削除";
 "delete_contact" = "連絡先を解除する";
+// deprecated
 "menu_delete_location" = "この位置情報を削除しますか";
 "menu_message_details" = "メッセージの詳細";
 "menu_copy_to_clipboard" = "クリップボードにコピー";
@@ -170,6 +177,7 @@
 "menu_help" = "ヘルプ";
 "privacy_policy" = "プライバシーについて";
 "menu_select_all" = "全選択";
+// deprecated
 "select_more" = "さらに選択";
 "menu_edit_name" = "名前の編集";
 "menu_settings" = "設定";
@@ -190,7 +198,7 @@
 "unpin_chat" = "チャットのピン留めを解除";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "ピン留め";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "ピン留めを解除";
 "ConversationFragment_quoted_message_not_found" = "メッセージが見つかりません";
 "reply_privately" = "個別に返信する";
@@ -242,7 +250,9 @@
 "saved_messages_explain" = "ここにメッセージを転送しておけば、簡単にアクセスできます。メモやボイスメモも保存できます。メディアを添付して保存します。";
 // Should match "Saved" from "Saved messages"
 "saved" = "保存しました";
+// deprecated
 "retry_send" = "メッセージの配信を再試行します";
+// deprecated
 "cannot_display_unsuported_file_type" = "%1$@形式のファイルは表示できません";
 "attachment_failed_to_load" = "添付ファイルの読み込みに失敗しました";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -270,6 +280,7 @@
 "tab_contact" = "連絡先";
 "tab_group" = "グループ";
 "tab_gallery" = "画像";
+// deprecated
 "tab_docs" = "文章";
 "tab_links" = "リンク";
 "tab_map" = "地図";
@@ -355,6 +366,7 @@
 "pref_led_color" = "LED色";
 "pref_sound" = "通知音";
 "pref_silent" = "無音";
+// deprecated
 "pref_privacy" = "機密保護";
 "pref_system_default" = "システム既定";
 // Translators: as in "opposite of dark"
@@ -368,6 +380,7 @@
 "pref_incognito_keyboard_explain" = "予測入力を無効にする";
 "pref_read_receipts" = "既読通知";
 "pref_read_receipts_explain" = "既読通知を無効にすると、相手の既読通知も受け取れません。";
+// deprecated
 "pref_manage_keys" = "暗号鍵の管理";
 "pref_chats" = "チャット";
 "pref_in_chat_sounds" = "着信音";
@@ -393,7 +406,7 @@
 "pref_show_emails_no" = "いいえ、チャットのみ";
 // deprecated
 "pref_show_emails_accepted_contacts" = "許可されたユーザーのみ";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "全部";
 "pref_experimental_features" = "実験的な機能";
 "pref_on_demand_location_streaming" = "オンデマンドの位置情報配信";
@@ -402,6 +415,8 @@
 "pref_background_custom_image" = "画像";
 "pref_background_custom_color" = "色";
 "export_aborted" = "エクスポートを停止しました。";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "全部";
 "profile_image_select" = "アイコン画像を選択する";
 "select_your_new_profile_image" = "新しいアイコン画像を選択してください";
 "profile_image_delete" = "アイコン画像を削除する";

@@ -13,6 +13,7 @@
 "on" = "På";
 "off" = "Av";
 "def" = "Standard";
+// deprecated
 "default_value" = "Standard (%1$@)";
 "custom" = "Anpassat";
 "none" = "Ingen";
@@ -23,6 +24,7 @@
 "downloading" = "Laddar ner...";
 "open_attachment" = "Öppna bilaga";
 "join" = "Anslut";
+// deprecated
 "rejoin" = "Återanslut";
 "delete" = "Ta bort";
 "delete_for_me" = "Ta bort för mig";
@@ -78,6 +80,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Fjärrbilder kan användas för att spåra dig.\n\nInställningen att fonter och annat innehåll laddas in. Även om inställningen är inaktiverad kan eventuellt inbäddade eller cachade fjärrbilder visas.\n\nVill du läsa in fjärrbilder?";
 "always" = "Alltid";
+// deprecated
 "always_load_remote_images" = "Läs alltid in fjärrbilder";
 "once" = "en gång";
 // deprecated
@@ -95,11 +98,12 @@
 "no_app_to_handle_data" = "Kan inte hitta någon app som hanterar denna typ av data.";
 "no_browser_installed" = "Ingen webbläsare installerad.";
 "file_not_found" = "Kunde inte hitta %1$@.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Kan inte spara %1$@.";
 "copied_to_clipboard" = "Kopierad till urklipp.";
 "contacts_headline" = "Kontakter";
 "email_address" = "E-postadress";
+// deprecated
 "bad_email_address" = "Felaktig e-postadress.";
 "password" = "Lösenord";
 "existing_password" = "Befintligt lösenord";
@@ -124,6 +128,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Markerat:";
 "self" = "Jag";
 "draft" = "Utkast";
@@ -158,6 +163,7 @@
 "capture" = "Fånga";
 // Switch eg. from front to back camera
 "switch_camera" = "Växla kamera";
+// deprecated
 "toggle_fullscreen" = "Växla fullskärm";
 "location" = "Plats";
 "locations" = "Platser";
@@ -195,10 +201,12 @@
 "magenta" = "Magenta";
 "white" = "Vit";
 "zoom" = "Zoom";
+// deprecated
 "extra_small" = "Extra liten";
 "small" = "Liten";
 "normal" = "Normal";
 "large" = "Stor";
+// deprecated
 "extra_large" = "Extra stor";
 "fast" = "Snabb";
 "slow" = "Långsam";
@@ -241,6 +249,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Rensa chatt";
 "delete_contact" = "Ta bort kontakt";
+// deprecated
 "menu_delete_location" = "Vill du ta bort denna plats?";
 "menu_message_details" = "Meddelandedetaljer";
 "menu_copy_to_clipboard" = "Kopiera till urklipp";
@@ -283,6 +292,7 @@
 "privacy_policy" = "Integritetspolicy";
 "menu_select_all" = "Markera alla";
 "select_chat" = "Välj chatt";
+// deprecated
 "select_more" = "Välj flera";
 "menu_edit_name" = "Redigera namn";
 // The placeholder will be replaced by the name the contact gave themself
@@ -311,7 +321,7 @@
 "unpin_chat" = "Lösgör chatten";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Fäst";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Lösgör";
 "ConversationFragment_quoted_message_not_found" = "Original meddelandet hittas inte";
 "reply_privately" = "Svara säkert";
@@ -397,6 +407,7 @@
 "chat_input_placeholder" = "Meddelande";
 "chat_archived_label" = "Arkiverat";
 "chat_request_label" = "Efterfråga";
+// deprecated
 "chat_request_label_explain" = "Inkludera förfrågningar i räknare och meddelanden";
 "chat_no_messages" = "Inga meddelanden.";
 "chat_self_talk_subtitle" = "Meddelanden jag skickat till mig själv";
@@ -407,8 +418,11 @@
 "saved_messages_explain" = "• Vidarebefordra meddelanden här för enkel åtkomst\n\n• Spara anteckningar eller röstmemon\n\n• Bifoga mediafiler för att spara dom";
 // Should match "Saved" from "Saved messages"
 "saved" = "Sparad";
+// deprecated
 "save_as" = "Spara som";
+// deprecated
 "retry_send" = "Skicka om meddelandet";
+// deprecated
 "cannot_display_unsuported_file_type" = "Denna filtyp kan inte visas: %1$@";
 "attachment_failed_to_load" = "Bilagan kunde inte visas";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -455,12 +469,14 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galleri";
+// deprecated
 "tab_docs" = "Dokument";
 "tab_links" = "Länkar";
 "tab_map" = "Karta";
 "tab_gallery_empty_hint" = "Bilder och videor delade i denna chatt kommer att visas här.";
 "tab_docs_empty_hint" = "Dokument, musik och andra filer som delas i denna chatt kommer att visas här.";
 "tab_image_empty_hint" = "Bilder delade i denna chatt kommer att visas här.";
+// deprecated
 "tab_video_empty_hint" = "Videor delade i denna chatt kommer att visas här.";
 "tab_audio_empty_hint" = "Ljudfiler och röstmeddelanden delade i denna chatt kommer att visas här.";
 "tab_webxdc_empty_hint" = "Appar delade i denna chatt kommer att visas här.";
@@ -468,9 +484,9 @@
 "all_files_empty_hint" = "Dokument och andra filer som bifogas en chatt visas här.";
 "all_apps_empty_hint" = "Appar som tas emot eller skickas i en chatt visas här.";
 "media_preview" = "Förhandsvisning av media";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Rutnät för bildförhållande";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Kvadratiskt rutnät";
 "send_message" = "Skicka meddelande";
 // Multi Device
@@ -660,6 +676,7 @@
 "pref_led_color" = "Färg på ljusindikator";
 "pref_sound" = "Ljud";
 "pref_silent" = "Tyst";
+// deprecated
 "pref_privacy" = "Integritet";
 "pref_system_default" = "Systemets standardinställning";
 // Translators: as in "opposite of dark"
@@ -675,7 +692,9 @@
 "pref_read_receipts" = "Returkvitto";
 "pref_read_receipts_explain" = "Om läskvittenser är avstängda kan du inte se läskvittenser från andra.";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Kryptering";
+// deprecated
 "pref_manage_keys" = "Hantera nycklar";
 "pref_chats" = "Chattar";
 "pref_in_chat_sounds" = "Ljud i konversationer";
@@ -712,7 +731,7 @@
 "pref_show_emails_no" = "Nej, bara chattar";
 // deprecated
 "pref_show_emails_accepted_contacts" = "För godkända kontakter";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Alla";
 "pref_experimental_features" = "Experimentella funktioner";
 "pref_experimental_features_explain" = "Dessa funktioner kan vara instabila och kan ändras eller tas bort";
@@ -723,6 +742,8 @@
 "pref_background_custom_color" = "Anpassad färg";
 "export_aborted" = "Exporten avbruten";
 "auto_download_messages" = "Ladda ner meddelanden automatiskt";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Alla";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Upp till %1$@";
 "up_to_x_most_worse_quality_images" = "Upp till %1$@, sämst bildkvalitet";
@@ -1031,9 +1052,11 @@
 "a11y_disappearing_messages_activated" = "Försvinnande meddelanden aktiverat";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Sluta dela plats";
+// deprecated
 "a11y_voice_message_hint_ios" = "Efter inspelningen dubbelklickar du för att skicka. För att förkasta inspelningen, skrubba med två fingrar.";
 "a11y_connectivity_hint" = "Dubbeltryck för att visa anslutningsdetaljer.";
 "login_error_no_internet_connection" = "Ingen internetanslutning, inloggning misslyckades.";
+// deprecated
 "share_account_not_configured" = "Profilen är inte konfigurerad.";
 "cannot_play_audio_file" = "Ljudfilen kan inte spelas upp.";
 // iOS camera permission alert
@@ -1043,12 +1066,16 @@
 "import_device_contacts" = "Importera enhetens kontakter";
 // deprecated
 "import_device_contacts_hint" = "Om du vill chatta med kontakter från din enhet öppnar du Inställningar och aktiverar \"Kontakter\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Inaktiverad i Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Inaktiverad i systeminställningarna";
 "bg_app_refresh_disabled" = "\"Appuppdatering i bakgrunden\" inaktiverad i systeminställningarna";
+// deprecated
 "notifications_avg_minutes" = "I genomsnitt var %1$d minut";
+// deprecated
 "notifications_avg_hours" = "I genomsnitt var %1$d:e timma";
+// deprecated
 "last_check_at" = "Kontrollerad %1$@";
 "system_settings" = "Systeminställningar";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

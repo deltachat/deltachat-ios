@@ -9,6 +9,7 @@
 "on" = "Ενεργοποιημένο";
 "off" = "Απενεργοποιημένο";
 "def" = "Προεπιλογή";
+// deprecated
 "default_value" = "Προεπιλογή(%1$@)";
 "custom" = "Προσαρμογή";
 "none" = "Κανένα";
@@ -19,6 +20,7 @@
 "downloading" = "Λήψη...";
 "open_attachment" = "Άνοιγμα Συνημένου";
 "join" = "Μπες";
+// deprecated
 "rejoin" = "Επανασύνδεση";
 "delete" = "Διαγραφή";
 "info" = "Πληροφορίες";
@@ -70,6 +72,7 @@
 "copied_to_clipboard" = "Αντιγράφηκε στο πρόχειρο";
 "contacts_headline" = "Επαφές";
 "email_address" = "Διεύθυνση E-mail";
+// deprecated
 "bad_email_address" = "Κακή διεύθυνση e-mail.";
 "password" = "Συνθηματικό";
 "existing_password" = "Υπάρχον Κωδικός";
@@ -113,6 +116,7 @@
 "capture" = "Λήψη";
 // Switch eg. from front to back camera
 "switch_camera" = "Αλλαγή κάμερας";
+// deprecated
 "toggle_fullscreen" = "Εναλλαγή Λειτουργίας Πλήρους Οθόνης";
 "location" = "Τοποθεσία";
 "gallery" = "Πινακοθήκη";
@@ -133,10 +137,12 @@
 "magenta" = "Φούξια";
 "white" = "Λευκό";
 "zoom" = "Μεγέθυνση";
+// deprecated
 "extra_small" = "Πολύ μικρό";
 "small" = "Μικρό";
 "normal" = "Κανονικό";
 "large" = "Μεγάλο";
+// deprecated
 "extra_large" = "Πολύ μεγάλο";
 "fast" = "Γρήγορο";
 "slow" = "Αργό";
@@ -156,6 +162,7 @@
 "menu_leave_group" = "Αποχώρηση απ\' την ομάδα";
 "menu_delete_chat" = "Διαγραφή Συνομιλίας";
 "delete_contact" = "Διαγραφή Επαφής";
+// deprecated
 "menu_delete_location" = "Διαγραφή αυτής της τοποθεσίας;";
 "menu_message_details" = "Στοιχεία μηνύματος";
 "menu_copy_to_clipboard" = "Αντιγραφή στο πρόχειρο";
@@ -187,6 +194,7 @@
 "menu_help" = "Βοήθεια";
 "privacy_policy" = "Πολιτική Απορρήτου";
 "menu_select_all" = "Επιλογή όλων";
+// deprecated
 "select_more" = "Επιλογή Περισσότερων";
 "menu_edit_name" = "Επεξεργασία Ονόματος";
 "menu_settings" = "Ρυθμίσεις";
@@ -210,7 +218,7 @@
 "unpin_chat" = "Ξεκαρφίτσωμα Συνομιλίας";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Καρφίτσωμα";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Ξεκαρφίτσωμα";
 "ConversationFragment_quoted_message_not_found" = "Το αρχικό μήνυμα δεν βρέθηκε";
 "reply_privately" = "Ιδιωτική Απάντηση";
@@ -269,8 +277,11 @@
 "saved_messages_explain" = "• Προώθηση μηνυμάτων εδώ για εύκολη πρόσβαση\n\n• Κρατήστε σημειώσεις ή φωνητικά σημειώματα\n\n• Επισυνάψτε μέσα για να τα αποθηκεύσετε";
 // Should match "Saved" from "Saved messages"
 "saved" = "Αποθηκεύτηκε";
+// deprecated
 "save_as" = "Αποθήκευση ως";
+// deprecated
 "retry_send" = "Ξαναπροσπαθήστε να στείλετε μήνυμα";
+// deprecated
 "cannot_display_unsuported_file_type" = "Δεν είναι δυνατή η εμφάνιση αυτού του τύπου αρχείου: %1$@";
 "attachment_failed_to_load" = "Αποτυχία φόρτωσης συνημμένου";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -307,12 +318,14 @@
 "tab_contact" = "Επαφή";
 "tab_group" = "Ομάδα";
 "tab_gallery" = "Εικόνα ή βίντεο";
+// deprecated
 "tab_docs" = "Έγγραφα";
 "tab_links" = "Σύνδεσμοι";
 "tab_map" = "Χάρτης";
 "tab_gallery_empty_hint" = "Οι εικόνες και τα βίντεο που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_docs_empty_hint" = "Έγγραφα και άλλα αρχεία που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_image_empty_hint" = "Οι εικόνες που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
+// deprecated
 "tab_video_empty_hint" = "Τα βίντεο που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_audio_empty_hint" = "Τα αρχεία ήχου και τα φωνητικά μηνύματα που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
 "tab_webxdc_empty_hint" = "Οι ιδιωτικές εφαρμογές που κοινοποιούνται σε αυτήν τη συνομιλία θα εμφανίζονται εδώ.";
@@ -414,6 +427,7 @@
 "pref_led_color" = "Χρώμα LED";
 "pref_sound" = "Ήχος";
 "pref_silent" = "Σε σίγαση";
+// deprecated
 "pref_privacy" = "Ιδιωτικότητα";
 "pref_system_default" = "Προκαθορισμένο του συστήματος";
 // Translators: as in "opposite of dark"
@@ -427,6 +441,7 @@
 "pref_incognito_keyboard_explain" = "Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση";
 "pref_read_receipts" = "Αποδεικτικά ανάγνωσης";
 "pref_read_receipts_explain" = "Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείς να δεις αποδεικτικά ανάγνωσης από άλλους/ες.";
+// deprecated
 "pref_manage_keys" = "Διαχείριση Κλειδιών";
 "pref_chats" = "Συνομιλίες";
 "pref_in_chat_sounds" = "Ήχοι μέσα στη συνομιλία";
@@ -456,7 +471,7 @@
 "pref_show_emails_no" = "Όχι, μόνο συνομιλίες";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Για αποδεκτές επαφές";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Όλα";
 "pref_experimental_features" = "Πειραματικά Χαρακτηριστικά";
 "pref_on_demand_location_streaming" = "Ροή τοποθεσίας κατ\' απαίτηση";
@@ -466,6 +481,8 @@
 "pref_background_custom_color" = "Προσαρμοσμένο χρώμα";
 "export_aborted" = "Η εξαγωγή ματαιώθηκε.";
 "auto_download_messages" = "Αυτόματη Λήψη Μηνυμάτων";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Όλα";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Μέχρι και %1$@";
 "up_to_x_most_worse_quality_images" = "Έως και %1$@, τις περισσότερες εικόνες χειρότερης ποιότητας";
@@ -705,9 +722,11 @@
 "a11y_disappearing_messages_activated" = "Τα εξαφανιζόμενα μηνύματα ενεργοποιήθηκαν";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Διακοπή κοινής χρήσης τοποθεσίας";
+// deprecated
 "a11y_voice_message_hint_ios" = "Μετά την εγγραφή, πατήστε δύο φορές για αποστολή. Για να απορρίψετε την εγγραφή, τρίψτε με δύο δάχτυλα.";
 "a11y_connectivity_hint" = "Πατήστε δύο φορές για να δείτε λεπτομέρειες συνδεσιμότητας.";
 "login_error_no_internet_connection" = "Δεν υπάρχει σύνδεση στο Διαδίκτυο, η σύνδεση απέτυχε.";
+// deprecated
 "share_account_not_configured" = "Ο λογαριασμός δεν έχει ρυθμιστεί.";
 "cannot_play_audio_file" = "Δεν είναι δυνατή η αναπαραγωγή του αρχείου ήχου.";
 // iOS camera permission alert
@@ -717,12 +736,16 @@
 "import_device_contacts" = "Εισαγωγή επαφών από συσκευή";
 // deprecated
 "import_device_contacts_hint" = "Για να συνομιλήσετε με επαφές από τη συσκευή σας, ανοίξτε τις Ρυθμίσεις και ενεργοποιήστε τις \"Επαφές\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Απενεργοποιήθηκε στο Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
 "bg_app_refresh_disabled" = "Η \"Ανανέωση εφαρμογών στο παρασκήνιο\" απενεργοποιήθηκε στις ρυθμίσεις συστήματος";
+// deprecated
 "notifications_avg_minutes" = "Κατά μέσο όρο κάθε %1$d λεπτά";
+// deprecated
 "notifications_avg_hours" = "Κατά μέσο όρο κάθε %1$d ώρες";
+// deprecated
 "last_check_at" = "Έλεγχος στις %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Για να διατηρήσετε τη σύνδεση με τον διακομιστή e-mail σας και να λαμβάνετε μηνύματα στο παρασκήνιο, αγνοήστε τις βελτιστοποιήσεις μπαταρίας στο επόμενο βήμα.\n\nΤο Delta Chat χρησιμοποιεί λίγους πόρους και φροντίζει να μην εξαντλήσει την μπαταρία σας.";

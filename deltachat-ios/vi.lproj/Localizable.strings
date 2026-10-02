@@ -9,6 +9,7 @@
 "on" = "Bật";
 "off" = "Tắt";
 "def" = "Mặc định";
+// deprecated
 "default_value" = "Mặc định (%1$@)";
 "custom" = "Tùy chỉnh";
 "none" = "Không";
@@ -19,6 +20,7 @@
 "downloading" = "Đang tải xuống…";
 "open_attachment" = "Mở tệp đính kèm";
 "join" = "Tham gia";
+// deprecated
 "rejoin" = "Tham gia lại";
 "delete" = "Xóa";
 "info" = "Thông tin";
@@ -60,6 +62,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Hình ảnh từ xa có thể theo dõi bạn.\n\nThiết đặt này cũng có thể tải phông chữ và nội dung khác. Nếu bị tắt, hình ảnh được nhúng hoặc được lưu vào bộ nhớ đệm có thể xuất hiện.\n\nTải hình ảnh từ xa?";
 "always" = "Luôn luôn";
+// deprecated
 "always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
 // deprecated
@@ -80,6 +83,7 @@
 "copied_to_clipboard" = "Đã chép vào clipboard.";
 "contacts_headline" = "Danh bạ";
 "email_address" = "Địa chỉ E-mail";
+// deprecated
 "bad_email_address" = "Địa chỉ e-mail xấu.";
 "password" = "Mật khẩu";
 "existing_password" = "Mật khẩu hiện tại";
@@ -130,6 +134,7 @@
 "capture" = "Chụp";
 // Switch eg. from front to back camera
 "switch_camera" = "Chuyển đổi máy ảnh";
+// deprecated
 "toggle_fullscreen" = "Chuyển đổi Chế độ toàn màn hình";
 "location" = "Vị trí";
 "locations" = "Vị trí";
@@ -151,10 +156,12 @@
 "magenta" = "Đỏ tươi";
 "white" = "Trắng";
 "zoom" = "Thu phóng";
+// deprecated
 "extra_small" = "Cực nhỏ";
 "small" = "Nhỏ";
 "normal" = "Bình thường";
 "large" = "Lớn";
+// deprecated
 "extra_large" = "Cực lớn";
 "fast" = "Nhanh";
 "slow" = "Chậm";
@@ -177,6 +184,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Xóa cuộc trò chuyện";
 "delete_contact" = "Xóa liên hệ";
+// deprecated
 "menu_delete_location" = "Xóa vị trí này?";
 "menu_message_details" = "Chi tiết tin nhắn";
 "menu_copy_to_clipboard" = "Sao chép vào Clipboard";
@@ -213,6 +221,7 @@
 "privacy_policy" = "Chính sách quyền riêng tư";
 "menu_select_all" = "Chọn tất cả";
 "select_chat" = "Chọn Trò chuyện";
+// deprecated
 "select_more" = "Chọn thêm";
 "menu_edit_name" = "Chỉnh sửa tên";
 "menu_settings" = "Cài đặt";
@@ -236,7 +245,7 @@
 "unpin_chat" = "Bỏ ghim cuộc trò chuyện";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Ghim";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Bỏ ghim";
 "ConversationFragment_quoted_message_not_found" = "Không tìm thấy tin nhắn gốc";
 "reply_privately" = "Trả lời riêng";
@@ -296,8 +305,11 @@
 "saved_messages_explain" = "• Chuyển tiếp tin nhắn tại đây để dễ dàng truy cập\n\n• Ghi chú hoặc ghi nhớ giọng nói\n\n• Đính kèm phương tiện để lưu chúng";
 // Should match "Saved" from "Saved messages"
 "saved" = "Đã lưu";
+// deprecated
 "save_as" = "Lưu dưới dạng";
+// deprecated
 "retry_send" = "Thử gửi lại tin nhắn";
+// deprecated
 "cannot_display_unsuported_file_type" = "Không thể hiển thị loại tệp này: %1$@";
 "attachment_failed_to_load" = "Không tải được tệp đính kèm";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -340,21 +352,23 @@
 "tab_contact" = "Liên hệ";
 "tab_group" = "Nhóm";
 "tab_gallery" = "Thư viện";
+// deprecated
 "tab_docs" = "Tài liệu";
 "tab_links" = "Liên kết";
 "tab_map" = "Bản đồ";
 "tab_gallery_empty_hint" = "Hình ảnh và video được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_docs_empty_hint" = "Tài liệu và các tệp khác được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_image_empty_hint" = "Hình ảnh được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
+// deprecated
 "tab_video_empty_hint" = "Video được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_audio_empty_hint" = "Các tệp âm thanh và tin nhắn thoại được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_webxdc_empty_hint" = "Các ứng dụng được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_all_media_empty_hint" = "Phương tiện được chia sẻ trong bất kỳ cuộc trò chuyện nào sẽ xuất hiện ở đây.";
 "all_apps_empty_hint" = "Các ứng dụng được nhận hoặc gửi trong bất kỳ cuộc trò chuyện nào sẽ xuất hiện ở đây.";
 "media_preview" = "Xem trước phương tiện";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Lưới tỷ lệ khung hình";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Lưới vuông";
 "send_message" = "Gửi tin nhắn";
 // Multi Device
@@ -473,6 +487,7 @@
 "pref_led_color" = "Màu LED";
 "pref_sound" = "Âm thanh";
 "pref_silent" = "Im lặng";
+// deprecated
 "pref_privacy" = "Quyền riêng tư";
 "pref_system_default" = "Mặc định hệ thống";
 // Translators: as in "opposite of dark"
@@ -486,6 +501,7 @@
 "pref_incognito_keyboard_explain" = "Yêu cầu bàn phím tắt tính năng học tập được cá nhân hóa";
 "pref_read_receipts" = "Đã đọc Biên lai";
 "pref_read_receipts_explain" = "Nếu thông báo xác nhận đã đọc bị tắt, bạn sẽ không thể xem thông báo xác nhận đã đọc từ người khác.";
+// deprecated
 "pref_manage_keys" = "Quản lý khóa";
 "pref_chats" = "Trò chuyện";
 "pref_in_chat_sounds" = "Âm thanh trong cuộc trò chuyện";
@@ -517,7 +533,7 @@
 "pref_show_emails_no" = "Không, chỉ trò chuyện";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Đối với các liên hệ được chấp nhận";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Tất cả";
 "pref_experimental_features" = "Tính năng thử nghiệm";
 "pref_on_demand_location_streaming" = "Truyền phát vị trí theo yêu cầu";
@@ -527,6 +543,8 @@
 "pref_background_custom_color" = "Màu tùy chỉnh";
 "export_aborted" = "Quá trình xuất bị hủy bỏ.";
 "auto_download_messages" = "Tự động tải xuống tin nhắn";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Tất cả";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Lên tới %1$@";
 "up_to_x_most_worse_quality_images" = "Lên đến %1$@, hầu hết các hình ảnh có chất lượng kém hơn";
@@ -782,9 +800,11 @@
 "a11y_disappearing_messages_activated" = "Đã kích hoạt tin nhắn biến mất";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Dừng chia sẻ vị trí";
+// deprecated
 "a11y_voice_message_hint_ios" = "Sau khi ghi, nhấn đúp để gửi. Để loại bỏ bản ghi, hãy chà bằng hai ngón tay.";
 "a11y_connectivity_hint" = "Nhấn đúp để xem chi tiết kết nối.";
 "login_error_no_internet_connection" = "Không có kết nối internet, đăng nhập không thành công.";
+// deprecated
 "share_account_not_configured" = "Tài khoản chưa được định cấu hình.";
 "cannot_play_audio_file" = "Không thể phát tệp âm thanh.";
 // iOS camera permission alert
@@ -794,12 +814,16 @@
 "import_device_contacts" = "Nhập danh bạ thiết bị";
 // deprecated
 "import_device_contacts_hint" = "Để trò chuyện với các liên hệ từ thiết bị của bạn, hãy mở Cài đặt và bật \"Danh bạ\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Đã tắt trong Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Đã tắt trong cài đặt hệ thống";
 "bg_app_refresh_disabled" = "\"Làm mới ứng dụng nền\" bị tắt trong cài đặt hệ thống";
+// deprecated
 "notifications_avg_minutes" = "Trung bình cứ sau %1$d phút";
+// deprecated
 "notifications_avg_hours" = "Trung bình cứ sau %1$d giờ";
+// deprecated
 "last_check_at" = "Đã kiểm tra lúc %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Để duy trì kết nối với máy chủ e-mail của bạn và nhận tin nhắn ở chế độ nền, hãy bỏ qua tối ưu hóa pin trong bước tiếp theo.\n\nDelta Chat sử dụng ít tài nguyên và chú ý không làm tiêu hao pin của bạn.";

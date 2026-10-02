@@ -13,6 +13,7 @@
 "on" = "Aan";
 "off" = "Uit";
 "def" = "Standaard";
+// deprecated
 "default_value" = "Standaard (%1$@)";
 "custom" = "Aangepast";
 "none" = "Geen";
@@ -25,6 +26,7 @@
 "join" = "Deelnemen";
 "join_group" = "Deelnemen aan groep";
 "join_channel" = "Deelnemen aan kanaal";
+// deprecated
 "rejoin" = "Opnieuw deelnemen";
 "delete" = "Verwijderen";
 "delete_for_me" = "Verwijderen voor mij";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Externe afbeeldingen kunnen worden gebruikt om je gedrag te volgen.\n\nDeze instelling staat tevens toe om andere externe inhoud, zoals lettertypen, te laden. Zelfs na uitschakeling kunnen er ingesloten of gecachte afbeeldingen worden getoond.\n\nWeet je het zeker?";
 "always" = "Altijd";
+// deprecated
 "always_load_remote_images" = "Externe afbeeldingen altijd laden";
 "once" = "Eenmalig";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Er is geen app die deze inhoud kan openen.";
 "no_browser_installed" = "Er is geen webbrowser geïnstalleerd.";
 "file_not_found" = "‘%1$@’ kan niet worden gevonden.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "“%1$@” kan niet worden opgeslagen.";
 "copied_to_clipboard" = "Gekopieerd naar het klembord.";
 "contacts_headline" = "Contactpersonen";
 "email_address" = "E-mailadres";
+// deprecated
 "bad_email_address" = "Het e-mailadres is ongeldig.";
 "password" = "Wachtwoord";
 "existing_password" = "Bestaand wachtwoord";
@@ -147,6 +151,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Gekozen:";
 "selected" = "Gekozen";
 "self" = "Ik";
@@ -178,6 +183,7 @@
 "contact" = "Contactpersoon";
 "bot" = "Bot";
 "camera" = "Camera";
+"take_photo" = "Foto maken";
 "front_camera" = "Voorcamera";
 "back_camera" = "Achtercamera";
 "microphone" = "Microfoon";
@@ -187,6 +193,7 @@
 "switch_camera" = "Andere camera";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Camera aan/uit";
+// deprecated
 "toggle_fullscreen" = "Schermvullende weergave aan/uit";
 "location" = "Locatie";
 "locations" = "Locaties";
@@ -227,10 +234,12 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Zoomen";
+// deprecated
 "extra_small" = "Extra klein";
 "small" = "Klein";
 "normal" = "Normaal";
 "large" = "Groot";
+// deprecated
 "extra_large" = "Extra groot";
 "fast" = "Snel";
 "slow" = "Langzaam";
@@ -273,6 +282,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ale berichten wissen";
 "delete_contact" = "Contactpersoon verwijderen";
+// deprecated
 "menu_delete_location" = "Wil je deze locatie verwijderen?";
 "menu_message_details" = "Berichtinformatie";
 "menu_copy_to_clipboard" = "Kopiëren naar klembord";
@@ -315,6 +325,7 @@
 "privacy_policy" = "Privacybeleid";
 "menu_select_all" = "Alles selecteren";
 "select_chat" = "Kies een gesprek";
+// deprecated
 "select_more" = "Meer selecteren";
 "menu_edit_name" = "Naam wijzigen";
 // The placeholder will be replaced by the name the contact gave themself
@@ -345,7 +356,7 @@
 "pin" = "Vastmaken";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Vastgemaakt";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Losmaken";
 "ConversationFragment_quoted_message_not_found" = "Het oorspronkelijke bericht is niet aangetroffen";
 "reply_privately" = "Privé beantwoorden";
@@ -453,6 +464,7 @@
 "chat_input_placeholder" = "Bericht";
 "chat_archived_label" = "Gearchiveerd";
 "chat_request_label" = "Verzoek";
+// deprecated
 "chat_request_label_explain" = "Gespreksverzoeken tonen op meldingen en emblemen";
 "chat_no_messages" = "Er zijn geen berichten.";
 "chat_self_talk_subtitle" = "Aan mijzelf gestuurde berichten";
@@ -463,8 +475,11 @@
 "saved_messages_explain" = "• Stuur berichten door naar hier om ze snel terug te kunnen lezen\n\n• Maak aantekeningen of spraakopnamen\n\n• Voeg media toe om deze op te slaan";
 // Should match "Saved" from "Saved messages"
 "saved" = "Bewaard";
+// deprecated
 "save_as" = "Bewaren als";
+// deprecated
 "retry_send" = "Bericht opnieuw versturen";
+// deprecated
 "cannot_display_unsuported_file_type" = "Het volgende bestandstype kan niet worden getoond: %1$@";
 "attachment_failed_to_load" = "De bijlage kan niet worden geladen";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -516,12 +531,14 @@
 "tab_contact" = "Contactpersoon";
 "tab_group" = "Groep";
 "tab_gallery" = "Galerij";
+// deprecated
 "tab_docs" = "Documenten";
 "tab_links" = "Links";
 "tab_map" = "Kaart";
 "tab_gallery_empty_hint" = "De in dit gesprek gedeelde afbeeldingen en video\'s verschijnen hier.";
 "tab_docs_empty_hint" = "Gedeelde documenten en andere bestanden uit dit gesprek worden hier getoond.";
 "tab_image_empty_hint" = "De in dit gesprek gedeelde afbeeldingen verschijnen hier.";
+// deprecated
 "tab_video_empty_hint" = "De in dit gesprek gedeelde video\'s verschijnen hier.";
 "tab_audio_empty_hint" = "De in dit gesprek gedeelde audiobestanden en spraakberichten verschijnen hier.";
 "tab_webxdc_empty_hint" = "Privéapps in dit gesprek worden hier getoond.";
@@ -529,9 +546,9 @@
 "all_files_empty_hint" = "Gedeelde documenten en andere bestanden uit gesprekken worden hier getoond.";
 "all_apps_empty_hint" = "Privéapps die je verstuurt of ontvangt worden hier getoond.";
 "media_preview" = "Mediavoorbeeld";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Beeldverhouding van rooster";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Vierkant rooster";
 "send_message" = "Bericht versturen";
 // Multi Device
@@ -740,6 +757,7 @@
 "pref_led_color" = "Ledkleur";
 "pref_sound" = "Geluid";
 "pref_silent" = "Stil";
+// deprecated
 "pref_privacy" = "Privacy";
 "pref_system_default" = "Systeemstandaard";
 // Translators: as in "opposite of dark"
@@ -757,7 +775,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Gelezen door";
 "pref_server" = "Server";
+// deprecated
 "pref_encryption" = "Versleuteling";
+// deprecated
 "pref_manage_keys" = "Sleutels beheren";
 "pref_chats" = "Gesprekken";
 "pref_in_chat_sounds" = "Gespreksgeluiden";
@@ -794,7 +814,7 @@
 "pref_show_emails_no" = "Nee, alleen gesprekken";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Van goedgekeurde contactpersonen";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Alles";
 "pref_experimental_features" = "Experimentele functies";
 "pref_experimental_features_explain" = "Let op: deze functies zijn experimenteel en kunnen te allen tijde worden aangepast of verwijderd";
@@ -805,6 +825,8 @@
 "pref_background_custom_color" = "Eigen kleur";
 "export_aborted" = "Het exporteren is afgebroken.";
 "auto_download_messages" = "Berichten automatisch ophalen";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Alles";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Tot %1$@";
 "up_to_x_most_worse_quality_images" = "Tot %1$@ - lage afbeeldingskwaliteit";
@@ -1141,9 +1163,11 @@
 "open_link" = "‘%1$@’ openen";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Stop locatiedeling";
+// deprecated
 "a11y_voice_message_hint_ios" = "Dubbeltik op de opname om hem te versturen. Veeg met twee vingers van links naar rechts om de opname af te breken.";
 "a11y_connectivity_hint" = "Dubbeltik om de verbindingsinformatie te bekijken.";
 "login_error_no_internet_connection" = "Het inloggen is mislukt omdat er geen internetverbinding is.";
+// deprecated
 "share_account_not_configured" = "Dit account is niet ingesteld.";
 "cannot_play_audio_file" = "Dit audiobestand kan niet worden afgespeeld.";
 // iOS camera permission alert
@@ -1153,12 +1177,16 @@
 "import_device_contacts" = "Importeer lokale contactpersonen";
 // deprecated
 "import_device_contacts_hint" = "Voor het voeren van gesprekken met contactpersonen is toegang vereist. Open de systeeminstellingen en verleen deze toegang.";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Uitgeschakeld in Delta Chat";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Uitgeschakeld in systeeminstellingen";
 "bg_app_refresh_disabled" = "App op de achtergrond vernieuwen is uitgeschakeld in de systeeminstellingen";
+// deprecated
 "notifications_avg_minutes" = "Gemiddeld elke %1$d minuten";
+// deprecated
 "notifications_avg_hours" = "Gemiddeld elke %1$d uur";
+// deprecated
 "last_check_at" = "Gecontroleerd om %1$@";
 "system_settings" = "Systeeminstellingen";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.

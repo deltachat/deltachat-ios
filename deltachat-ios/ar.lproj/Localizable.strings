@@ -77,6 +77,7 @@
 "small" = "صغير";
 "normal" = "عادي";
 "large" = "كبيرة";
+// deprecated
 "extra_large" = "كبيرة جداً";
 "fast" = "سريع";
 "slow" = "بطيء";
@@ -132,6 +133,7 @@
 "tab_contact" = "للاتصال";
 "tab_group" = "الفريق";
 "tab_gallery" = "المعرض";
+// deprecated
 "tab_docs" = "المستندات";
 "tab_links" = "الروابط";
 "tab_map" = "الخريطة";
@@ -167,6 +169,7 @@
 "pref_notifications_show" = "عرض";
 "pref_led_color" = "لون ضوء التنبيه LED";
 "pref_sound" = "الصوت";
+// deprecated
 "pref_privacy" = "الخصوصية";
 "pref_system_default" = "افتراضيات النظام";
 // Translators: as in "opposite of dark"
@@ -180,8 +183,10 @@
 "pref_other" = "أخرى";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "الخلفية";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "كلها";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "كلها";
 // deprecated
 "qrscan_fingerprint_label" = "البصمة";
 // notifications

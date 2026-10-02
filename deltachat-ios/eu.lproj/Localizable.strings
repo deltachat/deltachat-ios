@@ -13,6 +13,7 @@
 "on" = "Bai";
 "off" = "Ez";
 "def" = "Lehenetsia";
+// deprecated
 "default_value" = "Lehenetsia (%1$@)";
 "custom" = "Pertsonalizatua";
 "none" = "Bat ere ez";
@@ -25,6 +26,7 @@
 "join" = "Batu";
 "join_group" = "Sartu taldean";
 "join_channel" = "Sartu kanalean";
+// deprecated
 "rejoin" = "Batu berriro";
 "delete" = "Ezabatu";
 "delete_for_me" = "Ezabatu niretzat";
@@ -84,6 +86,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Urrutiko irudiek zure jarraipena egin dezakete.\n\nEzarpen honek letra-tipoak eta beste eduki batzuk ere karga ditzake. Desaktibatuta badago irudi kapsulatuak edo cachean daudenak agertu ahal dira.\n\nKargatu urrutiko irudiak?";
 "always" = "Beti";
+// deprecated
 "always_load_remote_images" = "Kargatu urrutiko irudiak beti";
 "once" = "Behin";
 // deprecated
@@ -102,11 +105,12 @@
 "no_app_to_handle_data" = "Ezin izan da datu mota hau kudeatzeko aplikaziorik.";
 "no_browser_installed" = "Ez dago nabigatzailerik instalatuta.";
 "file_not_found" = "Ezin izan da %1$@ aurkitu.";
-// the placeholder will be replaced by the name of a file
+// deprecated
 "cannot_save_file" = "Ezin da %1$@ gorde.";
 "copied_to_clipboard" = "Arbelera kopiatuta.";
 "contacts_headline" = "Kontaktuak";
 "email_address" = "E-mail helbidea";
+// deprecated
 "bad_email_address" = "E-mail helbide okerra.";
 "password" = "Pasahitza";
 "existing_password" = "Oraingo pasahitza";
@@ -131,6 +135,7 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
+// deprecated
 "selected_colon" = "Hautaketa:";
 "selected" = "Hautatua";
 "self" = "Ni";
@@ -171,6 +176,7 @@
 "switch_camera" = "Aldatu kamera";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Aldatu kamera";
+// deprecated
 "toggle_fullscreen" = "Aldatu pantaila osoa modua";
 "location" = "Kokalekua";
 "locations" = "Kokalekuak";
@@ -208,10 +214,12 @@
 "magenta" = "Magenta";
 "white" = "Zuria";
 "zoom" = "Zooma";
+// deprecated
 "extra_small" = "Txiki txikia";
 "small" = "Txikia";
 "normal" = "Arrunta";
 "large" = "Handia";
+// deprecated
 "extra_large" = "Oso handia";
 "fast" = "Azkarra";
 "slow" = "Motela";
@@ -254,6 +262,7 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Garbitu txata";
 "delete_contact" = "Ezabatu kontaktua";
+// deprecated
 "menu_delete_location" = "Ezabatu kokaleku hau?";
 "menu_message_details" = "Mezuaren xehetasunak";
 "menu_copy_to_clipboard" = "Kopiatu arbelera";
@@ -296,6 +305,7 @@
 "privacy_policy" = "Pribatutasun politika";
 "menu_select_all" = "Hautatu guztiak";
 "select_chat" = "Aukeratu txata";
+// deprecated
 "select_more" = "Aukeratu gehiago";
 "menu_edit_name" = "Editatu izena";
 // The placeholder will be replaced by the name the contact gave themself
@@ -324,7 +334,7 @@
 "unpin_chat" = "Desfinkatu txata";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Finkatu";
-// Opposite of "Pin chat", removing the sticky-state from a chat.
+// Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desfinkatu";
 "ConversationFragment_quoted_message_not_found" = "Ez da jatorrizko mezua aurkitu";
 "reply_privately" = "Erantzun modu pribatuan";
@@ -432,6 +442,7 @@
 "chat_input_placeholder" = "Mezua";
 "chat_archived_label" = "Artxibatuta";
 "chat_request_label" = "Eskaera";
+// deprecated
 "chat_request_label_explain" = "Sartu eskaerak kontagailuetan eta jakinarazpenetan";
 "chat_no_messages" = "Mezurik ez.";
 "chat_self_talk_subtitle" = "Nire buruari bidalitako mezuak";
@@ -442,8 +453,11 @@
 "saved_messages_explain" = "• Birbidali mezuak hona eskura izateko\n\n• Hartu oharrak edo ahots mezuak\n\n• Gehitu multimedia horietara";
 // Should match "Saved" from "Saved messages"
 "saved" = "Gordeta";
+// deprecated
 "save_as" = "Gorde honela";
+// deprecated
 "retry_send" = "Saiatu berriro mezua bidaltzen";
+// deprecated
 "cannot_display_unsuported_file_type" = "Ezin da fitxategi-mota hau bistaratu: %1$@";
 "attachment_failed_to_load" = "Eranskina kargatzean huts egin du";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
@@ -495,12 +509,14 @@
 "tab_contact" = "Kontaktua";
 "tab_group" = "Taldea";
 "tab_gallery" = "Galeria";
+// deprecated
 "tab_docs" = "Dokumentuak";
 "tab_links" = "Estekak";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Txat honetan partekatutako irudi eta bideoak agertuko dira hemen";
 "tab_docs_empty_hint" = "Txat honetan partekatutako dokumentuak, musika, eta bestelako fitxategiak agertuko dira hemen";
 "tab_image_empty_hint" = "Txat honi erantsitako irudiak hemen agertuko dira.";
+// deprecated
 "tab_video_empty_hint" = "Txat honi erantsitako bideoak hemen agertuko dira.";
 "tab_audio_empty_hint" = "Txat honi erantsitako fitxategiak eta audio mezuak hemen agertuko dira.";
 "tab_webxdc_empty_hint" = "Txat honi erantsitako aplikazioak hemen agertuko dira.";
@@ -508,9 +524,9 @@
 "all_files_empty_hint" = "Edozein txati erantsitako dokumentuak eta bestelako fitxategiak hemen agertuko dira.";
 "all_apps_empty_hint" = "Edozein txati erantsitako aplikazioak hemen agertuko dira.";
 "media_preview" = "Multimediaren aurrebista";
-// option to show images in the gallery with the correct width/height aspect (instead of square); other gallery apps may be a source of inspiration for translation :)
+// deprecated
 "aspect_ratio_grid" = "Proportzio-sareta";
-// option to show images in the gallery as square (instead of using correct width/height)
+// deprecated
 "square_grid" = "Lauki-sareta";
 "send_message" = "Bidali mezua";
 // Multi Device
@@ -715,6 +731,7 @@
 "pref_led_color" = "LED kolorea";
 "pref_sound" = "Soinua";
 "pref_silent" = "Isila";
+// deprecated
 "pref_privacy" = "Pribatutasuna";
 "pref_system_default" = "Sisteman lehenetsia";
 // Translators: as in "opposite of dark"
@@ -732,7 +749,9 @@
 // Title above a list of contacts who read a message
 "read_by" = "Irakurria:";
 "pref_server" = "Zerbitzaria";
+// deprecated
 "pref_encryption" = "Zifratua";
+// deprecated
 "pref_manage_keys" = "Kudeatu gakoak";
 "pref_chats" = "Txatak";
 "pref_in_chat_sounds" = "Txat barruko soinuak";
@@ -769,7 +788,7 @@
 "pref_show_emails_no" = "Ez, txatak besterik ez";
 // deprecated
 "pref_show_emails_accepted_contacts" = "Onartutako kontaktuena";
-// deprecated
+// deprecated, use "All"
 "pref_show_emails_all" = "Denak";
 "pref_experimental_features" = "Ezaugarri esperimentalak";
 "pref_experimental_features_explain" = "Baliteke ezaugarri hauek ezegonkorrak izatea eta gerora aldatzea edo kentzea.";
@@ -780,6 +799,8 @@
 "pref_background_custom_color" = "Kolore pertsonalizatua";
 "export_aborted" = "Esportazioa bertan behera geratu da.";
 "auto_download_messages" = "Deskargatu mezuak automatikoki";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Denak";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "%1$@ arte";
 "up_to_x_most_worse_quality_images" = "%1$@ arte: kalitate txarreneko irudiak";
@@ -1113,9 +1134,11 @@
 "open_link" = "Irekin %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Utzi kokapena partekatzeari";
+// deprecated
 "a11y_voice_message_hint_ios" = "Grabatu ondoren, sakatu bi aldiz bidaltzeko. Grabazioa baztertzeko, pasatu bi hatz gainetik.";
 "a11y_connectivity_hint" = "Klik bikoitza konexio xehetasunak ikusteko.";
 "login_error_no_internet_connection" = "Ez dago Internet konexiorik, saio-hasierak huts egin du.";
+// deprecated
 "share_account_not_configured" = "Kontua ez dago konfiguratuta";
 "cannot_play_audio_file" = "Ezin da audio-fitxategia erreproduzitu.";
 // iOS camera permission alert
@@ -1125,12 +1148,16 @@
 "import_device_contacts" = "Inportatu gailuko kontaktuak";
 // deprecated
 "import_device_contacts_hint" = "Zure gailuko kontaktuekin txateatzeko, ireki ezarpenak eta gaitu \"Kontaktuak\".";
-// iOS notification settings
+// deprecated
 "disabled_in_dc" = "Desgaitu Delta Chat-en";
+// Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Desgaitu sistemaren ezarpenetan";
 "bg_app_refresh_disabled" = "\"Atzeko planoko aplikazioak freskatzea\" desgaituta dago sistemaren ezarpenetan";
+// deprecated
 "notifications_avg_minutes" = "Batez beste, %1$d minutuan behin";
+// deprecated
 "notifications_avg_hours" = "Batez beste, %1$d orduan behin";
+// deprecated
 "last_check_at" = "Noiz egiaztatua: %1$@";
 "system_settings" = "Sistemaren ezarpenak";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
