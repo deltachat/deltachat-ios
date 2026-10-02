@@ -1690,11 +1690,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             locationStreamingFor(seconds: 0)
         } else {
             let alert = UIAlertController(title: String.localized("title_share_location"), message: nil, preferredStyle: .safeActionSheet)
-            addDurationSelectionAction(to: alert, key: "share_location_for_5_minutes", duration: Time.fiveMinutes)
             addDurationSelectionAction(to: alert, key: "share_location_for_30_minutes", duration: Time.thirtyMinutes)
             addDurationSelectionAction(to: alert, key: "share_location_for_one_hour", duration: Time.oneHour)
             addDurationSelectionAction(to: alert, key: "share_location_for_two_hours", duration: Time.twoHours)
             addDurationSelectionAction(to: alert, key: "share_location_for_six_hours", duration: Time.sixHours)
+            addDurationSelectionAction(to: alert, key: "share_location_for_24_hours", duration: Time.oneDay)
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
