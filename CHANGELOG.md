@@ -4,6 +4,7 @@
 ## Unreleased
 
 - Nicer profile and group image selection
+- Allow to share location for 24 hours
 - Fix: show meaningful subtitle for group members on group creation
 
 
