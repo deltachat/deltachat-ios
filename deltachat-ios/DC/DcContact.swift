@@ -91,7 +91,7 @@ public class DcContact {
             return String.localized(stringID: "seen_n_months_ago", parameter: Int(age / oneMonth))
         }
 
-        return String.localized(stringID: "seen_n_years_ago", parameter: Int(age / oneYear))
+        return String.localized("seen_long_ago")
     }
 
     public var status: String {
