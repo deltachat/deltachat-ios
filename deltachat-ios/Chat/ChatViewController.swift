@@ -1515,17 +1515,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
 
-        var canDeleteForEveryone = true
-        if dcChat.canSend && dcChat.isEncrypted && !dcChat.isSelfTalk {
-            for msgId in ids {
+        let canDeleteForEveryone = if dcChat.canSend && dcChat.isEncrypted && !dcChat.isSelfTalk {
+            !ids.contains(where: { msgId in
                 let msg = dcContext.getMessage(id: msgId)
-                if !msg.isFromCurrentSender, msg.isMarkerOrInfo {
-                    canDeleteForEveryone = false
-                    break
-                }
-            }
+                return msg.isFromCurrentSender || msg.isMarkerOrInfo
+            })
         } else {
-            canDeleteForEveryone = false
+            false
         }
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
