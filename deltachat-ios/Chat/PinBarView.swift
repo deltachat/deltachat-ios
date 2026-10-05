@@ -100,6 +100,8 @@ public struct PinPageControl: UIViewRepresentable {
         control.direction = .bottomToTop
         control.transform = .identity.scaledBy(x: 0.4, y: 0.4)
         control.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        control.pageIndicatorTintColor = .lightGray
+        control.currentPageIndicatorTintColor = .themeColor(light: .darkText, dark: .white)
         return control
     }
 
