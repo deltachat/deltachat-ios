@@ -5,6 +5,7 @@
 
 - Nicer profile and group image selection
 - Allow to share location for 24 hours
+- Show total reaction count in reaction details
 - Fix: show meaningful subtitle for group members on group creation
 
 

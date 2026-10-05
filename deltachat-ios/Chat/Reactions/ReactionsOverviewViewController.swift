@@ -19,16 +19,19 @@ class ReactionsOverviewViewController: UIViewController {
         self.showFrequencies = showFrequencies
 
         // layout by strings is not great, but good enough for now for a secondary UI
+        var sum = 0
         if showFrequencies {
             self.contactIds = []
             self.texts = reactions.reactions.map { reaction in
-                "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
+                sum += reaction.count
+                return "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
             }
         } else {
             self.contactIds = Array(reactions.reactionsByContact.keys)
             self.texts = self.contactIds.map { contactId in
                 let contact = context.getContact(id: contactId)
                 if let emojis = reactions.reactionsByContact[contactId] {
+                    sum += 1
                     return "\(contact.displayName): \(emojis.joined(separator: ","))"
                 }
                 return ""
@@ -47,7 +50,7 @@ class ReactionsOverviewViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        title = String.localized("reactions")
+        title = String.localized(stringID: "n_reactions", parameter: sum)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
 
