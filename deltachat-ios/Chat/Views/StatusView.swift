@@ -31,7 +31,7 @@ public class StatusView: UIView {
         envelopeView.translatesAutoresizingMaskIntoConstraints = false
         locationView = UIImageView()
         locationView.translatesAutoresizingMaskIntoConstraints = false
-        pinView = UIImageView()
+        pinView = UIImageView(image: UIImage(systemName: "pin.fill")?.withRenderingMode(.alwaysTemplate))
         pinView.translatesAutoresizingMaskIntoConstraints = false
         viewsIconView = UIImageView()
         viewsIconView.translatesAutoresizingMaskIntoConstraints = false
@@ -125,7 +125,7 @@ public class StatusView: UIView {
         }
 
         if message.isPinned {
-            pinView.image = UIImage(systemName: "pin.fill")?.maskWithColor(color: tintColor)
+            pinView.tintColor = tintColor
             pinView.contentMode = .scaleAspectFit
             pinView.isHidden = false
         } else {
