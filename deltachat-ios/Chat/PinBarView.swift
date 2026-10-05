@@ -38,6 +38,7 @@ struct PinBarView: View {
                     .frame(maxHeight: size.height)
                     .padding(.leading, 8)
             }
+            Image(systemName: "pin")
             Text(msg.summary(chars: 100) ?? "...")
                 .transition(.asymmetric(
                     insertion: .move(edge: .top).combined(with: .opacity),
@@ -56,9 +57,6 @@ struct PinBarView: View {
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
                 .padding(4)
-            } else {
-                Image(systemName: "pin.fill")
-                    .padding(.trailing, 12)
             }
         }
         .clipped()
