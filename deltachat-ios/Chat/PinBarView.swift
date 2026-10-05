@@ -35,7 +35,8 @@ struct PinBarView: View {
         HStack {
             if #available(iOS 16, *) {
                 PinPageControl(currentPage: selected, numberOfPages: pins.count)
-                    .frame(maxHeight: size.height)
+                    .frame(maxHeight: size.height + 16)
+                    .padding(.vertical, -8)
                     .padding(.leading, 8)
             }
             Image(systemName: "pin")
