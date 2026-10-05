@@ -43,9 +43,15 @@ extension UIImage {
         guard let cgImage = image?.cgImage else { return nil }
         self.init(cgImage: cgImage)
     }
-}
 
-extension UIImage {
+    static func fromEmoji(_ emoji: String, fontSize: CGFloat) -> UIImage {
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]
+        let size = emoji.size(withAttributes: attributes)
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            emoji.draw(at: .zero, withAttributes: attributes)
+        }
+    }
+
     public static func fromBase64(string: String) -> UIImage? {
         guard let imageData = Data(base64Encoded: string) else { return nil }
 

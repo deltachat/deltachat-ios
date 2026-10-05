@@ -1998,19 +1998,21 @@ extension ChatViewController {
     }
 
     private func appendReactionItems(to menuElements: inout [UIMenuElement], messageId: Int) {
+        let fontSize = UIFontMetrics.default.scaledValue(for: 20)
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
         for reaction in DefaultReactions.allCases {
             let sentThisReaction = myReactions.contains(where: { $0 == reaction.emoji })
-            let title: String
             if sentThisReaction {
-                title = reaction.emoji + "✓"
                 myReactionChecked = true
-            } else {
-                title = reaction.emoji
             }
-            menuElements.append(UIAction(title: title) { [weak self] _ in
+            let image: UIImage? = if #available(iOS 17.0, *) {
+                UIImage.fromEmoji(reaction.emoji, fontSize: fontSize) // use bigger font for .displayAsPalette
+            } else {
+                nil
+            }
+            menuElements.append(UIAction(title: reaction.emoji, image: image, state: sentThisReaction ? .on : .off) { [weak self] _ in
                 guard let self else { return }
 
                 if sentThisReaction {
@@ -2026,13 +2028,18 @@ extension ChatViewController {
             let title: String
             let accessibilityLabel: String?
             if showPicker {
-                title = "•••"
+                title = "⋯"
                 accessibilityLabel = String.localized("pref_other")
             } else {
-                title = (myReactions.first ?? "?") + "✓"
+                title = (myReactions.first ?? "?")
                 accessibilityLabel = nil
             }
-            let action = UIAction(title: title) { [weak self] _ in
+            let image: UIImage? = if #available(iOS 17.0, *) {
+                UIImage.fromEmoji(title, fontSize: fontSize) // use bigger font for .displayAsPalette
+            } else {
+                nil
+            }
+            let action = UIAction(title: title, image: image, state: showPicker ? .off : .on) { [weak self] _ in
                 guard let self else { return }
                 if showPicker {
                     reactionMessageId = messageId
