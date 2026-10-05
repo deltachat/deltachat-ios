@@ -48,7 +48,7 @@ struct PinBarView: View {
                 .opacity(0.7)
                 .id(selected)
                 .bind(size: $size)
-            Spacer()
+            Spacer().containerShape(.rect)
             if msg.type == DC_MSG_WEBXDC {
                 Button(String.localized("start_app")) {
                     startWebxdc(msg)
