@@ -2195,7 +2195,7 @@ extension ChatViewController {
                 if dcChat.canSend, !message.isInfo {
                     let isPinned = message.isPinned
                     let pinTitle = isPinned ? "unpin" : "pin"
-                    let pinImage = isPinned ? "pin.slash.fill" : "pin.fill"
+                    let pinImage = isPinned ? "pin.slash" : "pin"
                     moreOptions.append(UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned }))
                 }
 
