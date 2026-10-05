@@ -7,7 +7,7 @@ struct PinBarView: View {
     let scrollToMsg: (DcMsg) -> Void
     let startWebxdc: (DcMsg) -> Void
     @State private var pins: [Int] = [] {
-        willSet { selected = min(selected, newValue.count) }
+        willSet { selected = min(selected, newValue.count-1) }
     }
     @State private var selected: Int = 0
     @State private var size: CGSize = .zero
