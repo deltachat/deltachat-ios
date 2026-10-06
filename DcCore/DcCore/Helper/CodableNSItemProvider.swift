@@ -7,7 +7,7 @@ public var shareExtensionDirectory = FileManager.default
     .appendingPathComponent("share_extension", isDirectory: true)
 
 /// An NSItemProvider wrapper that can be encoded and sent between extensions and main app process
-public enum CodableNSItemProvider: Codable {
+public enum CodableNSItemProvider: Codable, Equatable {
     case contentsAt(url: URL, viewType: Int32)
     case text(text: String)
 
@@ -44,9 +44,9 @@ public enum CodableNSItemProvider: Codable {
             case UTType.movie.identifier: loadFile(forType: .movie, DC_MSG_VIDEO)
             case UTType.video.identifier: loadFile(forType: .video, DC_MSG_VIDEO)
             case UTType.fileURL.identifier: loadFileURL()
-            case UTType.url.identifier: loadText(forType: .url)
-            case UTType.plainText.identifier: loadText(forType: .plainText)
-            case UTType.text.identifier: loadText(forType: .text)
+            case UTType.url.identifier: loadImageAtUrlOrUrlAsText()
+            case UTType.plainText.identifier: loadText()
+            case UTType.text.identifier: loadText()
             case UTType.item.identifier: loadFile(forType: .item, DC_MSG_FILE)
             default: continuation.resume(throwing: Error.unknownType)
             }
@@ -66,7 +66,7 @@ public enum CodableNSItemProvider: Codable {
                     if provider.hasItemConformingToTypeIdentifier(UTType.item.identifier) {
                         loadFile(forType: .item, DC_MSG_FILE)
                     } else {
-                        loadText(forType: .fileURL)
+                        loadText()
                     }
                 }
             }
@@ -99,28 +99,29 @@ public enum CodableNSItemProvider: Codable {
                     }
                 }
             }
-            func loadText(forType type: UTType) {
-                provider.loadItem(forTypeIdentifier: type.identifier) { item, error in
-                    if let string = item as? String {
-                        continuation.resume(returning: .text(text: string))
-                    } else if let url = item as? URL,
-                              let data = try? Data(contentsOf: url),
-                              let imageFormat = ImageFormat.get(from: data) {
-                        // This case adds support for sharing a long-pressed
-                        // image in Safari which gives only a url to NSItemProvider
+            func loadImageAtUrlOrUrlAsText() {
+                _ = provider.loadObject(ofClass: URL.self) { url, _ in
+                    // This adds support for sharing a long-pressed
+                    // image in Safari which gives only a url to NSItemProvider
+                    if let url, let data = try? Data(contentsOf: url), let imageFormat = ImageFormat.get(from: data) {
                         do {
-                            let localUrl = directory
-                                .appendingPathComponent(UUID().uuidString)
-                                .appendingPathExtension(imageFormat.rawValue)
+                            let localUrl = directory.appendingPathComponent(url.lastPathComponent)
                             try data.write(to: localUrl)
-                            continuation.resume(returning: .contentsAt(url: localUrl, viewType: DC_MSG_IMAGE))
+                            continuation.resume(returning: .contentsAt(url: localUrl, viewType: imageFormat == .gif ? DC_MSG_GIF : DC_MSG_IMAGE))
                         } catch {
                             continuation.resume(returning: .text(text: url.absoluteString))
                         }
-                    } else if let url = item as? URL {
-                        continuation.resume(returning: .text(text: url.absoluteString))
                     } else {
-                        continuation.resume(throwing: error ?? Error.failedToConvertDataToString)
+                        loadText()
+                    }
+                }
+            }
+            func loadText() {
+                _ = provider.loadObject(ofClass: String.self) { string, error in
+                    if let string {
+                        continuation.resume(returning: .text(text: string))
+                    } else {
+                        continuation.resume(throwing: error ?? Error.loadingStringFailed)
                     }
                 }
             }
@@ -129,7 +130,7 @@ public enum CodableNSItemProvider: Codable {
     
     enum Error: Swift.Error {
         case unknownType
-        case failedToConvertDataToString
+        case loadingStringFailed
         case loadingImageFailed
         /// Should never be called
         case providerDidNotReturnValueNorError
