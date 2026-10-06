@@ -101,10 +101,7 @@ class ChatTitleView: UIButton {
 
     override var intrinsicContentSize: CGSize {
         let size = contentStack.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        return CGSize(
-            width: size.width + layoutMargins.left + layoutMargins.right,
-            height: size.height + layoutMargins.top + layoutMargins.bottom
-        )
+        return CGSize(width: .infinity, height: size.height + layoutMargins.top + layoutMargins.bottom)
     }
 
     func updateTitleView(title: String, subtitle: String?, isMuted: Bool, isEphemeral: Bool, isSendingLocations: Bool) {
