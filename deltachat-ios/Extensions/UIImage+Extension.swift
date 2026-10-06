@@ -44,8 +44,8 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 
-    static func fromEmoji(_ emoji: String, fontSize: CGFloat) -> UIImage {
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]
+    static func fromEmoji(_ emoji: String, scaledFontSize: CGFloat) -> UIImage {
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: scaledFontSize)]
         let size = emoji.size(withAttributes: attributes)
         return UIGraphicsImageRenderer(size: size).image { _ in
             emoji.draw(at: .zero, withAttributes: attributes)

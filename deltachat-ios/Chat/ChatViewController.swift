@@ -1998,7 +1998,8 @@ extension ChatViewController {
     }
 
     private func appendReactionItems(to menuElements: inout [UIMenuElement], messageId: Int) {
-        let fontSize = UIFontMetrics.default.scaledValue(for: 20)
+        let baseFontSize = 20.0
+        let scaledFontSize = UIFontMetrics.default.scaledValue(for: baseFontSize)
         let myReactions = getMyReactions(messageId: messageId)
         var myReactionChecked = false
 
@@ -2008,7 +2009,7 @@ extension ChatViewController {
                 myReactionChecked = true
             }
             let image: UIImage? = if #available(iOS 17.0, *) {
-                UIImage.fromEmoji(reaction.emoji, fontSize: fontSize) // use bigger font for .displayAsPalette
+                UIImage.fromEmoji(reaction.emoji, scaledFontSize: scaledFontSize) // use bigger font for .displayAsPalette
             } else {
                 nil
             }
@@ -2035,7 +2036,7 @@ extension ChatViewController {
                 accessibilityLabel = nil
             }
             let image: UIImage? = if #available(iOS 17.0, *) {
-                UIImage.fromEmoji(title, fontSize: fontSize) // use bigger font for .displayAsPalette
+                UIImage.fromEmoji(title, scaledFontSize: scaledFontSize) // use bigger font for .displayAsPalette
             } else {
                 nil
             }
