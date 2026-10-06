@@ -137,7 +137,6 @@ class NotificationService: UNNotificationServiceExtension {
         let silentNotification = silentNotification()
         silentNotification.badge = dcAccounts.getFreshMessagesCount() as NSNumber
         dcAccounts.closeDatabase()
-        UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
 
         if canUseCallKit, let incomingCallPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
             UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)

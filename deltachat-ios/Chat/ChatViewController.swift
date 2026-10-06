@@ -634,13 +634,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Notifications
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              dcChat.id == notification.userInfo?["chat_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
             self?.updateTitle()
         }
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
-        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              chatId == notification.userInfo?["chat_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
@@ -652,7 +655,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc private func handleContactsChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
+
             guard let self else { return }
 
             dcChat = self.dcContext.getChat(chatId: chatId)
@@ -682,14 +687,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
-        guard let ui = notification.userInfo else { return }
-        let chatId = ui["chat_id"] as? Int ?? 0
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+        let chatId = notification.userInfo?["chat_id"] as? Int ?? 0
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
             if chatId == 0 || chatId == self.chatId {
-                let messageId = ui["message_id"] as? Int ?? 0
+                let messageId = notification.userInfo?["message_id"] as? Int ?? 0
                 if messageId > 0 {
                     let msg = self.dcContext.getMessage(id: messageId)
                     if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
@@ -708,14 +713,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
-        guard let ui = notification.userInfo else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
 
-        let chatId = ui["chat_id"] as? Int ?? 0
+        let chatId = notification.userInfo?["chat_id"] as? Int ?? 0
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
             if chatId == 0 || chatId == self.chatId {
-                let messageId = ui["message_id"] as? Int ?? 0
+                let messageId = notification.userInfo?["message_id"] as? Int ?? 0
                 if messageId > 0 {
                     let msg = self.dcContext.getMessage(id: messageId)
                     if msg.state == DC_STATE_OUT_DRAFT && msg.type == DC_MSG_WEBXDC {
@@ -733,7 +738,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
-        guard let ui = notification.userInfo else { return }
+        guard let ui = notification.userInfo, dcContext.id == ui["account_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }

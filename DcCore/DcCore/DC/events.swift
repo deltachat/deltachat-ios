@@ -6,7 +6,6 @@ public enum Event {
     public static let messagesChanged = Notification.Name(rawValue: "messagesChanged")
     public static let messageReadDeliveredFailedReaction = Notification.Name(rawValue: "messageReadDeliveredFailedReaction")
     public static let incomingMessage = Notification.Name(rawValue: "incomingMessage")
-    public static let incomingMessageOnAnyAccount = Notification.Name(rawValue: "incomingMessageOnAnyAccount")
     public static let incomingReaction = Notification.Name(rawValue: "incomingReaction")
     public static let incomingWebxdcNotify = Notification.Name(rawValue: "incomingWebxdcNotify")
     public static let messagesNoticed = Notification.Name(rawValue: "messagesNoticed")
@@ -87,68 +86,43 @@ public class DcEventHandler {
             ])
 
         case DC_EVENT_MSGS_CHANGED:
-            guard accountId == dcAccounts.getSelected().id else { return }
-
             logger.info("📡[\(accountId)] msgs changed: \(data1), \(data2)")
-            
             NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
+                "account_id": accountId,
             ])
 
         case DC_EVENT_REACTIONS_CHANGED, DC_EVENT_MSG_READ, DC_EVENT_MSG_DELIVERED, DC_EVENT_MSG_FAILED:
-            guard accountId == dcAccounts.getSelected().id else { return }
-
             logger.info("📡[\(accountId)] msgs reaction/read/delivered/failed: \(data1), \(data2)")
-
             NotificationCenter.default.post(name: Event.messageReadDeliveredFailedReaction, object: nil, userInfo: [
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
+                "account_id": accountId,
             ])
 
         case DC_EVENT_MSGS_NOTICED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
-            
             NotificationCenter.default.post(name: Event.messagesNoticed, object: nil, userInfo: [
                 "chat_id": Int(data1),
-                "account_id": accountId
+                "account_id": accountId,
             ])
 
         case DC_EVENT_CHAT_MODIFIED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] chat modified: \(data1)")
-
             NotificationCenter.default.post(name: Event.chatModified, object: nil, userInfo: [
                 "chat_id": Int(data1),
+                "account_id": accountId,
             ])
 
         case DC_EVENT_CHAT_EPHEMERAL_TIMER_MODIFIED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] ephemeral timer modified: \(data1)")
-
             NotificationCenter.default.post(name: Event.ephemeralTimerModified, object: nil, userInfo: [
+                "account_id": accountId,
                 "chat_id": Int(data1),
             ])
 
         case DC_EVENT_INCOMING_MSG:
-            
-            NotificationCenter.default.post(name: Event.incomingMessageOnAnyAccount, object: nil, userInfo: [
-                "message_id": Int(data2),
-                "chat_id": Int(data1),
-                "account_id": accountId
-            ])
-            
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] incoming message \(data2)")
-
             NotificationCenter.default.post(name: Event.incomingMessage, object: nil, userInfo: [
                 "message_id": Int(data2),
                 "chat_id": Int(data1),
@@ -181,22 +155,23 @@ public class DcEventHandler {
             ])
 
         case DC_EVENT_CONTACTS_CHANGED:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] contact changed: \(data1)")
-                
             NotificationCenter.default.post(name: Event.contactsChanged, object: nil, userInfo: [
+                "account_id": Int(accountId),
                 "contact_id": Int(data1)
             ])
 
         case DC_EVENT_CONNECTIVITY_CHANGED:
             logger.info("📡[\(accountId)] connectivity changed")
-            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil, userInfo: ["account_id": Int(accountId)])
+            NotificationCenter.default.post(name: Event.connectivityChanged, object: nil, userInfo: [
+                "account_id": Int(accountId)
+            ])
 
         case DC_EVENT_TRANSPORTS_MODIFIED:
             logger.info("📡[\(accountId)] transports modified")
-            NotificationCenter.default.post(name: Event.transportsModified, object: nil, userInfo: ["account_id": Int(accountId)])
+            NotificationCenter.default.post(name: Event.transportsModified, object: nil, userInfo: [
+                "account_id": Int(accountId)
+            ])
 
         case DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE:
             if let sem = dcAccounts.fetchSemaphore {
@@ -204,20 +179,15 @@ public class DcEventHandler {
             }
 
         case DC_EVENT_WEBXDC_STATUS_UPDATE:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
             logger.info("📡[\(accountId)] webxdc update")
             NotificationCenter.default.post(name: Event.webxdcStatusUpdate, object: nil, userInfo: [
+                "account_id": Int(accountId),
                 "message_id": Int(data1),
             ])
 
         case DC_EVENT_WEBXDC_REALTIME_DATA:
-            if accountId != dcAccounts.getSelected().id {
-                return
-            }
-
             NotificationCenter.default.post(name: Event.webxdcRealtimeDataReceived, object: nil, userInfo: [
+                "account_id": Int(accountId),
                 "message_id": Int(data1),
                 "data": event.data2Data,
             ])

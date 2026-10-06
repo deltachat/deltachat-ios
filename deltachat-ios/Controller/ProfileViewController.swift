@@ -138,11 +138,6 @@ class ProfileViewController: UITableViewController {
         updateHeader()
         updateMediaCellValues()
         updateMenuItems()
-
-        // when sharing to ourself in DocumentGalleryController,
-        // end of sharing is not easily catchable nor results in applicationWillEnterForeground();
-        // therefore, do the update here.
-        AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -154,7 +149,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - Notifications
 
     @objc private func handleChatModified(_ notification: Notification) {
-        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+        guard chatId == notification.userInfo?["chat_id"] as? Int else { return }
         chat = dcContext.getChat(chatId: chatId)
 
         DispatchQueue.main.async { [weak self] in
@@ -167,7 +163,8 @@ class ProfileViewController: UITableViewController {
     }
 
     @objc private func handleContactsChanged(_ notification: Notification) {
-        guard let ui = notification.userInfo, contactId == ui["contact_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              contactId == notification.userInfo?["contact_id"] as? Int else { return }
         contact = dcContext.getContact(id: contactId)
 
         DispatchQueue.main.async { [weak self] in
@@ -177,7 +174,8 @@ class ProfileViewController: UITableViewController {
     }
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
-        guard let ui = notification.userInfo, chatId == ui["chat_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              chatId == notification.userInfo?["chat_id"] as? Int else { return }
 
         DispatchQueue.main.async { [weak self] in
             self?.updateMenuItems()
@@ -185,7 +183,8 @@ class ProfileViewController: UITableViewController {
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
-        guard let ui = notification.userInfo, let changedChatId = ui["chat_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              let changedChatId = notification.userInfo?["chat_id"] as? Int else { return }
 
         if changedChatId == chatId {
             updateMediaCellValues()

@@ -39,7 +39,11 @@ internal final class NotificationsViewController: UITableViewController {
                 updateCells()
                 updateNotificationWarning()
                 NotificationManager.updateBadgeCounters()
-                NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
+                NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
+                    "message_id": Int(0),
+                    "chat_id": Int(0),
+                    "account_id": dcContext.id,
+                ])
         })
     }()
 
