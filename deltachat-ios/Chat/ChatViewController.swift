@@ -1520,10 +1520,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let canDeleteForEveryone = if dcChat.canSend && dcChat.isEncrypted && !dcChat.isSelfTalk {
-            !ids.contains(where: { msgId in
+            ids.allSatisfy { msgId in
                 let msg = dcContext.getMessage(id: msgId)
-                return msg.isFromCurrentSender || msg.isMarkerOrInfo
-            })
+                return msg.isFromCurrentSender && !msg.isMarkerOrInfo
+            }
         } else {
             false
         }
