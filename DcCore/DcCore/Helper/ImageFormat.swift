@@ -6,7 +6,7 @@ extension ImageFormat {
     /// Returns a recognized image format or nil
     public static func get(from data: Data) -> ImageFormat? {
         // magic bytes can be found here: https://en.wikipedia.org/wiki/List_of_file_signatures
-        switch data[0] {
+        switch data.first {
         case 0x89:
             return .png
         case 0xFF:
