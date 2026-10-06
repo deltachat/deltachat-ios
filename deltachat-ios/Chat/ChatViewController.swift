@@ -349,7 +349,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleView.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
+        titleView.button.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
         view.addSubview(backgroundContainer)
         backgroundContainer.fillSuperview()
         view.addSubview(tableViewContainer)
