@@ -1,7 +1,18 @@
 import UIKit
 import DcCore
 
-class ChatTitleView: UIButton {
+class ChatTitleView: UIView {
+
+    lazy var button: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 10)
+        button.isAccessibilityElement = true
+        if #available(iOS 26.0, *) {
+            button.configuration = .glass()
+        }
+        return button
+    }()
 
     lazy var initialsBadge: InitialsBadge = {
         let badge: InitialsBadge
@@ -78,20 +89,19 @@ class ChatTitleView: UIButton {
 
     init() {
         super.init(frame: .zero)
-
-        if #available(iOS 26.0, *) {
-            configuration = .glass()
-        }
-
-        layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 10)
-        isAccessibilityElement = true
-
-        addSubview(contentStack)
+        addSubview(button)
         NSLayoutConstraint.activate([
-            contentStack.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            contentStack.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            contentStack.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            contentStack.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor),
+            button.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor),
+            button.topAnchor.constraint(equalTo: topAnchor),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        button.addSubview(contentStack)
+        NSLayoutConstraint.activate([
+            contentStack.leadingAnchor.constraint(equalTo: button.layoutMarginsGuide.leadingAnchor),
+            contentStack.trailingAnchor.constraint(equalTo: button.layoutMarginsGuide.trailingAnchor),
+            contentStack.topAnchor.constraint(equalTo: button.layoutMarginsGuide.topAnchor),
+            contentStack.bottomAnchor.constraint(equalTo: button.layoutMarginsGuide.bottomAnchor),
         ])
     }
 
@@ -101,10 +111,8 @@ class ChatTitleView: UIButton {
 
     override var intrinsicContentSize: CGSize {
         let size = contentStack.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        return CGSize(
-            width: size.width + layoutMargins.left + layoutMargins.right,
-            height: size.height + layoutMargins.top + layoutMargins.bottom
-        )
+        let margins = button.layoutMargins
+        return CGSize(width: .infinity, height: size.height + margins.top + margins.bottom)
     }
 
     func updateTitleView(title: String, subtitle: String?, isMuted: Bool, isEphemeral: Bool, isSendingLocations: Bool) {
@@ -122,12 +130,12 @@ class ChatTitleView: UIButton {
             chatSubtitleLabel.isHidden = true
         }
 
-        accessibilityLabel = [title, subtitle].compactMap { $0 }.joined(separator: ", ")
+        button.accessibilityLabel = [title, subtitle].compactMap { $0 }.joined(separator: ", ")
         invalidateIntrinsicContentSize()
     }
 
     func setEnabled(_ enabled: Bool) {
-        isEnabled = enabled
+        button.isEnabled = enabled
         chatTitleLabel.isEnabled = enabled
         chatSubtitleLabel.isEnabled = enabled
         muteView.alpha = enabled ? 1 : 0.4
