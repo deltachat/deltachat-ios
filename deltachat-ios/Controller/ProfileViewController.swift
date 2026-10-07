@@ -3,6 +3,54 @@ import DcCore
 import QuickLook
 import Intents
 
+@resultBuilder
+public struct MenuElementBuilder {
+    public static func buildBlock(_ components: UIMenuElement...) -> UIMenuElement {
+        UIDeferredMenuElement({ $0(components) })
+    }
+
+    public static func buildOptional(_ component: UIMenuElement?) -> UIMenuElement {
+        component ?? UIDeferredMenuElement({ $0([]) })
+    }
+
+    public static func buildEither(first component: UIMenuElement) -> UIMenuElement {
+        component
+    }
+
+    public static func buildEither(second component: UIMenuElement) -> UIMenuElement {
+        component
+    }
+
+    public static func buildPartialBlock(first: UIMenuElement) -> UIMenuElement {
+        first
+    }
+
+    public static func buildPartialBlock(accumulated: UIMenuElement, next: UIMenuElement) -> UIMenuElement {
+        UIDeferredMenuElement({ $0([accumulated, next]) })
+    }
+
+    public static func buildFinalResult(_ component: UIMenuElement) -> [UIMenuElement] {
+        [component]
+    }
+}
+
+extension UIMenu {
+    convenience init(_ title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: Options = [], elementSize size: BackportedElementSize? = nil, @MenuElementBuilder uncached elements: @escaping () -> [UIMenuElement]) {
+        let children = [UIDeferredMenuElement.uncached({ $0(elements()) })]
+        self.init(title: title, image: image, identifier: identifier, options: options, children: children)
+        if #available(iOS 16.0, *), let size, let size = ElementSize(rawValue: size.rawValue) {
+            preferredElementSize = size
+        }
+    }
+
+    /// This only has an effect on iOS 16+
+    enum BackportedElementSize: Int {
+        case small = 0
+        case medium = 1
+        case large = 2
+    }
+}
+
 class ProfileViewController: UITableViewController {
 
     enum Sections {
@@ -254,144 +302,120 @@ class ProfileViewController: UITableViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
-        }
-
-        let actions: () -> [UIMenuElement] = { [weak self] in
-            guard let self else { return [] }
-            var actions = [UIMenuElement]()
-            var moreOptions = [UIMenuElement]()
-            var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
-
-            if contact != nil, !isSavedMessages && !isDeviceChat {
-                primaryOptions.append(UIAction(
-                    title: String.localized("menu_share"),
-                    image: UIImage(systemName: "square.and.arrow.up"),
-                    handler: { [weak self] _ in self?.shareContact() }
-                ))
-            } else if isMultiUser && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
-                primaryOptions.append(UIAction(
-                    title: String.localized("global_menu_edit_desktop"),
-                    image: UIImage(systemName: "pencil"),
-                    handler: { [weak self] _ in self?.showEditController() }
-                ))
+        return UIMenu { [unowned self] in
+            // Primary options: max. 3 due to .medium element size
+            let itemCount = [
+                contact != nil && !isSavedMessages && !isDeviceChat,
+                isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true,
+                chat != nil && !isSavedMessages,
+                chat?.canSend == true,
+            ].filter(\.self).count
+            UIMenu(options: [.displayInline], elementSize: itemCount > 1 ? .medium : nil) { [unowned self] in
+                if contact != nil, !isSavedMessages && !isDeviceChat {
+                    UIAction(
+                        title: String.localized("menu_share"),
+                        image: UIImage(systemName: "square.and.arrow.up"),
+                        handler: { [weak self] _ in self?.shareContact() }
+                    )
+                } else if isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true {
+                    UIAction(
+                        title: String.localized("global_menu_edit_desktop"),
+                        image: UIImage(systemName: "pencil"),
+                        handler: { [weak self] _ in self?.showEditController() }
+                    )
+                }
+                if let chat, !isSavedMessages {
+                    UIAction(
+                        title: String.localized(chat.isMuted ? "menu_unmute" : "mute"),
+                        image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"),
+                        handler: { [weak self] _ in self?.toggleMuteChat() }
+                    )
+                }
+                if chat?.canSend == true { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
+                    UIAction(
+                        title: String.localized("search"),
+                        image: UIImage(systemName: "magnifyingglass"),
+                        handler: { [weak self] _ in self?.showSearch() }
+                    )
+                }
             }
-            if let chat, !isSavedMessages {
-                primaryOptions.append(UIAction(
-                    title: String.localized(chat.isMuted ? "menu_unmute" : "mute"),
-                    image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"),
-                    handler: { [weak self] _ in self?.toggleMuteChat() }
-                ))
-            }
-            if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
-                primaryOptions.append(UIAction(
-                    title: String.localized("search"),
-                    image: UIImage(systemName: "magnifyingglass"),
-                    handler: { [weak self] _ in self?.showSearch() }
-                ))
-            }
-            let primaryMenu = UIMenu(options: [.displayInline], children: primaryOptions)
-            if #available(iOS 16.0, *), primaryOptions.count > 1 {
-                primaryMenu.preferredElementSize = .medium
-            }
-            actions.append(contentsOf: [primaryMenu])
 
             if let chat, chat.isEncrypted, chat.canSend {
                 let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
-                let action = UIAction(
+                UIAction(
                     title: String.localized("ephemeral_messages"),
+                    subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
                     image: UIImage(systemName: "stopwatch"),
+                    state: ephemeralTimer > 0 ? .on : .off,
                     handler: { [weak self] _ in self?.showEphemeralController() }
                 )
-                action.state = ephemeralTimer > 0 ? .on : .off
-                if ephemeralTimer > 0 {
-                    // UIMenuElement.subtitle is iOS 15+ while UIMenuLeaf.subtitle is iOS 16+...
-                    (action as UIMenuElement).subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
-                }
-                actions.append(action)
             }
-
             if let chat {
-                actions.append(UIAction(
+                UIAction(
                     title: String.localized(chat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
                     image: UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
                     handler: { [weak self] _ in self?.toggleArchiveChat() }
-                ))
+                )
             }
-
             if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
-                actions.append(UIAction(
+                UIAction(
                     title: String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget"),
                     image: UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square"),
                     handler: { [weak self] _ in self?.toggleChatInWidget() }
-                ))
+                )
             }
 
-            if let contact, !isSavedMessages && !isDeviceChat {
-                moreOptions.append(UIAction(
-                    title: String.localized("encryption_info_title_desktop"),
-                    image: UIImage(systemName: "info.circle"),
-                    handler: { [weak self] _ in self?.showEncrInfoAlert() }
-                ))
-                moreOptions.append(UIAction(
-                    title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
-                    image: UIImage(systemName: "nosign"),
-                    attributes: [.destructive],
-                    handler: { [weak self] _ in self?.toggleBlockContact() }
-                ))
-            }
-
-            if let chat {
-                if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
-                    moreOptions.append(UIAction(
-                        title: String.localized("clone_chat"),
-                        image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
-                        handler: { [weak self] _ in self?.showCloneChatController() }
-                    ))
-                }
-
-                let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-                moreOptions.append(UIAction(
-                    title: String.localized("clear_chat"),
-                    image: UIImage(systemName: clearImage),
-                    attributes: [.destructive],
-                    handler: { [weak self] _ in self?.showClearConfirmationAlert() }
-                ))
-
-                if chat.mustLeaveBeforeDelete(dcContext) {
-                    let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
-                    moreOptions.append(UIAction(
-                        title: String.localized(leaveText),
-                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+            UIMenu(options: [.displayInline]) { [unowned self] in
+                if let contact, !isSavedMessages && !isDeviceChat {
+                    UIAction(
+                        title: String.localized("encryption_info_title_desktop"),
+                        image: UIImage(systemName: "info.circle"),
+                        handler: { [weak self] _ in self?.showEncrInfoAlert() }
+                    )
+                    UIAction(
+                        title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
+                        image: UIImage(systemName: "nosign"),
                         attributes: [.destructive],
-                        handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
-                    ))
-                } else {
-                    moreOptions.append(UIAction(
-                        title: String.localized("menu_delete_chat"),
-                        image: UIImage(systemName: "trash"),
+                        handler: { [weak self] _ in self?.toggleBlockContact() }
+                    )
+                }
+                if let chat {
+                    if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
+                        UIAction(
+                            title: String.localized("clone_chat"),
+                            image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
+                            handler: { [weak self] _ in self?.showCloneChatController() }
+                        )
+                    }
+
+                    let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+                    UIAction(
+                        title: String.localized("clear_chat"),
+                        image: UIImage(systemName: clearImage),
                         attributes: [.destructive],
-                        handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
-                    ))
+                        handler: { [weak self] _ in self?.showClearConfirmationAlert() }
+                    )
+
+                    if chat.mustLeaveBeforeDelete(dcContext) {
+                        let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
+                        UIAction(
+                            title: String.localized(leaveText),
+                            image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+                            attributes: [.destructive],
+                            handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
+                        )
+                    } else {
+                        UIAction(
+                            title: String.localized("menu_delete_chat"),
+                            image: UIImage(systemName: "trash"),
+                            attributes: [.destructive],
+                            handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
+                        )
+                    }
                 }
             }
-
-            if !moreOptions.isEmpty {
-                actions.append(contentsOf: [
-                    UIMenu(options: [.displayInline], children: moreOptions)
-                ])
-            }
-
-            return actions
         }
-
-        return UIMenu(children: [
-            UIDeferredMenuElement({ completion in
-                completion(actions())
-            })
-        ])
     }
 
     private func updateHeader() {
