@@ -18,4 +18,4 @@ jobs:
       - run: pod install
       # - run: xcodebuild -downloadPlatform iOS
         continue-on-error: true
-      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone SE (3rd generation),OS=latest" test | xcbeautify --renderer github-actions
+      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18,OS=latest" test | xcbeautify --renderer github-actions
