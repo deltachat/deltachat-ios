@@ -9,7 +9,6 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
 
     let minImageWidth: CGFloat = 140
     let minImageWidthWithText: CGFloat = 200
-    let maxImageHeight: CGFloat = 450
     let maxStickerWidth: CGFloat = 220
     @ActivatedWhenSet var minImageWidthConstraint: NSLayoutConstraint?
     @ActivatedWhenSet var imageAspectRatioConstraint: NSLayoutConstraint?
@@ -48,7 +47,7 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         messageLabel.paddingTrailing = 12
         contentImageView.widthAnchor.constraint(equalTo: mainContentView.widthAnchor).isActive = true
         minImageWidthConstraint = contentImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: minImageWidth)
-        contentImageView.heightAnchor.constraint(lessThanOrEqualToConstant: maxImageHeight).isActive = true
+        contentImageView.heightAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, constant: -60).isActive = true
         imageAspectRatioConstraint = contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor, multiplier: 1)
         stickerMaxWidthConstraint = contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: maxStickerWidth)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
@@ -129,7 +128,8 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         }
 
         let minWidth = minImageWidthConstraint?.constant ?? minImageWidth
-        let ratio = height == 0 || width == 0 ? 1 : max(0.2, min(height/width, maxImageHeight/minWidth))
+        let maxHeight = max(contentView.bounds.width - 60, minWidth)
+        let ratio = height == 0 || width == 0 ? 1 : max(0.2, min(height/width, maxHeight/minWidth))
         imageAspectRatioConstraint = contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor, multiplier: ratio)
     }
 
