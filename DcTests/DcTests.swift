@@ -1,6 +1,6 @@
 import Testing
 import XCTest
-import DcCore
+@testable import DcCore
 @testable import deltachat_ios
 import UIKit
 
@@ -75,13 +75,11 @@ struct DcTestContext {
     static func newOfflineAccount(named name: String) -> DcContext {
         let newAccountId = DcAccounts.shared.add()
         let newAccount = DcAccounts.shared.get(id: newAccountId)
-        newAccount.setConfig("displayname", "Unit Test Account \(name)")
-        newAccount.setConfig("addr", "ios.test.\(name)@delta.chat")
+        newAccount.addPseudoTransport(addr: "ios.test.\(name)@delta.chat")
         newAccount.setConfig("configured_addr", "ios.test.\(name)@delta.chat")
-        newAccount.setConfig("configured_mail_pw", "abcd")
+        newAccount.setConfig("displayname", "Unit Test Account \(name)")
         newAccount.setConfigBool("bcc_self", false)
         newAccount.setConfigBool("ui.ios.test_account", true)
-        newAccount.setConfigBool("configured", true)
         return newAccount
     }
 }
@@ -133,5 +131,11 @@ extension Bundle {
     @objc private class _This: NSObject {}
     internal static var module: Bundle {
         Bundle(for: _This.self)
+    }
+}
+
+extension DcContext {
+    public func addPseudoTransport(addr: String) {
+        dc_add_pseudo_transport(contextPointer, addr)
     }
 }
