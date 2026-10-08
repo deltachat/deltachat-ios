@@ -3,54 +3,6 @@ import DcCore
 import QuickLook
 import Intents
 
-@resultBuilder
-public struct MenuElementBuilder {
-    public static func buildBlock(_ components: UIMenuElement...) -> UIMenuElement {
-        UIDeferredMenuElement({ $0(components) })
-    }
-
-    public static func buildOptional(_ component: UIMenuElement?) -> UIMenuElement {
-        component ?? UIDeferredMenuElement({ $0([]) })
-    }
-
-    public static func buildEither(first component: UIMenuElement) -> UIMenuElement {
-        component
-    }
-
-    public static func buildEither(second component: UIMenuElement) -> UIMenuElement {
-        component
-    }
-
-    public static func buildPartialBlock(first: UIMenuElement) -> UIMenuElement {
-        first
-    }
-
-    public static func buildPartialBlock(accumulated: UIMenuElement, next: UIMenuElement) -> UIMenuElement {
-        UIDeferredMenuElement({ $0([accumulated, next]) })
-    }
-
-    public static func buildFinalResult(_ component: UIMenuElement) -> [UIMenuElement] {
-        [component]
-    }
-}
-
-extension UIMenu {
-    convenience init(_ title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: Options = [], elementSize size: BackportedElementSize? = nil, @MenuElementBuilder uncached elements: @escaping () -> [UIMenuElement]) {
-        let children = [UIDeferredMenuElement.uncached({ $0(elements()) })]
-        self.init(title: title, image: image, identifier: identifier, options: options, children: children)
-        if #available(iOS 16.0, *), let size, let size = ElementSize(rawValue: size.rawValue) {
-            preferredElementSize = size
-        }
-    }
-
-    /// This only has an effect on iOS 16+
-    enum BackportedElementSize: Int {
-        case small = 0
-        case medium = 1
-        case large = 2
-    }
-}
-
 class ProfileViewController: UITableViewController {
 
     enum Sections {
@@ -304,34 +256,33 @@ class ProfileViewController: UITableViewController {
     private func moreButtonMenu() -> UIMenu {
         return UIMenu { [unowned self] in
             // Primary options: max. 3 due to .medium element size
-            let itemCount = [
-                contact != nil && !isSavedMessages && !isDeviceChat,
-                isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true,
-                chat != nil && !isSavedMessages,
-                chat?.canSend == true,
-            ].filter(\.self).count
+            let showShareAction = contact != nil && !isSavedMessages && !isDeviceChat
+            let showEditAction = isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true
+            let showMuteAction = chat != nil && !isSavedMessages
+            let showSearchAction = chat?.canSend == true
+            let itemCount = [showShareAction || showEditAction, showMuteAction, showShareAction].filter(\.self).count
             UIMenu(options: [.displayInline], elementSize: itemCount > 1 ? .medium : nil) { [unowned self] in
-                if contact != nil, !isSavedMessages && !isDeviceChat {
+                if showShareAction {
                     UIAction(
                         title: String.localized("menu_share"),
                         image: UIImage(systemName: "square.and.arrow.up"),
                         handler: { [weak self] _ in self?.shareContact() }
                     )
-                } else if isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true {
+                } else if showEditAction {
                     UIAction(
                         title: String.localized("global_menu_edit_desktop"),
                         image: UIImage(systemName: "pencil"),
                         handler: { [weak self] _ in self?.showEditController() }
                     )
                 }
-                if let chat, !isSavedMessages {
+                if let chat, showMuteAction {
                     UIAction(
                         title: String.localized(chat.isMuted ? "menu_unmute" : "mute"),
                         image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"),
                         handler: { [weak self] _ in self?.toggleMuteChat() }
                     )
                 }
-                if chat?.canSend == true { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
+                if showSearchAction { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
                     UIAction(
                         title: String.localized("search"),
                         image: UIImage(systemName: "magnifyingglass"),
