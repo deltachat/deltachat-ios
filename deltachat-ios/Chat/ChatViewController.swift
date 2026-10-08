@@ -2199,7 +2199,7 @@ extension ChatViewController {
                     moreOptions.append(UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned }))
                 }
 
-                if dcChat.canSend && message.isFromCurrentSender {
+                if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
                     moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle))
                 }
 
