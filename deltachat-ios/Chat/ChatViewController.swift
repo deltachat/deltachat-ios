@@ -263,6 +263,94 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     ]))
 
+    private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
+        UIMenu(options: [.displayInline], elementSize: .medium) { [unowned self] in
+            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+            })
+            UIAction(
+                title: String.localized("search"),
+                image: UIImage(systemName: "magnifyingglass"),
+                handler: { [unowned self] _ in searchPressed() }
+            )
+        }
+
+        if dcChat.isEncrypted, dcChat.canSend {
+            let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
+            UIAction(
+                title: String.localized("ephemeral_messages"),
+                subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
+                image: UIImage(systemName: "stopwatch"),
+                state: ephemeralTimer > 0 ? .on : .off,
+                handler: { [unowned self] _ in
+                    navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
+                }
+            )
+        }
+//        UIAction(
+//            title: String.localized(dcChat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
+//            image: UIImage(systemName: dcChat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
+//            handler: { [weak self] _ in self?.toggleArchiveChat() }
+//        )
+//        if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+//            let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
+//            UIAction(
+//                title: String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget"),
+//                image: UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square"),
+//                handler: { [weak self] _ in self?.toggleChatInWidget() }
+//            )
+//        }
+//
+//        UIMenu(options: [.displayInline]) { [unowned self] in
+//            if let contact, !isSavedMessages && !isDeviceChat {
+//                UIAction(
+//                    title: String.localized("encryption_info_title_desktop"),
+//                    image: UIImage(systemName: "info.circle"),
+//                    handler: { [weak self] _ in self?.showEncrInfoAlert() }
+//                )
+//                UIAction(
+//                    title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
+//                    image: UIImage(systemName: "nosign"),
+//                    attributes: [.destructive],
+//                    handler: { [weak self] _ in self?.toggleBlockContact() }
+//                )
+//            }
+//            if let chat {
+//                if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
+//                    UIAction(
+//                        title: String.localized("clone_chat"),
+//                        image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
+//                        handler: { [weak self] _ in self?.showCloneChatController() }
+//                    )
+//                }
+//
+//                let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+//                UIAction(
+//                    title: String.localized("clear_chat"),
+//                    image: UIImage(systemName: clearImage),
+//                    attributes: [.destructive],
+//                    handler: { [weak self] _ in self?.showClearConfirmationAlert() }
+//                )
+//
+//                if chat.mustLeaveBeforeDelete(dcContext) {
+//                    let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
+//                    UIAction(
+//                        title: String.localized(leaveText),
+//                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+//                        attributes: [.destructive],
+//                        handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
+//                    )
+//                } else {
+//                    UIAction(
+//                        title: String.localized("menu_delete_chat"),
+//                        image: UIImage(systemName: "trash"),
+//                        attributes: [.destructive],
+//                        handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
+//                    )
+//                }
+//            }
+    })
+
     /// Context menu previews are shown in this layer which is behind the input bar.
     /// We can hide previews when a user scrolls by removing this views subview.
     /// This is needed because the system does not always hide snapshots right
@@ -1132,12 +1220,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             titleView.layoutIfNeeded()
             navigationItem.titleView = titleView
             self.navigationItem.setLeftBarButton(nil, animated: true)
-            
-            var rightBarButtonItems = [UIBarButtonItem]()
-
-            let button = UIBarButtonItem(image: UIImage(systemName: "square.grid.2x2"), style: .plain, target: self, action: #selector(appsAndMediaPressed))
-            button.accessibilityLabel = String.localized("apps_and_media")
-            rightBarButtonItems.append(button)
 
             if let image = dcChat.profileImage {
                 titleView.initialsBadge.setImage(image)
@@ -1146,6 +1228,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 titleView.initialsBadge.setColor(dcChat.color)
             }
 
+            var rightBarButtonItems = [optionsButton]
             if !dcChat.isSelfTalk {
                 let recentlySeen = DcUtils.showRecentlySeen(context: dcContext, chat: dcChat)
                 titleView.initialsBadge.setRecentlySeen(recentlySeen)

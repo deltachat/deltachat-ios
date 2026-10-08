@@ -6,6 +6,10 @@ public struct MenuElementBuilder {
         UIDeferredMenuElement({ $0(components) })
     }
 
+    public static func buildArray(_ components: [UIMenuElement]) -> UIMenuElement {
+        UIDeferredMenuElement({ $0(components) })
+    }
+
     public static func buildOptional(_ component: UIMenuElement?) -> UIMenuElement {
         component ?? UIDeferredMenuElement({ $0([]) })
     }
@@ -28,7 +32,7 @@ public struct MenuElementBuilder {
 }
 
 extension UIMenu {
-    convenience init(_ title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: Options = [], elementSize size: BackportedElementSize? = nil, @MenuElementBuilder uncached elements: @escaping () -> UIMenuElement) {
+    convenience init(title: String = "", image: UIImage? = nil, identifier: UIMenu.Identifier? = nil, options: Options = [], elementSize size: BackportedElementSize? = nil, @MenuElementBuilder uncached elements: @escaping () -> UIMenuElement) {
         let children = [UIDeferredMenuElement.uncached({ $0([elements()]) })]
         self.init(title: title, image: image, identifier: identifier, options: options, children: children)
         if #available(iOS 16.0, *), let size, let size = ElementSize(rawValue: size.rawValue) {
