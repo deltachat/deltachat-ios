@@ -113,6 +113,7 @@
 		645575232F00000100F46CD3 /* OutgoingRingbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */; };
 		6462680B303EFECB002475E8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6C9392606190600D0755A /* NotificationManager.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
+		6479088C307781FF006A0A3C /* UIMenu+resultBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6479088B307781FF006A0A3C /* UIMenu+resultBuilder.swift */; };
 		648BA1872F9510FA007B1FDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9FB14A1FB061E2001FEA36 /* Assets.xcassets */; };
 		648BA1CF2F9A320E007B1FDE /* DcAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = DCA000022CF72AA0009AF551 /* DcAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		649876252FE2E07F005F80F9 /* InputBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649876242FE2E07F005F80F9 /* InputBarView.swift */; };
@@ -474,6 +475,7 @@
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRingbackPlayer.swift; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		6479088B307781FF006A0A3C /* UIMenu+resultBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+resultBuilder.swift"; sourceTree = "<group>"; };
 		649876242FE2E07F005F80F9 /* InputBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBarView.swift; sourceTree = "<group>"; };
 		649876262FE2E0A8005F80F9 /* QuoteViewSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteViewSwiftUI.swift; sourceTree = "<group>"; };
 		649876292FE2E119005F80F9 /* View+modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+modifier.swift"; sourceTree = "<group>"; };
@@ -1115,6 +1117,7 @@
 				30CE137728D9C40700158DF4 /* ChatDropInteraction.swift */,
 				B2CDA6312CCDB3080024763F /* MuteDialog.swift */,
 				6424C05F2FB8534A00F7313F /* UIToolbar+AutoLayout.swift */,
+				6479088B307781FF006A0A3C /* UIMenu+resultBuilder.swift */,
 				649876282FE2E10A005F80F9 /* SwiftUI */,
 			);
 			path = Helper;
@@ -1740,6 +1743,7 @@
 				AED423D7249F580700B6B2BB /* BlockedContactsViewController.swift in Sources */,
 				B2D255972BEC2C9B00CCD7BC /* InstantOnboardingViewController.swift in Sources */,
 				D83227022D3AC9F300C239C5 /* RecentWebxdcAppsViewController.swift in Sources */,
+				6479088C307781FF006A0A3C /* UIMenu+resultBuilder.swift in Sources */,
 				3008CB7424F9436C00E6A617 /* AudioPlayerView.swift in Sources */,
 				649876322FE2E1E5005F80F9 /* ContactCardViewRepresentable.swift in Sources */,
 				AED62BCE247687E6009E220D /* LocationStreamingIndicator.swift in Sources */,
