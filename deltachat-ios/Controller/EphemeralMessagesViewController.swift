@@ -89,9 +89,17 @@ class EphemeralMessagesViewController: UITableViewController {
     @objc private func okButtonPressed() {
         dcContext.setChatEphemeralTimer(chatId: chatId, duration: options[currentIndex])
 
-        // pop two view controllers:
-        // go directly back to the chatview where also the confirmation message will be shown
-        navigationController?.popViewControllers(viewsToPop: 2, animated: true)
+        // show the chat that just got changed where the confirmation info message will be shown
+        if let previouslyShownChatVC = navigationController?.viewControllers.first(where: {
+            ($0 as? ChatViewController)?.chatId == chatId
+        }) {
+            // go back to the previously shown chatview
+            navigationController?.popToViewController(previouslyShownChatVC, animated: true)
+        } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            // go forward to the changed chat.
+            // this happens eg when group chat > details > contact > change ephemeral messages for contact
+            appDelegate.appCoordinator.showChat(chatId: chatId, animated: true, clearViewControllerStack: true)
+        }
     }
 
     // MARK: - Table view data source
