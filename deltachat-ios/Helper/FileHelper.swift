@@ -90,6 +90,7 @@ public class FileHelper {
 
     static func copyIfPossible(src: URL, dest: URL) -> URL {
         guard src != dest else { return src }
+        guard !FileManager.default.contentsEqual(atPath: src.path, andPath: dest.path) else { return dest }
         do {
             if FileManager.default.fileExists(atPath: dest.path) {
                 try FileManager.default.removeItem(at: dest)

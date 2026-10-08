@@ -18,7 +18,7 @@ public enum CodableNSItemProvider: Codable {
         }
     }
 
-    public func itemProvider() -> NSItemProvider? {
+    public func itemProvider() -> NSItemProvider {
         switch self {
         case .contentsAt(let url, _):
             return NSItemProvider(contentsOf: url) ?? {
@@ -55,7 +55,7 @@ public enum CodableNSItemProvider: Codable {
                     if let url {
                         do {
                             let tempFile = directory.appendingPathComponent(url.lastPathComponent)
-                            try FileManager.default.copyItem(at: url, to: tempFile)
+                            try FileManager.default.forceCopyItem(at: url, to: tempFile)
                             let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : DC_MSG_FILE
                             return continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
                         } catch {
@@ -89,7 +89,7 @@ public enum CodableNSItemProvider: Codable {
                                 throw Error.loadingImageFailed
                             }
                         } else {
-                            try FileManager.default.copyItem(at: url, to: tempFile)
+                            try FileManager.default.forceCopyItem(at: url, to: tempFile)
                             let viewType = url.pathExtension == "xdc" ? DC_MSG_WEBXDC : viewType
                             continuation.resume(returning: .contentsAt(url: tempFile, viewType: viewType))
                         }
@@ -146,5 +146,17 @@ private extension URL {
         guard let handle = try? FileHandle(forReadingFrom: self) else { return false }
         let data = handle.readData(ofLength: 6)
         return data == Data("bplist".utf8)
+    }
+}
+
+extension FileManager {
+    /// If there is a file at the destination and it is not equal to the source it is deleted before copying the source.
+    func forceCopyItem(at src: URL, to dst: URL) throws {
+        if !FileManager.default.contentsEqual(atPath: src.path, andPath: dst.path) {
+            if FileManager.default.fileExists(atPath: dst.path) {
+                try FileManager.default.removeItem(at: dst)
+            }
+            try FileManager.default.copyItem(at: src, to: dst)
+        }
     }
 }
