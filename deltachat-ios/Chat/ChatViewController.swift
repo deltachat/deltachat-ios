@@ -2334,7 +2334,7 @@ extension ChatViewController {
             for id in sortedIds {
                 let msg = self.dcContext.getMessage(id: id)
                 var textToCopy: String?
-                if msg.type == DC_MSG_TEXT, let msgText = msg.text {
+                if msg.type == DC_MSG_TEXT || ids.count == 1, let msgText = msg.text {
                     textToCopy = msgText
                 } else if let msgSummary = msg.summary(chars: 10000000) {
                     textToCopy = msgSummary
