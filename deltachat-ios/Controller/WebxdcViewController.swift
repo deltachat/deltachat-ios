@@ -323,10 +323,10 @@ class WebxdcViewController: WebViewViewController {
     // MARK: - Notifications
 
     @objc private func handleWebxdcRealtimeDataReceived(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let messageId = userInfo["message_id"] as? Int,
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              let messageId = notification.userInfo?["message_id"] as? Int,
               messageId == self.messageId,
-              let data = userInfo["data"] as? Data
+              let data = notification.userInfo?["data"] as? Data
         else { return }
 
         let byteArray = [UInt8](data)
@@ -338,7 +338,8 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func handleWebxdcStatusUpdate(_ notification: Notification) {
-        guard let messageId = notification.userInfo?["message_id"] as? Int,
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              let messageId = notification.userInfo?["message_id"] as? Int,
               messageId == self.messageId else { return }
 
         DispatchQueue.main.async { [weak self] in
@@ -347,6 +348,7 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         guard let messageId = notification.userInfo?["message_id"] as? Int,
               messageId == self.messageId
         else { return }
@@ -357,7 +359,8 @@ class WebxdcViewController: WebViewViewController {
     }
 
     @objc private func handleMessageReadDeliveredReactionFailed(_ notification: Notification) {
-        guard let messageId = notification.userInfo?["message_id"] as? Int,
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              let messageId = notification.userInfo?["message_id"] as? Int,
               messageId == self.messageId
         else { return }
 

@@ -104,14 +104,17 @@ class GalleryViewController: UIViewController {
     // MARK: - Notifications
 
     @objc private func handleMessageReadDeliveredFailedReaction(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 

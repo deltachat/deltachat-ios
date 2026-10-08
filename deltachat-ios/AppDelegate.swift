@@ -204,17 +204,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         logger.info("⬅️ applicationProtectedDataWillBecomeUnavailable")
     }
 
-    static func emitMsgsChangedIfShareExtensionWasUsed() {
-        if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
-            userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
-
-            NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
-                "message_id": Int(0),
-                "chat_id": Int(0),
-            ])
-        }
-    }
-
     func applicationWillTerminate(_: UIApplication) {
         logger.info("⬅️ applicationWillTerminate")
         if callManager?.isCalling() == true {
