@@ -254,7 +254,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(onCancelPressed))
     }()
 
-    private lazy var callButton = UIBarButtonItem(image: UIImage(systemName: "phone"), menu: UIMenu(children: [
+    private lazy var callButton = UIBarButtonItem(image: UIImage(systemName: "phone")?.withChevron(), menu: UIMenu(children: [
         UIAction(title: .localized("start_audio_call"), image: UIImage(systemName: "phone")) { [unowned self] _ in
             CallManager.shared.placeOutgoingCall(dcContext: dcContext, dcChat: dcChat, hasVideoInitially: false)
         },

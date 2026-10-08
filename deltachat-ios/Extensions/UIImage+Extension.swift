@@ -57,4 +57,31 @@ extension UIImage {
 
         return UIImage(data: imageData)
     }
+
+    /// Returns the image with a chevron drawn to the right side.
+    /// This is useful for indicating menu buttons are safe to press.
+    func withChevron(spacing: CGFloat = 0) -> UIImage {
+        guard let chevron = UIImage(
+            systemName: "chevron.down",
+            withConfiguration: UIImage.SymbolConfiguration(
+                pointSize: 9,
+                weight: .semibold
+            )
+        ) else { return self }
+
+        // Scale up in case it is a symbol, so we draw the highest resolution
+        let `self` = applyingSymbolConfiguration(.init(scale: .large)) ?? self
+
+        let newSize = CGSize(
+            width: self.size.width + spacing + chevron.size.width,
+            height: self.size.height
+        )
+
+        return UIGraphicsImageRenderer(size: newSize).image { _ in
+            self.draw(at: CGPoint(x: 0, y: 0))
+            // Center the chevron vertically.
+            let chevronY = (self.size.height - chevron.size.height) / 2
+            chevron.draw(at: CGPoint(x: self.size.width + spacing, y: chevronY))
+        }
+    }
 }
