@@ -109,6 +109,7 @@
 		641620FE2ECFFA880076CFA3 /* WebRTC+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */; };
 		6424C0602FB8534A00F7313F /* UIToolbar+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6424C05F2FB8534A00F7313F /* UIToolbar+AutoLayout.swift */; };
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
+		643A13AF306E7CB800169483 /* ActivatedWhenSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643A13AE306E7CB800169483 /* ActivatedWhenSet.swift */; };
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
 		645575232F00000100F46CD3 /* OutgoingRingbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */; };
 		6462680B303EFECB002475E8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6C9392606190600D0755A /* NotificationManager.swift */; };
@@ -470,6 +471,7 @@
 		641620FD2ECFFA880076CFA3 /* WebRTC+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebRTC+Extensions.swift"; sourceTree = "<group>"; };
 		6424C05F2FB8534A00F7313F /* UIToolbar+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar+AutoLayout.swift"; sourceTree = "<group>"; };
 		6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+Extensions.swift"; sourceTree = "<group>"; };
+		643A13AE306E7CB800169483 /* ActivatedWhenSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatedWhenSet.swift; sourceTree = "<group>"; };
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRingbackPlayer.swift; sourceTree = "<group>"; };
@@ -1097,6 +1099,7 @@
 		AE851AC2227C695000ED86F0 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				643A13AE306E7CB800169483 /* ActivatedWhenSet.swift */,
 				640C769A2FDD378F00F6BC8A /* Thumbnails.swift */,
 				30238CFE28A5554C00EF14AC /* FileHelper.swift */,
 				3067AAC52667F3FE00525036 /* ImageFormat.swift */,
@@ -1839,6 +1842,7 @@
 				30C7D5EE28F47E620078D24C /* MessageCounter.swift in Sources */,
 				649876272FE2E0A8005F80F9 /* QuoteViewSwiftUI.swift in Sources */,
 				649876252FE2E07F005F80F9 /* InputBarView.swift in Sources */,
+				643A13AF306E7CB800169483 /* ActivatedWhenSet.swift in Sources */,
 				305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */,
 				5F785F6E2CB9344F003FFFB9 /* ReusableCellProtocol.swift in Sources */,
 				D8C1B0DD2CE7421C00C233A7 /* ShareProxyViewController.swift in Sources */,
