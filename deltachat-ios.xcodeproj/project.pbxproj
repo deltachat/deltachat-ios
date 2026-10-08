@@ -923,8 +923,6 @@
 			children = (
 				B2636B5B2BADE39600F37A0A /* PrivacyInfo.xcprivacy */,
 				3022E6C022E8768800763272 /* InfoPlist.strings */,
-				3060119E22DDE24000C1CE6F /* Localizable.strings */,
-				306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */,
 				7837B63F21E54DC600CDE126 /* .swiftlint.yml */,
 				7A9FB1421FB061E2001FEA36 /* deltachat-ios */,
 				30E8F2112447285600CE2C90 /* DcShare */,
@@ -935,6 +933,8 @@
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				AFE4D4B4B038293E63BC1537 /* Pods */,
+				3060119E22DDE24000C1CE6F /* Localizable.strings */,
+				306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
