@@ -39,7 +39,6 @@ struct PinBarView: View {
                     .padding(.vertical, -8)
                     .padding(.leading, 8)
             }
-            Image(systemName: "pin")
             Text(msg.summary(chars: 100) ?? "...")
                 .transition(.asymmetric(
                     insertion: .move(edge: .top).combined(with: .opacity),
@@ -58,6 +57,11 @@ struct PinBarView: View {
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.capsule)
                 .padding(4)
+            } else {
+                Image(systemName: "pin.fill")
+                    .font(.system(size: 13))
+                    .foregroundColor(Color(DcColors.middleGray))
+                    .padding(.trailing, 12)
             }
         }
         .clipped()
@@ -82,7 +86,7 @@ struct PinBarView: View {
             Button(action: {
                 msg.isPinned = false
             }, label: {
-                Label("Unpin", systemImage: "pin.slash.fill")
+                Label("Unpin", systemImage: "pin.slash")
             })
         }
     }
