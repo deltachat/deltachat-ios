@@ -200,7 +200,9 @@ class ProfileSwitchViewController: UITableViewController {
 
                 appDelegate.locationManager.disableLocationStreamingInAllChats()
                 AudioController.stopBackgroundPlayback(forContextId: accountId)
-                _ = dcAccounts.remove(id: accountId)
+                if dcAccounts.remove(id: accountId) {
+                    VoiceTranscriptionStore.removeAll(accountId: accountId)
+                }
                 KeychainManager.deleteAccountSecret(id: accountId)
                 INInteraction.delete(with: "\(accountId)", completion: nil)
                 if dcAccounts.getAll().isEmpty {
