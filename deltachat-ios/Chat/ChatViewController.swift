@@ -132,6 +132,37 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return host
     }()
 
+    private lazy var pinbarContainerView: UIView = {
+        let pinbarContainerView = UIView()
+        pinbarContainerView.backgroundColor = .clear
+        pinbarContainerView
+            .publisher(for: \.bounds)
+            .dropFirst()
+            .sink { [weak self] _ in self?.setTableViewContentInset() }
+            .store(in: &bag)
+
+        let host = UIHostingController(rootView: PinBarView(
+            context: dcContext,
+            chat: dcChat,
+            scrollToMsg: { [weak self] msg in
+                self?.scrollToMessage(msgId: msg.id)
+            },
+            startWebxdc: { [weak self] msg in
+                self?.showWebxdcViewFor(message: msg)
+            }
+        ))
+        if #available(iOS 16.0, *) {
+            host.sizingOptions = [.intrinsicContentSize]
+        }
+        host.view.backgroundColor = .clear
+        addChild(host)
+        pinbarContainerView.addSubview(host.view)
+        host.didMove(toParent: self)
+        host.view.fillSuperview()
+
+        return pinbarContainerView
+    }()
+
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -447,6 +478,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         configureEmptyStateView()
 
+        view.addSubview(pinbarContainerView)
+        pinbarContainerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pinbarContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pinbarContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+        ])
+
         view.addSubview(toolbarContainerView)
         toolbarContainerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -571,7 +609,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func setTableViewContentInset() {
         // Manually set the safe area because tableView is flipped
-        tableView.contentInset.bottom = view.safeAreaInsets.top
+        tableView.contentInset.bottom = view.safeAreaInsets.top + pinbarContainerView.frame.height
 
         let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
         if tableView.contentInset.top != topInset {
@@ -1048,6 +1086,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
         case (_, DC_INFO_LOCATIONSTREAMING_ENABLED):
             navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+        case (_, DC_INFO_MESSAGE_PINNED):
+            if let pinnedMessageId = message.parent?.id {
+                scrollToMessage(msgId: pinnedMessageId)
+            }
         default:
             if let contactId = message.infoContactId, contactId != DC_CONTACT_ID_SELF {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
@@ -1477,17 +1519,13 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
 
-        var canDeleteForEveryone = true
-        if dcChat.canSend && dcChat.isEncrypted && !dcChat.isSelfTalk {
-            for msgId in ids {
+        let canDeleteForEveryone = if dcChat.canSend && dcChat.isEncrypted && !dcChat.isSelfTalk {
+            ids.allSatisfy { msgId in
                 let msg = dcContext.getMessage(id: msgId)
-                if !msg.isFromCurrentSender {
-                    canDeleteForEveryone = false
-                    break
-                }
+                return msg.isFromCurrentSender && !msg.isMarkerOrInfo
             }
         } else {
-            canDeleteForEveryone = false
+            false
         }
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
@@ -2154,7 +2192,14 @@ extension ChatViewController {
                     UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                 )
 
-                if dcChat.canSend && message.isFromCurrentSender {
+                if dcChat.canSend, !message.isInfo {
+                    let isPinned = message.isPinned
+                    let pinTitle = isPinned ? "unpin" : "pin"
+                    let pinImage = isPinned ? "pin.slash" : "pin"
+                    moreOptions.append(UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned }))
+                }
+
+                if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
                     moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle))
                 }
 
