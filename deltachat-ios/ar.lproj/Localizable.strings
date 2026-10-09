@@ -77,8 +77,6 @@
 "small" = "صغير";
 "normal" = "عادي";
 "large" = "كبيرة";
-// deprecated
-"extra_large" = "كبيرة جداً";
 "fast" = "سريع";
 "slow" = "بطيء";
 "menu_new_chat" = "محادثة جديدة";
@@ -86,8 +84,6 @@
 "menu_send" = "إرسال";
 "menu_toggle_keyboard" = "تبديل لوحة مفاتيح إيموجي";
 "menu_edit_group" = "تعديل الفريق";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "اسم الفريق وصورته";
 "menu_add_attachment" = "إضافة مرفقات";
 "menu_leave_group" = "غادر الفريق";
 "menu_delete_chat" = "احدف المحادثة";
@@ -133,13 +129,9 @@
 "tab_contact" = "للاتصال";
 "tab_group" = "الفريق";
 "tab_gallery" = "المعرض";
-// deprecated
-"tab_docs" = "المستندات";
 "tab_links" = "الروابط";
 "tab_map" = "الخريطة";
 "media_preview" = "معاينة الصورة";
-// deprecated
-"login_title" = "الولوج";
 "login_inbox" = "صندوق الوارد";
 "login_imap_login" = "مستخدم IMAP";
 "login_imap_server" = "خادم IMAP";
@@ -151,6 +143,7 @@
 "login_smtp_port" = "منفذ SMTP";
 "login_smtp_security" = "أمان SMTP";
 "login_certificate_checks" = "التحقق مِن الشهادة";
+// deprecated
 "login_error_mail" = "يرجى إدخال عنوان بريد إلكتروني صالح";
 "import_backup_title" = "استيراد نسخة احتياطية";
 "delete_account" = "حذف الحساب";
@@ -169,8 +162,6 @@
 "pref_notifications_show" = "عرض";
 "pref_led_color" = "لون ضوء التنبيه LED";
 "pref_sound" = "الصوت";
-// deprecated
-"pref_privacy" = "الخصوصية";
 "pref_system_default" = "افتراضيات النظام";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "فاتح";
@@ -187,8 +178,6 @@
 "pref_show_emails_all" = "كلها";
 // "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
 "all" = "كلها";
-// deprecated
-"qrscan_fingerprint_label" = "البصمة";
 // notifications
 "notify_reply_button" = "رد";
 "notify_new_message" = "رسالة جديدة";

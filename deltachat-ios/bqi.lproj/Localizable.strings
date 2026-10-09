@@ -13,8 +13,6 @@
 "on" = "رۊشن";
 "off" = "کۊر";
 "def" = "پؽش فرز";
-// deprecated
-"default_value" = "پؽش فرز (%1$@)";
 "custom" = "سفارشی";
 "none" = "هیچکویکی";
 "automatic" = "خوتکار";
@@ -24,8 +22,6 @@
 "downloading" = "هونی دانلود ابۊ...";
 "open_attachment" = "گۊشیڌن پیوست";
 "join" = "ٱووڌن";
-// deprecated
-"rejoin" = "ز نۊ ٱووڌن";
 "delete" = "پاک کردن";
 "delete_for_me" = "پاک کردن سی مو";
 "delete_for_everyone" = "پاک کردن سی پوی";
@@ -59,10 +55,6 @@
 "media" = "وارسگر";
 "apps_and_media" = "برنومه یل وو وارسگرا";
 "profile" = "پوروفایل";
-// deprecated
-"all_profiles" = "پوی پوروفایلا";
-// deprecated
-"current_profile" = "پوروفایل هیم سکویی";
 "main_menu" = "نومگه ٱسلی";
 "start_chat" = "ناڌن پا گوفت وو لوفت";
 "show_full_message" = "نشووݩ داڌن پیوم کامل...";
@@ -78,11 +70,7 @@
 "activate" = "فعال کردن";
 "load_remote_content" = "بار ونی شؽواتا ز در";
 "always" = "همیشه";
-// deprecated
-"always_load_remote_images" = "شؽواتا دیر ز دسرس هی بوگوئشن";
 "once" = "هیم ی کرت";
-// deprecated
-"show_warning" = "نشووݩ داڌن هوشدار";
 "not_now" = "سکو ن";
 "never" = "هیچ";
 "one_moment" = "ی دمووݩ...";
@@ -96,13 +84,9 @@
 "no_app_to_handle_data" = "برنومه ای سی ای نوع داده نجۊرست.";
 "no_browser_installed" = "هیچ گشت گری نپۊرسته.";
 "file_not_found" = "%1$@ ن نجوست.";
-// deprecated
-"cannot_save_file" = "نتره %1$@ ن زفت کونه.";
 "copied_to_clipboard" = "من ویرگه لف گیری وابی.";
 "contacts_headline" = "هومدنگووݩ";
 "email_address" = "نشۊوی ایمیل";
-// deprecated
-"bad_email_address" = "نشۊوی ایمیل موشکل داره.";
 "password" = "رزم";
 "existing_password" = "رزم مووجۊد";
 "now" = "سکو";
@@ -123,8 +107,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "پسند وابیڌه:";
 "self" = "مو";
 "draft" = "پؽش هؽل";
 "image" = "شؽوات";
@@ -134,10 +116,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "add_to_sticker_collection" = "ٱووردن و مجمۊعه استیکر";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "سی ٱووردن برچسب ری «گۊشیڌن دوبلگه برچسب» بزنین، ی لم دوبلگه ای سی کتن برچسب خوتووݩ وورکل کۊنین وو برچسبا ن و اوچو بکشین";
-// deprecated
-"open_sticker_folder" = "گۊشیڌن دوبلگه استیکر";
 "images" = "شؽواتا";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "دونگ";
@@ -155,8 +133,6 @@
 "capture" = "گرؽڌن";
 // Switch eg. from front to back camera
 "switch_camera" = "آلشت شؽواتگر";
-// deprecated
-"toggle_fullscreen" = "آلشت وزیت پوی بلگه";
 "location" = "جاگه";
 "locations" = "جاگه یل";
 "gallery" = "شؽوات مال";
@@ -193,13 +169,9 @@
 "magenta" = "سوئرکوۊ";
 "white" = "اسبؽڌ";
 "zoom" = "گپ کردن";
-// deprecated
-"extra_small" = "قلوه کۊچیر";
 "small" = "کۊچیر";
 "normal" = "عادی";
 "large" = "گپ";
-// deprecated
-"extra_large" = "قلوه گپ";
 "fast" = "زل";
 "slow" = "هووار";
 // menu labels (or icon, buttons...)
@@ -226,8 +198,6 @@
 "menu_send" = "فشناڌن";
 "menu_toggle_keyboard" = "آلشت تخته کیلیت ایموجی یل";
 "menu_edit_group" = "آلشت جرگه";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "نوم وو شؽوات جرگه";
 "menu_show_global_map" = "نشووݩ داڌن پوی جاگه یل";
 "menu_archive_chat" = "بایگۊوی گوفت وو لوفت";
 "menu_unarchive_chat" = "و در زیڌن گوفت وو لوفت ز بایگۊوی";
@@ -238,8 +208,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "روفتن ویرگار گوفت وو لوفت";
 "delete_contact" = "پاک کردن هومدنگ";
-// deprecated
-"menu_delete_location" = "ای جاگه پاک بۊ؟";
 "menu_message_details" = "جۊزیات پیوم";
 "menu_copy_to_clipboard" = "لف گیری من ویرگه";
 "share_invite_link" = "یک رسۊوی لینگ موکش";
@@ -266,8 +234,6 @@
 "menu_help" = "هیاری";
 "menu_select_all" = "پسند پوی";
 "select_chat" = "پسند گوفت وو لوفت";
-// deprecated
-"select_more" = "پسند بیشتر";
 "menu_edit_name" = "آلشت نوم";
 "menu_settings" = "سامووا";
 "menu_advanced" = "پؽش رئڌه";
@@ -290,7 +256,6 @@
 "mute_for_one_day" = "بؽ دونگ کردن سی 1 رۊ";
 "mute_for_seven_days" = "بؽ دونگ کردن سی 7 رۊ";
 "mute_forever" = "بؽ دونگ کردن سی همیشه";
-// deprecated
 "share_location_for_5_minutes" = "سی 5 دؽقه";
 "share_location_for_30_minutes" = "سی 30 دؽقه";
 "share_location_for_one_hour" = "سی 1 ساعت";
@@ -315,10 +280,6 @@
 "saved_messages" = "پیوما زفت بیڌه";
 // Should match "Saved" from "Saved messages"
 "saved" = "زفت وابی";
-// deprecated
-"save_as" = "زفت و عونوان";
-// deprecated
-"retry_send" = "ز نۊ سی فشناڌن پیوم تقلا کوݩ";
 // mailing lists
 "mailing_list" = "نومگه پوستی";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -337,8 +298,6 @@
 "tab_contact" = "هومدنگ";
 "tab_group" = "جرگه";
 "tab_gallery" = "شؽوات مال";
-// deprecated
-"tab_docs" = "سندا";
 "tab_links" = "لینگا";
 "tab_map" = "نقشه";
 "media_preview" = "نشووݩ داڌن وارسگر";
@@ -379,8 +338,6 @@
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیوما قڌیمی";
 "autodel_device_title" = "پاک کردن پیوما ز دسگا";
-// deprecated
-"autodel_server_title" = "پاک کردن پیوما ز سرور";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "ی کرت دیندا دانلود";
 "after_5_minutes" = "دیندا 5 دؽقه";
@@ -394,9 +351,6 @@
 "qrshow_x_joining" = "%1$@ ٱووڌ.";
 "qrshow_x_verified" = "%1$@ تاییڌ وابی.";
 "contact_verified" = "%1$@ تاییڌ وابی.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "تاییڌ وابیڌه و دس %1$@";
 // notifications
 "notify_reply_button" = "ولوم";
 "notify_new_message" = "پیوم نۊ";

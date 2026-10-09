@@ -13,8 +13,6 @@
 "on" = "Bekapcsolva";
 "off" = "Kikapcsolva";
 "def" = "Alapértelmezett";
-// deprecated
-"default_value" = "Alapértelmezett (%1$@)";
 "custom" = "Egyéni";
 "none" = "Semmi";
 "automatic" = "Automatikus";
@@ -24,8 +22,6 @@
 "downloading" = "Letöltés…";
 "open_attachment" = "Melléklet megnyitása";
 "join" = "Csatlakozás";
-// deprecated
-"rejoin" = "Újracsatlakozás";
 "delete" = "Törlés";
 "delete_for_me" = "Törlés számomra";
 "delete_for_everyone" = "Törlés mindenki számára";
@@ -59,10 +55,6 @@
 "media" = "Média";
 "apps_and_media" = "Alkalmazások & média";
 "profile" = "Profil";
-// deprecated
-"all_profiles" = "Összes profil";
-// deprecated
-"current_profile" = "Jelenlegi profil";
 "main_menu" = "Főmenü";
 "start_chat" = "Csevegés indítása";
 "show_full_message" = "Teljes üzenet megjelenítése…";
@@ -80,11 +72,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "A távoli képek követhetik Önt.\n\nEz a beállítás betűtípusokat és egyéb tartalmakat is betölthet. Ha letiltja, beágyazott vagy gyorsítótárazott képek jelenhetnek meg.\n\nBetölti a távoli képeket?";
 "always" = "Mindig";
-// deprecated
-"always_load_remote_images" = "Mindig töltse be a távoli képeket";
 "once" = "Azonnal";
-// deprecated
-"show_warning" = "Figyelmeztetés megjelenítése";
 "not_now" = "Most nem";
 "never" = "Soha";
 "one_moment" = "Egy pillanat…";
@@ -98,13 +86,9 @@
 "no_app_to_handle_data" = "Nem található alkalmazást az ilyen típusú adatok kezeléséhez.";
 "no_browser_installed" = "Nincs telepítve böngésző.";
 "file_not_found" = "%1$@ nem található.";
-// deprecated
-"cannot_save_file" = "Nem lehet menteni a következőt: %1$@.";
 "copied_to_clipboard" = "Vágólapra másolva.";
 "contacts_headline" = "Névjegyek";
 "email_address" = "E-mail-cím";
-// deprecated
-"bad_email_address" = "Hibás e-mail-cím.";
 "password" = "Jelszó";
 "existing_password" = "Jelenlegi jelszó";
 "now" = "Most";
@@ -125,8 +109,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "Kiválasztva:";
 "self" = "Ön";
 "draft" = "Piszkozat";
 "image" = "Kép";
@@ -136,10 +118,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Matrica";
 "add_to_sticker_collection" = "Hozzáadás a matricagyűjteményhez";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "A matricák hozzáadásához koppintson a „Matricamappa megnyitása” lehetőségre, hozzon létre egy almappát a matricacsomagnak, és húzza oda a kép- és matricafájlokat.";
-// deprecated
-"open_sticker_folder" = "Matricamappa megnyitása";
 "images" = "Képek";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Hang";
@@ -157,8 +135,6 @@
 "capture" = "Rögzítés";
 // Switch eg. from front to back camera
 "switch_camera" = "Kameraváltás";
-// deprecated
-"toggle_fullscreen" = "Váltás teljes képernyős módra";
 "location" = "Hely";
 "locations" = "Helyek";
 "gallery" = "Galéria";
@@ -195,13 +171,9 @@
 "magenta" = "Magenta";
 "white" = "Fehér";
 "zoom" = "Nagyítás";
-// deprecated
-"extra_small" = "Extra kicsi";
 "small" = "Kicsi";
 "normal" = "Normál";
 "large" = "Nagy";
-// deprecated
-"extra_large" = "Nagyon nagy";
 "fast" = "Gyors";
 "slow" = "Lassú";
 // menu labels (or icon, buttons...)
@@ -229,8 +201,6 @@
 "menu_send" = "Küldés";
 "menu_toggle_keyboard" = "Váltás emodzsibillentyűzetre";
 "menu_edit_group" = "Csoport szerkesztése";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Csoportnév és -kép";
 "menu_show_global_map" = "Az összes hely megjelenítése";
 "menu_archive_chat" = "Csevegés archiválása";
 "menu_unarchive_chat" = "Archiválás visszavonása";
@@ -241,8 +211,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Csevegés kiürítése";
 "delete_contact" = "Névjegy törlése";
-// deprecated
-"menu_delete_location" = "Biztosan törli ezt a helyet?";
 "menu_message_details" = "Üzenetinformáció";
 "menu_copy_to_clipboard" = "Másolás a vágólapra";
 "share_invite_link" = "Meghívási hivatkozás megosztása";
@@ -284,8 +252,6 @@
 "privacy_policy" = "Adatvédelmi irányelvek";
 "menu_select_all" = "Összes kiválasztása";
 "select_chat" = "Csevegés kiválasztása";
-// deprecated
-"select_more" = "Továbbiak kiválasztása";
 "menu_edit_name" = "Név szerkesztése";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Állítson be egy becenevet a(z) „%1$@” nevű partnerének. Hagyja üresen a partnere által választott név megjelenítéséhez.";
@@ -298,7 +264,6 @@
 "menu_zoom_out" = "Kicsinyítés";
 "menu_save_log" = "Naplófájl mentése";
 "menu_more_options" = "További beállítások";
-"menu_learn_spelling" = "Helyesírás tanulása";
 "jump_to_message" = "Ugrás az üzenetre";
 "replace_draft" = "Piszkozat cseréje";
 "title_share_location" = "Hely megosztása a csoport összes tagjával";
@@ -327,7 +292,6 @@
 "mute_for_one_day" = "Némítás 1 napra";
 "mute_for_seven_days" = "Némítás 7 napra";
 "mute_forever" = "Némítás örökre";
-// deprecated
 "share_location_for_5_minutes" = "5 percre";
 "share_location_for_30_minutes" = "30 percre";
 "share_location_for_one_hour" = "1 órára";
@@ -348,8 +312,6 @@
 "ask_leave_group" = "Biztosan elhagyja a csatornát?";
 "ask_delete_named_chat" = "Törli a(z) „%1$@” nevű csevegést az összes eszközén?";
 "ask_delete_message" = "Törli ezt az üzenetet az összes eszközén?";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Továbbítja az üzenetet „%1$@” számára?";
 "ask_forward_multiple" = "Továbbítja az üzenetet a következő csevegésbe: %1$d?";
 "ask_export_attachment" = "A mellékletek exportálása lehetővé teszi, hogy más alkalmazások is hozzáférjenek azokhoz az eszközön.\n\nFolytatja?";
 "ask_block_contact" = "Letiltja ezt a partnerét? Többé nem fog üzeneteket kapni tőle.";
@@ -383,8 +345,6 @@
 "chat_input_placeholder" = "Üzenet…";
 "chat_archived_label" = "Archivált";
 "chat_request_label" = "Kérés";
-// deprecated
-"chat_request_label_explain" = "Kérések felvétele a számlálókba és értesítésekbe";
 "chat_no_messages" = "Nincsenek üzenetek.";
 "chat_self_talk_subtitle" = "Önmagamnak küldött üzenetek";
 "archive_empty_hint" = "Az archivált csevegések itt fognak megjelenni.";
@@ -394,20 +354,14 @@
 "saved_messages_explain" = "• Üzenetek továbbítása az egyszerű hozzáférés érdekében\n\n• Jegyzetek vagy hangjegyzetek készítése\n\n• Médiaanyagok mellékelése a mentéshez";
 // Should match "Saved" from "Saved messages"
 "saved" = "Mentett";
-// deprecated
-"save_as" = "Mentés mint";
-// deprecated
-"retry_send" = "Üzenet újraküldése";
-// deprecated
-"cannot_display_unsuported_file_type" = "Ezt a fájltípust nem lehet megjeleníteni: %1$@";
 "attachment_failed_to_load" = "Nem sikerült betölteni a mellékletet";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Felvétel zárolása";
 // mailing lists
 "mailing_list" = "Levelezőlista";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Indítás…";
+// "Start" button for an app
+"start_app" = "Indítás";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Először fogadja el a csevegéskérést.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -434,8 +388,6 @@
 "remove_group_image" = "Csoport profilképének eltávolítása";
 "change_group_image" = "Csoport profilképének megváltoztatása";
 "group_create_button" = "Csoport készítése";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Csoport nevének magadása.";
 "group_add_members" = "Tagok hozzáadása";
 "group_self_not_in_group" = "A csoport tagjának kell lennie, ahhoz, hogy ezt megtehesse.";
 "profile_encryption" = "Titkosítás";
@@ -445,25 +397,17 @@
 "tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
 "tab_gallery" = "Galéria";
-// deprecated
-"tab_docs" = "Dokumentumok";
 "tab_links" = "Hivatkozások";
 "tab_map" = "Térkép";
 "tab_gallery_empty_hint" = "Az ebben a csevegésben megosztott képek és videók itt fognak megjelenni.";
 "tab_docs_empty_hint" = "Az ebben a csevegésben megosztott dokumentumok és egyéb fájlok itt fognak megjelenni.";
 "tab_image_empty_hint" = "Az ebben a csevegésben megosztott képek itt fognak megjelenni.";
-// deprecated
-"tab_video_empty_hint" = "Az ebben a csevegésben megosztott videók itt fognak megjelenni.";
 "tab_audio_empty_hint" = "Az ebben a csevegésben megosztott hangfájlok és hangüzenetek itt fognak megjelenni.";
 "tab_webxdc_empty_hint" = "Az ebben a csevegésben megosztott alkalmazások itt fognak megjelenni.";
 "tab_all_media_empty_hint" = "A bármelyik csevegésben megosztott média itt fog megjelenni.";
 "all_files_empty_hint" = "A csevegésekben megosztott dokumentumok és egyéb fájlok itt jelennek meg.";
 "all_apps_empty_hint" = "A bármelyik csevegésben kapott vagy küldött alkalmazások itt fognak megjelenni.";
 "media_preview" = "Médiaelőnézet";
-// deprecated
-"aspect_ratio_grid" = "Tengelyarányrács";
-// deprecated
-"square_grid" = "Négyzetrács";
 "send_message" = "Üzenet küldése";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -503,8 +447,6 @@
 "connectivity_connected" = "Kapcsolódott";
 "sending" = "Küldés…";
 "last_msg_sent_successfully" = "Utolsó üzenet sikeresen elküldve.";
-// deprecated
-"not_supported_by_provider" = "Az Ön szolgáltatója nem támogatja.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Üzenetek";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -518,12 +460,6 @@
 "manual_account_setup_option" = "Klasszikus e-mail bejelentkezés";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Profil";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "Adatvédelmi irányelvek ehhez: %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "További információ a profilokról itt: %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Elfogadás és profil létrehozása";
 // Secondary, link-like button to open a page with other possible instances
@@ -539,8 +475,6 @@
 "instant_onboarding_confirm_group" = "Szeretne új profilt létrehozni és csatlakozni a „%1$@” szobához?";
 "welcome_chat_over_email" = "Biztonságos decentralizált csevegés";
 "scan_invitation_code" = "QR-kód-meghívó beolvasása";
-// deprecated
-"login_title" = "Bejelentkezés";
 "login_inbox" = "Bejövő";
 "login_imap_login" = "IMAP bejelentkezési név";
 "login_imap_server" = "IMAP-kiszolgáló";
@@ -568,15 +502,11 @@
 "proxy_enabled" = "Proxy engedélyezve";
 "proxy_enabled_hint" = "Ön jelenleg proxyt használ. Ha problémája van a kapcsolódással, próbáljon ki egy másik proxyt.";
 "login_certificate_checks" = "Tanúsítvány ellenőrzése";
+// deprecated
 "login_error_mail" = "Adjon meg egy érvényes e-mail-címet";
-"login_error_server" = "Adjon meg egy érvényes kiszolgáló- vagy IP-címet";
-"login_error_port" = "Adjon meg egy érvényes portot (1-65535)";
-"login_error_required_fields" = "Adjon meg egy érvényes e-mail-címet és egy jelszót";
 "import_backup_title" = "Biztonsági mentés visszaállítása";
 "import_backup_ask" = "A biztonsági mentés itt található: „%1$@”.\n\nAz összes adatot és beállítást szeretné importálni és használni belőle?";
 "import_backup_no_backup_found" = "A biztonsági mentés nem található.\n\nMásolja a biztonsági mentést ide: „%1$@” és próbálja újra.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Nem lehetett bejelentkezni ide: „%1$@”. Ellenőrizze, hogy a megadott e-mail-cím és a jelszó helyes-e.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Érvénytelen tanúsítványok elfogadása";
 "switch_account" = "Profilváltás";
@@ -602,8 +532,6 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d fájl elküldése „%2$@” számára?";
 "ask_send_files_to_selected_chats" = "%1$d fájl megosztása a vele való csevegésben: %2$d?";
-// deprecated
-"videos_sent_without_recoding" = "(A videók eredeti, nagyméretű fájlként kerülnek elküldésre. Amennyiben azt szeretné, hogy a videók kisebb fájlként kerüljenek elküldésre, mellékelje őket külön-külön)";
 "share_text_multiple_chats" = "Megosztja ezt a szöveget a vele való csevegésben: %1$d?\n\n„%2$@”";
 "share_abort" = "A megosztás megszakadt a hiányzó engedélyek miatt.";
 // preferences
@@ -633,13 +561,9 @@
 "pref_notifications_priority" = "Prioritás";
 "pref_notifications_explain" = "Rendszerértesítések engedélyezése az új üzenetekről";
 "pref_show_notification_content" = "Üzenet tartalmának megjelenítése az értesítésben";
-// deprecated
-"pref_show_notification_content_explain" = "Az értesítésekben megjelenik az üzenet feladója és első szavai";
 "pref_led_color" = "Értesítésjelző-fény színe";
 "pref_sound" = "Hang";
 "pref_silent" = "Csendes";
-// deprecated
-"pref_privacy" = "Adatvédelem";
 "pref_system_default" = "Rendszer alapértelmezett";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Világos";
@@ -654,10 +578,6 @@
 "pref_read_receipts" = "Olvasási visszaigazolások";
 "pref_read_receipts_explain" = "Ha az olvasási visszaigazolásokat letiltja, akkor Ön sem fogja látni mások olvasási visszaigazolásait.";
 "pref_server" = "Kiszolgáló";
-// deprecated
-"pref_encryption" = "Titkosítás";
-// deprecated
-"pref_manage_keys" = "Kulcsok kezelése";
 "pref_chats" = "Csevegések";
 "pref_in_chat_sounds" = "Csevegésen belüli hangok";
 "pref_view_log" = "Naplófájl megtekintése";
@@ -677,18 +597,6 @@
 "pref_background" = "Háttérkép";
 "pref_background_btn_default" = "Alapértelemezett kép használata";
 "pref_background_btn_gallery" = "Kiválasztás a galériából";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Ha megváltoztatja ezt a beállítást, győződjön meg arról, hogy a kiszolgálója és a többi kliense is ennek megfelelően van beállítva.\n\nMáskülönben előfordulhat, hogy a dolgok egyáltalán nem fognak működni.";
-// deprecated
-"pref_auto_folder_moves" = "Automatikus áthelyezés a DeltaChat nevű mappába";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Csak a DeltaChat nevű mappából történjen lekérdezés";
-// deprecated
-"pref_show_emails" = "Klasszikus e-mailek megjelenítése";
-// deprecated
-"pref_show_emails_no" = "Nem, csak csevegések";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Elfogadott partnerek számára";
 // deprecated, use "All"
 "pref_show_emails_all" = "Összes";
 "pref_experimental_features" = "Kísérleti funkciók";
@@ -735,18 +643,8 @@
 // automatically delete message
 "delete_old_messages" = "Régi üzenetek törlése";
 "autodel_device_title" = "Üzenetek törlése az eszközről a letöltést követően";
-// deprecated
-"autodel_server_title" = "Üzenetek törlése a kiszolgálóról a letöltést követően";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Szeretné törölni a %1$d üzenetet most és az összes újonnan érkező üzenetet a jövőben ekkor: „%2$@”?\n\n• Ez magában foglalja az összes médiát is\n\n• Az üzenetek törlésre kerülnek, akár látták őket, akár nem\n\n• A „Mentett üzenetek” nem kerülnek törlésre a helyi törlésből.";
-// deprecated
-"autodel_server_ask" = "Biztosan törölni szeretne %1$d üzenetet most, és a jövőben minden újonnan lekérdezett „%2$@” üzenetet?\n\n⚠️ Ez magába foglalja az e-maileket, a médiatartalmakat és a „Mentett üzeneteket” az összes kiszolgálómappában.\n\n⚠️ Ne használja ezt a funkciót, ha meg akarja tartani az adatokat a kiszolgálón, vagy ha klasszikus e-mail-klienseket is használ.";
-// deprecated
-"autodel_server_enabled_hint" = "Ez magába foglalja az e-maileket, a médiatartalmakat és a „Mentett üzeneteket” az összes kiszolgálómappában. Ne használja ezt a funkciót, ha meg akarja tartani az adatokat a kiszolgálón, vagy ha klasszikus e-mail-klienseket is használ.";
-// deprecated
-"autodel_server_warn_multi_device_title" = "A „Törlés a letöltés után azonnal” bekapcsolása";
-// deprecated
-"autodel_server_warn_multi_device" = "Ha a „Törlés a letöltés után azonnal” engedélyezve van, akkor nem használhatja ezt a profilt több eszközről.";
 "autodel_confirm" = "Értem, törölje ezeket az üzeneteket";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "A letöltés után azonnal";
@@ -832,8 +730,6 @@
 "invalid_unencrypted_explanation" = "A végpontok közötti titkosítás létrehozásához személyesen is találkozhat a partnereivel, és a QR-kódjukat beolvasva bemutathatja őket.";
 "learn_more" = "Tudjon meg többet";
 "devicemsg_self_deleted" = "Ön törölte a „Mentett üzenetek” csevegést.\n\nℹ️ A „Mentett üzenetek” funkció újbóli használatához hozzon létre egy új csevegést önmagával.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ Az e-mail-szolgáltatójától kapott tárhelye hamarosan megtelik: %1$@%% már felhasználásra került.\n\n\nElképzelhető, hogy nem tud üzeneteket fogadni, ha a tárhelye megtelt.\n\n👉 Ellenőrizze, hogy a szolgáltatója webes felületén tudja-e törölni a DeltaChat-mappából az üzeneteket, és fontolja meg a „Beállítások / Csevegések és média / Üzenetek törlése a kiszolgálóról” engedélyezését. Az aktuális tárhelyhasználatot bármikor ellenőrizheti a „Beállítások / Tárhely” menüpontban.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Az eszközén lévő dátum vagy idő pontatlannak tűnik (%1$@).\n\nJavítsa meg az órát ⏰🔧 az üzenetek helyes fogadásának biztosítása érdekében.";
 "devicemsg_update_reminder" = "⚠️ Lehet, hogy a Delta Chat verziója elavult.\n\nEz problémákat okozhat, mivel a partnerei újabb verziókat használnak - továbbá hiányoznak a legújabb funkciók 😳\nEllenőrizze a https://get.delta.chat oldalon vagy az alkalmazásboltban a frissítéseket.";
@@ -847,14 +743,8 @@
 "qrscan_hint_desktop" = "Mozgassa a QR-kódot a kamera elé";
 "qrscan_failed" = "A QR-kódot nem sikerült értelmezni";
 "qrscan_ask_join_group" = "Biztosan csatlakozik a(z) „%1$@” nevű szobához?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "A beolvasott ujjlenyomat nem egyezik „%1$@” utoljára ismert ujjlenyomatával.";
-// deprecated
-"qrscan_no_addr_found" = "Ez a QR-kód tartalmaz egy ujjlenyomatot, de nem tartalmaz e-mail-címet.\n\nA sávon kívüli hitelesítéshez először hozzon létre egy titkosított kapcsolatot a címzettel.";
 "qrscan_contains_text" = "A beolvasott QR-kód-szöveg:\n\n%1$@";
 "qrscan_contains_url" = "A beolvasott QR-kód-webcím:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Ujjlenyomat";
 "withdraw_verifycontact_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy felvegyék önnel a kapcsolatot.\n\nA QR-kódot itt kikapcsolhatja, és újból bekapcsolhatja, ha újra beolvassa.";
 "withdraw_verifygroup_explain" = "Ezt a QR-kódot mások is beolvashatják, hogy csatlakozhassanak a(z) „%1$@” nevű csoporthoz.\n\nA QR-kódot itt kikapcsolhatja, és újra bekapcsolhatja, ha újra beolvassa.";
 "withdraw_qr_code" = "QR-kód kikapcsolása";
@@ -872,26 +762,15 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "QR-kód beolvasása a csevegéshez vele: „%1$@”";
 "qrshow_join_contact_no_connection_toast" = "Nincs internetkapcsolat, nem lehet elvégezni a QR-kód beállítását.";
-// deprecated
-"qraccount_ask_create_and_login" = "Új profil létrehozása a(z) „%1$@” oldalon és bejelentkezés ott?";
 "set_name_and_avatar_explain" = "Adjon meg egy olyan nevet, amelyet a partnerei felismernek. Beállíthat egy profilképet is.";
 "please_enter_name" = "Adjon meg egy nevet.";
 "qraccount_qr_code_cannot_be_used" = "A beolvasott QR-kód nem használható új profil beállítására.";
-// deprecated
-"qrlogin_ask_login" = "Bejelentkezés ide: „%1$@”?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ meghívta önt, hogy csatlakozzon ehhez a csoporthoz.\n\n%2$@ eszközére várakozás a válaszhoz…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ válaszolt, várakozik, hogy fölvegyék a csoportba…";
 "secure_join_wait" = "Garantált végpontok közötti titkosítás létrehozása, várjon…";
 "contact_verified" = "%1$@ bemutatva.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "%1$@ által bemutatva";
-// deprecated
-"verified_by_you" = "Ön által bemutatva";
-// deprecated
-"verified_by_unknown" = "Bemutatva";
 "mailto_dialog_header_select_chat" = "Válassza ki a csevegést az üzenet elküldéséhez";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "Már létezik egy piszkozat a következő szöveggel: %1$@, biztosan le akarja cserélni?";
@@ -968,8 +847,6 @@
 "menu.view.developer.open.log.folder" = "Naplófájlok mappájának megnyitása";
 "menu.view.developer.open.current.log.file" = "Jelenlegi naplófájl megnyitása";
 "explain_desktop_minimized_disabled_tray_pref" = "A tálca ikonja nem kapcsolható ki, mivel a Delta Chat a --minimized kapcsolóval indult.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Nem találhatók helyesírási javaslatok.";
 "show_window" = "Ablak megjelenítése";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Billentyűkötések";
@@ -993,31 +870,15 @@
 "a11y_disappearing_messages_activated" = "Eltűnő üzenetek bekapcsolva";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Helymegosztás kikapcsolása.";
-// deprecated
-"a11y_voice_message_hint_ios" = "A felvétel rögzítése után duplán koppintson a küldéshez. A felvétel elvetéséhez csúsztassa két ujjával.";
 "a11y_connectivity_hint" = "Dupla koppintás a tárhely részleteinek megtekintéséhez.";
 "login_error_no_internet_connection" = "Nincs internetkapcsolat, nem sikerült bejelentkezni.";
-// deprecated
-"share_account_not_configured" = "A profil nincs konfigurálva.";
 "cannot_play_audio_file" = "A hangfájl nem játszható le.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "A fényképek-, videók- vagy QR-kódok rögzítéséhez lépjen a rendszer beállításaiba, válassza ki a „Alkalmazások és értesítések” menüpontot, válassza ki az DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Kamerához”.";
 "open_settings" = "Beállítások megnyitása";
-// deprecated
-"import_device_contacts" = "Eszköz névjegyeinek importálása";
-// deprecated
-"import_device_contacts_hint" = "Az eszközén lévő névjegyekkel való csevegéshez lépjen a rendszer beállításaiba, válassza ki az „Alkalmazások és értesítések” menüpontot, válassza ki a DeltaChat alkalmazást, majd koppintson az „Engedélyek” menüpontra, és engedélyezze a hozzáférést a „Névjegyekhez”.";
-// deprecated
-"disabled_in_dc" = "Letiltva a Delta Chatben";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Letilva a rendszerbeállításokban";
 "bg_app_refresh_disabled" = "„Háttérfrissítések” letiltva a rendszerbeállításokban";
-// deprecated
-"notifications_avg_minutes" = "Átlagosan %1$d percenként";
-// deprecated
-"notifications_avg_hours" = "Átlagosan %1$d óránként";
-// deprecated
-"last_check_at" = "Ellenőrizés ideje: %1$@";
 "system_settings" = "Rendszer-beállítások";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Típus-, kitűzők-, előnézet- és egyebek szerkesztése";
@@ -1038,6 +899,6 @@
 "pref_reliable_service" = "Kényszerített háttérkapcsolat";
 "pref_reliable_service_explain" = "Egy állandó értesítést jelenít meg";
 "pref_background_notifications_rationale" = "Az e-mail-kiszolgálóval való kapcsolat fenntartásához és az üzenetek háttérben történő fogadásához mellőzze az akkumulátor-optimalizálást a következő lépésben.\n\nA Delta Chat kevés erőforrást használ, és ügyel arra, hogy ne merítse az akkumulátort.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Koppintson ide az üzenetek fogadásához, miközben a Delta Chat a háttérben fut.";
 "perm_enable_bg_already_done" = "Már engedélyezve van a Delta Chat számára, hogy a háttérben üzeneteket fogadjon.\n\nHa az üzenetek még mindig nem érkeznek meg a háttérben, ellenőrizze a rendszerbeállításokat is.";

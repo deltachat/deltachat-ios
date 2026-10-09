@@ -8,16 +8,12 @@
 "on" = "Allutu";
 "off" = "Istudadu";
 "def" = "Predefinidu";
-// deprecated
-"default_value" = "Predefinidu (%1$@)";
 "custom" = "Personalizadu";
 "none" = "Perunu";
 "automatic" = "Automàticu";
 "strict" = "Astrintu";
 "open" = "Aberi";
 "join" = "Auni·ti";
-// deprecated
-"rejoin" = "Torra a t\'aunire";
 "delete" = "Iscantzella";
 "info" = "Informatziones";
 "update" = "Agiorna";
@@ -56,8 +52,6 @@
 "copied_to_clipboard" = "Copiadu in punta de billete.";
 "contacts_headline" = "Cuntatos";
 "email_address" = "Indiritzu de posta eletrònica";
-// deprecated
-"bad_email_address" = "Indiritzu non vàlidu.";
 "password" = "Crae de intrada";
 "existing_password" = "Crae chi b\'at";
 "now" = "Como";
@@ -101,13 +95,9 @@
 "magenta" = "Magenta";
 "white" = "Biancu";
 "zoom" = "Ismànnia";
-// deprecated
-"extra_small" = "Minore meda";
 "small" = "Minore";
 "normal" = "Normale";
 "large" = "Largu";
-// deprecated
-"extra_large" = "Largu meda";
 "fast" = "Lestru";
 "slow" = "Lentu";
 // menu labels (or icon, buttons...)
@@ -117,16 +107,12 @@
 "menu_send" = "Imbiadu";
 "menu_toggle_keyboard" = "Alterna sa tastiera emoji";
 "menu_edit_group" = "Modìfica su grupu";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Nùmene e immàgine de su grupu";
 "menu_show_global_map" = "Ammustra totu sas positziones";
 "menu_archive_chat" = "Archìvia sa tzarrada";
 "menu_unarchive_chat" = "Riprìstina sa tzarrada";
 "menu_add_attachment" = "Annanghe un\'allegadu";
 "menu_leave_group" = "Lassa su grupu";
 "menu_delete_chat" = "Iscantzella sa tzarrada";
-// deprecated
-"menu_delete_location" = "Iscantzellare custa positzione?";
 "menu_message_details" = "Detàllios de su messàgiu";
 "menu_copy_to_clipboard" = "Còpia in punta de billete";
 "menu_forward" = "Inoltra su messàgiu";
@@ -169,15 +155,12 @@
 "mute_for_one_day" = "A sa muda pro 1 die";
 "mute_for_seven_days" = "A sa muda pro 7 dies";
 "mute_forever" = "A sa muda pro semper";
-// deprecated
 "share_location_for_5_minutes" = "pro 5 minutos";
 "share_location_for_30_minutes" = "pro 30 minutos";
 "share_location_for_one_hour" = "pro 1 ora";
 "share_location_for_two_hours" = "pro 2 oras";
 "share_location_for_six_hours" = "pro 6 oras";
 "file_saved_to" = "Documentu sarvadu in \"%1$@\".";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Inoltrare su messàgiu a %1$@?";
 "ask_forward_multiple" = "Inoltrare messàgios a %1$d tzarradas?";
 "ask_export_attachment" = "Esportare sos allegados? S\'esportatzione de sos allegados at a permìtere a cale si siat àtera aplicatzione in su dispositivu tuo de b\'atzèdere.\n\nSighire?";
 "ask_block_contact" = "Blocare custu cuntatu? No as a retzire prus messàgios dae custu cuntatu.";
@@ -212,10 +195,6 @@
 "saved_messages_explain" = "• Inoltra sos messàgios inoghe pro bi pòdere atzèdere in manera lestra\n\n• Sarva notas iscritas o sonoras\n\n• Allega mèdios pro los sarvare";
 // Should match "Saved" from "Saved messages"
 "saved" = "Sarvadu";
-// deprecated
-"retry_send" = "Torra a proare a imbiare su messàgiu";
-// deprecated
-"cannot_display_unsuported_file_type" = "Impossìbile ammustrare custa casta de documentu: %1$@";
 // search
 "search" = "Chirca";
 "search_explain" = "Chirca in sas tzarradas, sos cuntatos e sos messàgios";
@@ -226,8 +205,6 @@
 "remove_group_image" = "Boga s\'immàgine de su grupu";
 "change_group_image" = "Càmbia s\'immàgine de su grupu";
 "group_create_button" = "Crea unu grupu";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Inserta unu nùmene pro su grupu.";
 "group_add_members" = "Annanghe mambros";
 "group_self_not_in_group" = "Depes èssre unu membru de su grupu pro fàghere cust\'atzione.";
 "profile_encryption" = "Tzifradura";
@@ -235,16 +212,12 @@
 "tab_contact" = "Cuntatu";
 "tab_group" = "Grupu";
 "tab_gallery" = "Galleria";
-// deprecated
-"tab_docs" = "Documentos";
 "tab_links" = "Ligàmenes";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Sas immàgines e sos vìdeos cumpartzidos in custa tzarrada ant a èssere ammustrados inoghe.";
 "tab_docs_empty_hint" = "Sos documentos editàbiles, cussos musicales e totu sas àteras castas de documentos cumpartzidos in custa tzarrada ant a èssere ammustrados inoghe.";
 "media_preview" = "Anteprima de su documentu multimediale";
 "send_message" = "Imbia messàgiu";
-// deprecated
-"login_title" = "Intra";
 "login_inbox" = "In arrivu";
 "login_imap_login" = "Nùmene impreadore IMAP";
 "login_imap_server" = "Serbidore IMAP";
@@ -257,15 +230,11 @@
 "login_smtp_port" = "Ghenna SMTP";
 "login_smtp_security" = "Seguresa SMTP";
 "login_certificate_checks" = "Verìficas de su tzertificadu";
+// deprecated
 "login_error_mail" = "Inserta un\'indiritzu de posta eletrònica bàlidu";
-"login_error_server" = "Inserta un\'indiritzu de serbidore / IP bàlidu";
-"login_error_port" = "Inserta una ghenna bàlida (1–65535)";
-"login_error_required_fields" = "Inserta un\'indiritzu de posta eletrònica e una crae de intrada bàlidos";
 "import_backup_title" = "Importa una còpia de seguresa";
 "import_backup_ask" = "Còpia de seguresa agatada in \"%1$@\".\n\nCheres a l\'importare e a impreare totu sos datos e sas impostatziones dae cue?";
 "import_backup_no_backup_found" = "Peruna còpia de seguresa agatada.\n\nCòpia sa còpia de seguresa in \"%1$@\" e torra a proare. Si nono, incarca.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Impossìbile atzèdere comente \"%1$@\". pro paghere verìfica si s\'indiritzu de posta eletrònica e sa crae de intrada sunt curretos.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Atzetat tzertificados non vàlidos";
 "switch_account" = "Càmbia contu";
@@ -309,8 +278,6 @@
 "pref_led_color" = "Colore LED";
 "pref_sound" = "Sonu";
 "pref_silent" = "Istuda su sonu";
-// deprecated
-"pref_privacy" = "Riservadesa";
 "pref_system_default" = "Predefinidu de sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Craru";
@@ -323,8 +290,6 @@
 "pref_incognito_keyboard_explain" = "Pedi a sa tastiera de disabilitare s\'imparu personalizadu";
 "pref_read_receipts" = "Retzidas de leghidura";
 "pref_read_receipts_explain" = "Si sas retzidas de leghidura sunt disabilitadas, no as a pòdere bìdere sas retzidas de leghidura de àtere.";
-// deprecated
-"pref_manage_keys" = "Amministra sas craes";
 "pref_chats" = "Tzarradas";
 "pref_in_chat_sounds" = "Sonos in sa tzarrada";
 "pref_view_log" = "Pòmpia su registru";
@@ -341,16 +306,6 @@
 "pref_background" = "Isfundu";
 "pref_background_btn_default" = "Imprea s\'immàgine predefinida";
 "pref_background_btn_gallery" = "Ischerta dae sa galleria";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Si disabìlitas custa opztione assegura·ti chi su serbidore tuo e totu sos àteros clientes siant cunfigurados in sa matessi manera\n\nSi nono sas cosas diant pòdere non funtzionare pro nudda.";
-// deprecated
-"pref_auto_folder_moves" = "Tramudòngios automàticos a sa cartella DeltaChat";
-// deprecated
-"pref_show_emails" = "Ammustra sas lìteras traditzionales";
-// deprecated
-"pref_show_emails_no" = "Nono, tzarradas ebbia";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Pro sos cuntatos atzetados";
 // deprecated, use "All"
 "pref_show_emails_all" = "Totus";
 "pref_experimental_features" = "Funtzionalidades isperimentales";
@@ -371,8 +326,6 @@
 // automatically delete message
 "delete_old_messages" = "Iscantzella sos messàgios betzos";
 "autodel_device_title" = "Iscantzella sos messàgios dae su dispositivu";
-// deprecated
-"autodel_server_title" = "Iscantzella sos messàgios dae su servidore";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Cheres iscantzellare%1$d messàgios como e totu sos messàgios arribados \"%2$@\" in su tempus benidore?\n\n• Custu at a incluire totu sos documentos multimediales\n\n• Sos messàgios ant a èssere iscantzellados fintzas si no ant a èssere istados lèghidos\n\n• Sos \"Messàgios sarvados\" ant a èssere esclùdidos dae s\'iscantzellamentu locale";
 "autodel_confirm" = "Apo cumpresu, iscantzella totu sos messàgios";

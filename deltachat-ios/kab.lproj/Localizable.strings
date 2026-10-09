@@ -13,8 +13,6 @@
 "on" = "Sermed";
 "off" = "Sens";
 "def" = "Amezwer";
-// deprecated
-"default_value" = "Amezwer (%1$@)";
 "custom" = "Admawan";
 "none" = "Ulac";
 "automatic" = "Awurman";
@@ -24,8 +22,6 @@
 "downloading" = "Asider...";
 "open_attachment" = " Ldi amedday";
 "join" = "Ddu ɣer";
-// deprecated
-"rejoin" = "kcem ɣer";
 "delete" = "Kkes";
 "delete_for_me" = "Kkes i nekk";
 "delete_for_everyone" = "Kkes i yal yiwen";
@@ -59,10 +55,6 @@
 "media" = "Amidya";
 "apps_and_media" = "Isnasen & Amidya";
 "profile" = "Amaɣnu";
-// deprecated
-"all_profiles" = "Akk imeɣna";
-// deprecated
-"current_profile" = "Amaɣnu amiran";
 "main_menu" = "Umuɣ agejdan";
 "start_chat" = "Bdu adiwinni";
 "show_full_message" = "Sken izen ummid...";
@@ -82,11 +74,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Tugniwin n unmeggag zemrent ad k-ḍefrent.\n\nAɣewwaṛ-agi yezmer ad yessali daɣen tisefsiyin akked ugbur-nniḍen. Ma yella yensa, tugniwin yettwaffren neɣ tusliɣin zemrent ad d-banent.\n\nSali-d tugniwin n unmeggag?";
 "always" = "Dima";
-// deprecated
-"always_load_remote_images" = "Sali-d yal tikelt tugniwin n unmeggag";
 "once" = "Tikkelt";
-// deprecated
-"show_warning" = "Sken ulɣu";
 "not_now" = "Mačči tura";
 "never" = "Werǧin";
 "one_moment" = "arǧu ciṭ...";
@@ -100,13 +88,9 @@
 "no_app_to_handle_data" = "Ur izmir ara ad d-yaf asnas i usefrek n wanaw-a n yisefka.";
 "no_browser_installed" = "Ulac iminig ibedden.";
 "file_not_found" = "Ur yezmir ara ad yaf %1$@.";
-// deprecated
-"cannot_save_file" = "Ur izmir ara ad isellek %1$@.";
 "copied_to_clipboard" = "Nɣel ɣer tecfawt.";
 "contacts_headline" = "Inermisen";
 "email_address" = "Tansa imayl";
-// deprecated
-"bad_email_address" = "Yir tansa imayl";
 "password" = "Awal n uɛeddi";
 "existing_password" = "Awal n uɛeddi yellan";
 "now" = "Tura";
@@ -130,8 +114,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "Yettwafran:";
 "selected" = "Yettwafren";
 "self" = "Nekk";
 "draft" = "Arewway";
@@ -142,10 +124,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Tamenṭaḍt";
 "add_to_sticker_collection" = "Rnu ɣer tegrumma n tamenṭaḍt";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Akken ad ternuḍ tamenṭaḍt, sit ɣef \" ldi akaram n tmenṭaḍt \", snulfu-d akaram anaddaw i ukemmus-ik·im n tmenṭaḍt, zuɣer tugna akked ifuyla n tmenṭaḍt din";
-// deprecated
-"open_sticker_folder" = "Ldi akaran n tmenṭaḍt";
 "ask_add_sticker_to_collection" = "Arni ticṛeṭ-agi n tesfift ɣer tegrumma-inek·inem?";
 "ask_delete_sticker" = "Kkes ticṛet-agi n tesfift?";
 "sticker_picker_empty_hint" = "Tekki ɣer ticṛet n tesfift akken ad t-id-ternuḍ ɣer da.";
@@ -166,8 +144,6 @@
 "capture" = "Tuṭṭfa ";
 // Switch eg. from front to back camera
 "switch_camera" = "Beddel takamiṛat ";
-// deprecated
-"toggle_fullscreen" = "Ldi/Mdel askar n ugdil ačuran";
 "location" = "Adig";
 "locations" = " Idgan";
 "gallery" = " Timidelt";
@@ -204,13 +180,9 @@
 "magenta" = "akeẓẓal";
 "white" = "Amellal";
 "zoom" = "Asemɣer/asimẓi";
-// deprecated
-"extra_small" = "Amecṭuḥ ugar";
 "small" = "Amecṭuḥ";
 "normal" = "Amagnu";
 "large" = "meqqer";
-// deprecated
-"extra_large" = "meqqer ugar";
 "fast" = "arurad";
 "slow" = " Ẓẓay";
 // menu labels (or icon, buttons...)
@@ -239,8 +211,6 @@
 "menu_send" = "Azen";
 "menu_toggle_keyboard" = "Ldi/Fer anasiw n yimujit ";
 "menu_edit_group" = "Ẓreg agraw";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Isem n ugraw d tugna";
 "menu_show_global_map" = "Akk adigen ";
 "menu_archive_chat" = "Ɣber adiwenni usrid";
 "menu_unarchive_chat" = "Kkes aɣbar ɣef udiwenni usrid";
@@ -251,8 +221,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Sfeḍ adiwenni usrid";
 "delete_contact" = "Kkes anermis";
-// deprecated
-"menu_delete_location" = "Kkes adig-agi?";
 "menu_message_details" = "Talɣut n yizen";
 "menu_copy_to_clipboard" = "Nɣel ɣer tecfawt";
 "share_invite_link" = "Bḍu aseɣwen n tinnubga";
@@ -294,8 +262,6 @@
 "privacy_policy" = "Tsertit tabaḍnit";
 "menu_select_all" = "Fren meṛṛa ";
 "select_chat" = "Fren Adiwenni";
-// deprecated
-"select_more" = "Fren ugar";
 "menu_edit_name" = "Ẓreg isem";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Sbadu isem n useqdac ara k-d-yettwaseknen deg umkan n \"%1$@\". Eǧǧ ilem akken ad tesqedceḍ isem ufrin n unermis.";
@@ -308,7 +274,6 @@
 "menu_zoom_out" = "Semẓi";
 "menu_save_log" = "Sekles aɣmis";
 "menu_more_options" = "Ugar n tnefrunin";
-"menu_learn_spelling" = "Lmed taɣdirawt";
 "jump_to_message" = "Neggez ɣer yizen";
 "replace_draft" = "Semselsi arewway";
 "title_share_location" = "Bḍu adeg akked iɛeggalen n ugraw meṛṛa";
@@ -336,7 +301,6 @@
 "mute_for_one_day" = "Sgugem i 1 wass";
 "mute_for_seven_days" = "Sgugem i 7 wussan";
 "mute_forever" = "Sgugem i lebda";
-// deprecated
 "share_location_for_5_minutes" = "I 5 n tisdatin";
 "share_location_for_30_minutes" = "I 30 n tisdatin";
 "share_location_for_one_hour" = "I 1 usrag";
@@ -363,14 +327,6 @@
 "call_reconnecting" = "Tulsa n tuqqna...";
 "call_ended" = "Yekfa usiwel";
 "call_failed" = "Asiwel ur yeddi ara";
-// deprecated, use "Audio call" instead
-"outgoing_audio_call" = "Asiwel n umeslaw uffiɣ";
-// deprecated, use "Video call" instead
-"outgoing_video_call" = "Asiwel n uvidyu uffiɣ";
-// deprecated, use "Audio call" instead
-"incoming_audio_call" = "Asiwel n umeslaw ukcim";
-// deprecated, use "Video call" instead
-"incoming_video_call" = "Asiwel n uvidyu ukcim";
 "declined_call" = "Tiɣri tettwagi";
 "canceled_call" = "Tiɣri tettwasefsex";
 "missed_call" = "Tiɣri ittwazeglen";
@@ -380,8 +336,6 @@
 "ask_leave_group" = "Tetḥeqqeḍ tebɣiḍ ad truḥeḍ? ";
 "ask_delete_named_chat" = "Kkes adiwenni \"%1$@\"?";
 "ask_delete_message" = "Kkes izen-a?";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Welleh iznan ɣer %1$@?";
 "ask_forward_multiple" = "Welleh iznan ɣer %1$d n yidiwenniyen?";
 "ask_export_attachment" = "Asifeḍ n imeddayen ad yeǧǧ isnasen-nniḍen deg yibenk-ik·im ad kecmen ɣur-sen.\n\nad tkemmleḍ?";
 "ask_block_contact" = "Sewḥel anermis-agi?\n\nUr d-ttbanen ara yiznan usriden neɣ igrawen i d-yettwaxelqen s yinermisen iweḥlen.\n\nIgrawen-nniḍen yesεan inermisen iweḥlen mazal ad d-sseknen iznan-nsen.";
@@ -415,8 +369,6 @@
 "chat_input_placeholder" = "Izen";
 "chat_archived_label" = "yettwaɣber";
 "chat_request_label" = "Asuter";
-// deprecated
-"chat_request_label_explain" = "Seddu isuturen deg yimsiḍnen akked deg ilɣa";
 "chat_no_messages" = "Ulac iznan. ";
 "chat_self_talk_subtitle" = "Iznan i yiman-nsen";
 "archive_empty_hint" = " Idiwenniyen yettwaɣber ad d-iban da.";
@@ -426,20 +378,14 @@
 "saved_messages_explain" = "• Welleh iznan dagi i unekcum fessusen\n\n•Aru tizmilin neɣ takatut n taɣect\n\n• Seddu amidya akken ad ten-teskelseḍ";
 // Should match "Saved" from "Saved messages"
 "saved" = "Yettwasekles";
-// deprecated
-"save_as" = "Yettwasekles Am";
-// deprecated
-"retry_send" = "Ales ad tazned izen";
-// deprecated
-"cannot_display_unsuported_file_type" = "Ur izmir ara ad d-yesken anaw-agi n ufaylu: %1$@";
 "attachment_failed_to_load" = "Asali n imeddayen ur yeddi ara";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Sekkeṛ asekles";
 // mailing lists
 "mailing_list" = "Tabdart n tnezwit";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Bdu...";
+// "Start" button for an app
+"start_app" = "Bdu";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Ttxil-k-m tazwara qbel asuter n udiwenni.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -466,8 +412,6 @@
 "remove_group_image" = "Kkes tugna n unagraw";
 "change_group_image" = "Beddel tugna n ugraw";
 "group_create_button" = "Rnu agraw";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Ma ulac aɣilif, sekcem isem n ugraw.";
 "group_add_members" = "Rnu imttekkiyen";
 "group_self_not_in_group" = "Issefk ad tiliḍ d aɛeggal deg ugraw akken ad tgeḍ tigawt-a.";
 "profile_encryption" = "Awgelhen ";
@@ -477,25 +421,17 @@
 "tab_contact" = "Anermis";
 "tab_group" = "Agraw";
 "tab_gallery" = "Tamidelt ";
-// deprecated
-"tab_docs" = "Isemliyen";
 "tab_links" = "Iseɣwan";
 "tab_map" = "Takarḍa";
 "tab_gallery_empty_hint" = "Tugniwin akked tvidyutin icudden ɣer udiwenni-agi ad d-banen dagi.";
 "tab_docs_empty_hint" = "Isemliyen akked ifuyla-nniḍen icudden ɣer udiwenni-agi ad d-banen dagi. ";
 "tab_image_empty_hint" = "Tugniwin icudden ɣer udiwenni-agi ad d-banent dagi. ";
-// deprecated
-"tab_video_empty_hint" = "Tividyutin icudden ɣer udiwenni-agi ad d-banent dagi.";
 "tab_audio_empty_hint" = "Ifuyla imeslawen akked iznan n taɣect icudden ɣer udiwenni-agi ad d-banen dagi.";
 "tab_webxdc_empty_hint" = "Isnasen icudden ɣer udiwenni-a ad d-banen dagi. ";
 "tab_all_media_empty_hint" = "Imidyaten yeqqnen ɣer yal adiwenni ad d-banen da.";
 "all_files_empty_hint" = "Isemliyen akked ifuyla-nniḍen icudden ɣer yal adiwenni ad d-banen dagi. ";
 "all_apps_empty_hint" = "Isnasen icudden ɣer yal adiwenni ad d-banen dagi. ";
 "media_preview" = "Taskant n umidya";
-// deprecated
-"aspect_ratio_grid" = "Iẓiki n uktassaɣ n tmẓriwit";
-// deprecated
-"square_grid" = "Iẓiki n umkuẓ";
 "send_message" = "Azen izen";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -535,8 +471,6 @@
 "connectivity_connected" = "Yettwaqqen";
 "sending" = "Tuzna...";
 "last_msg_sent_successfully" = "Izen aneggaru yettwazen akken iwata. ";
-// deprecated
-"not_supported_by_provider" = "ur yettusefrak ara ɣer usaǧǧaw-ik·im.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Iznan";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -550,12 +484,6 @@
 "manual_account_setup_option" = "Seqdec imayl aklasiki am Umedwel ";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Amaɣnu-ik·im";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "Tsertit tabaḍnit i %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "Ɣef yimaɣnuten deg %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Qebleɣ & Rnu amaɣnu";
 // Secondary, link-like button to open a page with other possible instances
@@ -571,8 +499,6 @@
 "instant_onboarding_confirm_group" = "Snulfu-d amaɣnu amaynut sakin rnu ɣer \"%1$@\"?";
 "welcome_chat_over_email" = "Adiwenni Aɣelsan Aruslemmas";
 "scan_invitation_code" = "Ḍumm tangalt n tinnubga";
-// deprecated
-"login_title" = "Kcem";
 "login_inbox" = "Tanaka n urmas";
 "login_imap_login" = "Isem n tuqqna IMAP. ";
 "login_imap_server" = "Aqeddac IMAP";
@@ -604,27 +530,15 @@
 "add_transport" = "Rnu amedwel";
 "remove_transport" = "Kkes amedwel";
 "edit_transport" = "Ẓreg amedwel";
-// deprecated
-"used_for_sending" = "Yettwaseqdec i tuzzna";
-// deprecated
-"hide_from_contacts" = "Ffer-it ɣef inermisen";
-// deprecated
-"hidden_from_contacts" = "Uffir ɣef inermisen";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Rnu amedwel-agi?";
 "invalid_transport_qr" = "Tangalt QR ittusemḍen ur tesɛi ara amedwel ameɣtu";
-// deprecated
-"confirm_remove_or_hide_transport_x" = "Kkes amedwel \"%1$@\"?\n\nInermasen i yessnen kan amedwel-a, ahat ur d-ttawḍen ara ɣur-k·m alarma tuzneḍ-asen izen tikkelt nniḍen.\n\nMa yella ccek, ffer-it axir n tukksa-ines.";
 "login_certificate_checks" = "Asenqed n uselkin";
+// deprecated
 "login_error_mail" = "Ma ulac aɣilif, sekcem tansa imayl tameɣtut";
-"login_error_server" = "Ma ulac aɣilif, sekcem aqeddac ameɣtu / tansa IP.";
-"login_error_port" = "Ma ulac aɣilif, sekcem asagen ameɣtu (1-65535)";
-"login_error_required_fields" = "Ma ulac aɣilif, sekcem tansa imayl tameɣtut akked wawal uffir";
 "import_backup_title" = "Err-d seg uḥraz";
 "import_backup_ask" = "Aḥraz yettwaf di \"%1$@\".\n\nTebɣiḍ ad d-tketreḍ u ad tesqedceḍ akk isefka d yiɣewwaren seg-s?";
 "import_backup_no_backup_found" = "Ulac Iḥrazen yettwafen.\n\nNɣel aḥraz ɣer \"%1$@\" sakin ɛreḍ tikelt nniḍen.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Ur izmir ara ad yeqqen am \"%1$@\". Ma ulac aɣilif, senqed ma yella tansa d wawal uffir d tameɣtut.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Qbel iselkan arameɣtu";
 "switch_account" = "Beddel amaɣnu";
@@ -650,8 +564,6 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Azen %1$d ifuyla ɣer \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Azen %1$d afaylu(ifuyla) ɣer %2$d idiwenniyen?";
-// deprecated
-"videos_sent_without_recoding" = "(Tividyutin ttwaznent d akken d ifuyla meqqren. Akken ad tazneḍ tividyutin d ifuyla meẓẓiyen, qqen-itent yal yiwet i yiman-is)";
 "share_text_multiple_chats" = "Azen aḍris-a ɣer %1$d idwenniyin?\n\n\"%2$@\"";
 "share_abort" = "Beṭṭu ur yedda ara ɣef sebba n tsirag ixuṣṣen.";
 // preferences
@@ -687,13 +599,9 @@
 "pref_notifications_priority" = "Tazwart";
 "pref_notifications_explain" = "Rmed ilɣa n unagraw i yiznan imaynuten";
 "pref_show_notification_content" = "Sken agbur n yizen deg ulɣu";
-// deprecated
-"pref_show_notification_content_explain" = "Sken-d amazan akked wawalen imezwura n yizen deg yilɣa";
 "pref_led_color" = "Ini LED";
 "pref_sound" = "Imesli";
 "pref_silent" = "Asusam";
-// deprecated
-"pref_privacy" = "Tabaḍnit";
 "pref_system_default" = "Anagraw amezwer";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Aceɛlal ";
@@ -708,10 +616,6 @@
 "pref_read_receipts" = "Ɣeṛ armas";
 "pref_read_receipts_explain" = "Ma yella taɣuri n urmas tensa, ur tettizmireḍ ara ad twaliḍ iremsen n tɣuri sɣur wiyaḍ. Ɣeṛ armas.";
 "pref_server" = "Aqeddac";
-// deprecated
-"pref_encryption" = "Awgelhen";
-// deprecated
-"pref_manage_keys" = "Sefrek tisura";
 "pref_chats" = "Idiwenniyen";
 "pref_in_chat_sounds" = "Imeslan n idiwenniyen";
 "pref_view_log" = "Sken aɣmis";
@@ -731,22 +635,10 @@
 "pref_background" = "Tugniwin n ugilal";
 "pref_background_btn_default" = "Seqdec tugna tamezwert";
 "pref_background_btn_gallery" = "Fren seg timidelt";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Ma tbeddleḍ aɣewwaṛ-a, senqed aqeddac-ik·im d yimsaɣen-ik·im-nniḍen ad ttuswelen akken iwata.\n\nMa ulac, yezmer lḥal ur tteddunt ara akk tɣawsiwin.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Askar n tugett n yibenk";
 "pref_multidevice_explain" = "Mtawi iznan-ik·im akked ibenkan-nniḍen. Irmed s wudem awurman deg tmerna n yibenk wis sin";
 "pref_multidevice_change_warn" = "Askar aget-ibenk yessefk ad yettwarmed mi ara tesqedceḍ yiwen n umaɣnu deg ddeqs n yibenkan. Sens kan aɣewwaṛ-agi ma yella tekkseḍ amaɣnu-yagi seg yibenkan-ik·im nniḍen.\n\nAsens n usakar n waget-ibenk mi ara tesqedceḍ amaɣnu ɣef ddeqs n yibenkan ad d-yeglu s yiznan yettwazeglen akked wuguren-nniḍen.";
-// deprecated
-"pref_auto_folder_moves" = "Ddu s wudem awurman ɣer ukaram n DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Awi-d kan seg akaram n DeltaChat";
-// deprecated
-"pref_show_emails" = "Sken imaylen iklasanen";
-// deprecated
-"pref_show_emails_no" = "Ala, idiwenniyen kan";
-// deprecated
-"pref_show_emails_accepted_contacts" = "I yinermisen yettwaqeblen";
 // deprecated, use "All"
 "pref_show_emails_all" = "Akk";
 "pref_experimental_features" = "Timahilin tirmitanin";
@@ -801,18 +693,8 @@
 // automatically delete message
 "delete_old_messages" = "Kkes iznan iqbuṛen";
 "autodel_device_title" = "Kkes iznan seg yibenk";
-// deprecated
-"autodel_server_title" = "Kkes iznan seg uqeddac";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Tebɣiḍ ad tekkseḍ %1$d n iznan tura akk d yiznan imaynuten \"%2$@\" ɣer zdat?\n\n• Deg-s akk imidyaten\n\n• Iznan ad ttwakksen ma yella ttwalan neɣ ala\n\n• \"Iznan yettwaskelsen\" ad ttwazeglen seg tukksa tadigant";
-// deprecated
-"autodel_server_ask" = "Tebɣiḍ ad tekkseḍ %1$d n iznan tura akk d yiznan imaynuten \"%2$@\" ɣer zdat?\n\n⚠️ Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac\n\n⚠️ Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
-// deprecated
-"autodel_server_enabled_hint" = "Ayagi yegber imaylen, imidyaten akked \" iznan yettwakelsen \" deg ikaramen meṛṛa n uqeddac. Ur sseqdac ara tawuri-a ma tebɣiḍ ad teǧǧeḍ isefka ɣef uqeddac neɣ ma tesqedceḍ imsaɣen n yimaylen iklasikiyen daɣen";
-// deprecated
-"autodel_server_warn_multi_device_title" = "Rmed tukksa n dindin";
-// deprecated
-"autodel_server_warn_multi_device" = "Ma tremdeḍ tukksa n dindin ur tezmireḍ ara ad tesqedceḍ aṭas n yibenkan deg umaɣnu-a. ";
 "autodel_confirm" = "Fehmeɣ, kkes akk iznan-agi";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Dindin kan deffir usader";
@@ -903,8 +785,6 @@
 "invalid_unencrypted_explanation" = "Akken ad tesbeddeḍ awgelhen n yixef ɣer yixef, tzemreḍ ad temlileḍ inermisen s timmad-nsen u ad ḍummeḍ tangalt-nsen QR akken ad ten-id-tesmendeḍ.";
 "learn_more" = "Issin ugar";
 "devicemsg_self_deleted" = "Tekkseḍ adiwenni n \" iznan yettwakelsen \".\n\nℹ️ Akken ad tesqedceḍ tamahilt \" iznan yettwakelsen \", rnu adiwenni amaynut akked yiman-ik·im. ";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️Asaǧǧaw-ik·im n usekles qrib ad yaččar: %1$@%% yettwaseqdec yakan.\n\nAhat ur tezmireḍ ara ad d-remseḍ iznan ma yella asekles yeččur.\n\n 👉 Ttxil-k·m senqed ma yella tzemreḍ ad tekkseḍ isefka iqburen deg ugrudem n web n isaǧǧawen syin rmed \"Iɣewwaṛen / Idiwenniyen / Kkes iznan iqbuṛen\". Tzemreḍ ad tesneqdeḍ aseqdec n usekles-inek·inem amiran deg \"Iɣewwaṛen / tuqqna\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Azemz neɣ akud deg yibenk-ik·im yettban-d ur iṣeḥḥa ara (%1$@).\n\nṢeggem tamasragt-ik·im ⏰🔧Akken ad neḍmen d akken iznan-ik·im ad ttwaremsen akken iwata. ";
 "devicemsg_update_reminder" = "⚠️Yezmer lḥal alqem-ik·im n Delta Chat d aqbur.\n\nAya yezmer ad d-yeglu s wuguren acku imendiden-ik·im n udiwenni sseqdacen ileqman imaynuten - yerna txuṣṣeḍ timahilin tineggura 😳\nTtxil-k·m, ssefqed https://get.delta.chat neɣ taḥanut-nnek·nnem n usnas i uleqqem.";
@@ -919,14 +799,8 @@
 "qrscan_failed" = "Tangalt QR ur tezmir ara ad ttwakestengel";
 "qrscan_ask_join_group" = "Tebɣiḍ ad tettekkiḍ deg ugraw \"%1$@\"?";
 "qrscan_ask_join_channel" = "Tebɣiḍ ad tettekkiḍ deg ubadu \"%1$@\"?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "Adsil umḍin yettwaḍummen ur imṣada ara akked win yettwaẓerren i tikelt taneggarut i %1$@.";
-// deprecated
-"qrscan_no_addr_found" = "Tangalt-a QR tegber adsil umḍin maca ulac tansa.\n\nI usenqed beṛṛa n tasfift, ttxil-k-im eg tuqqna tawgelhant akked uɣerwaḍ. ";
 "qrscan_contains_text" = "Aḍris n tengalt QR yettwaḍummen:\n\n%1$@";
 "qrscan_contains_url" = "URL n tangalt QR yettwaḍummen:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Adsil umḍin";
 "withdraw_verifycontact_explain" = "Tangalt-a QR tezmer ad tt-id-ḍummen wiyaḍ akken ad k·m-id-nermsen.\n\nTzemreḍ ad talseḍ awennez, akken tangalt QR yellan neɣ aseɣwen n uεraḍ ur iteddu ara.";
 "withdraw_verifygroup_explain" = "Tangalt-a QR tezmer ad tt-id-ḍummen wiyaḍ akken ad kecmen ɣer ugraw \"%1$@\".\n\nTzemreḍ ad talseḍ awennez, akken tangalt QR yellan neɣ aseɣwen n uεraḍ ur iteddu ara.";
 "withdraw_joinbroadcast_explain" = "Tangalt-a QR tezmer ad tt-id-ḍummen wiyaḍ akken ad ddun ɣer ubadu \"%1$@\".\n\nTzemreḍ ad talseḍ awennez, akken tangalt QR yellan neɣ aseɣwen n uεraḍ ur iteddu ara.";
@@ -945,13 +819,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Ḍumm iwakken ad tmeslayeḍ d %1$@";
 "qrshow_join_contact_no_connection_toast" = "Ulac tuqqna internet, ur izmir ara ad isebded tangalt QR.";
-// deprecated
-"qraccount_ask_create_and_login" = "Rnu amaɣnu amaynut di \"%1$@\" sakin tkecmeḍ dinna?";
 "set_name_and_avatar_explain" = "Sbadu isem ara ɛeqlen inermisen-ik·im. Tzemreḍ daɣen ad tesbaduḍ tugna n umaɣnu.";
 "please_enter_name" = "Ma ulac aɣilif, sekcem isem.";
 "qraccount_qr_code_cannot_be_used" = "Tangalt QR tettwaḍummen ur tezmir ara ad tettwaseqdec i usebded n umaɣnu amaynut. ";
-// deprecated
-"qrlogin_ask_login" = "Kcem ɣer \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ yeɛreḍ-ik·im-id ad d-ternud ɣer ugraw-a.\n\nRǧu ibenk n %2$@ ad d-yerr...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -961,13 +831,6 @@
 "secure_join_wait" = "Asbeddi n tuqqna, ttxil-k·m rǧu...";
 "contact_verified" = "%1$@ ittwasenked.";
 "contact_blocked" = "Tesweḥleḍ anermis";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "Yettwasenked sɣur %1$@";
-// deprecated
-"verified_by_you" = "Yettwasenked sɣur nekk";
-// deprecated
-"verified_by_unknown" = "Yettwasenked";
 "mailto_dialog_header_select_chat" = "Fren adiwenni i tuzna n yizen ɣer";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ɣur-s yakkan izen n urewway, tebɣiḍ ad t-tbeddleḍ?";
@@ -1044,8 +907,6 @@
 "menu.view.developer.open.log.folder" = "Ldi akaram n uɣmis";
 "menu.view.developer.open.current.log.file" = "Ldi afaylu n uɣmis amiran";
 "explain_desktop_minimized_disabled_tray_pref" = "Tignit n tfeggagt n tmahilin ur tezmir ara ad tsens mi ara d-yebdu Delta Chat s --Uɣewwaṛ adday.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Ulac isumar n teɣdirawt yettwafen.";
 "show_window" = "Sken asfaylu";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Inegzumen n unasiw";
@@ -1069,31 +930,15 @@
 "a11y_disappearing_messages_activated" = "Iznan ur nettdum ara yettwarmed";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Ḥbes beṭṭu n wadig";
-// deprecated
-"a11y_voice_message_hint_ios" = "Seld asekles, sit snat n tikkal i tuzna. Akken ad tekkseḍ asekles, sfeḍ s sin yiḍarren.";
 "a11y_connectivity_hint" = "Sit snat n tikkal akken ad twaliḍ talqayt n tuqqna.";
 "login_error_no_internet_connection" = "Ulac tuqqna internet, tuqqna ur teddi ara.";
-// deprecated
-"share_account_not_configured" = "Amaɣnu ur ittuswel ara. ";
 "cannot_play_audio_file" = "Afaylu ameslaw ulamek ara yettwaɣer.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Akken ad d-teṭṭfeḍ tiwlafin, tuṭṭfa n tvidyutin neɣ ad tesqedceḍ aḍummu n tengalt QR, ldi iɣewwaṛen n unagraw u rmed \" takamirat \".";
 "open_settings" = "Ldi iɣewwaṛen";
-// deprecated
-"import_device_contacts" = "Kter inermisen n yibenk";
-// deprecated
-"import_device_contacts_hint" = "Iwakken ad tmeslayeḍ akked inermisen seg yibenk-ik·im, ldi Iɣewwaṛen sakkin rmed \"Iinermisen\".";
-// deprecated
-"disabled_in_dc" = "Ittwasens deg Delta Chat";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Ittwasens deg iɣewwaren n unagraw";
 "bg_app_refresh_disabled" = "\"Asmiren n usnas n ugilal\" yensa deg yiɣewwaren n unagraw";
-// deprecated
-"notifications_avg_minutes" = "Deg tlemmast yal %1$d n tesdatin";
-// deprecated
-"notifications_avg_hours" = "Deg tlemmast yal %1$d isragen";
-// deprecated
-"last_check_at" = "Ittwasenqed di %1$@";
 "system_settings" = "Iɣewwaṛen n unagraw";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Ẓreg tawsit, ibaddaren, taskant d wayen-nniḍen";
@@ -1114,6 +959,6 @@
 "pref_reliable_service" = "Ḥettem tuqqna n ugilal";
 "pref_reliable_service_explain" = "ad d-yeglu s telɣut timezgit";
 "pref_background_notifications_rationale" = "Akken ad tḥerzeḍ tuqqna daɣen ad d-remseḍ iznan deg ugilal, zgel aseggem n udɣaɣ deg usurif ay d-itteddun.\n\nDelta Chat yesseqdac kra n teɣbula u yernu ur ttḥewwil ara akken ad yečč aṭas deg udɣaɣ-ik·im.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Sit dagi akken ad tremseḍ iznan ticki Delta Chat yella deg ugilal.";
 "perm_enable_bg_already_done" = "Tsirgeḍ yakan Delta Chat i wakken ad d-remseḍ iznan deg ugilal.\n\nMa yella iznan ur d-ttawḍen ara deg ugilal, ttxil-k·m senqed daɣen iɣewwaṛen n unagraw.";

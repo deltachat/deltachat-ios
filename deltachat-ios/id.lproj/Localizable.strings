@@ -9,8 +9,6 @@
 "on" = "Nyala";
 "off" = "Mati";
 "def" = "Default";
-// deprecated
-"default_value" = "Default (%1$@)";
 "custom" = "Menurut pesanan";
 "none" = "Tidak ada";
 "automatic" = "Otomatis";
@@ -20,8 +18,6 @@
 "downloading" = "Sedang Mengunduh";
 "open_attachment" = "Buka lampiran";
 "join" = "Gabung";
-// deprecated
-"rejoin" = "Gabung kembali";
 "delete" = "Hapus";
 "info" = "Info";
 "update" = "Memperbarui";
@@ -59,8 +55,6 @@
 "load_remote_content" = "Memuat Gambar Jarak Jauh";
 "always" = "Selalu";
 "once" = "Sekali";
-// deprecated
-"show_warning" = "Tampilkan Peringatan";
 "not_now" = "Tidak sekarang";
 "never" = "Tidak pernah";
 "one_moment" = "Sebentar...";
@@ -77,8 +71,6 @@
 "copied_to_clipboard" = "Sudah dikopi di papan klip.";
 "contacts_headline" = "Kontak";
 "email_address" = "Alamat email";
-// deprecated
-"bad_email_address" = "Alamat surel jelek.";
 "password" = "Kata kunci";
 "existing_password" = "Kata sandi sudah pernah";
 "now" = "Sekarang";
@@ -123,8 +115,6 @@
 "capture" = "Tangkap";
 // Switch eg. from front to back camera
 "switch_camera" = "Ganti kamera";
-// deprecated
-"toggle_fullscreen" = "Beralih ke Mode Layar Penuh";
 "location" = "Lokasi";
 "locations" = "Lokasi";
 "gallery" = "Galeri";
@@ -145,13 +135,9 @@
 "magenta" = "Magenta";
 "white" = "Putih";
 "zoom" = "Perbesar";
-// deprecated
-"extra_small" = "Sangat kecil";
 "small" = "Kecil";
 "normal" = "Normal";
 "large" = "Besar";
-// deprecated
-"extra_large" = "Sangat besar";
 "fast" = "Cepat";
 "slow" = "Lambat";
 // menu labels (or icon, buttons...)
@@ -161,8 +147,6 @@
 "menu_send" = "Terkirim";
 "menu_toggle_keyboard" = "Tekan tombol emoji keyboard";
 "menu_edit_group" = "Edit grup";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Nama dan gambar grup";
 "menu_show_global_map" = "Tunjukkan semua lokasi";
 "menu_archive_chat" = "Arsip obrolan";
 "menu_unarchive_chat" = "Obrolan Tak Terarsip";
@@ -172,8 +156,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Hapus Obrolan";
 "delete_contact" = "Hapus kontak";
-// deprecated
-"menu_delete_location" = "Hapus lokasi ini?";
 "menu_message_details" = "Detail pesan";
 "menu_copy_to_clipboard" = "Kopi ke papan klip";
 "menu_copy_selection_to_clipboard" = "Salin yang dipilih";
@@ -204,8 +186,6 @@
 "privacy_policy" = "Kebijakan Privasi";
 "menu_select_all" = "Pilih semua";
 "select_chat" = "Pilih Obrolan";
-// deprecated
-"select_more" = "Pilih lebih banyak";
 "menu_edit_name" = "Edit nama";
 "menu_settings" = "Setelan";
 "menu_advanced" = "Lanjutan";
@@ -214,7 +194,6 @@
 "menu_zoom_out" = "Zoom perkecil";
 "menu_save_log" = "Simpan log";
 "menu_more_options" = "Opsi Lainnya";
-"menu_learn_spelling" = "Belajar Ejaan";
 "jump_to_message" = "Lompat ke Pesan";
 "title_share_location" = "Bagikan lokasi kepada seluruh anggota grup";
 "device_talk" = "Pesan perangkat";
@@ -236,15 +215,12 @@
 "mute_for_one_day" = "Diamkan untuk 1 hari";
 "mute_for_seven_days" = "Diamkan untuk 7 hari";
 "mute_forever" = "Diamkan seterusnya";
-// deprecated
 "share_location_for_5_minutes" = "untuk 5 menit";
 "share_location_for_30_minutes" = "untuk 30 menit";
 "share_location_for_one_hour" = "untuk 1 jam";
 "share_location_for_two_hours" = "untuk 2 jam";
 "share_location_for_six_hours" = "untuk 6 jam";
 "file_saved_to" = "Berkas disimpan ke \"%1$@\".";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Teruskan pesan ke %1$@?";
 "ask_export_attachment" = "Ekspor lampiran? Mengekspor lampiran akan membuat aplikasi lain di perangkat anda terakses.\n\nLanjut?";
 "ask_block_contact" = "Blokir kontak ini? Anda tak akan lagi menerima pesan dari kontak ini.";
 "ask_unblock_contact" = "Buka blokir kontak ini? Anda akan bisa kembali menerima pesan dari kontak ini.";
@@ -278,10 +254,6 @@
 "saved_messages_explain" = "• Teruskan pesan di sini untuk akses yang mudah\n\n• Buat catatan atau memo suara\n\n• Lampirkan media untuk menyimpannya";
 // Should match "Saved" from "Saved messages"
 "saved" = "Sudah disimpan";
-// deprecated
-"retry_send" = "Coba lagi mengirim pesan";
-// deprecated
-"cannot_display_unsuported_file_type" = "Tidak dapat menampilkan tipe berkas ini: %1$@";
 "attachment_failed_to_load" = "Gagal memuat lampiran";
 // search
 "search" = "Cari";
@@ -293,8 +265,6 @@
 "remove_group_image" = "Hapus gambar grup";
 "change_group_image" = "Ubah gambar grup";
 "group_create_button" = "Buat grup";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Silakan masukkan nama untuk grup.";
 "group_add_members" = "Tambah anggota";
 "group_self_not_in_group" = "Anda harus menjadi anggota grup untuk melakukan tindakan ini.";
 "profile_encryption" = "Enkripsi";
@@ -302,16 +272,12 @@
 "tab_contact" = "Kontak";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
-// deprecated
-"tab_docs" = "Dokumen";
 "tab_links" = "Tautan";
 "tab_map" = "Peta";
 "tab_gallery_empty_hint" = "Gambar dan video yang dibagikan di obrolan ini akan ditampilkan disini.";
 "tab_docs_empty_hint" = "Dokumen, musik dan berkas yang dibagikan di obrolan ini akan ditampilkan disini.";
 "media_preview" = "Tampilan media";
 "send_message" = "Kirim pesan";
-// deprecated
-"login_title" = "Masuk";
 "login_inbox" = "Surel masuk";
 "login_imap_login" = "Nama login IMAP";
 "login_imap_server" = "Server IMAP";
@@ -324,15 +290,11 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "Keamanan SMTP";
 "login_certificate_checks" = "Cek sertifikat";
+// deprecated
 "login_error_mail" = "Masukkan alamat surel yang sahih";
-"login_error_server" = "Tolong masukan server / alamat IP yang sah";
-"login_error_port" = "Silakan masukkan port yang sah (1–65535)";
-"login_error_required_fields" = "Silakan masukkan alamat email dan kata sandi yang sah";
 "import_backup_title" = "Impor cadangan";
 "import_backup_ask" = "Cadangan ditemukan di \"%1$@\".\n\n Apakah Anda ingin mengimpor dan menggunakan semua data dan pengaturan darinya?";
 "import_backup_no_backup_found" = "Cadangan tidak ketemu.\n\nKopi cadangan ke \"%1$@\" dan coba lagi.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Tidak bisa login sebagai \"%1$@\". Mohon cek apakah alamat surel dan kata sandi benar.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Terima sertifikat yang tidak sah";
 "switch_account" = "Alihkan akun";
@@ -368,13 +330,9 @@
 "pref_notifications" = "Notifikasi";
 "pref_notifications_show" = "Menunjukkan";
 "pref_notifications_priority" = "Prioritas";
-// deprecated
-"pref_show_notification_content_explain" = "Tampilkan pengirim dan kata-kata awal dari pesan di dalam notifikasi";
 "pref_led_color" = "Warna LED";
 "pref_sound" = "Suara";
 "pref_silent" = "Sunyi";
-// deprecated
-"pref_privacy" = "Privasi";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Cahaya";
 "pref_dark_theme" = "Gelap";
@@ -384,8 +342,6 @@
 "pref_incognito_keyboard" = "Keyboard penyamaran";
 "pref_read_receipts" = "Baca tanda terima";
 "pref_read_receipts_explain" = "Jika tanda terima baca dinonaktifkan, Anda tidak akan dapat melihat tanda terima baca dari orang lain.";
-// deprecated
-"pref_manage_keys" = "Kelola kunci";
 "pref_chats" = "Obrolan";
 "pref_in_chat_sounds" = "Suara dalam obrolan";
 "pref_view_log" = "Lihat catatan";
@@ -402,14 +358,6 @@
 "pref_background" = "Latar belakang";
 "pref_background_btn_default" = "Menggunakan gambar default";
 "pref_background_btn_gallery" = "Pilih dari galeri";
-// deprecated
-"pref_auto_folder_moves" = "Perpindahan otomatis ke berkas DeltaChat";
-// deprecated
-"pref_show_emails" = "Tampilkan email klasik";
-// deprecated
-"pref_show_emails_no" = "Tidak, hanya obrolan saja";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Untuk kontak yang telah diterima";
 // deprecated, use "All"
 "pref_show_emails_all" = "Semua";
 "pref_experimental_features" = "Fitur yang masih bersifat eksperimen";
@@ -431,8 +379,6 @@
 // automatically delete message
 "delete_old_messages" = "Hapus pesan-pesan lama";
 "autodel_device_title" = "Hapus pesarn dari perangkat";
-// deprecated
-"autodel_server_title" = "Hapus pesan dari server";
 "autodel_confirm" = "Saya mengerti, hapus semua pesan ini";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Segera";
@@ -473,8 +419,6 @@
 "qrscan_ask_join_group" = "Apakah anda ingin bergabung dengan grup \"%1$@\"?";
 "qrscan_contains_text" = "Kode QR yang dipindai text:\n\n%1$@";
 "qrscan_contains_url" = "Kode QR yang dipindai URL:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Sidik jari";
 "qrshow_title" = "Kode undangan QR";
 "qrshow_x_joining" = "%1$@bergabung.";
 "qrshow_x_verified" = "%1$@diverifikasi.";
@@ -486,8 +430,6 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Pindai ini untuk mengatur kontak dengan%1$@.";
 "qrshow_join_contact_no_connection_toast" = "Tidak ada koneksi internet, tidak bisa menjalankan kode pengaturan QR.";
-// deprecated
-"qraccount_ask_create_and_login" = "Buat alamat email baru di \"%1$@\" dan login di sana?";
 "qraccount_qr_code_cannot_be_used" = "Kode QR yang dipindai tidak dapat digunakan untuk mengatur akun baru.";
 "contact_verified" = "%1$@diverifikasi.";
 // notifications

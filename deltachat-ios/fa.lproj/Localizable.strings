@@ -13,8 +13,6 @@
 "on" = "روشن";
 "off" = "خاموش";
 "def" = "پیش‌فرض";
-// deprecated
-"default_value" = "پیش‌فرض (%1$@)";
 "custom" = "سفارشی";
 "none" = "هیچ‌کدام";
 "automatic" = "خودکار";
@@ -26,8 +24,6 @@
 "join" = "پیوستن";
 "join_group" = "پیوستن به گروه";
 "join_channel" = "پیوستن به کانال";
-// deprecated
-"rejoin" = "پیوستن مجدد";
 "delete" = "حذف";
 "delete_for_me" = "حذف برای من";
 "delete_for_everyone" = "حذف برای همه";
@@ -61,10 +57,6 @@
 "media" = "رسانه";
 "apps_and_media" = "برنامه‌ها و رسانه‌ها";
 "profile" = "نمایه";
-// deprecated
-"all_profiles" = "تمام نمایه‌ها";
-// deprecated
-"current_profile" = "نمایهٔ فعلی";
 "main_menu" = "فهرست اصلی";
 "start_chat" = "شروع گپ";
 "show_full_message" = "نمایش پیام کامل...";
@@ -82,11 +74,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "تصاویر مربوط به نشانی‌های اینترنتی دیگر می‌توانند برای ردیابی شما استفاده شوند. \n\n این تنظیمات همچنین برای بارگیری فونت‌ها و دیگر محتواها استفاده می‌شود. اگر غیرفعال باشد ممکن است همچنان تصویر‌های درون پیام و تصویر‌های بارگیری شده را ببینید. \n\n آيا تصاویر خارجی بارگیری شوند؟";
 "always" = "همیشه";
-// deprecated
-"always_load_remote_images" = "تصاویر با منبع بیرونی همیشه بارگیری شوند";
 "once" = "همین یک بار";
-// deprecated
-"show_warning" = "نمایش هشدار";
 "not_now" = "اکنون نه";
 "never" = "هرگز";
 "one_moment" = "یک لحظه...";
@@ -101,13 +89,9 @@
 "no_app_to_handle_data" = "نرم‌افزاری برای باز کردن این نوع داده یافت نشد";
 "no_browser_installed" = "هیچ مرورگری نصب نیست.";
 "file_not_found" = "عدم یافتن %1$@";
-// deprecated
-"cannot_save_file" = "نمی‌توان %1$@ را ذخیره کرد.";
 "copied_to_clipboard" = "در حافظه کپی شد.";
 "contacts_headline" = "مخاطبین";
 "email_address" = "نشانی رایانامه";
-// deprecated
-"bad_email_address" = "نشانی رایانامه ایراد دارد.";
 "password" = "رمزعبور";
 "existing_password" = "رمزعبور موجود";
 "now" = "اکنون";
@@ -128,8 +112,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "انتخاب شده‌ها:";
 "self" = "من";
 "draft" = "پیش‌نویس";
 "image" = "تصویر";
@@ -139,10 +121,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "استیکر";
 "add_to_sticker_collection" = "افزودن به مجموعه استیکر";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "برای اضافه کردن برچسب روی «بازکردن پوشهٔ برچسب» بزنید، یک زیرپوشه برای دستهٔ برچسب خود درست کنید و برچسب‌ها را به آن‌جا بکشید";
-// deprecated
-"open_sticker_folder" = "بازکردن پوشه استیکر";
 "images" = "تصاویر";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "صدا";
@@ -161,8 +139,6 @@
 "capture" = "گرفتن";
 // Switch eg. from front to back camera
 "switch_camera" = "تغییر دوربین";
-// deprecated
-"toggle_fullscreen" = "تغییر وضعیت تمام صفحه";
 "location" = "موقعیت مکانی";
 "locations" = "مکان‌ها";
 "gallery" = "گالری";
@@ -199,13 +175,9 @@
 "magenta" = "سرخابی";
 "white" = "سفید";
 "zoom" = "بزرگ نمایی";
-// deprecated
-"extra_small" = "بسیار کوچک";
 "small" = "کوچک";
 "normal" = "عادی";
 "large" = "بزرگ";
-// deprecated
-"extra_large" = "خیلی بزرگ";
 "fast" = "سریع";
 "slow" = "آهسته";
 // menu labels (or icon, buttons...)
@@ -233,8 +205,6 @@
 "menu_send" = "ارسال";
 "menu_toggle_keyboard" = "تعییر صفحه کلید شکلک‌ها";
 "menu_edit_group" = "ویرایش گروه";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "نام و تصویر گروه";
 "menu_show_global_map" = "نمایش همه موقعیت‌های مکانی";
 "menu_archive_chat" = "بایگانی گپ";
 "menu_unarchive_chat" = "خروج چت از بایگانی";
@@ -245,8 +215,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "پاک کردن چت";
 "delete_contact" = "پاک کردن مخاطب";
-// deprecated
-"menu_delete_location" = "حذف این موقعیت مکانی؟";
 "menu_message_details" = "جزئیات پیام";
 "menu_copy_to_clipboard" = "رونوشت‌برداری در حافظه";
 "share_invite_link" = "اشتراک پیوند دعوت";
@@ -288,8 +256,6 @@
 "privacy_policy" = "خط مشی رازداری";
 "menu_select_all" = "انتخاب همه";
 "select_chat" = "انتخاب چت";
-// deprecated
-"select_more" = "انتخاب بیشتر";
 "menu_edit_name" = "ویرایش نام";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "به شما یک نام مستعار به جای «%1$@» نمایش می‌دهد. برای نمایش نام انتخابی خود مخاطب، این را خالی بگذارید.";
@@ -302,7 +268,6 @@
 "menu_zoom_out" = "کوچک نمایی";
 "menu_save_log" = "ذخیره گزارش";
 "menu_more_options" = "گزینه‌های بیشتر";
-"menu_learn_spelling" = "یادگرفتن املا ";
 "jump_to_message" = "رفتن به پیام";
 "replace_draft" = "جایگزین کردن پیش‌نویس";
 "title_share_location" = "اشتراک موقعیت مکانی با همه اعضای گروه";
@@ -331,7 +296,6 @@
 "mute_for_one_day" = "ساکت کردن به مدت ۱ روز";
 "mute_for_seven_days" = "ساکت کردن به مدت۷ روز";
 "mute_forever" = "ساکت کردن دائمی";
-// deprecated
 "share_location_for_5_minutes" = "به مدت ۵ دقیقه";
 "share_location_for_30_minutes" = "به مدت ۳۰ دقیقه";
 "share_location_for_one_hour" = "به مدت ۱ ساعت";
@@ -352,14 +316,6 @@
 "audio_call" = "تماس صوتی";
 // Used in call bubbles, summaries, notifications
 "video_call" = "تماس تصویری";
-// deprecated, use "Audio call" instead
-"outgoing_audio_call" = "تماس صوتی خروجی";
-// deprecated, use "Video call" instead
-"outgoing_video_call" = "تماس تصویری خروجی";
-// deprecated, use "Audio call" instead
-"incoming_audio_call" = "تماس صوتی ورودی";
-// deprecated, use "Video call" instead
-"incoming_video_call" = "تماس تصویری ورودی";
 "declined_call" = "تماس رد شده";
 "canceled_call" = "تماس لغو شده";
 "missed_call" = "تماس از دست رفته";
@@ -368,8 +324,6 @@
 "ask_leave_group" = "آیا مطمئنید می‌خواهید بروید؟";
 "ask_delete_named_chat" = "حذف گپ «%1$@»؟";
 "ask_delete_message" = "حذف این پیام؟";
-// deprecated, use ask_forward_messages
-"ask_forward" = "پیام‌ها به %1$@ هدایت شوند؟";
 "ask_forward_multiple" = "انتقال پیام‌ها به %1$d گپ؟";
 "ask_export_attachment" = "ضمیمه صادر شود؟ صادر کردن ضمیمه باعث می‌شود دیگر نرم‌افزارهای روی دستگاه شما بتوانند به آن دسترسی داشته باشند. \n\nادامه می‌دهید؟";
 "ask_block_contact" = "مخاطب مسدود شود؟\n\n شما دیگر پیامی به صورت مستقیم از این مخاطب دریافت نخواهید کرد. همچنین گروه‌های ایجاد شده توسط این مخاطب نمایش داده نخواهند شد.\n\n با این وجود، گروه‌هایی که این مخاطب در آن حضور دارند نمایش داده خواهد شد.";
@@ -403,8 +357,6 @@
 "chat_input_placeholder" = "پیام";
 "chat_archived_label" = "بایگانی شد";
 "chat_request_label" = "درخواست";
-// deprecated
-"chat_request_label_explain" = "حساب کردن درخواست‌ها در شمارنده‌ها و اعلان‌ها";
 "chat_no_messages" = "پیامی نیست. ";
 "chat_self_talk_subtitle" = "پیام‌هایی که برای خودم ارسال کرده‌ام. ";
 "archive_empty_hint" = "اگر گپ‌ها را بایگانی کنید در اینجا نمایش داده می‌شوند. ";
@@ -414,20 +366,14 @@
 "saved_messages_explain" = "برای دسترسی راحت‌تر پیام‌ها را به اینجا هدایت کنید\n\n• می‌توانید یادداشت متنی یا صوتی تهیه کنید\n\n• برای ذخیره رسانه‌ آن را ضمیمه کنید. ";
 // Should match "Saved" from "Saved messages"
 "saved" = "ذخیره شد";
-// deprecated
-"save_as" = "ذخیره به عنوان";
-// deprecated
-"retry_send" = "برای ارسال پیام دوباره تلاش کنید. ";
-// deprecated
-"cannot_display_unsuported_file_type" = "امکان نمایش این نوع پرونده وجود ندارد: %1$@";
 "attachment_failed_to_load" = "ناموفق در بارگیری ضمیمه";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "قفل کردن ضبط کردن";
 // mailing lists
 "mailing_list" = "فهرست پستی";
 // webxdc
-// "Start..." button for an app
-"start_app" = "شروع...";
+// "Start" button for an app
+"start_app" = "شروع";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "لطفاً اول درخواست گپ را قبول کنید.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -454,8 +400,6 @@
 "remove_group_image" = "حذف تصویر گروه";
 "change_group_image" = "حذف تصویر گروه";
 "group_create_button" = "ایجاد گروه";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "لطفا نامی برای گروه وارد کنید. ";
 "group_add_members" = "افزودن اعضا";
 "group_self_not_in_group" = "برای این کار باید عضو گروه باشید.";
 "profile_encryption" = "رمزگذاری";
@@ -465,25 +409,17 @@
 "tab_contact" = "مخاطب";
 "tab_group" = "گروه";
 "tab_gallery" = "گالری";
-// deprecated
-"tab_docs" = "اسناد";
 "tab_links" = "لینک‌ها";
 "tab_map" = "نقشه";
 "tab_gallery_empty_hint" = "تصاویر و ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_docs_empty_hint" = "اسناد و پرونده‌های هم‌رساندهٔ دیگر در این گپ اینجا نمایش داده می‌شوند.";
 "tab_image_empty_hint" = "تصویر‌های هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
-// deprecated
-"tab_video_empty_hint" = "ویدیوهای هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_audio_empty_hint" = "پرونده‌های صوتی و پیام‌های صوتی هم‌رسانده در این گپ اینجا نمایش داده می‌شوند.";
 "tab_webxdc_empty_hint" = "برنامه‌هایی که در این گپ به اشتراک گذاشته شده‌اند، این‌جا نمایش داده خواهند شد.";
 "tab_all_media_empty_hint" = "رسانه‌های به اشتراک گذاشته شده همهٔ چت‌ها در اینجا ظاهر می‌شود.";
 "all_files_empty_hint" = "سند‌ها و دیگر پرونده‌هایی که در هر چپ پیوست شده‌اند این‌جا ظاهر خواهند شد.";
 "all_apps_empty_hint" = "برنامه‌های ارسال شده در همهٔ گپ‌ها اینجا ظاهر خواهند شد.";
 "media_preview" = "نمایش رسانه";
-// deprecated
-"aspect_ratio_grid" = "حفظ مقیاس تصویر";
-// deprecated
-"square_grid" = "جدول مربعی";
 "send_message" = "ارسال پیام";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -523,8 +459,6 @@
 "connectivity_connected" = "متصل شد";
 "sending" = "در حال ارسال...";
 "last_msg_sent_successfully" = "آخرین پیام با موفقیت ارسال شد.";
-// deprecated
-"not_supported_by_provider" = "ارائه دهنده شما از این پشتیبانی نمی‌کند";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "پیام‌ها";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -538,12 +472,6 @@
 "manual_account_setup_option" = "استفاده از رایانامه معمولی به عنوان رله";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "نمایه شما";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "سیاست حریم خصوصی برای %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "دربارهٔ نمایه‌ها در %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "قبول کردن و ایجاد نمایه";
 // Secondary, link-like button to open a page with other possible instances
@@ -559,8 +487,6 @@
 "instant_onboarding_confirm_group" = "می‌خواهید یک نمایهٔ جدید درست کنید و به گروه «%1$@» ملحق شوید؟";
 "welcome_chat_over_email" = "گفتگو غیرمتمرکز و ایمن";
 "scan_invitation_code" = "اسکن کردن کد دعوت";
-// deprecated
-"login_title" = "ورود";
 "login_inbox" = "ورودی";
 "login_imap_login" = "IMAP Login Name";
 "login_imap_server" = "IMAP Server";
@@ -596,15 +522,11 @@
 "confirm_add_transport" = "اضافه کردن این رله؟";
 "invalid_transport_qr" = "کیو‌آر کد اسکن شده دارای یک رلهٔ معتبر نیست.";
 "login_certificate_checks" = "بررسی‌های گواهینامه";
+// deprecated
 "login_error_mail" = "لطفاً یک نشانی رایانامهٔ معتبر وارد کنید";
-"login_error_server" = "لطفا یک کارساز / نشانی آی‌پی صحیح وارد کنید";
-"login_error_port" = "لظفا یک پورت صحیح وارد کنید(1–65535)";
-"login_error_required_fields" = "لطفاً یک نشانی رایانامه و گذرواژهٔ معتبر وارد کنید";
 "import_backup_title" = "وارد کردن نسخه پشتیبانی";
 "import_backup_ask" = "نسخه پشتیبانی در\"%1$@\" پیدا شد.\n\n آیا می‌خواهید همه داده‌ها و تنظیم‌ها از آن وارد شود؟";
 "import_backup_no_backup_found" = "نسخهٔ پشتیبانی پیدا نشد.\n\n نسخهٔ پشتیبان را در«%1$@» کپی کرده و دوباره امتحان کنید.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "نمی‌توانیم به عنوان «%1$@» وارد شویم. لطفاً درستی نشانی رایانامه و گذرواژه را بررسی کنید. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "پذیرش گواهینامه‌های نامعتبر";
 "switch_account" = "تغییر حساب کاربری";
@@ -630,8 +552,6 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "ارسال %1$dپرونده به «%2$@»؟";
 "ask_send_files_to_selected_chats" = "ارسال %1$dپرونده به %2$d گپ؟";
-// deprecated
-"videos_sent_without_recoding" = "(فیلم‌ها به صورت پرونده‌های بزرگ بدون تغییر ارسال می‌شوند. برای ارسال فیلم‌ها به عنوان پرونده‌های کوچک‌تر، آن‌ها را به صورت جدا پیوست کنید)";
 "share_text_multiple_chats" = "ارسال این متن به %1$d گپ؟n/n/«%2$@»";
 "share_abort" = "اشتراک گذاری به دلیل نبود مجوز‌ها متوقف شد.";
 // preferences
@@ -661,13 +581,9 @@
 "pref_notifications_priority" = "اولویت";
 "pref_notifications_explain" = "فعال کردن اعلان‌های سیستم برای پیام‌های جدید";
 "pref_show_notification_content" = "نمایش محتوای پیام در اعلان";
-// deprecated
-"pref_show_notification_content_explain" = "نمایش ارسال کننده و اولین کلمات پیام در اعلان";
 "pref_led_color" = " LED رنگ";
 "pref_sound" = "صدا";
 "pref_silent" = "سکوت";
-// deprecated
-"pref_privacy" = "حریم خصوصی";
 "pref_system_default" = "پیش‌فرض سیستم";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "روشن";
@@ -682,10 +598,6 @@
 "pref_read_receipts" = "رسید خوانده شدن";
 "pref_read_receipts_explain" = "اگر رسید خوانده شدن غیرفعال باشد، نمی‌توانید اعلام خوانده شدن توسط دیگران را ببینید.";
 "pref_server" = "کارساز";
-// deprecated
-"pref_encryption" = "رمزگذاری";
-// deprecated
-"pref_manage_keys" = "مدیریت کلیدها";
 "pref_chats" = "گپ‌ها";
 "pref_in_chat_sounds" = "صداهای درون‌گپی";
 "pref_view_log" = "نمایش گزارش";
@@ -705,22 +617,10 @@
 "pref_background" = "پس‌زمینه";
 "pref_background_btn_default" = "استفاده از تصویر پیش‌فرض";
 "pref_background_btn_gallery" = "انتخاب از گالری";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "اگر این گزینه را غیر فعال می‌کنید از اینکه سرور شما و حساب‌هایتان هم بر این اساس تنظیم شده باشند.\n\n در غیر این صورت ممکن است هیچ چیز کار نکند. ";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "حالت چند دستگاهی";
 "pref_multidevice_explain" = "همگام‌سازی پیام‌های شما با دیگر دستگاه‌هایتان. در صورت اضافه کردن دستگاه دوم به صورت خودکار فعال می‌شود.";
 "pref_multidevice_change_warn" = "حالت چند دستگاهی زمانی که از یک نمایه روی چند دستگاه استفاده می‌کنید باید فعال شود. تنها در صورتی این تنظیم را غیرفعال کنید که این نمایه را از روی همهٔ دیگر دستگاه‌هایتان حذف کرده‌اید. \n\n غیرفعال کردن حالت چند دستگاهی زمانی که یک نمایه را روی چند دستگاه دارید باعث می‌شود که بعضی پیام‌ها گم شوند و همچنین مشکل‌های دیگری به وجود می‌آورد.";
-// deprecated
-"pref_auto_folder_moves" = "انتقال خودکار به پوشه دلتاچت";
-// deprecated
-"pref_only_fetch_mvbox_title" = "فقط پوشه دلتاچت را بررسی کن";
-// deprecated
-"pref_show_emails" = "نمایش رایانامه‌های معمولی";
-// deprecated
-"pref_show_emails_no" = "نه، فقط گپ‌ها";
-// deprecated
-"pref_show_emails_accepted_contacts" = "برای مخاطبین پذیرفته شده";
 // deprecated, use "All"
 "pref_show_emails_all" = "همه";
 "pref_experimental_features" = "ویژگی‌های آزمایشی";
@@ -775,18 +675,8 @@
 // automatically delete message
 "delete_old_messages" = "پاک کردن پیام‌های قدیمی";
 "autodel_device_title" = "پاک کردن پیام‌ها از دستگاه";
-// deprecated
-"autodel_server_title" = "پاک کردن پیام‌ها از سرور";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "آیا می‌خواهید %1$d پیام جدید و دریافت شده را در زمان%2$@ در آینده پاک کنید؟\n\n• این شامل همه رسانه‌ها هم می‌شود\n\n• پیام‌ها جدای از اینکه دیده شده باشند یا نه پاک می‌شوند. \"پیام های ذخیره شده\" شامل این پاک کردن محلی نمی‌شوند. ";
-// deprecated
-"autodel_server_ask" = "آیا می‌خواهید %1$d پیام را اکنون و تمام پیام‌های آیندهٔ «%2$@» را پاک کنید؟/n/n⚠️ این شامل رایانامه‌ها، رسانه و «پیام‌های ذخیره شده» در همه پوشه‌های کارساز(سرور) می‌شود/n/n⚠️ اگر می‌خواهید داده‌ها در کارساز باقی بمانند از این قابلیت استفاده نکنید/n/n⚠️ اگر به‌جز دلتاچت از دیگر نرم‌افزارهای رایانامه هم استفاده می‌کنید این قابلیت را به کار نگیرید.";
-// deprecated
-"autodel_server_enabled_hint" = "این شامل رایانامه‌ها، رسانه‌ها و «پیام‌های ذخیره شده» در تمام پوشه‌های کارساز(سرور) می‌شود. اگر می‌خواهید داده‌ها را در کارساز نگه دارید از این قابلیت استفاده نکنید. اگر از دیگر نرم‌افزارهای رایانامه به‌جز دلتاچت استفاده می‌کنید هم از این قابلیت استفاده نکنید.";
-// deprecated
-"autodel_server_warn_multi_device_title" = "فعال‌سازی حذف بلافاصله";
-// deprecated
-"autodel_server_warn_multi_device" = "اگر حذف بلافاصله را فعال کنید، نمی‌توانید این نمایه را روی چند دستگاه داشته باشید.";
 "autodel_confirm" = "متوجه هستم، همه پیام‌ها حذف شوند";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "یک بار بعد از بارگیری";
@@ -873,8 +763,6 @@
 "invalid_unencrypted_explanation" = "برای برقراری رمزنگاری سراسری، می‌توانید به صورت حضوری با مخاطب‌های خود دیدار کنید و کد کیوآر آن‌ها را برای معرفی اسکن کنید.";
 "learn_more" = "بیشتر بدانید";
 "devicemsg_self_deleted" = "شما گپ «پیام‌های ذخیره شده» را پاک کردید.\n\nℹ️ برای استفادهٔ دوباره از «پیام‌های ذخیره شده» کافی است یک گپ جدید با خودتان درست کنید. ";
-// deprecated
-"devicemsg_storage_exceeding" = " ⚠️ میزان فضای در دسترس کارساز رایانامه شما در حال تمام شدن است. %1$@ از %% استفاده شده است. اگر فضا کاملا پر شده باشد دیگر امکان دریافت پیام را نخواهید داشت. 👈 لطفا پیام‌های قدیمی در رایانامه خود را از طریق نسخهٔ وب رایانامه پاک کنید. همچنین می‌توانید گزینه پاک کردن پیام‌های قدیمی در دلتاچت را فعال نمایید. هروقت خواستید می‌توانید فضای در دسترس را از «تنظیم‌ها / اتصال‌ها» بررسی کنید. ";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "هشدار⚠️ به نظر می‌رسد زمان و تاریخ دستگاه شما دقیق نیست(%1$@). ساعت دستگاه خود را تنظیم کنید ⏰🔧 تا پیام‌ها به درستی دریافت شوند. ";
 "devicemsg_update_reminder" = "هشدار⚠️ ممکن است نسخه دلتاچت مورد استفاده قدیمی شده باشد. این موضوع ممکن است مشکلاتی ایجاد کند چون مخاطبین شما از نسخه‌های جدیدتر استفاده می‌کنند. همچنین قابلیت‌های جدید را هم از دست می‌دهید😳 لطفا برای دریافت نسخه جدید به app store یا https://get.delta.chat مراجعه کنید. ";
@@ -889,14 +777,8 @@
 "qrscan_failed" = "امکان رمزگشایی کد کیوآر وجود ندارد";
 "qrscan_ask_join_group" = "آیا می خواهید به گروه\"%1$@\" ملحق شوید؟";
 "qrscan_ask_join_channel" = "آیا می‌خواهید عضو کانال «%1$@» شوید؟";
-// deprecated
-"qrscan_fingerprint_mismatch" = "اثرانگشت اسکن شده با انچه که برای %1$@مشاهده شده بود انطباق ندارد. ";
-// deprecated
-"qrscan_no_addr_found" = "این کیوآر حاوی یک شناساگر است. ولی آدرس رایانامه‌ای در آن نیست. \n\n برای یک تأییدیه به روش‌های دیگر لطفا ابتدا یک ارتباط رمزگذاری شده با دریافت کننده برقرار کنید. ";
 "qrscan_contains_text" = "کیوآر کد اسکن شده:\n\n %1$@";
 "qrscan_contains_url" = "آدرس اینترنتی کیوآر اسکن شده:\n\n %1$@";
-// deprecated
-"qrscan_fingerprint_label" = "اثر انگشت";
 "withdraw_verifycontact_explain" = "دیگران برای ارتباط با شما می‌توانند این کد کیوآر را اسکن کنند. \n\n می‌توان کد کیوآر را در اینجا غیر فعال کنید و با اسکن کردن مجدد، آن را فعال کنید. ";
 "withdraw_verifygroup_explain" = "این کد کیوآر می‌تواند توسط دیگران و برای پیوستن به گروه «%1$@» اسکن شود.\n\n شما می‌تواند این کد کیوآر را در اینجا غیرفعال کنید و با اسکن کردن مجدد، آن را فعال نمایید. ";
 "withdraw_joinbroadcast_explain" = "این کد کیوآر می‌تواند توسط بقیه برای پیوستن به کانال «%1$@» اسکن شود. \n\n می‌توانید آن را بازنشانی کنید تا کد یا پیوند دعوت فعلی از کار بیوفتد.";
@@ -915,13 +797,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "برای ارتباط با %1$@ این را اسکن کنید.";
 "qrshow_join_contact_no_connection_toast" = "اتصال اینترنت نیست. نمیتوان نصب کد کیوآر را انجام داد. ";
-// deprecated
-"qraccount_ask_create_and_login" = "ایجاد رایانامهٔ جدید روی «%1$@» و ورود به آنجا؟";
 "set_name_and_avatar_explain" = "اسمی انتخاب کنید که مخاطبینتان با آن شما را بشناسند. می توانید برای خود عکسی هم انتخاب کنید.";
 "please_enter_name" = "لطفا یک نام وارد کنید.";
 "qraccount_qr_code_cannot_be_used" = "این کد کیوآر اسکن شده را نمی‌توان برای راه‌اندازی حساب جدید استفاده کرد. ";
-// deprecated
-"qrlogin_ask_login" = "آیا به \"%1$@\" وارد شوید؟";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "کاربر %1$@ شما را دعوت کرده است تا عضو این گروه شوید. در انتظار دستگاه %2$@ برای پاسخگویی...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -931,13 +809,6 @@
 "secure_join_wait" = "در حال برقراری ارتباط، لطفا صبر کنید...";
 "contact_verified" = "%1$@ تأیید شد.";
 "contact_blocked" = "شما این مخاطب را مسدود کردید.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "احراز هویت شده توسط %1$@";
-// deprecated
-"verified_by_you" = "تأیید شده توسط من";
-// deprecated
-"verified_by_unknown" = "معرفی شده";
 "mailto_dialog_header_select_chat" = "گپ را برای ارسال پیام انتخاب کنید";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ هم‌اکنون هم یک پیام پیش‌نویس دارد؛ آیا می‌خواهید آن را جایگزین کنید؟";
@@ -1014,8 +885,6 @@
 "menu.view.developer.open.log.folder" = "پوشه گزارش را باز کن";
 "menu.view.developer.open.current.log.file" = "پوشه گزارش فعلی را باز کن";
 "explain_desktop_minimized_disabled_tray_pref" = "چون دلتاچت با تنظیم‌ها --زیرصفحه شروع به کار کرده است نمی‌توان نمادک زیر صفحه را غیر فعال کرد. ";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "هیچ پیشنهادی برای املا پیدا نشد";
 "show_window" = "نمایش پنجره";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "کلیدهای میانبر";
@@ -1039,31 +908,15 @@
 "a11y_disappearing_messages_activated" = "پیام‌های ناپدید شونده فعال شدند";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "توقف اشتراک موقعیت مکانی";
-// deprecated
-"a11y_voice_message_hint_ios" = "پس از ضبط کردن برای ارسال دوبار ضربه بزنید. برای حذف و رد ضبط کردن با دو انگشت خود بکشید. ";
 "a11y_connectivity_hint" = "برای مشاهده اطلاعات اتصال دوبار ضربه بزنید";
 "login_error_no_internet_connection" = "بدون اتصال اینترنت. ورود ناموفق";
-// deprecated
-"share_account_not_configured" = "حساب تنظیم نشده است";
 "cannot_play_audio_file" = "امکان پخش کردن پروندهٔ صوتی وجود ندارد.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "برای عکس یا فیلم گرفتن یا اسکن کردن کد کیو آر، وارد تنظیم‌های سیستم شده و دسترسی به دوربین را فعال کنید. ";
 "open_settings" = "تنظیم‌ها را باز کنید";
-// deprecated
-"import_device_contacts" = "وارد کردن مخاطبین";
-// deprecated
-"import_device_contacts_hint" = "برای شروع گپ با مخاطبین دستگاه خود، تنظیم‌ها را باز کرده و «مخاطبین» را به کار بیندازید.";
-// deprecated
-"disabled_in_dc" = "در دلتاچت غیر فعال شده است. ";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "در تنظیم‌های سیستم غیر فعال شده است. ";
 "bg_app_refresh_disabled" = "گزینه «بازخوانی نرم‌افزار در پس‌زمینه» در تنظیم‌های سیستم غیر فعال شده است. ";
-// deprecated
-"notifications_avg_minutes" = "به صورت متوسط هر%1$d دقیقه";
-// deprecated
-"notifications_avg_hours" = "به صورت متوسط هر %1$d ساعت";
-// deprecated
-"last_check_at" = "بررسی شده در %1$@";
 "system_settings" = "تنظیم‌های سیستم";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "ویرایش نوع، مدال‌ها، پیش‌نمایش و غیره";
@@ -1084,6 +937,6 @@
 "pref_reliable_service" = "اجبار کردن اتصال پس‌زمینه";
 "pref_reliable_service_explain" = "اعلانی دائمی نشان می‌دهد";
 "pref_background_notifications_rationale" = "برای حفظ ارتباطتان با کارساز(سرور) رایانامه و دریافت پیامها در پیش زمینه، در گام بعدی، تنظیم‌های بهینه سازی باتری را نادیده بگیرید. \n\n دلتاچت از منابع کمی استفاده میکند و مراقب است باتری شما را بیش از حد مصرف نکند. ";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "برای دریافت پیام‌ها به صورت پس زمینه در دلتاچت این جا را ضربه بزنید. ";
 "perm_enable_bg_already_done" = "قبلا اجازه دسترسی به فعالیت در پس زمینه را به دلتاچت داده‌اید. \n\n اگر پیام‌ها هنوز هم در شرایط پس زمینه نمی‌آمد لطفا تنظیم‌های سیستم را نیز بررسی نمایید. ";

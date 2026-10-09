@@ -74,8 +74,6 @@
 "small" = "Mala";
 "normal" = "Normalna";
 "large" = "Velika";
-// deprecated
-"extra_large" = "Ekstra velika";
 "fast" = "Brzo";
 "slow" = "Sporo";
 // menu labels (or icon, buttons...)
@@ -86,8 +84,6 @@
 "menu_show_global_map" = "Prikaži sve lokacije";
 "menu_add_attachment" = "Dodaj privitak";
 "menu_leave_group" = "Napusti grupu";
-// deprecated
-"menu_delete_location" = "Obrisati ovu lokaciju?";
 "menu_message_details" = "Detalji poruke";
 "menu_copy_to_clipboard" = "Kopiraj u međuspremnik";
 "menu_forward" = "Proslijedi poruku";
@@ -133,7 +129,6 @@
 "login_imap_server" = "IMAP server";
 "login_smtp_password" = "SMTP lozinka";
 "login_smtp_server" = "SMTP server";
-"login_error_server" = "Molimo unesite valjan server / IP adresu";
 "delete_account" = "Obriši račun";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
@@ -154,8 +149,6 @@
 "pref_led_color" = "Boja LED";
 "pref_sound" = "Zvuk";
 "pref_silent" = "Tiho";
-// deprecated
-"pref_privacy" = "Privatnost";
 "pref_system_default" = "Sustavno zadano";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Svijetlo";
@@ -185,8 +178,6 @@
 "member_x_removed" = "Član %1$@ uklonjen.";
 // qr code stuff
 "qr_code" = "QR kod";
-// deprecated
-"qrscan_fingerprint_label" = "Otisak prsta";
 // notifications
 "notify_reply_button" = "Odgovori";
 "notify_new_message" = "Nova poruka";

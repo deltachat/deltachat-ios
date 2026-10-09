@@ -12,8 +12,6 @@
 "on" = "Įjungta";
 "off" = "Išjungta";
 "def" = "Pagal numatymą";
-// deprecated
-"default_value" = "Numatytasis (%1$@)";
 "custom" = "Tinkintas";
 "none" = "Nėra";
 "automatic" = "Automatinis";
@@ -25,8 +23,6 @@
 "join" = "Prisijungti";
 "join_group" = "Prisijungti prie grupės";
 "join_channel" = "Prisijungti prie kanalo";
-// deprecated
-"rejoin" = "Prisijungti iš naujo";
 "delete" = "Ištrinti";
 "delete_for_me" = "Ištrinti man";
 "delete_for_everyone" = "Ištrinti visiems";
@@ -59,10 +55,6 @@
 "media" = "Medija";
 "apps_and_media" = "Programėlės ir medija";
 "profile" = "Profilis";
-// deprecated
-"all_profiles" = "Visi profiliai";
-// deprecated
-"current_profile" = "Dabartinis profilis";
 "main_menu" = "Pagrindinis meniu";
 "start_chat" = "Pradėti pokalbį";
 "show_full_message" = "Rodyti visą žinutę…";
@@ -82,11 +74,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Nuotoliniai paveikslai gali būti naudojami, kad būtumėte sekami.\n\nŠis nustatymas taip pat leidžia šriftų įkėlimą ir kitą turinį. Netgi, jeigu jis yra išjungtas, gali būti, kad vis tiek matysite įterptus paveikslus ar paveikslus iš podėlio.\n\nĮkelti nuotolinius paveikslus?";
 "always" = "Visada";
-// deprecated
-"always_load_remote_images" = "Visada įkelti nuotolinius paveikslus";
 "once" = "Vieną kartą";
-// deprecated
-"show_warning" = "Rodyti įspėjimą";
 "not_now" = "Ne dabar";
 "never" = "Niekada";
 "one_moment" = "Minutėlę…";
@@ -100,13 +88,9 @@
 "no_app_to_handle_data" = "Nepavyksta rasti programėlės, kuri apdorotų šį duomenų tipą.";
 "no_browser_installed" = "Neįdiegta jokia naršyklė.";
 "file_not_found" = "Nepavyko rasti %1$@.";
-// deprecated
-"cannot_save_file" = "Nepavyksta įrašyti %1$@.";
 "copied_to_clipboard" = "Nukopijuota į iškarpinę.";
 "contacts_headline" = "Adresatai";
 "email_address" = "El. pašto adresas";
-// deprecated
-"bad_email_address" = "Blogas el. pašto adresas.";
 "password" = "Slaptažodis";
 "existing_password" = "Dabartinis slaptažodis";
 "now" = "Dabar";
@@ -137,10 +121,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Lipdukas";
 "add_to_sticker_collection" = "Pridėti į lipdukų rinkinį";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Norėdami pridėti lipdukų, bakstelėkite „Atverti lipdukų aplanką“, sukurkite savo lipdukų paketui poaplankį ir tempkite į jį paveikslų bei lipdukų failus";
-// deprecated
-"open_sticker_folder" = "Atverti lipdukų aplanką";
 "ask_add_sticker_to_collection" = "Pridėti šį lipduką į jūsų rinkinį?";
 "ask_delete_sticker" = "Ištrinti šį lipduką?";
 "sticker_picker_empty_hint" = "Spustelėkite ant lipduko norėdami jį čia pridėti.";
@@ -163,8 +143,6 @@
 "switch_camera" = "Perjungti kamerą";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Perjungti kamerą";
-// deprecated
-"toggle_fullscreen" = "Perjungti viso ekrano veikseną";
 "location" = "Vietovė";
 "locations" = "Vietovės";
 "gallery" = "Galerija";
@@ -199,13 +177,9 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Mastelis";
-// deprecated
-"extra_small" = "Labai mažas";
 "small" = "Mažas";
 "normal" = "Normalus";
 "large" = "Didelis";
-// deprecated
-"extra_large" = "Labai didelis";
 "fast" = "Greitas";
 "slow" = "Lėtas";
 // menu labels (or icon, buttons...)
@@ -234,8 +208,6 @@
 "menu_send" = "Siųsti";
 "menu_toggle_keyboard" = "Perjungti šypsniukų klaviatūrą";
 "menu_edit_group" = "Taisyti grupę";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Grupės pavadinimas ir paveikslas";
 "menu_show_global_map" = "Rodyti visas vietoves";
 "menu_archive_chat" = "Archyvuoti pokalbį";
 "menu_unarchive_chat" = "Išarchyvuoti pokalbį";
@@ -247,8 +219,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Išvalyti pokalbį";
 "delete_contact" = "Ištrinti adresatą";
-// deprecated
-"menu_delete_location" = "Ištrinti šią vietovę?";
 "menu_message_details" = "Išsamesnė žinutės informacija";
 "menu_copy_to_clipboard" = "Kopijuoti į iškarpinę";
 "share_invite_link" = "Bendrinti pakvietimo nuorodą";
@@ -325,7 +295,6 @@
 "mute_for_one_day" = "Išjungti 1 dienai";
 "mute_for_seven_days" = "Išjungti 7 dienoms";
 "mute_forever" = "Išjungti visam laikui";
-// deprecated
 "share_location_for_5_minutes" = "5 minutėms";
 "share_location_for_30_minutes" = "30 minučių";
 "share_location_for_one_hour" = "1 valandai";
@@ -352,14 +321,6 @@
 "call_reconnecting" = "Jungiamasi iš naujo…";
 "call_ended" = "Skambutis baigtas";
 "call_failed" = "Skambutis patyrė nesėkmę";
-// deprecated, use "Audio call" instead
-"outgoing_audio_call" = "Išsiunčiamasis garso skambutis";
-// deprecated, use "Video call" instead
-"outgoing_video_call" = "Išsiunčiamasis vaizdo skambutis";
-// deprecated, use "Audio call" instead
-"incoming_audio_call" = "Gaunamasis garso skambutis";
-// deprecated, use "Video call" instead
-"incoming_video_call" = "Gaunamasis vaizdo skambutis";
 "missed_call" = "Praleistas skambutis";
 "call_back" = "Atskambinti";
 "call_answered_elsewhere" = "Atsiliepta kitame įrenginyje";
@@ -374,8 +335,6 @@
 "ask_leave_group" = "Ar tikrai norite išeiti?";
 "ask_delete_named_chat" = "Ištrinti pokalbį „%1$@“?";
 "ask_delete_message" = "Ištrinti šią žinutę visuose jūsų įrenginiuose?";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Persiųsti žinutes %1$@?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
 "ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
@@ -413,18 +372,12 @@
 "saved_messages_explain" = "• Persiųskite žinutes čia, kad lengvai jas pasiektumėte\n\n• Rašykitės pastabas ar įrašinėkite balso žinutes\n\n• Pridėkite mediją, norėdami ją išsisaugoti";
 // Should match "Saved" from "Saved messages"
 "saved" = "Įrašyta";
-// deprecated
-"save_as" = "Įrašyti kaip";
-// deprecated
-"retry_send" = "Bandyti iš naujo išsiųsti žinutę";
-// deprecated
-"cannot_display_unsuported_file_type" = "Nepavyksta atvaizduoti šio failo tipo: %1$@";
 "attachment_failed_to_load" = "Nepavyko įkelti priedo";
 // mailing lists
 "mailing_list" = "Pašto prenumeratos sąrašas";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Pradėti…";
+// "Start" button for an app
+"start_app" = "Pradėti";
 // punycode warning / labeled links
 "puny_code_warning_header" = "Aptikta įtartina nuoroda";
 // placeholder contains the hostname converted to ascii
@@ -443,8 +396,6 @@
 "remove_group_image" = "Šalinti grupės paveikslą";
 "change_group_image" = "Keisti grupės paveikslą";
 "group_create_button" = "Sukurti grupę";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Įveskite grupės pavadinimą.";
 "please_enter_chat_name" = "Įrašykite pavadinimą.";
 "group_add_members" = "Pridėti dalyvius";
 "group_self_not_in_group" = "Norėdami atlikti šį veiksmą, privalote būti grupės dalyviu.";
@@ -455,15 +406,11 @@
 "tab_contact" = "Adresatas";
 "tab_group" = "Grupė";
 "tab_gallery" = "Galerija";
-// deprecated
-"tab_docs" = "Dokumentai";
 "tab_links" = "Nuorodos";
 "tab_map" = "Žemėlapis";
 "tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
 "tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
 "tab_image_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti paveikslai.";
-// deprecated
-"tab_video_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti vaizdo įrašai.";
 "tab_audio_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti garso įrašų failai ir balso žinutės.";
 "tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
 "media_preview" = "Medijos peržiūra";
@@ -506,8 +453,6 @@
 "connectivity_connected" = "Prisijungta";
 "sending" = "Siunčiama…";
 "last_msg_sent_successfully" = "Paskutinė žinutė sėkmingai išsiųsta.";
-// deprecated
-"not_supported_by_provider" = "Jūsų teikėjas nepalaiko šios ypatybės.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Žinutės";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -521,9 +466,6 @@
 "manual_account_setup_option" = "Naudoti klasikinį el. paštą kaip retransliavimą";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Jūsų profilis";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "%1$@ privatumo politika";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Sutinku ir sukurti profilį";
 // Secondary, link-like button to open a page with other possible instances
@@ -544,8 +486,6 @@
 "create_team_profile" = "Sukurti komandos profilį";
 "welcome_chat_over_email" = "Saugūs decentralizuoti pokalbiai";
 "scan_invitation_code" = "Skenuoti pakvietimo kodą";
-// deprecated
-"login_title" = "Prisijungti";
 "login_inbox" = "Gauta";
 "login_imap_login" = "IMAP prisijungimo vardas";
 "login_imap_server" = "IMAP serveris";
@@ -576,25 +516,15 @@
 "add_transport" = "Pridėti retransliavimą";
 "remove_transport" = "Šalinti retransliavimą";
 "edit_transport" = "Taisyti retransliavimą";
-// deprecated
-"used_for_sending" = "Naudojama siuntimui";
-// deprecated
-"hide_from_contacts" = "Slėpti nuo adresatų";
-// deprecated
-"hidden_from_contacts" = "Paslėpta nuo adresatų";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Pridėti šį retransliavimą?";
 "invalid_transport_qr" = "Nuskenuotame QR kode nėra tinkamo retransliavimo.";
 "login_certificate_checks" = "Liudijimų patikrinimai";
+// deprecated
 "login_error_mail" = "Įveskite teisingą el. pašto adresą.";
-"login_error_server" = "Įveskite teisingą serverį / IP adresą";
-"login_error_port" = "Įveskite teisingą prievadą (1–65535)";
-"login_error_required_fields" = "Įveskite teisingą el. pašto adresą ir slaptažodį";
 "import_backup_title" = "Importuoti atsarginę kopiją";
 "import_backup_ask" = "Atsarginė kopija rasta ties \"%1$@\".\n\nAr norite iš jos importuoti ir naudoti visus duomenis ir nustatymus?";
 "import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \"%1$@\" ir bandykite dar kartą.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Nepavyksta prisijungti kaip \"%1$@\". Patikrinkite ar el. pašto adresas ir slaptažodis yra teisingi.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
 "switch_account" = "Perjungti paskyrą";
@@ -649,12 +579,8 @@
 "pref_notifications_priority" = "Pirmenybė";
 "pref_notifications_explain" = "Įjungti sistemos pranešimus apie naujas žinutes";
 "pref_show_notification_content" = "Rodyti pranešime žinutės turinį";
-// deprecated
-"pref_show_notification_content_explain" = "Rodyti pranešimuose siuntėjo vardą ir pirmuosius žinutės žodžius";
 "pref_led_color" = "Šviesos diodo spalva";
 "pref_sound" = "Garsas";
-// deprecated
-"pref_privacy" = "Privatumas";
 "pref_system_default" = "Sistemos numatytoji";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Šviesus";
@@ -671,10 +597,6 @@
 // Title above a list of contacts who read a message
 "read_by" = "Perskaitė";
 "pref_server" = "Serveris";
-// deprecated
-"pref_encryption" = "Šifravimas";
-// deprecated
-"pref_manage_keys" = "Tvarkyti raktus";
 "pref_chats" = "Pokalbiai";
 "pref_in_chat_sounds" = "Garsai pokalbiuose";
 "pref_view_log" = "Rodyti žurnalą";
@@ -694,19 +616,9 @@
 "pref_background" = "Fonas";
 "pref_background_btn_default" = "Naudoti numatytąjį paveikslą";
 "pref_background_btn_gallery" = "Pasirinkti iš galerijos";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Jeigu išjungiate šį parametrą, įsitikinkite, kad jūsų serveris ir kiti klientai yra sukonfigūruoti atitinkamai.\n\nPriešingu atveju, tai gali iš viso neveikti.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Kelių įrenginių veiksena";
 "pref_multidevice_explain" = "Sinchronizuoti jūsų žinutes su kitais įrenginiais. Automatiškai įjungta, kai pridėtas antrasis įrenginys";
-// deprecated
-"pref_auto_folder_moves" = "Automatiniai perkėlimai į DeltaChat aplanką";
-// deprecated
-"pref_show_emails" = "Rodyti klasikinius el. laiškus";
-// deprecated
-"pref_show_emails_no" = "Ne, tik pokalbius";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Iš priimtų adresatų";
 // deprecated, use "All"
 "pref_show_emails_all" = "Iš visų";
 "pref_experimental_features" = "Eksperimentinės ypatybės";
@@ -759,8 +671,6 @@
 // automatically delete message
 "delete_old_messages" = "Ištrinti senas žinutes";
 "autodel_device_title" = "Ištrinti žinutes iš įrenginio";
-// deprecated
-"autodel_server_title" = "Ištrinti žinutes iš serverio";
 "autodel_confirm" = "Aš suprantu, ištrinti visas šias žinutes";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Iš karto";
@@ -851,8 +761,6 @@
 "qrscan_ask_join_channel" = "Ar norite prisijungti prie kanalo „%1$@“?";
 "qrscan_contains_text" = "Nuskenuoto QR kodo tekstas:\n\n%1$@";
 "qrscan_contains_url" = "Nuskenuoto QR kodo URL:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Kontrolinis kodas";
 "withdraw_verifycontact_explain" = "Kiti žmonės gali nuskenuoti šį QR kodą, kad su jumis susisiektų.\n\nJūs galite jį atstatyti, kad esamas QR kodas ar pakvietimo nuoroda daugiau nebeveiktų.";
 "withdraw_qr_code" = "Pasyvinti QR kodą";
 "revive_verifycontact_explain" = "Šis QR kodas buvo atstatytas ir daugiau nebėra aktyvus.";
@@ -868,13 +776,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Nuskenuokite norėdami pradėti pokalbį su %1$@";
 "qrshow_join_contact_no_connection_toast" = "Nėra interneto ryšio, nepavyksta atlikti QR kodo sąrankos.";
-// deprecated
-"qraccount_ask_create_and_login" = "Sukurti naują el. pašto adresą ties „%1$@“ ir prisijungti ten?";
 "set_name_and_avatar_explain" = "Nusistatykite vardą, kurį jūsų adresatai atpažins. Taip pat galite nusistatyti profilio nuotrauką.";
 "please_enter_name" = "Įrašykite vardą.";
 "qraccount_qr_code_cannot_be_used" = "Nuskenuotas QR kodas negali būti naudojamas naujos paskyros nustatymui.";
-// deprecated
-"qrlogin_ask_login" = "Prisijungti prie „%1$@“?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ pakvietė jus prisijungti prie šios grupės.\n\nLaukiama, kol atsakys naudotojo %2$@ įrenginys…";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -952,8 +856,6 @@
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
 "menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
 "explain_desktop_minimized_disabled_tray_pref" = "Dėklo piktograma negali būti išjungta, nes Delta Chat buvo paleista naudojant --minimized parinktį.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Nerasta jokių rašybos pasiūlymų.";
 "show_window" = "Rodyti langą";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Spartieji klavišai";
@@ -987,22 +889,10 @@
 "stop_sharing_location" = "Nustoti bendrinti vietovę";
 "a11y_connectivity_hint" = "Bakstelėkite du kartus norėdami pamatyti išsamesnę informaciją apie jungiamumą.";
 "login_error_no_internet_connection" = "Nėra interneto ryšio, nepavyko prisijungti.";
-// deprecated
-"share_account_not_configured" = "Paskyra nėra sukonfigūruota.";
 "cannot_play_audio_file" = "Garso įrašo failas negali būti atkurtas.";
 "open_settings" = "Atverti nustatymus";
-// deprecated
-"import_device_contacts" = "Importuoti įrenginio adresatus";
-// deprecated
-"disabled_in_dc" = "Išjungta Delta Chat programėlėje";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Išjungta sistemos nustatymuose";
-// deprecated
-"notifications_avg_minutes" = "Vidutiniškai kas %1$d min.";
-// deprecated
-"notifications_avg_hours" = "Vidutiniškai kas %1$d val.";
-// deprecated
-"last_check_at" = "Tikrinta %1$@";
 "system_settings" = "Sistemos nustatymai";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 // android specific strings, developers: please take care to remove strings that are no longer used!
@@ -1011,7 +901,7 @@
 "pref_reliable_service" = "Priverstinai naudoti foninį ryšį";
 "pref_reliable_service_explain" = "Rodo pastovų pranešimą";
 "pref_background_notifications_rationale" = "Norėdami palaikyti ryšį su savo el. pašto serveriu ir gauti žinutes fone, kitame žingsnyje nepaisykite akumuliatoriaus optimizavimų (leiskite vykdyti programą fone).\n\nDelta Chat naudoja nedaug išteklių ir rūpinasi, kad neeikvotų jūsų akumuliatoriaus energijos.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Bakstelėkite čia, norėdami gauti žinutes, kol Delta Chat veikia fone.";
 "perm_enable_bg_already_done" = "Jūs jau leidote Delta Chat gauti žinutes fone.\n\nJei žinutės vis tiek nepristatomos fone, patikrinkite taip pat savo sistemos nustatymus.";
 "update_2_6_end" = "Jei galite, paremkite mus, kad padėtumėte mums išlikti nepriklausomiems bei toliau teikti patobulinimus ❤️ https://delta.chat/donate";

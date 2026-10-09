@@ -42,8 +42,6 @@
 "error_x" = "பிழை: %1$@";
 "contacts_headline" = "தொடர்புகள்";
 "email_address" = "மின் அஞ்சல் முகவரி";
-// deprecated
-"bad_email_address" = "தவறான மின் அஞ்சல் முகவரி";
 "password" = "கடவுச்சொல்";
 "now" = "இப்போது";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
@@ -81,8 +79,6 @@
 "small" = "சிறிய";
 "normal" = "சாதாரணமாக";
 "large" = "பெரிய";
-// deprecated
-"extra_large" = "கூடுதல் பெரியது";
 "fast" = "வேகமாக";
 "slow" = "மெதுவாக";
 // menu labels (or icon, buttons...)
@@ -115,14 +111,11 @@
 "mute_for_one_day" = "1 நாள் இதற்காக ஊமையாக்கு";
 "mute_for_seven_days" = "7 நாட்கள் இதற்காக ஊமையாக்கு";
 "mute_forever" = "எப்போதுமே ஊமையாக்கு";
-// deprecated
 "share_location_for_5_minutes" = "5 நிமிடங்கள் ";
 "share_location_for_30_minutes" = "30 நிமிடங்கள் ";
 "share_location_for_one_hour" = "1 மணி";
 "share_location_for_two_hours" = "2 மணிகள்";
 "share_location_for_six_hours" = "6 மணிகள்";
-// deprecated, use ask_forward_messages
-"ask_forward" = "தேர்வு செய்யப்பட்ட செய்திகளை இவற்றுக்கு %1$@ முன்னோக்கி அனுப்பவா ?";
 "ask_block_contact" = "இந்த தொடர்பை முடக்கவா ?";
 // contact list
 "contacts_title" = "தொடர்புகள்";
@@ -138,8 +131,6 @@
 "search" = "தேடு";
 // create/edit groups, contact/group profile
 "group_name" = "குழுவின் பெயர்";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "குழுவிற்கு ஒரு பெயரை சூட்டவும்";
 "group_add_members" = "உறுப்பினர்களை சேர்க்க";
 "profile_encryption" = "மறைகுறியாக்கம்";
 "tab_contact" = "தொடர்பு";
@@ -166,8 +157,6 @@
 "pref_led_color" = "LED நிறம்";
 "pref_sound" = "ஓசை";
 "pref_silent" = "அமைதி";
-// deprecated
-"pref_privacy" = "தனியுரிமை";
 "pref_system_default" = "கருவி இயல்புநிலை";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "வெளிச்சமிக்க";
@@ -188,8 +177,6 @@
 "pref_background" = "அரட்டை பின்புலம்";
 // %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
 "member_x_removed" = "உறுப்பினர் %1$@ நீக்கப்பட்டார்";
-// deprecated
-"qrscan_fingerprint_label" = "கைரேகைகள்";
 // notifications
 "notify_reply_button" = "மறுமொழி";
 "notify_new_message" = "புதிய செய்தி";

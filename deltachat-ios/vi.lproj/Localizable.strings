@@ -9,8 +9,6 @@
 "on" = "Bật";
 "off" = "Tắt";
 "def" = "Mặc định";
-// deprecated
-"default_value" = "Mặc định (%1$@)";
 "custom" = "Tùy chỉnh";
 "none" = "Không";
 "automatic" = "Tự động";
@@ -20,8 +18,6 @@
 "downloading" = "Đang tải xuống…";
 "open_attachment" = "Mở tệp đính kèm";
 "join" = "Tham gia";
-// deprecated
-"rejoin" = "Tham gia lại";
 "delete" = "Xóa";
 "info" = "Thông tin";
 "update" = "Cập nhật";
@@ -62,11 +58,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Hình ảnh từ xa có thể theo dõi bạn.\n\nThiết đặt này cũng có thể tải phông chữ và nội dung khác. Nếu bị tắt, hình ảnh được nhúng hoặc được lưu vào bộ nhớ đệm có thể xuất hiện.\n\nTải hình ảnh từ xa?";
 "always" = "Luôn luôn";
-// deprecated
-"always_load_remote_images" = "Luôn tải hình ảnh từ xa";
 "once" = "Một lần";
-// deprecated
-"show_warning" = "Hiển thị cảnh báo";
 "not_now" = "Không phải bây giờ";
 "never" = "Không bao giờ";
 "one_moment" = "Một lát…";
@@ -83,8 +75,6 @@
 "copied_to_clipboard" = "Đã chép vào clipboard.";
 "contacts_headline" = "Danh bạ";
 "email_address" = "Địa chỉ E-mail";
-// deprecated
-"bad_email_address" = "Địa chỉ e-mail xấu.";
 "password" = "Mật khẩu";
 "existing_password" = "Mật khẩu hiện tại";
 "now" = "Bây giờ";
@@ -114,10 +104,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Hình dán";
 "add_to_sticker_collection" = "Thêm vào Bộ sưu tập Hình dán";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Để thêm nhãn dán, hãy nhấn vào \"Mở thư mục nhãn dán\", tạo thư mục con cho gói nhãn dán của bạn rồi kéo tệp hình ảnh và nhãn dán vào đó";
-// deprecated
-"open_sticker_folder" = "Mở thư mục nhãn dán";
 "images" = "Hình ảnh";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Âm thanh";
@@ -134,8 +120,6 @@
 "capture" = "Chụp";
 // Switch eg. from front to back camera
 "switch_camera" = "Chuyển đổi máy ảnh";
-// deprecated
-"toggle_fullscreen" = "Chuyển đổi Chế độ toàn màn hình";
 "location" = "Vị trí";
 "locations" = "Vị trí";
 "gallery" = "Phòng trưng bày";
@@ -156,13 +140,9 @@
 "magenta" = "Đỏ tươi";
 "white" = "Trắng";
 "zoom" = "Thu phóng";
-// deprecated
-"extra_small" = "Cực nhỏ";
 "small" = "Nhỏ";
 "normal" = "Bình thường";
 "large" = "Lớn";
-// deprecated
-"extra_large" = "Cực lớn";
 "fast" = "Nhanh";
 "slow" = "Chậm";
 // menu labels (or icon, buttons...)
@@ -173,8 +153,6 @@
 "menu_send" = "Gửi";
 "menu_toggle_keyboard" = "Chuyển đổi Bàn phím Emoji";
 "menu_edit_group" = "Chỉnh sửa nhóm";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Tên nhóm và hình ảnh";
 "menu_show_global_map" = "Tất cả vị trí";
 "menu_archive_chat" = "Lưu trữ cuộc trò chuyện";
 "menu_unarchive_chat" = "Hủy lưu trữ cuộc trò chuyện";
@@ -184,8 +162,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Xóa cuộc trò chuyện";
 "delete_contact" = "Xóa liên hệ";
-// deprecated
-"menu_delete_location" = "Xóa vị trí này?";
 "menu_message_details" = "Chi tiết tin nhắn";
 "menu_copy_to_clipboard" = "Sao chép vào Clipboard";
 "menu_copy_selection_to_clipboard" = "Sao chép lựa chọn";
@@ -221,8 +197,6 @@
 "privacy_policy" = "Chính sách quyền riêng tư";
 "menu_select_all" = "Chọn tất cả";
 "select_chat" = "Chọn Trò chuyện";
-// deprecated
-"select_more" = "Chọn thêm";
 "menu_edit_name" = "Chỉnh sửa tên";
 "menu_settings" = "Cài đặt";
 "menu_advanced" = "Nâng cao";
@@ -231,7 +205,6 @@
 "menu_zoom_out" = "Thu nhỏ";
 "menu_save_log" = "Lưu nhật ký";
 "menu_more_options" = "Tùy chọn khác";
-"menu_learn_spelling" = "Học đánh vần";
 "jump_to_message" = "Chuyển tới tin nhắn";
 "replace_draft" = "Thay thế bản nháp";
 "title_share_location" = "Chia sẻ vị trí với tất cả thành viên nhóm";
@@ -258,15 +231,12 @@
 "mute_for_one_day" = "Tắt tiếng trong 1 ngày";
 "mute_for_seven_days" = "Tắt tiếng trong 7 ngày";
 "mute_forever" = "Tắt tiếng vĩnh viễn";
-// deprecated
 "share_location_for_5_minutes" = "Trong 5 phút";
 "share_location_for_30_minutes" = "Trong 30 phút";
 "share_location_for_one_hour" = "Trong 1 giờ";
 "share_location_for_two_hours" = "Trong 2 giờ";
 "share_location_for_six_hours" = "Trong 6 giờ";
 "file_saved_to" = "Tệp đã được lưu vào \"%1$@\".";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Chuyển tiếp tin nhắn tới %1$@?";
 "ask_forward_multiple" = "Chuyển tiếp tin nhắn tới %1$d cuộc trò chuyện?";
 "ask_export_attachment" = "Xuất tệp đính kèm sẽ cho phép các ứng dụng khác trên thiết bị của bạn truy cập chúng.\n\nTiếp tục?";
 "ask_block_contact" = "Chặn liên hệ này? Bạn sẽ không còn nhận được tin nhắn từ họ nữa.";
@@ -305,20 +275,14 @@
 "saved_messages_explain" = "• Chuyển tiếp tin nhắn tại đây để dễ dàng truy cập\n\n• Ghi chú hoặc ghi nhớ giọng nói\n\n• Đính kèm phương tiện để lưu chúng";
 // Should match "Saved" from "Saved messages"
 "saved" = "Đã lưu";
-// deprecated
-"save_as" = "Lưu dưới dạng";
-// deprecated
-"retry_send" = "Thử gửi lại tin nhắn";
-// deprecated
-"cannot_display_unsuported_file_type" = "Không thể hiển thị loại tệp này: %1$@";
 "attachment_failed_to_load" = "Không tải được tệp đính kèm";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Khóa ghi âm";
 // mailing lists
 "mailing_list" = "Danh sách gửi thư";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Bắt đầu…";
+// "Start" button for an app
+"start_app" = "Bắt đầu";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Vui lòng chấp nhận yêu cầu trò chuyện trước.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -343,8 +307,6 @@
 "remove_group_image" = "Xóa hình ảnh nhóm";
 "change_group_image" = "Thay đổi hình ảnh nhóm";
 "group_create_button" = "Tạo nhóm";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Vui lòng nhập tên cho nhóm.";
 "group_add_members" = "Thêm thành viên";
 "group_self_not_in_group" = "Bạn phải là thành viên của nhóm để thực hiện hành động này.";
 "profile_encryption" = "Mã hóa";
@@ -352,24 +314,16 @@
 "tab_contact" = "Liên hệ";
 "tab_group" = "Nhóm";
 "tab_gallery" = "Thư viện";
-// deprecated
-"tab_docs" = "Tài liệu";
 "tab_links" = "Liên kết";
 "tab_map" = "Bản đồ";
 "tab_gallery_empty_hint" = "Hình ảnh và video được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_docs_empty_hint" = "Tài liệu và các tệp khác được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_image_empty_hint" = "Hình ảnh được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
-// deprecated
-"tab_video_empty_hint" = "Video được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_audio_empty_hint" = "Các tệp âm thanh và tin nhắn thoại được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_webxdc_empty_hint" = "Các ứng dụng được chia sẻ trong cuộc trò chuyện này sẽ xuất hiện ở đây.";
 "tab_all_media_empty_hint" = "Phương tiện được chia sẻ trong bất kỳ cuộc trò chuyện nào sẽ xuất hiện ở đây.";
 "all_apps_empty_hint" = "Các ứng dụng được nhận hoặc gửi trong bất kỳ cuộc trò chuyện nào sẽ xuất hiện ở đây.";
 "media_preview" = "Xem trước phương tiện";
-// deprecated
-"aspect_ratio_grid" = "Lưới tỷ lệ khung hình";
-// deprecated
-"square_grid" = "Lưới vuông";
 "send_message" = "Gửi tin nhắn";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -408,15 +362,11 @@
 "connectivity_connected" = "Đã kết nối";
 "sending" = "Đang gửi…";
 "last_msg_sent_successfully" = "Tin nhắn cuối cùng được gửi thành công.";
-// deprecated
-"not_supported_by_provider" = "Không được nhà cung cấp của bạn hỗ trợ.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Tin nhắn";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ trong tổng số %2$@ đã được sử dụng";
 "scan_invitation_code" = "Quét mã mời";
-// deprecated
-"login_title" = "Đăng nhập";
 "login_inbox" = "Hộp thư đến";
 "login_imap_login" = "Tên đăng nhập IMAP";
 "login_imap_server" = "Máy chủ IMAP";
@@ -429,15 +379,11 @@
 "login_smtp_port" = "Cổng SMTP";
 "login_smtp_security" = "Bảo mật SMTP";
 "login_certificate_checks" = "Kiểm tra chứng chỉ";
+// deprecated
 "login_error_mail" = "Vui lòng nhập địa chỉ e-mail hợp lệ";
-"login_error_server" = "Vui lòng nhập địa chỉ máy chủ / IP hợp lệ";
-"login_error_port" = "Vui lòng nhập cổng hợp lệ (1–65535)";
-"login_error_required_fields" = "Vui lòng nhập địa chỉ email hợp lệ và mật khẩu";
 "import_backup_title" = "Khôi phục từ bản sao lưu";
 "import_backup_ask" = "Đã tìm thấy bản sao lưu tại \"%1$@\".\n\nBạn có muốn nhập và sử dụng tất cả dữ liệu cũng như cài đặt từ nó không?";
 "import_backup_no_backup_found" = "Không tìm thấy bản sao lưu nào.\n\nSao chép bản sao lưu vào \"%1$@\" và thử lại.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Không thể đăng nhập với tên \"%1$@\". Vui lòng kiểm tra xem địa chỉ e-mail và mật khẩu có đúng không.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Chấp nhận chứng chỉ không hợp lệ";
 "switch_account" = "Chuyển đổi tài khoản";
@@ -482,13 +428,9 @@
 "pref_notifications_priority" = "Ưu tiên";
 "pref_notifications_explain" = "Bật thông báo hệ thống cho tin nhắn mới";
 "pref_show_notification_content" = "Hiển thị nội dung tin nhắn trong thông báo";
-// deprecated
-"pref_show_notification_content_explain" = "Hiển thị người gửi và từ đầu tiên của tin nhắn trong thông báo";
 "pref_led_color" = "Màu LED";
 "pref_sound" = "Âm thanh";
 "pref_silent" = "Im lặng";
-// deprecated
-"pref_privacy" = "Quyền riêng tư";
 "pref_system_default" = "Mặc định hệ thống";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Ánh sáng";
@@ -501,8 +443,6 @@
 "pref_incognito_keyboard_explain" = "Yêu cầu bàn phím tắt tính năng học tập được cá nhân hóa";
 "pref_read_receipts" = "Đã đọc Biên lai";
 "pref_read_receipts_explain" = "Nếu thông báo xác nhận đã đọc bị tắt, bạn sẽ không thể xem thông báo xác nhận đã đọc từ người khác.";
-// deprecated
-"pref_manage_keys" = "Quản lý khóa";
 "pref_chats" = "Trò chuyện";
 "pref_in_chat_sounds" = "Âm thanh trong cuộc trò chuyện";
 "pref_view_log" = "Xem nhật ký";
@@ -521,18 +461,6 @@
 "pref_background" = "Hình nền";
 "pref_background_btn_default" = "Sử dụng hình ảnh mặc định";
 "pref_background_btn_gallery" = "Chọn từ thư viện";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Nếu bạn thay đổi tùy chọn này, hãy đảm bảo rằng máy chủ và các máy khách khác của bạn được cấu hình tương ứng.\n\nNếu không, mọi thứ có thể không hoạt động.";
-// deprecated
-"pref_auto_folder_moves" = "Tự động di chuyển đến Thư mục DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Chỉ tìm nạp từ thư mục DeltaChat";
-// deprecated
-"pref_show_emails" = "Hiển thị E-mail cổ điển";
-// deprecated
-"pref_show_emails_no" = "Không, chỉ trò chuyện";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Đối với các liên hệ được chấp nhận";
 // deprecated, use "All"
 "pref_show_emails_all" = "Tất cả";
 "pref_experimental_features" = "Tính năng thử nghiệm";
@@ -572,14 +500,8 @@
 // automatically delete message
 "delete_old_messages" = "Xóa tin nhắn cũ";
 "autodel_device_title" = "Xóa tin nhắn khỏi thiết bị";
-// deprecated
-"autodel_server_title" = "Xóa tin nhắn khỏi máy chủ";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Bạn có muốn xóa %1$d tin nhắn ngay bây giờ và tất cả các tin nhắn mới được tìm nạp \"%2$@\" trong tương lai không?\n\n• Điều này bao gồm tất cả phương tiện\n\n• Tin nhắn sẽ bị xóa dù chúng có được nhìn thấy hay không\n\n• \"Tin nhắn đã lưu\" sẽ bị bỏ qua khỏi quá trình xóa cục bộ";
-// deprecated
-"autodel_server_ask" = "Bạn có muốn xóa %1$d tin nhắn ngay bây giờ và tất cả các tin nhắn mới được tìm nạp \"%2$@\" trong tương lai không?\n\n⚠️ Điều này bao gồm e-mail, phương tiện và \"Tin nhắn đã lưu\" trong tất cả máy chủ thư mục\n\n⚠️ Không sử dụng chức năng này nếu bạn muốn giữ dữ liệu trên máy chủ\n\n⚠️ Không sử dụng chức năng này nếu bạn đang sử dụng các ứng dụng e-mail khác ngoài Delta Chat";
-// deprecated
-"autodel_server_enabled_hint" = "Điều này bao gồm e-mail, phương tiện và \"Tin nhắn đã lưu\" trong tất cả các thư mục máy chủ. Không sử dụng chức năng này nếu bạn muốn giữ dữ liệu trên máy chủ hoặc nếu bạn đang sử dụng các ứng dụng e-mail khác ngoài Delta Chat.";
 "autodel_confirm" = "Tôi hiểu, hãy xóa tất cả những tin nhắn này";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Ngay lập tức";
@@ -653,8 +575,6 @@
 "chat_protection_enabled_explanation" = "Hiện tại, chúng tôi đảm bảo rằng tất cả tin nhắn trong cuộc trò chuyện này đều được mã hóa hai đầu.\n\nMã hóa hai đầu giúp giữ tin nhắn giữa bạn và đối tác trò chuyện của bạn ở chế độ riêng tư. Ngay cả nhà cung cấp email của bạn cũng không thể đọc được chúng.";
 "learn_more" = "Tìm hiểu thêm";
 "devicemsg_self_deleted" = "Bạn đã xóa cuộc trò chuyện \"Tin nhắn đã lưu\".\n\nℹ️ Để sử dụng lại tính năng \"Tin nhắn đã lưu\", hãy tạo một cuộc trò chuyện mới với chính bạn.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ Bộ nhớ nhà cung cấp của bạn sắp hết: %1$@%% đã được sử dụng.\n\nBạn có thể không nhận được tin nhắn nếu bộ nhớ đầy.\n\n 👉 Vui lòng kiểm tra xem bạn có thể xóa không dữ liệu cũ trong giao diện web của nhà cung cấp và cân nhắc bật \"Cài đặt / Xóa tin nhắn cũ\". Bạn có thể kiểm tra mức sử dụng bộ nhớ hiện tại của mình bất kỳ lúc nào tại \"Cài đặt / Kết nối\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Ngày hoặc giờ trên thiết bị của bạn có vẻ không chính xác (%1$@).\n\nĐiều chỉnh đồng hồ của bạn ⏰🔧 để đảm bảo tin nhắn của bạn được nhận chính xác.";
 "devicemsg_update_reminder" = "⚠️ Phiên bản Delta Chat của bạn có thể đã lỗi thời.\n\nĐiều này có thể gây ra sự cố vì đối tác trò chuyện của bạn sử dụng các phiên bản mới hơn - và bạn đang thiếu các tính năng mới nhất 😳\nVui lòng kiểm tra https://get.delta.chat hoặc cửa hàng ứng dụng của bạn để biết thông tin cập nhật .";
@@ -667,14 +587,8 @@
 "qrscan_hint" = "Giữ máy ảnh của bạn phía trên mã QR.";
 "qrscan_failed" = "Mã QR không thể giải mã được";
 "qrscan_ask_join_group" = "Bạn có muốn tham gia nhóm \"%1$@\" không?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "Dấu vân tay được quét không khớp với dấu vân tay được nhìn thấy lần cuối trong %1$@.";
-// deprecated
-"qrscan_no_addr_found" = "Mã QR này chứa dấu vân tay nhưng không có địa chỉ email.\n\nĐể xác minh ngoài băng tần, trước tiên vui lòng thiết lập kết nối được mã hóa với người nhận.";
 "qrscan_contains_text" = "Văn bản mã QR được quét:\n\n%1$@";
 "qrscan_contains_url" = "URL mã QR được quét:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Dấu vân tay";
 "withdraw_verifycontact_explain" = "Người khác có thể quét mã QR này để liên hệ với bạn.\n\nBạn có thể tắt mã QR tại đây và kích hoạt lại bằng cách quét lại.";
 "withdraw_verifygroup_explain" = "Những người khác có thể quét mã QR này để tham gia nhóm \"%1$@\".\n\nBạn có thể tắt mã QR tại đây và kích hoạt lại bằng cách quét lại.";
 "withdraw_qr_code" = "Vô hiệu hóa mã QR";
@@ -691,21 +605,12 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Quét để trò chuyện với %1$@";
 "qrshow_join_contact_no_connection_toast" = "Không có kết nối internet, không thể thực hiện thiết lập mã QR.";
-// deprecated
-"qraccount_ask_create_and_login" = "Tạo địa chỉ email mới trên \"%1$@\" và đăng nhập vào đó?";
 "qraccount_qr_code_cannot_be_used" = "Mã QR được quét không thể được sử dụng để thiết lập tài khoản mới.";
-// deprecated
-"qrlogin_ask_login" = "Đăng nhập vào \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ đã mời bạn tham gia nhóm này.\n\nĐang chờ thiết bị của %2$@ trả lời…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ đã trả lời, đang chờ được thêm vào nhóm…";
 "contact_verified" = "%1$@ đã được giới thiệu.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "Được giới thiệu bởi %1$@";
-// deprecated
-"verified_by_you" = "Được tôi giới thiệu";
 "mailto_dialog_header_select_chat" = "Chọn trò chuyện để gửi tin nhắn tới";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ đã có tin nhắn nháp, bạn có muốn thay thế nó không?";
@@ -775,8 +680,6 @@
 "menu.view.developer.open.log.folder" = "Mở thư mục nhật ký";
 "menu.view.developer.open.current.log.file" = "Mở tệp nhật ký hiện tại";
 "explain_desktop_minimized_disabled_tray_pref" = "Không thể tắt biểu tượng khay vì Delta Chat đã được bắt đầu bằng tùy chọn --giảm-thiểu.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Không tìm thấy gợi ý chính tả.";
 "show_window" = "Hiển thị cửa sổ";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Tổ hợp phím";
@@ -800,33 +703,17 @@
 "a11y_disappearing_messages_activated" = "Đã kích hoạt tin nhắn biến mất";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Dừng chia sẻ vị trí";
-// deprecated
-"a11y_voice_message_hint_ios" = "Sau khi ghi, nhấn đúp để gửi. Để loại bỏ bản ghi, hãy chà bằng hai ngón tay.";
 "a11y_connectivity_hint" = "Nhấn đúp để xem chi tiết kết nối.";
 "login_error_no_internet_connection" = "Không có kết nối internet, đăng nhập không thành công.";
-// deprecated
-"share_account_not_configured" = "Tài khoản chưa được định cấu hình.";
 "cannot_play_audio_file" = "Không thể phát tệp âm thanh.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Để chụp ảnh, quay video hoặc sử dụng trình quét Mã QR, hãy mở cài đặt hệ thống và bật \"Camera\".";
 "open_settings" = "Mở Cài đặt";
-// deprecated
-"import_device_contacts" = "Nhập danh bạ thiết bị";
-// deprecated
-"import_device_contacts_hint" = "Để trò chuyện với các liên hệ từ thiết bị của bạn, hãy mở Cài đặt và bật \"Danh bạ\".";
-// deprecated
-"disabled_in_dc" = "Đã tắt trong Delta Chat";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Đã tắt trong cài đặt hệ thống";
 "bg_app_refresh_disabled" = "\"Làm mới ứng dụng nền\" bị tắt trong cài đặt hệ thống";
-// deprecated
-"notifications_avg_minutes" = "Trung bình cứ sau %1$d phút";
-// deprecated
-"notifications_avg_hours" = "Trung bình cứ sau %1$d giờ";
-// deprecated
-"last_check_at" = "Đã kiểm tra lúc %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "Để duy trì kết nối với máy chủ e-mail của bạn và nhận tin nhắn ở chế độ nền, hãy bỏ qua tối ưu hóa pin trong bước tiếp theo.\n\nDelta Chat sử dụng ít tài nguyên và chú ý không làm tiêu hao pin của bạn.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Nhấn vào đây để nhận tin nhắn khi Delta Chat ở chế độ nền.";
 "perm_enable_bg_already_done" = "Bạn đã cho phép Delta Chat nhận tin nhắn trong nền.\n\nNếu tin nhắn vẫn không đến trong nền, vui lòng kiểm tra cài đặt hệ thống của bạn.";
