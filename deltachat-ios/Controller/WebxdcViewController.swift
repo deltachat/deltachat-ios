@@ -384,6 +384,19 @@ class WebxdcViewController: WebViewViewController {
         case "geo":
             UIApplication.shared.open(url)
             decisionHandler(.cancel)
+        case "https", "http":
+            guard !allowInternet else { return decisionHandler(.allow) }
+            let alert = UIAlertController(
+                title: String.localized("open_url_confirmation"),
+                message: url.absoluteString.removingPercentEncoding,
+                preferredStyle: .safeActionSheet
+            )
+            alert.addAction(UIAlertAction(title: String.localized("open"), style: .default) { _ in
+                UIApplication.shared.open(url)
+            })
+            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+            present(alert, animated: true)
+            decisionHandler(.cancel)
         default:
             decisionHandler(.cancel)
         }
