@@ -49,7 +49,7 @@ struct PinBarView: View {
                 .opacity(0.7)
                 .id(selected)
                 .bind(size: $size)
-            Spacer().containerShape(.rect)
+            Spacer()
             if msg.type == DC_MSG_WEBXDC {
                 Button(String.localized("start_app")) {
                     startWebxdc(msg)
@@ -76,6 +76,7 @@ struct PinBarView: View {
         }
         .padding(.bottom, 8)
         .transition(.move(edge: .top).combined(with: .opacity))
+        .contentShape(.containerRelative)
         .onTapGesture {
             scrollToMsg(msg)
             withAnimation {
