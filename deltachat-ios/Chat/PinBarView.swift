@@ -91,7 +91,7 @@ struct PinBarView: View {
         Button(action: {
             msg.isPinned = false
         }, label: {
-            Label("Unpin", systemImage: "pin.slash")
+            Label(String.localized("unpin"), systemImage: "pin.slash")
         })
     }
 }
