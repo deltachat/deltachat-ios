@@ -65,6 +65,7 @@ struct PinBarView: View {
             }
         }
         .clipped()
+        .contentShape(.containerRelative)
         .modifier { view in
             if #available(iOS 26.0, *) {
                 view.glassEffect(.regular.interactive())
@@ -78,7 +79,6 @@ struct PinBarView: View {
         }
         .padding(.bottom, 8)
         .transition(.move(edge: .top).combined(with: .opacity))
-        .contentShape(.containerRelative)
         .onTapGesture {
             scrollToMsg(msg)
             withAnimation {
