@@ -9,8 +9,6 @@
 "on" = "켜짐";
 "off" = "꺼짐";
 "def" = "기본값";
-// deprecated
-"default_value" = "기본 (%1$@)";
 "custom" = "커스텀";
 "none" = "없음";
 "automatic" = "자동";
@@ -20,8 +18,6 @@
 "downloading" = "다운로드 중...";
 "open_attachment" = "첨부 파일 열기";
 "join" = "참가";
-// deprecated
-"rejoin" = "다시 참가";
 "delete" = "삭제";
 "info" = "정보";
 "update" = "업데이트";
@@ -72,8 +68,6 @@
 "copied_to_clipboard" = "클립보드에 복사했습니다.";
 "contacts_headline" = "연락처";
 "email_address" = "이메일 주소";
-// deprecated
-"bad_email_address" = "잘못된 이메일 주소";
 "password" = "비밀번호";
 "existing_password" = "존재하는 비밀번호";
 "now" = "지금";
@@ -116,8 +110,6 @@
 "capture" = "캡쳐";
 // Switch eg. from front to back camera
 "switch_camera" = "카메라 전환";
-// deprecated
-"toggle_fullscreen" = "전체 화면 모드 전환";
 "location" = "위치";
 "gallery" = "갤러리";
 "images_and_videos" = "이미지와 동영상";
@@ -137,13 +129,9 @@
 "magenta" = "자홍";
 "white" = "흰색";
 "zoom" = "줌";
-// deprecated
-"extra_small" = "더 작게";
 "small" = "작게";
 "normal" = "보통";
 "large" = "크게";
-// deprecated
-"extra_large" = "더 크게";
 "fast" = "빠르게";
 "slow" = "느리게";
 // menu labels (or icon, buttons...)
@@ -153,8 +141,6 @@
 "menu_send" = "보내기";
 "menu_toggle_keyboard" = "이모티콘 키보드 전환";
 "menu_edit_group" = "그룹 편집";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "그룹 이름과 이미지";
 "menu_show_global_map" = "모든 위치 보기";
 "menu_archive_chat" = "채팅 보관";
 "menu_unarchive_chat" = "보관되지 않은 채팅";
@@ -162,8 +148,6 @@
 "menu_leave_group" = "그룹 나가기";
 "menu_delete_chat" = "채팅 삭제";
 "delete_contact" = "연락처 삭제";
-// deprecated
-"menu_delete_location" = "이 위치를 삭제하시겠습니까?";
 "menu_message_details" = "메시지 세부정보";
 "menu_copy_to_clipboard" = "클립보드에 복사하기";
 "menu_copy_selection_to_clipboard" = "선택 복사";
@@ -194,8 +178,6 @@
 "menu_help" = "도움";
 "privacy_policy" = "개인 정보 보호 정책";
 "menu_select_all" = "모두 선택";
-// deprecated
-"select_more" = "추가 선택";
 "menu_edit_name" = "이름 편집";
 "menu_settings" = "설정";
 "menu_advanced" = "고급 설정";
@@ -204,7 +186,6 @@
 "menu_zoom_out" = "축소";
 "menu_save_log" = "로그 저장";
 "menu_more_options" = "더 많은 옵션";
-"menu_learn_spelling" = "맞춤법 배우기";
 "jump_to_message" = "메시지로 이동";
 "replace_draft" = "초안 대체";
 "title_share_location" = "그룹 구성원과 위치 공유하기";
@@ -230,15 +211,12 @@
 "mute_for_one_day" = "1일 동안 알림 끄기";
 "mute_for_seven_days" = "7일 동안 알림 끄기";
 "mute_forever" = "영구히 음소거";
-// deprecated
 "share_location_for_5_minutes" = "5분 동안";
 "share_location_for_30_minutes" = "30분 동안";
 "share_location_for_one_hour" = "1시간 동안";
 "share_location_for_two_hours" = "2시간 동안";
 "share_location_for_six_hours" = "6시간 동안";
 "file_saved_to" = "파일 \"%1$@\"에 저장됨.";
-// deprecated, use ask_forward_messages
-"ask_forward" = "%1$@님에게 메시지를 전달할까요?";
 "ask_forward_multiple" = "%1$d 채팅으로 메시지를 전달하시겠습니까?";
 "ask_export_attachment" = "첨부 파일을 내보내면 단말기의 다른 앱에서 해당 첨부 파일에 액세스할 수 있습니다.\n\n계속하시겠습니까?";
 "ask_block_contact" = "이 연락처를 차단하시겠습니까? 이 연락처로부터 더 이상 메시지를 받지 않습니다.";
@@ -277,18 +255,12 @@
 "saved_messages_explain" = "• 쉽게 액세스할 수 있도록 메시지 전달\n\n• 메모 또는 음성 메모\n\n• 미디어를 첨부하여 저장";
 // Should match "Saved" from "Saved messages"
 "saved" = "저장됨";
-// deprecated
-"save_as" = "~로 저장";
-// deprecated
-"retry_send" = "메시지 전송 다시 시도";
-// deprecated
-"cannot_display_unsuported_file_type" = "파일 형식을 표시할 수 없습니다: %1$@";
 "attachment_failed_to_load" = "첨부 파일을 불러오지 못했습니다.";
 // mailing lists
 "mailing_list" = "메일 목록";
 // webxdc
-// "Start..." button for an app
-"start_app" = "시작...";
+// "Start" button for an app
+"start_app" = "시작";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "채팅 요청을 먼저 수락하십시오.";
 // punycode warning / labeled links
@@ -307,8 +279,6 @@
 "remove_group_image" = "그룹 이미지 제거";
 "change_group_image" = "그룹 이미지 변경";
 "group_create_button" = "그룹 만들기";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "그룹 이름을 입력하시오";
 "group_add_members" = "대화상대 추가";
 "group_self_not_in_group" = "실행을 위해선 그룹의 멤버가 되어야 합니다.";
 "profile_encryption" = "암호화";
@@ -316,14 +286,10 @@
 "tab_contact" = "연락처";
 "tab_group" = "그룹";
 "tab_gallery" = "갤러리";
-// deprecated
-"tab_docs" = "문서";
 "tab_links" = "링크";
 "tab_gallery_empty_hint" = "이 채팅에서 공유된 이미지와 비디오가 여기에 나타납니다.";
 "tab_docs_empty_hint" = "이 채팅에서 공유된 문서와 다른 파일들이 여기에 나타납니다.";
 "tab_image_empty_hint" = "채팅에 공유된 이미지가 여기에 나타납니다.";
-// deprecated
-"tab_video_empty_hint" = "채팅에 공유된 비디오가 여기에 나타납니다.";
 "tab_audio_empty_hint" = "이 채팅에서 공유된 오디오 파일과 음성 메시지가 여기에 나타납니다.";
 "tab_webxdc_empty_hint" = "이 채팅에서 공유된 개인 앱이 여기에 나타납니다.";
 "all_apps_empty_hint" = "채팅에서 보내거나 받은 개인 앱들이 여기에 나타납니다.";
@@ -345,15 +311,11 @@
 "connectivity_connected" = "연결됨";
 "sending" = "전송중...";
 "last_msg_sent_successfully" = "마지막 메시지 전송됨.";
-// deprecated
-"not_supported_by_provider" = "공급자가 지원하지 않습니다.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "메시지";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%2$@중 %1$@ 사용됨";
 "scan_invitation_code" = "초대 코드 스캔";
-// deprecated
-"login_title" = "로그인";
 "login_inbox" = "받은 편지함";
 "login_imap_login" = "IMAP 로그인 이름";
 "login_imap_server" = "IMAP 서버";
@@ -366,15 +328,11 @@
 "login_smtp_port" = "SMTP 포트";
 "login_smtp_security" = "SMTP 보안";
 "login_certificate_checks" = "인증서 확인";
+// deprecated
 "login_error_mail" = "유효한 이메일 주소를 입력하시오";
-"login_error_server" = "유효한 서버 / IP 주소를 입력하시오";
-"login_error_port" = "올바른 포트(1-65535)를 입력하십시오.";
-"login_error_required_fields" = "유효한 이메일 주소와 비밀번호를 입력하시오";
 "import_backup_title" = "백업 불러오기";
 "import_backup_ask" = "\"%1$@\"에서 백업을 찾았습니다.\n\n모든 데이터와 설정을 가져오시겠습니까?";
 "import_backup_no_backup_found" = "백업을 찾을 수 없습니다.\n\n\"%1$@\"에 백업을 복사하고 다시 시도하십시오. 또는 \"메시징 시작\"을 눌러 일반 설정을 계속하십시오.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "\"%1$@\"에 로그인 할 수 없음. 이메일 주소와 비밀번호가 맞는지 확인하시오.";
 "switch_account" = "계정 전환";
 "add_account" = "계정 추가";
 "delete_account" = "계정 삭제";
@@ -416,13 +374,9 @@
 "pref_notifications_priority" = "우선순위";
 "pref_notifications_explain" = "새 메시지에 대한 시스템 알림 활성화";
 "pref_show_notification_content" = "알림에 메시지 내용 표시";
-// deprecated
-"pref_show_notification_content_explain" = "알림에서 메시지를 보낸 사람과 첫 번째 단어를 표시합니다.";
 "pref_led_color" = "LED 색상";
 "pref_sound" = "알림음";
 "pref_silent" = "무음";
-// deprecated
-"pref_privacy" = "개인정보 보호";
 "pref_system_default" = "시스템 기본값";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "밝게";
@@ -435,8 +389,6 @@
 "pref_incognito_keyboard_explain" = "개인 맞춤화를 사용하지 않도록 키보드에 요청합니다";
 "pref_read_receipts" = "열람 안내";
 "pref_read_receipts_explain" = "열람 안내 기능이 꺼져 있다면, 다른 사람이 메시지를 열람했는지의 여부 또한 볼 수 없습니다.";
-// deprecated
-"pref_manage_keys" = "키 관리";
 "pref_chats" = "채팅";
 "pref_in_chat_sounds" = "앱 내 알림";
 "pref_view_log" = "로그 보기";
@@ -453,16 +405,6 @@
 "pref_background" = "채팅방 배경화면";
 "pref_background_btn_default" = "기본 이미지 사용";
 "pref_background_btn_gallery" = "갤러리에서 선택됨";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "이 선택사항을 변경할 경우, 서버와 다른 클라이언트가 적절하게 구성되어 있는지 확인하십시오.\n\n그렇지 않으면 상황이 전혀 작동하지 않을 수 있습니다.";
-// deprecated
-"pref_auto_folder_moves" = "DeltaChat 폴더로 자동 이동";
-// deprecated
-"pref_only_fetch_mvbox_title" = "DeltaChat 폴더에서만 가져오기";
-// deprecated
-"pref_show_emails_no" = "아뇨, 오직 채팅만";
-// deprecated
-"pref_show_emails_accepted_contacts" = "승인된 연락처의 경우";
 // deprecated, use "All"
 "pref_show_emails_all" = "전부";
 "pref_on_demand_location_streaming" = "주문형 위치 스트리밍";
@@ -494,12 +436,8 @@
 // automatically delete message
 "delete_old_messages" = "오래된 메시지 삭제";
 "autodel_device_title" = "기기에서 메시지 삭제";
-// deprecated
-"autodel_server_title" = "서버에서 메시지 삭제";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "%1$d 메시지와 새로 가져온 모든 메시지 \"%2$@\"를 나중에 삭제하시겠습니까?\n\n• 여기에는 모든 미디어가 포함됩니다.\n\n• 메시지가 표시되었는지 여부에 관계없이 삭제됩니다.\n\n• \"저장된 메시지\"는 로컬 삭제에서 건너뜁니다.";
-// deprecated
-"autodel_server_enabled_hint" = "여기에는 모든 서버 폴더에 있는 전자 메일, 미디어 및 \"저장된 메시지\"가 포함됩니다. 서버에 데이터를 보관하거나 Delta Chat 외에 다른 이메일 클라이언트를 사용하는 경우 이 기능을 사용하지 마십시오.";
 "autodel_confirm" = "알겠습니다. 모든 메시지를 삭제하세요.";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "한 번에";
@@ -566,8 +504,6 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "%2$@가 사라지는 메시지 타이머를 %1$@주로 설정함.";
 "devicemsg_self_deleted" = "저장된 메시지 대화를 삭제했습니다.\n\nℹ️\"저장된 메시지\" 기능을 다시 사용하려면 자신과의 대화를 새로 만드십시오.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ 공급자의 저장공간이 곧 고갈될 예정입니다. %1$@%%가 이미 사용 중입니다.\n\n저장공간이 가득 찬 경우 메시지를 수신하지 못할 수 있습니다.\n\n👉 공급자의 웹 인터페이스에서 이전 데이터를 삭제할 수 있는지 확인하고 \"설정 / 이전 메시지 삭제\"를 활성화하는 것을 고려하십시오. \"설정/연결\"에서 언제든지 현재 저장공간 사용량을 확인할 수 있습니다.";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ 장치의 날짜 또는 시간이 정확하지 않은 것 같습니다(%1$@).\n\n메시지가 올바르게 수신되도록 시계 ⏰🔧를 조정하세요.";
 "devicemsg_update_reminder" = "⚠️ 델타 채팅 버전이 오래되었을 수 있습니다.\n\n채팅 파트너가 최신 버전을 사용하기 때문에 문제가 발생할 수 있습니다. 당신은 최신 기능이 없습니다. 😳\n https://get.delta.chat 또는 앱 스토어에서 업데이트를 확인하십시오.";
@@ -580,14 +516,8 @@
 "qrscan_hint" = "QR 코드 위에 카메라를 갖다 대시오.";
 "qrscan_failed" = "QR 코드를 디코딩할 수 없습니다.";
 "qrscan_ask_join_group" = "\"%1$@\" 그룹에 참여하시겠습니까?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "스캔한 지문이 %1$@에 대해 마지막으로 표시된 지문과 일치하지 않습니다.";
-// deprecated
-"qrscan_no_addr_found" = "이 QR 코드에는 지문이 포함되어 있지만 이메일 주소는 없습니다.\n\n대역 외 확인의 경우 먼저 수신자에 대한 암호화된 연결을 설정하십시오.";
 "qrscan_contains_text" = "스캔한 QR 코드 텍스트:\n\n%1$@";
 "qrscan_contains_url" = "스캔한 QR 코드 URL:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "지문";
 "withdraw_verifycontact_explain" = "이 QR 코드는 다른 사용자가 스캔하여 사용자에게 연락할 수 있습니다.\n\n여기서 QR 코드를 비활성화하고 다시 스캔하여 다시 활성화할 수 있습니다.";
 "withdraw_verifygroup_explain" = "이 QR 코드는 다른 사용자가 스캔하여 \"%1$@\" 그룹에 가입할 수 있습니다.\n\n여기서 QR 코드를 비활성화하고 다시 스캔하여 다시 활성화할 수 있습니다.";
 "withdraw_qr_code" = "QR 코드 비활성화";
@@ -604,11 +534,7 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "%1$@과 채팅을 하려면 스캔하시오";
 "qrshow_join_contact_no_connection_toast" = "인터넷에 연결되어 있지 않아 QR 코드 설정을 수행할 수 없습니다.";
-// deprecated
-"qraccount_ask_create_and_login" = "\"%1$@\"에서 새 이메일 주소를 만들고 로그인하시겠습니까?";
 "qraccount_qr_code_cannot_be_used" = "스캔한 QR 코드를 사용하여 새 계정을 설정할 수 없습니다.";
-// deprecated
-"qrlogin_ask_login" = "\"%1$@\"에 로그인하시겠습니까?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@이 그룹에 가입하도록 초대했습니다.\n\n%2$@의 장치가 응답하기를 기다리는 중입니다...";
 // placeholder will be replaced by the name of the inviter.
@@ -676,8 +602,6 @@
 "message_detail_received_desktop" = "받음";
 "menu.view.developer.open.log.folder" = "로그 폴더 열기";
 "menu.view.developer.open.current.log.file" = "현재 로그 파일 열기";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "맞춤법 제안을 찾을 수 없습니다.";
 "show_window" = "창 보이기";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "키 바인딩";
@@ -697,33 +621,17 @@
 "a11y_disappearing_messages_activated" = "사라지는 메시지 활성화됨";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "위치 공유 중지";
-// deprecated
-"a11y_voice_message_hint_ios" = "녹화가 끝나면 두 번 눌러 전송합니다. 기록을 삭제하려면 두 손가락으로 문지르십시오.";
 "a11y_connectivity_hint" = "자세한 연결 정보를 보려면 더블 탭 하시오.";
 "login_error_no_internet_connection" = "인터넷 연결 없음, 로그인 실패";
-// deprecated
-"share_account_not_configured" = "존재하지 않는 계정입니다.";
 "cannot_play_audio_file" = "오디오 파일을 재생할 수 없습니다.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "사진 찍기, 비디오 캡쳐 혹은 QR-Code 스캐너를 이용하려면, 환경설정에서 \"카메라\"를 활성화하시오.";
 "open_settings" = "설정 열기";
-// deprecated
-"import_device_contacts" = "장치 연락처 가져오기";
-// deprecated
-"import_device_contacts_hint" = "단말기에서 연락처와 대화하려면 설정을 열고 \"연락처\"를 활성화합니다.";
-// deprecated
-"disabled_in_dc" = "Delta Chat에서 비활성화됨";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "환경설정에서 비활성화됨";
 "bg_app_refresh_disabled" = "시스템 설정에서 \"백그라운드 앱 새로 고침\"이 비활성화됨";
-// deprecated
-"notifications_avg_minutes" = "평균적으로 %1$d분마다";
-// deprecated
-"notifications_avg_hours" = "평균적으로 %1$d시간마다";
-// deprecated
-"last_check_at" = "%1$@에 확인됨";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "이메일 서버에 대한 연결을 유지하고 백그라운드에서 메시지를 수신하려면 다음 단계에서 배터리 최적화를 무시하십시오.\n\nDelta Chat은 리소스를 거의 사용하지 않으며 배터리가 소모되지 않도록 주의합니다.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat이 백그라운드에 있는 동안 메시지를 받으려면 여기를 누르십시오.";
 "perm_enable_bg_already_done" = "이미 Delta Chat 에서 백그라운드로 메시지를 수신하도록 허용했습니다.\n\n메시지가 여전히 백그라운드로 도착하지 않으면 시스템 설정도 확인하십시오.";

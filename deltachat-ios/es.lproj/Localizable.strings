@@ -13,8 +13,6 @@
 "on" = "Activado";
 "off" = "Desactivado";
 "def" = "Por defecto";
-// deprecated
-"default_value" = "Por defecto (%1$@)";
 "custom" = "Personalizado";
 "none" = "Ninguno";
 "automatic" = "Automático";
@@ -26,8 +24,6 @@
 "join" = "Unirse";
 "join_group" = "Unirse al grupo";
 "join_channel" = "Unirse al canal";
-// deprecated
-"rejoin" = "Volver a unirse";
 "delete" = "Eliminar";
 "delete_for_me" = "Eliminar solo para mí";
 "delete_for_everyone" = "Eliminar para todos";
@@ -61,10 +57,6 @@
 "media" = "Multimedia";
 "apps_and_media" = "Apps y multimedia";
 "profile" = "Perfil";
-// deprecated
-"all_profiles" = "Todos perfiles";
-// deprecated
-"current_profile" = "Perfil actual";
 "main_menu" = "Menú principal";
 "start_chat" = "Comenzar chat";
 "show_full_message" = "Mostrar mensaje completo…";
@@ -86,11 +78,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Las imágenes remotas pueden ser usadas para seguirte.\n\nLa opción también permite cargar fuentes y otros contenidos. Inclusive si están deshabilitadas, quizás puedas ver imágenes embebidas o en caché.\n\n¿Cargar imágenes remotas?";
 "always" = "Siempre";
-// deprecated
-"always_load_remote_images" = "Cargar siempre imágenes remotas";
 "once" = "Una vez";
-// deprecated
-"show_warning" = "Mostrar advertencia";
 "not_now" = "Ahora no";
 "never" = "Nunca";
 "one_moment" = "Un momento…";
@@ -105,13 +93,9 @@
 "no_app_to_handle_data" = "No se puede encontrar una aplicación compatible con este tipo de contenido";
 "no_browser_installed" = "No hay ningún navegador instalado.";
 "file_not_found" = "No se pudo encontrar %1$@.";
-// deprecated
-"cannot_save_file" = "No se puede guardar %1$@.";
 "copied_to_clipboard" = "Copiado al portapapeles.";
 "contacts_headline" = "Contactos";
 "email_address" = "Dirección de correo";
-// deprecated
-"bad_email_address" = "Dirección de correo no válida.";
 "password" = "Contraseña";
 "existing_password" = "Contraseña existente";
 "now" = "Ahora";
@@ -151,8 +135,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "Seleccionado:";
 "selected" = "Seleccionado";
 "self" = "Yo";
 "draft" = "Borrador";
@@ -163,10 +145,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Sticker";
 "add_to_sticker_collection" = "Añadir a la colección de stickers";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Para añadir stickers, toca en \"Abrir carpeta de stickers\", crea una subcarpeta para tu colección de stickers y copia imágenes y stickers allí";
-// deprecated
-"open_sticker_folder" = "Abrir la carpeta de stickers";
 "ask_add_sticker_to_collection" = "¿Añadir este sticker a tu colección?";
 "ask_delete_sticker" = "¿Eliminar este sticker?";
 "sticker_picker_empty_hint" = "Toca un sticker para añadirlo aquí.";
@@ -193,8 +171,6 @@
 "switch_camera" = "Alternar cámara";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Alternar cámara";
-// deprecated
-"toggle_fullscreen" = "Alternar modo pantalla completa";
 "location" = "Ubicación";
 "locations" = "Ubicaciones";
 "gallery" = "Galería";
@@ -209,6 +185,7 @@
 "webxdc_app" = "Aplicación";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apps";
+"webxdc_add" = "Añadir App";
 "webxdc_store_url" = "App Picker URL";
 "webxdc_store_url_explain" = "Si se establece, la URL se utilizará como App Picker en lugar de la predeterminada";
 "webxdc_draft_hint" = "Pulsa \"Enviar\" para compartir";
@@ -234,13 +211,9 @@
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
 "zoom" = "Zoom";
-// deprecated
-"extra_small" = "Muy pequeño";
 "small" = "Pequeño";
 "normal" = "Normal";
 "large" = "Grande";
-// deprecated
-"extra_large" = "Muy grande";
 "fast" = "Rápido";
 "slow" = "Lento";
 // menu labels (or icon, buttons...)
@@ -269,8 +242,6 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Nombre e imagen de grupo";
 "menu_show_global_map" = "Todas las ubicaciones";
 "menu_archive_chat" = "Archivar chat";
 "menu_unarchive_chat" = "Des-archivar chat";
@@ -282,8 +253,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vaciar chat";
 "delete_contact" = "Eliminar contacto";
-// deprecated
-"menu_delete_location" = "¿Eliminar esta ubicación?";
 "menu_message_details" = "Detalles del mensaje";
 "menu_copy_to_clipboard" = "Copiar al portapapeles";
 "share_invite_link" = "Compartir enlace de invitación";
@@ -325,8 +294,6 @@
 "privacy_policy" = "Política de privacidad";
 "menu_select_all" = "Seleccionar todo";
 "select_chat" = "Seleccionar chat";
-// deprecated
-"select_more" = "Seleccionar más";
 "menu_edit_name" = "Editar nombre";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Establece un apodo que se te mostrará en lugar de \"%1$@\". Déjalo en blanco para utilizar el nombre elegido por el contacto.";
@@ -339,7 +306,6 @@
 "menu_zoom_out" = "Alejar";
 "menu_save_log" = "Salvar log";
 "menu_more_options" = "Más opciones";
-"menu_learn_spelling" = "Aprender ortografía";
 "jump_to_message" = "Saltar al mensaje";
 "replace_draft" = "Reemplazar borrador";
 "title_share_location" = "Compartir ubicación con todos los miembros del grupo";
@@ -355,9 +321,11 @@
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Anclar";
 // Adj. of "pin", describing a state of being pinned.
-"pinned" = "Fijado";
+"pinned" = "Anclado";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desanclar";
+"message_pinned_by_you" = "Has anclado un mensaje";
+"message_pinned_by_other" = "Mensaje anclado por %1$@";
 "ConversationFragment_quoted_message_not_found" = "Mensaje original no encontrado";
 "reply_privately" = "Responder en privado";
 "source_code" = "Código fuente";
@@ -370,7 +338,6 @@
 "mute_for_one_day" = "Silenciar por 1 día";
 "mute_for_seven_days" = "Silenciar por 7 días";
 "mute_forever" = "Silenciar por siempre";
-// deprecated
 "share_location_for_5_minutes" = "Por 5 minutos ";
 "share_location_for_30_minutes" = "Por 30 minutos";
 "share_location_for_one_hour" = "Por 1 hora";
@@ -400,14 +367,6 @@
 "call_reconnecting" = "Reconectando…";
 "call_ended" = "Finalizó la llamada";
 "call_failed" = "La llamada falló";
-// deprecated, use "Audio call" instead
-"outgoing_audio_call" = "Llamada saliente";
-// deprecated, use "Video call" instead
-"outgoing_video_call" = "Videollamada saliente";
-// deprecated, use "Audio call" instead
-"incoming_audio_call" = "Llamada entrante";
-// deprecated, use "Video call" instead
-"incoming_video_call" = "Videollamada entrante";
 "declined_call" = "Llamada rechazada";
 "canceled_call" = "Llamada cancelada";
 "missed_call" = "Llamada perdida";
@@ -429,8 +388,6 @@
 "ask_delete_named_chat" = "¿Eliminar chat \"%1$@\" de todos tus dispositivos?";
 "ask_delete_message" = "¿Eliminar este mensaje de todos tus dispositivos?";
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
-// deprecated, use ask_forward_messages
-"ask_forward" = "¿Reenviar mensajes a %1$@?";
 "ask_forward_multiple" = "¿Reenviar mensajes a %1$d chats?";
 "ask_export_attachment" = "Los adjuntos exportados serán accesibles desde cualquier otra aplicación en su dispositivo. ¿Continuar?";
 "ask_block_contact" = "¿Bloquear este contacto? Ya no recibirás mensajes ni se mostrarán grupos creados por contactos bloqueados. En otros grupos con contactos bloqueados seguirás viendo sus mensajes.";
@@ -464,8 +421,6 @@
 "chat_input_placeholder" = "Mensaje";
 "chat_archived_label" = "Archivado";
 "chat_request_label" = "Solicitud";
-// deprecated
-"chat_request_label_explain" = "Incluir solicitudes en contadores y notificaciones";
 "chat_no_messages" = "No hay mensajes.";
 "chat_self_talk_subtitle" = "Mensajes que envié a mí mismo";
 "archive_empty_hint" = "Chats arquivados se mostrarán aquí.";
@@ -475,20 +430,14 @@
 "saved_messages_explain" = "• Reenvía mensajes aquí para accederlos fácilmente luego\n\n• Toma notas o mensajes de voz\n\n• Adjunta archivos para guardarlos";
 // Should match "Saved" from "Saved messages"
 "saved" = "Guardado";
-// deprecated
-"save_as" = "Guardar como";
-// deprecated
-"retry_send" = "Reintentar enviar mensaje";
-// deprecated
-"cannot_display_unsuported_file_type" = "No se puede mostrar este tipo de archivo: %1$@";
 "attachment_failed_to_load" = "Fallo al cargar el adjunto";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Bloquear grabación";
 // mailing lists
 "mailing_list" = "Lista de correo";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Iniciar…";
+// "Start" button for an app
+"start_app" = "Iniciar";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Primero acepte la solicitud de chat.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -508,8 +457,6 @@
 "search_in" = "Buscar en %1$@";
 "search_files" = "Buscar archivos";
 "search_explain" = "Buscar chats, contactos, y mensajes";
-// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
-"search_result_for_x" = "Resultado para \"%1$@\"";
 "search_no_result_for_x" = "No se encontraron resultados para \"%1$@\"";
 // Adjective, as in "Show Unread Messages"
 "search_unread" = "No leído";
@@ -519,8 +466,6 @@
 "remove_group_image" = "Eliminar imagen de grupo";
 "change_group_image" = "Cambiar imagen de grupo";
 "group_create_button" = "Crear grupo";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Por favor introduzca un nombre para el grupo.";
 "please_enter_chat_name" = "Por favor, introduce un nombre.";
 "group_add_members" = "Añadir miembros";
 "group_self_not_in_group" = "Debes ser un miembro del grupo para realizar esta acción.";
@@ -531,25 +476,17 @@
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galería";
-// deprecated
-"tab_docs" = "Documentos";
 "tab_links" = "Enlaces";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Las imágenes y videos compartidos en este chat se mostrarán aquí.";
 "tab_docs_empty_hint" = "Documentos, música y otros archivos compartidos en este chat se mostrarán aquí.";
 "tab_image_empty_hint" = "Imágenes compartidas en este chat se mostrarán aquí.";
-// deprecated
-"tab_video_empty_hint" = "Vídeos compartidos en este chat se mostrarán aquí.";
 "tab_audio_empty_hint" = "Los archivos de audio y los mensajes de voz compartidos en este chat se mostrarán aquí.";
 "tab_webxdc_empty_hint" = "Apps compartidas en este chat se mostrarán aquí";
 "tab_all_media_empty_hint" = "La multimedia compartida en cualquier chat aparecerá aquí";
 "all_files_empty_hint" = "Documentos y otros archivos compartidos en cualquier chat se mostrarán aquí.";
 "all_apps_empty_hint" = "Apps recibidas o enviadas en cualquier chat aparecerán aquí.";
 "media_preview" = "Vista previa de multimedia";
-// deprecated
-"aspect_ratio_grid" = "Cuadrícula de relación de aspecto";
-// deprecated
-"square_grid" = "Cuadrícula cuadrada";
 "send_message" = "Enviar mensaje";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -589,8 +526,6 @@
 "connectivity_connected" = "Conectado";
 "sending" = "Enviando…";
 "last_msg_sent_successfully" = "El último mensaje fue enviado satisfactoriamente.";
-// deprecated
-"not_supported_by_provider" = "No soportado por tu proveedor.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Mensajes";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -604,12 +539,6 @@
 "manual_account_setup_option" = "Usar correo electrónico como Retransmisor";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Tu perfil";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "Política de privacidad para %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "Acerca de los perfiles en %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Aceptar y crear perfil";
 // Secondary, link-like button to open a page with other possible instances
@@ -630,8 +559,6 @@
 "create_team_profile" = "Crear perfil de equipo";
 "welcome_chat_over_email" = "Chat seguro y descentralizado";
 "scan_invitation_code" = "Escanear código de invitación";
-// deprecated
-"login_title" = "Iniciar sesión";
 "login_advanced_hint" = "Este inicio de sesión es para usuarios avanzados.\n\nNo utilice una dirección de correo que esté utilizando en otra aplicación.";
 "login_inbox" = "Bandeja de entrada";
 "login_imap_login" = "Nombre de usuario IMAP";
@@ -664,12 +591,6 @@
 "add_transport" = "Añadir Retransmisor";
 "remove_transport" = "Eliminar Retransmisor";
 "edit_transport" = "Editar Retransmisor";
-// deprecated
-"used_for_sending" = "Usado para enviar";
-// deprecated
-"hide_from_contacts" = "Ocultar de los contactos";
-// deprecated
-"hidden_from_contacts" = "Ocultado de los contactos";
 "enforce_e2ee" = "Exigir el cifrado para todos los retransmisores";
 // Hint for the list of relays
 "transport_list_hint" = "Los retransmisores se utilizan para enviar y recibir mensajes. Disponer de más de uno garantiza la fiabilidad de la conexión.";
@@ -678,18 +599,12 @@
 "invalid_transport_qr" = "El código QR escaneado no contiene un retransmisor válido.";
 // placeholder will be replaced by a relay server name
 "confirm_remove_relay_x" = "¿Eliminar el retrasmisor «%1$@ »?";
-// deprecated
-"confirm_remove_or_hide_transport_x" = "¿Eliminar el retransmisor \"%1$@\"?\n\nLos contactos que solo conocen este retransmisor podrían no comunicarse contigo hasta que les envíes otro mensaje.\n\nEn caso de duda, es mejor ocultarlo que eliminarlo.";
 "login_certificate_checks" = "Comprobaciones de certificados";
+// deprecated
 "login_error_mail" = "Por favor, introduzca una dirección de correo válida";
-"login_error_server" = "Por favor, introduzca un servidor / dirección IP válido";
-"login_error_port" = "Por favor, introduzca un puerto válido (1–65535)";
-"login_error_required_fields" = "Por favor, introduzca una dirección de correo válida y una contraseña";
 "import_backup_title" = "Importar copia de respaldo";
 "import_backup_ask" = "Copia de respaldo encontrada en \"%1$@\".\n\n¿Desea importar y utilizar todos los datos y configuraciones de ella?";
 "import_backup_no_backup_found" = "No se encontraron copias de seguridad.\n\nCopie el archivo de respaldo en \"%1$@\" e inténtelo de nuevo.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "No se puede iniciar sesión como \"%1$@\". Por favor, compruebe si la dirección de correo y la contraseña son correctas.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Aceptar certificados no válidos";
 "switch_account" = "Cambiar cuenta";
@@ -715,8 +630,6 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "¿Enviar %1$d archivos a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
-// deprecated
-"videos_sent_without_recoding" = "(Los videos se enviarán en su tamaño original. Para enviar videos como archivos más pequeños, adjúntelos por separado)";
 "share_text_multiple_chats" = "¿Enviar este texto a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences
@@ -752,13 +665,9 @@
 "pref_notifications_priority" = "Prioridad";
 "pref_notifications_explain" = "Habilitar las notificaciones del sistema para nuevos mensajes";
 "pref_show_notification_content" = "Mostrar el contenido del mensaje en la notificación";
-// deprecated
-"pref_show_notification_content_explain" = "Mostrar el remitente y las primeras palabras del mensaje en las notificaciones";
 "pref_led_color" = "Color de LED";
 "pref_sound" = "Sonido";
 "pref_silent" = "Silencio";
-// deprecated
-"pref_privacy" = "Privacidad";
 "pref_system_default" = "Predeterminado del sistema";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Claro";
@@ -775,10 +684,6 @@
 // Title above a list of contacts who read a message
 "read_by" = "Leído por";
 "pref_server" = "Servidor";
-// deprecated
-"pref_encryption" = "Cifrado";
-// deprecated
-"pref_manage_keys" = "Administrar claves";
 "pref_chats" = "Chats";
 "pref_in_chat_sounds" = "Sonidos en el chat";
 "pref_view_log" = "Ver log";
@@ -798,22 +703,10 @@
 "pref_background" = "Fondo";
 "pref_background_btn_default" = "Usar imagen por defecto";
 "pref_background_btn_gallery" = "Seleccionar de la galería";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Si deshabilita esta opción, asegúrese de que su servidor y sus otros clientes estén configurados en consecuencia.\n\nDe lo contrario, las cosas pueden no funcionar en absoluto.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Modo multidispositivo";
 "pref_multidevice_explain" = "Sincroniza tus mensajes con tus otros dispositivos. Se activa automáticamente al añadir un segundo dispositivo";
 "pref_multidevice_change_warn" = "El modo multidispositivo debe estar activado cuando usas el mismo perfil en varios dispositivos. Desactiva este ajuste solo si has eliminado este perfil de todos tus demás dispositivos.\n\nSi desactivas el modo multidispositivo mientras usas el perfil en varios dispositivos, se perderán mensajes y se producirán otros problemas.";
-// deprecated
-"pref_auto_folder_moves" = "Mover automáticamente a la carpeta DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Solo obtener de la carpeta DeltaChat";
-// deprecated
-"pref_show_emails" = "Mostrar correos clásicos";
-// deprecated
-"pref_show_emails_no" = "No, sólo chats";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Para contactos aceptados";
 // deprecated, use "All"
 "pref_show_emails_all" = "Todos";
 "pref_experimental_features" = "Características experimentales";
@@ -868,18 +761,8 @@
 // automatically delete message
 "delete_old_messages" = "Borrar mensajes antiguos";
 "autodel_device_title" = "Borrar mensajes del dispositivo";
-// deprecated
-"autodel_server_title" = "Borrar mensajes del servidor";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "¿Desea borrar %1$d mensajes ahora y todos los mensajes recientemente alcanzados \"%2$@\" en el futuro?\n\n• Esto incluye toda la multimedia\n\n• Los mensajes serán eliminados siendo vistos o no\n\n• \"Mensajes guardados\" serán saltados de este proceso local";
-// deprecated
-"autodel_server_ask" = "¿Deseas borrar %1$d mensajes ahora y todos los mensajes recibidos en \"%2$@\" al futuro?\n\n⚠️ Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo más allá de Delta Chat\n\n⚠️ No uses esta función si deseas mantener tus datos en el servidor\n\n⚠️ No uses esta función si estás usando otros clientes de correo más allá de Delta Chat";
-// deprecated
-"autodel_server_enabled_hint" = "Esto incluye correos, multimedia y \"Mensajes guardados\" en todas las carpetas del servidor. No uses esta función si quieres mantener tus datos en el servidor o si estas usando otros clientes de correo además de Delta Chat";
-// deprecated
-"autodel_server_warn_multi_device_title" = "Activar la eliminación inmediata";
-// deprecated
-"autodel_server_warn_multi_device" = "Si habilita la eliminación inmediata, no podrá utilizar varios dispositivos en este perfil.";
 "autodel_confirm" = "Comprendo, borrar todos estos mensajes";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Inmediatamente";
@@ -979,8 +862,6 @@
 "invalid_unencrypted_explanation" = "Para establecer un cifrado de extremo a extremo, puede reunirse con los contactos en persona y escanear su código QR.";
 "learn_more" = "Aprender más";
 "devicemsg_self_deleted" = "Eliminaste los chats de los \"Mensajes guardados\". \n\nℹ️ Para volver a usar los\"Mensajes guardados\", debes crear un chat contigo mismo.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ El almacenamiento de tu proveedor está por excederse, ya tienes %1$@%% en uso.\n\nQuizás no puedas recibir mensajes cuando el almacenamiento esté al 100%% de uso.\n\n👉 Por favor chequea si puedes eliminar los datos antiguos en la página web del proveedor y considera habilitar \"Ajustes / Eliminar mensajes antiguos\". Puedes chequear tu almacenamiento actual en cualquier momento en \"Ajustes / Conectividad\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Fecha y hora de tu dispositivo parecen ser inexactas (%1$@).\n\nAjusta tu reloj ⏰🔧 para asegurarte que los mensajes sean recibidos correctamente.";
 "devicemsg_update_reminder" = "⚠️ Tu versión de Delta Chat puede estar desactualizada.\n\nEso puede crear problemas porque tus contactos usan nuevas versiones - y tú te estás perdiendo las últimas novedades 😳\nChequea https://get.delta.chat o tu tienda de aplicaciones para actualizaciones.";
@@ -995,14 +876,8 @@
 "qrscan_failed" = "El código QR no pudo ser decodificado";
 "qrscan_ask_join_group" = "¿Quieres unirte al grupo \"%1$@\"?";
 "qrscan_ask_join_channel" = "¿Quieres unirte al canal \"%1$@\"?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "La huella digital escaneada no coincide con la última huella vista para \"%1$@\".";
-// deprecated
-"qrscan_no_addr_found" = "Este código QR contiene una huella digital pero no una dirección de correo electrónico.\n\nPara una verificación fuera de banda, establezca primero una conexión cifrada con el destinatario.";
 "qrscan_contains_text" = "Texto del código QR escaneado:\n\n%1$@";
 "qrscan_contains_url" = "URL del código QR escaneado:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Huella digital";
 "withdraw_verifycontact_explain" = "Este código QR puede ser escaneado por otras personas para contactarlo.\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_verifygroup_explain" = "Este código QR puede ser escaneado por otros para unirse al grupo \"%1$@\".\n\nPuede desactivar el código QR aquí y reactivarlo escaneándolo de nuevo.";
 "withdraw_joinbroadcast_explain" = "Este código QR puede ser escaneado por otros para unirse al canal \"%1$@\".\n\nPuedes restablecerlo, de modo que el código QR existente o el enlace de invitación dejarán de funcionar.";
@@ -1021,13 +896,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Escanea esto para configurar un contacto con %1$@";
 "qrshow_join_contact_no_connection_toast" = "No hay conexión a Internet, no se puede configurar con código QR.";
-// deprecated
-"qraccount_ask_create_and_login" = "¿Crear una nueva dirección de correo en \"%1$@\" e ingresar allí?";
 "set_name_and_avatar_explain" = "Establece un nombre que tus contactos puedan reconocer. También puedes establecer una foto de perfil.";
 "please_enter_name" = "Por favor, introduce un nombre.";
 "qraccount_qr_code_cannot_be_used" = "El código QR escaneado no puede ser usado para configurar una nueva cuenta.";
-// deprecated
-"qrlogin_ask_login" = "¿Iniciar sesión en \"%1$@\"?";
 // the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
 "relay_login_hint" = "Utilizando %1$@";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -1039,13 +910,6 @@
 "secure_join_wait" = "Estableciendo cifrado de extremo a extremo garantizado, por favor, espere...";
 "contact_verified" = "%1$@ verificado.";
 "contact_blocked" = "Contacto bloqueado";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "Verificado por %1$@";
-// deprecated
-"verified_by_you" = "Verificado por ti";
-// deprecated
-"verified_by_unknown" = "Introducido";
 "mailto_dialog_header_select_chat" = "Seleccione el chat para enviar el mensaje";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ ya tiene un mensaje borrador, ¿quieres reemplazarlo?";
@@ -1129,8 +993,6 @@
 "menu.view.developer.open.log.folder" = "Abrir Carpeta de Logs";
 "menu.view.developer.open.current.log.file" = "Abrir Archivo de Logs Actual";
 "explain_desktop_minimized_disabled_tray_pref" = "El icono de la bandeja no se puede desactivar ya que Delta Chat se inició con la opción --minimized.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "No se encontraron sugerencias ortográficas.";
 "show_window" = "Mostrar ventana";
 "data_found_other_installation_message" = "Sus perfiles de otra instalación de Delta Chat no son accesibles - las diferentes instalaciones almacenan sus datos en ubicaciones separadas.\n\nPara mantener los perfiles existentes:\n1. Salga ahora\n2. Abra el otro Delta Chat - si es necesario, reinstálelo desde %1$@\n3. Haga una copia de seguridad de cada perfil en \"Configuración/Chats\"\n4. Vuelva a iniciar esta versión\n5. Restaura las copias de seguridad usando \"Ya tengo un perfil\"\n¿Continúas sin tus perfiles anteriores?";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
@@ -1163,31 +1025,15 @@
 "open_link" = "Abrir %1$@";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Dejar de compartir ubicación";
-// deprecated
-"a11y_voice_message_hint_ios" = "Después de grabar, toque dos veces para enviar. Para descartar la grabación, deslice de izquierda a derecha con dos dedos.";
 "a11y_connectivity_hint" = "Toca dos veces para ver los detalles de conectividad.";
 "login_error_no_internet_connection" = "No hay conexión a Internet, el inicio de sesión falló.";
-// deprecated
-"share_account_not_configured" = "La cuenta no está configurada.";
 "cannot_play_audio_file" = "El archivo de audio no se puede reproducir.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Para hacer fotos, capturar vídeos o utilizar el escáner de códigos QR, abra los ajustes del sistema y active \"Cámara\".";
 "open_settings" = "Abrir configuración";
-// deprecated
-"import_device_contacts" = "Importar contactos del dispositivo";
-// deprecated
-"import_device_contacts_hint" = "Para chatear con los contactos de tu dispositivo abre los ajustes y activa \"Contactos\".";
-// deprecated
-"disabled_in_dc" = "Deshabilitado en Delta Chat";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Deshabilitado en la configuración del sistema";
 "bg_app_refresh_disabled" = "\"Actualización de aplicaciones en segundo plano\" desactivada en los ajustes del sistema";
-// deprecated
-"notifications_avg_minutes" = "Promedio cada %1$d minutos";
-// deprecated
-"notifications_avg_hours" = "Promedio cada %1$d horas";
-// deprecated
-"last_check_at" = "Comprobado en %1$@";
 "system_settings" = "Configuración del sistema";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Editar tipo, insignias, vista previa y más";
@@ -1208,7 +1054,7 @@
 "pref_reliable_service" = "Forzar conexión en segundo plano";
 "pref_reliable_service_explain" = "Usando una notificación permanente";
 "pref_background_notifications_rationale" = "Para mantener la conexión de tu servidor email y recibir mensajes en segundo plano, ignorar las optimizaciones en el próximo paso.\n\nDelta Chat usa pocos recursos y cuida no drenar tu batería";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aquí para recibir mensajes mientras Delta Chat está en segundo plano.";
 "perm_enable_bg_already_done" = "Ya has permitido que Delta Chat reciba mensajes en segundo plano.\n\nSi los mensajes aún no llegan en segundo plano, compruebe también la configuración de su sistema.";
 // device messages for updates

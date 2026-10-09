@@ -13,8 +13,6 @@
 "on" = "Ligado";
 "off" = "Desligado";
 "def" = "Padrão";
-// deprecated
-"default_value" = "Padrão (%1$@)";
 "custom" = "Personalizado";
 "none" = "Nenhum";
 "automatic" = "Automático";
@@ -25,8 +23,6 @@
 "join" = "Entrar";
 "join_group" = "Juntar-se ao Grupo";
 "join_channel" = "Juntar-se ao Canal";
-// deprecated
-"rejoin" = "Re-entrar";
 "delete" = "Apagar";
 "delete_for_me" = "Apagar para mim";
 "delete_for_everyone" = "Apagar para toda a gente";
@@ -54,10 +50,6 @@
 "save" = "Guardar";
 "chat" = "Conversa";
 "profile" = "Perfil";
-// deprecated
-"all_profiles" = "Todos os Perfis";
-// deprecated
-"current_profile" = "Perfil Actual";
 "main_menu" = "Menu Principal";
 "show_full_message" = "Mostrar mensagem completa...";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
@@ -92,8 +84,6 @@
 "copied_to_clipboard" = "Copiado para a área de transferência.";
 "contacts_headline" = "Contactos";
 "email_address" = "Endereço de email";
-// deprecated
-"bad_email_address" = "Endereço de errado de email";
 "password" = "Palavra-chave";
 "now" = "Agora";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
@@ -151,8 +141,6 @@
 "small" = "Pequeno";
 "normal" = "Normal";
 "large" = "Grande";
-// deprecated
-"extra_large" = "Extra grande";
 "fast" = "Rápido";
 "slow" = "Lento";
 // menu labels (or icon, buttons...)
@@ -177,8 +165,6 @@
 "menu_send" = "Enviar";
 "menu_toggle_keyboard" = "Alternar teclado emoji";
 "menu_edit_group" = "Editar grupo";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Nome e imagem de grupo";
 "menu_archive_chat" = "Arquivar chat";
 "menu_unarchive_chat" = "Desarquivar chat";
 "menu_add_attachment" = "Juntar anexo";
@@ -209,8 +195,6 @@
 "privacy_policy" = "Política de privacidade";
 "menu_select_all" = "Selecionar tudo";
 "select_chat" = "Seleccionar Chat";
-// deprecated
-"select_more" = "Seleccionar mais";
 "menu_edit_name" = "Editar nome";
 "menu_settings" = "Definições";
 "menu_advanced" = "Avançado";
@@ -225,7 +209,6 @@
 "mute_for_one_day" = "Calado por 1 dia";
 "mute_for_seven_days" = "Calado por 7 dias";
 "mute_forever" = "Silenciar para sempre";
-// deprecated
 "share_location_for_5_minutes" = "por 5 min";
 "share_location_for_30_minutes" = "por 30 min";
 "share_location_for_one_hour" = "por 1 hora";
@@ -248,8 +231,6 @@
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
 "calling_person" = "A chamar %1$@…";
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
-// deprecated, use ask_forward_messages
-"ask_forward" = "Reencaminhar mensages para %1$@?";
 "ask_forward_multiple" = "Reencaminhar mensagens para %1$d conversas?";
 "ask_export_attachment" = "Exportar anexo? A exportação de anexos permitirá o seu acesso a qualquer outra aplicação no seu dispositivo.\n\nContinuar?";
 "ask_block_contact" = "Bloquear este contacto?\n\nMensagens directas e grupos criados por contactos bloqueados serão ocultados.\n\nMensagens de contactos bloqueados não serão ocultadas noutros grupos.";
@@ -286,8 +267,8 @@
 // Should match "Saved" from "Saved messages"
 "saved" = "Guardadas";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Arrancar…";
+// "Start" button for an app
+"start_app" = "Arrancar";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Enviar \"%1$@\" para…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
@@ -297,15 +278,11 @@
 // Placeholder will be replaced by the chat name
 "search_in" = "Procurar em %1$@";
 "search_explain" = "Pesquisar chats, contactos, emensagens";
-// deprecated, there is not much point to repeat the query, use emoji_search_results, or no headline at all
-"search_result_for_x" = "Resultado para \"%1$@\"";
 "search_no_result_for_x" = "Nenhum resultado encontrado para \"%1$@\"";
 // create/edit groups, contact/group profile
 "group_name" = "Nome do grupo";
 "group_avatar" = "Avatar do grupo";
 "group_create_button" = "Criar grupo";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Por favor, introduza um nome para o grupo.";
 "please_enter_chat_name" = "Por favor introduz um nome.";
 "group_add_members" = "Adicionar membros";
 "group_self_not_in_group" = "Tem de ser membro do grupo para realizar a ação.";
@@ -329,8 +306,6 @@
 "messages" = "Mensagens";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
 "part_of_total_used" = "%1$@ de %2$@ usados";
-// deprecated
-"login_title" = "Login";
 "login_inbox" = "Caixa de entrada";
 "login_imap_login" = "IMAP nome de login ";
 "login_imap_server" = "IMAP servidor";
@@ -343,16 +318,10 @@
 "login_smtp_port" = "SMTP porto";
 "login_smtp_security" = "SMTP segurança";
 // deprecated
-"confirm_remove_or_hide_transport_x" = "Remover relay \"%1$@\"?\n\nContactos que conheçam apenas este relay não serão capazes de te contactar até lhes enviares uma nova mensagem.\n\nEm caso de dúvida, oculta-o em vez de o remover.";
 "login_error_mail" = "Por favor insira um endereço de e-mail válido";
-"login_error_server" = "Por favor insira um servidor ou endereço IP válido";
-"login_error_port" = "Por favor, insira um porto válido (1-65535)";
-"login_error_required_fields" = "Por favor, insira um endereço de e-mail e uma palavra-chave válidos";
 "import_backup_title" = "Importar backup";
 "import_backup_ask" = "Backup encontrado em \"%1$@\".\n\nQuer importar e usar todos os dados e respectivas configurações?";
 "import_backup_no_backup_found" = "Nenhum backup encontrado. \n\nCopie o backup para \"%1$@\" e tente novamente.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Não é possível fazer o login como \"%1$@\". Por favor, verifique se o endereço de email e a palavra-chave estão corretos.";
 "switch_account" = "Trocar Perfil";
 "add_account" = "Adicionar Perfil";
 "delete_account_explain_with_name" = "Todos os dados do perfil \"%1$@\" neste dispositivo serão removidos, incluindo a configuração de criptografia de ponta-a-ponta, contactos, conversas, mensagens e multimédia. Não é possível desfazer esta acção.";
@@ -388,8 +357,6 @@
 "pref_led_color" = "Cor do LED";
 "pref_sound" = "Som";
 "pref_silent" = "Silêncio";
-// deprecated
-"pref_privacy" = "Privacidade";
 "pref_system_default" = "Configuração por omissão";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Luz";
@@ -405,10 +372,6 @@
 // Title above a list of contacts who read a message
 "read_by" = "Lida por";
 "pref_server" = "Servidor";
-// deprecated
-"pref_encryption" = "Criptografia";
-// deprecated
-"pref_manage_keys" = "Gerir teclas";
 "pref_chats" = "chats";
 "pref_in_chat_sounds" = "Sons na chat";
 "pref_view_log" = "Ver o log";
@@ -420,14 +383,6 @@
 "pref_backup_written_to_x" = "Backup escrito com sucesso em %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "Fundo";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Se desabilitar esta opção, verifique se seu servidor e seus outros clientes estão configurados adequadamente. \n\ncaso contrário, as coisas podem não funcionar.";
-// deprecated
-"pref_auto_folder_moves" = "Mover pasta automaticamente para o Delta Chat";
-// deprecated
-"pref_show_emails" = "Exibir e-mails comuns";
-// deprecated
-"pref_show_emails_no" = "Não, apenas conversas";
 // deprecated, use "All"
 "pref_show_emails_all" = "Tudo";
 // "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
@@ -465,14 +420,8 @@
 "qrscan_title" = "Fazer scan do código QR";
 "qrscan_hint" = "Coloque sua câmera sobre o código QR";
 "qrscan_ask_join_group" = "Quer se juntar-se ao grupo \"%1$@\"?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "A impressão digital digitalizada não corresponde à impressão digital usada pela última vez em %1$@";
-// deprecated
-"qrscan_no_addr_found" = "Este código QR contém uma impressão digital, mas nenhum endereço de e-mail. \n\nPara uma verificação fora da banda, estabeleça primeiro uma encriptada criptografada com o destinatário.";
 "qrscan_contains_text" = "Texto de código QR digitalizado: \n\n%1$@";
 "qrscan_contains_url" = "URL do código QR digitalizado: \n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Impressão digital";
 "qrshow_title" = "Código de convite do QR";
 "qrshow_x_joining" = "%1$@ junta-se.";
 "qrshow_x_verified" = "%1$@ verificado.";
@@ -548,6 +497,6 @@
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_explain" = "Necessita que optimizações de bateria sejam ignoradas, usa se notificações não chegarem atempadamente";
 "pref_background_notifications_rationale" = "Para manter a ligação e receber mensagens em segundo plano, ignora optimizações de bateria no próximo passo.\n\nO Delta Chat usa poucos recursos e tem cuidado para não gastar muita bateria.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Toque aqui para receber mensagens mesmo que o Delta Chat esteja em segundo plano.";
 "perm_enable_bg_already_done" = "Já deste permissão para que o Delta Chat receba mensagens em segundo plano.\n\nSe continuas a não receber mensagens em segundo plano, confirma as definições de sistema também.";

@@ -13,8 +13,6 @@
 "on" = "Zapnuto";
 "off" = "Vypnuto";
 "def" = "Výchozí";
-// deprecated
-"default_value" = "Výchozí (%1$@)";
 "custom" = "Vlastní";
 "none" = "Žádný";
 "automatic" = "Automaticky";
@@ -26,8 +24,6 @@
 "join" = "Připojit se";
 "join_group" = "Připojit se ke skupině";
 "join_channel" = "Připojte se ke kanálu";
-// deprecated
-"rejoin" = "Znovu se připojit";
 "delete" = "Smazat";
 "delete_for_me" = "Smazat pro mě";
 "delete_for_everyone" = "Smazat pro všechny";
@@ -61,10 +57,6 @@
 "media" = "Multimédia";
 "apps_and_media" = "Aplikace a multimédia";
 "profile" = "Profil";
-// deprecated
-"all_profiles" = "Všechny profily";
-// deprecated
-"current_profile" = "Aktuální profil";
 "main_menu" = "Hlavní nabídka";
 "start_chat" = "Začít chatovat";
 "show_full_message" = "Zobrazit celou zprávu…";
@@ -86,11 +78,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Vzdálené obrázky vás mohou sledovat.\n\nTato volba povolí i stahování dalšího obsahu, jako jsou například písma. Obrázky z vyrovnávací paměti nebo ty, které jsou součástí zprávy, se zobrazí, i když je tato volba vypnuta.\n\nPřejete si načíst vzdálené obrázky?";
 "always" = "Vždy";
-// deprecated
-"always_load_remote_images" = "Vždy načítat vzdálené obrázky";
 "once" = "Jednou";
-// deprecated
-"show_warning" = "Zobrazovat varování";
 "not_now" = "Teď ne";
 "never" = "Nikdy";
 "one_moment" = "Okamžik...";
@@ -105,13 +93,9 @@
 "no_app_to_handle_data" = "Aplikace pro tento typ dat nenalezena.";
 "no_browser_installed" = "Není nainstalován žádný prohlížeč.";
 "file_not_found" = "Nelze najít %1$@.";
-// deprecated
-"cannot_save_file" = "Nelze uložit %1$@";
 "copied_to_clipboard" = "Zkopírováno do schránky.";
 "contacts_headline" = "Kontakty";
 "email_address" = "E-mailová adresa";
-// deprecated
-"bad_email_address" = "Neplatná e-mailová adresa.";
 "password" = "Heslo";
 "existing_password" = "Stávající heslo";
 "now" = "Nyní";
@@ -135,8 +119,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "Vybráno:";
 "selected" = "Vybráno";
 "self" = "Já";
 "draft" = "Rozepsané";
@@ -147,10 +129,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Nálepka";
 "add_to_sticker_collection" = "Přidat do sbírky nálepek";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Přejete-li si přidat nálepky, klepněte na „Otevřít složku nálepek“, vytvořte podsložku pro balíček nálepek a přetáhněte do ní soubory obrázků a nálepek";
-// deprecated
-"open_sticker_folder" = "Otevřít složku nálepek";
 "ask_add_sticker_to_collection" = "Přidat tuto nálepku do své sbírky?";
 "ask_delete_sticker" = "Smazat tuto nálepku?";
 "sticker_picker_empty_hint" = "Klepnutím na nálepku ji sem přidáte.";
@@ -171,8 +149,6 @@
 "capture" = "Spoušť";
 // Switch eg. from front to back camera
 "switch_camera" = "Přepnout kameru";
-// deprecated
-"toggle_fullscreen" = "Přepnout režim celé obrazovky";
 "location" = "Poloha";
 "locations" = "Polohy";
 "gallery" = "Galerie";
@@ -209,13 +185,9 @@
 "magenta" = "Fialová";
 "white" = "Bílá";
 "zoom" = "Zvětšit";
-// deprecated
-"extra_small" = "Velmi malá";
 "small" = "Malá";
 "normal" = "Normální";
 "large" = "Velká";
-// deprecated
-"extra_large" = "Velmi velká";
 "fast" = "Rychle";
 "slow" = "Pomalu";
 // menu labels (or icon, buttons...)
@@ -243,8 +215,6 @@
 "menu_send" = "Odeslat";
 "menu_toggle_keyboard" = "Přepnout emoji klávesnici";
 "menu_edit_group" = "Upravit skupinu";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Název a obrázek skupiny";
 "menu_show_global_map" = "Všechny polohy";
 "menu_archive_chat" = "Archivovat chat";
 "menu_unarchive_chat" = "Obnovit chat z archivu";
@@ -255,8 +225,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Vyprázdnit chat";
 "delete_contact" = "Smazat kontakt";
-// deprecated
-"menu_delete_location" = "Přejete si smazat tuto polohu?";
 "menu_message_details" = "Informace o zprávě";
 "menu_copy_to_clipboard" = "Kopírovat do schránky";
 "share_invite_link" = "Sdílet odkaz s pozvánkou";
@@ -298,8 +266,6 @@
 "privacy_policy" = "Zásady ochrany osobních údajů";
 "menu_select_all" = "Vybrat vše";
 "select_chat" = "Vybrat chat";
-// deprecated
-"select_more" = "Vybrat další";
 "menu_edit_name" = "Upravit jméno";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Nastavte přezdívku, která se vám bude zobrazovat místo \"%1$@\". Chcete-li použít původní jméno kontaktu, ponechte prázdné.";
@@ -312,7 +278,6 @@
 "menu_zoom_out" = "Oddálit";
 "menu_save_log" = "Uložit protokol";
 "menu_more_options" = "Další možnosti";
-"menu_learn_spelling" = "Naučte se pravopis";
 "jump_to_message" = "Přejít na zprávu";
 "replace_draft" = "Nahradit rozepsanou zprávu";
 "title_share_location" = "Sdílet polohu se všemi členy skupiny";
@@ -341,7 +306,6 @@
 "mute_for_one_day" = "Ztlumit na 1 den";
 "mute_for_seven_days" = "Ztlumit na 7 dní";
 "mute_forever" = "Ztlumit navždy";
-// deprecated
 "share_location_for_5_minutes" = "Na 5 minut";
 "share_location_for_30_minutes" = "Na 30 minut";
 "share_location_for_one_hour" = "Na 1 hodinu";
@@ -362,8 +326,6 @@
 "ask_leave_group" = "Jste si jistý, že chcete odejít?";
 "ask_delete_named_chat" = "Smazat chat \"%1$@\" ze všech vašich zařízení?";
 "ask_delete_message" = "Smazat tuto zprávu ze všech vašich zařízení?";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Přejete si přeposlat zprávy do chatu %1$@?";
 "ask_forward_multiple" = "Přejete si přeposlat zprávy do %1$d chatů?";
 "ask_export_attachment" = "Uložením příloh je zpřístupníte ostatním aplikacím na tomto zařízení.\n\nPřejete si pokračovat?";
 "ask_block_contact" = "Přejete si zablokovat tento kontakt?\n\nSoukromé zprávy a skupiny vytvořené zablokovanými kontakty budou skryty.\n\nV ostatních skupinách, ve kterých se zablokované kontakty nacházejí, se jejich zprávy budou zobrazovat i nadále.";
@@ -397,8 +359,6 @@
 "chat_input_placeholder" = "Zpráva";
 "chat_archived_label" = "Archivováno";
 "chat_request_label" = "Žádost";
-// deprecated
-"chat_request_label_explain" = "Zahrnutí požadavků do čítačů a oznámení";
 "chat_no_messages" = "Žádné zprávy.";
 "chat_self_talk_subtitle" = "Zprávy poslané sobě";
 "archive_empty_hint" = "Zde se zobrazí archivované chaty.";
@@ -408,20 +368,14 @@
 "saved_messages_explain" = "Sem si můžete:\n\n• přeposílat zprávy pro rychlý přístup,\n\n• zapisovat textové i hlasové poznámky,\n\n• ukládat multimédia";
 // Should match "Saved" from "Saved messages"
 "saved" = "Uložené";
-// deprecated
-"save_as" = "Uložit jako";
-// deprecated
-"retry_send" = "Opakovat pokus o zaslání zprávy";
-// deprecated
-"cannot_display_unsuported_file_type" = "Nelze zobrazit tento typ souboru: %1$@";
 "attachment_failed_to_load" = "Načtení přílohy se nezdařilo";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Uzamknout nahrávání";
 // mailing lists
 "mailing_list" = "E-mailový seznam";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Spustit...";
+// "Start" button for an app
+"start_app" = "Spustit";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Nejprve prosím přijměte žádost o chat.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -448,8 +402,6 @@
 "remove_group_image" = "Odstranit obrázek skupiny";
 "change_group_image" = "Změnit obrázek skupiny";
 "group_create_button" = "Vytvořit skupinu";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Prosím, vložte název pro tuto skupinu.";
 "group_add_members" = "Přidat členy";
 "group_self_not_in_group" = "Pro tuto akci je nutné být členem této skupiny.";
 "profile_encryption" = "Šifrování";
@@ -459,25 +411,17 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
 "tab_gallery" = "Galerie";
-// deprecated
-"tab_docs" = "Dokumenty";
 "tab_links" = "Odkazy";
 "tab_map" = "Mapa";
 "tab_gallery_empty_hint" = "Zde se zobrazí obrázky a videa sdílené v tomto chatu.";
 "tab_docs_empty_hint" = "Zde se zobrazí dokumenty, hudba a další soubory sdílené v tomto chatu.";
 "tab_image_empty_hint" = "Zde se zobrazí obrázky sdílené v tomto chatu.";
-// deprecated
-"tab_video_empty_hint" = "Zde se zobrazí videa sdílená v tomto chatu.";
 "tab_audio_empty_hint" = "Zde se zobrazí zvukové soubory a hlasové zprávy sdílené v tomto chatu.";
 "tab_webxdc_empty_hint" = "Zde se zobrazí aplikace sdílené v tomto chatu.";
 "tab_all_media_empty_hint" = "Zde se zobrazí multimédia sdílená v jakémkoli chatu.";
 "all_files_empty_hint" = "Zde se zobrazí dokumenty a další soubory sdílené v jakémkoli chatu.";
 "all_apps_empty_hint" = "Zde se zobrazí aplikace sdílené v jakémkoli chatu.";
 "media_preview" = "Náhled multimédia";
-// deprecated
-"aspect_ratio_grid" = "Mřížka zachovávající poměry stran";
-// deprecated
-"square_grid" = "Mřížka čtverců";
 "send_message" = "Odeslat zprávu";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -517,8 +461,6 @@
 "connectivity_connected" = "Připojeno";
 "sending" = "Odesílání...";
 "last_msg_sent_successfully" = "Poslední zpráva úspěšně odeslána.";
-// deprecated
-"not_supported_by_provider" = "Nepodporováno vaším poskytovatelem.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Zprávy";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -532,12 +474,6 @@
 "manual_account_setup_option" = "Přihlášení ke klasickému e-mailu";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Váš profil";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "Zásady ochrany osobních údajů pro %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "O profilech na %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Souhlasím, vytvořit profil";
 // Secondary, link-like button to open a page with other possible instances
@@ -553,8 +489,6 @@
 "instant_onboarding_confirm_group" = "Přejete si založit nový profil a připojit se k chatovací skupině \"%1$@\"?";
 "welcome_chat_over_email" = "Zabezpečený decentralizovaný chat";
 "scan_invitation_code" = "Naskenovat kód pozvánky";
-// deprecated
-"login_title" = "Přihlaš se";
 "login_inbox" = "Příchozí";
 "login_imap_login" = "IMAP uživatelské jméno";
 "login_imap_server" = "IMAP server";
@@ -590,15 +524,11 @@
 "confirm_add_transport" = "Přidat toto vysílání?";
 "invalid_transport_qr" = "Naskenovaný kód QR neobsahuje platné vysílání.";
 "login_certificate_checks" = "Kontroly certifikátu";
+// deprecated
 "login_error_mail" = "Prosím, zadejte platnou e-mailovou adresu";
-"login_error_server" = "Prosím, zadejte platný server / IP adresu";
-"login_error_port" = "Prosím, zadejte platný port (1–65535)";
-"login_error_required_fields" = "Prosím, zadejte platnou e-mailovou adresu a heslo";
 "import_backup_title" = "Obnovit ze zálohy";
 "import_backup_ask" = "Záloha nalezena v \"%1$@\"\n\nPřejete si soubor načíst a použít všechna jeho data a nastavení?";
 "import_backup_no_backup_found" = "Žádná záloha nebyla nalezena. \n\nZkopírujte zálohu do \"%1$@\" a zkuste to znovu.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Přihlášení jako \"%1$@\" selhalo. Zkontrolujte si prosím ještě jednou e-mail a heslo.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Přijmout neplatné certifikáty";
 "switch_account" = "Přepni účet";
@@ -624,8 +554,6 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Poslat %1$d soubory do chatu \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Poslat %1$d soubor(y) do %2$d chatu?";
-// deprecated
-"videos_sent_without_recoding" = "(Videa se posílají jako původní velké soubory. Pokud si přejete posílat videa jako menší soubory, přiložte je odděleně)";
 "share_text_multiple_chats" = "Poslat tento text do %1$d chatů?\n\n\"%2$@\"";
 "share_abort" = "Sdílení přerušeno kvůli chybějícím oprávnění.";
 // preferences
@@ -655,13 +583,9 @@
 "pref_notifications_priority" = "Priorita";
 "pref_notifications_explain" = "Povolit systémová oznámení nových zpráv";
 "pref_show_notification_content" = "Zobrazit obsah zprávy uvnitř oznámení";
-// deprecated
-"pref_show_notification_content_explain" = "Zobrazit odesílatele a první slova zprávy uvnitř oznámení";
 "pref_led_color" = "Barva diody";
 "pref_sound" = "Zvuk";
 "pref_silent" = "Ticho";
-// deprecated
-"pref_privacy" = "Soukromí";
 "pref_system_default" = "Podle systému";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Světlý";
@@ -676,10 +600,6 @@
 "pref_read_receipts" = "Potvrzení o přečtení";
 "pref_read_receipts_explain" = "Při vypnutém čtení potvrzení se nezobrazí potvrzení o příjetí od ostatních.";
 "pref_server" = "Server";
-// deprecated
-"pref_encryption" = "Šifrování";
-// deprecated
-"pref_manage_keys" = "Správa klíčů";
 "pref_chats" = "Chaty";
 "pref_in_chat_sounds" = "Zvuky v rámci chatu";
 "pref_view_log" = "Zobrazit protokol";
@@ -699,22 +619,10 @@
 "pref_background" = "Pozadí";
 "pref_background_btn_default" = "Použít výchozí obrázek";
 "pref_background_btn_gallery" = "Vybrat z galerie";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Při změně této volby se ujistěte, že váš server a ostatní klientské aplikace mají odpovídající nastavení.\n\nJinak může vše přestat fungovat.";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
 "pref_multidevice" = "Režim pro více zařízení";
 "pref_multidevice_explain" = "Synchronizujte zprávy s ostatními zařízeními. Automaticky povoleno při přidání druhého zařízení";
 "pref_multidevice_change_warn" = "Při použití stejného profilu na více zařízeních musí být povolen \"režim více zařízení\". Toto nastavení zakažte pouze v případě, že jste tento profil odstranili ze všech ostatních zařízení. \n\n Zakázání režimu \"režim více zařízení\" při používání profilu na více zařízeních bude mít za následek zmeškané zprávy a další problémy.";
-// deprecated
-"pref_auto_folder_moves" = "Automaticky přesouvat do složky DeltaChat ";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Načítat pouze ze složky DeltaChat";
-// deprecated
-"pref_show_emails" = "Zobrazovat běžné e-maily";
-// deprecated
-"pref_show_emails_no" = "Ne, pouze chaty";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Pro přijaté kontakty";
 // deprecated, use "All"
 "pref_show_emails_all" = "Vše";
 "pref_experimental_features" = "Experimentální funkce ";
@@ -763,18 +671,8 @@
 // automatically delete message
 "delete_old_messages" = "Mazat staré zprávy";
 "autodel_device_title" = "Mazat zprávy ze zařízení";
-// deprecated
-"autodel_server_title" = "Mazat zprávy ze serveru";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Skutečně smazat %1$d zpráv a všechny v budoucnu stažené zprávy \"%2$@\"?\n\n• Toto zahrnuje všechna multimédia\n\n• Zprávy budou smazány bez ohledu na jejich přečtení\n\n• \"Uložené zprávy\" budou ponechány";
-// deprecated
-"autodel_server_ask" = "Skutečně smazat %1$d zprávy a všechny v budoucnu stažené zprávy \"%2$@\"?\n\n⚠️ Toto zahrnuje e-maily, multimédia a \"Uložené zprávy\" ve všech složkách na serveru\n\n⚠️ Nepoužívejte tuto funkci, pokud si přejete ponechat data na serveru\n\n⚠️ Nepoužívejte tuto funkci, pokud používáte i jiné e-mailové klienty mimo Delta Chat";
-// deprecated
-"autodel_server_enabled_hint" = "Toto zahrnuje e-maily, multimédia a \"Uložené zprávy\" ve všech složkách na serveru. Nepoužívejte tuto funkci, pokud chcete ponechat data na serveru, nebo pokud používáte i jiné e-mailové programy mimo Delta Chat";
-// deprecated
-"autodel_server_warn_multi_device_title" = "Zapnout okamžité mazání";
-// deprecated
-"autodel_server_warn_multi_device" = "Pokud zapnete okamžité mazání, nemůžete tento profil používat na více zařízeních.";
 "autodel_confirm" = "Rozumím. Smazat všechny tyto zprávy";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Ihned po stažení";
@@ -861,8 +759,6 @@
 "invalid_unencrypted_explanation" = "Pro navázání koncově šifrovaného spojení se můžete se svými kontakty setkat osobně a naskenovat jejich QR kódy.";
 "learn_more" = "Další informace";
 "devicemsg_self_deleted" = "Smazali jste chat „Uložené zprávy“.\n\nℹ️ Chcete-li znovu použít funkci „Uložené zprávy“, založte nový chat sami se sebou.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ Úložiště u vašeho poskytovatele je téměř vyčerpané: %1$@ %% je již využito.\n\nPokud se úložiště zaplní, nebudete moci přijímat zprávy.\n\n👉 Zkuste smazat stará data ve webovém prostředí poskytovatele a zvažte povolení volby \"Nastavení / Chaty a multimédia / Mazat staré zprávy\". Aktuální využití úložiště můžete kdykoliv zkontrolovat v \"Nastavení / Připojení\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Datum a čas na vašem zařízení se zdají být nepřesné (%1$@).\n\nUpravte si čas ⏰🔧, abyste mohli přijímat své zprávy.";
 "devicemsg_update_reminder" = "⚠️ Vaše verze Delta Chatu může být zastaralá.\n\nTo může způsobit problémy, protože vaši partneři v chatu používají novější verze – a vám chybí nejnovější funkce 😳\nAktualizace najdete na https://get.delta.chat nebo v obchodě s aplikacemi.";
@@ -877,14 +773,8 @@
 "qrscan_failed" = "QR kód nelze přečíst";
 "qrscan_ask_join_group" = "Přejete si přidat ke skupině \"%1$@\"?";
 "qrscan_ask_join_channel" = "Chcete se připojit ke kanálu \"%1$@\"?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "Rozpoznaný otisk uživatele %1$@ neodpovídá jeho poslednímu otisku.";
-// deprecated
-"qrscan_no_addr_found" = "Tento QR kód obsahuje otisk, ale žádný e-mail.\n\nK ověření nezávislou cestou nejprve vytvořte šifrované připojení k příjemci.";
 "qrscan_contains_text" = "Text z QR kódu:\n\n%1$@";
 "qrscan_contains_url" = "Adresa URL z QR kódu:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Otisk";
 "withdraw_verifycontact_explain" = "Tento QR kód mohou ostatní uživatelé použít, aby vás kontaktovali.\n\nMůžete také vygenerovat nový, čímž dosavadní QR kód či odkaz s pozvánkou zneplatníte.";
 "withdraw_verifygroup_explain" = "Tento QR kód mohou ostatní uživatelé použít k připojení ke skupině \"%1$@\".\n\nMůžete také vygenerovat nový, čímž dosavadní QR kód či odkaz s pozvánkou zneplatníte.";
 "withdraw_joinbroadcast_explain" = "Tento QR kód mohou ostatní naskenovat a připojit se ke kanálu \"%1$@\".\n\n Můžete jej resetovat, takže stávající QR kód nebo odkaz na pozvánku již nebude fungovat.";
@@ -903,13 +793,9 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Naskenujte k navázání spojení s uživatelem %1$@";
 "qrshow_join_contact_no_connection_toast" = "Žádné připojení k Internetu. Zprovoznění QR kódem nelze provést.";
-// deprecated
-"qraccount_ask_create_and_login" = "Přejete si vytvořit nový profil na \"%1$@\" a připojit se k němu?";
 "set_name_and_avatar_explain" = "Nastavte si jméno, podle kterého vás ostatní poznají. Můžete si také nastavit profilový obrázek.";
 "please_enter_name" = "Prosím, zadejte jméno.";
 "qraccount_qr_code_cannot_be_used" = "Tento QR kód neumožňuje nastavení nového účtu.";
-// deprecated
-"qrlogin_ask_login" = "Přejete si přihlásit k \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "Uživatel %1$@ vás pozval do této skupiny.\n\nČekání na odpověď od zařízení uživatele %2$@...";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
@@ -918,13 +804,6 @@
 "secure_join_replies" = "Uživatel %1$@ odpověděl, čekání na přidání do skupiny...";
 "secure_join_wait" = "Navazování koncově šifrovaného spojení, prosím, čekejte...";
 "contact_verified" = "Uživatel %1$@ ověřen.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "Ověřeni uživatelem %1$@.";
-// deprecated
-"verified_by_you" = "Ověřeni mnou";
-// deprecated
-"verified_by_unknown" = "Představeno";
 "mailto_dialog_header_select_chat" = "Vyberte chat, do kterého chcete zprávu poslat";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ již obsahuje rozepsanou zprávu, přejete si ji přepsat?";
@@ -1001,8 +880,6 @@
 "menu.view.developer.open.log.folder" = "Otevřít složku protokolu";
 "menu.view.developer.open.current.log.file" = "Otevřít stávající soubor s protokolem";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu na panelu nelze deaktivovat, protože Delta Chat byl spuštěn s volbou --minimized.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Žádné pravopisné návrhy.";
 "show_window" = "Zobrazit okno";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Klávesové zkratky";
@@ -1026,31 +903,15 @@
 "a11y_disappearing_messages_activated" = "Mizející zprávy jsou zapnuty";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Přestat sdílet polohu";
-// deprecated
-"a11y_voice_message_hint_ios" = "Po ukončení nahrávání stiskněte dvakrát pro odeslání. Pro zahození nahrané zprávy, přejeďte dvěma prsty.";
 "a11y_connectivity_hint" = "Stiskněte dvakrát pro zobrazení detailů připojení.";
 "login_error_no_internet_connection" = "Žádné připojení k internetu, přihlášení selhalo.";
-// deprecated
-"share_account_not_configured" = "Profil není nakonfigurovaný.";
 "cannot_play_audio_file" = "Zvukový soubor nemohl být přehrán.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "Pro focení, natáčení a skenování QR kódů, otevřete systémová nastavení a povolte \"Fotoaparát\".";
 "open_settings" = "Otevřít nastavení";
-// deprecated
-"import_device_contacts" = "Importovat kontakty ze zařízení";
-// deprecated
-"import_device_contacts_hint" = "Chcete-li chatovat s kontakty ze svého zařízení, otevřete Nastavení a povolte „Kontakty“.";
-// deprecated
-"disabled_in_dc" = "Zakázáno aplikací Delta Chat";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Zakázáno v systémovém nastavení";
 "bg_app_refresh_disabled" = "\"Aktualizace aplikací na pozadí\" jsou vypnuty v systémovém nastavení";
-// deprecated
-"notifications_avg_minutes" = "Průměrně jednou za %1$d minut";
-// deprecated
-"notifications_avg_hours" = "Průměrně jednou za %1$d hodin";
-// deprecated
-"last_check_at" = "Naposledy zkontrolováno %1$@";
 "system_settings" = "Systémová nastavení";
 // shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
 "system_settings_notify_explain_ios" = "Upravit typ, odznaky, náhledy a další";
@@ -1071,6 +932,6 @@
 "pref_reliable_service" = "Vynutit připojení na pozadí";
 "pref_reliable_service_explain" = "Zobrazí stálé oznámení";
 "pref_background_notifications_rationale" = "K udržení spojení s e-mailovým serverem a přijímání zpráv na pozadí v následujícím kroku zvolte, aby byly ignorovány optimalizace baterie.\n\nDelta Chat používá jen málo zdrojů a snaží se neplýtvat baterií.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Stiskem nastavíte přijímání zpráv, když je aplikace Delta Chat na pozadí.";
 "perm_enable_bg_already_done" = "Přijímání zpráv na pozadí jste již aplikaci Delta Chat povolili.\n\nV případě, že vám zprávy na pozadí stále nechodí, prosím zkontrolujte svá systémová nastavení.";

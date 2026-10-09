@@ -80,8 +80,6 @@
 "small" = "చిన్న";
 "normal" = "సాధారణంగా";
 "large" = "పెద్ద";
-// deprecated
-"extra_large" = "చాలా పెద్దది";
 "fast" = "త్వరగా";
 "slow" = "మెల్లిగా";
 // menu labels (or icon, buttons...)
@@ -117,8 +115,6 @@
 "mute_for_eight_hours" = "8 గంటలు నిశబ్దంగా ఉంచు";
 "mute_for_one_day" = "1 రోజు నిశబ్దంగా ఉంచు";
 "mute_for_seven_days" = "7 రోజులు నిశబ్దంగా ఉంచు";
-// deprecated, use ask_forward_messages
-"ask_forward" = "సందేశాలు %1$@ ఫార్వర్డ్ చేయాలా?";
 "ask_block_contact" = "మీరు ఈ పరిచయాన్ని రద్దుచేయాలని నిర్ణయించుకున్నారా?";
 // contact list
 "contacts_title" = "కాంటాక్ట్స్";
@@ -134,8 +130,6 @@
 "search" = "వెతుకు";
 // create/edit groups, contact/group profile
 "group_name" = "సమూహం పేరు";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "సమూహానికి పేరు పెట్టు";
 "group_add_members" = "సభ్యుడిని జత చేయి";
 "profile_encryption" = "ఎన్క్రిప్షన్";
 "profile_shared_chats" = "భాగస్వామ్య చాట్‌లు";
@@ -160,8 +154,6 @@
 "pref_led_color" = "LED రంగు";
 "pref_sound" = "శబ్ధం";
 "pref_silent" = "మౌనం";
-// deprecated
-"pref_privacy" = "గోప్యత";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "లైటు";
 "pref_dark_theme" = "గుప్తమైన";
@@ -179,8 +171,6 @@
 "pref_backup" = "బ్యాకప్";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
 "pref_background" = "చాట్ నేపధ్యం";
-// deprecated
-"qrscan_fingerprint_label" = "ఫింగర్‌ప్రింట్స్";
 // notifications
 "notify_reply_button" = "జవాబు";
 "notify_new_message" = "కొత్త సందేశం";

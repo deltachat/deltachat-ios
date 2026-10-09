@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Orain dela hilabete ikusia</string>
+			<key>other</key>
+			<string>Orain dela %d hilabete ikusia</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Orain dela urtebete ikusia</string>
+			<key>other</key>
+			<string>Orain dela %d urte ikusia</string>
+		</dict>
+	</dict>
 	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -288,6 +320,22 @@
 			<string>Mezu berri %d</string>
 			<key>other</key>
 			<string>%d mezu berri</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Irakurri gabeko mezu bat</string>
+			<key>other</key>
+			<string>Irakurri gabeko %d mezu</string>
 		</dict>
 	</dict>
 </dict>

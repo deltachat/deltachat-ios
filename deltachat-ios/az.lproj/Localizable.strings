@@ -45,8 +45,6 @@
 "copied_to_clipboard" = "Panoya kopyalandı.";
 "contacts_headline" = "Kontaktlar";
 "email_address" = "Email ünvanı";
-// deprecated
-"bad_email_address" = "Səhv e-mail ünvanı.";
 "password" = "Parol";
 "now" = "Indi";
 "today" = "Bugün";
@@ -85,8 +83,6 @@
 "small" = "Kiçik";
 "normal" = "Normal";
 "large" = "Böyük";
-// deprecated
-"extra_large" = "Çox böyük";
 "fast" = "Sürətli";
 "slow" = "Ləng";
 // menu labels (or icon, buttons...)
@@ -96,16 +92,12 @@
 "menu_send" = "Göndər";
 "menu_toggle_keyboard" = "Emoji klaviatura keçidi";
 "menu_edit_group" = "Qrupu dəyiş";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Qrupun adı və şəkili";
 "menu_show_global_map" = "Bütün yerləşmə yerləri göstər";
 "menu_archive_chat" = "Çatın xəzinəsi";
 "menu_unarchive_chat" = "Çat xəzinəsini aç";
 "menu_add_attachment" = "Fayl əlavə et";
 "menu_leave_group" = "Qrupu tərk et";
 "menu_delete_chat" = "Çatı sil";
-// deprecated
-"menu_delete_location" = "Bu yerləşməni silmək? ";
 "menu_message_details" = "Mesaj məlumatları";
 "menu_copy_to_clipboard" = "Panoya kopyalamaq";
 "menu_forward" = "Növbəti mesaj";
@@ -137,14 +129,11 @@
 "mute_for_one_day" = "1 günlük söndür";
 "mute_for_seven_days" = "7 günlük söndür";
 "mute_forever" = "Həmişə səssiz";
-// deprecated
 "share_location_for_5_minutes" = "5 dəqiqə üçün";
 "share_location_for_30_minutes" = "30 qəqiqə üçün";
 "share_location_for_one_hour" = "1 saat üçün";
 "share_location_for_two_hours" = "2 saat üçün ";
 "share_location_for_six_hours" = "6 saat üçün";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Mesajları yönləndirin %1$@ə-?";
 "ask_export_attachment" = "Faylı ixrac etmək? Faylların ixracı cihazınızdakı hər hansı digər tətbiqlərə daxil olmağa imkan verəcəkdir. \n\n Razısan?";
 "ask_block_contact" = "Bu kontaktı bloklamaq? Bu kontaktdan artıq mesaj qəbul etməyəcəksiniz.";
 "ask_unblock_contact" = "Bu kontaktı blokdan çıxarmaq istəyirsiniz? Nəticədə kontaktdan mesajlar ala bilərsiniz.";
@@ -173,8 +162,6 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Saxla";
 "saved_messages" = "Saxlanılmış mesajlar";
-// deprecated
-"retry_send" = "Mesaji yenidən göndərməyə cəht et";
 // search
 "search" = "Axtarış";
 "search_explain" = "Çatlar, kontaktlar və mesajlar axtar";
@@ -183,8 +170,6 @@
 "group_name" = "Qrup adı";
 "group_avatar" = "Qrupun şəkili";
 "group_create_button" = "Qrup yarat";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Xahiş edirik qrup üçün bir ad daxil et.";
 "group_add_members" = "Üzv elavə et";
 "group_self_not_in_group" = "Bunu etmək üçün qrupun üzvü olmalısan.";
 "profile_encryption" = "Şifrələmə";
@@ -192,15 +177,11 @@
 "tab_contact" = "Kontakt";
 "tab_group" = "Qrup";
 "tab_gallery" = "Şəkillər";
-// deprecated
-"tab_docs" = "Sənədlər";
 "tab_links" = "Linklər";
 "tab_map" = "Xəritə";
 "tab_gallery_empty_hint" = "Bu çatda paylaşılan şəkillər və videolar burada nümayiş olunacaq.";
 "tab_docs_empty_hint" = "Bu söhbətdə paylaşılan sənədlər, musiqi və digər fayllar burada göstəriləcək.";
 "media_preview" = "Fayllara baxmaq";
-// deprecated
-"login_title" = "Daxil ol";
 "login_inbox" = "Gələn";
 "login_imap_login" = "IMAP logini";
 "login_imap_server" = "IMAP server";
@@ -213,14 +194,10 @@
 "login_smtp_port" = "SMTP port";
 "login_smtp_security" = "SMTP təhlükəsizliyi";
 "login_certificate_checks" = "Sertifikat yoxlanmaları";
+// deprecated
 "login_error_mail" = "Xahiş edirik düzgün bir e-poçt ünvanı daxil et";
-"login_error_server" = "Xahiş edirik, düzgün bir server / IP ünvanı daxil et";
-"login_error_port" = "Xahiş edirik, düzgün bir port (1-65535) daxil et";
-"login_error_required_fields" = "Xahiş edirik düzgün bir e-poçt ünvanı və parol daxil et";
 "import_backup_title" = "Nüsxənin importu";
 "import_backup_ask" = "\"%1$@\" - də ehtiyat nüsxəsi tapıldı.\n\nİndi bütün məlumatları və parametrləri idxal etmək və istifadə etmək istəyirsiniz?";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = " \"%1$@\" kimi giriş alınmadı. E-poçt ünvanı və parolun düzgün olub olmadığını yoxlayın.";
 // share and forward messages
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "İrəli ...";
@@ -250,8 +227,6 @@
 "pref_led_color" = "LED rəng";
 "pref_sound" = "Səs";
 "pref_silent" = "Səssiz";
-// deprecated
-"pref_privacy" = "Gizlilik";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Açıq";
 "pref_dark_theme" = "Tünd";
@@ -263,8 +238,6 @@
 "pref_incognito_keyboard_explain" = "Klaviaturanın personal öyrənməyini söndürmək";
 "pref_read_receipts" = "Qəbul olunanları oxuyun";
 "pref_read_receipts_explain" = "Bildirişlər aradan qaldırılırsa, başqalarının oxuduğu bildirişləri görə bilməyəcəksiniz.";
-// deprecated
-"pref_manage_keys" = "Açar edarəetməsi";
 "pref_chats" = "Çatlar";
 "pref_in_chat_sounds" = "Çatda olan səslər";
 "pref_view_log" = "Log-a bax";
@@ -281,16 +254,6 @@
 "pref_background" = "Fon";
 "pref_background_btn_default" = "Hal hazırdaki şəkili istifadə edin";
 "pref_background_btn_gallery" = "Fotoalbomdan götürün";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Bu seçimi ləğv etsəniz, serverinizin və digər müştərilərinizin müvafiq olaraq konfiqurasiya olunduğundan əmin olun. \n\nAyrıca şeylər işləməyəcəkdir.";
-// deprecated
-"pref_auto_folder_moves" = "DeltaChat qovluğuna avtomatik keçid";
-// deprecated
-"pref_show_emails" = "Klassik e-poçtları göstər";
-// deprecated
-"pref_show_emails_no" = "Xeyir, ancaq çatlar";
-// deprecated
-"pref_show_emails_accepted_contacts" = "Qəbul edilən kontaktlar üçün";
 // deprecated, use "All"
 "pref_show_emails_all" = "Hamısı";
 "pref_background_default" = "Özünəməxsus arxa fon";
@@ -320,14 +283,8 @@
 "qrscan_title" = "Qr kodu skan edin";
 "qrscan_hint" = "QR kodu kamera ilə izləyin";
 "qrscan_ask_join_group" = "\"%1$@\" qrupa qoşulmaq istəyirsinizmi?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "%1$@üçün skan olunan barmaq izi son görüldüyü barmaq izinə uyğun deyil";
-// deprecated
-"qrscan_no_addr_found" = "QR kodu iz ehtiva edir, lakin heç bir e-poçt ünvanı yoxdur.\n\nƏlaqə qurmaq üçün əvvəlcə abonentlə şifrəli bir əlaqə qurun.";
 "qrscan_contains_text" = "QR kod mətni skan olundu:\n\n%1$@";
 "qrscan_contains_url" = "QR kod linki skan olundu:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "İz";
 "qrshow_title" = "QR dəvət kodu";
 "qrshow_x_joining" = "%1$@ qoşulur.";
 "qrshow_x_verified" = "%1$@ yoxlanıldı.";
@@ -387,5 +344,5 @@
 "message_detail_received_desktop" = "qəbul olundu";
 "menu.view.developer.open.log.folder" = "Loq mələfini açın";
 "menu.view.developer.open.current.log.file" = "Loq-faylı açın";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Delta Chat arxa fonda mesajları almaq üçün bura toxunun.";

@@ -9,8 +9,6 @@
 "on" = "Включено";
 "off" = "Изключено";
 "def" = "По подразбиране";
-// deprecated
-"default_value" = "По подразбиране (%1$@)";
 "custom" = "Дефиниран от потребителя";
 "none" = "Без";
 "automatic" = "Автоматично";
@@ -20,8 +18,6 @@
 "downloading" = "Сваля се...";
 "open_attachment" = "Отваряне на прикачен файл";
 "join" = "Присъединяване";
-// deprecated
-"rejoin" = "Присъединяване отново";
 "delete" = "Изтриване";
 "info" = "Информация";
 "update" = "Актуализиране";
@@ -62,11 +58,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Отдалечените изображения могат да Ви следят.\n\nСъщо така тази настройка позволява да се зареждат шрифтове и друго съдържание. Ако е забранена, може да се появяват вградени или кеширани изображения.\n\nДа се зареждат ли ли отдалечени изображения?";
 "always" = "Винаги";
-// deprecated
-"always_load_remote_images" = "Винаги да се зареждат отдалечените изображения";
 "once" = "Веднъж";
-// deprecated
-"show_warning" = "Показване на предупреждение";
 "not_now" = "Не сега";
 "never" = "Никога";
 "one_moment" = "Един момент...";
@@ -83,8 +75,6 @@
 "copied_to_clipboard" = "Копирано в клипборда.";
 "contacts_headline" = "Контакти";
 "email_address" = "Адрес за електронна поща";
-// deprecated
-"bad_email_address" = "Невалиден адрес за електронна поща.";
 "password" = "Парола";
 "existing_password" = "Съществуваща парола";
 "now" = "Сега";
@@ -114,10 +104,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Стикер";
 "add_to_sticker_collection" = "Добавяне към колекция от стикери";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "За да добавите стикери, натиснете върху \"Отваряне на папка Стикери\", създайте подпапка за Вашия пакет от стикери и дърпайте файлове със стикери и изображения тук";
-// deprecated
-"open_sticker_folder" = "Отваряне на папка Стикери";
 "images" = "Изображения";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "Аудио";
@@ -134,8 +120,6 @@
 "capture" = "Заснемане";
 // Switch eg. from front to back camera
 "switch_camera" = "Превключване на камерата";
-// deprecated
-"toggle_fullscreen" = "Включване/изключване на пълноекранния режим";
 "location" = "Местоположение";
 "locations" = "Местоположения";
 "gallery" = "Галерия";
@@ -156,13 +140,9 @@
 "magenta" = "Маджента";
 "white" = "Бяло";
 "zoom" = "Мащабиране";
-// deprecated
-"extra_small" = "Много малко";
 "small" = "Малко";
 "normal" = "Нормално";
 "large" = "Голямо";
-// deprecated
-"extra_large" = "Много голямо";
 "fast" = "Бързо";
 "slow" = "Бавно";
 // menu labels (or icon, buttons...)
@@ -175,8 +155,6 @@
 "menu_send" = "Изпращане";
 "menu_toggle_keyboard" = "Включване/изключване на Emoji клавиатура";
 "menu_edit_group" = "Редактиране на група";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Име и изображение на група";
 "menu_show_global_map" = "Показване на всички местоположения";
 "menu_archive_chat" = "Архивиране на чата";
 "menu_unarchive_chat" = "Деархивиране на чата";
@@ -186,8 +164,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Изчистване на чата";
 "delete_contact" = "Изтриване на контакт";
-// deprecated
-"menu_delete_location" = "Да бъде ли изтрито това местоположение?";
 "menu_message_details" = "Детайли на съобщение";
 "menu_copy_to_clipboard" = "Копиране в клипборд";
 "menu_copy_selection_to_clipboard" = "Копиране на избраното";
@@ -223,8 +199,6 @@
 "privacy_policy" = "Политика за поверителност";
 "menu_select_all" = "Избор на всичко";
 "select_chat" = "Изберете чат";
-// deprecated
-"select_more" = "Избор на още";
 "menu_edit_name" = "Редактиране на името";
 "menu_settings" = "Настройки";
 "menu_advanced" = "Разширени";
@@ -233,7 +207,6 @@
 "menu_zoom_out" = "Отдалечаване";
 "menu_save_log" = "Запис на дневник";
 "menu_more_options" = "Още опции";
-"menu_learn_spelling" = "Запомняне на правописа";
 "jump_to_message" = "Към съобщение";
 "replace_draft" = "Замяна на чернова";
 "title_share_location" = "Местоположението да се споделя с всички членове на групата";
@@ -261,15 +234,12 @@
 "mute_for_one_day" = "Спиране на звука за 1 ден";
 "mute_for_seven_days" = "Спиране на звука за 7 дни";
 "mute_forever" = "Спиране на звука за постоянно";
-// deprecated
 "share_location_for_5_minutes" = "За 5 минути";
 "share_location_for_30_minutes" = "За 30 минути";
 "share_location_for_one_hour" = "За 1 час";
 "share_location_for_two_hours" = "За 2 часа";
 "share_location_for_six_hours" = "За 6 часа";
 "file_saved_to" = "Файлът е записан в \"%1$@\"";
-// deprecated, use ask_forward_messages
-"ask_forward" = "Да бъдат ли препратени съобщенията на %1$@?";
 "ask_forward_multiple" = "Да бъдат ли препратени съобщенията към %1$d чата?";
 "ask_export_attachment" = "Експортирането на прикачените файлове ще даде възможност други приложения на Вашето устройство да имат достъп до тях.\n\nИскате ли да продължите?";
 "ask_block_contact" = "Да бъде ли блокиран този контакт? Повече няма да получавате съобщения от него.";
@@ -308,20 +278,14 @@
 "saved_messages_explain" = "• Препращайте съобщения тук за лесен достъп\n\n• Взимайте си текстови или гласови бележки\n\n• Прикрепяйте медийни файлове, за да ги запазите";
 // Should match "Saved" from "Saved messages"
 "saved" = "Запазено";
-// deprecated
-"save_as" = "Запазване като";
-// deprecated
-"retry_send" = "Нов опит за изпращане на съобщението";
-// deprecated
-"cannot_display_unsuported_file_type" = "Файл от тип %1$@ не може да бъде показан";
 "attachment_failed_to_load" = "Неуспешно зареждане на прикрепен файл";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Заключване на записа";
 // mailing lists
 "mailing_list" = "Пощенски списък";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Старт…";
+// "Start" button for an app
+"start_app" = "Старт";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Моля, първо приемете заявката за чат.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
@@ -346,8 +310,6 @@
 "remove_group_image" = "Премахване на изображението на групата";
 "change_group_image" = "Промяна на изображението на групата";
 "group_create_button" = "Създаване на група";
-// deprecated, use please_enter_chat_name
-"group_please_enter_group_name" = "Моля, въведете име на групата";
 "group_add_members" = "Добавяне на членове";
 "group_self_not_in_group" = "Трябва да сте член на групата, за да изпълните това действие.";
 "profile_encryption" = "Криптиране";
@@ -355,24 +317,16 @@
 "tab_contact" = "Контакт";
 "tab_group" = "Група";
 "tab_gallery" = "Галерия";
-// deprecated
-"tab_docs" = "Документи";
 "tab_links" = "Връзки";
 "tab_map" = "Карта";
 "tab_gallery_empty_hint" = "Изображенията и видеоклиповете, споделени в този чат, ще се показват тук.";
 "tab_docs_empty_hint" = "Документите и другите файлове, споделени в този чат, ще се показват тук.";
 "tab_image_empty_hint" = "Изображенията, споделени в този чат, ще се появяват тук.";
-// deprecated
-"tab_video_empty_hint" = "Видеоклиповете, споделени в този чат, ще се появяват тук.";
 "tab_audio_empty_hint" = "Аудио файловете и гласовите съобщения, споделени в този чат, ще се появяват тук.";
 "tab_webxdc_empty_hint" = "Приложенията, споделени в този чат, ще се появяват тук.";
 "tab_all_media_empty_hint" = "Медийните файлове, споделени в кой да е чат, ще се появяват тук.";
 "all_apps_empty_hint" = "Приложенията, получени или изпратени в кой да е чат, ще се появяват тук.";
 "media_preview" = "Предварителен преглед на медия файл";
-// deprecated
-"aspect_ratio_grid" = "Мрежа, запазваща съотношенията";
-// deprecated
-"square_grid" = "Мрежа от квадрати";
 "send_message" = "Изпращане на съобщение";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
@@ -411,8 +365,6 @@
 "connectivity_connected" = "Свързани сте";
 "sending" = "Изпращане…";
 "last_msg_sent_successfully" = "Последното съобщение беше изпратено успешно.";
-// deprecated
-"not_supported_by_provider" = "Не се поддържа от Вашия доставчик.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Съобщения";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
@@ -426,12 +378,6 @@
 "manual_account_setup_option" = "Вход в класическа електронна поща";
 // Instant onboarding title (there is not more to do than to set name and avatar)
 "instant_onboarding_title" = "Вашият профил";
-// The placeholder will be replaced by the default onboarding server
-// deprecated
-"instant_onboarding_agree_default2" = "Политика за поверителност за %1$@";
-// The placeholder will be replaced by instance name, the whole text will link to the instance page
-// deprecated
-"instant_onboarding_agree_instance" = "Относно профилите на %1$@";
 // Confirmation button on the instant onboarding screen
 "instant_onboarding_create" = "Съгласявам се, профилът да бъде създаден";
 // Secondary, link-like button to open a page with other possible instances
@@ -447,8 +393,6 @@
 "instant_onboarding_confirm_group" = "Искате ли да създадете нов профил и да се присъедините към чат групата \"%1$@\"?";
 "welcome_chat_over_email" = "Защитен децентрализиран чат";
 "scan_invitation_code" = "Сканиране на код за покана";
-// deprecated
-"login_title" = "Влизане";
 "login_inbox" = "Входящи";
 "login_imap_login" = " Име за влизане на IMAP";
 "login_imap_server" = "IMAP сървър";
@@ -461,15 +405,11 @@
 "login_smtp_port" = "SMTP порт";
 "login_smtp_security" = "Сигурност на SMTP връзката";
 "login_certificate_checks" = "Проверки на сертификатите";
+// deprecated
 "login_error_mail" = "Моля, въведете валиден адрес за електронна поща";
-"login_error_server" = "Моля, въведете валиден адрес / IP адрес на сървър";
-"login_error_port" = "Моля, въведете валиден порт (1–65535)";
-"login_error_required_fields" = "Моля, въведете валиден адрес за електронна поща и парола";
 "import_backup_title" = "Възстановяване от резервно копие";
 "import_backup_ask" = "Открито е резервно копие в \"%1$@\".\n\n Искате ли да импортирате и използвате всички данни и настройки от него?";
 "import_backup_no_backup_found" = "Не са открити резервни копия.\n\nКопирайте резервното копие в \"%1$@\" и опитайте отново.";
-// deprecated, %1$s will be replaced by the failing address
-"login_error_cannot_login" = "Не можете да влезете като \"%1$@\". Моля, проверете дали адресът за електронна поща и паролата са правилни. ";
 // TLS certificate checks
 "accept_invalid_certificates" = "Да бъдат приемани невалидните сертификати";
 "switch_account" = "Превключване към друг акаунт";
@@ -514,13 +454,9 @@
 "pref_notifications_priority" = "Приоритет";
 "pref_notifications_explain" = "Да бъдат разрешени системните уведомления за нови съобщения";
 "pref_show_notification_content" = "Да се показва в уведомлението съдържанието на съобщението";
-// deprecated
-"pref_show_notification_content_explain" = "Да се показва в уведомлението подателят и първите думи на съобщението";
 "pref_led_color" = "Цвят на LED светлината";
 "pref_sound" = "Звук";
 "pref_silent" = "Без звук";
-// deprecated
-"pref_privacy" = "Поверителност";
 "pref_system_default" = "Подразбиращото се за системата";
 // Translators: as in "opposite of dark"
 "pref_light_theme" = "Светъл";
@@ -534,10 +470,6 @@
 "pref_read_receipts" = "Известия за прочетена поща";
 "pref_read_receipts_explain" = "Ако известията за прочетена поща са забранени, няма да може да виждате известията, идващи от други потребители.";
 "pref_server" = "Сървър";
-// deprecated
-"pref_encryption" = "Криптиране";
-// deprecated
-"pref_manage_keys" = "Управление на ключове";
 "pref_chats" = "Чатове";
 "pref_in_chat_sounds" = "Звуци в чата";
 "pref_view_log" = "Разглеждане на дневника";
@@ -556,18 +488,6 @@
 "pref_background" = "Фон";
 "pref_background_btn_default" = "Да се използва подразбиращото се изображение";
 "pref_background_btn_gallery" = "Избор от галерията";
-// deprecated
-"pref_imap_folder_warn_disable_defaults" = "Ако промение тази опция, се уверете, че Вашият сървър и другите Ви клиенти са конфигурирани по съответен начин.\n\nВ противен случай е възможно нещата въобще да не работят.";
-// deprecated
-"pref_auto_folder_moves" = "Автоматично преместване в папката DeltaChat";
-// deprecated
-"pref_only_fetch_mvbox_title" = "Да се извлича само от папката DeltaChat";
-// deprecated
-"pref_show_emails" = "Да се показват класически e-mail съобщения";
-// deprecated
-"pref_show_emails_no" = "Не, само чатове";
-// deprecated
-"pref_show_emails_accepted_contacts" = "За приетите контакти";
 // deprecated, use "All"
 "pref_show_emails_all" = "Всички";
 "pref_experimental_features" = "Експериментални възможности";
@@ -614,14 +534,8 @@
 // automatically delete message
 "delete_old_messages" = "Изтриване на старите съобщения";
 "autodel_device_title" = "Изтриване на съобщенията от устройството";
-// deprecated
-"autodel_server_title" = "Изтриване на съобщенията от сървъра";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
 "autodel_device_ask" = "Искате ли да изтриете %1$d съобщения сега, както и всички съобщения \"%2$@\", които ще бъдат изтегляни в бъдеще?\n\n• Това включва всички медийни файлове\n\n• Съобщенията ще бъдат изтрити, независимо от това дали са видени или не\n\n• Съобщенията от \"Запазени съобщения\" няма да бъдат изтривани локално";
-// deprecated
-"autodel_server_ask" = "Искате ли да изтриете %1$d съобщения сега и всички съобщения \"%2$@\", които ще бъдат изтегляни в бъдеще?\n\n⚠️ Това включва електронна поща, медийни файлове и съобщенията от \"Записани съобщения\" във всички папки на сървъра\n\n⚠️ Не ползвайте тази функция, ако искате да запазите данните на сървъра\n\n⚠️ Не ползвайте тази функция, ако работите с други клиенти за електронна поща освен Delta Chat";
-// deprecated
-"autodel_server_enabled_hint" = "Това включва електронна поща, медийни файлове и \"Запазени съобщения\" във всички папки на сървъра. Не ползвайте тази функция, ако искате да запазите данните на сървъра или ако работите с други клиенти за електронна поща освен Delta Chat.";
 "autodel_confirm" = "Разбирам. Всички тези съобщения да бъдат изтрити";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Наведнъж";
@@ -697,8 +611,6 @@
 "invalid_unencrypted_explanation" = "За да установите криптиране от край до край, бихте могли да се срещате с лицата, с които желаете да контактувате, лично и да сканирате техните QR кодове, за да ги въведете.";
 "learn_more" = "Научете повече";
 "devicemsg_self_deleted" = "Изтрихте чата \"Запазени съобщения\".\n\nℹ️ За да използвате възможността \"Запазени съобщения\" отново, създайте нов чат със себе си.";
-// deprecated
-"devicemsg_storage_exceeding" = "⚠️ Мястото за съхранение, предоставено от Вашия доставчик, скоро ще бъде изчерпано:%1$@%% вече са използвани.\n\nМоже да нямате възможност да получавате съобщения, ако мястото за съхранение е заето напълно.\n\n👉 Моля, проверете дали не бихте могли да изтриете стари данни през уеб интерфейса на доставчика и обмислете дали да не включите \"Настройки / Изтриване на старите съобщения\". Можете по всяко време да проверите текущо използваното място за съхранение в \"Настройки / Свързаност\".";
 // %1%s will be replaced by date and time in some human-readable format
 "devicemsg_bad_time" = "⚠️ Изглежда датата и часът на Вашето устройство са неточни (%1$@).\n\nНастройте часовника ⏰🔧, за да имате сигурност, че Вашите съобщения се получават правилно.";
 "devicemsg_update_reminder" = "⚠️ Възможно е версията на Вашия Delta Chat да е неактуална.\n\nТова може да създаде проблеми, тъй като Вашите чат партньори използват по-нови версии; освен това Ви липсват най-новите възможности.😳\nМоля, проверете за актуализации на https://get.delta.chat или в ползвания от Вас магазин за приложения.";
@@ -712,14 +624,8 @@
 "qrscan_hint_desktop" = "Преместване на QR кода в камерата";
 "qrscan_failed" = "Неуспешно декодиране на QR код";
 "qrscan_ask_join_group" = "Искате ли да се присъедините към групата \"%1$@\"?";
-// deprecated
-"qrscan_fingerprint_mismatch" = "Сканираният цифров отпечатък не съответства на последния известен за%1$@.";
-// deprecated
-"qrscan_no_addr_found" = "Този QR код съдържа цифров отпечатък, но не и e-mail адрес.\n\nЗа верификация през външен канал, моля най-напред установете криптирана връзка към получателя.";
 "qrscan_contains_text" = "Текст на сканирания QR код:\n\n%1$@";
 "qrscan_contains_url" = "URL адрес на сканирания QR код:\n\n%1$@";
-// deprecated
-"qrscan_fingerprint_label" = "Цифров отпечатък";
 "withdraw_verifycontact_explain" = "Чрез сканиране на този QR код други хора могат да се свързват с Вас.\n\nМожете да деактивирате QR кода тук и повторно да го активирате, като го сканирате отново.";
 "withdraw_verifygroup_explain" = "Чрез сканиране на този QR код други хора могат да се присъединяват към крупата \"%1$@\".\n\nМожете да деактивирате QR кода тук и повторно да го активирате, като го сканирате отново.";
 "withdraw_qr_code" = "Деактивиране на QR кода";
@@ -736,24 +642,15 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Сканирайте, за да чатите с %1$@";
 "qrshow_join_contact_no_connection_toast" = "Няма връзка към Интернет, не може да бъде извършена настройка чрез QR код.";
-// deprecated
-"qraccount_ask_create_and_login" = "Да бъде ли създаден нов адрес за електронна поща на \"%1$@\" и да бъде ли осъществено влизане там?";
 "set_name_and_avatar_explain" = "Задайте име, което Вашите контакти ще разпознават. Можете също да установите изображение за профил.";
 "please_enter_name" = "Моля, въведете име.";
 "qraccount_qr_code_cannot_be_used" = "Не може да бъде създаден нов акаунт със сканирания QR код.";
-// deprecated
-"qrlogin_ask_login" = "Желаете ли да влезете в \"%1$@\"?";
 // first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
 "secure_join_started" = "%1$@ Ви покани да се присъедините към тази група.\n\nИзчаква се устройството на %2$@ да отговори…";
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "%1$@ отговори, изчаква се да бъдете добавени към групата…";
 "secure_join_wait" = "Установява се гарантирано криптиране от край до край, моля изчакайте…";
 "contact_verified" = "%1$@ е проверен.";
-// Shown in contact profile. The placeholder will be replaced by the name of the contact that introduced the contact.
-// deprecated
-"verified_by" = "Проверен от%1$@";
-// deprecated
-"verified_by_you" = "Представен от мен";
 "mailto_dialog_header_select_chat" = "Изберете чат, към който да бъде пратено съобщението";
 // first placeholder is the name of the chat
 "confirm_replace_draft" = "%1$@ вече има съобщение чернова, искате ли да го замените?";
@@ -825,8 +722,6 @@
 "menu.view.developer.open.log.folder" = "Отваряне на папката \"Дневник\"";
 "menu.view.developer.open.current.log.file" = "Отваряне на текущия файл на дневника";
 "explain_desktop_minimized_disabled_tray_pref" = "Показването на икона в системната лента не може да бъде забранено, тъй като Delta Chat е стартиран с опцията --minimized.";
-// deprecated, used on desktop although there is not spell checker
-"no_spellcheck_suggestions_found" = "Няма открити предложения за правопис.";
 "show_window" = "Показване на прозореца";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
 "keybindings" = "Обвързвания на клавиши към команди";
@@ -850,33 +745,17 @@
 "a11y_disappearing_messages_activated" = "Активирани са изчезващите съобщения";
 // iOS specific strings, developers: please take care to remove strings that are no longer used!
 "stop_sharing_location" = "Споделянето на местоположението да бъде спряно";
-// deprecated
-"a11y_voice_message_hint_ios" = "След като приключите със записа, докоснете двукратно, за да го изпратите. За да го отхвърлите, приплъзнете с два пръста.";
 "a11y_connectivity_hint" = "Докоснете двукратно, за да видите информация за връзката.";
 "login_error_no_internet_connection" = "Няма връзка към интернет, влизането е неуспешно.";
-// deprecated
-"share_account_not_configured" = "Акаунтът не е конфигуриран.";
 "cannot_play_audio_file" = "Аудио файлът не може да бъде възпроизведен.";
 // iOS camera permission alert
 "perm_ios_explain_access_to_camera_denied" = "За да правите снимки, да записвате видеоклипове или да използвате скенера на QR кодове, отворете системните настройки и разрешете \"Камера\".";
 "open_settings" = "Отваряне на настройките";
-// deprecated
-"import_device_contacts" = "Въвеждане на контакти от устройството";
-// deprecated
-"import_device_contacts_hint" = "За да чатите с контакти от Вашето устройство, отворете Настройки и разрешете \"Контакти\".";
-// deprecated
-"disabled_in_dc" = "Забранено в Delta Chat";
 // Notifications, that are disabled in the system settings
 "disabled_in_system_settings" = "Забранено в системните настройки";
 "bg_app_refresh_disabled" = "\"Опресняване на приложението на заден план\" е забранено в системните настройки";
-// deprecated
-"notifications_avg_minutes" = "Средно всеки %1$d минути";
-// deprecated
-"notifications_avg_hours" = "Средно всеки %1$d часа";
-// deprecated
-"last_check_at" = "Проверено на %1$@";
 // iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
 "pref_background_notifications_rationale" = "За да се поддържа връзката към Вашия сървър за електронна поща и да получавате съобщения във фонов режим, игнорирайте оптимизациите на батерията на следващата стъпка.\n\nDelta Chat използва малко ресурси и се грижи да не изтощава Вашата батерия.";
-// disabling "Reliable service" will hide a the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Докоснете тук, за да получавате съобщения, докато Delta Chat е във фонов режим.";
 "perm_enable_bg_already_done" = "Вече разрешихте Delta Chat да получава съобщения във фонов режим.\n\nАко съобщенията все още не пристигат във фонов режим, моля проверете Вашите системни настройки.";

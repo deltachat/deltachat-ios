@@ -13,8 +13,6 @@
 "on" = "Укл.";
 "off" = "Выкл.";
 "def" = "Па змаўчанні";
-// deprecated
-"default_value" = "Па змаўчанні (%1$@)";
 "custom" = "Свой варыянт";
 "none" = "Не зададзена";
 "automatic" = "Аўтаматычна";
@@ -26,8 +24,6 @@
 "join" = "Далучыцца";
 "join_group" = "Уступіць у групу";
 "join_channel" = "Далучыцца да канала";
-// deprecated
-"rejoin" = "Далучыцца зноў";
 "delete" = "Выдаліць";
 "delete_for_me" = "Выдаліць для мяне";
 "delete_for_everyone" = "Выдаліць для ўсіх";
@@ -61,10 +57,6 @@
 "media" = "Медыя";
 "apps_and_media" = "Праграмы і медыя";
 "profile" = "Профіль";
-// deprecated
-"all_profiles" = "Усе профілі";
-// deprecated
-"current_profile" = "Бягучы профіль";
 "main_menu" = "Галоўнае меню";
 "start_chat" = "Напісаць";
 "show_full_message" = "Паказаць паведамленне цалкам…";
@@ -84,11 +76,7 @@
 // Possible answers to the question are: Never, Always, Once
 "load_remote_content_ask" = "Выявы, размешчаныя на знешніх крыніцах, могуць быць выкарыстаны для сачэння за вамі.\n\nГэтая налада таксама дазваляе загружаць шрыфты і іншае змесціва. Калі яна адключана, могуць адлюстроўвацца ўбудаваныя або кэшаваныя выявы.\n\nДазволіць загрузку з знешніх крыніц?";
 "always" = "Заўсёды";
-// deprecated
-"always_load_remote_images" = "Заўсёды загружаць выявы з знешніх крыніц";
 "once" = "Толькі цяпер";
-// deprecated
-"show_warning" = "Паказаць папярэджанне";
 "not_now" = "Не цяпер";
 "never" = "Ніколі";
 "one_moment" = "Хвілінку…";
@@ -103,13 +91,9 @@
 "no_app_to_handle_data" = "Не ўдалося знайсці праграму для апрацоўкі гэтага тыпу даных.";
 "no_browser_installed" = "Аглядальнік не ўсталяваны.";
 "file_not_found" = "Не ўдалося знайсці %1$@.";
-// deprecated
-"cannot_save_file" = "Не ўдалося захаваць %1$@.";
 "copied_to_clipboard" = "Скапіявана ў буфер абмену.";
 "contacts_headline" = "Кантакты";
 "email_address" = "Адрас электроннай пошты";
-// deprecated
-"bad_email_address" = "Няправільны адрас электроннай пошты.";
 "password" = "Пароль";
 "existing_password" = "Бягучы пароль";
 "now" = "Цяпер";
@@ -133,8 +117,6 @@
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Short form for "N Items Selected"
-// deprecated
-"selected_colon" = "Выбрана:";
 "selected" = "Выбрана";
 "self" = "Я";
 "draft" = "Чарнавік";
@@ -145,10 +127,6 @@
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "Стыкер";
 "add_to_sticker_collection" = "Дадаць у калекцыю стыкераў";
-// deprecated, use sticker_picker_empty_hint instead
-"add_stickers_instructions" = "Для дадання стыкераў, націсніце «Адкрыць тэчку стыкераў», стварыце ў ёй падтэчку для вашага набору стыкераў і перацягніце туды файлы выяў і стыкераў";
-// deprecated
-"open_sticker_folder" = "Адкрыць тэчку стыкераў";
 "ask_add_sticker_to_collection" = "Дадаць гэты стыкер у калекцыю?";
 "ask_delete_sticker" = "Выдаліць гэты стыкер?";
 "sticker_picker_empty_hint" = "Націсніце на стыкер, каб дадаць яго сюды.";
@@ -171,8 +149,6 @@
 "switch_camera" = "Пераключыць камеру";
 // Toggle camera on/off eg. during an video call
 "toggle_camera" = "Перамкнуць камеру";
-// deprecated
-"toggle_fullscreen" = "Перамкнуць поўнаэкранны рэжым";
 "location" = "Месцазнаходжанне";
 "locations" = "Месцазнаходжанні";
 "gallery" = "Галерэя";
@@ -209,13 +185,9 @@
 "magenta" = "Маджэнта";
 "white" = "Белы";
 "zoom" = "Маштаб";
-// deprecated
-"extra_small" = "Вельмі маленькі";
 "small" = "Маленькі";
 "normal" = "Звычайны";
 "large" = "Вялікі";
-// deprecated
-"extra_large" = "Вельмі вялікі";
 "fast" = "Хуткі";
 "slow" = "Павольны";
 // menu labels (or icon, buttons...)
@@ -244,8 +216,6 @@
 "menu_send" = "Адправіць";
 "menu_toggle_keyboard" = "Перамкнуць клавіятуру эмодзі";
 "menu_edit_group" = "Рэдагаваць групу";
-// deprecated: "Edit Group" dialog usually also contains the "Group Description" field, use global_menu_edit_desktop instead
-"menu_group_name_and_image" = "Назва і выява групы";
 "menu_show_global_map" = "Усе месцазнаходжанні";
 "menu_archive_chat" = "Архіваваць чат";
 "menu_unarchive_chat" = "Вярнуць чат з архіва";
@@ -257,8 +227,6 @@
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ачысціць чат";
 "delete_contact" = "Выдаліць кантакт";
-// deprecated
-"menu_delete_location" = "Выдаліць гэтае месцазнаходжанне?";
 "menu_message_details" = "Інфармацыя пра паведамленне";
 "menu_copy_to_clipboard" = "Капіяваць у буфер абмену";
 "share_invite_link" = "Падзяліцца спасылкай-запрашэннем";
@@ -300,8 +268,6 @@
 "privacy_policy" = "Палітыка прыватнасці";
 "menu_select_all" = "Выбраць усё";
 "select_chat" = "Выбраць чат";
-// deprecated
-"select_more" = "Выбраць больш";
 "menu_edit_name" = "Рэдагаваць імя";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_explain" = "Усталюйце псеўданім, які будзе паказвацца вам замест «%1$@». Пакіньце пустым, каб выкарыстоўваць імя, выбранае кантактам.";
@@ -314,7 +280,6 @@
 "menu_zoom_out" = "Паменшыць маштаб";
 "menu_save_log" = "Захаваць журнал";
 "menu_more_options" = "Яшчэ";
-"menu_learn_spelling" = "Запамінаць правапіс";
 "jump_to_message" = "Перайсці да паведамлення";
 "replace_draft" = "Замяніць чарнавік";
 "title_share_location" = "Дзяліцца месцазнаходжаннем з усімі ўдзельнікамі групы";
@@ -343,7 +308,6 @@
 "mute_for_one_day" = "Не апавяшчаць 1 дзень";
 "mute_for_seven_days" = "Не апавяшчаць 7 дзён";
 "mute_forever" = "Ніколі не апавяшчаць";
-// deprecated
 "share_location_for_5_minutes" = "5 хвілін";
 "share_location_for_30_minutes" = "30 хвілін";
 "share_location_for_one_hour" = "1 гадзіну";
@@ -373,14 +337,6 @@
 "call_reconnecting" = "Перападлучэнне...";
 "call_ended" = "Выклік скончаны";
 "call_failed" = "Выклік не атрымаўся";
-// deprecated, use "Audio call" instead
-"outgoing_audio_call" = "Выходны аўдыявыклік";
-// deprecated, use "Video call" instead
-"outgoing_video_call" = "Выходны відэавыклік";
-// deprecated, use "Audio call" instead
-"incoming_audio_call" = "Уваходны аўдыявыклік";
-// deprecated, use "Video call" instead
-"incoming_video_call" = "Уваходны відэавыклік";
 "declined_call" = "Адхілены выклік";
 "canceled_call" = "Скасаваны выклік";
 "missed_call" = "Прапушчаны выклік";
@@ -399,8 +355,6 @@
 "ask_delete_named_chat" = "Выдаліць чат «%1$@»?";
 "ask_delete_message" = "Выдаліць гэтае паведамленне?";
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
-// deprecated, use ask_forward_messages
-"ask_forward" = "Пераслаць паведамленні ў чат %1$@?";
 "ask_forward_multiple" = "Пераслаць паведамленні ў %1$d чаты(-аў)?";
 "ask_export_attachment" = "Экспартаванне ўкладанняў дазволіць іншым праграмам на вашай прыладзе атрымаць да іх доступ.\n\nПрацягнуць?";
 "ask_block_contact" = "Заблакаваць гэты кантакт?\n\nАсабістыя паведамленні або групы, створаныя заблакаванымі кантактамі, не будуць паказвацца.\n\nУ іншых групах, дзе ёсць заблакаваныя кантакты, іх паведамленні па-ранейшаму будуць бачныя.";
@@ -434,8 +388,6 @@
 "chat_input_placeholder" = "Напісаць";
 "chat_archived_label" = "Архівавана";
 "chat_request_label" = "Запыт";
-// deprecated
-"chat_request_label_explain" = "Уключаць запыты ў лічыльнікі і апавяшчэнні";
 "chat_no_messages" = "Няма паведамленняў.";
 "chat_self_talk_subtitle" = "Паведамленні сабе";
 "archive_empty_hint" = "Архіўныя чаты з\'явяцца тут.";
@@ -445,20 +397,14 @@
 "saved_messages_explain" = "— Перасылайце паведамленні сюды для хуткага доступу\n\n— Рабіце нататкі ці запісвайце галасавыя паведамленні\n\n— Далучайце медыя, каб захаваць іх";
 // Should match "Saved" from "Saved messages"
 "saved" = "Захавана";
-// deprecated
-"save_as" = "Захаваць як…";
-// deprecated
-"retry_send" = "Паўтарыць адпраўку паведамлення";
-// deprecated
-"cannot_display_unsuported_file_type" = "Немагчыма адлюстраваць гэты тып файла: %1$@";
 "attachment_failed_to_load" = "Не ўдалося загрузіць укладанне";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
 "lock_recording" = "Працягваць запіс";
 // mailing lists
 "mailing_list" = "Спіс рассылання";
 // webxdc
-// "Start..." button for an app
-"start_app" = "Запусціць...";
+// "Start" button for an app
+"start_app" = "Запусціць";
 // this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
 "accept_request_first" = "Спачатку прыміце запыт.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
