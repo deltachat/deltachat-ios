@@ -68,9 +68,11 @@ struct PinBarView: View {
         .modifier { view in
             if #available(iOS 26.0, *) {
                 view.glassEffect(.regular.interactive())
+                    .contextMenu { contextMenu(for: msg) }
                     .padding(.horizontal)
             } else {
                 view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
+                    .contextMenu { contextMenu(for: msg) }
                     .overlay(alignment: .bottom, content: Divider.init)
             }
         }
@@ -83,13 +85,14 @@ struct PinBarView: View {
                 selected = (selected + 1) % pins.count
             }
         }
-        .contextMenu {
-            Button(action: {
-                msg.isPinned = false
-            }, label: {
-                Label("Unpin", systemImage: "pin.slash")
-            })
-        }
+    }
+
+    @ContentBuilder func contextMenu(for msg: DcMsg) -> some View {
+        Button(action: {
+            msg.isPinned = false
+        }, label: {
+            Label("Unpin", systemImage: "pin.slash")
+        })
     }
 }
 
