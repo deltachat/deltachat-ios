@@ -3,11 +3,17 @@
 
 ## Unreleased
 
+- Pinned Messages
 - Nicer profile and group image selection
 - Allow to share location for 24 hours
 - Show total reaction count in reaction details
 - Larger emojis in default reaction selection
+- Improve sendig reliability by trying th most recently successfully used relay first
+- Avoid unwanted late adding to groups (by deleting processed securejoin messages on all relays)
+- Re-add "Second device added" message if deleted soon after transfer
 - Fix: show meaningful subtitle for group members on group creation
+- Update translations and local help
+- Update to core 2.63.0
 
 
 ## 2.62.2
