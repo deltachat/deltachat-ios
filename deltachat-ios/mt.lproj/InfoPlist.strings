@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat tuża l-kamera tat-tagħmir tiegħek biex tieħu u tibgħat ir-ritratti u l-filmati u biex taqra l-kodiċi QR.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat teħtieġ il-permess biex taqsam il-post fejn tinsab għat-tul tal-ħin li għażilt għall-qsim tal-post fejn tinsab.";
+NSLocationWhenInUseUsageDescription = "Delta Chat teħtieġ il-permess biex taqsam il-post fejn tinsab għat-tul tal-ħin li għażilt għall-qsim tal-post fejn tinsab.";
+NSMicrophoneUsageDescription = "Delta Chat tuża l-mikrofonu tat-tagħmir tiegħek biex tirreġistra u tibgħat il-messaġġi bil-leħen u l-filmati bil-ħoss.";
+NSPhotoLibraryUsageDescription = "Delta Chat se tħallik tagħżel liema ritratti mill-biblijoteka tat-tagħmir tiegħek tixtieq tibgħat.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat tixtieq terfa\' l-istampi fil-biblijoteka tar-ritratti tat-tagħmir tiegħek.";
+NSFaceIDUsageDescription = "Delta Chat tista\' tuża Face ID biex tħares il-profil fuq it-tagħmir tiegħek, biex taħżen il-kopji u biex tħejji t-tieni tagħmir.";

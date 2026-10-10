@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Deher l-aħħar xahar ilu</string>
+			<key>few</key>
+			<string>Deher l-aħħar %d xhur ilu</string>
+			<key>many</key>
+			<string>Deher l-aħħar %d-il xahar ilu</string>
+			<key>other</key>
+			<string>Deher l-aħħar %d xhur ilu</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Deher sena ilu</string>
+			<key>few</key>
+			<string>Deher %d snin ilu</string>
+			<key>many</key>
+			<string>Deher %d-il sena ilu</string>
+			<key>other</key>
+			<string>Deher %d sena ilu</string>
+		</dict>
+	</dict>
+	<key>call_duration_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Sejħa ta\' minuta</string>
+			<key>few</key>
+			<string>Sejħa ta\' %d minuti</string>
+			<key>many</key>
+			<string>Sejħa ta\' %d-il minuta</string>
+			<key>other</key>
+			<string>Sejħa ta\' %d minuta</string>
+		</dict>
+	</dict>
+	<key>n_minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>minuta</string>
+			<key>few</key>
+			<string>%d minuti</string>
+			<key>many</key>
+			<string>%d-il minuta</string>
+			<key>other</key>
+			<string>%d minuta</string>
+		</dict>
+	</dict>
+	<key>n_hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>siegħa</string>
+			<key>few</key>
+			<string>%d sigħat</string>
+			<key>many</key>
+			<string>%d-il siegħa</string>
+			<key>other</key>
+			<string>%d siegħa</string>
+		</dict>
+	</dict>
+	<key>n_chats</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>taħdita</string>
+			<key>few</key>
+			<string>%d taħditiet</string>
+			<key>many</key>
+			<string>%d-il taħdita</string>
+			<key>other</key>
+			<string>%d taħdita</string>
+		</dict>
+	</dict>
+	<key>n_contacts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>kuntatt</string>
+			<key>few</key>
+			<string>%d kuntatti</string>
+			<key>many</key>
+			<string>%d-il kuntatt</string>
+			<key>other</key>
+			<string>%d kuntatt</string>
+		</dict>
+	</dict>
+	<key>n_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>messaġġ</string>
+			<key>few</key>
+			<string>%d messaġġi</string>
+			<key>many</key>
+			<string>%d-il messaġġ</string>
+			<key>other</key>
+			<string>%d messaġġ</string>
+		</dict>
+	</dict>
+	<key>n_reactions</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>reazzjoni</string>
+			<key>few</key>
+			<string>%d reazzjonjiet</string>
+			<key>many</key>
+			<string>%d-il reazzjoni</string>
+			<key>other</key>
+			<string>%d reazzjoni</string>
+		</dict>
+	</dict>
+	<key>n_members</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>membru</string>
+			<key>few</key>
+			<string>%d membri</string>
+			<key>many</key>
+			<string>%d-il membru</string>
+			<key>other</key>
+			<string>%d membru</string>
+		</dict>
+	</dict>
+	<key>n_recipients</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>abbonat</string>
+			<key>few</key>
+			<string>%d abbonati</string>
+			<key>many</key>
+			<string>%d-il abbonat</string>
+			<key>other</key>
+			<string>%d abbonat</string>
+		</dict>
+	</dict>
+	<key>n_selected</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Għażilt ħaġa</string>
+			<key>few</key>
+			<string>Għażilt %d iħwejjeġ</string>
+			<key>many</key>
+			<string>Għażilt %d-il ħaġa</string>
+			<key>other</key>
+			<string>Għażilt %d ħaġa</string>
+		</dict>
+	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Intwera darba</string>
+			<key>few</key>
+			<string>Intwera %d darbiet</string>
+			<key>many</key>
+			<string>Intwera %d-il darba</string>
+			<key>other</key>
+			<string>Intwera %d darba</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Tixtieq tibgħat dal-fajl lil %2$@?</string>
+			<key>few</key>
+			<string>Tixtieq tibgħat %d fajls lil %2$@?</string>
+			<key>many</key>
+			<string>Tixtieq tibgħat %d-il fajl lil %2$@?</string>
+			<key>other</key>
+			<string>Tixtieq tibgħat %d fajl lil %2$@?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Tixtieq tħassar taħdita?</string>
+			<key>few</key>
+			<string>Tixtieq tħassar %d taħditiet?</string>
+			<key>many</key>
+			<string>Tixtieq tħassar %d-il taħdita?</string>
+			<key>other</key>
+			<string>Tixtieq tħassar %d taħdita?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Tixtieq tħassar messaġġ?</string>
+			<key>few</key>
+			<string>Tixtieq tħassar %d messaġġi?</string>
+			<key>many</key>
+			<string>Tixtieq tħassar %d-il messaġġ?</string>
+			<key>other</key>
+			<string>Tixtieq tħassar %d messaġġ?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Tixtieq tgħaddi messaġġ lil %2$@?</string>
+			<key>few</key>
+			<string>Tixtieq tgħaddi %d messaġġi lil %2$@?</string>
+			<key>many</key>
+			<string>Tixtieq tgħaddi %d-il messaġġ lil %2$@?</string>
+			<key>other</key>
+			<string>Tixtieq tgħaddi %d messaġġ lil %2$@?</string>
+		</dict>
+	</dict>
+	<key>chat_archived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Qgħedt taħdita fl-arkivju</string>
+			<key>few</key>
+			<string>Qgħedt %d taħditiet fl-arkivju</string>
+			<key>many</key>
+			<string>Qgħedt %d-il taħdita fl-arkivju</string>
+			<key>other</key>
+			<string>Qgħedt %d taħdita fl-arkivju</string>
+		</dict>
+	</dict>
+	<key>chat_unarchived</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ħriġt taħdita mill-arkivju</string>
+			<key>few</key>
+			<string>Ħriġt %d taħditiet mill-arkivju</string>
+			<key>many</key>
+			<string>Ħriġt %d-il taħdita mill-arkivju</string>
+			<key>other</key>
+			<string>Ħriġt %d taħdita mill-arkivju</string>
+		</dict>
+	</dict>
+	<key>chat_n_new_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>messaġġ ġdid</string>
+			<key>few</key>
+			<string>%d messaġġi ġodda</string>
+			<key>many</key>
+			<string>%d-il messaġġ ġdid</string>
+			<key>other</key>
+			<string>%d messaġġ ġdid</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>messaġġ mhux moqri</string>
+			<key>few</key>
+			<string>%d messaġġi mhux moqrija</string>
+			<key>many</key>
+			<string>%d-il messaġġ mhux moqri</string>
+			<key>other</key>
+			<string>%d messaġġ mhux moqri</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
