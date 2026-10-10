@@ -33,7 +33,7 @@ struct PinBarView: View {
     @ViewBuilder var view: some View {
         let msg = context.getMessage(id: pins[selected])
         HStack {
-            if #available(iOS 16, *) {
+            if #available(iOS 16, *), pins.count > 1 {
                 PinPageControl(currentPage: selected, numberOfPages: pins.count)
                     .frame(maxHeight: size.height + 16)
                     .padding(.vertical, -8)
@@ -46,6 +46,7 @@ struct PinBarView: View {
                 ))
                 .lineLimit(1)
                 .padding(.vertical, 10)
+                .padding(.leading, pins.count > 1 ? 0 : 16)
                 .opacity(0.7)
                 .id(selected)
                 .bind(size: $size)
