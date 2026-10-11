@@ -10,6 +10,8 @@ struct PinBarView: View {
         willSet { selected = max(0, min(selected, newValue.count-1)) }
     }
     @State private var selected: Int = 0
+    /// Increased when a pinned message is edited to reload the view
+    @State private var edits: Int = 0
     @State private var size: CGSize = .zero
 
     var body: some View {
@@ -23,9 +25,14 @@ struct PinBarView: View {
         }
         // TODO: Switch to "pinned messages changed" event here
         .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged)) { event in
-            guard event.userInfo?["chat_id"] as? Int == chat.id else { return }
-            withAnimation {
-                pins = chat.pinnedMessageIds
+            if let msg = (event.userInfo?["message_id"] as? Int).map(context.getMessage),
+               msg.isPinned && msg.isEdited {
+                edits += 1
+            }
+            if event.userInfo?["chat_id"] as? Int == chat.id {
+                withAnimation {
+                    pins = chat.pinnedMessageIds
+                }
             }
         }
     }
@@ -48,7 +55,7 @@ struct PinBarView: View {
                 .padding(.vertical, 10)
                 .padding(.leading, pins.count > 1 ? 0 : 16)
                 .opacity(0.7)
-                .id(selected)
+                .id(pins[selected] + edits)
                 .bind(size: $size)
             Spacer()
             if msg.type == DC_MSG_WEBXDC {
