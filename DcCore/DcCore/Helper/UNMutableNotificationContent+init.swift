@@ -9,7 +9,10 @@ public extension UNMutableNotificationContent {
 
     /// Initialiser that returns a notification for an incoming message. Returns nil if no notification should be sent (eg if chat is muted)
     convenience init?(forMessage msg: DcMsg, chat: DcChat, context: DcContext) {
-        guard msg.id != 0 else { return nil } // invalid message
+        // invalid message
+        guard msg.id != 0 else { return nil }
+        // call notifications should be fresh (a declined call is not fresh and needs no notification)
+        guard msg.type != DC_MSG_CALL || msg.state == DC_STATE_IN_FRESH else { return nil }
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isMultiUser && msg.isReplyToSelf && context.isMentionsEnabled) else { return nil }
         self.init()
