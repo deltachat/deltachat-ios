@@ -23,7 +23,6 @@ struct PinBarView: View {
         .onAppear {
             pins = chat.pinnedMessageIds
         }
-        // TODO: Switch to "pinned messages changed" event here
         .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged)) { event in
             if let msg = (event.userInfo?["message_id"] as? Int).map(context.getMessage),
                msg.isPinned && msg.isEdited {
