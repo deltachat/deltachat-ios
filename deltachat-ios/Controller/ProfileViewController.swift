@@ -302,11 +302,7 @@ class ProfileViewController: UITableViewController {
                 )
             }
             if let chat {
-                UIAction(
-                    title: String.localized(chat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
-                    image: UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
-                    handler: { [weak self] _ in self?.toggleArchiveChat() }
-                )
+                UIAction.archiveChat(chat, dcContext: dcContext, navigate: self)
             }
             if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
@@ -348,22 +344,7 @@ class ProfileViewController: UITableViewController {
                         handler: { [weak self] _ in self?.showClearConfirmationAlert() }
                     )
 
-                    if chat.mustLeaveBeforeDelete(dcContext) {
-                        let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
-                        UIAction(
-                            title: String.localized(leaveText),
-                            image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
-                            attributes: [.destructive],
-                            handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
-                        )
-                    } else {
-                        UIAction(
-                            title: String.localized("menu_delete_chat"),
-                            image: UIImage(systemName: "trash"),
-                            attributes: [.destructive],
-                            handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
-                        )
-                    }
+                    UIAction.leaveChat(chat, dcContext: dcContext, presentAlertsOn: self)
                 }
             }
         }
@@ -537,21 +518,6 @@ class ProfileViewController: UITableViewController {
         navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
     }
 
-    private func toggleArchiveChat() {
-        guard let chat else { return }
-        let archivedBefore = chat.isArchived
-        if !archivedBefore {
-            NotificationManager.removeNotificationsForChat(chatId, accountId: dcContext.id)
-        }
-        dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
-        self.chat = dcContext.getChat(chatId: chatId)
-        if archivedBefore {
-            updateMenuItems()
-        } else {
-            navigationController?.popToRootViewController(animated: false)
-        }
-    }
-
     private func toggleChatInWidget() {
         guard #available(iOS 17, *), let userDefaults = UserDefaults.shared else { return }
         if userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
@@ -576,22 +542,6 @@ class ProfileViewController: UITableViewController {
         navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createMode: isOutBroadcast ? .createBroadcast : .createGroup, templateChatId: chatId), animated: true)
     }
 
-    private func showLeaveAlert(_ buttonLabel: String) {
-        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized(buttonLabel), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("menu_leave_and_delete"), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
-            dcContext.deleteReferencesAndChat(chatId: chatId)
-            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
-    }
-
     private func showClearConfirmationAlert() {
         guard chat != nil else { return }
         let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
@@ -608,18 +558,6 @@ class ProfileViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
         }
-    }
-
-    private func showDeleteConfirmationAlert() {
-        guard let chat else { return }
-        let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            dcContext.deleteReferencesAndChat(chatId: chatId)
-            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 
     private func toggleBlockContact() {
@@ -836,6 +774,64 @@ extension ProfileViewController: MultilineLabelCellDelegate {
             appCoordinator.handleDeltaChatInvitation(url: url, from: self)
         } else {
             UIApplication.shared.open(url)
+        }
+    }
+}
+
+extension UIAction {
+    static func archiveChat(_ dcChat: DcChat, dcContext: DcContext, navigate vc: UIViewController) -> UIAction {
+        UIAction(
+            title: String.localized(dcChat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
+            image: UIImage(systemName: dcChat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
+            handler: { [weak vc] _ in
+                let archivedBefore = dcChat.isArchived
+                if !archivedBefore {
+                    NotificationManager.removeNotificationsForChat(dcChat.id, accountId: dcContext.id)
+                }
+                dcContext.archiveChat(chatId: dcChat.id, archive: !archivedBefore)
+                if !archivedBefore {
+                    vc?.navigationController?.popToRootViewController(animated: true)
+                }
+            }
+        )
+    }
+
+    static func leaveChat(_ dcChat: DcChat, dcContext: DcContext, presentAlertsOn vc: UIViewController) -> UIAction {
+        if dcChat.mustLeaveBeforeDelete(dcContext) {
+            let leaveText = dcChat.isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
+            return UIAction(
+                title: String.localized(leaveText),
+                image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+                attributes: [.destructive],
+                handler: { [weak vc] _ in
+                    let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
+                    alert.addAction(UIAlertAction(title: String.localized(leaveText), style: .destructive, handler: { _ in
+                        _ = dcContext.removeContactFromChat(chatId: dcChat.id, contactId: Int(DC_CONTACT_ID_SELF))
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("menu_leave_and_delete"), style: .destructive, handler: { [weak vc] _ in
+                        _ = dcContext.removeContactFromChat(chatId: dcChat.id, contactId: Int(DC_CONTACT_ID_SELF))
+                        dcContext.deleteReferencesAndChat(chatId: dcChat.id)
+                        vc?.navigationController?.popToRootViewController(animated: true)
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
+                    vc?.present(alert, animated: true, completion: nil)
+                }
+            )
+        } else {
+            return UIAction(
+                title: String.localized("menu_delete_chat"),
+                image: UIImage(systemName: "trash"),
+                attributes: [.destructive],
+                handler: { [weak vc] _ in
+                    let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), dcChat.name), preferredStyle: .safeActionSheet)
+                    alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { [weak vc] _ in
+                        dcContext.deleteReferencesAndChat(chatId: dcChat.id)
+                        vc?.navigationController?.popToRootViewController(animated: true)
+                    }))
+                    alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
+                    vc?.present(alert, animated: true, completion: nil)
+                }
+            )
         }
     }
 }

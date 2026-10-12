@@ -318,68 +318,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             )
         }
-//        UIAction(
-//            title: String.localized(dcChat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
-//            image: UIImage(systemName: dcChat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
-//            handler: { [weak self] _ in self?.toggleArchiveChat() }
-//        )
-//        if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-//            let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
-//            UIAction(
-//                title: String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget"),
-//                image: UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square"),
-//                handler: { [weak self] _ in self?.toggleChatInWidget() }
-//            )
-//        }
-//
-//        UIMenu(options: [.displayInline]) { [unowned self] in
-//            if let contact, !isSavedMessages && !isDeviceChat {
-//                UIAction(
-//                    title: String.localized("encryption_info_title_desktop"),
-//                    image: UIImage(systemName: "info.circle"),
-//                    handler: { [weak self] _ in self?.showEncrInfoAlert() }
-//                )
-//                UIAction(
-//                    title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
-//                    image: UIImage(systemName: "nosign"),
-//                    attributes: [.destructive],
-//                    handler: { [weak self] _ in self?.toggleBlockContact() }
-//                )
-//            }
-//            if let chat {
-//                if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
-//                    UIAction(
-//                        title: String.localized("clone_chat"),
-//                        image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
-//                        handler: { [weak self] _ in self?.showCloneChatController() }
-//                    )
-//                }
-//
-//                let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-//                UIAction(
-//                    title: String.localized("clear_chat"),
-//                    image: UIImage(systemName: clearImage),
-//                    attributes: [.destructive],
-//                    handler: { [weak self] _ in self?.showClearConfirmationAlert() }
-//                )
-//
-//                if chat.mustLeaveBeforeDelete(dcContext) {
-//                    let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
-//                    UIAction(
-//                        title: String.localized(leaveText),
-//                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
-//                        attributes: [.destructive],
-//                        handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
-//                    )
-//                } else {
-//                    UIAction(
-//                        title: String.localized("menu_delete_chat"),
-//                        image: UIImage(systemName: "trash"),
-//                        attributes: [.destructive],
-//                        handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
-//                    )
-//                }
-//            }
+        UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
+
+        UIMenu(options: [.displayInline]) { [unowned self] in
+            let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+            UIAction(
+                title: String.localized("clear_chat"),
+                image: UIImage(systemName: clearImage),
+                attributes: [.destructive],
+                handler: { [weak self] _ in self?.askToDeleteMessages(ids: self?.messages.map(\.id) ?? []) }
+            )
+            UIAction.leaveChat(dcChat, dcContext: dcContext, presentAlertsOn: self)
+        }
     })
 
     /// Context menu previews are shown in this layer which is behind the input bar.
