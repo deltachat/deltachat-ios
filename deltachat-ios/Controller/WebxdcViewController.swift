@@ -385,7 +385,6 @@ class WebxdcViewController: WebViewViewController {
             UIApplication.shared.open(url)
             decisionHandler(.cancel)
         case "https", "http":
-            guard !allowInternet else { return decisionHandler(.allow) }
             let alert = UIAlertController(
                 title: String.localized("open_url_confirmation"),
                 message: url.absoluteString.removingPercentEncoding,
