@@ -22,7 +22,7 @@ rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios --too
 CARGO_PROFILE_RELEASE_LTO=true \
 CARGO_PROFILE_DEV_LTO=true \
 RUSTFLAGS="-C embed-bitcode=yes" \
-  cargo +`cat ../rust-toolchain` lipo --xcode-integ --no-sanitize-env --manifest-path "$DIR/deltachat-core-rust/deltachat-ffi/Cargo.toml"
+  cargo +`cat ../rust-toolchain` lipo --xcode-integ --no-sanitize-env --package deltachat_ffi --package deltachat-jsonrpc-bindings
 
 # cargo-lipo drops result in different folder, depending on the config.
 if [[ $CONFIGURATION = "Debug" ]]; then
