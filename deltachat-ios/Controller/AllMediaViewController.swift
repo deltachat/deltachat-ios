@@ -45,9 +45,11 @@ class AllMediaViewController: UIPageViewController {
         return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
     }()
 
-    init(dcContext: DcContext, chatId: Int = 0) {
+    init(dcContext: DcContext, chatId: Int = 0, pageIndex: Int = 0) {
         self.dcContext = dcContext
         self.chatId = chatId
+        self.prevIndex = max(0, min(pageIndex, pages.count))
+        assert(self.prevIndex == pageIndex, "Used wrong page index")
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
         hidesBottomBarWhenPushed = true
     }

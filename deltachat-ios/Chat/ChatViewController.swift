@@ -295,17 +295,65 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ]))
 
     private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
+        let webxdcMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
         UIMenu(options: [.displayInline], elementSize: .medium) { [unowned self] in
-            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
-                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-            })
-            UIAction(
-                title: String.localized("search"),
-                image: UIImage(systemName: "magnifyingglass"),
-                handler: { [unowned self] _ in searchPressed() }
-            )
+            for webxdcMsg in webxdcMsgIds.prefix(3).reversed().map(dcContext.getMessage) {
+                UIAction(
+                    title: webxdcMsg.getWebxdcAppName(),
+                    image: webxdcMsg.getWebxdcPreviewImage(),
+                    handler: { [unowned self] _ in showWebxdcViewFor(message: webxdcMsg) }
+                )
+            }
         }
-
+        UIAction(
+            title: String.localized("search"),
+            image: UIImage(systemName: "magnifyingglass"),
+            handler: { [unowned self] _ in searchPressed() }
+        )
+        UIMenu(options: [.displayInline]) { [unowned self] in
+            if !webxdcMsgIds.isEmpty {
+                UIAction(
+                    title: String.localized("webxdc_apps"),
+                    image: UIImage(systemName: "square.grid.2x2"),
+                    handler: { [unowned self] _ in
+                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 0), sender: nil)
+                    }
+                )
+            }
+            let galleryMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
+            if !galleryMsgIds.isEmpty {
+                UIAction(
+                    title: String.localized("gallery"),
+                    image: UIImage(systemName: "photo.on.rectangle"),
+                    handler: { [unowned self] _ in
+                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 1), sender: nil)
+                    }
+                )
+            }
+            let audioMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_AUDIO, messageType2: DC_MSG_VOICE, messageType3: 0)
+            if !audioMsgIds.isEmpty {
+                UIAction(
+                    title: String.localized("audio"),
+                    image: UIImage(systemName: "waveform"),
+                    handler: { [unowned self] _ in
+                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 2), sender: nil)
+                    }
+                )
+            }
+            let fileMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: 0, messageType3: 0)
+            if !fileMsgIds.isEmpty {
+                UIAction(
+                    title: String.localized("files"),
+                    image: UIImage(systemName: "doc"),
+                    handler: { [unowned self] _ in
+                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 3), sender: nil)
+                    }
+                )
+            }
+        }
+        MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+        })
         if dcChat.isEncrypted, dcChat.canSend {
             let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
             UIAction(
@@ -319,7 +367,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             )
         }
         UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
-
         UIMenu(options: [.displayInline]) { [unowned self] in
             let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
             UIAction(
