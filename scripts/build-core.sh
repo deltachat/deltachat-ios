@@ -15,6 +15,9 @@ rustc `cat ../rust-toolchain` --version
 # ensure all targets are installed
 rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios --toolchain `cat ../rust-toolchain`
 
+# reduces build time and size, but if you need to debug core; comment out the next line
+CONFIGURATION=Release
+
 # --xcode-integ determines --release and --targets from Xcode's env vars.
 # Depending your setup, specify the rustup toolchain explicitly.
 #
