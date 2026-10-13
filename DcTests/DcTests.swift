@@ -61,6 +61,23 @@ import UIKit
         }
         #expect(DcAccounts.shared.select(id: context.id))
     }
+
+    @Test @MainActor func shareURL() async throws {
+        #expect(DcAccounts.shared.getSelected().id == context.id)
+
+        let objectToResult: [(NSItemProviderWriting, CodableNSItemProvider)] = [
+            ("https://google.com" as NSString, .text(text: "https://google.com")),
+            (NSURL(string: "https://google.com")!, .text(text: "https://google.com")),
+            (NSURL(string: "https://delta.chat/assets/home/screenshots/desktop-and-mobile-thumbnail.webp")!,
+                .contentsAt(url: .temporaryDirectory.appendingPathComponent("desktop-and-mobile-thumbnail.webp"), viewType: DC_MSG_IMAGE))
+        ]
+
+        for (object, result) in objectToResult {
+            let nsProvider = NSItemProvider(object: object)
+            let provider = try await CodableNSItemProvider(from: nsProvider, in: .temporaryDirectory)
+            #expect(provider == result)
+        }
+    }
 }
 
 
