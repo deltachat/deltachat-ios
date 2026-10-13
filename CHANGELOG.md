@@ -11,6 +11,7 @@
 - Improve sendig reliability by trying th most recently successfully used relay first
 - Avoid unwanted late adding to groups (by deleting processed securejoin messages on all relays)
 - Re-add "Second device added" message if deleted soon after transfer
+- Mini apps can now prompt the user to open a http(s) link
 - Fix: show meaningful subtitle for group members on group creation
 - Update translations and local help
 - Update to core 2.63.0
