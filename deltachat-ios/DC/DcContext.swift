@@ -718,15 +718,20 @@ public class DcContext {
         dc_set_location(contextPointer, latitude, longitude, accuracy)
     }
 
-    public func searchMessages(chatId: Int = 0, searchText: String) -> [Int] {
+    public func searchMessages(chatId: Int? = nil, searchText: String) -> [Int] {
         let start = CFAbsoluteTimeGetCurrent()
-        guard let arrayPointer = dc_search_msgs(contextPointer, UInt32(chatId), searchText) else {
-            return []
+        defer {
+            let diff = CFAbsoluteTimeGetCurrent() - start
+            logger.info("⏰ searchMessages: \(diff) s")
         }
-        let messageIds = DcUtils.copyAndFreeArray(inputArray: arrayPointer)
-        let diff = CFAbsoluteTimeGetCurrent() - start
-        logger.info("⏰ searchMessages: \(diff) s")
-        return messageIds
+        if let data = DcAccounts.shared.blockingCall(method: "search_messages", id, searchText, chatId) {
+            do {
+                return try JSONDecoder().decode(JsonrpcResult<[Int]>.self, from: data).result
+            } catch {
+                logger.error(error.localizedDescription)
+            }
+        }
+        return []
     }
 
     // also, there is no much worth in adding a separate function or so

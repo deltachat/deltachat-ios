@@ -570,9 +570,8 @@ public class BaseMessageCell: UITableViewCell {
             let mutableAttributedString = NSMutableAttributedString(string: messageText, attributes: fontAttributes)
 
             if let searchText = searchText {
-                let ranges = messageText.ranges(of: searchText, options: .caseInsensitive)
-                for range in ranges {
-                    let nsRange = NSRange(range, in: messageText)
+                let ranges = messageText.nsRanges(of: searchText, options: .caseInsensitive)
+                for nsRange in ranges {
                     mutableAttributedString.addAttribute(.font, value: UIFont.preferredFont(for: .body, weight: .semibold), range: nsRange)
                     if highlight {
                         mutableAttributedString.addAttribute(.backgroundColor, value: DcColors.highlight, range: nsRange)

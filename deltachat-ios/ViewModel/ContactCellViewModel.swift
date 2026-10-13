@@ -5,9 +5,9 @@ protocol AvatarCellViewModel {
     var dcContext: DcContext { get }
     var type: CellModel { get }
     var title: String { get }
-    var titleHighlightIndexes: [Int] { get }
+    var titleHighlightRanges: [NSRange] { get }
     var subtitle: String { get }
-    var subtitleHighlightIndexes: [Int] { get }
+    var subtitleHighlightRanges: [NSRange] { get }
 }
 
 enum CellModel {
@@ -45,13 +45,13 @@ class ContactCellViewModel: AvatarCellViewModel {
         return DcUtils.getInitials(inputName: title)
     }
 
-    var titleHighlightIndexes: [Int]
-    var subtitleHighlightIndexes: [Int]
+    var titleHighlightRanges: [NSRange]
+    var subtitleHighlightRanges: [NSRange]
 
-    init(dcContext: DcContext, contactData: ContactCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
+    init(dcContext: DcContext, contactData: ContactCellData, titleHighlightRanges: [NSRange] = [], subtitleHighlightRanges: [NSRange] = []) {
         type = CellModel.contact(contactData)
-        self.titleHighlightIndexes = titleHighlightIndexes
-        self.subtitleHighlightIndexes = subtitleHighlightIndexes
+        self.titleHighlightRanges = titleHighlightRanges
+        self.subtitleHighlightRanges = subtitleHighlightRanges
         self.contact = dcContext.getContact(id: contactData.contactId)
         self.dcContext = dcContext
     }
@@ -68,13 +68,13 @@ class ProfileViewModel: AvatarCellViewModel {
 
     private let contact: DcContact
 
-    var titleHighlightIndexes: [Int] {
+    var titleHighlightRanges: [NSRange] {
         return []
     }
 
     var subtitle: String
 
-    var subtitleHighlightIndexes: [Int] {
+    var subtitleHighlightRanges: [NSRange] {
         return []
     }
 
@@ -115,13 +115,13 @@ class ChatCellViewModel: AvatarCellViewModel {
         return result
     }
 
-    var titleHighlightIndexes: [Int]
-    var subtitleHighlightIndexes: [Int]
+    var titleHighlightRanges: [NSRange]
+    var subtitleHighlightRanges: [NSRange]
 
-    init(dcContext: DcContext, chatData: ChatCellData, titleHighlightIndexes: [Int] = [], subtitleHighlightIndexes: [Int] = []) {
+    init(dcContext: DcContext, chatData: ChatCellData, titleHighlightRanges: [NSRange] = [], subtitleHighlightRanges: [NSRange] = []) {
         self.type = CellModel.chat(chatData)
-        self.titleHighlightIndexes = titleHighlightIndexes
-        self.subtitleHighlightIndexes = subtitleHighlightIndexes
+        self.titleHighlightRanges = titleHighlightRanges
+        self.subtitleHighlightRanges = subtitleHighlightRanges
         self.summary = chatData.summary
         self.chat = dcContext.getChat(chatId: chatData.chatId)
         self.dcContext = dcContext
@@ -131,8 +131,8 @@ class ChatCellViewModel: AvatarCellViewModel {
 extension ContactCellViewModel {
     static func make(contactId: Int, searchText: String? = nil, dcContext: DcContext) -> ContactCellViewModel {
         let contact = dcContext.getContact(id: contactId)
-        let nameIndexes = contact.displayName.containsExact(subSequence: searchText)
-        let emailIndexes = contact.email.containsExact(subSequence: searchText)
+        let nameRanges = contact.displayName.nsRanges(of: searchText ?? "")
+        let emailRanges = contact.email.nsRanges(of: searchText ?? "")
         let chatId: Int? = dcContext.getChatIdByContactIdOld(contactId)
             // contact contains searchText
         let viewModel = ContactCellViewModel(
@@ -141,8 +141,8 @@ extension ContactCellViewModel {
                 contactId: contactId,
                 chatId: chatId
             ),
-            titleHighlightIndexes: nameIndexes,
-            subtitleHighlightIndexes: emailIndexes
+            titleHighlightRanges: nameRanges,
+            subtitleHighlightRanges: emailRanges
         )
         return viewModel
     }

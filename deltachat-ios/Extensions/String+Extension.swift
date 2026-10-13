@@ -13,6 +13,10 @@ extension String {
         return String(self[startIndex..<to])
     }
 
+    func nsRanges(of string: String, options: String.CompareOptions = []) -> [NSRange] {
+        ranges(of: string, options: options).map { NSRange($0, in: self) }
+    }
+
     func ranges(of string: String, options: String.CompareOptions = []) -> [Range<Index>] {
         var result: [Range<Index>] = []
         var startIndex = self.startIndex

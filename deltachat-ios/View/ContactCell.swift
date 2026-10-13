@@ -338,7 +338,11 @@ class ContactCell: UITableViewCell {
     func updateCell(cellViewModel: AvatarCellViewModel) {
 
         // subtitle
-        subtitleLabel.attributedText = cellViewModel.subtitle.boldAt(indexes: cellViewModel.subtitleHighlightIndexes, fontSize: subtitleLabel.font.pointSize)
+
+        subtitleLabel.attributedText = NSMutableAttributedString(string: cellViewModel.subtitle)
+        cellViewModel.subtitleHighlightIndexes.forEach {
+            subtitleLabel.attributedText?.addatr
+        }
         var unreadMessages = 0
         var isContactRequest = false
         var isArchived = false

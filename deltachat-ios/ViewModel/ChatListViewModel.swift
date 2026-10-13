@@ -323,12 +323,7 @@ class ChatListViewModel: NSObject {
         let summary = list.getSummary(index: index)
         let chat = dcContext.getChat(chatId: chatId)
         let unreadMessages = dcContext.getUnreadMessages(chatId: chatId)
-
-        var chatTitleIndexes: [Int] = []
-        if !searchText.isEmpty {
-            let chatName = chat.name
-            chatTitleIndexes = chatName.containsExact(subSequence: searchText)
-        }
+        let chatTitleRanges = chat.name.nsRanges(of: searchText)
 
         let viewModel = ChatCellViewModel(
             dcContext: dcContext,
@@ -338,7 +333,7 @@ class ChatListViewModel: NSObject {
                 summary: summary,
                 unreadMessages: unreadMessages
             ),
-            titleHighlightIndexes: chatTitleIndexes
+            titleHighlightRanges: chatTitleRanges
         )
         return viewModel
     }
@@ -373,7 +368,7 @@ class ChatListViewModel: NSObject {
             )
         )
         let subtitle = viewModel.subtitle
-        viewModel.subtitleHighlightIndexes = subtitle.containsExact(subSequence: searchText)
+        viewModel.subtitleHighlightRanges = subtitle.nsRanges(of: searchText)
         return viewModel
     }
 
@@ -438,7 +433,7 @@ class ChatListViewModel: NSObject {
             return
         }
 
-        if searchText.count <= 1 {
+        if searchText.count <= 1 && !searchText.containsOnlyEmoji {
             logger.info("... skipping searchMessages, string too short")
             searchResultMessageIds = []
             updateSearchResultSections()

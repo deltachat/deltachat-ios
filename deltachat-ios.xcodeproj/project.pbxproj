@@ -43,7 +43,6 @@
 		3052C60E253F088E007D13EA /* DetectorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3052C60D253F088E007D13EA /* DetectorType.swift */; };
 		305501742798CDE1008FD5CA /* WebxdcViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305501732798CDE1008FD5CA /* WebxdcViewController.swift */; };
 		3057028724C5C88300D84EFC /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 306011B422E5E7FB00C1CE6F /* Localizable.stringsdict */; };
-		3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE77838E23E4276D0093EABD /* ContactCellViewModel.swift */; };
 		3057029B24C6441300D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
 		3057029F24C6445000D84EFC /* EmptyStateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3057029A24C6441300D84EFC /* EmptyStateLabel.swift */; };
 		305702A124C6453700D84EFC /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305702A024C6453700D84EFC /* TypeAlias.swift */; };
@@ -1725,7 +1724,6 @@
 				30152C9A25A5D92200377714 /* DetectorType.swift in Sources */,
 				30152CA025A5D97900377714 /* UIEdgeInsets+Extensions.swift in Sources */,
 				3067AAC72667F3FE00525036 /* ImageFormat.swift in Sources */,
-				3057028C24C5E7B600D84EFC /* ContactCellViewModel.swift in Sources */,
 				30152C9425A5D91400377714 /* PaddingTextView.swift in Sources */,
 				30152C9725A5D91900377714 /* MessageLabel.swift in Sources */,
 			);
