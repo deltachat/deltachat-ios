@@ -94,11 +94,10 @@ open class AudioPlayerView: UIView {
             playButton.widthAnchor.constraint(equalToConstant: 45).withPriority(UILayoutPriority(rawValue: 999)),
             playButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            durationLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 54),
+            trailingControlsView.widthAnchor.constraint(equalTo: durationLabel.widthAnchor),
+            trackContainerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 40),
         ])
-
-        durationLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
-        trailingControlsView.widthAnchor.constraint(equalTo: durationLabel.widthAnchor).isActive = true
-        trackContainerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
 
         durationCenterYConstraint = durationLabel.centerYAnchor.constraint(equalTo: trailingControlsView.centerYAnchor)
         durationBottomConstraint = durationLabel.bottomAnchor.constraint(equalTo: trailingControlsView.bottomAnchor)
