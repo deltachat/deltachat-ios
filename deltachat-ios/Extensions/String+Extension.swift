@@ -80,4 +80,8 @@ extension String {
         // Character.isEmoji is defined in deltachat-ios/Extensions/Character+Extension.swift
         return !isEmpty && !contains { !$0.isEmoji }
     }
+
+    var nilIfEmpty: String? {
+        isEmpty ? nil : self
+    }
 }
