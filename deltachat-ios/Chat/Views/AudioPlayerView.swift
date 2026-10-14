@@ -100,18 +100,25 @@ open class AudioPlayerView: UIView {
         trailingControlsView.widthAnchor.constraint(equalTo: durationLabel.widthAnchor).isActive = true
         trackContainerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
 
-        let trackContainerConstraints = [trackContainerView.leftAnchor.constraint(equalTo: playButton.rightAnchor, constant: 8),
-                                         trackContainerView.rightAnchor.constraint(equalTo: trailingControlsView.leftAnchor, constant: -4),
-                                         trackContainerView.topAnchor.constraint(equalTo: topAnchor),
-                                         trackContainerView.bottomAnchor.constraint(equalTo: bottomAnchor)]
-        let trailingControlsConstraints = [trailingControlsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-                                           trailingControlsView.topAnchor.constraint(equalTo: topAnchor),
-                                           trailingControlsView.bottomAnchor.constraint(equalTo: bottomAnchor)]
         durationCenterYConstraint = durationLabel.centerYAnchor.constraint(equalTo: trailingControlsView.centerYAnchor)
         durationBottomConstraint = durationLabel.bottomAnchor.constraint(equalTo: trailingControlsView.bottomAnchor)
-        let durationLabelConstraints = [durationLabel.centerXAnchor.constraint(equalTo: trailingControlsView.centerXAnchor),
-                                        durationCenterYConstraint!]
-        NSLayoutConstraint.activate(trackContainerConstraints + trailingControlsConstraints + durationLabelConstraints)
+
+        NSLayoutConstraint.activate([
+            // Track container
+            trackContainerView.leftAnchor.constraint(equalTo: playButton.rightAnchor, constant: 8),
+            trackContainerView.rightAnchor.constraint(equalTo: trailingControlsView.leftAnchor, constant: -4),
+            trackContainerView.topAnchor.constraint(equalTo: topAnchor),
+            trackContainerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            // Trailing controls
+            trailingControlsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            trailingControlsView.topAnchor.constraint(equalTo: topAnchor),
+            trailingControlsView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
+            // Duration label
+            durationLabel.centerXAnchor.constraint(equalTo: trailingControlsView.centerXAnchor),
+            durationCenterYConstraint,
+        ].compactMap { $0 })
 
         NSLayoutConstraint.activate([
             speedButton.centerXAnchor.constraint(equalTo: trailingControlsView.centerXAnchor),
@@ -120,9 +127,9 @@ open class AudioPlayerView: UIView {
             speedButton.heightAnchor.constraint(equalToConstant: 24),
             progressBar.leftAnchor.constraint(equalTo: trackContainerView.leftAnchor),
             progressBar.rightAnchor.constraint(equalTo: trackContainerView.rightAnchor),
-            progressBar.centerYAnchor.constraint(equalTo: trackContainerView.centerYAnchor)
+            progressBar.centerYAnchor.constraint(equalTo: trackContainerView.centerYAnchor),
+            heightAnchor.constraint(equalTo: playButton.heightAnchor),
         ])
-        heightAnchor.constraint(equalTo: playButton.heightAnchor).isActive = true
     }
 
     open func setupSubviews() {
