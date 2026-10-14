@@ -5,7 +5,6 @@ open class AudioPlayerView: UIView {
 
     private var durationCenterYConstraint: NSLayoutConstraint?
     private var durationBottomConstraint: NSLayoutConstraint?
-    private var playbackControlsAreVisible = false
     private let durationLabelCompactTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
     private var playbackLayoutGeneration = 0
     private let speedButtonHiddenTransform = CGAffineTransform(translationX: 0, y: 11.04).scaledBy(x: 1, y: 0.08)
@@ -123,9 +122,7 @@ open class AudioPlayerView: UIView {
             progressBar.rightAnchor.constraint(equalTo: trackContainerView.rightAnchor),
             progressBar.centerYAnchor.constraint(equalTo: trackContainerView.centerYAnchor)
         ])
-        let height = self.heightAnchor.constraint(equalTo: playButton.heightAnchor)
-        height.priority = .required
-        height.isActive = true
+        heightAnchor.constraint(equalTo: playButton.heightAnchor).isActive = true
     }
 
     open func setupSubviews() {
@@ -174,7 +171,6 @@ open class AudioPlayerView: UIView {
         layoutIfNeeded()
         playbackLayoutGeneration += 1
         let generation = playbackLayoutGeneration
-        playbackControlsAreVisible = isPlaying
         let wasHidden = speedButton.isHidden
         durationCenterYConstraint?.isActive = !isPlaying
         durationBottomConstraint?.isActive = isPlaying
@@ -229,7 +225,7 @@ open class AudioPlayerView: UIView {
                 })
             }
         }, completion: { finished in
-            if finished, generation == self.playbackLayoutGeneration, !self.playbackControlsAreVisible {
+            if finished, generation == self.playbackLayoutGeneration, !isPlaying {
                 self.speedButton.isHidden = true
             }
         })
