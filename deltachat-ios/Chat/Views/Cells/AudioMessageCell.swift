@@ -37,7 +37,7 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
         mainContentView.addArrangedSubview(messageLabel)
         messageLabel.paddingLeading = 12
         messageLabel.paddingTrailing = 12
-        audioPlayerView.widthAnchor.constraint(equalToConstant: 250).withPriority(.defaultLow).isActive = true
+        audioPlayerView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onPlayButtonTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         audioPlayerView.playButton.addGestureRecognizer(gestureRecognizer)
