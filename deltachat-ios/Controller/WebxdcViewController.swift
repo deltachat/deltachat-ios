@@ -47,11 +47,13 @@ class WebxdcViewController: WebViewViewController {
     """
     
     lazy var webxdcbridge: String = {
-        let addr = info?.selfAddr
-            .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let displayname = (dcContext.displayname ?? String.localized("unnamed") )?
-            .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        
+        let addr = info?.selfAddr.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet.urlQueryAllowed
+        )?.nilIfEmpty ?? "ErrAddr"
+        let displayname = dcContext.displayname?.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet.urlQueryAllowed
+        )?.nilIfEmpty ?? String.localized("unnamed")
+
         let script = """
         window.webxdc = (() => {
           var log = (s)=>webkit.messageHandlers.log.postMessage(s);
@@ -114,8 +116,8 @@ class WebxdcViewController: WebViewViewController {
         }
 
           return {
-            selfAddr: decodeURI("\((addr?.nilIfEmpty ?? "ErrAddr"))"),
-            selfName: decodeURI("\((displayname?.nilIfEmpty ?? String.localized("unnamed")))"),
+            selfAddr: decodeURI("\(addr)"),
+            selfName: decodeURI("\(displayname)"),
             sendUpdateInterval: \(info?.sendUpdateInterval ?? 0),
             sendUpdateMaxSize: \(info?.sendUpdateMaxSize ?? 0),
             isAppSender: \(info?.isAppSender == true),
