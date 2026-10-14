@@ -23,7 +23,7 @@ struct PinBarView: View {
         .onAppear {
             pins = chat.pinnedMessageIds
         }
-        .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged)) { event in
+        .onReceive(NotificationCenter.default.publisher(for: Event.messagesChanged).receive(on: RunLoop.main)) { event in
             if let msg = (event.userInfo?["message_id"] as? Int).map(context.getMessage),
                msg.isPinned && msg.isEdited {
                 edits += 1
