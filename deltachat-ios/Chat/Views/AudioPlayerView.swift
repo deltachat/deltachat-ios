@@ -162,9 +162,19 @@ open class AudioPlayerView: UIView {
         setPlaybackControlsLayout(isPlaying: play, animated: true)
     }
 
-    func setPlaybackRateLabel(_ rateLabel: String) {
+    func setPlaybackRateLabel(_ rateLabel: String, animated: Bool = false) {
         speedButton.setTitle(rateLabel, for: .normal)
         speedButton.accessibilityValue = rateLabel
+
+        guard animated, !UIAccessibility.isReduceMotionEnabled, !speedButton.isHidden else { return }
+
+        let bounce = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounce.values = [1, 1.08, 1]
+        bounce.keyTimes = [0, 0.45, 1]
+        bounce.duration = 0.2
+        bounce.timingFunctions = [CAMediaTimingFunction(name: .easeInEaseOut),
+                                  CAMediaTimingFunction(name: .easeInEaseOut)]
+        speedButton.layer.add(bounce, forKey: "playbackSpeedBounce")
     }
 
     private func setPlaybackControlsLayout(isPlaying: Bool, animated: Bool) {

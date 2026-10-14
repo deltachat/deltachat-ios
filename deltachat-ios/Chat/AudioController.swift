@@ -212,7 +212,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
               let player = activeController.audioPlayer else { return }
         let rate = AudioController.nextPlaybackRate(after: player.rate)
         player.rate = rate
-        cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
+        cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate), animated: true)
         activeController.updateNowPlayingInfo()
     }
 
