@@ -297,9 +297,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
         let webxdcMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
         UIMenu(options: [.displayInline], elementSize: .medium) { [unowned self] in
-            for webxdcMsg in webxdcMsgIds.prefix(3).map(dcContext.getMessage).reversed() {
+            for webxdcMsg in webxdcMsgIds.suffix(3).map(dcContext.getMessage).reversed() {
+                let info = webxdcMsg.getWebxdcInfoDict()
+                let doc = info["document"] as? String ?? ""
+                let name = webxdcMsg.getWebxdcAppName()
                 UIAction(
-                    title: webxdcMsg.getWebxdcAppName(),
+                    title: doc.isEmpty ? name : "\(doc) – \(name)",
                     image: webxdcMsg.getWebxdcPreviewImage(),
                     handler: { [unowned self] _ in showWebxdcViewFor(message: webxdcMsg) }
                 )
