@@ -162,11 +162,11 @@ open class AudioPlayerView: UIView {
         durationLabel.text = String.timeStringForInterval(duration.rounded(.up))
     }
 
-    open func showPlayLayout(_ play: Bool) {
+    open func showPlayLayout(_ play: Bool, animated: Bool = true) {
         playButton.isSelected = play
         playButton.accessibilityLabel = play ? String.localized("menu_pause") : String.localized("menu_play")
         speedButton.isAccessibilityElement = play
-        setPlaybackControlsLayout(isPlaying: play, animated: true)
+        setPlaybackControlsLayout(isPlaying: play, animated: animated)
     }
 
     func setPlaybackRateLabel(_ rateLabel: String, animated: Bool = false) {

@@ -129,9 +129,9 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
            let player = activeController.audioPlayer {
             activeController.playingCell = cell
             cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-            cell.audioPlayerView.showPlayLayout(player.isPlaying)
             cell.audioPlayerView.setDuration(duration: player.currentTime)
             cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
+            cell.audioPlayerView.showPlayLayout(player.isPlaying, animated: false)
         }
     }
     
@@ -142,15 +142,15 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             // Ignore messages that are currently playing or paused.
             return
         }
-        
+
+        let duration = message.duration
+        if duration > 0 {
+            successHandler(messageId, Double(duration) / 1000)
+            return
+        }
+
         DispatchQueue.global(qos: .userInitiated).async {
-            let duration = message.duration
-            if duration > 0 {
-                DispatchQueue.main.async {
-                    guard AudioController.backgroundPlaybackController?.isPlayingMessage(messageId: messageId, contextId: contextId) != true else { return }
-                    successHandler(messageId, Double(duration) / 1000)
-                }
-            } else if let fileURL = message.fileURL {
+            if let fileURL = message.fileURL {
                 let audioAsset = AVURLAsset.init(url: fileURL, options: nil)
                 audioAsset.loadValuesAsynchronously(forKeys: ["duration"]) {
                     var error: NSError?
