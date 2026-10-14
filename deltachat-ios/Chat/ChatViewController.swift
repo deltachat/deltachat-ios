@@ -297,7 +297,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
         let webxdcMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
         UIMenu(options: [.displayInline], elementSize: .medium) { [unowned self] in
-            for webxdcMsg in webxdcMsgIds.prefix(3).reversed().map(dcContext.getMessage) {
+            for webxdcMsg in webxdcMsgIds.prefix(3).map(dcContext.getMessage).reversed() {
                 UIAction(
                     title: webxdcMsg.getWebxdcAppName(),
                     image: webxdcMsg.getWebxdcPreviewImage(),
@@ -362,7 +362,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 image: UIImage(systemName: "stopwatch"),
                 state: ephemeralTimer > 0 ? .on : .off,
                 handler: { [unowned self] _ in
-                    navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
+                    show(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), sender: nil)
                 }
             )
         }
