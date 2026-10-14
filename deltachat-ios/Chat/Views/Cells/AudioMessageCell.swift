@@ -23,6 +23,11 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
     }()
 
     private var messageId: Int = 0
+    private var contextId: Int?
+
+    func represents(messageId: Int, contextId: Int) -> Bool {
+        self.messageId == messageId && self.contextId == contextId
+    }
 
     override func setupSubviews() {
         super.setupSubviews()
@@ -32,7 +37,7 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
         mainContentView.addArrangedSubview(messageLabel)
         messageLabel.paddingLeading = 12
         messageLabel.paddingTrailing = 12
-        audioPlayerView.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        audioPlayerView.widthAnchor.constraint(equalToConstant: 250).withPriority(.defaultLow).isActive = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onPlayButtonTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         audioPlayerView.playButton.addGestureRecognizer(gestureRecognizer)
@@ -49,6 +54,7 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
 
     override func update(dcContext: DcContext, msg: DcMsg, messageStyle: UIRectCorner, showAvatar: Bool, showName: Bool, showViewCount: Bool, searchText: String? = nil, highlight: Bool) {
         messageId = msg.id
+        contextId = dcContext.id
         if let text = msg.text {
             mainContentView.spacing = text.isEmpty ? 0 : 8
             messageLabel.text = text
@@ -61,9 +67,9 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
             a11yDcType = String.localized("audio")
         }
         
-        delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self] messageId, duration in
+        delegate?.getAudioDuration(messageId: messageId, successHandler: { [weak self, contextId = dcContext.id] messageId, duration in
             if let self,
-               messageId == self.messageId {
+               self.represents(messageId: messageId, contextId: contextId) {
                 self.audioPlayerView.setDuration(duration: duration)
             }
         })
@@ -82,6 +88,7 @@ public class AudioMessageCell: BaseMessageCell, ReusableCell {
         super.prepareForReuse()
         mainContentView.spacing = 0
         messageId = 0
+        contextId = nil
         delegate = nil
         audioPlayerView.reset()
     }

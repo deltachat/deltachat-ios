@@ -7,7 +7,12 @@ open class AudioPlayerView: UIView {
     private var durationBottomConstraint: NSLayoutConstraint?
     private var playbackControlsAreVisible = false
     private let durationLabelCompactTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-    private let speedButtonHiddenTransform = CGAffineTransform(translationX: 0, y: 11.04).scaledBy(x: 1, y: 0.08)
+    private var playbackLayoutGeneration = 0
+    private var speedButtonHiddenTransform: CGAffineTransform {
+        let scaleY: CGFloat = 0.08
+        return CGAffineTransform(translationX: 0, y: speedButton.bounds.height / 2 * (1 - scaleY))
+            .scaledBy(x: 1, y: scaleY)
+    }
 
     /// The play button view to display on audio messages.
     lazy var playButton: UIButton = {
@@ -31,9 +36,13 @@ open class AudioPlayerView: UIView {
     private lazy var durationLabel: UILabel = {
         let durationLabel = UILabel(frame: CGRect.zero)
         durationLabel.textAlignment = .center
-        let font = UIFont.monospacedDigitSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .bold)
+        let traits = UITraitCollection(preferredContentSizeCategory: .large)
+        let size = UIFont.preferredFont(forTextStyle: .subheadline, compatibleWith: traits).pointSize
+        let font = UIFont.monospacedDigitSystemFont(ofSize: size, weight: .bold)
         durationLabel.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(for: font)
         durationLabel.adjustsFontForContentSizeCategory = true
+        durationLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        durationLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         durationLabel.text = "0:00"
         durationLabel.translatesAutoresizingMaskIntoConstraints = false
         durationLabel.isAccessibilityElement = false
@@ -44,6 +53,9 @@ open class AudioPlayerView: UIView {
         let button = UIButton(type: .system)
         button.titleLabel?.font = UIFont.preferredFont(for: .caption1, weight: .bold)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.contentEdgeInsets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .vertical)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         // TODO: Add accessibility label for playback speed.
@@ -95,7 +107,11 @@ open class AudioPlayerView: UIView {
         ])
 
         durationLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 54).isActive = true
-        trailingControlsView.widthAnchor.constraint(equalTo: durationLabel.widthAnchor).isActive = true
+        trailingControlsView.widthAnchor.constraint(greaterThanOrEqualTo: durationLabel.widthAnchor).isActive = true
+        trailingControlsView.widthAnchor.constraint(greaterThanOrEqualTo: speedButton.widthAnchor).isActive = true
+        let controlsWidth = trailingControlsView.widthAnchor.constraint(equalToConstant: 54)
+        controlsWidth.priority = .defaultLow
+        controlsWidth.isActive = true
         trackContainerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
 
         let trackContainerConstraints = [trackContainerView.leftAnchor.constraint(equalTo: playButton.rightAnchor, constant: 8),
@@ -114,14 +130,25 @@ open class AudioPlayerView: UIView {
         NSLayoutConstraint.activate([
             speedButton.centerXAnchor.constraint(equalTo: trailingControlsView.centerXAnchor),
             speedButton.topAnchor.constraint(equalTo: trailingControlsView.topAnchor),
-            speedButton.widthAnchor.constraint(equalToConstant: 50),
-            speedButton.heightAnchor.constraint(equalToConstant: 24),
+            speedButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            speedButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
             progressBar.leftAnchor.constraint(equalTo: trackContainerView.leftAnchor),
             progressBar.rightAnchor.constraint(equalTo: trackContainerView.rightAnchor),
             progressBar.centerYAnchor.constraint(equalTo: trackContainerView.centerYAnchor)
         ])
-        let height = self.heightAnchor.constraint(equalTo: playButton.heightAnchor)
-        height.priority = .required
+        // Reserve space for both controls even while paused, keeping the track stationary.
+        let durationSpace = UILayoutGuide()
+        trailingControlsView.addLayoutGuide(durationSpace)
+        NSLayoutConstraint.activate([
+            durationSpace.topAnchor.constraint(greaterThanOrEqualTo: speedButton.bottomAnchor, constant: 3),
+            durationSpace.bottomAnchor.constraint(equalTo: trailingControlsView.bottomAnchor),
+            durationSpace.heightAnchor.constraint(equalTo: durationLabel.heightAnchor),
+            durationSpace.leadingAnchor.constraint(equalTo: trailingControlsView.leadingAnchor),
+            durationSpace.trailingAnchor.constraint(equalTo: trailingControlsView.trailingAnchor),
+            heightAnchor.constraint(greaterThanOrEqualToConstant: 45)
+        ])
+        let height = heightAnchor.constraint(equalToConstant: 45)
+        height.priority = .defaultLow
         height.isActive = true
     }
 
@@ -167,7 +194,26 @@ open class AudioPlayerView: UIView {
         speedButton.accessibilityValue = rateLabel
     }
 
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if isUserInteractionEnabled, !isHidden, alpha > 0.01,
+           !speedButton.isHidden, speedButton.isUserInteractionEnabled, speedButton.isEnabled {
+            let buttonFrame = speedButton.convert(speedButton.bounds, to: self)
+            let width = max(44, buttonFrame.width)
+            let height = max(44, buttonFrame.height)
+            let hitFrame = CGRect(x: buttonFrame.midX - width / 2,
+                                  y: max(0, buttonFrame.midY - height / 2),
+                                  width: width, height: height)
+            if bounds.contains(point), hitFrame.contains(point) {
+                return speedButton
+            }
+        }
+        return super.hitTest(point, with: event)
+    }
+
     private func setPlaybackControlsLayout(isPlaying: Bool, animated: Bool) {
+        layoutIfNeeded()
+        playbackLayoutGeneration += 1
+        let generation = playbackLayoutGeneration
         playbackControlsAreVisible = isPlaying
         let wasHidden = speedButton.isHidden
         durationCenterYConstraint?.isActive = !isPlaying
@@ -175,6 +221,7 @@ open class AudioPlayerView: UIView {
 
         if wasHidden {
             speedButton.transform = speedButtonHiddenTransform
+            speedButton.titleLabel?.alpha = 0
         }
         if isPlaying {
             speedButton.isHidden = false
@@ -182,12 +229,19 @@ open class AudioPlayerView: UIView {
 
         let speedButtonTitleAlpha: CGFloat = isPlaying ? 1 : 0
 
-        guard animated else {
-            self.layoutIfNeeded()
-            speedButton.isHidden = !isPlaying
-            speedButton.transform = isPlaying ? .identity : speedButtonHiddenTransform
-            durationLabel.transform = isPlaying ? durationLabelCompactTransform : .identity
-            speedButton.titleLabel?.alpha = speedButtonTitleAlpha
+        guard animated, !UIAccessibility.isReduceMotionEnabled else {
+            layer.removeAllAnimations()
+            trailingControlsView.layer.removeAllAnimations()
+            speedButton.layer.removeAllAnimations()
+            speedButton.titleLabel?.layer.removeAllAnimations()
+            durationLabel.layer.removeAllAnimations()
+            UIView.performWithoutAnimation {
+                self.layoutIfNeeded()
+                self.speedButton.isHidden = !isPlaying
+                self.speedButton.transform = isPlaying ? .identity : self.speedButtonHiddenTransform
+                self.durationLabel.transform = isPlaying ? self.durationLabelCompactTransform : .identity
+                self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
+            }
             return
         }
 
@@ -196,26 +250,30 @@ open class AudioPlayerView: UIView {
                                 options: [.beginFromCurrentState, .allowUserInteraction, .calculationModeCubic],
                                 animations: {
             if isPlaying {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-                    self.durationLabel.transform = self.durationLabelCompactTransform
-                })
-                UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.75, animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
                     self.speedButton.transform = .identity
                     self.layoutIfNeeded()
+                })
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.65, animations: {
+                    self.durationLabel.transform = self.durationLabelCompactTransform
+                })
+                UIView.addKeyframe(withRelativeStartTime: 0.45, relativeDuration: 0.45, animations: {
                     self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
                 })
             } else {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.55, animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.2, animations: {
                     self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
-                    self.speedButton.transform = CGAffineTransform(translationX: 0, y: 12).scaledBy(x: 1, y: 0)
                 })
-                UIView.addKeyframe(withRelativeStartTime: 0.55, relativeDuration: 0.45, animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.7, animations: {
+                    self.speedButton.transform = self.speedButtonHiddenTransform
+                })
+                UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.8, animations: {
                     self.layoutIfNeeded()
                     self.durationLabel.transform = .identity
                 })
             }
         }, completion: { finished in
-            if finished, !self.playbackControlsAreVisible {
+            if finished, generation == self.playbackLayoutGeneration, !self.playbackControlsAreVisible {
                 self.speedButton.isHidden = true
             }
         })
