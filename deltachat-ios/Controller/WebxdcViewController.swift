@@ -115,7 +115,7 @@ class WebxdcViewController: WebViewViewController {
 
           return {
             selfAddr: decodeURI("\((addr?.nilIfEmpty ?? "ErrAddr"))"),
-            selfName: decodeURI("\((displayname?.nilIfEmpty ?? "ErrName"))"),
+            selfName: decodeURI("\((displayname?.nilIfEmpty ?? String.localized("unnamed")))"),
             sendUpdateInterval: \(info?.sendUpdateInterval ?? 0),
             sendUpdateMaxSize: \(info?.sendUpdateMaxSize ?? 0),
             isAppSender: \(info?.isAppSender == true),
