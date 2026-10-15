@@ -259,8 +259,7 @@ class ProfileViewController: UITableViewController {
             let showShareAction = contact != nil && !isSavedMessages && !isDeviceChat
             let showEditAction = isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true
             let showMuteAction = chat != nil && !isSavedMessages
-            let showSearchAction = chat?.canSend == true
-            let itemCount = [showShareAction || showEditAction, showMuteAction, showShareAction].filter(\.self).count
+            let itemCount = [showShareAction || showEditAction, showMuteAction].filter(\.self).count
             UIMenu(options: [.displayInline], elementSize: itemCount > 1 ? .medium : nil) { [unowned self] in
                 if showShareAction {
                     UIAction(
@@ -282,28 +281,8 @@ class ProfileViewController: UITableViewController {
                         handler: { [weak self] _ in self?.toggleMuteChat() }
                     )
                 }
-                if showSearchAction { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
-                    UIAction(
-                        title: String.localized("search"),
-                        image: UIImage(systemName: "magnifyingglass"),
-                        handler: { [weak self] _ in self?.showSearch() }
-                    )
-                }
             }
 
-            if let chat, chat.isEncrypted, chat.canSend {
-                let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
-                UIAction(
-                    title: String.localized("ephemeral_messages"),
-                    subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
-                    image: UIImage(systemName: "stopwatch"),
-                    state: ephemeralTimer > 0 ? .on : .off,
-                    handler: { [weak self] _ in self?.showEphemeralController() }
-                )
-            }
-            if let chat {
-                UIAction.archiveChat(chat, dcContext: dcContext, navigate: self)
-            }
             if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
                 UIAction(
@@ -327,24 +306,12 @@ class ProfileViewController: UITableViewController {
                         handler: { [weak self] _ in self?.toggleBlockContact() }
                     )
                 }
-                if let chat {
-                    if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
-                        UIAction(
-                            title: String.localized("clone_chat"),
-                            image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
-                            handler: { [weak self] _ in self?.showCloneChatController() }
-                        )
-                    }
-
-                    let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
+                if let chat, isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
                     UIAction(
-                        title: String.localized("clear_chat"),
-                        image: UIImage(systemName: clearImage),
-                        attributes: [.destructive],
-                        handler: { [weak self] _ in self?.showClearConfirmationAlert() }
+                        title: String.localized("clone_chat"),
+                        image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
+                        handler: { [weak self] _ in self?.showCloneChatController() }
                     )
-
-                    UIAction.leaveChat(chat, dcContext: dcContext, presentAlertsOn: self)
                 }
             }
         }
