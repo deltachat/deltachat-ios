@@ -8,6 +8,9 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window?.windowScene = scene as? UIWindowScene
+        if let url = connectionOptions.urlContexts.first?.url {
+            handle(url: url)
+        }
     }
 
 
@@ -56,6 +59,8 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
             handle(url: incomingURL)
         } else if userActivity.interaction?.intent is INStartAudioCallIntent {
             logger.info("➡️ continue INStartAudioCallIntent")
+        } else {
+            logger.info("➡️ continue unhandled intent")
         }
     }
 
