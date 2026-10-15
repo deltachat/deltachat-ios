@@ -1,5 +1,6 @@
 import UIKit
 import DcCore
+import SwiftUI
 
 class MessageInfoViewController: UIViewController {
     var dcContext: DcContext
@@ -20,11 +21,24 @@ class MessageInfoViewController: UIViewController {
         super.viewDidLoad()
         title = String.localized("menu_message_details")
 
-        let textView = UITextView(frame: view.frame)
-        textView.text = dcContext.getMsgInfo(msgId: message.id)
-        textView.isEditable = false
-        textView.font = .preferredFont(forTextStyle: .body)
-        view.addSubview(textView)
-        textView.fillSuperview()
+        let host = UIHostingController(rootView: rootView)
+        addChild(host)
+        view.addSubview(host.view)
+        host.didMove(toParent: self)
+        host.view.fillSuperview()
+    }
+
+    var rootView: some View {
+        List {
+            Section("Read by") {
+                HStack {
+                    Image(systemName: "person.fill")
+                        .clipShape(Circle())
+                    Text("Amzd")
+                    Spacer()
+                    Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Date(timeIntervalSinceNow: -3000).timeIntervalSince1970))
+                }
+            }
+        }
     }
 }
