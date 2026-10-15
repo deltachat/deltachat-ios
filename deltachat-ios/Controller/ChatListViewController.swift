@@ -1082,22 +1082,12 @@ extension ChatListViewController: ChatListEditingBarDelegate {
             setLongTapEditing(false)
         })
 
-        if viewModel.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows) {
-            actions.append(UIAction(title: String.localized("menu_mute"), image: UIImage(systemName: "speaker.slash")) { [weak self] _ in
-                guard let self else { return }
-                MuteDialog.show(viewController: self) { [weak self] duration in
-                    guard let self else { return }
-                    viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
-                    setLongTapEditing(false)
-                }
-            })
-        } else {
-            actions.append(UIAction(title: String.localized("menu_unmute"), image: UIImage(systemName: "speaker.wave.2")) { [weak self] _ in
-                guard let self else { return }
-                viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: 0)
-                setLongTapEditing(false)
-            })
-        }
+        let isMuted = !viewModel.hasAnyUnmutedChatSelected(in: tableView.indexPathsForSelectedRows)
+        actions.append(MuteDialog.menu(isMuted: isMuted, didSelectMute: { [weak self] duration in
+            guard let self else { return }
+            viewModel.setMuteDurations(in: tableView.indexPathsForSelectedRows, duration: duration)
+            setLongTapEditing(false)
+        }))
 
         return UIMenu(children: actions)
     }
