@@ -3,6 +3,7 @@
 
 ## Unreleased
 
+- Add audio speed control
 - Pinned Messages
 - Nicer profile and group image selection
 - Allow to share location for 24 hours
