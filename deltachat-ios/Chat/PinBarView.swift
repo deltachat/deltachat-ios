@@ -53,7 +53,7 @@ struct PinBarView: View {
                 .lineLimit(1)
                 .padding(.vertical, 10)
                 .padding(.leading, pins.count > 1 ? 0 : 16)
-                .opacity(0.7)
+                .opacity(0.8)
                 .id("\(pins[selected])-\(edits)")
                 .bind(size: $size)
             Spacer()
