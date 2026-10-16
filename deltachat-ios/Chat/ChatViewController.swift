@@ -2398,13 +2398,9 @@ extension ChatViewController {
             if stringsToCopy.hasSuffix("\n\n") {
                 stringsToCopy.removeLast(2)
             }
-        } else {
-            let msg = self.dcContext.getMessage(id: ids[0])
-            if msg.type == DC_MSG_TEXT, let msgText = msg.text {
-                stringsToCopy.append("\(msgText)")
-            } else if let msgSummary = msg.summary(chars: 10000000) {
-                stringsToCopy.append("\(msgSummary)")
-            }
+        } else if let id = ids.first {
+            let msg = self.dcContext.getMessage(id: id)
+            stringsToCopy += msg.text ?? msg.summary(chars: 10000000) ?? ""
         }
         UIPasteboard.general.string = stringsToCopy
     }
