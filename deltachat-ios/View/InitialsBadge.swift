@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import Combine
 import DcCore
 
@@ -120,6 +121,15 @@ public class InitialsBadge: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public func setContact(_ contact: DcContact) {
+        if let image = contact.profileImage {
+            setImage(image)
+        } else {
+            setName(contact.displayName)
+            setColor(contact.color)
+        }
+    }
+
     public func setName(_ name: String) {
         label.text = DcUtils.getInitials(inputName: name)
         label.isHidden = name.isEmpty
@@ -164,5 +174,18 @@ public class InitialsBadge: UIView {
     // return the raw, rectange image
     public func getImage() -> UIImage? {
         return imageView.image
+    }
+}
+
+struct InitialsBadgeRepresentable: UIViewRepresentable {
+    var size: CGFloat
+    var contact: DcContact
+
+    func makeUIView(context: Context) -> InitialsBadge {
+        InitialsBadge(size: size)
+    }
+
+    func updateUIView(_ uiView: InitialsBadge, context: Context) {
+        uiView.setContact(contact)
     }
 }

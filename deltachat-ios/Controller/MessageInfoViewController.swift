@@ -5,11 +5,14 @@ import SwiftUI
 class MessageInfoViewController: UIViewController {
     var dcContext: DcContext
     var message: DcMsg
-    private static let reuseIdentifier = "MessageInfoCell"
+    var receipts: [(contact: DcContact, timestamp: Double)]
 
     init(dcContext: DcContext, message: DcMsg) {
         self.dcContext = dcContext
         self.message = message
+        self.receipts = dcContext.getMessageReadReceipts(messageId: message.id).map {
+            (dcContext.getContact(id: Int($0)), $1)
+        }.sorted { $0.timestamp > $1.timestamp }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -30,14 +33,41 @@ class MessageInfoViewController: UIViewController {
 
     var rootView: some View {
         List {
-            Section("Read by") {
+            if message.isFromCurrentSender {
                 HStack {
-                    Image(systemName: "person.fill")
-                        .clipShape(Circle())
-                    Text("Amzd")
+                    Text(String.localized("message_detail_sent_desktop")).bold()
                     Spacer()
-                    Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Date(timeIntervalSinceNow: -3000).timeIntervalSince1970))
+                    Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(message.timestamp)))
                 }
+            } else {
+                HStack {
+                    Text(String.localized("message_detail_received_desktop")).bold()
+                    Spacer()
+                    Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: message.receivedTimestamp))
+                }
+            }
+            if !receipts.isEmpty {
+                Section(content: {
+                    ForEach(receipts, id: \.contact.id) { (contact, timestamp) in
+                        HStack {
+                            InitialsBadgeRepresentable(size: 40, contact: contact)
+                                .frame(width: 40, height: 40)
+                            Text(contact.displayName).bold()
+                            Spacer()
+                            Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: timestamp))
+                        }
+                    }
+                }, header: {
+                    HStack {
+                        Text("Read by")
+                        Spacer()
+                        Image("ic_done_all_36pt")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 20)
+                    }
+                })
             }
         }
     }
