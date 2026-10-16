@@ -23,6 +23,12 @@ class MessageInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_message_details")
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [
+            UIAction(title: String.localized("global_menu_view_developer_desktop")) { [unowned self] _ in
+                show(MessageDeveloperInfoViewController(dcContext: dcContext, message: message), sender: nil)
+            }
+        ]))
 
         let host = UIHostingController(rootView: rootView)
         addChild(host)
@@ -70,5 +76,32 @@ class MessageInfoViewController: UIViewController {
                 })
             }
         }
+    }
+}
+
+class MessageDeveloperInfoViewController: UIViewController {
+    var dcContext: DcContext
+    var message: DcMsg
+
+    init(dcContext: DcContext, message: DcMsg) {
+        self.dcContext = dcContext
+        self.message = message
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = String.localized("menu_message_details")
+
+        let textView = UITextView(frame: view.frame)
+        textView.text = dcContext.getMsgInfo(msgId: message.id)
+        textView.isEditable = false
+        textView.font = .preferredFont(forTextStyle: .body)
+        view.addSubview(textView)
+        textView.fillSuperview()
     }
 }
