@@ -5,7 +5,7 @@ import SwiftUI
 class MessageInfoViewController: UIViewController {
     var dcContext: DcContext
     var message: DcMsg
-    var receipts: [(contact: DcContact, timestamp: Double)]
+    let receipts: [(contact: DcContact, timestamp: Double)]
 
     init(dcContext: DcContext, message: DcMsg) {
         self.dcContext = dcContext
