@@ -470,6 +470,22 @@ public class DcContext {
         dc_str_unref(cString)
         return swiftString
     }
+    public func getMessageReadReceipts(messageId: Int) -> [(contactId: Int32, timestamp: Double)] {
+        struct MessageReadReceipt: Decodable {
+            let contactId: Int32
+            let timestamp: Double
+        }
+        if let data = DcAccounts.shared.blockingCall(method: "get_message_read_receipts", id, messageId) {
+            do {
+                return try JSONDecoder().decode(JsonrpcResult<[MessageReadReceipt]>.self, from: data).result.map {
+                    ($0.contactId, $0.timestamp)
+                }
+            } catch {
+                logger.error(error.localizedDescription)
+            }
+        }
+        return []
+    }
 
     public func getMessageReadReceiptCount(messageId: Int) -> Int {
         do {

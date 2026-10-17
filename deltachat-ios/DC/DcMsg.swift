@@ -318,6 +318,10 @@ public class DcMsg {
         return Int64(dc_msg_get_timestamp(messagePointer))
     }
 
+    public var receivedTimestamp: Double {
+        return Double(dc_msg_get_received_timestamp(messagePointer))
+    }
+
     public var isInfo: Bool {
         return dc_msg_is_info(messagePointer) == 1
     }
