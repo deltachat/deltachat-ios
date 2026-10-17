@@ -106,6 +106,7 @@ class MessageDeveloperInfoViewController: UIViewController {
         textView.text = dcContext.getMsgInfo(msgId: message.id)
         textView.isEditable = false
         textView.font = .preferredFont(forTextStyle: .body)
+        textView.textContainerInset = .init(top: 20, left: 20, bottom: 20, right: 20)
         view.addSubview(textView)
         textView.fillSuperview()
     }
