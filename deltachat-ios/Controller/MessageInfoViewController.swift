@@ -70,7 +70,7 @@ class MessageInfoViewController: UIViewController {
                     }
                 }, header: {
                     HStack {
-                        Text("Read by")
+                        Text(String.localized("read_by"))
                         Spacer()
                         Image("ic_done_all_36pt")
                             .renderingMode(.template)
