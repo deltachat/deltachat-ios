@@ -7,6 +7,7 @@
 - Nicer profile and group image selection
 - Allow to share location for 24 hours
 - Show total reaction count in reaction details
+- Revamped message info screen
 - Larger emojis in default reaction selection
 - Improve sendig reliability by trying th most recently successfully used relay first
 - Avoid unwanted late adding to groups (by deleting processed securejoin messages on all relays)
