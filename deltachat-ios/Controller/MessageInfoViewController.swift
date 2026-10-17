@@ -23,7 +23,8 @@ class MessageInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = String.localized("menu_message_details")
-        
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismiss(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [
             UIAction(title: String.localized("global_menu_view_developer_desktop")) { [unowned self] _ in
                 show(MessageDeveloperInfoViewController(dcContext: dcContext, message: message), sender: nil)
@@ -35,6 +36,10 @@ class MessageInfoViewController: UIViewController {
         view.addSubview(host.view)
         host.didMove(toParent: self)
         host.view.fillSuperview()
+    }
+
+    @objc private func dismiss(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
 
     var rootView: some View {
