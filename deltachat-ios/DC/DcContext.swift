@@ -470,8 +470,6 @@ public class DcContext {
         dc_str_unref(cString)
         return swiftString
     }
-
-
     public func getMessageReadReceipts(messageId: Int) -> [(contactId: Int32, timestamp: Double)] {
         struct MessageReadReceipt: Decodable {
             let contactId: Int32
