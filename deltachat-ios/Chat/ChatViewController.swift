@@ -2208,6 +2208,8 @@ extension ChatViewController {
                         } else {
                             UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactionItems(for: messageId))
                         }
+                    }
+                    if canReply(to: message) {
                         UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     }
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
