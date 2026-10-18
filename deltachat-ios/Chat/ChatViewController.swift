@@ -1912,10 +1912,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func resendSingle(_ msgId: Int) {
-        dcContext.resendMessages(msgIds: [msgId])
-    }
-
     private func deleteSingle(_ msgId: Int) {
         askToDeleteMessages(ids: [msgId])
     }
@@ -2132,16 +2128,14 @@ extension ChatViewController {
                         reactionsMenu = UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactions)
                     }
                     children.append(reactionsMenu)
+                }
 
-                    children.append(
-                        UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
-                    )
+                if canReply(to: message) {
+                    children.append(UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply))
                 }
 
                 if canReplyPrivately(to: message) {
-                    moreOptions.append(
-                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", with: messageId, action: replyPrivatelyToMessage)
-                    )
+                    children.append(UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "person", with: messageId, action: replyPrivatelyToMessage))
                 }
 
                 children.append(
@@ -2178,40 +2172,26 @@ extension ChatViewController {
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     )
                 }
-                if message.image != nil {
-                    moreOptions.append(
-                        UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", with: messageId, action: copyImageToClipboard)
-                    )
-                }
-
-                if message.file != nil {
-                    moreOptions.append(UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments))
-                }
-
-                children.append(
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
-                )
 
                 if dcChat.canSend, !message.isInfo {
                     let isPinned = message.isPinned
                     let pinTitle = isPinned ? "unpin" : "pin"
-                    let pinImage = isPinned ? "pin.slash" : "pin"
+                    let pinImage = isPinned ? "pin.slash.fill" : "pin"
                     moreOptions.append(UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned }))
-                }
-
-                if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
-                    moreOptions.append(UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle))
+                } else {
+                    moreOptions.append(UIAction.menuAction(localizationKey: "pin", attributes: .disabled, systemImageName: "pin", with: message, action: { _ in
+                    }))
                 }
 
                 moreOptions.append(UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info))
-
                 moreOptions.append(UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", with: indexPath, action: selectMore))
+                moreOptions.append(UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle))
 
-                children.append(contentsOf: [
-                    UIMenu(options: [.displayInline], children: [
-                        UIMenu(title: String.localized("menu_more_options"), children: moreOptions)
-                    ])
-                ])
+                let optionsRow = UIMenu(options: [.displayInline], children: moreOptions)
+                if #available(iOS 16.0, *) {
+                    optionsRow.preferredElementSize = .small
+                }
+                children.append(contentsOf: [optionsRow])
 
                 return UIMenu(children: children)
             }
