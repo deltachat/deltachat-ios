@@ -2189,6 +2189,9 @@ extension ChatViewController {
                     if message.file != nil {
                         UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
                     }
+                    if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
+                        UIAction.menuAction(localizationKey: "resend", systemImageName: "arrow.clockwise", with: messageId, action: resendSingle)
+                    }
                     UIMenu(options: [.displayInline], elementSize: .small) { [unowned self] in
                         let isSaved = message.savedMessageId != 0
                         UIAction.menuAction(
@@ -2716,7 +2719,7 @@ extension ChatViewController: ChatEditingDelegate {
     func onMorePressed() -> UIMenu {
         var actions = [UIMenuElement]()
         if canResend() {
-            actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "paperplane")) { [weak self] _ in
+            actions.append(UIAction(title: String.localized("resend"), image: UIImage(systemName: "arrow.clockwise")) { [weak self] _ in
                 self?.onResendActionPressed()
             })
         }
