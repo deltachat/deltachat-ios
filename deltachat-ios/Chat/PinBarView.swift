@@ -48,14 +48,15 @@ struct PinBarView: View {
                     .padding(.leading, 5)
             }
             HStack {
-                if let image = msg.image ?? msg.getWebxdcPreviewImage() {
+                let image = msg.image ?? msg.getWebxdcPreviewImage()
+                if let image {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(1, contentMode: .fill)
                         .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
                         .frame(width: imageSize, height: imageSize)
                 }
-                Text(msg.summary(addForwarded: false, addTypeEmoji: false, chars: 100) ?? "...")
+                Text(msg.summary(addForwarded: false, addTypeEmoji: image == nil, chars: 100) ?? "...")
                     .lineLimit(1)
                     .opacity(0.9)
                     .padding(.vertical, 10)
