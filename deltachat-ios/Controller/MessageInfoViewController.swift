@@ -22,7 +22,7 @@ class MessageInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("global_menu_view_developer_desktop")
+        title = String.localized("menu_message_details")
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismiss(_:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [
@@ -98,7 +98,7 @@ class MessageDeveloperInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String.localized("menu_message_details")
+        title = String.localized("global_menu_view_developer_desktop")
 
         let textView = UITextView(frame: view.frame)
         textView.text = dcContext.getMsgInfo(msgId: message.id)
