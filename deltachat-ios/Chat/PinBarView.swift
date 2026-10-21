@@ -6,6 +6,7 @@ struct PinBarView: View {
     let chat: DcChat
     let scrollToMsg: (DcMsg) -> Void
     let startWebxdc: (DcMsg) -> Void
+    let unpin: (DcMsg) -> Void
     @State private var pins: [Int] = [] {
         willSet { selected = max(0, min(selected, newValue.count-1)) }
     }
@@ -107,7 +108,7 @@ struct PinBarView: View {
 
     @ContentBuilder func contextMenu(for msg: DcMsg) -> some View {
         Button(action: {
-            msg.isPinned = false
+            unpin(msg)
         }, label: {
             Label(String.localized("unpin"), systemImage: "pin.slash.fill")
         })
