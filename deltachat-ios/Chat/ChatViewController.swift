@@ -2172,7 +2172,7 @@ extension ChatViewController {
                         UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     }
                     if canReplyPrivately(to: message) {
-                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", with: messageId, action: replyPrivatelyToMessage)
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "person", with: messageId, action: replyPrivatelyToMessage)
                     }
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                     if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
