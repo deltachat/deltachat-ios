@@ -340,7 +340,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 title: String.localized("clear_chat"),
                 image: UIImage(systemName: clearImage),
                 attributes: [.destructive],
-                handler: { [weak self] _ in self?.askToDeleteMessages(ids: self?.messages.map(\.id) ?? []) }
+                handler: { [unowned self] _ in askToDeleteMessages(ids: dcContext.getChatMsgs(chatId: chatId, flags: 0)) }
             )
             UIAction.leaveChat(dcChat, dcContext: dcContext, presentAlertsOn: self)
         }
