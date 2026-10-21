@@ -318,9 +318,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
             }
         )
-        MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
-            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-        })
+        if !dcChat.isSelfTalk {
+            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+            })
+        }
         if dcChat.isEncrypted, dcChat.canSend {
             let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
             UIAction(
