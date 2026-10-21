@@ -102,6 +102,7 @@ extension SendContactViewController: UITableViewDataSource {
         let contactId = filteredContactIds[indexPath.row]
         let viewModel = ContactCellViewModel.make(contactId: contactId, dcContext: context)
         cell.updateCell(cellViewModel: viewModel)
+        cell.backgroundColor = nil
 
         return cell
     }
