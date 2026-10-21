@@ -8,8 +8,9 @@
       <li><a href="#multiple-accounts">Что такое профили? Как я могу переключатся между ними?</a></li>
       <li><a href="#кто-видит-изображение-моего-профиля">Кто видит изображение моего профиля?</a></li>
       <li><a href="#signature">Могу ли я установить статус/подпись в Delta Chat?</a></li>
-      <li><a href="#что-означают-закрепить-отключить-уведомления-и-отправить-в-архив">Что означают: Закрепить, Отключить уведомления и Отправить в архив?</a></li>
+      <li><a href="#pin-chats">Pin, mute and archive a chat</a></li>
       <li><a href="#save">Как работают “Сохраненные сообщения”?</a></li>
+      <li><a href="#pin-messages">How do pinned messages work?</a></li>
       <li><a href="#что-означает-зеленая-точка">Что означает зеленая точка?</a></li>
       <li><a href="#что-означают-галочки-рядом-с-исходящими-сообщениями">Что означают галочки рядом с исходящими сообщениями?</a></li>
       <li><a href="#edit">Исправление опечаток и удаление сообщений после отправки</a></li>
@@ -84,7 +85,6 @@
       <li><a href="#какие-стандарты-используются-для-сквозного-шифрования">Какие стандарты используются для сквозного шифрования?</a></li>
       <li><a href="#whene2e">Как узнать, зашифрованы ли сообщения с помощью сквозного шифрования?</a></li>
       <li><a href="#могу-ли-я-получать-или-отправлять-сообщения-без-сквозного-шифрования">Могу ли я получать или отправлять сообщения без сквозного шифрования?</a></li>
-      <li><a href="#e2eeguarantee">Что случилось с зеленой галочкой в профилях контактов?</a></li>
       <li><a href="#зашифрованы-ли-вложения-изображения-файлы-аудио-и-т-д-сквозным-шифрованием">Зашифрованы ли вложения (изображения, файлы, аудио и т. д.) сквозным шифрованием?</a></li>
       <li><a href="#openpgp-secure">OpenPGP безопасен?</a></li>
       <li><a href="#openpgp-alternatives">Рассматривали ли вы альтернативы OpenPGP для сквозного шифрования?</a></li>
@@ -277,10 +277,10 @@
 После отправки сообщения контакту,
 они увидят его при просмотре ваших контактных данных.</p>
     
-      <h3 id="что-означают-закрепить-отключить-уведомления-и-отправить-в-архив">
+      <h3 id="pin-chats">
         
         
-          Что означают: Закрепить, Отключить уведомления и Отправить в архив? <a href="#что-означают-закрепить-отключить-уведомления-и-отправить-в-архив" class="anchor"></a>
+          Pin, mute and archive a chat <a href="#pin-chats" class="anchor"></a>
         
         
       </h3>
@@ -341,6 +341,41 @@
 
 <p>Сообщения остаются сохраненными, даже если они были отредактированы или удалены -
 будь то <a href="#edit">отправителем</a>, <a href="#delold">очисткой устройства</a> или <a href="#ephemeralmsgs">исчезающими сообщениями из других чатов</a>.</p>
+    
+      <h3 id="pin-messages">
+        
+        
+          How do pinned messages work? <a href="#pin-messages" class="anchor"></a>
+        
+        
+      </h3>
+
+<p><strong>Pin important messages</strong> such as an address, a meeting time or the rules of a group,
+so everyone can find them quickly.
+Unlike <a href="#pin-chats">pinned chats</a> that only organize <em>your</em> chat list,
+pinned messages are visible to <strong>all chat members</strong>.</p>
+
+<ul>
+  <li>
+    <p>In any chat, long tap or right click a message and select <img style="vertical-align:middle; height:1.2em; margin:1px" src="../pin-icon.png" alt="" /> <strong>Pin</strong>.
+To remove it, select <img style="vertical-align:middle; height:1.2em; margin:1px" src="../unpin-icon.png" alt="" /> <strong>Unpin</strong> from the same menu.
+Unpinning also affects all chat members, not only you.</p>
+  </li>
+  <li>
+    <p>Pinned messages are shown in a <strong>bar at the top of the chat</strong>.
+Tap the bar to jump to the pinned message.
+If there are several, you can step through them.</p>
+  </li>
+  <li>
+    <p>If you pin an <a href="#webxdc">app</a>, it gets a <strong>start button</strong>
+so that everyone has easy access to it without scrolling or searching around.</p>
+  </li>
+  <li>
+    <p>There is no limit on the number of pinned messages or on how long they stay pinned.</p>
+  </li>
+</ul>
+
+<p>To keep messages just for yourself, use <a href="#save">Saved Messages</a>.</p>
     
       <h3 id="что-означает-зеленая-точка">
         
@@ -902,8 +937,8 @@ Delta Chat показывает <strong>экран входящего вызов
 <a href="https://webxdc.org/docs">документации Webxdc</a>.</p>
   </li>
   <li>
-    <p>Если у вас есть вопросы, вы можете обратиться к другим пользователям с опытом
-на форуме <a href="https://support.delta.chat/c/webxdc/20">Delta Chat</a>.</p>
+    <p>Если у вас возникнут вопросы, вы можете задать их опытным
+пользователям на <a href="https://forum.delta.chat/c/webxdc/20">Форуме</a>.</p>
   </li>
 </ul>
     
@@ -1174,8 +1209,8 @@ PIN-код разблокировки экрана, графический кл�
   </li>
   <li>
     <p>На новом устройстве выберите <strong>У меня уже есть профиль → Восстановить из резервной копии</strong>.
-Если вы используете iOS: и у вас возникли трудности,
-возможно, <a href="https://support.delta.chat/t/import-backup-to-ios/1628">это руководство</a> поможет вам.</p>
+Если вы используете iOS: и у вас возникли сложности,
+<a href="https://forum.delta.chat/t/import-backup-to-ios/1628">эта инструкция</a> может вам помочь.</p>
   </li>
 </ul>
 
@@ -1223,7 +1258,7 @@ PIN-код разблокировки экрана, графический кл�
 <p>Эти функции могут быть <strong>нестабильными</strong> и могут быть <strong>изменены или удалены</strong>.</p>
 
 <p>Вы можете найти дополнительную информацию
-и оставить отзыв на <a href="https://support.delta.chat">Форуме</a>.</p>
+и оставить отзыв на <a href="https://forum.delta.chat">Форуме</a>.</p>
     
       <h3 id="relays">
         
@@ -1437,32 +1472,6 @@ Chatmail использует INBOX по умолчанию для ретран�
 вы можете отправлять и получать сообщения с использованием или без сквозного шифрования.
 Сообщения, не имеющие сквозного шифрования, отмечены значком электронной почты
 <img style="vertical-align:middle; width:1.2em; margin:1px" src="../email-icon.png" alt="email" />.</p>
-    
-      <h3 id="e2eeguarantee">
-        
-        
-          Что случилось с зеленой галочкой в профилях контактов? <a href="#e2eeguarantee" class="anchor"></a>
-        
-        
-      </h3>
-
-<p>Старые версии Delta Chat отображали зеленую галочку
-<img style="vertical-align:middle; width:1.5em; margin:1px" src="../green-checkmark.png" alt="зеленая галочка" />
-и строку “Представлено” в некоторых профилях контактов.</p>
-
-<p>Этой строки больше нет.
-Поскольку в <a href="https://delta.chat/en/2025-08-04-encryption-v2">Delta Chat V2</a>
-контакты идентифицируются по их криптографическому ключу (“публичный ключ”),
-у оператора релея нет возможности подменить ключ
-для проведения атаки типа “человек посередине” (MitM)
-(на самом деле, оператор даже не видит этот ключ).</p>
-
-<p>Злоумышленник всё ещё может прислать вам пригласительную ссылку,
-выдавая себя за другого человека. Кроме того, если у злоумышленника есть ваш контакт в Delta Chat
-(например, из общего чата),
-он может попытаться начать диалог под чужим именем. 
-Подобные атаки встречаются <a href="https://support.signal.org/hc/en-us/articles/9932566320410-Staying-Safe-from-Phishing-Scams-and-Impersonation">во всех мессенджерах</a>,
-и мы планируем внедрить улучшения, чтобы минимизировать такие риски.</p>
     
       <h3 id="зашифрованы-ли-вложения-изображения-файлы-аудио-и-т-д-сквозным-шифрованием">
         
@@ -1772,19 +1781,18 @@ Applied Cryptography в ETH Цюрихе и устранили все выявл
 а <a href="https://delta.chat/assets/blog/MER-01-report.pdf">полный отчет доступен по этой ссылке</a>.</p>
   </li>
   <li>
-    <p>2020 год, <a href="https://includesecurity.com">Include Security</a> проанализировала Delta
-Chat Rust <a href="https://github.com/deltachat/deltachat-core-rust/">ядро</a>,
+    <p>В 2020 году, <a href="https://includesecurity.com">Include Security</a> проанализировала <a href="https://github.com/chatmail/core/">ядро</a> Delta Chat на языке Rust, а также библиотеки
 <a href="https://github.com/async-email/async-imap">IMAP</a>,
 <a href="https://github.com/async-email/async-smtp">SMTP</a> и
-Библиотеки <a href="https://github.com/async-email/async-native-tls">TLS</a>.
-Никаких критических или серьёзных проблем обнаружено не было.
-В отчете выявлено несколько слабых мест средней серьёзности:
-они не представляют угрозы для пользователей Delta Chat сами по себе,
-поскольку они зависят от окружения, в котором используется Delta Chat.
+<a href="https://github.com/async-email/async-native-tls">TLS</a>.
+В ходе проверки не было обнаружено критических уязвимостей или проблем высокой степени серьезности.
+В отчете было отмечено несколько недостатков средней степени серьезности,
+которые сами по себе не представляют угрозы для пользователей Delta Chat,
+так как их наличие зависит от среды эксплуатации приложения.
 По соображениям удобства использования и совместимости,
-мы не можем устранить их все
-и решили предоставить рекомендации по безопасности для пользователей, которым угрожают эти уязвимости.
-Вы можете прочитать <a href="https://delta.chat/assets/blog/2020-second-security-review.pdf">полный отчет здесь</a>.</p>
+мы не можем устранить все эти недостатки,
+поэтому решили предоставить рекомендации по безопасности пользователям, которых они могут затронуть.
+Полный отчет можно <a href="https://delta.chat/assets/blog/2020-second-security-review.pdf">прочитать здесь</a>.</p>
   </li>
   <li>
     <p>2019 год <a href="https://includesecurity.com">Include Security</a> проанализировало библиотеки Delta
@@ -1818,7 +1826,7 @@ Chat <a href="https://github.com/rpgp/rpgp">PGP</a> и
 <p>Некоторые функции требуют определенных разрешений,
 например, вам нужно предоставить разрешение на использование камеры, если вы хотите <a href="#howtoe2ee">отсканировать QR-код приглашения</a>.</p>
 
-<p>See <a href="https://delta.chat/privacy#app-permissions">Privacy Policy</a> for a detailed overview.</p>
+<p>Подробную информацию можно найти в <a href="https://delta.chat/privacy#app-permissions">Политике конфиденциальности</a>.</p>
     
       <h3 id="где-мои-друзья-могут-найти-delta-chat">
         
