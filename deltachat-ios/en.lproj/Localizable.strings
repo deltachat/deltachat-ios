@@ -324,12 +324,16 @@
 "pin" = "Pin";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Pinned";
+"pin_for_everyone_ask" = "Pin message for everyone in the chat?";
 "pin_for_everyone" = "Pin for Everyone";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Unpin";
+"unpin_for_everyone_ask" = "Unpin message for everyone in the chat?";
 "unpin_for_everyone" = "Unpin for Everyone";
 "message_pinned_by_you" = "You pinned a message";
 "message_pinned_by_other" = "Message pinned by %1$@";
+"message_unpinned_by_you" = "You unpinned a message";
+"message_unpinned_by_other" = "Message unpinned by %1$@";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
 "reply_privately" = "Reply Privately";
 "source_code" = "Source Code";

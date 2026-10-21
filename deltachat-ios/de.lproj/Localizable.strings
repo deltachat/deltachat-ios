@@ -324,12 +324,16 @@
 "pin" = "Anheften";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Angeheftet";
+"pin_for_everyone_ask" = "Nachricht für alle in diesem Chat anheften?";
 "pin_for_everyone" = "Für alle anheften";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Loslösen";
+"unpin_for_everyone_ask" = "Nachricht für alle in diesem Chat loslösen?";
 "unpin_for_everyone" = "Für alle loslösen";
 "message_pinned_by_you" = "Du hast eine Nachricht angeheftet";
 "message_pinned_by_other" = "Nachricht angeheftet von %1$@";
+"message_unpinned_by_you" = "Du hast eine Nachricht losgelöst";
+"message_unpinned_by_other" = "Nachricht losgelöst von %1$@";
 "ConversationFragment_quoted_message_not_found" = "Originalnachricht nicht gefunden";
 "reply_privately" = "Privat antworten";
 "source_code" = "Quelltext";
