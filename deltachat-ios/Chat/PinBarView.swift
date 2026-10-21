@@ -14,7 +14,7 @@ struct PinBarView: View {
     @State private var edits: Int = 0
     @State private var size: CGSize = .zero
 
-    @ScaledMetric(relativeTo: .body) private var imageSize = 26
+    @ScaledMetric(relativeTo: .body) private var imageSize = 30
 
     var body: some View {
         VStack {
@@ -43,9 +43,9 @@ struct PinBarView: View {
         HStack {
             if #available(iOS 16, *), pins.count > 1 {
                 PinPageControl(currentPage: selected, numberOfPages: pins.count)
-                    .frame(maxHeight: imageSize + 16)
-                    .padding(.vertical, -8)
-                    .padding(.leading, 8)
+                    .frame(maxHeight: imageSize + 10)
+                    .padding(.vertical, -5)
+                    .padding(.leading, 5)
             }
             HStack {
                 if let image = msg.image ?? msg.getWebxdcPreviewImage() {
