@@ -1471,10 +1471,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    @objc private func appsAndMediaPressed() {
-        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
-    }
-
     var isLocationStreaming: Bool {
         dcContext.isSendingLocationsToChat(chatId: chatId)
     }
