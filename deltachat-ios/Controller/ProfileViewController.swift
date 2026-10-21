@@ -254,144 +254,52 @@ class ProfileViewController: UITableViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        func action(_ localized: String, _ systemImage: String, attributes: UIMenuElement.Attributes = [], _ handler: @escaping () -> Void) -> UIAction {
-            UIAction(title: String.localized(localized), image: UIImage(systemName: systemImage), attributes: attributes, handler: { _ in handler() })
-        }
-
-        let actions: () -> [UIMenuElement] = { [weak self] in
-            guard let self else { return [] }
-            var actions = [UIMenuElement]()
-            var moreOptions = [UIMenuElement]()
-            var primaryOptions = [UIMenuElement]() // max. 3 due to .medium element size
-
-            if contact != nil, !isSavedMessages && !isDeviceChat {
-                primaryOptions.append(UIAction(
+        return UIMenu { [unowned self] in
+            if contact != nil && !isSavedMessages && !isDeviceChat {
+                UIAction(
                     title: String.localized("menu_share"),
                     image: UIImage(systemName: "square.and.arrow.up"),
                     handler: { [weak self] _ in self?.shareContact() }
-                ))
-            } else if isMultiUser && !isMailinglist && (chat?.canSend ?? false) && (chat?.isEncrypted ?? false) {
-                primaryOptions.append(UIAction(
+                )
+            } else if isMultiUser && !isMailinglist && chat?.canSend == true && chat?.isEncrypted == true {
+                UIAction(
                     title: String.localized("global_menu_edit_desktop"),
                     image: UIImage(systemName: "pencil"),
                     handler: { [weak self] _ in self?.showEditController() }
-                ))
-            }
-            if let chat, !isSavedMessages {
-                primaryOptions.append(UIAction(
-                    title: String.localized(chat.isMuted ? "menu_unmute" : "mute"),
-                    image: UIImage(systemName: chat.isMuted ? "speaker.wave.2" : "speaker.slash"),
-                    handler: { [weak self] _ in self?.toggleMuteChat() }
-                ))
-            }
-            if let chat, chat.canSend { // search is buggy in combination with contact request panel, that needs to be fixed if we want to allow search in general
-                primaryOptions.append(UIAction(
-                    title: String.localized("search"),
-                    image: UIImage(systemName: "magnifyingglass"),
-                    handler: { [weak self] _ in self?.showSearch() }
-                ))
-            }
-            let primaryMenu = UIMenu(options: [.displayInline], children: primaryOptions)
-            if #available(iOS 16.0, *), primaryOptions.count > 1 {
-                primaryMenu.preferredElementSize = .medium
-            }
-            actions.append(contentsOf: [primaryMenu])
-
-            if let chat, chat.isEncrypted, chat.canSend {
-                let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
-                let action = UIAction(
-                    title: String.localized("ephemeral_messages"),
-                    image: UIImage(systemName: "stopwatch"),
-                    handler: { [weak self] _ in self?.showEphemeralController() }
                 )
-                action.state = ephemeralTimer > 0 ? .on : .off
-                if ephemeralTimer > 0 {
-                    // UIMenuElement.subtitle is iOS 15+ while UIMenuLeaf.subtitle is iOS 16+...
-                    (action as UIMenuElement).subtitle = EphemeralMessagesViewController.getValString(val: ephemeralTimer)
-                }
-                actions.append(action)
             }
-
-            if let chat {
-                actions.append(UIAction(
-                    title: String.localized(chat.isArchived ? "menu_unarchive_chat" : "menu_archive_chat"),
-                    image: UIImage(systemName: chat.isArchived ? "tray.and.arrow.up" : "tray.and.arrow.down"),
-                    handler: { [weak self] _ in self?.toggleArchiveChat() }
-                ))
-            }
-
             if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                 let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
-                actions.append(UIAction(
+                UIAction(
                     title: String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget"),
                     image: UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square"),
                     handler: { [weak self] _ in self?.toggleChatInWidget() }
-                ))
+                )
             }
 
-            if let contact, !isSavedMessages && !isDeviceChat {
-                moreOptions.append(UIAction(
-                    title: String.localized("encryption_info_title_desktop"),
-                    image: UIImage(systemName: "info.circle"),
-                    handler: { [weak self] _ in self?.showEncrInfoAlert() }
-                ))
-                moreOptions.append(UIAction(
-                    title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
-                    image: UIImage(systemName: "nosign"),
-                    attributes: [.destructive],
-                    handler: { [weak self] _ in self?.toggleBlockContact() }
-                ))
-            }
-
-            if let chat {
+            UIMenu(options: [.displayInline]) { [unowned self] in
+                if let contact, !isSavedMessages && !isDeviceChat {
+                    UIAction(
+                        title: String.localized("encryption_info_title_desktop"),
+                        image: UIImage(systemName: "info.circle"),
+                        handler: { [weak self] _ in self?.showEncrInfoAlert() }
+                    )
+                    UIAction(
+                        title: String.localized(contact.isBlocked ? "menu_unblock_contact" : "menu_block_contact"),
+                        image: UIImage(systemName: "nosign"),
+                        attributes: [.destructive],
+                        handler: { [weak self] _ in self?.toggleBlockContact() }
+                    )
+                }
                 if isMultiUser && !isMailinglist && !isInBroadcast && !isOutBroadcast {
-                    moreOptions.append(UIAction(
+                    UIAction(
                         title: String.localized("clone_chat"),
                         image: UIImage(systemName: "rectangle.portrait.on.rectangle.portrait"),
                         handler: { [weak self] _ in self?.showCloneChatController() }
-                    ))
-                }
-
-                let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
-                moreOptions.append(UIAction(
-                    title: String.localized("clear_chat"),
-                    image: UIImage(systemName: clearImage),
-                    attributes: [.destructive],
-                    handler: { [weak self] _ in self?.showClearConfirmationAlert() }
-                ))
-
-                if chat.mustLeaveBeforeDelete(dcContext) {
-                    let leaveText = isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
-                    moreOptions.append(UIAction(
-                        title: String.localized(leaveText),
-                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
-                        attributes: [.destructive],
-                        handler: { [weak self] _ in self?.showLeaveAlert(leaveText) }
-                    ))
-                } else {
-                    moreOptions.append(UIAction(
-                        title: String.localized("menu_delete_chat"),
-                        image: UIImage(systemName: "trash"),
-                        attributes: [.destructive],
-                        handler: { [weak self] _ in self?.showDeleteConfirmationAlert() }
-                    ))
+                    )
                 }
             }
-
-            if !moreOptions.isEmpty {
-                actions.append(contentsOf: [
-                    UIMenu(options: [.displayInline], children: moreOptions)
-                ])
-            }
-
-            return actions
         }
-
-        return UIMenu(children: [
-            UIDeferredMenuElement({ completion in
-                completion(actions())
-            })
-        ])
     }
 
     private func updateHeader() {
@@ -467,29 +375,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showSearch() {
-        if let chatViewController = navigationController?.viewControllers.last(where: {
-            $0 is ChatViewController
-        }) as? ChatViewController {
-            chatViewController.activateSearchOnAppear()
-            navigationController?.popViewController(animated: true)
-        }
-    }
-
-    private func toggleMuteChat() {
-        guard let chat else { return }
-        if chat.isMuted {
-            dcContext.setChatMuteDuration(chatId: chatId, duration: 0)
-            navigationController?.popViewController(animated: true)
-        } else {
-            MuteDialog.show(viewController: self) { [weak self] duration in
-                guard let self else { return }
-                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-                navigationController?.popViewController(animated: true)
-            }
-        }
-    }
-
     private func showEnlargedAvatar() {
         if let chat {
             if chat.isEncrypted && !chat.isSelfTalk && !chat.isDeviceTalk, let url = chat.profileImageURL {
@@ -510,10 +395,6 @@ class ProfileViewController: UITableViewController {
         if chatId != 0 {
             navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext, chatId: chatId), animated: true)
         }
-    }
-
-    private func showEphemeralController() {
-        navigationController?.pushViewController(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), animated: true)
     }
 
     private func showChat(otherChatId: Int) {
@@ -562,21 +443,6 @@ class ProfileViewController: UITableViewController {
         navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
     }
 
-    private func toggleArchiveChat() {
-        guard let chat else { return }
-        let archivedBefore = chat.isArchived
-        if !archivedBefore {
-            NotificationManager.removeNotificationsForChat(chatId, accountId: dcContext.id)
-        }
-        dcContext.archiveChat(chatId: chat.id, archive: !archivedBefore)
-        self.chat = dcContext.getChat(chatId: chatId)
-        if archivedBefore {
-            updateMenuItems()
-        } else {
-            navigationController?.popToRootViewController(animated: false)
-        }
-    }
-
     private func toggleChatInWidget() {
         guard #available(iOS 17, *), let userDefaults = UserDefaults.shared else { return }
         if userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
@@ -599,52 +465,6 @@ class ProfileViewController: UITableViewController {
 
     private func showCloneChatController() {
         navigationController?.pushViewController(NewGroupController(dcContext: dcContext, createMode: isOutBroadcast ? .createBroadcast : .createGroup, templateChatId: chatId), animated: true)
-    }
-
-    private func showLeaveAlert(_ buttonLabel: String) {
-        let alert = UIAlertController(title: String.localized("ask_leave_group"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized(buttonLabel), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("menu_leave_and_delete"), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            _ = dcContext.removeContactFromChat(chatId: chatId, contactId: Int(DC_CONTACT_ID_SELF))
-            dcContext.deleteReferencesAndChat(chatId: chatId)
-            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func showClearConfirmationAlert() {
-        guard chat != nil else { return }
-        let msgIds = dcContext.getChatMsgs(chatId: chatId, flags: 0)
-        if !msgIds.isEmpty {
-            let alert = UIAlertController(title: nil, message: String.localized(stringID: "ask_delete_messages", parameter: msgIds.count), preferredStyle: .safeActionSheet)
-            alert.addAction(UIAlertAction(title: String.localized("clear_chat"), style: .destructive, handler: { [weak self] _ in
-                guard let self else { return }
-                dcContext.deleteMessages(msgIds: msgIds)
-                if #available(iOS 17.0, *) {
-                    msgIds.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
-                }
-                navigationController?.popViewController(animated: true)
-            }))
-            alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
-    }
-
-    private func showDeleteConfirmationAlert() {
-        guard let chat else { return }
-        let alert = UIAlertController(title: nil, message: String.localizedStringWithFormat(String.localized("ask_delete_named_chat"), chat.name), preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("delete_for_me"), style: .destructive, handler: { [weak self] _ in
-            guard let self else { return }
-            dcContext.deleteReferencesAndChat(chatId: chatId)
-            navigationController?.popViewControllers(viewsToPop: 2, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 
     private func toggleBlockContact() {

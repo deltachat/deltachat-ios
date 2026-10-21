@@ -16,12 +16,12 @@ class AllMediaViewController: UIPageViewController {
 
     private var pages: [Page] = [
         Page(
-            headerTitle: String.localized("webxdc_apps"),
-            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
-        ),
-        Page(
             headerTitle: String.localized("gallery"),
             type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
+        ),
+        Page(
+            headerTitle: String.localized("webxdc_apps"),
+            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
         ),
         Page(
             headerTitle: String.localized("audio"),
