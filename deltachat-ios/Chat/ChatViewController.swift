@@ -313,7 +313,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         )
         UIAction(
             title: String.localized("apps_and_media"),
-            image: UIImage(systemName: "photo.on.rectangle"),
+            image: UIImage(systemName: "square.grid.2x2"),
             handler: { [unowned self] _ in
                 show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
             }
