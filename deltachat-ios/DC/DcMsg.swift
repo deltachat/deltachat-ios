@@ -207,7 +207,7 @@ public class DcMsg {
     }
 
     public func getWebxdcInfoJson() -> String {
-        guard let cString = dc_msg_get_webxdc_info(messagePointer) else { return "" }
+        guard type == DC_MSG_WEBXDC, let cString = dc_msg_get_webxdc_info(messagePointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
