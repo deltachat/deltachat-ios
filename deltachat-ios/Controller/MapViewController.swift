@@ -5,7 +5,7 @@ import DcCore
 class MapViewController: WebxdcViewController {
     private let isGlobalMap: Bool
 
-    init(dcContext: DcContext, chatId: Int) {
+    init(dcContext: DcContext, chatId: Int, focusOn contactId: Int? = nil) {
         isGlobalMap = chatId == 0
         var webxdcInstanceId = dcContext.initWebxdcIntegration(for: chatId)
         if webxdcInstanceId == 0 {
@@ -14,7 +14,8 @@ class MapViewController: WebxdcViewController {
                 webxdcInstanceId = dcContext.initWebxdcIntegration(for: chatId)
             }
         }
-        super.init(dcContext: dcContext, messageId: webxdcInstanceId)
+        let href = contactId.map { "index.html?contactId=\($0)" }
+        super.init(dcContext: dcContext, messageId: webxdcInstanceId, href: href)
     }
 
     required init?(coder: NSCoder) {
