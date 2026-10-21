@@ -311,6 +311,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             image: UIImage(systemName: "magnifyingglass"),
             handler: { [unowned self] _ in searchPressed() }
         )
+        UIAction(title: String.localized("select"), image: UIImage(systemName: "checkmark.circle")) { [unowned self] _ in
+            setEditing(isEditing: true)
+        }
         UIAction(
             title: String.localized("apps_and_media"),
             image: UIImage(systemName: "square.grid.2x2"),
@@ -1981,14 +1984,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func selectMore(at indexPath: IndexPath) {
-        cancelSearch()
-        setEditing(isEditing: true, selectedAtIndexPath: indexPath)
-        if UIAccessibility.isVoiceOverRunning {
-            forceVoiceOverFocussingCell(at: indexPath, postingFinished: nil)
-        }
-    }
-
     @objc(tableView:canHandleDropSession:)
     func tableView(_ tableView: UITableView, canHandle session: UIDropSession) -> Bool {
         return self.dropInteraction.dropInteraction(canHandle: session)
@@ -2176,16 +2171,12 @@ extension ChatViewController {
                     if canReply(to: message) {
                         UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     }
+                    if canReplyPrivately(to: message) {
+                        UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", with: messageId, action: replyPrivatelyToMessage)
+                    }
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
                     if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
-                    }
-                    if !dcChat.isSelfTalk && message.canSave {
-                        if message.savedMessageId != 0 {
-                            UIAction.menuAction(localizationKey: "unsave", systemImageName: "bookmark.slash.fill", with: messageId, action: toggleSave)
-                        } else {
-                            UIAction.menuAction(localizationKey: "save_desktop", systemImageName: "bookmark", with: messageId, action: toggleSave)
-                        }
                     }
                     if let link = isLinkTapped(indexPath: indexPath, point: point) {
                         UIAction.menuAction(localizationKey: "menu_copy_link_to_clipboard", systemImageName: "link", with: messageId, action: { _ in
@@ -2195,33 +2186,29 @@ extension ChatViewController {
                         let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     }
-                    UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
-
-                    // This double UIMenu removes the padding in front of the more options button
-                    UIMenu(options: [.displayInline], children: [
-                        UIMenu(title: String.localized("menu_more_options")) { [unowned self] in
-                            if canReplyPrivately(to: message) {
-                                UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "arrowshape.turn.up.left", with: messageId, action: replyPrivatelyToMessage)
-                            }
-                            if message.image != nil {
-                                UIAction.menuAction(localizationKey: "menu_copy_image_to_clipboard", systemImageName: "photo.on.rectangle", with: messageId, action: copyImageToClipboard)
-                            }
-                            if message.file != nil {
-                                UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
-                            }
-                            if dcChat.canSend, !message.isInfo {
-                                let isPinned = message.isPinned
-                                let pinTitle = isPinned ? "unpin" : "pin"
-                                let pinImage = isPinned ? "pin.slash" : "pin"
-                                UIAction.menuAction(localizationKey: pinTitle, systemImageName: pinImage, with: message, action: { $0.isPinned = !isPinned })
-                            }
-                            if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
-                                UIAction.menuAction(localizationKey: "resend", systemImageName: "paperplane", with: messageId, action: resendSingle)
-                            }
-                            UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info)
-                            UIAction.menuAction(localizationKey: "select", systemImageName: "checkmark.circle", with: indexPath, action: selectMore)
-                        }
-                    ])
+                    if message.file != nil {
+                        UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
+                    }
+                    UIMenu(options: [.displayInline], elementSize: .small) { [unowned self] in
+                        let isSaved = message.savedMessageId != 0
+                        UIAction.menuAction(
+                            localizationKey: isSaved ? "unsave" : "save_desktop",
+                            attributes: !dcChat.isSelfTalk && message.canSave ? [] : .disabled,
+                            systemImageName: isSaved ? "bookmark.slash.fill" : "bookmark",
+                            with: messageId,
+                            action: toggleSave
+                        )
+                        UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info)
+                        let isPinned = message.isPinned
+                        UIAction.menuAction(
+                            localizationKey: isPinned ? "unpin" : "pin",
+                            attributes: dcChat.canSend && !message.isInfo ? [] : .disabled,
+                            systemImageName: isPinned ? "pin.slash.fill" : "pin",
+                            with: message,
+                            action: { $0.isPinned = !isPinned }
+                        )
+                        UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
+                    }
                 }
             }
         )
