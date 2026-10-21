@@ -207,7 +207,7 @@ public class DcMsg {
     }
 
     public func getWebxdcInfoJson() -> String {
-        guard let cString = dc_msg_get_webxdc_info(messagePointer) else { return "" }
+        guard type == DC_MSG_WEBXDC, let cString = dc_msg_get_webxdc_info(messagePointer) else { return "" }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString
@@ -343,8 +343,8 @@ public class DcMsg {
         return dc_msg_has_location(messagePointer) == 1
     }
 
-    public func summary(chars: Int) -> String? {
-        guard let cString = dc_msg_get_summarytext(messagePointer, Int32(chars)) else { return nil }
+    public func summary(addForwarded: Bool = true, addTypeEmoji: Bool = true, chars: Int) -> String? {
+        guard let cString = dc_msg_get_summary_text(messagePointer, addForwarded ? 1 : 0, addTypeEmoji ? 1 : 0, Int32(chars)) else { return nil }
         let swiftString = String(cString: cString)
         dc_str_unref(cString)
         return swiftString

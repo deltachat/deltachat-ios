@@ -14,6 +14,8 @@ struct PinBarView: View {
     @State private var edits: Int = 0
     @State private var size: CGSize = .zero
 
+    @ScaledMetric(relativeTo: .body) private var imageSize = 30
+
     var body: some View {
         VStack {
             if !pins.isEmpty {
@@ -41,21 +43,30 @@ struct PinBarView: View {
         HStack {
             if #available(iOS 16, *), pins.count > 1 {
                 PinPageControl(currentPage: selected, numberOfPages: pins.count)
-                    .frame(maxHeight: size.height + 16)
-                    .padding(.vertical, -8)
-                    .padding(.leading, 8)
+                    .frame(maxHeight: imageSize + 10)
+                    .padding(.vertical, -5)
+                    .padding(.leading, 5)
             }
-            Text(msg.summary(chars: 100) ?? "...")
-                .transition(.asymmetric(
-                    insertion: .move(edge: .top).combined(with: .opacity),
-                    removal: .move(edge: .bottom).combined(with: .opacity)
-                ))
-                .lineLimit(1)
-                .padding(.vertical, 10)
-                .padding(.leading, pins.count > 1 ? 0 : 16)
-                .opacity(0.9)
-                .id("\(pins[selected])-\(edits)")
-                .bind(size: $size)
+            HStack {
+                let image = msg.image ?? msg.getWebxdcPreviewImage()
+                if let image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fill)
+                        .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
+                        .frame(width: imageSize, height: imageSize)
+                }
+                Text(msg.summary(addForwarded: false, addTypeEmoji: image == nil, chars: 100) ?? "...")
+                    .lineLimit(1)
+                    .opacity(0.9)
+                    .padding(.vertical, 10)
+            }
+            .transition(.asymmetric(
+                insertion: .move(edge: .top).combined(with: .opacity),
+                removal: .move(edge: .bottom).combined(with: .opacity)
+            ))
+            .padding(.leading, pins.count > 1 ? 0 : 16)
+            .id("\(pins[selected])-\(edits)")
             Spacer()
             if msg.type == DC_MSG_WEBXDC {
                 Button(String.localized("start_app")) {
@@ -130,22 +141,5 @@ public struct PinPageControl: UIViewRepresentable {
     public func sizeThatFits(_ proposal: ProposedViewSize, uiView: UIPageControl, context: Context) -> CGSize? {
         let natural = uiView.size(forNumberOfPages: numberOfPages)
         return CGSize(width: natural.width, height: proposal.height ?? natural.height)
-    }
-}
-
-extension View {
-    func bind(size: Binding<CGSize>) -> some View {
-        background(GeometryReader { proxy in
-            Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
-        }).onPreferenceChange(SizePreferenceKey.self) {
-            size.wrappedValue = $0
-        }
-    }
-}
-
-private struct SizePreferenceKey: PreferenceKey {
-    static let defaultValue: CGSize = .zero
-    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
-        value = nextValue()
     }
 }
