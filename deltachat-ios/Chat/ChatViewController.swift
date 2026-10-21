@@ -1971,9 +1971,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func copyTextToClipboard(_ msgId: Int) {
         copyTextToClipboard(ids: [msgId])
     }
-    private func copyImageToClipboard(_ msgId: Int) {
-        copyImagesToClipboard(ids: [msgId])
-    }
 
     private func cancelSearch() {
         if searchController.isActive {
@@ -2399,12 +2396,6 @@ extension ChatViewController {
             stringsToCopy += msg.text ?? msg.summary(chars: 10000000) ?? ""
         }
         UIPasteboard.general.string = stringsToCopy
-    }
-
-    func copyImagesToClipboard(ids: [Int]) {
-        let images = ids.map(dcContext.getMessage).compactMap(\.image)
-        guard !images.isEmpty else { return }
-        UIPasteboard.general.images = images
     }
 }
 
