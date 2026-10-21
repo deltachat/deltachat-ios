@@ -153,7 +153,9 @@
 "locations" = "Polohy";
 "gallery" = "Galerie";
 "images_and_videos" = "Obrázky a videa";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Soubor";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Soubory";
 "files_attach_hint" = "Odeslat původní soubory a nekomprimované obrázky";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -843,6 +845,7 @@
 "ImageEditorHud_rotate" = "Otočení";
 "welcome_desktop" = "Vítejte v aplikaci Delta Chat";
 "global_menu_preferences_language_desktop" = "Jazyk";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Soubor";
 "global_menu_file_quit_desktop" = "Ukončit";
 "global_menu_edit_desktop" = "Upravit";

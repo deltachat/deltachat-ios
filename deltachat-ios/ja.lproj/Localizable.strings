@@ -103,7 +103,9 @@
 "location" = "場所";
 "gallery" = "画像";
 "images_and_videos" = "画像・映像";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "ファイル";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "ファイル";
 "unknown" = "不明";
 "green" = "緑";
@@ -491,6 +493,7 @@
 "ImageEditorHud_rotate" = "回転";
 "welcome_desktop" = "Delta Chatにようこそ";
 "global_menu_preferences_language_desktop" = "言語を選択して下さい";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "ファイル";
 "global_menu_file_quit_desktop" = "終了";
 "global_menu_edit_desktop" = "編集";

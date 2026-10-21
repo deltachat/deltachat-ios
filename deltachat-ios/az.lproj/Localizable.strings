@@ -70,6 +70,7 @@
 "camera" = "Kamera";
 "location" = "Yer";
 "gallery" = "Qalereya";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Fayl";
 "unknown" = "Naməlum";
 "green" = "Yaşıl";
@@ -315,6 +316,7 @@
 "perm_explain_access_to_storage_denied" = "Delta Chat, fotoşəkilləri, videoları və ya səsləri əlavə etmək və ya ixrac etmək üçün saxlama icazəsini tələb edir, lakin bu daimi olaraq rədd edildi. Xahiş edirik tətbiq ayarları menyusuna davam edin, \"İzinlər\" seçin və \"Yaddaş\" funksiyasını aktivləşdirin.";
 "perm_explain_access_to_location_denied" = "Delta Chat yer əlavə etmək üçün yer icazə tələb edir, lakin daimi olaraq rədd edilmişdir. \"İcazələr\"-i seçin və\"Yerləşmə\" izni verin. ";
 "global_menu_preferences_language_desktop" = "Dil səç";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Fayl";
 "global_menu_file_quit_desktop" = "Çıxış";
 "global_menu_edit_desktop" = "Düzəliş et";

@@ -323,8 +323,10 @@
 "pin" = "Waħħal";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Imwaħħla";
+"pin_for_everyone" = "Waħħal għal kulħadd";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Aqla\'";
+"unpin_for_everyone" = "Aqla\' għal kulħadd";
 "message_pinned_by_you" = "Waħħalt messaġġ";
 "message_pinned_by_other" = "L-utent \"%1$@\" waħħal dal-messaġġ";
 "ConversationFragment_quoted_message_not_found" = "Ma sibniex il-messaġġ oriġinali";
@@ -417,10 +419,27 @@
 "chat_record_slide_to_cancel" = "Żerżaq subgħajk biex tikkanċella";
 "chat_record_explain" = "Agħfasha u żommha biex tirreġistra messaġġ bil-leħen, itlaqha biex tibagħtu";
 "chat_no_chats_yet_title" = "L-ebda taħdita.\nAgħfas fuq \"+\" biex tibda taħdita ġdida.";
+"chat_all_archived" = "Qgħedt it-taħditiet kollha fl-arkivju.\nAgħfas fuq \"+\" biex tibda taħdita ġdida.";
 "chat_share_with_title" = "Aqsam ma\'…";
+"chat_archived_label" = "Arkivjata";
+"chat_request_label" = "Talba";
+"chat_no_messages" = "L-ebda messaġġ.";
+"chat_self_talk_subtitle" = "Messaġġi għalik stess";
+"archive_empty_hint" = "Hawn se nuruk it-taħditiet li għandek fl-arkivju.";
+// Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
+"save_message" = "Erfa\' l-messaġġ";
+"saved_messages" = "Messaġġi merfugħa";
+"saved_messages_explain" = "• Għaddi l-messaġġi hawn biex issibhom malajr\n\n• Ikteb in-noti jew irreġistra t-tfakkiriet bil-leħen\n\n• Ehmeż il-fajls tal-midja biex terfagħhom";
 // Should match "Saved" from "Saved messages"
 "saved" = "Merfugħa";
 "attachment_failed_to_load" = "Ma setax itella\' l-hemża";
+// mailing lists
+"mailing_list" = "Lista tal-posta";
+// webxdc
+// "Start" button for an app
+"start_app" = "Ibda";
+// this is a warning that is shown when one tries to send something to a chat that is not yet accepted.
+"accept_request_first" = "L-ewwel ilqa\' t-talba għat-taħdita.";
 // title shown above a list of chats where one should be selected (eg. when sharing files from a webxdc). the placeholder will be replaced by a file name
 "send_file_to" = "Ibgħat \"%1$@\" lil…";
 // title shown above a list contacts where one should be selected (eg. when a webxdc attempts to send a message to a chat)
@@ -429,22 +448,56 @@
 "puny_code_warning_header" = "Sibna ħolqa li qed tħassibna";
 // placeholder contains the hostname converted to ascii
 "puny_code_warning_question" = "Żgur/a li tixtieq iżżur %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Dil-ħolqa jaf fiha xi simboli qarrieqa li jixtiebhu li ġejjin minn sistemi tal-alfabet differenti. Se ngħadduk fl-indirizz %2$@ jekk tiftaħ il-ħolqa %1$@: xi ħaġa normali għas-simboli li mhux tal-Latin. Dil-ħolqa taf tagħmel il-ħsara jekk ma kontx qed tistenna dawn is-simboli.";
+// search
+"search" = "Fittex";
+"search_in_chat" = "Fittex fit-taħdita";
+// Placeholder will be replaced by the chat name
+"search_in" = "Fittex fit-taħdita \"%1$@\"";
+"search_files" = "Fittex il-fajls";
+"search_explain" = "Fittex it-taħditiet, il-kuntatti u l-messaġġi";
+"search_no_result_for_x" = "Ma sibna xejn jaqbel ma\' \"%1$@\"";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Mhux moqrija";
+// create/edit groups, contact/group profile
+"group_name" = "Isem il-grupp";
 "group_avatar" = "Stampa tal-grupp";
 "remove_group_image" = "Neħħi l-istampa tal-grupp";
 "change_group_image" = "Ibdel l-istampa tal-grupp";
 "group_create_button" = "Oħloq grupp";
 "please_enter_chat_name" = "Jekk jogħġbok ikteb isem.";
 "group_add_members" = "Żid il-membri";
+"group_self_not_in_group" = "Ma tistax twettaq dal-għemil jekk m\'intix membru tal-grupp.";
+"profile_shared_chats" = "Taħditiet li tinsabu fihom it-tnejn li intom";
+// Separator between the list of actual members and past members
+"past_members" = "Membri tal-imgħoddi";
 "tab_group" = "Grupp";
 "tab_gallery" = "Gallerija";
 "tab_links" = "Ħoloq";
 "tab_map" = "Mappa";
+"tab_gallery_empty_hint" = "Hawn se nuruk l-istampi u l-filmati mehmuża ma\' dit-taħdita.";
+"tab_docs_empty_hint" = "Hawn se nuruk id-dokumenti u l-fajls l-oħra mehmuża ma\' dit-taħdita.";
+"tab_image_empty_hint" = "Hawn se nuruk l-istampi mehmuża ma\' dit-taħdita.";
+"tab_audio_empty_hint" = "Hawn se nuruk il-fajls tal-ħoss u l-messaġġi bil-leħen mehmuża ma\' dit-taħdita.";
+"tab_webxdc_empty_hint" = "Hawn se nuruk il-messaġġi mehmuża ma\' dit-taħdita.";
+"tab_all_media_empty_hint" = "Hawn se nuruk il-fajls tal-midja mehmuża ma\' xi taħdita.";
+"all_files_empty_hint" = "Hawn se nuruk id-dokumenti u l-fajls l-oħra mehmuża ma\' xi taħdita.";
+"all_apps_empty_hint" = "Hawn se nuruk l-apps mehmuża ma\' xi taħdita.";
+"media_preview" = "Ħarsa minn qabel lejn il-fajls tal-midja";
+"send_message" = "Ibgħat il-messaġġ";
 // Multi Device
 // "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
 "multidevice_title" = "Żid it-tieni tagħmir";
 "multidevice_same_network_hint" = "Ara li ż-żewġ tagħmir imqabbda mal-istess Wi-Fi jew netwerk";
+"multidevice_this_creates_a_qr_code" = "Dil-ħaġa toħloq kodiċi QR li tista\' tiftħu mit-tieni tagħmir biex tikkopja l-profil.\n\nAra li ma jkun hemm ħadd mhux mixtieq u lanqas xi kamera fil-qrib li jistgħu jaraw il-paġna li jmiss.";
 "multidevice_install_dc_on_other_device" = "Installa Delta Chat fuq it-tagħmir l-ieħor (https://get.delta.chat)";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Iftaħ Delta Chat, agħfas fuq \"Diġà għandi profil / Żid bħata t-tieni tagħmir\" u aqra l-kodiċi li qed nuruk hawn taħt";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
+"multidevice_qr_subtitle" = "Aqra l-kodiċi QR biex tħejji t-tieni tagħmir għal %1$@";
 "multidevice_receiver_title" = "Żid bħala t-tieni tagħmir";
+"multidevice_open_settings_on_other_device" = "Iftaħ Delta Chat, żur \"Għażliet / Żid it-tieni tagħmir\" u aqra l-kodiċi li qed nuruk hawn taħt mill-ewwel tagħmir";
 "login_smtp_login" = "L-isem tal-utent tal-SMTP";
 "login_smtp_password" = "Il-password tal-SMTP";
 "login_smtp_server" = "Is-server tal-SMTP";

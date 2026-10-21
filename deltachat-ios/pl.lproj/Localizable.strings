@@ -175,7 +175,9 @@
 "locations" = "Lokalizacje";
 "gallery" = "Galeria";
 "images_and_videos" = "Obrazy i wideo";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Plik";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Pliki";
 "files_attach_hint" = "Wyślij oryginalne pliki i nieskompresowane obrazy";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -324,6 +326,8 @@
 "pinned" = "Przypięty";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Odepnij";
+"message_pinned_by_you" = "Przypięto wiadomość";
+"message_pinned_by_other" = "Wiadomość przypięta przez %1$@";
 "ConversationFragment_quoted_message_not_found" = "Nie znaleziono oryginalnej wiadomości";
 "reply_privately" = "Odpowiedz prywatnie ";
 "source_code" = "Kod źródłowy";
@@ -953,6 +957,7 @@
 "ImageEditorHud_rotate" = "Obróć";
 "welcome_desktop" = "Witaj w Delta Chat";
 "global_menu_preferences_language_desktop" = "Wybierz język";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Plik";
 "global_menu_file_quit_desktop" = "Zamknij";
 "global_menu_edit_desktop" = "Edycja";

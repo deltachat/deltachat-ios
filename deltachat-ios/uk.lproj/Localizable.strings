@@ -155,7 +155,9 @@
 "locations" = "Розташування";
 "gallery" = "Галерея";
 "images_and_videos" = "Зображення та відео";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Файл";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Файли";
 "files_attach_hint" = "Відправити оригінальні файли чи нестиснуті картинки";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -906,6 +908,7 @@
 "ImageEditorHud_rotate" = "Обертати";
 "welcome_desktop" = "Вітаємо у Delta Chat";
 "global_menu_preferences_language_desktop" = "Мова";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Файл";
 "global_menu_file_quit_desktop" = "Вийти";
 "global_menu_edit_desktop" = "Редагувати";

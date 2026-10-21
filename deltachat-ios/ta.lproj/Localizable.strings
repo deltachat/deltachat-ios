@@ -66,6 +66,7 @@
 "camera" = "புகைப்படக்கருவி";
 "location" = "இடம்";
 "gallery" = "காட்சி கூடம்";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "கோப்பு";
 "unknown" = "முன் தெரிந்திராத";
 "green" = "பச்சை";
@@ -190,6 +191,7 @@
 "perm_continue" = "தொடர்";
 "welcome_desktop" = "Delta Chat க்கு வரவேற்கிறது.";
 "global_menu_preferences_language_desktop" = "நிறவடிவமைப்பு";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "கோப்பு";
 "global_menu_edit_desktop" = "திருத்து";
 "global_menu_view_desktop" = "பார்வை";

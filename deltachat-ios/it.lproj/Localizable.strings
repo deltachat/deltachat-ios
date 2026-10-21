@@ -175,7 +175,9 @@
 "locations" = "Posizioni";
 "gallery" = "Galleria";
 "images_and_videos" = "Immagini e Video";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "File";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "File";
 "files_attach_hint" = "Manda file originali e immagini non compresse";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -315,15 +317,17 @@
 "device_talk_welcome_message2" = "Mettiti in contatto!\n\n🙌 Tocca \"Codice QR\" sulla schermata principale di entrambi i dispositivi. Scegli \"Scansiona codice QR\" su un dispositivo e puntalo verso l\'altro\n\n🌍 Se non siete nella stessa stanza, esegui la scansione tramite videochiamata o condividi un collegamento di invito da \"Scansiona codice QR\"\n\nQuindi: goditi la ​​tua esperienza di messaggistica sulla più grande rete decentralizzata mai esistita: l\'E-mail. E a differenza di altre app popolari, senza controllo centrale né monitoraggio o vendita dei tuoi dati, ne dei tuoi amici, colleghi o familiari a grandi organizzazioni.";
 "edit_contact" = "Modifica Contatto";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
-"pin_chat" = "Fissa in alto";
+"pin_chat" = "Fissa Chat";
 // Opposite of "Pin chat", removing the sticky-state from a chat.
-"unpin_chat" = "Non fissare";
+"unpin_chat" = "Sblocca Chat";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
-"pin" = "Blocca";
+"pin" = "Fissa";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fissato";
+"pin_for_everyone" = "Fissa per Tutti";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Sblocca";
+"unpin_for_everyone" = "Sblocca per Tutti";
 "message_pinned_by_you" = "Hai fissato un messaggio";
 "message_pinned_by_other" = "Messaggio fissato da %1$@";
 "ConversationFragment_quoted_message_not_found" = "Messaggio originale non trovato";
@@ -630,6 +634,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Inviare %1$d file a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Invia %1$d file(s) a %2$d chat?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Preparazione contenuti multimediali…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Compressione video…";
+"video_recode_busy" = "Un altro video è ancora in fase di elaborazione, si prega di attendere.";
 "share_text_multiple_chats" = "Invia questo testo a %1$d chat?\n\n\"%2$@\"";
 "share_abort" = "Condivisione annullata per permessi mancanti.";
 // preferences
@@ -955,6 +964,7 @@
 "ImageEditorHud_rotate" = "Ruota";
 "welcome_desktop" = "Benvenuto in Delta Chat";
 "global_menu_preferences_language_desktop" = "Lingua";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "File";
 "global_menu_file_quit_desktop" = "Esci";
 "global_menu_edit_desktop" = "Modifica";

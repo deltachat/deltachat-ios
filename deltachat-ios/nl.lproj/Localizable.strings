@@ -175,7 +175,9 @@
 "locations" = "Locaties";
 "gallery" = "Galerij";
 "images_and_videos" = "Foto\'s en video\'s";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Bestand";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Bestanden";
 "files_attach_hint" = "Bestanden en foto\'s in oorspronkelijke kwaliteit versturen";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -322,8 +324,10 @@
 "pin" = "Vastmaken";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Vastgemaakt";
+"pin_for_everyone" = "Vastmaken voor iedereen";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Losmaken";
+"unpin_for_everyone" = "Losmaken voor iedereen";
 "message_pinned_by_you" = "Je hebt een bericht vastgemaakt";
 "message_pinned_by_other" = "Bericht vastgemaakt door %1$@";
 "ConversationFragment_quoted_message_not_found" = "Het oorspronkelijke bericht is niet aangetroffen";
@@ -630,6 +634,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Wil je %1$d bestanden delen met %2$@?";
 "ask_send_files_to_selected_chats" = "Wil je %1$d bestand(en) delen in %2$d gesprekken?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Bezig met voorbereiden…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Bezig met comprimeren…";
+"video_recode_busy" = "Er wordt al een video verwerkt — even geduld.";
 "share_text_multiple_chats" = "Wil je deze tekst versturen naar %1$d gesprekken?\n\n“%2$@”";
 "share_abort" = "Het delen is afgebroken wegens ontbrekende rechten.";
 // preferences
@@ -955,6 +964,7 @@
 "ImageEditorHud_rotate" = "Draaien";
 "welcome_desktop" = "Welkom bij Delta Chat";
 "global_menu_preferences_language_desktop" = "Taal";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Bestand";
 "global_menu_file_quit_desktop" = "Afsluiten";
 "global_menu_edit_desktop" = "Bewerken";

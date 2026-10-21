@@ -63,7 +63,9 @@
 "camera" = "آلة التصوير";
 "location" = "المَوقع";
 "gallery" = "المعرض";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "ملف";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "الملفات";
 "unknown" = "مجهول";
 "green" = "أخضر";
@@ -190,6 +192,7 @@
 "perm_required_title" = "منح إحدى الأذونات مطلو";
 "perm_continue" = "استمر";
 "global_menu_preferences_language_desktop" = "اختر اللغة…";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "الملف";
 "global_menu_edit_desktop" = "تعديل";
 "global_menu_edit_undo_desktop" = "ألغ";

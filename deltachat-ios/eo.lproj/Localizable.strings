@@ -162,21 +162,46 @@
 "bot" = "Roboto";
 "camera" = "Fotilo";
 "take_photo" = "Kaptu foton";
+"front_camera" = "Fronta fotilo";
+"back_camera" = "Dorsa fotilo";
+"microphone" = "Mikrofono";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Kapti";
 // Switch eg. from front to back camera
 "switch_camera" = "Elektu alian kameraon";
+// Toggle camera on/off eg. during an video call
+"toggle_camera" = "Baskuligu fotilon";
 "location" = "Loko";
 "locations" = "Lokoj";
 "gallery" = "Galerio";
 "images_and_videos" = "Bildoj kaj videoj";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Dosiero";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Dosieroj";
+"files_attach_hint" = "Sendu originalajn dosierojn kaj nekompaktigitajn bildojn";
+// "Files" here means the "Files Selector App" or "Files Manager App"
+"choose_from_files" = "Elektu el la dosieresplorilo";
+"choose_from_gallery" = "Elektu el la galerio";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Apo";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Apoj";
+"webxdc_add" = "Aldonu apon";
+"webxdc_store_url" = "Apelektila URL";
+"webxdc_store_url_explain" = "Se agordata, la URL estos uzata kiel apelektilo anstataŭ la defaŭlta";
+"webxdc_draft_hint" = "Tuŝeti \"Sendu\" por kunhavigi";
+"home" = "Hejmo";
+"games" = "Ludoj";
+"tools" = "Iloj";
+"app_size" = "Grando";
+// Used as a headline for a date. E.g. in the details of a mini app in the app picker
+"app_date_published" = "Publikita";
+"add_to_chat" = "Aldonu al la babilejo";
+// short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
+"browse" = "Foliumu";
 "unknown" = "Nekonata";
+"unnamed" = "Sennoma";
 "green" = "Verda";
 "red" = "Ruĝa";
 "blue" = "Blua";
@@ -193,8 +218,26 @@
 "slow" = "Malrapida";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Nova kontakto";
+"menu_new_classic_contact" = "Aldonu kontakton mane";
+"new_classic_contact_explain" = "Mane aldonitaj kontaktoj povas esti uzataj por alteksti klasikajn retpoŝtajn adresojn kaj ili ne estas garantiataj je tutvoja cifrado.  ";
 "menu_new_chat" = "Nova babilo";
 "menu_new_group" = "Nova grupo";
+// "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
+"chat_with" = "Babilo kun..";
+"clone_chat" = "Klonu babiladon";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel" = "Kanalo";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channels" = "Kanaloj";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"new_channel" = "Nova kanalo";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"channel_name" = "Kanala nomo";
+// The number of times a message is shown in channels. Use what other messengers are using here, smth. as "N-times seen" or "1 Aufruf" (german) work as well, where "1 impression" or "1 hit" may sound too formal and may be more marketing slang.
+// "New" as in "Create New Email"; shown together with "New Group" and "New Channel"
+"new_email" = "Nova retpoŝtmesaĝo ";
+// the "Subject" of an email, use the term common in classic email apps
+"subject" = "Temo";
 "menu_send" = "Sendi";
 "menu_toggle_keyboard" = "Baskuligi emoĝian klavaron";
 "menu_edit_group" = "Redakti grupon";
@@ -203,18 +246,26 @@
 "menu_unarchive_chat" = "Elarĥivigi babilon";
 "menu_add_attachment" = "Aldoni kunsendaĵon";
 "menu_leave_group" = "Forlasi grupon";
+"menu_leave_channel" = "Foriru kanalon";
+"menu_leave_and_delete" = "Lasu & forigi por mi";
 "menu_delete_chat" = "Forigi babilon";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Viŝi la babilejon";
 "delete_contact" = "Forviŝi Kontakton";
 "menu_message_details" = "Mesaĝ-detaloj";
 "menu_copy_to_clipboard" = "Kopii al tondujo";
+"share_invite_link" = "Kunhavigu invitigilon";
+"share_invite_link_explain" = "Ajnulo per tiu ligilo povas rigardi vian profilon kaj eki babiladon kun vi. Kunhavigu nur kun fidindaj homoj.";
+"invite_friends" = "Invitu amikojn";
+// %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
+"invite_friends_text" = "Kontaktu min per Delta Chat:\n%1$@";
 "menu_copy_selection_to_clipboard" = "Kopii tion, kion vi elstarigis";
 "menu_copy_link_to_clipboard" = "Kopii Ligilon";
 "menu_copy_text_to_clipboard" = "Kopii Tekston";
 "menu_copy_image_to_clipboard" = "Kopii Bildon";
 "menu_copy_email_to_clipboard" = "Kopii retpoŝtaĵon";
 "paste_from_clipboard" = "Alglui el la tondujo";
+"ask_copy_unopenable_link_to_clipboard" = "La ligilo \"%1$d\" ne malfermeblas en la retumilo. Ĉu vi volas anstataŭ kopii la ligilon en la tondujon?";
 "menu_forward" = "Plusendi mesaĝon";
 "menu_reply" = "Respondi al mesaĝo";
 "menu_mute" = "Silentigi sciigojn";
@@ -222,8 +273,10 @@
 "menu_export_attachment" = "Eksporti aldonaĵon";
 "menu_export_attachments" = "Eksporti aldonaĵojn";
 "menu_all_media" = "Ĉiuj aŭvidaĵoj";
+"all_apps_and_media" = "Ĉiuj apoj & aŭdvidaĵoj";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Afiŝu en la babilejo";
+"show_app_in_chat" = "Montru apon en la babilejo";
 "menu_share" = "Kunhavigi";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloki";
@@ -235,10 +288,16 @@
 "menu_scroll_to_bottom" = "Rulumi al la malsupro";
 "menu_scroll_to_top" = "Rulumi al la supro";
 "menu_help" = "Helpo";
+// use the same term for "Apps" as elsewhere
+"what_is_webxdc" = "Pri apoj";
 "privacy_policy" = "Politiko pri privateco";
 "menu_select_all" = "Elekti ĉion";
 "select_chat" = "Elektu babilejon";
 "menu_edit_name" = "Redakti nomon";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_explain" = "Agordu kromnomon kiu estos montrata al vi anstataŭ \"%1$@\". Lasu ĝin malplena por uzi la nomo elektita de la kontakto.";
+// The placeholder will be replaced by the name the contact gave themself
+"edit_name_placeholder" = "Kromnomo por \"%1$@\"";
 "menu_settings" = "Agordoj";
 "menu_advanced" = "Speciala";
 "menu_view_profile" = "Vidi profilon";
@@ -247,10 +306,12 @@
 "menu_save_log" = "Konservi protokolon";
 "menu_more_options" = "Pli da ebloj";
 "jump_to_message" = "Iru al mesaĝo";
+"replace_draft" = "Anstataŭigi malneton";
 "title_share_location" = "Konigi lokon al ĉiuj grupanoj";
 "device_talk" = "Aparataj mesaĝoj";
 "device_talk_subtitle" = "Loke generitaj mesaĝoj";
 "device_talk_explain" = "Mesaĝoj en tiu ĉi babilo estas surloke generataj de via Delta Chat apo. Ĝiaj kreintoj uzas ilin por informi pri apaj ĝisdatigoj kaj problemoj dum uzado.";
+"device_talk_welcome_message2" = "Konektiĝu!\n\n🙌 Tuŝetu \"QR-kodo\" ĉe la ĉefa ekrano de ambaŭ la aparatoj. Elektu \"Skanu QR-Kodon\" sur la unua aparato, kaj celumu ĝin kontraŭ la alian\n\n🌍 Se ne en la sama ĉambro, skanu per videovoko aŭ kunhavigu invitilon el \"Skanu QR-kodon\"\n\nPoste: Ĝuu via malcentra babila sperto. Male ol alia populara apoj, sen centrigita kontrolo aŭ spuradon aŭ vendi vin, amikojn, kolegojn aŭ familion al grandaj organizoj.  ";
 "edit_contact" = "Redakti kontakton";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Alpingli babilon";
@@ -258,8 +319,19 @@
 "unpin_chat" = "Depingli babilon";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Alpingli";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Alpinglita";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Depingli";
+"message_pinned_by_you" = "Vi alpinglis mesaĝon";
+"message_pinned_by_other" = "Mesaĝo alpinglita de %1$@";
+"ConversationFragment_quoted_message_not_found" = "La originala mesaĝo ne troveblas";
+"reply_privately" = "Respondu private";
+"source_code" = "Fontkodo";
+// Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
+"add_to_home_screen" = "Aldonu al la hejma ekrano";
+"donate" = "Donacu";
+"donate_device_msg" = "❤️ Ŝajnas ke vi ŝatas Delta Chat!\n\nBonvole pripensu donaci por helpi certigi ke Delta Chat restu libera por ĉiuj.\n\nDum Delta Chat estas libere uzebla kaj malfermitkoda, ĝia evoluado kostas monojn. Helpu nin pri la daŭrigado de la sendependecon de Delta Chat kaj igu ĝin eĉ pli bonega estontece.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Silentigi por 1 horo";
 "mute_for_eight_hours" = "Silentigi por 8 horoj";
 "mute_for_one_day" = "Silentigi por 1 tago";
@@ -270,7 +342,53 @@
 "share_location_for_one_hour" = "por 1 horo";
 "share_location_for_two_hours" = "por 2 horoj";
 "share_location_for_six_hours" = "por 6 horoj";
+"share_location_for_24_hours" = "Por 24 horoj";
 "file_saved_to" = "Dosiero konservita kiel \"%1$@\".";
+// the action "to call someone", used as a tooltip for the "phone" icon. not: "the call"
+"start_call" = "Alvoku";
+// Menu item to start an audio call; verbs as "start" are probably superfluous in many translations
+"start_audio_call" = "Sonvoko";
+// Menu item to start a video call; verbs as "start" are probably superfluous in many translations
+"start_video_call" = "Videovoko";
+// the action "to answer" or to "accept" or to "pick up" a call. not: "the answer"
+"answer_call" = "Respondu";
+// the action "to decline" a call, not: "the decline"
+"end_call" = "Rifuzu";
+// the action to end a call
+"end_call2" = "Ĉesu vokon";
+// Used in call bubbles, summaries, notifications
+"audio_call" = "Sonvoko";
+// Used in call bubbles, summaries, notifications
+"video_call" = "Videovoko";
+"call_initializing" = "Pravalorizanta...";
+"call_incoming" = "Envena voko";
+"call_ringing" = "Sonoranta...";
+"call_reconnecting" = "Rekonektiĝanta...";
+"call_ended" = "Voko ĉesigita";
+"call_failed" = "Voko malsukcesis";
+"declined_call" = "Rifuzu la vokon";
+"canceled_call" = "Nuligita voko";
+"missed_call" = "Maltrafita voko";
+"already_in_call" = "Jam en alia voko";
+"call_back" = "Revoku";
+"call_answered_elsewhere" = "Voko respondita ĉe alia aparato";
+"call_requires_camera_permission" = "Fotila permeso necesas por videovokoj";
+"call_requires_mic_permission" = "Mikrofona permeso necesas por sonvokoj";
+"call_grant_mic_permission" = "Tuŝetu por doni la mikrofonan permeson";
+"call_requires_connection" = "Ne eblas eki la voko. Certiĝu pri tio, ke via aparato estas interrete konektita kaj provu denove.";
+// Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
+"call_with" = "Voko kun %1$@";
+// Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
+"calling_person" = "Vokante %1$@...";
+"audio_output" = "Aŭdaĵa eligo";
+// get confirmations
+// confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
+"ask_leave_group" = "Ĉu vi certas forigi?";
+"ask_delete_named_chat" = "Ĉu forviŝi babilejon \"%1$@\"?";
+"ask_delete_message" = "Ĉu forviŝi tiun ĉi mesaĝon?";
+// First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
+"ask_forward_multiple" = "Ĉu plusendi la mesaĝojn al %1$d babilejoj?";
+"ask_export_attachment" = "Eksporti kunsendaĵojn permesos, ke aliaj apoj sur via aparato atingos ilin.\n\nĈu vi volas daŭrigi?";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Forigi %1$@el la grupo?";
@@ -395,6 +513,7 @@
 "perm_continue" = "Daŭrigi";
 "welcome_desktop" = "Bonvenon al Delta Chat";
 "global_menu_preferences_language_desktop" = "Lingvo";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Dosiero";
 "global_menu_edit_desktop" = "Modifi";
 "global_menu_edit_undo_desktop" = "Malfari";
