@@ -73,7 +73,6 @@ class MessageInfoViewController: UIViewController {
                         Text(String.localized("read_by"))
                         Spacer()
                         Image("ic_done_all_36pt")
-                            .renderingMode(.template)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 20)
