@@ -175,7 +175,9 @@
 "locations" = "Asukohad";
 "gallery" = "Galerii";
 "images_and_videos" = "Pildid ja videod";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Fail";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Failid";
 "files_attach_hint" = "Saada faile algsetena ja pilte pakkimata";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -322,8 +324,10 @@
 "pin" = "Tõste esile";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Esiletõstetud";
+"pin_for_everyone" = "Tõsta esile kõigi jaoks";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Lõpeta esiletõstmine";
+"unpin_for_everyone" = "Lõpeta esiletõstmine kõigi jaoks";
 "message_pinned_by_you" = "Sina tõstsid sõnumi esile";
 "message_pinned_by_other" = "%1$@ tõstis sõnumi esile";
 "ConversationFragment_quoted_message_not_found" = "Algset sõnumit ei leidu";
@@ -630,6 +634,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Kas saadad %1$d faili „%2$@“ vestlusesse?";
 "ask_send_files_to_selected_chats" = "Kas saadad %1$d faili „%2$d“ vestlusesse?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Valmistan meediumi ette…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Pakin videot kokku…";
+"video_recode_busy" = "Üks teine video on veel töötlemisel, palun oota hetke.";
 "share_text_multiple_chats" = "Kas saadad selle teksti %1$d vestlusesse?\n\n„%2$@“";
 "share_abort" = "Puuduvate õiguste tõttu on jagamine katkestatud.";
 // preferences
@@ -955,6 +964,7 @@
 "ImageEditorHud_rotate" = "Pööra";
 "welcome_desktop" = "Tere tulemast, see on Delta Chat";
 "global_menu_preferences_language_desktop" = "Keel";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Fail";
 "global_menu_file_quit_desktop" = "Välju";
 "global_menu_edit_desktop" = "Muuda";

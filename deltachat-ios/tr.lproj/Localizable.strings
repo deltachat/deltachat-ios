@@ -153,7 +153,9 @@
 "locations" = "Konumlar";
 "gallery" = "Galeri";
 "images_and_videos" = "Görseller ve Videolar";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Dosya";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Dosyalar";
 "files_attach_hint" = "Özgün dosyalar ve sıkıştırılmayan görseller gönder";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -892,6 +894,7 @@
 "ImageEditorHud_rotate" = "Döndür";
 "welcome_desktop" = "Delta Chat\'e hoş geldiniz";
 "global_menu_preferences_language_desktop" = "Dil";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Dosya";
 "global_menu_file_quit_desktop" = "Çık";
 "global_menu_edit_desktop" = "Düzenle";

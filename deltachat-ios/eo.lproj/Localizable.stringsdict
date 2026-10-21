@@ -194,6 +194,86 @@
 			<string>%delektita</string>
 		</dict>
 	</dict>
+	<key>n_views</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d vido</string>
+			<key>other</key>
+			<string>%d vidoj</string>
+		</dict>
+	</dict>
+	<key>ask_send_following_n_files_to</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu sendi la sekvantan dosieron al %2$@?</string>
+			<key>other</key>
+			<string>Ĉu sendi la sekvantajn %d dosierojn al %2$@?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_chat</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu forviŝi %d babilejon?</string>
+			<key>other</key>
+			<string>Ĉu forviŝi %d babilejojn?</string>
+		</dict>
+	</dict>
+	<key>ask_delete_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu forviŝi %d mesaĝojn?</string>
+			<key>other</key>
+			<string>Ĉu forviŝi %d mesaĝojn?</string>
+		</dict>
+	</dict>
+	<key>ask_forward_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ĉu plusendi la mesaĝon al %2$@?</string>
+			<key>other</key>
+			<string>Ĉu plusendi %d mesaĝojn al %2$@?</string>
+		</dict>
+	</dict>
 	<key>chat_archived</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>

@@ -175,7 +175,9 @@
 "locations" = "位置";
 "gallery" = "图库";
 "images_and_videos" = "图片和视频";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "文件";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "文件";
 "files_attach_hint" = "发送原始文件和未压缩的图片";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -955,6 +957,7 @@
 "ImageEditorHud_rotate" = "旋转";
 "welcome_desktop" = "欢迎使用 Delta Chat";
 "global_menu_preferences_language_desktop" = "语言";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "文件";
 "global_menu_file_quit_desktop" = "退出";
 "global_menu_edit_desktop" = "编辑";

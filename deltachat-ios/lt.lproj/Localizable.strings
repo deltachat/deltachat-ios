@@ -147,7 +147,9 @@
 "locations" = "Vietovės";
 "gallery" = "Galerija";
 "images_and_videos" = "Paveikslai ir vaizdo įrašai";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Failas";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Failai";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Privati programėlė";
@@ -334,10 +336,10 @@
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Ar tikrai norite išeiti?";
 "ask_delete_named_chat" = "Ištrinti pokalbį „%1$@“?";
-"ask_delete_message" = "Ištrinti šią žinutę visuose jūsų įrenginiuose?";
+"ask_delete_message" = "Ištrinti šią žinutę?";
 "ask_export_attachment" = "Eksportuoti priedą? Priedų eksportavimas leis bet kurioms kitoms programėlėms jūsų įrenginyje turėti prieigą prie šių priedų.\n\nTęsti?";
 "ask_block_contact" = "Užblokuoti šį adresatą? Jūs daugiau nebegausite žinučių nuo šio adresato.";
-"ask_unblock_contact" = "Atblokuoti šį adresatą? Jūs ir vėl galėsite gauti žinutes nuo šio adresato.";
+"ask_unblock_contact" = "Atblokuoti šį adresatą?";
 "ask_start_chat_with" = "Pradėti pokalbį su %1$@?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_members" = "Pašalinti %1$@ iš grupės?";
@@ -365,7 +367,7 @@
 "chat_request_label" = "Užklausa";
 "chat_no_messages" = "Žinučių nėra.";
 "chat_self_talk_subtitle" = "Žinutės, kurias siunčiu asmeniškai sau";
-"archive_empty_hint" = "Jei archyvuosite pokalbius, jie bus rodomi čia.";
+"archive_empty_hint" = "Čia bus rodomi archyvuoti pokalbiai.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Įrašyti";
 "saved_messages" = "Įrašytos žinutės";
@@ -408,11 +410,14 @@
 "tab_gallery" = "Galerija";
 "tab_links" = "Nuorodos";
 "tab_map" = "Žemėlapis";
-"tab_gallery_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami paveikslai ir vaizdo įrašai.";
-"tab_docs_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinami dokumentai, muzika ir kiti failai.";
-"tab_image_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti paveikslai.";
-"tab_audio_empty_hint" = "Čia bus rodomi šiame pokalbyje bendrinti garso įrašų failai ir balso žinutės.";
-"tab_all_media_empty_hint" = "Čia bus rodoma bet kuriame pokalbyje bendrinama medija.";
+"tab_gallery_empty_hint" = "Čia bus rodomi į šį pokalbį pridėti paveikslai ir vaizdo įrašai.";
+"tab_docs_empty_hint" = "Čia bus rodomi į šį pokalbį pridėti dokumentai ir kiti failai.";
+"tab_image_empty_hint" = "Čia bus rodomi į šį pokalbį pridėti paveikslai.";
+"tab_audio_empty_hint" = "Čia bus rodomi į šį pokalbį pridėti garso įrašo failai ir balso žinutės.";
+"tab_webxdc_empty_hint" = "Čia bus rodomos į šį pokalbį pridėtos programėlės.";
+"tab_all_media_empty_hint" = "Čia bus rodoma į bet kurį pokalbį pridėta medija.";
+"all_files_empty_hint" = "Čia bus rodomi į bet kurį pokalbį pridėti dokumentai ir kiti failai.";
+"all_apps_empty_hint" = "Čia bus rodomos į bet kurį pokalbį pridėtos programėlės.";
 "media_preview" = "Medijos peržiūra";
 "send_message" = "Siųsti žinutę";
 // Multi Device
@@ -433,7 +438,7 @@
 "multidevice_abort_will_invalidate_copied_qr" = "Tai padarys į iškarpinę nukopijuotą QR kodą negaliojantį.";
 "multidevice_transfer_done_devicemsg" = "ℹ️ Profilis perduotas į jūsų antrąjį įrenginį.";
 // Shown beside progress bar, stay short
-"preparing_account" = "Ruošiama paskyra…";
+"preparing_account" = "Ruošiamas profilis…";
 // Shown beside progress bar, stay short
 "transferring" = "Perduodama…";
 "troubleshooting" = "Nesklandumų šalinimas";
@@ -472,7 +477,7 @@
 "instant_onboarding_show_more_instances" = "Naudoti kitą serverį";
 "instant_onboarding_other_server" = "Išvardyti retransliavimo serverius";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
-"instant_onboarding_group_info" = "Sukurti profilį, kad būtų prisijungta prie grupės „%1$@“.";
+"instant_onboarding_group_info" = "Sukurti profilį, kad būtų prisijungta prie „%1$@“.";
 // Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
 "instant_onboarding_contact_info" = "Sukurti profilį, kad būtų pradėtas pokalbis su %1$@.";
 // Question shown when another user's QR code is scanned from onboarding screen
@@ -527,8 +532,8 @@
 "import_backup_no_backup_found" = "Nerasta jokių atsarginių kopijų.\n\nNukopijuokite atsarginę kopiją į \"%1$@\" ir bandykite dar kartą.";
 // TLS certificate checks
 "accept_invalid_certificates" = "Priimti negaliojančius liudijimus";
-"switch_account" = "Perjungti paskyrą";
-"add_account" = "Pridėti paskyrą";
+"switch_account" = "Perjungti profilį";
+"add_account" = "Pridėti profilį";
 // for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
 "profile_tag" = "Profilio etiketė";
 "profile_tag_hint" = "pvz., Darbas, Šeima";
@@ -536,10 +541,10 @@
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Perkelti į viršų";
 "delete_account" = "Ištrinti profilį";
-"delete_account_ask" = "Ar tikrai norite ištrinti savo paskyros duomenis?";
+"delete_account_ask" = "Ar tikrai norite ištrinti savo profilio duomenis?";
 "delete_account_explain_with_name" = "Visi „%1$@“ paskyros duomenys šiame įrenginyje bus ištrinti, įskaitant jūsų ištisinio šifravimo sąranką, adresatus, pokalbius, žinutes ir mediją. Šį veiksmą nebeįmanoma bus atšaukti.";
-"unconfigured_account" = "Nesukonfigūruota paskyra";
-"unconfigured_account_hint" = "Atverkite paskyrą norėdami ją konfigūruoti.";
+"unconfigured_account" = "Nesukonfigūruotas profilis";
+"unconfigured_account_hint" = "Atverkite profilį norėdami jį konfigūruoti.";
 "try_connect_now" = "Bandyti prisijungti dabar";
 "sync_all" = "Sinchronizuoti visas";
 // Translations: %1$s will be replaced by a more detailed error message
@@ -552,7 +557,7 @@
 "pref_profile_info_headline" = "Jūsų profilis";
 "pref_profile_photo" = "Profilio nuotrauka";
 "pref_blocked_contacts" = "Užblokuoti adresatai";
-"blocked_empty_hint" = "Jei užblokuosite adresatus, jie bus rodomi čia.";
+"blocked_empty_hint" = "Čia bus rodomi užblokuoti adresatai.";
 "pref_who_can_see_profile_explain" = "Bendraujant su kitais naudotojais, jūsų profilio paveikslas ir vardas bus rodomi kartu su jūsų žinutėmis. Jau išsiųsta informacija negalės būti ištrinta ar pašalinta.";
 "pref_your_name" = "Jūsų vardas";
 // Label of the Bio/Signature/Status/Motto field
@@ -609,7 +614,7 @@
 "pref_backup_export_explain" = "Atsarginė kopija padeda jums nusistatyti naują diegimą šiame ar kitame įrenginyje.\n\nAtsarginėje kopijoje bus visos žinutės, adresatai ir pokalbiai bei jūsų ištisinio perdavimo „Autocrypt“ sąranka. Atsarginės kopijos failą laikykite saugioje vietoje arba kaip įmanoma greičiau jį ištrinkite.";
 "pref_backup_export_this" = "Eksportuoti šį profilį";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
-"pref_backup_export_all" = "Eksportuoti visas %1$d paskyras";
+"pref_backup_export_all" = "Eksportuoti visus %1$d profilius";
 "pref_backup_export_start_button" = "Pradėti daryti atsarginę kopiją";
 "pref_backup_written_to_x" = "Atsarginė kopija sėkmingai įrašyta į %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -629,8 +634,6 @@
 "pref_background_custom_color" = "Tinkinta spalva";
 "export_aborted" = "Eksportavimas nutrauktas.";
 "auto_download_messages" = "Automatinis žinučių atsiuntimas";
-// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
-"all" = "Iš visų";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
 "up_to_x" = "Iki %1$@";
 "up_to_x_most_worse_quality_images" = "Iki %1$@, iš esmės, blogos kokybės paveikslus";
@@ -820,7 +823,8 @@
 "ImageEditorHud_flip" = "Apversti";
 "ImageEditorHud_rotate" = "Pasukti";
 "welcome_desktop" = "Sveiki atvykę į Delta Chat";
-"global_menu_preferences_language_desktop" = "Pasirinkti kalbą...";
+"global_menu_preferences_language_desktop" = "Kalba";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Failas";
 "global_menu_file_quit_desktop" = "Išjungti";
 "global_menu_edit_desktop" = "Taisyti";
@@ -840,6 +844,7 @@
 "global_menu_help_about_desktop" = "Apie Delta Chat";
 "global_menu_file_open_desktop" = "Atverti Delta Chat";
 "global_menu_minimize_to_tray" = "Suskleisti";
+"no_account_selected" = "Pasirinkite arba susikurkite naują profilį";
 "no_chat_selected_suggestion_desktop" = "Pasirinkite arba sukurkite naują pokalbį";
 "write_message_desktop" = "Rašykite žinutę";
 "encryption_info_title_desktop" = "Šifravimo informacija";
@@ -854,7 +859,7 @@
 "message_detail_sent_desktop" = "Išsiųsta";
 "message_detail_received_desktop" = "Gauta";
 "menu.view.developer.open.log.folder" = "Atverti žurnalų aplanką";
-"menu.view.developer.open.current.log.file" = "Atverti dabartinio žurnalo failą";
+"menu.view.developer.open.current.log.file" = "Atverti dabartinį žurnalo failą";
 "explain_desktop_minimized_disabled_tray_pref" = "Dėklo piktograma negali būti išjungta, nes Delta Chat buvo paleista naudojant --minimized parinktį.";
 "show_window" = "Rodyti langą";
 // title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)

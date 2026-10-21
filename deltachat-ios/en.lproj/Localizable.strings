@@ -175,7 +175,9 @@
 "locations" = "Locations";
 "gallery" = "Gallery";
 "images_and_videos" = "Images and Videos";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "File";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Files";
 "files_attach_hint" = "Send original files and uncompressed images";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -322,8 +324,10 @@
 "pin" = "Pin";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Pinned";
+"pin_for_everyone" = "Pin for Everyone";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Unpin";
+"unpin_for_everyone" = "Unpin for Everyone";
 "message_pinned_by_you" = "You pinned a message";
 "message_pinned_by_other" = "Message pinned by %1$@";
 "ConversationFragment_quoted_message_not_found" = "Original message not found";
@@ -630,6 +634,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Send %1$d files to \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Send %1$d file(s) to %2$d chats?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Preparing media…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Compressing video…";
+"video_recode_busy" = "Another video is still being processed, please wait.";
 "share_text_multiple_chats" = "Send this text to %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Sharing aborted due to missing permissions.";
 // preferences
@@ -955,6 +964,7 @@
 "ImageEditorHud_rotate" = "Rotate";
 "welcome_desktop" = "Welcome to Delta Chat";
 "global_menu_preferences_language_desktop" = "Language";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "File";
 "global_menu_file_quit_desktop" = "Quit";
 "global_menu_edit_desktop" = "Edit";
@@ -1070,8 +1080,6 @@
 "update_now" = "Update Now";
 "update_install_permission_explain" = "To install the update, please first allow Delta Chat to install apps in the system settings.";
 // iOS specific untranslated strings
-"connectivity_low_data_mode" = "Throttled by system's \"Low Data Mode\".";
-"connectivity_low_power_mode" = "Throttled by system's \"Low Power Mode\".";
 "backup_successful" = "Backup successful";
 "backup_successful_explain_ios" = "You can find the backup in the \"Delta Chat\" folder using the \"Files\" app.\n\nMove the backup out of this folder to keep it when deleting Delta Chat.";
 "location_denied" = "Location access denied";

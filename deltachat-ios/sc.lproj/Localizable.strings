@@ -83,7 +83,9 @@
 "location" = "Positzione";
 "gallery" = "Galleria";
 "images_and_videos" = "Immàgines e vìdeos";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Documentu";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Documentos";
 "unknown" = "Disconnotu";
 "green" = "Birde";

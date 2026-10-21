@@ -147,7 +147,9 @@
 "locations" = "Vendndodhje";
 "gallery" = "Galeri";
 "images_and_videos" = "Figura dhe Video";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Kartelë";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Kartela";
 "files_attach_hint" = "Dërgo kartela origjinale dhe figura të pangjeshura";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -898,6 +900,7 @@
 "ImageEditorHud_rotate" = "Rrotulloje";
 "welcome_desktop" = "Mirë se vini në Delta Chat";
 "global_menu_preferences_language_desktop" = "Gjuhë";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Kartelë";
 "global_menu_file_quit_desktop" = "Dilni";
 "global_menu_edit_desktop" = "Përpunoni";

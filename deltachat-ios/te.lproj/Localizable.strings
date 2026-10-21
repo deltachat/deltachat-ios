@@ -67,6 +67,7 @@
 "camera" = "కెమేరా";
 "location" = "స్థానం";
 "gallery" = "గ్యాలరీ";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "ఫైల్";
 "unknown" = "తెలియని";
 "green" = "ఆకు పచ్చ";
@@ -183,6 +184,7 @@
 "perm_required_title" = "అనుమతి అవసరం";
 "perm_continue" = "కొనసాగించు";
 "welcome_desktop" = "Delta Chat కి స్వాగతం.";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "ఫైల్";
 "global_menu_edit_desktop" = "మార్చు";
 "global_menu_view_desktop" = "చూడు";

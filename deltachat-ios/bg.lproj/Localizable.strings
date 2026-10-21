@@ -124,7 +124,9 @@
 "locations" = "Местоположения";
 "gallery" = "Галерия";
 "images_and_videos" = "Изображения и видеоклипове";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Файл";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Файлове";
 // "App" is used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_app" = "Приложение";
@@ -689,6 +691,7 @@
 "ImageEditorHud_rotate" = "Завъртане";
 "welcome_desktop" = "Добре дошли в Delta Chat";
 "global_menu_preferences_language_desktop" = "Език";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Файл";
 "global_menu_file_quit_desktop" = "Напускане";
 "global_menu_edit_desktop" = "Редакция";

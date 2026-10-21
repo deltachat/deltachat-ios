@@ -137,7 +137,9 @@
 "locations" = "جاگه یل";
 "gallery" = "شؽوات مال";
 "images_and_videos" = "شؽواتا وو فیلما";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "فایل";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "فایلا";
 "files_attach_hint" = "فشناڌن فایلا ٱسلی وو شؽواتا تپنیڌه نوابیڌه";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -358,6 +360,7 @@
 "notify_name_only" = "تینا نوم";
 "notify_no_name_or_message" = "بؽ نوم یا پیوم";
 "global_menu_preferences_language_desktop" = "زووݩ";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "فایل";
 "global_menu_file_quit_desktop" = "و در زیڌن";
 "global_menu_edit_desktop" = "آلشت";

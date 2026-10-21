@@ -172,7 +172,9 @@
 "locations" = "Sijainnit";
 "gallery" = "Galleria";
 "images_and_videos" = "Kuvat ja videot";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Tiedosto";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Tiedostot";
 "files_attach_hint" = "Lähetä alkuperäiset tiedostot ja pakkaamattomat kuvat";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -910,6 +912,7 @@
 "ImageEditorHud_rotate" = "Pyöritä";
 "welcome_desktop" = "Tervetuloa Delta Chatiin";
 "global_menu_preferences_language_desktop" = "Kieli";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Tiedosto";
 "global_menu_file_quit_desktop" = "Sulje";
 "global_menu_edit_desktop" = "Muokkaa";

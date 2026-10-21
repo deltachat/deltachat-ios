@@ -175,7 +175,9 @@
 "locations" = "Standorte";
 "gallery" = "Galerie";
 "images_and_videos" = "Bilder und Videos";
+// A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Datei";
+// Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Dateien";
 "files_attach_hint" = "Originaldateien und -bilder senden";
 // "Files" here means the "Files Selector App" or "Files Manager App"
@@ -322,8 +324,10 @@
 "pin" = "Anheften";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Angeheftet";
+"pin_for_everyone" = "Für alle anheften";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Loslösen";
+"unpin_for_everyone" = "Für alle loslösen";
 "message_pinned_by_you" = "Du hast eine Nachricht angeheftet";
 "message_pinned_by_other" = "Nachricht angeheftet von %1$@";
 "ConversationFragment_quoted_message_not_found" = "Originalnachricht nicht gefunden";
@@ -630,6 +634,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "%1$d Dateien an \"%2$@\" senden?";
 "ask_send_files_to_selected_chats" = "%1$d Datei(en) an %2$d Chats senden?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Medien vorbereiten…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Video komprimieren…";
+"video_recode_busy" = "Ein anderes Video wird noch verarbeitet, bitte warten.";
 "share_text_multiple_chats" = "Den folgenden Text an %1$d Chats senden?\n\n\"%2$@\"";
 "share_abort" = "Teilen aufgrund fehlender Berechtigungen abgebrochen.";
 // preferences
@@ -955,6 +964,7 @@
 "ImageEditorHud_rotate" = "Drehen";
 "welcome_desktop" = "Willkommen bei Delta Chat";
 "global_menu_preferences_language_desktop" = "Sprache";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
 "global_menu_file_desktop" = "Datei";
 "global_menu_file_quit_desktop" = "Beenden";
 "global_menu_edit_desktop" = "Bearbeiten";
