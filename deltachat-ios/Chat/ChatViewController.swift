@@ -311,63 +311,31 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             image: UIImage(systemName: "magnifyingglass"),
             handler: { [unowned self] _ in searchPressed() }
         )
+        UIAction(
+            title: String.localized("apps_and_media"),
+            image: UIImage(systemName: "photo.on.rectangle"),
+            handler: { [unowned self] _ in
+                show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
+            }
+        )
         UIMenu(options: [.displayInline]) { [unowned self] in
-            if !webxdcMsgIds.isEmpty {
+            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+            })
+            if dcChat.isEncrypted, dcChat.canSend {
+                let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
                 UIAction(
-                    title: String.localized("webxdc_apps"),
-                    image: UIImage(systemName: "square.grid.2x2"),
+                    title: String.localized("ephemeral_messages"),
+                    subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
+                    image: UIImage(systemName: "stopwatch"),
+                    state: ephemeralTimer > 0 ? .on : .off,
                     handler: { [unowned self] _ in
-                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 0), sender: nil)
+                        show(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), sender: nil)
                     }
                 )
             }
-            let galleryMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_IMAGE, messageType2: DC_MSG_GIF, messageType3: DC_MSG_VIDEO)
-            if !galleryMsgIds.isEmpty {
-                UIAction(
-                    title: String.localized("gallery"),
-                    image: UIImage(systemName: "photo.on.rectangle"),
-                    handler: { [unowned self] _ in
-                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 1), sender: nil)
-                    }
-                )
-            }
-            let audioMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_AUDIO, messageType2: DC_MSG_VOICE, messageType3: 0)
-            if !audioMsgIds.isEmpty {
-                UIAction(
-                    title: String.localized("audio"),
-                    image: UIImage(systemName: "waveform"),
-                    handler: { [unowned self] _ in
-                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 2), sender: nil)
-                    }
-                )
-            }
-            let fileMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_FILE, messageType2: 0, messageType3: 0)
-            if !fileMsgIds.isEmpty {
-                UIAction(
-                    title: String.localized("files"),
-                    image: UIImage(systemName: "doc"),
-                    handler: { [unowned self] _ in
-                        show(AllMediaViewController(dcContext: dcContext, chatId: chatId, pageIndex: 3), sender: nil)
-                    }
-                )
-            }
+            UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
         }
-        MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
-            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-        })
-        if dcChat.isEncrypted, dcChat.canSend {
-            let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
-            UIAction(
-                title: String.localized("ephemeral_messages"),
-                subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
-                image: UIImage(systemName: "stopwatch"),
-                state: ephemeralTimer > 0 ? .on : .off,
-                handler: { [unowned self] _ in
-                    show(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), sender: nil)
-                }
-            )
-        }
-        UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
         UIMenu(options: [.displayInline]) { [unowned self] in
             let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
             UIAction(

@@ -16,12 +16,12 @@ class AllMediaViewController: UIPageViewController {
 
     private var pages: [Page] = [
         Page(
-            headerTitle: String.localized("webxdc_apps"),
-            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
-        ),
-        Page(
             headerTitle: String.localized("gallery"),
             type1: DC_MSG_IMAGE, type2: DC_MSG_GIF, type3: DC_MSG_VIDEO
+        ),
+        Page(
+            headerTitle: String.localized("webxdc_apps"),
+            type1: DC_MSG_WEBXDC, type2: 0, type3: 0
         ),
         Page(
             headerTitle: String.localized("audio"),
@@ -45,11 +45,9 @@ class AllMediaViewController: UIPageViewController {
         return UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(showMap))
     }()
 
-    init(dcContext: DcContext, chatId: Int = 0, pageIndex: Int = 0) {
+    init(dcContext: DcContext, chatId: Int = 0) {
         self.dcContext = dcContext
         self.chatId = chatId
-        self.prevIndex = max(0, min(pageIndex, pages.count))
-        assert(self.prevIndex == pageIndex, "Used wrong page index")
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
         hidesBottomBarWhenPushed = true
     }
