@@ -8,8 +8,9 @@
       <li><a href="#multiple-accounts">¿Qué son los perfiles? ¿Cómo puedo cambiar entre ellos?</a></li>
       <li><a href="#quién-ve-mi-foto-de-perfil">¿Quién ve mi foto de perfil?</a></li>
       <li><a href="#signature">¿Puedo establecer una Bio/Estado en Delta Chat?</a></li>
-      <li><a href="#qué-significa-fijar-mutear-archivar">¿Qué significa fijar, mutear, archivar?</a></li>
+      <li><a href="#pin-chats">Pin, mute and archive a chat</a></li>
       <li><a href="#save">¿Cómo funcionan los “Mensajes guardados”?</a></li>
+      <li><a href="#pin-messages">How do pinned messages work?</a></li>
       <li><a href="#qué-significa-el-punto-verde">¿Qué significa el punto verde?</a></li>
       <li><a href="#qué-significan-las-marcas-que-se-muestran-junto-a-los-mensajes-salientes">¿Qué significan las marcas que se muestran junto a los mensajes salientes?</a></li>
       <li><a href="#edit">Corregir errores y borrar mensajes después de enviar</a></li>
@@ -84,7 +85,6 @@
       <li><a href="#qué-estándares-se-utilizan-para-el-cifrado-de-extremo-a-extremo">¿Qué estándares se utilizan para el cifrado de extremo a extremo?</a></li>
       <li><a href="#whene2e">¿Cómo puedo saber si los mensajes están cifrados de extremo a extremo?</a></li>
       <li><a href="#puedo-enviar-o-recibir-mensajes-sin-cifrado-de-extremo-a-extremo">¿Puedo enviar o recibir mensajes sin cifrado de extremo a extremo?</a></li>
-      <li><a href="#e2eeguarantee">¿Qué ha pasado con la marca de verificación verde en los perfiles de los contactos?</a></li>
       <li><a href="#los-adjuntos-imágenes-archivos-audio-etc-están-cifrados-de-extremo-a-extremo">¿Los adjuntos (imágenes, archivos, audio, etc.) están cifrados de extremo a extremo?</a></li>
       <li><a href="#openpgp-secure">¿Es OpenPGP seguro?</a></li>
       <li><a href="#openpgp-alternatives">¿Considerasteis usar alternativas a OpenPGP para la encriptación de extremo a extremo?</a></li>
@@ -277,10 +277,10 @@ es posible hacerlo en <strong>Ajustes  → Perfil → Texto de firma</strong>.
 Una vez que hayas enviado un mensaje a un contacto,
 este lo verá cuando consulte tus datos de contacto.</p>
     
-      <h3 id="qué-significa-fijar-mutear-archivar">
+      <h3 id="pin-chats">
         
         
-          ¿Qué significa fijar, mutear, archivar? <a href="#qué-significa-fijar-mutear-archivar" class="anchor"></a>
+          Pin, mute and archive a chat <a href="#pin-chats" class="anchor"></a>
         
         
       </h3>
@@ -340,6 +340,41 @@ puedes volver al mensaje original en el chat original</p>
 
 <p>Los mensajes se quedan guardados, también si se han cambiado o están borrados -
 Sea por el <a href="#edit">remitente</a>, por la <a href="#delold">limpieza del dispositivo</a> o por la <a href="#ephemeralmsgs">desaparición de mensajes de otros chats</a>.</p>
+    
+      <h3 id="pin-messages">
+        
+        
+          How do pinned messages work? <a href="#pin-messages" class="anchor"></a>
+        
+        
+      </h3>
+
+<p><strong>Pin important messages</strong> such as an address, a meeting time or the rules of a group,
+so everyone can find them quickly.
+Unlike <a href="#pin-chats">pinned chats</a> that only organize <em>your</em> chat list,
+pinned messages are visible to <strong>all chat members</strong>.</p>
+
+<ul>
+  <li>
+    <p>In any chat, long tap or right click a message and select <img style="vertical-align:middle; height:1.2em; margin:1px" src="../pin-icon.png" alt="" /> <strong>Pin</strong>.
+To remove it, select <img style="vertical-align:middle; height:1.2em; margin:1px" src="../unpin-icon.png" alt="" /> <strong>Unpin</strong> from the same menu.
+Unpinning also affects all chat members, not only you.</p>
+  </li>
+  <li>
+    <p>Pinned messages are shown in a <strong>bar at the top of the chat</strong>.
+Tap the bar to jump to the pinned message.
+If there are several, you can step through them.</p>
+  </li>
+  <li>
+    <p>If you pin an <a href="#webxdc">app</a>, it gets a <strong>start button</strong>
+so that everyone has easy access to it without scrolling or searching around.</p>
+  </li>
+  <li>
+    <p>There is no limit on the number of pinned messages or on how long they stay pinned.</p>
+  </li>
+</ul>
+
+<p>To keep messages just for yourself, use <a href="#save">Saved Messages</a>.</p>
     
       <h3 id="qué-significa-el-punto-verde">
         
@@ -897,7 +932,7 @@ la <a href="https://webxdc.org/docs">documentación de Webxdc</a></p>
   </li>
   <li>
     <p>Si tienes alguna duda, puedes preguntar a otras personas con experiencia
-en el <a href="https://support.delta.chat/c/webxdc/20">foro de Delta Chat </a>.</p>
+en el <a href="https://forum.delta.chat/c/webxdc/20">foro de Delta Chat </a>.</p>
   </li>
 </ul>
     
@@ -1169,7 +1204,7 @@ al otro dispositivo de alguna forma.</p>
   <li>
     <p>En el nuevo dispositivo, selecciona <strong>Ya tengo un perfil → Restaurar desde una copia de seguridad</strong>.
 Si utilizas iOS y tienes dificultades,
-<a href="https://support.delta.chat/t/import-backup-to-ios/1628">esta guía</a> podría resultarte útil.</p>
+<a href="https://forum.delta.chat/t/import-backup-to-ios/1628">esta guía</a> podría resultarte útil.</p>
   </li>
 </ul>
 
@@ -1217,7 +1252,7 @@ puedes probar las funcionalidades en las que estamos trabajando.</p>
 <p>Estas funcionalidades pueden ser <strong>inestables</strong> y pueden ser <strong>modificadas o eliminadas</strong>.</p>
 
 <p>Puedes encontrar más información
-y dejar tus comentarios en el <a href="https://support.delta.chat">Foro</a>.</p>
+y dejar tus comentarios en el <a href="https://forum.delta.chat">Foro</a>.</p>
     
       <h3 id="relays">
         
@@ -1432,31 +1467,6 @@ it is impossible to receive or send messages without end-to-end encryption.</p>
 you can send and receive messages with or without end-to-end encryption.
 Messages lacking end-to-end encryption are marked with an email icon
 <img style="vertical-align:middle; width:1.2em; margin:1px" src="../email-icon.png" alt="email" />.</p>
-    
-      <h3 id="e2eeguarantee">
-        
-        
-          ¿Qué ha pasado con la marca de verificación verde en los perfiles de los contactos? <a href="#e2eeguarantee" class="anchor"></a>
-        
-        
-      </h3>
-
-<p>Las versiones anteriores de Delta Chat mostraban una marca de verificación verde
-<img style="vertical-align:middle; width:1.5em; margin:1px" src="../green-checkmark.png" alt="green checkmark" />
-y una línea que decía “Presentado por” en algunos perfiles de contacto.</p>
-
-<p>Esta línea ya no aparece.
-Dado que <a href="https://delta.chat/en/2025-08-04-encryption-v2">Delta Chat V2</a>
-los contactos se identifican mediante su clave criptográfica (“clave pública”),
-y nunca existe la posibilidad de que el operador del retransmisor
-intercambie una clave para llevar a cabo un ataque de intermediario (MitM)
-(de hecho, el operador ni siquiera ve la clave en ningún momento).</p>
-
-<p>Sigue siendo posible que un atacante te envíe un enlace de invitación
-que se haga pasar por otra persona, y un atacante que tenga tu contacto de Delta Chat (porque está en un chat grupal contigo)
-podría intentar iniciar un chat contigo con un nombre falso.
-Este tipo de ataques están <a href="https://support.signal.org/hc/en-us/articles/9932566320410-Staying-Safe-from-Phishing-Scams-and-Impersonation">presentes en todas las aplicaciones de mensajería</a>,
-y tenemos previsto introducir mejoras en el futuro para mitigarlos.</p>
     
       <h3 id="los-adjuntos-imágenes-archivos-audio-etc-están-cifrados-de-extremo-a-extremo">
         
@@ -1764,7 +1774,7 @@ or read the <a href="https://delta.chat/assets/blog/MER-01-report.pdf">full repo
   </li>
   <li>
     <p>2020, <a href="https://includesecurity.com">Include Security</a> analyzed Delta
-Chat’s Rust <a href="https://github.com/deltachat/deltachat-core-rust/">core</a>,
+Chat’s Rust <a href="https://github.com/chatmail/core/">core</a>,
 <a href="https://github.com/async-email/async-imap">IMAP</a>,
 <a href="https://github.com/async-email/async-smtp">SMTP</a>, and
 <a href="https://github.com/async-email/async-native-tls">TLS</a> libraries.
