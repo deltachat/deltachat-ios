@@ -149,6 +149,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             },
             startWebxdc: { [weak self] msg in
                 self?.showWebxdcViewFor(message: msg)
+            },
+            unpin: { [weak self] msg in
+                self?.askToTogglePin(msg)
             }
         ))
         if #available(iOS 16.0, *) {
@@ -1590,6 +1593,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(alert, animated: true, completion: nil)
     }
 
+    private func askToTogglePin(_ message: DcMsg) {
+        let pin = !message.isPinned
+        confirmationAlert(
+            title: String.localized(pin ? "pin_for_everyone_ask" : "unpin_for_everyone_ask"),
+            actionTitle: String.localized(pin ? "pin_for_everyone" : "unpin_for_everyone"),
+            actionHandler: { _ in message.isPinned = pin }
+        )
+    }
+
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
         confirmationAlert(
@@ -2205,7 +2217,7 @@ extension ChatViewController {
                             attributes: dcChat.canSend && !message.isInfo ? [] : .disabled,
                             systemImageName: isPinned ? "pin.slash.fill" : "pin",
                             with: message,
-                            action: { $0.isPinned = !isPinned }
+                            action: askToTogglePin
                         )
                         UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                     }
