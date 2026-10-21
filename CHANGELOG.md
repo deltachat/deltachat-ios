@@ -13,9 +13,15 @@
 - Re-add "Second device added" message if deleted soon after transfer
 - Add new webxdc.isAppSender and webxdc.isBroadcast APIs for mini-apps
 - Mini apps can now prompt the user to open a http(s) link
+- Do not clutter channel summaries with reactions
+- Handle deeplinks after app was terminated
+- Allow opening links in webxdc after confirmation
+- Show total reaction count in reaction details
+- Fix syncchronizing channel reactions if a channel owner uses multiple devices
 - Fix: show meaningful subtitle for group members on group creation
+- Add Burmese and Maltese translations
 - Update translations and local help
-- Update to core 2.63.0
+- Update to core 2.64.0
 
 
 ## 2.62.2
