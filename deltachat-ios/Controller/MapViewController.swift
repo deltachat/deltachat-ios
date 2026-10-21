@@ -7,13 +7,16 @@ class MapViewController: WebxdcViewController {
 
     init(dcContext: DcContext, chatId: Int, focusOn contactId: Int? = nil) {
         isGlobalMap = chatId == 0
-        var webxdcInstanceId = dcContext.initWebxdcIntegration(for: chatId)
+        let mapsVersion = 2
+        let hasNewMap = dcContext.getConfigInt("ui.maps_version") != mapsVersion
+        var webxdcInstanceId = hasNewMap ? 0 : dcContext.initWebxdcIntegration(for: chatId)
         if webxdcInstanceId == 0 {
             if let mapsXdc = Bundle.main.url(forResource: "maps", withExtension: "xdc", subdirectory: "Assets") {
                 dcContext.setWebxdcIntegration(filepath: mapsXdc.path)
                 webxdcInstanceId = dcContext.initWebxdcIntegration(for: chatId)
             }
         }
+        dcContext.setConfigInt("ui.maps_version", mapsVersion)
         let href = contactId.map { "index.html?contactId=\($0)" }
         super.init(dcContext: dcContext, messageId: webxdcInstanceId, href: href)
     }
