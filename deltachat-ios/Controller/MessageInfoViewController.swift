@@ -44,13 +44,12 @@ class MessageInfoViewController: UIViewController {
 
     var rootView: some View {
         List {
-            if message.isFromCurrentSender {
-                HStack {
-                    Text(String.localized("message_detail_sent_desktop")).bold()
-                    Spacer()
-                    Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(message.timestamp)))
-                }
-            } else {
+            HStack {
+                Text(String.localized("message_detail_sent_desktop")).bold()
+                Spacer()
+                Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: Double(message.timestamp)))
+            }
+            if !message.isFromCurrentSender {
                 HStack {
                     Text(String.localized("message_detail_received_desktop")).bold()
                     Spacer()
