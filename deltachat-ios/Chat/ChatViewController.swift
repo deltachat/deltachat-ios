@@ -1879,8 +1879,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     // MARK: - Actions
 
     private func info(for msgId: Int) {
-        let msg = self.dcContext.getMessage(id: msgId)
-        navigationController?.pushViewController(MessageInfoViewController(dcContext: self.dcContext, message: msg), animated: true)
+        let msg = dcContext.getMessage(id: msgId)
+        let vc = MessageInfoViewController(dcContext: dcContext, message: msg)
+        let nvc = UINavigationController(rootViewController: vc)
+        nvc.sheetPresentationController?.detents = [.medium(), .large()]
+        present(nvc, animated: true)
     }
 
     private func forward(_ msgId: Int) {
