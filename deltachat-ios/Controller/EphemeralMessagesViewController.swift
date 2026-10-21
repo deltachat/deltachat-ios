@@ -97,7 +97,6 @@ class EphemeralMessagesViewController: UITableViewController {
             navigationController?.popToViewController(previouslyShownChatVC, animated: true)
         } else if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             // go forward to the changed chat.
-            // this happens eg when group chat > details > contact > change ephemeral messages for contact
             appDelegate.appCoordinator.showChat(chatId: chatId, animated: true, clearViewControllerStack: true)
         }
     }
