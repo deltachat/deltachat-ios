@@ -1,12 +1,12 @@
 # Delta Chat iOS Changelog
 
 
-## Unreleased
+## 2.64.0 Testflight
+2026-10
 
 - Pinned Messages
 - Nicer profile and group image selection
 - Allow to share location for 24 hours
-- Show total reaction count in reaction details
 - Revamped message info screen
 - Larger emojis in default reaction selection
 - Improve sendig reliability by trying th most recently successfully used relay first
@@ -16,9 +16,9 @@
 - Mini apps can now prompt the user to open a http(s) link
 - Do not clutter channel summaries with reactions
 - Handle deeplinks after app was terminated
-- Allow opening links in webxdc after confirmation
 - Show total reaction count in reaction details
 - Chat view now has a more button with chat actions that used to live in the profile view
+- Improve message's context menu
 - Fix syncchronizing channel reactions if a channel owner uses multiple devices
 - Fix: show meaningful subtitle for group members on group creation
 - Add Burmese and Maltese translations
