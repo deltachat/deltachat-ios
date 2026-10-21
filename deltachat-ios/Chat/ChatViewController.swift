@@ -2353,13 +2353,10 @@ extension ChatViewController {
         editingBar.moreButton.isEnabled = canSaveOrUnsaveMultiple().0 || canResend()
     }
 
-    func setEditing(isEditing: Bool, selectedAtIndexPath: IndexPath? = nil) {
+    func setEditing(isEditing: Bool) {
         self.tableView.setEditing(isEditing, animated: true)
         self.draft.isEditing = isEditing
         self.configureDraftArea(draft: self.draft)
-        if let indexPath = selectedAtIndexPath {
-            _ = handleSelection(indexPath: indexPath)
-        }
         self.updateTitle()
         if refreshMessagesAfterEditing && isEditing == false {
             refreshMessages()
