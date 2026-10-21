@@ -1244,9 +1244,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if !dcChat.isMultiUser && dcChat.canSend, let dcContact, dcContact.isKeyContact {
                     rightBarButtonItems.append(callButton)
                 }
-            } else {
-                let button = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchPressed))
-                rightBarButtonItems.append(button)
             }
             
             navigationItem.rightBarButtonItems = rightBarButtonItems
