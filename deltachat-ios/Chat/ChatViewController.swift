@@ -318,22 +318,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
             }
         )
-        UIMenu(options: [.displayInline]) { [unowned self] in
-            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
-                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-            })
-            if dcChat.isEncrypted, dcChat.canSend {
-                let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
-                UIAction(
-                    title: String.localized("ephemeral_messages"),
-                    subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
-                    image: UIImage(systemName: "stopwatch"),
-                    state: ephemeralTimer > 0 ? .on : .off,
-                    handler: { [unowned self] _ in
-                        show(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), sender: nil)
-                    }
-                )
-            }
+        MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+            dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+        })
+        if dcChat.isEncrypted, dcChat.canSend {
+            let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
+            UIAction(
+                title: String.localized("ephemeral_messages"),
+                subtitle: ephemeralTimer > 0 ? EphemeralMessagesViewController.getValString(val: ephemeralTimer) : nil,
+                image: UIImage(systemName: "stopwatch"),
+                state: ephemeralTimer > 0 ? .on : .off,
+                handler: { [unowned self] _ in
+                    show(EphemeralMessagesViewController(dcContext: dcContext, chatId: chatId), sender: nil)
+                }
+            )
         }
         UIMenu(options: [.displayInline]) { [unowned self] in
             UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
