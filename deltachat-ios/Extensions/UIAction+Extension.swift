@@ -31,9 +31,7 @@ extension UIAction {
                     NotificationManager.removeNotificationsForChat(dcChat.id, accountId: dcContext.id)
                 }
                 dcContext.archiveChat(chatId: dcChat.id, archive: !archivedBefore)
-                if !archivedBefore {
-                    vc?.navigationController?.popToRootViewController(animated: true)
-                }
+                vc?.navigationController?.popToRootViewController(animated: true)
             }
         )
     }
