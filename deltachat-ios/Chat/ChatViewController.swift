@@ -151,7 +151,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self?.showWebxdcViewFor(message: msg)
             },
             unpin: { [weak self] msg in
-                self?.askToTogglePin(msg)
+                self?.togglePin(msg)
             }
         ))
         if #available(iOS 16.0, *) {
@@ -1593,13 +1593,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         present(alert, animated: true, completion: nil)
     }
 
-    private func askToTogglePin(_ message: DcMsg) {
+    private func togglePin(_ message: DcMsg) {
         let pin = !message.isPinned
-        confirmationAlert(
-            title: String.localized(pin ? "pin_for_everyone_ask" : "unpin_for_everyone_ask"),
-            actionTitle: String.localized(pin ? "pin_for_everyone" : "unpin_for_everyone"),
-            actionHandler: { _ in message.isPinned = pin }
-        )
+        if dcChat.isSelfTalk {
+            message.isPinned = pin
+        } else {
+            confirmationAlert(
+                title: String.localized(pin ? "pin_for_everyone_ask" : "unpin_for_everyone_ask"),
+                actionTitle: String.localized(pin ? "pin_for_everyone" : "unpin_for_everyone"),
+                actionHandler: { _ in message.isPinned = pin }
+            )
+        }
     }
 
     private func askToForwardMessage() {
@@ -2217,7 +2221,7 @@ extension ChatViewController {
                             attributes: dcChat.canSend && !message.isInfo ? [] : .disabled,
                             systemImageName: isPinned ? "pin.slash.fill" : "pin",
                             with: message,
-                            action: askToTogglePin
+                            action: togglePin
                         )
                         UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                     }
