@@ -2206,23 +2206,27 @@ extension ChatViewController {
                         UIAction.menuAction(localizationKey: "resend", systemImageName: "arrow.clockwise", with: messageId, action: resendSingle)
                     }
                     UIMenu(options: [.displayInline], elementSize: .small) { [unowned self] in
-                        let isSaved = message.savedMessageId != 0
-                        UIAction.menuAction(
-                            localizationKey: isSaved ? "unsave" : "save_desktop",
-                            attributes: !dcChat.isSelfTalk && message.canSave ? [] : .disabled,
-                            systemImageName: isSaved ? "bookmark.slash.fill" : "bookmark",
-                            with: messageId,
-                            action: toggleSave
-                        )
+                        let canSave = !dcChat.isSelfTalk && message.canSave
+                        if canSave {
+                            let isSaved = message.savedMessageId != 0
+                            UIAction.menuAction(
+                                localizationKey: isSaved ? "unsave" : "save_desktop",
+                                systemImageName: isSaved ? "bookmark.slash.fill" : "bookmark",
+                                with: messageId,
+                                action: toggleSave
+                            )
+                        }
                         UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info)
-                        let isPinned = message.isPinned
-                        UIAction.menuAction(
-                            localizationKey: isPinned ? "unpin" : "pin",
-                            attributes: dcChat.canSend && !message.isInfo ? [] : .disabled,
-                            systemImageName: isPinned ? "pin.slash.fill" : "pin",
-                            with: message,
-                            action: togglePin
-                        )
+                        let canPin = dcChat.canSend && !message.isInfo
+                        if canPin {
+                            let isPinned = message.isPinned
+                            UIAction.menuAction(
+                                localizationKey: isPinned ? "unpin" : "pin",
+                                systemImageName: isPinned ? "pin.slash.fill" : "pin",
+                                with: message,
+                                action: togglePin
+                            )
+                        }
                         UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                     }
                 }
