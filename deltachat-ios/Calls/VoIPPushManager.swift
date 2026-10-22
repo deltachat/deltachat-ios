@@ -34,10 +34,10 @@ class VoIPPushManager: NSObject, PKPushRegistryDelegate {
             guard let placeCallInfo = callInfo["place_call_info"] as? String else { return }
             let hasVideo = callInfo["has_video"] as? Bool == true
             CallManager.shared.reportIncomingCall(accountId: accountId, msgId: msgId, placeCallInfo: placeCallInfo, hasVideo: hasVideo)
-            if !UserDefaults.mainIoRunning {
+            if !UserDefaults.shared.mainIoRunning {
                 // didBecomeActive or willEnterForeground are not called when app is started from NSE
                 // so we need to start IO here.
-                UserDefaults.setMainIoRunning()
+                UserDefaults.shared.mainIoRunning = true
                 DcAccounts.shared.startIo()
                 DcAccounts.shared.maybeNetwork()
                 let appDelegate = UIApplication.shared.delegate as? AppDelegate

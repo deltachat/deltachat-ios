@@ -118,7 +118,7 @@ public class LogViewController: UIViewController {
         info += "\n"
 
         info += UserDefaults.debugArrayKey + "="
-        if let infos = UserDefaults.shared?.array(forKey: UserDefaults.debugArrayKey)  as? [String] {
+        if let infos = UserDefaults.shared.array(forKey: UserDefaults.debugArrayKey)  as? [String] {
             var lastTime = ""
             for currInfo in infos {
                 let currInfo = currInfo.split(separator: "|", maxSplits: 2)

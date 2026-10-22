@@ -68,7 +68,7 @@ public class KeychainManager {
             throw KeychainError.unhandledError(message: "Error adding secret for account \(id)",
                                                status: status)
         }
-        UserDefaults.shared?.set(true, forKey: UserDefaults.hasSavedKeyToKeychain)
+        UserDefaults.shared.set(true, forKey: UserDefaults.hasSavedKeyToKeychain)
         return try queryAccountSecret(id: id)
     }
 

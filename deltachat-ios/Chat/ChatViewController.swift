@@ -1560,7 +1560,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         func deleteInUi(ids: [Int]) {
             AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
             if #available(iOS 17.0, *) {
-                ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
+                ids.forEach { UserDefaults.shared.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }
             if self.tableView.isEditing {
                 self.setEditing(isEditing: false)

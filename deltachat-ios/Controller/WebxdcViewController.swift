@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 import WebKit
 import DcCore
 
@@ -23,7 +24,9 @@ class WebxdcViewController: WebViewViewController {
         let image = UIImage(systemName: .ellipsisNavigation())
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
-    
+
+    private var advertiseAgainCancelable: AnyCancellable?
+
     // Block just everything, except of webxdc urls
     let blockRules = """
     [
@@ -446,8 +449,8 @@ class WebxdcViewController: WebViewViewController {
                     }
                 })
 
-                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-                    let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
+                if #available(iOS 17.0, *) {
+                    let appsInWidgetsMessageIds = UserDefaults.shared.getAppWidgetEntries().compactMap { entry in
                         switch entry.type {
                         case .app(let messageId): return messageId
                         case .chat: return nil
@@ -457,12 +460,12 @@ class WebxdcViewController: WebViewViewController {
                     if isOnHomescreen {
                         actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
                             guard let self else { return }
-                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
+                            UserDefaults.shared.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
                         })
                     } else {
                         actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
                             guard let self else { return }
-                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
+                            UserDefaults.shared.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
                         })
                     }
                 }
@@ -563,6 +566,13 @@ extension WebxdcViewController: WKScriptMessageHandler {
         case .sendRealtimeAdvertisement:
             logger.info("➡️ send realtime advertisement")
             dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+            advertiseAgainCancelable = UserDefaults.shared
+                .publisher(for: \.mainIoRunning)
+                .debounce(for: .seconds(1), scheduler: RunLoop.main)
+                .sink { [weak self] mainIoRunning in
+                    guard let self, mainIoRunning else { return }
+                    dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+                }
 
         case .sendRealtimeData:
             if let uint8Array = message.body as? [UInt8] {
@@ -572,6 +582,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
         case .leaveRealtime:
             logger.info("⬅️ leave realtime by xdc request")
             dcContext.leaveWebxdcRealtime(messageId: messageId)
+            advertiseAgainCancelable = nil
         }
     }
 }

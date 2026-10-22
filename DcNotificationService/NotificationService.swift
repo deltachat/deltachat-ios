@@ -20,20 +20,20 @@ class NotificationService: UNNotificationServiceExtension {
 
     func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) async {
         let nowTimestamp = Date().timeIntervalSince1970
-        UserDefaults.pushToDebugArray("🤜")
+        UserDefaults.shared.pushToDebugArray("🤜")
 
         let dnc = DarwinNotificationCenter.current
         if await dnc.didReply(.appRunningConfirmation, to: .appRunningQuestion, timeout: .now() + .seconds(2)) {
-            UserDefaults.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
+            UserDefaults.shared.pushToDebugArray("ABORT4_AS_MAIN_RUNS")
             contentHandler(silentNotification())
             return
         }
-        if UserDefaults.nseFetching {
-            UserDefaults.pushToDebugArray("ABORT5_AS_NSE_RUNS")
+        if UserDefaults.shared.isNseFetching() {
+            UserDefaults.shared.pushToDebugArray("ABORT5_AS_NSE_RUNS")
             contentHandler(silentNotification())
             return
         }
-        UserDefaults.setNseFetching(for: fetchTimeout)
+        UserDefaults.shared.setNseFetching(for: fetchTimeout)
 
         dcAccounts.openDatabase(writeable: false)
         let eventEmitter = dcAccounts.getEventEmitter()
@@ -50,7 +50,7 @@ class NotificationService: UNNotificationServiceExtension {
         memoryPressureSource.setEventHandler { [weak memoryPressureSource] in
             guard let memoryPressureSource, !memoryPressureSource.isCancelled else { return }
             memoryPressureSource.cancel()
-            UserDefaults.pushToDebugArray("ERR5_LOW_MEM")
+            UserDefaults.shared.pushToDebugArray("ERR5_LOW_MEM")
         }
         memoryPressureSource.activate()
 
@@ -74,7 +74,7 @@ class NotificationService: UNNotificationServiceExtension {
                 case DC_EVENT_INCOMING_WEBXDC_NOTIFY:
                     await notificationManager.notifyIncomingWebxdcNotify(event.data2String, msgId: event.data2Int, accountId: event.accountId)
                 case DC_EVENT_INCOMING_CALL:
-                    UserDefaults.pushToDebugArray("☎️")
+                    UserDefaults.shared.pushToDebugArray("☎️")
                     let payload: [String: Any] = [
                         "event_id": Int(DC_EVENT_INCOMING_CALL),
                         "account_id": event.accountId,
@@ -82,7 +82,7 @@ class NotificationService: UNNotificationServiceExtension {
                         "place_call_info": event.data2String,
                         "has_video": event.data2Int == 1,
                     ]
-                    UserDefaults.shared?.set(payload, forKey: UserDefaults.incomingCallPayloadKey)
+                    UserDefaults.shared.set(payload, forKey: UserDefaults.incomingCallPayloadKey)
                     if !canUseCallKit {
                         let dcContext = dcAccounts.get(id: event.accountId)
                         let msg = dcContext.getMessage(id: event.data2Int)
@@ -97,7 +97,7 @@ class NotificationService: UNNotificationServiceExtension {
                         // which might happen if this is the first NSE run after no network.
                         Task {
                             try? await Task.sleep(nanoseconds: 1_000_000_000)
-                            if UserDefaults.shared?.value(forKey: UserDefaults.incomingCallPayloadKey) != nil {
+                            if UserDefaults.shared.value(forKey: UserDefaults.incomingCallPayloadKey) != nil {
                                 dcAccounts.stopBackgroundFetch()
                             }
                         }
@@ -106,8 +106,8 @@ class NotificationService: UNNotificationServiceExtension {
                     await notificationManager.notifyIncomingMessage(event.data1Int, accountId: event.accountId)
                     fallthrough
                 case DC_EVENT_INCOMING_CALL_ACCEPTED:
-                    UserDefaults.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
-                    UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
+                    UserDefaults.shared.pushToDebugArray(event.id == DC_EVENT_CALL_ENDED ? "☎️ENDED" : "☎️ACCEPTED")
+                    UserDefaults.shared.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
                 case DC_EVENT_MSGS_NOTICED:
                     NotificationManager.removeNotificationsForChat(event.data1Int, accountId: event.accountId)
                 case DC_EVENT_MSGS_CHANGED:
@@ -123,30 +123,30 @@ class NotificationService: UNNotificationServiceExtension {
         if dcAccounts.backgroundFetch(timeout: UInt64(fetchTimeout)) {
             unc.removePendingNotificationRequests(withIdentifiers: ["best_attempt"])
             unc.removeDeliveredNotifications(withIdentifiers: ["best_attempt"])
-            UserDefaults.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
+            UserDefaults.shared.pushToDebugArray(String(format: "OK2 %.3fs", Date().timeIntervalSince1970 - nowTimestamp))
         } else {
-            UserDefaults.pushToDebugArray("ERR3_CORE")
+            UserDefaults.shared.pushToDebugArray("ERR3_CORE")
         }
 
         // Wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE to be processed
         await eventEmitterTask.value
 
-        UserDefaults.setNseFetchingDone()
+        UserDefaults.shared.setNseFetchingDone()
 
         // This silent notification updates the badge number
         let silentNotification = silentNotification()
         silentNotification.badge = dcAccounts.getFreshMessagesCount() as NSNumber
         dcAccounts.closeDatabase()
-        UserDefaults.shared?.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
+        UserDefaults.shared.set(true, forKey: UserDefaults.hasExtensionAttemptedToSend) // force UI updates in case app was suspended
 
-        if canUseCallKit, let incomingCallPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
-            UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
+        if canUseCallKit, let incomingCallPayload = UserDefaults.shared.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
+            UserDefaults.shared.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
             // reportNewIncomingVoIPPushPayload ends up in didReceiveIncomingPushWith in the main app
             CXProvider.reportNewIncomingVoIPPushPayload(incomingCallPayload) { error in
                 if let error {
-                    UserDefaults.pushToDebugArray("ERR☎️ " + error.localizedDescription)
+                    UserDefaults.shared.pushToDebugArray("ERR☎️ " + error.localizedDescription)
                 } else {
-                    UserDefaults.pushToDebugArray("OK☎️")
+                    UserDefaults.shared.pushToDebugArray("OK☎️")
                 }
             }
         }
@@ -160,8 +160,8 @@ class NotificationService: UNNotificationServiceExtension {
 
         // For Delta Chat, it is just fine to do nothing - assume eg. bad network or mail servers not reachable,
         // then a "You have new messages" is the best that can be done.
-        UserDefaults.pushToDebugArray("ERR4_TIME")
-        UserDefaults.setNseFetchingDone()
+        UserDefaults.shared.pushToDebugArray("ERR4_TIME")
+        UserDefaults.shared.setNseFetchingDone()
     }
 
     /// Do not show anything; requires `com.apple.developer.usernotifications.filtering` entitlement

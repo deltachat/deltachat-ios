@@ -90,7 +90,7 @@ public class DcAccounts {
     }
 
     public func startIo() {
-        if UserDefaults.nseFetching {
+        if UserDefaults.shared.isNseFetching() {
             // Let UI display "Updating..." (additional events needed that state is not managed by core)
             getAll().forEach {
                 NotificationCenter.default.post(name: Event.connectivityChanged, object: nil, userInfo: ["account_id": $0])
@@ -100,9 +100,9 @@ public class DcAccounts {
             // The other way round, NSE is not started when main-IO is running.
             startOrReschedule()
             func startOrReschedule() {
-                if UserDefaults.mainIoRunning {
+                if UserDefaults.shared.mainIoRunning {
                     logger.info("➡️ wait for NSE to terminate")
-                    if UserDefaults.nseFetching {
+                    if UserDefaults.shared.isNseFetching() {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: startOrReschedule)
                     } else {
                         dc_accounts_start_io(accountsPointer)
@@ -117,8 +117,8 @@ public class DcAccounts {
         }
         /// Post incoming call event that was posted while the app was in background
         func sendQueuedCallPayload() {
-            if let callPayload = UserDefaults.shared?.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
-                UserDefaults.shared?.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
+            if let callPayload = UserDefaults.shared.dictionary(forKey: UserDefaults.incomingCallPayloadKey) {
+                UserDefaults.shared.set(nil, forKey: UserDefaults.incomingCallPayloadKey)
                 NotificationCenter.default.post(name: Event.incomingCall, object: nil, userInfo: callPayload)
             }
         }

@@ -236,7 +236,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         let msgId = mediaMessageIds.remove(at: indexPath.row)
         self.dcContext.deleteMessage(msgId: msgId)
         if #available(iOS 17.0, *) {
-            UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: msgId)
+            UserDefaults.shared.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: msgId)
         }
         self.grid.deleteItems(at: [indexPath])
     }
