@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 import WebKit
 import DcCore
 
@@ -23,7 +24,9 @@ class WebxdcViewController: WebViewViewController {
         let image = UIImage(systemName: .ellipsisNavigation())
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
-    
+
+    private var advertiseAgainCancelable: AnyCancellable?
+
     // Block just everything, except of webxdc urls
     let blockRules = """
     [
@@ -563,6 +566,14 @@ extension WebxdcViewController: WKScriptMessageHandler {
         case .sendRealtimeAdvertisement:
             logger.info("➡️ send realtime advertisement")
             dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+            advertiseAgainCancelable = NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+                .map { _ in UserDefaults.mainIoRunning }
+                .removeDuplicates()
+                .debounce(for: .seconds(1), scheduler: RunLoop.main)
+                .sink { [weak self] mainIoRunning in
+                    guard let self, mainIoRunning else { return }
+                    dcContext.sendWebxdcRealtimeAdvertisement(messageId: messageId)
+                }
 
         case .sendRealtimeData:
             if let uint8Array = message.body as? [UInt8] {
@@ -572,6 +583,7 @@ extension WebxdcViewController: WKScriptMessageHandler {
         case .leaveRealtime:
             logger.info("⬅️ leave realtime by xdc request")
             dcContext.leaveWebxdcRealtime(messageId: messageId)
+            advertiseAgainCancelable = nil
         }
     }
 }
