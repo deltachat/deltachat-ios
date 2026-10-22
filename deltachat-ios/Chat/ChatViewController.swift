@@ -348,7 +348,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 title: String.localized("clear_chat"),
                 image: UIImage(systemName: clearImage),
                 attributes: [.destructive],
-                handler: { [unowned self] _ in askToDeleteMessages(ids: dcContext.getChatMsgs(chatId: chatId, flags: 0)) }
+                handler: { [unowned self] _ in askToDeleteMessages(ids: dcContext.getChatMsgs(chatId: chatId, flags: 0), confirmButton: String.localized("clear_chat")) }
             )
             UIAction.leaveChat(dcChat, dcContext: dcContext, presentAlertsOn: self)
         }
@@ -1556,7 +1556,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    private func askToDeleteMessages(ids: [Int]) {
+    private func askToDeleteMessages(ids: [Int], confirmButton: String? = nil) {
         func deleteInUi(ids: [Int]) {
             AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
             if #available(iOS 17.0, *) {
@@ -1577,7 +1577,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me"), style: .destructive, handler: { [weak self] _ in
+        let title = confirmButton ?? String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me")
+        alert.addAction(UIAlertAction(title: title, style: .destructive, handler: { [weak self] _ in
             self?.dcContext.deleteMessages(msgIds: ids)
             deleteInUi(ids: ids)
         }))
