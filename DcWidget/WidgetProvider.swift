@@ -47,7 +47,7 @@ struct Provider: TimelineProvider {
         default: limit = 8
         }
 
-        let entries = UserDefaults.shared?.getAllWidgetEntries() ?? []
+        let entries = UserDefaults.shared.getAllWidgetEntries()
         let shortcuts: [Shortcut] = entries
             .prefix(limit)
             .compactMap { entry in

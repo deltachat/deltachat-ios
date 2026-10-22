@@ -1037,7 +1037,7 @@ extension ChatListViewController: ChatListEditingBarDelegate {
     }
 
     func onMorePressed() -> UIMenu {
-        guard let userDefaults = UserDefaults.shared, let viewModel else { return UIMenu() }
+        guard let viewModel else { return UIMenu() }
         let chatIds = viewModel.chatIdsFor(indexPaths: tableView.indexPathsForSelectedRows)
         var actions = [UIMenuElement]()
 
@@ -1045,7 +1045,7 @@ extension ChatListViewController: ChatListEditingBarDelegate {
            chatIds.count == 1,
            let chatId = chatIds.first {
 
-            let allHomescreenChatsIds: [Int] = userDefaults
+            let allHomescreenChatsIds: [Int] = UserDefaults.shared
                 .getChatWidgetEntries()
                 .filter { $0.accountId == dcContext.id }
                 .compactMap { entry in
@@ -1060,13 +1060,13 @@ extension ChatListViewController: ChatListEditingBarDelegate {
             if chatPresentInHomescreenWidget {
                 action = UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
                     guard let self else { return }
-                    userDefaults.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                    UserDefaults.shared.removeChatFromHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)
                 }
             } else {
                 action = UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
                     guard let self else { return }
-                    userDefaults.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
+                    UserDefaults.shared.addChatToHomescreenWidget(accountId: self.dcContext.id, chatId: chatId)
                     setLongTapEditing(false)
                 }
             }

@@ -483,7 +483,7 @@ extension DcContext {
     func deleteReferencesAndChat(chatId: Int) {
         deleteChat(chatId: chatId)
         if #available(iOS 17.0, *) {
-            UserDefaults.shared?.removeChatFromHomescreenWidget(accountId: id, chatId: chatId)
+            UserDefaults.shared.removeChatFromHomescreenWidget(accountId: id, chatId: chatId)
         }
         NotificationManager.removeNotificationsForChat(chatId, accountId: id)
         INInteraction.delete(with: ["\(id).\(chatId)"])

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     /// Other processes like the Notification Service Extension can post
     /// DarwinNotification.appRunningQuestion in which case we reply with .appRunningConfirmation
     @objc func appRunningQuestion(notification: DarwinNotification) {
-        guard UserDefaults.mainIoRunning else { return }
+        guard UserDefaults.shared.mainIoRunning else { return }
         DarwinNotificationCenter.current.post(.appRunningConfirmation)
     }
 
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DarwinNotificationCenter.current.addObserver(self, selector: #selector(Self.appRunningQuestion), for: .appRunningQuestion)
         callManager = CallManager.shared
         UserDefaults.standard.populateDefaultEmojis()
-        UserDefaults.setMainIoRunning()
+        UserDefaults.shared.mainIoRunning = true
         UNUserNotificationCenter.current().delegate = self
 
         let webPCoder = SDImageWebPCoder.shared
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // finishes the app initialization which depends on the successful access to the keychain
     func continueDidFinishLaunchingWithOptions() {
-        if let sharedUserDefaults = UserDefaults.shared, !sharedUserDefaults.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
+        if !UserDefaults.shared.bool(forKey: UserDefaults.hasSavedKeyToKeychain) {
             // we can assume a fresh install (UserDefaults are deleted on app removal)
             // -> reset the keychain (which survives removals of the app) in case the app was removed and reinstalled.
             if !KeychainManager.deleteDBSecrets() {
@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         if let notificationOption = launchOptions?[.remoteNotification] {
             logger.info("Notifications: remoteNotification: \(String(describing: notificationOption))")
-            UserDefaults.pushToDebugArray("📡'")
+            UserDefaults.shared.pushToDebugArray("📡'")
             performFetch()
         }
 
@@ -186,8 +186,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func handleAppClipInviteLink() {
         guard dcAccounts.getSelected().isConfigured() else { return }
         let inviteLinkKey = "appClipInviteLink"
-        guard let inviteLink = UserDefaults.shared?.string(forKey: inviteLinkKey) else { return }
-        UserDefaults.shared?.removeObject(forKey: inviteLinkKey)
+        guard let inviteLink = UserDefaults.shared.string(forKey: inviteLinkKey) else { return }
+        UserDefaults.shared.removeObject(forKey: inviteLinkKey)
         appCoordinator.handleQRCode(inviteLink)
     }
 
@@ -205,8 +205,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     static func emitMsgsChangedIfShareExtensionWasUsed() {
-        if let userDefaults = UserDefaults.shared, userDefaults.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
-            userDefaults.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
+        if UserDefaults.shared.bool(forKey: UserDefaults.hasExtensionAttemptedToSend) {
+            UserDefaults.shared.removeObject(forKey: UserDefaults.hasExtensionAttemptedToSend)
 
             NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: [
                 "message_id": Int(0),
@@ -266,7 +266,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else if app.backgroundTimeRemaining < 10 {
                 logger.info("⬅️ few background time, \(app.backgroundTimeRemaining), stopping")
                 self.dcAccounts.stopIo()
-                UserDefaults.setMainIoRunning(false)
+                UserDefaults.shared.mainIoRunning = false
 
                 // to avoid 0xdead10cc exceptions, scheduled jobs need to be done before we get suspended;
                 // we increase the probabilty that this happens by waiting a moment before calling unregisterBackgroundTask()
@@ -309,7 +309,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     public func prepopulateWidget() {
         if #available(iOS 17.0, *) {
-            UserDefaults.shared?.prepopulateWidget()
+            UserDefaults.shared.prepopulateWidget()
         }
     }
 
@@ -353,7 +353,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // (at some point it would be nice if we get a clear signal from the core)
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: didReceiveRemoteNotification")
-        UserDefaults.pushToDebugArray("📡")
+        UserDefaults.shared.pushToDebugArray("📡")
         performFetch(completionHandler: completionHandler)
     }
 
@@ -365,7 +365,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // we have 30 seconds time for our job, things are quite similar as in `didReceiveRemoteNotification`
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         logger.info("➡️ Notifications: performFetchWithCompletionHandler")
-        UserDefaults.pushToDebugArray("🏠")
+        UserDefaults.shared.pushToDebugArray("🏠")
         performFetch(completionHandler: completionHandler)
     }
 
@@ -373,15 +373,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // `didReceiveRemoteNotification` and`performFetchWithCompletionHandler` might be called if we're fetching instantly in foreground already
         if appIsInForeground() {
             logger.info("➡️ app already in foreground")
-            UserDefaults.pushToDebugArray("ABORT1_APP_IN_FG")
+            UserDefaults.shared.pushToDebugArray("ABORT1_APP_IN_FG")
             completionHandler?(.newData)
             return
         }
 
         // abort if NSE is runnig; core cannot start I/O twice
-        if UserDefaults.nseFetching {
+        if UserDefaults.shared.isNseFetching() {
             logger.info("➡️ NSE already running")
-            UserDefaults.pushToDebugArray("ABORT2_NSE_RUNNING")
+            UserDefaults.shared.pushToDebugArray("ABORT2_NSE_RUNNING")
             completionHandler?(.newData)
             return
         }
@@ -397,7 +397,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let nowTimestamp = Double(Date().timeIntervalSince1970)
         if nowTimestamp < bgIoTimestamp + 60 {
             logger.info("➡️ fetch was just executed, skipping")
-            UserDefaults.pushToDebugArray("ABORT3_SKIP")
+            UserDefaults.shared.pushToDebugArray("ABORT3_SKIP")
             completionHandler?(.newData)
             return
         }
@@ -408,9 +408,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
             // usually, this handler is not used as we are taking care of timings below.
             logger.info("⬅️ finishing fetch by system urgency requests")
-            UserDefaults.pushToDebugArray("ERR1_URGENCY")
+            UserDefaults.shared.pushToDebugArray("ERR1_URGENCY")
             self?.dcAccounts.stopIo()
-            UserDefaults.setMainIoRunning(false)
+            UserDefaults.shared.mainIoRunning = false
             completionHandler?(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
@@ -427,15 +427,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.dcAccounts.fetchSemaphore = DispatchSemaphore(value: 0)
 
             // backgroundFetch() pauses IO as needed
-            UserDefaults.setMainIoRunning()
+            UserDefaults.shared.mainIoRunning = true
 
             if !self.dcAccounts.backgroundFetch(timeout: 20) {
                 logger.error("backgroundFetch failed")
-                UserDefaults.self.pushToDebugArray("ERR2_CORE")
+                UserDefaults.shared.pushToDebugArray("ERR2_CORE")
             }
 
             if !appIsInForeground() {
-                UserDefaults.setMainIoRunning(false) // this also improves resilience: if we crashed before, NSE would never run otherwise
+                UserDefaults.shared.mainIoRunning = false // this also improves resilience: if we crashed before, NSE would never run otherwise
             }
 
             // wait for DC_EVENT_ACCOUNTS_BACKGROUND_FETCH_DONE;
@@ -451,7 +451,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             usleep(1_000_000)
             logger.info("⬅️ fetch done")
 
-            UserDefaults.pushToDebugArray(String(format: "OK3 %.3fs", diff))
+            UserDefaults.shared.pushToDebugArray(String(format: "OK3 %.3fs", diff))
             completionHandler?(.newData)
             if backgroundTask != .invalid {
                 UIApplication.shared.endBackgroundTask(backgroundTask)
@@ -562,7 +562,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     private func uninstallEventHandler() {
         shouldShutdownEventLoop = true
         dcAccounts.stopIo() // stopIo will generate atleast one event to the event handler can shut down
-        UserDefaults.setMainIoRunning(false)
+        UserDefaults.shared.mainIoRunning = false
         eventShutdownSemaphore.wait()
         shouldShutdownEventLoop = false
     }

@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         logger.info("➡️ sceneWillEnterForeground")
-        UserDefaults.setMainIoRunning()
+        UserDefaults.shared.mainIoRunning = true
         DcAccounts.shared.startIo()
 
         DispatchQueue.global().async { [weak self] in
@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         logger.info("➡️ sceneDidBecomeActive")
-        UserDefaults.setMainIoRunning()
+        UserDefaults.shared.mainIoRunning = true
         NotificationManager.updateBadgeCounters()
         if DcAccounts.shared.getSelected().isConfigured() {
             // This supports the case that app clips stay installed and

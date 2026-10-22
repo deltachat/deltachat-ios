@@ -268,8 +268,8 @@ class ProfileViewController: UITableViewController {
                     handler: { [weak self] _ in self?.showEditController() }
                 )
             }
-            if chat != nil, #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-                let isOnHomescreen = userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
+            if chat != nil, #available(iOS 17.0, *) {
+                let isOnHomescreen = UserDefaults.shared.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId)
                 UIAction(
                     title: String.localized(isOnHomescreen ? "remove_from_widget" : "add_to_widget"),
                     image: UIImage(systemName: isOnHomescreen ? "minus.square" : "plus.square"),
@@ -444,11 +444,11 @@ class ProfileViewController: UITableViewController {
     }
 
     private func toggleChatInWidget() {
-        guard #available(iOS 17, *), let userDefaults = UserDefaults.shared else { return }
-        if userDefaults.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
-            userDefaults.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+        guard #available(iOS 17, *) else { return }
+        if UserDefaults.shared.getChatWidgetEntriesFor(contextId: dcContext.id).contains(chatId) {
+            UserDefaults.shared.removeChatFromHomescreenWidget(accountId: dcContext.id, chatId: chatId)
         } else {
-            userDefaults.addChatToHomescreenWidget(accountId: dcContext.id, chatId: chatId)
+            UserDefaults.shared.addChatToHomescreenWidget(accountId: dcContext.id, chatId: chatId)
         }
         updateMenuItems()
     }
