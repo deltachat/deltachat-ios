@@ -1,7 +1,7 @@
 # Delta Chat iOS Changelog
 
 
-## 2.64.0 Testflight
+## 2.64.0
 2026-10
 
 - Pinned Messages
@@ -9,7 +9,7 @@
 - Allow to share location for 24 hours
 - Revamped message info screen
 - Larger emojis in default reaction selection
-- Improve sendig reliability by trying th most recently successfully used relay first
+- Improve sending reliability by trying th most recently successfully used relay first
 - Avoid unwanted late adding to groups (by deleting processed securejoin messages on all relays)
 - Re-add "Second device added" message if deleted soon after transfer
 - Add new webxdc.isAppSender and webxdc.isBroadcast APIs for mini-apps
