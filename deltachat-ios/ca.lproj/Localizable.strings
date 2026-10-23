@@ -324,10 +324,16 @@
 "pin" = "Fixa";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fixa\'t";
+"pin_for_everyone_ask" = "Fixa el missatge per a tothom del xat?";
+"pin_for_everyone" = "Fixar per a tothom";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desfixa";
+"unpin_for_everyone_ask" = "Desfixar el missatge per tothom del xat?";
+"unpin_for_everyone" = "Desfixar per tothom";
 "message_pinned_by_you" = "Has fixat un missatge";
 "message_pinned_by_other" = "Missatge fixat per %1$@";
+"message_unpinned_by_you" = "Has desfixat un missatge";
+"message_unpinned_by_other" = "Missatge desfixat per %1$@";
 "ConversationFragment_quoted_message_not_found" = "No s\'ha trobat el missatge original";
 "reply_privately" = "Respon en privat";
 "source_code" = "Codi font";
@@ -632,6 +638,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Voleu enviar %1$d fitxers a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Voleu enviar %1$d fitxer(s) a %2$d xats?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Preparant media...";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Comprimint vídeo...";
+"video_recode_busy" = "S\'està processant un altre vídeo, si us plau, espera.";
 "share_text_multiple_chats" = "Voleu enviar aquest text a %1$d xats?\n\n«%2$@»";
 "share_abort" = "S\'ha avortat la compartició per falta de permisos.";
 // preferences

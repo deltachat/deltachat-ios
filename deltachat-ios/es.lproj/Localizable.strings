@@ -324,10 +324,16 @@
 "pin" = "Anclar";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Anclado";
+"pin_for_everyone_ask" = "Fijar un mensaje para todos en el chat?";
+"pin_for_everyone" = "Fijar para todos";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desanclar";
+"unpin_for_everyone_ask" = "Desfijar el mensaje para todos en el chat?";
+"unpin_for_everyone" = "Desfijar para todos";
 "message_pinned_by_you" = "Has anclado un mensaje";
 "message_pinned_by_other" = "Mensaje anclado por %1$@";
+"message_unpinned_by_you" = "Has desfijado un mensaje";
+"message_unpinned_by_other" = "Mensaje desfijado por %1$@";
 "ConversationFragment_quoted_message_not_found" = "Mensaje original no encontrado";
 "reply_privately" = "Responder en privado";
 "source_code" = "Código fuente";
@@ -632,6 +638,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "¿Enviar %1$d archivos a \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "¿Enviar %1$d archivo(s) a %2$d chats?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Preparando media...";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Comprimiendo vídeo...";
+"video_recode_busy" = "Otro vídeo está siendo procesado, por favor, espera.";
 "share_text_multiple_chats" = "¿Enviar este texto a %1$d chats?\n\n\"%2$@\"";
 "share_abort" = "Intercambio abortado debido a la falta de permisos.";
 // preferences

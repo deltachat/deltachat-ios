@@ -324,12 +324,16 @@
 "pin" = "Tõste esile";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Esiletõstetud";
+"pin_for_everyone_ask" = "Kas tõstad sõnumi selles vestluses kõigi jaoks esile?";
 "pin_for_everyone" = "Tõsta esile kõigi jaoks";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Lõpeta esiletõstmine";
+"unpin_for_everyone_ask" = "Kas lõpetad selles vestluses sõnumi kõigi jaoks esiletõstmise?";
 "unpin_for_everyone" = "Lõpeta esiletõstmine kõigi jaoks";
 "message_pinned_by_you" = "Sina tõstsid sõnumi esile";
 "message_pinned_by_other" = "%1$@ tõstis sõnumi esile";
+"message_unpinned_by_you" = "Sa lõpetasid sõnumi esiletõstmise";
+"message_unpinned_by_other" = "%1$@ lõpetas sõnumi esiletõstmise";
 "ConversationFragment_quoted_message_not_found" = "Algset sõnumit ei leidu";
 "reply_privately" = "Vasta privaatselt";
 "source_code" = "Lähtekood";

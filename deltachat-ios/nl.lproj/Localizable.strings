@@ -324,12 +324,16 @@
 "pin" = "Vastmaken";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Vastgemaakt";
+"pin_for_everyone_ask" = "Wil je dit bericht vastmaken zodat iedereen het bovenaan kan zien?";
 "pin_for_everyone" = "Vastmaken voor iedereen";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Losmaken";
+"unpin_for_everyone_ask" = "Wil je dit bericht losmaken zodat iedereen het niet meer bovenaan kan zien?";
 "unpin_for_everyone" = "Losmaken voor iedereen";
 "message_pinned_by_you" = "Je hebt een bericht vastgemaakt";
 "message_pinned_by_other" = "Bericht vastgemaakt door %1$@";
+"message_unpinned_by_you" = "Je hebt een bericht losgemaakt";
+"message_unpinned_by_other" = "Bericht losgemaakt door %1$@";
 "ConversationFragment_quoted_message_not_found" = "Het oorspronkelijke bericht is niet aangetroffen";
 "reply_privately" = "Privé beantwoorden";
 "source_code" = "Broncode";
