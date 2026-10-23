@@ -324,12 +324,16 @@
 "pin" = "Fissa";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fissato";
+"pin_for_everyone_ask" = "Fissare il messaggio per tutti nella chat?";
 "pin_for_everyone" = "Fissa per Tutti";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Sblocca";
+"unpin_for_everyone_ask" = "Sbloccare il messaggio fissato per tutti nella chat?";
 "unpin_for_everyone" = "Sblocca per Tutti";
 "message_pinned_by_you" = "Hai fissato un messaggio";
 "message_pinned_by_other" = "Messaggio fissato da %1$@";
+"message_unpinned_by_you" = "Hai sbloccato un messaggio fissato";
+"message_unpinned_by_other" = "Messaggio sbloccato da %1$@";
 "ConversationFragment_quoted_message_not_found" = "Messaggio originale non trovato";
 "reply_privately" = "Rispondi in Privato";
 "source_code" = "Codice Sorgente";
