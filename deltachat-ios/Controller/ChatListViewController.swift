@@ -119,7 +119,6 @@ class ChatListViewController: UITableViewController {
         // this needs more love :)
         self.view.backgroundColor = UIColor.systemBackground
 
-        NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessage), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleMessagesChanged), name: Event.messagesChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleConnectivityChanged), name: Event.connectivityChanged, object: nil)
@@ -204,25 +203,31 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func handleContactsChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 
     @objc private func handleMsgReadDeliveredReactionFailed(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 
     @objc private func handleChatModified(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         refreshInBg()
     }
 
     @objc private func handleMessagesNoticed(_ notification: Notification) {
-        refreshInBg()
+        if dcContext.id == notification.userInfo?["account_id"] as? Int {
+            refreshInBg()
+        }
         DispatchQueue.main.async { [weak self] in
             self?.refreshUnreadIndicators()
         }
     }
 
     @objc private func handleMessagesChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
@@ -239,16 +244,13 @@ class ChatListViewController: UITableViewController {
     }
 
     @objc private func handleIncomingMessage(_ notification: Notification) {
-        refreshInBg()
-    }
-
-    @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
-
         guard let userInfo = notification.userInfo,
               let chatId = userInfo["chat_id"] as? Int,
               let accountId = userInfo["account_id"] as? Int
-        else { return }
-
+                else { return }
+        if dcContext.id == accountId {
+            refreshInBg()
+        }
         DispatchQueue.main.async { [weak self] in
             self?.updateAccountButton()
             self?.updateNextScreensBackButton(accountId: accountId, chatId: chatId)
