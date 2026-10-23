@@ -1,9 +1,10 @@
 import UIKit
+import ActivityKit
 import WebKit
 import DcCore
 
 class WebxdcViewController: WebViewViewController {
-    
+
     enum WebxdcHandler: String {
         case log
         case sendStatusUpdate
@@ -17,13 +18,51 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var isDraft: Bool = false
     var href: String?
-    var info: WebxdcInfo?
+    var info: WebxdcInfo? {
+        didSet {
+            guard let info, info != oldValue, #available(iOS 16.2, *) else { return }
+            Task { await activity?.update(.init(state: info, staleDate: nil)) }
+        }
+    }
 
     private lazy var moreButton: UIBarButtonItem = {
         let image = UIImage(systemName: .ellipsisNavigation())
         return UIBarButtonItem(image: image, menu: moreButtonMenu())
     }()
-    
+
+    var canMinimize: Bool {
+        if #available(iOS 16.2, *) {
+            ActivityAuthorizationInfo().areActivitiesEnabled
+        } else {
+            false
+        }
+    }
+    private lazy var minimizeButton: UIBarButtonItem? = {
+        !canMinimize ? nil : UIBarButtonItem( // TODO: Localized accessibility title?
+            image: UIImage(systemName: "chevron.up"),
+            primaryAction: UIAction(handler: { [weak self] _ in
+                guard let self, #available(iOS 16.2, *) else { return }
+                Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = self
+                navigationController?.popViewController(withAnimation: .popToLiveActivity)
+                let attributes = WebxdcLiveActivityAttributes(contextId: dcContext.id, messageId: messageId)
+                if let info {
+                    do {
+                        activity = try Activity.request(attributes: attributes, content: .init(state: info, staleDate: nil))
+                    } catch {
+                        logger.error(error.localizedDescription)
+                    }
+                }
+            })
+        )
+    }()
+
+    @available(iOS 16.2, *)
+    private var activity: Activity<WebxdcLiveActivityAttributes>? {
+        get { _activity as? Activity<WebxdcLiveActivityAttributes> }
+        set { _activity = newValue }
+    }
+    private var _activity: Any?
+
     // Block just everything, except of webxdc urls
     let blockRules = """
     [
@@ -254,8 +293,23 @@ class WebxdcViewController: WebViewViewController {
         config.preferences = preferences
         return config
     }
-    
-    
+
+    enum Key: Hashable {
+        case key(contextId: Int, messageId: Int)
+    }
+    static var loadedWebxdcs: [Key: WebxdcViewController] = [:]
+
+    class func `for`(dcContext: DcContext, messageId: Int, href: String? = nil) -> (vc: WebxdcViewController, pushAnimation: UIViewControllerAnimatedTransitioning?) {
+        if let loaded = loadedWebxdcs.removeValue(forKey: .key(contextId: dcContext.id, messageId: messageId)) {
+            loaded.href = href
+            if #available(iOS 16.2, *) {
+                Task { await loaded.activity?.end(nil, dismissalPolicy: .immediate) }
+            }
+            return (loaded, .pushFromLiveActivity)
+        }
+        return (WebxdcViewController(dcContext: dcContext, messageId: messageId, href: href), nil)
+    }
+
     init(dcContext: DcContext, messageId: Int, href: String? = nil) {
         self.messageId = messageId
         self.href = href
@@ -283,12 +337,15 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            systemItem: .close,
-            primaryAction: UIAction(handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
-        )
+        navigationItem.leftBarButtonItems = [
+            UIBarButtonItem(
+                systemItem: .close,
+                primaryAction: UIAction(handler: { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                })
+            ),
+            minimizeButton
+        ].compactMap(\.self)
     }
 
     func refreshWebxdcInfo() {
@@ -674,5 +731,93 @@ extension WKWebViewConfiguration {
         func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
             urlSchemeHandler?.webView(webView, stop: urlSchemeTask)
         }
+    }
+}
+
+extension UIViewControllerAnimatedTransitioning where Self == PopToLiveActivityAnimation {
+    static var popToLiveActivity: Self { PopToLiveActivityAnimation() }
+}
+
+class PopToLiveActivityAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        0.5
+    }
+    
+    func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        guard let fromView = transitionContext.view(forKey: .from),
+              let toView = transitionContext.view(forKey: .to)
+        else { return transitionContext.completeTransition(false) }
+
+        transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseOut) {
+            fromView.transform = .init(translationX: 0, y: -fromView.bounds.height).scaledBy(x: 0.7, y: 0.7)
+        } completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            fromView.transform = .identity
+        }
+    }
+}
+
+extension UIViewControllerAnimatedTransitioning where Self == PushFromLiveActivityAnimation {
+    static var pushFromLiveActivity: Self { PushFromLiveActivityAnimation() }
+}
+
+class PushFromLiveActivityAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        0.5
+    }
+
+    func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        guard let toView = transitionContext.view(forKey: .to) else {
+            return transitionContext.completeTransition(false)
+        }
+
+        transitionContext.containerView.addSubview(toView)
+        toView.transform = CGAffineTransform(translationX: 0, y: -toView.bounds.height).scaledBy(x: 0.7, y: 0.7)
+
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseOut) {
+            toView.transform = .identity
+        } completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
+    }
+}
+
+extension UINavigationController {
+    private class AnimationProvidingDelegate: NSObject, UINavigationControllerDelegate {
+        var animation: UIViewControllerAnimatedTransitioning?
+
+        internal init(animation: any UIViewControllerAnimatedTransitioning?) {
+            self.animation = animation
+        }
+
+        func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> (any UIViewControllerAnimatedTransitioning)? {
+            animation
+        }
+    }
+
+    func pushViewController(_ viewController: UIViewController, withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        pushViewController(viewController as UIViewController, animated: true)
+        self.delegate = oldDelegate
+    }
+
+    func popViewController(withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        popViewController(animated: true)
+        self.delegate = oldDelegate
+    }
+
+    func setViewControllers(_ viewControllers: [UIViewController], withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        setViewControllers(viewControllers, animated: true)
+        self.delegate = oldDelegate
     }
 }

@@ -99,9 +99,9 @@ class AppCoordinator: NSObject {
                 let dcContext = dcAccounts.getSelected()
                 let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
                 chatListViewController.backButtonUpdateableDataSource = chatViewController
-                let webxdcVC = WebxdcViewController(dcContext: dcContext, messageId: msgId)
+                let (webxdcVC, pushAnimation) = WebxdcViewController.for(dcContext: dcContext, messageId: msgId)
                 let controllers: [UIViewController] = [chatListViewController, chatViewController, webxdcVC]
-                rootController.setViewControllers(controllers, animated: animated)
+                rootController.setViewControllers(controllers, withAnimation: pushAnimation)
             } else {
                 if clearViewControllerStack {
                     rootController.popToRootViewController(animated: false)
