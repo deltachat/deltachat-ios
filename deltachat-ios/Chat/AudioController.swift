@@ -29,6 +29,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         case playFailed
     }
 
+    static let playbackRates: [Float] = [1.0, 1.25, 1.5, 2.0]
     private static var backgroundPlaybackController: AudioController?
     private static var remoteCommandsConfigured = false
 
@@ -128,25 +129,28 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
            let player = activeController.audioPlayer {
             activeController.playingCell = cell
             cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-            cell.audioPlayerView.showPlayLayout(player.isPlaying)
             cell.audioPlayerView.setDuration(duration: player.currentTime)
+            cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
+            cell.audioPlayerView.showPlayLayout(player.isPlaying, animated: false)
         }
     }
     
     public func getAudioDuration(messageId: Int, successHandler: @escaping (Int, Double) -> Void) {
         let message = dcContext.getMessage(id: messageId)
-        if AudioController.backgroundPlaybackController?.isPlayingMessage(messageId: messageId, contextId: dcContext.id) == true {
-            // irgnore messages that are currently playing or recently paused
+        let contextId = dcContext.id
+        if AudioController.backgroundPlaybackController?.isPlayingMessage(messageId: messageId, contextId: contextId) == true {
+            // Ignore messages that are currently playing or paused.
             return
         }
-        
+
+        let duration = message.duration
+        if duration > 0 {
+            successHandler(messageId, Double(duration) / 1000)
+            return
+        }
+
         DispatchQueue.global(qos: .userInitiated).async {
-            let duration = message.duration
-            if duration > 0 {
-                DispatchQueue.main.async {
-                    successHandler(messageId, Double(duration) / 1000)
-                }
-            } else if let fileURL = message.fileURL {
+            if let fileURL = message.fileURL {
                 let audioAsset = AVURLAsset.init(url: fileURL, options: nil)
                 audioAsset.loadValuesAsynchronously(forKeys: ["duration"]) {
                     var error: NSError?
@@ -157,6 +161,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
                         let durationInSeconds = CMTimeGetSeconds(duration)
                         message.setLateFilingMediaSize(width: 0, height: 0, duration: Int(1000 * durationInSeconds))
                         DispatchQueue.main.async {
+                            guard AudioController.backgroundPlaybackController?.isPlayingMessage(messageId: messageId, contextId: contextId) != true else { return }
                             successHandler(messageId, Double(durationInSeconds))
                         }
                     case .failed:
@@ -201,6 +206,16 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
     }
 
+    public func playbackSpeedButtonTapped(cell: AudioMessageCell, messageId: Int) {
+        let activeController = AudioController.backgroundPlaybackController ?? self
+        guard activeController.isPlayingMessage(messageId: messageId, contextId: dcContext.id),
+              let player = activeController.audioPlayer else { return }
+        let rate = AudioController.nextPlaybackRate(after: player.rate)
+        player.rate = rate
+        cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate), animated: true)
+        activeController.updateNowPlayingInfo()
+    }
+
     /// Used to start play audio sound
     ///
     /// - Parameters:
@@ -221,14 +236,16 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             loadArtwork(for: message)
             AudioController.backgroundPlaybackController = self
             AudioController.configureRemoteCommands()
-            player.prepareToPlay()
             player.delegate = self
+            player.enableRate = true
+            player.prepareToPlay()
             state = .playing
             guard player.play() else {
                 state = .stopped
                 throw AudioPlaybackError.playFailed
             }
             audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
+            audioCell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
             updateNowPlayingInfo()
             startProgressTimer()
         } catch {
@@ -236,6 +253,15 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             stopAnyOngoingPlaying()
             delegate?.onAudioPlayFailed()
         }
+    }
+
+    static func nextPlaybackRate(after rate: Float) -> Float {
+        guard let index = playbackRates.firstIndex(of: rate) else { return 1.0 }
+        return playbackRates[(index + 1) % playbackRates.count]
+    }
+
+    static func playbackRateLabel(_ rate: Float) -> String {
+        String(format: "%gx", Double(rate))
     }
 
     /// Pauses the currently playing audio sound.
@@ -247,7 +273,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         guard let player = audioPlayer else { return }
         player.pause()
         state = .pause
-        let cell = audioCell ?? playingCell
+        let cell = matchingPlayingCell(audioCell ?? playingCell)
         cell?.audioPlayerView.showPlayLayout(false) // show play button on audio cell
         updateNowPlayingInfo()
         progressTimer?.invalidate()
@@ -259,7 +285,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         let duration = player.duration
         player.stop()
         state = .stopped
-        if let cell = playingCell {
+        if let cell = matchingPlayingCell(playingCell) {
             cell.audioPlayerView.setProgress(0.0)
             cell.audioPlayerView.showPlayLayout(false)
             cell.audioPlayerView.setDuration(duration: duration)
@@ -307,7 +333,10 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         state = .playing
         updateNowPlayingInfo()
         startProgressTimer()
-        playingCell?.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
+        if let cell = matchingPlayingCell(playingCell) {
+            cell.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
+            cell.audioPlayerView.setPlaybackRateLabel(AudioController.playbackRateLabel(player.rate))
+        }
     }
 
     // MARK: - Fire Methods
@@ -315,8 +344,10 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         guard let player = audioPlayer else {
             return
         }
-        playingCell?.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
-        playingCell?.audioPlayerView.setDuration(duration: player.currentTime)
+        if let cell = matchingPlayingCell(playingCell) {
+            cell.audioPlayerView.setProgress((player.duration == 0) ? 0 : Float(player.currentTime/player.duration))
+            cell.audioPlayerView.setDuration(duration: player.currentTime)
+        }
         updateNowPlayingInfoIfNeeded()
     }
 
@@ -335,6 +366,12 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
 
     private func isPlayingMessage(messageId: Int, contextId: Int) -> Bool {
         return dcContext.id == contextId && playingMessage?.id == messageId
+    }
+
+    private func matchingPlayingCell(_ cell: AudioMessageCell?) -> AudioMessageCell? {
+        guard let cell, let message = playingMessage,
+              cell.represents(messageId: message.id, contextId: dcContext.id) else { return nil }
+        return cell
     }
 
     private func activatePlaybackAudioSession() throws {
@@ -439,7 +476,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         }
         nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? 1.0 : 0.0
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.isPlaying ? player.rate : 0.0
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
         lastNowPlayingInfoUpdate = Date()
     }
