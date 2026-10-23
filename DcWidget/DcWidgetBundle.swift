@@ -5,5 +5,6 @@ import SwiftUI
 struct DcWidgetBundle: WidgetBundle {
     var body: some Widget {
         DcWidget()
+        WebxdcLiveActivity()
     }
 }
