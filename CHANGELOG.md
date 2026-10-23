@@ -1,6 +1,14 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Show info message when unpinning a message
+- Reconnect app to realtime after app was suspended in background
+- Update translations
+- Update to core 2.65.0
+
+
 ## 2.64.0
 2026-10
 
