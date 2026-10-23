@@ -58,6 +58,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     private var lastNowPlayingInfoUpdate = Date.distantPast
     private var playingArtwork: MPMediaItemArtwork?
     private var shouldResumeAfterInterruption = false
+    private var proximityMonitoringEnabled = false
 
     // MARK: - Init Methods
 
@@ -231,6 +232,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
             audioCell.audioPlayerView.showPlayLayout(true)  // show pause button on audio cell
             updateNowPlayingInfo()
             startProgressTimer()
+            setProximityMonitoringEnabled(message.type == DC_MSG_VOICE)
         } catch {
             logger.warning("playing audio message \(message.id) failed: \(error.localizedDescription)")
             stopAnyOngoingPlaying()
@@ -251,6 +253,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         cell?.audioPlayerView.showPlayLayout(false) // show play button on audio cell
         updateNowPlayingInfo()
         progressTimer?.invalidate()
+        setProximityMonitoringEnabled(false)
     }
 
     /// Stops any ongoing audio playing if exists
@@ -272,6 +275,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         playingArtwork = nil
         shouldResumeAfterInterruption = false
         lastNowPlayingInfoUpdate = .distantPast
+        setProximityMonitoringEnabled(false)
         if AudioController.backgroundPlaybackController === self {
             AudioController.backgroundPlaybackController = nil
             MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
@@ -308,6 +312,7 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
         updateNowPlayingInfo()
         startProgressTimer()
         playingCell?.audioPlayerView.showPlayLayout(true) // show pause button on audio cell
+        setProximityMonitoringEnabled(playingMessage?.type == DC_MSG_VOICE)
     }
 
     // MARK: - Fire Methods
@@ -338,8 +343,54 @@ open class AudioController: NSObject, AVAudioPlayerDelegate, AudioMessageCellDel
     }
 
     private func activatePlaybackAudioSession() throws {
-        try audioSession.setCategory(.playback, mode: .default)
+        if shouldRouteToEarpiece {
+            // .playAndRecord routes output to the receiver ("ear speaker") by default
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
+        } else {
+            try audioSession.setCategory(.playback, mode: .default)
+        }
         try audioSession.setActive(true)
+    }
+
+    /// While enabled, iOS automatically turns the screen off and ignores touches
+    /// when the proximity sensor is covered - same as during a phone call.
+    private func setProximityMonitoringEnabled(_ enabled: Bool) {
+        guard proximityMonitoringEnabled != enabled else { return }
+        proximityMonitoringEnabled = enabled
+        UIDevice.current.isProximityMonitoringEnabled = enabled
+        if enabled {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(proximityStateChanged),
+                                                   name: UIDevice.proximityStateDidChangeNotification,
+                                                   object: nil)
+            proximityStateChanged() // sensor may already be covered when playback starts
+        } else {
+            NotificationCenter.default.removeObserver(self, name: UIDevice.proximityStateDidChangeNotification, object: nil)
+        }
+    }
+
+    /// Route to the earpiece only when the phone is held to the ear
+    /// and no external output (headphones, bluetooth, ...) is connected.
+    private var shouldRouteToEarpiece: Bool {
+        return proximityMonitoringEnabled
+            && UIDevice.current.proximityState
+            && audioSession.currentRoute.outputs.allSatisfy {
+                $0.portType == .builtInSpeaker || $0.portType == .builtInReceiver
+            }
+    }
+
+    @objc private func proximityStateChanged() {
+        guard AudioController.backgroundPlaybackController === self else { return }
+        do {
+            try activatePlaybackAudioSession()
+        } catch {
+            logger.warning("changing audio route on proximity change failed: \(error.localizedDescription)")
+            return
+        }
+        // changing the audio session category may briefly stop the player
+        if state == .playing, let player = audioPlayer, !player.isPlaying {
+            player.play()
+        }
     }
 
     private func updateNowPlayingInfoIfNeeded() {
