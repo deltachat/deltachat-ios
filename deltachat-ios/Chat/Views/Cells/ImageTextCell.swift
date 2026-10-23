@@ -7,16 +7,18 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
 
     static let reuseIdentifier = "ImageTextCell"
 
-    let minImageWidth: CGFloat = 125
-    var imageHeightConstraint: NSLayoutConstraint?
-    var imageWidthConstraint: NSLayoutConstraint?
+    let minImageWidth: CGFloat = 140
+    let minImageWidthWithText: CGFloat = 200
+    let maxStickerWidth: CGFloat = 220
+    @ActivatedWhenSet var minImageWidthConstraint: NSLayoutConstraint?
+    @ActivatedWhenSet var imageAspectRatioConstraint: NSLayoutConstraint?
+    var stickerMaxWidthConstraint: NSLayoutConstraint?
 
     lazy var contentImageView: SDAnimatedImageView = {
         let imageView = SDAnimatedImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -43,8 +45,11 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         mainContentView.addArrangedSubview(messageLabel)
         messageLabel.paddingLeading = 12
         messageLabel.paddingTrailing = 12
-        contentImageView.leadingAnchor.constraint(greaterThanOrEqualTo: mainContentView.leadingAnchor).isActive = true
-        contentImageView.trailingAnchor.constraint(lessThanOrEqualTo: mainContentView.trailingAnchor).isActive = true
+        contentImageView.widthAnchor.constraint(equalTo: mainContentView.widthAnchor).isActive = true
+        minImageWidthConstraint = contentImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: minImageWidth)
+        contentImageView.heightAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, constant: -60).isActive = true
+        imageAspectRatioConstraint = contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor, multiplier: 1)
+        stickerMaxWidthConstraint = contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: maxStickerWidth)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onImageTapped))
         gestureRecognizer.numberOfTapsRequired = 1
         contentImageView.addGestureRecognizer(gestureRecognizer)
@@ -61,6 +66,9 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         topLabel.isHidden = msg.type == DC_MSG_STICKER
         contentImageIsPlaceholder = true
         tag = msg.id
+        minImageWidthConstraint?.constant = msg.hasText ? minImageWidthWithText : minImageWidth
+        stickerMaxWidthConstraint?.isActive = msg.type == DC_MSG_STICKER
+        contentImageView.contentMode = msg.type == DC_MSG_STICKER ? .scaleAspectFit : .scaleAspectFill
 
         if let url = msg.fileURL,
             msg.type == DC_MSG_IMAGE || msg.type == DC_MSG_GIF || msg.type == DC_MSG_STICKER {
@@ -108,130 +116,21 @@ class ImageTextCell: BaseMessageCell, ReusableCell {
         }
     }
 
-    private func setStickerAspectRatio(width: CGFloat, height: CGFloat) {
-        if height == 0 || width == 0 {
-            return
-        }
-        var width = width
-        var height = height
-
-        self.imageHeightConstraint?.isActive = false
-        self.imageWidthConstraint?.isActive = false
-        self.contentImageView.contentMode = .scaleAspectFit
-
-        // check if sticker has the allowed minimal width
-        if width < minImageWidth {
-            height = (height / width) * minImageWidth
-            width = minImageWidth
-        }
-
-        // check if sticker has the allowed maximal width
-        let maxWidth  = min(UIScreen.main.bounds.height, UIScreen.main.bounds.width) / 2
-        if width > maxWidth {
-            height = (height / width) * maxWidth
-            width = maxWidth
-        }
-
-        self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
-        self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
-            lessThanOrEqualTo: self.contentImageView.widthAnchor,
-            multiplier: height / width
-        )
-
-        self.imageHeightConstraint?.isActive = true
-        self.imageWidthConstraint?.isActive = true
-    }
-
-    private func setAspectRatio(width: CGFloat, height: CGFloat) {
-        guard let orientation = UIApplication.shared.orientation else { return }
-
-        if height == 0 || width == 0 {
-            return
-        }
-        var width = width
-        var height = height
-
-        self.imageHeightConstraint?.isActive = false
-        self.imageWidthConstraint?.isActive = false
-        var scaleType = ContentMode.scaleAspectFill
-
-        // check if image has the allowed minimal width
-        if width < minImageWidth {
-            height = (height / width) * minImageWidth
-            width = minImageWidth
-        }
-        
-        // in some cases we show images in square sizes
-        // restrict width to half of the screen in device landscape and to 5 / 6 in portrait
-        // it results in a good balance between message text width and image size
-        let factor: CGFloat = orientation.isLandscape ? 1 / 2 : 5 / 6
-        var squareSize  = UIScreen.main.bounds.width * factor
-        
-        if  height > width {
-            // show square image for portrait images
-            // reduce the image square size if there's no message text so that it fits best in the viewable area
-            if squareSize > UIScreen.main.bounds.height * 5 / 8 && (messageLabel.text?.isEmpty ?? true) {
-                squareSize = UIScreen.main.bounds.height * 5 / 8
-            }
-            imageHeightConstraint = self.contentImageView.heightAnchor.constraint(lessThanOrEqualToConstant: squareSize)
-            imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: squareSize)
-        } else {
-            // show image in aspect ratio for landscape images
-            if orientation.isLandscape && height > UIScreen.main.bounds.height * 5 / 8 {
-                // shrink landscape image in landscape device orientation if image height is too big
-                self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(lessThanOrEqualToConstant: UIScreen.main.bounds.height * 5 / 8)
-                self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualTo: self.contentImageView.heightAnchor,
-                                                                                         multiplier: width/height)
-            } else {
-                if width < squareSize {
-                    // very small width images should be forced to not be scaled down further
-                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(greaterThanOrEqualToConstant: width)
-                    self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(equalToConstant: height)
-                    scaleType = ContentMode.scaleAspectFit
-                } else {
-                    // large width images might scale down until the max allowed text width
-                    self.imageWidthConstraint = self.contentImageView.widthAnchor.constraint(lessThanOrEqualToConstant: width)
-                    self.imageHeightConstraint = self.contentImageView.heightAnchor.constraint(
-                        lessThanOrEqualTo: self.contentImageView.widthAnchor,
-                        multiplier: height / width
-                    )
-                }
-            }
-        }
-        self.contentImageView.contentMode = scaleType
-        self.imageHeightConstraint?.isActive = true
-        self.imageWidthConstraint?.isActive = true
-    }
-
-    private func setAspectRatioFor(message: DcMsg) {
+    private func setAspectRatioFor(message: DcMsg, with image: UIImage? = nil, isPlaceholder: Bool = false) {
         var width = message.messageWidth
         var height = message.messageHeight
-        if width == 0 || height == 0,
-           let image = message.image {
-            width = image.size.width
-            height = image.size.height
-            message.setLateFilingMediaSize(width: width, height: height, duration: 0)
-        }
-        if message.type == DC_MSG_STICKER {
-            setStickerAspectRatio(width: width, height: height)
-        } else {
-            setAspectRatio(width: width, height: height)
-        }
-    }
-
-
-    private func setAspectRatioFor(message: DcMsg, with image: UIImage?, isPlaceholder: Bool) {
-        var width = message.messageWidth
-        var height = message.messageHeight
-        if width == 0 || height == 0,
-           let image = image {
+        if width == 0 || height == 0, let image = image ?? message.image {
             width = image.size.width
             height = image.size.height
             if !isPlaceholder {
                 message.setLateFilingMediaSize(width: width, height: height, duration: 0)
             }
         }
-        setAspectRatio(width: width, height: height)
+
+        let minWidth = minImageWidthConstraint?.constant ?? minImageWidth
+        let maxHeight = max(contentView.bounds.width - 60, minWidth)
+        let ratio = height == 0 || width == 0 ? 1 : max(0.2, min(height/width, maxHeight/minWidth))
+        imageAspectRatioConstraint = contentImageView.heightAnchor.constraint(equalTo: contentImageView.widthAnchor, multiplier: ratio)
     }
 
     override func prepareForReuse() {
