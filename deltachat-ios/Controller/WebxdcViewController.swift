@@ -22,7 +22,7 @@ class WebxdcViewController: WebViewViewController {
     var info: WebxdcInfo? {
         didSet {
             guard let info, info != oldValue, #available(iOS 16.2, *) else { return }
-            Task { await activity?.update(.init(state: info, staleDate: nil)) }
+            updateLiveActivity(with: info)
         }
     }
 
@@ -44,17 +44,10 @@ class WebxdcViewController: WebViewViewController {
         !canMinimize ? nil : UIBarButtonItem( // TODO: Localized accessibility title?
             image: UIImage(systemName: "chevron.up"),
             primaryAction: UIAction(handler: { [weak self] _ in
-                guard let self, #available(iOS 16.2, *) else { return }
+                guard let self, #available(iOS 16.2, *), let info else { return }
                 Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = self
                 navigationController?.popViewController(withAnimation: .popToLiveActivity)
-                let attributes = WebxdcLiveActivityAttributes(contextId: dcContext.id, messageId: messageId)
-                if let info {
-                    do {
-                        activity = try Activity.request(attributes: attributes, content: .init(state: info, staleDate: nil))
-                    } catch {
-                        logger.error(error.localizedDescription)
-                    }
-                }
+                startLiveActivity(with: info)
             })
         )
     }()
@@ -305,9 +298,6 @@ class WebxdcViewController: WebViewViewController {
     class func `for`(dcContext: DcContext, messageId: Int, href: String? = nil) -> (vc: WebxdcViewController, pushAnimation: UIViewControllerAnimatedTransitioning?) {
         if let loaded = loadedWebxdcs.removeValue(forKey: .key(contextId: dcContext.id, messageId: messageId)) {
             loaded.href = href
-            if #available(iOS 16.2, *) {
-                Task { await loaded.activity?.end(nil, dismissalPolicy: .immediate) }
-            }
             return (loaded, .pushFromLiveActivity)
         }
         return (WebxdcViewController(dcContext: dcContext, messageId: messageId, href: href), nil)
@@ -318,13 +308,13 @@ class WebxdcViewController: WebViewViewController {
         self.href = href
         super.init(dcContext: dcContext)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(WebxdcViewController.handleMessageReadDeliveredReactionFailed(_:)),
-                                               name: Event.messageReadDeliveredFailedReaction,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: Event.webxdcStatusUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: Event.webxdcRealtimeDataReceived, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(handleMessagesChanged), name: Event.messagesChanged, object: nil)
+        nc.addObserver(self, selector: #selector(handleMessageReadDeliveredReactionFailed), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        nc.addObserver(self, selector: #selector(handleWebxdcStatusUpdate), name: Event.webxdcStatusUpdate, object: nil)
+        nc.addObserver(self, selector: #selector(handleWebxdcRealtimeDataReceived), name: Event.webxdcRealtimeDataReceived, object: nil)
+        nc.addObserver(self, selector: #selector(handleConnectivityChanged), name: Event.connectivityChanged, object: nil)
+        nc.addObserver(self, selector: #selector(applicationWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
         refreshWebxdcInfo()
     }
     
@@ -335,6 +325,9 @@ class WebxdcViewController: WebViewViewController {
     deinit {
         logger.info("⬅️ leave realtime by deinit")
         dcContext.leaveWebxdcRealtime(messageId: messageId)
+        if #available(iOS 16.2, *) {
+            endLiveActivity()
+        }
     }
 
     override func viewDidLoad() {
@@ -412,6 +405,20 @@ class WebxdcViewController: WebViewViewController {
 
         DispatchQueue.main.async { [weak self] in
             self?.refreshWebxdcInfo()
+        }
+    }
+
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard #available(iOS 16.2, *), let self, let info else { return }
+            updateLiveActivity(with: info)
+        }
+    }
+
+    @objc private func applicationWillTerminate(_: Notification) {
+        if #available(iOS 16.2, *) {
+            endLiveActivity()
         }
     }
 
@@ -701,6 +708,44 @@ extension WebxdcViewController: WKURLSchemeHandler {
     }
     
     func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
+    }
+}
+
+@available(iOS 16.2, *)
+extension WebxdcViewController {
+
+    private func startLiveActivity(with info: WebxdcInfo) {
+        Task { [self] in
+            await activity?.end(nil, dismissalPolicy: .immediate)
+            let attributes = WebxdcLiveActivityAttributes(context: dcContext, messageId: messageId)
+            do {
+                activity = try Activity.request(
+                    attributes: attributes,
+                    content: .init(
+                        state: .init(info: info, connectivity: dcContext.getConnectivity()),
+                        staleDate: nil
+                    )
+                )
+            } catch {
+                logger.error(error.localizedDescription)
+            }
+        }
+    }
+
+    private func updateLiveActivity(with info: WebxdcInfo) {
+        Task { [activity, dcContext] in
+            await activity?.update(.init(
+                state: .init(info: info, connectivity: dcContext.getConnectivity()),
+                staleDate: nil
+            ))
+            print("updated", dcContext.getConnectivity())
+        }
+    }
+
+    private func endLiveActivity() {
+        Task { [activity] in
+            await activity?.end(nil, dismissalPolicy: .immediate)
+        }
     }
 }
 
