@@ -1,6 +1,11 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Fixed an edge case where the tab bar could be shown over a mini app or the chat
+
+
 ## 2.64.0
 2026-10
 

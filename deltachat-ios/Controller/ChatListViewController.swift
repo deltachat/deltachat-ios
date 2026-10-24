@@ -680,6 +680,7 @@ class ChatListViewController: UITableViewController {
     }
 
     private func setBottomTabBarHidden(_ hidden: Bool) {
+        guard navigationController?.topViewController == self else { return }
         guard !isArchive, let tabBar = tabBarController?.tabBar, tabBar.isHidden != hidden else { return }
 
         tabBar.isHidden = hidden
