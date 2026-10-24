@@ -77,7 +77,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D878C4FA2CF72AA0009AF551"
             BuildableName = "DcWidget.appex"
-            BlueprintName = "DcWidget"
             ReferencedContainer = "container:deltachat-ios.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
