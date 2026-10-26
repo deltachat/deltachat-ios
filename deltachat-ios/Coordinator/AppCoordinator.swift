@@ -78,6 +78,8 @@ class AppCoordinator: NSObject {
     }
 
     func showTab(index: Int) {
+        let nvc = tabBarController.selectedViewController as? UINavigationController
+        nvc?.popToRootViewController(animated: false)
         tabBarController.selectedIndex = index
     }
 
