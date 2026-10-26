@@ -78,3 +78,30 @@ enum LiveActivityIconStore {
         }
     }
 }
+
+import AppIntents
+
+@available(iOS 16, *)
+struct QuitWebxdcIntent: LiveActivityIntent {
+    static let title: LocalizedStringResource = "Quit a webxdc that is running in the background"
+    static var isDiscoverable: Bool = false
+
+    @Parameter(title: "Context ID", default: 0) var contextId: Int
+    @Parameter(title: "Message ID", default: 0) var messageId: Int
+
+    init(contextId: Int, messageId: Int) {
+        self.contextId = contextId
+        self.messageId = messageId
+    }
+
+    init() {}
+
+    func perform() async throws -> some IntentResult {
+        // LiveActivityIntent is always performed in the main app process but it does
+        // need to compile for the widget target.
+        #if MAIN_APPLICATION
+        await WebxdcViewController.loadedWebxdcs[.key(contextId: contextId, messageId: messageId)]?.quit()
+        #endif
+        return .result()
+    }
+}
