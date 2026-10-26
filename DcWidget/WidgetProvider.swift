@@ -2,6 +2,7 @@ import DcCore
 import WidgetKit
 import SwiftUI
 
+@available(iOS 17, *)
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> UsedWebxdcEntry {
         let limit: Int
