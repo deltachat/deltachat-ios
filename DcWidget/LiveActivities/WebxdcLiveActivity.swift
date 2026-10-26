@@ -2,6 +2,7 @@ import DcCore
 import WidgetKit
 import SwiftUI
 
+@available(iOS 16.1, *)
 struct WebxdcLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: WebxdcLiveActivityAttributes.self) { context in
@@ -33,12 +34,14 @@ struct WebxdcLiveActivity: Widget {
                         Text(String.localized("connectivity_not_connected"))
                     }
                 }.font(.footnote)
-                Button(intent: QuitWebxdcIntent(contextId: attr.contextId, messageId: attr.messageId)) {
-                    Label(String.localized("close"), systemImage: "xmark.circle.fill")
-                        .font(.system(size: 20))
-                        .opacity(0.8)
-                        .labelStyle(.iconOnly)
-                }.buttonStyle(.plain)
+                if #available(iOS 17, *) {
+                    Button(intent: QuitWebxdcIntent(contextId: attr.contextId, messageId: attr.messageId)) {
+                        Label(String.localized("close"), systemImage: "xmark.circle.fill")
+                            .font(.system(size: 20))
+                            .opacity(0.8)
+                            .labelStyle(.iconOnly)
+                    }.buttonStyle(.plain)
+                }
             }
             .padding()
             .widgetURL(context.attributes.url)
@@ -71,14 +74,16 @@ struct WebxdcLiveActivity: Widget {
                     .padding(.leading, 10)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Button(intent: QuitWebxdcIntent(contextId: attr.contextId, messageId: attr.messageId)) {
-                        Label(String.localized("close"), systemImage: "xmark.circle.fill")
-                            .font(.system(size: 20))
-                            .opacity(0.8)
-                            .labelStyle(.iconOnly)
+                    if #available(iOS 17, *) {
+                        Button(intent: QuitWebxdcIntent(contextId: attr.contextId, messageId: attr.messageId)) {
+                            Label(String.localized("close"), systemImage: "xmark.circle.fill")
+                                .font(.system(size: 20))
+                                .opacity(0.8)
+                                .labelStyle(.iconOnly)
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.trailing, 10)
                     }
-                    .buttonStyle(.plain)
-                    .padding(.trailing, 10)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     HStack {
