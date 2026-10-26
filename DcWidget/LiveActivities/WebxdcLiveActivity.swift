@@ -9,7 +9,7 @@ struct WebxdcLiveActivity: Widget {
             HStack {
                 let info = context.state.info
                 let attr = context.attributes
-                if let image = LiveActivityIconStore.loadThumbnail(contextId: attr.contextId, messageId: attr.messageId) {
+                if let image = attr.previewImage {
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: 40, height: 40)
@@ -48,10 +48,7 @@ struct WebxdcLiveActivity: Widget {
         } dynamicIsland: { context in
             let info = context.state.info
             let attr = context.attributes
-            let image = LiveActivityIconStore.loadThumbnail(
-                contextId: context.attributes.contextId,
-                messageId: context.attributes.messageId
-            ).map {
+            let image = attr.previewImage.map {
                 Image(uiImage: $0)
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
