@@ -46,6 +46,9 @@ class WebxdcViewController: WebViewViewController {
             primaryAction: UIAction(handler: { [weak self] _ in
                 guard let self, #available(iOS 16.2, *), let info else { return }
                 Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = self
+                if #available(iOS 17.0, *) {
+                    webView.configuration.preferences.inactiveSchedulingPolicy = .none
+                }
                 navigationController?.popViewController(withAnimation: .popToLiveActivity)
                 startLiveActivity(with: info)
             })
@@ -296,7 +299,7 @@ class WebxdcViewController: WebViewViewController {
     static var loadedWebxdcs: [Key: WebxdcViewController] = [:]
 
     class func `for`(dcContext: DcContext, messageId: Int, href: String? = nil) -> (vc: WebxdcViewController, pushAnimation: UIViewControllerAnimatedTransitioning?) {
-        if let loaded = loadedWebxdcs.removeValue(forKey: .key(contextId: dcContext.id, messageId: messageId)) {
+        if let loaded = loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] {
             loaded.href = href
             return (loaded, .pushFromLiveActivity)
         }
@@ -334,12 +337,9 @@ class WebxdcViewController: WebViewViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
         navigationItem.leftBarButtonItems = [
-            UIBarButtonItem(
-                systemItem: .close,
-                primaryAction: UIAction(handler: { [weak self] _ in
-                    self?.navigationController?.popViewController(animated: true)
-                })
-            ),
+            UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [unowned self] _ in
+                quit()
+            }),
             minimizeButton
         ].compactMap(\.self)
     }
@@ -466,11 +466,6 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        webView.setAllMediaPlaybackSuspended(true)
-    }
-
     private func loadRestrictedHtml() {
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "WebxdcContentBlockingRules",
@@ -482,21 +477,24 @@ class WebxdcViewController: WebViewViewController {
             }
     }
     
-    private func loadHtml() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self else { return }
-
-            let base = "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/"
-            let url = URL(string: base + (href ?? "index.html"))
-            let urlRequest = URLRequest(url: url ?? URL(string: base + "index.html")!)
-            DispatchQueue.main.async {
-                self.webView.load(urlRequest)
-            }
+    @MainActor private func loadHtml() {
+        assert(Thread.isMainThread)
+        let base = "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/"
+        let url = URL(string: base + (href ?? "index.html"))
+        let urlRequest = URLRequest(url: url ?? URL(string: base + "index.html")!)
+        if self.webView.url != urlRequest.url {
+            self.webView.load(urlRequest)
         }
     }
 
     private func updateWebxdc() {
         webView.evaluateJavaScript("window.__webxdcUpdate()", completionHandler: nil)
+    }
+
+    func quit() {
+        Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = nil
+        let vcs = navigationController?.viewControllers.filter { $0 != self } ?? []
+        navigationController?.setViewControllers(vcs, animated: true)
     }
 
     private func moreButtonMenu() -> UIMenu {
