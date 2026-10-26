@@ -498,18 +498,13 @@ class WebxdcViewController: WebViewViewController {
     }
 
     private func moreButtonMenu() -> UIMenu {
-        let actions: () -> [UIMenuElement] = { [weak self] in
-            guard let self else { return [] }
-            var actions = [UIMenuElement]()
-
+        UIMenu { [unowned self] in
             if !isDraft {
-                actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
-                    guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [unowned self] _ in
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                     let message = dcContext.getMessage(id: self.messageId)
-                    DispatchQueue.main.async {
-                        appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-                    }
-                })
+                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+                }
 
                 if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                     let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
@@ -520,40 +515,29 @@ class WebxdcViewController: WebViewViewController {
                     }
                     let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
                     if isOnHomescreen {
-                        actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
-                            guard let self else { return }
+                        UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [unowned self] _ in
                             userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
-                        })
+                        }
                     } else {
-                        actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
-                            guard let self else { return }
+                        UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [unowned self] _ in
                             userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
-                        })
+                        }
                     }
                 }
             }
 
-            var helpActions = [UIMenuElement]()
-            helpActions.append(UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
-                self?.openHelp(fragment: "#webxdc")
-            })
-            if let url = info?.sourceCodeUrl, !url.isEmpty {
-                helpActions.append(UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
-                    self?.openSourceCodeUrl()
-                })
+            // Help actions
+            UIMenu(options: [.displayInline]) {
+                UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+                    self?.openHelp(fragment: "#webxdc")
+                }
+                if let url = info?.sourceCodeUrl, !url.isEmpty {
+                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
+                        self?.openSourceCodeUrl()
+                    }
+                }
             }
-            actions.append(UIMenu(options: [.displayInline], children: helpActions))
-
-            return actions
         }
-
-        // uncached() allows us to update the menu easily; needed for widget state.
-        // UIDeferredMenuElement speeds up opening as complex checks are delayed until the menu is used.
-        return UIMenu(children: [
-            UIDeferredMenuElement.uncached({ completion in
-                completion(actions())
-            })
-        ])
     }
 
     private func openSourceCodeUrl() {
