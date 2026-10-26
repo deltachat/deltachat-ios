@@ -25,6 +25,10 @@ struct WebxdcLiveActivityAttributes: ActivityAttributes {
         }
     }
 
+    var previewImage: UIImage? {
+        LiveActivityIconStore.loadThumbnail(contextId: contextId, messageId: messageId)
+    }
+
     var url: URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "chat.delta.deeplink"
@@ -38,7 +42,7 @@ struct WebxdcLiveActivityAttributes: ActivityAttributes {
     }
 }
 
-enum LiveActivityIconStore {
+private enum LiveActivityIconStore {
     static let appGroupID = "group.chat.delta.ios"
 
     static func url(contextId: Int, messageId: Int) -> URL? {
