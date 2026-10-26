@@ -695,7 +695,7 @@
 		64BE3D43308B46F500BDBEC6 /* Exceptions for "DcWidget" folder in "deltachat-ios" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				LiveActivities/WebxdcLiveActivityAttributes.swift,
+				LiveActivities/WebxdcLiveActivityShared.swift,
 			);
 			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
 		};
