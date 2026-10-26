@@ -6,8 +6,7 @@ open class AudioPlayerView: UIView {
     private var durationCenterYConstraint: NSLayoutConstraint?
     private var durationBottomConstraint: NSLayoutConstraint?
     private let durationLabelCompactTransform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-    private var playbackLayoutGeneration = 0
-    private let speedButtonHiddenTransform = CGAffineTransform(translationX: 0, y: 11.04).scaledBy(x: 1, y: 0.08)
+    private let speedButtonHiddenTransform = CGAffineTransform(translationX: 0, y: 6).scaledBy(x: 0.7, y: 0.7)
 
     /// The play button view to display on audio messages.
     lazy var playButton: UIButton = {
@@ -47,7 +46,7 @@ open class AudioPlayerView: UIView {
         button.titleLabel?.font = UIFont.preferredFont(for: .caption1, weight: .bold)
         button.titleLabel?.adjustsFontForContentSizeCategory = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.isHidden = true
+        button.alpha = 0
         // TODO: Add accessibility label for playback speed.
         button.backgroundColor = .secondarySystemFill
         button.setTitleColor(.label, for: .normal)
@@ -172,7 +171,7 @@ open class AudioPlayerView: UIView {
         speedButton.setTitle(rateLabel, for: .normal)
         speedButton.accessibilityValue = rateLabel
 
-        guard animated, !UIAccessibility.isReduceMotionEnabled, !speedButton.isHidden else { return }
+        guard animated, !UIAccessibility.isReduceMotionEnabled, speedButton.alpha > 0 else { return }
 
         let bounce = CAKeyframeAnimation(keyPath: "transform.scale")
         bounce.values = [1, 1.08, 1]
@@ -185,65 +184,29 @@ open class AudioPlayerView: UIView {
 
     private func setPlaybackControlsLayout(isPlaying: Bool, animated: Bool) {
         layoutIfNeeded()
-        playbackLayoutGeneration += 1
-        let generation = playbackLayoutGeneration
-        let wasHidden = speedButton.isHidden
         durationCenterYConstraint?.isActive = !isPlaying
         durationBottomConstraint?.isActive = isPlaying
+        speedButton.isUserInteractionEnabled = isPlaying
 
-        if wasHidden {
-            speedButton.transform = speedButtonHiddenTransform
-            speedButton.titleLabel?.alpha = 0
+        let changes = {
+            self.speedButton.alpha = isPlaying ? 1 : 0
+            self.speedButton.transform = isPlaying ? .identity : self.speedButtonHiddenTransform
+            self.durationLabel.transform = isPlaying ? self.durationLabelCompactTransform : .identity
+            self.layoutIfNeeded()
         }
-        if isPlaying {
-            speedButton.isHidden = false
-        }
-
-        let speedButtonTitleAlpha: CGFloat = isPlaying ? 1 : 0
 
         guard animated, !UIAccessibility.isReduceMotionEnabled else {
-            layer.removeAllAnimations()
-            trailingControlsView.layer.removeAllAnimations()
             speedButton.layer.removeAllAnimations()
-            speedButton.titleLabel?.layer.removeAllAnimations()
             durationLabel.layer.removeAllAnimations()
-            UIView.performWithoutAnimation {
-                self.layoutIfNeeded()
-                self.speedButton.isHidden = !isPlaying
-                self.speedButton.transform = isPlaying ? .identity : self.speedButtonHiddenTransform
-                self.durationLabel.transform = isPlaying ? self.durationLabelCompactTransform : .identity
-                self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
-            }
+            UIView.performWithoutAnimation(changes)
             return
         }
 
-        UIView.animateKeyframes(withDuration: 0.36,
-                                delay: 0,
-                                options: [.beginFromCurrentState, .allowUserInteraction, .calculationModeCubic],
-                                animations: {
-            if isPlaying {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-                    self.durationLabel.transform = self.durationLabelCompactTransform
-                })
-                UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.75, animations: {
-                    self.speedButton.transform = .identity
-                    self.layoutIfNeeded()
-                    self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
-                })
-            } else {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.55, animations: {
-                    self.speedButton.titleLabel?.alpha = speedButtonTitleAlpha
-                    self.speedButton.transform = CGAffineTransform(translationX: 0, y: 12).scaledBy(x: 1, y: 0)
-                })
-                UIView.addKeyframe(withRelativeStartTime: 0.55, relativeDuration: 0.45, animations: {
-                    self.layoutIfNeeded()
-                    self.durationLabel.transform = .identity
-                })
-            }
-        }, completion: { finished in
-            if finished, generation == self.playbackLayoutGeneration, !isPlaying {
-                self.speedButton.isHidden = true
-            }
-        })
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: [.beginFromCurrentState, .allowUserInteraction],
+                       animations: changes)
     }
 }
