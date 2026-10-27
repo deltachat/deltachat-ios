@@ -15,4 +15,4 @@ jobs:
           persist-credentials: false
       - run: cargo install cargo-lipo
       - run: pod install
-      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest" test | xcbeautify --renderer github-actions
+      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest" test
