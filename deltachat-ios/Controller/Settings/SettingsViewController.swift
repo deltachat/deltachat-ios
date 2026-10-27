@@ -84,7 +84,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.allAppsAndMedia.rawValue
         cell.textLabel?.text = String.localized("all_apps_and_media")
-        cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
+        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
@@ -120,7 +120,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
-        cell.imageView?.image = UIImage(systemName: "photo")
+        cell.imageView?.image = UIImage(systemName: "photosun.lefthalf.filled")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
