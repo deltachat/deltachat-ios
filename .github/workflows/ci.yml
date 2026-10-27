@@ -33,5 +33,5 @@ jobs:
           key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
 
       - run: cargo install cargo-lipo
-      - run: pod install
+      - run: pod install --deployment
       - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest" test
