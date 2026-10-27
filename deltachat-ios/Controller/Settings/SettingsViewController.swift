@@ -120,7 +120,7 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
-        cell.imageView?.image = UIImage(systemName: "photosun.lefthalf.filled")
+        cell.imageView?.image = UIImage(systemName: "sun.lefthalf.filled")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
