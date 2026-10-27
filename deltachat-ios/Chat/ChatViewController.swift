@@ -300,17 +300,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
         UIMenu(options: [.displayInline]) { [unowned self] in
             UIAction(
-                title: String.localized("search"),
-                image: UIImage(systemName: "magnifyingglass"),
-                handler: { [unowned self] _ in searchPressed() }
-            )
-            UIAction(
                 title: String.localized("apps_and_media"),
                 image: UIImage(systemName: "photo.on.rectangle"),
                 handler: { [unowned self] _ in
                     show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
                 }
             )
+            UIAction(
+                title: String.localized("search"),
+                image: UIImage(systemName: "magnifyingglass"),
+                handler: { [unowned self] _ in searchPressed() }
+            )
+            UIAction(title: String.localized("select"), image: UIImage(systemName: "checkmark.circle")) { [unowned self] _ in
+                setEditing(isEditing: true)
+            }
         }
         if dcChat.isEncrypted, dcChat.canSend {
             let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
@@ -328,9 +331,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
                 dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
             })
-        }
-        UIAction(title: String.localized("select"), image: UIImage(systemName: "checkmark.circle")) { [unowned self] _ in
-            setEditing(isEditing: true)
         }
         UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
         UIMenu(options: [.displayInline]) { [unowned self] in
