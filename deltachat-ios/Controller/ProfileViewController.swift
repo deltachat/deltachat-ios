@@ -54,7 +54,7 @@ class ProfileViewController: UITableViewController {
     private lazy var mediaCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.textLabel?.text = String.localized("apps_and_media")
-        cell.imageView?.image = UIImage(systemName: "square.grid.2x2")
+        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
         cell.accessoryType = .disclosureIndicator
         return cell
     }()

@@ -182,7 +182,7 @@ struct InputBarView: View {
             chatViewController?.showFilesLibrary()
         }
         if chatViewController?.dcChat.isOutBroadcast == false {
-            Button(String.localized("webxdc_app"), systemImage: "square.grid.2x2") {
+            Button(String.localized("webxdc_app"), systemImage: "apps.iphone") {
                 chatViewController?.showAppPicker()
             }
         }
