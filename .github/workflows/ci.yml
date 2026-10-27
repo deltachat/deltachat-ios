@@ -16,5 +16,7 @@ jobs:
       
       - run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       - run: cargo install cargo-lipo
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.9.3
       - run: pod install
       - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest" test
