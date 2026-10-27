@@ -298,19 +298,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     ]))
 
     private lazy var optionsButton = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
-        let webxdcMsgIds = dcContext.getChatMedia(chatId: chatId, messageType: DC_MSG_WEBXDC, messageType2: 0, messageType3: 0)
-        UIAction(
-            title: String.localized("search"),
-            image: UIImage(systemName: "magnifyingglass"),
-            handler: { [unowned self] _ in searchPressed() }
-        )
-        UIAction(
-            title: String.localized("apps_and_media"),
-            image: UIImage(systemName: "photo.on.rectangle"),
-            handler: { [unowned self] _ in
-                show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
-            }
-        )
+        UIMenu(options: [.displayInline]) { [unowned self] in
+            UIAction(
+                title: String.localized("search"),
+                image: UIImage(systemName: "magnifyingglass"),
+                handler: { [unowned self] _ in searchPressed() }
+            )
+            UIAction(
+                title: String.localized("apps_and_media"),
+                image: UIImage(systemName: "photo.on.rectangle"),
+                handler: { [unowned self] _ in
+                    show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
+                }
+            )
+        }
         if dcChat.isEncrypted, dcChat.canSend {
             let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
             UIAction(
