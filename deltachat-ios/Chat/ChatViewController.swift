@@ -304,9 +304,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             image: UIImage(systemName: "magnifyingglass"),
             handler: { [unowned self] _ in searchPressed() }
         )
-        UIAction(title: String.localized("select"), image: UIImage(systemName: "checkmark.circle")) { [unowned self] _ in
-            setEditing(isEditing: true)
-        }
         UIAction(
             title: String.localized("apps_and_media"),
             image: UIImage(systemName: "photo.on.rectangle"),
@@ -314,11 +311,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 show(AllMediaViewController(dcContext: dcContext, chatId: chatId), sender: nil)
             }
         )
-        if !dcChat.isSelfTalk {
-            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
-                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
-            })
-        }
         if dcChat.isEncrypted, dcChat.canSend {
             let ephemeralTimer = dcContext.getChatEphemeralTimer(chatId: chatId)
             UIAction(
@@ -331,8 +323,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             )
         }
+        if !dcChat.isSelfTalk {
+            MuteDialog.menu(isMuted: dcChat.isMuted, didSelectMute: { [unowned self] duration in
+                dcContext.setChatMuteDuration(chatId: chatId, duration: duration)
+            })
+        }
+        UIAction(title: String.localized("select"), image: UIImage(systemName: "checkmark.circle")) { [unowned self] _ in
+            setEditing(isEditing: true)
+        }
+        UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
         UIMenu(options: [.displayInline]) { [unowned self] in
-            UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
             let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
             UIAction(
                 title: String.localized("clear_chat"),
