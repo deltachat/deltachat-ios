@@ -332,7 +332,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             setEditing(isEditing: true)
         }
         UIAction.archiveChat(dcChat, dcContext: dcContext, navigate: self)
-        UIMenu(options: [.displayInline]) { [unowned self] in
+        UIMenu(title: String.localized("menu_more_options")) { [unowned self] in
             let clearImage = if #available(iOS 16.0, *) { "eraser" } else { "rectangle.portrait" }
             UIAction(
                 title: String.localized("clear_chat"),
