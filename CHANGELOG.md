@@ -7,6 +7,7 @@
 - Reconnect app to realtime after app was suspended in background
 - Update translations
 - Update to core 2.65.0
+- Fixed an edge case where the tab bar could be shown over a mini app or the chat
 
 
 ## 2.64.0
