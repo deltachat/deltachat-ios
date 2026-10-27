@@ -1145,7 +1145,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         case (_, DC_INFO_GROUP_DESCRIPTION_CHANGED):
             navigationController?.pushViewController(ProfileViewController(dcContext, chatId: chatId), animated: true)
         case (_, DC_INFO_LOCATIONSTREAMING_ENABLED):
-            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId), animated: true)
+            navigationController?.pushViewController(MapViewController(dcContext: dcContext, chatId: chatId, focusOn: message.fromContactId), animated: true)
         case (_, DC_INFO_MESSAGE_PINNED):
             if let pinnedMessageId = message.parent?.id {
                 scrollToMessage(msgId: pinnedMessageId)
