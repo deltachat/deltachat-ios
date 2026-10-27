@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 import DcCore
 import Intents
 
@@ -8,8 +9,7 @@ class ChatListViewModel: NSObject {
 
     var onChatListUpdate: VoidFunction?
 
-    private var inBgSearch = false
-    private var needsAnotherBgSearch = false
+    private var bag: Set<AnyCancellable> = []
 
     enum ChatListSectionType {
         case chats
@@ -30,7 +30,7 @@ class ChatListViewModel: NSObject {
     var chatList: DcChatlist!
 
     // for search filtering
-    private var searchText: String = ""
+    @Published private var searchText: String = ""
     private var searchResultChatList: DcChatlist?
     private var searchResultContactIds: [Int] = []
     private var searchResultMessageIds: [Int] = []
@@ -43,12 +43,25 @@ class ChatListViewModel: NSObject {
 
     private var isChatListUpdatePending = false
     private(set) var isEditing = false
+    private var shouldHandleURL = true
 
     init(dcContext: DcContext, isArchive: Bool) {
         self.isArchive = isArchive
         self.dcContext = dcContext
         super.init()
         updateChatList(notifyListener: true)
+        self.$searchText
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.global(qos: .userInteractive))
+            .sink { [weak self] searchText in
+                self?.filterContentForSearchText(searchText)
+            }
+            .store(in: &bag)
+        self.$searchText
+            .debounce(for: .milliseconds(100), scheduler: RunLoop.main)
+            .sink { [weak self] searchText in
+                self?.handleUrl(in: searchText)
+            }
+            .store(in: &bag)
     }
 
     private func updateChatList(notifyListener: Bool) {
@@ -448,34 +461,27 @@ class ChatListViewModel: NSObject {
         searchResultMessageIds = dcContext.searchMessages(searchText: searchText)
         updateSearchResultSections()
     }
+
+    private func handleUrl(in searchText: String) {
+        if shouldHandleURL, let url = URL(string: searchText) {
+            switch url.scheme?.lowercased() {
+            case "dcaccount", "dclogin",
+                "https" where url.host == Utils.inviteDomain:
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                appDelegate?.appCoordinator.handleQRCode(searchText)
+                shouldHandleURL = false
+            default: break
+            }
+        } else if searchText.isEmpty {
+            shouldHandleURL = true
+        }
+    }
 }
 
 // MARK: UISearchResultUpdating
 extension ChatListViewModel: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-
         self.searchText = searchController.searchBar.text ?? ""
-
-        if inBgSearch {
-            needsAnotherBgSearch = true
-            logger.info("... search call debounced")
-        } else {
-            inBgSearch = true
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                usleep(100000)
-                self?.needsAnotherBgSearch = false
-                self?.filterContentForSearchText(self?.searchText ?? "")
-
-                while self?.needsAnotherBgSearch != false {
-                    usleep(100000)
-                    self?.needsAnotherBgSearch = false
-                    logger.info("... executing debounced search call")
-                    self?.filterContentForSearchText(self?.searchText ?? "")
-                }
-
-                self?.inBgSearch = false
-            }
-        }
     }
 }
 
