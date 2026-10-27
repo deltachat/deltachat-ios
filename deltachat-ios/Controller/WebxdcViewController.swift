@@ -26,34 +26,58 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
+    fileprivate lazy var closeButton: UIBarButtonItem = {
+        UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [unowned self] _ in
+            quit()
+        }, menu: UIMenu { [unowned self] in
+            UIAction(title: String.localized("close"), image: UIImage(systemName: "xmark")) { [unowned self] _ in
+                quit()
+            }
+            UIAction.minimizeWebxdc(vc: self, info: info)
+        })
+    }()
+
     private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: .ellipsisNavigation())
-        return UIBarButtonItem(image: image, menu: moreButtonMenu())
+        UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
+            if !isDraft {
+                UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [unowned self] _ in
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    let message = dcContext.getMessage(id: self.messageId)
+                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+                }
+                UIAction.minimizeWebxdc(vc: self, info: info)
+
+                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+                    let isOnHomescreen = userDefaults.getAllWidgetEntries().contains {
+                        $0.accountId == dcContext.id && $0.type == .app(messageId: messageId)
+                    }
+                    if isOnHomescreen {
+                        UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [unowned self] _ in
+                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
+                        }
+                    } else {
+                        UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [unowned self] _ in
+                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
+                        }
+                    }
+                }
+            }
+
+            // Help actions
+            UIMenu(options: [.displayInline]) {
+                UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+                    self?.openHelp(fragment: "#webxdc")
+                }
+                if let url = info?.sourceCodeUrl, !url.isEmpty {
+                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
+                        self?.openSourceCodeUrl()
+                    }
+                }
+            }
+        })
     }()
 
     private var advertiseAgainCancelable: AnyCancellable?
-
-    var canMinimize: Bool {
-        if #available(iOS 16.2, *) {
-            ActivityAuthorizationInfo().areActivitiesEnabled
-        } else {
-            false
-        }
-    }
-    private lazy var minimizeButton: UIBarButtonItem? = {
-        !canMinimize ? nil : UIBarButtonItem( // TODO: Localized accessibility title?
-            image: UIImage(systemName: "chevron.up"),
-            primaryAction: UIAction(handler: { [weak self] _ in
-                guard let self, #available(iOS 16.2, *), let info else { return }
-                Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = self
-                if #available(iOS 17.0, *) {
-                    webView.configuration.preferences.inactiveSchedulingPolicy = .none
-                }
-                navigationController?.popViewController(withAnimation: .popToLiveActivity)
-                startLiveActivity(with: info)
-            })
-        )
-    }()
 
     @available(iOS 16.2, *)
     private var activity: Activity<WebxdcLiveActivityAttributes>? {
@@ -336,12 +360,7 @@ class WebxdcViewController: WebViewViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-        navigationItem.leftBarButtonItems = [
-            UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [unowned self] _ in
-                quit()
-            }),
-            minimizeButton
-        ].compactMap(\.self)
+        navigationItem.leftBarButtonItem = closeButton
     }
 
     func refreshWebxdcInfo() {
@@ -495,49 +514,6 @@ class WebxdcViewController: WebViewViewController {
         Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = nil
         let vcs = navigationController?.viewControllers.filter { $0 != self } ?? []
         navigationController?.setViewControllers(vcs, animated: true)
-    }
-
-    private func moreButtonMenu() -> UIMenu {
-        UIMenu { [unowned self] in
-            if !isDraft {
-                UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [unowned self] _ in
-                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                    let message = dcContext.getMessage(id: self.messageId)
-                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-                }
-
-                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-                    let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
-                        switch entry.type {
-                        case .app(let messageId): return messageId
-                        case .chat: return nil
-                        }
-                    }
-                    let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-                    if isOnHomescreen {
-                        UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [unowned self] _ in
-                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
-                        }
-                    } else {
-                        UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [unowned self] _ in
-                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
-                        }
-                    }
-                }
-            }
-
-            // Help actions
-            UIMenu(options: [.displayInline]) {
-                UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
-                    self?.openHelp(fragment: "#webxdc")
-                }
-                if let url = info?.sourceCodeUrl, !url.isEmpty {
-                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
-                        self?.openSourceCodeUrl()
-                    }
-                }
-            }
-        }
     }
 
     private func openSourceCodeUrl() {
@@ -696,7 +672,7 @@ extension WebxdcViewController: WKURLSchemeHandler {
 @available(iOS 16.2, *)
 extension WebxdcViewController {
 
-    private func startLiveActivity(with info: WebxdcInfo) {
+    fileprivate func startLiveActivity(with info: WebxdcInfo) {
         Task { [self] in
             await activity?.end(nil, dismissalPolicy: .immediate)
             let attributes = WebxdcLiveActivityAttributes(context: dcContext, messageId: messageId)
@@ -858,5 +834,23 @@ extension UINavigationController {
         self.delegate = tempDelegate
         setViewControllers(viewControllers, animated: true)
         self.delegate = oldDelegate
+    }
+}
+
+private extension UIAction {
+    @MenuElementBuilder
+    static func minimizeWebxdc(vc: WebxdcViewController, info: WebxdcInfo?) -> UIMenuElement {
+        let isMap = vc is MapViewController
+        if #available(iOS 16.2, *), !isMap, !vc.isDraft, ActivityAuthorizationInfo().areActivitiesEnabled, let info {
+            UIAction(title: String.localized("global_menu_minimize_to_tray"), image: UIImage(systemName: "chevron.up")) { [unowned vc] _ in
+                WebxdcViewController.loadedWebxdcs[.key(contextId: vc.dcContext.id, messageId: vc.messageId)] = vc
+                if #available(iOS 17.0, *) {
+                    vc.webView.configuration.preferences.inactiveSchedulingPolicy = .none
+                }
+                vc.navigationController?.popViewController(withAnimation: .popToLiveActivity)
+                vc.startLiveActivity(with: info)
+                vc.closeButton.primaryAction = nil
+            }
+        }
     }
 }
