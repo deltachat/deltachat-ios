@@ -48,6 +48,8 @@ class NewChatViewController: UITableViewController {
         return searchController.searchBar.text
     }
 
+    private var shouldHandlePastedURL = true
+
     // searchBar active?
     var isFiltering: Bool {
         return !searchBarIsEmpty
@@ -294,6 +296,19 @@ class NewChatViewController: UITableViewController {
         }
     }
 
+    private func handleUrl(in searchText: String) {
+        if shouldHandlePastedURL,
+           let url = URL(string: searchText),
+           url.scheme?.lowercased() == "https",
+           url.host == Utils.inviteDomain {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.appCoordinator.handleQRCode(searchText)
+            shouldHandlePastedURL = false
+        } else if searchText.isEmpty {
+            shouldHandlePastedURL = true
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         // ensure the empty search state message can be fully read
@@ -368,6 +383,7 @@ extension NewChatViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
             filterContentForSearchText(searchText)
+            handleUrl(in: searchText)
         }
     }
 }
