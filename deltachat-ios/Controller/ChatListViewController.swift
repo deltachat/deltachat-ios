@@ -14,13 +14,6 @@ class ChatListViewController: UITableViewController {
 
     private weak var timer: Timer?
 
-    private lazy var titleView: UILabel = {
-        let view = UILabel()
-        view.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        view.accessibilityTraits = .header
-        return view
-    }()
-
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -177,8 +170,6 @@ class ChatListViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // create view
-        navigationItem.titleView = titleView
         updateTitle()
     }
 
@@ -756,22 +747,21 @@ class ChatListViewController: UITableViewController {
     }
 
     private func updateTitle() {
-        titleView.accessibilityHint = String.localized("a11y_connectivity_hint")
         if RelayHelper.shared.isForwarding() || RelayHelper.shared.isSharing() {
             // multi-select is not allowed during forwarding
-            titleView.text = RelayHelper.shared.dialogTitle
+            navigationItem.title = RelayHelper.shared.dialogTitle
             updateAccountButton()
             navigationItem.setLeftBarButton(isArchive ? nil : accountButton, animated: false)
             navigationItem.setRightBarButtonItems([cancelButton], animated: true)
         } else if isArchive {
-            titleView.text = String.localized("chat_archived_label")
+            navigationItem.title = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(nil, animated: true)
                 navigationItem.setRightBarButtonItems([markReadButton], animated: true)
             }
             updateMarkReadButton()
         } else {
-            titleView.text = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
+            navigationItem.title = DcUtils.getConnectivityString(dcContext: dcContext, connectedString: String.localized("pref_chats"))
             if !handleMultiSelectionTitle() {
                 navigationItem.setLeftBarButton(accountButton, animated: false)
                 updateAccountButton()
@@ -782,23 +772,16 @@ class ChatListViewController: UITableViewController {
                     updateProxyButton()
                     navigationItem.setRightBarButtonItems([newButton, proxyShieldButton], animated: true)
                 }
-
-                if dcContext.getConnectivity() >= DC_CONNECTIVITY_CONNECTED {
-                    titleView.accessibilityHint = "\(String.localized("connectivity_connected")): \(String.localized("a11y_connectivity_hint"))"
-                }
             }
         }
-        titleView.isUserInteractionEnabled = !tableView.isEditing
-        titleView.sizeToFit()
     }
 
     func handleMultiSelectionTitle() -> Bool {
         if !hasEditingView() {
             return false
         }
-        titleView.accessibilityHint = nil
         let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
-        titleView.text = String.localized(stringID: "n_selected", parameter: cnt)
+        navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
         navigationItem.setRightBarButtonItems([markReadButton], animated: true)
         updateMarkReadButton()
