@@ -5,8 +5,6 @@ import DcCore
 class MapViewController: WebxdcViewController {
     private let isGlobalMap: Bool
 
-    override var canMinimize: Bool { false }
-
     init(dcContext: DcContext, chatId: Int) {
         isGlobalMap = chatId == 0
         var webxdcInstanceId = dcContext.initWebxdcIntegration(for: chatId)
