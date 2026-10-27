@@ -55,16 +55,18 @@ struct InputBarView: View {
                 .modifier { glassEffect(view: $0, interactive: false) }
             }
             HStack(alignment: .bottom, spacing: 6) {
-                UncachedMenu(content: { clipperMenu }, label: {
-                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(2)
-                })
-                .frame(height: buttonSize)
-                // This fixes the attach button being hidden sometimes on iOS 15
-                .fixedSize(horizontal: true, vertical: false)
+                if draft.sendEditRequestForMsg == nil {
+                    UncachedMenu(content: { clipperMenu }, label: {
+                        Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(2)
+                    })
+                    .frame(height: buttonSize)
+                    // This fixes the attach button being hidden sometimes on iOS 15
+                    .fixedSize(horizontal: true, vertical: false)
+                }
                 VStack {
                     InputBarTextView(
                         text: $draft.text,
