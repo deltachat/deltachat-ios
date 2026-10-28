@@ -1,19 +1,21 @@
 # Delta Chat iOS Changelog
 
 
-## Unreleased
+## v2.65.0
+2026-10
 
 - Show info message when unpinning a message
+- Handle invite links pasted to search bars
 - Reconnect app to realtime after app was suspended in background
 - Use clearer "Apps & Media" and "App" icons
 - Remove "smart" app shortcuts from chat's menu (introduced in 2.64 only);
   use "Pinned Messages" instead or open "Apps & Media" by a double tap on the chat's menu
+- Fixed an edge case where the tab bar could be shown over a mini app or the chat
 - Update translations
 - Update to core 2.65.0
-- Fixed an edge case where the tab bar could be shown over a mini app or the chat
 
 
-## 2.64.0
+## v2.64.0
 2026-10
 
 - Pinned Messages
@@ -38,7 +40,7 @@
 - Update to core 2.64.0
 
 
-## 2.62.2
+## v2.62.2
 2026-09
 
 - Onboard on multiple relays by default
@@ -66,7 +68,7 @@
 - Update to core 2.62.0
 
 
-## 2.59.1
+## v2.59.1
 2026-08
 
 - Allow to react in channels
