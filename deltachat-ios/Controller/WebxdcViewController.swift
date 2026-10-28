@@ -53,9 +53,11 @@ class WebxdcViewController: WebViewViewController {
         let addr = info?.selfAddr.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed
         )?.nilIfEmpty ?? "ErrAddr"
+        // Do not use a translated `"unnamed"`
+        // so as to not unintentionally leak the user's locale.
         let displayname = dcContext.displayname?.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed
-        )?.nilIfEmpty ?? String.localized("unnamed")
+        )?.nilIfEmpty ?? "Unnamed"
 
         let script = """
         window.webxdc = (() => {
