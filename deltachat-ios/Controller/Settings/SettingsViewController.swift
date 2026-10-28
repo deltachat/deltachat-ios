@@ -120,7 +120,8 @@ internal final class SettingsViewController: UITableViewController {
         let cell = UITableViewCell()
         cell.tag = CellTags.selectBackground.rawValue
         cell.textLabel?.text = String.localized("pref_background")
-        cell.imageView?.image = UIImage(systemName: "sun.lefthalf.filled")
+        let paletteImage = if #available(iOS 16.0, *) { "swatchpalette" } else { "square.split.2x2" }
+        cell.imageView?.image = UIImage(systemName: paletteImage)
         cell.accessoryType = .disclosureIndicator
         return cell
     }()
