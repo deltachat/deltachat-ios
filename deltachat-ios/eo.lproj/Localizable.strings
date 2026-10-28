@@ -321,10 +321,16 @@
 "pin" = "Alpingli";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Alpinglita";
+"pin_for_everyone_ask" = "Ĉu alpingli la mesaĝon por ĉiuj en la babilo?";
+"pin_for_everyone" = "Alpingli por ĉiuj";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Depingli";
+"unpin_for_everyone_ask" = "Ĉu depingli por ĉiuj la mesaĝon en la babilo?";
+"unpin_for_everyone" = "Depingli por ĉiuj";
 "message_pinned_by_you" = "Vi alpinglis mesaĝon";
 "message_pinned_by_other" = "Mesaĝo alpinglita de %1$@";
+"message_unpinned_by_you" = "Vi depinglis mesaĝon";
+"message_unpinned_by_other" = "La mesaĝo estis depinglita de %1$@";
 "ConversationFragment_quoted_message_not_found" = "La originala mesaĝo ne troveblas";
 "reply_privately" = "Respondu private";
 "source_code" = "Fontkodo";
@@ -389,9 +395,16 @@
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
 "ask_forward_multiple" = "Ĉu plusendi la mesaĝojn al %1$d babilejoj?";
 "ask_export_attachment" = "Eksporti kunsendaĵojn permesos, ke aliaj apoj sur via aparato atingos ilin.\n\nĈu vi volas daŭrigi?";
+"ask_block_contact" = "Ĉu bloki ĉi tiun kontakton?\n\nLa rektaj mesaĝoj aŭ grupoj kreitaj de blokataj kontaktoj ne aperos.\n\nAliaj grupoj kun blokataj kontaktoj aperigos iliajn mesaĝojn.";
+"ask_unblock_contact" = "Ĉu malbloki ĉi tiun kontakton?";
+"ask_delete_contacts" = "Ĉu forviŝi la kontaktojn?\n\nKontaktoj kun okazanta babiloj ne povas esti forviŝitaj porĉiame.";
+"ask_delete_contact" = "Ĉu forviŝi la kontakton %1$@?\n\nKontaktoj kun okazantaj babiloj ne povas esti forviŝitaj porĉiame.";
 "ask_start_chat_with" = "Babili kun %1$@?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "Forigi %1$@el la grupo?";
+"ask_remove_members" = "Ĉu forigi %1$@ el la grupo?";
+// %1$s is replaced by a comma-separated list of names
+"ask_remove_from_channel" = "Ĉu forigi %1$@ el la kanalo?";
+"open_url_confirmation" = "Ĉu vi volas sekvi ĉi tiun ligilon?";
 // contact list
 "contacts_title" = "Kontaktoj";
 "contacts_type_email_above" = "Enigu retadreson supren";
@@ -400,6 +413,11 @@
 "chat_please_enter_message" = "Bonvolu enigi mesaĝon.";
 "chat_camera_unavailable" = "Fotilo neatingebla.";
 "chat_unable_to_record_audio" = "Ne povas registri aŭdaĵon.";
+// The placeholder will be replaced by the name of the recipient in a one-to-one chat.
+"chat_new_one_to_one_hint" = "Sendi mesaĝon al  %1$@.";
+// consider keeping the term "channel" as in WhatsApp or Telegram
+"chat_new_channel_hint" = "Kanaloj estas unu-al-plura ilo por dissendi viajn mesaĝojn.";
+"chat_new_group_hint" = "Aliuloj vidos tiun ĉi grupon nur kiam vi estos sendita la unuan mesaĝon.";
 "chat_record_slide_to_cancel" = "Gliti por nuligi";
 "chat_record_explain" = "Tuŝadi por registri voĉan mesaĝon, maltuŝadi por sendi";
 "chat_all_archived" = "Ĉiuj babiloj enarĥivigitaj.\nPremu \"+\" por komenci novan babilon.";
