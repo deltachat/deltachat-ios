@@ -692,6 +692,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dcContext.setStockTranslation(id: DC_STR_GROUP_DESCRIPTION_CHANGED_BY_OTHER, localizationKey: "chat_description_changed_by_other")
         dcContext.setStockTranslation(id: DC_STR_MESSAGE_PINNED_BY_YOU, localizationKey: "message_pinned_by_you")
         dcContext.setStockTranslation(id: DC_STR_MESSAGE_PINNED_BY_OTHER, localizationKey: "message_pinned_by_other")
+        dcContext.setStockTranslation(id: DC_STR_MESSAGE_UNPINNED_BY_YOU, localizationKey: "message_unpinned_by_you")
+        dcContext.setStockTranslation(id: DC_STR_MESSAGE_UNPINNED_BY_OTHER, localizationKey: "message_unpinned_by_other")
     }
 
     func appIsInForeground() -> Bool {
