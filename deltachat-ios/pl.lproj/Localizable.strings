@@ -324,10 +324,16 @@
 "pin" = "Przypnij";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Przypięty";
+"pin_for_everyone_ask" = "Przypiąć wiadomość u wszystkich uczestników czatu?";
+"pin_for_everyone" = "Przypnij u wszystkich";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Odepnij";
+"unpin_for_everyone_ask" = "Odpiąć wiadomość u wszystkich uczestników czatu?";
+"unpin_for_everyone" = "Odepnij u wszystkich";
 "message_pinned_by_you" = "Przypięto wiadomość";
 "message_pinned_by_other" = "Wiadomość przypięta przez %1$@";
+"message_unpinned_by_you" = "Odpięto wiadomość";
+"message_unpinned_by_other" = "Wiadomość odpięta przez %1$@";
 "ConversationFragment_quoted_message_not_found" = "Nie znaleziono oryginalnej wiadomości";
 "reply_privately" = "Odpowiedz prywatnie ";
 "source_code" = "Kod źródłowy";
@@ -632,6 +638,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Wysłać %1$d pliki do „%2$@”?";
 "ask_send_files_to_selected_chats" = "Wysłać %1$d pliki do %2$d czatów?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Przygotowywanie multimediów…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Kompresowanie wideo…";
+"video_recode_busy" = "Trwa przetwarzanie kolejnego filmu, proszę czekać.";
 "share_text_multiple_chats" = "Wysłać ten tekst do %1$d czatów?\n\n\"%2$@\"";
 "share_abort" = "Udostępnianie zostało przerwane z powodu brakujących uprawnień.";
 // preferences

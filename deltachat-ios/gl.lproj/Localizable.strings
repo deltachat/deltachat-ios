@@ -324,10 +324,16 @@
 "pin" = "Ancorar";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Fixado";
+"pin_for_everyone_ask" = "Espeta-la mensaxe para tódalas persoas na conversa?";
+"pin_for_everyone" = "Espetar para tódalas persoas";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desancorar";
+"unpin_for_everyone_ask" = "Desespeta-la mensaxe para tódalas persoas na conversa?";
+"unpin_for_everyone" = "Desespetar para tódalas persoas";
 "message_pinned_by_you" = "Fixou unha mensaxe";
 "message_pinned_by_other" = "Mensaxe fixada por %1$@";
+"message_unpinned_by_you" = "Desespetou a mensaxe";
+"message_unpinned_by_other" = "Mensaxe desespetada por %1$@";
 "ConversationFragment_quoted_message_not_found" = "Non se atopa a mensaxe orixinal";
 "reply_privately" = "Responder de xeito privado";
 "source_code" = "Código Fonte";
@@ -429,7 +435,7 @@
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Gardar mensaxe";
 "saved_messages" = "Mensaxes gardadas";
-"saved_messages_explain" = "• Reenvía aquí as mensaxes para un acceso rápido\n\n• Toma notas de texto ou voz\n\n• Anexa medios para gardalos";
+"saved_messages_explain" = "• Reenvíar aquí as mensaxes para un acceso rápido\n\n• Tomar notas de texto ou voz\n\n• Anexar medios para gardalos";
 // Should match "Saved" from "Saved messages"
 "saved" = "Gardado";
 "attachment_failed_to_load" = "Erro ao cargar o anexo";
@@ -632,6 +638,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Enviar %1$d ficheiros para \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Enviar %1$d ficheiro(s) a %2$d conversas?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Preparando os medios...";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Comprimindo o vídeo...";
+"video_recode_busy" = "Está sendo procesado outro vídeo, espere un anaco.";
 "share_text_multiple_chats" = "Enviar este texto a %1$d conversas?\n\n\"%2$@\"";
 "share_abort" = "Deixouse de compartir por falta de permisos";
 // preferences

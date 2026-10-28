@@ -324,10 +324,16 @@
 "pin" = "Pripnúť";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Pripnuté";
+"pin_for_everyone_ask" = "Pripnúť správu pre všetkých v konverzácii?";
+"pin_for_everyone" = "Pripnúť pre všetkých";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Zrušiť pripnutie";
+"unpin_for_everyone_ask" = "Zrušiť pripnutie správy pre všetkých v konverzácii?";
+"unpin_for_everyone" = "Zrušiť pripnutie pre všetkých";
 "message_pinned_by_you" = "Pripli ste správu";
 "message_pinned_by_other" = "%1$@ pripol(a) správu";
+"message_unpinned_by_you" = "Zrušili ste pripnutie správy";
+"message_unpinned_by_other" = "%1$@ zrušil(a) pripnutie správy";
 "ConversationFragment_quoted_message_not_found" = "Pôvodná správa sa nenašla";
 "reply_privately" = "Odpovedať súkromne";
 "source_code" = "Zdrojový kód";
@@ -632,6 +638,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Poslať %1$d súbory do konverzácie „%2$@“?";
 "ask_send_files_to_selected_chats" = "Poslať %1$d súbor(y) do %2$d konverzácií?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Príprava médií…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Komprimovanie videa…";
+"video_recode_busy" = "Stále prebieha spracovanie iného videa. Čakajte prosím.";
 "share_text_multiple_chats" = "Odoslať tento text do %1$d konverzácií?\n\n„%2$@“";
 "share_abort" = "Zdieľanie bolo prerušené z dôvodu chýbajúcich povolení.";
 // preferences
