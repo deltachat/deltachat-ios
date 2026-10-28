@@ -292,12 +292,7 @@ class AppCoordinator: NSObject {
            !dcAccounts.getSelected().isConfigured() {
             presentWelcomeController(accountCode: code)
         } else {
-            showTab(index: qrTab)
-            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
-               let topViewController = navController.topViewController,
-               let qrPageController = topViewController as? QrPageController {
-                coordinate(qrCode: code, from: qrPageController)
-            }
+            coordinate(qrCode: code, from: tabBarController)
         }
     }
 
