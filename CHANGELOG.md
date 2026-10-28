@@ -5,6 +5,9 @@
 
 - Show info message when unpinning a message
 - Reconnect app to realtime after app was suspended in background
+- Use clearer "Apps & Media" and "App" icons
+- Remove "smart" app shortcuts from chat's menu (introduced in 2.64 only);
+  use "Pinned Messages" instead or open "Apps & Media" by a double tap on the chat's menu
 - Update translations
 - Update to core 2.65.0
 - Fixed an edge case where the tab bar could be shown over a mini app or the chat
