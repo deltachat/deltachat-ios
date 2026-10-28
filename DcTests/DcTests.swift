@@ -32,6 +32,7 @@ import UIKit
         weak var webxdcVC = vc.presentedViewController as? WebxdcViewController
         #expect(webxdcVC != nil)
         await webxdcVC!.dismiss(animated: false)
+        try await Task.sleep(seconds: 1) // This should not be necessary but makes CI less flaky
         #expect(webxdcVC == nil)
     }
 
