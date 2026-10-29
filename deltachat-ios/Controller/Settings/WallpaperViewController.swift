@@ -47,7 +47,7 @@ struct WallpaperView: View {
             .scaledToFill()
             .ignoresSafeArea(isLiquidGlassEnabled ? .all : [])
             .overlay(alignment: .bottom) {
-                HStack(spacing: isLiquidGlassEnabled ? 0 : 20) {
+                HStack(spacing: isLiquidGlassEnabled ? nil : 20) {
                     Button(String.localized("pref_background_btn_default"), action: {
                         UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
                     })
@@ -62,7 +62,7 @@ struct WallpaperView: View {
                 .padding(.horizontal)
                 .modifier { view in
                     if #available(iOS 26.0, *) {
-                        GlassEffectContainer(spacing: 0) {
+                        GlassEffectContainer {
                             view.buttonStyle(.glass)
                         }
                     } else {
