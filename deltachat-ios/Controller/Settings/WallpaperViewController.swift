@@ -6,6 +6,7 @@ import SwiftUI
 
 class WallpaperViewController: UIViewController, MediaPickerDelegate {
     var dcContext: DcContext
+    lazy var mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
@@ -45,25 +46,24 @@ struct WallpaperView: View {
             .scaledToFill()
             .ignoresSafeArea(isLiquidGlassEnabled ? .all : [])
             .overlay(alignment: .bottom) {
-                HStack {
+                HStack(spacing: isLiquidGlassEnabled ? 0 : 20) {
                     Button(String.localized("pref_background_btn_default"), action: {
                         UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
                     })
                     Button(String.localized("pref_background_btn_gallery"), action: {
-                        guard let vc else { return }
-                        let mediaPicker = MediaPicker(dcContext: vc.dcContext, navigationController: vc.navigationController)
-                        mediaPicker.delegate = vc
-                        mediaPicker.showGallery(allowCropping: true)
+                        vc?.mediaPicker.delegate = vc
+                        vc?.mediaPicker.showGallery(allowCropping: true)
                     })
                 }
                 .frame(maxWidth: .infinity)
                 .lineLimit(nil)
                 .padding()
+                .padding(.horizontal)
                 .modifier { view in
                     if #available(iOS 26.0, *) {
                         GlassEffectContainer(spacing: 0) {
                             view.buttonStyle(.glass)
-                        }.padding(.horizontal)
+                        }
                     } else {
                         view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
                             .overlay(alignment: .top, content: Divider.init)
