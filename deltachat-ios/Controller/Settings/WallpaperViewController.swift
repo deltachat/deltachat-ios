@@ -57,12 +57,13 @@ struct WallpaperView: View {
                     })
                 }
                 .frame(maxWidth: .infinity)
+                .lineLimit(nil)
                 .padding()
                 .modifier { view in
                     if #available(iOS 26.0, *) {
                         GlassEffectContainer(spacing: 0) {
                             view.buttonStyle(.glass)
-                        }
+                        }.padding(.horizontal)
                     } else {
                         view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
                             .overlay(alignment: .top, content: Divider.init)
