@@ -26,6 +26,7 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
         view.addSubview(host.view)
         host.didMove(toParent: self)
         host.view.fillSuperview()
+        view.clipsToBounds = true
     }
 
     func onImageSelected(image: UIImage) {
