@@ -1,154 +1,88 @@
 import Foundation
 import UIKit
 import DcCore
+import SDWebImageSwiftUI
+import SwiftUI
 
 class WallpaperViewController: UIViewController, MediaPickerDelegate {
-
-    private let dcContext: DcContext
-
-    private lazy var selectBackgroundButton: DynamicFontButton = {
-        let btn = DynamicFontButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle(String.localized("pref_background_btn_gallery"), for: .normal)
-        btn.accessibilityLabel = String.localized("pref_background_btn_gallery")
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitleColor(.systemBlue, for: .normal)
-        btn.setTitleColor(.gray, for: .highlighted)
-        btn.titleLabel?.lineBreakMode = .byWordWrapping
-        btn.titleLabel?.textAlignment = .center
-        btn.contentHorizontalAlignment = .center
-        btn.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
-        btn.titleLabel?.adjustsFontForContentSizeCategory = true
-        btn.addTarget(self, action: #selector(onSelectBackgroundImage), for: .touchUpInside)
-        return btn
-    }()
-
-    private lazy var selectDefaultButton: DynamicFontButton = {
-        let btn = DynamicFontButton()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle(String.localized("pref_background_btn_default"), for: .normal)
-        btn.accessibilityLabel = String.localized("pref_background_btn_gallery")
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitleColor(.systemBlue, for: .normal)
-        btn.setTitleColor(.gray, for: .highlighted)
-        btn.titleLabel?.lineBreakMode = .byWordWrapping
-        btn.titleLabel?.textAlignment = .center
-        btn.contentHorizontalAlignment = .center
-        btn.addTarget(self, action: #selector(onDefaultSelected), for: .touchUpInside)
-        btn.titleLabel?.font = UIFont.preferredFont(for: .body, weight: .regular)
-        btn.titleLabel?.adjustsFontForContentSizeCategory = true
-        return btn
-    }()
-
-    lazy var blurView: UIVisualEffectView = {
-        let blurEffect = UIBlurEffect(style: .light)
-        let view = UIVisualEffectView(effect: blurEffect)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private lazy var container: UIStackView = {
-        let container = UIStackView(arrangedSubviews: [selectDefaultButton, selectBackgroundButton])
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.distribution = .fillEqually
-        container.axis = .horizontal
-        container.alignment = .fill
-        container.backgroundColor = DcColors.defaultTransparentBackgroundColor
-        return container
-    }()
-
-    private lazy var backgroundContainer: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        if let backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) {
-            view.sd_setImage(with: Utils.getBackgroundImageURL(name: backgroundImageName),
-                             placeholderImage: nil,
-                             options: [.retryFailed, .refreshCached]) { [weak self] (_, error, _, _) in
-                    if let error = error {
-                        logger.error("Error loading background image: \(error.localizedDescription)" )
-                        DispatchQueue.main.async {
-                            self?.setDefault(view)
-                        }
-                    }
-                }
-        } else {
-            setDefault(view)
-        }
-
-        return view
-    }()
-
-    private lazy var mediaPicker: MediaPicker = {
-        let mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
-        mediaPicker.delegate = self
-        return mediaPicker
-    }()
+    var dcContext: DcContext
+    lazy var mediaPicker = MediaPicker(dcContext: dcContext, navigationController: navigationController)
 
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .systemGroupedBackground
         hidesBottomBarWhenPushed = true
+        title = String.localized("pref_background")
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
-        self.title = String.localized("pref_background")
-        setupSubviews()
+        super.viewDidLoad()
+        let host = UIHostingController(rootView: WallpaperView(vc: self))
+        addChild(host)
+        view.addSubview(host.view)
+        host.didMove(toParent: self)
+        host.view.fillSuperview()
+        view.clipsToBounds = true
     }
 
-    private func setupSubviews() {
-        view.addSubview(backgroundContainer)
-        view.addSubview(blurView)
-        view.addSubview(container)
-
-        NSLayoutConstraint.activate([
-            container.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            container.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blurView.topAnchor.constraint(equalTo: container.topAnchor),
-            blurView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            blurView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            blurView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            backgroundContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ])
-     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let bottomSafeArea = view.safeAreaInsets.bottom
-        selectBackgroundButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 8, bottom: bottomSafeArea + 12, right: 8)
-        selectDefaultButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 8, bottom: bottomSafeArea + 12, right: 8)
-    }
-
-    @objc private func onSelectBackgroundImage() {
-        mediaPicker.showGallery(allowCropping: true)
-    }
-
-    @objc private func onDefaultSelected() {
-        setDefault(backgroundContainer)
-        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
-    }
-
-    private func setDefault(_ imageView: UIImageView) {
-        imageView.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
-    }
-
-    // MARK: MediaPickerDelegate
     func onImageSelected(image: UIImage) {
         if let path = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
             UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
-            backgroundContainer.sd_setImage(with: URL(fileURLWithPath: path), placeholderImage: nil, options: .refreshCached, completed: nil)
         } else {
             logger.error("failed to save background image")
+        }
+    }
+}
+
+struct WallpaperView: View {
+    weak var vc: WallpaperViewController?
+    @State private var backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
+
+    var body: some View {
+        backgroundImageView
+            .scaledToFill()
+            .ignoresSafeArea(isLiquidGlassEnabled ? .all : [])
+            .overlay(alignment: .bottom) {
+                HStack(spacing: isLiquidGlassEnabled ? nil : 20) {
+                    Button(String.localized("pref_background_btn_default"), action: {
+                        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
+                    })
+                    Button(String.localized("pref_background_btn_gallery"), action: {
+                        vc?.mediaPicker.delegate = vc
+                        vc?.mediaPicker.showGallery(allowCropping: true)
+                    })
+                }
+                .frame(maxWidth: .infinity)
+                .lineLimit(nil)
+                .padding()
+                .padding(.horizontal)
+                .modifier { view in
+                    if #available(iOS 26.0, *) {
+                        GlassEffectContainer {
+                            view.buttonStyle(.glass)
+                        }
+                    } else {
+                        view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
+                            .overlay(alignment: .top, content: Divider.init)
+                    }
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+                backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
+            }
+    }
+
+    @ViewBuilder var backgroundImageView: some View {
+        if let backgroundImageName {
+            WebImage(url: Utils.getBackgroundImageURL(name: backgroundImageName))
+                .resizable()
+        } else {
+            Image(vc?.traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
+                .resizable()
         }
     }
 }
