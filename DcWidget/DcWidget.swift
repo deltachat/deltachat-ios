@@ -2,6 +2,7 @@ import WidgetKit
 import SwiftUI
 import DcCore
 
+@available(iOS 17, *)
 struct DcShortcutWidgetView: View {
     var entry: Provider.Entry
 
@@ -63,6 +64,7 @@ struct ChatShortcutView: View {
     }
 }
 
+@available(iOS 17, *)
 struct DcWidget: Widget {
     let kind: String = "DcWidget"
 

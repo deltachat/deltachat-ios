@@ -1,10 +1,11 @@
-import UIKit
+import ActivityKit
 import Combine
-import WebKit
 import DcCore
+import UIKit
+import WebKit
 
 class WebxdcViewController: WebViewViewController {
-    
+
     enum WebxdcHandler: String {
         case log
         case sendStatusUpdate
@@ -18,14 +19,72 @@ class WebxdcViewController: WebViewViewController {
     var messageId: Int
     var isDraft: Bool = false
     var href: String?
-    var info: WebxdcInfo?
+    var info: WebxdcInfo? {
+        didSet {
+            guard let info, info != oldValue, #available(iOS 16.2, *) else { return }
+            updateLiveActivity(with: info)
+        }
+    }
+
+    fileprivate lazy var closeButton: UIBarButtonItem = {
+        UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [unowned self] _ in
+            quit()
+        }, menu: UIMenu { [unowned self] in
+            UIAction(title: String.localized("close"), image: UIImage(systemName: "xmark")) { [unowned self] _ in
+                quit()
+            }
+            UIAction.minimizeWebxdc(vc: self, info: info)
+        })
+    }()
 
     private lazy var moreButton: UIBarButtonItem = {
-        let image = UIImage(systemName: .ellipsisNavigation())
-        return UIBarButtonItem(image: image, menu: moreButtonMenu())
+        UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
+            if !isDraft {
+                UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [unowned self] _ in
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                    let message = dcContext.getMessage(id: self.messageId)
+                    appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
+                }
+                UIAction.minimizeWebxdc(vc: self, info: info)
+
+                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
+                    let isOnHomescreen = userDefaults.getAllWidgetEntries().contains {
+                        $0.accountId == dcContext.id && $0.type == .app(messageId: messageId)
+                    }
+                    if isOnHomescreen {
+                        UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [unowned self] _ in
+                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
+                        }
+                    } else {
+                        UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [unowned self] _ in
+                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
+                        }
+                    }
+                }
+            }
+
+            // Help actions
+            UIMenu(options: [.displayInline]) {
+                UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
+                    self?.openHelp(fragment: "#webxdc")
+                }
+                if let url = info?.sourceCodeUrl, !url.isEmpty {
+                    UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
+                        self?.openSourceCodeUrl()
+                    }
+                }
+            }
+        })
     }()
 
     private var advertiseAgainCancelable: AnyCancellable?
+
+    @available(iOS 16.2, *)
+    private var activity: Activity<WebxdcLiveActivityAttributes>? {
+        get { _activity as? Activity<WebxdcLiveActivityAttributes> }
+        set { _activity = newValue }
+    }
+    private var _activity: Any?
 
     // Block just everything, except of webxdc urls
     let blockRules = """
@@ -259,20 +318,32 @@ class WebxdcViewController: WebViewViewController {
         config.preferences = preferences
         return config
     }
-    
-    
+
+    enum Key: Hashable {
+        case key(contextId: Int, messageId: Int)
+    }
+    static var loadedWebxdcs: [Key: WebxdcViewController] = [:]
+
+    class func `for`(dcContext: DcContext, messageId: Int, href: String? = nil) -> (vc: WebxdcViewController, pushAnimation: UIViewControllerAnimatedTransitioning?) {
+        if let loaded = loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] {
+            loaded.href = href
+            return (loaded, .pushFromLiveActivity)
+        }
+        return (WebxdcViewController(dcContext: dcContext, messageId: messageId, href: href), nil)
+    }
+
     init(dcContext: DcContext, messageId: Int, href: String? = nil) {
         self.messageId = messageId
         self.href = href
         super.init(dcContext: dcContext)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(WebxdcViewController.handleMessageReadDeliveredReactionFailed(_:)),
-                                               name: Event.messageReadDeliveredFailedReaction,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcStatusUpdate(_:)), name: Event.webxdcStatusUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WebxdcViewController.handleWebxdcRealtimeDataReceived(_:)), name: Event.webxdcRealtimeDataReceived, object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(handleMessagesChanged), name: Event.messagesChanged, object: nil)
+        nc.addObserver(self, selector: #selector(handleMessageReadDeliveredReactionFailed), name: Event.messageReadDeliveredFailedReaction, object: nil)
+        nc.addObserver(self, selector: #selector(handleWebxdcStatusUpdate), name: Event.webxdcStatusUpdate, object: nil)
+        nc.addObserver(self, selector: #selector(handleWebxdcRealtimeDataReceived), name: Event.webxdcRealtimeDataReceived, object: nil)
+        nc.addObserver(self, selector: #selector(handleConnectivityChanged), name: Event.connectivityChanged, object: nil)
+        nc.addObserver(self, selector: #selector(applicationWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
         refreshWebxdcInfo()
     }
     
@@ -283,17 +354,15 @@ class WebxdcViewController: WebViewViewController {
     deinit {
         logger.info("⬅️ leave realtime by deinit")
         dcContext.leaveWebxdcRealtime(messageId: messageId)
+        if #available(iOS 16.2, *) {
+            endLiveActivity()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = moreButton
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            systemItem: .close,
-            primaryAction: UIAction(handler: { [weak self] _ in
-                self?.navigationController?.popViewController(animated: true)
-            })
-        )
+        navigationItem.leftBarButtonItem = closeButton
     }
 
     func refreshWebxdcInfo() {
@@ -360,6 +429,20 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
+    @objc private func handleConnectivityChanged(_ notification: Notification) {
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard #available(iOS 16.2, *), let self, let info else { return }
+            updateLiveActivity(with: info)
+        }
+    }
+
+    @objc private func applicationWillTerminate(_: Notification) {
+        if #available(iOS 16.2, *) {
+            endLiveActivity()
+        }
+    }
+
     override func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let url = navigationAction.request.url else {
             return decisionHandler(.allow)
@@ -404,11 +487,6 @@ class WebxdcViewController: WebViewViewController {
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        webView.setAllMediaPlaybackSuspended(true)
-    }
-
     private func loadRestrictedHtml() {
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "WebxdcContentBlockingRules",
@@ -420,16 +498,13 @@ class WebxdcViewController: WebViewViewController {
             }
     }
     
-    private func loadHtml() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self else { return }
-
-            let base = "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/"
-            let url = URL(string: base + (href ?? "index.html"))
-            let urlRequest = URLRequest(url: url ?? URL(string: base + "index.html")!)
-            DispatchQueue.main.async {
-                self.webView.load(urlRequest)
-            }
+    @MainActor private func loadHtml() {
+        assert(Thread.isMainThread)
+        let base = "\(self.INTERNALSCHEMA)://acc\(self.dcContext.id)-msg\(self.messageId).localhost/"
+        let url = URL(string: base + (href ?? "index.html"))
+        let urlRequest = URLRequest(url: url ?? URL(string: base + "index.html")!)
+        if self.webView.url != urlRequest.url {
+            self.webView.load(urlRequest)
         }
     }
 
@@ -437,63 +512,10 @@ class WebxdcViewController: WebViewViewController {
         webView.evaluateJavaScript("window.__webxdcUpdate()", completionHandler: nil)
     }
 
-    private func moreButtonMenu() -> UIMenu {
-        let actions: () -> [UIMenuElement] = { [weak self] in
-            guard let self else { return [] }
-            var actions = [UIMenuElement]()
-
-            if !isDraft {
-                actions.append(UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [weak self] _ in
-                    guard let self, let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-                    let message = dcContext.getMessage(id: self.messageId)
-                    DispatchQueue.main.async {
-                        appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
-                    }
-                })
-
-                if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
-                    let appsInWidgetsMessageIds = userDefaults.getAppWidgetEntries().compactMap { entry in
-                        switch entry.type {
-                        case .app(let messageId): return messageId
-                        case .chat: return nil
-                        }
-                    }
-                    let isOnHomescreen = appsInWidgetsMessageIds.contains(messageId)
-                    if isOnHomescreen {
-                        actions.append(UIAction(title: String.localized("remove_from_widget"), image: UIImage(systemName: "minus.square")) { [weak self] _ in
-                            guard let self else { return }
-                            userDefaults.removeWebxdcFromHomescreen(accountId: dcContext.id, messageId: messageId)
-                        })
-                    } else {
-                        actions.append(UIAction(title: String.localized("add_to_widget"), image: UIImage(systemName: "plus.square")) { [weak self] _ in
-                            guard let self else { return }
-                            userDefaults.addWebxdcToHomescreenWidget(accountId: dcContext.id, messageId: messageId)
-                        })
-                    }
-                }
-            }
-
-            var helpActions = [UIMenuElement]()
-            helpActions.append(UIAction(title: String.localized("what_is_webxdc"), image: UIImage(systemName: "questionmark.circle")) { [weak self] _ in
-                self?.openHelp(fragment: "#webxdc")
-            })
-            if let url = info?.sourceCodeUrl, !url.isEmpty {
-                helpActions.append(UIAction(title: String.localized("source_code"), image: UIImage(systemName: "arrow.up.right")) { [weak self] _ in
-                    self?.openSourceCodeUrl()
-                })
-            }
-            actions.append(UIMenu(options: [.displayInline], children: helpActions))
-
-            return actions
-        }
-
-        // uncached() allows us to update the menu easily; needed for widget state.
-        // UIDeferredMenuElement speeds up opening as complex checks are delayed until the menu is used.
-        return UIMenu(children: [
-            UIDeferredMenuElement.uncached({ completion in
-                completion(actions())
-            })
-        ])
+    func quit() {
+        Self.loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] = nil
+        let vcs = navigationController?.viewControllers.filter { $0 != self } ?? []
+        navigationController?.setViewControllers(vcs, animated: true)
     }
 
     private func openSourceCodeUrl() {
@@ -649,6 +671,44 @@ extension WebxdcViewController: WKURLSchemeHandler {
     }
 }
 
+@available(iOS 16.2, *)
+extension WebxdcViewController {
+
+    fileprivate func startLiveActivity(with info: WebxdcInfo) {
+        Task { [self] in
+            await activity?.end(nil, dismissalPolicy: .immediate)
+            let attributes = WebxdcLiveActivityAttributes(context: dcContext, messageId: messageId)
+            do {
+                activity = try Activity.request(
+                    attributes: attributes,
+                    content: .init(
+                        state: .init(info: info, connectivity: dcContext.getConnectivity()),
+                        staleDate: nil
+                    )
+                )
+            } catch {
+                logger.error(error.localizedDescription)
+            }
+        }
+    }
+
+    private func updateLiveActivity(with info: WebxdcInfo) {
+        Task { [activity, dcContext] in
+            await activity?.update(.init(
+                state: .init(info: info, connectivity: dcContext.getConnectivity()),
+                staleDate: nil
+            ))
+            print("updated", dcContext.getConnectivity())
+        }
+    }
+
+    private func endLiveActivity() {
+        Task { [activity] in
+            await activity?.end(nil, dismissalPolicy: .immediate)
+        }
+    }
+}
+
 // MARK: Memory Leak Prevention
 
 extension WKUserContentController {
@@ -687,6 +747,112 @@ extension WKWebViewConfiguration {
 
         func webView(_ webView: WKWebView, stop urlSchemeTask: WKURLSchemeTask) {
             urlSchemeHandler?.webView(webView, stop: urlSchemeTask)
+        }
+    }
+}
+
+extension UIViewControllerAnimatedTransitioning where Self == PopToLiveActivityAnimation {
+    static var popToLiveActivity: Self { PopToLiveActivityAnimation() }
+}
+
+class PopToLiveActivityAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        0.5
+    }
+    
+    func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        guard let fromView = transitionContext.view(forKey: .from),
+              let toView = transitionContext.view(forKey: .to)
+        else { return transitionContext.completeTransition(false) }
+
+        transitionContext.containerView.insertSubview(toView, belowSubview: fromView)
+
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseOut) {
+            fromView.transform = .init(translationX: 0, y: -fromView.bounds.height).scaledBy(x: 0.7, y: 0.7)
+        } completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            fromView.transform = .identity
+        }
+    }
+}
+
+extension UIViewControllerAnimatedTransitioning where Self == PushFromLiveActivityAnimation {
+    static var pushFromLiveActivity: Self { PushFromLiveActivityAnimation() }
+}
+
+class PushFromLiveActivityAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        0.5
+    }
+
+    func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        guard let toView = transitionContext.view(forKey: .to) else {
+            return transitionContext.completeTransition(false)
+        }
+
+        transitionContext.containerView.addSubview(toView)
+        toView.transform = CGAffineTransform(translationX: 0, y: -toView.bounds.height).scaledBy(x: 0.7, y: 0.7)
+
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .curveEaseOut) {
+            toView.transform = .identity
+        } completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
+    }
+}
+
+extension UINavigationController {
+    private class AnimationProvidingDelegate: NSObject, UINavigationControllerDelegate {
+        var animation: UIViewControllerAnimatedTransitioning?
+
+        internal init(animation: any UIViewControllerAnimatedTransitioning?) {
+            self.animation = animation
+        }
+
+        func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> (any UIViewControllerAnimatedTransitioning)? {
+            animation
+        }
+    }
+
+    func pushViewController(_ viewController: UIViewController, withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        pushViewController(viewController as UIViewController, animated: true)
+        self.delegate = oldDelegate
+    }
+
+    func popViewController(withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        popViewController(animated: true)
+        self.delegate = oldDelegate
+    }
+
+    func setViewControllers(_ viewControllers: [UIViewController], withAnimation animation: UIViewControllerAnimatedTransitioning?) {
+        let oldDelegate = self.delegate
+        let tempDelegate = AnimationProvidingDelegate(animation: animation)
+        self.delegate = tempDelegate
+        setViewControllers(viewControllers, animated: true)
+        self.delegate = oldDelegate
+    }
+}
+
+private extension UIAction {
+    @MenuElementBuilder
+    static func minimizeWebxdc(vc: WebxdcViewController, info: WebxdcInfo?) -> UIMenuElement {
+        let isMap = vc is MapViewController
+        if #available(iOS 16.2, *), !isMap, !vc.isDraft, ActivityAuthorizationInfo().areActivitiesEnabled, let info {
+            UIAction(title: String.localized("global_menu_minimize_to_tray"), image: UIImage(systemName: "chevron.up")) { [unowned vc] _ in
+                WebxdcViewController.loadedWebxdcs[.key(contextId: vc.dcContext.id, messageId: vc.messageId)] = vc
+                if #available(iOS 17.0, *) {
+                    vc.webView.configuration.preferences.inactiveSchedulingPolicy = .none
+                }
+                vc.navigationController?.popViewController(withAnimation: .popToLiveActivity)
+                vc.startLiveActivity(with: info)
+                vc.closeButton.primaryAction = nil
+            }
         }
     }
 }
