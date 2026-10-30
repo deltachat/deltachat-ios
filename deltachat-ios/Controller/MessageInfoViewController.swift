@@ -24,12 +24,15 @@ class MessageInfoViewController: UIViewController {
         super.viewDidLoad()
         title = String.localized("menu_message_details")
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismiss(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [
+        let closeItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismiss(_:)))
+        closeItem.accessibilityLabel = String.localized("close")
+        let moreItem = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [
             UIAction(title: String.localized("global_menu_view_developer_desktop")) { [unowned self] _ in
                 show(MessageDeveloperInfoViewController(dcContext: dcContext, message: message), sender: nil)
             }
         ]))
+        moreItem.accessibilityLabel = String.localized("menu_more_options")
+        navigationItem.rightBarButtonItems = [closeItem, moreItem]
 
         let host = UIHostingController(rootView: rootView)
         addChild(host)
