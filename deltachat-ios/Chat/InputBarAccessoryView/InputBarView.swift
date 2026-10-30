@@ -55,16 +55,18 @@ struct InputBarView: View {
                 .modifier { glassEffect(view: $0, interactive: false) }
             }
             HStack(alignment: .bottom, spacing: 6) {
-                UncachedMenu(content: { clipperMenu }, label: {
-                    Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(2)
-                })
-                .frame(height: buttonSize)
-                // This fixes the attach button being hidden sometimes on iOS 15
-                .fixedSize(horizontal: true, vertical: false)
+                if draft.sendEditRequestForMsg == nil {
+                    UncachedMenu(content: { clipperMenu }, label: {
+                        Image("ic_attach_file_36pt", label: Text(String.localized("menu_add_attachment")))
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(2)
+                    })
+                    .frame(height: buttonSize)
+                    // This fixes the attach button being hidden sometimes on iOS 15
+                    .fixedSize(horizontal: true, vertical: false)
+                }
                 VStack {
                     InputBarTextView(
                         text: $draft.text,
@@ -84,17 +86,33 @@ struct InputBarView: View {
                     .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: glassEffectInteractivityOnInputField) }
                     .accessibilityLabel(String.localized("write_message_desktop"))
                 }.frame(maxHeight: .infinity)
-                Button(action: {
-                    draft.send()
-                }, label: {
-                    Image("paper_plane", label: Text(String.localized("menu_send")))
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(2)
-                })
-                .frame(height: buttonSize)
-                .disabled(!draft.canSend())
+                if draft.text.isEmpty && !textEditorFocus {
+                    Button(action: {
+                        chatViewController?.showVoiceMessageRecorder()
+                    }, label: {
+                        // Color.clear takes up all available space unlike system image
+                        Color.clear.overlay {
+                            Image(systemName: "mic")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .accessibilityLabel(String.localized("voice_message"))
+                                .padding(5)
+                        }
+                    }).frame(width: buttonSize, height: buttonSize)
+                } else {
+                    Button(action: {
+                        draft.send()
+                    }, label: {
+                        Image("paper_plane", label: Text(String.localized("menu_send")))
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(2)
+                    })
+                    .frame(height: buttonSize)
+                    .disabled(!draft.canSend())
+                }
             }
         }
         .padding(10)
