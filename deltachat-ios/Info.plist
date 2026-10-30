@@ -68,6 +68,8 @@
 	<string>Delta Chat needs the location permission in order to share your location for the timespan you have enabled location sharing.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Delta Chat uses your microphone to record and send voice messages and videos with sound.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Delta Chat transcribes voice messages when you choose Transcribe. It tries on-device recognition first; if that fails, audio may be sent to Apple.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Delta Chat wants to save images to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>

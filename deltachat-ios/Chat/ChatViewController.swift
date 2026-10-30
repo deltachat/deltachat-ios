@@ -25,6 +25,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var contextMenuVisible = false
     private var isDraggingScrollView = false
     private var quoteReturnMessageIds: [Int] = []
+    private var voiceTranscribers: [Int: VoiceMessageTranscriber] = [:]
 
     private lazy var draft: DraftModel = {
         return DraftModel(dcContext: dcContext, chatId: chatId)
@@ -936,6 +937,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                     searchText: searchController.searchBar.text,
                     highlight: !searchMessageIds.isEmpty && message.id == searchMessageIds[searchResultIndex])
 
+        if let audioCell = cell as? AudioMessageCell, message.type == DC_MSG_VOICE {
+            audioCell.updateTranscription(
+                VoiceTranscriptionStore.transcript(accountId: dcContext.id, messageId: id, fileURL: message.fileURL),
+                isTranscribing: voiceTranscribers[id] != nil)
+        }
+
         return cell
     }
 
@@ -1254,7 +1261,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
+        let previousIds = Set(messages.map { $0.id })
         messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
+        let removedIds = previousIds.subtracting(messages.map { $0.id })
+        VoiceTranscriptionStore.remove(accountId: dcContext.id, messageIds: Array(removedIds))
+        removedIds.forEach { voiceTranscribers[$0] = nil }
         reloadData()
         showEmptyStateView(messages.isEmpty)
     }
@@ -1523,6 +1534,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                           actionHandler: { [weak self] _ in
             guard let self else { return }
             AudioController.stopPlaybackForDeletedChat(chatId: self.chatId, contextId: self.dcContext.id)
+            VoiceTranscriptionStore.remove(accountId: self.dcContext.id, messageIds: self.messages.map { $0.id })
+            self.voiceTranscribers.removeAll()
             self.dcContext.deleteReferencesAndChat(chatId: self.chatId)
             self.navigationController?.popViewController(animated: true)
         })
@@ -1552,6 +1565,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func askToDeleteMessages(ids: [Int], confirmButton: String? = nil) {
         func deleteInUi(ids: [Int]) {
             AudioController.stopPlaybackForDeletedMessages(messageIds: ids, contextId: self.dcContext.id)
+            VoiceTranscriptionStore.remove(accountId: self.dcContext.id, messageIds: ids)
+            ids.forEach { self.voiceTranscribers[$0] = nil }
             if #available(iOS 17.0, *) {
                 ids.forEach { UserDefaults.shared?.removeWebxdcFromHomescreen(accountId: self.dcContext.id, messageId: $0) }
             }
@@ -1931,6 +1946,34 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    private func transcribeVoiceMessage(_ messageId: Int) {
+        guard voiceTranscribers[messageId] == nil else { return }
+        let message = dcContext.getMessage(id: messageId)
+        guard message.type == DC_MSG_VOICE, let fileURL = message.fileURL else { return }
+
+        let transcriber = VoiceMessageTranscriber()
+        voiceTranscribers[messageId] = transcriber
+        reloadVoiceMessage(messageId)
+        transcriber.transcribe(fileURL: fileURL) { [weak self] result in
+            guard let self else { return }
+            self.voiceTranscribers[messageId] = nil
+            let currentMessage = self.dcContext.getMessage(id: messageId)
+            guard currentMessage.type == DC_MSG_VOICE, currentMessage.fileURL == fileURL else { return }
+            switch result {
+            case .success(let text):
+                VoiceTranscriptionStore.save(text, accountId: self.dcContext.id, messageId: messageId, fileURL: fileURL)
+            case .failure(let error):
+                if self.isOnScreen() { self.logAndAlert(error: error.localizedDescription) }
+            }
+            self.reloadVoiceMessage(messageId)
+        }
+    }
+
+    private func reloadVoiceMessage(_ messageId: Int) {
+        guard let row = messages.firstIndex(where: { $0.id == messageId }) else { return }
+        tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+    }
+
     // MARK: - Actions
 
     private func info(for msgId: Int) {
@@ -2198,6 +2241,15 @@ extension ChatViewController {
                     }
                     if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
                         UIAction.menuAction(localizationKey: "resend", systemImageName: "arrow.clockwise", with: messageId, action: resendSingle)
+                    }
+                    if message.type == DC_MSG_VOICE, !message.isUnsupportedMediaFile,
+                       let fileURL = message.fileURL, FileManager.default.fileExists(atPath: fileURL.path),
+                       VoiceMessageTranscriber.isAvailable {
+                        UIAction.menuAction(localizationKey: "transcribe_voice_message",
+                                            attributes: voiceTranscribers[messageId] == nil ? [] : [.disabled],
+                                            systemImageName: "text.quote",
+                                            with: messageId,
+                                            action: transcribeVoiceMessage)
                     }
                     UIMenu(options: [.displayInline], elementSize: .small) { [unowned self] in
                         let canSave = !dcChat.isSelfTalk && message.canSave

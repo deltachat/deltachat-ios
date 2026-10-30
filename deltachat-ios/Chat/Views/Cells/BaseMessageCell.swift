@@ -5,7 +5,7 @@ public class BaseMessageCell: UITableViewCell {
 
     // horizontal message constraints for received messages
     private var leadingConstraint: NSLayoutConstraint?
-    private var bottomConstraint: NSLayoutConstraint?
+    var bottomConstraint: NSLayoutConstraint?
     private var trailingConstraint: NSLayoutConstraint?
     private var trailingConstraintEditingMode: NSLayoutConstraint?
     private var leadingConstraintGroup: NSLayoutConstraint?
