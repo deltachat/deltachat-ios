@@ -21,12 +21,12 @@ class HelpViewController: WebViewViewController {
     }()
 
     private lazy var prevPageButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "chevron.left")
+        let image = UIImage(systemName: "arrow.turn.up.left")
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(prevPageButtonPressed))
     }()
 
     private lazy var nextPageButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "chevron.right")
+        let image = UIImage(systemName: "arrow.turn.up.right")
         return UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(nextPageButtonPressed))
     }()
 
@@ -41,8 +41,8 @@ class HelpViewController: WebViewViewController {
         self.webView.isOpaque = false
         self.webView.backgroundColor = .clear
         view.backgroundColor = DcColors.defaultBackgroundColor
-        navigationItem.leftBarButtonItem = doneButton
-        navigationItem.rightBarButtonItems = [moreButton, nextPageButton, prevPageButton]
+        navigationItem.leftBarButtonItems = [prevPageButton, nextPageButton, moreButton]
+        navigationItem.rightBarButtonItem = doneButton
     }
 
     override func viewWillAppear(_ animated: Bool) {
