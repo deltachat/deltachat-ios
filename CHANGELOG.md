@@ -1,6 +1,11 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Transcribe voice messages on-device, keeping transcripts only while the chat is open
+
+
 ## v2.65.0
 2026-10
 
