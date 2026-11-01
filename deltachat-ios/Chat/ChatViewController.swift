@@ -2167,6 +2167,11 @@ extension ChatViewController {
             previewProvider: nil,
             actionProvider: { [unowned self] _ in
                 let message = dcContext.getMessage(id: messageId)
+
+                // the menu must not have more than 7 rows -
+                // otherwise it adds a barely visible scrollbar, also on larger screens,
+                // and items are very easily misses.
+                // we got several reports whenever we added more rows
                 return UIMenu { [unowned self] in
                     if canReact(to: message) {
                         if #available(iOS 17.0, *) {
