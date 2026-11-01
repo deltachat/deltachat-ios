@@ -380,7 +380,9 @@ class ChatListViewController: UITableViewController {
     @objc private func sharePressed() {
         guard case .forwardMessages(let srcContextId, let ids) = RelayHelper.shared.data else { return }
         let srcContext = DcAccounts.shared.get(id: srcContextId)
-        Utils.share(attachmentsOf: ids.map(srcContext.getMessage(id:)), parentViewController: self, sourceItem: shareButton)
+        Utils.share(attachmentsOf: ids.map(srcContext.getMessage(id:)), parentViewController: self, sourceItem: shareButton) { [weak self] in
+            self?.cancelButtonPressed() // return to the original chat
+        }
     }
 
     @objc func markReadPressed() {

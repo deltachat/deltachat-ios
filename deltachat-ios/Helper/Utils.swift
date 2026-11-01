@@ -55,7 +55,7 @@ struct Utils {
         return context.getSecurejoinQr(chatId: chatId)
     }
 
-    public static func share(attachmentsOf messages: [DcMsg], parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil) {
+    public static func share(attachmentsOf messages: [DcMsg], parentViewController: UIViewController, sourceView: UIView? = nil, sourceItem: UIBarButtonItem? = nil, onShared: (() -> Void)? = nil) {
         var objectsToShare = [Any]()
         for message in messages {
             guard let scrambledURL = message.fileURL else { continue }
@@ -86,6 +86,9 @@ struct Utils {
 
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
         activityVC.excludedActivityTypes = [.copyToPasteboard]
+        activityVC.completionWithItemsHandler = { _, completed, _, _ in
+            if completed { onShared?() }
+        }
         if let sourceItem {
             activityVC.popoverPresentationController?.barButtonItem = sourceItem
         } else if let sourceView {
