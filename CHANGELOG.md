@@ -1,6 +1,11 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Sharing images and files now possible by selecting "Forward" from the message's menu
+
+
 ## v2.65.0
 2026-10
 
