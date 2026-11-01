@@ -2193,9 +2193,6 @@ extension ChatViewController {
                         let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     }
-                    if message.file != nil {
-                        UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
-                    }
                     if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
                         UIAction.menuAction(localizationKey: "resend", systemImageName: "arrow.clockwise", with: messageId, action: resendSingle)
                     }

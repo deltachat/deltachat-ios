@@ -35,10 +35,11 @@ class ChatListViewController: UITableViewController {
         return button
     }()
 
-    private lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
-        return button
-    }()
+    // a multi-select is "canceled", while a forwarding dialog is "closed".
+    // beside the semantic difference, the close button also does not melt visually with e.g. "shareButton"
+    private lazy var cancelButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
+    private lazy var closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancelButtonPressed))
+    private lazy var shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(sharePressed))
 
     private lazy var markReadButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markReadPressed))
@@ -374,6 +375,12 @@ class ChatListViewController: UITableViewController {
                 }
             }
         }
+    }
+
+    @objc private func sharePressed() {
+        guard case .forwardMessages(let srcContextId, let ids) = RelayHelper.shared.data else { return }
+        let srcContext = DcAccounts.shared.get(id: srcContextId)
+        Utils.share(attachmentsOf: ids.map(srcContext.getMessage(id:)), parentViewController: self, sourceItem: shareButton)
     }
 
     @objc func markReadPressed() {
@@ -752,7 +759,14 @@ class ChatListViewController: UITableViewController {
             navigationItem.title = RelayHelper.shared.dialogTitle
             updateAccountButton()
             navigationItem.setLeftBarButton(isArchive ? nil : accountButton, animated: false)
-            navigationItem.setRightBarButtonItems([cancelButton], animated: true)
+            var items = [closeButton]
+            if case .forwardMessages(let srcContextId, let ids) = RelayHelper.shared.data {
+                let srcContext = DcAccounts.shared.get(id: srcContextId)
+                if ids.contains(where: { srcContext.getMessage(id: $0).file != nil }) {
+                    items.append(shareButton)
+                }
+            }
+            navigationItem.setRightBarButtonItems(items, animated: true)
         } else if isArchive {
             navigationItem.title = String.localized("chat_archived_label")
             if !handleMultiSelectionTitle() {
