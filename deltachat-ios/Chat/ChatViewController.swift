@@ -2156,6 +2156,17 @@ extension ChatViewController {
         return nil
     }
 
+    private func isAttachmentTapped(message: DcMsg, indexPath: IndexPath, point: CGPoint) -> Bool {
+        guard message.file != nil, let cell = tableView.cellForRow(at: indexPath) as? BaseMessageCell else { return false }
+        if message.text?.isEmpty ?? true {
+            return true
+        }
+
+        // for simplicity and future-proofing, count taps outside messageLabel as attachment taps -
+        // otherwise we would need to check the different attachment views
+        return !cell.messageLabel.bounds.contains(tableView.convert(point, to: cell.messageLabel))
+    }
+
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let messageId = messages[indexPath.row].id
         if tableView.isEditing || messageId == DC_MSG_ID_MARKER1 || messageId == DC_MSG_ID_DAYMARKER {
@@ -2167,6 +2178,11 @@ extension ChatViewController {
             previewProvider: nil,
             actionProvider: { [unowned self] _ in
                 let message = dcContext.getMessage(id: messageId)
+
+                // the menu must not have more than 7 rows -
+                // otherwise it adds a barely visible scrollbar, also on larger screens,
+                // and items are very easily missed.
+                // we got several reports whenever we added more rows
                 return UIMenu { [unowned self] in
                     if canReact(to: message) {
                         if #available(iOS 17.0, *) {
@@ -2175,17 +2191,24 @@ extension ChatViewController {
                             UIMenu(title: String.localized("react"), image: UIImage(systemName: "face.smiling"), children: reactionItems(for: messageId))
                         }
                     }
+
                     if canReply(to: message) {
                         UIAction.menuAction(localizationKey: "notify_reply_button", systemImageName: "arrowshape.turn.up.left", with: messageId, action: reply)
                     }
+
                     if canReplyPrivately(to: message) {
                         UIAction.menuAction(localizationKey: "reply_privately", systemImageName: "person", with: messageId, action: replyPrivatelyToMessage)
                     }
+
                     UIAction.menuAction(localizationKey: "forward", systemImageName: "arrowshape.turn.up.forward", with: messageId, action: forward)
+
                     if message.isFromCurrentSender && message.hasText && !message.hasHtml && !message.isMarkerOrInfo && dcChat.canSend {
                         UIAction.menuAction(localizationKey: "global_menu_edit_desktop", systemImageName: "pencil", with: messageId, action: editSentMessage)
                     }
-                    if let link = isLinkTapped(indexPath: indexPath, point: point) {
+
+                    if isAttachmentTapped(message: message, indexPath: indexPath, point: point) {
+                        UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
+                    } else if let link = isLinkTapped(indexPath: indexPath, point: point) {
                         UIAction.menuAction(localizationKey: "menu_copy_link_to_clipboard", systemImageName: "link", with: messageId, action: { _ in
                             UIPasteboard.general.string = link
                         })
@@ -2193,12 +2216,11 @@ extension ChatViewController {
                         let copyTitle = message.file == nil ? "global_menu_edit_copy_desktop" : "menu_copy_text_to_clipboard"
                         UIAction.menuAction(localizationKey: copyTitle, systemImageName: "doc.on.doc", with: messageId, action: copyTextToClipboard)
                     }
-                    if message.file != nil {
-                        UIAction.menuAction(localizationKey: "menu_share", systemImageName: "square.and.arrow.up", with: [messageId], action: shareAttachments)
-                    }
+
                     if dcChat.canSend && message.isFromCurrentSender && !message.isMarkerOrInfo {
                         UIAction.menuAction(localizationKey: "resend", systemImageName: "arrow.clockwise", with: messageId, action: resendSingle)
                     }
+
                     UIMenu(options: [.displayInline], elementSize: .small) { [unowned self] in
                         let canSave = !dcChat.isSelfTalk && message.canSave
                         if canSave {
@@ -2210,7 +2232,9 @@ extension ChatViewController {
                                 action: toggleSave
                             )
                         }
+
                         UIAction.menuAction(localizationKey: "info", systemImageName: "info.circle", with: messageId, action: info)
+
                         let canPin = dcChat.canSend && !message.isInfo
                         if canPin {
                             let isPinned = message.isPinned
@@ -2221,6 +2245,7 @@ extension ChatViewController {
                                 action: togglePin
                             )
                         }
+
                         UIAction.menuAction(localizationKey: "delete", attributes: [.destructive], systemImageName: "trash", with: messageId, action: deleteSingle)
                     }
                 }
