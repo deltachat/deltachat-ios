@@ -16,6 +16,7 @@
 "custom" = "Vlastné";
 "none" = "Nenastavené";
 "automatic" = "Automaticky";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Presne";
 "open" = "Otvoriť";
 "download" = "Stiahnuť";
@@ -32,6 +33,7 @@
 "emoji" = "Smajlíci";
 "attachment" = "Príloha";
 "back" = "Späť";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Zavrieť";
 "close_window" = "Zavrieť okno";
 "forward" = "Preposlať";
@@ -134,6 +136,10 @@
 "call_duration_less_than_a_minute" = "Menej ako minútu";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Vybrané";
 "self" = "Ja";
@@ -191,6 +197,18 @@
 "webxdc_store_url" = "URL adresa na získanie súkromných aplikácií";
 "webxdc_store_url_explain" = "Ak je nastavené, zadaná adresa URL sa použije na načítanie zoznamu aplikácií namiesto predvolenej";
 "webxdc_draft_hint" = "Zdieľajte klepnutím na tlačidlo „Poslať“";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "Povoliť aplikácii „%1$@“ používať mikrofón?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "Povoliť aplikácii „%1$@“ používať fotoaparát?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "Povoliť aplikácii „%1$@“ používať fotoaparát a mikrofón?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "Povoliť aplikácii „%1$@“ pristupovať k údajom o vašej polohe?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "Povoliť aplikácii „%1$@“ pristupovať k údajom zo senzorov pohybu?";
+"webxdc_perm_denied_settings" = "Chýbajúce oprávnenia pre aplikáciu Delta Chat. Prosím udeľte požadované oprávnenia aplikácii Delta Chat v aplikácii Nastavenia.";
+"webxdc_perm_reset" = "Obnoviť oprávnenia";
 "home" = "Domov";
 "games" = "Hry";
 "tools" = "Nástroje";
@@ -281,6 +299,8 @@
 "show_in_chat" = "Zobraziť v konverzácií";
 "show_app_in_chat" = "Zobraziť aplikáciu v konverzácii";
 "menu_share" = "Zdieľať";
+// "to allow," for example a permission
+"allow" = "Povoliť";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blokovať";
 "menu_block_contact" = "Blokovať kontakt";
@@ -426,6 +446,7 @@
 "chat_no_chats_yet_title" = "Žiadne konverzácie.\nStlačením tlačidla „+“ začnete novú";
 "chat_all_archived" = "Všetky konverzácie boli archivované.\nStlačením tlačidla „+“ začnete novú";
 "chat_share_with_title" = "Zdieľať s…";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Správa";
 "chat_archived_label" = "Archivované";
 "chat_request_label" = "Požiadavka";

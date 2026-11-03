@@ -12,6 +12,7 @@
 "custom" = "커스텀";
 "none" = "없음";
 "automatic" = "자동";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "엄격한";
 "open" = "열기";
 "download" = "다운로드";
@@ -24,6 +25,7 @@
 "emoji" = "이모티콘";
 "attachment" = "첨부 파일";
 "back" = "뒤";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "닫기";
 "forward" = "전달";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -85,6 +87,9 @@
 "last_seen_unknown" = "마지막 접속: 알 수 없음";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 // Short form for "N Items Selected"
 "self" = "나";
 "draft" = "임시 저장";
@@ -245,6 +250,7 @@
 "chat_no_chats_yet_title" = "받은 편지함을 비웁니다.\n새 채팅을 시작하려면 \"+\"를 누르시오.";
 "chat_all_archived" = "모든 대화가 보관되었습니다.\n새 채팅을 시작하려면 \"+\"를 누르시오.";
 "chat_share_with_title" = "공유 대상";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "메시지";
 "chat_archived_label" = "보관됨";
 "chat_request_label" = "요청";

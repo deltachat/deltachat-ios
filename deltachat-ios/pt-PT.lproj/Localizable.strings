@@ -31,6 +31,7 @@
 "emoji" = "Emoji";
 "attachment" = "Anexo";
 "back" = "Voltar";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Fechar";
 "close_window" = "Fechar Janela";
 "forward" = "Reencaminhar";
@@ -98,6 +99,9 @@
 "last_seen_at" = "Visto/a pela última vez às/a %1$@";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 "self" = "Eu";
 "draft" = "Rascunho";
 "image" = "Imagem";
@@ -258,6 +262,7 @@
 "chat_record_slide_to_cancel" = "Deslize para cancelar";
 "chat_record_explain" = "Toque e segure para gravar uma mensagem de voz, solte para enviar";
 "chat_share_with_title" = "Partilhar com";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Mensagem";
 "chat_archived_label" = "Arquivada";
 "chat_no_messages" = "Sem mensagens";

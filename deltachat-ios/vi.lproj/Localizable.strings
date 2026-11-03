@@ -12,6 +12,7 @@
 "custom" = "Tùy chỉnh";
 "none" = "Không";
 "automatic" = "Tự động";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Nghiêm ngặt";
 "open" = "Mở";
 "download" = "Tải xuống";
@@ -24,6 +25,7 @@
 "emoji" = "Emoji";
 "attachment" = "Tệp đính kèm";
 "back" = "Quay lại";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Đóng";
 "close_window" = "Đóng cửa sổ";
 "forward" = "Chuyển tiếp";
@@ -94,6 +96,9 @@
 "last_seen_unknown" = "Nhìn thấy lần cuối: Không rõ";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 // Short form for "N Items Selected"
 "self" = "Tôi";
 "draft" = "Bản nháp";
@@ -265,6 +270,7 @@
 "chat_no_chats_yet_title" = "Hộp thư đến trống.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
 "chat_all_archived" = "Tất cả các cuộc trò chuyện đã được lưu trữ.\nNhấn \"+\" để bắt đầu cuộc trò chuyện mới.";
 "chat_share_with_title" = "Chia sẻ với";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Tin nhắn";
 "chat_archived_label" = "Đã lưu trữ";
 "chat_request_label" = "Yêu cầu";

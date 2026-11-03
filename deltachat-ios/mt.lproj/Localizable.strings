@@ -16,6 +16,8 @@
 "custom" = "Personalizzata";
 "none" = "L-ebda";
 "automatic" = "Awtomatiċi";
+// Adjective, used as an option e.g. for "Certificate Checks"
+"strict" = "Bir-reqqa";
 "open" = "Iftaħ";
 "download" = "Niżżel";
 "downloading" = "Qed tniżżel…";
@@ -31,6 +33,7 @@
 "emoji" = "Wiċċinu";
 "attachment" = "Hemża";
 "back" = "Lura";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Agħlaq";
 "close_window" = "Agħlaq dit-tieqa";
 "forward" = "Għaddi";
@@ -133,6 +136,10 @@
 "call_duration_less_than_a_minute" = "Inqas minn minuta";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Magħżula";
 "self" = "Jien";
@@ -190,6 +197,18 @@
 "webxdc_store_url" = "Indirizz tal-internet tal-għażżiel tal-apps";
 "webxdc_store_url_explain" = "Jekk tqiegħed dil-ħaġa, l-indirizz tal-internet se tintuża bħala l-Għażżiel tal-apps minflok dak standard";
 "webxdc_draft_hint" = "Biex taqsam mal-oħrajn, agħfas fuq \"Ibgħat\"";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "Tixtieq tħalli lil \"%1$@\" tuża l-mikrofonu tat-tagħmir tiegħek?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "Tixtieq tħalli lil \"%1$@\" tuża l-kamera tat-tagħmir tiegħek?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "Tixtieq tħalli lil \"%1$@\" tuża l-kamera u l-mikrofonu tat-tagħmir tiegħek?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "Tixtieq tħalli lil \"%1$@\" issib il-post fejn jinsab it-tagħmir tiegħek?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "Tixtieq tħalli lil \"%1$@\" tuża s-sensuri taċ-ċaqliq tat-tagħmir tiegħek?";
+"webxdc_perm_denied_settings" = "Delta Chat għandha xi permessi neqsin. Jekk jogħġbok agħti l-permessi meħtieġ lil Delta Chat mill-għażliet ta\' Android.";
+"webxdc_perm_reset" = "Reġġa\' l-permessi lura";
 "home" = "Paġna ewlenija";
 "games" = "Logħob";
 "tools" = "Għodda";
@@ -280,6 +299,8 @@
 "show_in_chat" = "Uri fit-taħdita";
 "show_app_in_chat" = "Uri l-app fit-taħdita";
 "menu_share" = "Aqsam";
+// "to allow," for example a permission
+"allow" = "Ħalli";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Imblokka";
 "menu_block_contact" = "Imblokka l-kuntatt";
@@ -301,7 +322,7 @@
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Il-laqam ta\' \"%1$@\"";
 "menu_settings" = "Għażliet";
-"menu_advanced" = "Ċempel lura";
+"menu_advanced" = "Iktar għażliet";
 "menu_view_profile" = "Uri l-profil";
 "menu_zoom_in" = "Kabbar";
 "menu_zoom_out" = "Ċekken";
@@ -323,12 +344,16 @@
 "pin" = "Waħħal";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Imwaħħla";
+"pin_for_everyone_ask" = "Tixtieq twaħħal il-messaġġ għal kull min jinsab f\'dit-taħdita?";
 "pin_for_everyone" = "Waħħal għal kulħadd";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Aqla\'";
+"unpin_for_everyone_ask" = "Tixtieq taqla\' dal-messaġġ għal kull min jinsab f\'dit-taħdita?";
 "unpin_for_everyone" = "Aqla\' għal kulħadd";
 "message_pinned_by_you" = "Waħħalt messaġġ";
 "message_pinned_by_other" = "L-utent \"%1$@\" waħħal dal-messaġġ";
+"message_unpinned_by_you" = "Qlajt messaġġ";
+"message_unpinned_by_other" = "Il-messaġġ inqala\' minn %1$@";
 "ConversationFragment_quoted_message_not_found" = "Ma sibniex il-messaġġ oriġinali";
 "reply_privately" = "Wieġeb b\'messaġġ privat";
 "source_code" = "Il-kodiċi tas-sors";
@@ -421,6 +446,8 @@
 "chat_no_chats_yet_title" = "L-ebda taħdita.\nAgħfas fuq \"+\" biex tibda taħdita ġdida.";
 "chat_all_archived" = "Qgħedt it-taħditiet kollha fl-arkivju.\nAgħfas fuq \"+\" biex tibda taħdita ġdida.";
 "chat_share_with_title" = "Aqsam ma\'…";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
+"chat_input_placeholder" = "Messaġġ";
 "chat_archived_label" = "Arkivjata";
 "chat_request_label" = "Talba";
 "chat_no_messages" = "L-ebda messaġġ.";
@@ -433,6 +460,8 @@
 // Should match "Saved" from "Saved messages"
 "saved" = "Merfugħa";
 "attachment_failed_to_load" = "Ma setax itella\' l-hemża";
+// For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
+"lock_recording" = "Sakkar ir-reġistrazzjoni";
 // mailing lists
 "mailing_list" = "Lista tal-posta";
 // webxdc
@@ -469,6 +498,7 @@
 "please_enter_chat_name" = "Jekk jogħġbok ikteb isem.";
 "group_add_members" = "Żid il-membri";
 "group_self_not_in_group" = "Ma tistax twettaq dal-għemil jekk m\'intix membru tal-grupp.";
+"profile_encryption" = "Kodifikazzjoni";
 "profile_shared_chats" = "Taħditiet li tinsabu fihom it-tnejn li intom";
 // Separator between the list of actual members and past members
 "past_members" = "Membri tal-imgħoddi";
@@ -498,6 +528,71 @@
 "multidevice_qr_subtitle" = "Aqra l-kodiċi QR biex tħejji t-tieni tagħmir għal %1$@";
 "multidevice_receiver_title" = "Żid bħala t-tieni tagħmir";
 "multidevice_open_settings_on_other_device" = "Iftaħ Delta Chat, żur \"Għażliet / Żid it-tieni tagħmir\" u aqra l-kodiċi li qed nuruk hawn taħt mill-ewwel tagħmir";
+"multidevice_receiver_scanning_ask" = "Tixtieq tikkopja l-profil mit-tagħmir l-ieħor għal fuq dat-tagħmir?";
+"multidevice_receiver_needs_update" = "Il-profil li tixtieq iddaħħal ġej mnn verżjoni ta\' Delta Chat li hija iġded.\n\nJekk jogħġbok ġedded il-verżjoni ta\' Delta Chat għall-iġded waħda fuq dat-tagħmir biex tkompli tħejji t-tieni tagħmir.";
+"multidevice_abort" = "Tixtieq ittemm it-tħejjija tat-tieni tagħmir?";
+"multidevice_abort_will_invalidate_copied_qr" = "Dil-ħaġa se twassal biex il-kodiċi QR li għandek fil-memorja temporanja jieqaf jaħdem.";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Mexxejt il-profil fuq it-tieni tagħmir tiegħek.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Qed tħejji l-profil…";
+// Shown beside progress bar, stay short
+"transferring" = "Qed tmexxi…";
+"troubleshooting" = "Tiswija tal-problemi";
+// Connectivity
+// Headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Messaġġi deħlin";
+// Headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Messaġġi ħerġin";
+"connectivity" = "Konnettività";
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
+"connectivity_not_connected" = "Mhux imqabbda";
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_connecting" = "Qed taqbad…";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "Qed iġġedded…";
+// Shown in the setting if the app is "Connected"
+"connectivity_connected" = "Imqabbda";
+"sending" = "Qed tibgħat…";
+"last_msg_sent_successfully" = "L-aħħar messaġġ li ntbagħat.";
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Messaġġi";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "Użajt %1$@ minn %2$@";
+// welcome and profile creation
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Oħloq profil ġdid";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Diġà għandi profil";
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
+"manual_account_setup_option" = "Uża l-emails klassiċi bħala messaġġiera";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Il-profil tiegħek";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Aqbel u oħloq profil";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Uża server ieħor";
+"instant_onboarding_other_server" = "Uri s-servers ta\' Chatmail";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
+"instant_onboarding_group_info" = "L-ewwel oħloq profil biex tinkiteb ma\' \"%1$@\".";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
+"instant_onboarding_contact_info" = "L-ewwel oħloq profil biex titħaddet ma\' %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Tixtieq toħloq profil ġdid u tibda titħaddet ma\' %1$@?";
+// Question shown when group's/channel's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Tixtieq toħloq profil ġdid u tinkiteb ma\' \"%1$@\"?";
+"team" = "Tim";
+"team_profile" = "Profil tat-tim";
+"team_profile_explain" = "\"Profil tat-tim\" huwa profil immexxi minn grupp ta\' nies jew minn xi għaqda.\n\n⚠️ Il-profili tat-tim huma biss esperiment u jistgħu jinbidlu.";
+"team_name" = "Isem it-tim";
+"create_team_profile" = "Oħloq profil tat-tim";
+"scan_invitation_code" = "Aqra l-kodiċi tal-istedina";
+"login_advanced_hint" = "Dawn id-dettalji qegħdin hemm biss għall-utenti li jafu x\'inhuma jagħmlu.\n\nTużax indirizz li qed tuża f\'xi app oħra.";
+"login_inbox" = "Kaxxa tal-ittri";
+"login_imap_login" = "Isem tal-utent tal-IMAP";
+"login_imap_server" = "Server tal-IMAP";
+"login_imap_port" = "Bokka tal-IMAP";
+"login_imap_security" = "Sigurtà tal-IMAP";
+"login_outbox" = "Ittri ħerġin";
 "login_smtp_login" = "L-isem tal-utent tal-SMTP";
 "login_smtp_password" = "Il-password tal-SMTP";
 "login_smtp_server" = "Is-server tal-SMTP";
@@ -507,13 +602,25 @@
 "proxy_settings" = "Proxy";
 "proxy_use_proxy" = "Uża l-proxy";
 "proxy_add" = "Żid proxy";
+"proxy_add_explain" = "Proxies li tista\' tuża: HTTP(S), SOCKS5 u Shadowsocks.";
+"proxy_add_url_hint" = "Ikteb il-ħolqa tal-proxy hawn";
+"proxy_invalid" = "Il-proxy mhux tajjeb jew ma tistax tużah";
 "proxy_list_header" = "Proxies merfugħa";
 "proxy_delete" = "Ħassar il-proxy";
+"proxy_delete_explain" = "Żgur li tixtieq tħassar \"%1$@\"?";
+"proxy_use_proxy_confirm" = "Tixtieq tuża l-proxy \"%1$@\"?";
+"proxy_share_explain" = "Sħabek jistgħu jaqraw il-kodiċi QR biex iżidu dal-proxy.";
+"proxy_share_link" = "Aqsam il-ħolqa";
+"proxy_enabled" = "Il-proxy mixgħul";
+"proxy_enabled_hint" = "Qed tuża proxy. Uża proxy ieħor jekk mhux jirnexxielek taqbad.";
 // "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
 "transports" = "Messaġġiera";
 "add_transport" = "Żid messaġġier";
 "remove_transport" = "Neħħi l-messaġġier";
 "edit_transport" = "Ibdel il-messaġġier";
+"enforce_e2ee" = "Ġiegħel il-kodifika għall-messaġġiera kollha";
+// Hint for the list of relays
+"transport_list_hint" = "Nużaw il-messaġġiera biex tkun tista\' tibgħat u tikseb il-messaġġi. Il-konnessjoni tiegħek tkun iktar stabbli jekk tuża iktar minn messaġġier wieħed.";
 // shown if a QR code was scanned that can be used as a relay
 "confirm_add_transport" = "Tixtieq iżżid dal-messaġġier?";
 "invalid_transport_qr" = "Il-kodiċi QR li qrajt ma fihx messaġġier tajjeb.";
@@ -522,14 +629,60 @@
 "login_certificate_checks" = "Verifiki taċ-ċertifikati";
 // deprecated
 "login_error_mail" = "Jekk jogħġbok ikteb indirizz tal-email tajjeb";
+"import_backup_title" = "Irkupra minn kopja maħżuna";
+"import_backup_ask" = "Sibna kopja maħżuna hawn: %1$@.\n\nTixtieq iddaħħal id-dejta u l-għażliet kollha tagħha?";
+"import_backup_no_backup_found" = "Ma sibna l-ebda kopja maħżuna.\n\nErġa\' pprova wara li tqiegħed il-kopja maħżuna hawn: %1$@. ";
+// TLS certificate checks
+"accept_invalid_certificates" = "Ilqa\' ċ-ċertifikati li mhux tajbin";
 "switch_account" = "Ibdel il-profil";
 "add_account" = "Żid profil";
 // for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
 "profile_tag" = "Tikketta tal-profil";
 "profile_tag_hint" = "ngħidu aħna: \"Xogħol\", \"Familja\"";
+"profile_tag_explain" = "Oħloq tikketta li tintwera lilek biss; biex tgħinek tagħraf bejn profil u ieħor.";
 // Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
 "move_to_top" = "Mexxi \'l fuq nett";
 "delete_account" = "Ħassar il-profil";
+"delete_account_ask" = "Żgur li tixtieq tħassar id-dejta tal-profil tiegħek?";
+"delete_account_explain_with_name" = "Se nħassru d-dejta kollha tal-profil \"%1$@\" minn dat-tagħmir, fosthom l-għażliet tal-kodifika minn tarf għall-ieħor, il-kuntatti, it-taħditiet, il-messaġġi u l-midja tiegħek. Dal-għemil ma jistax jitreġġa\' lura.";
+"unconfigured_account" = "Profil mhux imħejji";
+"unconfigured_account_hint" = "Iftaħ il-profil biex tħejjih.";
+"try_connect_now" = "Ipprova aqbad issa";
+"sync_all" = "Issinkronizza kollox";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "It-tħejjija ma rnexxietx. Żball: %1$@";
+// share and forward messages
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
+"forward_to" = "Għaddi lil…";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Tixtieq tibgħat dal-għadd ta\' fajls lil \"%2$@\": %1$d? ";
+"ask_send_files_to_selected_chats" = "Tixtieq tibgħat dal-għadd ta\' fajls lil %2$d taħdidiet: %1$d?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Qed iħejji l-midja…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Qed jikkumpressa l-filmat…";
+"video_recode_busy" = "Jekk jogħġbok stenna għax għadna qed naħdmu fuq filmat ieħor.";
+"share_text_multiple_chats" = "Tixtieq tibgħat dil-kitba lil dal-għadd ta\' taħditiet: %1$d?\n\n\"%2$@\"";
+"share_abort" = "Il-qsim ma seħħx għax m\'għandekx il-permessi meħtieġa.";
+// preferences
+"pref_profile_info_headline" = "Il-profil tiegħek";
+"pref_profile_photo" = "Ir-ritratt tal-profil";
+"pref_blocked_contacts" = "Il-kuntatti mblukkati";
+"blocked_empty_hint" = "Hawn se nuruk il-kuntatti li mblukkajt.";
+"pref_who_can_see_profile_explain" = "Int u tikkomunika mal-utenti l-oħra, mal-messaġġi tiegħek se nibagħtulhom ukoll ir-ritratt tal-profil, ismek u t-tagħrif li ktibt dwarek.";
+"pref_your_name" = "Ismek";
+// Label of the Bio/Signature/Status/Motto field
+"pref_default_status_label" = "Tagħrif dwarek";
+"chat_description" = "Deskrizzjoni";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
+"pref_enter_sends" = "Il-buttuna \"Ibgħat\" tibgħat il-messaġġ";
+"pref_enter_sends_explain" = "Se tibgħat il-messaġġ meta tagħfas il-buttuna \"Ibgħat\" (Enter)";
+"pref_outgoing_media_quality" = "Il-kwalità tal-midja li tibgħat";
+"pref_outgoing_media_quality_hint" = "Ehmeż il-midja bħala \"Fajl\" biex ma titlef xejn mill-kwalità. Dil-ħaġa twassal biex il-midja tuża iktar internet, kemm għalik kif ukoll għal dawk li jiftħu l-fajl.";
+"pref_outgoing_balanced" = "Bilanċjata";
+"pref_outgoing_worse" = "Kwalità agħar, iffranka l-internet";
+"pref_vibrate" = "Ivvibra";
+"pref_screen_security" = "Sigurtà tal-iskrin";
 "pref_notifications" = "Notifikazzjonijiet";
 "pref_mention_notifications" = "Tismijiet";
 // Title for the "Calls" notification setting. This is a plural noun, not a verb.
@@ -561,18 +714,30 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Aqrah biex titħaddet ma\' %1$@";
 "qrshow_join_contact_no_connection_toast" = "L-ebda konnessjoni mal-internet, ma tistax tħejji l-kodiċi QR.";
+"secure_join_wait" = "Qed jaqbad, jekk jogħġbok stenna…";
+"contact_blocked" = "Imblukkajt lill-kuntatt";
+"mailto_dialog_header_select_chat" = "Agħżel it-taħdita fejn tixtieq tibgħat il-messaġġ";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "Diġà għandek abbozz ta\' messaġġ fit-taħdita %1$@. Tixtieq tqiegħed dan minfloku? ";
+"mailto_link_could_not_be_decoded" = "ma setax jifhem il-ħolqa mailto: %1$@";
 "remove_quote" = "Neħħi l-kwotazzjoni";
 "remove_attachment" = "Neħħi l-hemża";
 // notifications
 "notify_reply_button" = "Tweġiba";
 "notify_new_message" = "Messaġġ ġdid";
+"notify_background_connection_enabled" = "Xgħelt il-konnessjoni fl-isfond";
 "notify_name_and_message" = "L-isem u l-messaġġ";
 "notify_name_only" = "L-isem biss";
 "notify_no_name_or_message" = "Turix l-isem u lanqas il-messaġġ";
+"notifications_disabled" = "In-notifikazzjonijiet mitfija";
+"unreliable_bg_notifications" = "Ixgħel \"Ġiegħel il-konnessjoni fl-isfond\" biex in-notifikazzjonijiet ma jiddewmux";
 "new_messages" = "Messaġġi ġodda";
 // Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
 "new_messages_body" = "Għandek xi messaġġi ġodda";
 "n_messages_in_m_chats" = "Messaġġi: %1$d, taħditiet: %2$d";
+// location streaming
+"location_streaming_notification_text" = "Qed taqsam il-post fejn jinsab it-tagħmir";
+"location_rationale" = "Ħalli lil Delta Chat tuża t-tagħrif tal-post fejn jinsab it-tagħmir biex taqsam il-post fejn jinsab it-tagħmir mal-membri tat-taħdita.\n\nBiex il-faċilità tal-qsim tal-post fejn jinsab it-tagħmir taħdem kif suppost, it-tagħrif tal-post fejn jinsab it-tagħmir jintuża wkoll anki meta l-app tkun magħluqa jew ma tkunx qed tintuża.";
 // permissions
 "perm_required_title" = "Teħtieġ permess";
 "perm_continue" = "Kompli";
@@ -637,6 +802,16 @@
 "data_found_other_installation_message" = "Ma tistax tuża l-profili tiegħek minn installazzjoni ta\' Delta Chat oħra - kull installazzjoni taħżen id-dejta tagħha fi mkien differenti.\n\nBiex ma titlifx il-profili li għandek bħalissa:\n1. Agħlaq l-app issa\n2. Iftaħ id-Delta Chat l-oħra - tista\' tinstallaha minn hawn %1$@ jekk teħtieġ\n3. Aħżen kopja ta\' kull profil minn \"Għażliet/Taħditiet\"\n4. Erġa\' iftaħ dil-verżjoni\n5. Ikseb il-kopji maħżuna minn \"Diġà għandi profil\"\n\nTixtieq tkompli mingħajr il-profili li kellek qabel?";
 // subtitle in the "keybindings" dialog
 "navigation_shortcut_section" = "Navigazzjoni";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Kitba tal-messaġġi";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Il-messaġġ magħżul";
+"switch_between_chats" = "Aqleb bejn taħdita u oħra";
+"scroll_messages" = "Niżżel il-messaġġi";
+// command to put the cursor to the search input field
+"focus_search_input" = "Tiftixa ffukata";
+// command to put the cursor to the message input field
+"focus_message_input" = "Kitba ffukata tal-messaġġ";
 "force_refresh_network" = "Ġiegħel lin-netwerk tiġġedded";
 "insert_newline" = "Daħħal linja ġdida";
 // accessibility, the general idea is to use the normal strings for accessibility hints wherever possible

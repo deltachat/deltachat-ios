@@ -16,6 +16,7 @@
 "custom" = "Aangepast";
 "none" = "Geen";
 "automatic" = "Automatisch";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Strikt";
 "open" = "Openen";
 "download" = "Downloaden";
@@ -32,6 +33,7 @@
 "emoji" = "Emoji";
 "attachment" = "Bijlage";
 "back" = "Terug";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Sluiten";
 "close_window" = "Venster sluiten";
 "forward" = "Doorsturen";
@@ -134,6 +136,10 @@
 "call_duration_less_than_a_minute" = "Minder dan een minuut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Gekozen";
 "self" = "Ik";
@@ -191,6 +197,18 @@
 "webxdc_store_url" = "Appkiezer-url";
 "webxdc_store_url_explain" = "Stel in om apps te kiezen vanaf een url in plaats van de standaard appkiezer";
 "webxdc_draft_hint" = "Druk op ‘versturen’ om te delen";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "Wil je ‘%1$@’ toestemming geven om je microfoon te gebruiken?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "Wil je ‘%1$@’ toestemming geven om je camera te gebruiken? ";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "Wil je ‘%1$@’ toestemming geven om je camera en microfoon te gebruiken? ";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "Wil je ‘%1$@’ toestemming geven om je locatie op te vragen? ";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "Wil je ‘%1$@’ toestemming geven om je bewegingssensors te gebruiken? ";
+"webxdc_perm_denied_settings" = "Delta Chat heeft geen toestemming. Open de Android-instellingen en verleen de benodigde rechten.";
+"webxdc_perm_reset" = "Rechten intrekken";
 "home" = "Overzicht";
 "games" = "Games";
 "tools" = "Hulpmiddelen";
@@ -281,6 +299,8 @@
 "show_in_chat" = "Tonen in bijbehorend gesprek";
 "show_app_in_chat" = "App tonen in gesprek";
 "menu_share" = "Delen";
+// "to allow," for example a permission
+"allow" = "Toestaan";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Blokkeren";
 "menu_block_contact" = "Contactpersoon blokkeren";
@@ -426,6 +446,7 @@
 "chat_no_chats_yet_title" = "Er zijn nog geen gesprekken.\nDruk op ‘+’ om een gesprek te beginnen.";
 "chat_all_archived" = "Alle gesprekken zijn gearchiveerd.\nDruk op ‘+’ om een gesprek te beginnen.";
 "chat_share_with_title" = "Delen met…";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Bericht";
 "chat_archived_label" = "Gearchiveerd";
 "chat_request_label" = "Verzoek";

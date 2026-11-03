@@ -16,6 +16,7 @@
 "custom" = "Mukautettu";
 "none" = "Ei mitään";
 "automatic" = "Automaattinen";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Tiukka";
 "open" = "Avoin";
 "download" = "Lataa";
@@ -32,6 +33,7 @@
 "emoji" = "Emoji";
 "attachment" = "Liite";
 "back" = "Takaisin";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Sulje";
 "close_window" = "Sulje ikkuna";
 "forward" = "Eteenpäin";
@@ -133,6 +135,10 @@
 "call_duration_less_than_a_minute" = "Alle yksi minuutti";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Valittu";
 "self" = "Minä";
@@ -406,6 +412,7 @@
 "chat_no_chats_yet_title" = "Saapuneet-kansio on tyhjä\nPaina \"+\" aloittaaksesi uuden keskustelun.";
 "chat_all_archived" = "Kaikki keskustelut arkistoitu.\nPaina \"+\" aloittaaksesi uuden keskustelun.";
 "chat_share_with_title" = "Jaa";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Viesti";
 "chat_archived_label" = "Arkistoitu";
 "chat_request_label" = "Pyyntö";

@@ -16,6 +16,7 @@
 "custom" = "自訂";
 "none" = "無";
 "automatic" = "自動";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "嚴格";
 "open" = "開啟";
 "download" = "下載";
@@ -30,6 +31,7 @@
 "emoji" = "表情符號";
 "attachment" = "附件";
 "back" = "返回";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "關閉";
 "close_window" = "關閉視窗";
 "forward" = "轉發";
@@ -111,6 +113,10 @@
 "call_duration_less_than_a_minute" = "少於 1 分鐘";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "已选择";
 "self" = "我";
@@ -367,6 +373,7 @@
 "chat_no_chats_yet_title" = "目前沒有對話\n請按「+」開始新的對話";
 "chat_all_archived" = "已封存所有的對話\n請按「+」開始新的對話";
 "chat_share_with_title" = "分享給...";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "訊息";
 "chat_archived_label" = "封存";
 "chat_request_label" = "請求";

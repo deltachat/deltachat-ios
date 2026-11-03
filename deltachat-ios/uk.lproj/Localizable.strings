@@ -16,6 +16,7 @@
 "custom" = "На користувацький вибір";
 "none" = "Не задано";
 "automatic" = "Автоматично";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Строго";
 "open" = "Відчинити";
 "download" = "Скачати";
@@ -32,6 +33,7 @@
 "emoji" = "Емодзі";
 "attachment" = "Вкладення";
 "back" = "Назад";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Закрити";
 "close_window" = "Закрити вікно";
 "forward" = "Переслати";
@@ -118,6 +120,10 @@
 "call_duration_less_than_a_minute" = "Менше 1 хвилини";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Вибране";
 "self" = "Я";
@@ -389,6 +395,7 @@
 "chat_no_chats_yet_title" = "Немає вхідних повідомлень.\nНатисніть \"+\" щоб почати новий чат.";
 "chat_all_archived" = "Всі чати заархівовано.\nНатисніть \"+\", щоб почати новий чат.";
 "chat_share_with_title" = "Поділитися з...";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Повідомлення";
 "chat_archived_label" = "Заархівовано";
 "chat_request_label" = "Запит";

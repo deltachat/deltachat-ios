@@ -16,6 +16,7 @@
 "custom" = "စိတ်ကြိုက်";
 "none" = "မရှိပါ";
 "automatic" = "အလိုအလျောက်";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "တင်းကျပ်သော";
 "open" = "ဖွင့်ပါ";
 "download" = "ဒေါင်းလုဒ်လုပ်ပါ";
@@ -32,6 +33,7 @@
 "emoji" = "အီမိုဂျီ";
 "attachment" = "ပူးတွဲပါဖိုင်";
 "back" = "နောက်သို့";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "ပိတ်ရန်";
 "close_window" = "ဝင်းဒိုးပိတ်ရန်";
 "forward" = "ရှေ့သို့";
@@ -118,6 +120,10 @@
 "call_duration_less_than_a_minute" = "၁ မိနစ်ထက်နည်းသော";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "ရွေးချယ်ပြီးပြီ";
 "self" = "ကျွန်ုပ်";
@@ -390,6 +396,7 @@
 "chat_no_chats_yet_title" = "ချတ်များ မရှိသေးပါ";
 "chat_all_archived" = "အားလုံးကို မော်ကွန်းတင်ပြီးပါပြီ";
 "chat_share_with_title" = "မျှဝေရန်";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "မက်ဆေ့ချ်";
 "chat_archived_label" = "မော်ကွန်းတင်ပြီး";
 "chat_request_label" = "မက်ဆေ့ချ် တောင်းဆိုမှု";

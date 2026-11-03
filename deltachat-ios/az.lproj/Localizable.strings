@@ -10,6 +10,7 @@
 "custom" = "Xüsusi";
 "none" = "Yoxdur";
 "automatic" = "Avtomatik";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Mıtin";
 "open" = "Açıq";
 "delete" = "Sil";
@@ -18,6 +19,7 @@
 "emoji" = "Emojilər";
 "attachment" = "Fayllar";
 "back" = "Geri";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Bağla";
 "forward" = "Başqasına göndərmə";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -55,6 +57,9 @@
 "last_month" = "Keçən ay";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 "self" = "Mənə";
 "draft" = "Laihə";
 "image" = "Şəkil";
@@ -156,6 +161,7 @@
 "chat_no_chats_yet_title" = "Qutu boşdur.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
 "chat_all_archived" = "Bütün çatlar saxlanıldı.\nYeni çata başlamaq üçün \"+\" işarəsinə toxunun. ";
 "chat_share_with_title" = "Göndər ";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Mesaj";
 "chat_archived_label" = "Xəzinələndi";
 "chat_no_messages" = "Mesaj yoxdur";
