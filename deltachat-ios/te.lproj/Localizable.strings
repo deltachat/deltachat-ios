@@ -10,6 +10,7 @@
 "custom" = "కస్టమ్";
 "none" = "ఏదీ కాదు";
 "automatic" = "స్వయంచాలక";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "కఠినమైన";
 "open" = "తెరువు";
 "delete" = "తొలగించు";
@@ -18,6 +19,7 @@
 "emoji" = "ఎమోజి";
 "attachment" = "అటాచ్మెంట్";
 "back" = "తిరిగి";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "దగ్గరగా";
 "forward" = "ఫార్వర్డ్";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -122,6 +124,7 @@
 "chat_archived_chats_title" = "ఆర్కైవ్ చేసిన చాట్స్";
 "chat_record_slide_to_cancel" = "రద్దు చేయడానికి స్లైడ్ చేయి";
 "chat_share_with_title" = "తో పంచు";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "సందేశం";
 "chat_archived_label" = "ఆర్చివ్ అయినది";
 "chat_no_messages" = "సందేశాలు లేవు";

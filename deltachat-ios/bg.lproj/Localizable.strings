@@ -12,6 +12,7 @@
 "custom" = "Дефиниран от потребителя";
 "none" = "Без";
 "automatic" = "Автоматично";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Стриктно";
 "open" = "Отваряне";
 "download" = "Сваляне";
@@ -24,6 +25,7 @@
 "emoji" = "Emoji";
 "attachment" = "Прикачен файл";
 "back" = "Назад";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Затваряне";
 "close_window" = "Затваряне на прозореца";
 "forward" = "Напред";
@@ -94,6 +96,9 @@
 "last_seen_unknown" = "Последно видян: Не е известно";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 // Short form for "N Items Selected"
 "self" = "Аз";
 "draft" = "Чернова";
@@ -268,6 +273,7 @@
 "chat_no_chats_yet_title" = "Празна входяща кутия.\nНатиснете \"+\", за да започнете нов чат";
 "chat_all_archived" = "Всички чатове са архивирани.\nНатиснете \"+\", за да започнете нов чат";
 "chat_share_with_title" = "Споделяне с";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Съобщение";
 "chat_archived_label" = "Архивирано";
 "chat_request_label" = "Заявка";

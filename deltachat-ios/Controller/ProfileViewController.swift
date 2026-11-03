@@ -120,7 +120,7 @@ class ProfileViewController: UITableViewController {
         } else if isBot {
             title = String.localized("bot")
         } else if !isDeviceChat && !isSavedMessages {
-            title = String.localized("tab_contact")
+            title = String.localized("contact")
         } else {
             title = String.localized("profile")
         }

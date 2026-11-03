@@ -15,6 +15,7 @@
 "custom" = "Tinkintas";
 "none" = "Nėra";
 "automatic" = "Automatinis";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Griežtas";
 "open" = "Atverti";
 "download" = "Atsisiųsti";
@@ -31,6 +32,7 @@
 "emoji" = "Šypsniukas";
 "attachment" = "Priedas";
 "back" = "Atgal";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Užverti";
 "close_window" = "Užverti langą";
 "forward" = "Persiųsti";
@@ -112,6 +114,10 @@
 "call_duration_less_than_a_minute" = "Mažiau nei 1 minutė";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 "self" = "Aš";
 "draft" = "Juodraštis";
 "image" = "Paveikslas";
@@ -362,6 +368,7 @@
 "chat_no_chats_yet_title" = "Nėra pokalbių.\nPaspauskite „+“ norėdami pradėti naują pokalbį.";
 "chat_all_archived" = "Visi pokalbiai archyvuoti.\nPaspauskite „+“ norėdami pradėti naują pokalbį.";
 "chat_share_with_title" = "Bendrinti su";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Žinutė";
 "chat_archived_label" = "Archyvuotas";
 "chat_request_label" = "Užklausa";

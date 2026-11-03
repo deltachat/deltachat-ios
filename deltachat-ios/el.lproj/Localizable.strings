@@ -12,6 +12,7 @@
 "custom" = "Προσαρμογή";
 "none" = "Κανένα";
 "automatic" = "Αυτόματα";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Αυστηρός";
 "open" = "Άνοιγμα";
 "download" = "Λήψη";
@@ -24,6 +25,7 @@
 "emoji" = "Emoji";
 "attachment" = "Συνημένο";
 "back" = "Πίσω";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Κλείσιμο";
 "forward" = "Προώθηση";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -85,6 +87,9 @@
 "last_seen_unknown" = "Τελευταία προβολή: Άγνωστο";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 // Short form for "N Items Selected"
 "self" = "Εγώ";
 "draft" = "Πρόχειρο";
@@ -245,6 +250,7 @@
 "chat_no_chats_yet_title" = "Αδειάστε τα εισερχόμενα.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
 "chat_all_archived" = "Όλες οι συνομιλίες αρχειοθετήθηκαν.\nΠατήστε \"+\" για να ξεκινήσετε μια νέα συνομιλία.";
 "chat_share_with_title" = "Μοιράσου με";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Μήνυμα";
 "chat_archived_label" = "Αρχειοθετημένα";
 "chat_request_label" = "Αίτημα";

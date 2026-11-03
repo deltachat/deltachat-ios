@@ -16,6 +16,7 @@
 "custom" = "سفارشی";
 "none" = "هیچکویکی";
 "automatic" = "خوتکار";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "سختگر";
 "open" = "گۊشیڌن";
 "download" = "دانلود";
@@ -30,6 +31,7 @@
 "emoji" = "ایموجی";
 "attachment" = "پیوست";
 "back" = "وورگشتن";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "بستن";
 "close_window" = "بستن نیمدری";
 "forward" = "فوروارد";
@@ -106,6 +108,10 @@
 "last_seen_unknown" = "ریتور دیندایی: دیار نؽ";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "self" = "مو";
 "draft" = "پؽش هؽل";
@@ -273,6 +279,7 @@
 "chat_please_enter_message" = "ی پیوم بزݩ.";
 "chat_record_slide_to_cancel" = "سی رڌ کردن بکشس.";
 "chat_share_with_title" = "یک رسۊوی وا...";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "پیوم";
 "chat_request_label" = "درخاست";
 "chat_no_messages" = "پیومؽ نؽ.";

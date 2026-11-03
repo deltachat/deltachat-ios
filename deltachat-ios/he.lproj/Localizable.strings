@@ -16,6 +16,7 @@
 "custom" = "מותאם אישית";
 "none" = "אין";
 "automatic" = "אוטומטי";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "קפדני";
 "open" = "פתח";
 "download" = "הורדה";
@@ -32,6 +33,7 @@
 "emoji" = "אמוג\'י";
 "attachment" = "קובץ מצורף";
 "back" = "אחורה";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "סגור";
 "close_window" = "סגור חלון";
 "forward" = "קדימה";
@@ -134,6 +136,10 @@
 "call_duration_less_than_a_minute" = "פחות מדקה";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "נבחר";
 "self" = "אני";
@@ -191,6 +197,18 @@
 "webxdc_store_url" = "כתובת ה-URL של App Picker";
 "webxdc_store_url_explain" = "אם מוגדר, כתובת ה-URL תשמש כ\"בוחר האפליקציות\" במקום זו המוגדרת כברירת מחדל";
 "webxdc_draft_hint" = "לחץ על \"שלח\" כדי לשתף";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "לאפשר ל- \"%1$@\" להשתמש במיקרופון?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "לאפשר ל- \"%1$@\" להשתמש במצלמה?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "לאפשר ל- \"%1$@\" להשתמש במצלמה ובמיקרופון?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "לאפשר ל- \"%1$@\" גישה למיקום שלך?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "לאפשר ל- \"%1$@\" גישה לחיישני התנועה?";
+"webxdc_perm_denied_settings" = "הרשאות חסרות ל- Delta Chat. אנא אפשר ל- Delta Chat את ההרשאות הדרושות בהגדרות של אנדרויד.";
+"webxdc_perm_reset" = "איפוס הרשאות";
 "home" = "בית";
 "games" = "משחקים";
 "tools" = "כלים";
@@ -281,6 +299,8 @@
 "show_in_chat" = "הצג בצ\'אט";
 "show_app_in_chat" = "הצג את האפליקציה בצ\'אט";
 "menu_share" = "שתף";
+// "to allow," for example a permission
+"allow" = "אפשר";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "חסום";
 "menu_block_contact" = "חסימת איש קשר";
@@ -324,10 +344,16 @@
 "pin" = "סיכה";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "מוצמד";
+"pin_for_everyone_ask" = "נעץ הודעה עבור כל המשתתפים בצ\'אט?";
+"pin_for_everyone" = "נעץ עבור כולם";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "הסר את הסימון";
+"unpin_for_everyone_ask" = "הסר נעץ מההודעה עבור כל המשתתפים בצ\'אט?";
+"unpin_for_everyone" = "הסר נעץ עבור כולם.";
 "message_pinned_by_you" = "הצמדת הודעה";
 "message_pinned_by_other" = "הודעה הוצמדה על-ידי %1$@";
+"message_unpinned_by_you" = "הסרת את הנעץ מההודעה";
+"message_unpinned_by_other" = "נעץ הוסר מההודעה על-ידי %1$@";
 "ConversationFragment_quoted_message_not_found" = "לא נמצא ההודעה המקורית";
 "reply_privately" = "השב באופן פרטי";
 "source_code" = "קוד מקור";
@@ -420,6 +446,7 @@
 "chat_no_chats_yet_title" = "אין צ\'אטים.\nלחץ על \"+\" כדי לפתוח צ\'אט חדש.";
 "chat_all_archived" = "כל הצ\'אטים נשמרו בארכיון.\nלחץ על \"+\" כדי לפתוח צ\'אט חדש.";
 "chat_share_with_title" = "שתף עם…";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "הודעה";
 "chat_archived_label" = "בארכיון";
 "chat_request_label" = "בקשה";
@@ -632,6 +659,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "לשלוח %1$d קבצים ל \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "לשלוח %1$d קובצ(ים) ל %2$d צ\'אטים?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "מכין את המדיה...";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "מכווץ את הסרטון...";
+"video_recode_busy" = "סרטון נוסף עדין מעובד, אנא המתן.";
 "share_text_multiple_chats" = "שלח את הטקסט ל-%1$d צ\'אטים?\n\n\"%2$@\"";
 "share_abort" = "השיתוף הופסק בשל היעדר הרשאות.";
 // preferences

@@ -2,6 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vu il y a %d mois</string>
+			<key>many</key>
+			<string>Vu il y a %d mois</string>
+			<key>other</key>
+			<string>Vu il y a %d mois</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Vu il y a %d an</string>
+			<key>many</key>
+			<string>Vu il y a %d ans</string>
+			<key>other</key>
+			<string>Vu il y a %d ans</string>
+		</dict>
+	</dict>
 	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -324,6 +360,24 @@
 			<string>%d nouveaux messages</string>
 			<key>other</key>
 			<string>%d nouveaux messages</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d message non lu</string>
+			<key>many</key>
+			<string>%d messages non lus</string>
+			<key>other</key>
+			<string>%d messages non lus</string>
 		</dict>
 	</dict>
 </dict>

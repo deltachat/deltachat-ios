@@ -16,6 +16,7 @@
 "custom" = "Admawan";
 "none" = "Ulac";
 "automatic" = "Awurman";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Uḥris";
 "open" = "Ldi";
 "download" = "Sider";
@@ -30,6 +31,7 @@
 "emoji" = "Imujit";
 "attachment" = "Amedday";
 "back" = "Uɣal";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Mdel";
 "close_window" = "Mdel asfaylu";
 "forward" = "Ɣer zdat";
@@ -113,6 +115,10 @@
 "call_duration_less_than_a_minute" = "Ddaw n 1 n tesdat";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Yettwafren";
 "self" = "Nekk";
@@ -368,6 +374,7 @@
 "chat_no_chats_yet_title" = "Ulac idiwenniyen.\nSit ɣef \"+\" akken ad tebduḍ adiwenni amaynut.";
 "chat_all_archived" = "Akk idiwenniyen ttwaɣbren.\nSit ɣef \"+\" akken ad tebduḍ adiwenni amaynut.";
 "chat_share_with_title" = "Bḍu d...";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Izen";
 "chat_archived_label" = "yettwaɣber";
 "chat_request_label" = "Asuter";

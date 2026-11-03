@@ -17,6 +17,7 @@
 "emoji" = "إيموجي";
 "attachment" = "مرفق";
 "back" = "العودة";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "إغلاق";
 "forward" = "إعادة توجيه";
 // Verb "to mute". used to mute a chat, so that it is silenced e.g. does not make noise or cause notifications
@@ -116,6 +117,7 @@
 "contacts_title" = "جهات الإتصا";
 "chat_camera_unavailable" = "الكاميرا غير متاحة.";
 "chat_share_with_title" = "شارك مع";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "رسالة";
 "chat_archived_label" = "محتفظة";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk

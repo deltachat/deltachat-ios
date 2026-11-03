@@ -20,6 +20,7 @@
 "emoji" = "وێنۆچکە";
 "attachment" = "پێوەلکاو";
 "back" = "گەڕانەوە";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "داخستن";
 "forward" = "بڵاو کردنەوە";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -67,6 +68,9 @@
 "last_month" = "مانگی ڕابردوو";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 "self" = "من";
 "draft" = "ڕەشنووس";
 "image" = "وێنە";
@@ -200,6 +204,7 @@
 "chat_no_chats_yet_title" = "هاتنگە بەتاڵە. \n \"+\" لێبدە بۆ دەستپێکی وتووێژێکی نوێ.";
 "chat_all_archived" = "هەموو وتووێژەکان ئەرشیڤ کران. \n بۆ دەستپێکردنی وتووێژێکی نوێ، \"+\" لێبدە.";
 "chat_share_with_title" = "هاوبەش کردن لەگەڵ";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "بنووسە";
 "chat_archived_label" = "ئەرشیڤ کرا";
 "chat_no_messages" = "هیچ پەیامێک نییە";

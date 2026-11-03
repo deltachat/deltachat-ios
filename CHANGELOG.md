@@ -1,6 +1,13 @@
 # Delta Chat iOS Changelog
 
 
+## Unreleased
+
+- Fix performance issues on some larger profiles
+- Update translations
+- Update to core 2.67.0
+
+
 ## v2.65.0
 2026-10
 

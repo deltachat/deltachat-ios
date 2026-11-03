@@ -10,6 +10,7 @@
 "custom" = "விருப்ப";
 "none" = "எதுவும் இல்லை";
 "automatic" = "தானியங்கி";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "கண்டிப்பான";
 "open" = "திற";
 "delete" = "நீக்கவும் ";
@@ -18,6 +19,7 @@
 "emoji" = "ஈமோஜியைப்";
 "attachment" = "இணைப்பு";
 "back" = "மீண்டும்";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "நெருக்கமான";
 "forward" = "முன்னோக்கு";
 // Verb "to archive", as in "put a chat in the archive", not a noun "The Archive".
@@ -51,6 +53,9 @@
 "this_week" = "இந்த வாரம்";
 "this_month" = "இந்த மாதம்";
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 "self" = "நான்";
 "draft" = "வரைவு";
 "image" = "படம்";
@@ -122,6 +127,7 @@
 "contacts_title" = "தொடர்புகள்";
 "chat_record_slide_to_cancel" = "ரத்து செய்ய திரையில் சறுக்கவும்";
 "chat_share_with_title" = "பகிர்";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "சேதி";
 "chat_archived_label" = "ஆவண காக்கப்படுத்தப்பட்டது";
 "chat_no_messages" = "சேதிகள் இல்லை";

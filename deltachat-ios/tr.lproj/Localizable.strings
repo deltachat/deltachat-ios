@@ -16,6 +16,7 @@
 "custom" = "Özel";
 "none" = "Yok";
 "automatic" = "Otomatik";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Katı";
 "open" = "Aç";
 "download" = "İndir";
@@ -32,6 +33,7 @@
 "emoji" = "Emoji";
 "attachment" = "İlişik";
 "back" = "Geri";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Kapat";
 "close_window" = "Pencereyi Kapat";
 "forward" = "İlet";
@@ -118,6 +120,10 @@
 "call_duration_less_than_a_minute" = "1 dakikadan az";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Seçilen";
 "self" = "Ben";
@@ -377,6 +383,7 @@
 "chat_no_chats_yet_title" = "Sohbet yok.\nYeni bir sohbet başlatmak için “+” simgesine basın.";
 "chat_all_archived" = "Tüm sohbetler arşivlendi.\nYeni bir sohbet başlatmak için “+” simgesine basın.";
 "chat_share_with_title" = "Paylaş…";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "İleti";
 "chat_archived_label" = "Arşivlenen";
 "chat_request_label" = "İstek";

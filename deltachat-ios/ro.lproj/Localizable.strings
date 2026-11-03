@@ -12,6 +12,7 @@
 "custom" = "Personalizat";
 "none" = "Nici unul";
 "automatic" = "Automat";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Strict";
 "open" = "Deschideți";
 "download" = "Descărcați";
@@ -24,6 +25,7 @@
 "emoji" = "Emoticon";
 "attachment" = "Atașament";
 "back" = "Înapoi";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Închideți";
 "forward" = "Redirecţionare";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
@@ -89,6 +91,9 @@
 "last_seen_unknown" = "Ultima dată a fost văzut: Necunoscut";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
 // Short form for "N Items Selected"
 "self" = "Eu";
 "draft" = "Schiță";
@@ -251,6 +256,7 @@
 "chat_no_chats_yet_title" = "Goliți inbox.\nPress \"+\" pentru a începe un nou chat.";
 "chat_all_archived" = "Toate chat-urile sunt archived.\nPress \"+\" pentru a începe un nou chat.";
 "chat_share_with_title" = "Împărtășiți cu";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Mesaj";
 "chat_archived_label" = "Arhivat";
 "chat_request_label" = "Cerere";

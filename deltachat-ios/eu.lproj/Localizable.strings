@@ -16,6 +16,7 @@
 "custom" = "Pertsonalizatua";
 "none" = "Bat ere ez";
 "automatic" = "Automatikoa";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Zorrotza";
 "open" = "Ireki";
 "download" = "Deskargatu";
@@ -32,6 +33,7 @@
 "emoji" = "Emojia";
 "attachment" = "Eranskina";
 "back" = "Atzera";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Itxi";
 "close_window" = "Leihoa itxi";
 "forward" = "Birbidali";
@@ -134,6 +136,10 @@
 "call_duration_less_than_a_minute" = "Minutu 1 baino gutxiago";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Hautatua";
 "self" = "Ni";
@@ -324,8 +330,16 @@
 "pin" = "Finkatu";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Finkatuta";
+"pin_for_everyone_ask" = "Finkatu mezua txateko guztientzat?";
+"pin_for_everyone" = "Finkatu denontzat";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Desfinkatu";
+"unpin_for_everyone_ask" = "Desfinkatu mezua txateko guztientzat?";
+"unpin_for_everyone" = "Desfinkatu denontzat";
+"message_pinned_by_you" = "Mezu bat finkatu duzu";
+"message_pinned_by_other" = "%1$@(e)k mezu bat finkatu du";
+"message_unpinned_by_you" = "Mezu bat desfinkatu duzu";
+"message_unpinned_by_other" = "%1$@(e)k mezu bat desfinkatu du";
 "ConversationFragment_quoted_message_not_found" = "Ez da jatorrizko mezua aurkitu";
 "reply_privately" = "Erantzun modu pribatuan";
 "source_code" = "Iturburu kodea";
@@ -418,6 +432,7 @@
 "chat_no_chats_yet_title" = "Sarrera-ontzi hutsa.\nSakatu \"+\" txat berria hasteko.";
 "chat_all_archived" = "Txat guztiak artxibatuta.\nSakatu \"+\" txat berri bat hasteko.";
 "chat_share_with_title" = "Partekatu honekin";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Mezua";
 "chat_archived_label" = "Artxibatuta";
 "chat_request_label" = "Eskaera";
@@ -628,8 +643,13 @@
 // Translators: shown above a chat/contact list when selecting recipients to forward messages
 "forward_to" = "Birbidali honi …";
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
-"ask_send_files_to_chat" = "Bidali %1$d fitxategiak \"%2$@\"(e)ra?";
-"ask_send_files_to_selected_chats" = "Bidali %1$d fitxategia(k) %2$d txatetara?";
+"ask_send_files_to_chat" = "Bidali %1$d fitxategi \"%2$@\"(e)ra?";
+"ask_send_files_to_selected_chats" = "Bidali %1$d fitxategi %2$d txatetara?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Multimedia prestatzen…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Bideoa konprimatzen…";
+"video_recode_busy" = "Beste bideo bat prozesatzen ari da oraindik; itxaron, mesedez.";
 "share_text_multiple_chats" = "Bidali testua hau %1$d txatetara?\n\n\"%2$@\"";
 "share_abort" = "Partekatzea eten da baimenak falta direlako.";
 // preferences

@@ -16,6 +16,7 @@
 "custom" = "Egyéni";
 "none" = "Semmi";
 "automatic" = "Automatikus";
+// Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Szigorú";
 "open" = "Megnyitás";
 "download" = "Letöltés";
@@ -30,6 +31,7 @@
 "emoji" = "Emodzsi";
 "attachment" = "Melléklet";
 "back" = "Vissza";
+// Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Bezárás";
 "close_window" = "Ablak bezárása";
 "forward" = "Továbbítás";
@@ -108,6 +110,10 @@
 "last_seen_unknown" = "Utoljára látta: - (ismeretlen)";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
+// Title of a search result. The placeholder will be replaced by the number of chats found.
+// Title of a search result. The placeholder will be replaced by the number of contacts found.
+// Title of a search result. The placeholder will be replaced by the number of messages found.
+// Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "self" = "Ön";
 "draft" = "Piszkozat";
@@ -344,6 +350,7 @@
 "chat_no_chats_yet_title" = "Nincsenek csevegések.\nÉrintse meg a „+” gombot egy új csevegés indításához.";
 "chat_all_archived" = "Az összes csevegés archiválva van.\nÉrintse meg a „+” gombot egy új csevegés indításához.";
 "chat_share_with_title" = "Megosztás vele:";
+// Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
 "chat_input_placeholder" = "Üzenet…";
 "chat_archived_label" = "Archivált";
 "chat_request_label" = "Kérés";
