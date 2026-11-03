@@ -85,7 +85,10 @@ struct Utils {
         guard !objectsToShare.isEmpty else { return }
 
         let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityVC.excludedActivityTypes = [.copyToPasteboard]
+        if objectsToShare.contains(where: { $0 is WebxdcItemSource }) {
+            // WebxdcItemSource fails to copy so just hide the option
+            activityVC.excludedActivityTypes = [.copyToPasteboard]
+        }
         if let sourceItem {
             activityVC.popoverPresentationController?.barButtonItem = sourceItem
         } else if let sourceView {
