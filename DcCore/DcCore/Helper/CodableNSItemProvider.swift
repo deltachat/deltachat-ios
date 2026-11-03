@@ -111,6 +111,8 @@ public enum CodableNSItemProvider: Codable, Equatable {
                         } catch {
                             continuation.resume(returning: .text(text: url.absoluteString))
                         }
+                    } else if let url {
+                        continuation.resume(returning: .text(text: url.absoluteString))
                     } else {
                         loadText()
                     }
