@@ -30,10 +30,10 @@ class WebxdcViewController: WebViewViewController {
         UIBarButtonItem(systemItem: .close, primaryAction: UIAction { [unowned self] _ in
             quit()
         }, menu: UIMenu { [unowned self] in
+            UIAction.minimizeWebxdc(vc: self, info: info)
             UIAction(title: String.localized("close"), image: UIImage(systemName: "xmark")) { [unowned self] _ in
                 quit()
             }
-            UIAction.minimizeWebxdc(vc: self, info: info)
         })
     }()
 
