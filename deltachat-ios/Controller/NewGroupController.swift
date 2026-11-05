@@ -152,7 +152,9 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
 
         dcContext.setChatDescription(chatId: groupChatId, descr: descriptionCell.textField.text)
 
-        showGroupChat(chatId: Int(groupChatId))
+        let appCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.appCoordinator
+        appCoordinator?.showChat(chatId: groupChatId)
+
     }
 
 
@@ -324,13 +326,6 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
     }
 
     // MARK: - coordinator
-    private func showGroupChat(chatId: Int) {
-        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
-            let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId)
-            chatlistViewController.backButtonUpdateableDataSource = chatViewController
-            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
-        }
-    }
 
     private func showPhotoPicker(delegate: MediaPickerDelegate) {
         mediaPicker?.showGallery(allowCropping: true)
