@@ -197,6 +197,18 @@
 "webxdc_store_url" = "应用选择器 URL";
 "webxdc_store_url_explain" = "设置后，该 URL 而不是默认的 URL 将被用作“应用选择器”";
 "webxdc_draft_hint" = "点按“发送”即可分享";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "允许 \"%1$@\" 使用你的麦克风？";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "允许 \"%1$@\" 使用你的相机？";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "允许 \"%1$@\" 使用你的相机和麦克风？";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "允许 \"%1$@\" 访问你的位置？";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "允许 \"%1$@\" 访问运动传感器？";
+"webxdc_perm_denied_settings" = "Delta Chat 没有权限。请在 Android 系统设置中授予它必需的权限。";
+"webxdc_perm_reset" = "重置权限";
 "home" = "首页";
 "games" = "游戏";
 "tools" = "工具";
@@ -287,6 +299,8 @@
 "show_in_chat" = "在聊天中显示";
 "show_app_in_chat" = "在聊天中显示应用";
 "menu_share" = "分享";
+// "to allow," for example a permission
+"allow" = "允许";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "屏蔽";
 "menu_block_contact" = "屏蔽联系人";

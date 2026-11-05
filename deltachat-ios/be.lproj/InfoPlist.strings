@@ -1,0 +1,7 @@
+NSCameraUsageDescription = "Delta Chat выкарыстоўвае камеру, каб знімаць і адпраўляць фотаздымкі ды відэазапісы і для сканавання QR-кодаў.";
+NSLocationAlwaysAndWhenInUseUsageDescription = "Delta Chat патрабуецца дазвол, каб абагуліць вашае месцазнаходжанне, на прамежак часу, на які вы ўключылі абагульванне месцазнаходжання.";
+NSLocationWhenInUseUsageDescription = "Delta Chat патрабуецца дазвол, каб абагуліць вашае месцазнаходжанне, на прамежак часу, на які вы ўключылі абагульванне месцазнаходжання.";
+NSMicrophoneUsageDescription = "Delta Chat выкарыстоўвае мікрафон, каб запісваць і адпраўляць галасавыя паведамленні і відэазапісы з гукам.";
+NSPhotoLibraryUsageDescription = "Delta Chat дазволіць вам выбраць, якія фотаздымкі з вашай бібліятэкі адправіць.";
+NSPhotoLibraryAddUsageDescription = "Delta Chat хоча захаваць відарысы ў вашую бібліятэку фотаздымкаў.";
+NSFaceIDUsageDescription = "Delta Chat можа выкарыстоўваць Face ID, каб абараніць профіль на вашай прыладзе і заблакаваць стварэнне рэзервовых копій і наладжванне другой прылады.";

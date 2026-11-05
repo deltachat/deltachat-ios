@@ -200,13 +200,13 @@
 // The placeholder is replaced by the name of a Mini App that wants to have microphone access.
 "webxdc_perm_ask_microphone" = "Wil je ‘%1$@’ toestemming geven om je microfoon te gebruiken?";
 // The placeholder is replaced by the name of a Mini App that wants to have camera access.
-"webxdc_perm_ask_camera" = "Wil je ‘%1$@’ toestemming geven om je camera te gebruiken? ";
+"webxdc_perm_ask_camera" = "Wil je ‘%1$@’ toestemming geven om je camera te gebruiken?";
 // The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
-"webxdc_perm_ask_camera_microphone" = "Wil je ‘%1$@’ toestemming geven om je camera en microfoon te gebruiken? ";
+"webxdc_perm_ask_camera_microphone" = "Wil je ‘%1$@’ toestemming geven om je camera en microfoon te gebruiken?";
 // The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
-"webxdc_perm_ask_location" = "Wil je ‘%1$@’ toestemming geven om je locatie op te vragen? ";
+"webxdc_perm_ask_location" = "Wil je ‘%1$@’ toestemming geven om je locatie op te vragen?";
 // The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
-"webxdc_perm_ask_sensors" = "Wil je ‘%1$@’ toestemming geven om je bewegingssensors te gebruiken? ";
+"webxdc_perm_ask_sensors" = "Wil je ‘%1$@’ toestemming geven om je bewegingssensors te gebruiken?";
 "webxdc_perm_denied_settings" = "Delta Chat heeft geen toestemming. Open de Android-instellingen en verleen de benodigde rechten.";
 "webxdc_perm_reset" = "Rechten intrekken";
 "home" = "Overzicht";

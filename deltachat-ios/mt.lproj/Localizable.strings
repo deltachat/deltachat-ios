@@ -723,7 +723,7 @@
 "remove_quote" = "Neħħi l-kwotazzjoni";
 "remove_attachment" = "Neħħi l-hemża";
 // notifications
-"notify_reply_button" = "Tweġiba";
+"notify_reply_button" = "Wieġeb";
 "notify_new_message" = "Messaġġ ġdid";
 "notify_background_connection_enabled" = "Xgħelt il-konnessjoni fl-isfond";
 "notify_name_and_message" = "L-isem u l-messaġġ";

@@ -2,6 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seen_n_months_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Апошняя сувязь %d месяц таму</string>
+			<key>few</key>
+			<string>Апошняя сувязь %d месяцы таму</string>
+			<key>many</key>
+			<string>Апошняя сувязь %d месяцаў таму</string>
+			<key>other</key>
+			<string>Апошняя сувязь %d месяцаў таму</string>
+		</dict>
+	</dict>
+	<key>seen_n_years_ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Апошняя сувязь %d год таму</string>
+			<key>few</key>
+			<string>Апошняя сувязь %d гады таму</string>
+			<key>many</key>
+			<string>Апошняя сувязь %d гадоў таму</string>
+			<key>other</key>
+			<string>Апошняя сувязь %d гадоў</string>
+		</dict>
+	</dict>
 	<key>call_duration_minutes</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -235,7 +275,7 @@
 			<key>one</key>
 			<string>Адправіць наступны файл карыстальніку %2$@?</string>
 			<key>few</key>
-			<string>Адправіць наступныя %d файла карыстальніку %2$@?</string>
+			<string>Адправіць наступныя %d файлы карыстальніку %2$@?</string>
 			<key>many</key>
 			<string>Адправіць наступныя %d файлаў карыстальніку %2$@?</string>
 			<key>other</key>
@@ -333,13 +373,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Вернуты %d чат з архіву</string>
+			<string>Выведзены з архіва %d чат</string>
 			<key>few</key>
-			<string>Вернута %d чаты з архіву</string>
+			<string>Выведзены з архіва %d чаты</string>
 			<key>many</key>
-			<string>Вернута %d чатаў з архіву</string>
+			<string>Выведзена з архіва %d чатаў</string>
 			<key>other</key>
-			<string>Вернута %d чатаў з архіву</string>
+			<string>Выведзена з архіва %d чатаў</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>
@@ -360,6 +400,26 @@
 			<string>%d новых паведамленняў</string>
 			<key>other</key>
 			<string>%d новых паведамленняў</string>
+		</dict>
+	</dict>
+	<key>chat_n_unread_messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@localized_format_key@</string>
+		<key>localized_format_key</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d непрачытанае паведамленне</string>
+			<key>few</key>
+			<string>%d непрачытаныя паведамленні</string>
+			<key>many</key>
+			<string>%d непрачытаных паведамленняў</string>
+			<key>other</key>
+			<string>%d непрачытаных паведамленняў</string>
 		</dict>
 	</dict>
 </dict>
