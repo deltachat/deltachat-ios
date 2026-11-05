@@ -55,7 +55,7 @@ class QrPageController: UIPageViewController {
             completion: nil
         )
 
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
     }
 
     override func viewWillAppear(_ animated: Bool) {

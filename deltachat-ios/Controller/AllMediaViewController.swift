@@ -63,7 +63,7 @@ class AllMediaViewController: UIPageViewController {
         delegate = self
         navigationItem.titleView = segmentControl
         navigationItem.rightBarButtonItem = UserDefaults.standard.bool(forKey: "location_streaming") ? mapButton : nil
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
         let page = pages[prevIndex]
         setViewControllers([makeViewController(page)], direction: .forward, animated: false, completion: nil)
