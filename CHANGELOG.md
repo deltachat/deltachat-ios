@@ -4,6 +4,7 @@
 ## Unreleased
 
 - A voice message button is now shown when user is not writing text
+- Updated wallpaper selection screen to liquid glass
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Update translations
