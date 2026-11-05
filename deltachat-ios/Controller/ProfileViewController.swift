@@ -397,14 +397,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    private func showChat(otherChatId: Int) {
-        if let chatlistViewController = navigationController?.viewControllers[0] as? ChatListViewController {
-            let chatViewController = ChatViewController(dcContext: dcContext, chatId: otherChatId)
-            chatlistViewController.backButtonUpdateableDataSource = chatViewController
-            navigationController?.setViewControllers([chatlistViewController, chatViewController], animated: true)
-        }
-    }
-
     private func shareContact() {
         guard let contact else { return }
         if contact.isKeyContact {
@@ -581,6 +573,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let appCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.appCoordinator
         switch sections[indexPath.section] {
         case .options:
             switch options[indexPath.row] {
@@ -590,7 +583,7 @@ class ProfileViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
                 showMedia()
             case .startChat:
-                showChat(otherChatId: dcContext.createChatByContactId(contactId: contactId))
+                appCoordinator?.showChat(chatId: dcContext.createChatByContactId(contactId: contactId))
             }
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
@@ -610,7 +603,7 @@ class ProfileViewController: UITableViewController {
                 }
             }
         case .sharedChats:
-            showChat(otherChatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
+            appCoordinator?.showChat(chatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
         }
     }
 

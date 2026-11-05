@@ -1,16 +1,11 @@
 import UIKit
 import DcCore
 
-protocol BackButtonUpdateable: AnyObject {
-    func shouldUpdateBackButton(_ viewController: UIViewController, chatId: Int, accountId: Int) -> Bool
-}
-
 class ChatListViewController: UITableViewController {
     var viewModel: ChatListViewModel?
     let dcContext: DcContext
     internal let dcAccounts: DcAccounts
     var isArchive: Bool
-    weak var backButtonUpdateableDataSource: BackButtonUpdateable?
 
     private weak var timer: Timer?
 
@@ -224,7 +219,6 @@ class ChatListViewController: UITableViewController {
             }
 
             let changedChatId = notification.userInfo?["chat_id"] as? Int
-            self.updateNextScreensBackButton(accountId: self.dcContext.id, chatId: changedChatId)
             self.refreshInBg()
         }
     }
@@ -242,7 +236,6 @@ class ChatListViewController: UITableViewController {
 
         DispatchQueue.main.async { [weak self] in
             self?.updateAccountButton()
-            self?.updateNextScreensBackButton(accountId: accountId, chatId: chatId)
         }
     }
 
@@ -256,39 +249,6 @@ class ChatListViewController: UITableViewController {
     }
     private func setupSubviews() {
         emptyStateLabel.addCenteredTo(parentView: view)
-        updateNextScreensBackButton()
-    }
-
-    private func updateNextScreensBackButton(accountId: Int? = nil, chatId: Int? = nil) {
-        if #available(iOS 26, *) {
-            navigationItem.backButtonDisplayMode = .minimal
-            // On liquid glass we don't show new messages indicator nor "archive/chats" in the back button
-            return
-        }
-        let numberOfUnreadMessages = DcAccounts.shared.getFreshMessagesCount()
-
-        if isArchive {
-            navigationItem.backBarButtonItem = nil
-            navigationItem.backButtonTitle = String.localized("chat_archived_label")
-        } else if numberOfUnreadMessages > 0 {
-
-            if let backButtonUpdateableDataSource, let accountId, let chatId,
-               backButtonUpdateableDataSource.shouldUpdateBackButton(self, chatId: chatId, accountId: accountId) == false {
-                return
-            }
-
-            let symbolName: String
-            if numberOfUnreadMessages > 50 {
-                symbolName = "circle.fill"
-            } else {
-                symbolName = "\(numberOfUnreadMessages).circle.fill"
-            }
-
-            navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(systemName: symbolName), style: .plain, target: nil, action: nil)
-        } else { // if numberOfUnreadMessages == 0
-            navigationItem.backBarButtonItem = nil
-            navigationItem.backButtonTitle = String.localized("pref_chats")
-        }
     }
 
     // MARK: - configuration
@@ -693,7 +653,6 @@ class ChatListViewController: UITableViewController {
 
     private func refreshUnreadIndicators() {
         updateAccountButton()
-        updateNextScreensBackButton()
     }
 
     private func updateAccountButton() {
@@ -957,9 +916,6 @@ class ChatListViewController: UITableViewController {
             searchController.searchBar.resignFirstResponder()
         }
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
-        backButtonUpdateableDataSource = chatViewController
-        updateNextScreensBackButton(accountId: dcContext.id, chatId: chatId)
-
         navigationController?.pushViewController(chatViewController, animated: animated)
     }
 
