@@ -66,6 +66,7 @@ struct WallpaperView: View {
                 }
             }
         }
+        .frame(maxWidth: .infinity)
         .lineLimit(nil)
         .padding()
         .padding(.horizontal)
