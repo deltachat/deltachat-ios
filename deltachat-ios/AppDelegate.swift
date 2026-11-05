@@ -284,15 +284,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK: - background fetch and notifications
 
-    // asks the user if they want to get notifications shown.
-    // nb: the alert dialog could be avoided by using `.provisional`,
-    // https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications
-    func registerForNotifications() {
+    /// Asks the user if they want to get notifications shown when promptUser is set to true, otherwise requests provisional authorization.
+    func registerForNotifications(promptUser: Bool = false) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
 
             self.notifyToken = nil
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: (promptUser ? [] : UNAuthorizationOptions.provisional).union([.alert, .sound, .badge])
+            ) { granted, error in
                 DispatchQueue.main.async {
                     if !granted || error != nil {
                         logger.warning("Notifications: Permission not granted, \(error?.localizedDescription ?? "no error")")

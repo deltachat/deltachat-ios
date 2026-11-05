@@ -30,7 +30,7 @@ internal final class NotificationsViewController: UITableViewController {
                 dcContext.setMuted(!cell.isOn)
                 if cell.isOn {
                     if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                        appDelegate.registerForNotifications()
+                        appDelegate.registerForNotifications(promptUser: true)
                     }
                 } else {
                     NotificationManager.removeAllNotifications()
