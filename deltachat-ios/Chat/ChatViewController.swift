@@ -463,7 +463,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
-        navigationItem.backButtonTitle = String.localized("chat")
         definesPresentationContext = true
 
         if #available(iOS 27, *) {
