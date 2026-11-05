@@ -3,7 +3,9 @@
 
 ## Unreleased
 
+- A voice message button is now shown when user is not writing text
 - Fix performance issues on some larger profiles
+- Fixed attach button showing up when editing a message
 - Update translations
 - Update to core 2.67.0
 
