@@ -47,9 +47,11 @@ struct WallpaperView: View {
         VStack {
             Spacer()
             VStack(spacing: 15) {
-                Button(String.localized("pref_background_btn_default"), action: {
-                    UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
-                })
+                if backgroundImageName != nil {
+                    Button(String.localized("pref_background_btn_default"), action: {
+                        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
+                    })
+                }
                 Button(String.localized("pref_background_btn_gallery"), action: {
                     vc?.mediaPicker.delegate = vc
                     vc?.mediaPicker.showGallery(allowCropping: true)
