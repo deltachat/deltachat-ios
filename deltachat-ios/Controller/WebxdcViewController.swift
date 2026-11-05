@@ -439,7 +439,7 @@ class WebxdcViewController: WebViewViewController {
 
     @objc private func applicationWillTerminate(_: Notification) {
         if #available(iOS 16.2, *) {
-            endLiveActivity()
+            endLiveActivity(synchronously: true)
         }
     }
 
@@ -702,10 +702,13 @@ extension WebxdcViewController {
         }
     }
 
-    private func endLiveActivity() {
-        Task { [activity] in
+    private func endLiveActivity(synchronously: Bool = false) {
+        let semaphore = synchronously ? DispatchSemaphore(value: 0) : nil
+        Task.detached { [activity] in
             await activity?.end(nil, dismissalPolicy: .immediate)
+            semaphore?.signal()
         }
+        semaphore?.wait()
     }
 }
 
