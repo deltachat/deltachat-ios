@@ -197,6 +197,18 @@
 "webxdc_store_url" = "Aplikazio-hautatzailearen URL-a";
 "webxdc_store_url_explain" = "Ezarriz gero, URL hori erabiliko da aplikazio-hautatzaile gisa, lehenetsitakoaren ordez.";
 "webxdc_draft_hint" = "Sakatu \"Bidali\" partekatzeko";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "\"%1$@\"ri zure mikrofonoa erabiltzeko baimena eman nahi diozu?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "\"%1$@\"ri zure kamera erabiltzeko baimena eman nahi diozu?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "\"%1$@\"ri zure kamera eta mikrofonoa erabiltzeko baimena eman nahi diozu?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "\"%1$@\"ri zure kokapena atzitzeko baimena eman nahi diozu?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "\"%1$@\"ri zure mugimendu-sentsoreak atzitzeko baimena eman nahi diozu?";
+"webxdc_perm_denied_settings" = "Delta Chat-erako baimenak falta dira. Eman Delta Chat-i beharrezko baimenak Android ezarpenetan.";
+"webxdc_perm_reset" = "Berrezarri baimenak";
 "home" = "Hasiera";
 "games" = "Jokoak";
 "tools" = "Tresnak";
@@ -287,6 +299,8 @@
 "show_in_chat" = "Erakutsi txatean";
 "show_app_in_chat" = "Erakutsi aplikazioa txatean";
 "menu_share" = "Partekatu";
+// "to allow," for example a permission
+"allow" = "Baimendu";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Bloketau";
 "menu_block_contact" = "Blokeatu kontaktuak";

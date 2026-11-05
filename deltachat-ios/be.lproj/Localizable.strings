@@ -1,6 +1,6 @@
 // common strings without special context
 "app_name" = "Delta Chat";
-"ok" = "ОК";
+"ok" = "Добра";
 "cancel" = "Скасаваць";
 "clear_search" = "Ачысціць пошук";
 // a noun, used on a button, short for "show link"
@@ -12,26 +12,26 @@
 "select" = "Выбраць";
 "on" = "Укл.";
 "off" = "Выкл.";
-"def" = "Па змаўчанні";
-"custom" = "Свой варыянт";
-"none" = "Не зададзена";
+"def" = "Прадвызначана";
+"custom" = "Уласны";
+"none" = "Няма";
 "automatic" = "Аўтаматычна";
 // Adjective, used as an option e.g. for "Certificate Checks"
 "strict" = "Строгі";
 "open" = "Адкрыць";
 "download" = "Спампаваць";
-"downloading" = "Загрузка…";
-"open_attachment" = "Адкрыць укладанне";
+"downloading" = "Спампоўванне…";
+"open_attachment" = "Адкрыць далучаны файл";
 "join" = "Далучыцца";
-"join_group" = "Уступіць у групу";
+"join_group" = "Далучыцца да суполкі";
 "join_channel" = "Далучыцца да канала";
 "delete" = "Выдаліць";
 "delete_for_me" = "Выдаліць для мяне";
 "delete_for_everyone" = "Выдаліць для ўсіх";
-"info" = "Інфармацыя";
+"info" = "Звесткі";
 "update" = "Абнавіць";
 "emoji" = "Эмодзі";
-"attachment" = "Укладанне";
+"attachment" = "Далучаны файл";
 "back" = "Назад";
 // Verb, short for e.g. "Close a Window/View/Toolbar" similar to the "X" close button
 "close" = "Закрыць";
@@ -52,38 +52,40 @@
 "mute" = "Не апавяшчаць";
 // Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "Апавяшчэнні адключаны";
-"ephemeral_messages" = "Знікаючыя паведамленні";
+"ephemeral_messages" = "Самазнішчальныя паведамленні";
 "ephemeral_messages_hint" = "Распаўсюджваецца на ўсіх удзельнікаў чата; аднак яны ўсё яшчэ могуць капіяваць, захоўваць і перасылаць паведамленні.";
 "save" = "Захаваць";
 "chat" = "Чат";
-"media" = "Медыя";
-"apps_and_media" = "Праграмы і медыя";
+"media" = "Медыяфайлы";
+"apps_and_media" = "Праграмы і медыяфайлы";
 "profile" = "Профіль";
 "main_menu" = "Галоўнае меню";
 "start_chat" = "Напісаць";
 "show_full_message" = "Паказаць паведамленне цалкам…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "Прачытаць усе";
+"mark_all_as_read" = "Усе ў прачытанае";
 // Used as an menu entry or button
-"mark_as_read" = "Прачытаць";
+"mark_as_read" = "У прачытанае";
+// Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
+"mark_as_read_short" = "У прачытанае";
 // Used as an menu entry or button
-"mark_as_unread" = "Скасаваць чытанне";
+"mark_as_unread" = "У непрачытанае";
 // Used beside an icon with very few space. Shortest text for "Mark as being unread". In english, this could be "Unread" (past tense of "to unread"), in german, this could be "Ungelesen".
-"mark_as_unread_short" = "Не прачытана";
+"mark_as_unread_short" = "У непрачытанае";
 // Placeholder text when something is loading
 "loading" = "Загрузка…";
 "hide" = "Схаваць";
 "activate" = "Актываваць";
-"load_remote_content" = "Загрузка выяў з знешніх крыніц";
+"load_remote_content" = "Загрузка відарысаў з аддаленых крыніц";
 // Possible answers to the question are: Never, Always, Once
-"load_remote_content_ask" = "Выявы, размешчаныя на знешніх крыніцах, могуць быць выкарыстаны для сачэння за вамі.\n\nГэтая налада таксама дазваляе загружаць шрыфты і іншае змесціва. Калі яна адключана, могуць адлюстроўвацца ўбудаваныя або кэшаваныя выявы.\n\nДазволіць загрузку з знешніх крыніц?";
+"load_remote_content_ask" = "Аддаленыя відарысы могуць быць выкарыстаны для сачэння за вамі.\n\nГэтая налада таксама дазваляе загружаць шрыфты і іншае змесціва. Калі яна адключана, могуць адлюстроўвацца ўбудаваныя або кэшаваныя відарысы.\n\nДазволіць загрузку з аддаленых крыніц?";
 "always" = "Заўсёды";
-"once" = "Толькі цяпер";
-"not_now" = "Не цяпер";
+"once" = "Толькі зараз";
+"not_now" = "Не зараз";
 "never" = "Ніколі";
 "one_moment" = "Хвілінку…";
 "done" = "Гатова";
-"undo" = "Адмяніць";
+"undo" = "Адрабіць";
 "offline" = "Не ў сетцы";
 // For the next view or as "continue". Should be as short as possible.
 "next" = "Далей";
@@ -97,8 +99,8 @@
 "contacts_headline" = "Кантакты";
 "email_address" = "Адрас электроннай пошты";
 "password" = "Пароль";
-"existing_password" = "Бягучы пароль";
-"now" = "Цяпер";
+"existing_password" = "Цяперашні пароль";
+"now" = "Толькі што";
 // Headline for destructive actions with no undo. Could also be "Caution" or "Warning".
 "danger" = "Увага";
 "today" = "Сёння";
@@ -108,11 +110,27 @@
 "last_week" = "На мінулым тыдні";
 "last_month" = "У мінулым месяцы";
 // deprecated
-"last_seen_at" = "Быў(-ла) %1$@";
+"last_seen_at" = "Апошняя сувязь а %1$@";
 // deprecated
-"last_seen_relative" = "Быў(-ла) %1$@";
+"last_seen_relative" = "Апошняя сувязь %1$@";
 // deprecated
-"last_seen_unknown" = "Быў(-ла): невядома";
+"last_seen_unknown" = "Апошняя сувязь: невядома";
+// A contact was seen recently. The string is at places with few space, so stay as short as possible.
+"seen_recently" = "Апошняя сувязь нядаўна";
+// A contact was seen today. The string is at places with few space, so stay as short as possible.
+"seen_today" = "Апошняя сувязь сёння";
+// A contact was seen yesterday. The string is at places with few space, so stay as short as possible.
+"seen_yesterday" = "Апошняя сувязь учора";
+// A contact was seen within a week. The string is at places with few space, so stay as short as possible.
+"seen_within_week" = "Апошняя сувязь на гэтым тыдні";
+// A contact was seen within a month. The string is at places with few space, so stay as short as possible.
+"seen_within_month" = "Апошняя сувязь у гэтым месяцы";
+// A contact was seen a number of month ago. The string is at places with few space, so stay as short as possible.
+// A contact was seen a long time ago, more than a year. The string is at places with few space, so stay as short as possible.
+"seen_long_ago" = "Апошняя сувязь вельмі даўно";
+// A contact was never seen (as added by others to a group or created by a vcard). The string is at places with few space, so stay as short as possible.
+"never_seen" = "Сувязі не было";
+// deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
 "call_duration_less_than_a_minute" = "Менш за 1 хвіліну";
@@ -126,19 +144,19 @@
 "selected" = "Выбрана";
 "self" = "Я";
 "draft" = "Чарнавік";
-"image" = "Выява";
+"image" = "Відарыс";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
 "reply_noun" = "Адказ";
 "gif" = "Анімацыя";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
-"sticker" = "Стыкер";
-"add_to_sticker_collection" = "Дадаць у калекцыю стыкераў";
-"ask_add_sticker_to_collection" = "Дадаць гэты стыкер у калекцыю?";
-"ask_delete_sticker" = "Выдаліць гэты стыкер?";
-"sticker_picker_empty_hint" = "Націсніце на стыкер, каб дадаць яго сюды.";
-"images" = "Выявы";
+"sticker" = "Наклейка";
+"add_to_sticker_collection" = "Дадаць у калекцыю наклеек";
+"ask_add_sticker_to_collection" = "Дадаць гэтую наклейку ў калекцыю?";
+"ask_delete_sticker" = "Выдаліць гэтую наклейку?";
+"sticker_picker_empty_hint" = "Націсніце на наклейку, каб дадаць яе сюды.";
+"images" = "Відарысы";
 // a noun, used for "Music" and other "Audio" files
-"audio" = "Аўдыя";
+"audio" = "Аўдыяфайлы";
 "voice_message" = "Галасавое паведамленне";
 "forwarded" = "Пераслана";
 "forwarded_message" = "Перасланае паведамленне";
@@ -149,21 +167,25 @@
 "contact" = "Кантакт";
 "bot" = "Бот";
 "camera" = "Камера";
+"take_photo" = "Сфатаграфаваць";
+"front_camera" = "Пярэдняя камера";
+"back_camera" = "Задняя камера";
+"microphone" = "Мікрафон";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
 "capture" = "Зняць";
 // Switch eg. from front to back camera
 "switch_camera" = "Пераключыць камеру";
 // Toggle camera on/off eg. during an video call
-"toggle_camera" = "Перамкнуць камеру";
-"location" = "Месцазнаходжанне";
+"toggle_camera" = "Укл./выкл. камеру";
+"location" = "Месцазнах.";
 "locations" = "Месцазнаходжанні";
 "gallery" = "Галерэя";
-"images_and_videos" = "Выявы і відэа";
+"images_and_videos" = "Відарысы і відэафайлы";
 // A single file or document object (manual.pdf, readme.txt and so on). For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "file" = "Файл";
 // Title for an unknown number of files or document objects (manual.pdf, readme.txt and so on). Use e.g. as a tab in the gallery. For referring to the "File" menu in desktop apps, see the strings "global_menu_file_desktop"
 "files" = "Файлы";
-"files_attach_hint" = "Адправіць арыгінальныя файлы і нясціснутыя выявы";
+"files_attach_hint" = "Адправіць зыходныя файлы і нясціснутыя відарысы";
 // "Files" here means the "Files Selector App" or "Files Manager App"
 "choose_from_files" = "Выбраць са сховішча";
 "choose_from_gallery" = "Выбраць з галерэі";
@@ -171,9 +193,22 @@
 "webxdc_app" = "Праграма";
 // plural of "App"; used to present "Webxdc App" (https://webxdc.org) in a user friendly way. Please stay close to the original term and keep it short (it is used in menus with few screen space).
 "webxdc_apps" = "Праграмы";
-"webxdc_store_url" = "URL каталога праграм";
-"webxdc_store_url_explain" = "Калі ўсталявана, URL будзе ўжывацца ў якасці каталога праграм замест стандартнага";
-"webxdc_draft_hint" = "Націсніце «Адправіць», каб падзяліцца";
+"webxdc_add" = "Дадаць праграму";
+"webxdc_store_url" = "URL-адрас каталога праграм";
+"webxdc_store_url_explain" = "Калі зададзены, URL-адрас будзе выкарыстоўвацца ў якасці каталога праграм замест прадвызначанага";
+"webxdc_draft_hint" = "Націсніце «Адправіць», каб абагуліць";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "Дазволіць міні-праграме «%1$@» выкарыстоўваць мікрафон?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "Дазволіць міні-праграме «%1$@» выкарыстоўваць камеру?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "Дазволіць міні-праграме «%1$@» выкарыстоўваць камеру і мікрафон?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "Дазволіць міні-праграме «%1$@» доступ да вашага месцазнаходжання?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "Дазволіць міні-праграме «%1$@» доступ да датчыкаў руху?";
+"webxdc_perm_denied_settings" = "Адсутнічаюць дазволы для Delta Chat. Дайце Delta Chat патрэбныя дазволы ў наладах Android.";
+"webxdc_perm_reset" = "Скінуць дазволы";
 "home" = "Галоўная";
 "games" = "Гульні";
 "tools" = "Інструменты";
@@ -184,26 +219,29 @@
 // short for "Browse through the App Picker/Store/Catalogue"; could also be translated as "Discover" or "Search"
 "browse" = "Пошук";
 "unknown" = "Невядома";
+"unnamed" = "Без назвы";
 "green" = "Зялёны";
 "red" = "Чырвоны";
 "blue" = "Сіні";
-"orange" = "Памяранцавы";
-"cyan" = "Сіне-зялёны";
+"orange" = "Аранжавы";
+"cyan" = "Блакітны";
 "purple" = "Фіялетавы";
-"magenta" = "Маджэнта";
+"magenta" = "Фуксінавы";
 "white" = "Белы";
+// Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
+"progress_percent" = "%1$d %%";
 "zoom" = "Маштаб";
-"small" = "Маленькі";
+"small" = "Дробны";
 "normal" = "Звычайны";
-"large" = "Вялікі";
+"large" = "Буйны";
 "fast" = "Хуткі";
 "slow" = "Павольны";
 // menu labels (or icon, buttons...)
 "menu_new_contact" = "Новы кантакт";
 "menu_new_classic_contact" = "Дадаць кантакт уручную";
-"new_classic_contact_explain" = "Кантакты, дададзеныя уручную, можна выкарыстоўваць для адпраўкі тэкставых паведамленняў па звычайнай электроннай пошце, і для іх не гарантавана скразное шыфраванне.";
+"new_classic_contact_explain" = "Кантакты, дададзеныя ўручную, можна выкарыстоўваць для адпраўкі тэкставых паведамленняў па звычайнай электроннай пошце і для іх не гарантавана скразное шыфраванне.";
 "menu_new_chat" = "Новы чат";
-"menu_new_group" = "Новая група";
+"menu_new_group" = "Новая суполка";
 // "Chat" is a verb here, "Message to" would also fit. the string might be used in the "New Chat" screen above the contact list
 "chat_with" = "Напісаць…";
 "clone_chat" = "Кланаваць чат";
@@ -222,45 +260,47 @@
 // the "Subject" of an email, use the term common in classic email apps
 "subject" = "Тэма";
 "menu_send" = "Адправіць";
-"menu_toggle_keyboard" = "Перамкнуць клавіятуру эмодзі";
-"menu_edit_group" = "Рэдагаваць групу";
+"menu_toggle_keyboard" = "Укл./выкл. клавіятуру эмодзі";
+"menu_edit_group" = "Рэдагаваць суполку";
 "menu_show_global_map" = "Усе месцазнаходжанні";
 "menu_archive_chat" = "Архіваваць чат";
-"menu_unarchive_chat" = "Вярнуць чат з архіва";
-"menu_add_attachment" = "Дадаць укладанне";
-"menu_leave_group" = "Пакінуць групу";
-"menu_leave_channel" = "Пакінуць канал";
-"menu_leave_and_delete" = "Пакінуць і выдаліць для мяне";
+"menu_unarchive_chat" = "Вывесці чат з архіва";
+"menu_add_attachment" = "Далучыць файл";
+"menu_leave_group" = "Выйсці з суполкі";
+"menu_leave_channel" = "Выйсці з канала";
+"menu_leave_and_delete" = "Выйсці і выдаліць для мяне";
 "menu_delete_chat" = "Выдаліць чат";
 // Command to delete all messages in a chat. The chat itself will not be deleted but will be empty afterwards, so make sure to be different from "Delete Chat" here. "Clear" is a verb here, "Empty Chat" would also be fine (eg. in German "Chat leeren")
 "clear_chat" = "Ачысціць чат";
 "delete_contact" = "Выдаліць кантакт";
-"menu_message_details" = "Інфармацыя пра паведамленне";
-"menu_copy_to_clipboard" = "Капіяваць у буфер абмену";
-"share_invite_link" = "Падзяліцца спасылкай-запрашэннем";
-"share_invite_link_explain" = "Кожны, хто мае гэтую спасылку, зможа праглядзець ваш профіль і напісаць вам. Дзяліцеся ёю толькі з тымі, каму давяраеце.";
+"menu_message_details" = "Звесткі пра паведамленне";
+"menu_copy_to_clipboard" = "Скапіяваць у буфер абмену";
+"share_invite_link" = "Абагуліць запрашальную спасылку";
+"share_invite_link_explain" = "Кожны, хто мае гэтую спасылку, зможа паглядзець ваш профіль і напісаць вам. Абагульвайце яе толькі з тымі, каму давяраеце.";
 "invite_friends" = "Запрасіць сяброў";
 // %1$s is replaced by the user's invitation link ("https://i.delta.chat/...")
 "invite_friends_text" = "Напішыце мне ў Delta Chat:\n%1$@";
-"menu_copy_selection_to_clipboard" = "Капіяваць выбранае";
-"menu_copy_link_to_clipboard" = "Капіяваць спасылку";
-"menu_copy_text_to_clipboard" = "Капіяваць тэкст";
-"menu_copy_image_to_clipboard" = "Капіяваць выяву";
-"menu_copy_email_to_clipboard" = "Капіяваць электронную пошту";
+"menu_copy_selection_to_clipboard" = "Скапіяваць выбранае";
+"menu_copy_link_to_clipboard" = "Скапіяваць спасылку";
+"menu_copy_text_to_clipboard" = "Скапіяваць тэкст";
+"menu_copy_image_to_clipboard" = "Скапіяваць відарыс";
+"menu_copy_email_to_clipboard" = "Скапіяваць адрас эл. пошты";
 "paste_from_clipboard" = "Уставіць з буфера абмену";
-"ask_copy_unopenable_link_to_clipboard" = "Не ўдалося адкрыць спасылку «%1$d» у аглядальніку. Скапіяваць яе замест гэтага ў буфер абмену?";
+"ask_copy_unopenable_link_to_clipboard" = "Не ўдалося адкрыць спасылку «%1$d» у аглядальніку. Скапіяваць яе ў буфер абмену замест гэтага?";
 "menu_forward" = "Пераслаць паведамленне";
 "menu_reply" = "Адказаць на паведамленне";
 "menu_mute" = "Адключыць апавяшчэнні";
 "menu_unmute" = "Уключыць апавяшчэнні";
-"menu_export_attachment" = "Экспартаваць укладанне";
-"menu_export_attachments" = "Экспартаваць укладанні";
-"menu_all_media" = "Усе медыя";
-"all_apps_and_media" = "Усе праграмы і медыя";
+"menu_export_attachment" = "Экспартаваць далучаны файл";
+"menu_export_attachments" = "Экспартаваць далучаныя файлы";
+"menu_all_media" = "Усе медыяфайлы";
+"all_apps_and_media" = "Усе праграмы і медыяфайлы";
 // Command to jump to the original message corresponding to a gallery image or document
 "show_in_chat" = "Паказаць у чаце";
 "show_app_in_chat" = "Паказаць праграму ў чаце";
-"menu_share" = "Падзяліцца";
+"menu_share" = "Абагуліць";
+// "to allow," for example a permission
+"allow" = "Дазволіць";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Заблакаваць";
 "menu_block_contact" = "Заблакаваць кантакт";
@@ -268,17 +308,17 @@
 "accept" = "Прыняць";
 "menu_play" = "Прайграць";
 "menu_pause" = "Прыпыніць";
-"menu_scroll_to_bottom" = "Пракруціць да нізу";
-"menu_scroll_to_top" = "Пракруціць да верху";
+"menu_scroll_to_bottom" = "Прагартаць да нізу";
+"menu_scroll_to_top" = "Прагартаць да верху";
 "menu_help" = "Даведка";
 // use the same term for "Apps" as elsewhere
 "what_is_webxdc" = "Пра праграмы";
 "privacy_policy" = "Палітыка прыватнасці";
-"menu_select_all" = "Выбраць усё";
+"menu_select_all" = "Выбраць усе";
 "select_chat" = "Выбраць чат";
 "menu_edit_name" = "Рэдагаваць імя";
 // The placeholder will be replaced by the name the contact gave themself
-"edit_name_explain" = "Усталюйце псеўданім, які будзе паказвацца вам замест «%1$@». Пакіньце пустым, каб выкарыстоўваць імя, выбранае кантактам.";
+"edit_name_explain" = "Задайце псеўданім, які будзе паказвацца вам замест «%1$@». Пакіньце пустым, каб выкарыстоўваць імя, выбранае кантактам.";
 // The placeholder will be replaced by the name the contact gave themself
 "edit_name_placeholder" = "Псеўданім для «%1$@»";
 "menu_settings" = "Налады";
@@ -290,11 +330,11 @@
 "menu_more_options" = "Яшчэ";
 "jump_to_message" = "Перайсці да паведамлення";
 "replace_draft" = "Замяніць чарнавік";
-"title_share_location" = "Дзяліцца месцазнаходжаннем з усімі ўдзельнікамі групы";
+"title_share_location" = "Абагуліць месцазнаходжанне з усімі ўдзельнікамі суполкі";
 "device_talk" = "Паведамленні прылады";
 "device_talk_subtitle" = "Паведамленні, створаныя прыладай";
-"device_talk_explain" = "Паведамленні ў гэтым чаце ствараюцца на вашай прыладзе, каб інфармаваць вас пра абнаўленні праграмы і праблемы падчас выкарыстання.";
-"device_talk_welcome_message2" = "Заставайцеся на сувязі!\n\n🙌 Націсніце «QR-код» на галоўным экране абедзвюх прылад. На адной прыладзе выберыце «Сканаваць QR-код» і накіруйце камеру на іншую прыладу.\n\n🌍 Калі прылады знаходзяцца ў розных месцах, адскануйце QR-код праз відэавыклік ці падзяліцеся спасылкай-запрашэннем з раздзела «Сканаваць QR-код»\n\nА потым: карыстайцеся перавагамі дэцэнтралізаванай праграмы абмену паведамленнямі. У адрозненне ад іншых папулярных праграм, яна не мае цэнтральнага вузла кіравання, не сочыць за вамі і не прадае вашых дадзеных, дадзеных пра вашых сяброў, калегаў ці сямейнікаў буйным арганізацыям.";
+"device_talk_explain" = "Паведамленні ў гэтым чаце ствараюцца на вашай прыладзе, каб інфармаваць вас пра абнаўленні праграмы і праблемы ў часе выкарыстання.";
+"device_talk_welcome_message2" = "Заставайцеся на сувязі!\n\n🙌 Націсніце «QR-код» на галоўным экране абедзвюх прылад. На адной прыладзе выберыце «Сканаваць QR-код» і накіруйце камеру на іншую прыладу.\n\n🌍 Калі прылады знаходзяцца ў розных месцах, адскануйце QR-код праз відэавыклік або абагуліце запрашальную спасылку з раздзела «Сканаваць QR-код»\n\nА потым: карыстайцеся перавагамі дэцэнтралізаванай праграмы абмену паведамленнямі. У адрозненне ад іншых папулярных праграм, яна не мае цэнтральнага вузла кіравання, не сочыць за вамі і не прадае вашыя даныя, даныя пра вашых сяброў, калег ці сямейнікаў буйным арганізацыям.";
 "edit_contact" = "Рэдагаваць кантакт";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Замацаваць чат";
@@ -302,15 +342,25 @@
 "unpin_chat" = "Адмацаваць чат";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin" = "Замацаваць";
+// Adj. of "pin", describing a state of being pinned.
+"pinned" = "Замацаваны";
+"pin_for_everyone_ask" = "Замацаваць паведамленне для ўсіх у чаце?";
+"pin_for_everyone" = "Замацаваць для ўсіх";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Адмацаваць";
+"unpin_for_everyone_ask" = "Адмацаваць паведамленне для ўсіх у чаце?";
+"unpin_for_everyone" = "Адмацаваць для ўсіх";
+"message_pinned_by_you" = "Вы замацавалі паведамленне";
+"message_pinned_by_other" = "Паведамленне замацавана карыстальнікам %1$@";
+"message_unpinned_by_you" = "Вы адмацавалі паведамленне";
+"message_unpinned_by_other" = "Паведамленне адмацавана карыстальнікам %1$@";
 "ConversationFragment_quoted_message_not_found" = "Зыходнае паведамленне не знойдзена";
-"reply_privately" = "Адказаць асабіста";
+"reply_privately" = "Адказаць прыватна";
 "source_code" = "Зыходны код";
 // Menu item beside an app/chat that adds an icon to the system's home screen. If the user taps that icon, the app/chat is opened directly.
 "add_to_home_screen" = "Дадаць на галоўны экран";
 "donate" = "Ахвяраваць";
-"donate_device_msg" = "❤️ Здаецца, вам падабаецца Delta Chat!\n\nРазгледзіце магчымасць зрабіць ахвяраванне, каб дапамагчы нам захаваць Delta Chat бясплатным для ўсіх.\n\nХоць выкарыстанне Delta Chat бясплатнае і зыходны код адкрыты, распрацоўка каштуе грошай. Дапамажыце нам захаваць незалежнасць Delta Chat і зрабіць яго яшчэ лепш у будучыні.\n\nhttps://delta.chat/donate";
+"donate_device_msg" = "❤️ Здаецца, вам падабаецца Delta Chat!\n\nРазгледзьце магчымасць зрабіць ахвяраванне, каб дапамагчы нам захаваць Delta Chat бясплатным для ўсіх.\n\nХоць выкарыстанне Delta Chat бясплатнае і зыходны код адкрыты, распрацоўка каштуе грошай. Дапамажыце нам захаваць незалежнасць Delta Chat і зрабіць яго яшчэ лепшым у будучыні.\n\nhttps://delta.chat/donate";
 "mute_for_one_hour" = "Не апавяшчаць 1 гадзіну";
 "mute_for_eight_hours" = "Не апавяшчаць 8 гадзін";
 "mute_for_one_day" = "Не апавяшчаць 1 дзень";
@@ -339,39 +389,42 @@
 "audio_call" = "Аўдыявыклік";
 // Used in call bubbles, summaries, notifications
 "video_call" = "Відэавыклік";
-"call_initializing" = "Ініцыялізацыя...";
+"call_initializing" = "Ініцыялізацыя…";
 "call_incoming" = "Уваходны выклік";
-"call_ringing" = "Выклік…";
-"call_reconnecting" = "Перападлучэнне...";
+"call_ringing" = "Тэлефанаванне…";
+"call_reconnecting" = "Паўторнае злучэнне…";
 "call_ended" = "Выклік скончаны";
-"call_failed" = "Выклік не атрымаўся";
+"call_failed" = "Не ўдалося зрабіць выклік";
 "declined_call" = "Адхілены выклік";
 "canceled_call" = "Скасаваны выклік";
 "missed_call" = "Прапушчаны выклік";
 "already_in_call" = "Выклік ужо ідзе";
+"call_back" = "Патэлефанаваць";
 "call_answered_elsewhere" = "Выклік прыняты на іншай прыладзе";
-"call_requires_camera_permission" = "Для здзяйснення відэавыклікаў патрабуецца дазвол на выкарыстанне камеры";
-"call_requires_mic_permission" = "Для здзяйснення выклікаў патрабуецца дазвол на выкарыстанне мікрафона";
-"call_requires_connection" = "Не ўдалося пачаць выклік. Пераканайцеся, што ваша прылада падлучана да сеціва, і паўтарыце спробу.";
+"call_requires_camera_permission" = "Каб зрабіць відэавыклік патрабуецца дазвол на выкарыстанне камеры";
+"call_requires_mic_permission" = "Каб зрабіць выклік патрабуецца дазвол на выкарыстанне мікрафона";
+"call_grant_mic_permission" = "Націсніце, каб даць дазвол на выкарыстанне мікрафона";
+"call_requires_connection" = "Не ўдалося пачаць выклік. Пераканайцеся, што вашая прылада злучана з сецівам, і паўтарыце спробу.";
 // Used e.g. in a notifications to describe an ongoing call. "Call" is a noun here, in the meaning of "This is the call with ..." where the placeholder is replaced by the name of the contact.
 "call_with" = "Выклік з карыстальнікам %1$@";
 // Use e.g. in a notifications during ringing. Placeholder is relaced by the name of the contact being called.
-"calling_person" = "Выклік карыстальніка %1$@…";
+"calling_person" = "Тэлефануе %1$@…";
+"audio_output" = "Аўдыявыхад";
 // get confirmations
 // confirmation for leaving groups or channels. If a subject is needed, "Are you sure you want to leave the chat?" would work as well
 "ask_leave_group" = "Вы ўпэўнены, што хочаце выйсці?";
 "ask_delete_named_chat" = "Выдаліць чат «%1$@»?";
 "ask_delete_message" = "Выдаліць гэтае паведамленне?";
 // First placeholder gets replaced by the number of messages to forward. Second placeholder gets replaced by the name of the destination chat
-"ask_forward_multiple" = "Пераслаць паведамленні ў %1$d чаты(-аў)?";
-"ask_export_attachment" = "Экспартаванне ўкладанняў дазволіць іншым праграмам на вашай прыладзе атрымаць да іх доступ.\n\nПрацягнуць?";
-"ask_block_contact" = "Заблакаваць гэты кантакт?\n\nАсабістыя паведамленні або групы, створаныя заблакаванымі кантактамі, не будуць паказвацца.\n\nУ іншых групах, дзе ёсць заблакаваныя кантакты, іх паведамленні па-ранейшаму будуць бачныя.";
+"ask_forward_multiple" = "Пераслаць паведамленні ў некалькі чатаў (%1$d)?";
+"ask_export_attachment" = "Экспартаванне далучаных файлаў дазволіць іншым праграмам на вашай прыладзе атрымаць да іх доступ.\n\nПрацягнуць?";
+"ask_block_contact" = "Заблакаваць гэты кантакт?\n\nПрыватныя паведамленні або суполкі, створаныя заблакаванымі кантактамі, не будуць паказвацца.\n\nУ іншых суполках, дзе ёсць заблакаваныя кантакты, іх паведамленні па-ранейшаму будуць бачныя.";
 "ask_unblock_contact" = "Разблакаваць гэты кантакт?";
 "ask_delete_contacts" = "Выдаліць кантакты?\n\nКантакты з актыўных чатаў нельга выдаліць назаўжды.";
 "ask_delete_contact" = "Выдаліць кантакт %1$@?\n\nКантакты з актыўных чатаў нельга выдаліць назаўжды.";
 "ask_start_chat_with" = "Стварыць чат з карыстальнікам %1$@?";
 // %1$s is replaced by a comma-separated list of names
-"ask_remove_members" = "Выдаліць %1$@ з групы?";
+"ask_remove_members" = "Выдаліць %1$@ з суполкі?";
 // %1$s is replaced by a comma-separated list of names
 "ask_remove_from_channel" = "Выдаліць %1$@ з канала?";
 "open_url_confirmation" = "Адкрыць гэтую спасылку?";
@@ -379,36 +432,36 @@
 "contacts_title" = "Кантакты";
 "contacts_type_email_above" = "Увядзіце адрас электроннай пошты вышэй";
 // chatlist and chat view
-"chat_archived_chats_title" = "Архіўныя чаты";
+"chat_archived_chats_title" = "Чаты ў архіве";
 "chat_please_enter_message" = "Увядзіце паведамленне.";
 "chat_camera_unavailable" = "Камера недаступная.";
 "chat_unable_to_record_audio" = "Немагчыма запісаць аўдыя.";
 // The placeholder will be replaced by the name of the recipient in a one-to-one chat.
 "chat_new_one_to_one_hint" = "Адпраўце паведамленне карыстальніку %1$@.";
 // consider keeping the term "channel" as in WhatsApp or Telegram
-"chat_new_channel_hint" = "Каналы — інструмент для трансляцыі вашых паведамленняў мноству атрымальнікаў.";
-"chat_new_group_hint" = "Іншыя ўбачаць гэтую групу толькі пасля таго, як вы адправіце першае паведамленне.";
-"chat_record_slide_to_cancel" = "Правядзіце для скасавання";
-"chat_record_explain" = "Націсніце і ўтрымлівайце для запісу галасавога паведамлення, адпусціце для адпраўкі";
+"chat_new_channel_hint" = "Каналы — інструмент для публікацыі вашых паведамленняў для мноства атрымальнікаў.";
+"chat_new_group_hint" = "Іншыя ўбачаць гэтую суполку толькі пасля таго, як вы адправіце першае паведамленне.";
+"chat_record_slide_to_cancel" = "Правядзіце, каб скасаваць";
+"chat_record_explain" = "Націсніце і ўтрымлівайце, каб запісаць галасавое паведамленне, адпусціце — каб адправіць";
 "chat_no_chats_yet_title" = "Няма чатаў.\nНацісніце на «+», каб пачаць новы чат.";
 "chat_all_archived" = "Усе чаты архіваваны.\nНацісніце на «+», каб пачаць новы чат.";
-"chat_share_with_title" = "Падзяліцца з…";
+"chat_share_with_title" = "Абагуліць з…";
 // Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
-"chat_input_placeholder" = "Напісаць";
+"chat_input_placeholder" = "Напішыце";
 "chat_archived_label" = "Архівавана";
 "chat_request_label" = "Запыт";
 "chat_no_messages" = "Няма паведамленняў.";
 "chat_self_talk_subtitle" = "Паведамленні сабе";
-"archive_empty_hint" = "Архіўныя чаты з\'явяцца тут.";
+"archive_empty_hint" = "Чаты ў архіве з’явяцца тут.";
 // Action to add a message to "Saved Messages". The longer form (instead of "Save" only) is needed esp. on desktop to make clear this is not about saving a file to disk
 "save_message" = "Захаваць паведамленне";
 "saved_messages" = "Захаваныя паведамленні";
-"saved_messages_explain" = "— Перасылайце паведамленні сюды для хуткага доступу\n\n— Рабіце нататкі ці запісвайце галасавыя паведамленні\n\n— Далучайце медыя, каб захаваць іх";
+"saved_messages_explain" = "— Перасылайце паведамленні сюды для простага доступу\n\n— Занатоўвайце тэкстам або голасам\n\n— Далучайце медыяфайлы, каб захаваць іх";
 // Should match "Saved" from "Saved messages"
 "saved" = "Захавана";
-"attachment_failed_to_load" = "Не ўдалося загрузіць укладанне";
+"attachment_failed_to_load" = "Не ўдалося загрузіць далучаны файл";
 // For recording Voice messages: Description for the "Lock" button allowing to lift the thumb from the record button while recording continues
-"lock_recording" = "Працягваць запіс";
+"lock_recording" = "Зафіксаваць запіс";
 // mailing lists
 "mailing_list" = "Спіс рассылання";
 // webxdc
@@ -423,4 +476,625 @@
 // punycode warning / labeled links
 "puny_code_warning_header" = "Выяўлена падазроная спасылка";
 // placeholder contains the hostname converted to ascii
-"puny_code_warning_question" = "Вы ўпэўнены, што жадаеце наведаць %1$@?";
+"puny_code_warning_question" = "Адкрыць %1$@?";
+// this message is shown whenever a link with non-latin characters is clicked. first placeholder is original hostname with special chars, second placeholder is hostname encoded in ascii
+"puny_code_warning_description" = "Гэтая спасылка можа ствараць скажонае ўражанне пра ейную правільнасць падобнымі знакамі з розных алфавітаў. Наступная спасылка (%1$@) вядзе да старонкі %2$@. Калі вы не чакалі такіх знакаў у спасылцы, значыць яна можа быць шкоднай.";
+// search
+"search" = "Шукаць";
+"search_in_chat" = "Шукаць у чаце";
+// Placeholder will be replaced by the chat name
+"search_in" = "Шукаць у чаце «%1$@»";
+"search_files" = "Шукаць у файлах";
+"search_explain" = "Шукайце чаты, кантакты і паведамленні";
+"search_no_result_for_x" = "Нічога не знойдзена па запыце «%1$@»";
+// Adjective, as in "Show Unread Messages"
+"search_unread" = "Непрачытанае";
+// create/edit groups, contact/group profile
+"group_name" = "Назва суполкі";
+"group_avatar" = "Відарыс суполкі";
+"remove_group_image" = "Выдаліць відарыс суполкі";
+"change_group_image" = "Змяніць відарыс суполкі";
+"group_create_button" = "Стварыць суполку";
+"please_enter_chat_name" = "Увядзіце назву.";
+"group_add_members" = "Дадаць удзельнікаў";
+"group_self_not_in_group" = "Вы мусіце быць удзельнікам суполкі, каб выканаць гэтае дзеянне.";
+"profile_encryption" = "Шыфраванне";
+"profile_shared_chats" = "Чаты ў агульным";
+// Separator between the list of actual members and past members
+"past_members" = "Былыя ўдзельнікі";
+"tab_contact" = "Кантакт";
+"tab_group" = "Суполка";
+"tab_gallery" = "Галерэя";
+"tab_links" = "Спасылкі";
+"tab_map" = "Мапа";
+"tab_gallery_empty_hint" = "Відарысы і відэафайлы, якія далучаныя да гэтага чата, з’явяцца тут.";
+"tab_docs_empty_hint" = "Дакументы і іншыя файлы, якія далучаныя да гэтага чата, з’явяцца тут.";
+"tab_image_empty_hint" = "Відарысы, якія далучаныя да гэтага чата, з’явяцца тут.";
+"tab_audio_empty_hint" = "Аўдыяфайлы і галасавыя паведамленні, якія далучаныя да гэтага чата, з’явяцца тут.";
+"tab_webxdc_empty_hint" = "Праграмы, якія далучаныя да гэтага чата, з’явяцца тут.";
+"tab_all_media_empty_hint" = "Медыяфайлы, якія далучаныя да кожнага чата, з’явяцца тут.";
+"all_files_empty_hint" = "Дакументы і іншыя файлы, якія далучаныя да кожнага чата, з’явяцца тут.";
+"all_apps_empty_hint" = "Праграмы, якія далучаныя да кожнага чата, з’явяцца тут.";
+"media_preview" = "Перадпрагляд медыяфайла";
+"send_message" = "Адправіць паведамленне";
+// Multi Device
+// "Second Device" can also be translated as "Another Device", if that is catchier in the destination language. However, make sure to use the term consistently.
+"multidevice_title" = "Дадаць другую прыладу";
+"multidevice_same_network_hint" = "Пераканайцеся, што абедзве прылады злучаны з аднолькавай Wi-Fi ці іншай сеткай";
+"multidevice_this_creates_a_qr_code" = "Гэта стварае QR-код, які другая прылада можа адсканаваць, каб скапіяваць профіль.\n\nПераканайцеся, што наступны экран не будзе бачыць непажаданы наглядальнік або камера.";
+"multidevice_install_dc_on_other_device" = "Усталюйце Delta Chat на другую прыладу (https://get.delta.chat)";
+// "I Already Have a Profile / Add as Second Device” should be the same text as defined by the keys onboarding_alternative_logins and multidevice_receiver_title
+"multidevice_tap_scan_on_other_device" = "Запусціце Delta Chat, націсніце «Я ўжо маю профіль > Дадаць як другую прыладу» і адскануйце код, які паказаны тут";
+// Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
+"multidevice_qr_subtitle" = "Адскануйце, каб наладзіць другую прыладу (%1$@)";
+"multidevice_receiver_title" = "Дадаць як другую прыладу";
+"multidevice_open_settings_on_other_device" = "На першай прыладзе запусціце Delta Chat, адкрыйце «Налады > Дадаць другую прыладу» і адскануйце код, які паказаны тут";
+"multidevice_receiver_scanning_ask" = "Скапіяваць профіль з другой прылады на гэтую?";
+"multidevice_receiver_needs_update" = "Профіль, які вы хочаце імпартаваць, з навейшай версіі Delta Chat.\n\nКаб працягнуць наладжванне другой прылады, абнавіце Delta Chat на гэтай прыладзе да апошняй версіі.";
+"multidevice_abort" = "Перарваць наладжванне другой прылады?";
+"multidevice_abort_will_invalidate_copied_qr" = "Гэта зробіць несапраўдным QR-код, які скапіяваны ў буфер абмену";
+"multidevice_transfer_done_devicemsg" = "ℹ️ Профіль перададзены на другую прыладу.";
+// Shown beside progress bar, stay short
+"preparing_account" = "Профіль падрыхтоўваецца…";
+// Shown beside progress bar, stay short
+"transferring" = "Перадаецца…";
+"troubleshooting" = "Пошук і выпраўленне непаладак";
+// Connectivity
+// Headline for the "Inbox" eg. in the "Connectivity" view
+"incoming_messages" = "Уваходныя паведамленні";
+// Headline for the "Outbox" eg. in the "Connectivity" view
+"outgoing_messages" = "Выходныя паведамленні";
+"connectivity" = "Магчымасць злучэння";
+// Shown in the title bar if the app is "Not connected"; prefer short strings.
+"connectivity_not_connected" = "Не злучана";
+// Shown in the title bar if the app is "Connecting"; prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_connecting" = "Злучэнне…";
+// Shown in the title bar if the app is "Updating" (eg. getting new/old message, sync things); prefer short strings. The ellipsis is a single character (…), not three (...)
+"connectivity_updating" = "Абнаўленне…";
+// Shown in the setting if the app is "Connected"
+"connectivity_connected" = "Злучана";
+"sending" = "Адпраўка…";
+"last_msg_sent_successfully" = "Апошняе паведамленне адпраўлена паспяхова.";
+// Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
+"messages" = "Паведамленні";
+// Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
+"part_of_total_used" = "%1$@ з %2$@ выкарыстана";
+// welcome and profile creation
+// Primary button on the welcome screen, allows to create an instant profile
+"onboarding_create_instant_account" = "Стварыць новы профіль";
+// Secondary button on the welcome screen, allows to "Add as Second Device", "Restore from Backup"
+"onboarding_alternative_logins" = "Я ўжо маю профіль";
+// This is a button and a title, allowing to use existing, classic email, setting ports, passwords and so on
+"manual_account_setup_option" = "Выкарыстоўваць сервер звычайнай эл. пошты як прамежкавы";
+// Instant onboarding title (there is not more to do than to set name and avatar)
+"instant_onboarding_title" = "Ваш профіль";
+// Confirmation button on the instant onboarding screen
+"instant_onboarding_create" = "Згадзіцца і стварыць профіль";
+// Secondary, link-like button to open a page with other possible instances
+"instant_onboarding_show_more_instances" = "Выкарыстоўваць іншы сервер";
+"instant_onboarding_other_server" = "Спіс сервераў Chatmail";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by the group or channel name
+"instant_onboarding_group_info" = "Стварыце профіль, каб далучыцца да чата «%1$@».";
+// Hint about what happens when "Create Profile" button in pressed; the placeholder will be replaced by contact name
+"instant_onboarding_contact_info" = "Стварыце профіль, каб перапісвацца з карыстальнікам %1$@.";
+// Question shown when another user's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_contact" = "Стварыць новы профіль і пачаць перапісвацца з карыстальнікам %1$@?";
+// Question shown when group's/channel's QR code is scanned from onboarding screen
+"instant_onboarding_confirm_group" = "Стварыць новы профіль і далучыцца да чата «%1$@»?";
+"team" = "Група";
+"team_profile" = "Профіль групы";
+"team_profile_explain" = "«Профіль групы» кіруецца разам групай людзей або арганізацыяй.\n\n⚠️ Профілі групы — эксперыментальныя і могуць змяняцца.";
+"team_name" = "Назва групы";
+"create_team_profile" = "Стварыць профіль групы";
+"welcome_chat_over_email" = "Бяспечны дэцэнтралізаваны чат";
+"scan_invitation_code" = "Сканаваць запрашальны код";
+"login_advanced_hint" = "Гэты ўваход для прасунутых карыстальнікаў.\n\nНе выкарыстоўвайце адрас, які выкарыстоўваецца ў іншай праграме.";
+"login_inbox" = "Уваходныя";
+"login_imap_login" = "Імя карыстальніка IMAP";
+"login_imap_server" = "Сервер IMAP";
+"login_imap_port" = "Порт IMAP";
+"login_imap_security" = "Абарона IMAP";
+"login_outbox" = "Выходныя";
+"login_smtp_login" = "Імя карыстальніка SMTP";
+"login_smtp_password" = "Пароль SMTP";
+"login_smtp_server" = "Сервер SMTP";
+"login_smtp_port" = "Порт SMTP";
+"login_smtp_security" = "Абарона SMTP";
+// the word "Proxy" might be left untranslated unless the destination language has a well-known term for a "Proxy Server", acting intermediary between the app and the server
+"proxy_settings" = "Проксі-сервер";
+"proxy_use_proxy" = "Выкарыстоўваць проксі-сервер";
+"proxy_add" = "Дадаць проксі-сервер";
+"proxy_add_explain" = "Падтрымліваюцца наступныя тыпы проксі-сервераў: HTTP(S), SOCKS5 і Shadowsocks.";
+"proxy_add_url_hint" = "Увядзіце спасылку на проксі-сервер тут";
+"proxy_invalid" = "Памылковы проксі-сервер або ён не падтрымліваецца";
+"proxy_list_header" = "Захаваныя проксі-серверы";
+"proxy_delete" = "Выдаліць проксі-сервер";
+"proxy_delete_explain" = "Выдаліць «%1$@»?";
+"proxy_use_proxy_confirm" = "Выкарыстоўваць проксі-сервер «%1$@»?";
+"proxy_share_explain" = "Вашыя сябры могуць дадаць гэты проксі-сервер, адсканаваўшы QR-код.";
+"proxy_share_link" = "Абагуліць спасылку";
+"proxy_enabled" = "Проксі-сервер уключаны";
+"proxy_enabled_hint" = "Вы выкарыстоўваеце проксі-сервер. Калі вы маеце праблемы са злучэннем, паспрабуйце іншы проксі-сервер.";
+// "Relay" refers to the relay servers used; please chose a common term in your language, no need to be literal. If in doubt, stay with "Relay"
+"transports" = "Прамежкавыя серверы";
+"add_transport" = "Дадаць прамежкавы сервер";
+"remove_transport" = "Выдаліць прамежкавы сервер";
+"edit_transport" = "Рэдагаваць прамежкавы сервер";
+"enforce_e2ee" = "Прымусова ўключыць шыфраванне для ўсіх прамежкавых сервераў";
+// Hint for the list of relays
+"transport_list_hint" = "Прамежкавыя серверы выкарыстоўваюцца для адпраўкі і атрымання паведамленняў. Калі вы будзеце мець больш за адзін сервер, то злучэнне будзе больш надзейным.";
+// shown if a QR code was scanned that can be used as a relay
+"confirm_add_transport" = "Дадаць гэты прамежкавы сервер?";
+"invalid_transport_qr" = "Адсканаваны QR-код не змяшчае сапраўднага прамежкавага сервера.";
+// placeholder will be replaced by a relay server name
+"confirm_remove_relay_x" = "Выдаліць прамежкавы сервер «%1$@»?";
+"login_certificate_checks" = "Праверкі сертыфікатаў";
+// deprecated
+"login_error_mail" = "Увядзіце сапраўдны адрас эл. пошты";
+"import_backup_title" = "Аднавіць з рэзервовай копіі";
+"import_backup_ask" = "Рэзервовая копія знойдзена ў «%1$@»\n\nІмпартаваць і выкарыстоўваць усе даныя і налады з яе?";
+"import_backup_no_backup_found" = "Рэзервовыя копіі не знойдзены.\n\nСкапіюйце рэзервовую копію ў «%1$@» і паўтарыце спробу.";
+// TLS certificate checks
+"accept_invalid_certificates" = "Прымаць памылковыя сертыфікаты";
+"switch_account" = "Пераключыць профіль";
+"add_account" = "Дадаць профіль";
+// for translations, you can also think of "Profile Tag" or "Profile Description" as the source string
+"profile_tag" = "Пазнака профілю";
+"profile_tag_hint" = "напр., праца, сям’я";
+"profile_tag_explain" = "Задайце пазнаку, якая будзе бачна толькі для вас; яна дапамагае адрозніваць профілі.";
+// Menu entry to sort an item to the beginning of a list. Only "To Top" may do as well in some translations, if that helps to stay shorter.
+"move_to_top" = "Перамясціць наверх";
+"delete_account" = "Выдаліць профіль";
+"delete_account_ask" = "Выдаліць даныя профілю?";
+"delete_account_explain_with_name" = "Усе даныя профілю «%1$@» на гэтай прыладзе будуць выдаленыя, уключаючы налады скразнога шыфравання, кантакты, чаты, паведамленні і медыяфайлы. Гэтае дзеянне немагчыма адрабіць.";
+"unconfigured_account" = "Несканфігураваны профіль";
+"unconfigured_account_hint" = "Адкрыйце профіль, каб сканфігураваць яго.";
+"try_connect_now" = "Паспрабуйце злучыцца зараз";
+"sync_all" = "Сінхранізаваць усё";
+// Translations: %1$s will be replaced by a more detailed error message
+"configuration_failed_with_error" = "Не ўдалося сканфігураваць. Памылка: %1$@";
+// share and forward messages
+// Translators: shown above a chat/contact list when selecting recipients to forward messages
+"forward_to" = "Пераслаць…";
+// first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
+"ask_send_files_to_chat" = "Адправіць некалькі файлаў (%1$d) у чат «%2$@»?";
+"ask_send_files_to_selected_chats" = "Адправіць адзін ці некалькі файлаў (%1$d) у некалькі чатаў (%2$d)?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Медыяфайлы падрыхтоўваюцца…";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Відэафайлы сціскаюцца…";
+"video_recode_busy" = "Апрацоўваецца іншы відэафайл, пачакайце…";
+"share_text_multiple_chats" = "Адправіць гэты тэкст у некалькі чатаў (%1$d)?\n\n«%2$@»";
+"share_abort" = "Абагульванне перарвана, бо не хапае дазволаў.";
+// preferences
+"pref_profile_info_headline" = "Ваш профіль";
+"pref_profile_photo" = "Відарыс профілю";
+"pref_blocked_contacts" = "Заблакаваныя кантакты";
+"blocked_empty_hint" = "Заблакаваныя кантакты з’явяцца тут.";
+"pref_who_can_see_profile_explain" = "Відарыс профілю, імя і звесткі «Пра сябе» будуць адпраўлены разам з вашымі паведамленнямі, калі вы звязваецеся з іншымі карыстальнікамі.";
+"pref_your_name" = "Імя";
+// Label of the Bio/Signature/Status/Motto field
+"pref_default_status_label" = "Пра сябе";
+"chat_description" = "Апісанне";
+// Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
+"pref_enter_sends" = "Адпраўляць пасля націскання клавішы «Увод»";
+"pref_enter_sends_explain" = "Адпраўляць тэкставыя паведамленні пасля націскання клавішы «Увод»";
+"pref_outgoing_media_quality" = "Якасць выходных медыяфайлаў";
+"pref_outgoing_media_quality_hint" = "Каб адправіць у зыходнай якасці, далучыце медыя як «Файл». Гэта выкарыстае значна больш даных у вас і ў атрымальнікаў.";
+"pref_outgoing_balanced" = "Збалансаваная";
+"pref_outgoing_worse" = "Горшая якасць, захоўвае даныя";
+"pref_vibrate" = "Вібраваць";
+"pref_screen_security" = "Абарона экрана";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_screen_security_explain" = "Запытаць блакаванне здымкаў экрана ў спісе нядаўніх праграм і ў самой праграме";
+"pref_screen_security_please_restart_hint" = "Каб ужыць наладу абароны экрана, перазапусціце праграму.";
+"pref_notifications" = "Апавяшчэнні";
+"pref_mention_notifications" = "Згадванні";
+"pref_mention_notifications_explain" = "У суполках з адключанымі апавяшчэннямі, паведамленні-апавяшчэнні накіроўваюцца вам, напрыклад, адказы або рэакцыі";
+// Title for the "Calls" notification setting. This is a plural noun, not a verb.
+"pref_calls" = "Выклікі";
+// Details about what the "Calls" notification setting does
+"pref_calls_explain" = "Паказваць экран выкліку для прынятых кантактаў";
+"pref_notifications_show" = "Паказваць";
+"pref_notifications_priority" = "Прыярытэт";
+"pref_notifications_explain" = "Уключыць сістэмныя апавяшчэнні для новых паведамленняў";
+"pref_show_notification_content" = "Паказваць змесціва паведамлення ў апавяшчэнні";
+"pref_led_color" = "Колер святлодыёднага індыкатара";
+"pref_sound" = "Гук";
+"pref_silent" = "Без гуку";
+"pref_system_default" = "Прадвызначана сістэмай";
+// Translators: as in "opposite of dark"
+"pref_light_theme" = "Светлая";
+"pref_dark_theme" = "Цёмная";
+"pref_appearance" = "Выгляд";
+"pref_theme" = "Тэма";
+"pref_language" = "Мова";
+"pref_use_system_ui_font" = "Выкарыстоўваць сістэмны шрыфт";
+"pref_incognito_keyboard" = "Клавіятура ў рэжыме «інкогніта»";
+// Translators: Must indicate that there is no guarantee as the system may not honor our request.
+"pref_incognito_keyboard_explain" = "Запытаць у клавіятуры адключэнне персаналізаванага навучання";
+"pref_read_receipts" = "Справаздачы пра прачытанне";
+"pref_read_receipts_explain" = "Калі справаздачы пра прачытанне адключаныя, вы не зможаце атрымліваць справаздачы і ад іншых.";
+// Title above a list of contacts who read a message
+"read_by" = "Прачытана карыстальнікамі";
+"pref_server" = "Сервер";
+"pref_chats" = "Чаты";
+"pref_in_chat_sounds" = "Гукі ў чаце";
+"pref_view_log" = "Паглядзець журнал";
+"pref_saved_log" = "Журнал захаваны ў папку «Спампоўкі»";
+"pref_save_log_failed" = "Не ўдалося захаваць журнал";
+"pref_log_header" = "Журнал";
+"pref_other" = "Іншае";
+"pref_backup" = "Рэзервовае капіяванне";
+"pref_backup_explain" = "Зрабіце рэзервовую копію чатаў у вонкавым сховішчы";
+"pref_backup_export_explain" = "Рэзервовае капіяванне дапамагае вам наладзіць новы экзэмпляр праграмы на гэтай ці іншай прыладзе.\n\nРэзервовая копія будзе змяшчаць усе паведамленні, кантакты, чаты і налады скразнога Autocrypt. Захоўвайце файл рэзервовай копіі ў бяспечным месцы або выдаліце яго як мага хутчэй.";
+"pref_backup_export_this" = "Экспартаваць гэты профіль";
+// the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
+"pref_backup_export_all" = "Экспартаваць усе профілі (%1$d)";
+"pref_backup_export_start_button" = "Пачаць рэзервовае капіяванне";
+"pref_backup_written_to_x" = "Рэзервовая копія запісана ў «%1$@».";
+// No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
+"pref_background" = "Шпалеры";
+"pref_background_btn_default" = "Выкарыстоўваць прадвызначаны відарыс";
+"pref_background_btn_gallery" = "Выбраць з галерэі";
+// No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help
+"pref_multidevice" = "Рэжым некалькіх прылад";
+"pref_multidevice_explain" = "Сінхранізацыя паведамленняў з вашымі іншымі прыладамі. Аўтаматычна ўключаецца, калі вы дадаяце другую прыладу";
+"pref_multidevice_change_warn" = "Рэжым некалькіх прылад мусіць быць уключаны, калі выкарыстоўваецца аднолькавы профіль на некалькіх прыладах. Адключайце гэтую наладу толькі калі вы выдалілі гэты профіль з усіх іншых прылад.\n\nАдключэнне рэжыму некалькіх прылад, калі профіль выкарыстоўваецца на некалькіх прыладах, можа прывесці да адсутнасці паведамленняў і іншых праблем.";
+// deprecated, use "All"
+"pref_show_emails_all" = "Усё";
+"pref_experimental_features" = "Эксперыментальныя функцыі";
+"pref_experimental_features_explain" = "Гэтыя функцыі могуць быць нестабільнымі і могуць быць зменены ці выдалены";
+"pref_on_demand_location_streaming" = "Трансляцыя месцазнаходжання";
+"pref_background_default" = "Прадвызначаны відарыс";
+"pref_background_default_color" = "Прадвызначаны колер";
+"pref_background_custom_image" = "Уласны відарыс";
+"pref_background_custom_color" = "Уласны колер";
+"export_aborted" = "Экспартаванне перарванае.";
+"auto_download_messages" = "Аўтаматычна спампоўваць паведамленні";
+// "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
+"all" = "Усе";
+// %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
+"up_to_x" = "Не больш за %1$@";
+"up_to_x_most_worse_quality_images" = "Не больш за %1$@, найгоршая якасць відарысаў";
+"up_to_x_most_balanced_quality_images" = "Не больш за %1$@, найбольш збалансаваная якасць відарысаў";
+"download_failed" = "Не ўдалося спампаваць";
+"profile_image_select" = "Выбраць відарыс профілю";
+"select_your_new_profile_image" = "Выберыце новы відарыс профілю";
+"profile_image_delete" = "Выдаліць відарыс профілю";
+"pref_show_tray_icon" = "Паказваць значок у вобласці апавяшчэнняў";
+"pref_edit_profile" = "Рэдагаваць профіль";
+"send_stats_to_devs" = "Дасылаць статыстыку распрацоўшчыкам Delta Chat";
+"stats_device_message" = "Хочаце дапамагчы палепшыць Delta Chat і падтрымаць даследаванне, дасылаючы штотыднёвую статыстыку выкарыстання?\n\n👉 Націсніце тут… 👈";
+"stats_confirmation_dialog" = "Хочаце дапамагчы палепшыць Delta Chat і падтрымаць даследаванне, дасылаючы ананімную штотыднёвую статыстыку выкарыстання?";
+"stats_thanks" = "Дзякуй! Вы заўсёды можаце адключыць дасыланне тут: «Налады -> Пашыраныя».\n\nМаеце дадаткова яшчэ 5 хвілін, каб узяць удзел у навуковых занятках па бяспецы Delta Chat?";
+"stats_disable_dialog" = "Дасыланне статыстыкі ўжо ўключана.\n\nАдключыць?";
+"disable" = "Адключыць";
+"stats_keep_sending" = "Працягваць дасылаць";
+"stats_msg_body" = "Далучаны файл змяшчае ананімную статыстыку выкарыстання, якая дапамагае нам паляпшаць Delta Chat. Глядзіце https://delta.chat/help#statssending, каб атрымаць дадатковыя звесткі. Дзякуй!";
+// Emoji picker and categories
+"emoji_search_results" = "Вынікі пошуку";
+"emoji_not_found" = "Эмодзі не знойдзены";
+"emoji_recent" = "Нядаўна выкарыстаныя";
+"emoji_people" = "Людзі і цела";
+"emoji_nature" = "Жывёлы і прырода";
+"emoji_foods" = "Ежа і напоі";
+"emoji_activity" = "Актыўнасць";
+"emoji_places" = "Падарожжа і месцы";
+"emoji_objects" = "Аб’екты";
+"emoji_symbols" = "Сімвалы";
+"emoji_flags" = "Сцягі";
+// Reactions
+"reactions" = "Рэакцыі";
+// Verb, the action of adding a "Reaction" to a message. Used eg. in context menus, similar to "Reply" or "Forward"
+"react" = "Адрэагаваць";
+// %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
+"reaction_by_you" = "Вы дадалі рэакцыю «%1$@» на «%2$@»";
+// %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
+"reaction_by_other" = "%1$@ дадаў(-ла) рэакцыю «%2$@» на «%3$@»";
+// automatically delete message
+"delete_old_messages" = "Выдаляць старыя паведамленні";
+"autodel_device_title" = "Выдаляць паведамленні з прылады";
+// %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
+"autodel_device_ask" = "Выдаліць паведамленні (%1$d шт.) зараз і ўсе новыя паведамленні у будучыні%2$@?\n\n— Гэта ўключае ўсе медыяфайлы\n\n— Паведамленні будуць выдалены ва ўсякім разе: прагледжаныя яны ці не.\n\n— «Захаваныя паведамленні» не будуць выдалены";
+"autodel_confirm" = "Я разумею, выдаліць усе гэтыя паведамленні";
+// "At once" in the meaning of "Immediately", without any intervening time.
+"autodel_at_once" = "Адразу пасля спампавання";
+"after_5_minutes" = "Праз 5 хвілін";
+"autodel_after_1_hour" = "Праз 1 гадзіну";
+"autodel_after_1_day" = "Праз 1 дзень";
+"autodel_after_1_week" = "Праз 1 тыдзень";
+"after_5_weeks" = "Праз 5 тыдняў";
+"autodel_after_1_year" = "Праз 1 год";
+// system messages
+"systemmsg_subject_for_new_contact" = "Паведамленне ад карыстальніка/чата %1$@";
+"systemmsg_failed_sending_to" = "Не ўдалося адправіць паведамленне карыстальніку/у %1$@.";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name
+"group_name_changed_by_you" = "Вы змянялі назву суполкі з «%1$@» на «%2$@».";
+// %1$s will be replaced by the old group name, %2$s will be replaced by the new group name, %3$s will be replaced by name and address of the contact who did the action.
+"group_name_changed_by_other" = "Назва суполкі зменена з «%1$@» на «%2$@» карыстальнікам %3$@.";
+// %1$s will be replaced by the old channel name, %2$s will be replaced by the new channel name
+"channel_name_changed" = "Назва канала зменена з «%1$@» на «%2$@».";
+"group_image_changed_by_you" = "Вы змянілі відарыс суполкі.";
+// %1$s will be replaced by name of the contact who did the action
+"group_image_changed_by_other" = "Відарыс суполкі зменены ўдзельнікам %1$@.";
+"channel_image_changed" = "Відарыс канала зменены.";
+"chat_description_changed_by_you" = "Вы змянілі апісанне чата.";
+// %1$s will be replaced by name of the contact who did the action
+"chat_description_changed_by_other" = "Апісанне чата зменена карыстальнікам %1$@.";
+// %1$s will be replaced by name of the contact added to the group
+"member_x_added" = "Карыстальнік %1$@ дададзены.";
+"member_you_added" = "Вы дададзеныя.";
+// %1$s will be replaced by name of the contact added to the group
+"add_member_by_you" = "Вы дадалі карыстальніка %1$@.";
+// %1$s will be replaced by name of the contact added to the group, %2$s will be replaced by name of the contact who did the action
+"add_member_by_other" = "Карыстальнік %1$@ дададзены ўдзельнікам %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"add_you_by_other" = "Вы дададзены карыстальнікам %1$@.";
+// %1$s will be replaced by name of the contact removed from the group
+"remove_member_by_you" = "Вы выдалілі ўдзельніка %1$@.";
+// %1$s will be replaced by name of the contact removed from the group, %2$s will be replaced by name of the contact who did the action
+"remove_member_by_other" = "Удзельнік %1$@ выдалены ўдзельнікам %2$@.";
+// %1$s will be replaced by name of the contact who did the action
+"remove_you_by_other" = "Вы выдалены карыстальнікам %1$@.";
+// %1$s will be replaced by name of the contact removed from the group; this string is used when it's unclear who did the action
+"member_x_removed" = "Удзельнік %1$@ выдалены.";
+"member_you_removed" = "Вы выдаленыя.";
+// "left" in the meaning of "exited".
+"group_left_by_you" = "Вы выйшлі з суполкі.";
+// "left" in the meaning of "exited".
+"channel_left_by_you" = "Вы выйшлі з канала.";
+"you_joined_the_channel" = "Вы далучыліся да канала.";
+// "left" in the meaning of "exited"; %1$s will be replaced by name of the contact leaving the group
+"group_left_by_other" = "Удзельнік %1$@ выйшаў з суполкі.";
+"group_image_deleted_by_you" = "Вы выдалілі відарыс суполкі.";
+// %1$s will be replaced by name of the contact
+"group_image_deleted_by_other" = "Удзельнік %1$@ выдаліў відарыс суполкі.";
+"location_enabled_by_you" = "Вы ўключылі трансляцыю месцазнаходжання.";
+// %1$s will be replaced by name of the contact
+"location_enabled_by_other" = "Трансляцыя месцазнаходжання ўключана карыстальнікам %1$@.";
+"ephemeral_timer_disabled_by_you" = "Вы адключылі таймер самазнішчэння паведамленняў.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_disabled_by_other" = "Таймер самазнішчэння паведамленняў адключаны карыстальнікам %1$@.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to
+"ephemeral_timer_seconds_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ сек.";
+// %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
+"ephemeral_timer_seconds_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ сек. карыстальнікам %2$@.";
+"ephemeral_timer_1_hour_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на 1 гадзіну.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_hour_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 гадзіну карыстальнікам %1$@.";
+"ephemeral_timer_1_day_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на 1 дзень.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_day_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 дзень карыстальнікам %1$@.";
+"ephemeral_timer_1_week_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на 1 тыдзень.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_week_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 тыдзень карыстальнікам %1$@.";
+"ephemeral_timer_1_year_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на 1 год.";
+// %1$s will be replaced by name of the contact
+"ephemeral_timer_1_year_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 год карыстальнікам %1$@.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to
+"ephemeral_timer_minutes_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ хв.";
+// %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
+"ephemeral_timer_minutes_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ хв. карыстальнікам %2$@.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to
+"ephemeral_timer_hours_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ гадз.";
+// %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
+"ephemeral_timer_hours_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ гадз. карыстальнікам %2$@.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to
+"ephemeral_timer_days_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ сут.";
+// %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
+"ephemeral_timer_days_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ сут. карыстальнікам %2$@.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to
+"ephemeral_timer_weeks_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ тыд.";
+// %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
+"ephemeral_timer_weeks_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ тыд. карыстальнікам %2$@.";
+"chat_unencrypted_explanation" = "Паведамленні ў гэтым чаце адпраўляюцца па звычайнай эл. пошце і без скразнога шыфравання.";
+"messages_are_e2ee" = "Паведамленні са скразным шыфраваннем.";
+"chat_protection_enabled_tap_to_learn_more" = "Паведамленні са скразным шыфраваннем. Націсніце, каб даведацца больш.";
+"chat_protection_enabled_explanation" = "Усе паведамленні ў гэтым чаце са скразным шыфраваннем.\n\nСкразное шыфраванне захоўвае паведамленні паміж вамі і вашымі суразмоўцамі прыватнымі. Нават серверы або пастаўшчыкі не могуць прачытаць іх.";
+"invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ патрабуе скразное шыфраванне, якое яшчэ не наладжана для гэтага чата. Націсніце, каб даведацца больш.";
+"invalid_unencrypted_explanation" = "Каб устанавіць скразное шыфраванне, вы можаце сустрэцца з кантактамі асабіста і адсканаваць іхны QR-код, каб пазнаёміцца з імі.";
+"learn_more" = "Даведацца больш";
+"devicemsg_self_deleted" = "Вы выдалілі чат «Захаваныя паведамленні».\n\nℹ️ Каб выкарыстоўваць функцыю «Захаваныя паведамленні» зноў, стварыце новы чат з сабою.";
+// %1%s will be replaced by date and time in some human-readable format
+"devicemsg_bad_time" = "⚠️ Дата ці час на вашай прыладзе, здаецца, памылковыя (%1$@).\n\nНаладзьце ваш гадзіннік ⏰🔧, каб забяспечыць правільнае атрыманне паведамленняў.";
+"devicemsg_update_reminder" = "⚠️ Вашая версія Delta Chat, магчыма, састарэлая.\n\nГэта можа выклікаць праблемы, бо вашыя суразмоўцы выкарыстоўваюць навейшыя версіі — і ў вас не хапае апошніх функцый 😳\nПраверце https://get.delta.chat або краму праграм на наяўнасць абнаўленняў.";
+// Some options as "Add Second Device" or "Backup" may require the system PIN/Fingerprint/Gesture/Etc. to be entered in a system dialog. This hint is added to the system dialog, below a title as "Add Second Device" or "Backup".
+"enter_system_secret_to_continue" = "Разблакуйце, каб працягнуць";
+// qr code stuff
+"qr_code" = "QR-код";
+"load_qr_code_as_image" = "Загрузіць QR-код як відарыс";
+"qrscan_title" = "Адсканаваць QR-код";
+"qrscan_hint" = "Трымайце камеру над QR-кодам";
+"qrscan_hint_desktop" = "Перамясціце QR-код да камеры";
+"qrscan_failed" = "Немагчыма раскадаваць QR-код";
+"qrscan_ask_join_group" = "Далучыцца да суполкі «%1$@»?";
+"qrscan_ask_join_channel" = "Далучыцца да канала «%1$@»?";
+"qrscan_contains_text" = "Тэкст у адсканаваным QR-кодзе:\n\n%1$@";
+"qrscan_contains_url" = "URL-адрас у адсканаваным QR-кодзе:\n\n%1$@";
+"withdraw_verifycontact_explain" = "Гэты QR-код можа быць адсканаваны іншымі, каб звязацца з вамі.\n\nВы можаце скінуць яго, і тады існы QR-код або запрашальная спасылка больш не будуць дзейнічаць.";
+"withdraw_verifygroup_explain" = "Гэты QR-код можа быць адсканаваны іншымі, каб далучыцца да суполкі «%1$@».\n\nВы можаце скінуць яго, і тады існы QR-код або запрашальная спасылка больш не будуць дзейнічаць.";
+"withdraw_joinbroadcast_explain" = "Гэты QR-код можа быць адсканаваны іншымі, каб далучыцца да канала «%1$@».\n\nВы можаце скінуць яго, і тады існы QR-код або запрашальная спасылка больш не будуць дзейнічаць.";
+"withdraw_qr_code" = "Скінуць QR-код";
+"revive_verifycontact_explain" = "Гэты QR-код скінуты і больш не актыўны.";
+"revive_qr_code" = "Актываваць QR-код";
+"qrshow_title" = "Запрашальны QR-код";
+"qrshow_x_joining" = "Карыстальнік %1$@ далучыўся.";
+"qrshow_x_verified" = "Карыстальнік %1$@ пазнаёміўся.";
+"qrshow_x_has_joined_group" = "Карыстальнік %1$@ далучыўся да суполкі.";
+"qrshow_join_group_title" = "Запрашальны QR-код";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
+"qrshow_join_group_hint" = "Адскануйце, каб далучыцца да суполкі «%1$@»";
+"qrshow_join_channel_hint" = "Адскануйце, каб далучыцца да канала «%1$@»";
+"qrshow_join_contact_title" = "Запрашальны QR-код";
+// This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
+"qrshow_join_contact_hint" = "Адскануйце, каб перапісвацца з %1$@";
+"qrshow_join_contact_no_connection_toast" = "Няма злучэння з сецівам, немагчыма выканаць наладжванне па QR-кодзе.";
+"set_name_and_avatar_explain" = "Задайце імя, якое вашыя кантакты пазнаюць. Вы таксама можаце задаць відарыс профілю.";
+"please_enter_name" = "Увядзіце імя.";
+"qraccount_qr_code_cannot_be_used" = "Адсканаваны QR-код не можа быць выкарыстаны для таго, каб наладзіць новы профіль.";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Выкарыстоўваючы %1$@";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "Карыстальнік %1$@ запрасіў вас далучыцца да гэтай суполкі.\n\nЧакаецца адказ прылады карыстальніка %2$@…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "Карыстальнік %1$@ запрасіў вас далучыцца да гэтага канала.\n\nЧакаецца адказ прылады карыстальніка %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "Карыстальнік %1$@ адказаў, чакаецца дадаванне да суполкі…";
+"secure_join_wait" = "Устанаўліваецца злучэнне, пачакайце…";
+"contact_verified" = "Карыстальнік %1$@ пазнаёміўся.";
+"contact_blocked" = "Вы заблакавалі кантакта";
+"mailto_dialog_header_select_chat" = "Выберыце чат, у які трэба адправіць паведамленне";
+// first placeholder is the name of the chat
+"confirm_replace_draft" = "Чат «%1$@» мае ўжо чарнавік, замяніць яго?";
+"mailto_link_could_not_be_decoded" = "Немагчыма раскадаваць спасылку mailto: %1$@";
+"remove_quote" = "Выдаліць цытату";
+"remove_attachment" = "Выдаліць далучаны файл";
+// notifications
+"notify_reply_button" = "Адказаць";
+"notify_new_message" = "Новае паведамленне";
+"notify_background_connection_enabled" = "Фонавае злучэнне ўключана";
+"notify_priority_high" = "Высокі";
+"notify_priority_max" = "Максімальны";
+"notify_name_and_message" = "Імя і паведамленне";
+"notify_name_only" = "Толькі імя";
+"notify_no_name_or_message" = "Ні імя, ні паведамленне";
+"notifications_disabled" = "Апавяшчэнні адключаныя";
+"unreliable_bg_notifications" = "Уключыце «Прымусовае фонавае злучэнне» для надзейнага атрымання апавяшчэнняў";
+"new_messages" = "Новыя паведамленні";
+// Body text for a generic "New messages" notification. Shown if we do not have more information about a new messages. Note, that the string is also referenced at https://github.com/deltachat/notifiers
+"new_messages_body" = "Вы маеце новыя паведамленні";
+"n_messages_in_m_chats" = "%1$d паведамл. у %2$d чат.";
+// location streaming
+"location_streaming_notification_text" = "Вы абагульваеце сваё месцазнаходжанне";
+"location_rationale" = "Каб абагульваць сваё месцазнаходжанне з удзельнікамі чата, дазвольце Delta Chat выкарыстоўваць звесткі пра вашае месцазнаходжанне.\n\nКаб месцазнаходжанне адпраўлялася бесперапынна, звесткі пра месцазнаходжанне выкарыстоўваюцца нават калі праграма закрыта або вы не карыстаецеся ёю.";
+// permissions
+"perm_required_title" = "Патрабуецца дазвол";
+"perm_continue" = "Працягнуць";
+"perm_explain_access_to_camera_denied" = "Каб сфатаграфаваць або зняць відэазапіс, перайдзіце ў налады праграмы, выберыце «Дазволы» і дайце дазвол «Камера».";
+// give the user an idea where to find the "Microphone" option. the hint is only shown if access was initially denied by the user. pick up wordings really used on the systems, but do not be overly precise: things shift around often and there are too many system we support to track every detail and click path
+"perm_explain_access_to_mic_denied" = "Каб адпраўляць галасавыя паведамленні, перайдзіце ў налады сістэмы або праграмы, выберыце «Дазволы» ці «Прыватнасць і бяспека» і дайце дазвол «Мікрафон».";
+"perm_explain_access_to_storage_denied" = "Каб атрымліваць і адпраўляць файлы, перайдзіце ў налады праграмы, выберыце «Дазволы» і дайце дазвол «Сховішча».";
+"perm_explain_access_to_location_denied" = "Каб далучыць месцазнаходжанне, перайдзіце ў налады праграмы, выберыце «Дазволы» і дайце дазвол «Месцазнаходжанне».";
+"perm_explain_access_to_notifications_denied" = "Каб атрымліваць апавяшчэнні, перайдзіце ў «Налады сістэмы > Праграмы > Delta Chat» і дайце дазвол «Апавяшчэнні».";
+"perm_explain_local_network_denied" = "Delta Chat патрэбны дазвол «Прылады паблізу», каб злучыцца з прыладамі ў лакальнай сетцы. Вы можаце даць яго ў «Праграмы > Delta Chat > Дазволы».";
+// ImageEditorHud
+"ImageEditorHud_draw_anywhere_to_blur" = "Рысуйце ўсюды, каб размыць";
+"ImageEditorHud_add_text" = "Дадаць тэкст";
+"ImageEditorHud_blur" = "Размыць";
+"ImageEditorHud_brush_marker" = "Пэндзаль-маркер";
+"ImageEditorHud_brush_highlight" = "Пэндзаль-вылучальнік";
+"ImageEditorHud_crop" = "Абрэзаць";
+"ImageEditorHud_flip" = "Перавярнуць";
+"ImageEditorHud_rotate" = "Павярнуць";
+"welcome_desktop" = "Вітаем у Delta Chat";
+"global_menu_preferences_language_desktop" = "Мова";
+// The "File" menu in desktop apps. For referring to a file or document object (manual.pdf, readme.txt and so on), see the strings "file" or "files"
+"global_menu_file_desktop" = "Файл";
+"global_menu_file_quit_desktop" = "Выйсці";
+"global_menu_edit_desktop" = "Рэдагаваць";
+"global_menu_edit_undo_desktop" = "Адрабіць";
+"global_menu_edit_redo_desktop" = "Узнавіць";
+"global_menu_edit_cut_desktop" = "Выразаць";
+"global_menu_edit_copy_desktop" = "Скапіяваць";
+"global_menu_edit_paste_desktop" = "Уставіць";
+"global_menu_view_desktop" = "Паглядзець";
+"global_menu_view_floatontop_desktop" = "Заўсёды зверху";
+"global_menu_view_developer_desktop" = "Распрацоўшчык";
+"global_menu_view_developer_tools_desktop" = "Інструменты распрацоўшчыка";
+"global_menu_help_desktop" = "Даведка";
+"delta_chat_homepage" = "Галоўная старонка Delta Chat";
+"contribute" = "Зрабіць унёсак";
+"global_menu_help_report_desktop" = "Паведаміць пра праблему";
+"global_menu_help_about_desktop" = "Пра Delta Chat";
+"global_menu_file_open_desktop" = "Адкрыць Delta Chat";
+"global_menu_minimize_to_tray" = "Згарнуць";
+"no_account_selected" = "Выберыце профіль або стварыце новы";
+"no_chat_selected_suggestion_desktop" = "Выберыце чат або стварыце новы";
+"write_message_desktop" = "Напішыце паведамленне";
+"encryption_info_title_desktop" = "Звесткі пра шыфраванне";
+"delete_message_desktop" = "Выдаліць паведамленне";
+"more_info_desktop" = "Дадатковыя звесткі";
+"timestamp_format_m_desktop" = "D MMM";
+"remove_desktop" = "Выдаліць";
+"save_desktop" = "Захаваць";
+// Opposite of "Save". Undo a "Save" action. Similar to "Unmute", "Unpin". Could also be worded as "Save no longer" or so.
+"unsave" = "Скасаваць захаванне";
+"name_desktop" = "Назва";
+"select_group_image_desktop" = "Выберыце відарыс суполкі";
+"export_backup_desktop" = "Экспартаваць рэзервовую копію";
+"message_detail_sent_desktop" = "Адпраўлена";
+"message_detail_received_desktop" = "Атрымана";
+"menu.view.developer.open.log.folder" = "Адкрыць папку журнала";
+"menu.view.developer.open.current.log.file" = "Адкрыць цяперашні файл журнала";
+"explain_desktop_minimized_disabled_tray_pref" = "Немагчыма адключыць значок у вобласці апавяшчэнняў, бо Delta Chat запушчаны з параметрам «--minimized».";
+"show_window" = "Паказаць акно";
+"data_found_other_installation_message" = "Вашыя профілі з іншага экзэмпляра Delta Chat недаступныя — розныя экзэмпляры захоўваюць свае даныя ў асобных месцах.\n\nКаб захаваць існыя профілі:\n1. Выйдзіце зараз\n2. Адкрыйце іншы экзэмпляр Delta Chat — калі трэба, пераўсталюйце яго з %1$@\n3. Зрабіце рэзервовую копію кожнага профілю тут: «Налады > Чаты»\n4. Перазапусціце гэтую версію\n5. Аднавіце рэзервовыя копіі, выкарыстоўваючы функцыю «Я ўжо маю профіль»\n\nПрацягнуць без папярэдніх профіляў?";
+// title of the "keybindings" dialog (for the keybindings names as such, where possible the normal command strings are used)
+"keybindings" = "Прызначэнне клавіш";
+// subtitle in the "keybindings" dialog
+"navigation_shortcut_section" = "Навігацыя";
+// subtitle in the "keybindings" dialog
+"message_input_shortcut_section" = "Увод паведамлення";
+// subtitle in the "keybindings" dialog
+"message_selected_shortcut_section" = "Выбранае паведамленне";
+"switch_between_chats" = "Пераключэнне паміж чатамі";
+"scroll_messages" = "Прагортка паведамленняў";
+// command to put the cursor to the search input field
+"focus_search_input" = "Фокус на полі пошуку";
+// command to put the cursor to the message input field
+"focus_message_input" = "Фокус на полі ўводу паведамлення";
+"force_refresh_network" = "Прымусовае абнаўленне сеткі";
+"insert_newline" = "Устаўка новага радка";
+// accessibility, the general idea is to use the normal strings for accessibility hints wherever possible
+"a11y_delivery_status_error" = "Стан дастаўкі: памылка";
+"a11y_delivery_status_sending" = "Стан дастаўкі: адпраўка";
+"a11y_delivery_status_draft" = "Стан дастаўкі: чарнавік";
+"a11y_delivery_status_delivered" = "Стан дастаўкі: дастаўлена";
+"a11y_delivery_status_read" = "Стан дастаўкі: прачытана";
+"a11y_delivery_status_invalid" = "Памылковы стан дастаўкі";
+"a11y_message_context_menu_btn_label" = "Дзеянні з паведамленнем";
+"a11y_background_preview_label" = "Перадпрагляд шпалер";
+"a11y_disappearing_messages_activated" = "Самазнішчальныя паведамленні актываваныя";
+// The placeholder will be replaced by a link, eg. "Open https://delta.chat". Used e.g. in for accessibility.
+"open_link" = "Адкрыць %1$@";
+// iOS specific strings, developers: please take care to remove strings that are no longer used!
+"stop_sharing_location" = "Прыпыніць абагульванне месцазнаходжання";
+"a11y_connectivity_hint" = "Двойчы націсніце, каб паглядзець падрабязнасці пра магчымасць злучэння.";
+"login_error_no_internet_connection" = "Няма злучэння з сецівам, увайсці не ўдалося.";
+"cannot_play_audio_file" = "Немагчыма прайграць аўдыяфайл.";
+// iOS camera permission alert
+"perm_ios_explain_access_to_camera_denied" = "Каб сфатаграфаваць, зняць відэазапіс або выкарыстоўваць сканер QR-кодаў, адкрыйце налады сістэмы і дайце дазвол «Камера».";
+"open_settings" = "Адкрыць налады";
+// Notifications, that are disabled in the system settings
+"disabled_in_system_settings" = "Адключаны ў наладах сістэмы";
+"bg_app_refresh_disabled" = "«Фонавае абнаўленне праграмы» адключана ў наладах сістэмы";
+"system_settings" = "Налады сістэмы";
+// shown below the button "System Settings" on the notification screen. this is a hint about what can be edited on System Settings' Notification page - eg. the notification type (banner, lock screen, notification centre), sound, badges and so on. no need to be exhaustive here, it is only to give the user an idea.
+"system_settings_notify_explain_ios" = "Адрэдагуйце тып, значкі, перадпрагляд і іншае";
+// iOS shortcut widget
+// use the same translation for "Shortcuts" as the system is using, often the term "Shortcut" stays untranslated; check eg. how the "Shortcuts" system app is called in your locale
+"shortcuts_widget_title" = "Ярлыкі";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"shortcuts_widget_description" = "Выкарыстоўвайце функцыю Delta Chat «Дадаць у віджэт», каб дадаць элементы";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"remove_from_widget" = "Выдаліць з віджэта";
+// use the same translation for "Widget" as the system is using; often the term "Widget" stays untranslated
+"add_to_widget" = "Дадаць у віджэт";
+// iOS permissions, copy from "deltachat-ios/Info.plist", which is used on missing translations in "deltachat-ios/LANG.lproj/InfoPlist.strings"
+// android specific strings, developers: please take care to remove strings that are no longer used!
+"pref_instant_delivery" = "Імгненная дастаўка";
+"pref_background_notifications" = "Выкарыстоўваць фонавае злучэнне";
+"pref_background_notifications_explain" = "Патрабуецца адключэнне аптымізацыі расходу зарада акумулятара, выкарыстоўвайце, калі апавяшчэнні не прыходзяць своечасова";
+"pref_reliable_service" = "Прымусовае фонавае злучэнне";
+"pref_reliable_service_explain" = "Выклікае пастаяннае апавяшчэнне";
+"pref_background_notifications_rationale" = "Каб захоўваць злучэнне і атрымліваць паведамленні ў фонавым рэжыме, адключыце аптымізацыю расходу зарада акумулятара ў наступным кроку.\n\nDelta Chat выкарыстоўвае мала рэсурсаў і стараецца не разраджаць акумулятар хутка.";
+// disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
+"perm_enable_bg_reminder_title" = "Націсніце тут, каб атрымліваць паведамленні пакуль Delta Chat запушчаны ў фонавым рэжыме.";
+"perm_enable_bg_already_done" = "Вы ўжо дазволілі Delta Chat атрымліваць паведамленні ў фонавым рэжыме.\n\nКалі паведамленні дагэтуль не прыходзяць у фонавым рэжыме, праверце таксама налады сістэмы.";
+// The placeholder will be replaced by a version name, e.g. "v2.50.0"
+"update_available_msg" = "🎉 Новая версія %1$@ даступная. Націсніце на гэтае паведамленне, каб абнавіцца і мець асалоду ад новых магчымасцей";
+// The placeholder will be replaced by a version name, e.g. "Downloading v2.50.0 …"
+"update_downloading" = "Спампоўваецца %1$@…";
+"update_now" = "Абнавіць зараз";
+"update_install_permission_explain" = "Каб усталяваць абнаўленне, спачатку ў наладах сістэмы дазвольце Delta Chat усталёўваць праграмы.";
