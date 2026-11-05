@@ -86,7 +86,7 @@ struct InputBarView: View {
                     .modifier { glassEffect(view: $0, padding: 0, minHeight: buttonSize, interactive: glassEffectInteractivityOnInputField) }
                     .accessibilityLabel(String.localized("write_message_desktop"))
                 }.frame(maxHeight: .infinity)
-                if draft.text.isEmpty && !textEditorFocus {
+                if !draft.canSend() && draft.sendEditRequestForMsg == nil {
                     Button(action: {
                         chatViewController?.showVoiceMessageRecorder()
                     }, label: {
