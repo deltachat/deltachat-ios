@@ -204,9 +204,6 @@ struct InputBarView: View {
                 chatViewController?.showAppPicker()
             }
         }
-        Button(String.localized("voice_message"), systemImage: "mic") {
-            chatViewController?.showVoiceMessageRecorder()
-        }
         if UserDefaults.standard.bool(forKey: "location_streaming") {
             let isLocationStreaming = chatViewController?.isLocationStreaming ?? false
             Button(
