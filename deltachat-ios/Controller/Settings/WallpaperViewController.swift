@@ -20,6 +20,7 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
     }
 
     override func viewDidLoad() {
+        navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
         super.viewDidLoad()
         let host = UIHostingController(rootView: WallpaperView(vc: self))
         addChild(host)
@@ -43,37 +44,35 @@ struct WallpaperView: View {
     @State private var backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
 
     var body: some View {
-        backgroundImageView
-            .scaledToFill()
-            .ignoresSafeArea(isLiquidGlassEnabled ? .all : [])
-            .overlay(alignment: .bottom) {
-                HStack(spacing: isLiquidGlassEnabled ? nil : 20) {
-                    Button(String.localized("pref_background_btn_default"), action: {
-                        UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
-                    })
-                    Button(String.localized("pref_background_btn_gallery"), action: {
-                        vc?.mediaPicker.delegate = vc
-                        vc?.mediaPicker.showGallery(allowCropping: true)
-                    })
-                }
-                .frame(maxWidth: .infinity)
-                .lineLimit(nil)
-                .padding()
-                .padding(.horizontal)
-                .modifier { view in
-                    if #available(iOS 26.0, *) {
-                        GlassEffectContainer {
-                            view.buttonStyle(.glass)
-                        }
-                    } else {
-                        view.background(Material.bar, ignoresSafeAreaEdges: .bottom)
-                            .overlay(alignment: .top, content: Divider.init)
+        VStack {
+            Spacer()
+            VStack(spacing: 15) {
+                Button(String.localized("pref_background_btn_default"), action: {
+                    UserDefaults.standard.set(nil, forKey: Constants.Keys.backgroundImageName)
+                })
+                Button(String.localized("pref_background_btn_gallery"), action: {
+                    vc?.mediaPicker.delegate = vc
+                    vc?.mediaPicker.showGallery(allowCropping: true)
+                })
+            }.modifier { view in
+                if #available(iOS 26.0, *) {
+                    GlassEffectContainer {
+                        view.buttonStyle(.glass)
                     }
+                } else {
+                    view.buttonStyle(.borderedProminent)
                 }
             }
-            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
-                backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
-            }
+        }
+        .lineLimit(nil)
+        .padding()
+        .padding(.horizontal)
+        .background {
+            backgroundImageView.scaledToFill().ignoresSafeArea(.all)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+            backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
+        }
     }
 
     @ViewBuilder var backgroundImageView: some View {
