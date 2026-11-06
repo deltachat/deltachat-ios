@@ -4,6 +4,7 @@
 ## Unreleased
 
 - A voice message button is now shown when user is not writing text
+- No longer prompt user for notification permissions during onboarding
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Update translations
