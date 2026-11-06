@@ -90,16 +90,6 @@ class ChatListViewController: UITableViewController {
                 self.handleChatListUpdate()
             }
         }
-        // use the same background color as for cells and esp. the first archive-link cell
-        // to make things appear less outstanding.
-        //
-        // TODO: this initally also sets the color of the "navigation area",
-        // however, when opening+closing a chat, it is a blurry grey.
-        // the inconsistency seems to be releated to the line
-        //   navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-        // in ChatViewController.swift - removing this, the color is preserved at the cost of more flickering ...
-        // this needs more love :)
-        self.view.backgroundColor = UIColor.systemBackground
 
         NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleIncomingMessage), name: Event.incomingMessage, object: nil)
