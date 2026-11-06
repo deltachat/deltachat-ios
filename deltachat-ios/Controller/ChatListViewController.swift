@@ -19,25 +19,19 @@ class ChatListViewController: UITableViewController {
     private let archiveCell = ContactCell()
 
     private lazy var newButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.compose, target: self, action: #selector(didPressNewChat))
-        button.tintColor = DcColors.primary
-        return button
+        UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressNewChat))
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(ChatListViewController.showProxySettings))
-        button.tintColor = DcColors.primary
-        return button
+        UIBarButtonItem(image: UIImage(systemName: "checkmark.shield"), style: .plain, target: self, action: #selector(showProxySettings))
     }()
 
     private lazy var cancelButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
-        return button
+        UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed))
     }()
 
     private lazy var markReadButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markReadPressed))
-        return button
+        UIBarButtonItem(title: String.localized("mark_as_read_short"), style: .plain, target: self, action: #selector(markReadPressed))
     }()
 
     private lazy var emptyStateLabel: EmptyStateLabel = {
