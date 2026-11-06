@@ -461,7 +461,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
         navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        navigationItem.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
         definesPresentationContext = true
 
