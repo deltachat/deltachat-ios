@@ -78,6 +78,7 @@ class WebxdcViewController: WebViewViewController {
     }()
 
     private var advertiseAgainCancelable: AnyCancellable?
+    private var activityUpdatesTask: Task<Void, Error>?
 
     @available(iOS 16.2, *)
     private var activity: Activity<WebxdcLiveActivityAttributes>? {
@@ -357,6 +358,7 @@ class WebxdcViewController: WebViewViewController {
         if #available(iOS 16.2, *) {
             endLiveActivity()
         }
+        activityUpdatesTask?.cancel()
     }
 
     override func viewDidLoad() {
@@ -679,6 +681,7 @@ extension WebxdcViewController {
             await activity?.end(nil, dismissalPolicy: .immediate)
             let attributes = WebxdcLiveActivityAttributes(context: dcContext, messageId: messageId)
             do {
+                activityUpdatesTask?.cancel()
                 activity = try Activity.request(
                     attributes: attributes,
                     content: .init(
@@ -686,6 +689,13 @@ extension WebxdcViewController {
                         staleDate: nil
                     )
                 )
+                activityUpdatesTask = activity.map { activity in
+                    Task { [weak self] in
+                        for await update in activity.activityStateUpdates where update == .dismissed {
+                            self?.quit()
+                        }
+                    }
+                }
             } catch {
                 logger.error(error.localizedDescription)
             }
@@ -698,7 +708,6 @@ extension WebxdcViewController {
                 state: .init(info: info, connectivity: dcContext.getConnectivity()),
                 staleDate: nil
             ))
-            print("updated", dcContext.getConnectivity())
         }
     }
 
