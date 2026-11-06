@@ -6,6 +6,7 @@
 - A voice message button is now shown when user is not writing text
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
+- Fixed bar buttons having the wrong tint color on liquid glass
 - Update translations
 - Update to core 2.68.0
 
