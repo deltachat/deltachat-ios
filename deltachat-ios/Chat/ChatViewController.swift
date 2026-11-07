@@ -1219,13 +1219,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func reloadData() {
-        let distanceToBottom = getScrollDistanceToBottom()
+        let wasScrolledToBottom = isScrolledToBottom()
         let selectedRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
         selectedRows?.forEach({ (selectedRow) in
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
-        scrollTo(distanceToBottom: distanceToBottom)
+        if wasScrolledToBottom {
+            scrollTo(distanceToBottom: 0)
+        }
     }
 
     private func loadMessages() {
