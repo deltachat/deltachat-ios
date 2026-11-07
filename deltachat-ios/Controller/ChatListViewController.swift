@@ -160,6 +160,12 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
+
+        // HACK: show the tab bar again that was hidden in showChat().
+        // skip showing if we're an archive or when a chat is on top already, eg. when opened from a notification
+        if #available(iOS 26.0, *), !isArchive, navigationController?.topViewController == self {
+            tabBarController?.setTabBarHidden(false, animated: animated)
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -910,6 +916,13 @@ class ChatListViewController: UITableViewController {
             searchController.searchBar.resignFirstResponder()
         }
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
+
+        // HACK: hide tabbar before pushing:
+        // otherwise hidesBottomBarWhenPushed hides it during the push,
+        // which delays the chat's top edge blur effect by about a second.
+        if #available(iOS 26.0, *), !isArchive {
+            tabBarController?.setTabBarHidden(true, animated: animated)
+        }
         navigationController?.pushViewController(chatViewController, animated: animated)
     }
 
