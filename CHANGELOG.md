@@ -10,6 +10,7 @@
 
 - A voice message button is now shown when user is not writing text
 - Updated wallpaper selection screen to liquid glass
+- Fix: Stop flipping the chat view internally; fixing VoiceOver order, other accessibility issues and visual glitches
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Fixed bar buttons having the wrong tint color on liquid glass
