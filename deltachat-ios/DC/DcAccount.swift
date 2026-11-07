@@ -106,7 +106,9 @@ public class DcAccounts {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: startOrReschedule)
                     } else {
                         dc_accounts_start_io(accountsPointer)
-                        NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0)])
+                        getAll().forEach {
+                            NotificationCenter.default.post(name: Event.messagesChanged, object: nil, userInfo: ["message_id": Int(0), "chat_id": Int(0), "account_id": $0])
+                        }
                         DispatchQueue.main.async(execute: sendQueuedCallPayload)
                     }
                 }
