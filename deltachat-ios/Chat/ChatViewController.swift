@@ -108,7 +108,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             draft: draft,
             chatViewController: self,
             updateIntrinsicContentSize: { [weak self] in
-                if #unavailable(iOS 16) {
+                if #available(iOS 16, *) {
+                    // sizingOptions does not always resize the toolbar,
+                    // eg. on removing a quote or an attachment while the keyboard is shown,
+                    // there is a gap between input bar and keyboard otherwise
+                    self?.inputToolBarHost.view.invalidateIntrinsicContentSize()
+                } else {
                     self?.inputToolBarHost.view.setNeedsUpdateConstraints()
                 }
             })
