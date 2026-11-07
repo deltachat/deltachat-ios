@@ -55,15 +55,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return controller
     }()
 
-    private let edgeEffectExtension = (top: CGFloat(16), bottom: CGFloat(8))
-    private let edgeEffectBlurStrength = CGFloat(0.72)
-    private let edgeEffectBlurTransition: Float = 0.5
-    private let edgeEffectBlurViews = (
-        top: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)),
-        bottom: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
-    )
-    private let edgeEffectBlurMasks = (top: CAGradientLayer(), bottom: CAGradientLayer())
-    private var lastStatusBarStyle: UIStatusBarStyle?
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -426,21 +417,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         backgroundContainer.fillSuperview()
         view.addSubview(tableView)
         tableView.fillSuperview()
-        if #available(iOS 26.0, *) {
-            tableView.topEdgeEffect.isHidden = true
-            tableView.bottomEdgeEffect.isHidden = true
-
-            edgeEffectBlurMasks.top.locations = [0, NSNumber(value: 1 - edgeEffectBlurTransition), 1]
-            edgeEffectBlurMasks.bottom.locations = [0, NSNumber(value: edgeEffectBlurTransition), 1]
-            updateEdgeEffectAppearance()
-
-            edgeEffectBlurViews.top.layer.mask = edgeEffectBlurMasks.top
-            edgeEffectBlurViews.bottom.layer.mask = edgeEffectBlurMasks.bottom
-            [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
-                $0.isUserInteractionEnabled = false
-                view.addSubview($0)
-            }
-        }
 
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
@@ -525,6 +501,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         configureScrollDownButton()
 
+        if #available(iOS 26.0, *) {
+            // apply the system's blur effect not only to the title bar,
+            // but also to the pinned bar.
+            let interaction = UIScrollEdgeElementContainerInteraction()
+            interaction.scrollView = tableView
+            interaction.edge = .top
+            pinbarContainerView.addInteraction(interaction)
+        }
+
         if dcChat.canSend {
             configureUIForWriting()
         } else if dcChat.isContactRequest {
@@ -601,7 +586,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         if #available(iOS 26.0, *) {
-            updateTopEdgeEffectAppearance()
             wasInteractiveContentPopGestureRecognizerEnabled = navigationController?
                 .interactiveContentPopGestureRecognizer?.isEnabled
             // This new pop gesture happens when you swipe in the middle of the screen which
@@ -628,13 +612,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             lastTableViewBoundsSize = tableView.bounds.size
             scrollTo(distanceToBottom: distanceToBottom)
         }
-        updateEdgeEffects()
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
-        updateEdgeEffects()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -694,55 +676,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             guard abs(targetScrollPosition - tableView.contentOffset.y) >= 1 else { return }
             tableView.contentOffset.y = targetScrollPosition
         }
-    }
-
-    private func updateEdgeEffects() {
-        guard #available(iOS 26.0, *) else { return }
-
-        let topHeight = view.safeAreaInsets.top + edgeEffectExtension.top
-        edgeEffectBlurViews.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: topHeight)
-        edgeEffectBlurMasks.top.frame = edgeEffectBlurViews.top.bounds
-
-        let bottomHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom) + edgeEffectExtension.bottom
-        edgeEffectBlurViews.bottom.frame = CGRect(
-            x: 0,
-            y: view.bounds.height - bottomHeight,
-            width: view.bounds.width,
-            height: bottomHeight
-        )
-        edgeEffectBlurMasks.bottom.frame = edgeEffectBlurViews.bottom.bounds
-    }
-
-    private func updateEdgeEffectAppearance() {
-        guard #available(iOS 26.0, *) else { return }
-
-        let tintColor = traitCollection.userInterfaceStyle == .dark
-            ? UIColor.black.withAlphaComponent(0.67)
-            : UIColor.clear
-        [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
-            $0.contentView.backgroundColor = tintColor
-        }
-
-        let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
-        edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
-        edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
-    }
-
-    private func updateTopEdgeEffectAppearance() {
-        guard #available(iOS 26.0, *),
-              let statusBarStyle = view.window?.windowScene?.statusBarManager?.statusBarStyle,
-              statusBarStyle != lastStatusBarStyle else { return }
-
-        lastStatusBarStyle = statusBarStyle
-        let blurStyle: UIBlurEffect.Style = switch statusBarStyle {
-        case .lightContent:
-            .systemUltraThinMaterialDark
-        case .darkContent:
-            .systemUltraThinMaterialLight
-        default:
-            .systemUltraThinMaterial
-        }
-        edgeEffectBlurViews.top.effect = UIBlurEffect(style: blurStyle)
     }
 
     // MARK: - Notifications
@@ -975,7 +908,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateScrollDownButtonVisibility()
-        updateTopEdgeEffectAppearance()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -1186,8 +1118,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
-        updateEdgeEffectAppearance()
-        updateTopEdgeEffectAppearance()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {

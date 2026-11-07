@@ -5,6 +5,7 @@
 
 - A voice message button is now shown when user is not writing text
 - Updated wallpaper selection screen to liquid glass
+- Use the system's edge effects in chats, matching the other views and respecting liquid glass settings
 - Fix: Stop flipping the chat view internally; fixing VoiceOver order, other accessibility issues and visual glitches
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
