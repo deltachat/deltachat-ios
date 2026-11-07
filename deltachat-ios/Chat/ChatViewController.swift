@@ -1225,8 +1225,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
+        let lastMessageId = messages.last?.id ?? 0
         messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         reloadData()
+
+        // scroll down for just sent messages
+        // (checking "newer ID" is easier than tracking all places where messages are added)
+        if let newLastMessageId = messages.last?.id, newLastMessageId > lastMessageId,
+           dcContext.getMessage(id: newLastMessageId).isFromCurrentSender {
+            scrollToBottom()
+        }
+
         showEmptyStateView(messages.isEmpty)
     }
 
