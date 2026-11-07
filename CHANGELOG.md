@@ -3,6 +3,7 @@
 
 ## Unreleased
 
+- Mini Apps can now be minimized so they continue running while you chat
 - A voice message button is now shown when user is not writing text
 - Updated wallpaper selection screen to liquid glass
 - Fix performance issues on some larger profiles
