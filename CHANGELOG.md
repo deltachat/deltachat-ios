@@ -8,6 +8,7 @@
 - Use the system's edge effects in chats, matching the other views and respecting liquid glass settings
 - Fix: Stop flipping the chat view internally; fixing VoiceOver order, other accessibility issues and visual glitches
 - Fix: Keep reading position when new messages arrive while scrolled up
+- Fix: Scroll down to just sent messages
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Fixed bar buttons having the wrong tint color on liquid glass
