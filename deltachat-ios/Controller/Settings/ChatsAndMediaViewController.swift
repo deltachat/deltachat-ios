@@ -173,7 +173,7 @@ internal final class ChatsAndMediaViewController: UITableViewController {
 
     private func createBackup() {
         let alert = UIAlertController(title: String.localized("pref_backup_export_explain"), message: nil, preferredStyle: .safeActionSheet)
-        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_start_button"), style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: String.localized("pref_backup_export_this"), style: .default, handler: { [weak self] _ in
             guard let self else { return }
 
             let progressHandler = ProgressAlertHandler(notification: Event.importExportProgress) { [weak self] in
