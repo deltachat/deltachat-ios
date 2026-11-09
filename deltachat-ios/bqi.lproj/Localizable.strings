@@ -132,6 +132,7 @@
 "forwarded_by" = "و دست %1$@ فوروارد وابیڌه";
 "video" = "فیلم";
 "documents" = "سندا";
+// Noun, used e.g. for headlines in profiles
 "contact" = "هومدنگ";
 "bot" = "روبات";
 "camera" = "شؽواتگر";
@@ -304,6 +305,7 @@
 "change_group_image" = "آلشت شؽوات جرگه";
 "group_create_button" = "وورکل جرگه";
 "group_add_members" = "ٱووردن منتور";
+// deprecated, use string "contact"
 "tab_contact" = "هومدنگ";
 "tab_group" = "جرگه";
 "tab_gallery" = "شؽوات مال";

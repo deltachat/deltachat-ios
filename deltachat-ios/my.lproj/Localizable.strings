@@ -148,6 +148,7 @@
 "forwarded_by" = " %1$@ က ထပ်ဆင့်ပေးသည်";
 "video" = "ဗီဒီယို";
 "documents" = "စာရွက်စာတမ်းများ";
+// Noun, used e.g. for headlines in profiles
 "contact" = "အဆက်အသွယ်";
 "bot" = "ဘော့တ်";
 "camera" = "ကင်မရာ";
@@ -445,10 +446,12 @@
 "please_enter_chat_name" = "ကျေးဇူးပြု၍ ချတ်အမည်ကို ရိုက်ထည့်ပါ";
 "group_add_members" = "အဖွဲ့ဝင်များ ထည့်ပါ";
 "group_self_not_in_group" = "သင်သည် ဤအဖွဲ့တွင် မရှိပါ";
+// deprecated
 "profile_encryption" = "ကုဒ်ဝှက်စနစ်";
 "profile_shared_chats" = "မျှဝေထားသော ချတ်များ";
 // Separator between the list of actual members and past members
 "past_members" = "ယခင် အဖွဲ့ဝင်များ";
+// deprecated, use string "contact"
 "tab_contact" = "အဆက်အသွယ်";
 "tab_group" = "အဖွဲ့";
 "tab_gallery" = "ပြခန်း";
@@ -662,6 +665,7 @@
 "pref_backup_export_this" = "ဤအကောင့်ကို တင်ပို့ပါ";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "အကောင့် %1$d ခုကို တင်ပို့ပါ";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "တင်ပို့ခြင်းကို စတင်ပါ";
 "pref_backup_written_to_x" = "%1$@ သို့ မိတ္တူကူးပြီးပါပြီ";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

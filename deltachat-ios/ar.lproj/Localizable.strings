@@ -60,6 +60,7 @@
 "voice_message" = "رسالة صوتية";
 "video" = "فيديو";
 "documents" = "المستندات";
+// Noun, used e.g. for headlines in profiles
 "contact" = "للاتصال";
 "camera" = "آلة التصوير";
 "location" = "المَوقع";
@@ -129,7 +130,9 @@
 "group_avatar" = "الصورة المصغّرة للفريق";
 "group_create_button" = "إنشاء فريق";
 "group_add_members" = "إضافة أعضاء";
+// deprecated
 "profile_encryption" = "التعمية";
+// deprecated, use string "contact"
 "tab_contact" = "للاتصال";
 "tab_group" = "الفريق";
 "tab_gallery" = "المعرض";

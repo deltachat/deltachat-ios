@@ -114,6 +114,7 @@
 "forwarded_by" = "Diteruskan oleh %1$@";
 "video" = "Video";
 "documents" = "Dokumen";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontak";
 "camera" = "Kamera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -275,8 +276,10 @@
 "group_create_button" = "Buat grup";
 "group_add_members" = "Tambah anggota";
 "group_self_not_in_group" = "Anda harus menjadi anggota grup untuk melakukan tindakan ini.";
+// deprecated
 "profile_encryption" = "Enkripsi";
 "profile_shared_chats" = "Obrolan terbagi";
+// deprecated, use string "contact"
 "tab_contact" = "Kontak";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
@@ -360,6 +363,7 @@
 "pref_backup" = "Cadangkan";
 "pref_backup_explain" = "Cadangkan obrolan di external storage";
 "pref_backup_export_explain" = "Cadangan membantu Anda untuk membuat instalasi baru di perangkat ini atau perangkat lain.\n\nDalam cadangan terdapat semua pesan, kontak dan obrolan dan pengaturan Autocrypt ujung ke ujung Anda. Simpan berkas cadangan di tempat yang aman atau hapus secepatnya.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Mulai Cadangkan";
 "pref_backup_written_to_x" = "Cadangan berhasil ditulis ke \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

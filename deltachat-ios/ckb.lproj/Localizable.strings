@@ -86,6 +86,7 @@
 "forwarded_by" = "هاوبەشکراو لە لایەن%1$@";
 "video" = "ڤیدیۆ";
 "documents" = "بەڵگەکان";
+// Noun, used e.g. for headlines in profiles
 "contact" = "بەردەنگ";
 "camera" = "کامێرا";
 "location" = "شوێن";
@@ -230,8 +231,10 @@
 "group_create_button" = "کۆڕێک درووست بکە";
 "group_add_members" = "ئەندام زیاد بکە";
 "group_self_not_in_group" = "بۆ ئەم کردارە دەبێت ئەندامی کۆڕەکە بیت.";
+// deprecated
 "profile_encryption" = "شفرەکردن";
 "profile_shared_chats" = "وتووێژە هاوبەشکراوەکان";
+// deprecated, use string "contact"
 "tab_contact" = "بەردەنگ";
 "tab_group" = "کۆڕ";
 "tab_gallery" = "پیشانگە";
@@ -309,6 +312,7 @@
 "pref_backup" = "یەدەک";
 "pref_backup_explain" = "یەدەک گرتن لە وتووێژەکان و دانانی لەسەر بیرگەی دەرەکی";
 "pref_backup_export_explain" = "یەدەک یارمەتیت دەدات تاکوو نەرمامێرەکە لەسەر ئەم ئامێرە یان ئامێرێکی دیکە دەبمەزرێنیتەوە.\n\n یەدەکەکە بریتی دەبێت لە هەموو پەیامەکان و بەردەنگەکان و وتووێژەکان و ڕێکخستنی ئۆتۆکریپتی ئەمسەر-ئەوسەر. پەڕگەی یەدەکەکە لە شوێنێکی قایمدا بپارێزە یان بە زووترین کات بیسڕەوە.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "دەستپێبکە";
 "pref_backup_written_to_x" = "یەدەک بە سەرکەوتوویی لە \"%1$@\"دا پاشەکەوت کرا.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

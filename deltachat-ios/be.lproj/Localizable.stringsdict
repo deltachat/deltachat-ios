@@ -53,13 +53,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Працягласць: %d хвіліна</string>
+			<string>Працягласць: %d мінута</string>
 			<key>few</key>
-			<string>Працягласць: %d хвіліны</string>
+			<string>Працягласць: %d мінуты</string>
 			<key>many</key>
-			<string>Працягласць: %d хвілін</string>
+			<string>Працягласць: %d мінут</string>
 			<key>other</key>
-			<string>Працягласць: %d хвілін</string>
+			<string>Працягласць: %d мінут</string>
 		</dict>
 	</dict>
 	<key>n_minutes</key>
@@ -73,13 +73,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d хв.</string>
+			<string>%d мін</string>
 			<key>few</key>
-			<string>%d хв.</string>
+			<string>%d мін</string>
 			<key>many</key>
-			<string>%d хв.</string>
+			<string>%d мін</string>
 			<key>other</key>
-			<string>%d хв.</string>
+			<string>%d мін</string>
 		</dict>
 	</dict>
 	<key>n_hours</key>
@@ -93,13 +93,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d гадз.</string>
+			<string>%d гадз</string>
 			<key>few</key>
-			<string>%d гадз.</string>
+			<string>%d гадз</string>
 			<key>many</key>
-			<string>%d гадз.</string>
+			<string>%d гадз</string>
 			<key>other</key>
-			<string>%d гадз.</string>
+			<string>%d гадз</string>
 		</dict>
 	</dict>
 	<key>n_chats</key>

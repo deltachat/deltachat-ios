@@ -54,6 +54,8 @@
 "muted" = "Беззвучный";
 "ephemeral_messages" = "Исчезающие сообщения";
 "ephemeral_messages_hint" = "Настройка распространяется на всех участников; однако сообщения всё ещё можно копировать, сохранять и пересылать";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Установить для всех";
 "save" = "Сохранить";
 "chat" = "Чат";
 "media" = "Медиафайлы";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Переслано от %1$@";
 "video" = "Видео";
 "documents" = "Документы";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Контакт";
 "bot" = "Бот";
 "camera" = "Камера";
@@ -197,6 +200,18 @@
 "webxdc_store_url" = "URL селектора приложений";
 "webxdc_store_url_explain" = "Если установлено, URL будет использоваться в качестве селектора приложений вместо стандартного";
 "webxdc_draft_hint" = "Нажмите \"Отправить\", чтобы поделиться";
+// The placeholder is replaced by the name of a Mini App that wants to have microphone access.
+"webxdc_perm_ask_microphone" = "Разрешить \"%1$@\" использовать микрофон?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera access.
+"webxdc_perm_ask_camera" = "Разрешить \"%1$@\" использовать камеру?";
+// The placeholder is replaced by the name of a Mini App that wants to have camera and microphone access.
+"webxdc_perm_ask_camera_microphone" = "Разрешить \"%1$@\" использовать камеру и микрофон?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to the current location.
+"webxdc_perm_ask_location" = "Разрешить \"%1$@\" определять местоположение?";
+// The placeholder is replaced by the name of a Mini App that wants to have access to motion/orientation sensors.
+"webxdc_perm_ask_sensors" = "Разрешить \"%1$@\" доступ к датчикам движения?";
+"webxdc_perm_denied_settings" = "Отсутствуют разрешения для Delta Chat. Пожалуйста, предоставьте Delta Chat необходимые разрешения в настройках Android.";
+"webxdc_perm_reset" = "Сбросить разрешения";
 "home" = "Домой";
 "games" = "Игры";
 "tools" = "Инструменты";
@@ -287,6 +302,8 @@
 "show_in_chat" = "Показать в чате";
 "show_app_in_chat" = "Показать приложение в чате";
 "menu_share" = "Поделиться";
+// "to allow," for example a permission
+"allow" = "Разрешить";
 // Verb "to block sth." usually a mailing list or a contact, not a noun
 "block" = "Заблокировать";
 "menu_block_contact" = "Заблокировать контакт";
@@ -330,10 +347,16 @@
 "pin" = "Закрепить";
 // Adj. of "pin", describing a state of being pinned.
 "pinned" = "Закреплено";
+"pin_for_everyone_ask" = "Закрепить сообщение для всех в чате?";
+"pin_for_everyone" = "Закрепить для всех";
 // Opposite of "Pin", removing the sticky-state from a chat or message.
 "unpin" = "Открепить";
+"unpin_for_everyone_ask" = "Открепить сообщение для всех в чате?";
+"unpin_for_everyone" = "Открепить для всех";
 "message_pinned_by_you" = "Вы закрепили сообщение";
 "message_pinned_by_other" = "Сообщение закреплено %1$@";
+"message_unpinned_by_you" = "Вы открепили сообщение";
+"message_unpinned_by_other" = "Сообщение откреплено %1$@";
 "ConversationFragment_quoted_message_not_found" = "Исходное сообщение не найдено";
 "reply_privately" = "Ответить лично";
 "source_code" = "Исходный код";
@@ -478,10 +501,12 @@
 "please_enter_chat_name" = "Пожалуйста, введите имя.";
 "group_add_members" = "Добавить участников";
 "group_self_not_in_group" = "Вы должны быть участником группы, чтобы выполнить это действие.";
+// deprecated
 "profile_encryption" = "Шифрование";
 "profile_shared_chats" = "Общие чаты";
 // Separator between the list of actual members and past members
 "past_members" = "Прошлые участники";
+// deprecated, use string "contact"
 "tab_contact" = "Контакты";
 "tab_group" = "Группа";
 "tab_gallery" = "Галерея";
@@ -639,6 +664,11 @@
 // first placeholder is replaced by the number of files (always 2 or more); second placeholder is replaced by a chat name
 "ask_send_files_to_chat" = "Отправить %1$d файла(ов) в \"%2$@\"?";
 "ask_send_files_to_selected_chats" = "Отправить %1$d файл(ов) в %2$d чата(ов)?";
+// Used in notifications when videos are being prepared before they are recoded
+"video_preparing" = "Подготовка медиа...";
+// Used in notifications when videos are being recoded for smaller sizes before sending
+"video_compressing" = "Сжатие видео...";
+"video_recode_busy" = "Другое видео все еще обрабатывается, пожалуйста подождите.";
 "share_text_multiple_chats" = "Отправить текст в %1$d чата(ов)?\n\n\"%2$@\"";
 "share_abort" = "Общий доступ прерван из-за отсутствия необходимых разрешений.";
 // preferences
@@ -706,6 +736,7 @@
 "pref_backup_export_this" = "Экспортировать профиль";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспорт всех %1$d профилей";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Начать резервное копирование";
 "pref_backup_written_to_x" = "Резервная копия успешно записана в \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

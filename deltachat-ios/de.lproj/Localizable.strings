@@ -54,6 +54,8 @@
 "muted" = "Stumm";
 "ephemeral_messages" = "Verschwindende Nachrichten";
 "ephemeral_messages_hint" = "Gilt für alle Gruppenmitglieder, die Delta Chat verwenden. Nachrichten können kopiert, gespeichert oder weitergeleitet werden.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Für alle festlegen";
 "save" = "Speichern";
 "chat" = "Chat";
 "media" = "Medien";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Weitergeleitet von %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Bot";
 "camera" = "Kamera";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Bitte einen Namen eingeben.";
 "group_add_members" = "Mitglied hinzufügen";
 "group_self_not_in_group" = "Du must ein Mitglied der Gruppe sein, um diese Aktion durchführen zu können.";
+// deprecated
 "profile_encryption" = "Verschlüsselung";
 "profile_shared_chats" = "Gemeinsame Chats";
 // Separator between the list of actual members and past members
 "past_members" = "Ehemalige Mitglieder";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galerie";
@@ -731,6 +736,7 @@
 "pref_backup_export_this" = "Dieses Profil exportieren";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Alle %1$d Profile exportieren";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Backup starten";
 "pref_backup_written_to_x" = "Backup nach \"%1$@\" erfolgreich.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -1025,6 +1031,8 @@
 "export_backup_desktop" = "Backup exportieren";
 "message_detail_sent_desktop" = "Gesendet";
 "message_detail_received_desktop" = "Empfangen";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Zuletzt aktualisiert";
 "menu.view.developer.open.log.folder" = "Log-Ordner öffnen";
 "menu.view.developer.open.current.log.file" = "Aktuelle Logdatei öffnen";
 "explain_desktop_minimized_disabled_tray_pref" = "Benachrichtigungssymbol kann nicht deaktiviert werden, da Delta Chat mit der Option --minimized gestartet wurde.";

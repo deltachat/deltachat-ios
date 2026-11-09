@@ -164,6 +164,7 @@
 "forwarded_by" = "Għaddihulek %1$@";
 "video" = "Filmat";
 "documents" = "Dokumenti";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kuntatt";
 "bot" = "Robot";
 "camera" = "Kamera";
@@ -498,6 +499,7 @@
 "please_enter_chat_name" = "Jekk jogħġbok ikteb isem.";
 "group_add_members" = "Żid il-membri";
 "group_self_not_in_group" = "Ma tistax twettaq dal-għemil jekk m\'intix membru tal-grupp.";
+// deprecated
 "profile_encryption" = "Kodifikazzjoni";
 "profile_shared_chats" = "Taħditiet li tinsabu fihom it-tnejn li intom";
 // Separator between the list of actual members and past members
@@ -553,7 +555,7 @@
 // Shown in the setting if the app is "Connected"
 "connectivity_connected" = "Imqabbda";
 "sending" = "Qed tibgħat…";
-"last_msg_sent_successfully" = "L-aħħar messaġġ li ntbagħat.";
+"last_msg_sent_successfully" = "L-aħħar messaġġ intbagħat.";
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Messaġġi";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"

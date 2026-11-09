@@ -134,6 +134,7 @@
 "forwarded_by" = "Továbbítva %1$@ által";
 "video" = "Videó";
 "documents" = "Dokumentumok";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Névjegy";
 "bot" = "Bot";
 "camera" = "Kamera";
@@ -399,10 +400,12 @@
 "group_create_button" = "Csoport készítése";
 "group_add_members" = "Tagok hozzáadása";
 "group_self_not_in_group" = "A csoport tagjának kell lennie, ahhoz, hogy ezt megtehesse.";
+// deprecated
 "profile_encryption" = "Titkosítás";
 "profile_shared_chats" = "Közös csevegések";
 // Separator between the list of actual members and past members
 "past_members" = "Már nem tagok";
+// deprecated, use string "contact"
 "tab_contact" = "Névjegy";
 "tab_group" = "Csoport";
 "tab_gallery" = "Galéria";
@@ -600,6 +603,7 @@
 "pref_backup_export_this" = "Ezen profil exportálása";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Az összes (%1$d) profil exportálása";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Biztonsági mentés készítése";
 "pref_backup_written_to_x" = "A biztonsági mentés sikeresen létrehozva itt: „%1$@”.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

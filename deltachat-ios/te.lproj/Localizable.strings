@@ -65,6 +65,7 @@
 "forwarded_message" = "ఫార్వర్డ్ చేయబడిన సందేసం";
 "video" = "వీడియో";
 "documents" = "పత్రాలు";
+// Noun, used e.g. for headlines in profiles
 "contact" = "పరిచయం";
 "camera" = "కెమేరా";
 "location" = "స్థానం";
@@ -135,8 +136,10 @@
 // create/edit groups, contact/group profile
 "group_name" = "సమూహం పేరు";
 "group_add_members" = "సభ్యుడిని జత చేయి";
+// deprecated
 "profile_encryption" = "ఎన్క్రిప్షన్";
 "profile_shared_chats" = "భాగస్వామ్య చాట్‌లు";
+// deprecated, use string "contact"
 "tab_contact" = "పరిచయం";
 "tab_group" = "సమూహము";
 "tab_gallery" = "గ్యాలరీ";

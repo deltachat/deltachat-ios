@@ -17,7 +17,7 @@
 "none" = "Няма";
 "automatic" = "Аўтаматычна";
 // Adjective, used as an option e.g. for "Certificate Checks"
-"strict" = "Строгі";
+"strict" = "Строга";
 "open" = "Адкрыць";
 "download" = "Спампаваць";
 "downloading" = "Спампоўванне…";
@@ -54,6 +54,8 @@
 "muted" = "Апавяшчэнні адключаны";
 "ephemeral_messages" = "Самазнішчальныя паведамленні";
 "ephemeral_messages_hint" = "Распаўсюджваецца на ўсіх удзельнікаў чата; аднак яны ўсё яшчэ могуць капіяваць, захоўваць і перасылаць паведамленні.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Задаць для ўсіх";
 "save" = "Захаваць";
 "chat" = "Чат";
 "media" = "Медыяфайлы";
@@ -133,7 +135,7 @@
 // deprecated
 // Call duration as shown in the call bubbles. There is some risk to mix with the sending time, so the word "Duration" may be helpful. Might also be "Duration: %d minutes", "%d-minute duration", "%d-minute length" or "%d-minute call"
 // Call duration as shown in the call bubbles in case the call is less than one minute. If the context is not clear enough, one may want to add the word "Duration".
-"call_duration_less_than_a_minute" = "Менш за 1 хвіліну";
+"call_duration_less_than_a_minute" = "Менш за 1 мінуту";
 // Shown beside messages that are "N minutes old". Prefer short strings, or well-known abbreviations.
 // Shown beside messages that are "N hours old". Prefer short strings, or well-known abbreviations.
 // Title of a search result. The placeholder will be replaced by the number of chats found.
@@ -164,6 +166,7 @@
 "forwarded_by" = "Пераслаў(-ла) %1$@";
 "video" = "Відэа";
 "documents" = "Дакументы";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Кантакт";
 "bot" = "Бот";
 "camera" = "Камера";
@@ -366,8 +369,8 @@
 "mute_for_one_day" = "Не апавяшчаць 1 дзень";
 "mute_for_seven_days" = "Не апавяшчаць 7 дзён";
 "mute_forever" = "Ніколі не апавяшчаць";
-"share_location_for_5_minutes" = "5 хвілін";
-"share_location_for_30_minutes" = "30 хвілін";
+"share_location_for_5_minutes" = "5 мінут";
+"share_location_for_30_minutes" = "30 мінут";
 "share_location_for_one_hour" = "1 гадзіну";
 "share_location_for_two_hours" = "2 гадзіны";
 "share_location_for_six_hours" = "6 гадзін";
@@ -444,11 +447,11 @@
 "chat_record_slide_to_cancel" = "Правядзіце, каб скасаваць";
 "chat_record_explain" = "Націсніце і ўтрымлівайце, каб запісаць галасавое паведамленне, адпусціце — каб адправіць";
 "chat_no_chats_yet_title" = "Няма чатаў.\nНацісніце на «+», каб пачаць новы чат.";
-"chat_all_archived" = "Усе чаты архіваваны.\nНацісніце на «+», каб пачаць новы чат.";
+"chat_all_archived" = "Усе чаты ў архіве.\nНацісніце на «+», каб пачаць новы чат.";
 "chat_share_with_title" = "Абагуліць з…";
 // Noun, shown as a placeholder for the message input bar (so if the user has not typed a message yet)
-"chat_input_placeholder" = "Напішыце";
-"chat_archived_label" = "Архівавана";
+"chat_input_placeholder" = "Напішыце паведамленне";
+"chat_archived_label" = "У архіве";
 "chat_request_label" = "Запыт";
 "chat_no_messages" = "Няма паведамленняў.";
 "chat_self_talk_subtitle" = "Паведамленні сабе";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Увядзіце назву.";
 "group_add_members" = "Дадаць удзельнікаў";
 "group_self_not_in_group" = "Вы мусіце быць удзельнікам суполкі, каб выканаць гэтае дзеянне.";
+// deprecated
 "profile_encryption" = "Шыфраванне";
 "profile_shared_chats" = "Чаты ў агульным";
 // Separator between the list of actual members and past members
 "past_members" = "Былыя ўдзельнікі";
+// deprecated, use string "contact"
 "tab_contact" = "Кантакт";
 "tab_group" = "Суполка";
 "tab_gallery" = "Галерэя";
@@ -677,8 +682,8 @@
 "pref_default_status_label" = "Пра сябе";
 "chat_description" = "Апісанне";
 // Option name for changing behaviour of the "Enter key" to sending out a message directly (instead of adding new line). If in doubt, please refer to a similar option in other messengers.
-"pref_enter_sends" = "Адпраўляць пасля націскання клавішы «Увод»";
-"pref_enter_sends_explain" = "Адпраўляць тэкставыя паведамленні пасля націскання клавішы «Увод»";
+"pref_enter_sends" = "Адпраўляць па націсканні на «Увод»";
+"pref_enter_sends_explain" = "Адпраўляць тэкставыя паведамленні пасля націскання на клавішу «Увод»";
 "pref_outgoing_media_quality" = "Якасць выходных медыяфайлаў";
 "pref_outgoing_media_quality_hint" = "Каб адправіць у зыходнай якасці, далучыце медыя як «Файл». Гэта выкарыстае значна больш даных у вас і ў атрымальнікаў.";
 "pref_outgoing_balanced" = "Збалансаваная";
@@ -731,6 +736,7 @@
 "pref_backup_export_this" = "Экспартаваць гэты профіль";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Экспартаваць усе профілі (%1$d)";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Пачаць рэзервовае капіяванне";
 "pref_backup_written_to_x" = "Рэзервовая копія запісана ў «%1$@».";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -800,7 +806,7 @@
 "autodel_confirm" = "Я разумею, выдаліць усе гэтыя паведамленні";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Адразу пасля спампавання";
-"after_5_minutes" = "Праз 5 хвілін";
+"after_5_minutes" = "Праз 5 мінут";
 "autodel_after_1_hour" = "Праз 1 гадзіну";
 "autodel_after_1_day" = "Праз 1 дзень";
 "autodel_after_1_week" = "Праз 1 тыдзень";
@@ -857,9 +863,9 @@
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_disabled_by_other" = "Таймер самазнішчэння паведамленняў адключаны карыстальнікам %1$@.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to
-"ephemeral_timer_seconds_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ сек.";
+"ephemeral_timer_seconds_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ с.";
 // %1$s will be replaced by the number of seconds (always >1) the timer is set to, %2$s will be replaced by name of the contact
-"ephemeral_timer_seconds_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ сек. карыстальнікам %2$@.";
+"ephemeral_timer_seconds_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ с карыстальнікам %2$@.";
 "ephemeral_timer_1_hour_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на 1 гадзіну.";
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_hour_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 гадзіну карыстальнікам %1$@.";
@@ -873,27 +879,27 @@
 // %1$s will be replaced by name of the contact
 "ephemeral_timer_1_year_by_other" = "Таймер самазнішчэння паведамленняў зададзены на 1 год карыстальнікам %1$@.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to
-"ephemeral_timer_minutes_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ хв.";
+"ephemeral_timer_minutes_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ мін.";
 // %1$s will be replaced by the number of minutes (always >1) the timer is set to, %2$s will be replaced by name of the contact
-"ephemeral_timer_minutes_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ хв. карыстальнікам %2$@.";
+"ephemeral_timer_minutes_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ мін карыстальнікам %2$@.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to
 "ephemeral_timer_hours_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ гадз.";
 // %1$s will be replaced by the number of hours (always >1) the timer is set to, %2$s will be replaced by name of the contact
-"ephemeral_timer_hours_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ гадз. карыстальнікам %2$@.";
+"ephemeral_timer_hours_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ гадз карыстальнікам %2$@.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to
 "ephemeral_timer_days_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ сут.";
 // %1$s will be replaced by the number of days (always >1) the timer is set to, %2$s will be replaced by name of the contact
-"ephemeral_timer_days_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ сут. карыстальнікам %2$@.";
+"ephemeral_timer_days_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ сут карыстальнікам %2$@.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to
 "ephemeral_timer_weeks_by_you" = "Вы задалі таймер самазнішчэння паведамленняў на %1$@ тыд.";
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
-"ephemeral_timer_weeks_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ тыд. карыстальнікам %2$@.";
+"ephemeral_timer_weeks_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ тыд карыстальнікам %2$@.";
 "chat_unencrypted_explanation" = "Паведамленні ў гэтым чаце адпраўляюцца па звычайнай эл. пошце і без скразнога шыфравання.";
 "messages_are_e2ee" = "Паведамленні са скразным шыфраваннем.";
 "chat_protection_enabled_tap_to_learn_more" = "Паведамленні са скразным шыфраваннем. Націсніце, каб даведацца больш.";
 "chat_protection_enabled_explanation" = "Усе паведамленні ў гэтым чаце са скразным шыфраваннем.\n\nСкразное шыфраванне захоўвае паведамленні паміж вамі і вашымі суразмоўцамі прыватнымі. Нават серверы або пастаўшчыкі не могуць прачытаць іх.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ патрабуе скразное шыфраванне, якое яшчэ не наладжана для гэтага чата. Націсніце, каб даведацца больш.";
-"invalid_unencrypted_explanation" = "Каб устанавіць скразное шыфраванне, вы можаце сустрэцца з кантактамі асабіста і адсканаваць іхны QR-код, каб пазнаёміцца з імі.";
+"invalid_unencrypted_explanation" = "Каб устанавіць скразное шыфраванне, вы можаце сустрэцца з кантактамі асабіста і адсканаваць іхны QR-код, каб спраўдзіць іхныя асобы.";
 "learn_more" = "Даведацца больш";
 "devicemsg_self_deleted" = "Вы выдалілі чат «Захаваныя паведамленні».\n\nℹ️ Каб выкарыстоўваць функцыю «Захаваныя паведамленні» зноў, стварыце новы чат з сабою.";
 // %1%s will be replaced by date and time in some human-readable format
@@ -920,7 +926,7 @@
 "revive_qr_code" = "Актываваць QR-код";
 "qrshow_title" = "Запрашальны QR-код";
 "qrshow_x_joining" = "Карыстальнік %1$@ далучыўся.";
-"qrshow_x_verified" = "Карыстальнік %1$@ пазнаёміўся.";
+"qrshow_x_verified" = "Карыстальнік %1$@ спраўджаны.";
 "qrshow_x_has_joined_group" = "Карыстальнік %1$@ далучыўся да суполкі.";
 "qrshow_join_group_title" = "Запрашальны QR-код";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the group name, eg. "Scan to join group \"Testing group\""
@@ -942,7 +948,7 @@
 // placeholder will be replaced by the name of the inviter.
 "secure_join_replies" = "Карыстальнік %1$@ адказаў, чакаецца дадаванне да суполкі…";
 "secure_join_wait" = "Устанаўліваецца злучэнне, пачакайце…";
-"contact_verified" = "Карыстальнік %1$@ пазнаёміўся.";
+"contact_verified" = "Карыстальнік %1$@ спраўджаны.";
 "contact_blocked" = "Вы заблакавалі кантакта";
 "mailto_dialog_header_select_chat" = "Выберыце чат, у які трэба адправіць паведамленне";
 // first placeholder is the name of the chat

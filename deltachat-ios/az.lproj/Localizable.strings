@@ -71,6 +71,7 @@
 "forwarded_message" = "Köçürülmüş mesaj";
 "video" = "Video";
 "documents" = "Sənədlər";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "camera" = "Kamera";
 "location" = "Yer";
@@ -179,8 +180,10 @@
 "group_create_button" = "Qrup yarat";
 "group_add_members" = "Üzv elavə et";
 "group_self_not_in_group" = "Bunu etmək üçün qrupun üzvü olmalısan.";
+// deprecated
 "profile_encryption" = "Şifrələmə";
 "profile_shared_chats" = "Çatlar göndərildi";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Qrup";
 "tab_gallery" = "Şəkillər";
@@ -255,6 +258,7 @@
 "pref_backup" = "Nüsxə";
 "pref_backup_explain" = "Daxili yaddaşa mesaj nüsxəsi";
 "pref_backup_export_explain" = "Ehtiyat nüsxəsi bu və ya digər bir cihazda yeni bir quraşdırma qurmağa kömək edir. \n\nNüsxədə bütün mesajlar, kontaktlar, çatlar və son ucdan uca avtoşifrələmə quraşdırmaınız olacaq. Nüsxə faylını təhlükəsiz yerdə saxlayın və ya mümkün qədər tez silin.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Nüsxəyə başla";
 "pref_backup_written_to_x" = "Ehtiyat nüsxə %1$@- ə uğurla yazılmışdır";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

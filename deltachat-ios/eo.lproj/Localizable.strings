@@ -164,6 +164,7 @@
 "forwarded_by" = "Plusendita de %1$@";
 "video" = "Filmo";
 "documents" = "Dokumentoj";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakto";
 "bot" = "Roboto";
 "camera" = "Fotilo";
@@ -446,8 +447,10 @@
 "group_create_button" = "Krei grupon";
 "group_add_members" = "Aldoni anojn";
 "group_self_not_in_group" = "Vi devas esti grupano por fari tion.";
+// deprecated
 "profile_encryption" = "Ĉifrado";
 "profile_shared_chats" = "Kunhavigitaj babiloj";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galerio";
@@ -515,6 +518,7 @@
 "pref_other" = "Alia";
 "pref_backup" = "Savkopio";
 "pref_backup_explain" = "Savkopii babilojn al ekstera memorilo";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Komenci savkopiadon";
 "pref_backup_written_to_x" = "Savkopio sukcese konservita al \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

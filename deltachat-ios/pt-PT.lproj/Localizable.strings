@@ -115,6 +115,7 @@
 "forwarded_message" = "Reencaminhada";
 "video" = "Vídeo";
 "documents" = "Documentos";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Contacto";
 "camera" = "Câmera";
 // Toggle camera on/off eg. during an video call
@@ -293,7 +294,9 @@
 "please_enter_chat_name" = "Por favor introduz um nome.";
 "group_add_members" = "Adicionar membros";
 "group_self_not_in_group" = "Tem de ser membro do grupo para realizar a ação.";
+// deprecated
 "profile_encryption" = "Encriptação";
+// deprecated, use string "contact"
 "tab_contact" = "Contacto";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galeria";
@@ -386,6 +389,7 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Backup das chats para o dispositivo externo";
 "pref_backup_export_explain" = "Um backup ajuda-o a configurar uma nova instalação neste ou em outro dispositivo. \n\n O backup conterá todas as mensagens, contactos e converas e a configuração de encriptação Mantenha o arquivo de backup em um local seguro ou exclua-o o mais rápido possível.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Inicia backup";
 "pref_backup_written_to_x" = "Backup escrito com sucesso em %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

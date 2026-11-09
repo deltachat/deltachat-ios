@@ -99,6 +99,7 @@
 "forwarded_by" = "%1$@が転送しました";
 "video" = "動画";
 "documents" = "文章";
+// Noun, used e.g. for headlines in profiles
 "contact" = "連絡先";
 "camera" = "カメラ";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -256,8 +257,10 @@
 "group_create_button" = "グループ作成";
 "group_add_members" = "メンバーを追加";
 "group_self_not_in_group" = "グループのメンバーしかが実行されないアクションです。";
+// deprecated
 "profile_encryption" = "暗号化";
 "profile_shared_chats" = "共有チャット";
+// deprecated, use string "contact"
 "tab_contact" = "連絡先";
 "tab_group" = "グループ";
 "tab_gallery" = "画像";
@@ -359,6 +362,7 @@
 "pref_backup" = "バックアップ";
 "pref_backup_explain" = "外部記憶装置へチャットをバックアップする";
 "pref_backup_export_explain" = "バックアップは、本デバイスまたは別のデバイスに新たにインストールする際に役立ちます。\n\nこのバックアップには、すべてのメッセージ、連絡先、チャット、およびエンドツーエンドの自動暗号化設定が含まれます。バックアップファイルは安全な場所に保管するか、できるだけ早く削除してください。";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "バックアップを開始する";
 "pref_backup_written_to_x" = "バックアップは%1$@に正常に完了しました。";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

@@ -54,6 +54,8 @@
 "muted" = "Summutatud";
 "ephemeral_messages" = "Isekustuvad sõnumid";
 "ephemeral_messages_hint" = "Kehtib kõikidele selles vestluses osalejatele - aga siiski saavad nad sõnumeid kopeerida, salvestada ja edastada.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Seadista kõigi jaoks";
 "save" = "Salvesta";
 "chat" = "Vestlus";
 "media" = "Meedia";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Edastaja: %1$@";
 "video" = "Video";
 "documents" = "Dokumendid";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Robot";
 "camera" = "Kaamera";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Palun sisesta nimi";
 "group_add_members" = "Lisa liikmeid";
 "group_self_not_in_group" = "Selle tegevuse jaoks pead olemagrupi liige.";
+// deprecated
 "profile_encryption" = "Krüptimine";
 "profile_shared_chats" = "Ühised vestlused";
 // Separator between the list of actual members and past members
 "past_members" = "Varasemad liikmed";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galerii";
@@ -731,6 +736,7 @@
 "pref_backup_export_this" = "Ekspordi see profiil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Ekspordi kõik %1$d profiili";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Alusta varundamist";
 "pref_backup_written_to_x" = "Varukoopia tegemine asukohta „%1$@“ õnnestus.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

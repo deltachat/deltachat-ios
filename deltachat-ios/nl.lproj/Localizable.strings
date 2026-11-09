@@ -54,6 +54,8 @@
 "muted" = "Genegeerd";
 "ephemeral_messages" = "Verdwijnende berichten";
 "ephemeral_messages_hint" = "Deze instellingen zijn van toepassing op alle deelnemers. Ze kunnen berichten kopiëren, opslaan of doorsturen middels andere e-mailapps.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Instellen voor iedereen";
 "save" = "Opslaan";
 "chat" = "Gesprek";
 "media" = "Media";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Doorgestuurd door %1$@";
 "video" = "Video";
 "documents" = "Documenten";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Contactpersoon";
 "bot" = "Bot";
 "camera" = "Camera";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Voer een naam in.";
 "group_add_members" = "Deelnemers toevoegen";
 "group_self_not_in_group" = "Om deze actie uit te kunnen voeren moet je deelnemen aan de groep.";
+// deprecated
 "profile_encryption" = "Versleuteling";
 "profile_shared_chats" = "Gemeenschappelijke gesprekken";
 // Separator between the list of actual members and past members
 "past_members" = "Voormalige deelnemers";
+// deprecated, use string "contact"
 "tab_contact" = "Contactpersoon";
 "tab_group" = "Groep";
 "tab_gallery" = "Galerij";
@@ -730,7 +735,8 @@
 "pref_backup_export_explain" = "Met een reservekopie kun je een nieuwe installatie instellen op dit of een ander apparaat.\n\nEen reservekopie bevat alle berichten, contactpersonen, gesprekken en je eind-tot-eindversleuteling. Bewaar het reservekopiebestand op een veilige plaats of verwijder het zo snel mogelijk.";
 "pref_backup_export_this" = "Profiel exporteren";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
-"pref_backup_export_all" = "%1$d accounts exporteren";
+"pref_backup_export_all" = "Alle %1$d profielen exporteren";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Reservekopie maken";
 "pref_backup_written_to_x" = "De reservekopie is opgeslagen in ‘%1$@’.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

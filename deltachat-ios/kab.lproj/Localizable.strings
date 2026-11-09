@@ -143,6 +143,7 @@
 "forwarded_by" = "Yettuwelleh s %1$@";
 "video" = "tavidyut";
 "documents" = "Isemliyen";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Anermis";
 "bot" = "Abuṭ";
 "camera" = "Takamiṛat";
@@ -423,10 +424,12 @@
 "group_create_button" = "Rnu agraw";
 "group_add_members" = "Rnu imttekkiyen";
 "group_self_not_in_group" = "Issefk ad tiliḍ d aɛeggal deg ugraw akken ad tgeḍ tigawt-a.";
+// deprecated
 "profile_encryption" = "Awgelhen ";
 "profile_shared_chats" = "Idiwenniyen s wudem ucrik";
 // Separator between the list of actual members and past members
 "past_members" = "Imttekkiyen yezrin";
+// deprecated, use string "contact"
 "tab_contact" = "Anermis";
 "tab_group" = "Agraw";
 "tab_gallery" = "Tamidelt ";
@@ -638,6 +641,7 @@
 "pref_backup_export_this" = "Sifeḍ amaɣnu-agi";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Sifeḍ akk %1$d Imuɣna";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Bdu aḥraz";
 "pref_backup_written_to_x" = "Aḥraz yura akken iwata ɣer \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

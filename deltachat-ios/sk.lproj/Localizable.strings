@@ -164,6 +164,7 @@
 "forwarded_by" = "Preposlal %1$@";
 "video" = "Video";
 "documents" = "Dokumenty";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Bot";
 "camera" = "Fotoaparát";
@@ -498,10 +499,12 @@
 "please_enter_chat_name" = "Prosím zadajte názov.";
 "group_add_members" = "Pridať členov";
 "group_self_not_in_group" = "Ak chcete vykonať túto akciu, musíte byť členom skupiny.";
+// deprecated
 "profile_encryption" = "Šifrovanie";
 "profile_shared_chats" = "Spoločné konverzácie";
 // Separator between the list of actual members and past members
 "past_members" = "Niekdajší členovia";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Skupina";
 "tab_gallery" = "Galéria";
@@ -731,6 +734,7 @@
 "pref_backup_export_this" = "Exportovať tento účet";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportovať %1$d účty/účtov";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Spustiť zálohovanie";
 "pref_backup_written_to_x" = "Záloha bola úspešne zapísaná do priečinka „%1$@“.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

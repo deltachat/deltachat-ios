@@ -145,6 +145,7 @@
 "forwarded_by" = "Encaminhado por %1$@";
 "video" = "Vídeo";
 "documents" = "Documentos";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Contato";
 "camera" = "Câmera";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -417,8 +418,10 @@
 "group_create_button" = "Criar grupo";
 "group_add_members" = "Adicionar participantes";
 "group_self_not_in_group" = "É preciso ser um participante do grupo para fazer isso.";
+// deprecated
 "profile_encryption" = "Criptografia";
 "profile_shared_chats" = "Conversas compartilhadas";
+// deprecated, use string "contact"
 "tab_contact" = "Contato";
 "tab_group" = "Grupo";
 "tab_gallery" = "Galeria";
@@ -574,6 +577,7 @@
 "pref_backup" = "Becape";
 "pref_backup_explain" = "Fazer becape das conversas para o armazenamento externo";
 "pref_backup_export_explain" = "Um becape ajudará a configurar uma nova instalação neste ou em outro dispositivo. \n\n O becape conterá todas as mensagens, contatos, conversas e a configuração de criptografia. Mantenha o arquivo de becape em um local seguro ou apague-o o mais rápido possível.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Fazer becape";
 "pref_backup_written_to_x" = "Becape salvo em %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
