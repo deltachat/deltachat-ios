@@ -109,6 +109,7 @@
 "forwarded_by" = "Κοινοποίηση από %1$@";
 "video" = "Βίντεο";
 "documents" = "Αρχεία";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Επαφή";
 "camera" = "Κάμερα";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -291,8 +292,10 @@
 "group_create_button" = "Δημιουργία ομάδας";
 "group_add_members" = "Προσθήκη μελών";
 "group_self_not_in_group" = "Πρέπει να είστε μέλος της ομάδας για να εκτελέσετε αυτήν την ενέργεια.";
+// deprecated
 "profile_encryption" = "Κρυπτογράφηση";
 "profile_shared_chats" = "Κοινόχρηστες συνομιλίες";
+// deprecated, use string "contact"
 "tab_contact" = "Επαφή";
 "tab_group" = "Ομάδα";
 "tab_gallery" = "Εικόνα ή βίντεο";
@@ -413,6 +416,7 @@
 "pref_backup" = "Αντίγραφο Ασφαλείας";
 "pref_backup_explain" = "Δημιουργία αντίγραφου ασφαλείας συνομιλιών στην εξωτερική μνήμη";
 "pref_backup_export_explain" = "Ένα αντίγραφο ασφαλείας σάς βοηθά να ρυθμίσετε μια νέα εγκατάσταση σε αυτήν ή σε άλλη συσκευή.\n\nΤο αντίγραφο ασφαλείας θα περιέχει όλα τα μηνύματα, τις επαφές και τις συνομιλίες και τη ρύθμιση αυτόματης κρυπτογράφησης από άκρο σε άκρο. Φυλάξτε το αρχείο αντιγράφου ασφαλείας σε ασφαλές μέρος ή διαγράψτε το το συντομότερο δυνατό.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Ξεκινήστε τη δημιουργία αντιγράφου ασφαλείας";
 "pref_backup_written_to_x" = "Το αντίγραφο ασφαλείας γράφτηκε με επιτυχία στο \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

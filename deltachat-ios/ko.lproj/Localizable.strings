@@ -109,6 +109,7 @@
 "forwarded_by" = "%1$@에 의해 전달됨";
 "video" = "동영상";
 "documents" = "문서";
+// Noun, used e.g. for headlines in profiles
 "contact" = "연락처";
 "camera" = "카메라";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -289,8 +290,10 @@
 "group_create_button" = "그룹 만들기";
 "group_add_members" = "대화상대 추가";
 "group_self_not_in_group" = "실행을 위해선 그룹의 멤버가 되어야 합니다.";
+// deprecated
 "profile_encryption" = "암호화";
 "profile_shared_chats" = "공유 채팅";
+// deprecated, use string "contact"
 "tab_contact" = "연락처";
 "tab_group" = "그룹";
 "tab_gallery" = "갤러리";
@@ -407,6 +410,7 @@
 "pref_backup" = "백업";
 "pref_backup_explain" = "외부 저장소에 채팅 백업";
 "pref_backup_export_explain" = "백업을 사용하면 이 장치 또는 다른 장치에 새 설치를 설정할 수 있습니다.\n\n백업에는 모든 메시지, 연락처 및 채팅과 모든 자동 암호화 설정이 포함됩니다. 백업 파일을 안전한 장소에 보관하거나 가능한 한 빨리 삭제하십시오.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "백업 시작";
 "pref_backup_written_to_x" = "백업이 \"%1$@\"에 기록되었습니다.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

@@ -67,6 +67,7 @@
 "forwarded_message" = "மேல அனுப்பப்பட்ட சேதி";
 "video" = "காணொளி";
 "documents" = "ஆவணங்கள்";
+// Noun, used e.g. for headlines in profiles
 "contact" = "தொடர்பு";
 "camera" = "புகைப்படக்கருவி";
 "location" = "இடம்";
@@ -139,7 +140,9 @@
 // create/edit groups, contact/group profile
 "group_name" = "குழுவின் பெயர்";
 "group_add_members" = "உறுப்பினர்களை சேர்க்க";
+// deprecated
 "profile_encryption" = "மறைகுறியாக்கம்";
+// deprecated, use string "contact"
 "tab_contact" = "தொடர்பு";
 "tab_gallery" = "காட்சி கூடம்";
 "login_inbox" = "உட்பெட்டி";

@@ -140,6 +140,7 @@
 "forwarded_by" = "Vidarebefordrad av %1$@";
 "video" = "Video";
 "documents" = "Dokument";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Bot";
 "camera" = "Kamera";
@@ -415,10 +416,12 @@
 "group_create_button" = "Skapa grupp";
 "group_add_members" = "Lägg till medlemmar";
 "group_self_not_in_group" = "Du måste vara medlem i gruppen för att utföra denna åtgärd.";
+// deprecated
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delade chattar";
 // Separator between the list of actual members and past members
 "past_members" = "Tidigare medlemmar";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Galleri";
@@ -630,6 +633,7 @@
 "pref_backup_export_this" = "Exportera denna profil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Exportera all %1$d profiler";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Starta säkerhetskopiering";
 "pref_backup_written_to_x" = "Säkerhetskopia korrekt skriven till \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

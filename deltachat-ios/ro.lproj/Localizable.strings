@@ -113,6 +113,7 @@
 "forwarded_by" = "Redirecționat de %1$@";
 "video" = "Video";
 "documents" = "Documente";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Contact";
 "camera" = "Cameră";
 // As in "start a video recording" or "take a photo"; eg. the description of the "shutter button" in cameras
@@ -297,8 +298,10 @@
 "group_create_button" = "Creați un Grup";
 "group_add_members" = "Adăugați Membri";
 "group_self_not_in_group" = "Trebuie să fiți membru al grupului pentru a efectua această acțiune.";
+// deprecated
 "profile_encryption" = "Criptare";
 "profile_shared_chats" = "Chat-uri Partajate";
+// deprecated, use string "contact"
 "tab_contact" = "Contact";
 "tab_group" = "Grup";
 "tab_gallery" = "Galerie";

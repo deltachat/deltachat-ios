@@ -83,6 +83,7 @@
 "forwarded_message" = "Messàgiu inoltradu";
 "video" = "Vìdeu";
 "documents" = "Documentos editàbiles";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Cuntatu";
 "camera" = "Fotocàmera";
 "location" = "Positzione";
@@ -215,8 +216,10 @@
 "group_create_button" = "Crea unu grupu";
 "group_add_members" = "Annanghe mambros";
 "group_self_not_in_group" = "Depes èssre unu membru de su grupu pro fàghere cust\'atzione.";
+// deprecated
 "profile_encryption" = "Tzifradura";
 "profile_shared_chats" = "Tzarradas cumpartzidas";
+// deprecated, use string "contact"
 "tab_contact" = "Cuntatu";
 "tab_group" = "Grupu";
 "tab_gallery" = "Galleria";
@@ -308,6 +311,7 @@
 "pref_backup" = "Còpia de seguresa";
 "pref_backup_explain" = "Faghe una còpia de seguresa in sa memòria esterna";
 "pref_backup_export_explain" = "Una còpia de seguresa t\'agiudat a impostare un\'installatzione noa in custu o in un\'àteru dispositivu.\n\nSa còpia de seguresa ant a cuntènnere totu sos messàgios, sos cuntatos, sas tzarradas e s\'impostatzione de sa tzifradura a nodu terminale (end-to-end) de Autocrypt. Mantene su documentu in unu logu seguru o iscantzellalu in su primu momentu chi podes.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Incumintza sa còpia de seguresa";
 "pref_backup_written_to_x" = "Còpia de seguresa sarvada in \"%1$@\"chene problemas.";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

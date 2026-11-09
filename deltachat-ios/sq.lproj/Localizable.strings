@@ -38,6 +38,7 @@
 "close_window" = "Mbylle Dritaren";
 "forward" = "Përpara";
 "create" = "Krijoje";
+"reset" = "Riktheje te parazgjedhjet";
 "later" = "Më vonë";
 // "Resend" means "Sending the selected message(s) again to the same chat". The string is used in a menu and should be as short as possible. Resending may be needed after failures or to repost old messages to new members.
 "resend" = "Ridërgoje";
@@ -53,6 +54,8 @@
 "muted" = "Heshtuar";
 "ephemeral_messages" = "Mesazhe Që Zhduken";
 "ephemeral_messages_hint" = "Këto rregullime zbatohen mbi krejt pjesëmarrësit që përdorin Delta Chat-in. Sidoqoftë, ata mund të kopjojnë, ruajnë dhe përcjellin mesazhe ose të përdorin klientë të tjerë email-i.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Vëre për Gjithkënd";
 "save" = "Ruaje";
 "chat" = "Fjalosje";
 "media" = "Media";
@@ -162,6 +165,7 @@
 "forwarded_by" = "Përcjellë nga %1$@";
 "video" = "Video";
 "documents" = "Dokumente";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Robot";
 "camera" = "Kamerë";
@@ -494,10 +498,12 @@
 "please_enter_chat_name" = "Ju lutemi, jepni një emër.";
 "group_add_members" = "Shtoni Anëtarë";
 "group_self_not_in_group" = "Që të kryeni këtë veprim, duhet të jeni anëtar i grupit.";
+// deprecated
 "profile_encryption" = "Fshehtëzim";
 "profile_shared_chats" = "Fjalosje të Përbashkëta";
 // Separator between the list of actual members and past members
 "past_members" = "Anëtarë të Dikurshëm";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Grup";
 "tab_gallery" = "Galeri";
@@ -727,6 +733,7 @@
 "pref_backup_export_this" = "Eksportojeni këtë profil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksporto krejt %1$d proflet";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Nis Kopjeruajtjen";
 "pref_backup_written_to_x" = "Kopjeruajtje e shkruar me sukses te “%1$@”";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

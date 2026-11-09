@@ -148,6 +148,7 @@
 "forwarded_by" = "Videresendt av %1$@";
 "video" = "Video";
 "documents" = "Dokumenter";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Bot";
 "camera" = "Kamera";
@@ -435,10 +436,12 @@
 "please_enter_chat_name" = "Skriv inn et navn.";
 "group_add_members" = "Legg til medlem";
 "group_self_not_in_group" = "Du må være medlem av gruppen for å utføre denne handlingen.";
+// deprecated
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delte chatter";
 // Separator between the list of actual members and past members
 "past_members" = "Tidligere medlemmer";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";

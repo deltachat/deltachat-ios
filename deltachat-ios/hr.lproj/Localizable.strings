@@ -62,6 +62,7 @@
 "images" = "Slike";
 "video" = "Video";
 "documents" = "Dokumenti";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "camera" = "Kamera";
 "location" = "Lokacija";
@@ -126,7 +127,9 @@
 "group_name" = "Naziv grupe";
 "group_avatar" = "Grupni avatar";
 "group_add_members" = "Dodaj članove";
+// deprecated
 "profile_encryption" = "Šifriranje";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
 "tab_gallery" = "Galerija";

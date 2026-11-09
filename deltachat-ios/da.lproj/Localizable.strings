@@ -98,6 +98,7 @@
 "forwarded_by" = "Videresendt af %1$@";
 "video" = "Video";
 "documents" = "Dokumenter";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "camera" = "Kamera";
 // Switch eg. from front to back camera
@@ -248,8 +249,10 @@
 "group_create_button" = "Oprette gruppe";
 "group_add_members" = "Tilføj medlemmer";
 "group_self_not_in_group" = "Man skal være medlem af gruppen for at udføre denne handling.";
+// deprecated
 "profile_encryption" = "Kryptering";
 "profile_shared_chats" = "Delte samtaler";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Gruppe";
 "tab_gallery" = "Galleri";
@@ -361,6 +364,7 @@
 "pref_backup" = "Sikkerhedskopi";
 "pref_backup_explain" = "Sikkerhedskopier samtaler til eksternt lager";
 "pref_backup_export_explain" = "En sikkerhedskopi hjælper til at opsætte en ny installation på denne eller en anden enhed.\n\nSikkerhedskopien indeholder alle beskeder, kontakter og samtaler og end-to-end krypteringsopsætning. Gem sikkerhedskopien et sikkert sted eller slet den så hurtigt som muligt.";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Start sikkerhedskopiering";
 "pref_backup_written_to_x" = "Sikkerhedskopi skrevet til %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.

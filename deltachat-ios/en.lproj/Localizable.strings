@@ -54,6 +54,8 @@
 "muted" = "Muted";
 "ephemeral_messages" = "Disappearing Messages";
 "ephemeral_messages_hint" = "Applies to all members of this chat; they can still copy, save, and forward messages.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Set for Everyone";
 "save" = "Save";
 "chat" = "Chat";
 "media" = "Media";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Forwarded by %1$@";
 "video" = "Video";
 "documents" = "Documents";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Contact";
 "bot" = "Bot";
 "camera" = "Camera";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Please enter a name.";
 "group_add_members" = "Add Members";
 "group_self_not_in_group" = "You must be a member of the group to perform this action.";
+// deprecated
 "profile_encryption" = "Encryption";
 "profile_shared_chats" = "Chats in Common";
 // Separator between the list of actual members and past members
 "past_members" = "Past Members";
+// deprecated, use string "contact"
 "tab_contact" = "Contact";
 "tab_group" = "Group";
 "tab_gallery" = "Gallery";
@@ -728,9 +733,10 @@
 "pref_backup" = "Backup";
 "pref_backup_explain" = "Back Up Chats to External Storage";
 "pref_backup_export_explain" = "A backup helps you to set up a new installation on this or on another device.\n\nThe backup will contain all messages, contacts and chats and your end-to-end Autocrypt setup. Keep the backup file in a safe place or delete it as soon as possible.";
-"pref_backup_export_this" = "Export this profile";
+"pref_backup_export_this" = "Export This Profile";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
-"pref_backup_export_all" = "Export all %1$d profiles";
+"pref_backup_export_all" = "Export All %1$d Profiles";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Start Backup";
 "pref_backup_written_to_x" = "Backup written successfully to \"%1$@\".";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
@@ -1025,6 +1031,8 @@
 "export_backup_desktop" = "Export Backup";
 "message_detail_sent_desktop" = "Sent";
 "message_detail_received_desktop" = "Received";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Last Updated";
 "menu.view.developer.open.log.folder" = "Open the Log Folder";
 "menu.view.developer.open.current.log.file" = "Open Current Logfile";
 "explain_desktop_minimized_disabled_tray_pref" = "Tray icon cannot be disabled as Delta Chat was started with the --minimized option.";

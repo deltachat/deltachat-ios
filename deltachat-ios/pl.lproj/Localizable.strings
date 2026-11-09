@@ -54,6 +54,8 @@
 "muted" = "Wyciszony";
 "ephemeral_messages" = "Znikające wiadomości";
 "ephemeral_messages_hint" = "Te ustawienia dotyczą wszystkich uczestników. Mogą jednak kopiować, zapisywać i przekazywać wiadomości.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Włącz dla wszystkich";
 "save" = "Zapisz";
 "chat" = "Czat";
 "media" = "Multimedia";
@@ -164,6 +166,7 @@
 "forwarded_by" = "Przekazana przez %1$@";
 "video" = "Wideo";
 "documents" = "Dokumenty";
+// Noun, used e.g. for headlines in profiles
 "contact" = "Kontakt";
 "bot" = "Bot";
 "camera" = "Kamera";
@@ -498,10 +501,12 @@
 "please_enter_chat_name" = "Wpisz nazwę.";
 "group_add_members" = "Dodaj członków";
 "group_self_not_in_group" = "Musisz być członkiem grupy, aby wykonać tę czynność.";
+// deprecated
 "profile_encryption" = "Szyfrowanie";
 "profile_shared_chats" = "Wspólne czaty";
 // Separator between the list of actual members and past members
 "past_members" = "Byli członkowie";
+// deprecated, use string "contact"
 "tab_contact" = "Kontakt";
 "tab_group" = "Grupa";
 "tab_gallery" = "Galeria";
@@ -731,6 +736,7 @@
 "pref_backup_export_this" = "Eksportuj ten profil";
 // the placeholder will be replaced by the number of profiles to export; the number is always larger than 1
 "pref_backup_export_all" = "Eksportuj wszystkie profile (%1$d)";
+// deprecated, use pref_backup_export_this instead
 "pref_backup_export_start_button" = "Utwórz kopię";
 "pref_backup_written_to_x" = "Kopia zapasowa została pomyślnie zapisana do %1$@";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
