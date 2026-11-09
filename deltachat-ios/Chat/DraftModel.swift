@@ -51,13 +51,13 @@ public class DraftModel: ObservableObject {
         sendEditRequestForMsg = nil
     }
 
-    public func setAttachment(viewType: Int32?, path: String?, mimetype: String? = nil) {
+    public func setAttachment(viewType: Int32?, path: String?) {
         assert(Thread.isMainThread)
         sendEditRequestForMsg = nil
         let quoteMsg = draftMsg?.quoteMessage
         draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
         draftMsg?.quoteMessage = quoteMsg
-        draftMsg?.setFile(filepath: path, mimeType: mimetype)
+        draftMsg?.setFile(filepath: path, mimeType: nil)
         publishDraftMsgChange()
         save(context: dcContext)
     }
