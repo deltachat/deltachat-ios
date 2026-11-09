@@ -1922,7 +1922,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             if let quoteMessage = self.draft.quoteMessage {
                 msg.quoteMessage = quoteMessage
             }
-            msg.setFile(filepath: url.relativePath, mimeType: "audio/m4a")
+            msg.setFile(filepath: url.relativePath)
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
             DispatchQueue.main.async {
                 self.draft.setQuote(quotedMsg: nil)
