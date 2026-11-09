@@ -326,7 +326,7 @@ class NewChatViewController: UITableViewController {
     private func showNewChat(contactId: Int) {
         let chatId = dcContext.createChatByContactId(contactId: contactId)
         let appCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.appCoordinator
-        appCoordinator?.showChat(chatId: chatId)
+        appCoordinator?.showChat(chatId: chatId, clearViewControllerStack: true)
     }
 
     private func showContactDetail(contactId: Int) {

@@ -153,8 +153,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         dcContext.setChatDescription(chatId: groupChatId, descr: descriptionCell.textField.text)
 
         let appCoordinator = (UIApplication.shared.delegate as? AppDelegate)?.appCoordinator
-        appCoordinator?.showChat(chatId: groupChatId)
-
+        appCoordinator?.showChat(chatId: groupChatId, clearViewControllerStack: true)
     }
 
 

@@ -583,7 +583,7 @@ class ProfileViewController: UITableViewController {
                 tableView.deselectRow(at: indexPath, animated: true)
                 showMedia()
             case .startChat:
-                appCoordinator?.showChat(chatId: dcContext.createChatByContactId(contactId: contactId))
+                appCoordinator?.showChat(chatId: dcContext.createChatByContactId(contactId: contactId), clearViewControllerStack: true)
             }
         case .members:
             if isMemberManagementRow(row: indexPath.row) {
@@ -603,7 +603,7 @@ class ProfileViewController: UITableViewController {
                 }
             }
         case .sharedChats:
-            appCoordinator?.showChat(chatId: sharedChats?.getChatId(index: indexPath.row) ?? 0)
+            appCoordinator?.showChat(chatId: sharedChats?.getChatId(index: indexPath.row) ?? 0, clearViewControllerStack: true)
         }
     }
 
