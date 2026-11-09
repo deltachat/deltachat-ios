@@ -20,9 +20,6 @@ public class DraftModel: ObservableObject {
     var attachment: String? {
         return draftMsg?.fileURL?.relativePath
     }
-    var attachmentMimeType: String? {
-        return draftMsg?.filemime
-    }
     var viewType: Int32? {
         return draftMsg?.type
     }
