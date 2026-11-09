@@ -54,7 +54,7 @@ public class DraftModel: ObservableObject {
         let quoteMsg = draftMsg?.quoteMessage
         draftMsg = dcContext.newMessage(viewType: viewType ?? DC_MSG_TEXT)
         draftMsg?.quoteMessage = quoteMsg
-        draftMsg?.setFile(filepath: path, mimeType: nil)
+        draftMsg?.setFile(filepath: path)
         publishDraftMsgChange()
         save(context: dcContext)
     }
