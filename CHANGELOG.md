@@ -8,8 +8,9 @@
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Fixed bar buttons having the wrong tint color on liquid glass
+- Fix resending of long messages
 - Update translations
-- Update to core 2.68.0
+- Update to core 2.69.0
 
 
 ## v2.65.0
