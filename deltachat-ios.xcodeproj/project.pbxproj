@@ -111,6 +111,7 @@
 		6430531D2DF0668600E26D1F /* NSItemProvider+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6430531C2DF0668600E26D1F /* NSItemProvider+Extensions.swift */; };
 		645575212EDEE69700F46CD3 /* CallWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575202EDEE69700F46CD3 /* CallWindow.swift */; };
 		645575232F00000100F46CD3 /* OutgoingRingbackPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */; };
+		645A48EC30A1E1D90085E827 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3060119E22DDE24000C1CE6F /* Localizable.strings */; };
 		645ED8AF30629CE7003A3680 /* PinBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ED8AE30629CE7003A3680 /* PinBarView.swift */; };
 		6462680B303EFECB002475E8 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6C9392606190600D0755A /* NotificationManager.swift */; };
 		646896662E00416100E965B3 /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646896652E00415900E965B3 /* CallViewController.swift */; };
@@ -250,6 +251,13 @@
 			remoteInfo = DcShare;
 		};
 		643B447B2E0C2BD900AEE026 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A9FB13F1FB061E2001FEA36;
+			remoteInfo = "deltachat-ios";
+		};
+		645A48E730A1C87D0085E827 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7A9FB1381FB061E2001FEA36 /* Project object */;
 			proxyType = 1;
@@ -474,6 +482,7 @@
 		643B44772E0C2BD800AEE026 /* DcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645575202EDEE69700F46CD3 /* CallWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallWindow.swift; sourceTree = "<group>"; };
 		645575222F00000100F46CD3 /* OutgoingRingbackPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingRingbackPlayer.swift; sourceTree = "<group>"; };
+		645A48E330A1C87D0085E827 /* DcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DcUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		645ED8AE30629CE7003A3680 /* PinBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinBarView.swift; sourceTree = "<group>"; };
 		646896652E00415900E965B3 /* CallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		6479088B307781FF006A0A3C /* UIMenu+resultBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenu+resultBuilder.swift"; sourceTree = "<group>"; };
@@ -712,6 +721,11 @@
 			path = DcTests;
 			sourceTree = "<group>";
 		};
+		645A48E430A1C87D0085E827 /* DcUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DcUITests;
+			sourceTree = "<group>";
+		};
 		D878C5002CF72AA0009AF551 /* DcWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -741,6 +755,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		643B44742E0C2BD800AEE026 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		645A48E030A1C87D0085E827 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -939,6 +960,7 @@
 				DCA000062CF72AA0009AF551 /* DcAppClip */,
 				D878C5002CF72AA0009AF551 /* DcWidget */,
 				643B44782E0C2BD900AEE026 /* DcTests */,
+				645A48E430A1C87D0085E827 /* DcUITests */,
 				7A9FB1411FB061E2001FEA36 /* Products */,
 				7A9FB4F81FB084E6001FEA36 /* Frameworks */,
 				AFE4D4B4B038293E63BC1537 /* Pods */,
@@ -959,6 +981,7 @@
 				DCA000022CF72AA0009AF551 /* DcAppClip.app */,
 				D878C4FB2CF72AA0009AF551 /* DcWidget.appex */,
 				643B44772E0C2BD800AEE026 /* DcTests.xctest */,
+				645A48E330A1C87D0085E827 /* DcUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1329,6 +1352,29 @@
 			productReference = 643B44772E0C2BD800AEE026 /* DcTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		645A48E230A1C87D0085E827 /* DcUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 645A48E930A1C87D0085E827 /* Build configuration list for PBXNativeTarget "DcUITests" */;
+			buildPhases = (
+				645A48DF30A1C87D0085E827 /* Sources */,
+				645A48E030A1C87D0085E827 /* Frameworks */,
+				645A48E130A1C87D0085E827 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				645A48E830A1C87D0085E827 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				645A48E430A1C87D0085E827 /* DcUITests */,
+			);
+			name = DcUITests;
+			packageProductDependencies = (
+			);
+			productName = DcUITests;
+			productReference = 645A48E330A1C87D0085E827 /* DcUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		7A9FB13F1FB061E2001FEA36 /* deltachat-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A9FB1521FB061E2001FEA36 /* Build configuration list for PBXNativeTarget "deltachat-ios" */;
@@ -1422,7 +1468,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 2610;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 1640;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
@@ -1433,6 +1479,10 @@
 					};
 					643B44762E0C2BD800AEE026 = {
 						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 7A9FB13F1FB061E2001FEA36;
+					};
+					645A48E230A1C87D0085E827 = {
+						CreatedOnToolsVersion = 27.0;
 						TestTargetID = 7A9FB13F1FB061E2001FEA36;
 					};
 					7A9FB13F1FB061E2001FEA36 = {
@@ -1533,6 +1583,7 @@
 				D878C4FA2CF72AA0009AF551 /* DcWidget */,
 				DCA000012CF72AA0009AF551 /* DcAppClip */,
 				643B44762E0C2BD800AEE026 /* DcTests */,
+				645A48E230A1C87D0085E827 /* DcUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1554,6 +1605,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		645A48E130A1C87D0085E827 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				645A48EC30A1E1D90085E827 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1732,6 +1791,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		643B44732E0C2BD800AEE026 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		645A48DF30A1C87D0085E827 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1960,6 +2026,11 @@
 			isa = PBXTargetDependency;
 			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
 			targetProxy = 643B447B2E0C2BD900AEE026 /* PBXContainerItemProxy */;
+		};
+		645A48E830A1C87D0085E827 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
+			targetProxy = 645A48E730A1C87D0085E827 /* PBXContainerItemProxy */;
 		};
 		648BA1D12F9A320E007B1FDE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2308,6 +2379,64 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/deltachat-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/deltachat-ios";
+			};
+			name = Release;
+		};
+		645A48EA30A1C87D0085E827 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "deltachat-ios";
+			};
+			name = Debug;
+		};
+		645A48EB30A1C87D0085E827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y86453UA8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = chat.delta.DcUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "deltachat-ios";
 			};
 			name = Release;
 		};
@@ -2787,6 +2916,15 @@
 			buildConfigurations = (
 				643B447D2E0C2BD900AEE026 /* Debug */,
 				643B447E2E0C2BD900AEE026 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		645A48E930A1C87D0085E827 /* Build configuration list for PBXNativeTarget "DcUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				645A48EA30A1C87D0085E827 /* Debug */,
+				645A48EB30A1C87D0085E827 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
