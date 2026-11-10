@@ -1,7 +1,8 @@
 # Delta Chat iOS Changelog
 
 
-## Unreleased
+## v2.69.0
+2026-11
 
 - A voice message button is now shown when user is not writing text
 - Updated wallpaper selection screen to liquid glass
