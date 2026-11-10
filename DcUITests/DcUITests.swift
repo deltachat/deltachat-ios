@@ -28,22 +28,21 @@ final class DcUITests: XCTestCase {
     }
 
     @MainActor func testOnBoarding() throws {
+        DcAccounts.shared.opened {
+            $0.selectUnconfiguredProfile()
+        }
         dc.launch()
-        XCTAssert(dc.staticTexts[.localized("welcome_desktop")].waitForExistence(timeout: 3), """
-            This test requires no accounts present on the simulator
-        """)
         dc.buttons[.localized("onboarding_create_instant_account")].tap()
         dc.typeText("Onboarding Test")
         dc.buttons[.localized("instant_onboarding_create")].tap()
         XCTAssert(dc.staticTexts[.localized("pref_chats")].waitForExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("device_talk")].waitForExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("saved_messages")].waitForExistence(timeout: 3))
-        XCTAssert(DcAccounts.shared.opened { $0.remove(id: $0.getSelected().id) })
     }
 
     @MainActor func testDeletingProfile() throws {
         let dcContext = DcAccounts.shared.opened {
-            $0.selectNewProfile(online: false)
+            $0.selectConfiguredProfile(online: false)
         }
         dc.launch()
         dc.buttons[.localized("switch_account")].tap()
@@ -57,8 +56,8 @@ final class DcUITests: XCTestCase {
 
     @MainActor func testCompose() throws {
         let (contact, qr) = DcAccounts.shared.opened { dcAccounts in
-            let contact = dcAccounts.selectNewProfile(online: true)
-            dcAccounts.selectNewProfile(online: true)
+            let contact = dcAccounts.selectConfiguredProfile(online: true)
+            dcAccounts.selectConfiguredProfile(online: true)
             return (contact, contact.getSecurejoinQr(chatId: 0).flatMap(URL.init(string:)))
         }
         guard let qr else { return XCTFail("Failed to get secure join qr") }
@@ -125,6 +124,7 @@ final class DcUITests: XCTestCase {
 
 
 extension DcAccounts {
+    @discardableResult
     func opened<T>(_ batch: (DcAccounts) -> T) -> T {
         dc.terminate()
         openDatabase(writeable: true)
@@ -143,21 +143,26 @@ extension DcAccounts {
     }
 
     @discardableResult
-    func selectNewProfile(online: Bool, caller: String = #function, line: Int = #line) -> DcContext {
+    func selectUnconfiguredProfile() -> DcContext {
+        let unconfigured = getAll().map(get(id:)).first(where: { !$0.isConfigured() }) ?? get(id: add())
+        unconfigured.setConfig("test_relay_set", transport.absoluteString)
+        unconfigured.setConfigBool("ui.ios.test_profile", true)
+        XCTAssert(select(id: unconfigured.id))
+        return unconfigured
+    }
+
+    @discardableResult
+    func selectConfiguredProfile(online: Bool, caller: String = #function, line: Int = #line) -> DcContext {
+        let newProfile = selectUnconfiguredProfile()
         let name = caller + ":\(line)"
-        let selected = getSelected()
-        let newProfile = !selected.isConfigured() && selected.id != 0 ? selected : get(id: add())
         if online {
-            XCTAssert(true == (try? newProfile.addTransportFromQr(qrCode: "dcaccount:\(transport)")))
-            newProfile.setConfig("configured_addr", "ci-ios.test.\(name).\(Date().timeIntervalSince1970)@\(transport)")
+            XCTAssert(true == (try? newProfile.initTransports(qrCode: nil)))
         } else {
             newProfile.addPseudoTransport(addr: "ios.test.\(name)@delta.chat")
             newProfile.setConfig("configured_addr", "ci-ios.test.\(name)@delta.chat")
             newProfile.setConfigBool("bcc_self", false)
         }
         newProfile.setConfig("displayname", "\(name)")
-        newProfile.setConfigBool("ui.ios.test_profile", true)
-        XCTAssert(select(id: newProfile.id))
         return newProfile
     }
 
