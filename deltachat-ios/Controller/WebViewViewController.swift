@@ -7,6 +7,11 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     public lazy var webView: WKWebView = {
         let view = WKWebView(frame: .zero, configuration: configuration)
         view.navigationDelegate = self
+        #if DEBUG
+        if #available(iOS 16.4, *) {
+            view.isInspectable = true
+        }
+        #endif
         return view
     }()
 
