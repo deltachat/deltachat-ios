@@ -65,7 +65,8 @@ final class DcUITests: XCTestCase {
         dc.open(qr)
         dc.buttons[.localized("ok")].tap()
         XCTAssert(dc.staticTexts[.localized("chat_protection_enabled_tap_to_learn_more")].waitForExistence(timeout: 3))
-        XCTAssert(dc.textViews[.localized("write_message_desktop")].waitForExistence(timeout: 15))
+        // Note: Currently this is flaky because we have a bug #3459
+        XCTAssert(dc.textViews[.localized("write_message_desktop")].waitForExistence(timeout: 10))
         dc.textViews[.localized("write_message_desktop")].tap()
         dc.typeText("Hi")
         dc.buttons[.localized("menu_send")].tap()
