@@ -7,6 +7,7 @@ import XCTest
 let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 let dc = XCUIApplication()
 let transport = URL(string: "ci-chatmail.testrun.org")!
+let sharedResources = URL(string: ProcessInfo.processInfo.environment["SIMULATOR_SHARED_RESOURCES_DIRECTORY"]!)!
 
 final class DcUITests: XCTestCase {
 
@@ -52,6 +53,27 @@ final class DcUITests: XCTestCase {
         dc.buttons[.localized("delete_account")].tap()
         XCTAssert(dc.staticTexts[dcContext.displayname!].waitForNonExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("welcome_desktop")].waitForExistence(timeout: 3))
+    }
+
+    @MainActor func testCreatingBackup() throws {
+        DcAccounts.shared.opened {
+            $0.selectConfiguredProfile(online: false)
+        }
+        dc.launch()
+        dc.tabBars.buttons[.localized("menu_settings")].tap()
+        dc.cells.staticTexts[.localized("pref_chats")].tap()
+        dc.cells.staticTexts[.localized("export_backup_desktop")].tap()
+        springboard.typeText("1\n")
+        XCTAssert(dc.buttons[.localized("pref_backup_export_this")].wait(for: \.isHittable, toEqual: true, timeout: 3))
+        dc.buttons[.localized("pref_backup_export_this")].tap()
+        XCTAssert(dc.staticTexts[containing: .localized("backup_successful_explain_ios")].waitForExistence(timeout: 5))
+
+        // Remove backup file
+        for case let url as URL in FileManager.default.enumerator(
+            at: sharedResources, includingPropertiesForKeys: nil
+        ) ?? .init() where url.lastPathComponent.hasPrefix("delta-chat-backup-") {
+            try FileManager.default.removeItem(at: url)
+        }
     }
 
     @MainActor func testCompose() throws {
@@ -135,12 +157,12 @@ extension DcAccounts {
 
     /// Find the accounts database that the simulator is using
     static func simulatorDBLocation() -> URL? {
-        let sharedResources = ProcessInfo.processInfo.environment["SIMULATOR_SHARED_RESOURCES_DIRECTORY"]
-            .flatMap(URL.init(string:))!
-            .appending(path: "Containers/Shared/AppGroup")
-        return try? FileManager.default.contentsOfDirectory(at: sharedResources, includingPropertiesForKeys: [.isDirectoryKey])
-            .filter { try $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true }
-            .first { FileManager.default.fileExists(atPath: $0.appendingPathComponent("accounts").path) }
+        try? FileManager.default.contentsOfDirectory(
+            at: sharedResources.appending(path: "Containers/Shared/AppGroup"),
+            includingPropertiesForKeys: [.isDirectoryKey]
+        )
+        .filter { try $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true }
+        .first { FileManager.default.fileExists(atPath: $0.appending(path: "accounts").path) }
     }
 
     @discardableResult
@@ -184,5 +206,11 @@ extension DcContext {
 extension XCUIElementTypeQueryProvider {
     var backButton: XCUIElement {
         buttons["BackButton"]
+    }
+}
+
+extension XCUIElementQuery {
+    subscript(containing text: String) -> XCUIElement {
+        matching(NSPredicate(format: "label CONTAINS %@", text)).firstMatch
     }
 }
