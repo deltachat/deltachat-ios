@@ -1,12 +1,15 @@
 # Delta Chat iOS Changelog
 
+## Unreleased
+
+- Chats tab now always opens after restarting the app
+- Fixed wallpaper selection not applying until you restarted the app
 
 ## v2.69.0
 2026-11
 
 - A voice message button is now shown when user is not writing text
 - Updated wallpaper selection screen to liquid glass
-- Chats tab now always opens after restarting the app
 - Fix performance issues on some larger profiles
 - Fixed attach button showing up when editing a message
 - Fixed bar buttons having the wrong tint color on liquid glass

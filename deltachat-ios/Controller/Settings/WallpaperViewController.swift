@@ -80,7 +80,7 @@ struct WallpaperView: View {
 
     @ViewBuilder var backgroundImageView: some View {
         if let backgroundImageName {
-            WebImage(url: Utils.getBackgroundImageURL(name: backgroundImageName))
+            WebImage(url: Utils.getBackgroundImageURL(name: backgroundImageName), options: .refreshCached)
                 .resizable()
         } else {
             Image(vc?.traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")

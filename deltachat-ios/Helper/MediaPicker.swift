@@ -121,7 +121,7 @@ class MediaPicker: NSObject, UINavigationControllerDelegate {
                 let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 imagePickerController.sourceType = .photoLibrary
-                imagePickerController.mediaTypes = [kUTTypeImage as String]
+                imagePickerController.mediaTypes = [UTType.image.identifier]
                 imagePickerController.allowsEditing = true
                 navigationController?.present(imagePickerController, animated: true)
             } else {
