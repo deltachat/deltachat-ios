@@ -149,8 +149,8 @@ class ProfileViewController: UITableViewController {
     // MARK: - Notifications
 
     @objc private func handleChatModified(_ notification: Notification) {
-        guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
-        guard chatId == notification.userInfo?["chat_id"] as? Int else { return }
+        guard dcContext.id == notification.userInfo?["account_id"] as? Int,
+              chatId == notification.userInfo?["chat_id"] as? Int else { return }
         chat = dcContext.getChat(chatId: chatId)
 
         DispatchQueue.main.async { [weak self] in
