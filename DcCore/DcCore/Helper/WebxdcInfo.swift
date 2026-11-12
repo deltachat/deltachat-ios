@@ -1,4 +1,4 @@
-public struct WebxdcInfo: Decodable {
+public struct WebxdcInfo: Codable & Hashable {
     public let name: String
     public let icon: String
     public let document: String?

@@ -78,6 +78,8 @@ class AppCoordinator: NSObject {
     }
 
     func showTab(index: Int) {
+        let nvc = tabBarController.selectedViewController as? UINavigationController
+        nvc?.popToRootViewController(animated: false)
         tabBarController.selectedIndex = index
     }
 
@@ -98,9 +100,9 @@ class AppCoordinator: NSObject {
             if let msgId, openHighlightedMsg {
                 let dcContext = dcAccounts.getSelected()
                 let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: msgId)
-                let webxdcVC = WebxdcViewController(dcContext: dcContext, messageId: msgId)
+                let (webxdcVC, pushAnimation) = WebxdcViewController.for(dcContext: dcContext, messageId: msgId)
                 let controllers: [UIViewController] = [chatListViewController, chatViewController, webxdcVC]
-                rootController.setViewControllers(controllers, animated: animated)
+                rootController.setViewControllers(controllers, withAnimation: pushAnimation)
             } else {
                 if clearViewControllerStack {
                     rootController.popToRootViewController(animated: false)

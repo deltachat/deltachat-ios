@@ -152,8 +152,8 @@ class FilesViewController: UIViewController {
     }
 
     func showWebxdcViewFor(message: DcMsg) {
-        let webxdcViewController = WebxdcViewController(dcContext: dcContext, messageId: message.id)
-        navigationController?.pushViewController(webxdcViewController, animated: true)
+        let (webxdcViewController, animation) = WebxdcViewController.for(dcContext: dcContext, messageId: message.id)
+        navigationController?.pushViewController(webxdcViewController, withAnimation: animation)
     }
 }
 

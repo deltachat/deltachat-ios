@@ -692,6 +692,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		64BE3D43308B46F500BDBEC6 /* Exceptions for "DcWidget" folder in "deltachat-ios" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LiveActivities/WebxdcLiveActivityShared.swift,
+			);
+			target = 7A9FB13F1FB061E2001FEA36 /* deltachat-ios */;
+		};
 		D81A6A002D16EDB10023749C /* Exceptions for "DcWidget" folder in "DcWidget" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -717,6 +724,7 @@
 		D878C5002CF72AA0009AF551 /* DcWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				64BE3D43308B46F500BDBEC6 /* Exceptions for "DcWidget" folder in "deltachat-ios" target */,
 				D81A6A002D16EDB10023749C /* Exceptions for "DcWidget" folder in "DcWidget" target */,
 			);
 			path = DcWidget;
@@ -1425,7 +1433,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 2610;
+				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 1640;
 				ORGANIZATIONNAME = "merlinux GmbH";
 				TargetAttributes = {
@@ -2659,7 +2667,7 @@
 				INFOPLIST_FILE = DcWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2695,7 +2703,7 @@
 				INFOPLIST_FILE = DcWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = DcWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 merlinux GmbH. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

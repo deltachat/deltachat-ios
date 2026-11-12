@@ -28,7 +28,7 @@ import UIKit
         window.rootViewController = vc
         window.windowLevel = .alert
         window.makeKeyAndVisible()
-        vc.present(WebxdcViewController(dcContext: context, messageId: xdcMessage.id), animated: false)
+        vc.present(WebxdcViewController.for(dcContext: context, messageId: xdcMessage.id).vc, animated: false)
         weak var webxdcVC = vc.presentedViewController as? WebxdcViewController
         #expect(webxdcVC != nil)
         await webxdcVC!.dismiss(animated: false)
