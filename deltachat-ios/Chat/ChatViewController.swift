@@ -678,7 +678,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return getEffectiveMaxScrollPosition(tableViewBoundsHeight: tableViewBoundsHeight) - tableView.contentOffset.y
     }
 
-    /// At or nearly at the bottom, so that the newest message is fully visible.
+    /// Are we close enough to the bottom
+    /// to stay at the bottom? (e.g. when new messages arrive or the keyboard opens)
     private func isScrolledToBottom(tableViewBoundsHeight: CGFloat? = nil) -> Bool {
         return getScrollDistanceToBottom(tableViewBoundsHeight: tableViewBoundsHeight) < 30
     }
