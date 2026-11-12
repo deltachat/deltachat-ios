@@ -51,7 +51,8 @@ class MessageInfoViewController: UIViewController {
             }
             if !message.isFromCurrentSender {
                 HStack {
-                    Text(String.localized("message_detail_received_desktop")).bold()
+                    let key = message.type == DC_MSG_WEBXDC ? "last_updated" : "message_detail_received_desktop"
+                    Text(String.localized(key)).bold()
                     Spacer()
                     Text(DateUtils.getExtendedAbsTimeSpanString(timeStamp: message.receivedTimestamp))
                 }
