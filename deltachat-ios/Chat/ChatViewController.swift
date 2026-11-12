@@ -513,6 +513,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             interaction.scrollView = tableView
             interaction.edge = .top
             pinbarContainerView.addInteraction(interaction)
+            // apply blur instead of solid background also when there is no pinbar
+            tableView.topEdgeEffect.style = .soft
+
+            let bottomInteraction = UIScrollEdgeElementContainerInteraction()
+            bottomInteraction.scrollView = tableView
+            bottomInteraction.edge = .bottom
+            toolbarContainerView.addInteraction(bottomInteraction)
+            // this enables the bottom edge effect
+            tableView.bottomEdgeEffect.style = .soft
         }
 
         if dcChat.canSend {
