@@ -627,7 +627,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             let wasScrolledToBottom = lastTableViewBoundsSize == .zero || isScrolledToBottom(tableViewBoundsHeight: lastTableViewBoundsSize.height)
             lastTableViewBoundsSize = tableView.bounds.size
             if wasScrolledToBottom {
-                scrollTo(distanceToBottom: 0)
+                scrollToBottom(animated: false)
             }
         }
     }
@@ -1257,7 +1257,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
         if wasScrolledToBottom {
-            scrollTo(distanceToBottom: 0)
+            scrollToBottom(animated: false)
         }
     }
 
