@@ -725,7 +725,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @objc private func handleEphemeralTimerModified(_ notification: Notification) {
         guard dcContext.id == notification.userInfo?["account_id"] as? Int,
-              dcChat.id == notification.userInfo?["chat_id"] as? Int else { return }
+              chatId == notification.userInfo?["chat_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
             self?.updateTitle()
         }
