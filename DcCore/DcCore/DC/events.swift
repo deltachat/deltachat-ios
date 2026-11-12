@@ -157,7 +157,7 @@ public class DcEventHandler {
         case DC_EVENT_CONTACTS_CHANGED:
             logger.info("📡[\(accountId)] contact changed: \(data1)")
             NotificationCenter.default.post(name: Event.contactsChanged, object: nil, userInfo: [
-                "account_id": Int(accountId),
+                "account_id": accountId,
                 "contact_id": Int(data1)
             ])
 
