@@ -8,13 +8,10 @@ class AppCoordinator: NSObject {
 
     private let window: UIWindow
     private let dcAccounts: DcAccounts
-    // the order below is important as well - and there are two enums, here and at
-    // AppStateRestorer (this is error prone and could probably be merged)
+
     private let qrTab = 0
     public  let chatsTab = 1
     private let settingsTab = 2
-
-    private let appStateRestorer = AppStateRestorer.shared
 
     // MARK: - login view handling
     private lazy var loginNavController: UINavigationController = {
@@ -67,14 +64,7 @@ class AppCoordinator: NSObject {
         let dcContext = dcAccounts.getSelected()
         super.init()
         initializeRootController()
-
-        let lastActiveTab = appStateRestorer.restoreLastActiveTab()
-        if lastActiveTab == -1 {
-            // no stored tab
-            showTab(index: chatsTab)
-        } else {
-            showTab(index: lastActiveTab)
-        }
+        showTab(index: chatsTab)
     }
 
     func showTab(index: Int) {
@@ -557,9 +547,5 @@ extension AppCoordinator: UITabBarControllerDelegate {
         }
 
         return true
-    }
-
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        appStateRestorer.tabBarController(tabBarController, didSelect: viewController)
     }
 }

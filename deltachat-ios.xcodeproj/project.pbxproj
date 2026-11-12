@@ -172,7 +172,6 @@
 		AE9DAF0F22C278C6004C9591 /* ChatTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */; };
 		AEACE2E31FB32B5C00DCDD78 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E21FB32B5C00DCDD78 /* Constants.swift */; };
 		AEACE2E51FB32E1900DCDD78 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEACE2E41FB32E1900DCDD78 /* Utils.swift */; };
-		AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */; };
 		AEC67A1E241FCFE0007DDBE1 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */; };
 		AECEF03E244F2D55006C90DA /* QrPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEF03D244F2D55006C90DA /* QrPageController.swift */; };
 		AED423D3249F578B00B6B2BB /* AddGroupMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */; };
@@ -535,7 +534,6 @@
 		AE9DAF0E22C278C6004C9591 /* ChatTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTitleView.swift; sourceTree = "<group>"; };
 		AEACE2E21FB32B5C00DCDD78 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AEACE2E41FB32E1900DCDD78 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateRestorer.swift; sourceTree = "<group>"; };
 		AEC67A1D241FCFE0007DDBE1 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		AECEF03D244F2D55006C90DA /* QrPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrPageController.swift; sourceTree = "<group>"; };
 		AED423D2249F578B00B6B2BB /* AddGroupMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMembersViewController.swift; sourceTree = "<group>"; };
@@ -1160,7 +1158,6 @@
 		AE851ACB227C7A5000ED86F0 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
-				AEC67A1B241CE9E4007DDBE1 /* AppStateRestorer.swift */,
 				D85DF97F2C5250E200A01408 /* ProgressAlertHandler.swift */,
 			);
 			path = Handler;
@@ -1787,7 +1784,6 @@
 				D8CDEFE22C087D1000146773 /* ContactCardView.swift in Sources */,
 				645ED8AF30629CE7003A3680 /* PinBarView.swift in Sources */,
 				3095A351237DD1F700AB07F7 /* MediaPicker.swift in Sources */,
-				AEC67A1C241CE9E4007DDBE1 /* AppStateRestorer.swift in Sources */,
 				3008CB7224F93EB900E6A617 /* AudioMessageCell.swift in Sources */,
 				302E1BB4252B5AB4008F4264 /* PlayButtonView.swift in Sources */,
 				303492AD2577CAC300A523D0 /* FileView.swift in Sources */,
