@@ -747,7 +747,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc private func handleContactsChanged(_ notification: Notification) {
         guard dcContext.id == notification.userInfo?["account_id"] as? Int else { return }
         DispatchQueue.main.async { [weak self] in
-
             guard let self else { return }
 
             dcChat = self.dcContext.getChat(chatId: chatId)
