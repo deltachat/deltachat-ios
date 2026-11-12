@@ -2,7 +2,7 @@ import XCTest
 @testable import DcCore
 
 // Disable line length because it triggers when using "record steps"
-// swiftlint:disable line_length
+// swiftlint:disable superfluous_disable_command line_length
 
 let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
 let dc = XCUIApplication()
@@ -121,7 +121,7 @@ final class DcUITests: XCTestCase {
     }
 }
 
-// swiftlint:enable line_length
+// swiftlint:enable superfluous_disable_command line_length
 
 
 extension DcAccounts {
