@@ -159,7 +159,7 @@ struct InputBarView: View {
     @ViewBuilder var attachmentPreview: some View {
         switch draft.viewType {
         case DC_MSG_IMAGE, DC_MSG_GIF:
-            WebImage(url: draft.draftMsg?.fileURL)
+            WebImage(url: draft.draftMsg?.fileURL, options: .refreshCached)
                 .placeholder { ProgressView().padding() }
                 .resizable()
                 .scaledToFit()
