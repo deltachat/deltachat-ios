@@ -4,6 +4,7 @@
 
 - Chats tab now always opens after restarting the app
 - Fixed wallpaper selection not applying until you restarted the app
+- Message info for mini apps now show last updated date
 
 ## v2.69.0
 2026-11
