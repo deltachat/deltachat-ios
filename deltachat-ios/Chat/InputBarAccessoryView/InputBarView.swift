@@ -8,6 +8,7 @@ var isLiquidGlassEnabled: Bool = if #available(iOS 26.0, *) { true } else { fals
 struct InputBarView: View {
     @StateObject var draft: DraftModel
     @FocusState private var textEditorFocus: Bool
+    @State private var imageViewId = UUID()
     weak var chatViewController: ChatViewController?
     var updateIntrinsicContentSize: () -> Void
 
@@ -159,12 +160,18 @@ struct InputBarView: View {
     @ViewBuilder var attachmentPreview: some View {
         switch draft.viewType {
         case DC_MSG_IMAGE, DC_MSG_GIF:
-            WebImage(url: draft.draftMsg?.fileURL, options: .refreshCached)
+            WebImage(url: draft.draftMsg?.fileURL)
                 .placeholder { ProgressView().padding() }
                 .resizable()
                 .scaledToFit()
                 .frame(height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: buttonSize / 3, style: .continuous))
+                .id(imageViewId)
+                .onReceive(draft.$draftMsg) { _ in
+                    // on draft change we reload the image view because the cache might've
+                    // been cleared by DraftModel.reloadAttachmentPreview
+                    imageViewId = UUID()
+                }
         case DC_MSG_VIDEO:
             let thumbnail = DcUtils.generateThumbnailFromVideo(url: draft.draftMsg?.fileURL)
             let fallback = UIImage(named: "ic_attach_file_36pt")?.maskWithColor(color: DcColors.grayTextColor)
