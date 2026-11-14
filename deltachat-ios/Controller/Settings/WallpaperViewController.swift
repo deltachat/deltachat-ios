@@ -32,7 +32,9 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
 
     func onImageSelected(image: UIImage) {
         if let path = ImageFormat.saveImage(image: image, name: Constants.backgroundImageName) {
-            UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
+            SDImageCache.shared.removeImage(forKey: URL(fileURLWithPath: path).absoluteString) {
+                UserDefaults.standard.set(URL(fileURLWithPath: path).lastPathComponent, forKey: Constants.Keys.backgroundImageName)
+            }
         } else {
             logger.error("failed to save background image")
         }
@@ -42,6 +44,7 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
 struct WallpaperView: View {
     weak var vc: WallpaperViewController?
     @State private var backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
+    @State private var imageViewId = UUID()
 
     var body: some View {
         VStack {
@@ -75,13 +78,15 @@ struct WallpaperView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
             backgroundImageName = UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName)
+            imageViewId = UUID()
         }
     }
 
     @ViewBuilder var backgroundImageView: some View {
         if let backgroundImageName {
-            WebImage(url: Utils.getBackgroundImageURL(name: backgroundImageName), options: .refreshCached)
+            WebImage(url: Utils.getBackgroundImageURL(name: backgroundImageName))
                 .resizable()
+                .id(imageViewId)
         } else {
             Image(vc?.traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
                 .resizable()
