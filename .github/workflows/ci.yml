@@ -30,6 +30,7 @@ jobs:
           path: |
             ~/.cargo
             deltachat-ios/libraries/deltachat-core-rust/target
+            deltachat-ios/libraries/libdeltachat.a
           key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
 
       - run: cargo install cargo-lipo
