@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+var localizationBundle = Bundle.main.path(forResource: "en", ofType: "lproj").flatMap(Bundle.init(path:))
+
 public extension String {
 
     func markAsExternal() -> String {
@@ -21,11 +23,8 @@ public extension String {
             return value
         }
 
-        guard
-            let path = Bundle.main.path(forResource: "en", ofType: "lproj"),
-            let bundle = Bundle(path: path)
-        else { return value }
-        return NSLocalizedString(stringID, bundle: bundle, comment: "")
+        guard let localizationBundle else { return value }
+        return NSLocalizedString(stringID, bundle: localizationBundle, comment: "")
     }
 
     static func localized(stringID: String, parameter: CVarArg...) -> String {

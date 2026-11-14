@@ -22,6 +22,7 @@ public class DcAccounts {
     /// The application group identifier defines a group of apps or extensions that have access to a shared container.
     /// The ID is created in the apple developer portal and can be changed there.
     let applicationGroupIdentifier = "group.chat.delta.ios"
+    lazy var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier)
     var accountsPointer: OpaquePointer?
     var rpcPointer: OpaquePointer?
     public var fetchSemaphore: DispatchSemaphore?
@@ -160,7 +161,7 @@ public class DcAccounts {
     }
 
     public func openDatabase(writeable: Bool) {
-        if var sharedDbLocation = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: applicationGroupIdentifier) {
+        if var sharedDbLocation {
             sharedDbLocation.appendPathComponent("accounts", isDirectory: true)
             accountsPointer = dc_accounts_new(sharedDbLocation.path, writeable ? 1 : 0)
             rpcPointer = dc_jsonrpc_init(accountsPointer)

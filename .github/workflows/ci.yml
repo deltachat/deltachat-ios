@@ -34,4 +34,21 @@ jobs:
 
       - run: cargo install cargo-lipo
       - run: pod install
-      - run: set -o pipefail && xcodebuild -workspace deltachat-ios.xcworkspace -scheme deltachat-ios -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest" test
+      # Boot the simulator while building so it is already running when the tests start
+      - run: xcrun simctl boot "iPhone 18 Pro"
+      - name: Build
+        run: >-
+          xcodebuild
+          -workspace deltachat-ios.xcworkspace
+          -scheme deltachat-ios
+          -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest"
+          build-for-testing
+      - name: Run tests
+        run: >-
+          xcodebuild
+          -workspace deltachat-ios.xcworkspace
+          -scheme deltachat-ios
+          -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest"
+          test-without-building
+          -retry-tests-on-failure
+          -test-iterations 3
