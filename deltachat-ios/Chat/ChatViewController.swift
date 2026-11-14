@@ -55,16 +55,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return controller
     }()
 
-    private lazy var tableViewContainer: UIView = UIView()
-    private let edgeEffectExtension = (top: CGFloat(16), bottom: CGFloat(8))
-    private let edgeEffectBlurStrength = CGFloat(0.72)
-    private let edgeEffectBlurTransition: Float = 0.5
-    private let edgeEffectBlurViews = (
-        top: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)),
-        bottom: UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
-    )
-    private let edgeEffectBlurMasks = (top: CAGradientLayer(), bottom: CAGradientLayer())
-    private var lastStatusBarStyle: UIStatusBarStyle?
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -80,13 +70,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         tableView.allowsMultipleSelectionDuringEditing = true
-
-        // Transform the tableView to maintain scroll position from bottom when views are added
-        // this flips the default behavior of maintaining scroll position from the top of the
-        // scrollview when views are added to maintaining scroll position from the bottom
-        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
-
-        // Since the view is flipped, its safeArea will be flipped, luckily we can ignore it
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.automaticallyAdjustsScrollIndicatorInsets = false
         tableView.publisher(for: \.contentInset)
@@ -106,6 +89,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    /// tableView.bounds.size of the last layout, to detect size changes in viewDidLayoutSubviews()
+    private var lastTableViewBoundsSize: CGSize = .zero
+
+    /// Heights of cells already displayed, used as estimates so that scroll positions are kept on reload.
+    private var cellHeights: [Int: CGFloat] = [:]
+
     private lazy var toolbarContainerView: UIView = {
         let toolbarContainerView = UIView()
         toolbarContainerView.backgroundColor = .clear
@@ -119,9 +108,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             draft: draft,
             chatViewController: self,
             updateIntrinsicContentSize: { [weak self] in
-                if #unavailable(iOS 16) {
-                    self?.inputToolBarHost.view.setNeedsUpdateConstraints()
-                }
+                // sizingOptions does not always resize the toolbar,
+                // eg. on removing a quote or an attachment while the keyboard is shown,
+                // there is a gap between input bar and keyboard otherwise
+                self?.inputToolBarHost.view.setNeedsUpdateConstraints()
             })
         )
         if #available(iOS 16.0, *) {
@@ -347,16 +337,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     })
 
-    /// Context menu previews are shown in this layer which is behind the input bar.
-    /// We can hide previews when a user scrolls by removing this views subview.
-    /// This is needed because the system does not always hide snapshots right
-    /// away, probably assuming it is part of the view hierarchy.
-    private var contextMenuPreviewContainer = {
-        let view = UIView()
-        view.isUserInteractionEnabled = false
-        return view
-    }()
-
     private let titleView = ChatTitleView()
 
     private(set) lazy var dcChat: DcChat = {
@@ -436,27 +416,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         titleView.button.addTarget(self, action: #selector(chatProfilePressed), for: .primaryActionTriggered)
         view.addSubview(backgroundContainer)
         backgroundContainer.fillSuperview()
-        view.addSubview(tableViewContainer)
-        tableViewContainer.fillSuperview()
-        tableViewContainer.addSubview(tableView)
+        view.addSubview(tableView)
         tableView.fillSuperview()
-        if #available(iOS 26.0, *) {
-            tableView.topEdgeEffect.isHidden = true
-            tableView.bottomEdgeEffect.isHidden = true
-
-            edgeEffectBlurMasks.top.locations = [0, NSNumber(value: 1 - edgeEffectBlurTransition), 1]
-            edgeEffectBlurMasks.bottom.locations = [0, NSNumber(value: edgeEffectBlurTransition), 1]
-            updateEdgeEffectAppearance()
-
-            edgeEffectBlurViews.top.layer.mask = edgeEffectBlurMasks.top
-            edgeEffectBlurViews.bottom.layer.mask = edgeEffectBlurMasks.bottom
-            [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
-                $0.isUserInteractionEnabled = false
-                view.addSubview($0)
-            }
-        }
-        view.addSubview(contextMenuPreviewContainer)
-        contextMenuPreviewContainer.fillSuperview()
 
         view.addGestureRecognizer(performReplyOnOpeningSwipeActionsGestureRecognizer)
 
@@ -492,14 +453,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             let inset = max(intersection.height + toolbarHeight, safeAreaInsets.bottom + toolbarHeight)
             // willShow is sometimes called when the keyboard is being hidden or when the kb was
             // already shown due to interactive dismissal getting canceled.
-            guard tableView.contentInset.top != inset else { return }
+            guard tableView.contentInset.bottom != inset else { return }
             UIView.animate(withDuration: notification.timeInterval, delay: 0, options: notification.animationOptions) { [weak self] in
-                tableView.contentInset.top = inset
-                if tableView.contentOffset.y < 30 {
-                    // If user is less than 30 away from the bottom, we scroll
-                    // the bottom of the content to the top of the keyboard.
-                    tableView.contentOffset.y -= inset + tableView.contentOffset.y
-                }
+                self?.setTableViewContentInset(bottomInset: inset)
                 self?.pipInsetViewController.additionalSafeAreaInsets.bottom = inset - safeAreaInsets.bottom
             }
             if #unavailable(iOS 16) {
@@ -545,6 +501,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         ])
 
         configureScrollDownButton()
+
+        if #available(iOS 26.0, *) {
+            // apply the system's blur effect not only to the title bar,
+            // but also to the pinned bar.
+            let interaction = UIScrollEdgeElementContainerInteraction()
+            interaction.scrollView = tableView
+            interaction.edge = .top
+            pinbarContainerView.addInteraction(interaction)
+            // apply blur instead of solid background also when there is no pinbar
+            tableView.topEdgeEffect.style = .soft
+
+            let bottomInteraction = UIScrollEdgeElementContainerInteraction()
+            bottomInteraction.scrollView = tableView
+            bottomInteraction.edge = .bottom
+            toolbarContainerView.addInteraction(bottomInteraction)
+            // this enables the bottom edge effect
+            tableView.bottomEdgeEffect.style = .soft
+        }
 
         if dcChat.canSend {
             configureUIForWriting()
@@ -622,7 +596,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
 
         if #available(iOS 26.0, *) {
-            updateTopEdgeEffectAppearance()
             wasInteractiveContentPopGestureRecognizerEnabled = navigationController?
                 .interactiveContentPopGestureRecognizer?.isEnabled
             // This new pop gesture happens when you swipe in the middle of the screen which
@@ -642,13 +615,22 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         toolbarHeight = toolbarContainerView.frame.height - view.keyboardLayoutGuide.layoutFrame.height
-        updateEdgeEffects()
+
+        if tableView.bounds.size != lastTableViewBoundsSize {
+            // - on the first layout, start at the bottom, with the newest message
+            // - on subsequent size changes (rotation, split view, etc.):
+            //   if at the bottom, stay at the bottom, otherwise, the scroll position is kept.
+            let wasScrolledToBottom = lastTableViewBoundsSize == .zero || isScrolledToBottom(tableViewBoundsHeight: lastTableViewBoundsSize.height)
+            lastTableViewBoundsSize = tableView.bounds.size
+            if wasScrolledToBottom {
+                scrollToBottom(animated: false)
+            }
+        }
     }
 
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         setTableViewContentInset()
-        updateEdgeEffects()
     }
 
     override func didMove(toParent parent: UIViewController?) {
@@ -659,66 +641,64 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
-    func setTableViewContentInset() {
-        // Manually set the safe area because tableView is flipped
-        tableView.contentInset.bottom = view.safeAreaInsets.top + pinbarContainerView.frame.height
+    func setTableViewContentInset(bottomInset: CGFloat? = nil) {
+        let topInset = view.safeAreaInsets.top + pinbarContainerView.frame.height
+        let bottomInset = bottomInset ?? max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
+        // if there are only few messages, add the unused height atop, so that messages are shown at the bottom
+        let unusedHeight = tableView.bounds.height - topInset - bottomInset - tableView.contentSize.height
+        let insets = UIEdgeInsets(top: topInset + max(0, unusedHeight), left: 0, bottom: bottomInset, right: 0)
+        guard tableView.contentInset != insets else { return }
 
-        let topInset = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom)
-        if tableView.contentInset.top != topInset {
-            if tableView.contentOffset.y == -tableView.contentInset.top {
-                tableView.contentOffset.y = -topInset
+        let wasScrolledToBottom = isScrolledToBottom()
+        tableView.contentInset = insets
+        if wasScrolledToBottom {
+            tableView.contentOffset.y = getEffectiveMaxScrollPosition()
+        }
+    }
+
+    /// The scroll position (`contentOffset.y`) when scrolled to the bottom.
+    /// With `tableViewBoundsHeight` you can use a different height than the current, eg. the one before a size change.
+    private func getEffectiveMaxScrollPosition(tableViewBoundsHeight: CGFloat? = nil) -> CGFloat {
+        let tableViewBoundsHeight = tableViewBoundsHeight ?? tableView.bounds.height
+
+        // `maxScrollPosition` is usually positive, negative for very short chats (e.g. new chats)
+        let minScrollPosition = -tableView.contentInset.top
+        let maxScrollPosition = tableView.contentSize.height + tableView.contentInset.bottom - tableViewBoundsHeight
+
+        // in short chats, maxScrollPosition is smaller than minScrollPosition, but scrolling stops at the top
+        return max(minScrollPosition, maxScrollPosition)
+    }
+
+    /// How far to scroll down to reach the bottom of the scrollable content; 0 if at the bottom.
+    private func getScrollDistanceToBottom(tableViewBoundsHeight: CGFloat? = nil) -> CGFloat {
+        return getEffectiveMaxScrollPosition(tableViewBoundsHeight: tableViewBoundsHeight) - tableView.contentOffset.y
+    }
+
+    /// Are we close enough to the bottom
+    /// to stay at the bottom? (e.g. when new messages arrive or the keyboard opens)
+    private func isScrolledToBottom(tableViewBoundsHeight: CGFloat? = nil) -> Bool {
+        return getScrollDistanceToBottom(tableViewBoundsHeight: tableViewBoundsHeight) < 30
+    }
+
+    /// Scroll to the given distance from the bottom; 0 scrolls to the bottom.
+    private func scrollTo(distanceToBottom: CGFloat) {
+        guard tableView.bounds.height > 0 else { return }
+
+        // the real height of a cell is known only after layout.
+        // before, UITableView uses an estimate (from `cellHeights` or, for messages never shown, a default).
+        // therefore, setting the scroll position may lay out new cells with other heights than estimated,
+        // which changes contentSize and so the target position - in this case, set the position again.
+        // usually, this is needed once or twice, eg. on opening a chat for the first time;
+        // the limit is just a safety net against endless loops.
+        for _ in 0..<10 {
+            tableView.layoutIfNeeded()
+            setTableViewContentInset(bottomInset: tableView.contentInset.bottom) // update the top inset of short chats, so that few bubbles stay at the bottom
+            let targetScrollPosition = max(-tableView.contentInset.top, getEffectiveMaxScrollPosition() - max(0, distanceToBottom))
+            if abs(targetScrollPosition - tableView.contentOffset.y) < 1 {
+                return // target reached, contentSize did not change anymore
             }
-            tableView.contentInset.top = topInset
+            tableView.contentOffset.y = targetScrollPosition // set new scrolling position, then loop and check if it is stable
         }
-    }
-
-    private func updateEdgeEffects() {
-        guard #available(iOS 26.0, *) else { return }
-
-        let topHeight = view.safeAreaInsets.top + edgeEffectExtension.top
-        edgeEffectBlurViews.top.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: topHeight)
-        edgeEffectBlurMasks.top.frame = edgeEffectBlurViews.top.bounds
-
-        let bottomHeight = max(toolbarContainerView.frame.height, view.safeAreaInsets.bottom) + edgeEffectExtension.bottom
-        edgeEffectBlurViews.bottom.frame = CGRect(
-            x: 0,
-            y: view.bounds.height - bottomHeight,
-            width: view.bounds.width,
-            height: bottomHeight
-        )
-        edgeEffectBlurMasks.bottom.frame = edgeEffectBlurViews.bottom.bounds
-    }
-
-    private func updateEdgeEffectAppearance() {
-        guard #available(iOS 26.0, *) else { return }
-
-        let tintColor = traitCollection.userInterfaceStyle == .dark
-            ? UIColor.black.withAlphaComponent(0.67)
-            : UIColor.clear
-        [edgeEffectBlurViews.top, edgeEffectBlurViews.bottom].forEach {
-            $0.contentView.backgroundColor = tintColor
-        }
-
-        let blurMaskColor = UIColor(white: 0, alpha: edgeEffectBlurStrength).cgColor
-        edgeEffectBlurMasks.top.colors = [blurMaskColor, blurMaskColor, UIColor.clear.cgColor]
-        edgeEffectBlurMasks.bottom.colors = [UIColor.clear.cgColor, blurMaskColor, blurMaskColor]
-    }
-
-    private func updateTopEdgeEffectAppearance() {
-        guard #available(iOS 26.0, *),
-              let statusBarStyle = view.window?.windowScene?.statusBarManager?.statusBarStyle,
-              statusBarStyle != lastStatusBarStyle else { return }
-
-        lastStatusBarStyle = statusBarStyle
-        let blurStyle: UIBlurEffect.Style = switch statusBarStyle {
-        case .lightContent:
-            .systemUltraThinMaterialDark
-        case .darkContent:
-            .systemUltraThinMaterialLight
-        default:
-            .systemUltraThinMaterial
-        }
-        edgeEffectBlurViews.top.effect = UIBlurEffect(style: blurStyle)
     }
 
     // MARK: - Notifications
@@ -859,7 +839,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         func dequeueCell<T: UITableViewCell & ReusableCell>(ofType _: T.Type = T.self) -> T {
             let cell = tableView.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath)
-            cell.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell as? T ?? { fatalError("WTF?! Wrong Cell, expected \(T.self)") }()
         }
 
@@ -873,7 +852,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if id == DC_MSG_ID_MARKER1 {
             // unread messages marker
             let cell = dequeueCell(ofType: InfoMessageCell.self)
-            let freshMsgsCount = indexPath.row
+            let freshMsgsCount = messages.count - 1 - indexPath.row
             cell.update(text: String.localized(stringID: "chat_n_new_messages", parameter: freshMsgsCount))
             return cell
         }
@@ -938,14 +917,20 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeights[messages[indexPath.row].id] = cell.bounds.height
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        cellHeights[messages[indexPath.row].id] ?? UITableView.automaticDimension
+    }
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
         isDraggingScrollView = true
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateScrollDownButtonVisibility()
-        updateTopEdgeEffectAppearance()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -978,10 +963,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     private func updateScrollDownButtonVisibility() {
-        if tableView.contentOffset.y + tableView.contentInset.top < 30 {
+        if isScrolledToBottom() {
             quoteReturnMessageIds = []
         }
-        scrollDownButtonView.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible(allowPartialVisibility: true) && quoteReturnMessageIds.isEmpty)
+        let isLastMessageVisible = tableView.indexPathsForVisibleRows?.contains(IndexPath(row: messages.count - 1, section: 0)) ?? false
+        scrollDownButtonView.isHidden = contextMenuVisible || messages.isEmpty || (isLastMessageVisible && quoteReturnMessageIds.isEmpty)
         if #available(iOS 18, *) { // chevron.down.2 is only available in iOS 18+
             let imageName = quoteReturnMessageIds.isEmpty ? "chevron.down.2" : "chevron.down"
             scrollDownButton.configuration?.image = UIImage(systemName: imageName)
@@ -1042,8 +1028,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let action = UIContextualAction(style: .normal, title: nil) { (_, _, _) in }
         action.image = UIImage(systemName: "arrowshape.turn.up.left.fill")?
-            .sd_tintedImage(with: DcColors.defaultInverseColor)?
-            .sd_flippedImage(withHorizontal: false, vertical: true)
+            .sd_tintedImage(with: DcColors.defaultInverseColor)
 
         action.backgroundColor = .systemGray.withAlphaComponent(0.0) // nil or .clear do not result in transparence
         action.accessibilityLabel = String.localized("notify_reply_button")
@@ -1051,11 +1036,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // we perform the reply action on open in performReplyOnOpeningSwipeActionsGestureRecognizer
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
-    }
-
-    /// Cell swipe action started
-    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        contextMenuPreviewContainer.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func replyToMessage(_ msgId: Int) {
@@ -1161,8 +1141,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if UserDefaults.standard.string(forKey: Constants.Keys.backgroundImageName) == nil {
             backgroundContainer.image = UIImage(named: traitCollection.userInterfaceStyle == .light ? "background_light" : "background_dark")
         }
-        updateEdgeEffectAppearance()
-        updateTopEdgeEffectAppearance()
     }
 
     private func configureMessageStyle(for message: DcMsg, at indexPath: IndexPath) -> UIRectCorner {
@@ -1253,17 +1231,30 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
-        messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER).reversed()
+        let lastMessageId = messages.last?.id ?? 0
+        messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         reloadData()
+
+        // scroll down for just sent messages
+        // (checking "newer ID" is easier than tracking all places where messages are added)
+        if let newLastMessageId = messages.last?.id, newLastMessageId > lastMessageId,
+           dcContext.getMessage(id: newLastMessageId).isFromCurrentSender {
+            scrollToBottom()
+        }
+
         showEmptyStateView(messages.isEmpty)
     }
 
     private func reloadData() {
+        let wasScrolledToBottom = isScrolledToBottom()
         let selectedRows = tableView.indexPathsForSelectedRows
         tableView.reloadData()
         selectedRows?.forEach({ (selectedRow) in
             tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         })
+        if wasScrolledToBottom {
+            scrollToBottom(animated: false)
+        }
     }
 
     private func loadMessages() {
@@ -1282,7 +1273,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             msgs.insert((Int(DC_MSG_ID_MARKER1), 0), at: msgs.count - freshCount)
         }
-        self.messages = msgs.reversed()
+        self.messages = msgs
         self.showEmptyStateView(self.messages.isEmpty)
         self.reloadData()
     }
@@ -1302,18 +1293,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return !message.isMarkerOrInfo && dcChat.isMultiUser && !message.isFromCurrentSender
     }
 
-    /// Verifies if the last message cell is visible
-    private func isLastMessageVisible(allowPartialVisibility: Bool) -> Bool {
-        if allowPartialVisibility {
-            tableView.indexPathsForVisibleRows?.contains(IndexPath(item: 0, section: 0)) ?? false
-        } else {
-            tableView.contentOffset.y == 0
-        }
-    }
-
     private func scrollToBottom(animated: Bool = true) {
-        // tableView is flipped so top is bottom
-        tableView.scrollToTop(animated: animated)
+        let distanceToBottom = getScrollDistanceToBottom()
+        // jump to the bottom first so that the cells there are measured and the bottom is reached exactly,
+        // then go back at most one screen and animate from there
+        scrollTo(distanceToBottom: 0)
+        if animated && distanceToBottom >= 1 {
+            scrollTo(distanceToBottom: min(distanceToBottom, tableView.bounds.height))
+            tableView.setContentOffset(CGPoint(x: 0, y: getEffectiveMaxScrollPosition()), animated: true)
+        }
     }
 
     private func scrollToLastUnseenMessage(animated: Bool) {
@@ -1340,7 +1328,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let isVisible = self.tableView.indexPathsForVisibleRows?.contains(indexPath) == false
                 UIView.animate(withDuration: !isVisible && animated ? 0.3 : 0) {
                     if isVisible {
-                        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                     }
                 } completion: { [weak self] _ in
                     guard let self else { return }
@@ -1355,8 +1343,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                         if !self.scrollDownButtonView.isHidden {
                             bottomInset += 12 + self.scrollDownButtonView.bounds.height
                         }
-                        let textFrame = CGRect(origin: textOrigin, size: CGSize(width: 1, height: 0))
-                            .inset(by: .init(top: topInset, left: 0, bottom: bottomInset, right: 0))
+                        let textFrame = CGRect(x: 0, y: textOrigin.y - topInset, width: 1, height: topInset + bottomInset)
                         self.tableView.scrollRectToVisible(textFrame, animated: animated)
                         messageCell.messageBackgroundContainer.blink()
                     }
@@ -1369,11 +1356,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     private func scrollToRow(at indexPath: IndexPath, animated: Bool, focusWithVoiceOver: Bool = true) {
         if UIAccessibility.isVoiceOverRunning && focusWithVoiceOver {
-            tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             markSeenMessagesInVisibleArea()
             updateScrollDownButtonVisibility()
             forceVoiceOverFocussingCell(at: indexPath) { [weak self] in
-                self?.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         } else {
             UIView.animate(withDuration: animated ? 0.3 : 0) {
@@ -1385,7 +1372,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let cellHeight = cell?.bounds.height
                 let viewHeight = self.tableView.bounds.height - self.tableView.contentInset.vertical
                 if let cellHeight, cellHeight > viewHeight {
-                    self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: animated)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
                 }
                 if let cell = cell as? BaseMessageCell {
                     cell.messageBackgroundContainer.blink()
@@ -2065,7 +2052,7 @@ extension ChatViewController {
         let messageFrame = cell.messageBackgroundContainer.frame
         let messageCenter = CGPoint(x: messageFrame.midX, y: messageFrame.midY)
         let messageCenterInSuper = cell.convert(messageCenter, to: tableView)
-        let previewTarget = UIPreviewTarget(container: tableView, center: messageCenterInSuper, transform: CGAffineTransform(scaleX: 1, y: -1))
+        let previewTarget = UIPreviewTarget(container: tableView, center: messageCenterInSuper)
 
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
@@ -2269,11 +2256,6 @@ extension ChatViewController: MCEmojiPickerDelegate {
 extension ChatViewController: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: any UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard !tableView.isEditing else { return [] }
-        // Prevent the drag preview from an showing upside down preview
-        // by requiring a context menu to be shown first. On iOS 26 this can
-        // mean the first longtap after a successful drag session doesn't do
-        // anything but that is a bug on iOS side.
-        guard !contextMenuPreviewContainer.subviews.isEmpty else { return [] }
 
         let messageId = messages[indexPath.row].id
         let message = dcContext.getMessage(id: messageId)
@@ -2473,7 +2455,7 @@ extension ChatViewController: BaseMessageCellDelegate {
         let msg = dcContext.getMessage(id: messages[indexPath.row].id)
         if let quoteMsg = msg.quoteMessage {
             if self.chatId == quoteMsg.chatId {
-                if let quoteIndex = messages.firstIndex(where: { $0.id == quoteMsg.id }), quoteIndex > indexPath.row {
+                if let quoteIndex = messages.firstIndex(where: { $0.id == quoteMsg.id }), quoteIndex < indexPath.row {
                     quoteReturnMessageIds.removeAll(where: { $0 <= msg.id})
                     quoteReturnMessageIds.append(msg.id)
                 }
