@@ -4,6 +4,7 @@
 
 - Chats tab now always opens after restarting the app
 - Fixed wallpaper selection not applying until you restarted the app
+- Fixed success alert not showing when done exporting backup
 - Message info for mini apps now show last updated date
 
 ## v2.69.0

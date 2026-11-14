@@ -1,12 +1,14 @@
 import UIKit
 import DcCore
 
+private class ProgressUIAlertController: UIAlertController {}
+
 class ProgressAlertHandler {
     weak var dataSource: UIViewController?
     var cancelled: Bool = false
     private var onSuccess: (() -> Void)?
     private let checkForInternetConnectivity: Bool
-    private var progressAlertController: UIAlertController?
+    private var progressAlertController: ProgressUIAlertController?
     private var lastErrorPara: String = ""
 
     /// Use this is you want to handle notifications yourself.
@@ -83,7 +85,7 @@ class ProgressAlertHandler {
     public func showProgressAlert(title: String?, dcContext: DcContext) {
         guard let dataSource else { return assertionFailure("No DataSource") }
 
-        let progressAlertController = UIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
+        let progressAlertController = ProgressUIAlertController(title: title, message: String.localized("one_moment"), preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel, handler: { [weak self] _ in
             self?.cancelled = true
             dcContext.stopOngoingProcess()
@@ -92,5 +94,19 @@ class ProgressAlertHandler {
 
         dataSource.present(progressAlertController, animated: true, completion: nil)
         self.progressAlertController = progressAlertController
+    }
+}
+
+extension UIViewController {
+    /// Presenting UIAlertController while another UIAlertController is presented silently fails by default but any alerts
+    /// are more important to show than the progress alert so we dismiss that.
+    func present(_ alertToPresent: UIAlertController, animated: Bool, completion: (() -> Void)? = nil) {
+        if presentedViewController is ProgressUIAlertController {
+            presentedViewController?.dismiss(animated: animated) { [weak self] in
+                self?.present(alertToPresent as UIViewController, animated: animated, completion: completion)
+            }
+        } else {
+            present(alertToPresent as UIViewController, animated: animated, completion: completion)
+        }
     }
 }
