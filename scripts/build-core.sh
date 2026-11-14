@@ -24,6 +24,7 @@ CONFIGURATION=Release
 # --no-sanitize-env prevents removal of IPHONEOS_DEPLOYMENT_TARGET variable.
 CARGO_PROFILE_RELEASE_LTO=true \
 CARGO_PROFILE_DEV_LTO=true \
+CARGO_INCREMENTAL=0 \
 CARGO_LOG=cargo::core::compiler::fingerprint=info \
 RUSTFLAGS="-C embed-bitcode=yes" \
   cargo +`cat ../rust-toolchain` lipo --xcode-integ --no-sanitize-env --manifest-path "$DIR/deltachat-core-rust/deltachat-ffi/Cargo.toml"
