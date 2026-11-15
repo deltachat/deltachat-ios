@@ -25,6 +25,7 @@ jobs:
             Pods
           key: pods-${{ hashFiles('Podfile.lock') }}
       - name: Cache core
+        id: core-cache
         uses: actions/cache@v4
         with:
           path: deltachat-ios/libraries/libdeltachat.a
@@ -35,7 +36,7 @@ jobs:
       # Boot the simulator while building so it is already running when the tests start
       - run: xcrun simctl boot "iPhone 18 Pro"
       - name: Build core if it was not cached
-        if: ${{ hashFiles('deltachat-ios/libraries/libdeltachat.a') == '' }}
+        if: steps.core-cache.outputs.cache-hit != 'true'
         run: ./scripts/build-core.sh
       - name: Build and test app
         run: >-
