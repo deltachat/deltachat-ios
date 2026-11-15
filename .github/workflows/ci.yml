@@ -26,10 +26,10 @@ jobs:
           key: pods-${{ hashFiles('Podfile.lock') }}
       - name: Run sccache-cache for core
         uses: mozilla-actions/sccache-action@v0.0.11
-      - name: Set Rust caching env vars only on non-release runs
+      - name: Set Rust caching env vars
         run: |
           echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
-          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
+          echo "RUSTC_WRAPPER=$SCCACHE_PATH" >> $GITHUB_ENV
         
       - run: cargo install cargo-lipo
       - run: pod install
