@@ -24,14 +24,20 @@ jobs:
             ~/.cocoapods/repos
             Pods
           key: pods-${{ hashFiles('Podfile.lock') }}
-      - name: Run sccache-cache for core
-        uses: mozilla-actions/sccache-action@v0.0.11
+      - name: Cache core
+        uses: actions/cache@v4
+        with:
+          path: deltachat-ios/libraries/libdeltachat.a
+          key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
         
       - run: cargo install cargo-lipo
       - run: pod install
       # Boot the simulator while building so it is already running when the tests start
       - run: xcrun simctl boot "iPhone 18 Pro"
-      - name: Build and test
+      - name: Build core if it was not cached
+        if: ${{ hashFiles('deltachat-ios/libraries/libdeltachat.a') == '' }}
+        run: ./scripts/build-core.sh
+      - name: Build and test app
         run: >-
           xcodebuild
           -workspace deltachat-ios.xcworkspace
@@ -40,6 +46,5 @@ jobs:
           test
           -retry-tests-on-failure
           -test-iterations 3
-          "RUSTC_WRAPPER=$SCCACHE_PATH"
-          SCCACHE_GHA_ENABLED=true
+          CI=true
 
