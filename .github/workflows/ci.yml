@@ -24,15 +24,13 @@ jobs:
             ~/.cocoapods/repos
             Pods
           key: pods-${{ hashFiles('Podfile.lock') }}
-      - name: Cache core
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo
-            deltachat-ios/libraries/deltachat-core-rust/target
-            deltachat-ios/libraries/libdeltachat.a
-          key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
-
+      - name: Run sccache-cache for core
+        uses: mozilla-actions/sccache-action@v0.0.11
+      - name: Set Rust caching env vars only on non-release runs
+        run: |
+          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
+        
       - run: cargo install cargo-lipo
       - run: pod install
       # Boot the simulator while building so it is already running when the tests start
