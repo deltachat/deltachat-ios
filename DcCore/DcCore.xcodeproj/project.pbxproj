@@ -306,7 +306,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ${SKIP_CORE_BUILD:-} != \"true\" ]]\n    then ../scripts/build-core.sh\nfi\n\n";
+			shellScript = "if [[ ${SKIP_CORE_BUILD:-} != \"true\" ]]\n    then ../scripts/build-core.sh\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

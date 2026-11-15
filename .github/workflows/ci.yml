@@ -39,6 +39,8 @@ jobs:
       - run: cargo install cargo-lipo
       - run: pod install
       - name: Build and test app
+        env:
+            CORE_CACHE_HIT: ${{ steps.core-cache.outputs.cache-hit }}
         run: >-
           xcodebuild
           -workspace deltachat-ios.xcworkspace
@@ -47,5 +49,6 @@ jobs:
           test
           -retry-tests-on-failure
           -test-iterations 3
-          SKIP_CORE_BUILD=${{ steps.core-cache.outputs.cache-hit }}
+          SKIP_CORE_BUILD="${CORE_CACHE_HIT}"
+          CI=true
 
