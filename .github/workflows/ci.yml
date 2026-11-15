@@ -38,9 +38,6 @@ jobs:
         
       - run: cargo install cargo-lipo
       - run: pod install
-      - name: Build core if it was not cached
-        if: steps.core-cache.outputs.cache-hit != 'true'
-        run: cd scripts; ./build-core.sh
       - name: Build and test app
         run: >-
           xcodebuild
@@ -50,5 +47,5 @@ jobs:
           test
           -retry-tests-on-failure
           -test-iterations 3
-          CI=true
+          SKIP_CORE_BUILD=${{ steps.core-cache.outputs.cache-hit }}
 
