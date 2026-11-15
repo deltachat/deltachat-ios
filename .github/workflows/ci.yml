@@ -38,6 +38,8 @@ jobs:
         
       - run: cargo install cargo-lipo
       - run: pod install
+      # Boot the simulator while building so it is already running when the tests start
+      - run: xcrun simctl boot "iPhone 18 Pro"
       - name: Build and test app
         env:
             CORE_CACHE_HIT: ${{ steps.core-cache.outputs.cache-hit }}
