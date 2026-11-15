@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cargo
-          key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
+          key: cargo-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
       - name: Cache core
         id: core-cache
         uses: actions/cache@v4
