@@ -7,6 +7,8 @@
 - Fixed wallpaper selection not applying until you restarted the app
 - Fixed success alert not showing when done exporting backup
 - Message info for mini apps now show last updated date
+- Scroll down after sending a message on current device
+
 
 ## v2.69.0
 2026-11

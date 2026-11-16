@@ -103,7 +103,9 @@ struct InputBarView: View {
                     }).frame(width: buttonSize, height: buttonSize)
                 } else {
                     Button(action: {
-                        draft.send()
+                        if draft.send() {
+                            chatViewController?.showSentMessage()
+                        }
                     }, label: {
                         Image("paper_plane", label: Text(String.localized("menu_send")))
                             .renderingMode(.template)
