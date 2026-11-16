@@ -244,7 +244,6 @@ class EditTransportViewController: UITableViewController {
         self.sections.append(advancedSection)
 
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder _: NSCoder) {

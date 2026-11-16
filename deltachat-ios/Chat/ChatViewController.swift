@@ -395,7 +395,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.chatId = chatId
         self.highlightedMsg = highlightedMsg
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.handleMessagesChanged(_:)), name: Event.messagesChanged, object: nil)

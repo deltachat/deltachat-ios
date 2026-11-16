@@ -11,7 +11,6 @@ class WallpaperViewController: UIViewController, MediaPickerDelegate {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
         title = String.localized("pref_background")
     }
 

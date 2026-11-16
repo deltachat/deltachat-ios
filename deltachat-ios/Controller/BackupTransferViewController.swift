@@ -72,7 +72,6 @@ class BackupTransferViewController: UIViewController {
 
         setupSubviews()
 
-        hidesBottomBarWhenPushed = true
         title = String.localized("multidevice_title")
     }
 

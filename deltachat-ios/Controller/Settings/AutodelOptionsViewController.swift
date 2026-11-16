@@ -51,7 +51,6 @@ class AutodelOptionsViewController: UITableViewController {
         self.currVal = dcContext.getConfigInt("delete_device_after")
         super.init(style: .insetGrouped)
         self.title = String.localized("autodel_device_title")
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder aDecoder: NSCoder) {

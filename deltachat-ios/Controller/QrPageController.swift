@@ -129,10 +129,8 @@ class QrPageController: UIPageViewController {
         alert.addAction(UIAlertAction(title: String.localized("withdraw_qr_code"), style: .destructive, handler: { [weak self] _ in
             guard let self else { return }
             guard let code = dcContext.getSecurejoinQr(chatId: 0) else { return }
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             _ = self.dcContext.setConfigFromQR(qrCode: code)
-            setViewControllers([QrViewController(dcContext: dcContext, qrCodeHint: qrCodeHint)], direction: .reverse, animated: false, completion: nil)
-            appDelegate.appCoordinator.presentTabBarController()
+            navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true)
     }
@@ -193,7 +191,8 @@ extension QrPageController: UIPageViewControllerDataSource, UIPageViewController
 // MARK: - QRCodeDelegate
 extension QrPageController: QrCodeReaderDelegate {
     func handleQrCode(_ qrCode: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.coordinate(qrCode: qrCode, from: self)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let navigationController else { return }
+        navigationController.popToRootViewController(animated: false)
+        appDelegate.appCoordinator.coordinate(qrCode: qrCode, from: navigationController)
     }
 }

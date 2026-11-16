@@ -29,7 +29,6 @@ class TransportListViewController: UITableViewController {
 
         tableView.register(ActionCell.self, forCellReuseIdentifier: ActionCell.reuseIdentifier)
         tableView.register(TransportCell.self, forCellReuseIdentifier: TransportCell.reuseIdentifier)
-        hidesBottomBarWhenPushed = true
 
         title = String.localized("transports")
 

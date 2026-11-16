@@ -47,7 +47,6 @@ class EphemeralMessagesViewController: UITableViewController {
         }
 
         self.title = String.localized("ephemeral_messages")
-        hidesBottomBarWhenPushed = true
 
     }
 
