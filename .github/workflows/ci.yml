@@ -24,31 +24,33 @@ jobs:
             ~/.cocoapods/repos
             Pods
           key: pods-${{ hashFiles('Podfile.lock') }}
-      - name: Cache core
+      - name: Cache cargo
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cargo
-            deltachat-ios/libraries/deltachat-core-rust/target
+          path: ~/.cargo
+          key: cargo-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
+      - name: Cache core
+        id: core-cache
+        uses: actions/cache@v4
+        with:
+          path: deltachat-ios/libraries/libdeltachat.a
           key: core-${{ hashFiles('rust-toolchain', 'deltachat-ios/libraries/deltachat-core-rust/Cargo.lock') }}
-
+        
       - run: cargo install cargo-lipo
       - run: pod install
       # Boot the simulator while building so it is already running when the tests start
       - run: xcrun simctl boot "iPhone 18 Pro"
-      - name: Build
+      - name: Build and test app
+        env:
+            CORE_CACHE_HIT: ${{ steps.core-cache.outputs.cache-hit }}
         run: >-
           xcodebuild
           -workspace deltachat-ios.xcworkspace
           -scheme deltachat-ios
           -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest"
-          build-for-testing
-      - name: Run tests
-        run: >-
-          xcodebuild
-          -workspace deltachat-ios.xcworkspace
-          -scheme deltachat-ios
-          -destination "platform=iOS Simulator,name=iPhone 18 Pro,OS=latest"
-          test-without-building
+          test
           -retry-tests-on-failure
           -test-iterations 3
+          SKIP_CORE_BUILD="${CORE_CACHE_HIT}"
+          CI=true
+

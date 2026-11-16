@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+if [[ ${CI:-} == "true" ]]; then exit 0; fi
+
 # Xcode 27 no longer allows installing to devices before iOS 17
 # so you can use this script to install to those devices instead.
 # - Install airdrop-cli on mac (brew install --HEAD vldmrkl/formulae/airdrop-cli)

@@ -1383,8 +1383,8 @@
 				7A9FB13C1FB061E2001FEA36 /* Sources */,
 				7A9FB13D1FB061E2001FEA36 /* Frameworks */,
 				7A9FB13E1FB061E2001FEA36 /* Resources */,
-				7837B63821E54CB400CDE126 /* Run Script */,
-				7837B64621E5532B00CDE126 /* ShellScript */,
+				7837B63821E54CB400CDE126 /* Run Script (swiftlint) */,
+				7837B64621E5532B00CDE126 /* Run Script (swiftformat) */,
 				304219D4243F588600516852 /* Embed Frameworks */,
 				30E8F21B2447285600CE2C90 /* Embed Foundation Extensions */,
 				DCA0000C2CF72AA1009AF551 /* Embed App Clips */,
@@ -1704,7 +1704,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-deltachat-ios/Pods-deltachat-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7837B63821E54CB400CDE126 /* Run Script */ = {
+		7837B63821E54CB400CDE126 /* Run Script (swiftlint) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1714,7 +1714,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Run Script (swiftlint)";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -1723,7 +1723,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		7837B64621E5532B00CDE126 /* ShellScript */ = {
+		7837B64621E5532B00CDE126 /* Run Script (swiftformat) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -1733,6 +1733,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script (swiftformat)";
 			outputFileListPaths = (
 			);
 			outputPaths = (

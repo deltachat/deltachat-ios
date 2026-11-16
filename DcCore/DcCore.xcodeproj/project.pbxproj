@@ -230,7 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30421945243DE0F200516852 /* Build configuration list for PBXNativeTarget "DcCore" */;
 			buildPhases = (
-				30421954243DE38E00516852 /* ShellScript */,
+				30421954243DE38E00516852 /* Run Script (build-core.sh) */,
 				3042192C243DE0F200516852 /* Headers */,
 				3042192D243DE0F200516852 /* Sources */,
 				3042192E243DE0F200516852 /* Frameworks */,
@@ -289,7 +289,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		30421954243DE38E00516852 /* ShellScript */ = {
+		30421954243DE38E00516852 /* Run Script (build-core.sh) */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -299,13 +299,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script (build-core.sh)";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../scripts/build-core.sh\n";
+			shellScript = "if [[ ${SKIP_CORE_BUILD:-} != \"true\" ]]\n    then ../scripts/build-core.sh\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
