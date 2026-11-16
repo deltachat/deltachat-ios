@@ -60,7 +60,8 @@ final class DcUITests: XCTestCase {
             $0.selectConfiguredProfile(online: false)
         }
         dc.launch()
-        dc.tabBars.buttons[.localized("menu_settings")].tap()
+        dc.buttons[.localized("menu_more_options")].tap()
+        dc.buttons[.localized("menu_settings")].tap()
         dc.cells.staticTexts[.localized("pref_chats")].tap()
         dc.cells.staticTexts[.localized("export_backup_desktop")].tap()
         springboard.typeText("1\n")

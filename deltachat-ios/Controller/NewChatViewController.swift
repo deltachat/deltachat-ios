@@ -71,7 +71,6 @@ class NewChatViewController: UITableViewController {
         self.newOptions = newOptions
 
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder _: NSCoder) {

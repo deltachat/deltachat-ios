@@ -34,13 +34,6 @@ public class NotificationManager {
             UIApplication.shared.applicationIconBadgeNumber = number
 
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
-
-            // update badge counter on our tabbar
-            if let appCoordinator = appDelegate?.appCoordinator,
-               let chatsNavigationController = appCoordinator.tabBarController.viewControllers?[appCoordinator.chatsTab] {
-                chatsNavigationController.tabBarItem.badgeValue = number > 0 ? "\(number)" : nil
-            }
-
             appDelegate?.callWindow.callViewController?.setUnreadMessageCount(number)
         }
         #endif

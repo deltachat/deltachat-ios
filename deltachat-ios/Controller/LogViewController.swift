@@ -27,7 +27,6 @@ public class LogViewController: UIViewController {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
         self.navigationItem.title = String.localized("pref_log_header")
-        self.hidesBottomBarWhenPushed = true
     }
 
     required init?(coder: NSCoder) {

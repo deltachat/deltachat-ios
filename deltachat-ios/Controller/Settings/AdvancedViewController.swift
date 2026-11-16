@@ -118,7 +118,6 @@ internal final class AdvancedViewController: UITableViewController {
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder _: NSCoder) {
