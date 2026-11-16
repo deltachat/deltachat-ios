@@ -7,10 +7,12 @@ public class DcContext {
 
     private var encryptedDatabases: [Int: Bool] = [:]
 
+    var dcAccounts: DcAccounts
     var contextPointer: OpaquePointer?
 
-    public init(contextPointer: OpaquePointer?) {
+    public init(contextPointer: OpaquePointer?, dcAccounts: DcAccounts) {
         self.contextPointer = contextPointer
+        self.dcAccounts = dcAccounts
     }
 
     deinit {
@@ -95,7 +97,7 @@ public class DcContext {
 
     public func sendWebxdcRealtimeAdvertisement(messageId: Int) {
         do {
-            try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
+            try dcAccounts.blockingCall(method: "send_webxdc_realtime_advertisement", params: [id as AnyObject, messageId as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -103,7 +105,7 @@ public class DcContext {
 
     public func sendWebxdcRealtimeData(messageId: Int, uint8Array: [UInt8]) {
         do {
-            try DcAccounts.shared.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
+            try dcAccounts.blockingCall(method: "send_webxdc_realtime_data", params: [id as AnyObject, messageId as AnyObject, uint8Array as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -111,7 +113,7 @@ public class DcContext {
 
     public func leaveWebxdcRealtime(messageId: Int) {
         do {
-            try DcAccounts.shared.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
+            try dcAccounts.blockingCall(method: "leave_webxdc_realtime", params: [id as AnyObject, messageId as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -119,7 +121,7 @@ public class DcContext {
 
     public func setChatDescription(chatId: Int, descr: String) {
         do {
-            try DcAccounts.shared.blockingCall(method: "set_chat_description", params: [id as AnyObject, chatId as AnyObject, descr as AnyObject])
+            try dcAccounts.blockingCall(method: "set_chat_description", params: [id as AnyObject, chatId as AnyObject, descr as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -127,7 +129,7 @@ public class DcContext {
 
     public func getChatDescription(chatId: Int) -> String {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "get_chat_description", params: [id as AnyObject, chatId as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "get_chat_description", params: [id as AnyObject, chatId as AnyObject]) {
                 return try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
             }
         } catch {
@@ -164,7 +166,7 @@ public class DcContext {
 
     public func changeContactName(contactId: Int, name: String) {
         do {
-            try DcAccounts.shared.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
+            try dcAccounts.blockingCall(method: "change_contact_name", params: [id as AnyObject, contactId as AnyObject, name as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -284,7 +286,7 @@ public class DcContext {
 
     public func createBroadcast(name: String) -> Int {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "create_broadcast", params: [id as AnyObject, name as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "create_broadcast", params: [id as AnyObject, name as AnyObject]) {
                 return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
             }
         } catch {
@@ -295,7 +297,7 @@ public class DcContext {
 
     public func createGroupChatUnencrypted(name: String) -> Int {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "create_group_chat_unencrypted", params: [id as AnyObject, name as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "create_group_chat_unencrypted", params: [id as AnyObject, name as AnyObject]) {
                 return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
             }
         } catch {
@@ -338,7 +340,7 @@ public class DcContext {
 
     public func marknoticedAllChats() {
         do {
-            try DcAccounts.shared.blockingCall(method: "marknoticed_all_chats", params: [id as AnyObject])
+            try dcAccounts.blockingCall(method: "marknoticed_all_chats", params: [id as AnyObject])
         } catch {
             logger.error(error.localizedDescription)
         }
@@ -475,7 +477,7 @@ public class DcContext {
             let contactId: Int32
             let timestamp: Double
         }
-        if let data = DcAccounts.shared.blockingCall(method: "get_message_read_receipts", id, messageId) {
+        if let data = dcAccounts.blockingCall(method: "get_message_read_receipts", id, messageId) {
             do {
                 return try JSONDecoder().decode(JsonrpcResult<[MessageReadReceipt]>.self, from: data).result.map {
                     ($0.contactId, $0.timestamp)
@@ -489,7 +491,7 @@ public class DcContext {
 
     public func getMessageReadReceiptCount(messageId: Int) -> Int {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "get_message_read_receipt_count", params: [id as AnyObject, messageId as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "get_message_read_receipt_count", params: [id as AnyObject, messageId as AnyObject]) {
                 return try JSONDecoder().decode(JsonrpcIntResult.self, from: data).result
             }
         } catch {
@@ -500,7 +502,7 @@ public class DcContext {
 
     public func getMessageReactions(messageId: Int) -> DcReactions? {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "get_message_reactions", params: [id as AnyObject, messageId as AnyObject]) {
                 return try JSONDecoder().decode(DcReactionResult.self, from: data).result
             }
         } catch {
@@ -512,9 +514,9 @@ public class DcContext {
     public func sendReaction(messageId: Int, reaction: String?) {
         do {
             if let reaction {
-                try DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
+                try dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [reaction] as AnyObject])
             } else {
-                try DcAccounts.shared.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
+                try dcAccounts.blockingCall(method: "send_reaction", params: [id as AnyObject, messageId as AnyObject, [] as AnyObject])
             }
         } catch {
             logger.error(error.localizedDescription)
@@ -523,7 +525,7 @@ public class DcContext {
 
     public func makeVCard(contactIds: [Int]) -> Data? {
         do {
-            guard let vcardRPCResult = try DcAccounts.shared.blockingCall(method: "make_vcard", params: [id as AnyObject, contactIds as AnyObject]) else { return nil }
+            guard let vcardRPCResult = try dcAccounts.blockingCall(method: "make_vcard", params: [id as AnyObject, contactIds as AnyObject]) else { return nil }
 
             let vcard = try JSONDecoder().decode(DcVCardMakeResult.self, from: vcardRPCResult).result
             return vcard.data(using: .utf8)
@@ -535,7 +537,7 @@ public class DcContext {
 
     public func parseVcard(path: String) -> [DcVcardContact]? {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "parse_vcard", params: [path as AnyObject]) {
                 do {
                     return try JSONDecoder().decode(DcVcardContactResult.self, from: data).result
                 } catch {
@@ -550,7 +552,7 @@ public class DcContext {
 
     public func importVcard(path: String) -> [Int]? {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "import_vcard", params: [id as AnyObject, path as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "import_vcard", params: [id as AnyObject, path as AnyObject]) {
                 do {
                     return try JSONDecoder().decode(DcVcardImportResult.self, from: data).result
                 } catch {
@@ -565,7 +567,7 @@ public class DcContext {
 
     public func forwardMessagesToAccount(messageIds: [Int], destContextId: Int, destChatId: Int) {
         do {
-            try DcAccounts.shared.blockingCall(method: "forward_messages_to_account", params: [id as AnyObject, messageIds as AnyObject, destContextId as AnyObject, destChatId as AnyObject])
+            try dcAccounts.blockingCall(method: "forward_messages_to_account", params: [id as AnyObject, messageIds as AnyObject, destContextId as AnyObject, destChatId as AnyObject])
         } catch {
             logger.error("cannot forward messages: \(error)")
         }
@@ -593,7 +595,7 @@ public class DcContext {
 
     public func listTransports() -> [DcEnteredLoginParam] {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "list_transports", params: [id as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "list_transports", params: [id as AnyObject]) {
                 return try JSONDecoder().decode(DcEnteredLoginParamResult.self, from: data).result
             }
         } catch {
@@ -603,21 +605,21 @@ public class DcContext {
     }
 
     public func initTransports(qrCode: String?) throws -> Bool {
-        let res = try DcAccounts.shared.blockingCall(method: "init_transports", params: [id as AnyObject, qrCode as AnyObject])
+        let res = try dcAccounts.blockingCall(method: "init_transports", params: [id as AnyObject, qrCode as AnyObject])
         return res != nil
     }
 
     public func addOrUpdateTransport(param: DcEnteredLoginParam) throws -> Bool {
-        DcAccounts.shared.blockingCall(method: "add_or_update_transport", id, param) != nil
+        dcAccounts.blockingCall(method: "add_or_update_transport", id, param) != nil
     }
 
     public func addTransportFromQr(qrCode: String) throws -> Bool {
-        let res = try DcAccounts.shared.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
+        let res = try dcAccounts.blockingCall(method: "add_transport_from_qr", params: [id as AnyObject, qrCode as AnyObject])
         return res != nil
     }
 
     public func deleteTransport(addr: String) throws {
-        try DcAccounts.shared.blockingCall(method: "delete_transport", params: [id as AnyObject, addr as AnyObject])
+        try dcAccounts.blockingCall(method: "delete_transport", params: [id as AnyObject, addr as AnyObject])
     }
 
     public func setChatMuteDuration(chatId: Int, duration: Int) {
@@ -822,7 +824,7 @@ public class DcContext {
     }
     public func iceServers() -> [IceServer] {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "ice_servers", params: [id as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "ice_servers", params: [id as AnyObject]) {
                 let str = try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
                 guard let data = str.data(using: .utf8) else { return [] }
                 return try JSONDecoder().decode([IceServer].self, from: data)
@@ -835,7 +837,7 @@ public class DcContext {
 
     public func getStorageUsageReportString() -> String {
         do {
-            if let data = try DcAccounts.shared.blockingCall(method: "get_storage_usage_report_string", params: [id as AnyObject]) {
+            if let data = try dcAccounts.blockingCall(method: "get_storage_usage_report_string", params: [id as AnyObject]) {
                 return try JSONDecoder().decode(JsonrpcStringResult.self, from: data).result
             }
         } catch {

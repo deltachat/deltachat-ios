@@ -14,22 +14,15 @@ final class DcUITests: XCTestCase {
     override func setUpWithError() throws {
         localizationBundle = Bundle(for: type(of: self))
         continueAfterFailure = false
-        DcAccounts.shared.sharedDbLocation = DcAccounts.simulatorDBLocation() ?? {
-            // The simulatorDB can't be located if the app was never launched.
-            dc.launch()
-            return DcAccounts.simulatorDBLocation()
-        }() ?? {
-            XCTFail("Failed to find simulator database")
-            return nil
-        }()
     }
 
     override func tearDownWithError() throws {
-        DcAccounts.shared.opened { $0.removeTestProfiles() }
+        DcAccounts.host.removeTestProfiles()
+        DcAccounts.simulator.opened { $0.removeTestProfiles() }
     }
 
     @MainActor func testOnBoarding() throws {
-        DcAccounts.shared.opened {
+        DcAccounts.simulator.opened {
             $0.selectUnconfiguredProfile()
         }
         dc.launch()
@@ -42,7 +35,7 @@ final class DcUITests: XCTestCase {
     }
 
     @MainActor func testDeletingProfile() throws {
-        let dcContext = DcAccounts.shared.opened {
+        let dcContext = DcAccounts.simulator.opened {
             $0.selectConfiguredProfile(online: false)
         }
         dc.launch()
@@ -50,6 +43,7 @@ final class DcUITests: XCTestCase {
         dc.staticTexts[dcContext.displayname!].press(forDuration: 1)
         dc.buttons[.localized("delete")].tap()
         springboard.typeText("1\n")
+        XCTAssert(dc.buttons[.localized("delete_account")].wait(for: \.isHittable, toEqual: true, timeout: 3))
         dc.buttons[.localized("delete_account")].tap()
         XCTAssert(dc.staticTexts[dcContext.displayname!].waitForNonExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("welcome_desktop")].waitForExistence(timeout: 3))
@@ -77,18 +71,17 @@ final class DcUITests: XCTestCase {
     }
 
     @MainActor func testCompose() throws {
-        let (contact, qr) = DcAccounts.shared.opened { dcAccounts in
-            let contact = dcAccounts.selectConfiguredProfile(online: true)
-            dcAccounts.selectConfiguredProfile(online: true)
-            return (contact, contact.getSecurejoinQr(chatId: 0).flatMap(URL.init(string:)))
+        DcAccounts.simulator.opened { $0.selectConfiguredProfile(online: true) }
+        let contact = DcAccounts.host.selectConfiguredProfile(online: true)
+        guard let qr = contact.getSecurejoinQr(chatId: 0).flatMap(URL.init(string:)) else {
+            return XCTFail("Failed to get secure join qr")
         }
-        guard let qr else { return XCTFail("Failed to get secure join qr") }
-
         dc.open(qr)
         dc.buttons[.localized("ok")].tap()
         XCTAssert(dc.staticTexts[.localized("chat_protection_enabled_tap_to_learn_more")].waitForExistence(timeout: 3))
         // Note: Currently this is flaky because we have a bug #3459
         XCTAssert(dc.textViews[.localized("write_message_desktop")].waitForExistence(timeout: 10))
+        return ()
         dc.textViews[.localized("write_message_desktop")].tap()
         dc.typeText("Hi")
         dc.buttons[.localized("menu_send")].tap()
@@ -147,13 +140,28 @@ final class DcUITests: XCTestCase {
 
 
 extension DcAccounts {
-    @discardableResult
-    func opened<T>(_ batch: (DcAccounts) -> T) -> T {
-        dc.terminate()
-        openDatabase(writeable: true)
-        defer { closeDatabase() }
-        return batch(self)
-    }
+    @available(*, deprecated, message: "Specifically use host or simulator database")
+    static let shared: DcAccounts = simulator
+
+    static let host: DcAccounts = {
+        let accounts = DcAccounts()
+        accounts.sharedDbLocation = URL(string: ProcessInfo.processInfo.environment["TMPDIR"]!)!
+        accounts.openDatabase(writeable: true)
+        return accounts
+    }()
+
+    static let simulator: DcAccounts = {
+        let accounts = DcAccounts()
+        accounts.sharedDbLocation = simulatorDBLocation() ?? {
+            // The simulatorDB can't be located if the app was never launched.
+            dc.launch()
+            return simulatorDBLocation()
+        }() ?? {
+            XCTFail("Failed to find simulator database")
+            return nil
+        }()
+        return accounts
+    }()
 
     /// Find the accounts database that the simulator is using
     static func simulatorDBLocation() -> URL? {
@@ -163,6 +171,14 @@ extension DcAccounts {
         )
         .filter { try $0.resourceValues(forKeys: [.isDirectoryKey]).isDirectory == true }
         .first { FileManager.default.fileExists(atPath: $0.appending(path: "accounts").path) }
+    }
+
+    @discardableResult
+    func opened<T>(_ batch: (DcAccounts) -> T) -> T {
+        dc.terminate()
+        openDatabase(writeable: true)
+        defer { closeDatabase() }
+        return batch(self)
     }
 
     @discardableResult

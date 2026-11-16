@@ -137,7 +137,7 @@ public class DcChat {
 
     public var pinnedMessageIds: [Int] {
         do {
-            if let data = DcAccounts.shared.blockingCall(method: "get_pinned_messages", dcContext.id, id) {
+            if let data = dcContext.dcAccounts.blockingCall(method: "get_pinned_messages", dcContext.id, id) {
                 return try JSONDecoder().decode(JsonrpcResult<[Int]>.self, from: data).result.reversed()
             }
         } catch {

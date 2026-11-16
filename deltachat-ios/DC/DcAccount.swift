@@ -48,7 +48,7 @@ public class DcAccounts {
 
     public func get(id: Int) -> DcContext {
         let contextPointer = dc_accounts_get_account(accountsPointer, UInt32(id))
-        return DcContext(contextPointer: contextPointer)
+        return DcContext(contextPointer: contextPointer, dcAccounts: self)
     }
 
     public func isFreshlyAdded(id: Int) -> Bool {
@@ -78,7 +78,7 @@ public class DcAccounts {
 
     public func getSelected() -> DcContext {
         let cPtr = dc_accounts_get_selected_account(accountsPointer)
-        return DcContext(contextPointer: cPtr)
+        return DcContext(contextPointer: cPtr, dcAccounts: self)
     }
 
     // call maybeNetwork() from a worker thread.
