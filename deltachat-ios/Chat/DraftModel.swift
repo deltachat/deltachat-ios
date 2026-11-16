@@ -115,18 +115,25 @@ public class DraftModel: ObservableObject {
         dcContext.setDraft(chatId: chatId, message: nil)
     }
 
-    public func send() {
+    /// Returns true if a new message was sent.
+    /// Returns false for edit requests or if there is nothing to send.
+    @discardableResult public func send() -> Bool {
         assert(Thread.isMainThread)
-        guard canSend() else { return }
+        guard canSend() else { return false }
+        let sentNewMessage: Bool
+
         if let sendEditRequestForMsg {
             dcContext.sendEditRequest(msgId: sendEditRequestForMsg.id, newText: text)
             isFieldFocused = false
+            sentNewMessage = false
         } else {
             let draftMsg = draftMsg ?? dcContext.newMessage(viewType: DC_MSG_TEXT)
             draftMsg.text = trimmedText
             dcContext.sendMessage(chatId: chatId, message: draftMsg)
+            sentNewMessage = true
         }
         clear()
+        return sentNewMessage
     }
 
     private func publishDraftMsgChange() {

@@ -1231,18 +1231,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         guard !tableView.isEditing else {
             return refreshMessagesAfterEditing = true
         }
-        let lastMessageId = messages.last?.id ?? 0
         messages = dcContext.getChatMsgsAndTimestamps(chatId: chatId, flags: DC_GCM_ADDDAYMARKER)
         reloadData()
-
-        // scroll down for just sent messages
-        // (checking "newer ID" is easier than tracking all places where messages are added)
-        if let newLastMessageId = messages.last?.id, newLastMessageId > lastMessageId,
-           dcContext.getMessage(id: newLastMessageId).isFromCurrentSender {
-            scrollToBottom()
-        }
-
         showEmptyStateView(messages.isEmpty)
+    }
+
+    /// Show a message just sent from this chat.
+    /// Must be called after DcContext.sendMessage() returned, so that the message is actually in the database.
+    func showSentMessage() {
+        refreshMessages()
+        scrollToBottom()
     }
 
     private func reloadData() {
@@ -1900,6 +1898,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         msg.text = (message ?? "").isEmpty ? nil : message
         msg.quoteMessage = quoteMessage
         dcContext.sendMessage(chatId: chatId, message: msg)
+        DispatchQueue.main.async { [weak self] in
+            self?.showSentMessage()
+        }
     }
 
     private func sendVoiceMessage(url: NSURL) {
@@ -1913,6 +1914,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.dcContext.sendMessage(chatId: self.chatId, message: msg)
             DispatchQueue.main.async {
                 self.draft.setQuote(quotedMsg: nil)
+                self.showSentMessage()
             }
         }
     }
