@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Mini Apps can now be minimized so they continue running while you chat
+- On iOS 26+, "Search" and "New Chat" are at the bottom, within thumb reach
+- "QR code" and the new "⋯" menu with "Settings" are now at the top right
 - Image edits are now applied in the draft preview
 - Chats tab now always opens after restarting the app
 - Fixed wallpaper selection not applying until you restarted the app

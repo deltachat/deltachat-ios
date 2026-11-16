@@ -77,7 +77,6 @@ class GroupMembersViewController: UITableViewController {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder _: NSCoder) {

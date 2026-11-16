@@ -67,8 +67,6 @@ class InstantOnboardingViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        hidesBottomBarWhenPushed = true
-
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(InstantOnboardingViewController.connectivityChanged(_:)), name: Event.connectivityChanged, object: nil)

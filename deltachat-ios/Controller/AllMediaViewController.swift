@@ -49,7 +49,6 @@ class AllMediaViewController: UIPageViewController {
         self.dcContext = dcContext
         self.chatId = chatId
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [:])
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder: NSCoder) {

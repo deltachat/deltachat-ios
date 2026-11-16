@@ -19,7 +19,6 @@ class DownloadOnDemandViewController: UITableViewController {
         self.options = [0, 163840, 655360, 5242880, 26214400]
         super.init(style: .insetGrouped)
         self.title = String.localized("auto_download_messages")
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -59,7 +59,6 @@ class SelfProfileViewController: UITableViewController, MediaPickerDelegate {
     init(dcAccounts: DcAccounts) {
         self.dcContext = dcAccounts.getSelected()
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextField.textDidChangeNotification, object: nameCell.textField)
     }

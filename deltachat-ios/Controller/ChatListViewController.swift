@@ -19,7 +19,26 @@ class ChatListViewController: UITableViewController {
     private let archiveCell = ContactCell()
 
     private lazy var newButton: UIBarButtonItem = {
-        UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressNewChat))
+        let style: UIBarButtonItem.Style = if #available(iOS 26.0, *) { .prominent } else { .plain }
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: style, target: self, action: #selector(didPressNewChat))
+        button.accessibilityLabel = String.localized("menu_new_chat")
+        return button
+    }()
+
+    private lazy var qrButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "qrcode"), style: .plain, target: self, action: #selector(didPressQrCode))
+        button.accessibilityLabel = String.localized("qr_code")
+        return button
+    }()
+
+    private lazy var moreButton: UIBarButtonItem = {
+        let settings = UIAction(title: String.localized("menu_settings"), image: UIImage(systemName: "gear")) { [weak self] _ in
+            guard let self else { return }
+            navigationController?.pushViewController(SettingsViewController(dcAccounts: dcAccounts), animated: true)
+        }
+        let button = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [settings]))
+        button.accessibilityLabel = String.localized("menu_more_options")
+        return button
     }()
 
     private lazy var proxyShieldButton: UIBarButtonItem = {
@@ -75,7 +94,9 @@ class ChatListViewController: UITableViewController {
         self.dcAccounts = dcAccounts
         self.isArchive = isArchive
         super.init(style: .plain)
-        hidesBottomBarWhenPushed = isArchive
+        if #available(iOS 26.0, *), !isArchive {
+            toolbarItems = [navigationItem.searchBarPlacementBarButtonItem, .flexibleSpace(), newButton]
+        }
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self else { return }
             self.viewModel = ChatListViewModel(dcContext: self.dcContext, isArchive: isArchive)
@@ -160,17 +181,18 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
-
-        // HACK: show the tab bar again that was hidden in showChat().
-        // skip showing if we're an archive or when a chat is on top already, eg. when opened from a notification
-        if #available(iOS 26.0, *), !isArchive, navigationController?.topViewController == self {
-            tabBarController?.setTabBarHidden(false, animated: animated)
+        if #available(iOS 26.0, *), !isArchive {
+            navigationController?.setToolbarHidden(false, animated: animated)
         }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setToolbarHidden(true, animated: animated)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setBottomTabBarHidden(hasEditingView())
         startTimer()
     }
 
@@ -317,6 +339,10 @@ class ChatListViewController: UITableViewController {
     // MARK: - actions
     @objc func didPressNewChat() {
         showNewChatController()
+    }
+
+    @objc func didPressQrCode() {
+        navigationController?.pushViewController(QrPageController(dcAccounts: dcAccounts), animated: true)
     }
 
     @objc func cancelButtonPressed() {
@@ -604,14 +630,12 @@ class ChatListViewController: UITableViewController {
     func setLongTapEditing(_ editing: Bool, initialIndexPath: IndexPath? = nil) {
         setEditing(editing, animated: true)
         if editing {
-            setBottomTabBarHidden(true)
             tableView.selectRow(at: initialIndexPath, animated: true, scrollPosition: .none)
             addEditingView()
             updateTitleAndEditingBar()
         } else {
             removeEditingView()
             updateTitle()
-            setBottomTabBarHidden(false)
         }
     }
 
@@ -628,15 +652,6 @@ class ChatListViewController: UITableViewController {
         NSLayoutConstraint.activate(editingConstraints ?? [])
         // Updates UIToolbar to extend its background into safe area on pre liquid glass
         editingBar.layoutSubviews()
-    }
-
-    private func setBottomTabBarHidden(_ hidden: Bool) {
-        guard navigationController?.topViewController == self else { return }
-        guard !isArchive, let tabBar = tabBarController?.tabBar, tabBar.isHidden != hidden else { return }
-
-        tabBar.isHidden = hidden
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
     }
 
     private func removeEditingView() {
@@ -725,12 +740,16 @@ class ChatListViewController: UITableViewController {
                 navigationItem.setLeftBarButton(accountButton, animated: false)
                 updateAccountButton()
 
-                if dcContext.getProxies().isEmpty {
-                    navigationItem.setRightBarButtonItems([newButton], animated: true)
-                } else {
-                    updateProxyButton()
-                    navigationItem.setRightBarButtonItems([newButton, proxyShieldButton], animated: true)
+                // on iOS 26+, the "New Chat" button is beside the search bar at the bottom
+                var buttons = [moreButton, qrButton]
+                if #unavailable(iOS 26.0) {
+                    buttons.insert(newButton, at: 1)
                 }
+                if !dcContext.getProxies().isEmpty {
+                    updateProxyButton()
+                    buttons.append(proxyShieldButton)
+                }
+                navigationItem.setRightBarButtonItems(buttons, animated: true)
             }
         }
     }
@@ -916,13 +935,6 @@ class ChatListViewController: UITableViewController {
             searchController.searchBar.resignFirstResponder()
         }
         let chatViewController = ChatViewController(dcContext: dcContext, chatId: chatId, highlightedMsg: highlightedMsg)
-
-        // HACK: hide tabbar before pushing:
-        // otherwise hidesBottomBarWhenPushed hides it during the push,
-        // which delays the chat's top edge blur effect by about a second.
-        if #available(iOS 26.0, *), !isArchive {
-            tabBarController?.setTabBarHidden(true, animated: animated)
-        }
         navigationController?.pushViewController(chatViewController, animated: animated)
     }
 

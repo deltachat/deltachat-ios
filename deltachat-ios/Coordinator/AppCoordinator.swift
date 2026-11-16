@@ -9,73 +9,29 @@ class AppCoordinator: NSObject {
     private let window: UIWindow
     private let dcAccounts: DcAccounts
 
-    private let qrTab = 0
-    public  let chatsTab = 1
-    private let settingsTab = 2
-
     // MARK: - login view handling
     private lazy var loginNavController: UINavigationController = {
         let nav = UINavigationController() // we change the root, therefore do not set on implicit creation
         return nav
     }()
 
-    // MARK: - tabbar view handling
-    lazy var tabBarController: UITabBarController = {
-        let qrNavController = createQrNavigationController()
-        let chatsNavController = createChatsNavigationController()
-        let settingsNavController = createSettingsNavigationController()
-        let tabBarController = UITabBarController()
-        tabBarController.delegate = self
-        tabBarController.viewControllers = [qrNavController, chatsNavController, settingsNavController]
-        tabBarController.tabBar.tintColor = DcColors.primary
-        return tabBarController
-    }()
+    // MARK: - main view handling
+    lazy var navigationController = UINavigationController(rootViewController: createChatListViewController())
 
-    private func createQrNavigationController() -> UINavigationController {
-        let root = QrPageController(dcAccounts: dcAccounts)
-        let nav = UINavigationController(rootViewController: root)
-        let qrCodeTabImage: UIImage?
-        qrCodeTabImage = UIImage(systemName: "qrcode")
-        nav.tabBarItem = UITabBarItem(title: String.localized("qr_code"), image: qrCodeTabImage, tag: qrTab)
-        return nav
-    }
-
-    private func createChatsNavigationController() -> UINavigationController {
-        let root = ChatListViewController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts, isArchive: false)
-        let nav = UINavigationController(rootViewController: root)
-        let chatTabImage = UIImage(named: "ic_chat")
-        nav.tabBarItem = UITabBarItem(title: String.localized("pref_chats"), image: chatTabImage, tag: chatsTab)
-        return nav
-    }
-
-    private func createSettingsNavigationController() -> UINavigationController {
-        let root = SettingsViewController(dcAccounts: dcAccounts)
-        let nav = UINavigationController(rootViewController: root)
-        let settingsImage: UIImage?
-        settingsImage = UIImage(systemName: "gear")
-        nav.tabBarItem = UITabBarItem(title: String.localized("menu_settings"), image: settingsImage, tag: settingsTab)
-        return nav
+    private func createChatListViewController() -> ChatListViewController {
+        return ChatListViewController(dcContext: dcAccounts.getSelected(), dcAccounts: dcAccounts, isArchive: false)
     }
 
     // MARK: - misc
     init(window: UIWindow, dcAccounts: DcAccounts) {
         self.window = window
         self.dcAccounts = dcAccounts
-        let dcContext = dcAccounts.getSelected()
         super.init()
         initializeRootController()
-        showTab(index: chatsTab)
-    }
-
-    func showTab(index: Int) {
-        let nvc = tabBarController.selectedViewController as? UINavigationController
-        nvc?.popToRootViewController(animated: false)
-        tabBarController.selectedIndex = index
     }
 
     func isShowingChat(chatId: Int) -> Bool {
-        if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
-           let chatViewController = rootController.viewControllers.last as? ChatViewController,
+        if let chatViewController = navigationController.viewControllers.last as? ChatViewController,
            chatViewController.chatId == chatId {
             return true
         }
@@ -83,9 +39,8 @@ class AppCoordinator: NSObject {
     }
 
     func showChat(chatId: Int, msgId: Int? = nil, openHighlightedMsg: Bool = false, animated: Bool = true, clearViewControllerStack: Bool = false) {
-        showTab(index: chatsTab)
-        if let rootController = self.tabBarController.selectedViewController as? UINavigationController,
-           let chatListViewController = rootController.viewControllers.first as? ChatListViewController {
+        let rootController = navigationController
+        if let chatListViewController = rootController.viewControllers.first as? ChatListViewController {
             chatListViewController.setLongTapEditing(false)
             if let msgId, openHighlightedMsg {
                 let dcContext = dcAccounts.getSelected()
@@ -141,8 +96,7 @@ class AppCoordinator: NSObject {
             appDelegate.reloadDcContext()
         } else {
             // check if webxdc is already opened
-            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
-               let topViewController = navController.topViewController,
+            if let topViewController = navigationController.topViewController,
                let webxdcController = topViewController as? WebxdcViewController,
                webxdcController.messageId == messageId {
                 // do nothing, the app shows the correct view
@@ -156,7 +110,6 @@ class AppCoordinator: NSObject {
             showChat(chatId: chatId, msgId: messageId, openHighlightedMsg: true, animated: false, clearViewControllerStack: true)
             return true
         } else {
-            showChats()
             return false
         }
     }
@@ -177,8 +130,7 @@ class AppCoordinator: NSObject {
             appDelegate.reloadDcContext()
         } else {
             // check if chat is already opened
-            if let navController = self.tabBarController.selectedViewController as? UINavigationController,
-               let topViewController = navController.topViewController,
+            if let topViewController = navigationController.topViewController,
                let chatViewController = topViewController as? ChatViewController,
                chatViewController.chatId == chatId {
                 // do nothing, the app shows the correct view
@@ -189,8 +141,6 @@ class AppCoordinator: NSObject {
         let chat = dcAccounts.getSelected().getChat(chatId: chatId)
         if chat.isValid {
             showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
-        } else {
-            showChats()
         }
         return true
     }
@@ -219,9 +169,7 @@ class AppCoordinator: NSObject {
         if let chatId = parameters["chatId"].map(Int32.init)?.map(Int.init) {
             showChat(chatId: chatId)
         } else {
-            showChats()
-            let nvc = tabBarController.selectedViewController as? UINavigationController
-            nvc?.popToRootViewController(animated: false)
+            navigationController.popToRootViewController(animated: false)
         }
 
         return true
@@ -229,12 +177,9 @@ class AppCoordinator: NSObject {
 
     func handleMailtoURL(_ url: URL, askToChat: Bool = true) {
         if RelayHelper.shared.parseMailtoUrl(url) {
-            showTab(index: chatsTab)
-            if let rootController = self.tabBarController.selectedViewController as? UINavigationController {
-                rootController.popToRootViewController(animated: false)
-                if let controller = rootController.viewControllers.first as? ChatListViewController {
-                    controller.handleMailto(askToChat: askToChat)
-                }
+            navigationController.popToRootViewController(animated: false)
+            if let controller = navigationController.viewControllers.first as? ChatListViewController {
+                controller.handleMailto(askToChat: askToChat)
             }
         } else {
             logger.warning("Could not parse mailto: URL")
@@ -283,15 +228,13 @@ class AppCoordinator: NSObject {
            !dcAccounts.getSelected().isConfigured() {
             presentWelcomeController(accountCode: code)
         } else {
-            coordinate(qrCode: code, from: tabBarController)
+            coordinate(qrCode: code, from: navigationController)
         }
     }
 
     /// Works for both i.delta.chat and QR-codes
     func coordinate(qrCode code: String, from viewController: UIViewController) {
         let dcContext = dcAccounts.getSelected()
-
-        showChats()
         let qrParsed: DcLot = dcContext.checkQR(qrCode: code)
         let state = Int32(qrParsed.state)
         switch state {
@@ -363,12 +306,10 @@ class AppCoordinator: NSObject {
             alert.addAction(UIAlertAction(title: String.localized("ok"), style: .default, handler: { [weak self] _ in
                 Utils.authenticateDeviceOwner(reason: String.localized("edit_transport")) { [weak self] in
                     guard let self = self else { return }
-                    popTabsToRootViewControllers()
-                    showTab(index: settingsTab)
-                    guard let root = tabBarController.selectedViewController as? UINavigationController else { return }
+                    let settingsViewController = SettingsViewController(dcAccounts: dcAccounts)
                     let advancedViewController = AdvancedViewController(dcAccounts: dcAccounts)
                     let transportViewController = TransportListViewController(dcContext: dcContext, dcAccounts: dcAccounts, continueQrScan: code)
-                    root.setViewControllers([root.viewControllers[0], advancedViewController, transportViewController], animated: true)
+                    navigationController.setViewControllers([navigationController.viewControllers[0], settingsViewController, advancedViewController, transportViewController], animated: true)
                 }
             }))
             viewController.present(alert, animated: true, completion: nil)
@@ -448,17 +389,13 @@ class AppCoordinator: NSObject {
     }
 
     // MARK: - coordinator
-    private func showChats() {
-        showTab(index: chatsTab)
-    }
-
     private func showChat(chatId: Int) {
         showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
     }
 
     func initializeRootController() {
         if dcAccounts.getSelected().isConfigured() {
-            presentTabBarController()
+            presentChatsController()
         } else {
             presentWelcomeController()
         }
@@ -492,62 +429,24 @@ class AppCoordinator: NSObject {
         NotificationManager.updateBadgeCounters(forceZero: true)
     }
 
-    func presentTabBarController() {
-        window.rootViewController = tabBarController
-        showTab(index: chatsTab)
+    func presentChatsController() {
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
     }
 
     func presentQrCodeController() {
-        popTabsToRootViewControllers()
-        window.rootViewController = tabBarController
-        showTab(index: qrTab)
-        window.makeKeyAndVisible()
+        navigationController.setViewControllers([navigationController.viewControllers[0], QrPageController(dcAccounts: dcAccounts)], animated: true)
+        presentChatsController()
     }
 
-    func popTabsToRootViewControllers() {
-        self.tabBarController.viewControllers?.forEach { controller in
-            if let navController = controller as? UINavigationController {
-                navController.popToRootViewController(animated: false)
-            }
-        }
-    }
-
-    func resetTabBarRootViewControllers() {
-        // call `willMove()` for the root view controllers of each tab, after popping to root.
-        // this is not always done by `setViewControllers()` the documentation is vague on this point:
-        // <https://developer.apple.com/documentation/uikit/uitabbarcontroller/1621177-setviewcontrollers>
+    func resetChatsController() {
+        // force calling `willMove()` for the disappearing view controller as this is not always done by `setViewControllers()`
         // (calling `willMove()` is needed eg. to remove observers - otherwise we have a memory leak)
-        self.tabBarController.viewControllers?.forEach { controller in
-            if let navController = controller as? UINavigationController {
-                navController.popToRootViewController(animated: false)
-                navController.viewControllers[0].willMove(toParent: nil)
-            }
-        }
+        navigationController.popToRootViewController(animated: false)
+        navigationController.viewControllers[0].willMove(toParent: nil)
 
-        self.tabBarController.setViewControllers([createQrNavigationController(),
-                                                  createChatsNavigationController(),
-                                                  createSettingsNavigationController()], animated: false)
-        presentTabBarController()
+        navigationController.setViewControllers([createChatListViewController()], animated: false)
+        presentChatsController()
         NotificationManager.updateBadgeCounters()
-    }
-}
-
-extension AppCoordinator: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        // if the chatlist is already visible when tapping, scroll chatlist to top
-        if let navigationController = viewController as? UINavigationController,
-           let chatListViewController = navigationController.viewControllers.first as? ChatListViewController,
-           let viewModel = chatListViewController.viewModel,
-           let chatsTab = tabBarController.selectedViewController as? UINavigationController,
-           chatsTab.topViewController == chatListViewController {
-            if viewModel.searchActive {
-                chatListViewController.quitSearch(animated: true) // this includes scrollToTop()
-            } else {
-                chatListViewController.tableView.scrollToTop(animated: true)
-            }
-        }
-
-        return true
     }
 }

@@ -96,7 +96,6 @@ internal final class NotificationsViewController: UITableViewController {
         self.dcContext = dcAccounts.getSelected()
         self.dcAccounts = dcAccounts
         super.init(style: .insetGrouped)
-        hidesBottomBarWhenPushed = true
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.handleConnectivityChanged(_:)), name: Event.connectivityChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationsViewController.applicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }

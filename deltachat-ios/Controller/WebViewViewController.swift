@@ -53,7 +53,6 @@ class WebViewViewController: UIViewController, WKNavigationDelegate {
     init(dcContext: DcContext) {
         self.dcContext = dcContext
         super.init(nibName: nil, bundle: nil)
-        hidesBottomBarWhenPushed = true
     }
 
     required init?(coder: NSCoder) {
