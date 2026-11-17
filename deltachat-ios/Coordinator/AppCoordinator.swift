@@ -6,7 +6,7 @@ import DcCore
 // MARK: - AppCoordinator
 class AppCoordinator: NSObject {
 
-    private let window: UIWindow
+    private var window: UIWindow
     private let dcAccounts: DcAccounts
 
     // MARK: - login view handling
@@ -391,6 +391,13 @@ class AppCoordinator: NSObject {
     // MARK: - coordinator
     private func showChat(chatId: Int) {
         showChat(chatId: chatId, animated: false, clearViewControllerStack: true)
+    }
+
+    /// windows need to be created from their scene, otherwise eg. the system does not move bars above the keyboard
+    func moveToWindow(_ window: UIWindow) {
+        self.window.rootViewController = nil
+        self.window = window
+        initializeRootController()
     }
 
     func initializeRootController() {
