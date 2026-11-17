@@ -125,7 +125,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
            fatalError("Could not initialize a new account.")
         }
 
-        window = UIWindow(frame: UIScreen.main.bounds)
+        if window == nil { // if the scene is already connected, its window is used
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
         guard let window = window else {
             fatalError("window was nil in app delegate")
         }
