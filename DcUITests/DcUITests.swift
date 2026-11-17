@@ -79,7 +79,6 @@ final class DcUITests: XCTestCase {
         dc.open(qr)
         dc.buttons[.localized("ok")].tap()
         XCTAssert(dc.staticTexts[.localized("chat_protection_enabled_tap_to_learn_more")].waitForExistence(timeout: 3))
-        // Note: Currently this is flaky because we have a bug #3459
         XCTAssert(dc.textViews[.localized("write_message_desktop")].waitForExistence(timeout: 10))
         dc.textViews[.localized("write_message_desktop")].tap()
         dc.typeText("Hi")
@@ -195,6 +194,7 @@ extension DcAccounts {
         let name = caller + ":\(line)"
         if online {
             XCTAssert(true == (try? newProfile.initTransports(qrCode: nil)))
+            blockingCall(method: "wait_for_all_work_done", newProfile.id)
         } else {
             newProfile.addPseudoTransport(addr: "ios.test.\(name)@delta.chat")
             newProfile.setConfig("configured_addr", "ci-ios.test.\(name)@delta.chat")
