@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Mini Apps can now be minimized so they continue running while you chat
 - Image edits are now applied in the draft preview
 - Chats tab now always opens after restarting the app
 - Fixed wallpaper selection not applying until you restarted the app
