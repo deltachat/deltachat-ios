@@ -169,6 +169,7 @@ public class DcAccounts {
     }
 
     public func closeDatabase() {
+        stopIo()
         if rpcPointer != nil {
             dc_jsonrpc_unref(rpcPointer)
             rpcPointer = nil
