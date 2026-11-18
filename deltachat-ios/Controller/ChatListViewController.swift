@@ -181,9 +181,7 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateTitle()
-        if #available(iOS 26.0, *), !isArchive {
-            navigationController?.setToolbarHidden(false, animated: animated)
-        }
+        updateToolbar(animated: animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -637,6 +635,13 @@ class ChatListViewController: UITableViewController {
             removeEditingView()
             updateTitle()
         }
+        updateToolbar(animated: true)
+    }
+
+    /// on iOS 26+ the bottom toolbar holding "Search" and "New Chat" needs to be hidden on multi-select, which has its own bottom toolbar
+    private func updateToolbar(animated: Bool) {
+        guard #available(iOS 26.0, *), !isArchive, navigationController?.topViewController == self else { return }
+        navigationController?.setToolbarHidden(hasEditingView(), animated: animated)
     }
 
     private func addEditingView() {
