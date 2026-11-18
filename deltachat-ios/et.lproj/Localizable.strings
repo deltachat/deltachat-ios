@@ -1031,6 +1031,8 @@
 "export_backup_desktop" = "Ekspordi varukoopia";
 "message_detail_sent_desktop" = "saadetud";
 "message_detail_received_desktop" = "vastuvõetud";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Viimati uuendatud";
 "menu.view.developer.open.log.folder" = "Ava logifailide kaust";
 "menu.view.developer.open.current.log.file" = "Ava praegune logifail";
 "explain_desktop_minimized_disabled_tray_pref" = "Kuna Delta Chat juba käivitati --minimized argumendiga, siis süsteemisalve ikooni ei saa välja lülitada.";

@@ -6,7 +6,7 @@
 // a noun, used on a button, short for "show link"
 "link" = "Спасылка";
 // "scan" in the meaning of "scan QR code"
-"scan" = "Сканаваць";
+"scan" = "Адсканаваць";
 "yes" = "Так";
 "no" = "Не";
 "select" = "Выбраць";
@@ -268,7 +268,7 @@
 "menu_show_global_map" = "Усе месцазнаходжанні";
 "menu_archive_chat" = "Архіваваць чат";
 "menu_unarchive_chat" = "Вывесці чат з архіва";
-"menu_add_attachment" = "Далучыць файл";
+"menu_add_attachment" = "Далучыць";
 "menu_leave_group" = "Выйсці з суполкі";
 "menu_leave_channel" = "Выйсці з канала";
 "menu_leave_and_delete" = "Выйсці і выдаліць для мяне";
@@ -337,7 +337,7 @@
 "device_talk" = "Паведамленні прылады";
 "device_talk_subtitle" = "Паведамленні, створаныя прыладай";
 "device_talk_explain" = "Паведамленні ў гэтым чаце ствараюцца на вашай прыладзе, каб інфармаваць вас пра абнаўленні праграмы і праблемы ў часе выкарыстання.";
-"device_talk_welcome_message2" = "Заставайцеся на сувязі!\n\n🙌 Націсніце «QR-код» на галоўным экране абедзвюх прылад. На адной прыладзе выберыце «Сканаваць QR-код» і накіруйце камеру на іншую прыладу.\n\n🌍 Калі прылады знаходзяцца ў розных месцах, адскануйце QR-код праз відэавыклік або абагуліце запрашальную спасылку з раздзела «Сканаваць QR-код»\n\nА потым: карыстайцеся перавагамі дэцэнтралізаванай праграмы абмену паведамленнямі. У адрозненне ад іншых папулярных праграм, яна не мае цэнтральнага вузла кіравання, не сочыць за вамі і не прадае вашыя даныя, даныя пра вашых сяброў, калег ці сямейнікаў буйным арганізацыям.";
+"device_talk_welcome_message2" = "Заставайцеся на сувязі!\n\n🙌 Націсніце «QR-код» на галоўным экране абедзвюх прылад. На адной прыладзе выберыце «Адсканаваць QR-код» і накіруйце камеру на іншую прыладу.\n\n🌍 Калі прылады знаходзяцца ў розных месцах, адскануйце QR-код праз відэавыклік або абагуліце запрашальную спасылку з раздзела «Адсканаваць QR-код»\n\nА потым: карыстайцеся перавагамі дэцэнтралізаванай праграмы абмену паведамленнямі. У адрозненне ад іншых папулярных праграм, яна не мае цэнтральнага вузла кіравання, не сочыць за вамі і не прадае вашыя даныя, даныя пра вашых сяброў, калег ці сямейнікаў буйным арганізацыям.";
 "edit_contact" = "Рэдагаваць кантакт";
 // Verb "to pin", making something sticky, not a noun or abbreviation for "pin number".
 "pin_chat" = "Замацаваць чат";
@@ -503,7 +503,7 @@
 "group_self_not_in_group" = "Вы мусіце быць удзельнікам суполкі, каб выканаць гэтае дзеянне.";
 // deprecated
 "profile_encryption" = "Шыфраванне";
-"profile_shared_chats" = "Чаты ў агульным";
+"profile_shared_chats" = "Агульныя чаты";
 // Separator between the list of actual members and past members
 "past_members" = "Былыя ўдзельнікі";
 // deprecated, use string "contact"
@@ -533,7 +533,7 @@
 // Shown inside a "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to set up second device for Alice"
 "multidevice_qr_subtitle" = "Адскануйце, каб наладзіць другую прыладу (%1$@)";
 "multidevice_receiver_title" = "Дадаць як другую прыладу";
-"multidevice_open_settings_on_other_device" = "На першай прыладзе запусціце Delta Chat, адкрыйце «Налады > Дадаць другую прыладу» і адскануйце код, які паказаны тут";
+"multidevice_open_settings_on_other_device" = "На першай прыладзе запусціце Delta Chat, адкрыйце «Налады > Дадаць другую прыладу» і адскануйце код, які там паказаны";
 "multidevice_receiver_scanning_ask" = "Скапіяваць профіль з другой прылады на гэтую?";
 "multidevice_receiver_needs_update" = "Профіль, які вы хочаце імпартаваць, з навейшай версіі Delta Chat.\n\nКаб працягнуць наладжванне другой прылады, абнавіце Delta Chat на гэтай прыладзе да апошняй версіі.";
 "multidevice_abort" = "Перарваць наладжванне другой прылады?";
@@ -563,7 +563,7 @@
 // Subtitle in quota context of "Connectivity" view. Should be be plural always, no number is prefixed.
 "messages" = "Паведамленні";
 // Used for describing resource usage, resulting string will be eg. "1.2 GiB of 3 GiB used"
-"part_of_total_used" = "%1$@ з %2$@ выкарыстана";
+"part_of_total_used" = "Выкарыстана %1$@ з %2$@";
 // welcome and profile creation
 // Primary button on the welcome screen, allows to create an instant profile
 "onboarding_create_instant_account" = "Стварыць новы профіль";
@@ -592,7 +592,7 @@
 "team_name" = "Назва групы";
 "create_team_profile" = "Стварыць профіль групы";
 "welcome_chat_over_email" = "Бяспечны дэцэнтралізаваны чат";
-"scan_invitation_code" = "Сканаваць запрашальны код";
+"scan_invitation_code" = "Адсканаваць запрашальны код";
 "login_advanced_hint" = "Гэты ўваход для прасунутых карыстальнікаў.\n\nНе выкарыстоўвайце адрас, які выкарыстоўваецца ў іншай праграме.";
 "login_inbox" = "Уваходныя";
 "login_imap_login" = "Імя карыстальніка IMAP";
@@ -651,7 +651,7 @@
 "move_to_top" = "Перамясціць наверх";
 "delete_account" = "Выдаліць профіль";
 "delete_account_ask" = "Выдаліць даныя профілю?";
-"delete_account_explain_with_name" = "Усе даныя профілю «%1$@» на гэтай прыладзе будуць выдаленыя, уключаючы налады скразнога шыфравання, кантакты, чаты, паведамленні і медыяфайлы. Гэтае дзеянне немагчыма адрабіць.";
+"delete_account_explain_with_name" = "Усе даныя профілю «%1$@» на гэтай прыладзе будуць выдалены, уключаючы налады скразнога шыфравання, кантакты, чаты, паведамленні і медыяфайлы. Гэтае дзеянне немагчыма адрабіць.";
 "unconfigured_account" = "Несканфігураваны профіль";
 "unconfigured_account_hint" = "Адкрыйце профіль, каб сканфігураваць яго.";
 "try_connect_now" = "Паспрабуйце злучыцца зараз";
@@ -688,14 +688,14 @@
 "pref_outgoing_media_quality_hint" = "Каб адправіць у зыходнай якасці, далучыце медыя як «Файл». Гэта выкарыстае значна больш даных у вас і ў атрымальнікаў.";
 "pref_outgoing_balanced" = "Збалансаваная";
 "pref_outgoing_worse" = "Горшая якасць, захоўвае даныя";
-"pref_vibrate" = "Вібраваць";
+"pref_vibrate" = "Вібрацыя";
 "pref_screen_security" = "Абарона экрана";
 // Translators: Must indicate that there is no guarantee as the system may not honor our request.
 "pref_screen_security_explain" = "Запытаць блакаванне здымкаў экрана ў спісе нядаўніх праграм і ў самой праграме";
-"pref_screen_security_please_restart_hint" = "Каб ужыць наладу абароны экрана, перазапусціце праграму.";
+"pref_screen_security_please_restart_hint" = "Каб дастасаваць наладу абароны экрана, перазапусціце праграму.";
 "pref_notifications" = "Апавяшчэнні";
-"pref_mention_notifications" = "Згадванні";
-"pref_mention_notifications_explain" = "У суполках з адключанымі апавяшчэннямі, паведамленні-апавяшчэнні накіроўваюцца вам, напрыклад, адказы або рэакцыі";
+"pref_mention_notifications" = "Упамінанні";
+"pref_mention_notifications_explain" = "Апавяшчаць пра паведамленні, якія адрасаваны вам у суполках без апавяшчэнняў, напрыклад пра адказы або рэакцыі";
 // Title for the "Calls" notification setting. This is a plural noun, not a verb.
 "pref_calls" = "Выклікі";
 // Details about what the "Calls" notification setting does
@@ -761,9 +761,9 @@
 // "All" as an option for "Auto-Download Messages", meaning that "all messages will be downloaded"
 "all" = "Усе";
 // %1$s will be replaced by a human-readable number of bytes, eg. 32 KiB, 1 MiB
-"up_to_x" = "Не больш за %1$@";
-"up_to_x_most_worse_quality_images" = "Не больш за %1$@, найгоршая якасць відарысаў";
-"up_to_x_most_balanced_quality_images" = "Не больш за %1$@, найбольш збалансаваная якасць відарысаў";
+"up_to_x" = "Да %1$@";
+"up_to_x_most_worse_quality_images" = "Да %1$@, найгоршая якасць відарысаў";
+"up_to_x_most_balanced_quality_images" = "Да %1$@, найбольш збалансаваная якасць відарысаў";
 "download_failed" = "Не ўдалося спампаваць";
 "profile_image_select" = "Выбраць відарыс профілю";
 "select_your_new_profile_image" = "Выберыце новы відарыс профілю";
@@ -797,12 +797,12 @@
 // %1$s will be replaced by an emoji. %2$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %2$s will often not being visible). Eg. 'You reacted 👍 to "Found my suitcase"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer and work as well.
 "reaction_by_you" = "Вы дадалі рэакцыю «%1$@» на «%2$@»";
 // %1$s will be replaced a name. %2$s will be replaced by an emoji. %3$s will be replaced by message summary (the summary is often long and whole string gets truncated; words after %3$s will often not being visible). Eg. 'Alice reacted 👍 to "Nice photos"'. Use less than 20 characters, otherwise the string will be truncated too soon and too few information are shown. Do not try to translate "reacted to" too strict. Depending on the language, "added 👍 to" or "gave 👍 to" or just "👍 to" may be shorter and/or clearer work as well.
-"reaction_by_other" = "%1$@ дадаў(-ла) рэакцыю «%2$@» на «%3$@»";
+"reaction_by_other" = "%1$@ дадаў(-ла) «%2$@» на «%3$@»";
 // automatically delete message
-"delete_old_messages" = "Выдаляць старыя паведамленні";
+"delete_old_messages" = "Выдаленне старых паведамленняў";
 "autodel_device_title" = "Выдаляць паведамленні з прылады";
 // %1$d will be replaced by the number of messages, you can assume plural/lots here. %2$s will be replaced by a timespan option.
-"autodel_device_ask" = "Выдаліць паведамленні (%1$d шт.) зараз і ўсе новыя паведамленні у будучыні%2$@?\n\n— Гэта ўключае ўсе медыяфайлы\n\n— Паведамленні будуць выдалены ва ўсякім разе: прагледжаныя яны ці не.\n\n— «Захаваныя паведамленні» не будуць выдалены";
+"autodel_device_ask" = "Выдаліць паведамленні (%1$d шт.) зараз і выдаляць усе новыя паведамленні ў будучыні %2$@?\n\n— Гэта ўключае ўсе медыяфайлы\n\n— Паведамленні будуць выдалены ва ўсякім разе: прагледжаныя яны ці не.\n\n— «Захаваныя паведамленні» не будуць выдалены";
 "autodel_confirm" = "Я разумею, выдаліць усе гэтыя паведамленні";
 // "At once" in the meaning of "Immediately", without any intervening time.
 "autodel_at_once" = "Адразу пасля спампавання";
@@ -895,9 +895,9 @@
 // %1$s will be replaced by the number of weeks (always >1) the timer is set to, %2$s will be replaced by name of the contact
 "ephemeral_timer_weeks_by_other" = "Таймер самазнішчэння паведамленняў зададзены на %1$@ тыд карыстальнікам %2$@.";
 "chat_unencrypted_explanation" = "Паведамленні ў гэтым чаце адпраўляюцца па звычайнай эл. пошце і без скразнога шыфравання.";
-"messages_are_e2ee" = "Паведамленні са скразным шыфраваннем.";
-"chat_protection_enabled_tap_to_learn_more" = "Паведамленні са скразным шыфраваннем. Націсніце, каб даведацца больш.";
-"chat_protection_enabled_explanation" = "Усе паведамленні ў гэтым чаце са скразным шыфраваннем.\n\nСкразное шыфраванне захоўвае паведамленні паміж вамі і вашымі суразмоўцамі прыватнымі. Нават серверы або пастаўшчыкі не могуць прачытаць іх.";
+"messages_are_e2ee" = "Паведамленні зашыфраваныя.";
+"chat_protection_enabled_tap_to_learn_more" = "Паведамленні зашыфраваныя. Націсніце, каб даведацца больш.";
+"chat_protection_enabled_explanation" = "Усе паведамленні ў гэтым чаце зашыфраваныя.\n\nСкразное шыфраванне захоўвае паведамленні паміж вамі і вашымі суразмоўцамі прыватнымі. Нават серверы або пастаўшчыкі не могуць прачытаць іх.";
 "invalid_unencrypted_tap_to_learn_more" = "⚠️ %1$@ патрабуе скразное шыфраванне, якое яшчэ не наладжана для гэтага чата. Націсніце, каб даведацца больш.";
 "invalid_unencrypted_explanation" = "Каб устанавіць скразное шыфраванне, вы можаце сустрэцца з кантактамі асабіста і адсканаваць іхны QR-код, каб спраўдзіць іхныя асобы.";
 "learn_more" = "Даведацца больш";
@@ -934,7 +934,7 @@
 "qrshow_join_channel_hint" = "Адскануйце, каб далучыцца да канала «%1$@»";
 "qrshow_join_contact_title" = "Запрашальны QR-код";
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
-"qrshow_join_contact_hint" = "Адскануйце, каб перапісвацца з %1$@";
+"qrshow_join_contact_hint" = "Адскануйце, каб перапісвацца з карыстальнікам %1$@";
 "qrshow_join_contact_no_connection_toast" = "Няма злучэння з сецівам, немагчыма выканаць наладжванне па QR-кодзе.";
 "set_name_and_avatar_explain" = "Задайце імя, якое вашыя кантакты пазнаюць. Вы таксама можаце задаць відарыс профілю.";
 "please_enter_name" = "Увядзіце імя.";
@@ -1031,6 +1031,8 @@
 "export_backup_desktop" = "Экспартаваць рэзервовую копію";
 "message_detail_sent_desktop" = "Адпраўлена";
 "message_detail_received_desktop" = "Атрымана";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Апошняе абнаўленне";
 "menu.view.developer.open.log.folder" = "Адкрыць папку журнала";
 "menu.view.developer.open.current.log.file" = "Адкрыць цяперашні файл журнала";
 "explain_desktop_minimized_disabled_tray_pref" = "Немагчыма адключыць значок у вобласці апавяшчэнняў, бо Delta Chat запушчаны з параметрам «--minimized».";
@@ -1093,7 +1095,7 @@
 "pref_background_notifications" = "Выкарыстоўваць фонавае злучэнне";
 "pref_background_notifications_explain" = "Патрабуецца адключэнне аптымізацыі расходу зарада акумулятара, выкарыстоўвайце, калі апавяшчэнні не прыходзяць своечасова";
 "pref_reliable_service" = "Прымусовае фонавае злучэнне";
-"pref_reliable_service_explain" = "Выклікае пастаяннае апавяшчэнне";
+"pref_reliable_service_explain" = "У панэлі апавяшчэнняў будзе паказвацца пастаяннае апавяшчэнне";
 "pref_background_notifications_rationale" = "Каб захоўваць злучэнне і атрымліваць паведамленні ў фонавым рэжыме, адключыце аптымізацыю расходу зарада акумулятара ў наступным кроку.\n\nDelta Chat выкарыстоўвае мала рэсурсаў і стараецца не разраджаць акумулятар хутка.";
 // disabling "Reliable service" will hide the maybe annoying permanent-notification with the drawback that new-message-notifications get potentially unreliable
 "perm_enable_bg_reminder_title" = "Націсніце тут, каб атрымліваць паведамленні пакуль Delta Chat запушчаны ў фонавым рэжыме.";

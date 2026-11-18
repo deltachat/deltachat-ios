@@ -54,6 +54,8 @@
 "muted" = "Silenziato";
 "ephemeral_messages" = "Messaggi a Scomparsa";
 "ephemeral_messages_hint" = "Si applica a tutti i membri di questa chat; possono comunque copiare, salvare e inoltrare i messaggi.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Applica a Tutti";
 "save" = "Salva";
 "chat" = "Chat";
 "media" = "Media";
@@ -1029,6 +1031,8 @@
 "export_backup_desktop" = "Esporta Backup";
 "message_detail_sent_desktop" = "inviato";
 "message_detail_received_desktop" = "ricevuto";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Ultimo Aggiornamento";
 "menu.view.developer.open.log.folder" = "Apri Cartella Registro";
 "menu.view.developer.open.current.log.file" = "Apri File Registro Corrente";
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icona nella barra delle applicazioni non può essere disabilitata poiché Delta Chat è stato avviato con l\'opzione --minimizzato.";

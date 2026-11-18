@@ -52,8 +52,10 @@
 "mute" = "静音";
 // Adjective "smth is muted". used to describe a muted or silenced chat, that e.g. does not make noise or cause notifications
 "muted" = "已静音";
-"ephemeral_messages" = "消息定时销毁";
-"ephemeral_messages_hint" = "适用于此聊天的所有成员；他们仍然可以复制、保存和转发消息。";
+"ephemeral_messages" = "限时消息";
+"ephemeral_messages_hint" = "对聊天中的所有成员生效，但成员仍可复制、保存和转发消息。";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "为所有人设置";
 "save" = "保存";
 "chat" = "聊天";
 "media" = "媒体";
@@ -63,7 +65,7 @@
 "start_chat" = "开始聊天";
 "show_full_message" = "显示完整消息…";
 // Stay short here, say ~16 characters. The source string could also be "All Read", maybe that hint can make translations easier :)
-"mark_all_as_read" = "将所有标记为已读";
+"mark_all_as_read" = "全部标记为已读";
 // Used as an menu entry or button
 "mark_as_read" = "标记为已读";
 // Used beside an icon with very few space. Shortest text for "Mark as being read". In english, this could be "Read" (past tense of "to read"), in german, this could be "Gelesen".
@@ -150,10 +152,10 @@
 "gif" = "Gif";
 // "Stickers" as known from other messengers; in some languages, the English "Sticker" is fine.
 "sticker" = "贴纸";
-"add_to_sticker_collection" = "添加到贴纸收藏集";
-"ask_add_sticker_to_collection" = "将此贴纸添加到您的收藏集？";
+"add_to_sticker_collection" = "添加到贴纸收藏";
+"ask_add_sticker_to_collection" = "要收藏此贴纸吗？";
 "ask_delete_sticker" = "删除此贴纸？";
-"sticker_picker_empty_hint" = "点按贴纸即可将其添加到此处。";
+"sticker_picker_empty_hint" = "点按贴纸即可添加到此处。";
 "images" = "图片";
 // a noun, used for "Music" and other "Audio" files
 "audio" = "音频";
@@ -227,7 +229,7 @@
 "orange" = "橙色";
 "cyan" = "青色";
 "purple" = "紫色";
-"magenta" = "紫红色";
+"magenta" = "品红色";
 "white" = "白色";
 // Used to display some progress in percent. Placeholder will be replaced by a number, resulting in eg. "50%", which may be translated to "50 %" in French or "%50" in Turkish.
 "progress_percent" = "%1$d%%";
@@ -1029,6 +1031,8 @@
 "export_backup_desktop" = "导出备份";
 "message_detail_sent_desktop" = "发送于";
 "message_detail_received_desktop" = "接收于";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "上次更新";
 "menu.view.developer.open.log.folder" = "打开日志文件夹";
 "menu.view.developer.open.current.log.file" = "打开当前日志文件";
 "explain_desktop_minimized_disabled_tray_pref" = "在 Delta Chat 带 --minimized 参数启动时，无法禁用托盘图标。";
@@ -1098,8 +1102,8 @@
 "perm_enable_bg_already_done" = "您已允许 Delta Chat 在后台接收消息。\n\n若 Delta Chat 在后台时消息仍未到达，请检查系统设置。";
 // device messages for updates
 "update_2_6" = "猜猜更新了什么！\n\n🌐 更智能的消息路由: 有了多个中继，一个中继失灵不会阻止消息传递\n\n📞 通话不再是实验性功能\n\n📢 在频道内发送回应进行互动\n\n✍️ 新增聊天描述 \n\n👌 y已发送的图片看上去更锐利\n\n🔵 标记聊天为未读以免遗忘回复";
-"update_2_6_android_additions" = "🐇 加速播放和自动播放语音消息\n\n我们终于推出了基础的贴纸选择器！";
-"update_2_6_desktop_additions" = "🐇 加速播放和自动播放语音消息\n\n⏯️ 新的音频播放器\n\n✅ 多选消息进行转发和删除\n\n我们终于推出了基础的贴纸选择器！";
+"update_2_6_android_additions" = "🐇 语音消息支持倍速播放和自动播放\n\n基础版贴纸选择器终于来了！";
+"update_2_6_desktop_additions" = "🐇 语音消息支持倍速播放和自动播放\n\n⏯️ 全新音频播放器\n\n✅ 支持多选消息，批量转发或删除\n\n基础版贴纸选择器终于来了！";
 "update_2_6_ios_additions" = "🎤 后台播放语音消息";
 "update_2_6_end" = "如果可以，请捐款帮助我们保持独立并继续带来改进  ❤️ https://delta.chat/donate";
 // The placeholder will be replaced by a version name, e.g. "v2.50.0"

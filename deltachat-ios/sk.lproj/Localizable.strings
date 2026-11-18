@@ -54,6 +54,8 @@
 "muted" = "Stlmené";
 "ephemeral_messages" = "Miznúce správy";
 "ephemeral_messages_hint" = "Platí pre všetkých členov tejto konverzácie, ktorí si však stále môžu správy ukladať, kopírovať alebo preposlať.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Nastaviť pre všetkých";
 "save" = "Uložiť";
 "chat" = "Konverzácia";
 "media" = "Médiá";
@@ -1029,6 +1031,8 @@
 "export_backup_desktop" = "Exportovať zálohu";
 "message_detail_sent_desktop" = "odoslané";
 "message_detail_received_desktop" = "prijaté";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Posledná aktualizácia";
 "menu.view.developer.open.log.folder" = "Otvoriť priečinok so záznamom";
 "menu.view.developer.open.current.log.file" = "Otvoriť aktuálny súbor so záznamom";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikonu v systémovej lište nie je možné deaktivovať, pretože Delta Chat bol spustený s prepínačom --minimized.";

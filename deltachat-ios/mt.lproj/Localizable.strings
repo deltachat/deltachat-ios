@@ -54,6 +54,8 @@
 "muted" = "Imsikkta";
 "ephemeral_messages" = "Messaġġi li jisparixxu";
 "ephemeral_messages_hint" = "Jgħoddu għall-membri kollha ta\' dit-taħdita; xorta jistgħu jikkuppjaw, jerfgħu u jgħaddu l-messaġġi.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Qegħedhom għal kulħadd";
 "save" = "Erfa\'";
 "chat" = "Taħdita";
 "media" = "Midja";
@@ -504,6 +506,8 @@
 "profile_shared_chats" = "Taħditiet li tinsabu fihom it-tnejn li intom";
 // Separator between the list of actual members and past members
 "past_members" = "Membri tal-imgħoddi";
+// deprecated, use string "contact"
+"tab_contact" = "Kuntatt";
 "tab_group" = "Grupp";
 "tab_gallery" = "Gallerija";
 "tab_links" = "Ħoloq";
@@ -716,6 +720,17 @@
 // This text is shown inside the "QR code card" with very limited space; please formulate the text as short as possible therefore. The placeholder will be replaced by the profile name eg. "Scan to chat with Alice"
 "qrshow_join_contact_hint" = "Aqrah biex titħaddet ma\' %1$@";
 "qrshow_join_contact_no_connection_toast" = "L-ebda konnessjoni mal-internet, ma tistax tħejji l-kodiċi QR.";
+"set_name_and_avatar_explain" = "Qiegħed isem li l-kuntatti tiegħek se jagħrfuh. Tista\' tqiegħed ritratt tal-profil ukoll.";
+"please_enter_name" = "Jekk jogħġbok ikteb isem.";
+"qraccount_qr_code_cannot_be_used" = "Ma tistax tuża l-kodiċi QR li qrajt biex toħloq profil ġdid.";
+// the placeholder will be replaced by a domain that is preferred for relaying messages. smth as "Using foo.example.org"
+"relay_login_hint" = "Qed tuża %1$@";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_started" = "Għandek stedina mingħand %1$@ biex tingħaqad ma\' dal-grupp.\n\nStenna t-tweġiba tat-tagħmir ta\' %2$@…";
+// first placeholder will be replaced by name of the inviter, second placeholder will be replaced by the name of the inviter.
+"secure_join_channel_started" = "Għandek stedina mingħand %1$@ biex tingħaqad ma\' dal-istazzjon.\n\nStenna t-tweġiba tat-tagħmir ta\' %2$@…";
+// placeholder will be replaced by the name of the inviter.
+"secure_join_replies" = "Għandek tweġiba mingħand %1$@, qed tistenna biex tiżdied mal-grupp…";
 "secure_join_wait" = "Qed jaqbad, jekk jogħġbok stenna…";
 "contact_blocked" = "Imblukkajt lill-kuntatt";
 "mailto_dialog_header_select_chat" = "Agħżel it-taħdita fejn tixtieq tibgħat il-messaġġ";
@@ -797,6 +812,8 @@
 "export_backup_desktop" = "Oħroġ kopja tal-kopja maħżuna";
 "message_detail_sent_desktop" = "Mibgħut";
 "message_detail_received_desktop" = "Miksub";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "L-iġded bidla";
 "menu.view.developer.open.log.folder" = "Iftaħ il-fowlder tar-reġistri";
 "menu.view.developer.open.current.log.file" = "Iftaħ il-fajl tar-reġistri";
 "explain_desktop_minimized_disabled_tray_pref" = "Ma tistax tneħħi l-ikona ta\' qiegħ l-iskrin għax ftaħt Delta Chat bl-għażla --minimized.";
