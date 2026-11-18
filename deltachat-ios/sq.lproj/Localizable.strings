@@ -1028,6 +1028,8 @@
 "export_backup_desktop" = "Eksportoni Kopjeruajtje";
 "message_detail_sent_desktop" = "të dërguar";
 "message_detail_received_desktop" = "të marrë";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Përditësuar Së Fundi Më";
 "menu.view.developer.open.log.folder" = "Hap Dosje Regjistrash";
 "menu.view.developer.open.current.log.file" = "Hap Kartelën Regjistër të Tanishme";
 "explain_desktop_minimized_disabled_tray_pref" = "Ikona e panelit s’mund të çaktivizohet, ngaqë Delta Chat qe nisur me mundësinë --minimized.";

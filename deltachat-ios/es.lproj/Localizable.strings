@@ -1031,6 +1031,8 @@
 "export_backup_desktop" = "Exportar copia de respaldo";
 "message_detail_sent_desktop" = "enviado";
 "message_detail_received_desktop" = "recibido";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Última actualización";
 "menu.view.developer.open.log.folder" = "Abrir Carpeta de Logs";
 "menu.view.developer.open.current.log.file" = "Abrir Archivo de Logs Actual";
 "explain_desktop_minimized_disabled_tray_pref" = "El icono de la bandeja no se puede desactivar ya que Delta Chat se inició con la opción --minimized.";

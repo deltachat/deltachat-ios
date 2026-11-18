@@ -1031,6 +1031,8 @@
 "export_backup_desktop" = "Exporter une sauvegarde";
 "message_detail_sent_desktop" = "Envoyé";
 "message_detail_received_desktop" = "Reçu";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Dernière mise à jour";
 "menu.view.developer.open.log.folder" = "Ouvrir le dossier Journal";
 "menu.view.developer.open.current.log.file" = "Ouvrir le fichier Journal courant";
 "explain_desktop_minimized_disabled_tray_pref" = "L\'icône système ne peut pas être enlevé car Delta Chat a été démarré avec l\'option --minimized.";

@@ -373,13 +373,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>Выведзены з архіва %d чат</string>
+			<string>Выведзены %d чат з архіва</string>
 			<key>few</key>
-			<string>Выведзены з архіва %d чаты</string>
+			<string>Выведзены %d чаты з архіва</string>
 			<key>many</key>
-			<string>Выведзена з архіва %d чатаў</string>
+			<string>Выведзена %d чатаў з архіва</string>
 			<key>other</key>
-			<string>Выведзена з архіва %d чатаў</string>
+			<string>Выведзена %d чатаў з архіва</string>
 		</dict>
 	</dict>
 	<key>chat_n_new_messages</key>

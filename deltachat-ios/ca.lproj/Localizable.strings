@@ -1031,6 +1031,8 @@
 "export_backup_desktop" = "Exporta la còpia de seguretat";
 "message_detail_sent_desktop" = "enviat";
 "message_detail_received_desktop" = "rebut";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Última actualització";
 "menu.view.developer.open.log.folder" = "Obre la carpeta de registre";
 "menu.view.developer.open.current.log.file" = "Obre el fitxer de registre actual";
 "explain_desktop_minimized_disabled_tray_pref" = "La icona de la safata no es pot desactivar perquè Delta Chat s\'ha iniciat amb l\'opció --minimized";

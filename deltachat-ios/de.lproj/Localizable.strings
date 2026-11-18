@@ -144,7 +144,7 @@
 // Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Ausgewählt";
-"self" = "Ich";
+"self" = "Du";
 "draft" = "Entwurf";
 "image" = "Bild";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")

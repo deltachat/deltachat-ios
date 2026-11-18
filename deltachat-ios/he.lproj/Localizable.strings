@@ -54,6 +54,8 @@
 "muted" = "מושתק";
 "ephemeral_messages" = "הודעות נעלמות";
 "ephemeral_messages_hint" = "זה חל על כל המשתתפים בצ\'אט זה; הם עדיין יכולים להעתיק, לשמור ולהעביר הודעות.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "הגדר עבור כולם";
 "save" = "שמור";
 "chat" = "צ\'אט";
 "media" = "מדיה";
@@ -1029,6 +1031,8 @@
 "export_backup_desktop" = "יצא גיבוי";
 "message_detail_sent_desktop" = "נשלח";
 "message_detail_received_desktop" = "התקבל";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "עודכן לאחרונה";
 "menu.view.developer.open.log.folder" = "פתח את תיקיית היומנים";
 "menu.view.developer.open.current.log.file" = "פתח את קובץ היומן הנוכחי";
 "explain_desktop_minimized_disabled_tray_pref" = "לא ניתן להשבית את סמל מגש המערכת, שכן דלתא צ\'אט הופעל עם האופציה --מצומצם.";
