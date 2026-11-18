@@ -8,6 +8,7 @@
 - Fixed success alert not showing when done exporting backup
 - Message info for mini apps now show last updated date
 - Scroll down after sending a message on current device
+- More prominent "Send" button
 
 
 ## v2.69.0
