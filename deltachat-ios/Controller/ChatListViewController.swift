@@ -19,8 +19,8 @@ class ChatListViewController: UITableViewController {
     private let archiveCell = ContactCell()
 
     private lazy var newButton: UIBarButtonItem = {
-        let style: UIBarButtonItem.Style = if #available(iOS 26.0, *) { .prominent } else { .plain }
-        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: style, target: self, action: #selector(didPressNewChat))
+        let button = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressNewChat))
+        button.style = if #available(iOS 26.0, *) { .prominent } else { .plain }
         button.accessibilityLabel = String.localized("menu_new_chat")
         return button
     }()
