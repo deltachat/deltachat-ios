@@ -36,7 +36,6 @@ final class DcUITests: XCTestCase {
         dc.buttons[.localized("onboarding_create_instant_account")].tap()
         dc.typeText("Onboarding Test")
         dc.buttons[.localized("instant_onboarding_create")].tap()
-        XCTAssert(dc.staticTexts[.localized("pref_chats")].waitForExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("device_talk")].waitForExistence(timeout: 3))
         XCTAssert(dc.staticTexts[.localized("saved_messages")].waitForExistence(timeout: 3))
     }
@@ -60,7 +59,8 @@ final class DcUITests: XCTestCase {
             $0.selectConfiguredProfile(online: false)
         }
         dc.launch()
-        dc.tabBars.buttons[.localized("menu_settings")].tap()
+        dc.buttons[.localized("menu_more_options")].tap()
+        dc.buttons[.localized("menu_settings")].tap()
         dc.cells.staticTexts[.localized("pref_chats")].tap()
         dc.cells.staticTexts[.localized("export_backup_desktop")].tap()
         springboard.typeText("1\n")
@@ -94,7 +94,7 @@ final class DcUITests: XCTestCase {
         dc.backButton.tap()
 
         // Create group
-        dc.buttons["Compose"].tap()
+        dc.buttons[.localized("menu_new_chat")].tap()
         dc.staticTexts[.localized("menu_new_group")].tap()
         dc.staticTexts[.localized("group_name") + ":"].tap()
         dc.typeText("Test Group")
@@ -119,7 +119,7 @@ final class DcUITests: XCTestCase {
         dc.backButton.tap()
 
         // Create Channel
-        dc.buttons["Compose"].tap()
+        dc.buttons[.localized("menu_new_chat")].tap()
         dc.staticTexts[.localized("new_channel")].tap()
         dc.staticTexts[.localized("channel_name") + ":"].tap()
         dc.typeText("Test Channel")

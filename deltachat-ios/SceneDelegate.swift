@@ -7,7 +7,12 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.window?.windowScene = scene as? UIWindowScene
+        if let windowScene = scene as? UIWindowScene, let appDelegate = appDelegate {
+            let window = UIWindow(windowScene: windowScene)
+            window.backgroundColor = UIColor.systemBackground
+            appDelegate.window = window
+            appDelegate.appCoordinator?.moveToWindow(window)
+        }
         if let url = connectionOptions.urlContexts.first?.url {
             handle(url: url)
         }

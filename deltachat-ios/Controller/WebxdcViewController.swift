@@ -562,10 +562,8 @@ extension WebxdcViewController: WKScriptMessageHandler {
                     let data = base64 != nil ? Data(base64Encoded: base64 ?? "") : nil
                     RelayHelper.shared.setForwardMessage(dialogTitle: title, text: dict["text"] as? String, fileData: data, fileName: dict["name"] as? String)
 
-                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-                       let rootController = appDelegate.appCoordinator.tabBarController.selectedViewController as? UINavigationController {
-                        appDelegate.appCoordinator.showTab(index: appDelegate.appCoordinator.chatsTab)
-                        rootController.popToRootViewController(animated: false)
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        appDelegate.appCoordinator.navigationController.popToRootViewController(animated: false)
                     }
                 })
                 selectAction.setValue(UIImage(systemName: "paperplane"), forKey: "image")
