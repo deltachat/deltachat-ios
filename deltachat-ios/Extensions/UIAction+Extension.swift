@@ -37,7 +37,7 @@ extension UIAction {
     }
 
     static func leaveChat(_ dcChat: DcChat, dcContext: DcContext, presentAlertsOn vc: UIViewController) -> UIAction {
-        if dcChat.mustLeaveBeforeDelete(dcContext) {
+        if dcChat.mustLeaveBeforeDelete() {
             let leaveText = dcChat.isInBroadcast ? "menu_leave_channel" : "menu_leave_group"
             return UIAction(
                 title: String.localized(leaveText),

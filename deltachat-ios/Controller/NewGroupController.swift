@@ -91,7 +91,7 @@ class NewGroupController: UITableViewController, MediaPickerDelegate {
         if let templateChatId = templateChatId {
             templateChat = dcContext.getChat(chatId: templateChatId)
             if let templateChat = templateChat {
-                self.contactIdsForGroup = Set(templateChat.getContactIds(dcContext))
+                self.contactIdsForGroup = Set(templateChat.getContactIds())
             }
         } else {
             templateChat = nil
