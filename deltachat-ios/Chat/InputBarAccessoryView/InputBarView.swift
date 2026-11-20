@@ -113,6 +113,13 @@ struct InputBarView: View {
                             .scaledToFit()
                             .padding(2)
                     })
+                    .modifier { view in
+                        if #available(iOS 26.0, *) {
+                            view.buttonStyle(.glassProminent)
+                        } else {
+                            view
+                        }
+                    }
                     .frame(height: buttonSize)
                     .disabled(!draft.canSend())
                 }
