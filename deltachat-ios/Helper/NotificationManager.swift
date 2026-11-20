@@ -128,7 +128,7 @@ public class NotificationManager {
         let eventContext = dcAccounts.get(id: accountId)
         let msg = eventContext.getMessage(id: msgId)
         let chat = eventContext.getChat(chatId: chatId ?? msg.chatId)
-        if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
+        if let content = await UNNotificationContent.forMessage(msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
         }
     }
@@ -138,7 +138,7 @@ public class NotificationManager {
         let eventContext = dcAccounts.get(id: accountId)
         let msg = eventContext.getMessage(id: msgId)
         let chat = eventContext.getChat(chatId: msg.chatId)
-        if let content = UNMutableNotificationContent(forMessage: msg, chat: chat, context: eventContext) {
+        if let content = UNNotificationContent.forMessage(msg, chat: chat, context: eventContext) {
             let id = content.idOrRandomUUID()
             let isPending = await Self.unc.pendingNotificationRequests().contains(where: { $0.identifier == id })
             let isDelivered = await Self.unc.deliveredNotifications().contains(where: { $0.request.identifier == id })
@@ -162,7 +162,7 @@ public class NotificationManager {
         let eventContext = dcAccounts.get(id: accountId)
         let msg = eventContext.getMessage(id: msgId)
         let chat = eventContext.getChat(chatId: msg.chatId)
-        if let content = UNMutableNotificationContent(forReaction: reaction, from: contactId, msg: msg, chat: chat, context: eventContext) {
+        if let content = UNNotificationContent.forReaction(reaction, from: contactId, msg: msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
         }
     }
@@ -181,7 +181,7 @@ public class NotificationManager {
         let eventContext = dcAccounts.get(id: accountId)
         let msg = eventContext.getMessage(id: msgId)
         let chat = eventContext.getChat(chatId: msg.chatId)
-        if let content = UNMutableNotificationContent(forWebxdcNotification: webxdcNotification, msg: msg, chat: chat, context: eventContext) {
+        if let content = UNNotificationContent.forWebxdcNotification(webxdcNotification, msg: msg, chat: chat, context: eventContext) {
             try? await Self.unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: inOneSecond))
         }
     }

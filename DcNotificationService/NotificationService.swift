@@ -87,7 +87,7 @@ class NotificationService: UNNotificationServiceExtension {
                         let dcContext = dcAccounts.get(id: event.accountId)
                         let msg = dcContext.getMessage(id: event.data2Int)
                         let chat = dcContext.getChat(chatId: msg.chatId)
-                        if let content = UNMutableNotificationContent(forIncomingCallMsg: msg, hasVideo: event.data2Int == 1, chat: chat, context: dcContext) {
+                        if let content = UNNotificationContent.forIncomingCallMsg(msg, hasVideo: event.data2Int == 1, chat: chat, context: dcContext) {
                             try? await unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: nil))
                         }
                     } else {

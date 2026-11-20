@@ -56,9 +56,9 @@ public class DcChat {
         return type != DC_CHAT_TYPE_SINGLE
     }
 
-    public func mustLeaveBeforeDelete(_ dcContext: DcContext) -> Bool {
+    public func mustLeaveBeforeDelete() -> Bool {
       if isInBroadcast {
-          return getContactIds(dcContext).contains(Int(DC_CONTACT_ID_SELF))
+          return getContactIds().contains(Int(DC_CONTACT_ID_SELF))
       } else if isMultiUser && isEncrypted && canSend && !isOutBroadcast {
         return true
       }
@@ -101,8 +101,12 @@ public class DcChat {
         return dc_chat_is_muted(chatPointer) != 0
     }
 
-    public func getContactIds(_ dcContext: DcContext) -> [Int] {
+    public func getContactIds() -> [Int] {
         return DcUtils.copyAndFreeArray(inputArray: dc_get_chat_contacts(dcContext.contextPointer, UInt32(id)))
+    }
+
+    public func getContacts() -> [DcContact] {
+        getContactIds().map(dcContext.getContact(id:))
     }
 
     public lazy var profileImage: UIImage? = {
