@@ -1168,7 +1168,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationItem.rightBarButtonItems = nil
         } else {
             let subtitle: String?
-            let chatContactIds = dcChat.getContactIds(dcContext)
+            let chatContactIds = dcChat.getContactIds()
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
             } else if dcChat.isInBroadcast {
@@ -1656,7 +1656,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func showChatDetail(chatId: Int) {
         let chat = dcContext.getChat(chatId: chatId)
         if !chat.isMultiUser {
-            if let contactId = chat.getContactIds(dcContext).first {
+            if let contactId = chat.getContactIds().first {
                 navigationController?.pushViewController(ProfileViewController(dcContext, contactId: contactId), animated: true)
             }
         } else {
