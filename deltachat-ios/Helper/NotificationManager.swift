@@ -12,7 +12,7 @@ public class NotificationManager {
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         
-        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessageOnAnyAccount(_:)), name: Event.incomingMessageOnAnyAccount, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingMessage(_:)), name: Event.incomingMessage, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingReaction(_:)), name: Event.incomingReaction, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleIncomingWebxdcNotify(_:)), name: Event.incomingWebxdcNotify, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationManager.handleMessagesNoticed(_:)), name: Event.messagesNoticed, object: nil)
@@ -105,7 +105,7 @@ public class NotificationManager {
         NotificationManager.removeNotificationsForChat(chatId, accountId: accountId)
     }
 
-    @objc private func handleIncomingMessageOnAnyAccount(_ notification: Notification) {
+    @objc private func handleIncomingMessage(_ notification: Notification) {
         NotificationManager.updateBadgeCounters()
         Task {
             guard let accountId = notification.userInfo?["account_id"] as? Int,
