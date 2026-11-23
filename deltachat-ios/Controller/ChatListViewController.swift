@@ -19,8 +19,8 @@ class ChatListViewController: UITableViewController {
     private let archiveCell = ContactCell()
 
     private lazy var newButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didPressNewChat))
-        button.style = if #available(iOS 26.0, *) { .prominent } else { .plain }
+        let style: UIBarButtonItem.Style = if #available(iOS 26.0, *) { .prominent } else { .plain }
+        let button = UIBarButtonItem(image: UIImage(systemName: "plus"), style: style, target: self, action: #selector(didPressNewChat))
         button.accessibilityLabel = String.localized("menu_new_chat")
         return button
     }()
@@ -32,11 +32,19 @@ class ChatListViewController: UITableViewController {
     }()
 
     private lazy var moreButton: UIBarButtonItem = {
+        let newChat = UIAction(title: String.localized("menu_new_chat"), image: UIImage(systemName: "plus.circle.fill")) { [weak self] _ in
+            guard let self else { return }
+            didPressNewChat()
+        }
+        let allMedia = UIAction(title: String.localized("menu_all_media"), image: UIImage(systemName: "photo.on.rectangle")) { [weak self] _ in
+            guard let self else { return }
+            navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext), animated: true)
+        }
         let settings = UIAction(title: String.localized("menu_settings"), image: UIImage(systemName: "gear")) { [weak self] _ in
             guard let self else { return }
             navigationController?.pushViewController(SettingsViewController(dcAccounts: dcAccounts), animated: true)
         }
-        let button = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [settings]))
+        let button = UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu(children: [newChat, allMedia, settings]))
         button.accessibilityLabel = String.localized("menu_more_options")
         return button
     }()
@@ -745,11 +753,7 @@ class ChatListViewController: UITableViewController {
                 navigationItem.setLeftBarButton(accountButton, animated: false)
                 updateAccountButton()
 
-                // on iOS 26+, the "New Chat" button is beside the search bar at the bottom
                 var buttons = [moreButton, qrButton]
-                if #unavailable(iOS 26.0) {
-                    buttons.insert(newButton, at: 1)
-                }
                 if !dcContext.getProxies().isEmpty {
                     updateProxyButton()
                     buttons.append(proxyShieldButton)

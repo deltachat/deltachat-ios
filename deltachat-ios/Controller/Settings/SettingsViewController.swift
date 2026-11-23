@@ -24,7 +24,6 @@ internal final class SettingsViewController: UITableViewController {
         case selectBackground
         case advanced
         case help
-        case allAppsAndMedia
         case connectivity
         case inviteFriends
     }
@@ -80,15 +79,6 @@ internal final class SettingsViewController: UITableViewController {
         return cell
     }()
 
-    private lazy var allAppsAndMediaCell: UITableViewCell = {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-        cell.tag = CellTags.allAppsAndMedia.rawValue
-        cell.textLabel?.text = String.localized("all_apps_and_media")
-        cell.imageView?.image = UIImage(systemName: "photo.on.rectangle")
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }()
-
     private lazy var inviteFriendsCell: UITableViewCell = {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         cell.tag = CellTags.inviteFriends.rawValue
@@ -137,15 +127,12 @@ internal final class SettingsViewController: UITableViewController {
         let preferencesSection = SectionConfigs(
             cells: [self.chatsAndMediaCell, self.notificationCell, self.selectBackgroundCell, self.addAnotherDeviceCell, self.connectivityCell, self.advancedCell]
         )
-        let listsSection = SectionConfigs(
-            cells: [allAppsAndMediaCell]
-        )
         let helpSection = SectionConfigs(
             footerTitle: appNameAndVersion,
             cells: [inviteFriendsCell, helpCell]
         )
 
-        return [profileSection, preferencesSection, listsSection, helpSection]
+        return [profileSection, preferencesSection, helpSection]
     }()
 
     init(dcAccounts: DcAccounts) {
@@ -209,7 +196,6 @@ internal final class SettingsViewController: UITableViewController {
         case .addAnotherDevice: showBackupProviderViewController()
         case .notifications: showNotificationsViewController()
         case .advanced: showAdvanced()
-        case .allAppsAndMedia: showAllAppsAndMedia()
         case .help: openHelp()
         case .connectivity: showConnectivity()
         case .selectBackground: selectBackground()
@@ -297,10 +283,6 @@ internal final class SettingsViewController: UITableViewController {
 
     private func showAdvanced() {
         navigationController?.pushViewController(AdvancedViewController(dcAccounts: dcAccounts), animated: true)
-    }
-
-    private func showAllAppsAndMedia() {
-        navigationController?.pushViewController(AllMediaViewController(dcContext: dcContext), animated: true)
     }
 
     private func showConnectivity() {
