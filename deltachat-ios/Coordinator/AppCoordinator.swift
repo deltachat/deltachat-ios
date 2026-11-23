@@ -447,11 +447,6 @@ class AppCoordinator: NSObject {
     }
 
     func resetChatsController() {
-        // force calling `willMove()` for the disappearing view controller as this is not always done by `setViewControllers()`
-        // (calling `willMove()` is needed eg. to remove observers - otherwise we have a memory leak)
-        navigationController.popToRootViewController(animated: false)
-        navigationController.viewControllers[0].willMove(toParent: nil)
-
         navigationController.setViewControllers([createChatListViewController()], animated: false)
         presentChatsController()
         NotificationManager.updateBadgeCounters()
