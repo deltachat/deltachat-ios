@@ -327,7 +327,7 @@ class WebxdcViewController: WebViewViewController {
 
     class func `for`(dcContext: DcContext, messageId: Int, href: String? = nil) -> (vc: WebxdcViewController, pushAnimation: UIViewControllerAnimatedTransitioning?) {
         if let loaded = loadedWebxdcs[.key(contextId: dcContext.id, messageId: messageId)] {
-            loaded.href = href
+            loaded.href = href ?? loaded.href
             return (loaded, .pushFromLiveActivity)
         }
         return (WebxdcViewController(dcContext: dcContext, messageId: messageId, href: href), nil)
