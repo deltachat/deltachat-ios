@@ -17,23 +17,10 @@ struct WebxdcLiveActivity: Widget {
                 }
                 VStack(alignment: .leading) {
                     Text(info.document?.nilIfEmpty ?? info.name).bold()
-                    if let summary = info.summary?.nilIfEmpty {
-                        Text(summary)
-                    }
                 }
                 .lineLimit(1)
                 .layoutPriority(-1)
                 Spacer()
-                VStack {
-                    switch context.state.connectivity {
-                    case DC_CONNECTIVITY_CONNECTED, DC_CONNECTIVITY_WORKING:
-                        Text(String.localized("connectivity_connected"))
-                    case DC_CONNECTIVITY_CONNECTING:
-                        Text(String.localized("connectivity_connecting"))
-                    default:
-                        Text(String.localized("connectivity_not_connected"))
-                    }
-                }.font(.footnote)
                 if #available(iOS 17, *) {
                     Button(intent: QuitWebxdcIntent(contextId: attr.contextId, messageId: attr.messageId)) {
                         Label(String.localized("close"), systemImage: "xmark.circle.fill")
