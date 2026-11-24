@@ -54,11 +54,11 @@ struct WebxdcLiveActivity: Widget {
                         .padding(.trailing, 10)
                     }
                 }
-                DynamicIslandExpandedRegion(.leading) {
+                DynamicIslandExpandedRegion(.bottom) {
                     HStack {
                         image
-                            .frame(width: 20, height: 20)
-                            .cornerRadius(6)
+                            .frame(width: 40, height: 40)
+                            .cornerRadius(5)
                             .padding(.leading, 6)
                             .padding(.bottom, 6)
                         VStack(alignment: .leading) {
