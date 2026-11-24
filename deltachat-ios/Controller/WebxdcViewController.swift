@@ -40,12 +40,12 @@ class WebxdcViewController: WebViewViewController {
     private lazy var moreButton: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(systemName: .ellipsisNavigation()), menu: UIMenu { [unowned self] in
             if !isDraft {
+                UIAction.minimizeWebxdc(vc: self, info: info)
                 UIAction(title: String.localized("show_in_chat"), image: UIImage(systemName: "doc.text.magnifyingglass")) { [unowned self] _ in
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
                     let message = dcContext.getMessage(id: self.messageId)
                     appDelegate.appCoordinator.showChat(chatId: message.chatId, msgId: message.id, animated: true, clearViewControllerStack: true)
                 }
-                UIAction.minimizeWebxdc(vc: self, info: info)
 
                 if #available(iOS 17.0, *), let userDefaults = UserDefaults.shared {
                     let isOnHomescreen = userDefaults.getAllWidgetEntries().contains {
