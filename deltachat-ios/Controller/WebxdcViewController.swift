@@ -31,7 +31,7 @@ class WebxdcViewController: WebViewViewController {
             quit()
         }, menu: UIMenu { [unowned self] in
             UIAction.minimizeWebxdc(vc: self, info: info)
-            UIAction(title: String.localized("close"), image: UIImage(systemName: "xmark")) { [unowned self] _ in
+            UIAction(title: String.localized("global_menu_file_quit_desktop"), image: UIImage(systemName: "xmark")) { [unowned self] _ in
                 quit()
             }
         })
