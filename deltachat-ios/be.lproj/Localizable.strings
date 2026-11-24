@@ -144,7 +144,7 @@
 // Title of reaction summary view. The placeholder will be replaced by the number of reactions.
 // Short form for "N Items Selected"
 "selected" = "Выбрана";
-"self" = "Я";
+"self" = "Вы";
 "draft" = "Чарнавік";
 "image" = "Відарыс";
 // Used in summaries as "Draft: Reply", similar as "Draft: Image". Use a noun here, not a verb (not: "to reply")
@@ -740,7 +740,7 @@
 "pref_backup_export_start_button" = "Пачаць рэзервовае капіяванне";
 "pref_backup_written_to_x" = "Рэзервовая копія запісана ў «%1$@».";
 // No need to translate "Wallpaper" literally. Chose what is common in your language for a "Wallpaper" or a "Background". Avoid adding the term "image" here, as the "Wallpaper" may also be just a single color.
-"pref_background" = "Шпалеры";
+"pref_background" = "Фон";
 "pref_background_btn_default" = "Выкарыстоўваць прадвызначаны відарыс";
 "pref_background_btn_gallery" = "Выбраць з галерэі";
 // No need to be literal here, you can also use "Use Multiple Devices", "Support Multiple Devices" or other fitting terms. However, it should fit to the wording or your language at https://delta.chat/help

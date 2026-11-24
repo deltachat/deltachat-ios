@@ -1015,6 +1015,8 @@
 "global_menu_help_about_desktop" = "About Delta Chat";
 "global_menu_file_open_desktop" = "Open Delta Chat";
 "global_menu_minimize_to_tray" = "Minimize";
+// Used as a menu title, stay short! Something as "To the Background" (e.g. german "In den Hintergrund") will work as well. Move a Mini App to the background (e.g. to a notification, picture-in-picture or dynamic island) so that the user can use other parts of Delta Chat and return to the Mini App as needed. Note that the app may still be suspended, so avoid "Run in Background"
+"move_to_background" = "Move to Background";
 "no_account_selected" = "Select a profile or create a new profile";
 "no_chat_selected_suggestion_desktop" = "Select a chat or create a new chat";
 "write_message_desktop" = "Write a message";
