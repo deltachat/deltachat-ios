@@ -676,10 +676,10 @@ extension WebxdcViewController {
 
     fileprivate func startLiveActivity(with info: WebxdcInfo) {
         Task { [self] in
+            activityUpdatesTask?.cancel()
             await activity?.end(nil, dismissalPolicy: .immediate)
             let attributes = WebxdcLiveActivityAttributes(context: dcContext, messageId: messageId)
             do {
-                activityUpdatesTask?.cancel()
                 activity = try Activity.request(
                     attributes: attributes,
                     content: .init(
