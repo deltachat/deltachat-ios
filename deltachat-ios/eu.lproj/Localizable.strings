@@ -54,6 +54,8 @@
 "muted" = "Isilarazia";
 "ephemeral_messages" = "Mezuen desagerpena";
 "ephemeral_messages_hint" = "Txat honetako kide guztiei aplikatzen zaie; mezuak kopiatu, gorde eta birbidali ahal izango dituzte oraindik ere.";
+// Apply setting as "Disappearing Messages" for everyone
+"set_for_everyone" = "Guztientzat ezarrita";
 "save" = "Gorde";
 "chat" = "Txata";
 "media" = "Multimedia";
@@ -1029,6 +1031,8 @@
 "export_backup_desktop" = "Esportatu babeskopia";
 "message_detail_sent_desktop" = "bidalita";
 "message_detail_received_desktop" = "jasota";
+// Title for the time, a mini-app has received its last update
+"last_updated" = "Azken eguneratua";
 "menu.view.developer.open.log.folder" = "Ireki egunkarien karpeta";
 "menu.view.developer.open.current.log.file" = "Ireki uneko egunkari-fitxategia";
 "explain_desktop_minimized_disabled_tray_pref" = "Erretiluko ikonoa ezin da desgaitu, Delta Chat --minimized aukerarekin abiarazi baita.";
