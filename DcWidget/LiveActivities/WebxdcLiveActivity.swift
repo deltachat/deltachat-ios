@@ -16,7 +16,7 @@ struct WebxdcLiveActivity: Widget {
                         .cornerRadius(5)
                 }
                 VStack(alignment: .leading) {
-                    Text("\(info.document?.nilIfEmpty ?? info.name) – \(attr.chatName)").bold()
+                    Text(info.document?.nilIfEmpty ?? info.name).bold()
                     if let summary = info.summary?.nilIfEmpty {
                         Text(summary)
                     }
@@ -90,7 +90,7 @@ struct WebxdcLiveActivity: Widget {
                             .padding(.leading, 6)
                             .padding(.bottom, 6)
                         VStack(alignment: .leading) {
-                            Text("\(info.document?.nilIfEmpty ?? info.name) – \(attr.chatName)").bold()
+                            Text(info.document?.nilIfEmpty ?? info.name).bold()
                             if let summary = info.summary?.nilIfEmpty {
                                 Text(summary).padding(.trailing)
                             }
