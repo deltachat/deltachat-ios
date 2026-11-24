@@ -596,9 +596,9 @@ qui continuer de fonctionner comme auparavant.</p>
 <p>Il n’y a pas de limite technique stricte,
 mais il n’est pas recommandé de dépasser 150.</p>
 
-<p>As groups get larger, they can become socially unstable and may need a hierarchy -
-where Delta Chat is a private messenger for chatting with <a href="#groups">equal rights</a>.
-See <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">Dunbar’s number</a> for more insights.</p>
+<p>À mesure que les groupes s’agrandissent, ils peuvent devenir socialement instables et avoir besoin d’une hiérarchie -
+or, Delta Chat est une messagerie privée conçue pour des échanges entre personnes sur un <a href="#groups">pied d’égalité</a>.
+Voir le <a href="https://en.wikipedia.org/wiki/Dunbar%27s_number">nombre de Dunbar</a> pour en savoir plus.</p>
     
       <h2 id="channels">
         
@@ -1077,9 +1077,9 @@ L’un n’a pas besoin de l’autre pour pouvoir fonctionner.</p>
     <p>Vérifier à nouveau que les deux appareils sont sur <strong>le même réseau ou le même Wi-Fi</strong>.</p>
   </li>
   <li>
-    <p>On <strong>Windows</strong>, go to “Control Panel / Network and Internet”
-and make sure, <strong>Private Network</strong> is selected as “Network profile type”
-(after transfer, you can change back to the original value)</p>
+    <p>Sur <strong>Windows</strong>, allez dans “Paramètres / Réseau et Internet”
+et  assurez-vous que <strong>Réseau privé</strong> est sélectionné dans “Type du profil de réseau”
+(après le transfert, vous pouvez remettre le paramètre d’origine)</p>
   </li>
   <li>
     <p>On <strong>iOS</strong>, make sure “System Settings / Apps / Delta Chat / <strong>Local Network</strong>” access is granted</p>
@@ -1129,10 +1129,10 @@ Vous pouvez utiliser plusieurs comptes par appareil : <a href="#multiple-account
 
 <ul>
   <li>
-    <p>On the old device, go to <strong>Settings → Chats → Export Backup</strong>,
-unlock the screen if needed,
-and tap <strong>Export This Profile</strong>.
-This saves the backup file to your device. Now you have to transfer it to the other device somehow.</p>
+    <p>Sur l’ancien appareil, allez dans <strong>Paramètres → Discussions → Exporter une sauvegarde</strong>,
+déverrouillez l’écran si nécessaire,
+et cliquez sur <strong>Exporter ce profil</strong>.
+Cela enregistre le fichier de sauvegarde sur votre appareil. Vous devez maintenant, d’une manière ou d’une autre, le transférer vers l’autre appareil.</p>
   </li>
   <li>
     <p>Sur le nouvel appareil, sélectionnez <strong>J’ai déjà un profil → Rétablir une sauvegarde</strong>.
@@ -1588,14 +1588,14 @@ mais pour l’instant, implémenter “Sealed Sender” n’est pas notre priori
 
 <p>Pas encore mais cela arrive avec <a href="https://autocrypt2.org">Autocrypt v2</a>.</p>
 
-<p>Delta Chat today doesn’t support Perfect Forward Secrecy (PFS).
-This means that if your private decryption key is leaked,
-and someone has collected your prior in-transit messages,
-they will be able to decrypt and read them using the leaked decryption key.
-Note that Forward Secrecy only increases security if you delete messages. 
-Otherwise, someone obtaining your decryption keys
-is typically also able to get all your non-deleted messages
-and doesn’t even need to decrypt any previously collected messages.</p>
+<p>À l’heure actuelle, Delta Chat ne prend pas en charge Perfect Forward Secrecy (PFS).
+Cela signifie que si votre clé privée de déchiffrement fuite
+et qu’une personne a intercepté vos messages précédents lors de leur transit,
+cette personne pourra les déchiffrer et les lire en utilisant la clé qui a fuitée.
+Notez que Forward Secrecy ne renforce la sécurité que si vous supprimez vos messages. 
+Dans le cas contraire, quiconque obtient vos clés de déchiffrement
+est généralement en mesure d’accéder à tous vos messages non supprimés,
+sans même avoir besoin de déchiffrer les messages interceptés précédemment.</p>
 
 <p><a href="https://autocrypt2.org">Autocrypt v2</a>, prévu pour 2026, permettra la suppression fiable (forward secrecy) grâce à une rotation automatique des clefs.
 Cette approche est détaillée dans le brouillon du  <a href="https://datatracker.ietf.org/doc/draft-autocrypt-openpgp-v2-cert/">certificat Autocrypt v2 OpenPGP</a>.</p>
@@ -1622,11 +1622,9 @@ L’implémentation est détaillée dans le brouillon <a href="https://datatrack
         
       </h3>
 
-<p>You may check the end-to-end encryption status manually in the “Encryption” dialog
-(user profile on Android/iOS or right-click a user’s chat-list item on desktop).
-Delta Chat shows two fingerprints there.
-If the same fingerprints appear on your own and your contact’s device,
-the connection is safe.</p>
+<ul>
+  <li>Quand le chiffrement de bout en bout est actif, vous verrez deux empreintes. Si les mêmes empreintes apparaissent sur l’appareil de votre contact, la connexion est sécurisée.</li>
+</ul>
     
       <h3 id="importkey">
         
@@ -1785,18 +1783,18 @@ Tous ces projets sont partiellement réalisés ou doivent être achevés début 
  à savoir <a href="https://dapsi.ngi.eu/hall-of-fame/eppd/">EPPD - email provider portability directory</a> (~97000€) et <a href="https://nlnet.nl/project/EmailPorting/">AEAP - email address porting</a> (~90000€), qui ont permis d’améliorer la prise en charge du multi-profils, de faciliter la mise en relation et la création de groupes via QR code, et d’apporter de nombreuses optimisations réseau sur toutes les plateformes.</p>
   </li>
   <li>
-    <p>The <a href="https://nlnet.nl/">NLnet foundation</a> granted in 2019/2020 EUR 46K for
-completing Rust/Python bindings and instigating a Chat-bot eco-system.</p>
+    <p>La <a href="https://nlnet.nl/">fondation NLnet</a> a accordé, en 2019/2020, 46 000€ pour
+finaliser les liaisons (bindings) entre Rust et Python et initier un écosystème de chatbots.</p>
   </li>
   <li>
-    <p>The <a href="https://opentechfund.org">Open Technology Fund</a> gave us a
-first 2018/2019 grant (~$200K) during which we majorly improved the Android app
-and released a first Desktop app beta version, and which moreover
-moored our feature developments in UX research in human rights contexts,
-see our concluding <a href="https://delta.chat/en/2019-07-19-uxreport">Needfinding and UX report</a>.
-The second 2019/2020 grant (~$300K) helped us to
-release Delta/iOS versions, to convert our core library to Rust, and
-to provide new features for all platforms.</p>
+    <p>L’<a href="https://opentechfund.org">Open Technology Fund</a> nous a accordé une
+première subvention pour la période 2018-2019 (environ 200 000$), qui nous a permis d’améliorer considérablement l’application Android
+et de publier une première version bêta pour ordinateur, et qui a également
+ancré le développement de nos fonctionnalités dans une démarche de recherche en expérience utilisateur (UX) adaptée aux contextes liés aux droits humains,
+consultez notre rapport final sur <a href="https://delta.chat/en/2019-07-19-uxreport">’identification des besoins et l’expérience utilisateur</a>.
+La seconde subvention, pour la période 2019-2020 (environ 300 000$), nous a permis de
+sortir les versions iOS de Delta Chat, de convertir notre bibliothèque centrale en Rust et
+de proposer de nouvelles fonctionnalités sur toutes les plateformes.</p>
   </li>
   <li>
     <p>The <a href="https://nextleap.eu">NEXTLEAP</a> EU project funded the research
