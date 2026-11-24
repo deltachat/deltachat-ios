@@ -854,7 +854,7 @@ private extension UIAction {
     static func minimizeWebxdc(vc: WebxdcViewController, info: WebxdcInfo?) -> UIMenuElement {
         let isMap = vc is MapViewController
         if #available(iOS 16.2, *), !isMap, !vc.isDraft, ActivityAuthorizationInfo().areActivitiesEnabled, let info {
-            UIAction(title: String.localized("global_menu_minimize_to_tray"), image: UIImage(systemName: "chevron.up")) { [unowned vc] _ in
+            UIAction(title: String.localized("move_to_background"), image: UIImage(systemName: "platter.filled.top.and.arrow.up.iphone")) { [unowned vc] _ in
                 WebxdcViewController.loadedWebxdcs[.key(contextId: vc.dcContext.id, messageId: vc.messageId)] = vc
                 if #available(iOS 17.0, *) {
                     vc.webView.configuration.preferences.inactiveSchedulingPolicy = .none
