@@ -1,6 +1,20 @@
 import AVFoundation
-import UIKit
 import DcCore
+import SwiftUI
+
+struct QrCodeReaderView: UIViewControllerRepresentable {
+    let addHints: String?
+    let showTroubleshooting: Bool
+    weak let delegate: QrCodeReaderDelegate?
+
+    func makeUIViewController(context: Context) -> QrCodeReaderController {
+        let vc = QrCodeReaderController(title: "", addHints: addHints, showTroubleshooting: showTroubleshooting)
+        vc.delegate = delegate
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: QrCodeReaderController, context: Context) {}
+}
 
 class QrCodeReaderController: UIViewController {
 

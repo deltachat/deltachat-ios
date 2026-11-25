@@ -1,7 +1,19 @@
 import Foundation
-import UIKit
+import SwiftUI
 import DcCore
 import SDWebImageSVGKitPlugin
+
+struct QrView: UIViewControllerRepresentable {
+    let dcContext: DcContext
+    var chatId: Int = 0
+    var qrCodeHint: String = ""
+
+    func makeUIViewController(context: Context) -> QrViewController {
+        QrViewController(dcContext: dcContext, chatId: chatId, qrCodeHint: qrCodeHint)
+    }
+
+    func updateUIViewController(_ uiViewController: QrViewController, context: Context) {}
+}
 
 class QrViewController: UIViewController {
 
