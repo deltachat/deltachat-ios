@@ -93,7 +93,7 @@ public class DcMsg {
     }
 
     public func getSenderName(_ dcContact: DcContact, markOverride: Bool = false) -> String {
-        if let overrideName = overrideSenderName {
+        if fromContactId == dcContact.id, let overrideName = overrideSenderName {
             return (markOverride ? "~" : "") + overrideName
         } else {
             return dcContact.displayName
@@ -231,7 +231,7 @@ public class DcMsg {
 
     // returns webxdc app name for an webxdc-info-messages or webxdc-instances
     public func getWebxdcAppName() -> String {
-        let msg = if self.isInfo, let parent = self.parent {
+        let msg = if self.isInfo, let parent {
             parent
         } else {
             self

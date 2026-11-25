@@ -16,8 +16,8 @@ public extension UNNotificationContent {
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isMultiUser && msg.isReplyToSelf && context.isMentionsEnabled) else { return nil }
         let content = UNMutableNotificationContent()
-        let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
-        content.title = chat.isMultiUser ? chat.name : sender
+        let contact = context.getContact(id: msg.fromContactId)
+        content.title = chat.isMultiUser ? chat.name : msg.getSenderName(contact)
         content.body = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
         content.userInfo["account_id"] = context.id
         content.userInfo["chat_id"] = chat.id
@@ -26,7 +26,7 @@ public extension UNNotificationContent {
         content.threadIdentifier = "\(context.id)-\(chat.id)"
         content.sound = .default
         content.setRelevanceScore(for: msg, in: chat, context: context)
-        return content.updating(fromMessageIntentForMessage: msg, in: chat)
+        return content.updating(fromMessageIntentForChat: chat, msg: msg, sender: contact)
     }
 
     /// Initialiser that returns a notification for an incoming reaction. Returns nil if no notification should be sent (eg if chat is muted)
@@ -46,7 +46,7 @@ public extension UNNotificationContent {
         content.threadIdentifier = "\(context.id)-\(chat.id)"
         content.sound = .default
         content.setRelevanceScore(for: msg, in: chat, context: context)
-        return content.updating(fromMessageIntentForMessage: msg, in: chat)
+        return content.updating(fromMessageIntentForChat: chat, msg: nil, sender: contact)
     }
 
     /// Initialiser that returns a notification for an incoming webxdc notification. Returns nil if no notification should be sent (eg if chat is muted)
@@ -55,7 +55,7 @@ public extension UNNotificationContent {
         guard !chat.isMuted || (chat.isMultiUser && context.isMentionsEnabled) else { return nil }
         let content = UNMutableNotificationContent()
         content.title = chat.name
-        content.body = msg.getWebxdcAppName() + ": " + notification
+        content.body = notification
         content.userInfo["account_id"] = context.id
         content.userInfo["chat_id"] = chat.id
         content.userInfo["message_id"] = msg.id
@@ -63,7 +63,9 @@ public extension UNNotificationContent {
         content.threadIdentifier = "\(context.id)-\(chat.id)"
         content.sound = .default
         content.setRelevanceScore(for: msg, in: chat, context: context)
-        return content.updating(fromMessageIntentForMessage: msg, in: chat)
+        let contact = context.getContact(id: msg.fromContactId)
+        let info = msg.parent?.getWebxdcInfo()
+        return content.updating(fromMessageIntentForChat: chat, msg: msg, sender: contact, webxdc: info)
     }
 
     static func forIncomingCallMsg(_ msg: DcMsg, hasVideo: Bool, chat: DcChat, context: DcContext) -> UNNotificationContent? {
@@ -87,9 +89,9 @@ public extension UNNotificationContent {
         userInfo["id"] as? String ?? UUID().uuidString
     }
 
-    private func updating(fromMessageIntentForMessage msg: DcMsg, in chat: DcChat) -> UNNotificationContent {
+    private func updating(fromMessageIntentForChat chat: DcChat, msg: DcMsg?, sender: DcContact?, webxdc: WebxdcInfo? = nil) -> UNNotificationContent {
         do {
-            return try updating(from: INSendMessageIntent(forChat: chat, msg: msg))
+            return try updating(from: INSendMessageIntent(forChat: chat, msg: msg, sender: sender, webxdc: webxdc))
         } catch {
             logger.warning("Failed to add intent to notification with error: \(error)")
             return self

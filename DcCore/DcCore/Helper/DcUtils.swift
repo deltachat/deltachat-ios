@@ -14,9 +14,9 @@ public struct DcUtils {
         }
     }
 
-    public static func donateSendMessageIntent(context: DcContext, chatId: Int, chatAvatar: UIImage?) {
+    public static func donateSendMessageIntent(context: DcContext, chatId: Int) {
         let chat = context.getChat(chatId: chatId)
-        let intent = INSendMessageIntent(forChat: chat, msg: nil)
+        let intent = INSendMessageIntent(forChat: chat, msg: nil, sender: nil)
         let interaction = INInteraction(intent: intent, response: nil)
         interaction.groupIdentifier = "\(context.id)"
         interaction.donate(completion: { error in
@@ -78,10 +78,11 @@ public struct DcUtils {
 }
 
 extension INSendMessageIntent {
-    convenience init(forChat dcChat: DcChat, msg: DcMsg?) {
+    convenience init(forChat dcChat: DcChat, msg: DcMsg?, sender: DcContact?, webxdc: WebxdcInfo? = nil) {
         let dcContext = dcChat.dcContext
-        let sender = (msg?.fromContactId).map(dcContext.getContact)
-        let overrideSenderName = sender.flatMap { msg?.getSenderName($0, markOverride: true) }
+        let sender = sender ?? (msg?.fromContactId).map(dcContext.getContact)
+        let overrideSenderName = webxdc?.name ?? sender.flatMap { msg?.getSenderName($0, markOverride: true) }
+        let overrideSenderImage = webxdc.flatMap { msg?.getWebxdcBlob(filename: $0.icon) }
         self.init(
             recipients: dcChat.isMultiUser ? dcChat.getContacts().map {
                 INPerson(forContact: $0, dcContext: dcContext)
@@ -91,7 +92,9 @@ extension INSendMessageIntent {
             speakableGroupName: dcChat.isMultiUser ? INSpeakableString(spokenPhrase: dcChat.name) : nil,
             conversationIdentifier: "\(dcContext.id).\(dcChat.id)",
             serviceName: nil,
-            sender: sender.map { INPerson(forContact: $0, name: overrideSenderName, dcContext: dcContext) },
+            sender: sender.map {
+                INPerson(forContact: $0, name: overrideSenderName, image: overrideSenderImage, dcContext: dcContext)
+            },
             attachments: nil
         )
         dcChat.profileImage?.pngData().map(setGroupImage)
@@ -105,12 +108,12 @@ extension INSendMessageIntent {
 }
 
 extension INPerson {
-    convenience init(forContact dcContact: DcContact, name: String? = nil, dcContext: DcContext) {
+    convenience init(forContact dcContact: DcContact, name: String? = nil, image: Data? = nil, dcContext: DcContext) {
         self.init(
             personHandle: INPersonHandle(value: "\(dcContext.id)-\(dcContact.id)", type: .unknown),
             nameComponents: nil,
             displayName: name ?? dcContact.displayName,
-            image: dcContact.profileImage?.pngData().flatMap(INImage.init(imageData:)),
+            image: (image ?? dcContact.profileImage?.pngData()).flatMap(INImage.init(imageData:)),
             contactIdentifier: nil,
             customIdentifier: nil,
             isMe: dcContact.id == DC_CONTACT_ID_SELF
