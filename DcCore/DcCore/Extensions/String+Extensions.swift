@@ -27,10 +27,8 @@ public extension String {
         return NSLocalizedString(stringID, bundle: localizationBundle, comment: "")
     }
 
-    static func localized(stringID: String, parameter: CVarArg...) -> String {
-        let formatString = localized(stringID)
-        let resultString = String.localizedStringWithFormat(formatString, parameter)
-        return resultString
+    static func localized(_ stringID: String, _ arguments: CVarArg...) -> String {
+        String.localizedStringWithFormat(localized(stringID), arguments)
     }
 
     func containsExact(subSequence: String?) -> [Int] {

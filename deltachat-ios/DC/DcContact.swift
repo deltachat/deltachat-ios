@@ -88,7 +88,7 @@ public class DcContact {
         } else if age < oneMonth {
             return String.localized("seen_within_month")
         } else if age < oneYear {
-            return String.localized(stringID: "seen_n_months_ago", parameter: Int(age / oneMonth))
+            return String.localized("seen_n_months_ago", Int(age / oneMonth))
         }
 
         return String.localized("seen_long_ago")

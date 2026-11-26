@@ -42,7 +42,7 @@ public class DateUtils {
             return String.localized("now")
         } else if seconds < DtU.hour {
             let mins = seconds / DtU.minute
-            return String.localized(stringID: "n_minutes", parameter: Int(mins))
+            return String.localized("n_minutes", Int(mins))
         } else {
             return getExtendedAbsTimeSpanString(timeStamp: timeStamp)
         }
@@ -79,10 +79,10 @@ public class DateUtils {
             return String.localized("now")    // under one minute
         } else if seconds < DtU.hour {
             let mins = seconds / DtU.minute
-            return String.localized(stringID: "n_minutes", parameter: Int(mins))
+            return String.localized("n_minutes", Int(mins))
         } else if seconds < DtU.day {
             let hours = seconds / DtU.hour
-            return String.localized(stringID: "n_hours", parameter: Int(hours))
+            return String.localized("n_hours", Int(hours))
         } else if seconds < DtU.day * 6 {
             formatter.dateFormat = "EEE"
             return formatter.string(from: date)

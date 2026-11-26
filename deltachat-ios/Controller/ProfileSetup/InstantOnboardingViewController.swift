@@ -262,17 +262,17 @@ class InstantOnboardingViewController: UIViewController {
             let parsedQrCode = dcContext.checkQR(qrCode: providerQrData)
             if parsedQrCode.state == DC_QR_LOGIN || parsedQrCode.state == DC_QR_ACCOUNT {
                 let name = parsedQrCode.text1 ?? "ErrName"
-                hint += String.localized(stringID: "relay_login_hint", parameter: name) + "\n\n"
+                hint += String.localized("relay_login_hint", name) + "\n\n"
             }
         }
         if let securejoinQrData {
             let parsedQrCode = dcContext.checkQR(qrCode: securejoinQrData)
             if parsedQrCode.state == DC_QR_ASK_VERIFYCONTACT {
                 let name = dcContext.getContact(id: parsedQrCode.id).displayName
-                hint += String.localized(stringID: "instant_onboarding_contact_info", parameter: name) + "\n\n"
+                hint += String.localized("instant_onboarding_contact_info", name) + "\n\n"
             } else {
                 let name = parsedQrCode.text1 ?? "ErrName"
-                hint += String.localized(stringID: "instant_onboarding_group_info", parameter: name) + "\n\n"
+                hint += String.localized("instant_onboarding_group_info", name) + "\n\n"
             }
         }
 
@@ -390,12 +390,12 @@ extension InstantOnboardingViewController: QrCodeReaderDelegate {
 
         case DC_QR_ASK_VERIFYCONTACT:
             let name =  dcContext.getContact(id: parsedQrCode.id).displayName
-            let question = String.localized(stringID: "instant_onboarding_confirm_contact", parameter: name)
+            let question = String.localized("instant_onboarding_confirm_contact", name)
             askCreateChatAfterProfileCreation(question: question, securejoinQrData: qrCode)
 
         case DC_QR_ASK_VERIFYGROUP, DC_QR_ASK_VERIFYBROADCAST:
             let name = parsedQrCode.text1 ?? ""
-            let question = String.localized(stringID: "instant_onboarding_confirm_group", parameter: name)
+            let question = String.localized("instant_onboarding_confirm_group", name)
             askCreateChatAfterProfileCreation(question: question, securejoinQrData: qrCode)
 
         default:

@@ -696,7 +696,7 @@ class ChatListViewController: UITableViewController {
             accountButtonAvatar.setUnreadMessageCount(unreadMessages)
         }
         if unreadMessages > 0 {
-            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
+            accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account")): \(String.localized("n_messages", unreadMessages))"
         } else {
             accountButtonAvatar.accessibilityLabel = "\(String.localized("switch_account"))"
         }
@@ -768,7 +768,7 @@ class ChatListViewController: UITableViewController {
             return false
         }
         let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
-        navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
+        navigationItem.title = String.localized("n_selected", cnt)
         navigationItem.setLeftBarButton(cancelButton, animated: true)
         navigationItem.setRightBarButtonItems([markReadButton], animated: true)
         updateMarkReadButton()
@@ -881,7 +881,7 @@ class ChatListViewController: UITableViewController {
         if chatIds.count == 1, let chatId = chatIds.first {
             message = .localizedStringWithFormat(.localized("ask_delete_named_chat"), dcContext.getChat(chatId: chatId).name)
         } else {
-            message = .localized(stringID: "ask_delete_chat", parameter: chatIds.count)
+            message = .localized("ask_delete_chat", chatIds.count)
         }
 
         var alertButton = String.localized("delete_for_me")

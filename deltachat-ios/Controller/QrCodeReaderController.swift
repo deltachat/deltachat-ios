@@ -1,6 +1,20 @@
 import AVFoundation
-import UIKit
 import DcCore
+import SwiftUI
+
+struct QrCodeReaderView: UIViewControllerRepresentable {
+    let addHints: String?
+    let showTroubleshooting: Bool
+    weak let delegate: QrCodeReaderDelegate?
+
+    func makeUIViewController(context: Context) -> QrCodeReaderController {
+        let vc = QrCodeReaderController(title: "", addHints: addHints, showTroubleshooting: showTroubleshooting)
+        vc.delegate = delegate
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: QrCodeReaderController, context: Context) {}
+}
 
 class QrCodeReaderController: UIViewController {
 
@@ -59,7 +73,6 @@ class QrCodeReaderController: UIViewController {
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = []
         self.setupInfoLabel()
         if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
             self.setupQRCodeScanner()
@@ -79,6 +92,7 @@ class QrCodeReaderController: UIViewController {
 
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = moreButton
+        view.backgroundColor = .black
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -146,7 +160,6 @@ class QrCodeReaderController: UIViewController {
             guard let self else { return }
             let text = String.localized("chat_camera_unavailable")
             logger.error(text)
-            self.infoLabel.textColor = DcColors.defaultTextColor
             self.infoLabel.text = text
             self.infoLabelBottomConstraint?.isActive = false
             self.infoLabelCenterConstraint?.isActive = true
