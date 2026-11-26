@@ -82,7 +82,7 @@ private struct QrReadShowView: View {
     let dcContext: DcContext
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             QrCodeReaderView(addHints: nil, showTroubleshooting: false, delegate: delegate)
             let hint = String.localized("qrshow_join_contact_hint", dcContext.displayname ?? .localized("unnamed"))
             QrView(dcContext: dcContext, qrCodeHint: hint).shadow(radius: 20)
