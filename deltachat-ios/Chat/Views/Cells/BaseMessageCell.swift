@@ -614,7 +614,7 @@ public class BaseMessageCell: UITableViewCell {
 
         var reactionsString = ""
         if let reactions {
-            reactionsString = ", " + String.localized(stringID: "n_reactions", parameter: reactions.reactionsByContact.count) + ": "
+            reactionsString = ", " + String.localized("n_reactions", reactions.reactionsByContact.count) + ": "
             for (contactId, reactions) in reactions.reactionsByContact {
                 reactionsString += dcContext.getContact(id: contactId).displayName + ": " + reactions.joined(separator: " ") + ", "
             }

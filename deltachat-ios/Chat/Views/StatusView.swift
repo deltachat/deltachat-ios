@@ -193,7 +193,7 @@ public class StatusView: UIView {
         let stateString = state.isEmpty ? "" : ", \(state)"
         let viewsCountString: String
         if let viewCount {
-            viewsCountString = ", " + String.localized(stringID: "n_views", parameter: Int(viewCount))
+            viewsCountString = ", " + String.localized("n_views", Int(viewCount))
         } else {
             viewsCountString = ""
         }

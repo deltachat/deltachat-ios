@@ -131,7 +131,7 @@ class ProxySettingsViewController: UITableViewController {
         let proxyToRemove = proxies[indexPath.row]
         let host = dcContext.checkQR(qrCode: proxyToRemove).text1 ?? ""
 
-        let deleteAlert = UIAlertController(title: String.localized("proxy_delete"), message: String.localized(stringID: "proxy_delete_explain", parameter: host), preferredStyle: .safeActionSheet)
+        let deleteAlert = UIAlertController(title: String.localized("proxy_delete"), message: String.localized("proxy_delete_explain", host), preferredStyle: .safeActionSheet)
 
         let cancelAction = UIAlertAction(title: String.localized("cancel"), style: .cancel)
         let deleteAction = UIAlertAction(title: String.localized("proxy_delete"), style: .destructive) { [weak self] _ in

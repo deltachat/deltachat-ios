@@ -196,7 +196,7 @@ class AppCoordinator: NSObject {
 
         let selectAlert = UIAlertController(
             title: String.localized("proxy_use_proxy"),
-            message: String.localized(stringID: "proxy_use_proxy_confirm", parameter: host),
+            message: String.localized("proxy_use_proxy_confirm", host),
             preferredStyle: .alert
         )
 

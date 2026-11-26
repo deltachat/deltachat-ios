@@ -24,7 +24,7 @@ class ReactionsOverviewViewController: UIViewController {
             self.contactIds = []
             self.texts = reactions.reactions.map { reaction in
                 sum += reaction.count
-                return "\(reaction.emoji)   " + String.localized(stringID: "n_reactions", parameter: reaction.count)
+                return "\(reaction.emoji)   " + String.localized("n_reactions", reaction.count)
             }
         } else {
             self.contactIds = Array(reactions.reactionsByContact.keys)
@@ -50,7 +50,7 @@ class ReactionsOverviewViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        title = String.localized(stringID: "n_reactions", parameter: sum)
+        title = String.localized("n_reactions", sum)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(ReactionsOverviewViewController.dismiss(_:)))
 

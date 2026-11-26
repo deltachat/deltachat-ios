@@ -852,7 +852,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             // unread messages marker
             let cell = dequeueCell(ofType: InfoMessageCell.self)
             let freshMsgsCount = messages.count - 1 - indexPath.row
-            cell.update(text: String.localized(stringID: "chat_n_new_messages", parameter: freshMsgsCount))
+            cell.update(text: String.localized("chat_n_new_messages", freshMsgsCount))
             return cell
         }
 
@@ -1163,7 +1163,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         if tableView.isEditing {
             navigationItem.titleView = nil
             let cnt = tableView.indexPathsForSelectedRows?.count ?? 0
-            navigationItem.title = String.localized(stringID: "n_selected", parameter: cnt)
+            navigationItem.title = String.localized("n_selected", cnt)
             self.navigationItem.setLeftBarButton(cancelButton, animated: true)
             navigationItem.rightBarButtonItems = nil
         } else {
@@ -1172,12 +1172,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             if dcChat.isMailinglist {
                 subtitle = String.localized("mailing_list")
             } else if dcChat.isInBroadcast {
-                subtitle = String.localized(stringID: "channel")
+                subtitle = String.localized("channel")
             } else if dcChat.isOutBroadcast {
-                subtitle = String.localized(stringID: "n_recipients", parameter: chatContactIds.count)
+                subtitle = String.localized("n_recipients", chatContactIds.count)
             } else if dcChat.isMultiUser {
                 if chatContactIds.count > 1 || chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
-                    subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
+                    subtitle = String.localized("n_members", chatContactIds.count)
                 } else {
                     // do not show misleading "1 member" in case securejoin has not finished
                     subtitle = "…"
@@ -1552,7 +1552,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             false
         }
 
-        let alert = UIAlertController(title: String.localized(stringID: "ask_delete_messages", parameter: ids.count), message: nil, preferredStyle: .safeActionSheet)
+        let alert = UIAlertController(title: String.localized("ask_delete_messages", ids.count), message: nil, preferredStyle: .safeActionSheet)
         let title = confirmButton ?? String.localized(dcChat.isSelfTalk ? "delete" : "delete_for_me")
         alert.addAction(UIAlertAction(title: title, style: .destructive, handler: { [weak self] _ in
             self?.dcContext.deleteMessages(msgIds: ids)
@@ -1586,7 +1586,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func askToForwardMessage() {
         let chat = dcContext.getChat(chatId: chatId)
         confirmationAlert(
-            title: String.localized(stringID: "ask_forward_messages", parameter: RelayHelper.shared.forwardIdsCount(), chat.name),
+            title: String.localized("ask_forward_messages", RelayHelper.shared.forwardIdsCount(), chat.name),
             actionTitle: String.localized("forward"),
             actionHandler: { [weak self] _ in
                 guard let self else { return }
@@ -2604,7 +2604,7 @@ extension ChatViewController: MediaPickerDelegate {
 
             // send multiple selected item in one go directly
             // (sendAsFile can be ignored as forced to be only a single file at showFilesLibrary()
-            let message = String.localized(stringID: "ask_send_files_to_chat", parameter: itemProviders.count, dcChat.name)
+            let message = String.localized("ask_send_files_to_chat", itemProviders.count, dcChat.name)
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("menu_send"), style: .default) { [weak self] _ in
                 guard let self = self else { return }

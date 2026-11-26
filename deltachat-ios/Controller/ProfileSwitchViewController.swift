@@ -193,7 +193,7 @@ class ProfileSwitchViewController: UITableViewController {
             guard let self else { return }
             let accountId = accountIds[indexPath.row]
             let account = dcAccounts.get(id: accountId)
-            let message = "⚠️ " + String.localized(stringID: "delete_account_explain_with_name", parameter: account.displayname ?? String.localized("unnamed"))
+            let message = "⚠️ " + String.localized("delete_account_explain_with_name", account.displayname ?? String.localized("unnamed"))
             let alert = UIAlertController(title: String.localized("delete_account_ask"), message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.localized("delete_account"), style: .destructive, handler: { [weak self] _ in
                 guard let self else { return }
@@ -369,7 +369,7 @@ class AccountCell: UITableViewCell {
         accountAvatar.setUnreadMessageCount(unreadMessages, isMuted: dcContext.isMuted())
 
         if unreadMessages > 0 {
-            accountName.accessibilityLabel = "\(accountTitle): \(String.localized(stringID: "n_messages", parameter: unreadMessages))"
+            accountName.accessibilityLabel = "\(accountTitle): \(String.localized("n_messages", unreadMessages))"
         } else {
             accountName.accessibilityLabel = accountTitle
         }

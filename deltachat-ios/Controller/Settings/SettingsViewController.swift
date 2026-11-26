@@ -296,7 +296,7 @@ internal final class SettingsViewController: UITableViewController {
     private func inviteFriends() {
         guard let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) else { return }
 
-        let invitationText = String.localized(stringID: "invite_friends_text", parameter: inviteLink)
+        let invitationText = String.localized("invite_friends_text", inviteLink)
         Utils.share(text: invitationText, parentViewController: self, sourceView: inviteFriendsCell)
     }
 }

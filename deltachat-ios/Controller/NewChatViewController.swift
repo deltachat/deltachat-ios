@@ -96,7 +96,7 @@ class NewChatViewController: UITableViewController {
     private func inviteFriends(cell: UITableViewCell) {
         guard let inviteLink = Utils.getInviteLink(context: dcContext, chatId: 0) else { return }
 
-        let invitationText = String.localized(stringID: "invite_friends_text", parameter: inviteLink)
+        let invitationText = String.localized("invite_friends_text", inviteLink)
         Utils.share(text: invitationText, parentViewController: self, sourceView: cell)
     }
 
