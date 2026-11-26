@@ -36,7 +36,7 @@ public extension UNMutableNotificationContent {
         let summary = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
         self.init()
         title = chat.name
-        body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
+        body = String.localized("reaction_by_other", contact.displayName, reaction, summary)
         userInfo["account_id"] = context.id
         userInfo["chat_id"] = chat.id
         userInfo["message_id"] = msg.id

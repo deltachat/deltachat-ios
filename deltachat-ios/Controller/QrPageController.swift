@@ -22,11 +22,6 @@ class QrPageController: UIViewController {
         }
     )
 
-    // TODO: fw this to swiftui
-    private var qrCodeHint: String {
-        return String.localizedStringWithFormat(String.localized("qrshow_join_contact_hint"), dcContext.displayname ?? String.localized("unnamed"))
-    }
-
     init(dcAccounts: DcAccounts) {
         self.dcAccounts = dcAccounts
         self.dcContext = dcAccounts.getSelected()
@@ -89,7 +84,8 @@ private struct QrReadShowView: View {
     var body: some View {
         VStack {
             QrCodeReaderView(addHints: nil, showTroubleshooting: false, delegate: delegate)
-            QrView(dcContext: dcContext, qrCodeHint: "").shadow(radius: 20)
+            let hint = String.localized("qrshow_join_contact_hint", dcContext.displayname ?? .localized("unnamed"))
+            QrView(dcContext: dcContext, qrCodeHint: hint).shadow(radius: 20)
         }.ignoresSafeArea()
     }
 }
