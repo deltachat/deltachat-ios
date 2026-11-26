@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 import DcCore
-import SDWebImageSVGKitPlugin
+import SDWebImageSVGCoder
 
 struct QrView: UIViewControllerRepresentable {
     let dcContext: DcContext
@@ -142,7 +142,7 @@ class QrViewController: UIViewController {
         guard let svg else { return nil }
 
         let svgData = svg.data(using: .utf8)
-        let image = SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
+        let image = SDImageSVGCoder.shared.decodedImage(with: svgData, options: [:])
         return image
     }
 

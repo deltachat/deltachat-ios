@@ -1,6 +1,6 @@
 import UIKit
 import DcCore
-import SDWebImageSVGKitPlugin
+import SDWebImageSVGCoder
 
 class ShareProxyViewController: UIViewController {
     private let dcContext: DcContext
@@ -116,7 +116,7 @@ class ShareProxyViewController: UIViewController {
         guard let svg else { return nil }
 
         let svgData = svg.data(using: .utf8)
-        let image = SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
+        let image = SDImageSVGCoder.shared.decodedImage(with: svgData, options: [:])
         return image
     }
 

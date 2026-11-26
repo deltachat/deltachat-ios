@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import DcCore
-import SDWebImageSVGKitPlugin
+import SDWebImageSVGCoder
 
 class BackupTransferViewController: UIViewController {
 
@@ -218,7 +218,7 @@ class BackupTransferViewController: UIViewController {
         guard let svg else { return nil }
 
         let svgData = svg.data(using: .utf8)
-        return SDImageSVGKCoder.shared.decodedImage(with: svgData, options: [:])
+        return SDImageSVGCoder.shared.decodedImage(with: svgData, options: [:])
     }
 
     private func showLastErrorAlert(_ errorContext: String) {

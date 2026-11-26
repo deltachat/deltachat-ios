@@ -5,7 +5,7 @@ import UserNotifications
 import DcCore
 import SDWebImageWebPCoder
 import Intents
-import SDWebImageSVGKitPlugin
+import SDWebImageSVGCoder
 
 let logger = getDcLogger()
 
@@ -68,10 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UserDefaults.setMainIoRunning()
         UNUserNotificationCenter.current().delegate = self
 
-        let webPCoder = SDImageWebPCoder.shared
-        SDImageCodersManager.shared.addCoder(webPCoder)
-        let svgCoder = SDImageSVGKCoder.shared
-        SDImageCodersManager.shared.addCoder(svgCoder)
+        SDImageCodersManager.shared.addCoder(SDImageWebPCoder.shared)
+        SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
 
         dcAccounts.openDatabase(writeable: true)
         migrateToDcAccounts()
