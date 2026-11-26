@@ -370,10 +370,10 @@ public class DcContext {
     }
 
     public func getSecurejoinQrSVG(chatId: Int) -> String? {
-        if let cString = dc_get_securejoin_qr_svg(self.contextPointer, UInt32(chatId)) {
+        if let cString = dc_get_securejoin_qr(contextPointer, UInt32(chatId)) {
             let swiftString = String(cString: cString)
             dc_str_unref(cString)
-            return swiftString
+            return createQRSVG(for: swiftString)
         }
         return nil
     }
