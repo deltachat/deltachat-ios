@@ -85,7 +85,7 @@ class NotificationService: UNNotificationServiceExtension {
                     UserDefaults.shared?.set(payload, forKey: UserDefaults.incomingCallPayloadKey)
                     if !canUseCallKit {
                         let dcContext = dcAccounts.get(id: event.accountId)
-                        let msg = dcContext.getMessage(id: event.data2Int)
+                        let msg = dcContext.getMessage(id: event.data1Int)
                         let chat = dcContext.getChat(chatId: msg.chatId)
                         if let content = UNMutableNotificationContent(forIncomingCallMsg: msg, hasVideo: event.data2Int == 1, chat: chat, context: dcContext) {
                             try? await unc.add(UNNotificationRequest(identifier: content.idOrRandomUUID(), content: content, trigger: nil))
