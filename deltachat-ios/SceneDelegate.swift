@@ -31,8 +31,6 @@ class SceneDelegate: UIResponder, UISceneDelegate, UNUserNotificationCenterDeleg
                     DcAccounts.shared.maybeNetwork()
                 }
             }
-
-            AppDelegate.emitMsgsChangedIfShareExtensionWasUsed()
         }
     }
 
