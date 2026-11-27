@@ -48,7 +48,7 @@ class AddGroupMembersViewController: GroupMembersViewController {
         self.sections = [.memberList]
         super.init(dcContext: dcContext)
         numberOfSections = sections.count
-        selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds(dcContext))
+        selectedContactIds = Set(dcContext.getChat(chatId: chatId).getContactIds())
     }
 
     required init?(coder _: NSCoder) {

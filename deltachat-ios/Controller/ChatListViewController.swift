@@ -857,7 +857,7 @@ class ChatListViewController: UITableViewController {
     // MARK: - alerts
     private func showDeleteSingleChatConfirmationAlert(chatId: Int, didDelete: (() -> Void)? = nil) {
         let dcChat = dcContext.getChat(chatId: chatId)
-        let button = dcChat.mustLeaveBeforeDelete(dcContext) ? "menu_leave_and_delete" : "delete_for_me"
+        let button = dcChat.mustLeaveBeforeDelete() ? "menu_leave_and_delete" : "delete_for_me"
 
         let alert = UIAlertController(title: nil, message: .localizedStringWithFormat(.localized("ask_delete_named_chat"), dcChat.name), preferredStyle: .safeActionSheet)
         alert.addAction(UIAlertAction(title: .localized(button), style: .destructive, handler: { [weak self] _ in
@@ -886,7 +886,7 @@ class ChatListViewController: UITableViewController {
 
         var alertButton = String.localized("delete_for_me")
         for chatId in chatIds {
-            if dcContext.getChat(chatId: chatId).mustLeaveBeforeDelete(dcContext) {
+            if dcContext.getChat(chatId: chatId).mustLeaveBeforeDelete() {
                 alertButton = .localized("menu_leave_and_delete")
                 break
             }

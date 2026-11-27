@@ -70,11 +70,7 @@ class RelayHelper {
                 }
                 dcContext.sendMessage(chatId: chatId, message: msg)
             }
-            DcUtils.donateSendMessageIntent(
-                context: dcContext,
-                chatId: chatId,
-                chatAvatar: dcContext.getChat(chatId: chatId).profileImage
-            )
+            DcUtils.donateSendMessageIntent(context: dcContext, chatId: chatId)
         }
         // Remove temp files in share extension dir
         try? FileManager.default.removeItem(at: shareExtensionDirectory)

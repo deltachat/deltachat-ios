@@ -14,30 +14,10 @@ public struct DcUtils {
         }
     }
 
-    public static func donateSendMessageIntent(context: DcContext, chatId: Int, chatAvatar: UIImage?) {
+    public static func donateSendMessageIntent(context: DcContext, chatId: Int) {
         let chat = context.getChat(chatId: chatId)
-        let groupName = INSpeakableString(spokenPhrase: chat.name)
-        
-        let sendMessageIntent = INSendMessageIntent(recipients: nil,
-                                                    outgoingMessageType: .outgoingMessageText,
-                                                    content: nil,
-                                                    speakableGroupName: groupName,
-                                                    conversationIdentifier: "\(context.id).\(chatId)",
-                                                    serviceName: nil,
-                                                    sender: nil,
-                                                    attachments: nil)
-
-        // Add the user's avatar to the intent.
-        if let imageData = chat.profileImage?.pngData() {
-            let image = INImage(imageData: imageData)
-            sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
-        } else if let imageData = chatAvatar?.pngData() {
-            let image = INImage(imageData: imageData)
-            sendMessageIntent.setImage(image, forParameterNamed: \.speakableGroupName)
-        }
-        
-        // Donate the intent.
-        let interaction = INInteraction(intent: sendMessageIntent, response: nil)
+        let intent = INSendMessageIntent(forChat: chat, msg: nil, sender: nil)
+        let interaction = INInteraction(intent: intent, response: nil)
         interaction.groupIdentifier = "\(context.id)"
         interaction.donate(completion: { error in
             if error != nil {
@@ -88,11 +68,55 @@ public struct DcUtils {
     public static func showRecentlySeen(context: DcContext, chat: DcChat) -> Bool {
         var recentlySeen = false
         if !chat.isSelfTalk && !chat.isMultiUser && !chat.isMailinglist && !chat.isDeviceTalk {
-            let contactIds = chat.getContactIds(context)
+            let contactIds = chat.getContactIds()
             if contactIds.count == 1 {
                 recentlySeen = context.getContact(id: contactIds[0]).freshness == DC_FRESHNESS_RECENTLY_SEEN
             }
         }
         return recentlySeen
+    }
+}
+
+extension INSendMessageIntent {
+    convenience init(forChat dcChat: DcChat, msg: DcMsg?, sender: DcContact?, webxdc: WebxdcInfo? = nil) {
+        let dcContext = dcChat.dcContext
+        let sender = sender ?? (msg?.fromContactId).map(dcContext.getContact)
+        let overrideSenderName = webxdc?.name ?? sender.flatMap { msg?.getSenderName($0, markOverride: true) }
+        let overrideSenderImage = webxdc.flatMap { msg?.getWebxdcBlob(filename: $0.icon) }
+        self.init(
+            recipients: dcChat.isMultiUser ? dcChat.getContacts().map {
+                INPerson(forContact: $0, dcContext: dcContext)
+            }.compactMap(\.self) : nil,
+            outgoingMessageType: .outgoingMessageText,
+            content: nil,
+            speakableGroupName: dcChat.isMultiUser ? INSpeakableString(spokenPhrase: dcChat.name) : nil,
+            conversationIdentifier: "\(dcContext.id).\(dcChat.id)",
+            serviceName: nil,
+            sender: sender.map {
+                INPerson(forContact: $0, name: overrideSenderName, image: overrideSenderImage, dcContext: dcContext)
+            },
+            attachments: nil
+        )
+        dcChat.profileImage?.pngData().map(setGroupImage)
+    }
+
+    /// There is a compiler bug that causes this to crash at runtime when the keypath is defined inside the convenience init block.
+    /// Using it from a function like this works. See similar https://developer.apple.com/forums/thread/115786
+    func setGroupImage(_ imageData: Data) {
+        setImage(INImage(imageData: imageData), forParameterNamed: \.speakableGroupName)
+    }
+}
+
+extension INPerson {
+    convenience init(forContact dcContact: DcContact, name: String? = nil, image: Data? = nil, dcContext: DcContext) {
+        self.init(
+            personHandle: INPersonHandle(value: "\(dcContext.id)-\(dcContact.id)", type: .unknown),
+            nameComponents: nil,
+            displayName: name ?? dcContact.displayName,
+            image: (image ?? dcContact.profileImage?.pngData()).flatMap(INImage.init(imageData:)),
+            contactIdentifier: nil,
+            customIdentifier: nil,
+            isMe: dcContact.id == DC_CONTACT_ID_SELF
+        )
     }
 }

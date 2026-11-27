@@ -110,7 +110,7 @@ class CallManager: NSObject {
             let dcContext = DcAccounts.shared.get(id: accountId)
             let dcMsg = dcContext.getMessage(id: msgId)
             let dcChat = dcContext.getChat(chatId: dcMsg.chatId)
-            if let content = UNMutableNotificationContent(forIncomingCallMsg: dcMsg, hasVideo: hasVideo, chat: dcChat, context: dcContext) {
+            if let content = UNNotificationContent.forIncomingCallMsg(dcMsg, hasVideo: hasVideo, chat: dcChat, context: dcContext) {
                 let request = UNNotificationRequest(identifier: "incoming-call", content: content, trigger: nil)
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }

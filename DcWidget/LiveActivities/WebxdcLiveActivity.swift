@@ -82,9 +82,3 @@ struct WebxdcLiveActivity: Widget {
         }
     }
 }
-
-extension String {
-    var nilIfEmpty: String? {
-        isEmpty ? nil : self
-    }
-}

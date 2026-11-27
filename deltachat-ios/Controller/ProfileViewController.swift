@@ -306,9 +306,9 @@ class ProfileViewController: UITableViewController {
         let subtitle: String?
         if let chat {
             if isOutBroadcast {
-                subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds(dcContext).count)
+                subtitle = String.localized(stringID: "n_recipients", parameter: chat.getContactIds().count)
             } else if isGroup {
-                let chatContactIds = chat.getContactIds(dcContext)
+                let chatContactIds = chat.getContactIds()
                 if chatContactIds.count > 1 || chatContactIds.contains(Int(DC_CONTACT_ID_SELF)) {
                     subtitle = String.localized(stringID: "n_members", parameter: chatContactIds.count)
                 } else {
@@ -351,7 +351,7 @@ class ProfileViewController: UITableViewController {
 
     private func updateMembers() {
         guard let chat else { return }
-        memberIds = chat.getContactIds(dcContext)
+        memberIds = chat.getContactIds()
     }
 
     private func updateSharedChat(cell: ContactCell, row index: Int) {
@@ -413,7 +413,7 @@ class ProfileViewController: UITableViewController {
         groupMemberViewController.onMembersSelected = { [weak self] memberIds in
             guard let self else { return }
             let chat = dcContext.getChat(chatId: chatId)
-            var chatMembersToRemove = chat.getContactIds(dcContext)
+            var chatMembersToRemove = chat.getContactIds()
             chatMembersToRemove.removeAll(where: { memberIds.contains($0)})
             for contactId in chatMembersToRemove {
                 _ = dcContext.removeContactFromChat(chatId: chatId, contactId: contactId)

@@ -29,6 +29,7 @@
 		6407FAEA306AA8D700EFBCDD /* WebxdcInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6407FAE9306AA8D700EFBCDD /* WebxdcInfo.swift */; };
 		640ACB472E1E3BA9000FBBCC /* ImageFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */; };
 		640BC0472DCC941D0049B475 /* DarwinNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */; };
+		649E841030B72B0100FF2B37 /* NilIfEmptyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649E840F30B72B0100FF2B37 /* NilIfEmptyHelper.swift */; };
 		64E2FCC12E1AD9D200CA9662 /* CodableNSItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */; };
 		64E7AA642EBE43E400DB88B7 /* CallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7AA632EBE43DE00DB88B7 /* CallKit.swift */; };
 		78072F172A040ED800EB7C98 /* libdeltachat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78072F162A040ED800EB7C98 /* libdeltachat.a */; };
@@ -75,6 +76,7 @@
 		6407FAE9306AA8D700EFBCDD /* WebxdcInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebxdcInfo.swift; sourceTree = "<group>"; };
 		640ACB462E1E3BA9000FBBCC /* ImageFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFormat.swift; sourceTree = "<group>"; };
 		640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinNotificationCenter.swift; sourceTree = "<group>"; };
+		649E840F30B72B0100FF2B37 /* NilIfEmptyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilIfEmptyHelper.swift; sourceTree = "<group>"; };
 		64E2FCC02E1AD9D200CA9662 /* CodableNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableNSItemProvider.swift; sourceTree = "<group>"; };
 		64E7AA632EBE43DE00DB88B7 /* CallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKit.swift; sourceTree = "<group>"; };
 		78072F162A040ED800EB7C98 /* libdeltachat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdeltachat.a; path = "../deltachat-ios/libraries/libdeltachat.a"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				3042195C243E23F100516852 /* DcUtils.swift */,
 				306C324724460CDE001D89F3 /* DateUtils.swift */,
 				30E8F24C2449D30200CE2C90 /* DcColors.swift */,
+				649E840F30B72B0100FF2B37 /* NilIfEmptyHelper.swift */,
 				5F0FCC762DAE65AD00C4F9C3 /* UNMutableNotificationContent+init.swift */,
 				640BC0462DCC941D0049B475 /* DarwinNotificationCenter.swift */,
 				64E7AA632EBE43DE00DB88B7 /* CallKit.swift */,
@@ -337,6 +340,7 @@
 				30421960243E257100516852 /* UIColor+Extensions.swift in Sources */,
 				30E8F2482449C98600CE2C90 /* UIView+Extensions.swift in Sources */,
 				3057028624C5C60000D84EFC /* UITableView+Extensions.swift in Sources */,
+				649E841030B72B0100FF2B37 /* NilIfEmptyHelper.swift in Sources */,
 				308198AB24866229003BE20D /* UserDefaults+Extensions.swift in Sources */,
 				B2526A222DEA12A000EB90CC /* DcEnteredLoginParam.swift in Sources */,
 				D8BBF00D2B57D949008C96FD /* DcChat.swift in Sources */,

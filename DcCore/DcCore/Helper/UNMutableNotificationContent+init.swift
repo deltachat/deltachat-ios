@@ -1,6 +1,7 @@
 import UserNotifications
+import Intents
 
-public extension UNMutableNotificationContent {
+public extension UNNotificationContent {
     /// The limit for expanded notifications on iOS 14+.
     ///
     /// Note: The notification will be truncated at ~170 characters automatically by the system
@@ -8,74 +9,93 @@ public extension UNMutableNotificationContent {
     private static var pushNotificationCharLimit = 250
 
     /// Initialiser that returns a notification for an incoming message. Returns nil if no notification should be sent (eg if chat is muted)
-    convenience init?(forMessage msg: DcMsg, chat: DcChat, context: DcContext) {
+    static func forMessage(_ msg: DcMsg, chat: DcChat, context: DcContext) -> UNNotificationContent? {
         guard msg.id != 0 else { return nil }
         // call notifications should be fresh (a declined call is not fresh and needs no notification)
         guard msg.type != DC_MSG_CALL || msg.state == DC_STATE_IN_FRESH else { return nil }
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isMultiUser && msg.isReplyToSelf && context.isMentionsEnabled) else { return nil }
-        self.init()
-        let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
-        title = chat.isMultiUser ? chat.name : sender
-        body = (chat.isMultiUser ? "\(sender): " : "") + (msg.summary(chars: Self.pushNotificationCharLimit) ?? "")
-        userInfo["account_id"] = context.id
-        userInfo["chat_id"] = chat.id
-        userInfo["message_id"] = msg.id
-        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
-        threadIdentifier = "\(context.id)-\(chat.id)"
-        sound = .default
-        setRelevanceScore(for: msg, in: chat, context: context)
+        let content = UNMutableNotificationContent()
+        let contact = context.getContact(id: msg.fromContactId)
+        content.title = chat.isMultiUser ? chat.name : msg.getSenderName(contact)
+        content.body = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
+        content.userInfo["account_id"] = context.id
+        content.userInfo["chat_id"] = chat.id
+        content.userInfo["message_id"] = msg.id
+        content.userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
+        content.threadIdentifier = "\(context.id)-\(chat.id)"
+        content.sound = .default
+        content.setRelevanceScore(for: msg, in: chat, context: context)
+        return content.updating(fromMessageIntentForChat: chat, msg: msg, sender: contact)
     }
 
     /// Initialiser that returns a notification for an incoming reaction. Returns nil if no notification should be sent (eg if chat is muted)
-    convenience init?(forReaction reaction: String, from contact: Int, msg: DcMsg, chat: DcChat, context: DcContext) {
+    static func forReaction(_ reaction: String, from contact: Int, msg: DcMsg, chat: DcChat, context: DcContext) -> UNNotificationContent? {
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isMultiUser && !chat.isOutBroadcast && context.isMentionsEnabled) else { return nil }
 
         let contact = context.getContact(id: contact)
         let summary = msg.summary(chars: Self.pushNotificationCharLimit) ?? ""
-        self.init()
-        title = chat.name
-        body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
-        userInfo["account_id"] = context.id
-        userInfo["chat_id"] = chat.id
-        userInfo["message_id"] = msg.id
-        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-reaction-\(contact.id)"
-        threadIdentifier = "\(context.id)-\(chat.id)"
-        sound = .default
-        setRelevanceScore(for: msg, in: chat, context: context)
+        let content = UNMutableNotificationContent()
+        content.title = chat.name
+        content.body = String.localized(stringID: "reaction_by_other", parameter: contact.displayName, reaction, summary)
+        content.userInfo["account_id"] = context.id
+        content.userInfo["chat_id"] = chat.id
+        content.userInfo["message_id"] = msg.id
+        content.userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-reaction-\(contact.id)"
+        content.threadIdentifier = "\(context.id)-\(chat.id)"
+        content.sound = .default
+        content.setRelevanceScore(for: msg, in: chat, context: context)
+        return content.updating(fromMessageIntentForChat: chat, msg: nil, sender: contact)
     }
 
     /// Initialiser that returns a notification for an incoming webxdc notification. Returns nil if no notification should be sent (eg if chat is muted)
-    convenience init?(forWebxdcNotification notification: String, msg: DcMsg, chat: DcChat, context: DcContext) {
+    static func forWebxdcNotification(_ notification: String, msg: DcMsg, chat: DcChat, context: DcContext) -> UNNotificationContent? {
         guard !context.isMuted() else { return nil }
         guard !chat.isMuted || (chat.isMultiUser && context.isMentionsEnabled) else { return nil }
-        self.init()
-        title = chat.name
-        body = msg.getWebxdcAppName() + ": " + notification
-        userInfo["account_id"] = context.id
-        userInfo["chat_id"] = chat.id
-        userInfo["message_id"] = msg.id
-        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-update"
-        threadIdentifier = "\(context.id)-\(chat.id)"
-        sound = .default
-        setRelevanceScore(for: msg, in: chat, context: context)
+        let content = UNMutableNotificationContent()
+        content.title = chat.name
+        content.body = notification
+        content.userInfo["account_id"] = context.id
+        content.userInfo["chat_id"] = chat.id
+        content.userInfo["message_id"] = msg.id
+        content.userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)-update"
+        content.threadIdentifier = "\(context.id)-\(chat.id)"
+        content.sound = .default
+        content.setRelevanceScore(for: msg, in: chat, context: context)
+        let contact = context.getContact(id: msg.fromContactId)
+        let info = msg.parent?.getWebxdcInfo()
+        return content.updating(fromMessageIntentForChat: chat, msg: msg, sender: contact, webxdc: info)
     }
 
-    convenience init?(forIncomingCallMsg msg: DcMsg, hasVideo: Bool, chat: DcChat, context: DcContext) {
+    static func forIncomingCallMsg(_ msg: DcMsg, hasVideo: Bool, chat: DcChat, context: DcContext) -> UNNotificationContent? {
         guard !context.isMuted(), !chat.isMuted, !canUseCallKit else { return nil }
-        self.init()
+        let content = UNMutableNotificationContent()
         let sender = msg.getSenderName(context.getContact(id: msg.fromContactId))
-        title = chat.isMultiUser ? chat.name : sender
-        body = .localized(hasVideo ? "video_call" : "audio_call")
-        userInfo["account_id"] = context.id
-        userInfo["chat_id"] = chat.id
-        userInfo["message_id"] = msg.id
-        userInfo["answer_call"] = true
-        userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
-        threadIdentifier = "calls"
-        sound = .default // TODO: Ring?
-        setRelevanceScore(for: msg, in: chat, context: context)
+        content.title = chat.isMultiUser ? chat.name : sender
+        content.body = .localized(hasVideo ? "video_call" : "audio_call")
+        content.userInfo["account_id"] = context.id
+        content.userInfo["chat_id"] = chat.id
+        content.userInfo["message_id"] = msg.id
+        content.userInfo["answer_call"] = true
+        content.userInfo["id"] = "\(context.id)-\(chat.id)-\(msg.id)"
+        content.threadIdentifier = "calls"
+        content.sound = .default // TODO: Ring?
+        content.setRelevanceScore(for: msg, in: chat, context: context)
+        return content
+    }
+
+    func idOrRandomUUID() -> String {
+        userInfo["id"] as? String ?? UUID().uuidString
+    }
+
+    private func updating(fromMessageIntentForChat chat: DcChat, msg: DcMsg?, sender: DcContact?, webxdc: WebxdcInfo? = nil) -> UNNotificationContent {
+        do {
+            return try updating(from: INSendMessageIntent(forChat: chat, msg: msg, sender: sender, webxdc: webxdc))
+        } catch {
+            logger.warning("Failed to add intent to notification with error: \(error)")
+            return self
+        }
     }
 }
 
@@ -88,9 +108,5 @@ extension UNMutableNotificationContent {
         case _ where chat.isMultiUser: 0.3
         default: 0.5
         }
-    }
-
-    public func idOrRandomUUID() -> String {
-        userInfo["id"] as? String ?? UUID().uuidString
     }
 }
